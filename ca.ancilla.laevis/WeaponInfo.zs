@@ -31,11 +31,11 @@ class TFLV_WeaponInfo : Object play {
     maxXP = XPForLevel(1);
   }
 
-  double DamageBonus() {
+  double DamageBonus() const {
     return 1 + level * DAMAGE_BONUS_PER_WEAPON_LEVEL;
   }
 
-  uint XPForLevel(uint level) {
+  uint XPForLevel(uint level) const {
     uint XP = BASE_XP_FOR_WEAPON_LEVEL * level;
     if (weapon.bMeleeWeapon) {
       XP *= LEVEL_COST_MULTIPLIER_FOR_MELEE;
