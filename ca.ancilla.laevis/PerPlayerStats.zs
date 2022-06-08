@@ -4,7 +4,7 @@
 
 // How many times the player needs to level up their guns before they get an
 // intrinsic stat bonus.
-const GUN_LEVELS_PER_PLAYER_LEVEL = 2;
+const GUN_LEVELS_PER_PLAYER_LEVEL = 10;
 // How much extra damage they do per player level. Additive; if this is 0.05
 // and the player is level 20 they do double damage.
 const DAMAGE_BONUS_PER_PLAYER_LEVEL = 0.05;
@@ -55,9 +55,11 @@ class TFLV_PerPlayerStats : Force {
       // Weapon leveled up!
       PruneStaleInfo();
       // Also give the player some XP.
-      ++XP;
-      if (XP >= GUN_LEVELS_PER_PLAYER_LEVEL) {
-        XP -= GUN_LEVELS_PER_PLAYER_LEVEL;
+      // console.printf("XP=%d, XPperLevel=%d", XP, GUN_LEVELS_PER_PLAYER_LEVEL);
+      ++self.XP;
+      // console.printf("XP=%d, XPperLevel=%d", XP, GUN_LEVELS_PER_PLAYER_LEVEL);
+      if (self.XP >= GUN_LEVELS_PER_PLAYER_LEVEL) {
+        self.XP -= GUN_LEVELS_PER_PLAYER_LEVEL;
         ++level;
         console.printf("You are now level %d!", level);
         Weapon(weapon).owner.A_SetBlend("FF FF FF", 0.8, 40);
@@ -71,7 +73,16 @@ class TFLV_PerPlayerStats : Force {
       info.weapon.GetTag(), info.level, info.XP, info.maxXP);
   }
 
-  uint XPForDamage(Actor target, uint damage) {
+  // Return XP bar info as [player XP, max XP, weapon XP, max XP], using
+  // the current weapon.
+  uint, uint, uint, uint XPBarInfo() const {
+    TFLV_WeaponInfo info = GetInfoFor(owner.player.ReadyWeapon);
+    return
+      XP, GUN_LEVELS_PER_PLAYER_LEVEL,
+      info.XP, info.maxXP;
+  }
+
+  uint XPForDamage(Actor target, uint damage) const {
     uint xp = damage;
     if (target.health < 0) {
       // Can't get more XP than the target has hitpoints.
@@ -86,7 +97,7 @@ class TFLV_PerPlayerStats : Force {
     return xp;
   }
 
-  uint TotalDamage(Weapon wielded, uint damage) {
+  uint TotalDamage(Weapon wielded, uint damage) const {
     TFLV_WeaponInfo info = GetInfoFor(wielded);
     return damage
       * (1 + DAMAGE_BONUS_PER_PLAYER_LEVEL * level)
@@ -122,12 +133,6 @@ class TFLV_PerPlayerStats : Force {
       AddXPTo(wielded, xp);
 
       console.printf("%d outgoing damage increased to %d; got %d XP", damage, newdamage, xp);
-      if (inflictor) {
-        console.printf("inflictor: %s", inflictor.GetTag());
-      }
-      if (source) {
-        console.printf("source: %s", source.GetTag());
-      }
     }
   }
 }
