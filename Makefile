@@ -1,6 +1,6 @@
 all: Laevis.pk3
 
-Laevis.pk3: Makefile NOTES MAPINFO zscript.txt ca.ancilla.laevis/*.zs
+Laevis.pk3: MAPINFO KEYCONF zscript.txt ca.ancilla.laevis/*.zs
 	rm -f $@
 	zip -r $@ $^
 

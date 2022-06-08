@@ -1,0 +1,9 @@
+addkeysection "Laevis" Laevis
+
+addmenukey "Display Info" laevis_show_info
+alias laevis_show_info "netevent laevis_show_info"
+defaultbind I laevis_show_info
+
+addmenukey "Cycle Legendoom Power" laevis_cycle_ld_power
+alias laevis_cycle_ld_power "netevent laevis_cycle_ld_power"
+defaultbind P laevis_cycle_ld_power

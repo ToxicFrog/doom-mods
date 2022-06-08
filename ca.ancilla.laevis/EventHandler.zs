@@ -4,6 +4,22 @@
 
 class TFLV_EventHandler : StaticEventHandler
 {
+  bool legendoom_installed;
+
+  override void OnRegister() {
+    // If we just do cls = "LDPistol" it will get checked at compile time; we
+    // need to defer this to runtime so that everything has a chance to load.
+    string ldpistol = "LDPistol";
+    class<Actor> cls = ldpistol;
+    if (cls) {
+      console.printf("Legendoom is enabled, enabling LD compatibility for Laevis.");
+      legendoom_installed = true;
+    } else {
+      console.printf("Couldn't find Legendoom, LD-specific features in Laevis disabled.");
+      legendoom_installed = false;
+    }
+  }
+
   TFLV_PerPlayerStats GetStatsFor(PlayerPawn pawn) const {
     return TFLV_PerPlayerStats(pawn.FindInventory("TFLV_PerPlayerStats"));
   }
@@ -36,10 +52,34 @@ class TFLV_EventHandler : StaticEventHandler
     // console.printf("%d %d", pxpwidth, wxpwidth);
     let xpbarx = w/2 - xpbarwidth/2 + 2;
 
+    // TODO: make this more compact and circular, and put it next to the ammo display
+    // TODO: make the position configurable with cvars
     screen.ClearClipRect();
     screen.Dim("60 60 60", 0.5, w/2 - xpbarwidth/2, h-16, xpbarwidth, xpbarheight);
     screen.DrawThickLine(xpbarx, h-4, xpbarx + wxpwidth, h-4, 6, "00 80 FF", 128);
     screen.DrawThickLine(xpbarx, h-12, xpbarx + pxpwidth, h-12, 6, "00 00 FF", 128);
+
+    // TODO: display textual player/weapon levels, and, once Legendoom compatibility
+    // is implemented, the selected weapon ability.
+  }
+
+  override void NetworkProcess(ConsoleEvent evt) {
+    if (evt.player != consoleplayer) {
+      return;
+    } else if (evt.name == "laevis_show_info") {
+      TFLV_PerPlayerStats stats = GetStatsFor(players[evt.player].mo);
+      uint pxp, pmax, wxp, wmax;
+      [pxp, pmax, wxp, wmax] = stats.XPBarInfo();
+      console.printf("Player:\n    Level %d (%d/%d XP)\n    Damage bonus: %d%%\n    Armour bonus: %d%%",
+        stats.level, pxp, pmax, stats.level * DAMAGE_BONUS_PER_PLAYER_LEVEL * 100,
+        (1 - (1 - DAMAGE_REDUCTION_PER_PLAYER_LEVEL) ** stats.level) * 100);
+    } else if (evt.name == "laevis_cycle_ld_power") {
+      if (legendoom_installed) {
+        console.printf("Legendoom is installed, but this feature isn't implemented yet.");
+      } else {
+        console.printf("This feature only works if you also have Legendoom installed.");
+      }
+    }
   }
 }
 
