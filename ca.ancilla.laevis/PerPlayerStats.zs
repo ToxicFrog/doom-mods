@@ -49,15 +49,12 @@ class TFLV_PerPlayerStats : Force {
   // and possibly level up the player as well.
   // TODO: scale XP nonlinearly based on how dangerous the target is, so (e.g.)
   // a Cyberdemon is worth more XP per point of damage than a Former.
-  void AddXPTo(Actor weapon, int damage) {
+  void AddXPTo(Actor weapon, int xp) {
     TFLV_WeaponInfo info = GetInfoFor(weapon);
-    if (info.AddXP(damage)) {
+    if (info.AddXP(xp)) {
       // Weapon leveled up!
       PruneStaleInfo();
       // Also give the player some XP.
-      // TODO: player levels up based on number of weapon levels gained, similar
-      // to War of Attrition. Investigate whether it makes more sense to level up
-      // based on XP.
       ++XP;
       if (XP >= GUN_LEVELS_PER_PLAYER_LEVEL) {
         XP -= GUN_LEVELS_PER_PLAYER_LEVEL;
@@ -74,6 +71,28 @@ class TFLV_PerPlayerStats : Force {
       info.weapon.GetTag(), info.level, info.XP, info.maxXP);
   }
 
+  uint XPForDamage(Actor target, uint damage) {
+    uint xp = damage;
+    if (target.health < 0) {
+      // Can't get more XP than the target has hitpoints.
+      xp = xp + target.health;
+    }
+    if (target.GetSpawnHealth() > 100) {
+      // Enemies with lots of HP get a log-scale XP bonus.
+      // This works out to about a 1.8x bonus for Archviles and a 2.6x bonus
+      // for the Cyberdemon.
+      xp = xp * (log10(target.GetSpawnHealth()) - 1);
+    }
+    return xp;
+  }
+
+  uint TotalDamage(Weapon wielded, uint damage) {
+    TFLV_WeaponInfo info = GetInfoFor(wielded);
+    return damage
+      * (1 + DAMAGE_BONUS_PER_PLAYER_LEVEL * level)
+      * info.DamageBonus();
+  }
+
   // Apply player level-up bonuses whenever the player deals or receives damage.
   // This is also where bonuses to individual weapon damage are applied.
   override void ModifyDamage(
@@ -83,14 +102,32 @@ class TFLV_PerPlayerStats : Force {
       return;
     }
     if (passive) {
+      // Incoming damage. Apply damage reduction.
       newdamage = damage * (1 - DAMAGE_REDUCTION_PER_PLAYER_LEVEL) ** level;
       console.printf("%d incoming damage reduced to %d", damage, newdamage);
     } else {
-      TFLV_WeaponInfo info = GetInfoFor(owner.player.ReadyWeapon);
-      newdamage = damage
-        * (1 + DAMAGE_BONUS_PER_PLAYER_LEVEL * level)
-        * owner.player.ReadyWeapon.DamageMultiply;
-      console.printf("%d outgoing damage increased to %d", damage, newdamage);
+      // Outgoing damage. 'source' is the *target* of the damage.
+      let target = source;
+      if (!target.bIsMonster) {
+        // Damage bonuses and XP assignment apply only when attacking monsters,
+        // not decorations or yourself.
+        newdamage = damage;
+        return;
+      }
+
+      Weapon wielded = owner.player.ReadyWeapon;
+      newdamage = TotalDamage(wielded, damage);
+
+      uint xp = XPForDamage(target, damage);
+      AddXPTo(wielded, xp);
+
+      console.printf("%d outgoing damage increased to %d; got %d XP", damage, newdamage, xp);
+      if (inflictor) {
+        console.printf("inflictor: %s", inflictor.GetTag());
+      }
+      if (source) {
+        console.printf("source: %s", source.GetTag());
+      }
     }
   }
 }
