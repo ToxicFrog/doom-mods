@@ -6,14 +6,17 @@
 // and multiplicatively with DAMAGE_BONUS_PER_PLAYER_LEVEL.
 const DAMAGE_BONUS_PER_WEAPON_LEVEL = 0.05;
 // Base XP needed to go from level 0 to level 1.
-const BASE_XP_FOR_WEAPON_LEVEL = 100;
+// This is currently scaled such that completely clearing MAP01 on UV will let
+// you level one weapon from 0 to 1.
+// MAP01 of Sunder (a slaughterwad) will let you do that 27 times, or level up
+// a single weapon to level 5.
+const BASE_XP_FOR_WEAPON_LEVEL = 1200;
 // Level-up cost multipliers for melee weapons, puny weapons, explosive weapons,
 // and the BFG. These stack!
 const LEVEL_COST_MULTIPLIER_FOR_MELEE = 0.5;
 const LEVEL_COST_MULTIPLIER_FOR_WIMPY = 0.5;
 const LEVEL_COST_MULTIPLIER_FOR_EXPLOSIVE = 2.0;
 const LEVEL_COST_MULTIPLIER_FOR_BFG = 2.0;
-
 
 class TFLV_WeaponInfo : Object play {
   Weapon weapon;
@@ -29,7 +32,7 @@ class TFLV_WeaponInfo : Object play {
   }
 
   double DamageBonus() {
-    return level * DAMAGE_BONUS_PER_WEAPON_LEVEL;
+    return 1 + level * DAMAGE_BONUS_PER_WEAPON_LEVEL;
   }
 
   uint XPForLevel(uint level) {
