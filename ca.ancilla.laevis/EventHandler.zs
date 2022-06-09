@@ -31,6 +31,43 @@ class TFLV_EventHandler : StaticEventHandler
     }
   }
 
+  ui void DrawXPBar(TFLV_CurrentStats stats) {
+    let w = screen.GetWidth();
+    let h = screen.GetHeight();
+
+    // Outer dimensions of XP display, including 3px frame border on all sides.
+    let framew = w/4;
+    let frameh = 21;
+    let framex = w/2 - framew/2;
+    let framey = h - frameh;
+
+    // Positioning for the player XP gauge.
+    let pbarx = framex + 3;
+    let pbary = framey + 3;
+    let pbarw = (framew - 6) * (double(stats.pxp)/stats.pmax);
+    let pbarh = 4;
+
+    // Positioning for the weapon XP gauge.
+    let wbarx = pbarx;
+    let wbary = pbary + pbarh + 3;
+    let wbarw = (framew - 6) * (double(stats.wxp)/stats.wmax);
+    let wbarh = 8;
+
+    // Draw the frames.
+    // console.printf("screen (%d,%d)", w, h);
+    // console.printf("uframe (%d,%d) + (%d,%d)", framex, framey, framew, pbarh + 6);
+    // console.printf("lframe (%d,%d) + (%d,%d)", framex, framey + pbarh + 3, framew, wbarh + 6);
+    screen.DrawFrame(framex+3, framey + 3, framew - 6, pbarh);
+    screen.DrawFrame(framex+3, framey + pbarh + 6, framew - 6, wbarh);
+
+    // Draw the gauges.
+    screen.Dim("00 FF 00", 0.5, pbarx, pbary, pbarw, pbarh);
+    screen.Dim("00 FF FF", 0.5, wbarx, wbary, wbarw, wbarh);
+
+    // TODO: display textual player/weapon levels, and, once Legendoom compatibility
+    // is implemented, the selected weapon ability.
+  }
+
   override void RenderOverlay(RenderEvent evt) {
     PlayerPawn pawn = players[consoleplayer].mo;
     if (!pawn || !players[consoleplayer].ReadyWeapon) {
@@ -38,29 +75,9 @@ class TFLV_EventHandler : StaticEventHandler
     }
     // TODO: only draw when cvar screenblocks == 11
 
-    let w = screen.GetWidth();
-    let h = screen.GetHeight();
-    let xpbarwidth = w/4;
-    let xpbarheight = 16;
-
     TFLV_CurrentStats stats;
     GetStatsFor(pawn).GetCurrentStats(stats);
-
-    // console.printf("%d %d %d %d", pxp, pmax, wxp, wmax);
-    let pxpwidth = (xpbarwidth - 4) * (double(stats.pxp)/stats.pmax);
-    let wxpwidth = (xpbarwidth - 4) * (double(stats.wxp)/stats.wmax);
-    // console.printf("%d %d", pxpwidth, wxpwidth);
-    let xpbarx = w/2 - xpbarwidth/2 + 2;
-
-    // TODO: make this more compact and circular, and put it next to the ammo display
-    // TODO: make the position configurable with cvars
-    screen.ClearClipRect();
-    screen.Dim("60 60 60", 0.5, w/2 - xpbarwidth/2, h-16, xpbarwidth, xpbarheight);
-    screen.DrawThickLine(xpbarx, h-4, xpbarx + wxpwidth, h-4, 6, "00 80 FF", 128);
-    screen.DrawThickLine(xpbarx, h-12, xpbarx + pxpwidth, h-12, 6, "00 00 FF", 128);
-
-    // TODO: display textual player/weapon levels, and, once Legendoom compatibility
-    // is implemented, the selected weapon ability.
+    DrawXPBar(stats);
   }
 
   override void NetworkProcess(ConsoleEvent evt) {
