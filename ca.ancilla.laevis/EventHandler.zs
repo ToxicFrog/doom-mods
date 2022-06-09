@@ -85,19 +85,34 @@ class TFLV_EventHandler : StaticEventHandler
     DrawXPGauge(stats);
   }
 
+  void ShowInfo(PlayerPawn pawn) {
+    TFLV_CurrentStats stats;
+    GetStatsFor(pawn).GetCurrentStats(stats);
+    console.printf("Player:\n    Level %d (%d/%d XP)\n    Damage bonus: %d%%\n    Armour bonus: %d%%",
+      stats.plvl, stats.pxp, stats.pmax, stats.pdmg * 100, stats.pdef * 100);
+    console.printf("%s:\n    Level %d (%d/%d XP)\n    Damage bonus: %d%% (%d%% total)",
+      stats.wname, stats.wlvl, stats.wxp, stats.wmax, stats.wdmg * 100, stats.pdmg * stats.wdmg * 100);
+    TFLV_WeaponInfo info = GetStatsFor(pawn).GetInfoForCurrentWeapon();
+    for (uint i = 0; i < info.abilities.size(); ++i) {
+      console.printf("%s%s (%s)",
+        "    ", // TODO print marker next to selected ability
+        TFLV_Util.GetAbilityTitle(info.abilities[i]),
+        TFLV_Util.GetAbilityDesc(info.abilities[i]));
+    }
+  }
+
+  void CycleLDPower(PlayerPawn pawn) {
+    TFLV_WeaponInfo info = GetStatsFor(pawn).GetInfoForCurrentWeapon();
+  }
+
   override void NetworkProcess(ConsoleEvent evt) {
     if (evt.player != consoleplayer) {
       return;
     } else if (evt.name == "laevis_show_info") {
-      TFLV_CurrentStats stats;
-      GetStatsFor(players[evt.player].mo).GetCurrentStats(stats);
-      console.printf("Player:\n    Level %d (%d/%d XP)\n    Damage bonus: %d%%\n    Armour bonus: %d%%",
-        stats.plvl, stats.pxp, stats.pmax, stats.pdmg * 100, stats.pdef * 100);
-      console.printf("%s:\n    Level %d (%d/%d XP)\n    Damage bonus: %d%% (%d%% total)",
-        stats.wname, stats.wlvl, stats.wxp, stats.wmax, stats.wdmg * 100, stats.pdmg * stats.wdmg * 100);
+      ShowInfo(players[evt.player].mo);
     } else if (evt.name == "laevis_cycle_ld_power") {
       if (legendoomInstalled) {
-        console.printf("Legendoom is installed, but this feature isn't implemented yet.");
+        CycleLDPower(players[evt.player].mo);
       } else {
         console.printf("This feature only works if you also have Legendoom installed.");
       }

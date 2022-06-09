@@ -68,14 +68,9 @@ class TFLV_LegendoomAbilityGiver : Inventory {
     return true;
   }
 
-  string GetFriendlyAbilityName(string ability) {
-    string suffix = ability.Mid(ability.RightIndexOf("_")+1);
-    return StringTable.Localize("$LD_FX_TITLE_"..suffix);
-  }
-
   void InstallUpgrade() {
     string ability = TFLV_Util.GetWeaponEffectName(upgrade, prefix);
-    string abname = GetFriendlyAbilityName(ability);
+    string abname = TFLV_Util.GetAbilityTitle(ability);
     if (wielded.abilities.Size() == 0) {
       // No existing abilities, so just pick it up as is.
       console.printf("Your %s gained the ability [%s]!", wielded.weapon.GetTag(), abname);
