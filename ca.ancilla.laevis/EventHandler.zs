@@ -28,7 +28,9 @@ class TFLV_EventHandler : StaticEventHandler
     PlayerPawn pawn = players[evt.playerNumber].mo;
     if (pawn) {
       pawn.GiveInventoryType("TFLV_PerPlayerStats");
-      GetStatsFor(pawn).legendoomInstalled = legendoomInstalled;
+      if (legendoomInstalled) {
+        GetStatsFor(pawn).InitLegendoom();
+      }
     }
   }
 
