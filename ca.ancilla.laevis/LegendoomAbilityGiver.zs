@@ -1,4 +1,4 @@
-class TFLV_LegendoomCompat : Inventory {
+class TFLV_LegendoomAbilityGiver : Inventory {
   TFLV_PerPlayerStats stats;
   TFLV_WeaponInfo wielded;
   string prefix;
