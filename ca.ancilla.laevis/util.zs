@@ -9,3 +9,9 @@ class TFLV_Force : Inventory {
     +Inventory.Untossable;
   }
 }
+
+// Matches the rarity levels in Legendoom.
+enum TFLV_LD_Rarity {
+  RARITY_COMMON, RARITY_UNCOMMON, RARITY_RARE, RARITY_EPIC
+}
+

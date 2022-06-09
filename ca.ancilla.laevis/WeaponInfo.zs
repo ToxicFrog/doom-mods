@@ -26,11 +26,67 @@ class TFLV_WeaponInfo : Object play {
   uint maxXP;
   uint level;
 
+  // Legendoom integration fields.
+  uint abilitySlots;
+  uint maxRarity;
+  bool canReplaceAbilities;
+  array<string> abilities;
+
   void Init(Actor weapon_) {
     weapon = Weapon(weapon_);
     XP = 0;
     level = 0;
     maxXP = GetXPForLevel(1);
+
+    if (weapon is "LDWeapon") {
+      InitLegendoom();
+    } else {
+      abilitySlots = 0;
+    }
+  }
+
+  void InitLegendoom() {
+    string prefix = weapon.GetClassName();
+    if (!weapon.owner.FindInventory(prefix.."EffectActive")) {
+      // Mundane weapons can be upgraded in-place to have a single common ability
+      // but cannot replace learned abilities.
+      abilitySlots = 1;
+      maxRarity = RARITY_COMMON;
+      canReplaceAbilities = false;
+      console.printf("%s: abilities=1, rarity=0, no ability", weapon.GetTag());
+      return;
+    }
+    // For other weapons it depends on their rarity.
+    if (weapon.owner.FindInventory(prefix.."LegendaryEpic")) {
+      abilitySlots = 5;
+      maxRarity = RARITY_EPIC;
+    } else if (weapon.owner.FindInventory(prefix.."LegendaryRare")) {
+      abilitySlots = 4;
+      maxRarity = RARITY_RARE;
+    } else if (weapon.owner.FindInventory(prefix.."LegendaryUncommon")) {
+      abilitySlots = 3;
+      maxRarity = RARITY_UNCOMMON;
+    } else if (weapon.owner.FindInventory(prefix.."LegendaryCommon")) {
+      abilitySlots = 2;
+      maxRarity = RARITY_COMMON;
+    }
+    // They can all unlearn and replace abilities, though.
+    canReplaceAbilities = true;
+    // And they start with an ability, so we should record that.
+    string ability = FindItemWithPrefix(prefix.."Effect_").GetClassName();
+    console.printf("%s: abilities=%d, rarity=%d, ability=%s",
+      weapon.GetTag(), abilitySlots, maxRarity, ability);
+    abilities.push(ability);
+  }
+
+  Inventory FindItemWithPrefix(string prefix) {
+    for (Inventory item = weapon.owner.Inv; item; item = item.Inv) {
+      string cls = item.GetClassName();
+      if (cls.IndexOf(prefix) == 0) {
+        return item;
+      }
+    }
+    return null;
   }
 
   double GetDamageBonus() const {
