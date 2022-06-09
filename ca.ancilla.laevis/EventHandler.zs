@@ -43,12 +43,12 @@ class TFLV_EventHandler : StaticEventHandler
     let xpbarwidth = w/4;
     let xpbarheight = 16;
 
-    let stats = GetStatsFor(pawn);
-    uint pxp, pmax, wxp, wmax;
-    [pxp, pmax, wxp, wmax] = stats.XPBarInfo();
+    TFLV_CurrentStats stats;
+    GetStatsFor(pawn).GetCurrentStats(stats);
+
     // console.printf("%d %d %d %d", pxp, pmax, wxp, wmax);
-    let pxpwidth = (xpbarwidth - 4) * (double(pxp)/pmax);
-    let wxpwidth = (xpbarwidth - 4) * (double(wxp)/wmax);
+    let pxpwidth = (xpbarwidth - 4) * (double(stats.pxp)/stats.pmax);
+    let wxpwidth = (xpbarwidth - 4) * (double(stats.wxp)/stats.wmax);
     // console.printf("%d %d", pxpwidth, wxpwidth);
     let xpbarx = w/2 - xpbarwidth/2 + 2;
 
@@ -67,12 +67,12 @@ class TFLV_EventHandler : StaticEventHandler
     if (evt.player != consoleplayer) {
       return;
     } else if (evt.name == "laevis_show_info") {
-      TFLV_PerPlayerStats stats = GetStatsFor(players[evt.player].mo);
-      uint pxp, pmax, wxp, wmax;
-      [pxp, pmax, wxp, wmax] = stats.XPBarInfo();
+      TFLV_CurrentStats stats;
+      GetStatsFor(players[evt.player].mo).GetCurrentStats(stats);
       console.printf("Player:\n    Level %d (%d/%d XP)\n    Damage bonus: %d%%\n    Armour bonus: %d%%",
-        stats.level, pxp, pmax, stats.level * DAMAGE_BONUS_PER_PLAYER_LEVEL * 100,
-        (1 - (1 - DAMAGE_REDUCTION_PER_PLAYER_LEVEL) ** stats.level) * 100);
+        stats.plvl, stats.pxp, stats.pmax, stats.pdmg * 100, stats.pdef * 100);
+      console.printf("%s:\n    Level %d (%d/%d XP)\n    Damage bonus: %d%% (%d%% total)",
+        stats.wname, stats.wlvl, stats.wxp, stats.wmax, stats.wdmg * 100, stats.pdmg * stats.wdmg * 100);
     } else if (evt.name == "laevis_cycle_ld_power") {
       if (legendoom_installed) {
         console.printf("Legendoom is installed, but this feature isn't implemented yet.");

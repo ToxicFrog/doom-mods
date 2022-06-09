@@ -8,15 +8,70 @@ const GUN_LEVELS_PER_PLAYER_LEVEL = 10;
 // How much extra damage they do per player level. Additive; if this is 0.05
 // and the player is level 20 they do double damage.
 const DAMAGE_BONUS_PER_PLAYER_LEVEL = 0.05;
-// How much incoming damage is reduced by. Multiplicative, so no matter what
-// it's set to it won't ever let the player become completely invincible. If
-// this is 0.05 and the player is level 20, they take 36% damage.
-const DAMAGE_REDUCTION_PER_PLAYER_LEVEL = 0.05;
+// Incoming damage is multiplied by this raised to the player-level power.
+// Unlike outgoing damage this has diminishing returns, so the player will never
+// become truly invincible.
+// If set to 0.95, it works out to ~36% damage taken by level 20.
+const DEFENCE_BONUS_PER_PLAYER_LEVEL = 0.95;
+
+// Used to get all the information needed for the UI.
+struct TFLV_CurrentStats {
+  // Player stats.
+  uint pxp;
+  uint pmax;
+  uint plvl;
+  double pdmg;
+  double pdef;
+  // Stats for current weapon.
+  uint wxp;
+  uint wmax;
+  uint wlvl;
+  double wdmg;
+  // Name of current weapon.
+  string wname;
+}
 
 class TFLV_PerPlayerStats : Force {
   array<TFLV_WeaponInfo> weapons;
   uint XP;
   uint level;
+
+  // Fill in a CurrentStats struct with the current state of the player & their
+  // currently wielded weapon. This should contain all the information needed
+  // to draw the UI.
+  void GetCurrentStats(out TFLV_CurrentStats stats) const {
+    stats.pxp = XP;
+    stats.pmax = GUN_LEVELS_PER_PLAYER_LEVEL;
+    stats.plvl = level;
+    stats.pdmg = 1 + level * DAMAGE_BONUS_PER_PLAYER_LEVEL;
+    stats.pdef = DEFENCE_BONUS_PER_PLAYER_LEVEL ** level;
+
+    TFLV_WeaponInfo info = GetInfoForCurrentWeapon();
+    if (info) {
+      stats.wxp = info.XP;
+      stats.wmax = info.maxXP;
+      stats.wlvl = info.level;
+      stats.wdmg = info.GetDamageBonus();
+      stats.wname = info.weapon.GetTag();
+    } else {
+      stats.wxp = 0;
+      stats.wmax = 0;
+      stats.wlvl = 0;
+      stats.wdmg = 0.0;
+      stats.wname = "(no weapon)";
+    }
+  }
+
+  // Return the WeaponInfo for the currently readied weapon. If the player
+  // does not have a weapon ready, return null.
+  TFLV_WeaponInfo GetInfoForCurrentWeapon() const {
+    Weapon wielded = owner.player.ReadyWeapon;
+    if (wielded) {
+      return GetInfoFor(wielded); // WTF why is this allowed?
+    } else {
+      return null;
+    }
+  }
 
   // Returns the info structure for the given weapon. If none exists, allocates
   // and initializes a new one and returns that.
@@ -47,8 +102,6 @@ class TFLV_PerPlayerStats : Force {
 
   // Add XP to a weapon. If the weapon leveled up, also do some housekeeping
   // and possibly level up the player as well.
-  // TODO: scale XP nonlinearly based on how dangerous the target is, so (e.g.)
-  // a Cyberdemon is worth more XP per point of damage than a Former.
   void AddXPTo(Actor weapon, int xp) {
     TFLV_WeaponInfo info = GetInfoFor(weapon);
     if (info.AddXP(xp)) {
@@ -67,22 +120,7 @@ class TFLV_PerPlayerStats : Force {
     }
   }
 
-  void PrintXPFor(Actor weapon) {
-    TFLV_WeaponInfo info = GetInfoFor(weapon);
-    console.printf("Gun %s is level %d and has %d/%d XP.",
-      info.weapon.GetTag(), info.level, info.XP, info.maxXP);
-  }
-
-  // Return XP bar info as [player XP, max XP, weapon XP, max XP], using
-  // the current weapon.
-  uint, uint, uint, uint XPBarInfo() const {
-    TFLV_WeaponInfo info = GetInfoFor(owner.player.ReadyWeapon);
-    return
-      XP, GUN_LEVELS_PER_PLAYER_LEVEL,
-      info.XP, info.maxXP;
-  }
-
-  uint XPForDamage(Actor target, uint damage) const {
+  uint GetXPForDamage(Actor target, uint damage) const {
     uint xp = damage;
     if (target.health < 0) {
       // Can't get more XP than the target has hitpoints.
@@ -97,11 +135,11 @@ class TFLV_PerPlayerStats : Force {
     return xp;
   }
 
-  uint TotalDamage(Weapon wielded, uint damage) const {
+  uint GetTotalDamage(Weapon wielded, uint damage) const {
     TFLV_WeaponInfo info = GetInfoFor(wielded);
     return damage
       * (1 + DAMAGE_BONUS_PER_PLAYER_LEVEL * level)
-      * info.DamageBonus();
+      * info.GetDamageBonus();
   }
 
   // Apply player level-up bonuses whenever the player deals or receives damage.
@@ -114,7 +152,7 @@ class TFLV_PerPlayerStats : Force {
     }
     if (passive) {
       // Incoming damage. Apply damage reduction.
-      newdamage = damage * (1 - DAMAGE_REDUCTION_PER_PLAYER_LEVEL) ** level;
+      newdamage = damage * (DEFENCE_BONUS_PER_PLAYER_LEVEL ** level);
       console.printf("%d incoming damage reduced to %d", damage, newdamage);
     } else {
       // Outgoing damage. 'source' is the *target* of the damage.
@@ -127,9 +165,9 @@ class TFLV_PerPlayerStats : Force {
       }
 
       Weapon wielded = owner.player.ReadyWeapon;
-      newdamage = TotalDamage(wielded, damage);
+      newdamage = GetTotalDamage(wielded, damage);
 
-      uint xp = XPForDamage(target, damage);
+      uint xp = GetXPForDamage(target, damage);
       AddXPTo(wielded, xp);
 
       console.printf("%d outgoing damage increased to %d; got %d XP", damage, newdamage, xp);

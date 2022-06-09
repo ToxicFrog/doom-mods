@@ -2,6 +2,8 @@
 // one records information about one of the player's weapons.
 // It's also responsible for handling weapon level-ups.
 
+// TODO: move these constants into cvars and expose them in a configuration
+// menu, here and in PerPlayerStats.
 // How much extra damage a weapon does per level. Stacks additively with itself
 // and multiplicatively with DAMAGE_BONUS_PER_PLAYER_LEVEL.
 const DAMAGE_BONUS_PER_WEAPON_LEVEL = 0.05;
@@ -28,14 +30,14 @@ class TFLV_WeaponInfo : Object play {
     weapon = Weapon(weapon_);
     XP = 0;
     level = 0;
-    maxXP = XPForLevel(1);
+    maxXP = GetXPForLevel(1);
   }
 
-  double DamageBonus() const {
+  double GetDamageBonus() const {
     return 1 + level * DAMAGE_BONUS_PER_WEAPON_LEVEL;
   }
 
-  uint XPForLevel(uint level) const {
+  uint GetXPForLevel(uint level) const {
     uint XP = BASE_XP_FOR_WEAPON_LEVEL * level;
     if (weapon.bMeleeWeapon) {
       XP *= LEVEL_COST_MULTIPLIER_FOR_MELEE;
@@ -66,7 +68,7 @@ class TFLV_WeaponInfo : Object play {
     ++level;
     console.printf("Your %s is now level %d!", weapon.GetTag(), level);
     XP = XP - maxXP;
-    maxXP = XPForLevel(level+1);
+    maxXP = GetXPForLevel(level+1);
     weapon.owner.A_SetBlend("00 80 FF", 0.8, 40);
     weapon.damageMultiply = 1 + level * DAMAGE_BONUS_PER_WEAPON_LEVEL;
     // console.printf("Gun DamageMultiply is now %f", weapon.DamageMultiply);
