@@ -4,7 +4,7 @@
 
 class TFLV_EventHandler : StaticEventHandler
 {
-  bool legendoom_installed;
+  bool legendoomInstalled;
 
   override void OnRegister() {
     // If we just do cls = "LDPistol" it will get checked at compile time; we
@@ -13,10 +13,10 @@ class TFLV_EventHandler : StaticEventHandler
     class<Actor> cls = ldpistol;
     if (cls) {
       console.printf("Legendoom is enabled, enabling LD compatibility for Laevis.");
-      legendoom_installed = true;
+      legendoomInstalled = true;
     } else {
       console.printf("Couldn't find Legendoom, LD-specific features in Laevis disabled.");
-      legendoom_installed = false;
+      legendoomInstalled = false;
     }
   }
 
@@ -28,6 +28,7 @@ class TFLV_EventHandler : StaticEventHandler
     PlayerPawn pawn = players[evt.playerNumber].mo;
     if (pawn) {
       pawn.GiveInventoryType("TFLV_PerPlayerStats");
+      GetStatsFor(pawn).legendoomInstalled = legendoomInstalled;
     }
   }
 
@@ -93,7 +94,7 @@ class TFLV_EventHandler : StaticEventHandler
       console.printf("%s:\n    Level %d (%d/%d XP)\n    Damage bonus: %d%% (%d%% total)",
         stats.wname, stats.wlvl, stats.wxp, stats.wmax, stats.wdmg * 100, stats.pdmg * stats.wdmg * 100);
     } else if (evt.name == "laevis_cycle_ld_power") {
-      if (legendoom_installed) {
+      if (legendoomInstalled) {
         console.printf("Legendoom is installed, but this feature isn't implemented yet.");
       } else {
         console.printf("This feature only works if you also have Legendoom installed.");

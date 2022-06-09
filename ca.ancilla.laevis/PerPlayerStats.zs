@@ -31,10 +31,11 @@ struct TFLV_CurrentStats {
   string wname;
 }
 
-class TFLV_PerPlayerStats : Force {
+class TFLV_PerPlayerStats : TFLV_Force {
   array<TFLV_WeaponInfo> weapons;
   uint XP;
   uint level;
+  bool legendoomInstalled;
 
   // Fill in a CurrentStats struct with the current state of the player & their
   // currently wielded weapon. This should contain all the information needed
