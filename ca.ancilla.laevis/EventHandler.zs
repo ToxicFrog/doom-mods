@@ -31,41 +31,43 @@ class TFLV_EventHandler : StaticEventHandler
     }
   }
 
-  ui void DrawXPBar(TFLV_CurrentStats stats) {
+  ui void DrawXPGauge(TFLV_CurrentStats stats) {
     let w = screen.GetWidth();
     let h = screen.GetHeight();
 
-    // Outer dimensions of XP display, including 3px frame border on all sides.
-    let framew = w/4;
-    let frameh = 21;
-    let framex = w/2 - framew/2;
-    let framey = h - frameh;
-
-    // Positioning for the player XP gauge.
-    let pbarx = framex + 3;
-    let pbary = framey + 3;
-    let pbarw = (framew - 6) * (double(stats.pxp)/stats.pmax);
-    let pbarh = 4;
-
-    // Positioning for the weapon XP gauge.
-    let wbarx = pbarx;
-    let wbary = pbary + pbarh + 3;
-    let wbarw = (framew - 6) * (double(stats.wxp)/stats.wmax);
-    let wbarh = 8;
-
-    // Draw the frames.
-    // console.printf("screen (%d,%d)", w, h);
-    // console.printf("uframe (%d,%d) + (%d,%d)", framex, framey, framew, pbarh + 6);
-    // console.printf("lframe (%d,%d) + (%d,%d)", framex, framey + pbarh + 3, framew, wbarh + 6);
-    screen.DrawFrame(framex+3, framey + 3, framew - 6, pbarh);
-    screen.DrawFrame(framex+3, framey + pbarh + 6, framew - 6, wbarh);
-
-    // Draw the gauges.
-    screen.Dim("00 FF 00", 0.5, pbarx, pbary, pbarw, pbarh);
-    screen.Dim("00 FF FF", 0.5, wbarx, wbary, wbarw, wbarh);
+    // Ring(w/8 * 6, h - 48, 31, 2, 1.0, "00 00 00");
+    Ring(w/8 * 6, h - 48, 34, 4, (double(stats.pxp)/stats.pmax), "00 FF 80");
+    Ring(w/8 * 6, h - 48, 40, 8, (double(stats.wxp)/stats.wmax), "00 80 FF");
+    // Ring(w/8 * 6, h - 48, 45, 2, 1.0, "00 00 00");
+    screen.DrawText(NewSmallFont, Font.CR_GREEN, w/8*6-16, h-64, "P:"..stats.plvl);
+    screen.DrawText(NewSmallFont, Font.CR_LIGHTBLUE, w/8*6-16, h-48, "W:"..stats.wlvl);
+    // screen.DrawText(NewSmallFont, Font.CR_GREEN, 520, 480-48, ""..stats.plvl, DTA_VirtualWidth, 640, DTA_VirtualHeight, 480);
+    // screen.DrawText(NewSmallFont, Font.CR_LIGHTBLUE, 520, 480-32, ""..stats.wlvl, DTA_VirtualWidth, 640, DTA_VirtualHeight, 480);
 
     // TODO: display textual player/weapon levels, and, once Legendoom compatibility
     // is implemented, the selected weapon ability.
+  }
+
+  // Draw a coloured ring centered at (x,y) of radius r and thickness t.
+  // len is between 0.0 and 1.0 and denotes how much of the ring to actually draw.
+  // TODO: This is very expensive; with 20 segments/ring the performance hit is
+  // acceptable but ideally we'd prerender all of this to a sprite sheet and
+  // use DrawTexture() to actually put it on screen, which would also let us
+  // make it fancier.
+  const SEGMENTSIZE = 360/20;
+  ui void Ring(uint x, uint y, uint r, uint t, double len, string colour) {
+    // Rotate by -90 degrees since gzdoom angle 0 points right
+    let ox = x + r * cos(-90);
+    let oy = y + r * sin(-90);
+    // console.printf("Draw ring at (%d,%d) radius %d completion %f", x, y, r, len);
+    for (double theta = SEGMENTSIZE - 90; theta <= len*360 - 90; theta += SEGMENTSIZE) {
+      let nx = x + r * cos(theta);
+      let ny = y + r * sin(theta);
+      // console.printf("Draw ring segment (%d,%d)->(%d,%d), theta=%f, limit=%f", ox, oy, nx, ny, theta, len*2);
+      screen.DrawThickLine(ox, oy, nx, ny, t, colour, 255);
+      ox = nx;
+      oy = ny;
+    }
   }
 
   override void RenderOverlay(RenderEvent evt) {
@@ -77,7 +79,7 @@ class TFLV_EventHandler : StaticEventHandler
 
     TFLV_CurrentStats stats;
     GetStatsFor(pawn).GetCurrentStats(stats);
-    DrawXPBar(stats);
+    DrawXPGauge(stats);
   }
 
   override void NetworkProcess(ConsoleEvent evt) {
