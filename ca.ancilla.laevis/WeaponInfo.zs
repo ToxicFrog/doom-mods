@@ -57,36 +57,21 @@ class TFLV_WeaponInfo : Object play {
       return;
     }
     // For other weapons it depends on their rarity.
-    if (weapon.owner.FindInventory(prefix.."LegendaryEpic")) {
-      abilitySlots = 5;
-      maxRarity = RARITY_EPIC;
-    } else if (weapon.owner.FindInventory(prefix.."LegendaryRare")) {
-      abilitySlots = 4;
-      maxRarity = RARITY_RARE;
-    } else if (weapon.owner.FindInventory(prefix.."LegendaryUncommon")) {
-      abilitySlots = 3;
-      maxRarity = RARITY_UNCOMMON;
-    } else if (weapon.owner.FindInventory(prefix.."LegendaryCommon")) {
-      abilitySlots = 2;
-      maxRarity = RARITY_COMMON;
+    maxRarity = TFLV_Util.GetWeaponRarity(weapon.owner, prefix);
+    switch (maxRarity) {
+      case RARITY_EPIC: abilitySlots = 5; break;
+      case RARITY_RARE: abilitySlots = 4; break;
+      case RARITY_UNCOMMON: abilitySlots = 3; break;
+      case RARITY_COMMON: abilitySlots = 2; break;
+      default: abilitySlots = 0; break;
     }
     // They can all unlearn and replace abilities, though.
     canReplaceAbilities = true;
     // And they start with an ability, so we should record that.
-    string ability = FindItemWithPrefix(prefix.."Effect_").GetClassName();
+    string ability = TFLV_Util.GetWeaponEffectName(weapon.owner, prefix);
     console.printf("%s: abilities=%d, rarity=%d, ability=%s",
       weapon.GetTag(), abilitySlots, maxRarity, ability);
     abilities.push(ability);
-  }
-
-  Inventory FindItemWithPrefix(string prefix) {
-    for (Inventory item = weapon.owner.Inv; item; item = item.Inv) {
-      string cls = item.GetClassName();
-      if (cls.IndexOf(prefix) == 0) {
-        return item;
-      }
-    }
-    return null;
   }
 
   double GetDamageBonus() const {

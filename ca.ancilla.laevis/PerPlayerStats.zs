@@ -37,6 +37,13 @@ class TFLV_PerPlayerStats : TFLV_Force {
   uint level;
   bool legendoomInstalled;
 
+  // TODO: if the player has a normal gun, and picks up a Legendoom gun of the
+  // same kind, their gun gets upgraded in-place and the existing info struct
+  // remains, which means it will now count as a mundane weapon that earned an
+  // LD ability and not as a (more powerful) LD weapon. We need to detect that
+  // occurrence, possibly in HandlePickup, and invalidate the existing info
+  // struct for it.
+
   // Fill in a CurrentStats struct with the current state of the player & their
   // currently wielded weapon. This should contain all the information needed
   // to draw the UI.
@@ -68,7 +75,8 @@ class TFLV_PerPlayerStats : TFLV_Force {
   TFLV_WeaponInfo GetInfoForCurrentWeapon() const {
     Weapon wielded = owner.player.ReadyWeapon;
     if (wielded) {
-      return GetInfoFor(wielded); // WTF why is this allowed?
+      // WTF why is this allowed? TODO fix this to not rely on violating security boundaries
+      return GetInfoFor(wielded);
     } else {
       return null;
     }
@@ -108,12 +116,10 @@ class TFLV_PerPlayerStats : TFLV_Force {
     if (info.AddXP(xp)) {
       // Weapon leveled up!
       if (legendoomInstalled) {
-        console.printf("Giving the player an LD levelup!");
         let ldCompat = TFLV_LegendoomCompat(owner.GiveInventoryType("TFLV_LegendoomCompat"));
         ldCompat.stats = self;
         ldCompat.wielded = GetInfoForCurrentWeapon();
         ldCompat.SetStateLabel("LDLevelUp");
-        console.printf("Gave the player a thing.");
       }
 
       // Also give the player some XP.
@@ -161,7 +167,7 @@ class TFLV_PerPlayerStats : TFLV_Force {
     if (passive) {
       // Incoming damage. Apply damage reduction.
       newdamage = damage * (DEFENCE_BONUS_PER_PLAYER_LEVEL ** level);
-      console.printf("%d incoming damage reduced to %d", damage, newdamage);
+      // console.printf("%d incoming damage reduced to %d", damage, newdamage);
     } else {
       // Outgoing damage. 'source' is the *target* of the damage.
       let target = source;
@@ -178,7 +184,7 @@ class TFLV_PerPlayerStats : TFLV_Force {
       uint xp = GetXPForDamage(target, damage);
       AddXPTo(wielded, xp);
 
-      console.printf("%d outgoing damage increased to %d; got %d XP", damage, newdamage, xp);
+      // console.printf("%d outgoing damage increased to %d; got %d XP", damage, newdamage, xp);
     }
   }
 }
