@@ -121,11 +121,7 @@ class TFLV_PerPlayerStats : Force {
   }
 
   uint GetXPForDamage(Actor target, uint damage) const {
-    uint xp = damage;
-    if (target.health < 0) {
-      // Can't get more XP than the target has hitpoints.
-      xp = xp + target.health;
-    }
+    uint xp = min(damage, target.health);
     if (target.GetSpawnHealth() > 100) {
       // Enemies with lots of HP get a log-scale XP bonus.
       // This works out to about a 1.8x bonus for Archviles and a 2.6x bonus
