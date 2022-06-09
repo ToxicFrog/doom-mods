@@ -117,7 +117,6 @@ class TFLV_PerPlayerStats : TFLV_Force {
       // Weapon leveled up!
       if (legendoomInstalled) {
         let ldCompat = TFLV_LegendoomAbilityGiver(owner.GiveInventoryType("TFLV_LegendoomAbilityGiver"));
-        ldCompat.stats = self;
         ldCompat.wielded = GetInfoForCurrentWeapon();
         ldCompat.SetStateLabel("LDLevelUp");
       }

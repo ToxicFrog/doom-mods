@@ -1,5 +1,10 @@
+// A pseudoitem that, when given to the player, attempts to give them a Legendoom
+// upgrade appropriate to the weapon described by 'wielded'.
+// This works by repeatedly spawning the appropriate Legendoom random pickup until
+// it generates in a way we can use, then either shoving it into the player directly
+// or copying some of the info out of it.
+
 class TFLV_LegendoomAbilityGiver : Inventory {
-  TFLV_PerPlayerStats stats;
   TFLV_WeaponInfo wielded;
   string prefix;
 
