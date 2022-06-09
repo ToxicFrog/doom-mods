@@ -29,7 +29,7 @@ class TFLV_EventHandler : StaticEventHandler
     if (pawn) {
       pawn.GiveInventoryType("TFLV_PerPlayerStats");
       if (legendoomInstalled) {
-        GetStatsFor(pawn).InitLegendoom();
+        GetStatsFor(pawn).legendoomInstalled = true;
       }
     }
   }

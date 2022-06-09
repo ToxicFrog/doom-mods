@@ -35,12 +35,7 @@ class TFLV_PerPlayerStats : TFLV_Force {
   array<TFLV_WeaponInfo> weapons;
   uint XP;
   uint level;
-  TFLV_LegendoomCompat ldCompat;
-
-  void InitLegendoom() {
-    ldCompat = TFLV_LegendoomCompat(owner.GiveInventoryType("TFLV_LegendoomCompat"));
-    ldCompat.stats = self;
-  }
+  bool legendoomInstalled;
 
   // Fill in a CurrentStats struct with the current state of the player & their
   // currently wielded weapon. This should contain all the information needed
@@ -112,10 +107,15 @@ class TFLV_PerPlayerStats : TFLV_Force {
     TFLV_WeaponInfo info = GetInfoFor(weapon);
     if (info.AddXP(xp)) {
       // Weapon leveled up!
-      if (ldCompat) {
-        ldCompat.LevelUp(info);
+      if (legendoomInstalled) {
+        console.printf("Giving the player an LD levelup!");
+        let ldCompat = TFLV_LegendoomCompat(owner.GiveInventoryType("TFLV_LegendoomCompat"));
+        ldCompat.stats = self;
+        ldCompat.wielded = GetInfoForCurrentWeapon();
+        ldCompat.SetStateLabel("LDLevelUp");
+        console.printf("Gave the player a thing.");
       }
-      PruneStaleInfo();
+
       // Also give the player some XP.
       // console.printf("XP=%d, XPperLevel=%d", XP, GUN_LEVELS_PER_PLAYER_LEVEL);
       ++self.XP;
@@ -126,6 +126,9 @@ class TFLV_PerPlayerStats : TFLV_Force {
         console.printf("You are now level %d!", level);
         Weapon(weapon).owner.A_SetBlend("FF FF FF", 0.8, 40);
       }
+
+      // Do some cleanup.
+      PruneStaleInfo();
     }
   }
 
