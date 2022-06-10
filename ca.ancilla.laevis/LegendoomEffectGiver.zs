@@ -17,7 +17,6 @@ class TFLV_LegendoomEffectGiver : Inventory {
 
   override bool HandlePickup(Inventory item) {
     // Does not stack, ever.
-    console.printf("HandlePickup: %s", item.GetTag());
     return false;
   }
 
@@ -77,8 +76,9 @@ class TFLV_LegendoomEffectGiver : Inventory {
       // No existing effects, so just pick it up as is.
       wielded.effects.push(effect);
       wielded.NextEffect();
-      wielded.currentEffect = 0;
-      wielded.currentEffectName = effectname;
+      // Set a flag on the upgrade so PerPlayerInfo::HandlePickup() can tell that
+      // this is an in-place upgrade and not a new weapon.
+      upgrade.FindInventory(prefix.."EffectiveActive").bNOTELEFRAG = true;
       upgrade.Warp(owner);
       return;
     }

@@ -45,6 +45,29 @@ class TFLV_PerPlayerStats : TFLV_Force {
   // LD effect and not as a (more powerful) LD weapon. We need to detect that
   // occurrence, possibly in HandlePickup, and invalidate the existing info
   // struct for it.
+  override bool HandlePickup(Inventory item) {
+    if (item is "LDWeaponNameAlternation") return super.HandlePickup(item);
+    if (!(item is "LDPermanentInventory")) return super.HandlePickup(item);
+
+    string cls = item.GetClassName();
+    if (cls.IndexOf("EffectActive") < 0) return super.HandlePickup(item);
+
+    // If this is flagged as "notelefrag", it means it was produced by the level-
+    // up code and should upgrade our current item in place rather than invalidating
+    // its info block.
+    if (item.bNOTELEFRAG) return super.HandlePickup(item);
+
+    // At this point we know that the pickup is a Legendoom weapon effect token
+    // and it's not one we created. So we need to figure out if the player has
+    // an existing entry for a mundane weapon of the same type and clear it if so.
+    cls = cls.Left(cls.IndexOf("EffectActive"));
+    for (int i = 0; i < weapons.size(); ++i) {
+      if (weapons[i].weapon is cls) {
+        weapons[i].weapon = null;
+      }
+    }
+    return super.HandlePickup(item);
+  }
 
   // Fill in a CurrentStats struct with the current state of the player & their
   // currently wielded weapon. This should contain all the information needed
