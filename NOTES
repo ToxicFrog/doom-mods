@@ -62,7 +62,7 @@ Specifically:
 - do the copy described above
 - spawn the remover
 
-The spawned item waits FOUR tics before clearing the parent/child relationship with the player, so we can have our new remover move everything over.
+pThe spawned item waits FOUR tics before clearing the parent/child relationship with the player, so we can have our new remover move everything over.
 
 ## LVLD handlers and stuff
 
@@ -104,4 +104,15 @@ If we want permanent upgrades to the player, some things we can look at:
 - player.DamageMultiply controls outgoing damage
 - MaxHealth determines max health
 - Stamina acts as a max health bonus
-- to regenerate armour, give the player something subclassing ArmorBonus, and likewise for health and HealthBonus
+- to regenerate armour, give the player something subclassing ArmorBonus, and likewise for health and HealthBonus?
+- life/armour leeching?
+
+## Weapon-level upgrades
+
+All we have access to are (a) the player, (b) the current weapon info and (c) the
+thing being shot. We can't subclass the weapons/projectiles.
+- DoT
+- exploding corpses?
+- health/armour leech
+- regenerating ammo?
+

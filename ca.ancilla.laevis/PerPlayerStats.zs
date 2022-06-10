@@ -5,6 +5,8 @@
 // How many times the player needs to level up their guns before they get an
 // intrinsic stat bonus.
 const GUN_LEVELS_PER_PLAYER_LEVEL = 10;
+// How many times a gun needs to level up before it gets a new LD effect.
+const GUN_LEVELS_PER_LD_EFFECT = 1;
 // How much extra damage they do per player level. Additive; if this is 0.05
 // and the player is level 20 they do double damage.
 const DAMAGE_BONUS_PER_PLAYER_LEVEL = 0.05;
@@ -39,12 +41,10 @@ class TFLV_PerPlayerStats : TFLV_Force {
   uint level;
   bool legendoomInstalled;
 
-  // TODO: if the player has a normal gun, and picks up a Legendoom gun of the
-  // same kind, their gun gets upgraded in-place and the existing info struct
-  // remains, which means it will now count as a mundane weapon that earned an
-  // LD effect and not as a (more powerful) LD weapon. We need to detect that
-  // occurrence, possibly in HandlePickup, and invalidate the existing info
-  // struct for it.
+  // Special pickup handling so that if the player picks up an LD legendary weapon
+  // that upgrades their mundane weapon in-place, we handle this correctly rather
+  // than thinking it's a mundane weapon that earned an LD effect through leveling
+  // up.
   override bool HandlePickup(Inventory item) {
     if (item is "LDWeaponNameAlternation") return super.HandlePickup(item);
     if (!(item is "LDPermanentInventory")) return super.HandlePickup(item);
@@ -142,7 +142,7 @@ class TFLV_PerPlayerStats : TFLV_Force {
     TFLV_WeaponInfo info = GetInfoFor(weapon);
     if (info.AddXP(xp)) {
       // Weapon leveled up!
-      if (legendoomInstalled) {
+      if (legendoomInstalled && (info.level % GUN_LEVELS_PER_LD_EFFECT) == 0) {
         let ldGiver = TFLV_LegendoomEffectGiver(owner.GiveInventoryType("TFLV_LegendoomEffectGiver"));
         ldGiver.wielded = GetInfoForCurrentWeapon();
         ldGiver.SetStateLabel("LDLevelUp");
