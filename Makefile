@@ -1,6 +1,6 @@
 all: Laevis.pk3
 
-Laevis.pk3: MAPINFO CVARINFO KEYCONF zscript.txt ca.ancilla.laevis/*.zs
+Laevis.pk3: MAPINFO CVARINFO KEYCONF MENUDEF zscript.txt ca.ancilla.laevis/*.zs
 	rm -f $@
 	zip -r $@ $^
 

@@ -1,0 +1,50 @@
+AddOptionMenu "OptionsMenu"
+{
+  Submenu "Laevis Mod Options", "LaevisOptions"
+}
+
+OptionMenu "LaevisOptions"
+{
+  Title "Laevis Mod Options"
+  StaticText ""
+  StaticText "Weapon Bonus Settings", CYAN
+  StaticText ""
+  StaticText "How much bonus damage the gun gets per level. 0.01 == +1%."
+  Slider "Gun damage bonus per level", "laevis_gun_damage_bonus", 0.0, 1.0, 0.01, 2
+  StaticText ""
+  StaticText "How many times a gun needs to level up to gain a new Legendoom effect."
+  StaticText "Only functions if Legendoom is installed. Set to 0 to disable."
+  ScaleSlider "Gun levels per LD effect", "laevis_gun_levels_per_ld_effect", 0, 100, 1, "Disabled"
+  StaticText ""
+
+  StaticText ""
+  StaticText "Player Bonus Settings", GREEN
+  StaticText "How many times you need to level up a weapon to gain a player bonus."
+  Slider "Gun levels per player level", "laevis_gun_levels_per_player_level", 1, 100, 1, 0
+  StaticText ""
+  StaticText "How much bonus damage you get per level. 0.01 == +1%."
+  Slider "Player damage bonus per level", "laevis_player_damage_bonus", 0.0, 1.0, 0.01, 2
+  StaticText ""
+  StaticText "How much resistance factor you get per level. 0.99 == 1% damage reduction."
+  Statictext "Values above 1 make you take *more* damage as you level up."
+  Slider "Player defence bonus per level", "laevis_player_defence_bonus", 0.1, 2.0, 0.01, 2
+  StaticText ""
+
+  StaticText ""
+  StaticText "XP balance settings", GOLD
+  StaticText "How much XP you need to earn for a weapon to gain its first level."
+  StaticText "Roughly, 1 point of damage dealt == 1 XP gained, with a bonus for"
+  StaticText "damaging nastier enemies like Cyberdemons and Archviles."
+  Slider "XP needed to reach level 1", "laevis_base_level_cost", 100, 10000, 100, 0
+  StaticText ""
+  StaticText "XP cost multipliers for various classes of weapons. These can stack"
+  StaticText "(e.g. fists are both 'melee' and 'wimpy' in vanilla Doom 2). The"
+  StaticText "default settings make weak and melee weapons easier to level up,"
+  StaticText "and explosive and BFG weapons harder."
+  StaticText "The 'explosive' and 'bfg' settings do not currently work.", YELLOW
+  StaticText ""
+  Slider "XP cost multiplier for melee weapons", "laevis_level_cost_mul_for_melee", 0.1, 5.0, 0.1, 1
+  Slider "XP cost multiplier for wimpy weapons", "laevis_level_cost_mul_for_wimpy", 0.1, 5.0, 0.1, 1
+  Slider "XP cost multiplier for explosive weapons", "laevis_level_cost_mul_for_explosive", 0.1, 5.0, 0.1, 1
+  Slider "XP cost multiplier for BFG-type weapons", "laevis_level_cost_mul_for_bfg", 0.1, 5.0, 0.1, 1
+}
