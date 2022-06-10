@@ -87,9 +87,9 @@ class TFLV_EventHandler : StaticEventHandler
   void ShowInfo(PlayerPawn pawn) {
     TFLV_CurrentStats stats;
     GetStatsFor(pawn).GetCurrentStats(stats);
-    console.printf("Player:\n    Level %d (%d/%d XP)\n    Damage bonus: %d%%\n    Armour bonus: %d%%",
+    console.printf("Player:\n    Level %d (%d/%d XP)\n    Damage dealt: %d%%\n    Damage taken: %d%%",
       stats.plvl, stats.pxp, stats.pmax, stats.pdmg * 100, stats.pdef * 100);
-    console.printf("%s:\n    Level %d (%d/%d XP)\n    Damage bonus: %d%% (%d%% total)",
+    console.printf("%s:\n    Level %d (%d/%d XP)\n    Damage dealt: %d%% (%d%% total)",
       stats.wname, stats.wlvl, stats.wxp, stats.wmax, stats.wdmg * 100, stats.pdmg * stats.wdmg * 100);
     TFLV_WeaponInfo info = GetStatsFor(pawn).GetInfoForCurrentWeapon();
     for (uint i = 0; i < info.effects.size(); ++i) {

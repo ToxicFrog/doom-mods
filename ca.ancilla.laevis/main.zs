@@ -1,4 +1,5 @@
 #include "ca.ancilla.laevis/util.zs"
+#include "ca.ancilla.laevis/settings.zs"
 #include "ca.ancilla.laevis/LegendoomEffectGiver.zs"
 #include "ca.ancilla.laevis/LegendoomEffectCycler.zs"
 #include "ca.ancilla.laevis/WeaponInfo.zs"

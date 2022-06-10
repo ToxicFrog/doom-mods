@@ -2,25 +2,17 @@
 // one records information about one of the player's weapons.
 // It's also responsible for handling weapon level-ups.
 
-// TODO: move these constants into cvars and expose them in a configuration
-// menu, here and in PerPlayerStats.
-// How much extra damage a weapon does per level. Stacks additively with itself
-// and multiplicatively with DAMAGE_BONUS_PER_PLAYER_LEVEL.
-const DAMAGE_BONUS_PER_WEAPON_LEVEL = 0.05;
-// Base XP needed to go from level 0 to level 1.
-// This is currently scaled such that completely clearing MAP01 on UV will let
-// you level one weapon from 0 to 1.
-// MAP01 of Sunder (a slaughterwad) will let you do that 27 times, or level up
-// a single weapon to level 5.
-const BASE_XP_FOR_WEAPON_LEVEL = 1200;
-// Level-up cost multipliers for melee weapons, puny weapons, explosive weapons,
-// and the BFG. These stack!
-const LEVEL_COST_MULTIPLIER_FOR_MELEE = 0.5;
-const LEVEL_COST_MULTIPLIER_FOR_WIMPY = 0.5;
-const LEVEL_COST_MULTIPLIER_FOR_EXPLOSIVE = 2.0;
-const LEVEL_COST_MULTIPLIER_FOR_BFG = 2.0;
-
 class TFLV_WeaponInfo : Object play {
+  // At the moment "weapon" is used both as a convenient way to remember a reference
+  // to the weapon itself, and as the key for the info lookup when the caller has
+  // a weapon but not the WeaponInfo.
+  // TODO: implement a mode where the ClassName of the weapon is used as the key
+  // instead, and PruneStaleInfo/GetInfoFor will leave the WeaponInfo intact if
+  // the weapon is removed and rebind it to a new weapon of that type if one is
+  // picked up. This would likely have weird interactions with mods where you can
+  // drop weapons and pick up new weapons of the same class but with different
+  // behaviour, like LD and DRLA, but would also enable War of Attrition-style
+  // pistol start runs.
   Weapon weapon;
   uint XP;
   uint maxXP;
@@ -83,23 +75,23 @@ class TFLV_WeaponInfo : Object play {
   }
 
   double GetDamageBonus() const {
-    return 1 + level * DAMAGE_BONUS_PER_WEAPON_LEVEL;
+    return 1 + level * TFLV_Settings.gun_damage_bonus();
   }
 
   uint GetXPForLevel(uint level) const {
-    uint XP = BASE_XP_FOR_WEAPON_LEVEL * level;
+    uint XP = TFLV_Settings.base_level_cost() * level;
     if (weapon.bMeleeWeapon) {
-      XP *= LEVEL_COST_MULTIPLIER_FOR_MELEE;
+      XP *= TFLV_Settings.level_cost_mul_for("melee");
     }
     if (weapon.bWimpy_Weapon) {
-      XP *= LEVEL_COST_MULTIPLIER_FOR_WIMPY;
+      XP *= TFLV_Settings.level_cost_mul_for("wimpy");
     }
     // For some reason it can't resolve bExplosive and bBFG
     // if (weapon.bExplosive) {
-    //   XP *= LEVEL_COST_MULTIPLIER_FOR_EXPLOSIVE;
+    //   XP *= TFLV_Settings.level_cost_mul_for("explosive");
     // }
     // if (weapon.bBFG) {
-    //   XP *= LEVEL_COST_MULTIPLIER_FOR_BFG;
+    //   XP *= TFLV_Settings.level_cost_mul_for("bfg");
     // }
     return XP;
   }
@@ -119,8 +111,6 @@ class TFLV_WeaponInfo : Object play {
     XP = XP - maxXP;
     maxXP = GetXPForLevel(level+1);
     weapon.owner.A_SetBlend("00 80 FF", 0.8, 40);
-    weapon.damageMultiply = 1 + level * DAMAGE_BONUS_PER_WEAPON_LEVEL;
-    // console.printf("Gun DamageMultiply is now %f", weapon.DamageMultiply);
   }
 }
 

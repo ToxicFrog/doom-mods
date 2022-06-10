@@ -2,20 +2,6 @@
 // Holds information about the player's guns and the player themself.
 // Also handles applying some damage/resistance bonuses using ModifyDamage().
 
-// How many times the player needs to level up their guns before they get an
-// intrinsic stat bonus.
-const GUN_LEVELS_PER_PLAYER_LEVEL = 10;
-// How many times a gun needs to level up before it gets a new LD effect.
-const GUN_LEVELS_PER_LD_EFFECT = 1;
-// How much extra damage they do per player level. Additive; if this is 0.05
-// and the player is level 20 they do double damage.
-const DAMAGE_BONUS_PER_PLAYER_LEVEL = 0.05;
-// Incoming damage is multiplied by this raised to the player-level power.
-// Unlike outgoing damage this has diminishing returns, so the player will never
-// become truly invincible.
-// If set to 0.95, it works out to ~36% damage taken by level 20.
-const DEFENCE_BONUS_PER_PLAYER_LEVEL = 0.95;
-
 // Used to get all the information needed for the UI.
 struct TFLV_CurrentStats {
   // Player stats.
@@ -74,10 +60,10 @@ class TFLV_PerPlayerStats : TFLV_Force {
   // to draw the UI.
   void GetCurrentStats(out TFLV_CurrentStats stats) const {
     stats.pxp = XP;
-    stats.pmax = GUN_LEVELS_PER_PLAYER_LEVEL;
+    stats.pmax = TFLV_Settings.gun_levels_per_player_level();
     stats.plvl = level;
-    stats.pdmg = 1 + level * DAMAGE_BONUS_PER_PLAYER_LEVEL;
-    stats.pdef = DEFENCE_BONUS_PER_PLAYER_LEVEL ** level;
+    stats.pdmg = 1 + level * TFLV_Settings.player_damage_bonus();
+    stats.pdef = TFLV_Settings.player_defence_bonus() ** level;
 
     TFLV_WeaponInfo info = GetInfoForCurrentWeapon();
     if (info) {
@@ -142,7 +128,7 @@ class TFLV_PerPlayerStats : TFLV_Force {
     TFLV_WeaponInfo info = GetInfoFor(weapon);
     if (info.AddXP(xp)) {
       // Weapon leveled up!
-      if (legendoomInstalled && (info.level % GUN_LEVELS_PER_LD_EFFECT) == 0) {
+      if (legendoomInstalled && (info.level % TFLV_Settings.gun_levels_per_ld_effect()) == 0) {
         let ldGiver = TFLV_LegendoomEffectGiver(owner.GiveInventoryType("TFLV_LegendoomEffectGiver"));
         ldGiver.wielded = GetInfoForCurrentWeapon();
         ldGiver.SetStateLabel("LDLevelUp");
@@ -152,8 +138,8 @@ class TFLV_PerPlayerStats : TFLV_Force {
       // console.printf("XP=%d, XPperLevel=%d", XP, GUN_LEVELS_PER_PLAYER_LEVEL);
       ++self.XP;
       // console.printf("XP=%d, XPperLevel=%d", XP, GUN_LEVELS_PER_PLAYER_LEVEL);
-      if (self.XP >= GUN_LEVELS_PER_PLAYER_LEVEL) {
-        self.XP -= GUN_LEVELS_PER_PLAYER_LEVEL;
+      if (self.XP >= TFLV_Settings.gun_levels_per_player_level()) {
+        self.XP -= TFLV_Settings.gun_levels_per_player_level();
         ++level;
         console.printf("You are now level %d!", level);
         Weapon(weapon).owner.A_SetBlend("FF FF FF", 0.8, 40);
@@ -178,7 +164,7 @@ class TFLV_PerPlayerStats : TFLV_Force {
   uint GetTotalDamage(Weapon wielded, uint damage) const {
     TFLV_WeaponInfo info = GetInfoFor(wielded);
     return damage
-      * (1 + DAMAGE_BONUS_PER_PLAYER_LEVEL * level)
+      * (1 + TFLV_Settings.player_damage_bonus() * level)
       * info.GetDamageBonus();
   }
 
@@ -192,7 +178,7 @@ class TFLV_PerPlayerStats : TFLV_Force {
     }
     if (passive) {
       // Incoming damage. Apply damage reduction.
-      newdamage = damage * (DEFENCE_BONUS_PER_PLAYER_LEVEL ** level);
+      newdamage = damage * (TFLV_Settings.player_defence_bonus() ** level);
       // console.printf("%d incoming damage reduced to %d", damage, newdamage);
     } else {
       // Outgoing damage. 'source' is the *target* of the damage.

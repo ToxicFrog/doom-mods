@@ -1,0 +1,41 @@
+// How many times the player needs to level up their guns before they get a
+// permanent player-wide bonus.
+server int laevis_gun_levels_per_player_level = 10;
+
+// How much extra damage they do per player level. Additive; if this is 0.05
+// and the player is level 20 they do double damage.
+server float laevis_player_damage_bonus = 0.05;
+
+// Incoming damage is multiplied by this raised to the player-level power.
+// Unlike outgoing damage this has diminishing returns, so the player will never
+// become truly invincible.
+// If set to 0.95, it works out to ~36% damage taken by level 20.
+server float laevis_player_defence_bonus = 0.95;
+
+// Base XP needed to go from level 0 to level 1. Cost for future levels is
+// (base xp) * (destination level).
+// At the default setting of 1200, it's enough that clearing MAP01 on UV will
+// just barely get you one level-up.
+// Conversely, clearing MAP01 of Sunder (a slaughterwad) will let you level all
+// of your guns to level 2, or one of them to level 5.
+server int laevis_base_level_cost = 1200;
+
+// Level-up cost multipliers for melee weapons, puny weapons, explosive weapons,
+// and the BFG. These require the corresponding weapon flags to be set, which
+// not all mods do (but they are set correctly for base Doom/Doom2, at least).
+// Currently disabled due to not working right.
+server float laevis_level_cost_mul_for_melee = 0.5;
+server float laevis_level_cost_mul_for_wimpy = 0.5;
+server float laevis_level_cost_mul_for_explosive = 2.0;
+server float laevis_level_cost_mul_for_bfg = 2.0;
+
+// How many times a gun needs to level up before it gets a new Legendoom effect.
+// No effect if LD isn't installed.
+server int laevis_gun_levels_per_ld_effect = 3;
+
+// How much extra damage a weapon does per level. Stacks additively with itself
+// and multiplicatively with laevis_player_damage_bonus; if a gun is level 10
+// wielded by a level 10 player, and both are set to 0.05, shots will do
+// (1.5 * 1.5) = 2.25x normal damage.
+server float laevis_gun_damage_bonus = 0.05;
+
