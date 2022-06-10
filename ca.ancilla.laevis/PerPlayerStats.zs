@@ -29,6 +29,8 @@ struct TFLV_CurrentStats {
   double wdmg;
   // Name of current weapon.
   string wname;
+  // Name of currently selected ability.
+  string ability;
 }
 
 class TFLV_PerPlayerStats : TFLV_Force {
@@ -61,12 +63,14 @@ class TFLV_PerPlayerStats : TFLV_Force {
       stats.wlvl = info.level;
       stats.wdmg = info.GetDamageBonus();
       stats.wname = info.weapon.GetTag();
+      stats.ability = info.currentAbilityName;
     } else {
       stats.wxp = 0;
       stats.wmax = 0;
       stats.wlvl = 0;
       stats.wdmg = 0.0;
       stats.wname = "(no weapon)";
+      stats.ability = "";
     }
   }
 

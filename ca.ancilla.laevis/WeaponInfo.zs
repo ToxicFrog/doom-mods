@@ -31,6 +31,8 @@ class TFLV_WeaponInfo : Object play {
   uint maxRarity;
   bool canReplaceAbilities;
   array<string> abilities;
+  uint currentAbility;
+  string currentAbilityName;
 
   void Init(Actor weapon_) {
     weapon = Weapon(weapon_);
@@ -69,9 +71,10 @@ class TFLV_WeaponInfo : Object play {
     canReplaceAbilities = true;
     // And they start with an ability, so we should record that.
     string ability = TFLV_Util.GetWeaponEffectName(weapon.owner, prefix);
+    currentAbilityName = TFLV_Util.GetAbilityTitle(ability);
+    abilities.push(ability);
     console.printf("%s: abilities=%d, rarity=%d, ability=%s",
       weapon.GetTag(), abilitySlots, maxRarity, ability);
-    abilities.push(ability);
   }
 
   double GetDamageBonus() const {

@@ -46,6 +46,8 @@ class TFLV_EventHandler : StaticEventHandler
     screen.DrawText(NewSmallFont, Font.CR_LIGHTBLUE, w/8*6-16, h-48, "W:"..stats.wlvl);
     // screen.DrawText(NewSmallFont, Font.CR_GREEN, 520, 480-48, ""..stats.plvl, DTA_VirtualWidth, 640, DTA_VirtualHeight, 480);
     // screen.DrawText(NewSmallFont, Font.CR_LIGHTBLUE, 520, 480-32, ""..stats.wlvl, DTA_VirtualWidth, 640, DTA_VirtualHeight, 480);
+    // TODO: different colour depending on rarity, maybe tweak positioning
+    screen.DrawText(NewSmallFont, Font.CR_ORANGE, w/8*6-44, h-20, stats.ability);
 
     // TODO: display textual player/weapon levels, and, once Legendoom compatibility
     // is implemented, the selected weapon ability.
@@ -102,7 +104,12 @@ class TFLV_EventHandler : StaticEventHandler
   }
 
   void CycleLDPower(PlayerPawn pawn) {
-    TFLV_WeaponInfo info = GetStatsFor(pawn).GetInfoForCurrentWeapon();
+    let cycler = TFLV_LegendoomEffectCycler(pawn.GiveInventoryType("TFLV_LegendoomEffectCycler"));
+    if (cycler) {
+      cycler.info = GetStatsFor(pawn).GetInfoForCurrentWeapon();
+      cycler.prefix = cycler.info.weapon.GetClassName();
+      cycler.SetStateLabel("CycleEffect");
+    }
   }
 
   override void NetworkProcess(ConsoleEvent evt) {

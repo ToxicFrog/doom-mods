@@ -75,6 +75,7 @@ class TFLV_LegendoomAbilityGiver : Inventory {
       // No existing abilities, so just pick it up as is.
       console.printf("Your %s gained the ability [%s]!", wielded.weapon.GetTag(), abname);
       wielded.abilities.push(ability);
+      wielded.currentAbilityName = abname;
       upgrade.Warp(owner);
       return;
     }
