@@ -48,3 +48,9 @@ OptionMenu "LaevisOptions"
   Slider "XP cost multiplier for explosive weapons", "laevis_level_cost_mul_for_explosive", 0.1, 5.0, 0.1, 1
   Slider "XP cost multiplier for BFG-type weapons", "laevis_level_cost_mul_for_bfg", 0.1, 5.0, 0.1, 1
 }
+
+OptionMenu "LaevisLevelUpScreen"
+{
+  class TFLV_LevelUpMenu
+  Title "Level Up"
+}
