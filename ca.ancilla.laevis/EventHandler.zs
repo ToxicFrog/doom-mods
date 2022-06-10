@@ -47,10 +47,7 @@ class TFLV_EventHandler : StaticEventHandler
     // screen.DrawText(NewSmallFont, Font.CR_GREEN, 520, 480-48, ""..stats.plvl, DTA_VirtualWidth, 640, DTA_VirtualHeight, 480);
     // screen.DrawText(NewSmallFont, Font.CR_LIGHTBLUE, 520, 480-32, ""..stats.wlvl, DTA_VirtualWidth, 640, DTA_VirtualHeight, 480);
     // TODO: different colour depending on rarity, maybe tweak positioning
-    screen.DrawText(NewSmallFont, Font.CR_ORANGE, w/8*6-44, h-20, stats.ability);
-
-    // TODO: display textual player/weapon levels, and, once Legendoom compatibility
-    // is implemented, the selected weapon ability.
+    screen.DrawText(NewSmallFont, Font.CR_ORANGE, w/8*6-44, h-20, stats.effect);
   }
 
   // Draw a coloured ring centered at (x,y) of radius r and thickness t.
@@ -95,11 +92,11 @@ class TFLV_EventHandler : StaticEventHandler
     console.printf("%s:\n    Level %d (%d/%d XP)\n    Damage bonus: %d%% (%d%% total)",
       stats.wname, stats.wlvl, stats.wxp, stats.wmax, stats.wdmg * 100, stats.pdmg * stats.wdmg * 100);
     TFLV_WeaponInfo info = GetStatsFor(pawn).GetInfoForCurrentWeapon();
-    for (uint i = 0; i < info.abilities.size(); ++i) {
+    for (uint i = 0; i < info.effects.size(); ++i) {
       console.printf("%s%s (%s)",
-        "    ", // TODO print marker next to selected ability
-        TFLV_Util.GetAbilityTitle(info.abilities[i]),
-        TFLV_Util.GetAbilityDesc(info.abilities[i]));
+        "    ", // TODO print marker next to selected effect
+        TFLV_Util.GetEffectTitle(info.effects[i]),
+        TFLV_Util.GetEffectDesc(info.effects[i]));
     }
   }
 

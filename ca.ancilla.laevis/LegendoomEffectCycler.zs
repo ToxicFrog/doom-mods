@@ -47,7 +47,7 @@ class TFLV_LegendoomEffectCycler : TFLV_Force {
       TNT1 A 1 CycleEffect();
       STOP;
       // TODO: This *should* spawn the Legendoom splash screen the first time you
-      // switch to a new ability, but it doesn't seem to. Probably I need to do
+      // switch to a new effect, but it doesn't seem to. Probably I need to do
       // something so it interacts properly with the "has the user seen this
       // splash already" check, which I do not understand. For now, this code is
       // disabled.
@@ -57,11 +57,9 @@ class TFLV_LegendoomEffectCycler : TFLV_Force {
   }
 
   void CycleEffect() {
-    if (info.abilities.size() <= 1) return;
-    owner.TakeInventory(info.abilities[info.currentAbility], 1);
-    info.currentAbility++;
-    info.currentAbility %= info.abilities.size();
-    info.currentAbilityName = TFLV_Util.GetAbilityTitle(info.abilities[info.currentAbility]);
-    owner.GiveInventory(info.abilities[info.currentAbility], 1);
+    if (info.effects.size() <= 1) return;
+    owner.TakeInventory(info.effects[info.currentEffect], 1);
+    info.NextEffect();
+    owner.GiveInventory(info.effects[info.currentEffect], 1);
   }
 }

@@ -29,8 +29,8 @@ struct TFLV_CurrentStats {
   double wdmg;
   // Name of current weapon.
   string wname;
-  // Name of currently selected ability.
-  string ability;
+  // Currently active weapon effect.
+  string effect;
 }
 
 class TFLV_PerPlayerStats : TFLV_Force {
@@ -42,7 +42,7 @@ class TFLV_PerPlayerStats : TFLV_Force {
   // TODO: if the player has a normal gun, and picks up a Legendoom gun of the
   // same kind, their gun gets upgraded in-place and the existing info struct
   // remains, which means it will now count as a mundane weapon that earned an
-  // LD ability and not as a (more powerful) LD weapon. We need to detect that
+  // LD effect and not as a (more powerful) LD weapon. We need to detect that
   // occurrence, possibly in HandlePickup, and invalidate the existing info
   // struct for it.
 
@@ -63,14 +63,14 @@ class TFLV_PerPlayerStats : TFLV_Force {
       stats.wlvl = info.level;
       stats.wdmg = info.GetDamageBonus();
       stats.wname = info.weapon.GetTag();
-      stats.ability = info.currentAbilityName;
+      stats.effect = info.currentEffectName;
     } else {
       stats.wxp = 0;
       stats.wmax = 0;
       stats.wlvl = 0;
       stats.wdmg = 0.0;
       stats.wname = "(no weapon)";
-      stats.ability = "";
+      stats.effect = "";
     }
   }
 
@@ -120,9 +120,9 @@ class TFLV_PerPlayerStats : TFLV_Force {
     if (info.AddXP(xp)) {
       // Weapon leveled up!
       if (legendoomInstalled) {
-        let ldCompat = TFLV_LegendoomAbilityGiver(owner.GiveInventoryType("TFLV_LegendoomAbilityGiver"));
-        ldCompat.wielded = GetInfoForCurrentWeapon();
-        ldCompat.SetStateLabel("LDLevelUp");
+        let ldGiver = TFLV_LegendoomEffectGiver(owner.GiveInventoryType("TFLV_LegendoomEffectGiver"));
+        ldGiver.wielded = GetInfoForCurrentWeapon();
+        ldGiver.SetStateLabel("LDLevelUp");
       }
 
       // Also give the player some XP.

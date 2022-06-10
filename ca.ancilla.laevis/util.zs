@@ -46,20 +46,20 @@ class TFLV_Util : Object {
     return null;
   }
 
-  static string GetWeaponEffectName(Actor act, string prefix) {
+  static string GetActiveWeaponEffect(Actor act, string prefix) {
     Inventory item = FindItemWithPrefix(act, prefix.."Effect_");
     if (item) return item.GetClassName();
     return "";
   }
 
-  static string GetAbilityTitle(string ability) {
-    string suffix = ability.Mid(ability.RightIndexOf("_")+1);
+  static string GetEffectTitle(string effect) {
+    string suffix = effect.Mid(effect.RightIndexOf("_")+1);
     return StringTable.Localize("$LD_FX_TITLE_"..suffix);
   }
 
-  // Gets the ability description without flavour text;
-  static string GetAbilityDesc(string ability) {
-    string full = GetAbilityDescFull(ability);
+  // Gets the effect description without flavour text.
+  static string GetEffectDesc(string effect) {
+    string full = GetEffectDescFull(effect);
     int nl = full.IndexOf("\n");
     if (nl >= 0) {
       return full.left(nl);
@@ -68,9 +68,9 @@ class TFLV_Util : Object {
     }
   }
 
-  // Gets the ability description including flavour text.
-  static string GetAbilityDescFull(string ability) {
-    string suffix = ability.Mid(ability.RightIndexOf("_")+1);
+  // Gets the effect description including flavour text.
+  static string GetEffectDescFull(string effect) {
+    string suffix = effect.Mid(effect.RightIndexOf("_")+1);
     return StringTable.Localize("$LD_FX_DESCR_"..suffix);
   }
 }

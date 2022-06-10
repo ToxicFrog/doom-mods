@@ -27,12 +27,12 @@ class TFLV_WeaponInfo : Object play {
   uint level;
 
   // Legendoom integration fields.
-  uint abilitySlots;
+  uint effectSlots;
   uint maxRarity;
-  bool canReplaceAbilities;
-  array<string> abilities;
-  uint currentAbility;
-  string currentAbilityName;
+  bool canReplaceEffects;
+  array<string> effects;
+  uint currentEffect;
+  string currentEffectName;
 
   void Init(Actor weapon_) {
     weapon = Weapon(weapon_);
@@ -43,38 +43,43 @@ class TFLV_WeaponInfo : Object play {
     if (weapon is "LDWeapon") {
       InitLegendoom();
     } else {
-      abilitySlots = 0;
+      effectSlots = 0;
     }
   }
 
   void InitLegendoom() {
     string prefix = weapon.GetClassName();
     if (!weapon.owner.FindInventory(prefix.."EffectActive")) {
-      // Mundane weapons can be upgraded in-place to have a single common ability
-      // but cannot replace learned abilities.
-      abilitySlots = 1;
+      // Mundane weapons can be upgraded in-place to have a single common effect
+      // but cannot replace learned effects.
+      effectSlots = 1;
       maxRarity = RARITY_COMMON;
-      canReplaceAbilities = false;
-      console.printf("%s: abilities=1, rarity=0, no ability", weapon.GetTag());
+      canReplaceEffects = false;
+      console.printf("%s: effects=1, rarity=0, no effect", weapon.GetTag());
       return;
     }
     // For other weapons it depends on their rarity.
     maxRarity = TFLV_Util.GetWeaponRarity(weapon.owner, prefix);
     switch (maxRarity) {
-      case RARITY_EPIC: abilitySlots = 5; break;
-      case RARITY_RARE: abilitySlots = 4; break;
-      case RARITY_UNCOMMON: abilitySlots = 3; break;
-      case RARITY_COMMON: abilitySlots = 2; break;
-      default: abilitySlots = 0; break;
+      case RARITY_EPIC: effectSlots = 5; break;
+      case RARITY_RARE: effectSlots = 4; break;
+      case RARITY_UNCOMMON: effectSlots = 3; break;
+      case RARITY_COMMON: effectSlots = 2; break;
+      default: effectSlots = 0; break;
     }
-    // They can all unlearn and replace abilities, though.
-    canReplaceAbilities = true;
-    // And they start with an ability, so we should record that.
-    string ability = TFLV_Util.GetWeaponEffectName(weapon.owner, prefix);
-    currentAbilityName = TFLV_Util.GetAbilityTitle(ability);
-    abilities.push(ability);
-    console.printf("%s: abilities=%d, rarity=%d, ability=%s",
-      weapon.GetTag(), abilitySlots, maxRarity, ability);
+    // They can all unlearn and replace effects, though.
+    canReplaceEffects = true;
+    // And they start with an effect, so we should record that.
+    string effect = TFLV_Util.GetActiveWeaponEffect(weapon.owner, prefix);
+    currentEffectName = TFLV_Util.GetEffectTitle(effect);
+    effects.push(effect);
+    console.printf("%s: effects=%d, rarity=%d, effect=%s",
+      weapon.GetTag(), effectSlots, maxRarity, effect);
+  }
+
+  void NextEffect() {
+    currentEffect = (currentEffect + 1) % effects.size();
+    currentEffectName = TFLV_Util.GetEffectTitle(effects[currentEffect]);
   }
 
   double GetDamageBonus() const {
