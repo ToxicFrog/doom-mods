@@ -50,6 +50,13 @@ class TFLV_LegendoomEffectGiver : Inventory {
   }
 
   bool IsCreatedUpgradeGood() {
+    if (!wielded || !wielded.weapon) {
+      // Something happened to the player's weapon while we were trying to
+      // generate the new effect.
+      self.Destroy();
+      return false;
+    }
+
     string effect = TFLV_Util.GetActiveWeaponEffect(upgrade, prefix);
     if (TFLV_Util.GetWeaponRarity(upgrade, prefix) > wielded.maxRarity) {
       //console.printf("Upgrade %s is too rare!", effect);
@@ -66,6 +73,13 @@ class TFLV_LegendoomEffectGiver : Inventory {
   }
 
   void InstallUpgrade() {
+    if (!wielded || !wielded.weapon) {
+      // Something happened to the player's weapon while we were trying to
+      // generate the new effect.
+      self.Destroy();
+      return;
+    }
+
     string effect = TFLV_Util.GetActiveWeaponEffect(upgrade, prefix);
     string effectname = TFLV_Util.GetEffectTitle(effect);
     console.printf("Your %s gained the effect [%s]!", wielded.weapon.GetTag(), effectname);
