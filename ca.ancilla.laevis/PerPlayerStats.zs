@@ -71,7 +71,9 @@ class TFLV_PerPlayerStats : TFLV_Force {
   // Fill in a CurrentStats struct with the current state of the player & their
   // currently wielded weapon. This should contain all the information needed
   // to draw the UI.
-  void GetCurrentStats(out TFLV_CurrentStats stats) const {
+  // Returns true if it was able to get all the necessary weapon information,
+  // false otherwise.
+  bool GetCurrentStats(out TFLV_CurrentStats stats) const {
     stats.pxp = XP;
     stats.pmax = TFLV_Settings.gun_levels_per_player_level();
     stats.plvl = level;
@@ -86,6 +88,7 @@ class TFLV_PerPlayerStats : TFLV_Force {
       stats.wdmg = info.GetDamageBonus();
       stats.wname = info.weapon.GetTag();
       stats.effect = info.currentEffectName;
+      return true;
     } else {
       stats.wxp = 0;
       stats.wmax = 0;
@@ -93,6 +96,7 @@ class TFLV_PerPlayerStats : TFLV_Force {
       stats.wdmg = 0.0;
       stats.wname = "(no weapon)";
       stats.effect = "";
+      return false;
     }
   }
 

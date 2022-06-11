@@ -7,7 +7,14 @@ class TFLV_StatusDisplay : OptionMenu {
     let pps = TFLV_PerPlayerStats.GetStatsFor(pawn);
 
     TFLV_CurrentStats stats;
-    pps.GetCurrentStats(stats);
+    if (!pps.GetCurrentStats(stats)) {
+      PushText("", Font.CR_RED);
+      PushText("No stats available for current weapon.", Font.CR_RED);
+      PushText("Make sure you have a weapon equipped.", Font.CR_RED);
+      PushText("If you do, shoot something with it and try again.", Font.CR_RED);
+      return;
+    }
+
     let info = pps.GetInfoForCurrentWeapon();
 
     PushText("", Font.CR_GOLD);

@@ -58,3 +58,5 @@ This is not so much a concrete set of plans as an unordered list of ideas I've h
 - HUD rework; use a sprite sheet instead of DrawThickLine()
 - Player bonuses other than damage/resistance, like max health, health/armour regeneration up to some level, life/armour leech, extra lives, friendly minions, etc
 - Weapon bonuses other than damage, like ammo regeneration up to some level, DoTs of various kinds, exploding shots/corpses, penetrating shots, life/armour/ammo leech, etc
+- Dismantle unwanted LD drops to harvest their effects
+- Option to give the player XP credit for infighting

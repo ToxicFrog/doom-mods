@@ -75,8 +75,8 @@ class TFLV_EventHandler : StaticEventHandler {
     // TODO: only draw when cvar screenblocks == 11
 
     TFLV_CurrentStats stats;
-    TFLV_PerPlayerStats.GetStatsFor(pawn).GetCurrentStats(stats);
-    DrawXPGauge(stats);
+    if (TFLV_PerPlayerStats.GetStatsFor(pawn).GetCurrentStats(stats))
+      DrawXPGauge(stats);
   }
 
   void ShowInfo(PlayerPawn pawn) {
@@ -86,7 +86,7 @@ class TFLV_EventHandler : StaticEventHandler {
 
   void ShowInfoConsole(PlayerPawn pawn) {
     TFLV_CurrentStats stats;
-    TFLV_PerPlayerStats.GetStatsFor(pawn).GetCurrentStats(stats);
+    if (!TFLV_PerPlayerStats.GetStatsFor(pawn).GetCurrentStats(stats)) return;
     console.printf("Player:\n    Level %d (%d/%d XP)\n    Damage dealt: %d%%\n    Damage taken: %d%%",
       stats.plvl, stats.pxp, stats.pmax, stats.pdmg * 100, stats.pdef * 100);
     console.printf("%s:\n    Level %d (%d/%d XP)\n    Damage dealt: %d%% (%d%% total)",
