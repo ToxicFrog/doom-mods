@@ -21,17 +21,16 @@ class TFLV_LevelUpMenu : OptionMenu {
     PushText("Select an effect to discard.", Font.CR_GOLD);
     PushText("", Font.CR_GOLD);
     PushText("New Effect:", Font.CR_CYAN);
-    PushEffect(giver.newEffect);
+    PushEffect(giver.newEffect, -1);
     PushText("", Font.CR_LIGHTBLUE);
     PushText("Existing Effects:", Font.CR_LIGHTBLUE);
     for (uint i = 0; i < giver.wielded.effects.size(); ++i) {
-      PushEffect(giver.wielded.effects[i]);
+      PushEffect(giver.wielded.effects[i], i);
     }
     mDesc.mSelectedItem = FirstSelectable();
   }
 
   override bool MenuEvent(int key, bool fromController) {
-    console.printf("MenuEvent! %d", key);
     if (key == Menu.MKey_Back) {
       // Verboten! Can't leave the menu without picking an effect to discard.
       return true;
@@ -44,8 +43,8 @@ class TFLV_LevelUpMenu : OptionMenu {
     mDesc.mItems.Push(new("OptionMenuItemStaticText").InitDirect(text, colour));
   }
 
-  void PushEffect(string effect) {
-    mDesc.mItems.Push(new("OptionMenuItemEffectSelector").Init(effect));
+  void PushEffect(string effect, int index) {
+    mDesc.mItems.Push(new("OptionMenuItemEffectSelector").Init(effect, index));
   }
 
   override int GetIndent() {
@@ -54,11 +53,16 @@ class TFLV_LevelUpMenu : OptionMenu {
 }
 
 class OptionMenuItemEffectSelector : OptionMenuItem {
+  // Index of the effect. This is -1 for the new effect, or its index in the
+  // 'effects' table for existing effects.
+  int index;
+  // Effect ID and displayable effect information.
   string effect;
   string effectName;
   string effectDesc;
 
-  OptionMenuItemEffectSelector Init(string effect_) {
+  OptionMenuItemEffectSelector Init(string effect_, int index_) {
+    index = index_;
     effect = effect_;
     effectName = TFLV_Util.GetEffectTitle(effect);
     effectDesc = TFLV_Util.GetEffectDesc(effect);
@@ -72,7 +76,7 @@ class OptionMenuItemEffectSelector : OptionMenuItem {
 
     Menu.MenuSound("menu/choose");
     console.printf("Effect chosen: %s", effect);
-    // netevent command?
+    EventHandler.SendNetworkEvent("laevis_choose_effect_discard", index);
     Menu.GetCurrentMenu().Close();
     return true;
   }

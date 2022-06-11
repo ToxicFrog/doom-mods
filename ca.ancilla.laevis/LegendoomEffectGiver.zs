@@ -128,6 +128,23 @@ class TFLV_LegendoomEffectGiver : Inventory {
     return true;
   }
 
+  void DiscardEffect(int index) {
+    if (index < 0) {
+      // Player chose to discard the new effect.
+      upgrade.Destroy();
+      self.Destroy();
+      return;
+    }
+
+    // Player chose to discard an existing effect.
+    // TODO: if they discard the current effect, it remains active on the weapon
+    string effect = TFLV_Util.GetActiveWeaponEffect(upgrade, prefix);
+    wielded.effects.Delete(index);
+    wielded.effects.Push(effect);
+    upgrade.Destroy();
+    self.Destroy();
+  }
+
   // We use States here and not just a simple method because we need to be able
   // to insert delays to let LD item generation code do its things at various
   // times.

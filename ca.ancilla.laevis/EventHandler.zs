@@ -104,6 +104,16 @@ class TFLV_EventHandler : StaticEventHandler {
     }
   }
 
+  void ChooseEffectDiscard(PlayerPawn pawn, int index) {
+    let stats = TFLV_PerPlayerStats.GetStatsFor(pawn);
+    let giver = stats.currentEffectGiver;
+    if (!giver) {
+      console.printf("error: laevis_choose_effect_discard without active level up menu");
+      return;
+    }
+    giver.DiscardEffect(index);
+  }
+
   override void NetworkProcess(ConsoleEvent evt) {
     if (evt.player != consoleplayer) {
       return;
@@ -115,6 +125,8 @@ class TFLV_EventHandler : StaticEventHandler {
       } else {
         console.printf("This feature only works if you also have Legendoom installed.");
       }
+    } else if (evt.name == "laevis_choose_effect_discard") {
+      ChooseEffectDiscard(players[evt.player].mo, evt.args[0]);
     }
   }
 }
