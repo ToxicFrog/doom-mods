@@ -32,6 +32,7 @@ class TFLV_LegendoomEffectGiver : Inventory {
     if (wielded.effects.Size() >= wielded.effectSlots && !wielded.canReplaceEffects) {
       // The weapon is already at its limit and effect replacement is disabled for
       // it. Do nothing.
+      // console.printf("no room for more effects");
       return false;
     }
 
@@ -46,7 +47,7 @@ class TFLV_LegendoomEffectGiver : Inventory {
   void CreateUpgrade() {
     if (upgrade) upgrade.Destroy();
     upgrade = Spawn(prefix.."PickupLegendary", (0,0,0));
-    //console.printf("Created tentative upgrade %s", upgrade.GetTag());
+    // console.printf("Created tentative upgrade %s", upgrade.GetTag());
   }
 
   bool IsCreatedUpgradeGood() {
@@ -59,16 +60,16 @@ class TFLV_LegendoomEffectGiver : Inventory {
 
     string effect = TFLV_Util.GetActiveWeaponEffect(upgrade, prefix);
     if (TFLV_Util.GetWeaponRarity(upgrade, prefix) > wielded.maxRarity) {
-      //console.printf("Upgrade %s is too rare!", effect);
+      // console.printf("Upgrade %s is too rare!", effect);
       return false;
     }
     // Upgrade is within the rarity bounds, so make sure it doesn't collide with an
     // existing one.
     if (wielded.effects.Find(effect) != wielded.effects.Size()) {
-      //console.printf("Upgrade %s is a duplicate of an existing effect!", effect);
+      // console.printf("Upgrade %s is a duplicate of an existing effect!", effect);
       return false;
     }
-    //console.printf("Upgrade %s looks good.", effect);
+    // console.printf("Upgrade %s looks good.", effect);
     return true;
   }
 
@@ -78,6 +79,7 @@ class TFLV_LegendoomEffectGiver : Inventory {
     if (!wielded || !wielded.weapon) {
       // Something happened to the player's weapon while we were trying to
       // generate the new effect.
+      upgrade.Destroy();
       self.Destroy();
       return true;
     }
@@ -92,7 +94,7 @@ class TFLV_LegendoomEffectGiver : Inventory {
       wielded.NextEffect();
       // Set a flag on the upgrade so PerPlayerInfo::HandlePickup() can tell that
       // this is an in-place upgrade and not a new weapon.
-      upgrade.FindInventory(prefix.."EffectiveActive").bNOTELEFRAG = true;
+      upgrade.FindInventory(prefix.."EffectActive").bNOTELEFRAG = true;
       upgrade.Warp(owner);
       return true;
     }
