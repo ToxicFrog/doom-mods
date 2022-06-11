@@ -80,6 +80,11 @@ class TFLV_EventHandler : StaticEventHandler {
   }
 
   void ShowInfo(PlayerPawn pawn) {
+    Menu.SetMenu("LaevisStatusDisplay");
+    return;
+  }
+
+  void ShowInfoConsole(PlayerPawn pawn) {
     TFLV_CurrentStats stats;
     TFLV_PerPlayerStats.GetStatsFor(pawn).GetCurrentStats(stats);
     console.printf("Player:\n    Level %d (%d/%d XP)\n    Damage dealt: %d%%\n    Damage taken: %d%%",
@@ -119,6 +124,8 @@ class TFLV_EventHandler : StaticEventHandler {
       return;
     } else if (evt.name == "laevis_show_info") {
       ShowInfo(players[evt.player].mo);
+    } else if (evt.name == "laevis_show_info_console") {
+      ShowInfoConsole(players[evt.player].mo);
     } else if (evt.name == "laevis_cycle_ld_power") {
       if (legendoomInstalled) {
         CycleLDPower(players[evt.player].mo);
