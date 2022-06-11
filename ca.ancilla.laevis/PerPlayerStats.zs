@@ -42,8 +42,11 @@ class TFLV_PerPlayerStats : TFLV_Force {
   // than thinking it's a mundane weapon that earned an LD effect through leveling
   // up.
   override bool HandlePickup(Inventory item) {
-    if (item is "LDWeaponNameAlternation") return super.HandlePickup(item);
-    if (!(item is "LDPermanentInventory")) return super.HandlePickup(item);
+    // Workaround for zscript `is` operator being weird.
+    string LDWeaponNameAlternationType = "LDWeaponNameAlternation";
+    string LDPermanentInventoryType = "LDPermanentInventory";
+    if (item is LDWeaponNameAlternationType) return super.HandlePickup(item);
+    if (!(item is LDPermanentInventoryType)) return super.HandlePickup(item);
 
     string cls = item.GetClassName();
     if (cls.IndexOf("EffectActive") < 0) return super.HandlePickup(item);

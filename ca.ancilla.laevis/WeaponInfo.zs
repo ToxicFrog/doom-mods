@@ -32,7 +32,8 @@ class TFLV_WeaponInfo : Object play {
     level = 0;
     maxXP = GetXPForLevel(1);
 
-    if (weapon is "LDWeapon") {
+    string LDWeaponType = "LDWeapon";
+    if (weapon is LDWeaponType) {
       InitLegendoom();
     } else {
       effectSlots = 0;
