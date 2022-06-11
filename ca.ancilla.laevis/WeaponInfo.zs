@@ -89,6 +89,22 @@ class TFLV_WeaponInfo : Object play {
     weapon.owner.GiveInventory(effects[currentEffect], 1);
   }
 
+  void DiscardEffect(uint index) {
+    if (effects.size() <= index) return;
+    if (index == currentEffect) {
+      // The effect they want to discard is the current one.
+      // Remove the effect now, then CycleEffect afterwards to select a new valid one.
+      weapon.owner.TakeInventory(effects[index], 1);
+      effects.Delete(index);
+      CycleEffect();
+    } else if (index < currentEffect) {
+      // They want to discard an effect before the current one, which will result
+      // in later effects being renumbered.
+      currentEffect--;
+    effects.Delete(index);
+    }
+  }
+
   double GetDamageBonus() const {
     return 1 + level * TFLV_Settings.gun_damage_bonus();
   }

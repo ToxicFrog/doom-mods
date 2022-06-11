@@ -139,10 +139,9 @@ class TFLV_LegendoomEffectGiver : Inventory {
     }
 
     // Player chose to discard an existing effect.
-    // TODO: if they discard the current effect, it remains active on the weapon
     string effect = TFLV_Util.GetActiveWeaponEffect(upgrade, prefix);
-    wielded.effects.Delete(index);
     wielded.effects.Push(effect);
+    wielded.DiscardEffect(index);
     upgrade.Destroy();
     self.Destroy();
   }
