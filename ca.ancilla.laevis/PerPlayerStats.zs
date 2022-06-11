@@ -27,6 +27,16 @@ class TFLV_PerPlayerStats : TFLV_Force {
   uint level;
   bool legendoomInstalled;
 
+  // HACK HACK HACK
+  // The LaevisLevelUpScreen needs to be able to get a handle to the specific
+  // EffectGiver associated with that menu, so it puts itself into this field
+  // just before opening the menu and clears it afterwards.
+  TFLV_LegendoomEffectGiver currentEffectGiver;
+
+  clearscope static TFLV_PerPlayerStats GetStatsFor(PlayerPawn pawn) {
+    return TFLV_PerPlayerStats(pawn.FindInventory("TFLV_PerPlayerStats"));
+  }
+
   // Special pickup handling so that if the player picks up an LD legendary weapon
   // that upgrades their mundane weapon in-place, we handle this correctly rather
   // than thinking it's a mundane weapon that earned an LD effect through leveling

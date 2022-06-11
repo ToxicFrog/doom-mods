@@ -3,15 +3,30 @@ class TFLV_LevelUpMenu : OptionMenu {
     super.Init(parent, desc);
     mDesc.mItems.Clear();
 
+    let pawn = PlayerPawn(players[consoleplayer].mo);
+    let stats = TFLV_PerPlayerStats.GetStatsFor(pawn);
+    let giver = stats.currentEffectGiver;
+
     // Code to fill in the menu goes here.
     // We need to figure out the list of effects the player already has, and the
     // effect they're trying to gain, and present one menu entry for each.
-    pushText("Your weapon has gained a new effect,", Font.CR_CYAN);
-    pushText("but already has as many effects as it can hold.", Font.CR_CYAN);
-    pushText("Select an effect to discard.", Font.CR_CYAN);
-    pushText("", Font.CR_CYAN);
-    mDesc.mItems.Push(new("OptionMenuItemEffectSelector").Init("LDPistolEffect_Exorcist"));
-    mDesc.mItems.Push(new("OptionMenuItemEffectSelector").Init("LDPistolEffect_Pristine"));
+    PushText("", Font.CR_GOLD);
+    PushText(
+      string.format(
+        "Your %s has unlocked the effect %s",
+        giver.wielded.weapon.GetTag(),
+        TFLV_Util.GetEffectTitle(giver.newEffect)),
+      Font.CR_GOLD);
+    PushText("but already has as many effects as it can hold.", Font.CR_GOLD);
+    PushText("Select an effect to discard.", Font.CR_GOLD);
+    PushText("", Font.CR_GOLD);
+    PushText("New Effect:", Font.CR_CYAN);
+    PushEffect(giver.newEffect);
+    PushText("", Font.CR_LIGHTBLUE);
+    PushText("Existing Effects:", Font.CR_LIGHTBLUE);
+    for (uint i = 0; i < giver.wielded.effects.size(); ++i) {
+      PushEffect(giver.wielded.effects[i]);
+    }
     mDesc.mSelectedItem = FirstSelectable();
   }
 
@@ -25,8 +40,12 @@ class TFLV_LevelUpMenu : OptionMenu {
     return super.MenuEvent(key, fromController);
   }
 
-  void pushText(string text, uint colour) {
+  void PushText(string text, uint colour) {
     mDesc.mItems.Push(new("OptionMenuItemStaticText").InitDirect(text, colour));
+  }
+
+  void PushEffect(string effect) {
+    mDesc.mItems.Push(new("OptionMenuItemEffectSelector").Init(effect));
   }
 
   override int GetIndent() {
@@ -48,8 +67,6 @@ class OptionMenuItemEffectSelector : OptionMenuItem {
   }
 
   override bool MenuEvent(int key, bool fromController) {
-    console.printf("ItemMenuEvent! %d", key);
-
     if (key != Menu.MKey_Enter)
       return super.MenuEvent(key, fromController);
 

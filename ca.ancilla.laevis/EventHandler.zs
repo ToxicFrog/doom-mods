@@ -2,8 +2,7 @@
 // Handles giving players a stat tracking item when they spawn in, and assigning
 // XP to their currently wielded weapon when they damage something.
 
-class TFLV_EventHandler : StaticEventHandler
-{
+class TFLV_EventHandler : StaticEventHandler {
   bool legendoomInstalled;
 
   override void OnRegister() {
@@ -20,16 +19,12 @@ class TFLV_EventHandler : StaticEventHandler
     }
   }
 
-  TFLV_PerPlayerStats GetStatsFor(PlayerPawn pawn) const {
-    return TFLV_PerPlayerStats(pawn.FindInventory("TFLV_PerPlayerStats"));
-  }
-
   override void PlayerSpawned(PlayerEvent evt) {
     PlayerPawn pawn = players[evt.playerNumber].mo;
     if (pawn) {
       pawn.GiveInventoryType("TFLV_PerPlayerStats");
       if (legendoomInstalled) {
-        GetStatsFor(pawn).legendoomInstalled = true;
+        TFLV_PerPlayerStats.GetStatsFor(pawn).legendoomInstalled = true;
       }
     }
   }
@@ -80,18 +75,18 @@ class TFLV_EventHandler : StaticEventHandler
     // TODO: only draw when cvar screenblocks == 11
 
     TFLV_CurrentStats stats;
-    GetStatsFor(pawn).GetCurrentStats(stats);
+    TFLV_PerPlayerStats.GetStatsFor(pawn).GetCurrentStats(stats);
     DrawXPGauge(stats);
   }
 
   void ShowInfo(PlayerPawn pawn) {
     TFLV_CurrentStats stats;
-    GetStatsFor(pawn).GetCurrentStats(stats);
+    TFLV_PerPlayerStats.GetStatsFor(pawn).GetCurrentStats(stats);
     console.printf("Player:\n    Level %d (%d/%d XP)\n    Damage dealt: %d%%\n    Damage taken: %d%%",
       stats.plvl, stats.pxp, stats.pmax, stats.pdmg * 100, stats.pdef * 100);
     console.printf("%s:\n    Level %d (%d/%d XP)\n    Damage dealt: %d%% (%d%% total)",
       stats.wname, stats.wlvl, stats.wxp, stats.wmax, stats.wdmg * 100, stats.pdmg * stats.wdmg * 100);
-    TFLV_WeaponInfo info = GetStatsFor(pawn).GetInfoForCurrentWeapon();
+    TFLV_WeaponInfo info = TFLV_PerPlayerStats.GetStatsFor(pawn).GetInfoForCurrentWeapon();
     for (uint i = 0; i < info.effects.size(); ++i) {
       console.printf("%s%s (%s)",
         "    ", // TODO print marker next to selected effect
@@ -103,7 +98,7 @@ class TFLV_EventHandler : StaticEventHandler
   void CycleLDPower(PlayerPawn pawn) {
     let cycler = TFLV_LegendoomEffectCycler(pawn.GiveInventoryType("TFLV_LegendoomEffectCycler"));
     if (cycler) {
-      cycler.info = GetStatsFor(pawn).GetInfoForCurrentWeapon();
+      cycler.info = TFLV_PerPlayerStats.GetStatsFor(pawn).GetInfoForCurrentWeapon();
       cycler.prefix = cycler.info.weapon.GetClassName();
       cycler.SetStateLabel("CycleEffect");
     }

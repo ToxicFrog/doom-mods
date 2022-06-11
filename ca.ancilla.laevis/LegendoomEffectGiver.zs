@@ -9,6 +9,7 @@ class TFLV_LegendoomEffectGiver : Inventory {
   string prefix;
 
   Actor upgrade;
+  string newEffect;
 
   Default {
     +Inventory.IgnoreSkill;
@@ -28,20 +29,17 @@ class TFLV_LegendoomEffectGiver : Inventory {
 
     prefix = wielded.weapon.GetClassName();
 
-    if (wielded.effects.Size() >= wielded.effectSlots) {
-      if (!wielded.canReplaceEffects) {
-        // console.printf("%s has no room for more effects.", wielded.weapon.GetTag());
-        return false;
-      }
-      // Create a new effect, respecting the rarity limits and discarding duplicates,
-      // and then offer it to the player; give them a menu that lets them either
-      // replace an existing effect, or discard the new effect.
-      return true;
+    if (wielded.effects.Size() >= wielded.effectSlots && !wielded.canReplaceEffects) {
+      // The weapon is already at its limit and effect replacement is disabled for
+      // it. Do nothing.
+      return false;
     }
 
-    // If we got this far, the weapon has room for a new effect.
-    // If it has no existing effects, we 'just' need to create one, respecting
-    // the rarity limits on the weapon, and shove it into the player.
+    // If we got this far, the weapon has room for a new effect, or is allowed to
+    // discard one of its existing effects to make room.
+    // Returning true will trigger the CreateUpgrade/IsCreatedUpgradeGood loop,
+    // and then InstallUpgrade() will handle replacing an existing effect if
+    // necessary.
     return true;
   }
 
@@ -85,7 +83,10 @@ class TFLV_LegendoomEffectGiver : Inventory {
 
     if (wielded.effects.Size() >= wielded.effectSlots) {
       // All slots are full of existing effects, so ask what to do.
-      // TODO: not implemented yet, so instead just evict the first effect?
+      TFLV_PerPlayerStats.GetStatsFor(PlayerPawn(owner)).currentEffectGiver = self;
+      newEffect = effect;
+      Menu.SetMenu("LaevisLevelUpScreen");
+      TFLV_PerPlayerStats.GetStatsFor(PlayerPawn(owner)).currentEffectGiver = null;
       upgrade.Destroy();
       return;
     }
