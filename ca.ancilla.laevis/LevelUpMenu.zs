@@ -75,7 +75,6 @@ class OptionMenuItemEffectSelector : OptionMenuItem {
       return super.MenuEvent(key, fromController);
 
     Menu.MenuSound("menu/choose");
-    console.printf("Effect chosen: %s", effect);
     EventHandler.SendNetworkEvent("laevis_choose_effect_discard", index);
     Menu.GetCurrentMenu().Close();
     return true;

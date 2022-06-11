@@ -27,9 +27,10 @@ class TFLV_StatusDisplay : OptionMenu {
       PushText("Weapon Effects", Font.CR_GOLD);
       for (uint i = 0; i < info.effects.size(); ++i) {
         if (info.currentEffect == i) {
-          PushEffect(info.effects[i], Font.CR_ORANGE);
+          PushEffect(info.effects[i], i, true);
+          mDesc.mSelectedItem = mDesc.mItems.Size() - 1;
         } else {
-          PushEffect(info.effects[i], Font.CR_RED);
+          PushEffect(info.effects[i], i, false);
         }
       }
     }
@@ -43,13 +44,13 @@ class TFLV_StatusDisplay : OptionMenu {
     mDesc.mItems.Push(new("OptionMenuItemStaticInfo").Init(key, value));
   }
 
-  void PushEffect(string effect, uint colour) {
-    mDesc.mItems.Push(new("OptionMenuItemStaticEffect").Init(effect, colour));
+  void PushEffect(string effect, uint index, bool isDefault) {
+    mDesc.mItems.Push(new("OptionMenuItemEffect").Init(effect, index, isDefault));
   }
 
-  // override int GetIndent() {
-  //   return super.GetIndent() - 200 * CleanXFac_1;
-  // }
+  override int GetIndent() {
+    return super.GetIndent() - 200 * CleanXFac_1;
+  }
 }
 
 class OptionMenuItemStaticInfo : OptionMenuItem {
@@ -72,15 +73,17 @@ class OptionMenuItemStaticInfo : OptionMenuItem {
   }
 }
 
-class OptionMenuItemStaticEffect : OptionMenuItem {
+class OptionMenuItemEffect : OptionMenuItem {
   // Effect ID and displayable effect information.
-  uint colour;
+  bool wasDefault;
+  int index;
   string effect;
   string effectName;
   string effectDesc;
 
-  OptionMenuItemStaticEffect Init(string effect_, uint colour_) {
-    colour = colour_;
+  OptionMenuItemEffect Init(string effect_, int index_, bool wasDefault_) {
+    wasDefault = wasDefault_;
+    index = index_;
     effect = effect_;
     effectName = TFLV_Util.GetEffectTitle(effect);
     effectDesc = TFLV_Util.GetEffectDesc(effect);
@@ -88,11 +91,26 @@ class OptionMenuItemStaticEffect : OptionMenuItem {
     return self;
   }
 
-  override bool Selectable() { return false; }
+  override bool MenuEvent(int key, bool fromController) {
+    if (key != Menu.MKey_Enter)
+      return super.MenuEvent(key, fromController);
+
+    Menu.MenuSound("menu/choose");
+    console.printf("Effect chosen: %s", effect);
+    EventHandler.SendNetworkEvent("laevis_select_effect", index);
+    Menu.GetCurrentMenu().Close();
+    return true;
+  }
 
   override int Draw(OptionMenuDescriptor d, int y, int indent, bool selected) {
-    drawLabel(indent - 200 * CleanXFac_1, y, colour);
-    drawValue(indent - 200 * CleanXFac_1, y, colour, effectDesc);
+    uint colour;
+    if (wasDefault) {
+      colour = selected ? Font.CR_YELLOW : Font.CR_ORANGE;
+    } else {
+      colour = selected ? Font.CR_RED : Font.CR_DARKRED;
+    }
+    drawLabel(indent, y, colour);
+    drawValue(indent, y, colour, effectDesc);
     return indent;
   }
 }
