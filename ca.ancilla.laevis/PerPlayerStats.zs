@@ -101,23 +101,32 @@ class TFLV_PerPlayerStats : TFLV_Force {
   TFLV_WeaponInfo GetInfoForCurrentWeapon() const {
     Weapon wielded = owner.player.ReadyWeapon;
     if (wielded) {
-      // WTF why is this allowed? TODO fix this to not rely on violating security boundaries
-      return GetInfoFor(wielded);
+      // We need to use the Try version here because this is called from ui code
+      // and we aren't allowed to modify playsim from ui.
+      // I mean, we CAN, but we SHOULDN'T.
+      return TryGetInfoFor(wielded);
     } else {
       return null;
     }
   }
 
-  // Returns the info structure for the given weapon. If none exists, allocates
-  // and initializes a new one and returns that.
-  TFLV_WeaponInfo GetInfoFor(Actor weapon) {
+  TFLV_WeaponInfo TryGetInfoFor(Actor weapon) const {
     for (int i = 0; i < weapons.size(); ++i) {
       if (weapons[i].weapon == weapon) {
         return weapons[i];
       }
     }
+    return null;
+  }
+
+  // Returns the info structure for the given weapon. If none exists, allocates
+  // and initializes a new one and returns that.
+  TFLV_WeaponInfo GetInfoFor(Actor weapon) {
+    TFLV_WeaponInfo info = TryGetInfoFor(weapon);
+    if (info) return info;
+
     // Didn't find one, so create a new one.
-    TFLV_WeaponInfo info = new("TFLV_WeaponInfo");
+    info = new("TFLV_WeaponInfo");
     info.Init(weapon);
     weapons.push(info);
     return info;
