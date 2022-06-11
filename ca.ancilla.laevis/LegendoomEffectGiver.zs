@@ -91,7 +91,7 @@ class TFLV_LegendoomEffectGiver : Inventory {
       // No existing effects, so just pick it up as is.
       console.printf("Your %s gained the effect [%s]!", wielded.weapon.GetTag(), effectname);
       wielded.effects.push(effect);
-      wielded.NextEffect();
+      wielded.SelectEffect(0);
       // Set a flag on the upgrade so PerPlayerInfo::HandlePickup() can tell that
       // this is an in-place upgrade and not a new weapon.
       upgrade.FindInventory(prefix.."EffectActive").bNOTELEFRAG = true;

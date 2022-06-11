@@ -23,7 +23,7 @@ class TFLV_WeaponInfo : Object play {
   uint maxRarity;
   bool canReplaceEffects;
   array<string> effects;
-  uint currentEffect;
+  int currentEffect;
   string currentEffectName;
 
   void Init(Actor weapon_) {
@@ -36,6 +36,7 @@ class TFLV_WeaponInfo : Object play {
       InitLegendoom();
     } else {
       effectSlots = 0;
+      currentEffect = -1;
     }
   }
 
@@ -45,6 +46,7 @@ class TFLV_WeaponInfo : Object play {
       // Mundane weapons can be upgraded in-place to have a single common effect
       // but cannot replace learned effects.
       effectSlots = 1;
+      currentEffect = -1;
       maxRarity = RARITY_COMMON;
       canReplaceEffects = false;
       console.printf("%s: effects=1, rarity=0, no effect", weapon.GetTag());
@@ -63,15 +65,28 @@ class TFLV_WeaponInfo : Object play {
     canReplaceEffects = true;
     // And they start with an effect, so we should record that.
     string effect = TFLV_Util.GetActiveWeaponEffect(weapon.owner, prefix);
+    currentEffect = 0;
     currentEffectName = TFLV_Util.GetEffectTitle(effect);
     effects.push(effect);
     console.printf("%s: effects=%d, rarity=%d, effect=%s",
       weapon.GetTag(), effectSlots, maxRarity, effect);
   }
 
-  void NextEffect() {
-    currentEffect = (currentEffect + 1) % effects.size();
+  void CycleEffect() {
+    if (effects.size() <= 1) return;
+
+    SelectEffect((currentEffect + 1) % effects.size());
+  }
+
+  void SelectEffect(uint index) {
+    if (effects.size() <= index) return;
+    if (index == currentEffect) return;
+
+    if (currentEffect >= 0)
+      weapon.owner.TakeInventory(effects[currentEffect], 1);
+    currentEffect = index;
     currentEffectName = TFLV_Util.GetEffectTitle(effects[currentEffect]);
+    weapon.owner.GiveInventory(effects[currentEffect], 1);
   }
 
   double GetDamageBonus() const {

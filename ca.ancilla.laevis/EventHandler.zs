@@ -93,20 +93,14 @@ class TFLV_EventHandler : StaticEventHandler {
       stats.wname, stats.wlvl, stats.wxp, stats.wmax, stats.wdmg * 100, stats.pdmg * stats.wdmg * 100);
     TFLV_WeaponInfo info = TFLV_PerPlayerStats.GetStatsFor(pawn).GetInfoForCurrentWeapon();
     for (uint i = 0; i < info.effects.size(); ++i) {
-      console.printf("%s%s (%s)",
-        "    ", // TODO print marker next to selected effect
+      console.printf("    %s (%s)",
         TFLV_Util.GetEffectTitle(info.effects[i]),
         TFLV_Util.GetEffectDesc(info.effects[i]));
     }
   }
 
-  void CycleLDPower(PlayerPawn pawn) {
-    let cycler = TFLV_LegendoomEffectCycler(pawn.GiveInventoryType("TFLV_LegendoomEffectCycler"));
-    if (cycler) {
-      cycler.info = TFLV_PerPlayerStats.GetStatsFor(pawn).GetInfoForCurrentWeapon();
-      cycler.prefix = cycler.info.weapon.GetClassName();
-      cycler.SetStateLabel("CycleEffect");
-    }
+  void CycleLDEffect(PlayerPawn pawn) {
+    TFLV_PerPlayerStats.GetStatsFor(pawn).GetInfoForCurrentWeapon().CycleEffect();
   }
 
   void ChooseEffectDiscard(PlayerPawn pawn, int index) {
@@ -119,6 +113,10 @@ class TFLV_EventHandler : StaticEventHandler {
     giver.DiscardEffect(index);
   }
 
+  void SelectLDEffect(PlayerPawn pawn, int index) {
+    TFLV_PerPlayerStats.GetStatsFor(pawn).GetInfoForCurrentWeapon().SelectEffect(index);
+  }
+
   override void NetworkProcess(ConsoleEvent evt) {
     if (evt.player != consoleplayer) {
       return;
@@ -128,10 +126,12 @@ class TFLV_EventHandler : StaticEventHandler {
       ShowInfoConsole(players[evt.player].mo);
     } else if (evt.name == "laevis_cycle_ld_power") {
       if (legendoomInstalled) {
-        CycleLDPower(players[evt.player].mo);
+        CycleLDEffect(players[evt.player].mo);
       } else {
         console.printf("This feature only works if you also have Legendoom installed.");
       }
+    } else if (evt.name == "laevis_select_effect") {
+      SelectLDEffect(players[evt.player].mo, evt.args[0]);
     } else if (evt.name == "laevis_choose_effect_discard") {
       ChooseEffectDiscard(players[evt.player].mo, evt.args[0]);
     }
