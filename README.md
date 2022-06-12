@@ -12,7 +12,7 @@ All settings are configurable through the gzDoom options menu and through cvars,
 
 Add `Laevis-<version>.pk3` to your load order. It doesn't matter where.
 
-The first time you play, check your keybindings for "Laevis - Display Info" and, if you're using Legendoom, "Laevis - Cycle Legendoom Power" to make sure they're acceptable. You may also want to check the balance settings under "Options - Laevis Mod Options".
+The first time you play, check your keybindings for "Laevis - Display Info" and, if you're using Legendoom, "Laevis - Cycle Legendoom Weapon Effect" to make sure they're acceptable. You may also want to check the balance settings under "Options - Laevis Mod Options".
 
 That's all -- if equipping a weapon and then pressing the "display info" key (default I) in game brings up the Laevis status screen, you should be good to go.
 
@@ -22,9 +22,9 @@ If you have Legendoom installed, weapons can gain new Legendoom effects on level
 
 The total number of effects a weapon can remember depends on its rarity, from 2 (Common) to 5 (Epic). If you would gain a new effect but there's no room, you'll be prompted to choose an effect to delete.
 
-The exception is mundane weapons (i.e. weapons that don't have a Legendoom power at all). They can earn a single Common power by leveling up, once only; if you want a different power you'll need to replace the weapon with a new one.
+The exception is mundane weapons (i.e. weapons that don't have a Legendoom effect at all). They can earn a single Common effect by leveling up, once only; if you want a different effect you'll need to replace the weapon with a new one.
 
-When using a Legendoom weapon, you can press the "Cycle Legendoom Power" key to cycle through effects, or manually select an effect from the "Laevis Info" screen.
+When using a Legendoom weapon, you can press the "Cycle Legendoom Weapon Effect" key to cycle through effects, or manually select an effect from the "Laevis Info" screen.
 
 ## FAQ
 

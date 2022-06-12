@@ -124,7 +124,7 @@ class TFLV_EventHandler : StaticEventHandler {
       ShowInfo(players[evt.player].mo);
     } else if (evt.name == "laevis_show_info_console") {
       ShowInfoConsole(players[evt.player].mo);
-    } else if (evt.name == "laevis_cycle_ld_power") {
+    } else if (evt.name == "laevis_cycle_ld_effect") {
       if (legendoomInstalled) {
         CycleLDEffect(players[evt.player].mo);
       } else {
