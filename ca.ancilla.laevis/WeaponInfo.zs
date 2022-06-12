@@ -50,7 +50,7 @@ class TFLV_WeaponInfo : Object play {
       currentEffect = -1;
       maxRarity = RARITY_COMMON;
       canReplaceEffects = false;
-      console.printf("%s: effects=1, rarity=0, no effect", weapon.GetTag());
+      // console.printf("%s: effects=1, rarity=0, no effect", weapon.GetTag());
       return;
     }
     // For other weapons it depends on their rarity.
@@ -69,8 +69,8 @@ class TFLV_WeaponInfo : Object play {
     currentEffect = 0;
     currentEffectName = TFLV_Util.GetEffectTitle(effect);
     effects.push(effect);
-    console.printf("%s: effects=%d, rarity=%d, effect=%s",
-      weapon.GetTag(), effectSlots, maxRarity, effect);
+    // console.printf("%s: effects=%d, rarity=%d, effect=%s",
+    //   weapon.GetTag(), effectSlots, maxRarity, effect);
   }
 
   void CycleEffect() {
