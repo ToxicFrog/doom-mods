@@ -33,4 +33,8 @@ class TFLV_Settings : Object {
   static double level_cost_mul_for(string flagname) {
     return GetDouble("laevis_level_cost_mul_for_"..flagname);
   }
+
+  static int screenblocks() {
+    return GetInt("screenblocks");
+  }
 }

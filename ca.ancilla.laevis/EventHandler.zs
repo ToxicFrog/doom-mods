@@ -72,7 +72,9 @@ class TFLV_EventHandler : StaticEventHandler {
     if (!pawn || !players[consoleplayer].ReadyWeapon) {
       return;
     }
-    // TODO: only draw when cvar screenblocks == 11
+    if (TFLV_Settings.screenblocks() != 11) {
+      return;
+    }
 
     TFLV_CurrentStats stats;
     if (TFLV_PerPlayerStats.GetStatsFor(pawn).GetCurrentStats(stats))
