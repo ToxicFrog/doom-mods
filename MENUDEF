@@ -47,6 +47,20 @@ OptionMenu "LaevisOptions"
   Slider "XP cost multiplier for wimpy weapons", "laevis_level_cost_mul_for_wimpy", 0.1, 5.0, 0.1, 1
   Slider "XP cost multiplier for explosive weapons", "laevis_level_cost_mul_for_explosive", 0.1, 5.0, 0.1, 1
   Slider "XP cost multiplier for BFG-type weapons", "laevis_level_cost_mul_for_bfg", 0.1, 5.0, 0.1, 1
+  StaticText ""
+
+  StaticText ""
+  StaticText "Score mod integration", GRAY
+  StaticText "If this is enabled, XP will be earned based on the player's score"
+  StaticText "rather than based on the damage they deal. This requires you to"
+  StaticText "install a mod that lets you score points, such as LazyPoints."
+  Option "Earn XP based on player score", "laevis_use_score_for_xp", OnOff
+  StaticText ""
+  StaticText "If score mod integration is enabled, all XP earned will be multiplied"
+  StaticText "by this (so 2.0 == level up twice as fast). This can be used to"
+  StaticText "tweak level up rates when using a score mod without needing to"
+  StaticText "adjust the XP balance settings above."
+  Slider "XP gain multiplier for score mods", "laevis_score_to_xp_factor", 0.1, 5.0, 0.1, 1
 }
 
 OptionMenu "LaevisLevelUpScreen"

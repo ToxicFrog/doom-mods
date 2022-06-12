@@ -39,3 +39,9 @@ server int laevis_gun_levels_per_ld_effect = 3;
 // (1.5 * 1.5) = 2.25x normal damage.
 server float laevis_gun_damage_bonus = 0.05;
 
+// Whether to assign XP based on the player's score variable rather than based
+// on damage dealt. Requires a score assigning mod like LazyPoints.
+server bool laevis_use_score_for_xp = false;
+
+// XP derived from score will be multiplied by this.
+server float laevis_score_to_xp_factor = 1.0;

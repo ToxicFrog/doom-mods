@@ -12,6 +12,12 @@ class TFLV_Settings : Object {
     return -1.0;
   }
 
+  static bool GetBool(string name){
+    let cv = CVar.FindCVar(name);
+    if (cv) return cv.GetBool();
+    return false;
+  }
+
   static int gun_levels_per_player_level() {
     return GetInt("laevis_gun_levels_per_player_level");
   }
@@ -32,6 +38,12 @@ class TFLV_Settings : Object {
   }
   static double level_cost_mul_for(string flagname) {
     return GetDouble("laevis_level_cost_mul_for_"..flagname);
+  }
+  static bool use_score_for_xp() {
+    return GetBool("laevis_use_score_for_xp");
+  }
+  static bool score_to_xp_factor() {
+    return GetDouble("laevis_score_to_xp_factor");
   }
 
   static int screenblocks() {
