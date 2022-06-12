@@ -26,6 +26,8 @@ class TFLV_PerPlayerStats : TFLV_Force {
   uint XP;
   uint level;
   bool legendoomInstalled;
+  TFLV_WeaponInfo infoForCurrentWeapon;
+  int prevScore;
 
   // HACK HACK HACK
   // The LaevisLevelUpScreen needs to be able to get a handle to the specific
@@ -100,17 +102,25 @@ class TFLV_PerPlayerStats : TFLV_Force {
     }
   }
 
+  // TODO: API here is a bit of a dog's breakfast, with GetInfoFor/GetOrCreateInfoFor,
+  // TryGetInfoFor, etc. I think the only externally called ones are GetInfoForCurrentWeapon()
+  // (called by ui code) and GetOrCreateInfoForCurrentWeapon() (called by playsim code).
+  // This should be cleaned up a lot, especially since the Poll state now means we
+  // are guaranteed to have info for the current weapon within one tic of it being
+  // selected.
+
   // Return the WeaponInfo for the currently readied weapon. If the player
   // does not have a weapon ready, return null.
   TFLV_WeaponInfo GetInfoForCurrentWeapon() const {
     Weapon wielded = owner.player.ReadyWeapon;
-    if (wielded) {
-      // We need to use the Try version here because this is called from ui code
-      // and we aren't allowed to modify playsim from ui.
-      // I mean, we CAN, but we SHOULDN'T.
-      return TryGetInfoFor(wielded);
-    } else {
+    if (!wielded) {
       return null;
+    } else if (infoForCurrentWeapon && wielded == infoForCurrentWeapon.weapon) {
+      // The 99% case is that the player has the same weapon equipped this frame
+      // that they did last frame.
+      return infoForCurrentWeapon;
+    } else {
+      return TryGetInfoFor(wielded);
     }
   }
 
@@ -121,6 +131,23 @@ class TFLV_PerPlayerStats : TFLV_Force {
       }
     }
     return null;
+  }
+
+  // Like GetInfoForCurrentWeapon, but if WeaponInfo doesn't exist for the current
+  // weapon it will allocate a new one. As such this is not safe to call from
+  // UI code.
+  TFLV_WeaponInfo GetOrCreateInfoForCurrentWeapon() {
+    Weapon wielded = owner.player.ReadyWeapon;
+    if (!wielded) {
+      return null;
+    } else if (infoForCurrentWeapon && wielded == infoForCurrentWeapon.weapon) {
+      // The 99% case is that the player has the same weapon equipped this frame
+      // that they did last frame.
+      return infoForCurrentWeapon;
+    } else {
+      infoForCurrentWeapon = GetInfoFor(wielded);
+      return infoForCurrentWeapon;
+    }
   }
 
   // Returns the info structure for the given weapon. If none exists, allocates
@@ -150,8 +177,8 @@ class TFLV_PerPlayerStats : TFLV_Force {
 
   // Add XP to a weapon. If the weapon leveled up, also do some housekeeping
   // and possibly level up the player as well.
-  void AddXPTo(Actor weapon, int xp) {
-    TFLV_WeaponInfo info = GetInfoFor(weapon);
+  void AddXP(int xp) {
+    TFLV_WeaponInfo info = GetOrCreateInfoForCurrentWeapon();
     if (info.AddXP(xp)) {
       // Weapon leveled up!
       if (legendoomInstalled && (info.level % TFLV_Settings.gun_levels_per_ld_effect()) == 0) {
@@ -168,7 +195,7 @@ class TFLV_PerPlayerStats : TFLV_Force {
         self.XP -= TFLV_Settings.gun_levels_per_player_level();
         ++level;
         console.printf("You are now level %d!", level);
-        Weapon(weapon).owner.A_SetBlend("FF FF FF", 0.8, 40);
+        owner.A_SetBlend("FF FF FF", 0.8, 40);
       }
 
       // Do some cleanup.
@@ -187,8 +214,7 @@ class TFLV_PerPlayerStats : TFLV_Force {
     return xp;
   }
 
-  uint GetTotalDamage(Weapon wielded, uint damage) const {
-    TFLV_WeaponInfo info = GetInfoFor(wielded);
+  uint GetTotalDamage(TFLV_WeaponInfo info, uint damage) const {
     return damage
       * (1 + TFLV_Settings.player_damage_bonus() * level)
       * info.GetDamageBonus();
@@ -218,14 +244,48 @@ class TFLV_PerPlayerStats : TFLV_Force {
         return;
       }
 
-      Weapon wielded = owner.player.ReadyWeapon;
-      newdamage = GetTotalDamage(wielded, damage);
+      newdamage = GetTotalDamage(GetInfoForCurrentWeapon(), damage);
 
-      uint xp = GetXPForDamage(target, damage);
-      AddXPTo(wielded, xp);
-
-      // console.printf("%d outgoing damage increased to %d; got %d XP", damage, newdamage, xp);
+      if (!TFLV_Settings.use_score_for_xp()) {
+        AddXP(GetXPForDamage(target, damage));
+      }
     }
+  }
+
+  void Initialize() {
+    prevScore = -1;
+  }
+
+  // Runs once per tic.
+  void TickStats() {
+    // This ensures that the currently wielded weapon always has a WeaponInfo
+    // struct associated with it. It should be pretty fast.
+    let info = GetOrCreateInfoForCurrentWeapon();
+
+    // No score integration? Nothing else to do.
+    if (!TFLV_Settings.use_score_for_xp()) {
+      prevScore = -1;
+      return;
+    }
+
+    // Otherwise, assign XP based on score.
+    if (prevScore < 0) {
+      // Negative score means score-to-XP mode was just turned on and should
+      // be initialized.
+      prevScore = owner.score;
+      return;
+    } else if (owner.score > prevScore) {
+      AddXP(owner.score - prevScore);
+      prevScore = owner.score;
+    }
+  }
+
+  States {
+    Spawn:
+      TNT1 A 0 Initialize();
+    Poll:
+      TNT1 A 1 TickStats();
+      LOOP;
   }
 }
 

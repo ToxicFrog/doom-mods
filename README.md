@@ -4,7 +4,7 @@ Laevis is a simple gzDoom mod, with high compatibility, where your weapons grow 
 
 Based on the damage you do, weapons will gain stacking damage bonuses, and once you level up enough guns you get permanent bonuses to both the damage you inflict (with every weapon) and your damage resistance.
 
-It also has special support for [Legendoom](https://forum.zdoom.org/viewtopic.php?t=51035), allowing you to earn new effects for your Legendoom weapons by leveling them up.
+It also has special support for [Legendoom](https://forum.zdoom.org/viewtopic.php?t=51035), allowing you to earn new effects for your Legendoom weapons by leveling them up, and [Lazy Points](https://forum.zdoom.org/viewtopic.php?f=105&t=66565), with an option to earn XP based on points scored.
 
 All settings are configurable through the gzDoom options menu and through cvars, so you can adjust things like the level-up rate and the amount of bonus damage to suit your taste.
 
@@ -26,6 +26,12 @@ The exception is mundane weapons (i.e. weapons that don't have a Legendoom effec
 
 When using a Legendoom weapon, you can press the "Cycle Legendoom Weapon Effect" key to cycle through effects, or manually select an effect from the "Laevis Info" screen.
 
+## Lazy Points Integration
+
+To enable this, turn on "Earn XP based on player score" in the mod settings. As long as it's on, you will earn XP equal to the points you score.
+
+This should work with any mod that uses the `pawn.score` property to record points, but Lazy Points is the only one it's actually been tested with.
+
 ## FAQ
 
 ### Why "Laevis"?
@@ -46,14 +52,13 @@ Yes, but they're also easy to implement, and for my first Doom mod I wanted to s
 
 ## Known Issues
 
-If playing with mods that let you drop weapons, the dropped weapons will not remember their levels even once picked back up.
-
-Mods that allow you to modify or upgrade weapons, such as DRLA, may cause the weapons to reset to level 0 when you do so.
+- If playing with mods that let you drop weapons, the dropped weapons will not remember their levels even once picked back up.
+- Mods that allow you to modify or upgrade weapons, such as DRLA, may cause the weapons to reset to level 0 when you do so.
+- XP is assigned to the currently wielded weapon at the time the damage is dealt, so it possible for XP to be assigned to the wrong weapon if you switch weapons while projectiles are in flight.
 
 ## Future Work
 
 This is not so much a concrete set of plans as an unordered list of ideas I've had for things I might want to add, change, and/or fix.
-- Optional integration with LazyPoints and other scoredoom-style mods, so that the player score is also used as the XP counter.
 - "Persistent Pistol Start" mode where weapon upgrades are remembered even once you drop the weapon; keep your upgrades across pistol starts, but you need to find the weapons again to use them.
 - HUD rework; use a sprite sheet instead of DrawThickLine()
 - Player bonuses other than damage/resistance, like max health, health/armour regeneration up to some level, life/armour leech, extra lives, friendly minions, etc

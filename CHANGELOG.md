@@ -1,6 +1,9 @@
 # 0.1alpha3
 
+- Optional Lazy Points integration.
 - Fixed a bug where the HUD would draw even when it shouldn't.
+- Weapons should now always have info displayed, even if you haven't fired them yet.
+- The might also fix the info screen crash for real this time.
 
 # 0.1alpha2
 
