@@ -222,8 +222,6 @@ class TFLV_PerPlayerStats : TFLV_Force {
 
   // Apply player level-up bonuses whenever the player deals or receives damage.
   // This is also where bonuses to individual weapon damage are applied.
-  // TODO: alternate mode where the player's score (from e.g. lazypoints) is used
-  // as the XP source, rather than calculating it ourself.
   override void ModifyDamage(
       int damage, Name damageType, out int newdamage, bool passive,
       Actor inflictor, Actor source, int flags) {
