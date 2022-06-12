@@ -29,6 +29,7 @@ class TFLV_StatusDisplay : OptionMenu {
     PushInfo("Level", string.format("%d (%d/%d XP)", stats.wlvl, stats.wxp, stats.wmax));
     PushInfo("Damage Dealt", string.format("%d%% (%d%% total)", stats.wdmg * 100, stats.pdmg * stats.wdmg * 100));
 
+    mDesc.mSelectedItem = -1;
     if (info.effects.size() > 0) {
       PushText("", Font.CR_GOLD);
       PushText("Weapon Effects", Font.CR_GOLD);
