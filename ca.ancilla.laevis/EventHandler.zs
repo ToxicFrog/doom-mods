@@ -22,10 +22,9 @@ class TFLV_EventHandler : StaticEventHandler {
   override void PlayerSpawned(PlayerEvent evt) {
     PlayerPawn pawn = players[evt.playerNumber].mo;
     if (pawn) {
-      let stats = TFLV_PerPlayerStats(pawn.GiveInventoryType("TFLV_PerPlayerStats"));
-      if (legendoomInstalled) {
-        stats.legendoomInstalled = true;
-      }
+      let stats = TFLV_PerPlayerStats.GetStatsFor(pawn);
+      if (!stats) stats = TFLV_PerPlayerStats(pawn.GiveInventoryType("TFLV_PerPlayerStats"));
+      stats.legendoomInstalled = legendoomInstalled;
       stats.SetStateLabel("Spawn");
     }
   }

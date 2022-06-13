@@ -1,3 +1,7 @@
+# 0.1alpha4
+
+- Fixed a crash on level transition
+
 # 0.1alpha3
 
 - Optional Lazy Points integration.
