@@ -16,6 +16,13 @@ OptionMenu "LaevisOptions"
   StaticText "Only functions if Legendoom is installed. Set to 0 to disable."
   ScaleSlider "Gun levels per LD effect", "laevis_gun_levels_per_ld_effect", 0, 100, 1, "Disabled"
   StaticText ""
+  StaticText "Remember XP and levels for weapons that are no longer in the player's"
+  StaticText "inventory. This means your bonuses will carry over when doing pistol"
+  StaticText "starts and so forth."
+  StaticText "It may also make it possible to transfer bonuses between weapons"
+  StaticText "in some mods."
+  Option "Remember XP for missing weapons", "laevis_remember_weapon_xp", OnOff
+  StaticText ""
 
   StaticText ""
   StaticText "Player Bonus Settings", GREEN

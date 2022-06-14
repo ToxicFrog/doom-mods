@@ -45,6 +45,9 @@ class TFLV_Settings : Object {
   static bool score_to_xp_factor() {
     return GetDouble("laevis_score_to_xp_factor");
   }
+  static bool remember_missing_weapons() {
+    return GetDouble("laevis_remember_weapon_xp");
+  }
 
   static int screenblocks() {
     return GetInt("screenblocks");
