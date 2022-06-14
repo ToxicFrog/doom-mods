@@ -21,6 +21,9 @@ struct TFLV_CurrentStats {
   string effect;
 }
 
+// TODO: see if there's a way we can evacuate this to the StaticEventHandler
+// and reinsert it into the player when something happens, so that it reliably
+// persists across deaths, pistol starts, etc -- make this an option.
 class TFLV_PerPlayerStats : TFLV_Force {
   array<TFLV_WeaponInfo> weapons;
   uint XP;
@@ -124,9 +127,24 @@ class TFLV_PerPlayerStats : TFLV_Force {
     }
   }
 
-  TFLV_WeaponInfo TryGetInfoFor(Actor weapon) const {
+  TFLV_WeaponInfo TryGetInfoFor(Weapon wpn) const {
     for (int i = 0; i < weapons.size(); ++i) {
-      if (weapons[i].weapon == weapon) {
+      // console.printf("Checking weapon %s (XL%d XP%d)",
+      //   weapons[i].weaponType, weapons[i].level, weapons[i].XP);
+      if (weapons[i].weapon == wpn) {
+        // Found the WeaponInfo for this particular weapon.
+        return weapons[i];
+      } else if (!weapons[i].weapon && weapons[i].weaponType == wpn.GetClassName()) {
+        // Found a WeaponInfo for a dead weapon of the same type.
+        weapons[i].Init(wpn);
+        return weapons[i];
+      } else if (weapons[i].weaponType == wpn.GetClassName()) {
+        // Found a WeaponInfo for a different weapon of the same class which still
+        // exists.
+        // This can't normally happen but some mods seem to trigger it.
+        // Assume the new weapon is the real one.
+        // console.printf("WARNING: duplicate WeaponInfo for weapontype %s", wpn.GetClassName());
+        weapons[i].Init(wpn);
         return weapons[i];
       }
     }
@@ -152,13 +170,13 @@ class TFLV_PerPlayerStats : TFLV_Force {
 
   // Returns the info structure for the given weapon. If none exists, allocates
   // and initializes a new one and returns that.
-  TFLV_WeaponInfo GetInfoFor(Actor weapon) {
-    TFLV_WeaponInfo info = TryGetInfoFor(weapon);
+  TFLV_WeaponInfo GetInfoFor(Weapon wpn) {
+    TFLV_WeaponInfo info = TryGetInfoFor(wpn);
     if (info) return info;
 
     // Didn't find one, so create a new one.
     info = new("TFLV_WeaponInfo");
-    info.Init(weapon);
+    info.Init(wpn);
     weapons.push(info);
     return info;
   }
@@ -168,6 +186,8 @@ class TFLV_PerPlayerStats : TFLV_Force {
   // Depending on whether the game being played permits dropping/destroying/upgrading
   // weapons, this might be a no-op.
   void PruneStaleInfo() {
+    // If "remember missing weapons" is on, never discard old entries.
+    if (TFLV_Settings.remember_missing_weapons()) return;
     for (int i = weapons.size() - 1; i >= 0; --i) {
       if (!weapons[i].weapon) {
         weapons.Delete(i);

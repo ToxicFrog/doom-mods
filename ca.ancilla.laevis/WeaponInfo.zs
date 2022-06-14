@@ -14,6 +14,7 @@ class TFLV_WeaponInfo : Object play {
   // behaviour, like LD and DRLA, but would also enable War of Attrition-style
   // pistol start runs.
   Weapon weapon;
+  string weaponType;
   uint XP;
   uint maxXP;
   uint level;
@@ -28,16 +29,21 @@ class TFLV_WeaponInfo : Object play {
 
   void Init(Actor weapon_) {
     weapon = Weapon(weapon_);
-    XP = 0;
-    level = 0;
-    maxXP = GetXPForLevel(1);
+    weaponType = weapon.GetClassName();
+    // XP = 0;
+    // level = 0;
+    maxXP = GetXPForLevel(level+1);
+    // console.printf("WeaponInfo initialize, class=%s level=%d xp=%d/%d",
+    //   weaponType, level, XP, maxXP);
 
     string LDWeaponType = "LDWeapon";
+    currentEffect = -1;
+    currentEffectName = "";
+    effects.Clear();
     if (weapon is LDWeaponType) {
       InitLegendoom();
     } else {
       effectSlots = 0;
-      currentEffect = -1;
     }
   }
 
@@ -47,7 +53,6 @@ class TFLV_WeaponInfo : Object play {
       // Mundane weapons can be upgraded in-place to have a single common effect
       // but cannot replace learned effects.
       effectSlots = 1;
-      currentEffect = -1;
       maxRarity = RARITY_COMMON;
       canReplaceEffects = false;
       // console.printf("%s: effects=1, rarity=0, no effect", weapon.GetTag());

@@ -1,3 +1,7 @@
+# 0.1alpha5
+
+- Added "remember missing weapons" option
+
 # 0.1alpha4
 
 - Fixed a crash on level transition
