@@ -18,11 +18,9 @@ That's all -- if equipping a weapon and then pressing the "display info" key (de
 
 ## Legendoom Integration
 
-If you have Legendoom installed, weapons can gain new Legendoom effects on level up. Only one effect can be active at a time, but you can change effects at any time.
+If you have Legendoom installed, legendary weapons can gain new Legendoom effects on level up. Only one effect can be active at a time, but you can change effects at any time.
 
 The total number of effects a weapon can remember depends on its rarity, from 2 (Common) to 5 (Epic). If you would gain a new effect but there's no room, you'll be prompted to choose an effect to delete.
-
-The exception is mundane weapons (i.e. weapons that don't have a Legendoom effect at all). They can earn a single Common effect by leveling up, once only; if you want a different effect you'll need to replace the weapon with a new one.
 
 When using a Legendoom weapon, you can press the "Cycle Legendoom Weapon Effect" key to cycle through effects, or manually select an effect from the "Laevis Info" screen.
 
@@ -50,7 +48,7 @@ Yep! You might want to pair it with a mod like *Champions* or *Colourful Hell* t
 
 ### Aren't damage/resistance bonuses the most boring kind of upgrades?
 
-Yes, but they're also easy to implement, and for my first Doom mod I wanted to stick to something simple. Time and energy permitting, I do want to add more interesting upgrades to it.
+Yes, but they're also easy to implement, and for my first Doom mod I wanted to begin with something simple. Time and energy permitting, I do want to add more interesting upgrades to it.
 
 ## Known Issues
 
@@ -67,4 +65,4 @@ This is not so much a concrete set of plans as an unordered list of ideas I've h
 - Player bonuses other than damage/resistance, like max health, health/armour regeneration up to some level, life/armour leech, extra lives, friendly minions, etc
 - Weapon bonuses other than damage, like ammo regeneration up to some level, DoTs of various kinds, exploding shots/corpses, penetrating shots, life/armour/ammo leech, etc
 - Dismantle unwanted LD drops to harvest their effects
-- Option to give the player XP credit for infighting
+- Option to give the player XP credit for infighting, etc

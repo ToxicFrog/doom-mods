@@ -1,3 +1,7 @@
+# 0.1alpha6
+
+- Removed the mundane -> legendary upgrade path for weapons.
+
 # 0.1alpha5
 
 - Added "remember missing weapons" option

@@ -50,15 +50,12 @@ class TFLV_WeaponInfo : Object play {
   void InitLegendoom() {
     string prefix = weapon.GetClassName();
     if (!weapon.owner.FindInventory(prefix.."EffectActive")) {
-      // Mundane weapons can be upgraded in-place to have a single common effect
-      // but cannot replace learned effects.
-      effectSlots = 1;
-      maxRarity = RARITY_COMMON;
+      // Mundane weaponw with no LD effects.
+      effectSlots = 0;
       canReplaceEffects = false;
-      // console.printf("%s: effects=1, rarity=0, no effect", weapon.GetTag());
       return;
     }
-    // For other weapons it depends on their rarity.
+    // For legendary weapons, the specifics depend on its rarity.
     maxRarity = TFLV_Util.GetWeaponRarity(weapon.owner, prefix);
     switch (maxRarity) {
       case RARITY_EPIC: effectSlots = 5; break;
