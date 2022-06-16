@@ -1,3 +1,11 @@
+# 0.1alpha7
+
+- Added that upgrade path back in, along with a lot of settings:
+- Which weapons can learn new effects
+- Which weapons can replace existing effects
+- How many effect slots weapons have
+- Whether a weapon's spawn rarity affects its effect pool and/or number of slots
+
 # 0.1alpha6
 
 - Removed the mundane -> legendary upgrade path for weapons.

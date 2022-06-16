@@ -29,10 +29,6 @@ server float laevis_level_cost_mul_for_wimpy = 0.5;
 server float laevis_level_cost_mul_for_explosive = 1.5;
 server float laevis_level_cost_mul_for_bfg = 1.5;
 
-// How many times a gun needs to level up before it gets a new Legendoom effect.
-// No effect if LD isn't installed.
-server int laevis_gun_levels_per_ld_effect = 3;
-
 // How much extra damage a weapon does per level. Stacks additively with itself
 // and multiplicatively with laevis_player_damage_bonus; if a gun is level 10
 // wielded by a level 10 player, and both are set to 0.05, shots will do
@@ -49,3 +45,19 @@ server float laevis_score_to_xp_factor = 1.0;
 // Remember lost weapons by class name, so that levels are retained across pistol
 // starts and stuff.
 server bool laevis_remember_weapon_xp = false;
+
+// LEGENDOOM INTEGRATION //
+
+// How many times a gun needs to level up before it gets a new Legendoom effect.
+// No effect if LD isn't installed.
+server int laevis_gun_levels_per_ld_effect = 3;
+
+// Settings for which guns can learn/replace effects; see enum in settings.zs
+server int laevis_which_guns_can_learn = 3;
+server int laevis_which_guns_can_replace = 2;
+// How many effect slots do guns have and how many extras do they get from rarity;
+// basic guns == -1 rarity
+server int laevis_base_ld_effect_slots = 2;
+server int laevis_bonus_ld_effect_slots = 1;
+// Whether the effect pool is limited based on original gun rarity
+server bool laevis_ignore_gun_rarity = false;

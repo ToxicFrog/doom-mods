@@ -94,6 +94,8 @@ class TFLV_EventHandler : StaticEventHandler {
     console.printf("%s:\n    Level %d (%d/%d XP)\n    Damage dealt: %d%% (%d%% total)",
       stats.wname, stats.wlvl, stats.wxp, stats.wmax, stats.wdmg * 100, stats.pdmg * stats.wdmg * 100);
     TFLV_WeaponInfo info = TFLV_PerPlayerStats.GetStatsFor(pawn).GetInfoForCurrentWeapon();
+    console.printf("    effectSlots: %d\n    maxRarity: %d\n    canReplace: %d",
+      info.effectSlots, info.maxRarity, info.canReplaceEffects);
     for (uint i = 0; i < info.effects.size(); ++i) {
       console.printf("    %s (%s)",
         TFLV_Util.GetEffectTitle(info.effects[i]),

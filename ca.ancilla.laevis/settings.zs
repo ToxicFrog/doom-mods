@@ -1,3 +1,10 @@
+enum TFLV_WhichGuns {
+  TFLV_NO_GUNS,
+  TFLV_BASIC_GUNS,
+  TFLV_LEGENDARY_GUNS,
+  TFLV_ALL_GUNS
+}
+
 // Interface to the CVar settings for this mod.
 class TFLV_Settings : Object {
   static int GetInt(string name) {
@@ -47,6 +54,21 @@ class TFLV_Settings : Object {
   }
   static bool remember_missing_weapons() {
     return GetDouble("laevis_remember_weapon_xp");
+  }
+  static TFLV_WhichGuns which_guns_can_learn() {
+    return GetInt("laevis_which_guns_can_learn");
+  }
+  static TFLV_WhichGuns which_guns_can_replace() {
+    return GetInt("laevis_which_guns_can_learn");
+  }
+  static int base_ld_effect_slots() {
+    return GetInt("laevis_base_ld_effect_slots");
+  }
+  static int bonus_ld_effect_slots() {
+    return GetInt("laevis_bonus_ld_effect_slots");
+  }
+  static bool ignore_gun_rarity() {
+    return GetBool("laevis_ignore_gun_rarity");
   }
 
   static int screenblocks() {

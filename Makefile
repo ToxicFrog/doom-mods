@@ -1,4 +1,4 @@
-VERSION="0.1alpha6"
+VERSION="0.1alpha7"
 PK3=Laevis-${VERSION}.pk3
 
 all: ${PK3}

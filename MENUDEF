@@ -15,10 +15,6 @@ OptionMenu "LaevisOptions"
   StaticText "How much bonus damage the gun gets per level. 0.01 == +1%."
   Slider "Gun damage bonus per level", "laevis_gun_damage_bonus", 0.0, 1.0, 0.01, 2
   StaticText ""
-  StaticText "How many times a gun needs to level up to gain a new Legendoom effect."
-  StaticText "Only functions if Legendoom is installed. Set to 0 to disable."
-  ScaleSlider "Gun levels per LD effect", "laevis_gun_levels_per_ld_effect", 0, 100, 1, "Disabled"
-  StaticText ""
   StaticText "Remember XP and levels for weapons that are no longer in the player's"
   StaticText "inventory. This means your bonuses will carry over when doing pistol"
   StaticText "starts and so forth."
@@ -60,6 +56,25 @@ OptionMenu "LaevisOptions"
   StaticText ""
 
   StaticText ""
+  StaticText "Legendoom Integration", GRAY
+  StaticText ""
+  StaticText "How many times a gun needs to level up to gain a new Legendoom effect."
+  StaticText "Only functions if Legendoom is installed. Set to 0 to disable."
+  ScaleSlider "Gun levels per LD effect", "laevis_gun_levels_per_ld_effect", 0, 100, 1, "Disabled"
+  StaticText ""
+  StaticText "Which weapons can learn new LD effects, and replace existing effects once full."
+  Option "LD effects learnable by", "laevis_which_guns_can_learn", "LaevisWhatKindOfGunSelector"
+  Option "LD effects replaceable by", "laevis_which_guns_can_replace", "LaevisWhatKindOfGunSelector"
+  StaticText ""
+  StaticText "How many slots for LD effects guns have."
+  Slider "Base number of LD effect slots", "laevis_base_ld_effect_slots", 0, 16, 1
+  Slider "Bonus slots per LD rarity level", "laevis_bonus_ld_effect_slots", 0, 16, 1
+  StaticText ""
+  StaticText "Whether weapons can learn LD effects that are rarer than the one they spawned with."
+  Option "Ignore original gun rarity for new effects", "laevis_ignore_gun_rarity", "OnOff"
+  StaticText ""
+
+  StaticText ""
   StaticText "Score mod integration", GRAY
   StaticText "If this is enabled, XP will be earned based on the player's score"
   StaticText "rather than based on the damage they deal. This requires you to"
@@ -71,6 +86,13 @@ OptionMenu "LaevisOptions"
   StaticText "tweak level up rates when using a score mod without needing to"
   StaticText "adjust the XP balance settings above."
   Slider "XP gain multiplier for score mods", "laevis_score_to_xp_factor", 0.1, 5.0, 0.1, 1
+}
+
+OptionValue "LaevisWhatKindOfGunSelector" {
+  0, "None"
+  1, "Basic Weapons Only"
+  2, "Legendary Weapons Only"
+  3, "All Weapons"
 }
 
 OptionMenu "LaevisLevelUpScreen"

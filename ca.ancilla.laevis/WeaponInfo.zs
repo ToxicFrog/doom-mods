@@ -47,43 +47,51 @@ class TFLV_WeaponInfo : Object play {
     }
   }
 
+  bool GunRarityMatchesSetting(TFLV_WhichGuns setting, TFLV_LD_Rarity rarity) {
+    if (rarity == RARITY_MUNDANE) {
+      return setting & 1;
+    } else {
+      return setting & 2;
+    }
+  }
+
   void InitLegendoom() {
     string prefix = weapon.GetClassName();
-    if (!weapon.owner.FindInventory(prefix.."EffectActive")) {
-      // Mundane weaponw with no LD effects.
-      effectSlots = 0;
-      canReplaceEffects = false;
-      return;
-    }
-    // For legendary weapons, the specifics depend on its rarity.
+
     maxRarity = TFLV_Util.GetWeaponRarity(weapon.owner, prefix);
-    switch (maxRarity) {
-      case RARITY_EPIC: effectSlots = 5; break;
-      case RARITY_RARE: effectSlots = 4; break;
-      case RARITY_UNCOMMON: effectSlots = 3; break;
-      case RARITY_COMMON: effectSlots = 2; break;
-      default: effectSlots = 0; break;
+    canReplaceEffects = GunRarityMatchesSetting(TFLV_Settings.which_guns_can_replace(), maxRarity);
+    if (GunRarityMatchesSetting(TFLV_Settings.which_guns_can_learn(), maxRarity)) {
+      effectSlots = TFLV_Settings.base_ld_effect_slots()
+        + maxRarity * TFLV_Settings.bonus_ld_effect_slots();
+    } else {
+      effectSlots = 0;
     }
-    // They can all unlearn and replace effects, though.
-    canReplaceEffects = true;
+    if (TFLV_Settings.ignore_gun_rarity()) {
+      maxRarity = RARITY_EPIC;
+    } else {
+      maxRarity = max(RARITY_COMMON, maxRarity);
+    }
+
     // And they start with an effect, so we should record that.
     string effect = TFLV_Util.GetActiveWeaponEffect(weapon.owner, prefix);
-    currentEffect = 0;
-    currentEffectName = TFLV_Util.GetEffectTitle(effect);
-    effects.push(effect);
+    if (effect != "") {
+      currentEffect = 0;
+      currentEffectName = TFLV_Util.GetEffectTitle(effect);
+      effects.push(effect);
+    }
     // console.printf("%s: effects=%d, rarity=%d, effect=%s",
     //   weapon.GetTag(), effectSlots, maxRarity, effect);
   }
 
   void CycleEffect() {
-    if (effects.size() <= 1) return;
+    //if (effects.size() <= 1) return;
 
     SelectEffect((currentEffect + 1) % effects.size());
   }
 
   void SelectEffect(uint index) {
     if (effects.size() <= index) return;
-    if (index == currentEffect) return;
+    //if (index == currentEffect) return;
 
     if (currentEffect >= 0)
       weapon.owner.TakeInventory(effects[currentEffect], 1);

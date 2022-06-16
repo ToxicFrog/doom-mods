@@ -18,11 +18,11 @@ That's all -- if equipping a weapon and then pressing the "display info" key (de
 
 ## Legendoom Integration
 
-If you have Legendoom installed, legendary weapons can gain new Legendoom effects on level up. Only one effect can be active at a time, but you can change effects at any time.
-
-The total number of effects a weapon can remember depends on its rarity, from 2 (Common) to 5 (Epic). If you would gain a new effect but there's no room, you'll be prompted to choose an effect to delete.
+If you have Legendoom installed, legendary weapons can gain new Legendoom effects on level up. Only one effect can be active at a time, but you can change effects at any time. Weapons can hold a limited number of effects; if you gain a new effect and there's no room for it, you'll be prompted to choose an effect to delete.
 
 When using a Legendoom weapon, you can press the "Cycle Legendoom Weapon Effect" key to cycle through effects, or manually select an effect from the "Laevis Info" screen.
+
+There are a lot of settings for this in the mod settings, including which weapons can learn effects, how rapidly effects are learned, how many effect slots weapons have, etc.
 
 ## Lazy Points Integration
 
