@@ -154,8 +154,8 @@ class TFLV_WeaponInfo : Object play {
     // TODO: randomly generate a set of appropriate upgrades and have the player choose.
     // TODO: upgrades that modify the weapon's base stats should be activated here,
     // in some kind of ApplyUpgradesToWeapon() call.
-    upgrades.Add("TFLV_Upgrade_DirectDamage");
-    upgrades.Add("TFLV_Upgrade_ProjectileSpeed");
+    // upgrades.Add("TFLV_Upgrade_DirectDamage");
+    upgrades.Add("TFLV_Upgrade_Homingshots");
   }
 }
 

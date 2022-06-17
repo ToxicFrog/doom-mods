@@ -113,8 +113,6 @@ I think that we have access to the projectile at creation time (via WorldThingSp
 ! infeasible
 
 Basic "number go up" upgrades:
-- damage (flat or %)
-  apply in ModifyDamage
 ! ROF
   requires modifying state info
 ! accuracy (only if below a certain accuracy threshold)
@@ -130,14 +128,14 @@ Basic "number go up" upgrades:
   to get attack vector and synth additional shots?
 ! reach (melee only)
   requires changing A_Saw
-- projectile speed (projectile only)
-  use A_ScaleVelocity() after spawned
 
 More complicated upgrades:
 - bouncy shots (proj. only)
   set BounceType/BounceFactor/BounceCount in WorldThingSpawned
 ! homing shots (proj. only)
   requires modifying projectile update loop
+  maybe we can put an item in its inventory and call owner.A_SeekerMissile() every
+  tick?
 - penetrating shots
   set Ripper/RipperLevel in WorldThingSpawned for projectiles; for hitscans,
   get the attack vector (how?) and then call A_CustomRailgun
@@ -175,3 +173,17 @@ In WorldThingSpawned we can detect projectile spawnings (look for target=player 
 
 We can't do that for hitscan weapons because the puff spawns AFTER damage is applied, so probably we need to use ModifyDamage or WorldThingDamaged. ModifyDamage works for projectiles, hitscans, and DoTs like poison.
 
+## Avoiding infinite recursion
+
+So, say we have a weapon with the Fragmentation upgrade (shots release shrapnel on impact).
+
+It has an OnDamageDealt() handler, called from WorldThingDamaged, which calls Explode() on the puff/projectile in the mode that causes it to spray shrapnel everywhere. As the shrapnel hits the surroundings, it calls WorldThingDamaged again, which spawns more shrapnel...
+
+One way is just to say that OnDamageDealt can't trigger on any of the TFLV_* classes, and then tell it to use TFLV_ShrapnelPuff as the puff type or something -- but I think if we call Explode() in non-shrapnel mode the puff is the originator?
+
+Probably what we need to do is repurpose some kind of flag and set it on actors as we process them, and other actors that we spawn?
+
+Possibilities:
+DONTMORPH (cannot be Polymorphed)
+NOTDMATCH (don't spawn in deathmatch games)
+INCOMBAT (strife flag used for the dialogue system)
