@@ -15,6 +15,7 @@ class TFLV_WeaponInfo : Object play {
   // pistol start runs.
   Weapon weapon;
   string weaponType;
+  TFLV_UpgradeBag upgrades;
   uint XP;
   uint maxXP;
   uint level;
@@ -30,6 +31,7 @@ class TFLV_WeaponInfo : Object play {
   void Init(Actor weapon_) {
     weapon = Weapon(weapon_);
     weaponType = weapon.GetClassName();
+    upgrades = new("TFLV_UpgradeBag");
     // XP = 0;
     // level = 0;
     maxXP = GetXPForLevel(level+1);
@@ -116,10 +118,6 @@ class TFLV_WeaponInfo : Object play {
     }
   }
 
-  double GetDamageBonus() const {
-    return 1 + level * TFLV_Settings.gun_damage_bonus();
-  }
-
   uint GetXPForLevel(uint level) const {
     uint XP = TFLV_Settings.base_level_cost() * level;
     if (weapon.bMeleeWeapon) {
@@ -153,6 +151,7 @@ class TFLV_WeaponInfo : Object play {
     XP = XP - maxXP;
     maxXP = GetXPForLevel(level+1);
     weapon.owner.A_SetBlend("00 80 FF", 0.8, 40);
+    upgrades.Add("TFLV_Upgrade_DirectDamage");
   }
 }
 

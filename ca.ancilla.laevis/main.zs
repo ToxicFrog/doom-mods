@@ -6,3 +6,4 @@
 #include "ca.ancilla.laevis/EventHandler.zs"
 #include "ca.ancilla.laevis/LevelUpMenu.zs"
 #include "ca.ancilla.laevis/StatusDisplay.zs"
+#include "ca.ancilla.laevis/upgrades/main.zs"

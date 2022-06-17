@@ -3,7 +3,7 @@ PK3=Laevis-${VERSION}.pk3
 
 all: ${PK3}
 
-${PK3}: README.md COPYING.md MAPINFO CVARINFO KEYCONF MENUDEF zscript.txt ca.ancilla.laevis/*.zs
+${PK3}: README.md COPYING.md MAPINFO CVARINFO KEYCONF MENUDEF zscript.txt ca.ancilla.laevis/*.zs ca.ancilla.laevis/upgrades/*.zs
 	rm -f $@
 	zip -r $@ $^
 

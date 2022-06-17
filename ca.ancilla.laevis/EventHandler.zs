@@ -89,10 +89,12 @@ class TFLV_EventHandler : StaticEventHandler {
   void ShowInfoConsole(PlayerPawn pawn) {
     TFLV_CurrentStats stats;
     if (!TFLV_PerPlayerStats.GetStatsFor(pawn).GetCurrentStats(stats)) return;
-    console.printf("Player:\n    Level %d (%d/%d XP)\n    Damage dealt: %d%%\n    Damage taken: %d%%",
-      stats.plvl, stats.pxp, stats.pmax, stats.pdmg * 100, stats.pdef * 100);
-    console.printf("%s:\n    Level %d (%d/%d XP)\n    Damage dealt: %d%% (%d%% total)",
-      stats.wname, stats.wlvl, stats.wxp, stats.wmax, stats.wdmg * 100, stats.pdmg * stats.wdmg * 100);
+    console.printf("Player:\n    Level %d (%d/%d XP)",
+      stats.plvl, stats.pxp, stats.pmax);
+    stats.pupgrades.DumpToConsole("    ");
+    console.printf("%s:\n    Level %d (%d/%d XP)",
+      stats.wname, stats.wlvl, stats.wxp, stats.wmax);
+    stats.wupgrades.DumpToConsole("    ");
     TFLV_WeaponInfo info = TFLV_PerPlayerStats.GetStatsFor(pawn).GetInfoForCurrentWeapon();
     console.printf("    effectSlots: %d\n    maxRarity: %d\n    canReplace: %d",
       info.effectSlots, info.maxRarity, info.canReplaceEffects);

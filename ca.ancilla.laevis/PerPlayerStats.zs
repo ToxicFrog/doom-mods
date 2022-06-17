@@ -5,16 +5,15 @@
 // Used to get all the information needed for the UI.
 struct TFLV_CurrentStats {
   // Player stats.
+  TFLV_UpgradeBag pupgrades;
   uint pxp;
   uint pmax;
   uint plvl;
-  double pdmg;
-  double pdef;
   // Stats for current weapon.
+  TFLV_UpgradeBag wupgrades;
   uint wxp;
   uint wmax;
   uint wlvl;
-  double wdmg;
   // Name of current weapon.
   string wname;
   // Currently active weapon effect.
@@ -26,6 +25,7 @@ struct TFLV_CurrentStats {
 // persists across deaths, pistol starts, etc -- make this an option.
 class TFLV_PerPlayerStats : TFLV_Force {
   array<TFLV_WeaponInfo> weapons;
+  TFLV_UpgradeBag upgrades;
   uint XP;
   uint level;
   bool legendoomInstalled;
@@ -82,24 +82,23 @@ class TFLV_PerPlayerStats : TFLV_Force {
     stats.pxp = XP;
     stats.pmax = TFLV_Settings.gun_levels_per_player_level();
     stats.plvl = level;
-    stats.pdmg = 1 + level * TFLV_Settings.player_damage_bonus();
-    stats.pdef = TFLV_Settings.player_defence_bonus() ** level;
+    stats.pupgrades = upgrades;
 
     TFLV_WeaponInfo info = GetInfoForCurrentWeapon();
     if (info) {
       stats.wxp = info.XP;
       stats.wmax = info.maxXP;
       stats.wlvl = info.level;
-      stats.wdmg = info.GetDamageBonus();
       stats.wname = info.weapon.GetTag();
+      stats.wupgrades = info.upgrades;
       stats.effect = info.currentEffectName;
       return true;
     } else {
       stats.wxp = 0;
       stats.wmax = 0;
       stats.wlvl = 0;
-      stats.wdmg = 0.0;
       stats.wname = "(no weapon)";
+      stats.wupgrades = null;
       stats.effect = "";
       return false;
     }
@@ -216,6 +215,8 @@ class TFLV_PerPlayerStats : TFLV_Force {
         ++level;
         console.printf("You are now level %d!", level);
         owner.A_SetBlend("FF FF FF", 0.8, 40);
+        upgrades.Add("TFLV_Upgrade_Resistance");
+        upgrades.Add("TFLV_Upgrade_DirectDamage");
       }
 
       // Do some cleanup.
@@ -234,12 +235,6 @@ class TFLV_PerPlayerStats : TFLV_Force {
     return xp;
   }
 
-  uint GetTotalDamage(TFLV_WeaponInfo info, uint damage) const {
-    return damage
-      * (1 + TFLV_Settings.player_damage_bonus() * level)
-      * info.GetDamageBonus();
-  }
-
   // Apply player level-up bonuses whenever the player deals or receives damage.
   // This is also where bonuses to individual weapon damage are applied.
   override void ModifyDamage(
@@ -248,10 +243,12 @@ class TFLV_PerPlayerStats : TFLV_Force {
     if (damage <= 0) {
       return;
     }
+    TFLV_WeaponInfo info = GetOrCreateInfoForCurrentWeapon();
     if (passive) {
-      // Incoming damage. Apply damage reduction.
-      newdamage = damage * (TFLV_Settings.player_defence_bonus() ** level);
-      // console.printf("%d incoming damage reduced to %d", damage, newdamage);
+      // Incoming damage.
+      newdamage = info.upgrades.ModifyDamageReceived(
+          PlayerPawn(owner), inflictor, source,
+          upgrades.ModifyDamageReceived(PlayerPawn(owner), inflictor, source, damage));
     } else {
       // Outgoing damage. 'source' is the *target* of the damage.
       let target = source;
@@ -262,16 +259,20 @@ class TFLV_PerPlayerStats : TFLV_Force {
         return;
       }
 
-      newdamage = GetTotalDamage(GetInfoForCurrentWeapon(), damage);
-
+      // XP is based on base damage, not final damage.
       if (!TFLV_Settings.use_score_for_xp()) {
         AddXP(GetXPForDamage(target, damage));
       }
+
+      newdamage = info.upgrades.ModifyDamageDealt(
+          PlayerPawn(owner), inflictor, source,
+          upgrades.ModifyDamageDealt(PlayerPawn(owner), inflictor, source, damage));
     }
   }
 
   void Initialize() {
     prevScore = -1;
+    if (!upgrades) upgrades = new("TFLV_UpgradeBag");
   }
 
   // Runs once per tic.
