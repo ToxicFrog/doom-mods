@@ -122,13 +122,16 @@ Basic "number go up" upgrades:
   doesn't do anything without custom code (except in Strife)
 - knockback
   weapon kickback & projectilekickback property
+  will need some tuning (a value of 500 gives noticeable but not excessive kickback to the pistol)
+  needs to be applied before the gun fires, so we need some kind of ApplyUpgradesToWeapon(wpn)
+  call we can call after LevelUp
 ! # of hits per shot (burst only)
   probably infeasible since this is set in A_CustomBulletAttack; might be able
   to get attack vector and synth additional shots?
 ! reach (melee only)
   requires changing A_Saw
 - projectile speed (projectile only)
-  set speed property on projectile in WorldThingSpawned
+  use A_ScaleVelocity() after spawned
 
 More complicated upgrades:
 - bouncy shots (proj. only)

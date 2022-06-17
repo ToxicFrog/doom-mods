@@ -1,4 +1,4 @@
-class TFLV_BaseUpgrade : Object {
+class TFLV_BaseUpgrade : Object play {
   uint level;
 
   virtual void Init() {
@@ -17,7 +17,7 @@ class TFLV_BaseUpgrade : Object {
   // for hitscans -- only for stuff like the rocket launcher and plasma rifle.
   // This is the upgrade's chance to modify the projectile in-place by e.g.
   // adding or removing flags.
-  virtual void OnProjectileCreated(PlayerPawn pawn, Actor shot) {
+  virtual void OnProjectileCreated(Actor pawn, Actor shot) {
     return;
   }
 
@@ -34,13 +34,13 @@ class TFLV_BaseUpgrade : Object {
   // to modify projectiles in flight use OnProjectileCreated, and to add on-hit
   // effects (which, for hitscans, is the only way to add effects at all), use
   // OnDamageDealt.
-  virtual double ModifyDamageDealt(PlayerPawn pawn, Actor shot, Actor target, double damage) {
+  virtual double ModifyDamageDealt(Actor pawn, Actor shot, Actor target, double damage) {
     return damage;
   }
 
   // As ModifyDamageDealt but called when something else is about to damage the
   // player.
-  virtual double ModifyDamageReceived(PlayerPawn pawn, Actor shot, Actor attacker, double damage) {
+  virtual double ModifyDamageReceived(Actor pawn, Actor shot, Actor attacker, double damage) {
     return damage;
   }
 
@@ -48,11 +48,11 @@ class TFLV_BaseUpgrade : Object {
   // effects. The amount of damage passed in is the actual damage dealt, after any
   // ModifyDamage calls have taken effect. Can also be used to check for kills by
   // checking the target's hp.
-  virtual void OnDamageDealt(PlayerPawn pawn, Actor shot, Actor target, int damage) {
+  virtual void OnDamageDealt(Actor pawn, Actor shot, Actor target, int damage) {
     return;
   }
 
-  virtual void OnDamageReceived(PlayerPawn pawn, Actor shot, Actor target, int damage) {
+  virtual void OnDamageReceived(Actor pawn, Actor shot, Actor target, int damage) {
     return;
   }
 }

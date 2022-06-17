@@ -38,7 +38,7 @@ class TFLV_PerPlayerStats : TFLV_Force {
   // just before opening the menu and clears it afterwards.
   TFLV_LegendoomEffectGiver currentEffectGiver;
 
-  clearscope static TFLV_PerPlayerStats GetStatsFor(PlayerPawn pawn) {
+  clearscope static TFLV_PerPlayerStats GetStatsFor(Actor pawn) {
     return TFLV_PerPlayerStats(pawn.FindInventory("TFLV_PerPlayerStats"));
   }
 
@@ -235,6 +235,11 @@ class TFLV_PerPlayerStats : TFLV_Force {
     return xp;
   }
 
+  void OnProjectileCreated(Actor shot) {
+    upgrades.OnProjectileCreated(owner, shot);
+    GetOrCreateInfoForCurrentWeapon().upgrades.OnProjectileCreated(owner, shot);
+  }
+
   // Apply player level-up bonuses whenever the player deals or receives damage.
   // This is also where bonuses to individual weapon damage are applied.
   override void ModifyDamage(
@@ -247,8 +252,8 @@ class TFLV_PerPlayerStats : TFLV_Force {
     if (passive) {
       // Incoming damage.
       newdamage = info.upgrades.ModifyDamageReceived(
-          PlayerPawn(owner), inflictor, source,
-          upgrades.ModifyDamageReceived(PlayerPawn(owner), inflictor, source, damage));
+          owner, inflictor, source,
+          upgrades.ModifyDamageReceived(owner, inflictor, source, damage));
     } else {
       // Outgoing damage. 'source' is the *target* of the damage.
       let target = source;
@@ -265,8 +270,8 @@ class TFLV_PerPlayerStats : TFLV_Force {
       }
 
       newdamage = info.upgrades.ModifyDamageDealt(
-          PlayerPawn(owner), inflictor, source,
-          upgrades.ModifyDamageDealt(PlayerPawn(owner), inflictor, source, damage));
+          owner, inflictor, source,
+          upgrades.ModifyDamageDealt(owner, inflictor, source, damage));
     }
   }
 
