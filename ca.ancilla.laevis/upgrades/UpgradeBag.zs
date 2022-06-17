@@ -17,13 +17,16 @@ class TFLV_UpgradeBag : Object {
 
   void DumpToConsole(string prefix) {
     for (uint i = 0; i < upgrades.Size(); ++i) {
-      console.printf("%s%s (%d)", prefix, upgrades[i].GetClassName(), upgrades[i].level);
+      console.printf("%s%s (%d): %s", prefix,
+          upgrades[i].GetName(), upgrades[i].level, upgrades[i].GetDesc());
     }
   }
 
   ui void DumpToMenu(TFLV_StatusDisplay menu) {
     for (uint i = 0; i < upgrades.Size(); ++i) {
-      menu.PushInfo(upgrades[i].GetClassName(), string.format("Level %d", upgrades[i].level));
+      menu.PushInfo(
+        string.format("%s (%d)", upgrades[i].GetName(), upgrades[i].level),
+        upgrades[i].GetDesc());
     }
   }
 

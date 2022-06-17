@@ -1,9 +1,10 @@
-VERSION="0.1alpha7"
+VERSION="0.2alpha8"
 PK3=Laevis-${VERSION}.pk3
+LUMPS=MAPINFO CVARINFO KEYCONF MENUDEF LANGUAGE.*
 
 all: ${PK3}
 
-${PK3}: README.md COPYING.md MAPINFO CVARINFO KEYCONF MENUDEF zscript.txt ca.ancilla.laevis/*.zs ca.ancilla.laevis/upgrades/*.zs
+${PK3}: README.md COPYING.md ${LUMPS} zscript.txt ca.ancilla.laevis/*.zs ca.ancilla.laevis/upgrades/*.zs
 	rm -f $@
 	zip -r $@ $^
 

@@ -1,3 +1,8 @@
+# 0.2alpha8
+
+- Redesign the way weapon upgrades are stored and applied to support upgrades
+  other than damage/resistance bonuses
+
 # 0.1alpha7
 
 - Added that upgrade path back in, along with a lot of settings:

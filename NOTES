@@ -1,4 +1,4 @@
-# Levelegends design notes
+# Laevis design notes
 
 Weapons gain XP as you deal damage with them (kills don't matter), and level up once they have enough XP. Higher level weapons level up slower. This means you don't have an incentive to weaken enemies with your favourite weapon and then switch guns for the killshot, and also encourages you to spread the XP around by using a variety of weapons.
 
@@ -99,20 +99,76 @@ WorldThingSpawned, called when an Actor is spawned
 
 ## Player-level upgrades
 
-If we want permanent upgrades to the player, some things we can look at:
-- player.DamageFactor controls incoming damage
-- player.DamageMultiply controls outgoing damage
-- MaxHealth determines max health
-- Stamina acts as a max health bonus
-- to regenerate armour, give the player something subclassing ArmorBonus, and likewise for health and HealthBonus?
-- life/armour leeching?
+- +damage with all weapons (percent or flat)
+- life/armour/ammo leech
+- max health
+- resistance
+- life/armour regeneration out of combat?
 
 ## Weapon-level upgrades
 
-All we have access to are (a) the player, (b) the current weapon info and (c) the
-thing being shot. We can't subclass the weapons/projectiles.
-- DoT
-- exploding corpses?
-- health/armour leech
-- regenerating ammo?
+These all have to be possible without subclassing, so this is kind of spitballing; some of these may not be feasible to implement.
+I think that we have access to the projectile at creation time (via WorldThingSpawned) and the projectile/puff at damage time (via ModifyDamage and/or WorldThingDamaged).
+
+! infeasible
+
+Basic "number go up" upgrades:
+- damage (flat or %)
+  apply in ModifyDamage
+! ROF
+  requires modifying state info
+! accuracy (only if below a certain accuracy threshold)
+  requires modifying calls to fire functions; there is an Accuracy prop but it
+  doesn't do anything without custom code (except in Strife)
+- knockback
+  weapon kickback & projectilekickback property
+! # of hits per shot (burst only)
+  probably infeasible since this is set in A_CustomBulletAttack; might be able
+  to get attack vector and synth additional shots?
+! reach (melee only)
+  requires changing A_Saw
+- projectile speed (projectile only)
+  set speed property on projectile in WorldThingSpawned
+
+More complicated upgrades:
+- bouncy shots (proj. only)
+  set BounceType/BounceFactor/BounceCount in WorldThingSpawned
+! homing shots (proj. only)
+  requires modifying projectile update loop
+- penetrating shots
+  set Ripper/RipperLevel in WorldThingSpawned for projectiles; for hitscans,
+  get the attack vector (how?) and then call A_CustomRailgun
+- explosion on hit/kill
+  call A_Explode() and spawn and explosion on impact or in WorldThingKilled
+- shrapnel on hit/kill
+  as above but use the "# of nails" argument to A_Explode()
+- AoE stun
+  Use A_Explode and then have a custom damage handler? Spawn some kind of explosion actor?
+- submunitions in flight
+  Spawn() or use A_ThrowGrenade(), needs custom class definition for submunition
+- submunitions on impact
+  as above
+- turns enemies into friends
+  set FRIENDLY flag when damage threshold reached or w/e
+- health/armour/ammo leech
+  in ModifyDamage
+
+Elemental upgrades:
+- all of these would work by putting something in the target's inventory with a
+  custom HandlePickup (to handle stacking) and state loop (to apply the DOT). Also
+  need to figure out a way to add particle effects or something to indicate what
+  effects are happening.
+- poison (DoT, stacks increase both damage and duration)
+  gzDoom has an existing poison effect but I might want to roll my own
+- bleeding (DoT, damage based on initial hit, subsequent hits reset duration)
+- fire (DoT, damage falls off as health reduces, subsequent hits increase speed)
+- acid (DoT, damage *increases* as health reduces, subsequent hits increase duration)
+- lightning (stuns enemy briefly)
+- ice (slows enemy briefly, stacks increase duration)
+
+## Applying upgrades
+
+In WorldThingSpawned we can detect projectile spawnings (look for target=player and bMISSILE flag) and there we can apply stuff like ripper, bouncy, etc. We can't modify damage, though.
+
+We can't do that for hitscan weapons because the puff spawns AFTER damage is applied, so probably we need to use ModifyDamage or WorldThingDamaged. ModifyDamage works for projectiles, hitscans, and DoTs like poison.
 

@@ -5,6 +5,14 @@ class TFLV_BaseUpgrade : Object {
     level = 1;
   }
 
+  string GetName() const {
+    return StringTable.Localize("$"..self.GetClassName().."_Name");
+  }
+
+  string GetDesc() const {
+    return StringTable.Localize("$"..self.GetClassName().."_Desc");
+  }
+
   // Called when the player fires a projectile shot. Note that this is not called
   // for hitscans -- only for stuff like the rocket launcher and plasma rifle.
   // This is the upgrade's chance to modify the projectile in-place by e.g.

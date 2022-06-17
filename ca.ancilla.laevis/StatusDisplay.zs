@@ -19,13 +19,13 @@ class TFLV_StatusDisplay : OptionMenu {
 
     PushText("", Font.CR_GOLD);
     PushText("Player Stats", Font.CR_GOLD);
-    PushInfo("Level", string.format("%d (%d/%d XP)", stats.plvl, stats.pxp, stats.pmax));
+    PushInfo(string.format("Level %d", stats.plvl), string.format("%d/%d XP", stats.pxp, stats.pmax));
     stats.pupgrades.DumpToMenu(self);
 
     PushText("", Font.CR_GOLD);
     PushText("Weapon Stats", Font.CR_GOLD);
     PushInfo("Type", string.format("%s (%s)", info.weapon.GetTag(), info.weapon.GetClassName()));
-    PushInfo("Level", string.format("%d (%d/%d XP)", stats.wlvl, stats.wxp, stats.wmax));
+    PushInfo(string.format("Level %d", stats.wlvl), string.format("%d/%d XP", stats.wxp, stats.wmax));
     stats.wupgrades.DumpToMenu(self);
 
     mDesc.mSelectedItem = -1;
