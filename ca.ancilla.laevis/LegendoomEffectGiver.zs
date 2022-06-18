@@ -3,23 +3,14 @@
 // This works by repeatedly spawning the appropriate Legendoom random pickup until
 // it generates in a way we can use, then either shoving it into the player directly
 // or copying some of the info out of it.
+#namespace TFLV;
 
-class TFLV_LegendoomEffectGiver : Inventory {
+class ::LegendoomEffectGiver : ::UpgradeGiver {
   TFLV_WeaponInfo wielded;
   string prefix;
 
   Actor upgrade;
   string newEffect;
-
-  Default {
-    +Inventory.IgnoreSkill;
-    +Inventory.Untossable;
-  }
-
-  override bool HandlePickup(Inventory item) {
-    // Does not stack, ever.
-    return false;
-  }
 
   bool BeginLevelUp() {
     if (wielded.effectSlots == 0) {
@@ -73,61 +64,43 @@ class TFLV_LegendoomEffectGiver : Inventory {
     return true;
   }
 
-  // Try to install the upgrade. Return true if we did (or can't ever), false if
-  // we need to wait and retry later.
-  bool InstallUpgrade() {
+  // Try to install the upgrade. If we need the player to make a choice about
+  // it, jump to the ChooseDiscard state.
+  void InstallUpgrade() {
     if (!wielded || !wielded.weapon) {
       // Something happened to the player's weapon while we were trying to
       // generate the new effect.
       upgrade.Destroy();
-      self.Destroy();
-      return true;
+      return;
     }
 
     string effect = TFLV_Util.GetActiveWeaponEffect(upgrade, prefix);
     string effectname = TFLV_Util.GetEffectTitle(effect);
+    console.printf("Your %s gained the effect [%s]!", wielded.weapon.GetTag(), effectname);
 
     if (wielded.effects.Size() == 0) {
       // No existing effects, so just pick it up as is.
-      console.printf("Your %s gained the effect [%s]!", wielded.weapon.GetTag(), effectname);
       wielded.effects.push(effect);
       wielded.SelectEffect(0);
       // Set a flag on the upgrade so PerPlayerInfo::HandlePickup() can tell that
       // this is an in-place upgrade and not a new weapon.
       upgrade.FindInventory(prefix.."EffectActive").bNOTELEFRAG = true;
       upgrade.Warp(owner);
-      return true;
+      return;
     }
 
-    if (wielded.effects.Size() >= wielded.effectSlots) {
-      // All slots are full of existing effects, so ask what to do.
-      let stats = TFLV_PerPlayerStats.GetStatsFor(PlayerPawn(owner));
-      if (stats.currentEffectGiver) {
-        // Some other EffectGiver is currently using the menu infrastructure,
-        // so wait a tic and try again.
-        return false;
-      }
 
-      console.printf("Your %s gained the effect [%s]!", wielded.weapon.GetTag(), effectname);
-      stats.currentEffectGiver = self;
-      newEffect = effect;
-      Menu.SetMenu("LaevisNewLDEffectMenu");
-      self.SetStateLabel("AwaitMenuResponse");
-      return true;
+    // Existing effects but not all slots are full. Add the effect name to the
+    // list of available effects and discard the upgrade.
+    if (wielded.effects.Size() < wielded.effectSlots) {
+      wielded.effects.push(effect);
+      upgrade.Destroy();
+      return;
     }
 
-    // Existing effects but not all slots are full. We have two options here:
-    // - push the new one into the effects list. The player gets the effect
-    //   and can switch to it when they please. This does mean we don't get the
-    //   effect splash screen the first time they select it unless we replicate
-    //   the relevant code from Legendoom.
-    // - delete the current one and give them the new one. This gets them the
-    //   splash screen immediately, but also means it potentially pops up (and
-    //   morphs their weapon) in the middle of combat, getting them killed.
-    console.printf("Your %s gained the effect [%s]!", wielded.weapon.GetTag(), effectname);
-    wielded.effects.push(effect);
-    upgrade.Destroy();
-    return true;
+    // Existing effects and all slots are full. Enter a menu-choose state.
+    newEffect = effect;
+    SetStateLabel("ChooseEffectToDiscard");
   }
 
   void DiscardEffect(int index) {
@@ -157,13 +130,14 @@ class TFLV_LegendoomEffectGiver : Inventory {
       TNT1 A 2 CreateUpgrade();
       TNT1 A 0 A_JumpIf(IsCreatedUpgradeGood(), "InstallUpgrade");
       LOOP;
-    WaitRetryInstallUpgrade:
-      TNT1 A 1;
     InstallUpgrade:
-      TNT1 A 0 A_JumpIf(!InstallUpgrade(), "WaitRetryInstallUpgrade");
+      TNT1 A 0 InstallUpgrade();
       STOP;
-    AwaitMenuResponse:
-      TNT1 A 1;
+    ChooseEffectToDiscard:
+      TNT1 A 1 AwaitChoice("LaevisNewLDEffectMenu");
       LOOP;
+    Chosen:
+      TNT1 A 0 DiscardEffect(chosen);
+      STOP;
   }
 }

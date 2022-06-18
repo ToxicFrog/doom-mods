@@ -7,7 +7,13 @@ class ::NewLDEffectMenu : OptionMenu {
 
     let pawn = PlayerPawn(players[consoleplayer].mo);
     let stats = TFLV_PerPlayerStats.GetStatsFor(pawn);
-    let giver = stats.currentEffectGiver;
+    let giver = TFLV::LegendoomEffectGiver(stats.currentEffectGiver);
+    if (!giver) {
+      console.printf("missing/wrong giver in NewLDEffectMenu");
+      if (stats.currentEffectGiver) {
+        console.printf("Wanted TFLV::LegendoomEffectGiver, got %s", stats.currentEffectGiver.GetClassName());
+      }
+    }
 
     // Code to fill in the menu goes here.
     // We need to figure out the list of effects the player already has, and the
@@ -77,7 +83,7 @@ class OptionMenuItemEffectSelector : OptionMenuItem {
       return super.MenuEvent(key, fromController);
 
     Menu.MenuSound("menu/choose");
-    EventHandler.SendNetworkEvent("laevis_choose_effect_discard", index);
+    EventHandler.SendNetworkEvent("laevis_choose_level_up_option", index);
     Menu.GetCurrentMenu().Close();
     return true;
   }

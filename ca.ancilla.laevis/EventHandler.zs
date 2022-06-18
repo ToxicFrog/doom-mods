@@ -109,14 +109,14 @@ class TFLV_EventHandler : StaticEventHandler {
     TFLV_PerPlayerStats.GetStatsFor(pawn).GetInfoForCurrentWeapon().CycleEffect();
   }
 
-  void ChooseEffectDiscard(PlayerPawn pawn, int index) {
+  void ChooseLevelUpOption(PlayerPawn pawn, int index) {
     let stats = TFLV_PerPlayerStats.GetStatsFor(pawn);
     let giver = stats.currentEffectGiver;
     if (!giver) {
-      console.printf("error: laevis_choose_effect_discard without active level up menu");
+      console.printf("error: laevis_choose_level_up_option without active level up menu");
       return;
     }
-    giver.DiscardEffect(index);
+    giver.Choose(index);
   }
 
   void SelectLDEffect(PlayerPawn pawn, int index) {
@@ -138,8 +138,8 @@ class TFLV_EventHandler : StaticEventHandler {
       }
     } else if (evt.name == "laevis_select_effect") {
       SelectLDEffect(players[evt.player].mo, evt.args[0]);
-    } else if (evt.name == "laevis_choose_effect_discard") {
-      ChooseEffectDiscard(players[evt.player].mo, evt.args[0]);
+    } else if (evt.name == "laevis_choose_level_up_option") {
+      ChooseLevelUpOption(players[evt.player].mo, evt.args[0]);
     }
   }
 

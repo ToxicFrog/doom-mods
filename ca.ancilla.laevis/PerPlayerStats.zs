@@ -34,10 +34,13 @@ class ::PerPlayerStats : ::Force {
   int prevScore;
 
   // HACK HACK HACK
-  // The LaevisLevelUpScreen needs to be able to get a handle to the specific
-  // EffectGiver associated with that menu, so it puts itself into this field
+  // The various level up menus need to be able to get a handle to the specific
+  // UpgradeGiver associated with that menu, so it puts itself into this field
   // just before opening the menu and clears it afterwards.
-  ::LegendoomEffectGiver currentEffectGiver;
+  // This is also used to check if an upgrade giver is currently awaiting a menu
+  // response, in which case other upgrade givers will block (since it's possible
+  // to have up to three upgrade givers going off at once).
+  ::UpgradeGiver currentEffectGiver;
 
   clearscope static ::PerPlayerStats GetStatsFor(Actor pawn) {
     return ::PerPlayerStats(pawn.FindInventory("::PerPlayerStats"));
