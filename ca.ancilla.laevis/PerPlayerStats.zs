@@ -238,17 +238,27 @@ class ::PerPlayerStats : ::Force {
     return xp;
   }
 
+  // Handlers for events that player/gun upgrades may be interested in.
+  // These are called from the EventManager on the corresponding world events,
+  // and call the handlers on the upgrades in turn.
+  // They ignore shots with the +INCOMBAT flag set; this is a Strife dialogue flag
+  // repurposed here to mean "this actor was spawned by Laevis and should not trigger
+  // upgrades", to prevent upgrade recursion, e.g. an "on hit spawn shrapnel" upgrade
+  // causing more shrapnel to spawn whenever shrapnel hits something.
   void OnProjectileCreated(Actor shot) {
+    if (shot.bINCOMBAT) return;
     upgrades.OnProjectileCreated(owner, shot);
     GetOrCreateInfoForCurrentWeapon().upgrades.OnProjectileCreated(owner, shot);
   }
 
   void OnDamageDealt(Actor shot, Actor target, uint damage) {
+    if (shot && shot.bINCOMBAT) return;
     upgrades.OnDamageDealt(owner, shot, target, damage);
     GetOrCreateInfoForCurrentWeapon().upgrades.OnDamageDealt(owner, shot, target, damage);
   }
 
   void OnDamageReceived(Actor shot, Actor attacker, uint damage) {
+    if (shot && shot.bINCOMBAT) return;
     upgrades.OnDamageReceived(owner, shot, attacker, damage);
     GetOrCreateInfoForCurrentWeapon().upgrades.OnDamageReceived(owner, shot, attacker, damage);
   }
