@@ -35,8 +35,8 @@ class TFLV_WeaponInfo : Object play {
     // XP = 0;
     // level = 0;
     maxXP = GetXPForLevel(level+1);
-    // console.printf("WeaponInfo initialize, class=%s level=%d xp=%d/%d",
-    //   weaponType, level, XP, maxXP);
+    DEBUG("WeaponInfo initialize, class=%s level=%d xp=%d/%d",
+        weaponType, level, XP, maxXP);
 
     string LDWeaponType = "LDWeapon";
     currentEffect = -1;
@@ -81,8 +81,8 @@ class TFLV_WeaponInfo : Object play {
       currentEffectName = TFLV_Util.GetEffectTitle(effect);
       effects.push(effect);
     }
-    // console.printf("%s: effects=%d, rarity=%d, effect=%s",
-    //   weapon.GetTag(), effectSlots, maxRarity, effect);
+    DEBUG("%s: effects=%d, rarity=%d, effect=%s",
+        weapon.GetTag(), effectSlots, maxRarity, effect);
   }
 
   void CycleEffect() {
@@ -103,6 +103,8 @@ class TFLV_WeaponInfo : Object play {
   }
 
   void DiscardEffect(uint index) {
+    DEBUG("DiscardEffect, total=%d, index=%d, current=%d",
+        effects.size(), index, currentEffect);
     if (effects.size() <= index) return;
     if (index == currentEffect) {
       // The effect they want to discard is the current one.

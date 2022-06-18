@@ -128,8 +128,6 @@ class TFLV_PerPlayerStats : TFLV_Force {
 
   TFLV_WeaponInfo TryGetInfoFor(Weapon wpn) const {
     for (int i = 0; i < weapons.size(); ++i) {
-      // console.printf("Checking weapon %s (XL%d XP%d)",
-      //   weapons[i].weaponType, weapons[i].level, weapons[i].XP);
       if (weapons[i].weapon == wpn) {
         // Found the WeaponInfo for this particular weapon.
         return weapons[i];
@@ -142,7 +140,7 @@ class TFLV_PerPlayerStats : TFLV_Force {
         // exists.
         // This can't normally happen but some mods seem to trigger it.
         // Assume the new weapon is the real one.
-        // console.printf("WARNING: duplicate WeaponInfo for weapontype %s", wpn.GetClassName());
+        DEBUG("WARNING: duplicate WeaponInfo for weapontype %s", wpn.GetClassName());
         weapons[i].Init(wpn);
         return weapons[i];
       }
@@ -194,6 +192,12 @@ class TFLV_PerPlayerStats : TFLV_Force {
     }
   }
 
+  string SafeGetClassName(Actor ac) {
+    if (!ac) return "null";
+    string cls = ac.GetClassName();
+    return cls;
+  }
+
   // Add XP to a weapon. If the weapon leveled up, also do some housekeeping
   // and possibly level up the player as well.
   void AddXP(int xp) {
@@ -207,9 +211,7 @@ class TFLV_PerPlayerStats : TFLV_Force {
       }
 
       // Also give the player some XP.
-      // console.printf("XP=%d, XPperLevel=%d", XP, GUN_LEVELS_PER_PLAYER_LEVEL);
       ++self.XP;
-      // console.printf("XP=%d, XPperLevel=%d", XP, GUN_LEVELS_PER_PLAYER_LEVEL);
       if (self.XP >= TFLV_Settings.gun_levels_per_player_level()) {
         self.XP -= TFLV_Settings.gun_levels_per_player_level();
         ++level;
@@ -251,10 +253,17 @@ class TFLV_PerPlayerStats : TFLV_Force {
     TFLV_WeaponInfo info = GetOrCreateInfoForCurrentWeapon();
     if (passive) {
       // Incoming damage.
+      DEBUG("MD(p): %s <- %s <- %s (%d/%s) flags=%X",
+        SafeGetClassName(owner), SafeGetClassName(inflictor), SafeGetClassName(source),
+        damage, damageType, flags);
+
       newdamage = info.upgrades.ModifyDamageReceived(
           owner, inflictor, source,
           upgrades.ModifyDamageReceived(owner, inflictor, source, damage));
     } else {
+      DEBUG("MD: %s -> %s -> %s (%d/%s) flags=%X",
+        SafeGetClassName(owner), SafeGetClassName(inflictor), SafeGetClassName(source),
+        damage, damageType, flags);
       // Outgoing damage. 'source' is the *target* of the damage.
       let target = source;
       if (!target.bIsMonster) {

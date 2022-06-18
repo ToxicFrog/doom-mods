@@ -143,6 +143,13 @@ class TFLV_EventHandler : StaticEventHandler {
     }
   }
 
+  override void WorldThingDamaged(WorldEvent evt) {
+    DEBUG("WTD: %s inflictor=%s source=%s damage=%d type=%s flags=%X",
+      SafeCls(evt.thing), SafeCls(evt.inflictor), SafeCls(evt.damagesource),
+      evt.damage, evt.damagetype, evt.damageflags);
+
+  }
+
   override void WorldThingSpawned(WorldEvent evt) {
     Actor thing = evt.thing;
     if (thing.bMISSILE && thing.target == players[consoleplayer].mo) {
@@ -150,6 +157,13 @@ class TFLV_EventHandler : StaticEventHandler {
       // just fired a shot. This is our chance to fiddle with its flags and whatnot.
       TFLV_PerPlayerStats.GetStatsFor(thing.target).OnProjectileCreated(thing);
     }
+
+    DEBUG("WTS: %s (owner=NONE) (master=%s) (target=%s) (tracer=%s)",
+      thing.GetClassName(),
+      // thing.owner ? thing.owner.GetClassName() : "NONE",
+      thing.master ? thing.master.GetClassName() : Name("NONE"),
+      thing.target ? thing.target.GetClassName() : Name("NONE"),
+      thing.tracer ? thing.tracer.GetClassName() : Name("NONE"));
   }
 }
 

@@ -26,10 +26,14 @@ local dirname = src:gsub('[^/]+$', '')
 
 local lines = {}
 local ns = nil
+local debug = false;
 
 for line in io.lines(src) do
   if line:match('^#namespace') then
     ns = assert(line:match('^#namespace (%S+);'), "malformed namespace directive: "..line)
+  elseif line:match('^#debug on') then
+    -- TODO: allow enabling debug on ranges of lines rather than per-file
+    debug = true
   elseif line:match('^#include "%./(.*)"') then
     path = line:match('^#include "%./(.*)"')
     line = ('#include "%s%s"'):format(dirname, path)
@@ -46,10 +50,10 @@ end
 
 table.insert(lines, '')
 src = table.concat(lines, '\n')
-if os.getenv('ZSC_DEBUG') then
+if debug then
   src = src:gsub('DEBUG(%b())', 'console.printf%1')
 else
-  src = src:gsub('DEBUG%b()%s*', '')
+  src = src:gsub('DEBUG%b();%s*', '')
 end
 
-dst = assert(io.open(dst, 'wb')):write(table.concat(lines, '\n'))
+dst = assert(io.open(dst, 'wb')):write(src)
