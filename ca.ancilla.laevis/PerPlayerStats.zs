@@ -243,6 +243,16 @@ class ::PerPlayerStats : ::Force {
     GetOrCreateInfoForCurrentWeapon().upgrades.OnProjectileCreated(owner, shot);
   }
 
+  void OnDamageDealt(Actor shot, Actor target, uint damage) {
+    upgrades.OnDamageDealt(owner, shot, target, damage);
+    GetOrCreateInfoForCurrentWeapon().upgrades.OnDamageDealt(owner, shot, target, damage);
+  }
+
+  void OnDamageReceived(Actor shot, Actor attacker, uint damage) {
+    upgrades.OnDamageReceived(owner, shot, attacker, damage);
+    GetOrCreateInfoForCurrentWeapon().upgrades.OnDamageReceived(owner, shot, attacker, damage);
+  }
+
   // Apply player level-up bonuses whenever the player deals or receives damage.
   // This is also where bonuses to individual weapon damage are applied.
   override void ModifyDamage(

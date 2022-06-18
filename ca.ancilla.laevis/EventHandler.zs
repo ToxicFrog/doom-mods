@@ -147,7 +147,13 @@ class TFLV_EventHandler : StaticEventHandler {
     DEBUG("WTD: %s inflictor=%s source=%s damage=%d type=%s flags=%X",
       SafeCls(evt.thing), SafeCls(evt.inflictor), SafeCls(evt.damagesource),
       evt.damage, evt.damagetype, evt.damageflags);
-
+    if (evt.damagesource == players[consoleplayer].mo) {
+      TFLV_PerPlayerStats.GetStatsFor(PlayerPawn(evt.damagesource)).OnDamageDealt(
+        evt.inflictor, evt.thing, evt.damage);
+    } else if (evt.thing == players[consoleplayer].mo) {
+      TFLV_PerPlayerStats.GetStatsFor(PlayerPawn(evt.thing)).OnDamageReceived(
+        evt.inflictor, evt.thing, evt.damage);
+    }
   }
 
   override void WorldThingSpawned(WorldEvent evt) {
