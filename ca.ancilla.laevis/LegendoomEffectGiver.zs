@@ -111,7 +111,7 @@ class TFLV_LegendoomEffectGiver : Inventory {
       console.printf("Your %s gained the effect [%s]!", wielded.weapon.GetTag(), effectname);
       stats.currentEffectGiver = self;
       newEffect = effect;
-      Menu.SetMenu("LaevisLevelUpScreen");
+      Menu.SetMenu("LaevisNewLDEffectMenu");
       self.SetStateLabel("AwaitMenuResponse");
       return true;
     }

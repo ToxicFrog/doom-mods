@@ -24,7 +24,7 @@ class ::UpgradeBag : Object play {
     }
   }
 
-  ui void DumpToMenu(TFLV::StatusDisplay menu) {
+  ui void DumpToMenu(TFLV::Menu::StatusDisplay menu) {
     for (uint i = 0; i < upgrades.Size(); ++i) {
       menu.PushInfo(
         string.format("%s (%d)", upgrades[i].GetName(), upgrades[i].level),

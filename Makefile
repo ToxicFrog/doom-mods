@@ -1,6 +1,6 @@
 VERSION="0.2alpha8"
-PK3=Laevis-${VERSION}.pk3
-LUMPS=MAPINFO CVARINFO KEYCONF MENUDEF LANGUAGE.*
+PK3=release/Laevis-${VERSION}.pk3
+LUMPS=MAPINFO CVARINFO KEYCONF MENUDEF LANGUAGE.* sprites/
 ZSCRIPT=$(patsubst %.zs,%.zsc,$(shell find . -name "*.zs"))
 
 all: ${PK3}
@@ -13,7 +13,7 @@ ${PK3}: README.md COPYING.md ${LUMPS} zscript.txt ${ZSCRIPT}
 	./zspp $< $@
 
 clean:
-	rm -f Laevis*.pk3
+	find . -name '*.zsc' -delete
 
 deploy: ${PK3}
 	ln -sf ${PK3} Laevis.pk3

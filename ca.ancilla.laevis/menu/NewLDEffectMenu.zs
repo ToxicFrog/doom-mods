@@ -1,4 +1,6 @@
-class TFLV_LevelUpMenu : OptionMenu {
+#namespace TFLV::Menu;
+
+class ::NewLDEffectMenu : OptionMenu {
   override void Init(Menu parent, OptionMenuDescriptor desc) {
     super.Init(parent, desc);
     mDesc.mItems.Clear();

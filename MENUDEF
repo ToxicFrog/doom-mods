@@ -95,14 +95,26 @@ OptionValue "LaevisWhatKindOfGunSelector" {
   3, "All Weapons"
 }
 
-OptionMenu "LaevisLevelUpScreen"
+OptionMenu "LaevisPlayerLevelUpMenu"
 {
-  class TFLV_LevelUpMenu
-  Title "Level Up"
+  class TFLV_Menu_PlayerLevelUpMenu
+  Title "Player Level Up!"
+}
+
+OptionMenu "LaevisWeaponLevelUpMenu"
+{
+  class TFLV_Menu_WeaponLevelUpMenu
+  Title "Weapon Level Up!"
+}
+
+OptionMenu "LaevisNewLDEffectMenu"
+{
+  class TFLV_Menu_NewLDEffectMenu
+  Title "New Legendoom Effect!"
 }
 
 OptionMenu "LaevisStatusDisplay"
 {
-  class TFLV_StatusDisplay
+  class TFLV_Menu_StatusDisplay
   Title "Status"
 }

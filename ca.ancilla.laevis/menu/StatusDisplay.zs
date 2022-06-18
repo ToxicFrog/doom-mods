@@ -1,4 +1,6 @@
-class TFLV_StatusDisplay : OptionMenu {
+#namespace TFLV::Menu;
+
+class ::StatusDisplay : OptionMenu {
   override void Init(Menu parent, OptionMenuDescriptor desc) {
     super.Init(parent, desc);
     mDesc.mItems.Clear();

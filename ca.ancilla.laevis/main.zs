@@ -4,6 +4,5 @@
 #include "./WeaponInfo.zsc"
 #include "./PerPlayerStats.zsc"
 #include "./EventHandler.zsc"
-#include "./LevelUpMenu.zsc"
-#include "./StatusDisplay.zsc"
 #include "./upgrades/main.zsc"
+#include "./menu/main.zsc"
