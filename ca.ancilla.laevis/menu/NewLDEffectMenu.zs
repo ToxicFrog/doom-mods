@@ -4,6 +4,7 @@ class ::NewLDEffectMenu : OptionMenu {
   override void Init(Menu parent, OptionMenuDescriptor desc) {
     super.Init(parent, desc);
     mDesc.mItems.Clear();
+    mDesc.mSelectedItem = -1;
 
     let pawn = PlayerPawn(players[consoleplayer].mo);
     let stats = TFLV_PerPlayerStats.GetStatsFor(pawn);
@@ -35,7 +36,6 @@ class ::NewLDEffectMenu : OptionMenu {
     for (uint i = 0; i < giver.wielded.effects.size(); ++i) {
       PushEffect(giver.wielded.effects[i], i);
     }
-    mDesc.mSelectedItem = FirstSelectable();
   }
 
   override bool MenuEvent(int key, bool fromController) {

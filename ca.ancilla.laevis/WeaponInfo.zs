@@ -158,7 +158,9 @@ class ::WeaponInfo : Object play {
     // TODO: upgrades that modify the weapon's base stats should be activated here,
     // in some kind of ApplyUpgradesToWeapon() call.
     // upgrades.Add("::Upgrade::DirectDamage");
-    upgrades.Add("::Upgrade::PoisonShots");
+    // upgrades.Add("::Upgrade::PoisonShots");
+    let giver = ::WeaponUpgradeGiver(weapon.owner.GiveInventoryType("::WeaponUpgradeGiver"));
+    giver.wielded = self;
   }
 }
 

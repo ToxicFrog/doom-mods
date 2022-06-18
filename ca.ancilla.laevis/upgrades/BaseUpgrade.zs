@@ -7,13 +7,8 @@ class ::BaseUpgrade : Object play {
     level = 1;
   }
 
-  string GetName() const {
-    return StringTable.Localize("$"..self.GetClassName().."_Name");
-  }
-
-  string GetDesc() const {
-    return StringTable.Localize("$"..self.GetClassName().."_Desc");
-  }
+  // VIRTUAL FUNCTIONS //
+  // Subclasses must override at least one of these to have any effect!
 
   // Called when the player fires a projectile shot. Note that this is not called
   // for hitscans -- only for stuff like the rocket launcher and plasma rifle.
@@ -57,4 +52,29 @@ class ::BaseUpgrade : Object play {
   virtual void OnDamageReceived(Actor pawn, Actor shot, Actor target, int damage) {
     return;
   }
+
+  // INTERNAL DETAILS //
+  string GetName() const {
+    return StringTable.Localize("$"..self.GetClassName().."_Name");
+  }
+
+  string GetDesc() const {
+    return StringTable.Localize("$"..self.GetClassName().."_Desc");
+  }
+
+  static ::BaseUpgrade GenerateUpgradeFor(Actor act) {
+    static const string UpgradeNames[] = {
+      "::DirectDamage",
+      "::HomingShots",
+      "::IncendiaryShots",
+      "::PoisonShots",
+      "::ProjectileSpeed",
+      "::Resistance"
+    };
+
+    let cls = UpgradeNames[random(0, UpgradeNames.Size()-1)];
+    let upgrade = ::BaseUpgrade(new(cls));
+    return upgrade;
+  }
+
 }

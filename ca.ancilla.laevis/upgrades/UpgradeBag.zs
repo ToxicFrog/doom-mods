@@ -17,6 +17,19 @@ class ::UpgradeBag : Object play {
     return upgrade;
   }
 
+  ::BaseUpgrade AddUpgrade(::BaseUpgrade upgrade) {
+    let classname = upgrade.GetClassName();
+    for (uint i = 0; i < upgrades.Size(); ++i) {
+      if (upgrades[i].GetClassName() == classname) {
+        upgrades[i].level++;
+        return upgrades[i];
+      }
+    }
+    upgrade.level = 1;
+    upgrades.Push(upgrade);
+    return upgrade;
+  }
+
   void DumpToConsole(string prefix) {
     for (uint i = 0; i < upgrades.Size(); ++i) {
       console.printf("%s%s (%d): %s", prefix,

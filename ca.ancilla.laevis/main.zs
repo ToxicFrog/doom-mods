@@ -5,5 +5,6 @@
 #include "./EventHandler.zsc"
 #include "./UpgradeGiver.zsc"
 #include "./LegendoomEffectGiver.zsc"
+#include "./WeaponUpgradeGiver.zsc"
 #include "./upgrades/main.zsc"
 #include "./menu/main.zsc"
