@@ -1,5 +1,6 @@
 #include "./UpgradeBag.zsc"
 #include "./BaseUpgrade.zsc"
+#include "./Dot.zsc"
 
 #include "./DirectDamage.zsc"
 #include "./HomingShots.zsc"
