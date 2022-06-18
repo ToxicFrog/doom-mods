@@ -1,4 +1,6 @@
-class TFLV_BaseUpgrade : Object play {
+#namespace TFLV::Upgrade;
+
+class ::BaseUpgrade : Object play {
   uint level;
 
   virtual void Init() {

@@ -1,8 +1,9 @@
 // Info about a single weapon. These are held by the PerPlayerStats and each
 // one records information about one of the player's weapons.
 // It's also responsible for handling weapon level-ups.
+#namespace TFLV;
 
-class TFLV_WeaponInfo : Object play {
+class ::WeaponInfo : Object play {
   // At the moment "weapon" is used both as a convenient way to remember a reference
   // to the weapon itself, and as the key for the info lookup when the caller has
   // a weapon but not the WeaponInfo.
@@ -15,7 +16,7 @@ class TFLV_WeaponInfo : Object play {
   // pistol start runs.
   Weapon weapon;
   string weaponType;
-  TFLV_UpgradeBag upgrades;
+  ::Upgrade::UpgradeBag upgrades;
   uint XP;
   uint maxXP;
   uint level;
@@ -31,7 +32,7 @@ class TFLV_WeaponInfo : Object play {
   void Init(Actor weapon_) {
     weapon = Weapon(weapon_);
     weaponType = weapon.GetClassName();
-    upgrades = new("TFLV_UpgradeBag");
+    upgrades = new("::Upgrade::UpgradeBag");
     // XP = 0;
     // level = 0;
     maxXP = GetXPForLevel(level+1);
@@ -49,7 +50,7 @@ class TFLV_WeaponInfo : Object play {
     }
   }
 
-  bool GunRarityMatchesSetting(TFLV_WhichGuns setting, TFLV_LD_Rarity rarity) {
+  bool GunRarityMatchesSetting(::WhichGuns setting, ::LD_Rarity rarity) {
     if (rarity == RARITY_MUNDANE) {
       return setting & 1;
     } else {
@@ -60,25 +61,25 @@ class TFLV_WeaponInfo : Object play {
   void InitLegendoom() {
     string prefix = weapon.GetClassName();
 
-    maxRarity = TFLV_Util.GetWeaponRarity(weapon.owner, prefix);
-    canReplaceEffects = GunRarityMatchesSetting(TFLV_Settings.which_guns_can_replace(), maxRarity);
-    if (GunRarityMatchesSetting(TFLV_Settings.which_guns_can_learn(), maxRarity)) {
-      effectSlots = TFLV_Settings.base_ld_effect_slots()
-        + maxRarity * TFLV_Settings.bonus_ld_effect_slots();
+    maxRarity = ::Util.GetWeaponRarity(weapon.owner, prefix);
+    canReplaceEffects = GunRarityMatchesSetting(::Settings.which_guns_can_replace(), maxRarity);
+    if (GunRarityMatchesSetting(::Settings.which_guns_can_learn(), maxRarity)) {
+      effectSlots = ::Settings.base_ld_effect_slots()
+        + maxRarity * ::Settings.bonus_ld_effect_slots();
     } else {
       effectSlots = 0;
     }
-    if (TFLV_Settings.ignore_gun_rarity()) {
+    if (::Settings.ignore_gun_rarity()) {
       maxRarity = RARITY_EPIC;
     } else {
       maxRarity = max(RARITY_COMMON, maxRarity);
     }
 
     // And they start with an effect, so we should record that.
-    string effect = TFLV_Util.GetActiveWeaponEffect(weapon.owner, prefix);
+    string effect = ::Util.GetActiveWeaponEffect(weapon.owner, prefix);
     if (effect != "") {
       currentEffect = 0;
-      currentEffectName = TFLV_Util.GetEffectTitle(effect);
+      currentEffectName = ::Util.GetEffectTitle(effect);
       effects.push(effect);
     }
     DEBUG("%s: effects=%d, rarity=%d, effect=%s",
@@ -98,7 +99,7 @@ class TFLV_WeaponInfo : Object play {
     if (currentEffect >= 0)
       weapon.owner.TakeInventory(effects[currentEffect], 1);
     currentEffect = index;
-    currentEffectName = TFLV_Util.GetEffectTitle(effects[currentEffect]);
+    currentEffectName = ::Util.GetEffectTitle(effects[currentEffect]);
     weapon.owner.GiveInventory(effects[currentEffect], 1);
   }
 
@@ -121,19 +122,19 @@ class TFLV_WeaponInfo : Object play {
   }
 
   uint GetXPForLevel(uint level) const {
-    uint XP = TFLV_Settings.base_level_cost() * level;
+    uint XP = ::Settings.base_level_cost() * level;
     if (weapon.bMeleeWeapon) {
-      XP *= TFLV_Settings.level_cost_mul_for("melee");
+      XP *= ::Settings.level_cost_mul_for("melee");
     }
     if (weapon.bWimpy_Weapon) {
-      XP *= TFLV_Settings.level_cost_mul_for("wimpy");
+      XP *= ::Settings.level_cost_mul_for("wimpy");
     }
     // For some reason it can't resolve bExplosive and bBFG
     // if (weapon.bExplosive) {
-    //   XP *= TFLV_Settings.level_cost_mul_for("explosive");
+    //   XP *= ::Settings.level_cost_mul_for("explosive");
     // }
     // if (weapon.bBFG) {
-    //   XP *= TFLV_Settings.level_cost_mul_for("bfg");
+    //   XP *= ::Settings.level_cost_mul_for("bfg");
     // }
     return XP;
   }
@@ -156,8 +157,8 @@ class TFLV_WeaponInfo : Object play {
     // TODO: randomly generate a set of appropriate upgrades and have the player choose.
     // TODO: upgrades that modify the weapon's base stats should be activated here,
     // in some kind of ApplyUpgradesToWeapon() call.
-    // upgrades.Add("TFLV_Upgrade_DirectDamage");
-    upgrades.Add("TFLV_Upgrade_Homingshots");
+    // upgrades.Add("::Upgrade::DirectDamage");
+    upgrades.Add("::Upgrade::HomingShots");
   }
 }
 

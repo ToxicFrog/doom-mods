@@ -1,12 +1,14 @@
-class TFLV_Upgrade_HomingShots : TFLV_BaseUpgrade {
+#namespace TFLV::Upgrade;
+
+class ::HomingShots : ::BaseUpgrade {
   override void OnProjectileCreated(Actor player, Actor shot) {
-    let aux = TFLV_Upgrade_HomingShots_Aux(shot.GiveInventoryType("TFLV_Upgrade_HomingShots_Aux"));
+    let aux = ::HomingShots::Aux(shot.GiveInventoryType("TFLV_Upgrade_HomingShots_Aux"));
     aux.level = level;
     aux.SetStateLabel("Homing");
   }
 }
 
-class TFLV_Upgrade_HomingShots_Aux : TFLV_Force {
+class ::HomingShots::Aux : TFLV::Force {
   uint level;
 
   States {

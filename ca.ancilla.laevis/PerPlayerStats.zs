@@ -1,16 +1,17 @@
 // Stats object. Each player gets one of these in their inventory.
 // Holds information about the player's guns and the player themself.
 // Also handles applying some damage/resistance bonuses using ModifyDamage().
+#namespace TFLV;
 
 // Used to get all the information needed for the UI.
-struct TFLV_CurrentStats {
+struct ::CurrentStats {
   // Player stats.
-  TFLV_UpgradeBag pupgrades;
+  ::Upgrade::UpgradeBag pupgrades;
   uint pxp;
   uint pmax;
   uint plvl;
   // Stats for current weapon.
-  TFLV_UpgradeBag wupgrades;
+  ::Upgrade::UpgradeBag wupgrades;
   uint wxp;
   uint wmax;
   uint wlvl;
@@ -23,23 +24,23 @@ struct TFLV_CurrentStats {
 // TODO: see if there's a way we can evacuate this to the StaticEventHandler
 // and reinsert it into the player when something happens, so that it reliably
 // persists across deaths, pistol starts, etc -- make this an option.
-class TFLV_PerPlayerStats : TFLV_Force {
-  array<TFLV_WeaponInfo> weapons;
-  TFLV_UpgradeBag upgrades;
+class ::PerPlayerStats : ::Force {
+  array<::WeaponInfo> weapons;
+  ::Upgrade::UpgradeBag upgrades;
   uint XP;
   uint level;
   bool legendoomInstalled;
-  TFLV_WeaponInfo infoForCurrentWeapon;
+  ::WeaponInfo infoForCurrentWeapon;
   int prevScore;
 
   // HACK HACK HACK
   // The LaevisLevelUpScreen needs to be able to get a handle to the specific
   // EffectGiver associated with that menu, so it puts itself into this field
   // just before opening the menu and clears it afterwards.
-  TFLV_LegendoomEffectGiver currentEffectGiver;
+  ::LegendoomEffectGiver currentEffectGiver;
 
-  clearscope static TFLV_PerPlayerStats GetStatsFor(Actor pawn) {
-    return TFLV_PerPlayerStats(pawn.FindInventory("TFLV_PerPlayerStats"));
+  clearscope static ::PerPlayerStats GetStatsFor(Actor pawn) {
+    return ::PerPlayerStats(pawn.FindInventory("::PerPlayerStats"));
   }
 
   // Special pickup handling so that if the player picks up an LD legendary weapon
@@ -78,13 +79,13 @@ class TFLV_PerPlayerStats : TFLV_Force {
   // to draw the UI.
   // Returns true if it was able to get all the necessary weapon information,
   // false otherwise.
-  bool GetCurrentStats(out TFLV_CurrentStats stats) const {
+  bool GetCurrentStats(out ::CurrentStats stats) const {
     stats.pxp = XP;
-    stats.pmax = TFLV_Settings.gun_levels_per_player_level();
+    stats.pmax = ::Settings.gun_levels_per_player_level();
     stats.plvl = level;
     stats.pupgrades = upgrades;
 
-    TFLV_WeaponInfo info = GetInfoForCurrentWeapon();
+    ::WeaponInfo info = GetInfoForCurrentWeapon();
     if (info) {
       stats.wxp = info.XP;
       stats.wmax = info.maxXP;
@@ -113,7 +114,7 @@ class TFLV_PerPlayerStats : TFLV_Force {
 
   // Return the WeaponInfo for the currently readied weapon. If the player
   // does not have a weapon ready, return null.
-  TFLV_WeaponInfo GetInfoForCurrentWeapon() const {
+  ::WeaponInfo GetInfoForCurrentWeapon() const {
     Weapon wielded = owner.player.ReadyWeapon;
     if (!wielded) {
       return null;
@@ -126,7 +127,7 @@ class TFLV_PerPlayerStats : TFLV_Force {
     }
   }
 
-  TFLV_WeaponInfo TryGetInfoFor(Weapon wpn) const {
+  ::WeaponInfo TryGetInfoFor(Weapon wpn) const {
     for (int i = 0; i < weapons.size(); ++i) {
       if (weapons[i].weapon == wpn) {
         // Found the WeaponInfo for this particular weapon.
@@ -151,7 +152,7 @@ class TFLV_PerPlayerStats : TFLV_Force {
   // Like GetInfoForCurrentWeapon, but if WeaponInfo doesn't exist for the current
   // weapon it will allocate a new one. As such this is not safe to call from
   // UI code.
-  TFLV_WeaponInfo GetOrCreateInfoForCurrentWeapon() {
+  ::WeaponInfo GetOrCreateInfoForCurrentWeapon() {
     Weapon wielded = owner.player.ReadyWeapon;
     if (!wielded) {
       return null;
@@ -167,12 +168,12 @@ class TFLV_PerPlayerStats : TFLV_Force {
 
   // Returns the info structure for the given weapon. If none exists, allocates
   // and initializes a new one and returns that.
-  TFLV_WeaponInfo GetInfoFor(Weapon wpn) {
-    TFLV_WeaponInfo info = TryGetInfoFor(wpn);
+  ::WeaponInfo GetInfoFor(Weapon wpn) {
+    ::WeaponInfo info = TryGetInfoFor(wpn);
     if (info) return info;
 
     // Didn't find one, so create a new one.
-    info = new("TFLV_WeaponInfo");
+    info = new("::WeaponInfo");
     info.Init(wpn);
     weapons.push(info);
     return info;
@@ -184,7 +185,7 @@ class TFLV_PerPlayerStats : TFLV_Force {
   // weapons, this might be a no-op.
   void PruneStaleInfo() {
     // If "remember missing weapons" is on, never discard old entries.
-    if (TFLV_Settings.remember_missing_weapons()) return;
+    if (::Settings.remember_missing_weapons()) return;
     for (int i = weapons.size() - 1; i >= 0; --i) {
       if (!weapons[i].weapon) {
         weapons.Delete(i);
@@ -201,24 +202,24 @@ class TFLV_PerPlayerStats : TFLV_Force {
   // Add XP to a weapon. If the weapon leveled up, also do some housekeeping
   // and possibly level up the player as well.
   void AddXP(int xp) {
-    TFLV_WeaponInfo info = GetOrCreateInfoForCurrentWeapon();
+    ::WeaponInfo info = GetOrCreateInfoForCurrentWeapon();
     if (info.AddXP(xp)) {
       // Weapon leveled up!
-      if (legendoomInstalled && (info.level % TFLV_Settings.gun_levels_per_ld_effect()) == 0) {
-        let ldGiver = TFLV_LegendoomEffectGiver(owner.GiveInventoryType("TFLV_LegendoomEffectGiver"));
+      if (legendoomInstalled && (info.level % ::Settings.gun_levels_per_ld_effect()) == 0) {
+        let ldGiver = ::LegendoomEffectGiver(owner.GiveInventoryType("::LegendoomEffectGiver"));
         ldGiver.wielded = GetInfoForCurrentWeapon();
         ldGiver.SetStateLabel("LDLevelUp");
       }
 
       // Also give the player some XP.
       ++self.XP;
-      if (self.XP >= TFLV_Settings.gun_levels_per_player_level()) {
-        self.XP -= TFLV_Settings.gun_levels_per_player_level();
+      if (self.XP >= ::Settings.gun_levels_per_player_level()) {
+        self.XP -= ::Settings.gun_levels_per_player_level();
         ++level;
         console.printf("You are now level %d!", level);
         owner.A_SetBlend("FF FF FF", 0.8, 40);
-        upgrades.Add("TFLV_Upgrade_Resistance");
-        upgrades.Add("TFLV_Upgrade_DirectDamage");
+        upgrades.Add("::Upgrade::Resistance");
+        upgrades.Add("::Upgrade::DirectDamage");
       }
 
       // Do some cleanup.
@@ -250,7 +251,7 @@ class TFLV_PerPlayerStats : TFLV_Force {
     if (damage <= 0) {
       return;
     }
-    TFLV_WeaponInfo info = GetOrCreateInfoForCurrentWeapon();
+    ::WeaponInfo info = GetOrCreateInfoForCurrentWeapon();
     if (passive) {
       // Incoming damage.
       DEBUG("MD(p): %s <- %s <- %s (%d/%s) flags=%X",
@@ -274,7 +275,7 @@ class TFLV_PerPlayerStats : TFLV_Force {
       }
 
       // XP is based on base damage, not final damage.
-      if (!TFLV_Settings.use_score_for_xp()) {
+      if (!::Settings.use_score_for_xp()) {
         AddXP(GetXPForDamage(target, damage));
       }
 
@@ -286,7 +287,7 @@ class TFLV_PerPlayerStats : TFLV_Force {
 
   void Initialize() {
     prevScore = -1;
-    if (!upgrades) upgrades = new("TFLV_UpgradeBag");
+    if (!upgrades) upgrades = new("::Upgrade::UpgradeBag");
   }
 
   // Runs once per tic.
@@ -296,7 +297,7 @@ class TFLV_PerPlayerStats : TFLV_Force {
     let info = GetOrCreateInfoForCurrentWeapon();
 
     // No score integration? Nothing else to do.
-    if (!TFLV_Settings.use_score_for_xp()) {
+    if (!::Settings.use_score_for_xp()) {
       prevScore = -1;
       return;
     }

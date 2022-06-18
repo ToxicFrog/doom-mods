@@ -1,15 +1,17 @@
-// A collection of BaseUpgrades and some utility functions to manipulate them.
-class TFLV_UpgradeBag : Object play {
-  array<TFLV_BaseUpgrade> upgrades;
+#namespace TFLV::Upgrade;
 
-  TFLV_BaseUpgrade Add(string classname) {
+// A collection of BaseUpgrades and some utility functions to manipulate them.
+class ::UpgradeBag : Object play {
+  array<::BaseUpgrade> upgrades;
+
+  ::BaseUpgrade Add(string classname) {
     for (uint i = 0; i < upgrades.Size(); ++i) {
       if (upgrades[i].GetClassName() == classname) {
         upgrades[i].level++;
         return upgrades[i];
       }
     }
-    let upgrade = TFLV_BaseUpgrade(new(classname));
+    let upgrade = ::BaseUpgrade(new(classname));
     upgrade.level = 1;
     upgrades.Push(upgrade);
     return upgrade;
@@ -22,7 +24,7 @@ class TFLV_UpgradeBag : Object play {
     }
   }
 
-  ui void DumpToMenu(TFLV_StatusDisplay menu) {
+  ui void DumpToMenu(TFLV::StatusDisplay menu) {
     for (uint i = 0; i < upgrades.Size(); ++i) {
       menu.PushInfo(
         string.format("%s (%d)", upgrades[i].GetName(), upgrades[i].level),
