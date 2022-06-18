@@ -1,12 +1,16 @@
 VERSION="0.2alpha8"
 PK3=Laevis-${VERSION}.pk3
 LUMPS=MAPINFO CVARINFO KEYCONF MENUDEF LANGUAGE.*
+ZSCRIPT=$(patsubst %.zs,%.zsc,$(shell find . -name "*.zs"))
 
 all: ${PK3}
 
-${PK3}: README.md COPYING.md ${LUMPS} zscript.txt ca.ancilla.laevis/*.zs ca.ancilla.laevis/upgrades/*.zs
+${PK3}: README.md COPYING.md ${LUMPS} zscript.txt ${ZSCRIPT}
 	rm -f $@
 	zip -r $@ $^
+
+%.zsc: %.zs zspp
+	./zspp $< $@
 
 clean:
 	rm -f Laevis*.pk3
