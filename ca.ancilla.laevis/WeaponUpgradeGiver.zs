@@ -11,10 +11,19 @@ class ::WeaponUpgradeGiver : ::UpgradeGiver {
     SetStateLabel("ChooseUpgrade");
   }
 
+  bool AlreadyHasUpgrade(::Upgrade::BaseUpgrade upgrade) {
+    for (uint i = 0; i < candidates.size(); ++i) {
+      if (candidates[i].GetClassName() == upgrade.GetClassName()) return true;
+    }
+    return false;
+  }
+
+  // TODO: we might want to force the first upgrade to always be a damage bonus.
   void CreateUpgradeCandidates() {
-    for (uint i = 0; i < 3; ++i) {
-      candidates.push(
-          ::Upgrade::BaseUpgrade.GenerateUpgradeFor(wielded.weapon));
+    while (candidates.size() < 3) {
+      let upgrade = ::Upgrade::BaseUpgrade.GenerateUpgradeFor(wielded.weapon);
+      if (!AlreadyHasUpgrade(upgrade))
+        candidates.push(upgrade);
     }
   }
 
