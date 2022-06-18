@@ -37,11 +37,12 @@ class ::UpgradeBag : Object play {
     }
   }
 
-  ui void DumpToMenu(TFLV::Menu::StatusDisplay menu) {
+  ui void DumpToMenu(TFLV::Menu::GenericMenu menu) {
     for (uint i = 0; i < upgrades.Size(); ++i) {
-      menu.PushInfo(
+      menu.PushKeyValueText(
         string.format("%s (%d)", upgrades[i].GetName(), upgrades[i].level),
-        upgrades[i].GetDesc());
+        upgrades[i].GetDesc(),
+        Font.CR_DARKRED);
     }
   }
 
