@@ -4,6 +4,12 @@
 class ::IncendiaryShots : ::BaseUpgrade {
   override void OnDamageDealt(Actor player, Actor shot, Actor target, int damage) {
     if (!shot) return;
+    // TODO: scale amount of fire with level.
+    // We can't use GiveInventory() for this easily, because it doesn't return a
+    // pointer to the added inventory. But GiveInventoryType() doesn't let us specify
+    // an amount.
+    // We may end up using Spawn() to create the item, set the amount,
+    // then item.TryPickup(target).
     let fire = ::IncendiaryFire(target.GiveInventoryType("::IncendiaryFire"));
     if (fire && fire.owner) {
       fire.target = player;

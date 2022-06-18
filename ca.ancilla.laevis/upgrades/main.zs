@@ -5,5 +5,6 @@
 #include "./DirectDamage.zsc"
 #include "./HomingShots.zsc"
 #include "./Incendiary.zsc"
+#include "./Poison.zsc"
 #include "./ProjectileSpeed.zsc"
 #include "./Resistance.zsc"

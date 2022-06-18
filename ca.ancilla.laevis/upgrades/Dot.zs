@@ -38,7 +38,7 @@ class ::Dot : Inventory {
       colour, SPF_FULLBRIGHT,
       30, 10, 0, // lifetime, size, angle
       // position
-      random(-owner.radius, owner.radius), random(-owner.radius, owner.radius), random(0, owner.height/2),
+      random(-owner.radius, owner.radius), random(-owner.radius, owner.radius), random(0, owner.height),
       0, 0, zv, // v
       0, 0, zv); // a
   }
