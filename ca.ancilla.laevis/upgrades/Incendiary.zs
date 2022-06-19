@@ -68,7 +68,7 @@ class ::Pyre::Aux : Actor {
   }
   States {
     Spawn:
-      FIRE ABABCBCDCDEDEFEFGH 7 IgniteNearby();
+      LFIR ABABCBCDCDEDEFEFGH 7 IgniteNearby();
       STOP;
   }
 }
