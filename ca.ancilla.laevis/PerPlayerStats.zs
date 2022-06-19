@@ -222,7 +222,7 @@ class ::PerPlayerStats : ::Force {
         console.printf("You are now level %d!", level);
         owner.A_SetBlend("FF FF FF", 0.8, 40);
         upgrades.Add("::Upgrade::Resistance");
-        upgrades.Add("::Upgrade::DirectDamage");
+        upgrades.Add("::Upgrade::Damage");
       }
 
       // Do some cleanup.
@@ -264,6 +264,11 @@ class ::PerPlayerStats : ::Force {
     if (shot && shot.bINCOMBAT) return;
     upgrades.OnDamageReceived(owner, shot, attacker, damage);
     GetOrCreateInfoForCurrentWeapon().upgrades.OnDamageReceived(owner, shot, attacker, damage);
+  }
+
+  void OnKill(Actor shot, Actor target) {
+    upgrades.OnKill(owner, shot, target);
+    GetOrCreateInfoForCurrentWeapon().upgrades.OnKill(owner, shot, target);
   }
 
   // Apply player level-up bonuses whenever the player deals or receives damage.

@@ -31,9 +31,11 @@ local debug = false;
 for line in io.lines(src) do
   if line:match('^#namespace') then
     ns = assert(line:match('^#namespace (%S+);'), "malformed namespace directive: "..line)
+    table.insert(lines, '')
   elseif line:match('^#debug on') then
     -- TODO: allow enabling debug on ranges of lines rather than per-file
     debug = true
+    table.insert(lines, '')
   elseif line:match('^#include "%./(.*)"') then
     path = line:match('^#include "%./(.*)"')
     line = ('#include "%s%s"'):format(dirname, path)
@@ -53,7 +55,7 @@ src = table.concat(lines, '\n')
 if debug then
   src = src:gsub('DEBUG(%b())', 'console.printf%1')
 else
-  src = src:gsub('DEBUG%b();%s*', '')
+  src = src:gsub('%s*DEBUG%b();', function(s) return (s:gsub('\n', '\n//')) end)
 end
 
 dst = assert(io.open(dst, 'wb')):write(src)

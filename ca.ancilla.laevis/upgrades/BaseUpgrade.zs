@@ -53,6 +53,10 @@ class ::BaseUpgrade : Object play {
     return;
   }
 
+  virtual void OnKill(Actor pawn, Actor shot, Actor target) {
+    return;
+  }
+
   // INTERNAL DETAILS //
   string GetName() const {
     return StringTable.Localize("$"..self.GetClassName().."_Name");
@@ -65,10 +69,11 @@ class ::BaseUpgrade : Object play {
   static ::BaseUpgrade GenerateUpgradeFor(Actor act) {
     static const string UpgradeNames[] = {
       "::Damage",
+      "::FastShots",
       "::HomingShots",
       "::IncendiaryShots",
       "::PoisonShots",
-      "::FastShots",
+      "::Pyre",
       "::Resistance"
     };
 

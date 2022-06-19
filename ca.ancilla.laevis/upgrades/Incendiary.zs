@@ -1,3 +1,4 @@
+
 #namespace TFLV::Upgrade;
 #debug on
 
@@ -10,14 +11,14 @@ class ::IncendiaryShots : ::BaseUpgrade {
     // an amount.
     // We may end up using Spawn() to create the item, set the amount,
     // then item.TryPickup(target).
-    let fire = ::IncendiaryFire(target.GiveInventoryType("::IncendiaryFire"));
+    let fire = ::IncendiaryShots::Fire(target.GiveInventoryType("::IncendiaryShots::Fire"));
     if (fire && fire.owner) {
       fire.target = player;
     }
   }
 }
 
-class ::IncendiaryFire : ::Dot {
+class ::IncendiaryShots::Fire : ::Dot {
   uint totalDamage;
   uint maxDamage;
 
@@ -46,8 +47,28 @@ class ::IncendiaryFire : ::Dot {
   // in order to differentiate between new stacks applied by getting shot
   // and new stacks applied by fire spread
   override uint GetDamage() {
+    // TODO: bring target down to half health even if they heal
     uint damage = min(amount, maxDamage - totalDamage);
     totalDamage += damage;
     return damage;
+  }
+}
+
+class ::Pyre : ::BaseUpgrade {
+  override void OnKill(Actor player, Actor shot, Actor target) {
+    target.Spawn("::Pyre::Aux", target.pos);
+  }
+}
+
+class ::Pyre::Aux : Actor {
+  void IgniteNearby() {
+    // TODO: give an amount based on how much the victim had when it died
+    // TODO: don't give multiple fires to enemies that are already burning
+    A_RadiusGive("::IncendiaryShots::Fire", 100, RGF_MONSTERS, 1);
+  }
+  States {
+    Spawn:
+      FIRE ABABCBCDCDEDEFEFGH 7 IgniteNearby();
+      STOP;
   }
 }

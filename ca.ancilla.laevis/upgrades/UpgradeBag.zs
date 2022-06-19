@@ -77,4 +77,10 @@ class ::UpgradeBag : Object play {
       upgrades[i].OnDamageReceived(pawn, shot, attacker, damage);
     }
   }
+
+  void OnKill(Actor pawn, Actor shot, Actor target) {
+    for (uint i = 0; i < upgrades.Size(); ++i) {
+      upgrades[i].OnKill(pawn, shot, target);
+    }
+  }
 }

@@ -147,9 +147,12 @@ class TFLV_EventHandler : StaticEventHandler {
     DEBUG("WTD: %s inflictor=%s source=%s damage=%d type=%s flags=%X",
       SafeCls(evt.thing), SafeCls(evt.inflictor), SafeCls(evt.damagesource),
       evt.damage, evt.damagetype, evt.damageflags);
-    if (evt.damagesource == players[consoleplayer].mo) {
+    if (evt.damagesource == players[consoleplayer].mo && evt.thing.bISMONSTER) {
       TFLV_PerPlayerStats.GetStatsFor(PlayerPawn(evt.damagesource)).OnDamageDealt(
         evt.inflictor, evt.thing, evt.damage);
+      if (evt.thing.health <= 0)
+        TFLV_PerPlayerStats.GetStatsFor(PlayerPawn(evt.damagesource)).OnKill(
+          evt.inflictor, evt.thing);
     } else if (evt.thing == players[consoleplayer].mo) {
       TFLV_PerPlayerStats.GetStatsFor(PlayerPawn(evt.thing)).OnDamageReceived(
         evt.inflictor, evt.thing, evt.damage);
@@ -172,4 +175,3 @@ class TFLV_EventHandler : StaticEventHandler {
       thing.tracer ? thing.tracer.GetClassName() : Name("NONE"));
   }
 }
-
