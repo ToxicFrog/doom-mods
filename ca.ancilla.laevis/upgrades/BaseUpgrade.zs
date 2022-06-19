@@ -69,6 +69,7 @@ class ::BaseUpgrade : Object play {
   static ::BaseUpgrade GenerateUpgradeFor(Actor act) {
     static const string UpgradeNames[] = {
       "::Damage",
+      "::ExplosiveShots",
       "::FastShots",
       "::HomingShots",
       "::IncendiaryShots",

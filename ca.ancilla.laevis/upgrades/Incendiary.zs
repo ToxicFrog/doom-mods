@@ -64,6 +64,7 @@ class ::Pyre::Aux : Actor {
   void IgniteNearby() {
     // TODO: give an amount based on how much the victim had when it died
     // TODO: don't give multiple fires to enemies that are already burning
+    // TODO: properly transfer pointers
     A_RadiusGive("::IncendiaryShots::Fire", 100, RGF_MONSTERS, 1);
   }
   States {
