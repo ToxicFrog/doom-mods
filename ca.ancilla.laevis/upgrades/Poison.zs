@@ -18,7 +18,7 @@ class ::Poison : ::Dot {
   }
 
   override string GetParticleColour() {
-    string colours[] = { "green", "green1", "black" };
+    static const string colours[] = { "green", "green1", "black" };
     return colours[random(0,2)];
   }
 

@@ -33,7 +33,7 @@ class ::IncendiaryFire : ::Dot {
   }
 
   override string GetParticleColour() {
-    string colours[] = { "red", "orange", "yellow" };
+    static const string colours[] = { "red", "orange", "yellow" };
     return colours[random(0,2)];
   }
 
