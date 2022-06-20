@@ -87,8 +87,6 @@ class ::WeaponInfo : Object play {
   }
 
   void CycleEffect() {
-    //if (effects.size() <= 1) return;
-
     SelectEffect((currentEffect + 1) % effects.size());
   }
 

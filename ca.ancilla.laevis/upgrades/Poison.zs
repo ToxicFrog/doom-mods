@@ -1,13 +1,9 @@
 #namespace TFLV::Upgrade;
-#debug on
 
 class ::PoisonShots : ::BaseUpgrade {
   override void OnDamageDealt(Actor player, Actor shot, Actor target, int damage) {
     if (!shot) return;
-    let poison = ::Poison(target.GiveInventoryType("::Poison"));
-    if (poison && poison.owner) {
-      poison.target = player;
-    }
+    ::Dot.GiveStacks(player, target, "::Poison", level*10);
   }
 }
 
@@ -31,6 +27,7 @@ class ::Poison : ::Dot {
       Destroy();
       return 0;
     }
+    DEBUG("poison stacks=%d damage=%d", amount, (amount-1)/5);
     return (amount--)/5;
   }
 }

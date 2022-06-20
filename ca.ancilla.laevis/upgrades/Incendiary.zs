@@ -1,20 +1,9 @@
-
 #namespace TFLV::Upgrade;
-#debug on
 
 class ::IncendiaryShots : ::BaseUpgrade {
   override void OnDamageDealt(Actor player, Actor shot, Actor target, int damage) {
     if (!shot) return;
-    // TODO: scale amount of fire with level.
-    // We can't use GiveInventory() for this easily, because it doesn't return a
-    // pointer to the added inventory. But GiveInventoryType() doesn't let us specify
-    // an amount.
-    // We may end up using Spawn() to create the item, set the amount,
-    // then item.TryPickup(target).
-    let fire = ::IncendiaryShots::Fire(target.GiveInventoryType("::IncendiaryShots::Fire"));
-    if (fire && fire.owner) {
-      fire.target = player;
-    }
+    ::Dot.GiveStacks(player, target, "::IncendiaryShots::Fire", level);
   }
 }
 
@@ -56,20 +45,28 @@ class ::IncendiaryShots::Fire : ::Dot {
 
 class ::Pyre : ::BaseUpgrade {
   override void OnKill(Actor player, Actor shot, Actor target) {
-    target.Spawn("::Pyre::Aux", target.pos);
+    // target.Spawn("::Pyre::Aux", target.pos);
+    bool ok; Actor act;
+    [ok, act] = shot.A_SpawnItemEx(
+      "::Pyre::Aux",
+      0, 0, 0, 0, 0, 0, 0,
+      SXF_TRANSFERPOINTERS);
+    let pyre = ::Pyre::Aux(act);
+    pyre.level = level;
   }
 }
 
 class ::Pyre::Aux : Actor {
-  void IgniteNearby() {
-    // TODO: give an amount based on how much the victim had when it died
-    // TODO: don't give multiple fires to enemies that are already burning
-    // TODO: properly transfer pointers
-    A_RadiusGive("::IncendiaryShots::Fire", 100, RGF_MONSTERS, 1);
+  uint level;
+
+  override int DoSpecialDamage(Actor target, int damage, Name damagetype) {
+    DEBUG("DoSpecialDamage: %s", target.GetClassName());
+    ::Dot.GiveStacks(self.target, target, "::IncendiaryShots::Fire", 1, level);
+    return 0;
   }
   States {
     Spawn:
-      LFIR ABABCBCDCDEDEFEFGH 7 IgniteNearby();
+      LFIR ABABCBCDCDEDEFEFGH 7 A_Explode(100, 100, XF_NOSPLASH, false, 100);
       STOP;
   }
 }

@@ -5,7 +5,6 @@
 // They can also override TickDot(), which is the superfunction that calls
 // GetDamage().
 #namespace TFLV::Upgrade;
-#debug on
 
 class ::Dot : Inventory {
   Default {
@@ -25,6 +24,26 @@ class ::Dot : Inventory {
   override void PostBeginPlay() {
     if (!owner) { Destroy(); return; }
     SetStateLabel("Dot");
+  }
+
+  // Give count stacks of cls to the target, but don't let their total amount
+  // exceed max. Assign the dot's parent (via the target pointer) to owner, so
+  // that damage it deals is properly attributed.
+  static void GiveStacks(Actor owner, Actor target, string cls, uint count, uint max = 0x7FFFFFFF) {
+    DEBUG("GiveStacks: %d of %s", count, cls);
+    Inventory item = target.FindInventory(cls);
+    if (item) {
+      item.amount = min(item.amount + count, max);
+      DEBUG(" -> amount=%d", item.amount);
+    } else {
+      item = target.GiveInventoryType(cls);
+      if (item) {
+        item.target = owner;
+        item.amount = min(count, max);
+        DEBUG(" -> amount=%d", item.amount);
+      }
+      DEBUG(" -> failed to GiveInventoryType!");
+    }
   }
 
   void SpawnParticles() {
