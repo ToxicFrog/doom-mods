@@ -10,8 +10,8 @@ class ::ExplosiveShots : ::BaseUpgrade {
       SXF_TRANSFERPOINTERS);
     let boom = ::ExplosiveShots::Boom(act);
     console.printf("Spawning Boom, damage=%d", damage/2);
-    boom.damage = damage/2;
-    boom.radius = 200 + 50 * level;
+    boom.damage = 10 + 5*level;
+    boom.radius = 64 + 32 * level;
   }
 }
 
@@ -29,8 +29,11 @@ class ::ExplosiveShots::Boom : Actor {
   States {
     Spawn:
       TNT1 A 1;
-      LFBX A 7 A_Explode(damage, radius);
-      LFBX BC 7;
+      TNT1 A 0 A_Explode(damage, radius);
+      TNT1 A 0 A_AlertMonsters();
+      TNT1 A 0 A_StartSound("imp/shotx", CHAN_WEAPON, CHANF_OVERLAP, 1, 0.5);
+      TNT1 A 0 A_StartSound("imp/shotx", CHAN_7, CHANF_OVERLAP, 0.1, 0.01);
+      LFBX ABC 7;
       STOP;
   }
 }
