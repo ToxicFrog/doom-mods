@@ -73,4 +73,9 @@ class TFLV_Util : Object {
     string suffix = effect.Mid(effect.RightIndexOf("_")+1);
     return StringTable.Localize("$LD_FX_DESCR_"..suffix);
   }
+
+  static string SafeCls(Actor act) {
+    if (act) return act.GetClassName();
+    return "null";
+  }
 }

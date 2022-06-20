@@ -1,8 +1,9 @@
 // Event handler for Laevis.
 // Handles giving players a stat tracking item when they spawn in, and assigning
 // XP to their currently wielded weapon when they damage something.
+#namespace TFLV;
 
-class TFLV_EventHandler : StaticEventHandler {
+class ::EventHandler : StaticEventHandler {
   bool legendoomInstalled;
 
   override void OnRegister() {
@@ -22,14 +23,14 @@ class TFLV_EventHandler : StaticEventHandler {
   override void PlayerSpawned(PlayerEvent evt) {
     PlayerPawn pawn = players[evt.playerNumber].mo;
     if (pawn) {
-      let stats = TFLV_PerPlayerStats.GetStatsFor(pawn);
-      if (!stats) stats = TFLV_PerPlayerStats(pawn.GiveInventoryType("TFLV_PerPlayerStats"));
+      let stats = ::PerPlayerStats.GetStatsFor(pawn);
+      if (!stats) stats = ::PerPlayerStats(pawn.GiveInventoryType("::PerPlayerStats"));
       stats.legendoomInstalled = legendoomInstalled;
       stats.SetStateLabel("Spawn");
     }
   }
 
-  ui void DrawXPGauge(TFLV_CurrentStats stats) {
+  ui void DrawXPGauge(::CurrentStats stats) {
     let w = screen.GetWidth();
     let h = screen.GetHeight();
 
@@ -72,12 +73,12 @@ class TFLV_EventHandler : StaticEventHandler {
     if (!pawn || !players[consoleplayer].ReadyWeapon) {
       return;
     }
-    if (TFLV_Settings.screenblocks() != 11) {
+    if (::Settings.screenblocks() != 11) {
       return;
     }
 
-    TFLV_CurrentStats stats;
-    if (TFLV_PerPlayerStats.GetStatsFor(pawn).GetCurrentStats(stats))
+    ::CurrentStats stats;
+    if (::PerPlayerStats.GetStatsFor(pawn).GetCurrentStats(stats))
       DrawXPGauge(stats);
   }
 
@@ -87,30 +88,30 @@ class TFLV_EventHandler : StaticEventHandler {
   }
 
   void ShowInfoConsole(PlayerPawn pawn) {
-    TFLV_CurrentStats stats;
-    if (!TFLV_PerPlayerStats.GetStatsFor(pawn).GetCurrentStats(stats)) return;
+    ::CurrentStats stats;
+    if (!::PerPlayerStats.GetStatsFor(pawn).GetCurrentStats(stats)) return;
     console.printf("Player:\n    Level %d (%d/%d XP)",
       stats.plvl, stats.pxp, stats.pmax);
     stats.pupgrades.DumpToConsole("    ");
     console.printf("%s:\n    Level %d (%d/%d XP)",
       stats.wname, stats.wlvl, stats.wxp, stats.wmax);
     stats.wupgrades.DumpToConsole("    ");
-    TFLV_WeaponInfo info = TFLV_PerPlayerStats.GetStatsFor(pawn).GetInfoForCurrentWeapon();
+    ::WeaponInfo info = ::PerPlayerStats.GetStatsFor(pawn).GetInfoForCurrentWeapon();
     console.printf("    effectSlots: %d\n    maxRarity: %d\n    canReplace: %d",
       info.effectSlots, info.maxRarity, info.canReplaceEffects);
     for (uint i = 0; i < info.effects.size(); ++i) {
       console.printf("    %s (%s)",
-        TFLV_Util.GetEffectTitle(info.effects[i]),
-        TFLV_Util.GetEffectDesc(info.effects[i]));
+        ::Util.GetEffectTitle(info.effects[i]),
+        ::Util.GetEffectDesc(info.effects[i]));
     }
   }
 
   void CycleLDEffect(PlayerPawn pawn) {
-    TFLV_PerPlayerStats.GetStatsFor(pawn).GetInfoForCurrentWeapon().CycleEffect();
+    ::PerPlayerStats.GetStatsFor(pawn).GetInfoForCurrentWeapon().CycleEffect();
   }
 
   void ChooseLevelUpOption(PlayerPawn pawn, int index) {
-    let stats = TFLV_PerPlayerStats.GetStatsFor(pawn);
+    let stats = ::PerPlayerStats.GetStatsFor(pawn);
     let giver = stats.currentEffectGiver;
     if (!giver) {
       console.printf("error: laevis_choose_level_up_option without active level up menu");
@@ -120,7 +121,7 @@ class TFLV_EventHandler : StaticEventHandler {
   }
 
   void SelectLDEffect(PlayerPawn pawn, int index) {
-    TFLV_PerPlayerStats.GetStatsFor(pawn).GetInfoForCurrentWeapon().SelectEffect(index);
+    ::PerPlayerStats.GetStatsFor(pawn).GetInfoForCurrentWeapon().SelectEffect(index);
   }
 
   override void NetworkProcess(ConsoleEvent evt) {
@@ -144,17 +145,19 @@ class TFLV_EventHandler : StaticEventHandler {
   }
 
   override void WorldThingDamaged(WorldEvent evt) {
-    DEBUG("WTD: %s inflictor=%s source=%s damage=%d type=%s flags=%X",
-      SafeCls(evt.thing), SafeCls(evt.inflictor), SafeCls(evt.damagesource),
-      evt.damage, evt.damagetype, evt.damageflags);
+    DEBUG("WTD: %s inflictor=%s source=%s damage=%d type=%s flags=%X, hp=%d",
+      ::Util.SafeCls(evt.thing), ::Util.SafeCls(evt.inflictor), ::Util.SafeCls(evt.damagesource),
+      evt.damage, evt.damagetype, evt.damageflags, evt.thing.health);
     if (evt.damagesource == players[consoleplayer].mo && evt.thing.bISMONSTER) {
-      TFLV_PerPlayerStats.GetStatsFor(PlayerPawn(evt.damagesource)).OnDamageDealt(
+      ::PerPlayerStats.GetStatsFor(PlayerPawn(evt.damagesource)).OnDamageDealt(
         evt.inflictor, evt.thing, evt.damage);
-      if (evt.thing.health <= 0)
-        TFLV_PerPlayerStats.GetStatsFor(PlayerPawn(evt.damagesource)).OnKill(
+      if (evt.thing.health <= 0) {
+        DEBUG("OnKill!");
+        ::PerPlayerStats.GetStatsFor(PlayerPawn(evt.damagesource)).OnKill(
           evt.inflictor, evt.thing);
+      }
     } else if (evt.thing == players[consoleplayer].mo) {
-      TFLV_PerPlayerStats.GetStatsFor(PlayerPawn(evt.thing)).OnDamageReceived(
+      ::PerPlayerStats.GetStatsFor(PlayerPawn(evt.thing)).OnDamageReceived(
         evt.inflictor, evt.thing, evt.damage);
     }
   }
@@ -164,7 +167,7 @@ class TFLV_EventHandler : StaticEventHandler {
     if (thing.bMISSILE && thing.target == players[consoleplayer].mo) {
       // If it's a projectile (MISSILE flag is set) and target=player, the player
       // just fired a shot. This is our chance to fiddle with its flags and whatnot.
-      TFLV_PerPlayerStats.GetStatsFor(thing.target).OnProjectileCreated(thing);
+      ::PerPlayerStats.GetStatsFor(thing.target).OnProjectileCreated(thing);
     }
 
     DEBUG("WTS: %s (owner=NONE) (master=%s) (target=%s) (tracer=%s)",

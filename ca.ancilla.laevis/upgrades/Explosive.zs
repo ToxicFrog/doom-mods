@@ -4,13 +4,10 @@ class ::ExplosiveShots : ::BaseUpgrade {
   override void OnDamageDealt(Actor pawn, Actor shot, Actor target, int damage) {
     bool ok;
     Actor act;
-    [ok, act] = shot.A_SpawnItemEx(
-      "::ExplosiveShots::Boom",
-      0, 0, 0, 0, 0, 0, 0,
-      SXF_TRANSFERPOINTERS);
+    [ok, act] = shot.A_SpawnItemEx("::ExplosiveShots::Boom");
     let boom = ::ExplosiveShots::Boom(act);
-    console.printf("Spawning Boom, damage=%d", damage/2);
-    boom.damage = 10 + 5*level;
+    boom.target = pawn;
+    boom.damage = 10 + 5 * level;
     boom.radius = 64 + 32 * level;
   }
 }
@@ -24,6 +21,7 @@ class ::ExplosiveShots::Boom : Actor {
     +NOBLOCKMAP;
     +NOGRAVITY;
     +MISSILE;
+    +INCOMBAT;
   }
 
   States {
