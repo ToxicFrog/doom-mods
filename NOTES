@@ -149,23 +149,10 @@ More complicated upgrades:
   in OnDamageDealt
 
 Elemental upgrades:
-- all of these would work by putting something in the target's inventory with a
-  custom HandlePickup (to handle stacking) and state loop (to apply the DOT). Also
-  need to figure out a way to add particle effects or something to indicate what
-  effects are happening.
-- poison (DoT, stacks increase both damage and duration)
-  gzDoom has an existing poison effect but I might want to roll my own
-  weak damage and short duration, but stacks increase both
-  Backpack Hero style, each time it ticks it does damage == stacks and then decreases stacks
 - bleeding (DoT, damage based on initial hit, subsequent hits reset duration?)
   enemies with blood only (-NOBLOOD). -- this means it'll effect everything in Doom
   but be less effective in (say) Strife?
   maybe shelve this until I can nail the design down more
-- fire (DoT, damage falls off as health reduces, subsequent hits increase speed)
-  burns until enemy is down to (say) 1/3rd health, then burns out
-  more damage the more health the enemy has, but fairly slow even at full health;
-  stacks increase damage/s (but not total damage)
-  spreads to nearby enemies at (say) 1/2 the stacks of the spreader
 - acid (DoT, damage *increases* as health reduces, subsequent hits increase duration)
   does nothing at full health, damage increases as target loses health
   more hits do not increase damage but do increase duration
@@ -173,6 +160,20 @@ Elemental upgrades:
   put an item in the inventory that keeps forcing them into their "pain" state every tic
 ! ice (slows enemy briefly, stacks increase duration)
   stun/slow turn out to be really hard!
+
+Upgrades inspired by DoomRL:
+- increase max health
+- increased speed
+- flat or % damage reduction
+- flat or % damage increase
+- fast weapon switching
+- berserk after successful hits/kills
+- show secrets/monsters/items/etc on map
+- lifeleech
+- massive damage resistance when wielding melee
+- damage type modifications (e.g. shrapnel -> AP)
+- ammoleech (on kill?)
+- damage resistance while firing
 
 ## Applying upgrades
 
@@ -194,3 +195,9 @@ Possibilities:
 DONTMORPH (cannot be Polymorphed)
 NOTDMATCH (don't spawn in deathmatch games)
 INCOMBAT (strife flag used for the dialogue system)
+
+## OnApply() based mods
+
+This is stuff like knockback, increased health, etc that requires making a permanent change to the player or the weapon.
+For these, we record a separate level and applied_level and default the latter to 0.
+In OnApply(), we figure out how much is currently applied based on the applied_level, then apply the difference between that and the current level.

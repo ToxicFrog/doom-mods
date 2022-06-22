@@ -6,6 +6,10 @@ class ::HomingShots : ::BaseUpgrade {
     aux.level = level;
     aux.SetStateLabel("Homing");
   }
+
+  override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
+    return info.IsProjectileWeapon() && info.upgrades.Level("::HomingShots") < 4;
+  }
 }
 
 class ::HomingShots::Aux : TFLV::Force {

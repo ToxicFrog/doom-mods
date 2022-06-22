@@ -257,6 +257,14 @@ class ::PerPlayerStats : ::Force {
   void OnDamageDealt(Actor shot, Actor target, uint damage) {
     if (shot && shot.bINCOMBAT) return;
     upgrades.OnDamageDealt(owner, shot, target, damage);
+    // Record whether it was a missile or a projectile, for the purposes of
+    // deciding what kinds of upgrades to spawn.
+    let info = GetOrCreateInfoForCurrentWeapon();
+    if (shot.bMISSILE) {
+      info.projectile_shots++;
+    } else {
+      info.hitscan_shots++;
+    }
     GetOrCreateInfoForCurrentWeapon().upgrades.OnDamageDealt(owner, shot, target, damage);
   }
 

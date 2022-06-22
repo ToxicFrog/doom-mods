@@ -10,6 +10,10 @@ class ::ExplosiveShots : ::BaseUpgrade {
     boom.damage = 10 + 5 * level;
     boom.radius = 64 + 32 * level;
   }
+
+  override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
+    return info.IsHitscanWeapon();
+  }
 }
 
 class ::ExplosiveShots::Boom : Actor {

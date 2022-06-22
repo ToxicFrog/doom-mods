@@ -8,6 +8,20 @@ class ::BaseUpgrade : Object play {
   }
 
   // VIRTUAL FUNCTIONS //
+
+  // Upgrade selection functions.
+  // These will be called when generating an upgrade to see if the upgrade should
+  // be added to the pool.
+  // These can be used to restrict some upgrades to player-only or weapon-only, or
+  // require certain prerequisite upgrades or a certain minimum level or the like.
+  virtual bool IsSuitableForPlayer(TFLV::PerPlayerStats stats) {
+    return false;
+  }
+  virtual bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
+    return false;
+  }
+
+  // Event handler functions.
   // Subclasses must override at least one of these to have any effect!
 
   // Called when the player fires a projectile shot. Note that this is not called

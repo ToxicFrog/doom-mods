@@ -30,6 +30,15 @@ class ::UpgradeBag : Object play {
     return upgrade;
   }
 
+  uint Level(string cls) {
+    for (uint i = 0; i < upgrades.Size(); ++i) {
+      if (upgrades[i].GetClassName() == cls) {
+        return upgrades[i].level;
+      }
+    }
+    return 0;
+  }
+
   void DumpToConsole(string prefix) {
     for (uint i = 0; i < upgrades.Size(); ++i) {
       console.printf("%s%s (%d): %s", prefix,

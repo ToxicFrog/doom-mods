@@ -18,12 +18,16 @@ class ::WeaponUpgradeGiver : ::UpgradeGiver {
     return false;
   }
 
-  // TODO: we might want to force the first upgrade to always be a damage bonus.
+  // TODO: we might want to force the first upgrade to always be a damage bonus
+  // or some other simple, generally useful upgrade.
   void CreateUpgradeCandidates() {
     while (candidates.size() < 3) {
       let upgrade = ::Upgrade::BaseUpgrade.GenerateUpgradeFor(wielded.weapon);
-      if (!AlreadyHasUpgrade(upgrade))
+      if (upgrade.IsSuitableForWeapon(wielded) && !AlreadyHasUpgrade(upgrade)) {
         candidates.push(upgrade);
+      } else {
+        upgrade.Destroy();
+      }
     }
   }
 

@@ -20,6 +20,11 @@ class ::WeaponInfo : Object play {
   uint XP;
   uint maxXP;
   uint level;
+  // Tracking for how much this gun does hitscans vs. projectiles.
+  // Use doubles rather than uints so that at high values it saturates rather
+  // than overflowing.
+  double hitscan_shots;
+  double projectile_shots;
 
   // Legendoom integration fields.
   uint effectSlots;
@@ -48,6 +53,23 @@ class ::WeaponInfo : Object play {
     } else {
       effectSlots = 0;
     }
+  }
+
+  // Heuristics for guessing whether this is a projectile or hitscan weapon.
+  // Note that for some weapons, both of these may return true, e.g. in the case
+  // of a weapon that has a hitscan primary and projectile alt-fire that both
+  // get used frequency.
+  // The heuristic we use is that if more than 20% of the attacks made with this
+  // weapon are hitscan, it's a hitscan weapon, and similarly for projectile attacks.
+  // We have this threshold to limit false positives in the case of e.g. mods
+  // that add offhand grenades that get attributed to the current weapon, or
+  // weapons that have a projectile alt-fire that is used only very rarely.
+  bool IsHitscanWeapon() {
+    return hitscan_shots / 4 > projectile_shots;
+  }
+
+  bool IsProjectileWeapon() {
+    return projectile_shots / 4 > hitscan_shots;
   }
 
   bool GunRarityMatchesSetting(::WhichGuns setting, ::LD_Rarity rarity) {

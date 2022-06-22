@@ -5,6 +5,10 @@ class ::IncendiaryShots : ::BaseUpgrade {
     if (!shot) return;
     ::Dot.GiveStacks(player, target, "::IncendiaryShots::Fire", level);
   }
+
+  override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
+    return true;
+  }
 }
 
 // Fire will try to do this proportion of the target's health in damage.
@@ -87,7 +91,11 @@ class ::Pyre : ::BaseUpgrade {
       0, 0, 0, 0, 0, 0, 0,
       SXF_TRANSFERPOINTERS);
     let pyre = ::Pyre::Aux(act);
-    pyre.level = level;
+    pyre.level = level; // TODO: scale with amount of burning on the target
+  }
+
+  override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
+    return info.upgrades.Level("::IncendiaryShots") > 0;
   }
 }
 

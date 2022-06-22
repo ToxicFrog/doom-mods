@@ -5,6 +5,10 @@ class ::PoisonShots : ::BaseUpgrade {
     if (!shot) return;
     ::Dot.GiveStacks(player, target, "::Poison", level*10);
   }
+
+  override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
+    return true;
+  }
 }
 
 class ::Poison : ::Dot {
