@@ -148,7 +148,9 @@ class ::EventHandler : StaticEventHandler {
     DEBUG("WTD: %s inflictor=%s source=%s damage=%d type=%s flags=%X, hp=%d",
       ::Util.SafeCls(evt.thing), ::Util.SafeCls(evt.inflictor), ::Util.SafeCls(evt.damagesource),
       evt.damage, evt.damagetype, evt.damageflags, evt.thing.health);
-    if (evt.damagesource == players[consoleplayer].mo && evt.thing.bISMONSTER) {
+    if (evt.damagesource == players[consoleplayer].mo
+        && evt.thing.bISMONSTER
+        && evt.thing != evt.damagesource) {
       let stats = ::PerPlayerStats.GetStatsFor(PlayerPawn(evt.damagesource));
       stats.OnDamageDealt(evt.inflictor, evt.thing, min(evt.damage, evt.thing.health));
       if (evt.thing.health <= 0) {
