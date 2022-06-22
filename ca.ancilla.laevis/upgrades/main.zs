@@ -5,5 +5,6 @@
 #include "./Explosive.zsc"
 #include "./HomingShots.zsc"
 #include "./Incendiary.zsc"
+#include "./Leech.zsc"
 #include "./Poison.zsc"
 #include "./Simpleupgrades.zsc"

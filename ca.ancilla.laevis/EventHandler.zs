@@ -149,12 +149,10 @@ class ::EventHandler : StaticEventHandler {
       ::Util.SafeCls(evt.thing), ::Util.SafeCls(evt.inflictor), ::Util.SafeCls(evt.damagesource),
       evt.damage, evt.damagetype, evt.damageflags, evt.thing.health);
     if (evt.damagesource == players[consoleplayer].mo && evt.thing.bISMONSTER) {
-      ::PerPlayerStats.GetStatsFor(PlayerPawn(evt.damagesource)).OnDamageDealt(
-        evt.inflictor, evt.thing, evt.damage);
+      let stats = ::PerPlayerStats.GetStatsFor(PlayerPawn(evt.damagesource));
+      stats.OnDamageDealt(evt.inflictor, evt.thing, min(evt.damage, evt.thing.health));
       if (evt.thing.health <= 0) {
-        DEBUG("OnKill!");
-        ::PerPlayerStats.GetStatsFor(PlayerPawn(evt.damagesource)).OnKill(
-          evt.inflictor, evt.thing);
+        stats.OnKill(evt.inflictor, evt.thing);
       }
     } else if (evt.thing == players[consoleplayer].mo) {
       ::PerPlayerStats.GetStatsFor(PlayerPawn(evt.thing)).OnDamageReceived(
@@ -172,9 +170,8 @@ class ::EventHandler : StaticEventHandler {
 
     DEBUG("WTS: %s (owner=NONE) (master=%s) (target=%s) (tracer=%s)",
       thing.GetClassName(),
-      // thing.owner ? thing.owner.GetClassName() : "NONE",
-      thing.master ? thing.master.GetClassName() : Name("NONE"),
-      thing.target ? thing.target.GetClassName() : Name("NONE"),
-      thing.tracer ? thing.tracer.GetClassName() : Name("NONE"));
+      ::Util.SafeCls(thing.master),
+      ::Util.SafeCls(thing.target),
+      ::Util.SafeCls(thing.tracer));
   }
 }

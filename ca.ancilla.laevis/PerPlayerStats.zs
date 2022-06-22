@@ -221,8 +221,8 @@ class ::PerPlayerStats : ::Force {
         ++level;
         console.printf("You are now level %d!", level);
         owner.A_SetBlend("FF FF FF", 0.8, 40);
-        upgrades.Add("::Upgrade::Resistance");
-        upgrades.Add("::Upgrade::Damage");
+        let giver = ::PlayerUpgradeGiver(owner.GiveInventoryType("::PlayerUpgradeGiver"));
+        giver.stats = self;
       }
 
       // Do some cleanup.

@@ -1,15 +1,15 @@
-// A pseudoitem that, when given to the player, gives them an upgrade suitable
-// to their currently wielded weapon.
+// A pseudoitem that, when given to the player, gives them a suitable weapon-
+// independent upgrade.
 #namespace TFLV;
 
-class ::WeaponUpgradeGiver : ::UpgradeGiver {
-  TFLV_WeaponInfo wielded;
+class ::PlayerUpgradeGiver : ::UpgradeGiver {
+  ::PerPlayerStats stats;
 
   // TODO: we might want to force the first upgrade to always be a damage bonus
   // or some other simple, generally useful upgrade.
   override void CreateUpgradeCandidates() {
     while (candidates.size() < 3) {
-      let upgrade = ::Upgrade::BaseUpgrade.GenerateUpgradeForWeapon(wielded);
+      let upgrade = ::Upgrade::BaseUpgrade.GenerateUpgradeForPlayer(stats);
       if (!AlreadyHasUpgrade(upgrade)) {
         candidates.push(upgrade);
       } else {
@@ -22,9 +22,8 @@ class ::WeaponUpgradeGiver : ::UpgradeGiver {
     if (index < 0) {
       console.printf("Level-up rejected!");
     } else {
-      console.printf("Your %s gained a level of %s!",
-        wielded.weapon.GetTag(), candidates[index].GetName());
-      wielded.upgrades.AddUpgrade(candidates[index]);
+      console.printf("You gained a level of %s!", candidates[index].GetName());
+      stats.upgrades.AddUpgrade(candidates[index]);
     }
     Destroy();
   }
@@ -34,7 +33,7 @@ class ::WeaponUpgradeGiver : ::UpgradeGiver {
   // times.
   States {
     ChooseUpgrade:
-      TNT1 A 1 AwaitChoice("LaevisWeaponLevelUpMenu");
+      TNT1 A 1 AwaitChoice("LaevisPlayerLevelUpMenu");
       LOOP;
     Chosen:
       TNT1 A 0 InstallUpgrade(chosen);

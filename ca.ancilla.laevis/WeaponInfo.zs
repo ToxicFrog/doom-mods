@@ -174,11 +174,8 @@ class ::WeaponInfo : Object play {
     XP = XP - maxXP;
     maxXP = GetXPForLevel(level+1);
     weapon.owner.A_SetBlend("00 80 FF", 0.8, 40);
-    // TODO: randomly generate a set of appropriate upgrades and have the player choose.
     // TODO: upgrades that modify the weapon's base stats should be activated here,
     // in some kind of ApplyUpgradesToWeapon() call.
-    // upgrades.Add("::Upgrade::DirectDamage");
-    // upgrades.Add("::Upgrade::PoisonShots");
     let giver = ::WeaponUpgradeGiver(weapon.owner.GiveInventoryType("::WeaponUpgradeGiver"));
     giver.wielded = self;
   }

@@ -80,21 +80,44 @@ class ::BaseUpgrade : Object play {
     return StringTable.Localize("$"..self.GetClassName().."_Desc");
   }
 
-  static ::BaseUpgrade GenerateUpgradeFor(Actor act) {
+  static ::BaseUpgrade GenerateUpgrade() {
     static const string UpgradeNames[] = {
+      "::Armour",
+      "::ArmourLeech",
       "::Damage",
       "::ExplosiveShots",
       "::FastShots",
       "::HomingShots",
       "::IncendiaryShots",
+      "::LifeLeech",
       "::PoisonShots",
       "::Pyre",
       "::Resistance"
     };
-
     let cls = UpgradeNames[random(0, UpgradeNames.Size()-1)];
-    let upgrade = ::BaseUpgrade(new(cls));
-    return upgrade;
+    return ::BaseUpgrade(new(cls));
+  }
+
+  static ::BaseUpgrade GenerateUpgradeForPlayer(TFLV::PerPlayerStats stats) {
+    ::BaseUpgrade upgrade = null;
+    while (upgrade == null) {
+      upgrade = GenerateUpgrade();
+      if (upgrade.IsSuitableForPlayer(stats)) return upgrade;
+      upgrade.Destroy();
+      upgrade = null;
+    }
+    return null; // unreachable
+  }
+
+  static ::BaseUpgrade GenerateUpgradeForWeapon(TFLV::WeaponInfo info) {
+    ::BaseUpgrade upgrade = null;
+    while (upgrade == null) {
+      upgrade = GenerateUpgrade();
+      if (upgrade.IsSuitableForWeapon(info)) return upgrade;
+      upgrade.Destroy();
+      upgrade = null;
+    }
+    return null; // unreachable
   }
 
 }

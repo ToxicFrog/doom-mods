@@ -34,3 +34,14 @@ class ::Resistance : ::BaseUpgrade {
     return true;
   }
 }
+
+class ::Armour : ::BaseUpgrade {
+  override double ModifyDamageReceived(Actor pawn, Actor shot, Actor attacker, double damage) {
+    damage = damage - self.level;
+    return damage < 2 ? 2 : damage;
+  }
+
+  override bool IsSuitableForPlayer(TFLV::PerPlayerStats stats) {
+    return true;
+  }
+}

@@ -11,14 +11,29 @@
 
 class ::UpgradeGiver : Inventory {
   int chosen;
+  array<::Upgrade::BaseUpgrade> candidates;
 
   Default {
     +Inventory.IgnoreSkill;
     +Inventory.Untossable;
   }
 
+  override void PostBeginPlay() {
+    CreateUpgradeCandidates();
+    SetStateLabel("ChooseUpgrade");
+  }
+
+  virtual void CreateUpgradeCandidates() {}
+
   override bool HandlePickup(Inventory item) {
     // Does not stack, ever.
+    return false;
+  }
+
+  bool AlreadyHasUpgrade(::Upgrade::BaseUpgrade upgrade) {
+    for (uint i = 0; i < candidates.size(); ++i) {
+      if (candidates[i].GetClassName() == upgrade.GetClassName()) return true;
+    }
     return false;
   }
 
