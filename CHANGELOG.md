@@ -1,7 +1,8 @@
-# 0.2alpha8
+# 0.2
 
-- Redesign the way weapon upgrades are stored and applied to support upgrades
-  other than damage/resistance bonuses
+- Builtin upgrades that do not require Legendoom
+- Leveling up now gives you a choice of three upgrades from that list
+- LD is still supported and weapons can have a mix of builtin and LD upgrades
 
 # 0.1alpha7
 
