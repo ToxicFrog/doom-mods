@@ -88,11 +88,12 @@ class ::Pyre : ::BaseUpgrade {
     if (amount == 0) return;
 
     bool ok; Actor act;
-    [ok, act] = shot.A_SpawnItemEx(
+    [ok, act] = target.A_SpawnItemEx(
       "::Pyre::Aux",
       0, 0, 0, 0, 0, 0, 0,
       SXF_TRANSFERPOINTERS);
     let pyre = ::Pyre::Aux(act);
+    pyre.target = player;
     pyre.level = amount;
   }
 
@@ -105,7 +106,6 @@ class ::Pyre::Aux : Actor {
   uint level;
 
   override int DoSpecialDamage(Actor target, int damage, Name damagetype) {
-    DEBUG("DoSpecialDamage: %s", target.GetClassName());
     ::Dot.GiveStacks(self.target, target, "::IncendiaryShots::Fire", 1, level);
     return 0;
   }
