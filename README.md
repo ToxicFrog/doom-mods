@@ -103,6 +103,10 @@ Shots cause enemies to ignite. Fire does more damage the more health the target 
 
 Restores health when you attack, by 1% per level of the damage dealt. Cannot exceed your normal health limit.
 
+### Piercing Shots *(Projectile only)*
+
+Shots go through enemies (but not walls).
+
 ### Poison Shots *(Weapon only)*
 
 Shots poison enemies. Poison is a weak and short-lived damage-over-time effect, but stacks cause both the damage and duration to rapidly increase, making this highly effective on rapid-fire weapons.
