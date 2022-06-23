@@ -111,9 +111,9 @@ Shots go through enemies (but not walls).
 
 Shots poison enemies. Poison is a weak and short-lived damage-over-time effect, but stacks cause both the damage and duration to rapidly increase, making this highly effective on rapid-fire weapons.
 
-### Pyre *(Weapon only; requires one level in Incendiary Shots)*
+### Pyre *(Weapon only; requires two levels in Incendiary Shots)*
 
-Burning enemies explode in flames when they die, igniting all nearby enemies. Higher levels apply more fire stacks.
+Burning enemies explode in flames when they die, igniting all nearby enemies. The more fire stacks the victim had the hotter the pyre will burn.
 
 ### Resistance *(Player only)*
 

@@ -46,6 +46,14 @@ class ::Dot : Inventory {
     }
   }
 
+  // Count how many stacks of the dot the target has. Return 0 if they don't have
+  // it at all.
+  static uint CountStacks(Actor target, string cls) {
+    let dotitem = ::Dot(target.FindInventory(cls));
+    if (!dotitem) return 0;
+    return dotitem.amount;
+  }
+
   void SpawnParticles() {
     for (uint i = 0; i < 9; i++) {
       SpawnOneParticle(GetParticleColour(), GetParticleZV());

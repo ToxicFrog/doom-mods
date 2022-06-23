@@ -1,6 +1,7 @@
 # 0.3
 
 - Add new upgrade: piercing shots
+- Pyre now transfers five stacks/second up to a maximum of the number of stacks the victim had when killed
 
 # 0.2
 

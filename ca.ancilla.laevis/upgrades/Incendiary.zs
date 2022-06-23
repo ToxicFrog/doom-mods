@@ -84,18 +84,20 @@ class ::IncendiaryShots::Fire : ::Dot {
 
 class ::Pyre : ::BaseUpgrade {
   override void OnKill(Actor player, Actor shot, Actor target) {
-    // target.Spawn("::Pyre::Aux", target.pos);
+    uint amount = ::Dot.CountStacks(target, "::IncendiaryShots::Fire");
+    if (amount == 0) return;
+
     bool ok; Actor act;
     [ok, act] = shot.A_SpawnItemEx(
       "::Pyre::Aux",
       0, 0, 0, 0, 0, 0, 0,
       SXF_TRANSFERPOINTERS);
     let pyre = ::Pyre::Aux(act);
-    pyre.level = level; // TODO: scale with amount of burning on the target
+    pyre.level = amount;
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
-    return info.upgrades.Level("::IncendiaryShots") > 0;
+    return info.upgrades.Level("::IncendiaryShots") >= 2 && info.upgrades.Level("::Pyre") == 0;
   }
 }
 
