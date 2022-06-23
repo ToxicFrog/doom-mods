@@ -1,6 +1,17 @@
 // Simple upgrades that don't need any aux classes and have simple implementations
 #namespace TFLV::Upgrade;
 
+class ::Armour : ::BaseUpgrade {
+  override double ModifyDamageReceived(Actor pawn, Actor shot, Actor attacker, double damage) {
+    damage = damage - self.level;
+    return damage < 2 ? 2 : damage;
+  }
+
+  override bool IsSuitableForPlayer(TFLV::PerPlayerStats stats) {
+    return true;
+  }
+}
+
 class ::Damage : ::BaseUpgrade {
   override double ModifyDamageDealt(Actor pawn, Actor shot, Actor target, double damage) {
     return damage * (1.0 + self.level * TFLV_Settings.player_damage_bonus());
@@ -25,20 +36,20 @@ class ::FastShots : ::BaseUpgrade {
   }
 }
 
-class ::Resistance : ::BaseUpgrade {
-  override double ModifyDamageReceived(Actor pawn, Actor shot, Actor attacker, double damage) {
-    return damage * (TFLV::Settings.player_defence_bonus() ** self.level);
+class ::PiercingShots : ::BaseUpgrade {
+  override void OnProjectileCreated(Actor player, Actor shot) {
+    shot.bRIPPER = true;
+    shot.RipperLevel = 255;
   }
 
-  override bool IsSuitableForPlayer(TFLV::PerPlayerStats stats) {
-    return true;
+  override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
+    return info.IsProjectileWeapon() && info.upgrades.Level("::PiercingShots") == 0;
   }
 }
 
-class ::Armour : ::BaseUpgrade {
+class ::Resistance : ::BaseUpgrade {
   override double ModifyDamageReceived(Actor pawn, Actor shot, Actor attacker, double damage) {
-    damage = damage - self.level;
-    return damage < 2 ? 2 : damage;
+    return damage * (TFLV::Settings.player_defence_bonus() ** self.level);
   }
 
   override bool IsSuitableForPlayer(TFLV::PerPlayerStats stats) {

@@ -1,3 +1,7 @@
+# 0.3
+
+- Add new upgrade: piercing shots
+
 # 0.2
 
 - Builtin upgrades that do not require Legendoom

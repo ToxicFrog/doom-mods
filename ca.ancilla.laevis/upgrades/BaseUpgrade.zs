@@ -90,6 +90,7 @@ class ::BaseUpgrade : Object play {
       "::HomingShots",
       "::IncendiaryShots",
       "::LifeLeech",
+      "::PiercingShots",
       "::PoisonShots",
       "::Pyre",
       "::Resistance"
