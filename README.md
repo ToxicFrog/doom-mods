@@ -111,6 +111,10 @@ Shots go through enemies (but not walls).
 
 Shots poison enemies. Poison is a weak and short-lived damage-over-time effect, but stacks cause both the damage and duration to rapidly increase, making this highly effective on rapid-fire weapons.
 
+### Putrefaction *(Weapon only; requires two levels in Poison Shots)*
+
+Poisoned enemies explode in a poison cloud when killed, transferring half their poison stacks to nearby enemies.
+
 ### Pyre *(Weapon only; requires two levels in Incendiary Shots)*
 
 Burning enemies explode in flames when they die, igniting all nearby enemies. The more fire stacks the victim had the hotter the pyre will burn.

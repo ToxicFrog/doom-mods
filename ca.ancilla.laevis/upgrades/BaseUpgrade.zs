@@ -1,3 +1,13 @@
+// Base class for weapon and player upgrades.
+// To implement a new upgrade:
+// - Subclass ::BaseUpgrade
+// - Implement at least one of the IsSuitableFor* functions with the conditions
+//   needed for the upgrade to spawn
+// - Implement at least one of the On* or Modify* functions with the actual
+//   effects of the upgrade
+// - Add the class name to GenerateUpgrade() below
+// - Add the name and description to the LANGUAGE file
+// - Add the documentation to the README
 #namespace TFLV::Upgrade;
 
 class ::BaseUpgrade : Object play {
@@ -5,6 +15,26 @@ class ::BaseUpgrade : Object play {
 
   virtual void Init() {
     level = 1;
+  }
+
+  static ::BaseUpgrade GenerateUpgrade() {
+    static const string UpgradeNames[] = {
+      "::Armour",
+      "::ArmourLeech",
+      "::Damage",
+      "::ExplosiveShots",
+      "::FastShots",
+      "::HomingShots",
+      "::IncendiaryShots",
+      "::LifeLeech",
+      "::PiercingShots",
+      "::Putrefaction",
+      "::PoisonShots",
+      "::Pyre",
+      "::Resistance"
+    };
+    let cls = UpgradeNames[random(0, UpgradeNames.Size()-1)];
+    return ::BaseUpgrade(new(cls));
   }
 
   // VIRTUAL FUNCTIONS //
@@ -78,25 +108,6 @@ class ::BaseUpgrade : Object play {
 
   string GetDesc() const {
     return StringTable.Localize("$"..self.GetClassName().."_Desc");
-  }
-
-  static ::BaseUpgrade GenerateUpgrade() {
-    static const string UpgradeNames[] = {
-      "::Armour",
-      "::ArmourLeech",
-      "::Damage",
-      "::ExplosiveShots",
-      "::FastShots",
-      "::HomingShots",
-      "::IncendiaryShots",
-      "::LifeLeech",
-      "::PiercingShots",
-      "::PoisonShots",
-      "::Pyre",
-      "::Resistance"
-    };
-    let cls = UpgradeNames[random(0, UpgradeNames.Size()-1)];
-    return ::BaseUpgrade(new(cls));
   }
 
   static ::BaseUpgrade GenerateUpgradeForPlayer(TFLV::PerPlayerStats stats) {
