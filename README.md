@@ -50,6 +50,14 @@ Note that weapon bonuses are stored in invisible items in your inventory. This e
 
 Yep! You might want to pair it with a mod like *Champions* or *Colourful Hell* to make things a bit spicier, if, unlike me, you are actually good at Doom. (Or you can pair it with *Russian Overkill*, load up Okuplok, and go nuts.)
 
+### Can I use parts of this in my mod?
+
+Go nuts! It's released under the MIT license; see COPYING.md for details. See also the "modding notes" section.
+
+### Can I add Laevis integration to my mod?
+
+See "modding notes" below.
+
 ## Known Issues
 
 - Mods that allow you to modify or upgrade weapons, such as DRLA, may cause the weapons to reset to level 0 when you do so.
@@ -59,13 +67,10 @@ Yep! You might want to pair it with a mod like *Champions* or *Colourful Hell* t
 - The HUD is not configurable and may overlap the custom HUD included in some mods like Lithium.
 - The distinction between projectile and hitscan weapons is guesswork and may in some cases be incorrect.
 
-## Future Work
+## Modding Notes
 
-This is not so much a concrete set of plans as an unordered list of ideas I've had for things I might want to add, change, and/or fix.
-- More detailed options for when weapon upgrades are forgotten vs. remembered -- when weapon is lost, on level transition, on death, etc.
-- HUD rework; use a sprite sheet instead of DrawThickLine()
-- Dismantle unwanted LD drops to harvest their effects
-- Option to give the player XP credit for infighting, etc
+Parts of this mod may be of interest to other modders; in particular `TooltipOptionsMenu.zs` is a drop-in replacement for `OptionsMenu` that supports tooltips in the MENUDEF, and the other menus are useful examples of how to do dynamic menu creation in ZScript.
+
 
 ## Upgrade List
 

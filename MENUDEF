@@ -17,9 +17,11 @@ OptionMenu "LaevisOptions"
   Slider "Gun damage bonus per level", "laevis_gun_damage_bonus", 0.0, 1.0, 0.01, 2
   Tooltip "How much bonus damage the gun gets per level. 0.01 == +1%."
 
-  Option "Remember XP for missing weapons", "laevis_remember_weapon_xp", OnOff
-  Tooltip "Remember XP and levels for weapons that are no longer in the player's inventory. This means your bonuses will carry over when doing pistol starts and so forth."
-  Tooltip "It may also make it possible to transfer bonuses between weapons in some mods."
+  Option "Weapon upgrades bind to", "laevis_upgrade_binding_mode", "LaevisUpgradeBindingMode"
+  Tooltip "Determines how weapon upgrades behave when you drop a weapon or are carrying multiple weapons of the same type."
+  Tooltip "\cz[individual weapon]:\c- each weapon has its own upgrades. When you drop a weapon, the upgrades go with it. In some mods dropping the weapon will lose the upgrades permanently."
+  Tooltip "\cz[individual w/inheritance]:\c- each weapon has its own upgrades, but if you drop a weapon and later pick up a new weapon of the same type, it will inherit the upgrades from the weapon you dropped."
+  Tooltip "\cz[weapon class]:\c- all weapons of the same type share the same upgrades, even if you have more than one of them in your inventory."
 
   StaticText ""
   StaticText "Player Bonus Settings", GREEN
@@ -60,9 +62,9 @@ OptionMenu "LaevisOptions"
   Option "LD effects replaceable by", "laevis_which_guns_can_replace", "LaevisWhatKindOfGunSelector"
   Tooltip "Which weapons can replace old LD effects with new ones once they're full."
 
-  Slider "Base number of LD effect slots", "laevis_base_ld_effect_slots", 0, 16, 1
+  Slider "Base number of LD effect slots", "laevis_base_ld_effect_slots", 0, 16, 1, 0
   Tooltip "How many slots for LD effects non-legendary guns have."
-  Slider "Bonus slots per LD rarity level", "laevis_bonus_ld_effect_slots", 0, 16, 1
+  Slider "Bonus slots per LD rarity level", "laevis_bonus_ld_effect_slots", 0, 16, 1, 0
   Tooltip "How many extra effect slots legendary guns get per rarity level (Common=1, Epic=4)."
 
   Option "Ignore original gun rarity for new effects", "laevis_ignore_gun_rarity", "OnOff"
@@ -76,6 +78,12 @@ OptionMenu "LaevisOptions"
 
   Slider "XP gain multiplier for score mods", "laevis_score_to_xp_factor", 0.1, 5.0, 0.1, 1
   Tooltip "When score mod integration is on, your score will be multiplied by this in order to determine how much XP you get. This can be used to tweak level up rates for your favourite scoremod without needing to adjust the XP settings above."
+}
+
+OptionValue "LaevisUpgradeBindingMode" {
+  0, "individual weapon"
+  1, "individual weapon with inheritance"
+  2, "weapon class"
 }
 
 OptionValue "LaevisWhatKindOfGunSelector" {

@@ -12,6 +12,7 @@ struct ::CurrentStats {
   uint pmax;
   uint plvl;
   // Stats for current weapon.
+  ::WeaponInfo winfo;
   ::Upgrade::UpgradeBag wupgrades;
   uint wxp;
   uint wmax;
@@ -81,106 +82,107 @@ class ::PerPlayerStats : ::Force {
   // Fill in a CurrentStats struct with the current state of the player & their
   // currently wielded weapon. This should contain all the information needed
   // to draw the UI.
-  // Returns true if it was able to get all the necessary weapon information,
-  // false otherwise.
-  bool GetCurrentStats(out ::CurrentStats stats) const {
+  // If it couldn't get the needed information, fills in nothing and returns false.
+  ui bool GetCurrentStats(out ::CurrentStats stats) const {
+    ::WeaponInfo info = GetInfoForCurrentWeapon();
+    if (!info) return false;
+
     stats.pxp = XP;
     stats.pmax = ::Settings.gun_levels_per_player_level();
     stats.plvl = level;
     stats.pupgrades = upgrades;
-
-    ::WeaponInfo info = GetInfoForCurrentWeapon();
-    if (info) {
-      stats.wxp = info.XP;
-      stats.wmax = info.maxXP;
-      stats.wlvl = info.level;
-      stats.wname = info.weapon.GetTag();
-      stats.wupgrades = info.upgrades;
-      stats.effect = info.currentEffectName;
-      return true;
-    } else {
-      stats.wxp = 0;
-      stats.wmax = 0;
-      stats.wlvl = 0;
-      stats.wname = "(no weapon)";
-      stats.wupgrades = null;
-      stats.effect = "";
-      return false;
-    }
+    stats.winfo = info;
+    stats.wxp = info.XP;
+    stats.wmax = info.maxXP;
+    stats.wlvl = info.level;
+    stats.wname = info.weapon.GetTag();
+    stats.wupgrades = info.upgrades;
+    stats.effect = info.currentEffectName;
+    return true;
   }
-
-  // TODO: API here is a bit of a dog's breakfast, with GetInfoFor/GetOrCreateInfoFor,
-  // TryGetInfoFor, etc. I think the only externally called ones are GetInfoForCurrentWeapon()
-  // (called by ui code) and GetOrCreateInfoForCurrentWeapon() (called by playsim code).
-  // This should be cleaned up a lot, especially since the Poll state now means we
-  // are guaranteed to have info for the current weapon within one tic of it being
-  // selected.
 
   // Return the WeaponInfo for the currently readied weapon. If the player
-  // does not have a weapon ready, return null.
+  // does not have a weapon ready, or if the weaponinfo for it hasn't yet been
+  // created, return null.
   ::WeaponInfo GetInfoForCurrentWeapon() const {
     Weapon wielded = owner.player.ReadyWeapon;
-    if (!wielded) {
-      return null;
-    } else if (infoForCurrentWeapon && wielded == infoForCurrentWeapon.weapon) {
-      // The 99% case is that the player has the same weapon equipped this frame
-      // that they did last frame.
+    if (wielded && infoForCurrentWeapon && infoForCurrentWeapon.weapon == wielded) {
       return infoForCurrentWeapon;
-    } else {
-      return TryGetInfoFor(wielded);
     }
+    return null;
   }
 
-  ::WeaponInfo TryGetInfoFor(Weapon wpn) const {
+  // Like GetInfoForCurrentWeapon, but if WeaponInfo doesn't exist for the current
+  // weapon it will try to find a compatible existing one to attach to it, or,
+  // failing that, create a new one. As such this is not suitable for use from
+  // ui scope.
+  // If the player is not currently wielding a weapon, returns null.
+  ::WeaponInfo GetOrCreateInfoForCurrentWeapon() {
+    Weapon wielded = owner.player.ReadyWeapon;
+    if (!wielded) return null;
+
+    ::WeaponInfo info = GetInfoForCurrentWeapon();
+    if (info) return info;
+
+    // The player is wielding a weapon but it's not the weapon associated with
+    // the current weapon info. Try to find an existing WeaponInfo associated
+    // with this weapon.
+    info = FindInfoFor(wielded);
+    // Failing that, try to bind it to a compatible existing one.
+    if (!info) info = BindExistingInfoTo(wielded);
+    // If even that fails, create a new one ex nihilo.
+    if (!info) {
+      info = new("::WeaponInfo");
+      info.Init(wielded);
+      weapons.push(info);
+    }
+
+    infoForCurrentWeapon = info;
+    return info;
+  }
+
+  ::WeaponInfo FindInfoFor(Weapon wpn) const {
     for (int i = 0; i < weapons.size(); ++i) {
       if (weapons[i].weapon == wpn) {
-        // Found the WeaponInfo for this particular weapon.
-        return weapons[i];
-      } else if (!weapons[i].weapon && weapons[i].weaponType == wpn.GetClassName()) {
-        // Found a WeaponInfo for a dead weapon of the same type.
-        weapons[i].Init(wpn);
-        return weapons[i];
-      } else if (weapons[i].weaponType == wpn.GetClassName()) {
-        // Found a WeaponInfo for a different weapon of the same class which still
-        // exists.
-        // This can't normally happen but some mods seem to trigger it.
-        // Assume the new weapon is the real one.
-        DEBUG("WARNING: duplicate WeaponInfo for weapontype %s", wpn.GetClassName());
-        weapons[i].Init(wpn);
         return weapons[i];
       }
     }
     return null;
   }
 
-  // Like GetInfoForCurrentWeapon, but if WeaponInfo doesn't exist for the current
-  // weapon it will allocate a new one. As such this is not safe to call from
-  // UI code.
-  ::WeaponInfo GetOrCreateInfoForCurrentWeapon() {
-    Weapon wielded = owner.player.ReadyWeapon;
-    if (!wielded) {
-      return null;
-    } else if (infoForCurrentWeapon && wielded == infoForCurrentWeapon.weapon) {
-      // The 99% case is that the player has the same weapon equipped this frame
-      // that they did last frame.
-      return infoForCurrentWeapon;
-    } else {
-      infoForCurrentWeapon = GetInfoFor(wielded);
-      return infoForCurrentWeapon;
+  // Given a weapon, try to find a compatible existing unused WeaponInfo we can
+  // attach to it.
+  ::WeaponInfo BindExistingInfoTo(Weapon wpn) {
+    TFLV_UpgradeBindingMode mode = ::Settings.upgrade_binding_mode();
+
+    // Can't rebind WeaponInfo in BIND_WEAPON mode.
+    if (mode == TFLV_BIND_WEAPON) return null;
+
+    ::WeaponInfo maybe_info = null;
+    for (int i = 0; i < weapons.size(); ++i) {
+      // Can never rebind across different weapon classes.
+      if (weapons[i].weaponType != wpn.GetClassName()) continue;
+      if (mode == TFLV_BIND_CLASS) {
+        // In class-bound mode, all weapons of the same type share the same WeaponInfo.
+        // When you switch weapons, the WeaponInfo for that type gets rebound to the
+        // newly wielded weapon.
+        weapons[i].Rebind(wpn);
+        return weapons[i];
+      } else if (mode == TFLV_BIND_WEAPON_INHERITABLE) {
+        // In inheritable weapon-bound mode, a weaponinfo is only reusable if (a)
+        // the weapon it was bound to no longer exists, or (b) the weapon it was bound
+        // to is no longer in our inventory. We prefer the latter, if both are options.
+        if (!maybe_info || maybe_info.weapon && weapons[i].weapon == null) {
+          maybe_info = weapons[i];
+        }
+      } else {
+        ThrowAbortException("Unknown UpgradeBindingMode %d!", mode);
+      }
     }
-  }
-
-  // Returns the info structure for the given weapon. If none exists, allocates
-  // and initializes a new one and returns that.
-  ::WeaponInfo GetInfoFor(Weapon wpn) {
-    ::WeaponInfo info = TryGetInfoFor(wpn);
-    if (info) return info;
-
-    // Didn't find one, so create a new one.
-    info = new("::WeaponInfo");
-    info.Init(wpn);
-    weapons.push(info);
-    return info;
+    if (maybe_info) {
+      maybe_info.Rebind(wpn);
+    }
+    return maybe_info;
   }
 
   // Delete WeaponInfo entries for weapons that don't exist anymore.
@@ -188,8 +190,9 @@ class ::PerPlayerStats : ::Force {
   // Depending on whether the game being played permits dropping/destroying/upgrading
   // weapons, this might be a no-op.
   void PruneStaleInfo() {
-    // If "remember missing weapons" is on, never discard old entries.
-    if (::Settings.remember_missing_weapons()) return;
+    // Only do this in BIND_WEAPON mode. In other binding modes the WeaponInfos
+    // can be rebound to new weapons.
+    if (::Settings.upgrade_binding_mode() != TFLV_BIND_WEAPON) return;
     for (int i = weapons.size() - 1; i >= 0; --i) {
       if (!weapons[i].weapon) {
         weapons.Delete(i);

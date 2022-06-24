@@ -5,6 +5,12 @@ enum TFLV_WhichGuns {
   TFLV_ALL_GUNS
 }
 
+enum TFLV_UpgradeBindingMode {
+  TFLV_BIND_WEAPON,
+  TFLV_BIND_WEAPON_INHERITABLE,
+  TFLV_BIND_CLASS
+}
+
 // Interface to the CVar settings for this mod.
 class TFLV_Settings : Object {
   static int GetInt(string name) {
@@ -52,8 +58,8 @@ class TFLV_Settings : Object {
   static bool score_to_xp_factor() {
     return GetDouble("laevis_score_to_xp_factor");
   }
-  static bool remember_missing_weapons() {
-    return GetDouble("laevis_remember_weapon_xp");
+  static TFLV_UpgradeBindingMode upgrade_binding_mode() {
+    return GetInt("laevis_upgrade_binding_mode");
   }
   static TFLV_WhichGuns which_guns_can_learn() {
     return GetInt("laevis_which_guns_can_learn");

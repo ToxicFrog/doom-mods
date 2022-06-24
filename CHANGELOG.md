@@ -1,8 +1,13 @@
 # 0.3
 
 - Add new upgrades: piercing shots, putrefaction
-- Pyre now transfers five stacks/second up to a maximum of the number of stacks the victim had when killed
+- Pyre now transfers five stacks/second up to a maximum of the number of stacks
+  the victim had when killed
 - Tooltips added to options menu
+- Fixed a bug where LD effects weren't being handed out properly on level up
+- Completely overhauled how weapon upgrades are linked to weapons; the "remember
+  XP for missing weapons" option was replaced with a tri-state "upgrade binding
+  mode". Please check the options menu for details.
 
 # 0.2
 

@@ -17,8 +17,6 @@ class ::StatusDisplay : ::GenericMenu {
       return;
     }
 
-    let info = pps.GetInfoForCurrentWeapon();
-
     PushText("", Font.CR_GOLD);
     PushText("Player Stats", Font.CR_GOLD);
     PushKeyValueText(string.format("Level %d", stats.plvl), string.format("%d/%d XP", stats.pxp, stats.pmax));
@@ -26,20 +24,22 @@ class ::StatusDisplay : ::GenericMenu {
 
     PushText("", Font.CR_GOLD);
     PushText("Weapon Stats", Font.CR_GOLD);
-    PushKeyValueText("Type", string.format("%s (%s)", info.weapon.GetTag(), info.weapon.GetClassName()));
-    PushKeyValueText(string.format("Level %d", stats.wlvl), string.format("%d/%d XP", stats.wxp, stats.wmax));
+    PushKeyValueText("Type", string.format("%s (%s)",
+        stats.winfo.weapon.GetTag(), stats.winfo.weapon.GetClassName()));
+    PushKeyValueText(string.format("Level %d", stats.wlvl),
+        string.format("%d/%d XP", stats.wxp, stats.wmax));
     stats.wupgrades.DumpToMenu(self);
 
     mDesc.mSelectedItem = -1;
-    if (info.effects.size() > 0) {
+    if (stats.winfo.effects.size() > 0) {
       PushText("", Font.CR_GOLD);
       PushText("Weapon Effects", Font.CR_GOLD);
-      for (uint i = 0; i < info.effects.size(); ++i) {
-        if (info.currentEffect == i) {
-          PushEffect(info.effects[i], i, true);
+      for (uint i = 0; i < stats.winfo.effects.size(); ++i) {
+        if (stats.winfo.currentEffect == i) {
+          PushEffect(stats.winfo.effects[i], i, true);
           mDesc.mSelectedItem = mDesc.mItems.Size() - 1;
         } else {
-          PushEffect(info.effects[i], i, false);
+          PushEffect(stats.winfo.effects[i], i, false);
         }
       }
     }

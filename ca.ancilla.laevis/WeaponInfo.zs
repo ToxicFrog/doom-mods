@@ -34,24 +34,41 @@ class ::WeaponInfo : Object play {
   int currentEffect;
   string currentEffectName;
 
-  void Init(Actor weapon_) {
-    weapon = Weapon(weapon_);
-    weaponType = weapon.GetClassName();
+  // Called when a new WeaponInfo is created. This should initialize the entire object.
+  void Init(Actor wpn) {
+    self.weapon = Weapon(wpn);
+    self.weaponType = wpn.GetClassName();
     upgrades = new("::Upgrade::UpgradeBag");
-    // XP = 0;
-    // level = 0;
+    XP = 0;
+    level = 0;
     maxXP = GetXPForLevel(level+1);
     DEBUG("WeaponInfo initialize, class=%s level=%d xp=%d/%d",
         weaponType, level, XP, maxXP);
 
-    string LDWeaponType = "LDWeapon";
     currentEffect = -1;
     currentEffectName = "";
     effects.Clear();
-    if (weapon is LDWeaponType) {
+    string LDWeaponType = "LDWeapon";
+    if (wpn is LDWeaponType) {
       InitLegendoom();
     } else {
       effectSlots = 0;
+    }
+  }
+
+  // Called when this WeaponInfo is being reassociated with a new weapon. It
+  // should keep most of its stats.
+  void Rebind(Actor wpn) {
+    self.weapon = Weapon(wpn);
+    string LDWeaponType = "LDWeapon";
+    if (wpn is LDWeaponType) {
+      // If it's a Legendoom weapon, calling this should be safe; it'll keep
+      // its current effects, but inherit the rarity of the new weapon. If the
+      // new weapon has a new effect on it, that'll be added to the effect list
+      // even if it exceeds the maximum.
+      // TODO: in the latter case, trigger the LD levelup menu until the effect
+      // list fits again.
+      InitLegendoom();
     }
   }
 
@@ -97,13 +114,20 @@ class ::WeaponInfo : Object play {
       maxRarity = max(RARITY_COMMON, maxRarity);
     }
 
-    // And they start with an effect, so we should record that.
+    // And they might start with an effect, so we should record that.
     string effect = ::Util.GetActiveWeaponEffect(weapon.owner, prefix);
-    if (effect != "") {
-      currentEffect = 0;
+    if (effects.find(effect) != effects.size()) {
+      currentEffect = effects.find(effect);
       currentEffectName = ::Util.GetEffectTitle(effect);
+    } else if (effect != "") {
       effects.push(effect);
+      currentEffect = effects.size()-1;
+      currentEffectName = ::Util.GetEffectTitle(effect);
+    } else {
+      currentEffect = -1;
+      currentEffectName = "";
     }
+
     DEBUG("%s: effects=%d, rarity=%d, effect=%s",
         weapon.GetTag(), effectSlots, maxRarity, effect);
   }

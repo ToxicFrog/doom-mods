@@ -42,9 +42,11 @@ server bool laevis_use_score_for_xp = false;
 // XP derived from score will be multiplied by this.
 server float laevis_score_to_xp_factor = 1.0;
 
-// Remember lost weapons by class name, so that levels are retained across pistol
-// starts and stuff.
-server bool laevis_remember_weapon_xp = false;
+// How to remember weapon upgrade info.
+// 0 - per weapon object
+// 1 - per weapon object but transferable to a new weapon of the same type if you lose the old one
+// 2 - per weapon class
+server int laevis_upgrade_binding_mode = 1;
 
 // LEGENDOOM INTEGRATION //
 

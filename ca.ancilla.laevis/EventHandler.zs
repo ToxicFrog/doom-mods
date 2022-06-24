@@ -88,26 +88,25 @@ class ::EventHandler : StaticEventHandler {
   }
 
   void ShowInfoConsole(PlayerPawn pawn) {
-    ::CurrentStats stats;
-    if (!::PerPlayerStats.GetStatsFor(pawn).GetCurrentStats(stats)) return;
-    console.printf("Player:\n    Level %d (%d/%d XP)",
-      stats.plvl, stats.pxp, stats.pmax);
-    stats.pupgrades.DumpToConsole("    ");
-    console.printf("%s:\n    Level %d (%d/%d XP)",
-      stats.wname, stats.wlvl, stats.wxp, stats.wmax);
-    stats.wupgrades.DumpToConsole("    ");
-    ::WeaponInfo info = ::PerPlayerStats.GetStatsFor(pawn).GetInfoForCurrentWeapon();
-    console.printf("    effectSlots: %d\n    maxRarity: %d\n    canReplace: %d",
-      info.effectSlots, info.maxRarity, info.canReplaceEffects);
-    for (uint i = 0; i < info.effects.size(); ++i) {
-      console.printf("    %s (%s)",
-        ::Util.GetEffectTitle(info.effects[i]),
-        ::Util.GetEffectDesc(info.effects[i]));
-    }
+  //   ::CurrentStats stats;
+  //   if (!::PerPlayerStats.GetStatsFor(pawn).GetCurrentStats(stats)) return;
+  //   console.printf("Player:\n    Level %d (%d/%d XP)",
+  //     stats.plvl, stats.pxp, stats.pmax);
+  //   stats.pupgrades.DumpToConsole("    ");
+  //   console.printf("%s:\n    Level %d (%d/%d XP)",
+  //     stats.wname, stats.wlvl, stats.wxp, stats.wmax);
+  //   stats.wupgrades.DumpToConsole("    ");
+  //   console.printf("    effectSlots: %d\n    maxRarity: %d\n    canReplace: %d",
+  //     stats.winfo.effectSlots, stats.winfo.maxRarity, stats.winfo.canReplaceEffects);
+  //   for (uint i = 0; i < stats.winfo.effects.size(); ++i) {
+  //     console.printf("    %s (%s)",
+  //       ::Util.GetEffectTitle(stats.winfo.effects[i]),
+  //       ::Util.GetEffectDesc(stats.winfo.effects[i]));
+  //   }
   }
 
-  void CycleLDEffect(PlayerPawn pawn) {
-    ::PerPlayerStats.GetStatsFor(pawn).GetInfoForCurrentWeapon().CycleEffect();
+  play void CycleLDEffect(PlayerPawn pawn) {
+    ::PerPlayerStats.GetStatsFor(pawn).GetOrCreateInfoForCurrentWeapon().CycleEffect();
   }
 
   void ChooseLevelUpOption(PlayerPawn pawn, int index) {
@@ -120,8 +119,8 @@ class ::EventHandler : StaticEventHandler {
     giver.Choose(index);
   }
 
-  void SelectLDEffect(PlayerPawn pawn, int index) {
-    ::PerPlayerStats.GetStatsFor(pawn).GetInfoForCurrentWeapon().SelectEffect(index);
+  play void SelectLDEffect(PlayerPawn pawn, int index) {
+    ::PerPlayerStats.GetStatsFor(pawn).GetOrCreateInfoForCurrentWeapon().SelectEffect(index);
   }
 
   override void NetworkProcess(ConsoleEvent evt) {
