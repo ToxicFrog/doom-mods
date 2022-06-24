@@ -25,7 +25,7 @@ class ::PlayerLevelUpMenu : ::GenericMenu {
   }
 
   void PushUpgrade(TFLV::Upgrade::BaseUpgrade upgrade, int index) {
-    return PushKeyValueOption(
+    PushKeyValueOption(
       upgrade.GetName(), upgrade.GetDesc(),
       "laevis_choose_level_up_option",
       index);

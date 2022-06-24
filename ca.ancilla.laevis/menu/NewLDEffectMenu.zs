@@ -48,7 +48,7 @@ class ::NewLDEffectMenu : ::GenericMenu {
   }
 
   void PushEffect(string effect, int index) {
-    return PushKeyValueOption(
+    PushKeyValueOption(
       TFLV::Util.GetEffectTitle(effect),
       TFLV::Util.GetEffectDesc(effect),
       "laevis_choose_level_up_option",
