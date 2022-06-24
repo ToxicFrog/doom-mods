@@ -196,12 +196,6 @@ class ::PerPlayerStats : ::Force {
     }
   }
 
-  string SafeGetClassName(Actor ac) {
-    if (!ac) return "null";
-    string cls = ac.GetClassName();
-    return cls;
-  }
-
   // Add XP to a weapon. If the weapon leveled up, also do some housekeeping
   // and possibly level up the player as well.
   void AddXP(int xp) {
@@ -291,7 +285,7 @@ class ::PerPlayerStats : ::Force {
     if (passive) {
       // Incoming damage.
       DEBUG("MD(p): %s <- %s <- %s (%d/%s) flags=%X",
-        SafeGetClassName(owner), SafeGetClassName(inflictor), SafeGetClassName(source),
+        ::Util.SafeCls(owner), ::Util.SafeCls(inflictor), ::Util.SafeCls(source),
         damage, damageType, flags);
 
       newdamage = info.upgrades.ModifyDamageReceived(
@@ -299,7 +293,7 @@ class ::PerPlayerStats : ::Force {
           upgrades.ModifyDamageReceived(owner, inflictor, source, damage));
     } else {
       DEBUG("MD: %s -> %s -> %s (%d/%s) flags=%X",
-        SafeGetClassName(owner), SafeGetClassName(inflictor), SafeGetClassName(source),
+        ::Util.SafeCls(owner), ::Util.SafeCls(inflictor), ::Util.SafeCls(source),
         damage, damageType, flags);
       // Outgoing damage. 'source' is the *target* of the damage.
       let target = source;
