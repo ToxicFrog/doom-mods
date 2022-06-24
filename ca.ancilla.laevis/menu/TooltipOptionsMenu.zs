@@ -1,3 +1,6 @@
+// TooltipOptionsMenu -- a drop-in replacement for OptionsMenu with tooltip support.
+// TODO: document this more thoroughly and include copyright notice so it can be
+// easily used standalone.
 #namespace TFLV::Menu;
 
 class ::TooltipOptionsMenu : OptionMenu {
@@ -71,7 +74,7 @@ class OptionMenuItemTooltip : OptionMenuItem {
   string tooltip;
 
   OptionMenuItemTooltip Init(string tooltip) {
-    self.tooltip = tooltip;
+    self.tooltip = tooltip.filter();
     super.init("", "");
     return self;
   }
