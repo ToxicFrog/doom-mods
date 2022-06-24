@@ -205,6 +205,7 @@ class ::PerPlayerStats : ::Force {
   // and possibly level up the player as well.
   void AddXP(int xp) {
     ::WeaponInfo info = GetOrCreateInfoForCurrentWeapon();
+    if (!info) return;
     if (info.AddXP(xp)) {
       // Weapon leveled up!
       DEBUG("level up, level=%d, GLPE=%d",
@@ -251,7 +252,8 @@ class ::PerPlayerStats : ::Force {
   void OnProjectileCreated(Actor shot) {
     if (shot.bINCOMBAT) return;
     upgrades.OnProjectileCreated(owner, shot);
-    GetOrCreateInfoForCurrentWeapon().upgrades.OnProjectileCreated(owner, shot);
+    let info = GetOrCreateInfoForCurrentWeapon();
+    if (info) info.upgrades.OnProjectileCreated(owner, shot);
   }
 
   void OnDamageDealt(Actor shot, Actor target, uint damage) {
@@ -260,23 +262,28 @@ class ::PerPlayerStats : ::Force {
     // Record whether it was a missile or a projectile, for the purposes of
     // deciding what kinds of upgrades to spawn.
     let info = GetOrCreateInfoForCurrentWeapon();
+    if (!info) return;
     if (shot.bMISSILE) {
       info.projectile_shots++;
     } else {
       info.hitscan_shots++;
     }
-    GetOrCreateInfoForCurrentWeapon().upgrades.OnDamageDealt(owner, shot, target, damage);
+    info.upgrades.OnDamageDealt(owner, shot, target, damage);
   }
 
   void OnDamageReceived(Actor shot, Actor attacker, uint damage) {
     if (shot && shot.bINCOMBAT) return;
     upgrades.OnDamageReceived(owner, shot, attacker, damage);
-    GetOrCreateInfoForCurrentWeapon().upgrades.OnDamageReceived(owner, shot, attacker, damage);
+    let info = GetOrCreateInfoForCurrentWeapon();
+    if (!info) return;
+    info.upgrades.OnDamageReceived(owner, shot, attacker, damage);
   }
 
   void OnKill(Actor shot, Actor target) {
     upgrades.OnKill(owner, shot, target);
-    GetOrCreateInfoForCurrentWeapon().upgrades.OnKill(owner, shot, target);
+    let info = GetOrCreateInfoForCurrentWeapon();
+    if (!info) return;
+    info.upgrades.OnKill(owner, shot, target);
   }
 
   // Apply player level-up bonuses whenever the player deals or receives damage.
@@ -294,9 +301,9 @@ class ::PerPlayerStats : ::Force {
         ::Util.SafeCls(owner), ::Util.SafeCls(inflictor), ::Util.SafeCls(source),
         damage, damageType, flags);
 
-      newdamage = info.upgrades.ModifyDamageReceived(
-          owner, inflictor, source,
-          upgrades.ModifyDamageReceived(owner, inflictor, source, damage));
+      newdamage = upgrades.ModifyDamageReceived(owner, inflictor, source, damage);
+      if (info)
+        newdamage = info.upgrades.ModifyDamageReceived(owner, inflictor, source, newdamage);
     } else {
       DEBUG("MD: %s -> %s -> %s (%d/%s) flags=%X",
         ::Util.SafeCls(owner), ::Util.SafeCls(inflictor), ::Util.SafeCls(source),
@@ -315,9 +322,9 @@ class ::PerPlayerStats : ::Force {
         AddXP(GetXPForDamage(target, damage));
       }
 
-      newdamage = info.upgrades.ModifyDamageDealt(
-          owner, inflictor, source,
-          upgrades.ModifyDamageDealt(owner, inflictor, source, damage));
+      newdamage = upgrades.ModifyDamageDealt(owner, inflictor, source, damage);
+      if (info)
+        newdamage = info.upgrades.ModifyDamageDealt(owner, inflictor, source, newdamage);
     }
   }
 

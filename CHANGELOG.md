@@ -1,3 +1,8 @@
+# 0.3.1
+
+- Fixed a category of crash bugs related to dealing or taking damage with no
+  weapon equipped.
+
 # 0.3
 
 - Add new upgrades: piercing shots, putrefaction

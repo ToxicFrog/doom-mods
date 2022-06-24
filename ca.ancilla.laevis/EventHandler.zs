@@ -106,7 +106,8 @@ class ::EventHandler : StaticEventHandler {
   }
 
   play void CycleLDEffect(PlayerPawn pawn) {
-    ::PerPlayerStats.GetStatsFor(pawn).GetOrCreateInfoForCurrentWeapon().CycleEffect();
+    let info = ::PerPlayerStats.GetStatsFor(pawn).GetOrCreateInfoForCurrentWeapon();
+    if (info) info.CycleEffect();
   }
 
   void ChooseLevelUpOption(PlayerPawn pawn, int index) {
@@ -120,7 +121,8 @@ class ::EventHandler : StaticEventHandler {
   }
 
   play void SelectLDEffect(PlayerPawn pawn, int index) {
-    ::PerPlayerStats.GetStatsFor(pawn).GetOrCreateInfoForCurrentWeapon().SelectEffect(index);
+    let info = ::PerPlayerStats.GetStatsFor(pawn).GetOrCreateInfoForCurrentWeapon();
+    if (info) info.SelectEffect(index);
   }
 
   override void NetworkProcess(ConsoleEvent evt) {

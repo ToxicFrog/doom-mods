@@ -1,4 +1,4 @@
-VERSION="0.3"
+VERSION="0.3.1"
 PK3=release/Laevis-${VERSION}.pk3
 LUMPS=MAPINFO CVARINFO KEYCONF MENUDEF LANGUAGE.* sprites/
 ZSCRIPT=$(patsubst %.zs,%.zsc,$(shell find . -name "*.zs"))
