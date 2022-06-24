@@ -83,7 +83,8 @@ class ::PerPlayerStats : ::Force {
   // currently wielded weapon. This should contain all the information needed
   // to draw the UI.
   // If it couldn't get the needed information, fills in nothing and returns false.
-  ui bool GetCurrentStats(out ::CurrentStats stats) const {
+  // This is safe to call from UI context.
+  bool GetCurrentStats(out ::CurrentStats stats) const {
     ::WeaponInfo info = GetInfoForCurrentWeapon();
     if (!info) return false;
 

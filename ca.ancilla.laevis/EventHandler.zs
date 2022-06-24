@@ -88,21 +88,21 @@ class ::EventHandler : StaticEventHandler {
   }
 
   void ShowInfoConsole(PlayerPawn pawn) {
-  //   ::CurrentStats stats;
-  //   if (!::PerPlayerStats.GetStatsFor(pawn).GetCurrentStats(stats)) return;
-  //   console.printf("Player:\n    Level %d (%d/%d XP)",
-  //     stats.plvl, stats.pxp, stats.pmax);
-  //   stats.pupgrades.DumpToConsole("    ");
-  //   console.printf("%s:\n    Level %d (%d/%d XP)",
-  //     stats.wname, stats.wlvl, stats.wxp, stats.wmax);
-  //   stats.wupgrades.DumpToConsole("    ");
-  //   console.printf("    effectSlots: %d\n    maxRarity: %d\n    canReplace: %d",
-  //     stats.winfo.effectSlots, stats.winfo.maxRarity, stats.winfo.canReplaceEffects);
-  //   for (uint i = 0; i < stats.winfo.effects.size(); ++i) {
-  //     console.printf("    %s (%s)",
-  //       ::Util.GetEffectTitle(stats.winfo.effects[i]),
-  //       ::Util.GetEffectDesc(stats.winfo.effects[i]));
-  //   }
+    ::CurrentStats stats;
+    if (!::PerPlayerStats.GetStatsFor(pawn).GetCurrentStats(stats)) return;
+    console.printf("Player:\n    Level %d (%d/%d XP)",
+      stats.plvl, stats.pxp, stats.pmax);
+    stats.pupgrades.DumpToConsole("    ");
+    console.printf("%s:\n    Level %d (%d/%d XP)",
+      stats.wname, stats.wlvl, stats.wxp, stats.wmax);
+    stats.wupgrades.DumpToConsole("    ");
+    console.printf("    effectSlots: %d\n    maxRarity: %d\n    canReplace: %d",
+      stats.winfo.effectSlots, stats.winfo.maxRarity, stats.winfo.canReplaceEffects);
+    for (uint i = 0; i < stats.winfo.effects.size(); ++i) {
+      console.printf("    %s (%s)",
+        ::Util.GetEffectTitle(stats.winfo.effects[i]),
+        ::Util.GetEffectDesc(stats.winfo.effects[i]));
+    }
   }
 
   play void CycleLDEffect(PlayerPawn pawn) {
