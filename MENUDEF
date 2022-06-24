@@ -5,87 +5,77 @@ AddOptionMenu "OptionsMenu"
 
 OptionMenu "LaevisOptions"
 {
+  class TFLV_Menu_TooltipOptionsMenu
   // TODO: this is a very verbose option screen. Ideally, we should subclass
   // the builtin option types so that the info text pops up at the bottom or
   // something as you select each option.
   Title "Laevis Mod Options"
+
   StaticText ""
   StaticText "Weapon Bonus Settings", CYAN
-  StaticText ""
-  StaticText "How much bonus damage the gun gets per level. 0.01 == +1%."
+
   Slider "Gun damage bonus per level", "laevis_gun_damage_bonus", 0.0, 1.0, 0.01, 2
-  StaticText ""
-  StaticText "Remember XP and levels for weapons that are no longer in the player's"
-  StaticText "inventory. This means your bonuses will carry over when doing pistol"
-  StaticText "starts and so forth."
-  StaticText "It may also make it possible to transfer bonuses between weapons"
-  StaticText "in some mods."
+  Tooltip "How much bonus damage the gun gets per level. 0.01 == +1%."
+
   Option "Remember XP for missing weapons", "laevis_remember_weapon_xp", OnOff
-  StaticText ""
+  Tooltip "Remember XP and levels for weapons that are no longer in the player's inventory. This means your bonuses will carry over when doing pistol starts and so forth."
+  Tooltip "It may also make it possible to transfer bonuses between weapons in some mods."
 
   StaticText ""
   StaticText "Player Bonus Settings", GREEN
-  StaticText "How many times you need to level up a weapon to gain a player bonus."
+
   Slider "Gun levels per player level", "laevis_gun_levels_per_player_level", 1, 100, 1, 0
-  StaticText ""
-  StaticText "How much bonus damage you get per level. 0.01 == +1%."
+  Tooltip "How many times you need to level up a weapon to gain a player bonus."
+
   Slider "Player damage bonus per level", "laevis_player_damage_bonus", 0.0, 1.0, 0.01, 2
-  StaticText ""
-  StaticText "How much resistance factor you get per level. 0.99 == 1% damage reduction."
-  Statictext "Values above 1 make you take *more* damage as you level up."
+  Tooltip "How much bonus damage you get per level. 0.01 == +1%."
+
   Slider "Player defence bonus per level", "laevis_player_defence_bonus", 0.1, 2.0, 0.01, 2
-  StaticText ""
+  Tooltip "How much resistance factor you get per level. 0.99 == 1% damage reduction."
+  Tooltip "Values above 1 make you take *more* damage as you level up."
 
   StaticText ""
   StaticText "XP balance settings", GOLD
-  StaticText "How much XP you need to earn for a weapon to gain its first level."
-  StaticText "Roughly, 1 point of damage dealt == 1 XP gained, with a bonus for"
-  StaticText "damaging nastier enemies like Cyberdemons and Archviles."
+
   Slider "XP needed to reach level 1", "laevis_base_level_cost", 100, 10000, 100, 0
-  StaticText ""
-  StaticText "XP cost multipliers for various classes of weapons. These can stack"
-  StaticText "(e.g. fists are both 'melee' and 'wimpy' in vanilla Doom 2). The"
-  StaticText "default settings make weak and melee weapons easier to level up,"
-  StaticText "and explosive and BFG weapons harder."
-  StaticText "The 'explosive' and 'bfg' settings do not currently work.", YELLOW
-  StaticText ""
+  Tooltip "How much XP you need to earn for a weapon to gain its first level. Roughly, 1 point of damage dealt == 1 XP gained, with a bonus for damaging nastier enemies like Cyberdemons and Archviles."
+
+  TooltipBlockStart
   Slider "XP cost multiplier for melee weapons", "laevis_level_cost_mul_for_melee", 0.1, 5.0, 0.1, 1
   Slider "XP cost multiplier for wimpy weapons", "laevis_level_cost_mul_for_wimpy", 0.1, 5.0, 0.1, 1
   Slider "XP cost multiplier for explosive weapons", "DISABLED_laevis_level_cost_mul_for_explosive", 0.1, 5.0, 0.1, 1
   Slider "XP cost multiplier for BFG-type weapons", "DISABLED_laevis_level_cost_mul_for_bfg", 0.1, 5.0, 0.1, 1
-  StaticText ""
+  Tooltip "XP cost multipliers for various classes of weapons. These can stack (e.g. fists are both 'melee' and 'wimpy' in vanilla Doom 2). The default settings make weak and melee weapons easier to level up, and explosive and BFG weapons harder."
+  Tooltip "The 'explosive' and 'bfg' settings do not currently work."
+  TooltipBlockEnd
 
   StaticText ""
   StaticText "Legendoom Integration", GRAY
-  StaticText ""
-  StaticText "How many times a gun needs to level up to gain a new Legendoom effect."
-  StaticText "Only functions if Legendoom is installed. Set to 0 to disable."
+
   ScaleSlider "Gun levels per LD effect", "laevis_gun_levels_per_ld_effect", 0, 100, 1, "Disabled"
-  StaticText ""
-  StaticText "Which weapons can learn new LD effects, and replace existing effects once full."
+  Tooltip "How many times a gun needs to level up to gain a new Legendoom effect. Only functions if Legendoom is installed. Set to 0 to disable."
+
   Option "LD effects learnable by", "laevis_which_guns_can_learn", "LaevisWhatKindOfGunSelector"
+  Tooltip "Which weapons can learn new LD effects."
   Option "LD effects replaceable by", "laevis_which_guns_can_replace", "LaevisWhatKindOfGunSelector"
-  StaticText ""
-  StaticText "How many slots for LD effects guns have."
+  Tooltip "Which weapons can replace old LD effects with new ones once they're full."
+
   Slider "Base number of LD effect slots", "laevis_base_ld_effect_slots", 0, 16, 1
+  Tooltip "How many slots for LD effects non-legendary guns have."
   Slider "Bonus slots per LD rarity level", "laevis_bonus_ld_effect_slots", 0, 16, 1
-  StaticText ""
-  StaticText "Whether weapons can learn LD effects that are rarer than the one they spawned with."
+  Tooltip "How many extra effect slots legendary guns get per rarity level (Common=1, Epic=4)."
+
   Option "Ignore original gun rarity for new effects", "laevis_ignore_gun_rarity", "OnOff"
-  StaticText ""
+  Tooltip "Whether weapons can learn LD effects that are rarer than the one they spawned with."
 
   StaticText ""
   StaticText "Score mod integration", GRAY
-  StaticText "If this is enabled, XP will be earned based on the player's score"
-  StaticText "rather than based on the damage they deal. This requires you to"
-  StaticText "install a mod that lets you score points, such as LazyPoints."
+
   Option "Earn XP based on player score", "laevis_use_score_for_xp", OnOff
-  StaticText ""
-  StaticText "If score mod integration is enabled, all XP earned will be multiplied"
-  StaticText "by this (so 2.0 == level up twice as fast). This can be used to"
-  StaticText "tweak level up rates when using a score mod without needing to"
-  StaticText "adjust the XP balance settings above."
+  Tooltip "Instead of earning XP based on damage dealt, earn it based on your score. This requires you to install a mod that lets you score points, such as LazyPoints."
+
   Slider "XP gain multiplier for score mods", "laevis_score_to_xp_factor", 0.1, 5.0, 0.1, 1
+  Tooltip "When score mod integration is on, your score will be multiplied by this in order to determine how much XP you get. This can be used to tweak level up rates for your favourite scoremod without needing to adjust the XP settings above."
 }
 
 OptionValue "LaevisWhatKindOfGunSelector" {

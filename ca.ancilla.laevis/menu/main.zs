@@ -1,5 +1,6 @@
 #include "./GenericMenu.zsc"
-#include "./PlayerLevelUpMenu.zsc"
-#include "./WeaponLevelUpMenu.zsc"
 #include "./NewLDEffectMenu.zsc"
+#include "./PlayerLevelUpMenu.zsc"
 #include "./StatusDisplay.zsc"
+#include "./TooltipOptionsMenu.zsc"
+#include "./WeaponLevelUpMenu.zsc"
