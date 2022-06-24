@@ -3,7 +3,7 @@
 // easily used standalone.
 #namespace TFLV::Menu;
 
-class ::TooltipOptionsMenu : OptionMenu {
+class ::TooltipOptionMenu : OptionMenu {
   array<string> tooltips;
 
   override void Init(Menu parent, OptionMenuDescriptor desc) {
