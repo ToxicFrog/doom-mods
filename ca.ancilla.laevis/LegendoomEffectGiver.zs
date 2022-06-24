@@ -4,6 +4,7 @@
 // it generates in a way we can use, then either shoving it into the player directly
 // or copying some of the info out of it.
 #namespace TFLV;
+#debug off
 
 class ::LegendoomEffectGiver : ::UpgradeGiver {
   TFLV_WeaponInfo wielded;
@@ -13,7 +14,9 @@ class ::LegendoomEffectGiver : ::UpgradeGiver {
   string newEffect;
 
   bool BeginLevelUp() {
+    DEBUG("BeginLevelUp");
     if (wielded.effectSlots == 0) {
+      DEBUG("weapon can't gain effects");
       // Can't get LD effects.
       return false;
     }
@@ -23,7 +26,7 @@ class ::LegendoomEffectGiver : ::UpgradeGiver {
     if (wielded.effects.Size() >= wielded.effectSlots && !wielded.canReplaceEffects) {
       // The weapon is already at its limit and effect replacement is disabled for
       // it. Do nothing.
-      // console.printf("no room for more effects");
+      DEBUG("no room for more effects!");
       return false;
     }
 
@@ -38,11 +41,18 @@ class ::LegendoomEffectGiver : ::UpgradeGiver {
   void CreateUpgrade() {
     if (upgrade) upgrade.Destroy();
     upgrade = Spawn(prefix.."PickupLegendary", (0,0,0));
-    // console.printf("Created tentative upgrade %s", upgrade.GetTag());
+    DEBUG("Created tentative upgrade %s", upgrade.GetTag());
   }
 
   bool IsCreatedUpgradeGood() {
+    DEBUG("IsCreatedUpgradeGood?");
     if (!wielded || !wielded.weapon) {
+      DEBUG("oh noes");
+      if (!wielded) {
+        DEBUG("WeaponInfo went away");
+      } else {
+        DEBUG("WeaponInfo is intact but has no weapon");
+      }
       // Something happened to the player's weapon while we were trying to
       // generate the new effect.
       self.Destroy();
@@ -51,22 +61,23 @@ class ::LegendoomEffectGiver : ::UpgradeGiver {
 
     string effect = TFLV_Util.GetActiveWeaponEffect(upgrade, prefix);
     if (TFLV_Util.GetWeaponRarity(upgrade, prefix) > wielded.maxRarity) {
-      // console.printf("Upgrade %s is too rare!", effect);
+      DEBUG("Upgrade %s is too rare!", effect);
       return false;
     }
     // Upgrade is within the rarity bounds, so make sure it doesn't collide with an
     // existing one.
     if (wielded.effects.Find(effect) != wielded.effects.Size()) {
-      // console.printf("Upgrade %s is a duplicate of an existing effect!", effect);
+      DEBUG("Upgrade %s is a duplicate of an existing effect!", effect);
       return false;
     }
-    // console.printf("Upgrade %s looks good.", effect);
+    DEBUG("Upgrade %s looks good.", effect);
     return true;
   }
 
   // Try to install the upgrade. If we need the player to make a choice about
   // it, jump to the ChooseDiscard state.
   void InstallUpgrade() {
+    DEBUG("InstallUpgrade");
     if (!wielded || !wielded.weapon) {
       // Something happened to the player's weapon while we were trying to
       // generate the new effect.
@@ -104,6 +115,7 @@ class ::LegendoomEffectGiver : ::UpgradeGiver {
   }
 
   void DiscardEffect(int index) {
+    DEBUG("DiscardEffect %d", index);
     if (index < 0) {
       // Player chose to discard the new effect.
       upgrade.Destroy();
@@ -123,7 +135,7 @@ class ::LegendoomEffectGiver : ::UpgradeGiver {
   // to insert delays to let LD item generation code do its things at various
   // times.
   States {
-    LDLevelUp:
+    ChooseUpgrade:
       TNT1 A 0 A_JumpIf(BeginLevelUp(), "TryCreateUpgrade");
       STOP;
     TryCreateUpgrade:

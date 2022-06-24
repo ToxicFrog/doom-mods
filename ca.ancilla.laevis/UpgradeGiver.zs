@@ -8,6 +8,7 @@
 //   point it will jump to the AwaitChoice state)
 // - a Chosen state that will be jumped to once a choice is made
 #namespace TFLV;
+#debug off
 
 class ::UpgradeGiver : Inventory {
   int chosen;
@@ -19,6 +20,7 @@ class ::UpgradeGiver : Inventory {
   }
 
   override void PostBeginPlay() {
+    DEBUG("%s PostBeginPlay", self.GetClassName());
     CreateUpgradeCandidates();
     SetStateLabel("ChooseUpgrade");
   }
@@ -38,18 +40,21 @@ class ::UpgradeGiver : Inventory {
   }
 
   void AwaitChoice(string menuname) {
+    DEBUG("%s awaitchoice: %s", self.GetClassName(), menuname);
     let stats = ::PerPlayerStats.GetStatsFor(owner);
     if (stats.currentEffectGiver) {
       // Someone else using the menu system.
       return;
     }
 
+    DEBUG("%s claiming menu", self.GetClassName());
     stats.currentEffectGiver = self;
     Menu.SetMenu(menuname);
     self.SetStateLabel("AwaitChoice");
   }
 
   void Choose(int index) {
+    DEBUG("%s chosen: %d", self.GetClassName(), index);
     let stats = ::PerPlayerStats.GetStatsFor(owner);
     stats.currentEffectGiver = null;
     chosen = index;
@@ -57,6 +62,7 @@ class ::UpgradeGiver : Inventory {
   }
 
   States {
+    Spawn:
     AwaitChoice:
       TNT1 A 1;
       LOOP;

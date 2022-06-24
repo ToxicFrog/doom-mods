@@ -2,6 +2,7 @@
 // Holds information about the player's guns and the player themself.
 // Also handles applying some damage/resistance bonuses using ModifyDamage().
 #namespace TFLV;
+#debug off
 
 // Used to get all the information needed for the UI.
 struct ::CurrentStats {
@@ -202,10 +203,11 @@ class ::PerPlayerStats : ::Force {
     ::WeaponInfo info = GetOrCreateInfoForCurrentWeapon();
     if (info.AddXP(xp)) {
       // Weapon leveled up!
+      DEBUG("level up, level=%d, GLPE=%d",
+        info.level, ::Settings.gun_levels_per_ld_effect());
       if (legendoomInstalled && (info.level % ::Settings.gun_levels_per_ld_effect()) == 0) {
         let ldGiver = ::LegendoomEffectGiver(owner.GiveInventoryType("::LegendoomEffectGiver"));
         ldGiver.wielded = GetInfoForCurrentWeapon();
-        ldGiver.SetStateLabel("LDLevelUp");
       }
 
       // Also give the player some XP.
@@ -346,7 +348,7 @@ class ::PerPlayerStats : ::Force {
 
   States {
     Spawn:
-      TNT1 A 0 Initialize();
+      TNT1 A 0 NoDelay Initialize();
     Poll:
       TNT1 A 1 TickStats();
       LOOP;
