@@ -7,5 +7,6 @@
 #include "./HomingShots.zsc"
 #include "./Incendiary.zsc"
 #include "./Leech.zsc"
+#include "./Melee.zsc"
 #include "./Poison.zsc"
 #include "./Simpleupgrades.zsc"
