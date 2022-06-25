@@ -40,6 +40,7 @@ class ::Registry : Object play {
       "::PoisonShots",
       "::Pyre",
       "::Resistance",
+      "::Shield",
       "::WeaponDamage"
     };
     for (uint i = 0; i < UpgradeNames.size(); ++i) {

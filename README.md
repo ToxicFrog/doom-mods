@@ -128,3 +128,7 @@ Burning enemies explode in flames when they die, igniting all nearby enemies. Th
 ### Resistance *(Player only)*
 
 Reduces incoming damage by 5%. This has diminishing returns as you take more levels of it.
+
+### Shield *(Melee only, max two levels)*
+
+Reduces incoming damage by 50% (at level 1) or 75% (at level 2).

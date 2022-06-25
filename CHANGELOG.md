@@ -1,3 +1,7 @@
+# 0.4
+
+- Upgrade: Shield, a very powerful defence upgrade for melee weapons only
+
 # 0.3.2
 
 - Add upgrade registry so that other mods can easily add their own integrations.
