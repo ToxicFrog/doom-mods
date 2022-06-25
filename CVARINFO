@@ -40,7 +40,7 @@ server float laevis_gun_damage_bonus = 0.05;
 server bool laevis_use_score_for_xp = false;
 
 // XP derived from score will be multiplied by this.
-server float laevis_score_to_xp_factor = 1.0;
+server float laevis_score_to_xp_factor = 0.5;
 
 // How to remember weapon upgrade info.
 // 0 - per weapon object
