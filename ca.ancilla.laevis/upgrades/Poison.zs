@@ -28,13 +28,13 @@ class ::Poison : ::Dot {
     return -0.1;
   }
 
-  override uint GetDamage() {
+  override double GetDamage() {
     if (amount <= 0) {
       Destroy();
       return 0;
     }
     // DEBUG("poison stacks=%d damage=%d", amount, (amount-1)/5);
-    return (amount--)/5;
+    return (amount--)/10;
   }
 }
 

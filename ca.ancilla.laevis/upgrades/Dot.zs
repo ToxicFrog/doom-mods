@@ -23,6 +23,7 @@ class ::Dot : Inventory {
 
   override void PostBeginPlay() {
     if (!owner) { Destroy(); return; }
+    buffer = 0.0;
     SetStateLabel("Dot");
   }
 
@@ -70,19 +71,24 @@ class ::Dot : Inventory {
       0, 0, zv); // a
   }
 
+  double buffer; // Accumlated damage for fractional damage amounts.
   virtual void TickDot() {
     if (!owner || owner.bKILLED) {
       Destroy();
       return;
     }
-    owner.DamageMobj(
-      self, self.target, GetDamage(), self.DamageType,
-      DMG_NO_ARMOR | DMG_NO_PAIN | DMG_THRUSTLESS | DMG_NO_ENHANCE);
+    buffer += GetDamage();
+    if (buffer > 1) {
+      owner.DamageMobj(
+        self, self.target, floor(buffer), self.DamageType,
+        DMG_NO_ARMOR | DMG_NO_PAIN | DMG_THRUSTLESS | DMG_NO_ENHANCE);
+      buffer -= floor(buffer);
+    }
   }
 
-  virtual uint GetDamage() {
+  virtual double GetDamage() {
     ThrowAbortException("Subclass of ::Dot did not implement GetDamage()!");
-    return 0;
+    return 0.0;
   }
 
   virtual string GetParticleColour() {

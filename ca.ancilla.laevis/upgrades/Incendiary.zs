@@ -44,7 +44,7 @@ class ::IncendiaryShots::Fire : ::Dot {
   // This probably requires the use of HandlePickup() to check the amount
   // in order to differentiate between new stacks applied by getting shot
   // and new stacks applied by fire spread
-  override uint GetDamage() {
+  override double GetDamage() {
     // Damage calculation. This is a bit hairy.
     // Basically, we want to do at least as much total damage as half the target's
     // health, even if that kills them, but also keep doing damage as long as they
@@ -61,23 +61,16 @@ class ::IncendiaryShots::Fire : ::Dot {
     // them down to half health right now". For most enemies #1 will be more, for
     // healing/regenerating enemies it might be #2.
 
-    // You'd think we could use max() here, but for some reason it falls over
-    // and dies, returning (int)0x80000000 no matter the input.
-    // int target_damage = max(
-    //     maxDamage - totalDamage,
-    //     owner.health - owner.SpawnHealth() * FIRE_FACTOR);
-
-    int damage_by_spawn = maxDamage - totalDamage;
-    int damage_by_health = owner.health - owner.SpawnHealth() * FIRE_FACTOR;
-    int target_damage = damage_by_spawn > damage_by_health ?
-        damage_by_spawn : damage_by_health;
-    DEBUG("Fire damage target=%d out of %d (base) %d (healed)",
+    double damage_by_spawn = maxDamage - totalDamage;
+    double damage_by_health = owner.health - owner.SpawnHealth() * FIRE_FACTOR;
+    double target_damage = max(damage_by_spawn, damage_by_health);
+    DEBUG("Fire damage target=%f out of %f (base) %f (healed)",
       target_damage, damage_by_spawn, damage_by_health);
     if (target_damage <= 0) return 0; // burned out
 
     // Now the actual damage is a proportion of the target damage, but capped
-    // based on the number of stacks we have. It cannot go below 1.
-    uint damage = clamp(target_damage/10, 1, amount*4);
+    // based on the number of stacks we have.
+    double damage = min(target_damage/10.0, amount*4.0);
     DEBUG("Fire: %d damage", damage);
     totalDamage += damage;
     return damage;
