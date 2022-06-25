@@ -91,7 +91,7 @@ As a player upgrade, increases *all* damage you deal by 5% per level. As a weapo
 
 ### Explosive Shots *(Hitscan only)*
 
-Creates a small explosion on hit. Higher levels do more damage and have a wider blast radius.
+Creates a small explosion on hit doing 40% of the original attack damage. More levels increase the damage and blast radius, and reduce the damage you take from your own explosions.
 
 ### Fast Shots *(Projectile only)*
 

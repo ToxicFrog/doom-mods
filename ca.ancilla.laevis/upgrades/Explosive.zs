@@ -7,8 +7,8 @@ class ::ExplosiveShots : ::BaseUpgrade {
     [ok, act] = shot.A_SpawnItemEx("::ExplosiveShots::Boom");
     let boom = ::ExplosiveShots::Boom(act);
     boom.target = pawn;
-    boom.damage = 10 + 5 * level;
-    boom.radius = 64 + 32 * level;
+    boom.damage = damage * level * 0.4;
+    boom.radius = 64 + 16 * level;
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
@@ -17,6 +17,7 @@ class ::ExplosiveShots : ::BaseUpgrade {
 }
 
 class ::ExplosiveShots::Boom : Actor {
+  uint level;
   uint damage;
   uint radius;
 
@@ -25,7 +26,16 @@ class ::ExplosiveShots::Boom : Actor {
     +NOBLOCKMAP;
     +NOGRAVITY;
     +MISSILE;
-    +INCOMBAT;
+    +NODAMAGETHRUST;
+    +INCOMBAT; // Laevis recursion guard
+    DamageType "Extreme";
+  }
+
+  override int DoSpecialDamage(Actor target, int damage, Name damagetype) {
+    if (target == self.target) {
+      return damage * (0.50 ** self.level);
+    }
+    return damage;
   }
 
   States {
