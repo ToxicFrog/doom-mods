@@ -175,6 +175,37 @@ Upgrades inspired by DoomRL:
 - ammoleech (on kill?)
 - damage resistance while firing
 
+## Elemental upgrade redesign
+
+Elements are mutually exclusive with each other. Each one has base, upgrade, and capstone options.
+
+FIRE:
+- does 50% HP in damage
+- reignites on heal
+- more stacks == faster damage
+- upgrade: fire spreads between enemies
+- capstone: burning enemies explode on death
+
+POISON:
+- no damage cap but duration and damage fall off fast
+- stacks increase both (diminishing returns based on weapon level?)
+- upgrade: victim takes increased damage from non-poison attacks
+- capstone: poisoned enemies spread poison on death
+- maybe swap upgrade and capstone?
+
+ACID:
+- damage increases as health drops, but increased damage uses up stacks faster
+- so, total stack count corresponds to total damage dealt
+- upgrade: ???
+- capstone: ???
+
+LIGHTNING:
+- no damage, but stuns target; more stacks == longer duration
+- upgrade: ???
+- capstone: ???
+- damage when it wears off based on total stacks? good for hit and run attacks
+- or maybe damage when you keep applying stacks?
+
 ## Applying upgrades
 
 In WorldThingSpawned we can detect projectile spawnings (look for target=player and bMISSILE flag) and there we can apply stuff like ripper, bouncy, etc. We can't modify damage, though.

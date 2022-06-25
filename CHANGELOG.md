@@ -1,3 +1,7 @@
+# 0.3.2
+
+- Add upgrade registry so that other mods can easily add their own integrations.
+
 # 0.3.1
 
 - Fixed a category of crash bugs related to dealing or taking damage with no

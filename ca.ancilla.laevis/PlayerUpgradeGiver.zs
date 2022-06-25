@@ -9,7 +9,7 @@ class ::PlayerUpgradeGiver : ::UpgradeGiver {
   // or some other simple, generally useful upgrade.
   override void CreateUpgradeCandidates() {
     while (candidates.size() < 3) {
-      let upgrade = ::Upgrade::BaseUpgrade.GenerateUpgradeForPlayer(stats);
+      let upgrade = ::Upgrade::Registry.GenerateUpgradeForPlayer(stats);
       if (!AlreadyHasUpgrade(upgrade)) {
         candidates.push(upgrade);
       } else {

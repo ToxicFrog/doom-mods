@@ -1,6 +1,7 @@
-#include "./UpgradeBag.zsc"
 #include "./BaseUpgrade.zsc"
 #include "./Dot.zsc"
+#include "./Registry.zsc"
+#include "./UpgradeBag.zsc"
 
 #include "./Explosive.zsc"
 #include "./HomingShots.zsc"

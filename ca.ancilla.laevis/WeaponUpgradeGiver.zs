@@ -9,7 +9,7 @@ class ::WeaponUpgradeGiver : ::UpgradeGiver {
   // or some other simple, generally useful upgrade.
   override void CreateUpgradeCandidates() {
     while (candidates.size() < 3) {
-      let upgrade = ::Upgrade::BaseUpgrade.GenerateUpgradeForWeapon(wielded);
+      let upgrade = ::Upgrade::Registry.GenerateUpgradeForWeapon(wielded);
       if (!AlreadyHasUpgrade(upgrade)) {
         candidates.push(upgrade);
       } else {

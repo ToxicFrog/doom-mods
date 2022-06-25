@@ -5,8 +5,13 @@
 
 class ::EventHandler : StaticEventHandler {
   bool legendoomInstalled;
+  ::Upgrade::Registry UPGRADE_REGISTRY;
 
   override void OnRegister() {
+    // Register all builtin upgrades.
+    UPGRADE_REGISTRY = new("::Upgrade::Registry");
+    UPGRADE_REGISTRY.RegisterBuiltins();
+
     // If we just do cls = "LDPistol" it will get checked at compile time; we
     // need to defer this to runtime so that everything has a chance to load.
     string ldpistol = "LDPistol";

@@ -74,8 +74,8 @@ class TFLV_Util : Object {
     return StringTable.Localize("$LD_FX_DESCR_"..suffix);
   }
 
-  static string SafeCls(Actor act) {
-    if (act) return act.GetClassName();
+  static string SafeCls(Object obj) {
+    if (obj) return obj.GetClassName();
     return "null";
   }
 }

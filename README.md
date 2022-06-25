@@ -71,6 +71,7 @@ See "modding notes" below.
 
 Parts of this mod may be of interest to other modders; in particular `TooltipOptionsMenu.zs` is a drop-in replacement for `OptionsMenu` that supports tooltips in the MENUDEF, and the other menus are useful examples of how to do dynamic menu creation in ZScript.
 
+If you want to integrate Laevis with another mod -- in particular, if you want to add new Laevis upgrades -- see `BaseUpgrade.zs` for detailed instructions. The short form is: you need to subclass `TFLV_Upgrade_BaseUpgrade`, override some virtual methods, and then register your new upgrade class(es) on mod startup, probably in `StaticEventHandler.OnRegister()`.
 
 ## Upgrade List
 

@@ -1,13 +1,22 @@
 // Base class for weapon and player upgrades.
-// To implement a new upgrade:
-// - Subclass ::BaseUpgrade
+// To implement a Laevis upgrade in your own mod:
+// - Subclass TFLV_Upgrade_BaseUpgrade
 // - Implement at least one of the IsSuitableFor* functions with the conditions
 //   needed for the upgrade to spawn
 // - Implement at least one of the On* or Modify* functions with the actual
 //   effects of the upgrade
-// - Add the class name to GenerateUpgrade() below
-// - Add the name and description to the LANGUAGE file
-// - Add the documentation to the README
+// - Add the name and description to your LANGUAGE file; the keys should be
+//   [upgrade_class_name]_Name and [upgrade_class_name]_Desc, e.g.
+//   TFLV_Upgrade_Pyre_Name and TFLV_Upgrade_Pyre_Desc.
+// - In your startup code (e.g. in your StaticEventHandler's OnRegister), call
+//   TFLV_Upgrade_Registry.Register("upgrade_class_name"). Make sure this runs
+//   *after* TFLV_EventHandler or the registry won't exist yet.
+// - All done! The upgrade should now start appearing in play when your mod is
+//   loaded after Laevis.
+// If for some reason you can't register it in a StaticEventHandler -- say you
+// have to register it in WorldLoaded() or in an actor's Spawn: state -- it's
+// safe to register the same upgrade multiple times; it'll just ignore every
+// registration after the first.
 #namespace TFLV::Upgrade;
 
 class ::BaseUpgrade : Object play {
@@ -15,26 +24,6 @@ class ::BaseUpgrade : Object play {
 
   virtual void Init() {
     level = 1;
-  }
-
-  static ::BaseUpgrade GenerateUpgrade() {
-    static const string UpgradeNames[] = {
-      "::Armour",
-      "::ArmourLeech",
-      "::Damage",
-      "::ExplosiveShots",
-      "::FastShots",
-      "::HomingShots",
-      "::IncendiaryShots",
-      "::LifeLeech",
-      "::PiercingShots",
-      "::Putrefaction",
-      "::PoisonShots",
-      "::Pyre",
-      "::Resistance"
-    };
-    let cls = UpgradeNames[random(0, UpgradeNames.Size()-1)];
-    return ::BaseUpgrade(new(cls));
   }
 
   // VIRTUAL FUNCTIONS //
@@ -109,27 +98,4 @@ class ::BaseUpgrade : Object play {
   string GetDesc() const {
     return StringTable.Localize("$"..self.GetClassName().."_Desc");
   }
-
-  static ::BaseUpgrade GenerateUpgradeForPlayer(TFLV::PerPlayerStats stats) {
-    ::BaseUpgrade upgrade = null;
-    while (upgrade == null) {
-      upgrade = GenerateUpgrade();
-      if (upgrade.IsSuitableForPlayer(stats)) return upgrade;
-      upgrade.Destroy();
-      upgrade = null;
-    }
-    return null; // unreachable
-  }
-
-  static ::BaseUpgrade GenerateUpgradeForWeapon(TFLV::WeaponInfo info) {
-    ::BaseUpgrade upgrade = null;
-    while (upgrade == null) {
-      upgrade = GenerateUpgrade();
-      if (upgrade.IsSuitableForWeapon(info)) return upgrade;
-      upgrade.Destroy();
-      upgrade = null;
-    }
-    return null; // unreachable
-  }
-
 }
