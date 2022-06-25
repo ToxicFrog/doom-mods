@@ -178,33 +178,57 @@ Upgrades inspired by DoomRL:
 ## Elemental upgrade redesign
 
 Elements are mutually exclusive with each other. Each one has base, upgrade, and capstone options.
+Possible alternate design: both later-tier upgrades are "capstone" and you can only choose one, probably with either a "better for single targets/better for crowd control" split or a "better for big guns/better for rapid fire" split.
+
+So, something like:
+- fire: spreads between enemies/burning enemies explode on death
+  this has two crowd control upgrades
+- poison: victim takes increased damage/poisons other enemies on death
+- acid: victim takes increased damage/???
+  this is a duplicate of poison
+- lightning: damage bursts with each attack that applies new stacks/stacks stun nearby enemies as well
+
+maybe we have four different niches here:
+- rapid fire single target
+- high damage single target
+- rapid fire crowd control
+- high damage crowd control?
 
 FIRE:
+- for use against really durable enemies, or enemies with healing/regen
 - does 50% HP in damage
 - reignites on heal
-- more stacks == faster damage
-- upgrade: fire spreads between enemies
-- capstone: burning enemies explode on death
+- stacks: damage happens faster
+- level: apply more stacks/stack softcap increased
+- upgrade: min health to ignite reduced
+- AoE capstone: fire spreads between enemies
+- Single-target capstone: sufficiently on-fire enemies rocket into the sky and explode like fireworks
 
 POISON:
+- for use with rapid fire guns
 - no damage cap but duration and damage fall off fast
-- stacks increase both (diminishing returns based on weapon level?)
-- upgrade: victim takes increased damage from non-poison attacks
-- capstone: poisoned enemies spread poison on death
-- maybe swap upgrade and capstone?
+- stacks: increases both damage and duration
+- level: apply more stacks/stack softcap increased
+- upgrade: victim does reduced damage?
+- AoE capstone: dead enemies explode in a cloud of poison
+- single-target capstone: if there's enough poison stacks to eventually kill the target, it dies instantly
 
 ACID:
+- for use with powerful single-shot guns
 - damage increases as health drops, but increased damage uses up stacks faster
 - so, total stack count corresponds to total damage dealt
-- upgrade: ???
-- capstone: ???
+- hard stack limit based on weapon damage, stacks applied also depends on damage
+- level: apply more stacks/stack softcap increased
+- upgrade: softcap at which damage starts happening increased?
+- AoE capstone: damaging an acidified at max stacks target transfers stacks to nearby enemies instead
+- single-target capstone: victim takes increased damage from non-acid attacks
 
 LIGHTNING:
 - no damage, but stuns target; more stacks == longer duration
-- upgrade: ???
-- capstone: ???
-- damage when it wears off based on total stacks? good for hit and run attacks
-- or maybe damage when you keep applying stacks?
+- level: apply more stacks/stack softcap increased
+- upgrade: attacks that apply lightning also do damage, or maybe attacks that DON'T apply lightning do bonus damage?
+- AoE capstone: lightning nova that damages and stuns when certain stack-application breakpoints are reached
+- single-target capstone: enemies killed with enough lightning stacks rise as your minions
 
 ## Applying upgrades
 

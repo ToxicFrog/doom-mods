@@ -5,6 +5,7 @@
   Both versions are now guaranteed to add at least 1 damage/level.
 - HE rounds now do damage based on original attack damage. Blast radius increases
   more slowly with levels. Self-damage protection added.
+- Poison and fire should no longer launch enemies into the sky.
 
 # 0.3.1
 

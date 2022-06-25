@@ -16,6 +16,7 @@ class ::Poison : ::Dot {
     DamageType "Poison";
     Inventory.Amount 10;
     +INCOMBAT; // Laevis recursion guard
+    +NODAMAGETHRUST;
   }
 
   override string GetParticleColour() {
@@ -65,6 +66,7 @@ class ::Putrefaction::Aux : Actor {
   Default {
     RenderStyle "Translucent";
     Alpha 0.4;
+    +NODAMAGETHRUST;
   }
 
   override int DoSpecialDamage(Actor target, int damage, Name damagetype) {
@@ -73,7 +75,7 @@ class ::Putrefaction::Aux : Actor {
   }
   States {
     Spawn:
-      LPBX ABABABCBCBCDCDCDEE 7 A_Explode(100, 100, XF_NOSPLASH, false, 100);
+      LPBX ABABABCBCBCDCDCDEE 7 A_Explode(1, 100, XF_NOSPLASH, false, 100);
       STOP;
   }
 }
