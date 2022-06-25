@@ -1,6 +1,7 @@
 # 0.4
 
 - Upgrade: Shield, a very powerful defence upgrade for melee weapons only
+- Upgrade: Dark Harvest, a melee upgrade that restores health and armour on kills
 
 # 0.3.2
 

@@ -85,6 +85,10 @@ Reduces incoming damage by 1 point per level. Cannot reduce it below 2.
 
 Restores armour when you attack, by 2% per level of the damage dealt.
 
+### Dark Harvest *(Melee only)*
+
+Killing an enemy grants you health and armour equal to 5% of its max health. Unlike the health/armour leech upgrades, this ignores normal health/armour limits and can boost you even beyond Megasphere levels.
+
 ### Damage
 
 As a player upgrade, increases *all* damage you deal by 5% per level. As a weapon upgrade, increases damage dealt by *that weapon* by 10% per level. In either case it will always add at least one point of damage per level to each of your attacks.

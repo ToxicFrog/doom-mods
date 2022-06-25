@@ -29,6 +29,7 @@ class ::Registry : Object play {
     static const string UpgradeNames[] = {
       "::Armour",
       "::ArmourLeech",
+      "::DarkHarvest",
       "::ExplosiveShots",
       "::FastShots",
       "::HomingShots",
