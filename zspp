@@ -44,9 +44,10 @@ for line in io.lines(src) do
     line = ('#include "%s%s"'):format(dirname, path)
     table.insert(lines, line)
   elseif line:match('::') and ns then
-    line = line
+    line = (' '..line)
       :gsub('(%W)::', '%1'..ns..'_')
       :gsub('(%w)::', '%1_')
+      :sub(2)
     table.insert(lines, line)
   else
     table.insert(lines, line)
