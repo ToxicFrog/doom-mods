@@ -29,17 +29,18 @@ class ::Registry : Object play {
     static const string UpgradeNames[] = {
       "::Armour",
       "::ArmourLeech",
-      "::Damage",
       "::ExplosiveShots",
       "::FastShots",
       "::HomingShots",
       "::IncendiaryShots",
       "::LifeLeech",
       "::PiercingShots",
+      "::PlayerDamage",
       "::Putrefaction",
       "::PoisonShots",
       "::Pyre",
-      "::Resistance"
+      "::Resistance",
+      "::WeaponDamage"
     };
     for (uint i = 0; i < UpgradeNames.size(); ++i) {
       upgrades.push(UpgradeNames[i]);

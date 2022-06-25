@@ -87,7 +87,7 @@ Restores armour when you attack, by 2% per level of the damage dealt.
 
 ### Damage
 
-Increases all damage dealt by you by 5% per level.
+As a player upgrade, increases *all* damage you deal by 5% per level. As a weapon upgrade, increases damage dealt by *that weapon* by 10% per level. In either case it will always add at least one point of damage per level to each of your attacks.
 
 ### Explosive Shots *(Hitscan only)*
 

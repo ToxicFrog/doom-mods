@@ -37,12 +37,6 @@ class TFLV_Settings : Object {
   static int gun_levels_per_ld_effect() {
     return GetInt("laevis_gun_levels_per_ld_effect");
   }
-  static double player_damage_bonus() {
-    return GetDouble("laevis_player_damage_bonus");
-  }
-  static double player_defence_bonus() {
-    return GetDouble("laevis_player_defence_bonus");
-  }
   static int base_level_cost() {
     return GetInt("laevis_base_level_cost");
   }

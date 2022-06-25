@@ -2,16 +2,6 @@
 // permanent player-wide bonus.
 server int laevis_gun_levels_per_player_level = 10;
 
-// How much extra damage they do per player level. Additive; if this is 0.05
-// and the player is level 20 they do double damage.
-server float laevis_player_damage_bonus = 0.05;
-
-// Incoming damage is multiplied by this raised to the player-level power.
-// Unlike outgoing damage this has diminishing returns, so the player will never
-// become truly invincible.
-// If set to 0.95, it works out to ~36% damage taken by level 20.
-server float laevis_player_defence_bonus = 0.95;
-
 // Base XP needed to go from level 0 to level 1. Cost for future levels is
 // (base xp) * (destination level).
 // At the default setting of 1200, it's enough that clearing MAP01 on UV will
