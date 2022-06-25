@@ -20,6 +20,7 @@ class ::IncendiaryShots::Fire : ::Dot {
 
   Default {
     DamageType "Fire";
+    +INCOMBAT; // Laevis recursion guard
   }
 
   override void PostBeginPlay() {

@@ -1,6 +1,10 @@
 # 0.3.2
 
 - Add upgrade registry so that other mods can easily add their own integrations.
+- Damage upgrade split into two versions: per player (+5%) and per weapon (+10%).
+  Both versions are now guaranteed to add at least 1 damage/level.
+- HE rounds now do damage based on original attack damage. Blast radius increases
+  more slowly with levels. Self-damage protection added.
 
 # 0.3.1
 

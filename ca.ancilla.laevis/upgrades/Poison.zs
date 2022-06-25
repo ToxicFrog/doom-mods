@@ -15,6 +15,7 @@ class ::Poison : ::Dot {
   Default {
     DamageType "Poison";
     Inventory.Amount 10;
+    +INCOMBAT; // Laevis recursion guard
   }
 
   override string GetParticleColour() {
