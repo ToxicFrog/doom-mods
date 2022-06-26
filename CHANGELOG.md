@@ -2,6 +2,7 @@
 
 - Upgrade: Shield, a very powerful defence upgrade for melee weapons only
 - Upgrade: Dark Harvest, a melee upgrade that restores health and armour on kills
+- Upgrade: Bouncy Shots, projectiles that bounce off walls and (eventually) enemies
 - Fix: DoTs that do fractional damage per tick now work properly
 
 # 0.3.2

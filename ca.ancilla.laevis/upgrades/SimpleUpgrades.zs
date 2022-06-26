@@ -17,6 +17,25 @@ class ::Armour : ::BaseUpgrade {
   }
 }
 
+class ::BouncyShots : ::BaseUpgrade {
+  override void OnProjectileCreated(Actor player, Actor shot) {
+    shot.bBOUNCEONWALLS = true;
+    shot.bBOUNCEONCEILINGS = true;
+    shot.bBOUNCEONFLOORS = true;
+    shot.bBOUNCEAUTOOFFFLOORONLY = true;
+    shot.BounceCount = 1 + level;
+    if (level >= 3) {
+      shot.bALLOWBOUNCEONACTORS = true;
+      shot.bBOUNCEONACTORS = true;
+      shot.bBOUNCEONUNRIPPABLES = true;
+    }
+  }
+
+  override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
+    return info.IsProjectileWeapon();
+  }
+}
+
 class ::FastShots : ::BaseUpgrade {
   override void OnProjectileCreated(Actor player, Actor shot) {
     shot.A_ScaleVelocity(1 + 0.5*level);

@@ -85,6 +85,10 @@ Reduces incoming damage by 1 point per level. Cannot reduce it below 2.
 
 Restores armour when you attack, by 2% per level of the damage dealt.
 
+### Bouncy Shots *(Projectile only)*
+
+Shots bounce off walls. Higher levels increase the number of bounces and decrease the amount of velocity lost on bounce. At level 3, shots bounce off enemies as well.
+
 ### Dark Harvest *(Melee only)*
 
 Killing an enemy grants you health and armour equal to 5% of its max health. Unlike the health/armour leech upgrades, this ignores normal health/armour limits and can boost you even beyond Megasphere levels.

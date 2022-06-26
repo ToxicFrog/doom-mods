@@ -130,9 +130,7 @@ Basic "number go up" upgrades:
 More complicated upgrades:
 - bouncy shots (proj. only)
   set BounceType/BounceFactor/BounceCount in WorldThingSpawned
-- penetrating shots
-  set Ripper/RipperLevel in WorldThingSpawned for projectiles; for hitscans,
-  get the attack vector (how?) and then call A_CustomRailgun
+  possible LG-XX style upgrade where bouncy shots even bounce off enemies they damage
 - explosion on hit/kill
   call A_Explode() and spawn and explosion on impact or in WorldThingKilled
 - shrapnel on hit/kill
@@ -148,29 +146,12 @@ More complicated upgrades:
 - health/armour/ammo leech
   in OnDamageDealt
 
-Elemental upgrades:
-- bleeding (DoT, damage based on initial hit, subsequent hits reset duration?)
-  enemies with blood only (-NOBLOOD). -- this means it'll effect everything in Doom
-  but be less effective in (say) Strife?
-  maybe shelve this until I can nail the design down more
-- acid (DoT, damage *increases* as health reduces, subsequent hits increase duration)
-  does nothing at full health, damage increases as target loses health
-  more hits do not increase damage but do increase duration
-- lightning (stuns enemy briefly)
-  put an item in the inventory that keeps forcing them into their "pain" state every tic
-! ice (slows enemy briefly, stacks increase duration)
-  stun/slow turn out to be really hard!
-
 Upgrades inspired by DoomRL:
 - increase max health
 - increased speed
-- flat or % damage reduction
-- flat or % damage increase
 - fast weapon switching
 - berserk after successful hits/kills
 - show secrets/monsters/items/etc on map
-- lifeleech
-- massive damage resistance when wielding melee
 - damage type modifications (e.g. shrapnel -> AP)
 - ammoleech (on kill?)
 - damage resistance while firing
