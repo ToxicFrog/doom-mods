@@ -17,6 +17,9 @@ class ::Armour : ::BaseUpgrade {
   }
 }
 
+// TODO: put some restrictions on this so you can't stack bouncy, piercing, and
+// homing all on the same projectile. Maybe bouncy and piercing are mutually
+// exclusive?
 class ::BouncyShots : ::BaseUpgrade {
   override void OnProjectileCreated(Actor player, Actor shot) {
     shot.bBOUNCEONWALLS = true;

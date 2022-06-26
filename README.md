@@ -73,9 +73,13 @@ Parts of this mod may be of interest to other modders; in particular `TooltipOpt
 
 If you want to integrate Laevis with another mod -- in particular, if you want to add new Laevis upgrades -- see `BaseUpgrade.zs` for detailed instructions. The short form is: you need to subclass `TFLV_Upgrade_BaseUpgrade`, override some virtual methods, and then register your new upgrade class(es) on mod startup, probably in `StaticEventHandler.OnRegister()`.
 
-## Upgrade List
+# Upgrade List
 
-This is a list of all the upgrades in the game and their effects and prerequisites.
+This is a list of all the upgrades in the game and their effects and prerequisites. Upgrades have brief in-game descriptions, but this list often has more details.
+
+## General Upgrades
+
+General-purpose player and weapon upgrades.
 
 ### Armour *(Player only)*
 
@@ -109,10 +113,6 @@ Projectiles move 50% faster per level.
 
 Projectiles home in on enemies. Higher levels will lock on from further away and be more maneuverable when homing.
 
-### Incendiary Shots *(Weapon only)*
-
-Shots cause enemies to ignite. Fire does more damage the more health the target has, up to a maximum of 50% of the target's max health. If an enemy that has "burned out" heals, it will start taking fire damage again, making this particularly effective against modded enemies with regeneration or self-healing. Stacks cause it to do the damage faster (but do not increase the total damage dealt).
-
 ### Life Leech *(Player only)*
 
 Restores health when you attack, by 1% per level of the damage dealt. Cannot exceed your normal health limit.
@@ -129,10 +129,6 @@ Shots poison enemies. Poison is a weak and short-lived damage-over-time effect, 
 
 Poisoned enemies explode in a poison cloud when killed, transferring half their poison stacks to nearby enemies.
 
-### Pyre *(Weapon only; requires two levels in Incendiary Shots)*
-
-Burning enemies explode in flames when they die, igniting all nearby enemies. The more fire stacks the victim had the hotter the pyre will burn.
-
 ### Resistance *(Player only)*
 
 Reduces incoming damage by 5%. This has diminishing returns as you take more levels of it.
@@ -140,3 +136,23 @@ Reduces incoming damage by 5%. This has diminishing returns as you take more lev
 ### Shield *(Melee only, max two levels)*
 
 Reduces incoming damage by 50% (at level 1) or 75% (at level 2).
+
+## Elemental Upgrades
+
+Elemental upgrades work a bit differently from general upgrades. Each element has four associated upgrades:
+- a basic upgrade that activates that elemental status effect on the weapon
+- an intermediate upgrade that improves the status effect in a different way than just leveling up the base upgrade
+- two master upgrades that add a powerful new effect, only one of which can be chosen on each weapon
+
+### Incendiary Shots *(Fire basic upgrade)*
+
+Shots cause enemies to ignite. Fire does more damage the more health the target has, and "burns out" once they're below 50% health. If an enemy that has "burned out" heals, it will start taking fire damage again, making this particularly effective against modded enemies with regeneration or self-healing. Stacks cause it to do the damage faster (but do not increase the total damage dealt).
+
+### Searing Heat *(Fire intermediate upgrade)*
+
+Reduces the threshold at which fire burns out by 20% (so one level takes it from 50% to 40%). This can be stacked but has diminishing returns.
+
+### Conflagration *(Fire mastery)*
+
+Burning enemies with enough stacks on them will pass a proportion of their stacks on to nearby enemies. Higher levels of Conflagration will transfer more stacks and do so in a wider range, as will adding more stacks to the victim.
+

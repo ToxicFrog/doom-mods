@@ -128,13 +128,8 @@ Basic "number go up" upgrades:
   requires changing A_Saw
 
 More complicated upgrades:
-- bouncy shots (proj. only)
-  set BounceType/BounceFactor/BounceCount in WorldThingSpawned
-  possible LG-XX style upgrade where bouncy shots even bounce off enemies they damage
-- explosion on hit/kill
-  call A_Explode() and spawn and explosion on impact or in WorldThingKilled
 - shrapnel on hit/kill
-  as above but use the "# of nails" argument to A_Explode()
+  use the "# of nails" argument to A_Explode()
 - AoE stun
   Use A_Explode and then have a custom damage handler? Spawn some kind of explosion actor?
 - submunitions in flight
@@ -174,11 +169,16 @@ POISON: initially weak but both damage and duration increase as it stacks. Upgra
 ACID: does damage faster as the target gets closer to death. Stacking increases duration and stack cap depends on weapon damage (so it benefits more from guns with powerful single shots). Upgrade: not sure yet. Masteries: attacking acidified enemies splashes acid on their surroundings OR acidified enemies take more damage from non-acid damage types.
 LIGHTNING: no damage, but stuns the target by triggering their pain state. Upgrade: not sure yet. Masteries: softcapping lightning stacks starts damaging + stunning nearby enemies (but not applying stacks to them) OR enemies that die with enough lightning stacks rise as your minions.
 
-maybe we have four different niches here:
-- rapid fire single target
-- high damage single target
-- rapid fire crowd control
-- high damage crowd control?
+Idea for per-weapon limitations:
+- one element per weapon is easiest
+- or two elements
+- or: taking one element locks you into that until you claim a mastery for it, at which point you can choose a second element; getting that mastery unlocks a "dual mastery" upgrade appropriate to the two elements
+- fire+acid: it burns (enemies with both flee)
+- fire+lightning:
+- fire+poison: constant pain effect
+- acid+lightning: idk something about batteries?
+- acid+poison:
+- lightning+poison:
 
 FIRE:
 - for use against really durable enemies, or enemies with healing/regen
@@ -189,6 +189,12 @@ FIRE:
 - upgrade: min health to ignite reduced
 - AoE capstone: fire spreads between enemies
 - Single-target capstone: sufficiently on-fire enemies rocket into the sky and explode like fireworks
+
+FIXME: single-target for fire and poison are variations on the same idea -- "get enough stacks on this enemy and it dies instantly". Rework ideas:
+- poison needs more stacks, say 2x the "eventually kill the target" threshold
+- fire does a comparison of burn rate vs. target mass and lifts off when the TWR is sufficiently high, so number of stacks needed scales with enemy mass, not HP, and it's easier when the target has more HP, not less; or if that's too punishing, perhaps the burn rate is the amount of stacks that *isn't* dealing damage?
+- alternately, completely rework one or both of them; say, max poison makes enemies fight for you or flee in terror until they die, rather than killing them instantly.
+- I like the first one. Poison capstone: HALLUCINOGENS
 
 POISON:
 - for use with rapid fire guns

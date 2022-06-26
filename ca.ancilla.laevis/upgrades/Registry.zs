@@ -34,16 +34,20 @@ class ::Registry : Object play {
       "::ExplosiveShots",
       "::FastShots",
       "::HomingShots",
-      "::IncendiaryShots",
+      // "::Ignition",
       "::LifeLeech",
       "::PiercingShots",
       "::PlayerDamage",
       "::Putrefaction",
       "::PoisonShots",
-      "::Pyre",
       "::Resistance",
       "::Shield",
-      "::WeaponDamage"
+      "::WeaponDamage",
+      // Fire upgrades
+      "::IncendiaryShots",
+      "::SearingHeat",
+      "::Conflagration"
+      // "::InfernalKiln"
     };
     for (uint i = 0; i < UpgradeNames.size(); ++i) {
       upgrades.push(UpgradeNames[i]);
@@ -52,6 +56,7 @@ class ::Registry : Object play {
 
   static ::BaseUpgrade GenerateUpgrade() {
     let cls = GetRegistry().upgrades[random(0, GetRegistry().upgrades.size()-1)];
+    console.printf("GenerateUpgrade(%s)", cls);
     return ::BaseUpgrade(new(cls));
   }
 
