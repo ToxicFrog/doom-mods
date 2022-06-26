@@ -1,9 +1,13 @@
 # 0.4
 
-- Upgrade: Shield, a very powerful defence upgrade for melee weapons only
-- Upgrade: Dark Harvest, a melee upgrade that restores health and armour on kills
-- Upgrade: Bouncy Shots, projectiles that bounce off walls and (eventually) enemies
-- Change: Fire upgrades overhauled (WIP)
+- New: Shield, a very powerful defence upgrade for melee weapons only
+- New: Dark Harvest, a melee upgrade that restores health and armour on kills
+- New: Bouncy Shots, projectiles that bounce off walls and (eventually) enemies
+- Change: Fire upgrades overhauled:
+  - Fire DoT now cuts off at 50% of max HP no matter how much damage it's done
+  - Searing Heat upgrade lowers the cutoff point
+  - Conflagration upgrade makes fire spread between enemies
+  - Infernal Kiln upgrade turns burning enemies into a source of damage/defence buffs
 - Fix: DoTs that do fractional damage per tick now work properly
 - Fix: rejecting a level-up with ESC would prevent you from ever gaining new upgrades
 

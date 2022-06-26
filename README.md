@@ -156,3 +156,6 @@ Reduces the threshold at which fire burns out by 20% (so one level takes it from
 
 Burning enemies with enough stacks on them will pass a proportion of their stacks on to nearby enemies. Higher levels of Conflagration will transfer more stacks and do so in a wider range, as will adding more stacks to the victim.
 
+### Infernal Kiln *(Fire mastery)*
+
+Attacking a burning enemy gives you a stacking bonus to attack and defence that gradually wears off once you stop.

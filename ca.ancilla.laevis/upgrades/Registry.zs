@@ -1,5 +1,5 @@
 #namespace TFLV::Upgrade;
-#debug on
+#debug off
 
 class ::Registry : Object play {
   array<string> upgrades;
@@ -46,8 +46,8 @@ class ::Registry : Object play {
       // Fire upgrades
       "::IncendiaryShots",
       "::SearingHeat",
-      "::Conflagration"
-      // "::InfernalKiln"
+      "::Conflagration",
+      "::InfernalKiln"
     };
     for (uint i = 0; i < UpgradeNames.size(); ++i) {
       upgrades.push(UpgradeNames[i]);

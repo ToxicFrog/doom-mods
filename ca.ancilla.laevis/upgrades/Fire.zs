@@ -18,6 +18,7 @@
 // MASTER: INFERNAL KILN
 // Attacking burning enemies gives you a temporary damage/resistance bonus.
 #namespace TFLV::Upgrade;
+#debug off
 
 class ::IncendiaryShots : ::BaseUpgrade {
   override void OnDamageDealt(Actor player, Actor shot, Actor target, int damage) {
@@ -40,7 +41,7 @@ class ::SearingHeat : ::BaseUpgrade {
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
-    return info.upgrades.Level("::IncendiaryShots") > 1;
+    return info.upgrades.Level("::IncendiaryShots") > info.upgrades.Level("::SearingHeat");
   }
 }
 
@@ -53,22 +54,46 @@ class ::Conflagration : ::BaseUpgrade {
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
-    return info.upgrades.Level("::IncendiaryShots") > 2
-      && info.upgrades.Level("::SearingHeat") > 1
-      && info.upgrades.Level("::InfernalForge") == 0;
+    return info.upgrades.Level("::SearingHeat") > info.upgrades.Level("::Conflagration")
+      && info.upgrades.Level("::InfernalKiln") == 0;
   }
 }
 
-class ::InfernalForge : ::BaseUpgrade {
+class ::InfernalKiln : ::BaseUpgrade {
+  double hardness;
+
+  // Dealing damage to a burning enemy adds "kiln points" equal to 1% of the
+  // amount of damage dealt times the number of stacks.
   override void OnDamageDealt(Actor player, Actor shot, Actor target, int damage) {
-    // TODO: install buff in player
-    return;
+    DEBUG("Kiln: hardness %f", hardness);
+    hardness += ::Dot.CountStacks(target, "::FireDot") * 0.01 * damage;
+    DEBUG("Kiln:  -> %f", hardness);
+  }
+
+  override void Tick() {
+    if (hardness > 0) hardness -= 1.0/35.0;
+  }
+
+  override double ModifyDamageDealt(Actor pawn, Actor shot, Actor target, double damage) {
+    // Adds damage equal to your level of Kiln * 2, and uses up 1 point.
+    if (hardness <= 0) return damage;
+    DEBUG("Kiln: %f + %f (%f)", damage, level*2.0, hardness);
+    damage += level*2.0;
+    hardness--;
+    return damage;
+  }
+
+  override double ModifyDamageReceived(Actor pawn, Actor shot, Actor attacker, double damage) {
+    // Blocks damage equal to your level of Kiln * 2, and uses up 1 point.
+    if (hardness <= 0) return damage;
+    DEBUG("Kiln: %f - %f (%f)", damage, level*2.0, hardness);
+    damage -= min(damage, level*2.0);
+    hardness--;
+    return damage;
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
-    return false;
-    return info.upgrades.Level("::IncendiaryShots") > 2
-      && info.upgrades.Level("::SearingHeat") > 1
+    return info.upgrades.Level("::SearingHeat") > info.upgrades.Level("::InfernalKiln")
       && info.upgrades.Level("::Conflagration") == 0;
   }
 }
@@ -77,7 +102,6 @@ class ::InfernalForge : ::BaseUpgrade {
 const BASE_FIRE_FACTOR = 0.5;
 const HEAT_FACTOR = 0.8;
 const DAMAGE_PER_STACK = 1.0; // per dot tick, so multiply by 5 to get DPS
-#debug on
 
 class ::FireDot : ::Dot {
   bool burning;

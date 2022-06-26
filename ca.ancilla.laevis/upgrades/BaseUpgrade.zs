@@ -19,12 +19,8 @@
 // registration after the first.
 #namespace TFLV::Upgrade;
 
-class ::BaseUpgrade : Object play {
+class ::BaseUpgrade : Thinker {
   uint level;
-
-  virtual void Init() {
-    level = 1;
-  }
 
   // VIRTUAL FUNCTIONS //
 
