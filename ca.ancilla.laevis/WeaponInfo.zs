@@ -192,6 +192,8 @@ class ::WeaponInfo : Object play {
     return false;
   }
 
+  // TODO: if the player rejects a level-up, reset the weapon to its previous
+  // level.
   void LevelUp() {
     ++level;
     console.printf("Your %s is now level %d!", weapon.GetTag(), level);

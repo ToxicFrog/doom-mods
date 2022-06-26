@@ -30,4 +30,12 @@ class ::PlayerLevelUpMenu : ::GenericMenu {
       "laevis_choose_level_up_option",
       index);
   }
+
+  override bool MenuEvent(int key, bool fromController) {
+    if (key == Menu.MKey_Back) {
+      EventHandler.SendNetworkEvent("laevis_choose_level_up_option", -1);
+    }
+
+    return super.MenuEvent(key, fromController);
+  }
 }
