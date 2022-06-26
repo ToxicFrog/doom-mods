@@ -27,6 +27,7 @@ class ::Registry : Object play {
   void RegisterBuiltins() {
     DEBUG("RegisterBuiltins");
     static const string UpgradeNames[] = {
+      "::Agonizer",
       "::Armour",
       "::ArmourLeech",
       "::BouncyShots",

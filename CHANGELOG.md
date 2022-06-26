@@ -3,6 +3,7 @@
 - New: Shield, a very powerful defence upgrade for melee weapons only
 - New: Dark Harvest, a melee upgrade that restores health and armour on kills
 - New: Bouncy Shots, projectiles that bounce off walls and (eventually) enemies
+- New: Agonizer, a melee-only upgrade that increases melee pain chance
 - Change: Fire upgrades overhauled:
   - Fire DoT now cuts off at 50% of max HP no matter how much damage it's done
   - Searing Heat upgrade lowers the cutoff point
