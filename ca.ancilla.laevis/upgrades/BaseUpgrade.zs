@@ -19,10 +19,14 @@
 // registration after the first.
 #namespace TFLV::Upgrade;
 
-class ::BaseUpgrade : Thinker {
+class ::BaseUpgrade : Object play {
   uint level;
 
   // VIRTUAL FUNCTIONS //
+
+  // Tick function. Equivalent to Thinker.Tick() but we define it here because
+  // we can't inherit from Thinker and have the upgrades survive level changes.
+  virtual void Tick() {}
 
   // Upgrade selection functions.
   // These will be called when generating an upgrade to see if the upgrade should

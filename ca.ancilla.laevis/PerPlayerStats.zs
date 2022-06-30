@@ -355,6 +355,9 @@ class ::PerPlayerStats : ::Force {
       AddXP(owner.score - prevScore);
       prevScore = owner.score;
     }
+
+    upgrades.Tick();
+    info.upgrades.Tick();
   }
 
   States {

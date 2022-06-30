@@ -4,6 +4,12 @@
 class ::UpgradeBag : Object play {
   array<::BaseUpgrade> upgrades;
 
+  void Tick() {
+    for (uint i = 0; i < upgrades.Size(); ++i) {
+      upgrades[i].Tick();
+    }
+  }
+
   ::BaseUpgrade Add(string classname, uint level=1) {
     return AddUpgrade(::BaseUpgrade(new(classname)), level);
   }
@@ -54,6 +60,7 @@ class ::UpgradeBag : Object play {
 
   double ModifyDamageDealt(Actor pawn, Actor shot, Actor target, double damage) {
     for (uint i = 0; i < upgrades.Size(); ++i) {
+      DEBUG("UpgradeBag.ModifyDamageDealt: %d %s", i, TFLV::Util.SafeCls(upgrades[i]));
       damage = upgrades[i].ModifyDamageDealt(pawn, shot, target, damage);
     }
     return damage;

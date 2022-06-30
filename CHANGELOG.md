@@ -6,6 +6,7 @@
   - Putrefaction upgrade is now significantly more powerful
   - new Hallucinogens upgrade makes severely poisoned enemies fight on your side
 - Change: internal cleanup to UpgradeBag and Dot APIs
+- Fix: crash when carrying upgraded weapons across level transitions
 
 # 0.4
 
