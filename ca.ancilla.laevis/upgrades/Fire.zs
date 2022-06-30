@@ -32,12 +32,11 @@ class ::IncendiaryShots : ::BaseUpgrade {
   }
 }
 
-class ::SearingHeat : ::BaseUpgrade {
-  override void OnDamageDealt(Actor player, Actor shot, Actor target, int damage) {
-    if (!shot) return;
-    let fire = ::FireDot(target.FindInventory("::FireDot"));
-    if (!fire) return; // unlikely -- IncendiaryShots should have already applied fire
-    fire.heat = level;
+class ::SearingHeat : ::DotModifier {
+  override void PostBeginPlay() { dot_type = "::FireDot"; }
+
+  override void ModifyDot(Actor player, Actor shot, Actor target, int damage, ::Dot dot_item) {
+    ::FireDot(dot_item).heat = level;
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
@@ -45,12 +44,11 @@ class ::SearingHeat : ::BaseUpgrade {
   }
 }
 
-class ::Conflagration : ::BaseUpgrade {
-  override void OnDamageDealt(Actor player, Actor shot, Actor target, int damage) {
-    if (!shot) return;
-    let fire = ::FireDot(target.FindInventory("::FireDot"));
-    if (!fire) return; // unlikely -- IncendiaryShots should have already applied fire
-    fire.spread = level;
+class ::Conflagration : ::DotModifier {
+  override void PostBeginPlay() { dot_type = "::FireDot"; }
+
+  override void ModifyDot(Actor player, Actor shot, Actor target, int damage, ::Dot dot_item) {
+    ::FireDot(dot_item).spread = level;
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {

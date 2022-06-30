@@ -77,7 +77,7 @@ class ::Dot : Inventory {
 
   double buffer; // Accumlated damage for fractional damage amounts.
   virtual void TickDot() {
-    if (!owner || owner.bKILLED) {
+    if (!owner || owner.bKILLED || amount <= 0) {
       Destroy();
       return;
     }
@@ -103,5 +103,20 @@ class ::Dot : Inventory {
   virtual double GetParticleZV() {
     ThrowAbortException("Subclass of ::Dot did not implement GetParticleZV()!");
     return 0;
+  }
+}
+
+class ::DotModifier : ::BaseUpgrade {
+  string dot_type;
+
+  override void OnDamageDealt(Actor player, Actor shot, Actor target, int damage) {
+    if (!shot) return;
+    let dot_item = ::Dot(target.FindInventory(dot_type));
+    if (!dot_item) return;
+    ModifyDot(player, shot, target, damage, dot_item);
+  }
+
+  virtual void ModifyDot(Actor player, Actor shot, Actor target, int damage, ::Dot dot_item) {
+    return;
   }
 }

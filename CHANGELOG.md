@@ -1,3 +1,7 @@
+# 0.5
+
+- Change: internal cleanup to UpgradeBag and Dot APIs
+
 # 0.4
 
 - New: Shield, a very powerful defence upgrade for melee weapons only

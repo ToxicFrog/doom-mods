@@ -4,28 +4,19 @@
 class ::UpgradeBag : Object play {
   array<::BaseUpgrade> upgrades;
 
-  ::BaseUpgrade Add(string classname) {
-    for (uint i = 0; i < upgrades.Size(); ++i) {
-      if (upgrades[i].GetClassName() == classname) {
-        upgrades[i].level++;
-        return upgrades[i];
-      }
-    }
-    let upgrade = ::BaseUpgrade(new(classname));
-    upgrade.level = 1;
-    upgrades.Push(upgrade);
-    return upgrade;
+  ::BaseUpgrade Add(string classname, uint level=1) {
+    return AddUpgrade(::BaseUpgrade(new(classname)), level);
   }
 
-  ::BaseUpgrade AddUpgrade(::BaseUpgrade upgrade) {
+  ::BaseUpgrade AddUpgrade(::BaseUpgrade upgrade, uint level=1) {
     let classname = upgrade.GetClassName();
     for (uint i = 0; i < upgrades.Size(); ++i) {
       if (upgrades[i].GetClassName() == classname) {
-        upgrades[i].level++;
+        upgrades[i].level += level;
         return upgrades[i];
       }
     }
-    upgrade.level = 1;
+    upgrade.level = level;
     upgrades.Push(upgrade);
     return upgrade;
   }
