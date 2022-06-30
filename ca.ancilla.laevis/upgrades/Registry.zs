@@ -39,8 +39,6 @@ class ::Registry : Object play {
       "::LifeLeech",
       "::PiercingShots",
       "::PlayerDamage",
-      "::Putrefaction",
-      "::PoisonShots",
       "::Resistance",
       "::Shield",
       "::WeaponDamage",
@@ -48,7 +46,12 @@ class ::Registry : Object play {
       "::IncendiaryShots",
       "::SearingHeat",
       "::Conflagration",
-      "::InfernalKiln"
+      "::InfernalKiln",
+      // Poison upgrades
+      "::PoisonShots",
+      "::Weakness",
+      "::Putrefaction",
+      "::Hallucinogens"
     };
     for (uint i = 0; i < UpgradeNames.size(); ++i) {
       upgrades.push(UpgradeNames[i]);

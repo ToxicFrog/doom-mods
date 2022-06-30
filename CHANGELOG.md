@@ -1,5 +1,10 @@
 # 0.5
 
+- Change: Poison upgrades overhauled:
+  - Poison damage now has diminishing returns (duration still scales linearly)
+  - new Weakness upgrades reduces damage dealt by poisoned enemies
+  - Putrefaction upgrade is now significantly more powerful
+  - new Hallucinogens upgrade makes severely poisoned enemies fight on your side
 - Change: internal cleanup to UpgradeBag and Dot APIs
 
 # 0.4
@@ -10,9 +15,10 @@
 - New: Agonizer, a melee-only upgrade that increases melee pain chance
 - Change: Fire upgrades overhauled:
   - Fire DoT now cuts off at 50% of max HP no matter how much damage it's done
-  - Searing Heat upgrade lowers the cutoff point
-  - Conflagration upgrade makes fire spread between enemies
-  - Infernal Kiln upgrade turns burning enemies into a source of damage/defence buffs
+  - new Searing Heat upgrade lowers the cutoff point
+  - new Conflagration upgrade makes fire spread between enemies
+  - new Infernal Kiln upgrade turns burning enemies into a source of damage/defence buffs
+  - Pyre upgrade removed
 - Fix: DoTs that do fractional damage per tick now work properly
 - Fix: rejecting a level-up with ESC would prevent you from ever gaining new upgrades
 
