@@ -322,9 +322,13 @@ class ::PerPlayerStats : ::Force {
         AddXP(GetXPForDamage(target, damage));
       }
 
-      newdamage = upgrades.ModifyDamageDealt(owner, inflictor, source, damage);
-      if (info)
-        newdamage = info.upgrades.ModifyDamageDealt(owner, inflictor, source, newdamage);
+      if (!inflictor || !inflictor.bINCOMBAT) {
+        newdamage = upgrades.ModifyDamageDealt(owner, inflictor, source, damage);
+        if (info)
+          newdamage = info.upgrades.ModifyDamageDealt(owner, inflictor, source, newdamage);
+      } else {
+        newdamage = damage;
+      }
     }
   }
 
