@@ -30,6 +30,7 @@ class ::Registry : Object play {
       "::Agonizer",
       "::Armour",
       "::ArmourLeech",
+      "::Beam",
       "::BouncyShots",
       "::DarkHarvest",
       "::ExplosiveShots",

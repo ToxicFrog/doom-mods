@@ -2,6 +2,9 @@
 
 - New: Fragmentation upgrade for projectile weapons
 - New: Swiftness upgrade for melee weapons
+- New: Beam upgrade for hitscan weapons
+- Fix: Infinite recursion with some upgrade combinations
+- Change: Documentation tweaks
 
 # 0.5.2
 

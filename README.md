@@ -72,6 +72,8 @@ See "modding notes" below.
 - Mods that clear your inventory, like *Universal Pistol Starter*, will also clear all your Laevis upgrades unless you configure them to leave non-weapon inventory items alone.
 - The HUD is not configurable and may overlap the custom HUD included in some mods like Lithium.
 - The distinction between projectile and hitscan weapons is guesswork and may in some cases be incorrect.
+- The Beam upgrade interacts weirdly with shotguns.
+- The Beam upgrade has bad interations with HE rounds and other on-damage effects that scale with shot damage.
 
 ## Modding Notes
 
@@ -98,6 +100,10 @@ Reduces incoming damage by 1 point per level. Cannot reduce it below 2.
 ### Armour Leech *(Player only)*
 
 Restores armour when you attack, by 2% per level of the damage dealt.
+
+### Beam *(Hitscan only)*
+
+Replaces the weapon's normal attack with a perfectly accurate beam that does reduced damage but goes through enemies. Increased level increases the damage dealt, with diminishing returns.
 
 ### Bouncy Shots *(Projectile only)*
 

@@ -3,6 +3,7 @@
 #include "./Registry.zsc"
 #include "./UpgradeBag.zsc"
 
+#include "./Beam.zsc"
 #include "./Explosive.zsc"
 #include "./Fragmentation.zsc"
 #include "./HomingShots.zsc"
