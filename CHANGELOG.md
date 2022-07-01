@@ -1,3 +1,7 @@
+# 0.5.1
+
+- Fix: build system cleanup. No gameplay changes.
+
 # 0.5
 
 - Change: Poison upgrades overhauled:

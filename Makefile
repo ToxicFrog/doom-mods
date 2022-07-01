@@ -17,5 +17,3 @@ clean:
 
 deploy: ${PK3}
 	ln -sf ${PK3} Laevis.pk3
-	cp ${PK3} /ancilla/installs/games/PC/DOOM/
-	ln -sf ./${PK3} /ancilla/installs/games/PC/DOOM/Laevis.pk3
