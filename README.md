@@ -159,3 +159,19 @@ Burning enemies with enough stacks on them will pass a proportion of their stack
 ### Infernal Kiln *(Fire mastery)*
 
 Attacking a burning enemy gives you a stacking bonus to attack and defence that gradually wears off once you stop.
+
+### Poison Shots *(Poison basic upgrade)*
+
+Shots poison enemies. Damage and duration increase as you add stacks; damage has diminishing returns, but duration does not. Leveling up the upgrade increases how many stacks are applied per attack. The number of stacks applied is independent of the damage you do, so this works best with weak rapid-fire weapons and is less effective with slow, powerful ones.
+
+### Weakness *(Poison intermediate upgrade)*
+
+Poisoned enemies do diminished damage. Each stack reduces damage by 1%, with diminishing returns. Leveling this up increases the amount damage is reduced by per stack, although it can never be reduced below 1.
+
+### Putrefaction *(Poison mastery)*
+
+Killing a poisoned enemy causes it to explode in a cloud of poison gas, poisoning everything nearby. Enemies with more poison stacks on them when they die will spread more poison. Leveling this up increases the proportion of poison that gets spread.
+
+### Hallucinogens *(Poison mastery)*
+
+Once an enemy has enough poison stacks on it to eventually kill it, it fights on your side until it dies. Enemies affected by hallucinogens gets a damage bonus from Weakness rather than a damage penalty.
