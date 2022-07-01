@@ -33,7 +33,7 @@ class ::IncendiaryShots : ::BaseUpgrade {
 }
 
 class ::SearingHeat : ::DotModifier {
-  override void PostBeginPlay() { dot_type = "::FireDot"; }
+  override string DotType() { return "::FireDot"; }
 
   override void ModifyDot(Actor player, Actor shot, Actor target, int damage, ::Dot dot_item) {
     ::FireDot(dot_item).heat = level;
@@ -45,7 +45,7 @@ class ::SearingHeat : ::DotModifier {
 }
 
 class ::Conflagration : ::DotModifier {
-  override void PostBeginPlay() { dot_type = "::FireDot"; }
+  override string DotType() { return "::FireDot"; }
 
   override void ModifyDot(Actor player, Actor shot, Actor target, int damage, ::Dot dot_item) {
     ::FireDot(dot_item).spread = level;

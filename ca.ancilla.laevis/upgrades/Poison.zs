@@ -29,7 +29,7 @@ class ::PoisonShots : ::BaseUpgrade {
 }
 
 class ::Weakness : ::DotModifier {
-  override void PostBeginPlay() { dot_type = "::PoisonDot"; }
+  override string DotType() { return "::PoisonDot"; }
 
   override void ModifyDot(Actor player, Actor shot, Actor target, int damage, ::Dot dot_item) {
     ::PoisonDot(dot_item).weakness = level;
@@ -41,7 +41,7 @@ class ::Weakness : ::DotModifier {
 }
 
 class ::Hallucinogens : ::DotModifier {
-  override void PostBeginPlay() { dot_type = "::PoisonDot"; }
+  override string DotType() { return "::PoisonDot"; }
 
   override void ModifyDot(Actor player, Actor shot, Actor target, int damage, ::Dot dot_item) {
     ::PoisonDot(dot_item).hallucinogens = level;

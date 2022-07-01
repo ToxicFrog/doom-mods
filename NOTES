@@ -180,31 +180,6 @@ Idea for per-weapon limitations:
 - acid+poison:
 - lightning+poison:
 
-FIRE:
-- for use against really durable enemies, or enemies with healing/regen
-- does 50% HP in damage
-- reignites on heal
-- stacks: damage happens faster
-- level: apply more stacks/stack softcap increased
-- upgrade: min health to ignite reduced
-- AoE capstone: fire spreads between enemies
-- Single-target capstone: sufficiently on-fire enemies rocket into the sky and explode like fireworks
-
-FIXME: single-target for fire and poison are variations on the same idea -- "get enough stacks on this enemy and it dies instantly". Rework ideas:
-- poison needs more stacks, say 2x the "eventually kill the target" threshold
-- fire does a comparison of burn rate vs. target mass and lifts off when the TWR is sufficiently high, so number of stacks needed scales with enemy mass, not HP, and it's easier when the target has more HP, not less; or if that's too punishing, perhaps the burn rate is the amount of stacks that *isn't* dealing damage?
-- alternately, completely rework one or both of them; say, max poison makes enemies fight for you or flee in terror until they die, rather than killing them instantly.
-- I like the first one. Poison capstone: HALLUCINOGENS
-
-POISON:
-- for use with rapid fire guns
-- no damage cap but duration and damage fall off fast
-- stacks: increases both damage and duration
-- level: apply more stacks/stack softcap increased
-- upgrade: victim does reduced damage?
-- AoE capstone: dead enemies explode in a cloud of poison
-- single-target capstone: if there's enough poison stacks to eventually kill the target, it dies instantly
-
 ACID:
 - for use with powerful single-shot guns
 - damage increases as health drops, but increased damage uses up stacks faster
@@ -221,12 +196,6 @@ LIGHTNING:
 - upgrade: attacks that apply lightning also do damage, or maybe attacks that DON'T apply lightning do bonus damage?
 - AoE capstone: lightning nova that damages and stuns when certain stack-application breakpoints are reached
 - single-target capstone: enemies killed with enough lightning stacks rise as your minions
-
-## Applying upgrades
-
-In WorldThingSpawned we can detect projectile spawnings (look for target=player and bMISSILE flag) and there we can apply stuff like ripper, bouncy, etc. We can't modify damage, though.
-
-We can't do that for hitscan weapons because the puff spawns AFTER damage is applied, so probably we need to use ModifyDamage or WorldThingDamaged. ModifyDamage works for projectiles, hitscans, and DoTs like poison.
 
 ## Avoiding infinite recursion
 

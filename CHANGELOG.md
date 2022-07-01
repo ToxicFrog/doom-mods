@@ -1,3 +1,7 @@
+# 0.5.2
+
+- Fix: mod didn't actually load due to some last-minute changes.
+
 # 0.5.1
 
 - Fix: build system cleanup. No gameplay changes.
