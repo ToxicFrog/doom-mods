@@ -145,6 +145,10 @@ Reduces incoming damage by 5%. This has diminishing returns as you take more lev
 
 Reduces incoming damage by 50% (at level 1) or 75% (at level 2).
 
+### Swiftness *(Melee only)*
+
+Killing an enemy gives you a brief moment of time freeze (and some brief slow-mo as it wears off). Killing multiple enemies in rapid succession will extend the duration, as will increasing the level of Swiftness.
+
 ## Elemental Upgrades
 
 Elemental upgrades work a bit differently from general upgrades. Each element has four associated upgrades:

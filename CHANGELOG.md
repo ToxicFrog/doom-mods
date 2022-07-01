@@ -1,7 +1,7 @@
 # 0.6.0
 
 - New: Fragmentation upgrade for projectile weapons
-
+- New: Swiftness upgrade for melee weapons
 
 # 0.5.2
 

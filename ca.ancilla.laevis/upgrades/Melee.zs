@@ -53,3 +53,25 @@ class ::Shield : ::BaseUpgrade {
     return info.weapon.bMELEEWEAPON && info.upgrades.Level("::Shield") < 2;
   }
 }
+
+class ::Swiftness : ::BaseUpgrade {
+  override void OnKill(Actor player, Actor shot, Actor target) {
+    player.GiveInventory("::Swiftness::Aux", level);
+  }
+
+  override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
+    return info.weapon.bMELEEWEAPON;
+  }
+}
+
+class ::Swiftness::Aux : PowerupGiver {
+  Default {
+    +Inventory.AUTOACTIVATE;
+    +Inventory.ADDITIVETIME;
+    +Inventory.NOSCREENBLINK;
+    Powerup.Type "PowerTimeFreezer";
+    Powerup.Duration 70;
+    Inventory.Amount 1;
+    Inventory.MaxAmount 0;
+  }
+}
