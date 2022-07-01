@@ -301,9 +301,12 @@ class ::PerPlayerStats : ::Force {
         ::Util.SafeCls(owner), ::Util.SafeCls(inflictor), ::Util.SafeCls(source),
         damage, damageType, flags);
 
-      newdamage = upgrades.ModifyDamageReceived(owner, inflictor, source, damage);
+      // TODO: this (and ModifyDamageDealt below) should take into account the
+      // difference between current and original damage
+      double tmpdamage = upgrades.ModifyDamageReceived(owner, inflictor, source, damage);
       if (info)
-        newdamage = info.upgrades.ModifyDamageReceived(owner, inflictor, source, newdamage);
+        tmpdamage = info.upgrades.ModifyDamageReceived(owner, inflictor, source, tmpdamage);
+      newdamage = tmpdamage;
     } else {
       DEBUG("MD: %s -> %s -> %s (%d/%s) flags=%X",
         ::Util.SafeCls(owner), ::Util.SafeCls(inflictor), ::Util.SafeCls(source),
@@ -323,9 +326,10 @@ class ::PerPlayerStats : ::Force {
       }
 
       if (!inflictor || !inflictor.bINCOMBAT) {
-        newdamage = upgrades.ModifyDamageDealt(owner, inflictor, source, damage);
+        double tmpdamage = upgrades.ModifyDamageDealt(owner, inflictor, source, damage);
         if (info)
-          newdamage = info.upgrades.ModifyDamageDealt(owner, inflictor, source, newdamage);
+          tmpdamage = info.upgrades.ModifyDamageDealt(owner, inflictor, source, tmpdamage);
+        newdamage = tmpdamage;
       } else {
         newdamage = damage;
       }
