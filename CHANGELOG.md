@@ -1,3 +1,8 @@
+# 0.6.0
+
+- New: Fragmentation upgrade for projectile weapons
+
+
 # 0.5.2
 
 - Fix: mod didn't actually load due to some last-minute changes.

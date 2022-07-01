@@ -113,6 +113,10 @@ Creates a small explosion on hit doing 40% of the original attack damage. More l
 
 Projectiles move 50% faster per level.
 
+### Fragmentation Shots *(Projectile only)*
+
+On impact, projectiles release a ring of hitscan attacks. Increasing the upgrade level adds more fragments; damage is based on the base damage of the shot. These can't self-damage.
+
 ### Homing Shots *(Projectile only)*
 
 Projectiles home in on enemies. Higher levels will lock on from further away and be more maneuverable when homing.

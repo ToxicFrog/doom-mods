@@ -15,7 +15,7 @@
 // Poisoned enemies will turn against their friends and fight for the player
 // once there is enough poison stacked on them to eventually kill them.
 #namespace TFLV::Upgrade;
-#debug on
+#debug off
 
 class ::PoisonShots : ::BaseUpgrade {
   override void OnDamageDealt(Actor player, Actor shot, Actor target, int damage) {

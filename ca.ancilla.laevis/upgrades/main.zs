@@ -4,9 +4,11 @@
 #include "./UpgradeBag.zsc"
 
 #include "./Explosive.zsc"
+#include "./Fragmentation.zsc"
 #include "./HomingShots.zsc"
-#include "./Fire.zsc"
 #include "./Leech.zsc"
 #include "./Melee.zsc"
-#include "./Poison.zsc"
 #include "./Simpleupgrades.zsc"
+
+#include "./Fire.zsc"
+#include "./Poison.zsc"

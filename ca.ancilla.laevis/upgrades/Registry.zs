@@ -34,6 +34,7 @@ class ::Registry : Object play {
       "::DarkHarvest",
       "::ExplosiveShots",
       "::FastShots",
+      "::FragmentationShots",
       "::HomingShots",
       // "::Ignition",
       "::LifeLeech",
@@ -60,7 +61,7 @@ class ::Registry : Object play {
 
   static ::BaseUpgrade GenerateUpgrade() {
     let cls = GetRegistry().upgrades[random(0, GetRegistry().upgrades.size()-1)];
-    console.printf("GenerateUpgrade(%s)", cls);
+    DEBUG("GenerateUpgrade(%s)", cls);
     return ::BaseUpgrade(new(cls));
   }
 
