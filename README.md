@@ -16,7 +16,13 @@ The first time you play, check your keybindings for "Laevis - Display Info" and,
 
 That's all -- if equipping a weapon and then pressing the "display info" key (default I) in game brings up the Laevis status screen, you should be good to go.
 
-## Legendoom Integration
+## Mod Compatibility
+
+This should be compatible with every IWAD and pretty much every mod. It relies entirely on event handlers and runtime reflection, so as long as the player's guns are still subclasses of `Weapon` it should behave properly. It even works in recent commercial games using gzDoom, like *Hedon Bloodrite*, and total conversions, like *Ashes 2063*.
+
+Notes on specific mods are below.
+
+### Legendoom
 
 If you have Legendoom installed, legendary weapons can gain new Legendoom effects on level up. Only one effect can be active at a time, but you can change effects at any time. Weapons can hold a limited number of effects; if you gain a new effect and there's no room for it, you'll be prompted to choose an effect to delete. (Make sure you choose the effect you want to **get rid of**, not one of the ones you want to keep!)
 
@@ -24,11 +30,15 @@ When using a Legendoom weapon, you can press the "Cycle Legendoom Weapon Effect"
 
 There are a lot of settings for this in the mod options, including which weapons can learn effects, how rapidly effects are learned, how many effect slots weapons have, etc. If you want to play with Legendoom installed but turn off integration with Laevis, set `Gun Levels per Legendoom Effect` to 0/Disabled in the settings.
 
-## Lazy Points Integration
+### Score mods
 
-To enable this, turn on `Earn XP based on player score` in the mod settings. As long as it's on, you will earn XP equal to the points you score, rather than equal to the damage you deal. This generally results in much faster XP gain, so you may also want to tweak the `XP gain multiplier for score mods` setting.
+Laevis has optional integration with scoremods such as Lazy Points. To enable this, turn on `Earn XP based on player score` in the mod settings. As long as it's on, you will earn XP equal to the points you score, rather than equal to the damage you deal. This generally results in much faster XP gain, so you may also want to tweak the `XP gain multiplier for score mods` setting.
 
 This should work with any mod that uses the `pawn.score` property to record points, but Lazy Points is the only one it's actually been tested with.
+
+### Universal Pistol Start
+
+Laevis works by storing upgrade information in an item in the player's inventory. If this item gets removed all of your levels and upgrades will disappear. If you want to lose your weapons but keep your upgrades, make sure that `Keep Inventory Items` is enabled in the UPS settings.
 
 ## FAQ
 
@@ -36,15 +46,11 @@ This should work with any mod that uses the `pawn.score` property to record poin
 
 It's named after *Lepidobatrachus laevis*, aka the Wednesday Frog, which consumes anything smaller than itself and grows more powerful thereby.
 
+I have also considered renaming it "Gun Bonsai".
+
 ### What do the upgrades do?
 
 See the end of this file.
-
-### What IWADS/mods is this compatible with?
-
-It should be compatible with every IWAD and pretty much every mod. It relies entirely on event handlers and runtime reflection, so as long as the player's guns are still subclasses of `Weapon` it should behave properly. It even works in recent commercial games using gzDoom, like *Hedon Bloodrite*, and total conversions, like *Ashes 2063*.
-
-Note that weapon bonuses are stored in invisible items in your inventory. This ensures that they are properly written to savegames and whatnot, but also means that anything that takes away your entire inventory will also remove your bonuses, even if "remember missing weapons" is enabled. In particular, if you want to use *Universal Pistol Starter* with this mod but keep your bonuses across maps, you must turn on the "Keep Inventory Items" setting for it.
 
 ### Doesn't this significantly unbalance the game in the player's favour?
 
