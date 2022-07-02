@@ -6,7 +6,8 @@
   - currently disabled due to bad interactions with other weapons
 - Fix: Infinite recursion with some upgrade combinations
 - Fix: Weakness upgrade could sometimes give enemies damage resistance.
-- Change: Documentation tweaks
+- Change: Documentation tweaks.
+- Change: Redesign of damage-over-time API to support fractional stacks/durations.
 
 # 0.5.2
 

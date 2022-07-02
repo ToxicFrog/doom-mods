@@ -7,10 +7,12 @@
 #namespace TFLV::Upgrade;
 
 class ::Dot : Inventory {
+  double stacks;
+
   Default {
     DamageType "None";
     Inventory.Amount 1;
-    Inventory.MaxAmount 0x7FFFFFFF;
+    Inventory.MaxAmount 1;
     +INCOMBAT; // Laevis recursion guard
   }
 
@@ -30,20 +32,19 @@ class ::Dot : Inventory {
   // Give count stacks of cls to the target, but don't let their total amount
   // exceed max. Assign the dot's parent (via the target pointer) to owner, so
   // that damage it deals is properly attributed.
-  // Does not actually have to be used on dots; you can use it to give any actor.
-  static Inventory GiveStacks(Actor owner, Actor target, string cls, uint count, uint max = 0x7FFFFFFF) {
-    DEBUG("GiveStacks: %d of %s", count, cls);
-    Inventory item = target.FindInventory(cls);
+  static ::Dot GiveStacks(Actor owner, Actor target, string cls, double count, double max = double.infinity) {
+    DEBUG("GiveStacks: %f of %s", count, cls);
+    ::Dot item = ::Dot(target.FindInventory(cls));
     if (item) {
-      item.amount = min(item.amount + count, max);
-      DEBUG(" -> amount=%d", item.amount);
+      item.stacks = min(item.stacks + count, max);
+      DEBUG(" -> stacks=%f", item.stacks);
       return item;
     } else {
-      item = target.GiveInventoryType(cls);
+      item = ::Dot(target.GiveInventoryType(cls));
       if (item) {
         item.target = owner;
-        item.amount = min(count, max);
-        DEBUG(" -> amount=%d", item.amount);
+        item.stacks = min(count, max);
+        DEBUG(" -> stacks=%d", item.stacks);
         return item;
       }
       DEBUG(" -> failed to GiveInventoryType!");
@@ -56,7 +57,7 @@ class ::Dot : Inventory {
   static uint CountStacks(Actor target, string cls) {
     let dotitem = ::Dot(target.FindInventory(cls));
     if (!dotitem) return 0;
-    return dotitem.amount;
+    return dotitem.stacks;
   }
 
   void SpawnParticles() {
@@ -77,7 +78,7 @@ class ::Dot : Inventory {
 
   double buffer; // Accumlated damage for fractional damage amounts.
   virtual void TickDot() {
-    if (!owner || owner.bKILLED || amount <= 0) {
+    if (!owner || owner.bKILLED || stacks <= 0) {
       Destroy();
       return;
     }

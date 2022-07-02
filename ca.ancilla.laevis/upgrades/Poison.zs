@@ -20,7 +20,8 @@
 class ::PoisonShots : ::BaseUpgrade {
   override void OnDamageDealt(Actor player, Actor shot, Actor target, int damage) {
     if (!shot) return;
-    ::Dot.GiveStacks(player, target, "::PoisonDot", level*10);
+    ::Dot.GiveStacks(player, target, "::PoisonDot", level*2.0);
+    DEBUG("Gave %s %d stacks", target.GetClassName(), level*2.0);
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
@@ -76,7 +77,7 @@ class ::PoisonDot : ::Dot {
 
   // Approximate total damage potential of all remaining poison stacks.
   double GetTotalDamage() {
-    return (2.0/3.0) * (amount/5.0)**(3.0/2.0) * 2.5;
+    return (2.0/3.0) * (stacks)**(3.0/2.0) * 2.5;
   }
 
   override double GetDamage() {
@@ -87,24 +88,25 @@ class ::PoisonDot : ::Dot {
       owner.bDONTHARMCLASS = false;
       owner.bDONTHARMSPECIES = false;
     }
-    // DEBUG("poison stacks=%d damage=%f", amount, ((amount--)/5)**0.5);
-    return ((amount--)/5)**0.5 / 2.0; // poison damage scales with square root of remaining seconds
+    DEBUG("poison stacks=%f damage=%f", stacks, (stacks**0.5 / 2.0));
+    stacks -= 0.2;
+    return (stacks+0.2)**0.5 / 2.0; // poison damage scales with square root of remaining seconds
   }
 
   // Damage modifier for Weakness and Hallucinogens upgrades.
   override void ModifyDamage(
       int damage, Name damageType, out int newdamage, bool passive,
       Actor inflictor, Actor source, int flags) {
-    if (passive || damage <= 0 || weakness <= 0 || amount <= 0) {
+    if (passive || damage <= 0 || weakness <= 0 || stacks <= 0) {
       return;
     }
 
     // Outgoing damage. Scale it down based on the number of poison stacks.
     // ...unless the monster is friendly, in which case it gets stronger.
     if (owner.bFRIENDLY) {
-      newdamage = ceil(damage * (1.0 + 0.01 * amount * hallucinogens));
+      newdamage = ceil(damage * (1.0 + 0.01 * stacks * hallucinogens));
     } else {
-      newdamage = max(1, floor(damage * 0.99 ** (amount * weakness)));
+      newdamage = max(1, floor(damage * 0.99 ** (stacks * weakness)));
     }
     DEBUG("Weakness: %d -> %d", damage, newdamage);
   }
@@ -112,13 +114,13 @@ class ::PoisonDot : ::Dot {
 
 class ::Putrefaction : ::BaseUpgrade {
   override void OnKill(Actor player, Actor shot, Actor target) {
-    uint amount = ::Dot.CountStacks(target, "::PoisonDot");
-    DEBUG("killed %s, poison stacks=%d", TFLV::Util.SafeCls(target), amount);
-    if (amount <= 0) return;
+    double stacks = ::Dot.CountStacks(target, "::PoisonDot");
+    DEBUG("killed %s, poison stacks=%d", TFLV::Util.SafeCls(target), stacks);
+    if (stacks <= 0) return;
 
     let aux = ::Putrefaction::Aux(target.Spawn("::Putrefaction::Aux", target.pos));
     aux.target = player;
-    aux.level = max(amount - (amount * 0.5**level), 5);
+    aux.level = max(stacks - (stacks * 0.5**level), 1);
     DEBUG("spawned putrefaction cloud with level=%d", aux.level);
   }
 

@@ -1,4 +1,5 @@
 #namespace TFLV::Upgrade;
+#debug on
 
 class ::Beam : ::BaseUpgrade {
   override double ModifyDamageDealt(Actor pawn, Actor shot, Actor target, double damage) {
@@ -18,7 +19,7 @@ class ::Beam : ::BaseUpgrade {
     return info.IsHitscanWeapon() && !info.weapon.bMELEEWEAPON;
   }
 }
-#debug on
+
 // No recursion guard so that other weapon upgrades like dots, explosions, etc
 // trigger properly.
 class ::Beam::Puff : BulletPuff {

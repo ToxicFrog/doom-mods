@@ -138,28 +138,28 @@ class ::FireDot : ::Dot {
       SpreadFlames();
 
     DEBUG("fire damage, hp=%d, goal=%f, total=%f, damage=%f",
-      owner.health, goal, total_damage, clamp(total_damage/10.0, 0.2, amount));
+      owner.health, goal, total_damage, clamp(total_damage/10.0, 0.2, stacks));
 
     burning = true;
-    return min(total_damage/10.0, amount);
+    return min(total_damage/10.0, stacks);
   }
 
   // Conflagration implementation.
   // Drop a fire-spreading entity that sets everything around it on fire.
   void SpreadFlames() {
     // At level 1 we spread half the heat, at level 2 75%, etc.
-    let spread_amount = ceil(amount * (1.0 - 0.5 ** spread));
-    DEBUG("SpreadFlames: %d -> %d", amount, spread_amount);
+    let spread_amount = ceil(stacks * (1.0 - 0.5 ** spread));
+    DEBUG("SpreadFlames: %d -> %d", stacks, spread_amount);
     let aux = ::Conflagration::Aux(Spawn("::Conflagration::Aux", owner.pos));
     aux.target = self.target;
     aux.spread = self.spread;
-    aux.amount = self.amount;
+    aux.stacks = self.stacks;
     aux.heat = self.heat;
   }
 }
 
 class ::Conflagration::Aux : Actor {
-  uint amount;
+  uint stacks;
   uint heat; // level of Searing Heat upgrade
   uint spread; // level of Conflagration upgrade
 
@@ -177,16 +177,16 @@ class ::Conflagration::Aux : Actor {
   }
 
   uint GetRange() {
-    DEBUG("GetRange: %d", 32 + spread*16 + amount);
-    return 32 + spread*16 + amount;
+    DEBUG("GetRange: %d", 32 + spread*16 + stacks);
+    return 32 + spread*16 + stacks;
   }
 
   override int DoSpecialDamage(Actor target, int damage, Name damagetype) {
-    DEBUG("Transfer: %d to %s", amount, TFLV::Util.SafeCls(target));
-    let fdot = ::FireDot(::Dot.GiveStacks(self.target, target, "::FireDot", 1, amount));
+    DEBUG("Transfer: %d to %s", stacks, TFLV::Util.SafeCls(target));
+    let fdot = ::FireDot(::Dot.GiveStacks(self.target, target, "::FireDot", 1, stacks));
     fdot.heat = max(fdot.heat, self.heat);
     fdot.spread = max(fdot.spread, self.spread - 1);
-    DEBUG("Dot added: amount=%d heat=%d spread=%d", fdot.amount, fdot.heat, fdot.spread);
+    DEBUG("Dot added: stacks=%d heat=%d spread=%d", fdot.stacks, fdot.heat, fdot.spread);
     return 0;
   }
 

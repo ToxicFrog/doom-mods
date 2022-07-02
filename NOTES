@@ -156,14 +156,6 @@ Upgrades inspired by DoomRL:
 Elements are mutually exclusive with each other. Each one has base, upgrade, and capstone options.
 Possible alternate design: both later-tier upgrades are "capstone" and you can only choose one, probably with either a "better for single targets/better for crowd control" split or a "better for big guns/better for rapid fire" split.
 
-So, something like:
-- fire: spreads between enemies/burning enemies explode on death
-  this has two crowd control upgrades
-- poison: victim takes increased damage/poisons other enemies on death
-- acid: victim takes increased damage/???
-  this is a duplicate of poison
-- lightning: damage bursts with each attack that applies new stacks/stacks stun nearby enemies as well
-
 FIRE: does more damage to enemies at full health; total damage capped as a % of target's max health. Stacks increase damage rate but not total damage. Hard counter to regen/healing. Upgrade: damage cap increased. Masteries: fire spreads between enemies OR sufficiently burning enemies turn into fireworks
 POISON: initially weak but both damage and duration increase as it stacks. Upgrade: poisoned enemies deal less damage. Masteries: dead enemies explode in a poison cloud OR enemies with enough poison to eventually kill them die instantly.
 ACID: does damage faster as the target gets closer to death. Stacking increases duration and stack cap depends on weapon damage (so it benefits more from guns with powerful single shots). Upgrade: not sure yet. Masteries: attacking acidified enemies splashes acid on their surroundings OR acidified enemies take more damage from non-acid damage types.
@@ -179,6 +171,10 @@ Idea for per-weapon limitations:
 - acid+lightning: idk something about batteries?
 - acid+poison:
 - lightning+poison:
+or, one set of dual-element supermasteries:
+- ELEMENTAL BEAM, railgun attack that does no damage but copies dots on the enemy you just attacked to everything hit by the beam;
+- ELEMENTAL BLAST, ditto but has a blast radius and is for projectiles;
+- ELEMENTAL STORM, as BLAST but for melee weapons
 
 ACID:
 - for use with powerful single-shot guns
