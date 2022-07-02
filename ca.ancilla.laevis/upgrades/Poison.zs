@@ -95,7 +95,7 @@ class ::PoisonDot : ::Dot {
   override void ModifyDamage(
       int damage, Name damageType, out int newdamage, bool passive,
       Actor inflictor, Actor source, int flags) {
-    if (passive && damage <= 0 || weakness <= 0 || amount <= 0) {
+    if (passive || damage <= 0 || weakness <= 0 || amount <= 0) {
       return;
     }
 

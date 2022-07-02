@@ -5,6 +5,7 @@
 - WIP: Beam upgrade for hitscan weapons
   - currently disabled due to bad interactions with other weapons
 - Fix: Infinite recursion with some upgrade combinations
+- Fix: Weakness upgrade could sometimes give enemies damage resistance.
 - Change: Documentation tweaks
 
 # 0.5.2
