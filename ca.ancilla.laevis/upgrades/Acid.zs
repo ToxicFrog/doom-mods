@@ -209,7 +209,6 @@ class ::AcidSpray::Aux : Actor {
   }
 
   uint GetRange() {
-    DEBUG("GetRange: %d", 32 + level*16);
     return 32 + level*16;
   }
 
