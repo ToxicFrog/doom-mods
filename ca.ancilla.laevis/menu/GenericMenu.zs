@@ -48,7 +48,6 @@ class ::KeyValueOption : ::KeyValueText {
   uint idle_colour;
   uint hot_colour;
 
-  // TODO: allow passing in different selected/dormant colours
   ::KeyValueOption Init(string key, string value, string command_, int index_, uint idle, uint hot) {
     super.Init(key, value, idle);
     command = command_;

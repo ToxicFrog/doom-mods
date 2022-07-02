@@ -5,9 +5,9 @@
 class ::WeaponUpgradeGiver : ::UpgradeGiver {
   TFLV_WeaponInfo wielded;
 
-  // TODO: we might want to force the first upgrade to always be a damage bonus
-  // or some other simple, generally useful upgrade.
   override void CreateUpgradeCandidates() {
+    // TODO: properly handle the case where the number of valid upgrades is
+    // less than the number we want to display.
     while (candidates.size() < 3) {
       let upgrade = ::Upgrade::Registry.GenerateUpgradeForWeapon(wielded);
       if (!AlreadyHasUpgrade(upgrade)) {

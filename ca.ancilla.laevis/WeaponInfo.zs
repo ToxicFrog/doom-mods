@@ -7,13 +7,6 @@ class ::WeaponInfo : Object play {
   // At the moment "weapon" is used both as a convenient way to remember a reference
   // to the weapon itself, and as the key for the info lookup when the caller has
   // a weapon but not the WeaponInfo.
-  // TODO: implement a mode where the ClassName of the weapon is used as the key
-  // instead, and PruneStaleInfo/GetInfoFor will leave the WeaponInfo intact if
-  // the weapon is removed and rebind it to a new weapon of that type if one is
-  // picked up. This would likely have weird interactions with mods where you can
-  // drop weapons and pick up new weapons of the same class but with different
-  // behaviour, like LD and DRLA, but would also enable War of Attrition-style
-  // pistol start runs.
   Weapon weapon;
   string weaponType;
   ::Upgrade::UpgradeBag upgrades;
