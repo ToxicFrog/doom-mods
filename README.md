@@ -161,16 +161,22 @@ Reduces incoming damage by 50% (at level 1) or 75% (at level 2).
 
 Killing an enemy gives you a brief moment of time freeze (and some brief slow-mo as it wears off). Killing multiple enemies in rapid succession will extend the duration, as will increasing the level of Swiftness.
 
-## Elemental Upgrades
+# Elemental Upgrades
 
 Elemental upgrades work a bit differently from general upgrades. Each element has four associated upgrades:
 - a basic upgrade that activates that elemental status effect on the weapon
 - an intermediate upgrade that improves the status effect in a different way than just leveling up the base upgrade
 - two master upgrades that add a powerful new effect, only one of which can be chosen on each weapon
 
+## Fire
+
+Fire does more damage the more health the target has, and "burns out" once they're below 50% health. If an enemy that has "burned out" heals, it will start taking fire damage again, making this particularly effective against modded enemies with regeneration or self-healing. More stacks cause it to do the damage faster (but do not increase the total damage dealt). Once an enemy has fire stacks it never loses them; they just become dormant once it drops below the health threshold.
+
+More powerful attacks apply more fire stacks, so it should be good on all weapons.
+
 ### Incendiary Shots *(Fire basic upgrade)*
 
-Shots cause enemies to ignite. Fire does more damage the more health the target has, and "burns out" once they're below 50% health. If an enemy that has "burned out" heals, it will start taking fire damage again, making this particularly effective against modded enemies with regeneration or self-healing. Stacks cause it to do the damage faster (but do not increase the total damage dealt).
+Shots cause enemies to ignite. Higher levels apply fire stacks faster.
 
 ### Searing Heat *(Fire intermediate upgrade)*
 
@@ -184,9 +190,15 @@ Burning enemies with enough stacks on them will pass a proportion of their stack
 
 Attacking a burning enemy gives you a stacking bonus to attack and defence that gradually wears off once you stop.
 
+## Poison
+
+Poison is a weak and short-lived damage-over-time effect, but adding more stacks increases both the duration and the damage per second. Damage has diminishing returns, but with no upper bound.
+
+The amount of stacks applied is independent of weapon damage, so it's best used with rapid-fire weapons like the chaingun and plasma rifle.
+
 ### Poison Shots *(Poison basic upgrade)*
 
-Shots poison enemies. Damage and duration increase as you add stacks; damage has diminishing returns, but duration does not. Leveling up the upgrade increases how many stacks are applied per attack. The number of stacks applied is independent of the damage you do, so this works best with weak rapid-fire weapons and is less effective with slow, powerful ones.
+Shots poison enemies. Leveling up the upgrade increases how many stacks are applied per attack.
 
 ### Weakness *(Poison intermediate upgrade)*
 
@@ -199,3 +211,25 @@ Killing a poisoned enemy causes it to explode in a cloud of poison gas, poisonin
 ### Hallucinogens *(Poison mastery)*
 
 Once an enemy has enough poison stacks on it to eventually kill it, it fights on your side until it dies. Enemies affected by hallucinogens gets a damage bonus from Weakness rather than a damage penalty.
+
+## Acid
+
+Acid stacks are slowly converted into damage on a 1:1 basis, but the less health the target has and the more acid stacks they have, the faster this happens.
+
+Acid stacks have a cap based on the damage dealt by the attack that inflicted them, so they're best used with weapons that have high per-shot damage like the rocket launcher and SSG. (For shotguns, the total damage of all the pellets that hit is used, not the per-pellet damage.)
+
+### Corrosive Shots *(Acid basic upgrade)*
+
+Shots poison enemies. The amount of acid applied, and the cap, is 50% of the damage dealt, increased by another 50% per level.
+
+### Acid Spray *(Acid intermediate upgrade)*
+
+Attacks that exceed the acid cap for the target will splash the acid onto nearby enemies instead. Spray range and the level of the applied acid depends on your level of Acid Spray.
+
+### Explosive Reaction *(Acid mastery)*
+
+Enemies that die with acid stacks on them explode, dealing 1% of the target's health per acid stack to its surroundings.
+
+### Embrittlement *(Acid mastery)*
+
+Enemies with acid stacks on them take 1% more damage from all sources per stack.
