@@ -1,11 +1,16 @@
 #namespace TFLV::Upgrade;
+#debug off
 
 class ::ExplosiveShots : ::BaseUpgrade {
   override void OnDamageDealt(Actor pawn, Actor shot, Actor target, int damage) {
-    bool ok;
-    Actor act;
-    [ok, act] = shot.A_SpawnItemEx("::ExplosiveShots::Boom");
-    let boom = ::ExplosiveShots::Boom(act);
+    DEBUG("ExplosiveShots::OnDamageDealt damage=%d shot=%s", damage, shot.GetClassName());
+    DEBUG("Pawn position: [%d,%d,%d]", pawn.pos.x, pawn.pos.y, pawn.pos.z);
+    DEBUG("Shot position: [%d,%d,%d]", shot.pos.x, shot.pos.y, shot.pos.z);
+    // let debugshot = ::Beam::Puff(shot);
+    // if (debugshot)
+      DEBUG("Orig position: [%d,%d,%d]", debugshot.x, debugshot.y, debugshot.z);
+    let boom = ::ExplosiveShots::Boom(shot.Spawn("::ExplosiveShots::Boom", shot.pos));
+    DEBUG("Boom position = [%d,%d,%d]", boom.pos.x, boom.pos.y, boom.pos.z);
     boom.target = pawn;
     boom.damage = damage * level * 0.4;
     boom.radius = 64 + 16 * level;
@@ -16,6 +21,7 @@ class ::ExplosiveShots : ::BaseUpgrade {
   }
 }
 
+// TODO: this should propagate effects like poison
 class ::ExplosiveShots::Boom : Actor {
   uint level;
   uint damage;
