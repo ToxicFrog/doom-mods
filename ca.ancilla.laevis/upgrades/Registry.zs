@@ -30,7 +30,7 @@ class ::Registry : Object play {
       "::Agonizer",
       "::Armour",
       "::ArmourLeech",
-      "::Beam",
+      // "::Beam", TODO: fix interactions with HE shots and similar
       "::BouncyShots",
       "::DarkHarvest",
       "::ExplosiveShots",

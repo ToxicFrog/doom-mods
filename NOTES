@@ -219,3 +219,23 @@ Ended up going with +INCOMBAT, but that's an imperfect solution if we want *diff
 This is stuff like knockback, increased health, etc that requires making a permanent change to the player or the weapon.
 For these, we record a separate level and applied_level and default the latter to 0.
 In OnApply(), we figure out how much is currently applied based on the applied_level, then apply the difference between that and the current level.
+
+## Damage calculation stuff
+
+So, when the player damages a monster:
+- ModifyDamage() for prior inventory items runs;
+- then ModifyDamage() for all player upgrades in the order they were acquired;
+- then ModifyDamage() for all weapon upgrades, in the order the player got them;
+- then ModifyDamage() for all subsequent inventory items.
+
+The value returned from that is the actual outgoing damage, which is then applied (subject to target resistances and whatnot).
+Once the damage is applied, the OnDamageDealt handlers run:
+
+- OnDamageDealt() for all player upgrades;
+- then OnDamageDealt() for all weapon upgrades.
+
+OnDamageDealt() has no idea what the original outgoing damage was, or even the value after all the ModifyDamage() checks run; it only gets the final damage actually dealt to the target. This is fine most of the time -- we want to apply stacks, etc based on the actual damage done.
+
+Where it gets weird is when we're doing stuff in ModifyDamage based on the attack damage. Infernal Forge and +Damage are both actual damage modifiers, but with the Beam upgrade we want to do stuff in ModifyDamage to cancel out the attack and replace it with a beam attack.
+
+We could instead do it in OnDamageDealt and cancel out the damage by giving the target health, but this might make the scoring weird.

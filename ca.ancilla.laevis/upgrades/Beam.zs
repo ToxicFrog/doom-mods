@@ -2,7 +2,9 @@
 
 class ::Beam : ::BaseUpgrade {
   override double ModifyDamageDealt(Actor pawn, Actor shot, Actor target, double damage) {
-    multiplier = 1.0 - (0.5 ** level);
+    if (shot && shot is "::Beam::Puff") return damage;
+
+    double multiplier = 1.0 - (0.5 ** level);
     pawn.A_CustomRailgun(
       ceil(damage * multiplier),
       0, 0, 0, // horizontal offset and colours
@@ -16,9 +18,14 @@ class ::Beam : ::BaseUpgrade {
     return info.IsHitscanWeapon() && !info.weapon.bMELEEWEAPON;
   }
 }
-
+#debug on
+// No recursion guard so that other weapon upgrades like dots, explosions, etc
+// trigger properly.
 class ::Beam::Puff : BulletPuff {
-  Default {
-    +INCOMBAT; // Laevis recursion guard
+  double x,y,z;
+  Default { +ALWAYSPUFF; +PUFFONACTORS; }
+  override void PostBeginPlay() {
+    DEBUG("BeamPuff spawned: [%d, %d, %d]", pos.x, pos.y, pos.z);
+    x = pos.x; y = pos.y; z = pos.z;
   }
 }
