@@ -18,7 +18,7 @@
 // Acidified enemies take increased damage from all non-acid sources, scaling
 // with the number of acid stacks on them.
 #namespace TFLV::Upgrade;
-#debug on
+#debug off
 
 class ::CorrosiveShots : ::BaseUpgrade {
   override void OnDamageDealt(Actor player, Actor shot, Actor target, int damage) {
@@ -93,30 +93,36 @@ class ::AcidDot : ::Dot {
   // Custom states so that we can tick down damage_this_tick immediately.
   States {
     Dot:
-      TNT1 AAAAAAA 1 AcidTick();
+      TNT1 AAAAAAA 1 DamageToStacks();
       TNT1 A 0 TickDot();
       TNT1 A 0 SpawnParticles();
       LOOP;
   }
 
-  void AcidTick() {
+  void DamageToStacks() {
     if (damage_this_tick > 0) {
-      // We're done applying stacks this tick.
-      // Trim down the number of stacks to the actual cap based on level.
-      double cap = level * damage_this_tick * 0.5;
-      DEBUG("acid: stacks=%f, damage=%f, cap=%f", stacks, damage_this_tick, cap);
+      // We've tallied up all the damage taken this tick.
+      // Convert it into actual acid stacks at a rate of 50% per damage per level.
+      double new_stacks = level * damage_this_tick * 0.5;
+      double cap = new_stacks;
+      DEBUG("acid: stacks=%f, damage=%f, added=%f", stacks, damage_this_tick, new_stacks);
+
+      // If the cap set by this attack exceeds the current number of stacks, set
+      // the number of stacks to the new cap.
       if (stacks < cap) {
-        double diff = cap - stacks;
+        new_stacks = stacks;
         stacks = cap;
-        cap -= diff;
       }
-      DEBUG("acid: now stacks=%f, cap=%f", stacks, cap);
+
+      DEBUG("acid: now stacks=%f, surplus=%f", stacks, new_stacks);
+
       // If there's excess stacks and we have Acid Spray, proc it.
-      if (cap > 0 && splash > 0) {
+      if (new_stacks > 0 && splash > 0) {
         DEBUG("Acid Spray! %d", stacks);
         let aux = ::AcidSpray::Aux(owner.Spawn("::AcidSpray::Aux", owner.pos));
         aux.level = self.splash;
-        aux.amount = cap;
+        aux.stacks = new_stacks;
+        aux.cap = self.splash * damage_this_tick * 0.5;
       }
       damage_this_tick = 0;
     }
@@ -132,15 +138,28 @@ class ::AcidDot : ::Dot {
   }
 
   override double GetDamage() {
-    // We want acid damage to start out as almost nothing (say 0.5 dps) but
-    // below 50% HP accelerate rapidly.
+    // We want acid damage to be slow to start and accelerate once the target
+    // is below 50% HP.
+    // We also want to raise that 50% limit slightly for each acid stack
+    // on the target.
+    // Say above 50% HP it just does [level] DPS.
     double hp = double(owner.Health) / owner.SpawnHealth();
-    double damage = (1.0 - (2.0 * atan(hp*90.0))/180.0) * 5;
+    double threshold = 0.5 + level*0.005;
+    double damage;
+    if (hp > threshold) {
+      damage = 0.2 * level; // 5 dot ticks per second
+    } else {
+      // Below that it scales up to 10*level
+      damage = max(0.2, (1-hp/threshold)*2*level);
+    }
     DEBUG("acid hp=%f stacks=%f damage=%f", hp, stacks, damage);
     damage = min(damage, stacks);
     DEBUG("actual damage=%f", damage);
     stacks -= damage;
     return damage;
+    // double damage = (1.0 - (2.0 * atan(hp*90.0))/180.0) * 5;
+    // DEBUG("acid hp=%f stacks=%f damage=%f", hp, stacks, damage);
+    // return damage;
   }
 
   // Damage modifier for Embrittlement upgrade.
@@ -165,6 +184,7 @@ class ::ExplosiveReaction::Aux : Actor {
   Default {
     DamageType "Acid";
     +NODAMAGETHRUST;
+    +INCOMBAT; // Laevis recursion guard
   }
 
   States {
@@ -176,12 +196,13 @@ class ::ExplosiveReaction::Aux : Actor {
 }
 
 class ::AcidSpray::Aux : Actor {
-  uint level;
-  double amount;
+  uint level; // level of Acid Spray
+  double stacks; // total amount of acid we have to disburse
+  double cap; // max acid we can apply to any one target
 
   Default {
     RenderStyle "Translucent";
-    Alpha 0.4;
+    Alpha 0.1;
     +NODAMAGETHRUST;
     +NOGRAVITY;
     +INCOMBAT; // Laevis recursion guard
@@ -193,11 +214,13 @@ class ::AcidSpray::Aux : Actor {
   }
 
   override int DoSpecialDamage(Actor target, int damage, Name damagetype) {
-    // This can exceed the acid cap!
-    // TODO: respect cap
-    // TODO: split evenly among nearby enemies rather than copying to them
-    DEBUG("Acid Spray spreading: %f", amount);
-    ::Dot.GiveStacks(self.target, target, "::AcidDot", amount);
+    if (stacks <= 0) return 0;
+    double count = ::Dot.CountStacks(target, "::AcidDot");
+    if (count >= cap) return 0;
+    DEBUG("Acid Spray spreading: %f (%f left, cap=%f)", (cap-count), stacks, cap);
+    let acid = ::AcidDot(::Dot.GiveStacks(self.target, target, "::AcidDot", stacks, cap));
+    acid.level = max(acid.level, level);
+    stacks -= (cap - count);
     return 0;
   }
 
