@@ -143,6 +143,7 @@ class ::Putrefaction::Aux : Actor {
     ::Dot.GiveStacks(self.target, target, "::PoisonDot", level, level);
     return 0;
   }
+
   States {
     Spawn:
       LPBX ABABABCBCBCDCDCDEE 7 A_Explode(1, 100, XF_NOSPLASH, false, 100);

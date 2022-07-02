@@ -13,3 +13,4 @@
 
 #include "./Fire.zsc"
 #include "./Poison.zsc"
+#include "./Acid.zsc"
