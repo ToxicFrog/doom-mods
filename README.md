@@ -163,10 +163,15 @@ Killing an enemy gives you a brief moment of time freeze (and some brief slow-mo
 
 # Elemental Upgrades
 
-Elemental upgrades work a bit differently from general upgrades. Each element has four associated upgrades:
+Elemental upgrades add powerful debuffs and damage-over-time effects to your attacks. They work a bit differently from other upgrades. Each element has four associated upgrades:
+
 - a basic upgrade that activates that elemental status effect on the weapon
 - an intermediate upgrade that improves the status effect in a different way than just leveling up the base upgrade
-- two master upgrades that add a powerful new effect, only one of which can be chosen on each weapon
+- two *mastery upgrades* that add a powerful new effect, only one of which can be chosen on each weapon; one is designed for AoE combat, the other for tackling individual hard targets.
+
+Lower-rank skills are required to have more levels than higher-rank ones, so to learn the intermediate upgrade you need at least two levels in the basic upgrade, and to (e.g.) upgrade a mastery to level 2, you need 3 ranks in the intermediate upgrade (and thus 4 in the basic upgrade). While each tree has two masteries, you can only choose one; doing so permanently locks out the other on that weapon.
+
+Each weapon can only have two different elements on it. When you choose your first elemental upgrade, that element is "locked in" until you choose a mastery upgrade for it. At that point you can (if you wish) choose a second element next time it levels up.
 
 ## Fire
 

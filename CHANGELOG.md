@@ -8,11 +8,13 @@
   - Acid Spray causes surplus acid to splash onto nearby enemies
   - Embrittlement makes acid stacks increase damage taken by enemies
   - Explosive Reaction turns acid stacks into an explosion on death
-- Fix: Infinite recursion with some upgrade combinations
-- Fix: Weakness upgrade could sometimes give enemies damage resistance.
+- New: weapons are limited to 2 elements, and must master the first before adding the second.
+- Change: 2 basic levels are now required to unlock intermediate (and likewise for intermediate->master).
 - Change: Documentation tweaks.
 - Change: Redesign of damage-over-time API to support fractional stacks/durations.
 - Change: Fire now applies stacks based on attack damage.
+- Fix: Infinite recursion with some upgrade combinations
+- Fix: Weakness upgrade could sometimes give enemies damage resistance.
 - WIP: Beam upgrade for hitscan weapons
   - currently disabled due to bad interactions with other weapons
 

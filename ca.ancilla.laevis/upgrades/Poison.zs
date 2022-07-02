@@ -25,7 +25,7 @@ class ::PoisonShots : ::BaseUpgrade {
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
-    return true;
+    return ::ElementalUpgrade.CanAcceptElement(info, "Poison");
   }
 }
 
@@ -37,7 +37,7 @@ class ::Weakness : ::DotModifier {
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
-    return info.upgrades.Level("::PoisonShots") > info.upgrades.Level("::Weakness");
+    return info.upgrades.Level("::PoisonShots") > info.upgrades.Level("::Weakness")+1;
   }
 }
 
@@ -50,7 +50,7 @@ class ::Hallucinogens : ::DotModifier {
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
-    return info.upgrades.Level("::Weakness") > info.upgrades.Level("::Hallucinogens")
+    return info.upgrades.Level("::Weakness") > info.upgrades.Level("::Hallucinogens")+1
       && info.upgrades.Level("::Putrefaction") == 0;
   }
 }
@@ -125,7 +125,7 @@ class ::Putrefaction : ::BaseUpgrade {
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
-    return info.upgrades.Level("::Weakness") > info.upgrades.Level("::Putrefaction")
+    return info.upgrades.Level("::Weakness") > info.upgrades.Level("::Putrefaction")+1
       && info.upgrades.Level("::Hallucinogens") == 0;
   }
 }

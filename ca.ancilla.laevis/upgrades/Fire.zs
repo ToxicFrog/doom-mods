@@ -28,7 +28,7 @@ class ::IncendiaryShots : ::BaseUpgrade {
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
-    return true;
+    return ::ElementalUpgrade.CanAcceptElement(info, "Fire");
   }
 }
 
@@ -40,7 +40,7 @@ class ::SearingHeat : ::DotModifier {
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
-    return info.upgrades.Level("::IncendiaryShots") > info.upgrades.Level("::SearingHeat");
+    return info.upgrades.Level("::IncendiaryShots") > info.upgrades.Level("::SearingHeat")+1;
   }
 }
 
@@ -52,7 +52,7 @@ class ::Conflagration : ::DotModifier {
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
-    return info.upgrades.Level("::SearingHeat") > info.upgrades.Level("::Conflagration")
+    return info.upgrades.Level("::SearingHeat") > info.upgrades.Level("::Conflagration")+1
       && info.upgrades.Level("::InfernalKiln") == 0;
   }
 }
@@ -91,7 +91,7 @@ class ::InfernalKiln : ::BaseUpgrade {
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
-    return info.upgrades.Level("::SearingHeat") > info.upgrades.Level("::InfernalKiln")
+    return info.upgrades.Level("::SearingHeat") > info.upgrades.Level("::InfernalKiln")+1
       && info.upgrades.Level("::Conflagration") == 0;
   }
 }
