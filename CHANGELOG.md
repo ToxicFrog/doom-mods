@@ -1,3 +1,7 @@
+# 0.6.1
+
+- New: Added hud position and scale settings.
+
 # 0.6.0
 
 - New: Fragmentation upgrade for projectile weapons

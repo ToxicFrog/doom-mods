@@ -1,3 +1,16 @@
+// HUD configuration.
+// x and y are HUD position. Values in the [0,1] range position it as a proportion
+// of the screen size; so (0,0) is flush to the top left corner and (1,1) flush
+// to the bottom right.
+// Positive integer values >1 place it at that absolute pixel position from the
+// top left, and negative values likewise from the bottom right.
+// Scale values <=10 are a scaling factor to be applied; >10 are a size in px
+// to scale the height to. The width will be scaled automatically and is 3x the
+// height.
+user float laevis_hud_x = 0.75;
+user float laevis_hud_y = 1.0;
+user float laevis_hud_scale = 80;
+
 // How many times the player needs to level up their guns before they get a
 // permanent player-wide bonus.
 server int laevis_gun_levels_per_player_level = 10;

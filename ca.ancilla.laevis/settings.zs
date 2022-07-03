@@ -74,4 +74,8 @@ class TFLV_Settings : Object {
   static int screenblocks() {
     return GetInt("screenblocks");
   }
+
+  static double, double, double hud_params() {
+    return GetDouble("laevis_hud_x"), GetDouble("laevis_hud_y"), GetDouble("laevis_hud_scale");
+  }
 }

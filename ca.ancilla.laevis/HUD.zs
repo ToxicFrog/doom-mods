@@ -5,20 +5,37 @@ class ::HUD : Object ui {
     DrawXPGauge(stats);
   }
 
+  static uint realposition(double field_size, double obj_size, double setting) {
+    if (setting >= 0.0 && setting <= 1.0) {
+      return (field_size - obj_size)*setting;
+    } else if (setting < 0) {
+      return field_size + setting - obj_size;
+    } else {
+      return setting;
+    }
+  }
+
   static void DrawXPGauge(::CurrentStats stats) {
     let w = screen.GetWidth();
     let h = screen.GetHeight();
 
-    // Ring(w/8 * 6, h - 48, 31, 2, 1.0, "00 00 00");
-    Ring(w/8 * 6, h - 48, 34, 4, (double(stats.pxp)/stats.pmax), "00 FF 80");
-    Ring(w/8 * 6, h - 48, 40, 8, (double(stats.wxp)/stats.wmax), "00 80 FF");
-    // Ring(w/8 * 6, h - 48, 45, 2, 1.0, "00 00 00");
-    screen.DrawText(NewSmallFont, Font.CR_GREEN, w/8*6-16, h-64, "P:"..stats.plvl);
-    screen.DrawText(NewSmallFont, Font.CR_LIGHTBLUE, w/8*6-16, h-48, "W:"..stats.wlvl);
+    double hudx, hudy, hudw;
+    [hudx, hudy, hudw] = ::Settings.hud_params();
+    if (hudw < 1) hudw = hudw*80;
+
+    // Position based on center point of rings
+    hudx = realposition(w, hudw, hudx) + hudw/2;
+    hudy = realposition(h, hudw, hudy) + hudw/2;
+
+    Ring(hudx, hudy, hudw/2-6, 4, (double(stats.pxp)/stats.pmax), "00 FF 80");
+    Ring(hudx, hudy, hudw/2, 8, (double(stats.wxp)/stats.wmax), "00 80 FF");
+
+    screen.DrawText(NewSmallFont, Font.CR_GREEN, hudx-16, hudy-16, "P:"..stats.plvl);
+    screen.DrawText(NewSmallFont, Font.CR_LIGHTBLUE, hudx-16, hudy, "W:"..stats.wlvl);
     // screen.DrawText(NewSmallFont, Font.CR_GREEN, 520, 480-48, ""..stats.plvl, DTA_VirtualWidth, 640, DTA_VirtualHeight, 480);
     // screen.DrawText(NewSmallFont, Font.CR_LIGHTBLUE, 520, 480-32, ""..stats.wlvl, DTA_VirtualWidth, 640, DTA_VirtualHeight, 480);
     // TODO: different colour depending on rarity, maybe tweak positioning
-    screen.DrawText(NewSmallFont, Font.CR_ORANGE, w/8*6-44, h-20, stats.effect);
+    screen.DrawText(NewSmallFont, Font.CR_ORANGE, hudx-44, hudy+28, stats.effect);
   }
 
   // Draw a coloured ring centered at (x,y) of radius r and thickness t.
