@@ -25,6 +25,9 @@ OptionMenu "LaevisOptions"
   Tooltip "Height of the Laevis HUD, in pixels. Width is always 3x height."
   Tooltip "You can also set a scale factor by setting this to a value between 0.0 and 1.0; 1.0 makes it 512px high."
 
+  Option "HUD mirroring", "laevis_hud_mirror", "LaevisHudMirrorMode"
+  Tooltip "Whether to mirror the hud. Default has the level box on the left and the XP bars on the bottom."
+
   ColorPicker "HUD frame colour", "laevis_hud_rgb_frame"
   Tooltip "Colour of the HUD frame."
   ColorPicker "Weapon info colour", "laevis_hud_rgb_weapon"
@@ -99,6 +102,13 @@ OptionMenu "LaevisOptions"
 
   Slider "XP gain multiplier for score mods", "laevis_score_to_xp_factor", 0.1, 5.0, 0.1, 1
   Tooltip "When score mod integration is on, your score will be multiplied by this in order to determine how much XP you get. This can be used to tweak level up rates for your favourite scoremod without needing to adjust the XP settings above."
+}
+
+OptionValue "LaevisHudMirrorMode" {
+  0, "no mirroring"
+  1, "mirror horizontally (box on left)"
+  2, "mirror vertically (XP bars on top)"
+  3, "mirror both (box on left & bars on top)"
 }
 
 OptionValue "LaevisUpgradeBindingMode" {

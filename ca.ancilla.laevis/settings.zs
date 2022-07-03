@@ -75,8 +75,8 @@ class TFLV_Settings : Object {
     return GetInt("screenblocks");
   }
 
-  static double, double, double hud_params() {
-    return GetDouble("laevis_hud_x"), GetDouble("laevis_hud_y"), GetDouble("laevis_hud_size");
+  static double, double, double, uint hud_params() {
+    return GetDouble("laevis_hud_x"), GetDouble("laevis_hud_y"), GetDouble("laevis_hud_size"), GetInt("laevis_hud_mirror");
   }
   static uint, uint, uint hud_colours() {
     // These are in RGB format rather than ARGB format, so add the alpha channel.
