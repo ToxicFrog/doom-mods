@@ -76,6 +76,6 @@ class TFLV_Settings : Object {
   }
 
   static double, double, double hud_params() {
-    return GetDouble("laevis_hud_x"), GetDouble("laevis_hud_y"), GetDouble("laevis_hud_scale");
+    return GetDouble("laevis_hud_x"), GetDouble("laevis_hud_y"), GetDouble("laevis_hud_size");
   }
 }

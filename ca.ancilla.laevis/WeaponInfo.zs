@@ -190,6 +190,8 @@ class ::WeaponInfo : Object play {
   void LevelUp() {
     ++level;
     console.printf("Your %s is now level %d!", weapon.GetTag(), level);
+    // TODO: leave the XP bar filled until the giver is done working. This is
+    // harder than it looks because the giver may take several tics to do its thing.
     XP = XP - maxXP;
     maxXP = GetXPForLevel(level+1);
     weapon.owner.A_SetBlend("00 80 FF", 0.8, 40);

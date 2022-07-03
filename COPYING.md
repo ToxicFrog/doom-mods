@@ -17,6 +17,8 @@ COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+Content in sprites/ui/ is ⓒ 2022 Sungraphica <sungraphica.itch.io>, released
+under the CC-BY-4.0 licence.
 
-Content in sprites/ is from the Freedoom Project; see COPYING.freedoom for the
-license terms.
+Other content in sprites/ is from the Freedoom Project; see COPYING.freedoom for
+the license terms.

@@ -6,6 +6,7 @@
 class ::EventHandler : StaticEventHandler {
   bool legendoomInstalled;
   ::Upgrade::Registry UPGRADE_REGISTRY;
+  ui ::HUD hud;
 
   override void OnRegister() {
     // Register all builtin upgrades.
@@ -41,12 +42,15 @@ class ::EventHandler : StaticEventHandler {
       return;
     }
     if (::Settings.screenblocks() != 11) {
+      // TODO: add an option that lets players override this.
+      // TODO: don't draw the hud when the map is open
       return;
     }
+    if (!hud) hud = new("::HUD");
 
     ::CurrentStats stats;
     if (::PerPlayerStats.GetStatsFor(pawn).GetCurrentStats(stats))
-      ::HUD.Draw(stats);
+      hud.Draw(stats);
   }
 
   void ShowInfo(PlayerPawn pawn) {
