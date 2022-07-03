@@ -9,8 +9,7 @@ FRAMES=LHUDA2.png LHUDA4.png LHUDA6.png LHUDA8.png
 PLAYER=LHDPA2.png LHDPA4.png LHDPA6.png LHDPA8.png
 WEAPON=LHDWA2.png LHDWA4.png LHDWA6.png LHDWA8.png
 # desaturate the hud so it can be used with in-game colourization
-#IMFLAGS=-define modulate:colorspace=HSB -modulate 100,0
-IMFLAGS=
+IMFLAGS=-define modulate:colorspace=HSB -modulate 100,0
 
 all: $(FRAMES) $(PLAYER) $(WEAPON)
 
@@ -31,7 +30,7 @@ LHDWA%.png: hud.xcf Makefile
 
 LHDPA%.png: hud.xcf Makefile
 	# Modulate them to green to match the HUD text.
-	convert "hud.xcf[2]" $(IMFLAGS) -modulate 100,100,80 LHDPA2.png
-	convert "hud.xcf[2]" $(IMFLAGS) -modulate 100,100,80 -flip LHDPA4.png
-	convert "hud.xcf[2]" $(IMFLAGS) -modulate 100,100,80 -flip -flop LHDPA6.png
-	convert "hud.xcf[2]" $(IMFLAGS) -modulate 100,100,80 -flop LHDPA8.png
+	convert "hud.xcf[2]" $(IMFLAGS) LHDPA2.png
+	convert "hud.xcf[2]" $(IMFLAGS) -flip LHDPA4.png
+	convert "hud.xcf[2]" $(IMFLAGS) -flip -flop LHDPA6.png
+	convert "hud.xcf[2]" $(IMFLAGS) -flop LHDPA8.png

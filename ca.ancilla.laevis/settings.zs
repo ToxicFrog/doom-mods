@@ -78,4 +78,10 @@ class TFLV_Settings : Object {
   static double, double, double hud_params() {
     return GetDouble("laevis_hud_x"), GetDouble("laevis_hud_y"), GetDouble("laevis_hud_size");
   }
+  static uint, uint, uint hud_colours() {
+    // These are in RGB format rather than ARGB format, so add the alpha channel.
+    return GetInt("laevis_hud_rgb_frame") | 0xFF000000,
+           GetInt("laevis_hud_rgb_weapon") | 0xFF000000,
+           GetInt("laevis_hud_rgb_player") | 0xFF000000;
+  }
 }

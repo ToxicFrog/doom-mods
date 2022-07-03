@@ -3,6 +3,7 @@
 - New: Added hud position and scale settings.
 - New: HUD graphics from <sungraphica.itch.io>
 - New: HUD settings in the option menu.
+- New: HUD colour theming.
 
 # 0.6.0
 

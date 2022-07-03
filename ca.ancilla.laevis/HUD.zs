@@ -81,34 +81,38 @@ class ::HUD : Object ui {
         break;
     }
 
-    screen.DrawText(NewSmallFont, colour, x, y, text);
+    screen.DrawText(NewSmallFont, Font.CR_WHITE, x, y, text, DTA_Color, colour);
   }
 
   void DrawXPGauge(::CurrentStats stats) {
+    uint frame_rgb, weapon_rgb, player_rgb;
+    [frame_rgb, weapon_rgb, player_rgb] = ::Settings.hud_colours();
 
     Screen.DrawTexture(tex("LHUDA2"), false, hudx, hudy,
-        // DTA_Color, 0xFFFF0000, // TODO add a cvar for colour picking
+        DTA_Color, frame_rgb,
         DTA_DestWidth, hudw, DTA_DestHeight, hudh);
 
     Screen.DrawTexture(tex("LHDWA2"), false, hudx, hudy,
+        DTA_Color, weapon_rgb,
         DTA_DestWidth, hudw, DTA_DestHeight, hudh,
         DTA_ClipRight,
         uint(hudx + hudscale*(HUD_WXP_X + HUD_WXP_W * (double(stats.wxp)/(stats.wmax)))));
 
     Screen.DrawTexture(tex("LHDPA2"), false, hudx, hudy,
+        DTA_Color, player_rgb,
         DTA_DestWidth, hudw, DTA_DestHeight, hudh,
         DTA_ClipRight,
         uint(hudx + hudscale*(HUD_PXP_X + HUD_PXP_W * (double(stats.pxp)/(stats.pmax)))));
 
-    Text("P:"..stats.plvl, Font.CR_GREEN, HUD_TOPTEXT_X, HUD_TOPTEXT_Y, HUD_GRAV_NW);
-    Text("W:"..stats.wlvl, Font.CR_BLUE, HUD_BOTTEXT_X, HUD_BOTTEXT_Y, HUD_GRAV_SE);
+    Text("P:"..stats.plvl, player_rgb, HUD_TOPTEXT_X, HUD_TOPTEXT_Y, HUD_GRAV_NW);
+    Text("W:"..stats.wlvl, weapon_rgb, HUD_BOTTEXT_X, HUD_BOTTEXT_Y, HUD_GRAV_SE);
 
     Text("XP: "..stats.wxp.."/"..stats.wmax,
-        Font.CR_ORANGE, HUD_INFOTEXT_X, HUD_INFOTEXT_Y, HUD_GRAV_SW);
+        weapon_rgb, HUD_INFOTEXT_X, HUD_INFOTEXT_Y, HUD_GRAV_SW);
     Text(stats.effect .. (stats.effect == "" ? "" : " ") .. stats.wname,
         // HACK HACK HACK, we adjust y in HUD coordinate space so that it ends up
         // in the right place (directly above the XP: line) when it gets rendered.
-        Font.CR_ORANGE, HUD_INFOTEXT_X, HUD_INFOTEXT_Y - NewSmallFont.GetHeight()/hudscale, HUD_GRAV_SW);
+        weapon_rgb, HUD_INFOTEXT_X, HUD_INFOTEXT_Y - NewSmallFont.GetHeight()/hudscale, HUD_GRAV_SW);
   }
 }
 
