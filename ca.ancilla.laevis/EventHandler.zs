@@ -38,14 +38,8 @@ class ::EventHandler : StaticEventHandler {
 
   override void RenderOverlay(RenderEvent evt) {
     PlayerPawn pawn = players[consoleplayer].mo;
-    if (!pawn || !players[consoleplayer].ReadyWeapon) {
-      return;
-    }
-    if (::Settings.screenblocks() != 11) {
-      // TODO: add an option that lets players override this.
-      // TODO: don't draw the hud when the map is open
-      return;
-    }
+    if (!pawn || !players[consoleplayer].ReadyWeapon) return;
+    if (::Settings.screenblocks() > 11) return;
     if (!hud) hud = new("::HUD");
 
     ::CurrentStats stats;

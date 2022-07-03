@@ -5,6 +5,7 @@
 - New: HUD settings in the option menu.
 - New: HUD colour theming.
 - New: HUD mirror settings for positioning in different corners of the screen.
+- Fix: HUD is now visible in non-fullscreen HUD modes.
 
 # 0.6.0
 
