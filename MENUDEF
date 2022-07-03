@@ -12,7 +12,21 @@ OptionMenu "LaevisOptions"
   Title "Laevis Mod Options"
 
   StaticText ""
-  StaticText "Weapon Bonus Settings", CYAN
+  StaticText "HUD settings", CYAN
+
+  TooltipBlockStart
+  Slider "HUD X position", "laevis_hud_x", 0.0, 1.0, 0.01, 2
+  Slider "HUD Y position", "laevis_hud_y", 0.0, 1.0, 0.01, 0
+  Tooltip "Position of the Laevis HUD on the screen, as a proportion of total screen size. 0.0 is top left, 1.0 is bottom right."
+  Tooltip "You can also set a pixel-perfect position by setting laevis_hud_x and laevis_hud_y to your desired coordinates."
+  TooltipBlockEnd
+
+  Slider "HUD Height", "laevis_hud_size", 10, 500, 10, 2
+  Tooltip "Height of the Laevis HUD, in pixels. Width is always 3x height."
+  Tooltip "You can also set a scale factor by setting this to a value between 0.0 and 1.0; 1.0 makes it 512px high."
+
+  StaticText ""
+  StaticText "Weapon Bonus Settings", BLUE
 
   Slider "Gun damage bonus per level", "laevis_gun_damage_bonus", 0.0, 1.0, 0.01, 2
   Tooltip "How much bonus damage the gun gets per level. 0.01 == +1%."
