@@ -6,6 +6,7 @@
 - New: HUD colour theming.
 - New: HUD mirror settings for positioning in different corners of the screen.
 - Fix: HUD is now visible in non-fullscreen HUD modes.
+- Fix: HUD is not drawn over the map.
 
 # 0.6.0
 

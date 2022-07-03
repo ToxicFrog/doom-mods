@@ -36,10 +36,16 @@ class ::EventHandler : StaticEventHandler {
     }
   }
 
-  override void RenderOverlay(RenderEvent evt) {
+  ui bool ShouldDrawHUD(PlayerPawn pawn) const {
+    return pawn
+      && players[consoleplayer].ReadyWeapon
+      && screenblocks <= 11
+      && !automapactive;
+  }
+
+  override void RenderUnderlay(RenderEvent evt) {
     PlayerPawn pawn = players[consoleplayer].mo;
-    if (!pawn || !players[consoleplayer].ReadyWeapon) return;
-    if (::Settings.screenblocks() > 11) return;
+    if (!ShouldDrawHUD(pawn)) return;
     if (!hud) hud = new("::HUD");
 
     ::CurrentStats stats;
