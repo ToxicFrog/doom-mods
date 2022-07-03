@@ -227,14 +227,14 @@ Acid stacks have a cap based on the damage dealt by the attack that inflicted th
 
 Shots poison enemies. The amount of acid applied, and the cap, is 50% of the damage dealt, increased by another 50% per level.
 
-### Acid Spray *(Acid intermediate upgrade)*
+### Concentrated Acid *(Acid mastery)*
+
+Each level increases the threshold at which acid damage starts accelerating by 10%, and the ratio at which acid stacks are converted into damage by 10%. Both have diminishing returns.
+
+### Acid Spray *(Acid mastery)*
 
 Attacks that exceed the acid cap for the target will splash the acid onto nearby enemies instead. Spray range and the level of the applied acid depends on your level of Acid Spray.
 
-### Explosive Reaction *(Acid mastery)*
-
-Enemies that die with acid stacks on them explode, dealing 1% of the target's health per acid stack to its surroundings.
-
 ### Embrittlement *(Acid mastery)*
 
-Enemies with acid stacks on them take 1% more damage from all sources per stack.
+Enemies with acid stacks on them take 1% more damage from all sources per stack. Enemies with low enough HP die instantly; the threshold is based on the number of acid stacks and your Concentrated Acid and Embrittlement levels.

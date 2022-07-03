@@ -6,17 +6,18 @@
 // Stacks applied depends on AND IS CAPPED BASED ON weapon damage, so this works
 // best with slow but powerful weapons.
 //
-// UPGRADE: ACID SPRAY
+// UPGRADE: CONCENTRATED ACID
+// Activation threshold & stack to damage conversion ratio improve.
+//
+// MASTER: ACID SPRAY
 // Attacks that would exceed the acid stack cap instead spray the acid onto
 // nearby enemies.
 //
-// MASTER: EXPLOSIVE REACTION
-// Acidified enemies explode on death, dealing damage to their surroundings
-// proportionate to their max HP and the amount of acid stacks left on them.
-//
 // MASTER: EMBRITTLEMENT
 // Acidified enemies take increased damage from all non-acid sources, scaling
-// with the number of acid stacks on them.
+// with the number of acid stacks on them. Enemies with less HP than acid
+// stacks die instantly.
+
 #namespace TFLV::Upgrade;
 #debug off
 
@@ -33,6 +34,18 @@ class ::CorrosiveShots : ::BaseUpgrade {
   }
 }
 
+class ::ConcentratedAcid : ::DotModifier {
+  override string DotType() { return "::AcidDot"; }
+
+  override void ModifyDot(Actor player, Actor shot, Actor target, int damage, ::Dot dot_item) {
+    ::AcidDot(dot_item).concentration = level;
+  }
+
+  override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
+    return info.upgrades.Level("::CorrosiveShots") > info.upgrades.Level("::ConcentratedAcid")+1;
+  }
+}
+
 class ::AcidSpray : ::DotModifier {
   override string DotType() { return "::AcidDot"; }
 
@@ -41,7 +54,8 @@ class ::AcidSpray : ::DotModifier {
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
-    return info.upgrades.Level("::CorrosiveShots") > info.upgrades.Level("::AcidSpray")+1;
+    return info.upgrades.Level("::ConcentratedAcid") > info.upgrades.Level("::AcidSpray")+1
+      && info.upgrades.Level("::Embrittlement") == 0;
   }
 }
 
@@ -53,34 +67,16 @@ class ::Embrittlement : ::DotModifier {
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
-    return info.upgrades.Level("::AcidSpray") > info.upgrades.Level("::Embrittlement")+1
-      && info.upgrades.Level("::ExplosiveReaction") == 0;
+    return info.upgrades.Level("::ConcentratedAcid") > info.upgrades.Level("::Embrittlement")+1
+      && info.upgrades.Level("::AcidSpray") == 0;
   }
 }
-
-class ::ExplosiveReaction : ::BaseUpgrade {
-  override void OnKill(Actor player, Actor shot, Actor target) {
-    uint amount = ::Dot.CountStacks(target, "::AcidDot");
-    if (amount <= 0) return;
-
-    let aux = ::ExplosiveReaction::Aux(target.Spawn("::ExplosiveReaction::Aux", target.pos));
-    aux.target = player;
-    aux.level = level;
-    aux.stacks = amount;
-    aux.hp = target.SpawnHealth();
-  }
-
-  override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
-    return info.upgrades.Level("::AcidSpray") > info.upgrades.Level("::ExplosiveReaction")+1
-      && info.upgrades.Level("::Embrittlement") == 0;
-  }
-}
-
 
 // Poison DoT. Note that it burns one stack per dot tick, so 5 stacks == 1 second.
 class ::AcidDot : ::Dot {
   uint damage_this_tick;
   uint level;
+  uint concentration;
   uint splash;
   uint embrittlement;
 
@@ -103,7 +99,7 @@ class ::AcidDot : ::Dot {
     if (damage_this_tick > 0) {
       // We've tallied up all the damage taken this tick.
       // Convert it into actual acid stacks at a rate of 50% per damage per level.
-      double new_stacks = level * damage_this_tick * 0.5;
+      double new_stacks = damage_this_tick * (0.5 + 0.1 * level);
       double cap = new_stacks;
       DEBUG("acid: stacks=%f, damage=%f, added=%f", stacks, damage_this_tick, new_stacks);
 
@@ -144,7 +140,9 @@ class ::AcidDot : ::Dot {
     // on the target.
     // Say above 50% HP it just does [level] DPS.
     double hp = double(owner.Health) / owner.SpawnHealth();
-    double threshold = 0.5 + level*0.005;
+    // At concentration=0 this gives us a threshold of 0.5,
+    // approaching 1.0 as concentration increases
+    double threshold = 0.5 * (2.0 - (0.8 ** concentration));
     double damage;
     if (hp > threshold) {
       damage = 0.2 * level; // 5 dot ticks per second
@@ -152,14 +150,18 @@ class ::AcidDot : ::Dot {
       // Below that it scales up to 10*level
       damage = max(0.2, (1-hp/threshold)*2*level);
     }
-    DEBUG("acid hp=%f stacks=%f damage=%f", hp, stacks, damage);
+    DEBUG("acid hp=%f threshold=%f stacks=%f damage=%f", hp, threshold, stacks, damage);
     damage = min(damage, stacks);
     DEBUG("actual damage=%f", damage);
-    stacks -= damage;
+    stacks -= damage * (0.9 ** concentration);
     return damage;
-    // double damage = (1.0 - (2.0 * atan(hp*90.0))/180.0) * 5;
-    // DEBUG("acid hp=%f stacks=%f damage=%f", hp, stacks, damage);
-    // return damage;
+  }
+
+  // Return the HP threshold at which enemies will be instakilled.
+  // This is number of stacks, scaled by concentration bonus and then increased
+  // by 10% per Embrittlement level.
+  uint InstakillThreshold() {
+    return stacks / (0.9**concentration) * (1 + 0.1*embrittlement);
   }
 
   // Damage modifier for Embrittlement upgrade.
@@ -169,29 +171,15 @@ class ::AcidDot : ::Dot {
     if (!passive || damage <= 0 || embrittlement <= 0 || amount <= 0) {
       return;
     }
-    if (damageType == "Acid") return;
+
+    if (damageType == "Acid") {
+      DEBUG("Instakill? %d < %d", owner.health, InstakillThreshold());
+      if (owner.health < InstakillThreshold()) newdamage = owner.health+1;
+      return;
+    }
 
     // Boost incoming damage based on the number of acid stacks.
     newdamage = ceil(damage * (1.0 + 0.01 * amount * embrittlement));
-  }
-}
-
-class ::ExplosiveReaction::Aux : Actor {
-  uint level;
-  uint stacks;
-  uint hp;
-
-  Default {
-    DamageType "Acid";
-    +NODAMAGETHRUST;
-    +INCOMBAT; // Laevis recursion guard
-  }
-
-  States {
-    Spawn:
-      LACD A 5 Bright NoDelay A_Explode(hp * stacks * 0.01, 100 + level*50, XF_NOSPLASH, false, level*10);
-      LACD BCDE 5 Bright;
-      STOP;
   }
 }
 
@@ -209,7 +197,7 @@ class ::AcidSpray::Aux : Actor {
   }
 
   uint GetRange() {
-    return 32 + level*16;
+    return 64 + level*32;
   }
 
   override int DoSpecialDamage(Actor target, int damage, Name damagetype) {

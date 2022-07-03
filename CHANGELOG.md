@@ -1,3 +1,11 @@
+# 0.6.2
+
+- Change: Acid tree rework
+  - Explosive Reaction removed
+  - Acid Spray upgraded to mastery; splash radius doubled
+  - Concentrated Acid added as intermediate upgrade; increases trigger threshold & damage
+  - Embrittlement now instakills sufficiently weakened enemies
+
 # 0.6.1
 
 - New: Added hud position and scale settings.

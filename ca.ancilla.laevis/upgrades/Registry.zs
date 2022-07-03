@@ -57,8 +57,8 @@ class ::Registry : Object play {
       "::Hallucinogens",
       // Acid upgrades
       "::CorrosiveShots",
+      "::ConcentratedAcid",
       "::AcidSpray",
-      "::ExplosiveReaction",
       "::Embrittlement"
     };
     for (uint i = 0; i < UpgradeNames.size(); ++i) {
