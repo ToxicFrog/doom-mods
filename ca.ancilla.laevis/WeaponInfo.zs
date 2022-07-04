@@ -53,6 +53,13 @@ class ::WeaponInfo : Object play {
   // should keep most of its stats.
   void Rebind(Actor wpn) {
     self.weapon = Weapon(wpn);
+    if (self.weaponType != wpn.GetClassName()) {
+      // Rebinding to a weapon of an entirely different type. Reset the attack
+      // modality inference counters.
+      self.weaponType = wpn.GetClassName();
+      hitscan_shots = 0;
+      projectile_shots = 0;
+    }
     string LDWeaponType = "LDWeapon";
     if (wpn is LDWeaponType) {
       // If it's a Legendoom weapon, calling this should be safe; it'll keep
