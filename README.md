@@ -125,10 +125,6 @@ As a player upgrade, increases *all* damage you deal by 5% per level. As a weapo
 
 Killing an enemy causes an explosion dealing 20% of (its health + the amount you overkilled it by). Increasing the level increases the damage (with diminishing returns), increases the blast radius (linearly), and reduces the damage you take from the blast.
 
-### Explosive Shots *(Hitscan only)*
-
-Creates a small explosion on hit doing 40% of the original attack damage. More levels increase the damage and blast radius, and reduce the damage you take from your own explosions.
-
 ### Fast Shots *(Projectile only)*
 
 Projectiles move 50% faster per level.
@@ -136,6 +132,10 @@ Projectiles move 50% faster per level.
 ### Fragmentation Shots *(Projectile only)*
 
 On impact, projectiles release a ring of hitscan attacks. Increasing the upgrade level adds more fragments; damage is based on the base damage of the shot. These can't self-damage.
+
+### HE Rounds *(Hitscan only)*
+
+Creates a small explosion on hit doing 40% of the original attack damage. More levels increase the damage and blast radius, and reduce the damage you take from your own explosions.
 
 ### Homing Shots *(Projectile only)*
 

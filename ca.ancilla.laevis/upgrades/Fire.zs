@@ -20,7 +20,7 @@
 #namespace TFLV::Upgrade;
 #debug off
 
-class ::IncendiaryShots : ::BaseUpgrade {
+class ::IncendiaryShots : ::ElementalUpgrade {
   override void OnDamageDealt(Actor player, Actor shot, Actor target, int damage) {
     // TODO: softcap support
     ::Dot.GiveStacks(player, target, "::FireDot", level*damage*0.2);
@@ -56,7 +56,7 @@ class ::Conflagration : ::DotModifier {
   }
 }
 
-class ::InfernalKiln : ::BaseUpgrade {
+class ::InfernalKiln : ::ElementalUpgrade {
   double hardness;
 
   // Dealing damage to a burning enemy adds "kiln points" equal to 1% of the
@@ -107,8 +107,6 @@ class ::FireDot : ::Dot {
 
   Default {
     DamageType "Fire";
-    +INCOMBAT; // Laevis recursion guard
-    +NODAMAGETHRUST;
   }
 
   override string GetParticleColour() {
@@ -167,7 +165,6 @@ class ::Conflagration::Aux : Actor {
     Alpha 0.4;
     +NODAMAGETHRUST;
     +NOGRAVITY;
-    +INCOMBAT; // Laevis recursion guard
   }
 
   override void PostBeginPlay() {

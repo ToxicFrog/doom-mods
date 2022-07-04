@@ -216,6 +216,12 @@ At the moment, this probably means that ExplosiveDeath, ExplosiveShots, and Frag
 
 Then in UpgradeBag event handlers, rather than checking +INCOMBAT, we check if the master point is set and castable to upgrade; if so, we compare its priority to the priority of the upgrade we're about to trigger.
 
+This runs into a problem: the `master` field can only point to actors, not objects. We need a different field we can re-use to store priority, probably a uint or int. Plausible fields:
+- score -- probably safe since these aren't ScoreItems or players
+- activationtype -- should only be relevant for activateables
+- accuracy/stamina -- only used by Strife players, I think
+- special1/special2 -- used by various special attack scripts on monsters, should be safe on non-monsters -- can't set these in properties though
+
 ## OnApply() based mods
 
 This is stuff like knockback, increased health, etc that requires making a permanent change to the player or the weapon.

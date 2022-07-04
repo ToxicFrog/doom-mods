@@ -1,10 +1,16 @@
 #namespace TFLV::Upgrade;
+#debug on
 
 class ::FragmentationShots : ::BaseUpgrade {
+  override ::UpgradePriority Priority() { return ::PRI_FRAGMENTATION; }
+
   override void OnDamageDealt(Actor pawn, Actor shot, Actor target, int damage) {
     bool ok;
     Actor act;
+    // TODO: new Upgrade-specific Spawn function that sets special1
+    // and target appropriately.
     let boom = ::FragmentationShots::Boom(shot.Spawn("::FragmentationShots::Boom", shot.pos));
+    boom.special1 = Priority();
     boom.target = pawn;
     boom.damage = ceil(damage * 0.2);
     boom.fragments = 8 + level*8;
@@ -26,7 +32,6 @@ class ::FragmentationShots::Boom : Actor {
     +NOGRAVITY;
     +MISSILE;
     +NODAMAGETHRUST;
-    +INCOMBAT; // Laevis recursion guard
     RenderStyle "Translucent";
     Alpha 0.7;
     Scale 0.2;
@@ -46,10 +51,10 @@ class ::FragmentationShots::Boom : Actor {
   }
 }
 
-// TODO: these should probably propagate poison, acid, etc.
 class ::FragmentationShots::Puff : BulletPuff {
+  property UpgradePriority: special1;
   Default {
-    +INCOMBAT; // Laevis recursion guard
+    ::FragmentationShots::Puff.UpgradePriority ::PRI_FRAGMENTATION;
   }
   States {
     Spawn:

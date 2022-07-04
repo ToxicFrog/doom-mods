@@ -17,7 +17,7 @@
 #namespace TFLV::Upgrade;
 #debug off
 
-class ::PoisonShots : ::BaseUpgrade {
+class ::PoisonShots : ::ElementalUpgrade {
   override void OnDamageDealt(Actor player, Actor shot, Actor target, int damage) {
     if (!shot) return;
     ::Dot.GiveStacks(player, target, "::PoisonDot", level*2.0);
@@ -55,6 +55,24 @@ class ::Hallucinogens : ::DotModifier {
   }
 }
 
+class ::Putrefaction : ::ElementalUpgrade {
+  override void OnKill(Actor player, Actor shot, Actor target) {
+    double stacks = ::Dot.CountStacks(target, "::PoisonDot");
+    DEBUG("killed %s, poison stacks=%d", TFLV::Util.SafeCls(target), stacks);
+    if (stacks <= 0) return;
+
+    let aux = ::Putrefaction::Aux(target.Spawn("::Putrefaction::Aux", target.pos));
+    aux.target = player;
+    aux.level = max(stacks - (stacks * 0.5**level), 1);
+    DEBUG("spawned putrefaction cloud with level=%d", aux.level);
+  }
+
+  override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
+    return info.upgrades.Level("::Weakness") > info.upgrades.Level("::Putrefaction")+1
+      && info.upgrades.Level("::Hallucinogens") == 0;
+  }
+}
+
 // Poison DoT. Note that it burns one stack per dot tick, so 5 stacks == 1 second.
 class ::PoisonDot : ::Dot {
   uint weakness;
@@ -62,8 +80,6 @@ class ::PoisonDot : ::Dot {
 
   Default {
     DamageType "Poison";
-    +INCOMBAT; // Laevis recursion guard
-    +NODAMAGETHRUST;
   }
 
   override string GetParticleColour() {
@@ -109,24 +125,6 @@ class ::PoisonDot : ::Dot {
       newdamage = max(1, floor(damage * 0.99 ** (stacks * weakness)));
     }
     DEBUG("Weakness: %d -> %d", damage, newdamage);
-  }
-}
-
-class ::Putrefaction : ::BaseUpgrade {
-  override void OnKill(Actor player, Actor shot, Actor target) {
-    double stacks = ::Dot.CountStacks(target, "::PoisonDot");
-    DEBUG("killed %s, poison stacks=%d", TFLV::Util.SafeCls(target), stacks);
-    if (stacks <= 0) return;
-
-    let aux = ::Putrefaction::Aux(target.Spawn("::Putrefaction::Aux", target.pos));
-    aux.target = player;
-    aux.level = max(stacks - (stacks * 0.5**level), 1);
-    DEBUG("spawned putrefaction cloud with level=%d", aux.level);
-  }
-
-  override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
-    return info.upgrades.Level("::Weakness") > info.upgrades.Level("::Putrefaction")+1
-      && info.upgrades.Level("::Hallucinogens") == 0;
   }
 }
 

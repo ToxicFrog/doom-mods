@@ -2,15 +2,15 @@
 #debug off
 
 class ::ExplosiveShots : ::BaseUpgrade {
+  override ::UpgradePriority Priority() { return ::PRI_EXPLOSIVE; }
+
   override void OnDamageDealt(Actor pawn, Actor shot, Actor target, int damage) {
     DEBUG("ExplosiveShots::OnDamageDealt damage=%d shot=%s", damage, shot.GetClassName());
     DEBUG("Pawn position: [%d,%d,%d]", pawn.pos.x, pawn.pos.y, pawn.pos.z);
     DEBUG("Shot position: [%d,%d,%d]", shot.pos.x, shot.pos.y, shot.pos.z);
-    // let debugshot = ::Beam::Puff(shot);
-    // if (debugshot)
-      DEBUG("Orig position: [%d,%d,%d]", debugshot.x, debugshot.y, debugshot.z);
     let boom = ::ExplosiveShots::Boom(shot.Spawn("::ExplosiveShots::Boom", shot.pos));
     DEBUG("Boom position = [%d,%d,%d]", boom.pos.x, boom.pos.y, boom.pos.z);
+    boom.special1 = Priority();
     boom.target = pawn;
     boom.damage = damage * level * 0.4;
     boom.radius = 64 + 16 * level;
@@ -33,11 +33,11 @@ class ::ExplosiveShots::Boom : Actor {
     +NOGRAVITY;
     +MISSILE;
     +NODAMAGETHRUST;
-    +INCOMBAT; // Laevis recursion guard
     DamageType "Extreme";
   }
 
   override int DoSpecialDamage(Actor target, int damage, Name damagetype) {
+    DEBUG("Boom damaging %s", TFLV::Util.SafeTag(target));
     if (target == self.target) {
       return damage * (0.50 ** self.level);
     }

@@ -5,6 +5,8 @@
 //   needed for the upgrade to spawn
 // - Implement at least one of the On* or Modify* functions with the actual
 //   effects of the upgrade
+// - If your effect should be triggerable by other effects, set an appropriate
+//   priority level in Priority()
 // - Add the name and description to your LANGUAGE file; the keys should be
 //   [upgrade_class_name]_Name and [upgrade_class_name]_Desc, e.g.
 //   TFLV_Upgrade_Pyre_Name and TFLV_Upgrade_Pyre_Desc.
@@ -19,6 +21,14 @@
 // registration after the first.
 #namespace TFLV::Upgrade;
 
+enum ::UpgradePriority {
+  ::PRI_NULL = -1,
+  ::PRI_MISSING = 0,
+  ::PRI_ELEMENTAL,
+  ::PRI_EXPLOSIVE,
+  ::PRI_FRAGMENTATION
+}
+
 class ::BaseUpgrade : Object play {
   uint level;
 
@@ -27,6 +37,31 @@ class ::BaseUpgrade : Object play {
   // Tick function. Equivalent to Thinker.Tick() but we define it here because
   // we can't inherit from Thinker and have the upgrades survive level changes.
   virtual void Tick() {}
+
+  // Priority system.
+  // The basic idea here is that upgrade effects can only be triggered by (a)
+  // events not associated with an upgrade, like normal player attacks, and (b)
+  // events associated with a higher-priority upgrade.
+  // So, for example, Explosive Shots (PRI_EXPLOSIVE) can proc Poison Shots
+  // (PRI_ELEMENTAL), but the poison dot can't trigger the Explosive Shots.
+  // Default is lowest priority -- can be triggered by anything, can't trigger
+  // anything.
+  // In order for this to work right, secondary actors created by upgrade effects
+  // need to have their `master` pointer set to the upgrade object that created
+  // them.
+  // Generally speaking, any upgrade that can be triggered by OnDamage effects
+  // should set this to higher than PRI_ELEMENTAL unless it makes sense for it
+  // to be triggered by elemental dots, and any upgrade that spawns secondary
+  // actors should also set it to higher than PRI_ELEMENTAl so that those actors
+  // can proc elemental riders.
+  // As a special case, upgrades with PRI_NULL can neither trigger nor be triggered
+  // by other upgrades.
+  virtual ::UpgradePriority Priority() { return ::PRI_NULL; }
+  bool CheckPriority(Actor inflictor) {
+    return !inflictor
+      || inflictor.special1 == ::PRI_MISSING
+      || inflictor.special1 > Priority();
+  }
 
   // Upgrade selection functions.
   // These will be called when generating an upgrade to see if the upgrade should
@@ -103,6 +138,8 @@ class ::BaseUpgrade : Object play {
 // TODO: this is pretty gross. It should be generalized so that elemental upgrades
 // can answer questions about themselves.
 class ::ElementalUpgrade : ::BaseUpgrade {
+  override ::UpgradePriority Priority() { return ::PRI_ELEMENTAL; }
+
   static bool CanAcceptElement(TFLV::WeaponInfo info, string element) {
     string inprogress = GetElementInProgress(info.upgrades);
     return inprogress == element

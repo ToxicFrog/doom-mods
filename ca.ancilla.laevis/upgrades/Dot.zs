@@ -8,12 +8,14 @@
 
 class ::Dot : Inventory {
   double stacks;
+  property UpgradePriority: special1;
 
   Default {
     DamageType "None";
     Inventory.Amount 1;
     Inventory.MaxAmount 1;
-    +INCOMBAT; // Laevis recursion guard
+    ::Dot.UpgradePriority ::PRI_ELEMENTAL;
+    +NODAMAGETHRUST;
   }
 
   States {
@@ -107,7 +109,7 @@ class ::Dot : Inventory {
   }
 }
 
-class ::DotModifier : ::BaseUpgrade {
+class ::DotModifier : ::ElementalUpgrade {
   virtual string DotType() { return ""; }
 
   override void OnDamageDealt(Actor player, Actor shot, Actor target, int damage) {

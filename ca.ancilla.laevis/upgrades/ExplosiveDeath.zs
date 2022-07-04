@@ -2,8 +2,11 @@
 #debug off
 
 class ::ExplosiveDeath : ::BaseUpgrade {
+  override ::UpgradePriority Priority() { return ::PRI_EXPLOSIVE; }
+
   override void OnKill(Actor player, Actor shot, Actor target) {
     let aux = ::ExplosiveDeath::Aux(target.Spawn("::ExplosiveDeath::Aux", target.pos));
+    aux.special1 = Priority();
     aux.target = player;
     aux.level = level;
     aux.power = (target.SpawnHealth() + abs(target.health)) * (1.0 - 0.8 ** level);
@@ -24,7 +27,6 @@ class ::ExplosiveDeath::Aux : Actor {
     DamageType "Extreme";
     +NOBLOCKMAP;
     +NOGRAVITY;
-    +INCOMBAT; // Laevis recursion guard
   }
 
   override int DoSpecialDamage(Actor target, int damage, Name damagetype) {

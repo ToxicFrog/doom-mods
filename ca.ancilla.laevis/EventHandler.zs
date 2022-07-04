@@ -122,7 +122,8 @@ class ::EventHandler : StaticEventHandler {
       evt.damage, evt.damagetype, evt.damageflags, evt.thing.health);
     if (evt.damagesource == players[consoleplayer].mo
         && evt.thing.bISMONSTER
-        && evt.thing != evt.damagesource) {
+        && evt.thing != evt.damagesource
+        && evt.damage > 0) {
       let stats = ::PerPlayerStats.GetStatsFor(PlayerPawn(evt.damagesource));
       stats.OnDamageDealt(evt.inflictor, evt.thing, min(evt.damage, evt.thing.health));
       if (evt.thing.health <= 0) {

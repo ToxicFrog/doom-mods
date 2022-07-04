@@ -245,19 +245,15 @@ class ::PerPlayerStats : ::Force {
   // Handlers for events that player/gun upgrades may be interested in.
   // These are called from the EventManager on the corresponding world events,
   // and call the handlers on the upgrades in turn.
-  // They ignore shots with the +INCOMBAT flag set; this is a Strife dialogue flag
-  // repurposed here to mean "this actor was spawned by Laevis and should not trigger
-  // upgrades", to prevent upgrade recursion, e.g. an "on hit spawn shrapnel" upgrade
-  // causing more shrapnel to spawn whenever shrapnel hits something.
+  // Avoid infinite recursion is handled by the UpgradeBag, which checks the
+  // priority of the inciting event against the priority of each upgrade.
   void OnProjectileCreated(Actor shot) {
-    if (shot.bINCOMBAT) return;
     upgrades.OnProjectileCreated(owner, shot);
     let info = GetOrCreateInfoForCurrentWeapon();
     if (info) info.upgrades.OnProjectileCreated(owner, shot);
   }
 
   void OnDamageDealt(Actor shot, Actor target, uint damage) {
-    if (shot && shot.bINCOMBAT) return;
     upgrades.OnDamageDealt(owner, shot, target, damage);
     // Record whether it was a missile or a projectile, for the purposes of
     // deciding what kinds of upgrades to spawn.
@@ -272,7 +268,6 @@ class ::PerPlayerStats : ::Force {
   }
 
   void OnDamageReceived(Actor shot, Actor attacker, uint damage) {
-    if (shot && shot.bINCOMBAT) return;
     upgrades.OnDamageReceived(owner, shot, attacker, damage);
     let info = GetOrCreateInfoForCurrentWeapon();
     if (!info) return;
@@ -325,14 +320,10 @@ class ::PerPlayerStats : ::Force {
         AddXP(GetXPForDamage(target, damage));
       }
 
-      if (!inflictor || !inflictor.bINCOMBAT) {
-        double tmpdamage = upgrades.ModifyDamageDealt(owner, inflictor, source, damage);
-        if (info)
-          tmpdamage = info.upgrades.ModifyDamageDealt(owner, inflictor, source, tmpdamage);
-        newdamage = tmpdamage;
-      } else {
-        newdamage = damage;
-      }
+      double tmpdamage = upgrades.ModifyDamageDealt(owner, inflictor, source, damage);
+      if (info)
+        tmpdamage = info.upgrades.ModifyDamageDealt(owner, inflictor, source, tmpdamage);
+      newdamage = tmpdamage;
     }
   }
 

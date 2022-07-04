@@ -21,7 +21,7 @@
 #namespace TFLV::Upgrade;
 #debug off
 
-class ::CorrosiveShots : ::BaseUpgrade {
+class ::CorrosiveShots : ::ElementalUpgrade {
   override void OnDamageDealt(Actor player, Actor shot, Actor target, int damage) {
     let ad = ::AcidDot(::Dot.GiveStacks(player, target, "::AcidDot", 0));
     ad.damage_this_tick += damage;
@@ -81,8 +81,6 @@ class ::AcidDot : ::Dot {
 
   Default {
     DamageType "Acid";
-    +INCOMBAT; // Laevis recursion guard
-    +NODAMAGETHRUST;
   }
 
   // Custom states so that we can tick down damage_this_tick immediately.
@@ -192,7 +190,6 @@ class ::AcidSpray::Aux : Actor {
     Alpha 0.1;
     +NODAMAGETHRUST;
     +NOGRAVITY;
-    +INCOMBAT; // Laevis recursion guard
   }
 
   uint GetRange() {

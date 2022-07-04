@@ -1,3 +1,10 @@
+# 0.6.3
+
+- Change: internal cleanup of infinite recursion guards. It is now possible for
+  upgrades to trigger each other, without causing infinite loops.
+- Change: elemental effects will now trigger on AoE upgrades like HE Shots and
+  Fragmentation.
+
 # 0.6.2
 
 - New: Explosive Death upgrade causes slain enemies to detonate.

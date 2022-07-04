@@ -54,6 +54,7 @@ class ::UpgradeBag : Object play {
 
   void OnProjectileCreated(Actor pawn, Actor shot) {
     for (uint i = 0; i < upgrades.Size(); ++i) {
+      if (!upgrades[i].CheckPriority(shot)) continue;
       upgrades[i].OnProjectileCreated(pawn, shot);
     }
   }
@@ -61,6 +62,7 @@ class ::UpgradeBag : Object play {
   double ModifyDamageDealt(Actor pawn, Actor shot, Actor target, double damage) {
     for (uint i = 0; i < upgrades.Size(); ++i) {
       DEBUG("UpgradeBag.ModifyDamageDealt: %d %s", i, TFLV::Util.SafeCls(upgrades[i]));
+      if (!upgrades[i].CheckPriority(shot)) continue;
       damage = upgrades[i].ModifyDamageDealt(pawn, shot, target, damage);
     }
     return damage;
@@ -68,6 +70,7 @@ class ::UpgradeBag : Object play {
 
   double ModifyDamageReceived(Actor pawn, Actor shot, Actor attacker, double damage) {
     for (uint i = 0; i < upgrades.Size(); ++i) {
+      // No priority checks -- always triggers, even on self-damage.
       damage = upgrades[i].ModifyDamageReceived(pawn, shot, attacker, damage);
     }
     return damage;
@@ -75,18 +78,21 @@ class ::UpgradeBag : Object play {
 
   void OnDamageDealt(Actor pawn, Actor shot, Actor target, int damage) {
     for (uint i = 0; i < upgrades.Size(); ++i) {
+      if (!upgrades[i].CheckPriority(shot)) continue;
       upgrades[i].OnDamageDealt(pawn, shot, target, damage);
     }
   }
 
   void OnDamageReceived(Actor pawn, Actor shot, Actor attacker, int damage) {
     for (uint i = 0; i < upgrades.Size(); ++i) {
+      // No priority checks -- always triggers, even on self-damage.
       upgrades[i].OnDamageReceived(pawn, shot, attacker, damage);
     }
   }
 
   void OnKill(Actor pawn, Actor shot, Actor target) {
     for (uint i = 0; i < upgrades.Size(); ++i) {
+      // No priority checks -- fires unconditionally.
       upgrades[i].OnKill(pawn, shot, target);
     }
   }
