@@ -49,6 +49,10 @@ This should work with any mod that uses the `pawn.score` property to record poin
 
 Laevis works by storing upgrade information in an item in the player's inventory. If this item gets removed all of your levels and upgrades will disappear. If you want to lose your weapons but keep your upgrades, make sure that `Keep Inventory Items` is enabled in the UPS settings.
 
+### DoomRL Arsenal
+
+This works fine in general, but building an assembly out of a weapon will reset it to level 0 and clear all upgrades on it, even if the upgrade binding mode is to set to `weapon with inheritance` or `weapon class` (because the assembly is not just a different weapon but an entirely different weapon class from the base weapon you used to assemble it).
+
 ## FAQ
 
 ### Why "Laevis"?
@@ -75,12 +79,11 @@ See "modding notes" below.
 
 ## Known Issues
 
-- Mods that allow you to modify or upgrade weapons, such as DRLA, may cause the weapons to reset to level 0 when you do so.
 - XP is assigned to the currently wielded weapon at the time the damage is dealt, so it possible for XP to be assigned to the wrong weapon if you switch weapons while projectiles are in flight.
 - When using Legendoom, it is possible to permanently downgrade (or, in some cases, upgrade) weapons by changing which effect is active on them before dropping them.
-- Mods that clear your inventory, like *Universal Pistol Starter*, will also clear all your Laevis upgrades unless you configure them to leave non-weapon inventory items alone.
 - The distinction between projectile and hitscan weapons is guesswork and may in some cases be incorrect.
 - Most effects will trigger only on shots that hit a monster, e.g. HE Rounds will not detonate if you shoot a wall.
+- Piercing Shots may interfere with the detonation of exploding shots like rockets.
 
 ## Modding Notes
 
@@ -154,7 +157,7 @@ Restores health when you attack, by 1% per level of the damage dealt. Cannot exc
 
 ### Piercing Shots *(Projectile only)*
 
-Shots go through enemies (but not walls).
+Shots go through enemies (but not walls). Each level allows shots to go through one additional enemy. Note that most shots will hit enemies multiple times as they pass through, so this also acts as a damage bonus.
 
 ### Poison Shots *(Weapon only)*
 
