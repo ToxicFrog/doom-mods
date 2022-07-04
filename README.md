@@ -84,6 +84,7 @@ See "modding notes" below.
 - The distinction between projectile and hitscan weapons is guesswork and may in some cases be incorrect.
 - Most effects will trigger only on shots that hit a monster, e.g. HE Rounds will not detonate if you shoot a wall.
 - Piercing Shots may interfere with the detonation of exploding shots like rockets.
+- Upgrade-specific sound effects (at the moment just the HE and fragmentation sounds) may not play when using iwads other than `DOOM2.WAD`.
 
 ## Modding Notes
 
