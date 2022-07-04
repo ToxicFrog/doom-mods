@@ -4,16 +4,28 @@
 class ::FragmentationShots : ::BaseUpgrade {
   override ::UpgradePriority Priority() { return ::PRI_FRAGMENTATION; }
 
+  override void OnProjectileCreated(Actor pawn, Actor shot) {
+    shot.GiveInventoryType("::FragmentationShots::Marker");
+    DEBUG("Tagging %s", shot.GetTag());
+    DEBUG("Shot inventory: %s", TFLV::Util.SafeTag(shot.inv));
+  }
+
   override void OnDamageDealt(Actor pawn, Actor shot, Actor target, int damage) {
-    bool ok;
-    Actor act;
+    // Trigger only once for each shot, so that e.g. a rocket spawns one blast of
+    // fragments, rather than one blast per enemy damaged by it.
+    // Ideally we'd put this in OwnerDied on the shot itself, but apparently shots
+    // disincorporating because they hit something don't trigger that function.
+    if (!shot || !shot.FindInventory("::FragmentationShots::Marker")) return;
+    shot.TakeInventory("::FragmentationShots::Marker", 999);
+
     // TODO: new Upgrade-specific Spawn function that sets special1
     // and target appropriately.
+    DEBUG("OnDamageDealt, source=%s", shot.GetTag());
     let boom = ::FragmentationShots::Boom(shot.Spawn("::FragmentationShots::Boom", shot.pos));
     boom.special1 = Priority();
     boom.target = pawn;
+    boom.level = level;
     boom.damage = ceil(damage * 0.2);
-    boom.fragments = 8 + level*8;
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
@@ -21,16 +33,18 @@ class ::FragmentationShots : ::BaseUpgrade {
   }
 }
 
+class ::FragmentationShots::Marker : Inventory {
+  property Priority: special1;
+  Default { ::FragmentationShots::Marker.Priority ::PRI_FRAGMENTATION; }
+}
+
 class ::FragmentationShots::Boom : Actor {
   uint level;
   uint damage;
-  uint fragments;
 
   Default {
-    // +PROJECTILE; can't set this in zscript?
     +NOBLOCKMAP;
     +NOGRAVITY;
-    +MISSILE;
     +NODAMAGETHRUST;
     RenderStyle "Translucent";
     Alpha 0.7;
@@ -39,8 +53,8 @@ class ::FragmentationShots::Boom : Actor {
 
   States {
     Spawn:
-      TNT1 A 1;
-      TNT1 A 0 A_Explode(0, 0, XF_NOSPLASH, false, 0, fragments, damage,
+      TNT1 A 3; // the fragments take a few millis to travel
+      TNT1 A 0 A_Explode(0, 0, XF_NOSPLASH, false, 0, 8+level*8, damage,
         "::FragmentationShots::Puff");
       TNT1 A 0 A_AlertMonsters();
       // TODO: include a suitable sound effect
@@ -55,6 +69,7 @@ class ::FragmentationShots::Puff : BulletPuff {
   property UpgradePriority: special1;
   Default {
     ::FragmentationShots::Puff.UpgradePriority ::PRI_FRAGMENTATION;
+    +ALWAYSPUFF;
   }
   States {
     Spawn:

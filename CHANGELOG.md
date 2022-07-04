@@ -5,6 +5,10 @@
 - Change: elemental effects will now trigger on AoE upgrades like HE Shots and
   Fragmentation.
 - Change: new information about mod compatibility added to README.
+- Fix: Fragmentation Shots on an AoE weapon like the RL released fragments once
+  for every enemy caught in the blast. It now releases fragments only once per
+  shot. This is a big nerf to Fragmentation+Piercing, but Piercing is already
+  way more powerful than it looks anyways.
 
 # 0.6.2
 
