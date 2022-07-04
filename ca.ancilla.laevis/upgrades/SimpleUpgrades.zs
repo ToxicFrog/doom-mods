@@ -52,11 +52,11 @@ class ::FastShots : ::BaseUpgrade {
 class ::PiercingShots : ::BaseUpgrade {
   override void OnProjectileCreated(Actor player, Actor shot) {
     shot.bRIPPER = true;
-    shot.RipperLevel = 255;
+    shot.RipperLevel = level;
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
-    return info.IsProjectileWeapon() && info.upgrades.Level("::PiercingShots") == 0;
+    return info.IsProjectileWeapon() && info.upgrades.Level("::PiercingShots") < 5;
   }
 }
 
