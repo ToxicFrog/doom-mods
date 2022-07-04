@@ -128,7 +128,7 @@ class ::PerPlayerStats : ::Force {
     // The player is wielding a weapon but it's not the weapon associated with
     // the current weapon info. Try to find an existing WeaponInfo associated
     // with this weapon.
-    info = FindInfoFor(wielded);
+    info = GetInfoFor(wielded);
     // Failing that, try to bind it to a compatible existing one.
     if (!info) info = BindExistingInfoTo(wielded);
     // If even that fails, create a new one ex nihilo.
@@ -142,7 +142,7 @@ class ::PerPlayerStats : ::Force {
     return info;
   }
 
-  ::WeaponInfo FindInfoFor(Weapon wpn) const {
+  ::WeaponInfo GetInfoFor(Weapon wpn) const {
     for (int i = 0; i < weapons.size(); ++i) {
       if (weapons[i].weapon == wpn) {
         return weapons[i];
