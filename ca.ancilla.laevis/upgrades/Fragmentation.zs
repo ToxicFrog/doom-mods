@@ -1,5 +1,5 @@
 #namespace TFLV::Upgrade;
-#debug on
+#debug off
 
 class ::FragmentationShots : ::BaseUpgrade {
   override ::UpgradePriority Priority() { return ::PRI_FRAGMENTATION; }
