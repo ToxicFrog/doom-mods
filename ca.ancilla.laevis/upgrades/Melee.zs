@@ -1,16 +1,30 @@
 // Melee-only upgrades.
 // These tend to be much more powerful than the non-melee equivalents.
 #namespace TFLV::Upgrade;
+#debug off
 
 class ::Agonizer : ::BaseUpgrade {
   override void OnDamageDealt(Actor pawn, Actor shot, Actor target, int damage) {
-    for (uint i = 0; i < level; ++i) {
-      target.TriggerPainChance(shot.DamageType);
+    target.GiveInventoryType("::Agonizer::Aux");
+    let aux = ::Agonizer::Aux(target.FindInventory("::Agonizer::Aux"));
+    if (aux) {
+      DEBUG("Adding an Agonizer to %s", target.GetTag());
+      aux.amount = 14 * level;
+      aux.dtype = shot ? shot.DamageType : Name("AgonizerPain");
     }
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
     return info.weapon.bMELEEWEAPON;
+  }
+}
+
+class ::Agonizer::Aux : Inventory {
+  Name dtype;
+  override void Tick() {
+    DEBUG("Agonizer triggering pain chance! %d", amount);
+    owner.TriggerPainChance(dtype, true);
+    if (--amount <= 0) Destroy();
   }
 }
 

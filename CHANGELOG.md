@@ -5,7 +5,9 @@
   - Acid Spray upgraded to mastery; splash radius doubled
   - Concentrated Acid added as intermediate upgrade; increases trigger threshold & damage
   - Embrittlement now instakills sufficiently weakened enemies
+- Change: Agonizer now forces the target into pain, duration increases with level
 - Fix: VM abort when meleeing certain enemies in Trailblazer
+- Fix: Agonizer now has documentation
 
 # 0.6.1
 

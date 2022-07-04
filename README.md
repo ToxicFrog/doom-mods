@@ -93,6 +93,10 @@ This is a list of all the upgrades in the game and their effects and prerequisit
 
 General-purpose player and weapon upgrades.
 
+### Agonizer *(Melee only)*
+
+Hitting an enemy flinches them for 2/5ths of a second. More levels increase the duration.
+
 ### Armour *(Player only)*
 
 Reduces incoming damage by 1 point per level. Cannot reduce it below 2.
