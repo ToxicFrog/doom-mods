@@ -134,38 +134,3 @@ class ::BaseUpgrade : Object play {
     return StringTable.Localize("$"..self.GetClassName().."_Desc");
   }
 }
-
-// TODO: this is pretty gross. It should be generalized so that elemental upgrades
-// can answer questions about themselves.
-class ::ElementalUpgrade : ::BaseUpgrade {
-  override ::UpgradePriority Priority() { return ::PRI_ELEMENTAL; }
-
-  static bool CanAcceptElement(TFLV::WeaponInfo info, string element) {
-    string inprogress = GetElementInProgress(info.upgrades);
-    return inprogress == element
-      || (inprogress == "" && GetElementCount(info.upgrades) < 2);
-  }
-
-  static uint GetElementCount(::UpgradeBag upgrades) {
-    uint count = 0;
-    if (upgrades.Level("::IncendiaryShots") > 0) ++count;
-    if (upgrades.Level("::PoisonShots") > 0) ++count;
-    if (upgrades.Level("::CorrosiveShots") > 0) ++count;
-    return count;
-  }
-
-  // A weapon should only ever have one element in progress, so we just return the
-  // first one we find.
-  static string GetElementInProgress(::UpgradeBag upgrades) {
-    if (upgrades.Level("::IncendiaryShots") > 0
-        && (upgrades.Level("::Conflagration") + upgrades.Level("::InfernalKiln")) == 0)
-      return "Fire";
-    if (upgrades.Level("::PoisonShots") > 0
-        && (upgrades.Level("::Putrefaction") + upgrades.Level("::Hallucinogens")) == 0)
-      return "Poison";
-    if (upgrades.Level("::CorrosiveShots") > 0
-        && (upgrades.Level("::Embrittlement") + upgrades.Level("::ExplosiveReaction")) == 0)
-      return "Acid";
-    return "";
-  }
-}

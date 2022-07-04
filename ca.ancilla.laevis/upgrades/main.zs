@@ -1,5 +1,6 @@
 #include "./BaseUpgrade.zsc"
 #include "./Dot.zsc"
+#include "./ElementalUpgrade.zsc"
 #include "./Registry.zsc"
 #include "./UpgradeBag.zsc"
 

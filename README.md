@@ -188,7 +188,7 @@ Elemental upgrades add powerful debuffs and damage-over-time effects to your att
 - an intermediate upgrade that improves the status effect in a different way than just leveling up the base upgrade
 - two *mastery upgrades* that add a powerful new effect, only one of which can be chosen on each weapon; one is designed for AoE combat, the other for tackling individual hard targets.
 
-Lower-rank skills are required to have more levels than higher-rank ones, so to learn the intermediate upgrade you need at least two levels in the basic upgrade, and to (e.g.) upgrade a mastery to level 2, you need 3 ranks in the intermediate upgrade (and thus 4 in the basic upgrade). While each tree has two masteries, you can only choose one; doing so permanently locks out the other on that weapon.
+Higher-rank skills cannot exceed the level of lower-rank ones, and lower-rank skills need to be at least level 2 to unlock higher-rank ones, so the earliest you can get a mastery on a weapon is level 5.
 
 Each weapon can only have two different elements on it. When you choose your first elemental upgrade, that element is "locked in" until you choose a mastery upgrade for it. At that point you can (if you wish) choose a second element next time it levels up.
 

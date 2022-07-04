@@ -108,17 +108,3 @@ class ::Dot : Inventory {
     return 0;
   }
 }
-
-class ::DotModifier : ::ElementalUpgrade {
-  virtual string DotType() { return ""; }
-
-  override void OnDamageDealt(Actor player, Actor shot, Actor target, int damage) {
-    let dot_item = ::Dot(target.FindInventory(DotType()));
-    if (!dot_item) return;
-    ModifyDot(player, shot, target, damage, dot_item);
-  }
-
-  virtual void ModifyDot(Actor player, Actor shot, Actor target, int damage, ::Dot dot_item) {
-    return;
-  }
-}

@@ -39,7 +39,7 @@ class ::SearingHeat : ::DotModifier {
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
-    return info.upgrades.Level("::IncendiaryShots") > info.upgrades.Level("::SearingHeat")+1;
+    return HasIntermediatePrereq(info, "::IncendiaryShots");
   }
 }
 
@@ -51,8 +51,7 @@ class ::Conflagration : ::DotModifier {
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
-    return info.upgrades.Level("::SearingHeat") > info.upgrades.Level("::Conflagration")+1
-      && info.upgrades.Level("::InfernalKiln") == 0;
+    return HasMasteryPrereq(info, "::SearingHeat", "::InfernalKiln");
   }
 }
 
@@ -90,8 +89,7 @@ class ::InfernalKiln : ::ElementalUpgrade {
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
-    return info.upgrades.Level("::SearingHeat") > info.upgrades.Level("::InfernalKiln")+1
-      && info.upgrades.Level("::Conflagration") == 0;
+    return HasMasteryPrereq(info, "::SearingHeat", "::Conflagration");
   }
 }
 

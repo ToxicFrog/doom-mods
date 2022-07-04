@@ -29,7 +29,7 @@ class ::CorrosiveShots : ::ElementalUpgrade {
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
-    return ::ElementalUpgrade.CanAcceptElement(info, "Acid");
+    return CanAcceptElement(info, "Acid");
   }
 }
 
@@ -41,7 +41,7 @@ class ::ConcentratedAcid : ::DotModifier {
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
-    return info.upgrades.Level("::CorrosiveShots") > info.upgrades.Level("::ConcentratedAcid")+1;
+    return HasIntermediatePrereq(info, "::CorrosiveShots");
   }
 }
 
@@ -53,8 +53,7 @@ class ::AcidSpray : ::DotModifier {
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
-    return info.upgrades.Level("::ConcentratedAcid") > info.upgrades.Level("::AcidSpray")+1
-      && info.upgrades.Level("::Embrittlement") == 0;
+    return HasMasteryPrereq(info, "::ConcentratedAcid", "::Embrittlement");
   }
 }
 
@@ -66,8 +65,7 @@ class ::Embrittlement : ::DotModifier {
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
-    return info.upgrades.Level("::ConcentratedAcid") > info.upgrades.Level("::Embrittlement")+1
-      && info.upgrades.Level("::AcidSpray") == 0;
+    return HasMasteryPrereq(info, "::ConcentratedAcid", "::AcidSpray");
   }
 }
 

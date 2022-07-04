@@ -37,7 +37,7 @@ class ::Weakness : ::DotModifier {
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
-    return info.upgrades.Level("::PoisonShots") > info.upgrades.Level("::Weakness")+1;
+    return HasIntermediatePrereq(info, "::PoisonShots");
   }
 }
 
@@ -50,8 +50,7 @@ class ::Hallucinogens : ::DotModifier {
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
-    return info.upgrades.Level("::Weakness") > info.upgrades.Level("::Hallucinogens")+1
-      && info.upgrades.Level("::Putrefaction") == 0;
+    return HasMasteryPrereq(info, "::Weakness", "::Putrefaction");
   }
 }
 
@@ -68,8 +67,7 @@ class ::Putrefaction : ::ElementalUpgrade {
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
-    return info.upgrades.Level("::Weakness") > info.upgrades.Level("::Putrefaction")+1
-      && info.upgrades.Level("::Hallucinogens") == 0;
+    return HasMasteryPrereq(info, "::Weakness", "::Hallucinogens");
   }
 }
 

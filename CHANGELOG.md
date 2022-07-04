@@ -1,3 +1,9 @@
+# 0.6.4
+
+- Change: Elemental upgrade prerequisites are now relaxed; basic and intermediate
+  upgrades need to be level 2 to unlock the next tier, but higher-tier upgrades
+  can now be leveled up to match the tier below.
+
 # 0.6.3
 
 - Change: internal cleanup of infinite recursion guards. It is now possible for
