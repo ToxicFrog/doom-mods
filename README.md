@@ -18,9 +18,18 @@ That's all -- if equipping a weapon and then pressing the "display info" key (de
 
 ## Mod Compatibility
 
-This should be compatible with every IWAD and pretty much every mod. It relies entirely on event handlers and runtime reflection, so as long as the player's guns are still subclasses of `Weapon` it should behave properly. It even works in recent commercial games using gzDoom, like *Hedon Bloodrite*, and total conversions, like *Ashes 2063*.
+This should be compatible with every IWAD and pretty much every mod, including weapon/enemy replacements and total conversions. It relies entirely on event handlers and runtime reflection, so as long as the player's guns are still subclasses of `Weapon` it should behave properly.
 
-Notes on specific mods are below.
+It has been tested (although not necessarily extensively) in:
+- Doom, Doom 2, Heretic, and Chex Quest
+- Ashes 2063
+- DoomRL Arsenal
+- Hedon Bloodrite
+- Hideous Destructor
+- Legendoom
+- Trailblazer
+
+Some mods have specific integration features or compatibility concerns; these are detailed below.
 
 ### Legendoom
 
@@ -70,10 +79,8 @@ See "modding notes" below.
 - XP is assigned to the currently wielded weapon at the time the damage is dealt, so it possible for XP to be assigned to the wrong weapon if you switch weapons while projectiles are in flight.
 - When using Legendoom, it is possible to permanently downgrade (or, in some cases, upgrade) weapons by changing which effect is active on them before dropping them.
 - Mods that clear your inventory, like *Universal Pistol Starter*, will also clear all your Laevis upgrades unless you configure them to leave non-weapon inventory items alone.
-- The HUD is not configurable and may overlap the custom HUD included in some mods like Lithium.
 - The distinction between projectile and hitscan weapons is guesswork and may in some cases be incorrect.
-- The Beam upgrade interacts weirdly with shotguns.
-- The Beam upgrade has bad interations with HE rounds and other on-damage effects that scale with shot damage.
+- Most effects will trigger only on shots that hit a monster, e.g. HE Rounds will not detonate if you shoot a wall.
 
 ## Modding Notes
 
