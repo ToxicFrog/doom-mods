@@ -23,7 +23,6 @@
 
 class ::CorrosiveShots : ::BaseUpgrade {
   override void OnDamageDealt(Actor player, Actor shot, Actor target, int damage) {
-    if (!shot) return;
     let ad = ::AcidDot(::Dot.GiveStacks(player, target, "::AcidDot", 0));
     ad.damage_this_tick += damage;
     ad.level = level;

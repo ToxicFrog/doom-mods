@@ -22,7 +22,6 @@
 
 class ::IncendiaryShots : ::BaseUpgrade {
   override void OnDamageDealt(Actor player, Actor shot, Actor target, int damage) {
-    if (!shot) return;
     // TODO: softcap support
     ::Dot.GiveStacks(player, target, "::FireDot", level*damage*0.2);
   }

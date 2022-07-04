@@ -5,6 +5,7 @@
   - Acid Spray upgraded to mastery; splash radius doubled
   - Concentrated Acid added as intermediate upgrade; increases trigger threshold & damage
   - Embrittlement now instakills sufficiently weakened enemies
+- Fix: VM abort when meleeing certain enemies in Trailblazer
 
 # 0.6.1
 

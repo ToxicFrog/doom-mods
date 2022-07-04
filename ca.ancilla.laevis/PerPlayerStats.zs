@@ -263,7 +263,7 @@ class ::PerPlayerStats : ::Force {
     // deciding what kinds of upgrades to spawn.
     let info = GetOrCreateInfoForCurrentWeapon();
     if (!info) return;
-    if (shot.bMISSILE) {
+    if (shot && shot.bMISSILE) {
       info.projectile_shots++;
     } else {
       info.hitscan_shots++;
