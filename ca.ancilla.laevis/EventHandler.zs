@@ -113,6 +113,11 @@ class ::EventHandler : StaticEventHandler {
       SelectLDEffect(players[evt.player].mo, evt.args[0]);
     } else if (evt.name == "laevis_choose_level_up_option") {
       ChooseLevelUpOption(players[evt.player].mo, evt.args[0]);
+    } else if (evt.name == "laevis_debug") {
+      let info = ::PerPlayerStats.GetStatsFor(players[evt.player].mo)
+          .GetOrCreateInfoForCurrentWeapon();
+      info.upgrades.Add("::Upgrade::FragmentationShots", 1);
+      info.upgrades.Add("::Upgrade::PiercingShots", 1);
     }
   }
 
