@@ -1,5 +1,6 @@
 # 0.6.2
 
+- New: Explosive Death upgrade causes slain enemies to detonate.
 - Change: Acid tree rework
   - Explosive Reaction removed
   - Acid Spray upgraded to mastery; splash radius doubled

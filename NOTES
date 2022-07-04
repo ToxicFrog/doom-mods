@@ -210,6 +210,12 @@ INCOMBAT (strife flag used for the dialogue system)
 
 Ended up going with +INCOMBAT, but that's an imperfect solution if we want *different* upgrades to be able to chain off each other, e.g. the fragments from fragmentation shots applying poison; we may want a way to restrict *which* upgrades individual upgrades can trigger, with a default that blocks recursion but not non-recursive chaining -- say, if an actor has the name TFLV::Upgrade::Foo:Aux, it can't trigger anything in TFLV::Upgrade::Foo but other stuff in the Upgrade namespace is fair game.
 
+Better idea: use the `master` pointer in auxes and dots -- basically anything we'd set +INCOMBAT on -- to point to the upgrade that created it. Then we can assign a priority to each upgrade and only higher-priority ones can trigger lower-priority effects.
+
+At the moment, this probably means that ExplosiveDeath, ExplosiveShots, and FragmentationShots are PRI_SECONDARY_DAMAGE or so, and all the elemental upgrades are PRI_ELEMENTAL, which is lower.
+
+Then in UpgradeBag event handlers, rather than checking +INCOMBAT, we check if the master point is set and castable to upgrade; if so, we compare its priority to the priority of the upgrade we're about to trigger.
+
 ## OnApply() based mods
 
 This is stuff like knockback, increased health, etc that requires making a permanent change to the player or the weapon.

@@ -5,6 +5,7 @@
 
 #include "./Beam.zsc"
 #include "./Explosive.zsc"
+#include "./ExplosiveDeath.zsc"
 #include "./Fragmentation.zsc"
 #include "./HomingShots.zsc"
 #include "./Leech.zsc"

@@ -121,6 +121,10 @@ Killing an enemy grants you health and armour equal to 5% of its max health. Unl
 
 As a player upgrade, increases *all* damage you deal by 5% per level. As a weapon upgrade, increases damage dealt by *that weapon* by 10% per level. In either case it will always add at least one point of damage per level to each of your attacks.
 
+### Explosive Death *(Ranged only)*
+
+Killing an enemy causes an explosion dealing 20% of (its health + the amount you overkilled it by). Increasing the level increases the damage (with diminishing returns), increases the blast radius (linearly), and reduces the damage you take from the blast.
+
 ### Explosive Shots *(Hitscan only)*
 
 Creates a small explosion on hit doing 40% of the original attack damage. More levels increase the damage and blast radius, and reduce the damage you take from your own explosions.
@@ -176,6 +180,8 @@ Elemental upgrades add powerful debuffs and damage-over-time effects to your att
 Lower-rank skills are required to have more levels than higher-rank ones, so to learn the intermediate upgrade you need at least two levels in the basic upgrade, and to (e.g.) upgrade a mastery to level 2, you need 3 ranks in the intermediate upgrade (and thus 4 in the basic upgrade). While each tree has two masteries, you can only choose one; doing so permanently locks out the other on that weapon.
 
 Each weapon can only have two different elements on it. When you choose your first elemental upgrade, that element is "locked in" until you choose a mastery upgrade for it. At that point you can (if you wish) choose a second element next time it levels up.
+
+Note that unlike the non-elemental upgrades, elemental AoE effects like `Acid Splash` and `Putrefaction` will never harm the player.
 
 ## Fire
 

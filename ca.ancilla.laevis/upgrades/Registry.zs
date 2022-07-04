@@ -33,6 +33,7 @@ class ::Registry : Object play {
       // "::Beam", TODO: fix interactions with HE shots and similar
       "::BouncyShots",
       "::DarkHarvest",
+      "::ExplosiveDeath",
       "::ExplosiveShots",
       "::FastShots",
       "::FragmentationShots",
