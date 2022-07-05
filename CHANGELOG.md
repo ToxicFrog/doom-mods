@@ -1,3 +1,8 @@
+# 0.6.5
+
+- Change: renamed "Shots" to "Inscription" in elemental upgrades so the names make
+  sense with (e.g.) melee weapons.
+
 # 0.6.4
 
 - Change: elemental upgrade prerequisites are now relaxed; basic and intermediate

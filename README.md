@@ -183,14 +183,6 @@ Restores health when you attack, by 1% per level of the damage dealt. Cannot exc
 
 Shots go through enemies (but not walls). Each level allows shots to go through one additional enemy. Note that most shots will hit enemies multiple times as they pass through, so this also acts as a damage bonus.
 
-### Poison Shots *(Weapon only)*
-
-Shots poison enemies. Poison is a weak and short-lived damage-over-time effect, but stacks cause both the damage and duration to rapidly increase, making this highly effective on rapid-fire weapons.
-
-### Putrefaction *(Weapon only; requires two levels in Poison Shots)*
-
-Poisoned enemies explode in a poison cloud when killed, transferring half their poison stacks to nearby enemies.
-
 ### Resistance *(Player only)*
 
 Reduces incoming damage by 5%. This has diminishing returns as you take more levels of it.
@@ -223,7 +215,7 @@ Fire does more damage the more health the target has, and "burns out" once they'
 
 More powerful attacks apply more fire stacks, so it should be good on all weapons.
 
-### Incendiary Shots *(Fire basic upgrade)*
+### Burning Inscription *(Fire basic upgrade)*
 
 Shots cause enemies to ignite. Higher levels apply fire stacks faster.
 
@@ -245,7 +237,7 @@ Poison is a weak and short-lived damage-over-time effect, but adding more stacks
 
 The amount of stacks applied is independent of weapon damage, so it's best used with rapid-fire weapons like the chaingun and plasma rifle.
 
-### Poison Shots *(Poison basic upgrade)*
+### Venomous Inscription *(Poison basic upgrade)*
 
 Shots poison enemies. Leveling up the upgrade increases how many stacks are applied per attack.
 
@@ -259,7 +251,7 @@ Killing a poisoned enemy causes it to explode in a cloud of poison gas, poisonin
 
 ### Hallucinogens *(Poison mastery)*
 
-Once an enemy has enough poison stacks on it to eventually kill it, it fights on your side until it dies. Enemies affected by hallucinogens gets a damage bonus from Weakness rather than a damage penalty.
+Once an enemy has enough poison stacks on it to eventually kill it, it fights on your side until it dies. Enemies affected by hallucinogens get a damage bonus from Weakness rather than a damage penalty.
 
 ## Acid
 
@@ -267,7 +259,7 @@ Acid stacks are slowly converted into damage on a 1:1 basis, but the less health
 
 Acid stacks have a cap based on the damage dealt by the attack that inflicted them, so they're best used with weapons that have high per-shot damage like the rocket launcher and SSG. (For shotguns, the total damage of all the pellets that hit is used, not the per-pellet damage.)
 
-### Corrosive Shots *(Acid basic upgrade)*
+### Corrosive Inscription *(Acid basic upgrade)*
 
 Shots poison enemies. The amount of acid applied, and the cap, is 50% of the damage dealt, increased by another 50% per level.
 
