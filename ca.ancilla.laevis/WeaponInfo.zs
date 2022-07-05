@@ -19,34 +19,24 @@ class ::WeaponInfo : Object play {
   double hitscan_shots;
   double projectile_shots;
 
-  // Legendoom integration fields.
-  uint effectSlots;
-  uint maxRarity;
-  bool canReplaceEffects;
-  array<string> effects;
-  int currentEffect;
-  string currentEffectName;
+  ::LegendoomWeaponInfo ld_info;
 
   // Called when a new WeaponInfo is created. This should initialize the entire object.
   void Init(Actor wpn) {
-    self.weapon = Weapon(wpn);
-    self.weaponType = wpn.GetClassName();
+    DEBUG("Initializing WeaponInfo for %s", ::Util.SafeTag(wpn));
     upgrades = new("::Upgrade::UpgradeBag");
+    DEBUG("A");
+    ld_info = new("::LegendoomWeaponInfo");
+    DEBUG("B");
+    ld_info.Init(self);
+    DEBUG("C");
+    Rebind(wpn);
+    DEBUG("D");
     XP = 0;
     level = 0;
     maxXP = GetXPForLevel(level+1);
     DEBUG("WeaponInfo initialize, class=%s level=%d xp=%d/%d",
         weaponType, level, XP, maxXP);
-
-    currentEffect = -1;
-    currentEffectName = "";
-    effects.Clear();
-    string LDWeaponType = "LDWeapon";
-    if (wpn is LDWeaponType) {
-      InitLegendoom();
-    } else {
-      effectSlots = 0;
-    }
   }
 
   // Called when this WeaponInfo is being reassociated with a new weapon. It
@@ -60,16 +50,7 @@ class ::WeaponInfo : Object play {
       hitscan_shots = 0;
       projectile_shots = 0;
     }
-    string LDWeaponType = "LDWeapon";
-    if (wpn is LDWeaponType) {
-      // If it's a Legendoom weapon, calling this should be safe; it'll keep
-      // its current effects, but inherit the rarity of the new weapon. If the
-      // new weapon has a new effect on it, that'll be added to the effect list
-      // even if it exceeds the maximum.
-      // TODO: in the latter case, trigger the LD levelup menu until the effect
-      // list fits again.
-      InitLegendoom();
-    }
+    ld_info.Rebind(self);
   }
 
   // Heuristics for guessing whether this is a projectile or hitscan weapon.
@@ -87,82 +68,6 @@ class ::WeaponInfo : Object play {
 
   bool IsProjectileWeapon() {
     return projectile_shots / 4 > hitscan_shots;
-  }
-
-  bool GunRarityMatchesSetting(::WhichGuns setting, ::LD_Rarity rarity) {
-    if (rarity == RARITY_MUNDANE) {
-      return setting & 1;
-    } else {
-      return setting & 2;
-    }
-  }
-
-  void InitLegendoom() {
-    string prefix = weapon.GetClassName();
-
-    maxRarity = ::Util.GetWeaponRarity(weapon.owner, prefix);
-    canReplaceEffects = GunRarityMatchesSetting(::Settings.which_guns_can_replace(), maxRarity);
-    if (GunRarityMatchesSetting(::Settings.which_guns_can_learn(), maxRarity)) {
-      effectSlots = ::Settings.base_ld_effect_slots()
-        + maxRarity * ::Settings.bonus_ld_effect_slots();
-    } else {
-      effectSlots = 0;
-    }
-    if (::Settings.ignore_gun_rarity()) {
-      maxRarity = RARITY_EPIC;
-    } else {
-      maxRarity = max(RARITY_COMMON, maxRarity);
-    }
-
-    // And they might start with an effect, so we should record that.
-    string effect = ::Util.GetActiveWeaponEffect(weapon.owner, prefix);
-    if (effects.find(effect) != effects.size()) {
-      currentEffect = effects.find(effect);
-      currentEffectName = ::Util.GetEffectTitle(effect);
-    } else if (effect != "") {
-      effects.push(effect);
-      currentEffect = effects.size()-1;
-      currentEffectName = ::Util.GetEffectTitle(effect);
-    } else {
-      currentEffect = -1;
-      currentEffectName = "";
-    }
-
-    DEBUG("%s: effects=%d, rarity=%d, effect=%s",
-        weapon.GetTag(), effectSlots, maxRarity, effect);
-  }
-
-  void CycleEffect() {
-    SelectEffect((currentEffect + 1) % effects.size());
-  }
-
-  void SelectEffect(uint index) {
-    if (effects.size() <= index) return;
-    //if (index == currentEffect) return;
-
-    if (currentEffect >= 0)
-      weapon.owner.TakeInventory(effects[currentEffect], 1);
-    currentEffect = index;
-    currentEffectName = ::Util.GetEffectTitle(effects[currentEffect]);
-    weapon.owner.GiveInventory(effects[currentEffect], 1);
-  }
-
-  void DiscardEffect(uint index) {
-    DEBUG("DiscardEffect, total=%d, index=%d, current=%d",
-        effects.size(), index, currentEffect);
-    if (effects.size() <= index) return;
-    if (index == currentEffect) {
-      // The effect they want to discard is the current one.
-      // Remove the effect now, then CycleEffect afterwards to select a new valid one.
-      weapon.owner.TakeInventory(effects[index], 1);
-      effects.Delete(index);
-      CycleEffect();
-    } else if (index < currentEffect) {
-      // They want to discard an effect before the current one, which will result
-      // in later effects being renumbered.
-      currentEffect--;
-    effects.Delete(index);
-    }
   }
 
   uint GetXPForLevel(uint level) const {

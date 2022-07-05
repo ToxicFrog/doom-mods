@@ -98,7 +98,7 @@ class ::PerPlayerStats : ::Force {
     stats.wlvl = info.level;
     stats.wname = info.weapon.GetTag();
     stats.wupgrades = info.upgrades;
-    stats.effect = info.currentEffectName;
+    stats.effect = info.ld_info.currentEffectName;
     return true;
   }
 
@@ -212,7 +212,7 @@ class ::PerPlayerStats : ::Force {
         info.level, ::Settings.gun_levels_per_ld_effect());
       if (legendoomInstalled && (info.level % ::Settings.gun_levels_per_ld_effect()) == 0) {
         let ldGiver = ::LegendoomEffectGiver(owner.GiveInventoryType("::LegendoomEffectGiver"));
-        ldGiver.wielded = GetInfoForCurrentWeapon();
+        ldGiver.info = GetInfoForCurrentWeapon().ld_info;
       }
 
       // Also give the player some XP.

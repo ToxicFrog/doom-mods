@@ -7,6 +7,7 @@
 
 #include "./EventHandler.zsc"
 #include "./LegendoomEffectGiver.zsc"
+#include "./LegendoomWeaponInfo.zsc"
 #include "./PerPlayerStats.zsc"
 #include "./PlayerUpgradeGiver.zsc"
 #include "./UpgradeGiver.zsc"

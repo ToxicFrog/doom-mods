@@ -1,11 +1,12 @@
 # 0.6.4
 
-- Change: Elemental upgrade prerequisites are now relaxed; basic and intermediate
+- Change: elemental upgrade prerequisites are now relaxed; basic and intermediate
   upgrades need to be level 2 to unlock the next tier, but higher-tier upgrades
   can now be leveled up to match the tier below.
 - Change: WeaponInfo objects can now be rebound to arbitrary weapons even of
   different classes; this has no user-facing effect but may be useful for mod
   integrations.
+- Change: internal cleanup of Legendoom integration code.
 
 # 0.6.3
 

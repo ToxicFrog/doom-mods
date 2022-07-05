@@ -9,6 +9,7 @@ class ::EventHandler : StaticEventHandler {
   ui ::HUD hud;
 
   override void OnRegister() {
+    DEBUG("Initializing Laevis...");
     // Register all builtin upgrades.
     UPGRADE_REGISTRY = new("::Upgrade::Registry");
     UPGRADE_REGISTRY.RegisterBuiltins();
@@ -67,18 +68,12 @@ class ::EventHandler : StaticEventHandler {
     console.printf("%s:\n    Level %d (%d/%d XP)",
       stats.wname, stats.wlvl, stats.wxp, stats.wmax);
     stats.wupgrades.DumpToConsole("    ");
-    console.printf("    effectSlots: %d\n    maxRarity: %d\n    canReplace: %d",
-      stats.winfo.effectSlots, stats.winfo.maxRarity, stats.winfo.canReplaceEffects);
-    for (uint i = 0; i < stats.winfo.effects.size(); ++i) {
-      console.printf("    %s (%s)",
-        ::Util.GetEffectTitle(stats.winfo.effects[i]),
-        ::Util.GetEffectDesc(stats.winfo.effects[i]));
-    }
+    stats.winfo.ld_info.DumpToConsole();
   }
 
   play void CycleLDEffect(PlayerPawn pawn) {
     let info = ::PerPlayerStats.GetStatsFor(pawn).GetOrCreateInfoForCurrentWeapon();
-    if (info) info.CycleEffect();
+    if (info) info.ld_info.CycleEffect();
   }
 
   void ChooseLevelUpOption(PlayerPawn pawn, int index) {
@@ -93,7 +88,7 @@ class ::EventHandler : StaticEventHandler {
 
   play void SelectLDEffect(PlayerPawn pawn, int index) {
     let info = ::PerPlayerStats.GetStatsFor(pawn).GetOrCreateInfoForCurrentWeapon();
-    if (info) info.SelectEffect(index);
+    if (info) info.ld_info.SelectEffect(index);
   }
 
   override void NetworkProcess(ConsoleEvent evt) {

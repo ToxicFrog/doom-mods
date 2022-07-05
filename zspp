@@ -56,7 +56,7 @@ end
 
 table.insert(lines, '')
 local buf = table.concat(lines, '\n')
-if debug then
+if debug or os.getenv('ZSPP_FORCE_DEBUG') then
   buf = buf:gsub('DEBUG(%b())', function(debugargs)
     -- TODO: add line number
     return string.format('console.printf("%s: "..%s)', src, debugargs:sub(2,-2))

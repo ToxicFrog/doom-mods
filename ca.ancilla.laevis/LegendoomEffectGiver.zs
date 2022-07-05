@@ -1,5 +1,5 @@
 // A pseudoitem that, when given to the player, attempts to give them a Legendoom
-// upgrade appropriate to the weapon described by 'wielded'.
+// upgrade appropriate to the weapon described by 'info'.
 // This works by repeatedly spawning the appropriate Legendoom random pickup until
 // it generates in a way we can use, then either shoving it into the player directly
 // or copying some of the info out of it.
@@ -7,7 +7,8 @@
 #debug off
 
 class ::LegendoomEffectGiver : ::UpgradeGiver {
-  TFLV_WeaponInfo wielded;
+  ::LegendoomWeaponInfo info;
+  Weapon wpn;
   string prefix;
 
   Actor upgrade;
@@ -15,15 +16,16 @@ class ::LegendoomEffectGiver : ::UpgradeGiver {
 
   bool BeginLevelUp() {
     DEBUG("BeginLevelUp");
-    if (wielded.effectSlots == 0) {
+    if (info.effectSlots == 0) {
       DEBUG("weapon can't gain effects");
       // Can't get LD effects.
       return false;
     }
 
-    prefix = wielded.weapon.GetClassName();
+    wpn = info.info.weapon; // Get it from the enclosing WeaponInfo
+    prefix = wpn.GetClassName();
 
-    if (wielded.effects.Size() >= wielded.effectSlots && !wielded.canReplaceEffects) {
+    if (info.effects.Size() >= info.effectSlots && !info.canReplaceEffects) {
       // The weapon is already at its limit and effect replacement is disabled for
       // it. Do nothing.
       DEBUG("no room for more effects!");
@@ -46,13 +48,7 @@ class ::LegendoomEffectGiver : ::UpgradeGiver {
 
   bool IsCreatedUpgradeGood() {
     DEBUG("IsCreatedUpgradeGood?");
-    if (!wielded || !wielded.weapon) {
-      DEBUG("oh noes");
-      if (!wielded) {
-        DEBUG("WeaponInfo went away");
-      } else {
-        DEBUG("WeaponInfo is intact but has no weapon");
-      }
+    if (!info || !wpn) {
       // Something happened to the player's weapon while we were trying to
       // generate the new effect.
       self.Destroy();
@@ -60,13 +56,13 @@ class ::LegendoomEffectGiver : ::UpgradeGiver {
     }
 
     string effect = TFLV_Util.GetActiveWeaponEffect(upgrade, prefix);
-    if (TFLV_Util.GetWeaponRarity(upgrade, prefix) > wielded.maxRarity) {
+    if (TFLV_Util.GetWeaponRarity(upgrade, prefix) > info.maxRarity) {
       DEBUG("Upgrade %s is too rare!", effect);
       return false;
     }
     // Upgrade is within the rarity bounds, so make sure it doesn't collide with an
     // existing one.
-    if (wielded.effects.Find(effect) != wielded.effects.Size()) {
+    if (info.effects.Find(effect) != info.effects.Size()) {
       DEBUG("Upgrade %s is a duplicate of an existing effect!", effect);
       return false;
     }
@@ -78,7 +74,7 @@ class ::LegendoomEffectGiver : ::UpgradeGiver {
   // it, jump to the ChooseDiscard state.
   void InstallUpgrade() {
     DEBUG("InstallUpgrade");
-    if (!wielded || !wielded.weapon) {
+    if (!info || !wpn) {
       // Something happened to the player's weapon while we were trying to
       // generate the new effect.
       upgrade.Destroy();
@@ -87,12 +83,12 @@ class ::LegendoomEffectGiver : ::UpgradeGiver {
 
     string effect = TFLV_Util.GetActiveWeaponEffect(upgrade, prefix);
     string effectname = TFLV_Util.GetEffectTitle(effect);
-    console.printf("Your %s gained the effect [%s]!", wielded.weapon.GetTag(), effectname);
+    console.printf("Your %s gained the effect [%s]!", wpn.GetTag(), effectname);
 
-    if (wielded.effects.Size() == 0) {
+    if (info.effects.Size() == 0) {
       // No existing effects, so just pick it up as is.
-      wielded.effects.push(effect);
-      wielded.SelectEffect(0);
+      info.effects.push(effect);
+      info.SelectEffect(0);
       // Set a flag on the upgrade so PerPlayerInfo::HandlePickup() can tell that
       // this is an in-place upgrade and not a new weapon.
       upgrade.FindInventory(prefix.."EffectActive").bNOTELEFRAG = true;
@@ -103,8 +99,8 @@ class ::LegendoomEffectGiver : ::UpgradeGiver {
 
     // Existing effects but not all slots are full. Add the effect name to the
     // list of available effects and discard the upgrade.
-    if (wielded.effects.Size() < wielded.effectSlots) {
-      wielded.effects.push(effect);
+    if (info.effects.Size() < info.effectSlots) {
+      info.effects.push(effect);
       upgrade.Destroy();
       return;
     }
@@ -125,8 +121,8 @@ class ::LegendoomEffectGiver : ::UpgradeGiver {
 
     // Player chose to discard an existing effect.
     string effect = TFLV_Util.GetActiveWeaponEffect(upgrade, prefix);
-    wielded.effects.Push(effect);
-    wielded.DiscardEffect(index);
+    info.effects.Push(effect);
+    info.DiscardEffect(index);
     upgrade.Destroy();
     self.Destroy();
   }

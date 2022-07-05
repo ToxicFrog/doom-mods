@@ -31,15 +31,16 @@ class ::StatusDisplay : ::GenericMenu {
     stats.wupgrades.DumpToMenu(self);
 
     mDesc.mSelectedItem = -1;
-    if (stats.winfo.effects.size() > 0) {
+    let ld_info = stats.winfo.ld_info;
+    if (ld_info.effects.size() > 0) {
       PushText("", Font.CR_GOLD);
       PushText("Weapon Effects", Font.CR_GOLD);
-      for (uint i = 0; i < stats.winfo.effects.size(); ++i) {
-        if (stats.winfo.currentEffect == i) {
-          PushEffect(stats.winfo.effects[i], i, true);
+      for (uint i = 0; i < ld_info.effects.size(); ++i) {
+        if (ld_info.currentEffect == i) {
+          PushEffect(ld_info.effects[i], i, true);
           mDesc.mSelectedItem = mDesc.mItems.Size() - 1;
         } else {
-          PushEffect(stats.winfo.effects[i], i, false);
+          PushEffect(ld_info.effects[i], i, false);
         }
       }
     }
