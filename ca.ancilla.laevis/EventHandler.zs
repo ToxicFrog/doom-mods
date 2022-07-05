@@ -72,7 +72,7 @@ class ::EventHandler : StaticEventHandler {
   }
 
   play void CycleLDEffect(PlayerPawn pawn) {
-    let info = ::PerPlayerStats.GetStatsFor(pawn).GetOrCreateInfoForCurrentWeapon();
+    let info = ::PerPlayerStats.GetStatsFor(pawn).GetInfoForCurrentWeapon();
     if (info) info.ld_info.CycleEffect();
   }
 
@@ -87,7 +87,7 @@ class ::EventHandler : StaticEventHandler {
   }
 
   play void SelectLDEffect(PlayerPawn pawn, int index) {
-    let info = ::PerPlayerStats.GetStatsFor(pawn).GetOrCreateInfoForCurrentWeapon();
+    let info = ::PerPlayerStats.GetStatsFor(pawn).GetInfoForCurrentWeapon();
     if (info) info.ld_info.SelectEffect(index);
   }
 
@@ -110,7 +110,7 @@ class ::EventHandler : StaticEventHandler {
       ChooseLevelUpOption(players[evt.player].mo, evt.args[0]);
     } else if (evt.name == "laevis_debug") {
       let info = ::PerPlayerStats.GetStatsFor(players[evt.player].mo)
-          .GetOrCreateInfoForCurrentWeapon();
+          .GetInfoForCurrentWeapon();
       info.upgrades.Add("::Upgrade::FragmentationShots", 1);
       info.upgrades.Add("::Upgrade::PiercingShots", 1);
     }

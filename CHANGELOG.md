@@ -7,6 +7,8 @@
   different classes; this has no user-facing effect but may be useful for mod
   integrations.
 - Change: internal cleanup of Legendoom integration code.
+- Change: redesign of GetInfoFor* API family.
+- Change: more documentation on modding/addons/integrations.
 
 # 0.6.3
 

@@ -35,6 +35,14 @@ class ::PerPlayerStats : ::Force {
   ::WeaponInfo infoForCurrentWeapon;
   int prevScore;
 
+  States {
+    Spawn:
+      TNT1 A 0 NoDelay Initialize();
+    Poll:
+      TNT1 A 1 TickStats();
+      LOOP;
+  }
+
   // HACK HACK HACK
   // The various level up menus need to be able to get a handle to the specific
   // UpgradeGiver associated with that menu, so it puts itself into this field
@@ -102,9 +110,13 @@ class ::PerPlayerStats : ::Force {
     return true;
   }
 
-  // Return the WeaponInfo for the currently readied weapon. If the player
-  // does not have a weapon ready, or if the weaponinfo for it hasn't yet been
-  // created, return null.
+  // Return the WeaponInfo for the currently readied weapon.
+  // Returns null if:
+  // - no weapon is equipped
+  // - the equipped weapon does not have an associated WeaponInfo
+  // - the associated WeaponInfo is not stored in infoForCurrentWeapon
+  // The latter two cases should only happen for one tic after switching weapons,
+  // and anything calling this should be null-checking anyways.
   ::WeaponInfo GetInfoForCurrentWeapon() const {
     Weapon wielded = owner.player.ReadyWeapon;
     if (wielded && infoForCurrentWeapon && infoForCurrentWeapon.weapon == wielded) {
@@ -113,35 +125,10 @@ class ::PerPlayerStats : ::Force {
     return null;
   }
 
-  // Like GetInfoForCurrentWeapon, but if WeaponInfo doesn't exist for the current
-  // weapon it will try to find a compatible existing one to attach to it, or,
-  // failing that, create a new one. As such this is not suitable for use from
-  // ui scope.
-  // If the player is not currently wielding a weapon, returns null.
-  ::WeaponInfo GetOrCreateInfoForCurrentWeapon() {
-    Weapon wielded = owner.player.ReadyWeapon;
-    if (!wielded) return null;
-
-    ::WeaponInfo info = GetInfoForCurrentWeapon();
-    if (info) return info;
-
-    // The player is wielding a weapon but it's not the weapon associated with
-    // the current weapon info. Try to find an existing WeaponInfo associated
-    // with this weapon.
-    info = GetInfoFor(wielded);
-    // Failing that, try to bind it to a compatible existing one.
-    if (!info) info = BindExistingInfoTo(wielded);
-    // If even that fails, create a new one ex nihilo.
-    if (!info) {
-      info = new("::WeaponInfo");
-      info.Init(wielded);
-      weapons.push(info);
-    }
-
-    infoForCurrentWeapon = info;
-    return info;
-  }
-
+  // Return the WeaponInfo associated with the given weapon. Unlike
+  // GetInfoForCurrentWeapon(), this always searches the entire info list, so
+  // it's slower, but will find the info for any weapon as long as it's been
+  // wielded at least once and is still bound to its info object.
   ::WeaponInfo GetInfoFor(Weapon wpn) const {
     for (int i = 0; i < weapons.size(); ++i) {
       if (weapons[i].weapon == wpn) {
@@ -149,6 +136,47 @@ class ::PerPlayerStats : ::Force {
       }
     }
     return null;
+  }
+
+  // Called every tic to ensure that the currently wielded weapon has associated
+  // info, and that info is stored in infoForCurrentWeapon.
+  // Returns infoForCurrentWeapon.
+  // Note that if the player does not currently have a weapon equipped, this
+  // sets infoForCurrentWeapon to null and returns null.
+  ::WeaponInfo CreateInfoForCurrentWeapon() {
+    // Fastest path -- WeaponInfo is already initialized and selected.
+    if (GetInfoForCurrentWeapon()) return infoForCurrentWeapon;
+
+    // Otherwise we need to at least select it. This will return it if it
+    // already exists, rebinding an existing compatible WeaponInfo or creating
+    // a new one if needed.
+    // It is guaranteed to succeed.
+    infoForCurrentWeapon = GetOrCreateInfoFor(owner.player.ReadyWeapon);
+    return infoForCurrentWeapon;
+  }
+
+  // If a WeaponInfo already exists for this weapon, return it.
+  // Otherwise, if a compatible orphaned WeaponInfo exists, rebind and return that.
+  // Otherwise, create a new WeaponInfo, bind it to this weapon, add it to the
+  // weapon info list, and return it.
+  ::WeaponInfo GetOrCreateInfoFor(Weapon wpn) {
+    if (!wpn) return null;
+
+    // Fast path -- player has a weapon but we need to select the WeaponInfo
+    // for it.
+    let info = GetInfoFor(wpn);
+
+    // Slow path -- no associated WeaponInfo, but there might be one we can
+    // re-use, depending on the upgrade binding settings.
+    if (!info) info = BindExistingInfoTo(wpn);
+
+    // Slowest path -- create a new WeaponInfo and stick it to this weapon.
+    if (!info) {
+      info = new("::WeaponInfo");
+      info.Init(wpn);
+      weapons.push(info);
+    }
+    return info;
   }
 
   // Given a weapon, try to find a compatible existing unused WeaponInfo we can
@@ -204,7 +232,7 @@ class ::PerPlayerStats : ::Force {
   // Add XP to a weapon. If the weapon leveled up, also do some housekeeping
   // and possibly level up the player as well.
   void AddXP(int xp) {
-    ::WeaponInfo info = GetOrCreateInfoForCurrentWeapon();
+    ::WeaponInfo info = GetInfoForCurrentWeapon();
     if (!info) return;
     if (info.AddXP(xp)) {
       // Weapon leveled up!
@@ -249,7 +277,7 @@ class ::PerPlayerStats : ::Force {
   // priority of the inciting event against the priority of each upgrade.
   void OnProjectileCreated(Actor shot) {
     upgrades.OnProjectileCreated(owner, shot);
-    let info = GetOrCreateInfoForCurrentWeapon();
+    let info = GetInfoForCurrentWeapon();
     if (info) info.upgrades.OnProjectileCreated(owner, shot);
   }
 
@@ -257,7 +285,7 @@ class ::PerPlayerStats : ::Force {
     upgrades.OnDamageDealt(owner, shot, target, damage);
     // Record whether it was a missile or a projectile, for the purposes of
     // deciding what kinds of upgrades to spawn.
-    let info = GetOrCreateInfoForCurrentWeapon();
+    let info = GetInfoForCurrentWeapon();
     if (!info) return;
     if (shot && shot.bMISSILE) {
       info.projectile_shots++;
@@ -269,14 +297,14 @@ class ::PerPlayerStats : ::Force {
 
   void OnDamageReceived(Actor shot, Actor attacker, uint damage) {
     upgrades.OnDamageReceived(owner, shot, attacker, damage);
-    let info = GetOrCreateInfoForCurrentWeapon();
+    let info = GetInfoForCurrentWeapon();
     if (!info) return;
     info.upgrades.OnDamageReceived(owner, shot, attacker, damage);
   }
 
   void OnKill(Actor shot, Actor target) {
     upgrades.OnKill(owner, shot, target);
-    let info = GetOrCreateInfoForCurrentWeapon();
+    let info = GetInfoForCurrentWeapon();
     if (!info) return;
     info.upgrades.OnKill(owner, shot, target);
   }
@@ -289,7 +317,7 @@ class ::PerPlayerStats : ::Force {
     if (damage <= 0) {
       return;
     }
-    ::WeaponInfo info = GetOrCreateInfoForCurrentWeapon();
+    ::WeaponInfo info = GetInfoForCurrentWeapon();
     if (passive) {
       // Incoming damage.
       DEBUG("MD(p): %s <- %s <- %s (%d/%s) flags=%X",
@@ -335,8 +363,9 @@ class ::PerPlayerStats : ::Force {
   // Runs once per tic.
   void TickStats() {
     // This ensures that the currently wielded weapon always has a WeaponInfo
-    // struct associated with it. It should be pretty fast.
-    let info = GetOrCreateInfoForCurrentWeapon();
+    // struct associated with it. It should be pretty fast, especially in the
+    // common case where the weapon already has a WeaponInfo associated with it.
+    let info = CreateInfoForCurrentWeapon();
 
     // No score integration? Nothing else to do.
     if (!::Settings.use_score_for_xp()) {
@@ -356,15 +385,7 @@ class ::PerPlayerStats : ::Force {
     }
 
     upgrades.Tick();
-    info.upgrades.Tick();
-  }
-
-  States {
-    Spawn:
-      TNT1 A 0 NoDelay Initialize();
-    Poll:
-      TNT1 A 1 TickStats();
-      LOOP;
+    if (info) info.upgrades.Tick();
   }
 }
 

@@ -92,9 +92,32 @@ The ZScript files included in this mod are not loadable as-is; they need to be p
 
 You can also simply download a release pk3, unzip it, and edit the preprocessed files.
 
-Parts of this mod may be of interest to other modders; in particular `TooltipOptionsMenu.zs` is a drop-in replacement for `OptionsMenu` that supports tooltips in the MENUDEF, and the other menus are useful examples of how to do dynamic menu creation in ZScript.
+### Reusable Parts
 
-If you want to integrate Laevis with another mod -- in particular, if you want to add new Laevis upgrades -- see `BaseUpgrade.zs` for detailed instructions. The short form is: you need to subclass `TFLV_Upgrade_BaseUpgrade`, override some virtual methods, and then register your new upgrade class(es) on mod startup, probably in `StaticEventHandler.OnRegister()`.
+`TooltipOptionsMenu.zs` is a drop-in replacement for `OptionsMenu` that supports tooltips in the MENUDEF. It has no external dependencies, is backwards compatible with existing `OptionsMenu` MENUDEFs, and is (like the rest of this mod) MIT licensed, so feel free to use it in your own mods.
+
+The `GenericMenu`, `StatusDisplay`, and other menu classes are useful examples of how to do dynamic interactive menu creation in ZScript, and how to use a non-interactive OptionsMenu to create a status display.
+
+### Adding new Laevis upgrades
+
+See `BaseUpgrade.zs` for detailed instructions. The short form is: you need to subclass `TFLV_Upgrade_BaseUpgrade`, override some virtual methods, and then register your new upgrade class(es) on mod startup, probably in `StaticEventHandler.OnRegister()`.
+
+### Fiddling with Laevis's internal state
+
+Everything you're likely to want to interact with is stored in the `TFLV_PerPlayerStats` (held in the `PlayerPawn`'s inventory) and the `TFLV_WeaponInfo` (one per gun, stored in the PerPlayerStats). Look at the .zs files for those for details on the fields and methods available.
+
+To get the stats, use the static `TFLV_PerPlayerStats.GetStatsFor(pawn)`. The stats are created in the `PlayerSpawned` event, so this should always succeed in normal gameplay unless something has happened to wipe the player's inventory.
+
+Getting weapon info is slightly more complicated; `WeaponInfo` objects are created on-demand, within a tick of the weapon being wielded for the first time, so even if the player is carrying a weapon it may not have an info object. You have a number of options for getting the info object.
+
+These are safe to call from UI code, but can return null:
+- `stats.GetInfoForCurrentWeapon()` is fastest but only returns the info for the player's currently equipped weapon.
+- `stats.GetInfoFor(wpn)` will get the info for an arbitrary weapon, but only if the info object already exists; it won't return info for a weapon the player has not yet wielded.
+
+This is not UI-safe, but is more flexible:
+- `stats.GetOrCreateInfoFor(wpn)` will return existing info for `wpn` if any exists; if not, it will (if the game settings permit this) attempt to re-use an existing `WeaponInfo` for another weapon of the same type. If both of those fail it will create, register, and return a new `WeaponInfo`. Note that calling this on a `Weapon` that is not in the player's inventory will *work*, in the sense that a `WeaponInfo` will be created and returned, but isn't particularly useful unless you subsequently add the weapon to the player's inventory.
+
+If you have an existing `WeaponInfo` and want to stick it to a new weapon, perhaps to transfer upgrades, you can do so by calling `info.Rebind(new_weapon)`. Note that this removes its association with the old weapon entirely -- the "weapon upgrades are shared by weapons of the same class" option is actually implemented by calling `Rebind()` every time the player switches weapons.
 
 # Upgrade List
 
