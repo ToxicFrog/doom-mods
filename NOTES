@@ -1,39 +1,31 @@
-# Laevis design notes
+## Roadmap
 
-Weapons gain XP as you deal damage with them (kills don't matter), and level up once they have enough XP. Higher level weapons level up slower. This means you don't have an incentive to weaken enemies with your favourite weapon and then switch guns for the killshot, and also encourages you to spread the XP around by using a variety of weapons.
+Remaining upgrades:
+- Ignition
+- ammo leech
+- max health increase
+- shock tree
+- Elemental Beam/Blast/Wave
+- Shoryuken
+- submunitions
+- explosive fragmentation
+- extra life (Indestructable)
 
-On level up a weapon gets a random ability from the Legendoom ability pool for its type and rarity. High-rarity weapons can draw low-rarity abilities, but not vice versa. Legendoom has already done all the work of coming up with cool well-balanced abilities for each weapon slot; I'm not going to be able to improve on that.
+Gameplay changes:
+- pick from four upgrades?
+- do another pass over the prerequisites. Graph paper? submunitions/expldeath should mutex, for example
+- brief delay on AoE effects like Explosive Death so that they ripple across a room rather than causing everything to explode instantly
+- extra lives as a separate pk3
+- legendoom integration as a separate pk3
+- shared util pk3 that all the pk3s depend on
 
-Weapons have a max number of ability slots based on their rarity (1 for normal doom weapons, 5 for legendary). Coupled with the "rarer weapons have a broader and more powerful ability pool" above, this gives you an incentive to trade up for rarer weapons as you find them; I don't want a design where the super-cool legendary rocket launcher the spider mastermind just dropped is actually not as good as the uncommon rocket launcher you picked up in MAP04 and have been hauling around ever since. Being able to have multiple abilities per weapon is something that Legendoom is not balanced around, but part of the fun of WoA is just getting absolutely bonkers powerful and seeing the game scale up to keep pace; LD already has scaling difficulty options, so if that makes it too easy the mitigation is probably just to tweak those to scale more aggressively.
+Internal changes:
+- rewrite upgrade generation to build the sublist, then pick from it; swap picked items to the end; properly handle case where number of available upgrades is less than desired
 
-If all of a weapon's slots are full, you can choose an existing ability to overwrite, or discard the new ability. WoA just keeps adding more abilities to each weapon as it levels up endlessly, and when it runs out of interesting abilities it just starts stacking damage bonuses on with each level. I like this more, though. If you choose "discard" perhaps it gives you some bonus XP towards the next level, or some health/armour/ammo, or something as a consolation prize?
-
-If you find a weapon on the ground that already has abilities (e.g. by killing a legendary monster), you can swap it out as normal, or you can choose one ability from it to graft onto your existing weapon in that slot. This destroys the weapon. This means that weapon drops you don't want to outright replace your current weapon with aren't useless, and if you do want to replace your current weapon you can choose your favourite ability from it to carry with you. I'm also toying with the idea of letting you eat legendary/unique weapons to add slots to your existing guns.
-
-Maybe: the player gains XP as they do damage, and on level up gets one of:
-- +1 max HP
-- +1 min HP or armour (regenerate to this point when out of combat)
-- +1% damage dealt
-- -1% damage received
-up to some maximum? Make it a separate XP bar rather than one-level-per-weapon-level to discourage constantly dropping and picking weapons back up.
-
-## Release stages
-
-Stage 1 -- damage and level tracked per weapon and per player. No gameplay effects.
-Stage 2 -- player level ups confer permanent bonuses.
-Stage 3 -- weapon level ups let you reroll in Legendoom and pick which one you prefer. Enough levelups let you reroll on a higher tier.
-Stage 4 -- weapon levels stick to dropped weapons.
-Stage 5 -- multiple effects per weapon?
+UI changes:
+- all done!
 
 # Implementation notes for doing it as an addon to LD
-
-## Adding new properties
-
-Ideally we'd subclass existing classes and add new properties to them. However, Legendoom has its own classes and lots of code references them. I thiiiink if we just do something like "Actor LVLDBFG9000 : LDBFG9000 replaces LDBFG9000" it'll work? And then we can have a mixin that adds the actual fancy stuff.
-
-We also need new properties for the base weapons, since those are meant to be able to level up as well.
-
-It looks like any Actor, including weapons, can contain inventory items; that's also a possible way to do this.
 
 ## LD architecture notes
 
@@ -90,12 +82,6 @@ To give bonus:
 On drop weapon:
 - BEFORE the remover goes and removes all the effects, copy ALL of the effects into the dropped weapon
   Maybe we can do this by subclassing the weapons and overriding the RemoveWeapon state so that we go through and copy all the things before it spawns the remover? Or by replacing the remover
-
-## Possibly useful event handlers
-
-WorldThingDamaged, called when damage is done -- note that we want "source" for the damage source, "inflictor" is going to be the missile/puff/etc.
-WorldThingSpawned, called when an Actor is spawned
-
 
 ## Player-level upgrades
 

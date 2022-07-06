@@ -29,7 +29,6 @@ LHDWA%.png: hud.xcf Makefile
 	convert "hud.xcf[1]" $(IMFLAGS) -flop LHDWA8.png
 
 LHDPA%.png: hud.xcf Makefile
-	# Modulate them to green to match the HUD text.
 	convert "hud.xcf[2]" $(IMFLAGS) LHDPA2.png
 	convert "hud.xcf[2]" $(IMFLAGS) -flip LHDPA4.png
 	convert "hud.xcf[2]" $(IMFLAGS) -flip -flop LHDPA6.png
