@@ -1,0 +1,81 @@
+// TooltipOptionsMenu -- a drop-in replacement for OptionsMenu with tooltip support.
+// TODO: document this more thoroughly and include copyright notice so it can be
+// easily used standalone.
+// #namespace TFLV::Menu;
+
+class TFLV_IN_Menu_TooltipOptionMenu : OptionMenu {
+  array<string> tooltips;
+
+  override void Init(Menu parent, OptionMenuDescriptor desc) {
+    super.Init(parent, desc);
+
+    // Steal the descriptor's list of menu items, then rebuild it containing
+    // only the items we want to display.
+    array<OptionMenuItem> items;
+    items.Move(desc.mItems);
+
+    int startblock = -1;
+    for (uint i = 0; i < items.size(); ++i) {
+      if (items[i] is "OptionMenuItemISTooltipBlockStart") {
+        startblock = desc.mItems.size();
+      } else if (items[i] is "OptionMenuItemISTooltipBlockEnd") {
+        startblock = -1;
+      } else if (items[i] is "OptionMenuItemISTooltip") {
+        let tt = OptionMenuItemISTooltip(items[i]);
+        AddTooltip(
+            startblock >= 0 ? startblock : desc.mItems.size()-1,
+            desc.mItems.size()-1, tt.tooltip);
+      } else {
+        desc.mItems.push(items[i]);
+      }
+    }
+  }
+
+  void AddTooltip(uint first, uint last, string tooltip) {
+    while (tooltips.size() <= last) {
+      tooltips.push("");
+    }
+    for (uint i = first; i <= last; ++i) {
+      if (tooltips[i].length() > 0) {
+        tooltips[i] = tooltips[i].."\n"..tooltip;
+      } else {
+        tooltips[i] = tooltip;
+      }
+    }
+  }
+
+  override void Drawer() {
+    super.Drawer();
+    let selected = mDesc.mSelectedItem;
+    if (selected >= 0 && selected < tooltips.size() && tooltips[selected].length() > 0) {
+      DrawTooltip(tooltips[selected]);
+    }
+  }
+
+  void DrawTooltip(string tt) {
+    let lines = newsmallfont.BreakLines(tt, screen.GetWidth()/3);
+    let lh = newsmallfont.GetHeight();
+    for (uint i = 0; i < lines.count(); ++i) {
+      screen.DrawText(
+        newsmallfont, Font.CR_WHITE,
+        newsmallfont.GetCharWidth(0x20), lh/2+i*lh, lines.StringAt(i));
+    }
+  }
+}
+
+class OptionMenuItemISTooltipBlockStart : OptionMenuItem {
+  OptionMenuItemISTooltipBlockStart Init() { return self; }
+}
+class OptionMenuItemISTooltipBlockEnd : OptionMenuItem {
+  OptionMenuItemISTooltipBlockEnd Init() { return self; }
+}
+
+class OptionMenuItemISTooltip : OptionMenuItem {
+  string tooltip;
+
+  OptionMenuItemISTooltip Init(string tooltip) {
+    self.tooltip = tooltip.filter();
+    super.init("", "");
+    return self;
+  }
+}
