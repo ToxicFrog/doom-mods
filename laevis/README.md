@@ -94,9 +94,9 @@ You can also simply download a release pk3, unzip it, and edit the preprocessed 
 
 ### Reusable Parts
 
-`TooltipOptionsMenu.zs` is a drop-in replacement for `OptionsMenu` that supports tooltips in the MENUDEF. It has no external dependencies, is backwards compatible with existing `OptionsMenu` MENUDEFs, and is (like the rest of this mod) MIT licensed, so feel free to use it in your own mods.
-
 The `GenericMenu`, `StatusDisplay`, and other menu classes are useful examples of how to do dynamic interactive menu creation in ZScript, and how to use a non-interactive OptionsMenu to create a status display.
+
+If you want to use the option menu tooltips, look at [libntear](../libntear/) instead.
 
 ### Adding new Laevis upgrades
 

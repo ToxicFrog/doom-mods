@@ -1,23 +1,13 @@
-// An inventory object that can't be dropped and you can only have one of.
-// Name comes from Crossfire's force objects used to track spell effects and
-// the like.
-class TFLV_Force : Inventory {
-  Default {
-    Inventory.Amount 1;
-    Inventory.MaxAmount 1;
-    +Inventory.IgnoreSkill;
-    +Inventory.Untossable;
-  }
-}
+#namespace TFLV;
 
 // Matches the rarity levels in Legendoom.
-enum TFLV_LD_Rarity {
+enum ::LDRarity {
   RARITY_MUNDANE = -1,
   RARITY_COMMON, RARITY_UNCOMMON, RARITY_RARE, RARITY_EPIC
 }
 
-class TFLV_Util : Object {
-  static TFLV_LD_Rarity GetWeaponRarity(Actor act, string prefix) {
+class ::LegendoomUtil {
+  static ::LDRarity GetWeaponRarity(Actor act, string prefix) {
     if (act.FindInventory(prefix.."LegendaryEpic")) {
       return RARITY_EPIC;
     } else if (act.FindInventory(prefix.."LegendaryRare")) {
@@ -31,23 +21,8 @@ class TFLV_Util : Object {
     }
   }
 
-  static Inventory FindItemWithPrefix(Actor act, string prefix) {
-    // GetClassName() isn't consistent about case, so lowercase everything before
-    // we compare it to avoid, e.g., "LDPistolEffectActive" comparing different
-    // to "ldpistolEffectActive".
-    prefix = prefix.MakeLower();
-    for (Inventory item = act.Inv; item; item = item.Inv) {
-      string cls = item.GetClassName();
-      cls = cls.MakeLower();
-      if (cls.IndexOf(prefix) == 0) {
-        return item;
-      }
-    }
-    return null;
-  }
-
   static string GetActiveWeaponEffect(Actor act, string prefix) {
-    Inventory item = FindItemWithPrefix(act, prefix.."Effect_");
+    Inventory item = TF::Util.FindItemWithPrefix(act, prefix.."Effect_");
     if (item) return item.GetClassName();
     return "";
   }
@@ -74,13 +49,4 @@ class TFLV_Util : Object {
     return StringTable.Localize("$LD_FX_DESCR_"..suffix);
   }
 
-  static string SafeTag(Actor obj) {
-    if (obj) return obj.GetTag();
-    return "null";
-  }
-
-  static string SafeCls(Object obj) {
-    if (obj) return obj.GetClassName();
-    return "null";
-  }
 }

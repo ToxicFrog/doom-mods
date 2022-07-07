@@ -1,8 +1,6 @@
-// So, things we need:
-// - inventory object that holds the number of respawns
-// - StaticEventHandler that
+#namespace TFIS;
 
-class TFLV_IndestructableEventHandler : StaticEventHandler {
+class ::IndestructableEventHandler : StaticEventHandler {
   static int GetInt(string name) {
     let cv = CVar.FindCVar(name);
     if (cv) return cv.GetInt();
@@ -24,7 +22,7 @@ class TFLV_IndestructableEventHandler : StaticEventHandler {
   // includes armour, so there's a good chance that during initialization, we
   // are not in tail position and there's armour after us. On the plus side, this
   // means that once we move to tail position, we should stay there.
-  static void MoveToTail(Actor owner, TFLV_IndestructableForce force) {
+  static void MoveToTail(Actor owner, ::IndestructableForce force) {
     Actor head, tail;
     while (owner) {
       if (owner.inv == force) head = owner;
@@ -40,10 +38,10 @@ class TFLV_IndestructableEventHandler : StaticEventHandler {
     PlayerPawn pawn = players[evt.playerNumber].mo;
     if (!pawn) return;
 
-    let force = TFLV_IndestructableForce(pawn.GiveInventoryType("TFLV_IndestructableForce"));
+    let force = ::IndestructableForce(pawn.GiveInventoryType("::IndestructableForce"));
     if (!force) return; // Either we couldn't give it or they already have one
     // We gave them a new one, so give them the starting number of lives.
-    force.amount = GetInt("indestructable_starting_lives");
+    force.lives = GetInt("indestructable_starting_lives");
   }
 
   override void WorldLoaded(WorldEvent evt) {
@@ -52,13 +50,13 @@ class TFLV_IndestructableEventHandler : StaticEventHandler {
     // New level? Refill their lives.
     // PlayerSpawned runs first, so they should already have the force.
     let pawn = players[consoleplayer].mo;
-    let force = TFLV_IndestructableForce(pawn.FindInventory("TFLV_IndestructableForce"));
+    let force = ::IndestructableForce(pawn.FindInventory("::IndestructableForce"));
 
     if (!force) return; // PANIC
     MoveToTail(pawn, force);
-    force.amount = max(force.amount, GetInt("indestructable_lives_after_level"));
+    force.lives = max(force.lives, GetInt("indestructable_lives_after_level"));
     console.printf("You have \c[GOLD]%d\c- extra %s!",
-      force.amount, force.amount == 1 ? "life" : "lives");
+      force.lives, force.lives == 1 ? "life" : "lives");
   }
 
   override void WorldThingDied(WorldEvent evt) {
@@ -67,22 +65,16 @@ class TFLV_IndestructableEventHandler : StaticEventHandler {
     if (!lives) return;
     let pawn = PlayerPawn(evt.inflictor.target);
     if (!pawn) return;
-    let force = TFLV_IndestructableForce(pawn.FindInventory("TFLV_IndestructableForce"));
+    let force = ::IndestructableForce(pawn.FindInventory("::IndestructableForce"));
     if (!force) return; // PANIC
-    force.amount += lives;
+    force.lives += lives;
     console.printf("Absorbed the boss's power! You now have \c[CYAN]%d\c- extra %s!",
-      force.amount, force.amount == 1 ? "life" : "lives");
+      force.lives, force.lives == 1 ? "life" : "lives");
   }
 }
 
-class TFLV_IndestructableForce : Inventory {
-  Default {
-    Inventory.Amount 1;
-    Inventory.MaxAmount 0xFFFF;
-    +INVENTORY.UNDROPPABLE;
-    +INVENTORY.UNCLEARABLE;
-    +INVENTORY.QUIET;
-  }
+class ::IndestructableForce : TF::Force {
+  int lives;
 
   States {
     RestoreHealth:
@@ -99,17 +91,17 @@ class TFLV_IndestructableForce : Inventory {
   }
 
   static int GetInt(string name) {
-    return TFLV_IndestructableEventHandler.GetInt(name);
+    return ::IndestructableEventHandler.GetInt(name);
   }
 
   static bool GetBool(string name){
-    return TFLV_IndestructableEventHandler.GetBool(name);
+    return ::IndestructableEventHandler.GetBool(name);
   }
 
   override void AbsorbDamage(
       int damage, Name damageType, out int newdamage,
       Actor inflictor, Actor source, int flags) {
-    if (!amount) return;
+    if (!lives) return;
     console.printf("Taking damage: %d (health=%d)", damage, owner.health);
     if (damage >= owner.health) {
       newdamage = owner.health - 1;
@@ -130,21 +122,20 @@ class TFLV_IndestructableForce : Inventory {
   }
 
   void ActivateIndestructability() {
-    if (!amount) return;
-    --amount;
+    --lives;
     console.printf("INDESTRUCTABLE!");
     self.SetStateLabel("RestoreHealth");
 
-    GivePowerup("TFLV_IndestructableScreenEffect");
+    GivePowerup("::IndestructableScreenEffect");
     if (GetBool("indestructable_invincibility"))
       GivePowerup("PowerInvulnerable");
     if (GetBool("indestructable_timestop"))
       GivePowerup("PowerTimeFreezer");
     if (GetBool("indestructable_damage_bonus"))
-      GivePowerup("TFLV_IndestructableDamage");
+      GivePowerup("::IndestructableDamage");
 
     console.printf("You have \c[RED]%d\c- extra %s left!",
-      amount, amount == 1 ? "life" : "lives");
+      lives, lives == 1 ? "life" : "lives");
   }
 
   void RestorePlayerHealth() {
@@ -152,14 +143,14 @@ class TFLV_IndestructableForce : Inventory {
   }
 }
 
-class TFLV_IndestructableScreenEffect : Powerup {
+class ::IndestructableScreenEffect : Powerup {
   Default {
     Powerup.ColorMap 1.0,1.0,1.0, 1.0,0.0,0.0;
     +INVENTORY.NOSCREENBLINK;
   }
 }
 
-class TFLV_IndestructableDamage : Powerup {
+class ::IndestructableDamage : Powerup {
   override void ModifyDamage(
       int damage, Name damageType, out int newdamage,
       bool passive, Actor inflictor, Actor source, int flags) {

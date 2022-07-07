@@ -48,8 +48,8 @@ class ::StatusDisplay : ::GenericMenu {
 
   void PushEffect(string effect, uint index, bool isDefault) {
     PushKeyValueOption(
-      TFLV::Util.GetEffectTitle(effect),
-      TFLV::Util.GetEffectDesc(effect),
+      TFLV::LegendoomUtil.GetEffectTitle(effect),
+      TFLV::LegendoomUtil.GetEffectDesc(effect),
       "laevis_select_effect",
       index,
       isDefault ? Font.CR_ORANGE : Font.CR_DARKRED,

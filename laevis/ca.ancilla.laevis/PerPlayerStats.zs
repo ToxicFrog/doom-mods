@@ -26,7 +26,7 @@ struct ::CurrentStats {
 // TODO: see if there's a way we can evacuate this to the StaticEventHandler
 // and reinsert it into the player when something happens, so that it reliably
 // persists across deaths, pistol starts, etc -- make this an option.
-class ::PerPlayerStats : ::Force {
+class ::PerPlayerStats : TF::Force {
   array<::WeaponInfo> weapons;
   ::Upgrade::UpgradeBag upgrades;
   uint XP;

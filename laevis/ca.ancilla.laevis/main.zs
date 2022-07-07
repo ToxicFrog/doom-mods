@@ -3,10 +3,10 @@
 
 #include "./hud.zsc"
 #include "./settings.zsc"
-#include "./util.zsc"
 
 #include "./EventHandler.zsc"
 #include "./LegendoomEffectGiver.zsc"
+#include "./LegendoomUtil.zsc"
 #include "./LegendoomWeaponInfo.zsc"
 #include "./PerPlayerStats.zsc"
 #include "./PlayerUpgradeGiver.zsc"

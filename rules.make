@@ -8,7 +8,10 @@
 ### Values computed at include time ###
 
 PK3=${TOPDIR}/release/${NAME}-${VERSION}.pk3
-ZSCRIPT=$(patsubst %.zs,%.zsc,$(shell find ${ZSDIR} -name "*.zs"))
+ifdef ZSDIR
+	ZSCRIPT_AUTO=$(patsubst %.zs,%.zsc,$(shell find ${ZSDIR} -name "*.zs"))
+	ZSCRIPT_TO_CLEAN=${ZSCRIPT_AUTO}
+endif
 
 ### Rules ###
 
@@ -17,9 +20,9 @@ ZSCRIPT=$(patsubst %.zs,%.zsc,$(shell find ${ZSDIR} -name "*.zs"))
 all: ${PK3}
 
 clean.super:
-	rm -f ${PK3} ${ZSCRIPT}
+	rm -f ${PK3} ${ZSCRIPT_TO_CLEAN}
 
-${PK3}: ${LUMPS} ${ZSCRIPT}
+${PK3}: ${LUMPS} ${ZSCRIPT} ${ZSCRIPT_AUTO}
 	rm -f $@
 	zip -qr $@ $^
 

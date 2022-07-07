@@ -12,7 +12,7 @@ class ::HomingShots : ::BaseUpgrade {
   }
 }
 
-class ::HomingShots::Aux : TFLV::Force {
+class ::HomingShots::Aux : TF::Force {
   uint level;
 
   States {

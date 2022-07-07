@@ -1,9 +1,33 @@
 // TooltipOptionsMenu -- a drop-in replacement for OptionsMenu with tooltip support.
-// TODO: document this more thoroughly and include copyright notice so it can be
-// easily used standalone.
-#namespace TFLV::Menu;
+// Released under the MIT license; see COPYING.md for details.
+//
+// To use this, declare your option menu in MENUDEF as normal, but add:
+//   class TF_TooltipOptionMenu
+// to it. You can then use the "Tooltip", "TooltipBlockStart", and "TooltipBlockEnd"
+// menu items, as in the following example:
+//
+// OptionMenu "ExampleTooltipOptions"
+// {
+//   class TFLIB_TooltipOptionMenu
+//   Title "Example Tooltip Menu"
+//
+//   Slider "Kitten Amount", "sv_kitten_amount", 0, 100, 1, 0
+//   Tooltip "The number of kittens to spawn."
+//
+//   Option "Spicy Kittens", "sv_kitten_spicy", "YesNo"
+//   Tooltip "Whether kittens are spicy or not."
+//   Tooltip "I don't know what that means, but isn't this multiline tooltip cool?"
+//   Tooltip "Tooltips support \c[GREEN]escape sequences\c-, too."
+//
+//   TooltipBlockStart
+//   Slider "Kitten Min Rating", "sv_kitten_min_rating", 1, 10, 1, 0
+//   Slider "Kitten Max Rating", "sv_kitten_min_rating", 1, 10, 1, 0
+//   Tooltip "Min/max ratings (out for 10) for kittens. Setting this to values other than 10 may destroy the fabric of spacetime."
+//   Tooltip "The TooltipBlockStart/End means this tooltip sticks to both of the above Sliders."
+//   TooltipBlockEnd
+// }
 
-class ::TooltipOptionMenu : OptionMenu {
+class TF_TooltipOptionMenu : OptionMenu {
   array<string> tooltips;
 
   override void Init(Menu parent, OptionMenuDescriptor desc) {

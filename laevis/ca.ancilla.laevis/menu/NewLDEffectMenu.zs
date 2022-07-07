@@ -24,7 +24,7 @@ class ::NewLDEffectMenu : ::GenericMenu {
       string.format(
         "Your %s has unlocked the effect %s",
         giver.wpn.GetTag(),
-        TFLV_Util.GetEffectTitle(giver.newEffect)),
+        TFLV::LegendoomUtil.GetEffectTitle(giver.newEffect)),
       Font.CR_GOLD);
     PushText("but already has as many effects as it can hold.", Font.CR_GOLD);
     PushText("Select an effect to discard.", Font.CR_GOLD);
@@ -49,8 +49,8 @@ class ::NewLDEffectMenu : ::GenericMenu {
 
   void PushEffect(string effect, int index) {
     PushKeyValueOption(
-      TFLV::Util.GetEffectTitle(effect),
-      TFLV::Util.GetEffectDesc(effect),
+      TFLV::LegendoomUtil.GetEffectTitle(effect),
+      TFLV::LegendoomUtil.GetEffectDesc(effect),
       "laevis_choose_level_up_option",
       index);
   }

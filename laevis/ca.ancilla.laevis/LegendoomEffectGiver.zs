@@ -55,8 +55,8 @@ class ::LegendoomEffectGiver : ::UpgradeGiver {
       return false;
     }
 
-    string effect = TFLV_Util.GetActiveWeaponEffect(upgrade, prefix);
-    if (TFLV_Util.GetWeaponRarity(upgrade, prefix) > info.maxRarity) {
+    string effect = ::LegendoomUtil.GetActiveWeaponEffect(upgrade, prefix);
+    if (::LegendoomUtil.GetWeaponRarity(upgrade, prefix) > info.maxRarity) {
       DEBUG("Upgrade %s is too rare!", effect);
       return false;
     }
@@ -81,8 +81,8 @@ class ::LegendoomEffectGiver : ::UpgradeGiver {
       return;
     }
 
-    string effect = TFLV_Util.GetActiveWeaponEffect(upgrade, prefix);
-    string effectname = TFLV_Util.GetEffectTitle(effect);
+    string effect = ::LegendoomUtil.GetActiveWeaponEffect(upgrade, prefix);
+    string effectname = ::LegendoomUtil.GetEffectTitle(effect);
     console.printf("Your %s gained the effect [%s]!", wpn.GetTag(), effectname);
 
     if (info.effects.Size() == 0) {
@@ -120,7 +120,7 @@ class ::LegendoomEffectGiver : ::UpgradeGiver {
     }
 
     // Player chose to discard an existing effect.
-    string effect = TFLV_Util.GetActiveWeaponEffect(upgrade, prefix);
+    string effect = ::LegendoomUtil.GetActiveWeaponEffect(upgrade, prefix);
     info.effects.Push(effect);
     info.DiscardEffect(index);
     upgrade.Destroy();
