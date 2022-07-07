@@ -1,20 +1,13 @@
-PK3=../release/Indestructable-${VERSION}.pk3
+NAME=Indestructable
 LUMPS=CVARINFO MAPINFO MENUDEF README.md zscript.txt
-ZSCRIPT=ca.ancilla.indestructable/Indestructable.zsc ca.ancilla.indestructable/TooltipOptionMenu.zsc
+ZSDIR=ca.ancilla.indestructable
 
-all: ${PK3}
-
-${PK3}: ${LUMPS} ${ZSCRIPT}
-	rm -f $@
-	zip -qr $@ $^
-
-ca.ancilla.indestructable/TooltipOptionMenu.zsc: ../ca.ancilla.laevis/menu/TooltipOptionMenu.zsc
-	sed -E 's,TFLV_,TFLV_IN_,g; s,OptionMenuItemTooltip,OptionMenuItemISTooltip,g' $^ > $@
+include ${TOPDIR}/rules.make
 
 MENUDEF: MENUDEF.in
 	sed -E 's,TFLV_,TFLV_IN_,g; s, Tooltip, ISTooltip,g' $^ > $@
 
-clean:
-	rm -f ${PK3} MENUDEF ca.ancilla.indestructable/TooltipOptionMenu.zsc
+clean: clean.super
+	rm -f MENUDEF
 
-.PHONY: all clean
+.PHONY: clean

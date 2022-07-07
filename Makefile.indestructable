@@ -1,0 +1,11 @@
+VERSION=0.6.5
+MODS=indestructable
+
+FAKE_PK3S=$(patsubst %,%.pk3,${MODS})
+
+all: ${MODS}
+
+${MODS}:
+	$(MAKE) -C $@ VERSION=${VERSION} TOPDIR=..
+
+.PHONY: all ${MODS}
