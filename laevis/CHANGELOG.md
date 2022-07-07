@@ -2,7 +2,7 @@
 
 - Change: renamed "Shots" to "Inscription" in elemental upgrades so the names make
   sense with (e.g.) melee weapons.
--
+- Added some missing sprites to the repo (they were still in the pk3 but not versioned)
 
 # 0.6.4
 
