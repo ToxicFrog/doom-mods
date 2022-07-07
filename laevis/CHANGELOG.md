@@ -2,6 +2,7 @@
 
 - Change: renamed "Shots" to "Inscription" in elemental upgrades so the names make
   sense with (e.g.) melee weapons.
+-
 
 # 0.6.4
 

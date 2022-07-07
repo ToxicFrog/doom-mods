@@ -1,5 +1,7 @@
 NAME=Indestructable
-LUMPS=CVARINFO MAPINFO MENUDEF README.md zscript.txt
+VERSION=0.1.0
+LUMPS=CVARINFO MAPINFO MENUDEF zscript.txt
+LUMPS+=*.md
 ZSDIR=ca.ancilla.indestructable
 
 include ${TOPDIR}/rules.make

@@ -1,32 +1,9 @@
-VERSION="0.6.5"
-PK3=release/Laevis-${VERSION}.pk3
-INDESTRUCTABLE_PK3=release/Laevis-Indestructable-${VERSION}.pk3
-LUMPS=zscript.txt MAPINFO CVARINFO KEYCONF MENUDEF LANGUAGE.*
-SPRITES=sprites/
-ZSCRIPT=$(patsubst %.zs,%.zsc,$(shell find ca.ancilla.laevis -name "*.zs"))
+VERSION=0.6.5
+MODS=laevis indestructable
 
-all: ${PK3} indestructable
+all: ${MODS}
 
-${PK3}: README.md COPYING.md ${LUMPS} ${SPRITES} ${ZSCRIPT} sprites/ui/LHUDA2.png
-	rm -f $@
-	zip -qr $@ README.md COPYING.md ${LUMPS} sprites/ ca.ancilla.laevis/
+${MODS}:
+	$(MAKE) -C $@ VERSION=${VERSION} TOPDIR=..
 
-%.zsc: %.zs zspp
-	./zspp $< $@
-
-# Quick hack to make it rebuild the HUD sprites when the XCF changes.
-sprites/ui/LHUDA2.png: sprites/ui/hud.xcf
-	$(MAKE) -C sprites/ui/
-
-clean:
-	find ca.ancilla.laevis -name '*.zsc' -delete
-	$(MAKE) -C sprites/ui/ clean
-	$(MAKE) -C indestructable clean
-
-deploy: all
-	ln -sf ${PK3} Laevis.pk3
-
-indestructable:
-	$(MAKE) -C indestructable VERSION=$(VERSION)
-
-.PHONY: all clean indestructable
+.PHONY: all ${MODS}
