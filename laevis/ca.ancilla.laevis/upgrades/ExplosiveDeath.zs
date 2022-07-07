@@ -22,6 +22,7 @@ class ::ExplosiveDeath : ::BaseUpgrade {
 class ::ExplosiveDeath::Aux : Actor {
   uint level;
   uint power;
+  uint radius;
 
   Default {
     DamageType "Extreme";
@@ -38,8 +39,11 @@ class ::ExplosiveDeath::Aux : Actor {
 
   States {
     Spawn:
-      LEXP B 7 Bright NoDelay A_Explode(power, 64 + level*32, XF_HURTSOURCE, false, level*16);
-      LEXP CD 7 Bright;
+      LEXP B 7 Bright;
+      // Delay 1/5th of a second before actually dealing damage, so that chain
+      // reactions "ripple" across the room rather than happening in a single frame.
+      LEXP C 7 Bright A_Explode(power, radius*(1.0 + level*0.2), XF_HURTSOURCE, false, level*16);
+      LEXP D 7 Bright;
       STOP;
   }
 }

@@ -2,6 +2,10 @@
 
 - Change: renamed "Shots" to "Inscription" in elemental upgrades so the names make
   sense with (e.g.) melee weapons.
+- Change: Explosive Death now has a brief delay before dealing explosive damage, so
+  explosions visibily ripple outwards when a chain reaction is triggered.
+- Change: Explosive Death's range now increases more slowly with levels, and is
+  based on the radius of the exploding monster; bigger enemies produce bigger booms.
 - Change: split the menu code into a separate library, libntear.pk3
 - Fix: Added some missing sprites to the repo (they were still in the pk3 but not versioned)
 

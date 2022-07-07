@@ -111,8 +111,7 @@ class ::EventHandler : StaticEventHandler {
     } else if (evt.name == "laevis_debug") {
       let info = ::PerPlayerStats.GetStatsFor(players[evt.player].mo)
           .GetInfoForCurrentWeapon();
-      info.upgrades.Add("::Upgrade::FragmentationShots", 1);
-      info.upgrades.Add("::Upgrade::PiercingShots", 1);
+      info.upgrades.Add("::Upgrade::ExplosiveDeath", 10);
     }
   }
 
