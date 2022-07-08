@@ -73,8 +73,16 @@ class ::IndestructableEventHandler : StaticEventHandler {
   }
 }
 
-class ::IndestructableForce : TF::Force {
+class ::IndestructableForce : Inventory {
   int lives;
+  Default {
+    Inventory.Amount 1;
+    Inventory.MaxAmount 1;
+    +INVENTORY.IGNORESKILL;
+    +INVENTORY.UNTOSSABLE;
+    +INVENTORY.UNDROPPABLE;
+    +INVENTORY.QUIET;
+  }
 
   States {
     RestoreHealth:

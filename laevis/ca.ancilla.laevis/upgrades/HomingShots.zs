@@ -12,7 +12,7 @@ class ::HomingShots : ::BaseUpgrade {
   }
 }
 
-class ::HomingShots::Aux : TF::Force {
+class ::HomingShots::Aux : Inventory {
   uint level;
 
   States {

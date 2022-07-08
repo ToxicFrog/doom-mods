@@ -6,7 +6,7 @@
   explosions visibily ripple outwards when a chain reaction is triggered.
 - Change: Explosive Death's range now increases more slowly with levels, and is
   based on the radius of the exploding monster; bigger enemies produce bigger booms.
-- Change: split the menu code into a separate library, libntear.pk3
+- Change: split the menu code into a separate library, libtooltipmenu.pk3
 - Fix: Added some missing sprites to the repo (they were still in the pk3 but not versioned)
 
 # 0.6.4

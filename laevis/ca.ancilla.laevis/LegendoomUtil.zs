@@ -21,8 +21,23 @@ class ::LegendoomUtil {
     }
   }
 
+  static Inventory FindItemWithPrefix(Actor act, string prefix) {
+    // GetClassName() isn't consistent about case, so lowercase everything before
+    // we compare it to avoid, e.g., "LDPistolEffectActive" comparing different
+    // to "ldpistolEffectActive".
+    prefix = prefix.MakeLower();
+    for (Inventory item = act.Inv; item; item = item.Inv) {
+      string cls = item.GetClassName();
+      cls = cls.MakeLower();
+      if (cls.IndexOf(prefix) == 0) {
+        return item;
+      }
+    }
+    return null;
+  }
+
   static string GetActiveWeaponEffect(Actor act, string prefix) {
-    Inventory item = TF::Util.FindItemWithPrefix(act, prefix.."Effect_");
+    Inventory item = FindItemWithPrefix(act, prefix.."Effect_");
     if (item) return item.GetClassName();
     return "";
   }

@@ -1,4 +1,4 @@
-MODS=libntear laevis indestructable
+MODS=libtooltipmenu laevis indestructable
 
 all: ${MODS}
 

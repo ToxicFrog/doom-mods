@@ -26,7 +26,7 @@ struct ::CurrentStats {
 // TODO: see if there's a way we can evacuate this to the StaticEventHandler
 // and reinsert it into the player when something happens, so that it reliably
 // persists across deaths, pistol starts, etc -- make this an option.
-class ::PerPlayerStats : TF::Force {
+class ::PerPlayerStats : Inventory {
   array<::WeaponInfo> weapons;
   ::Upgrade::UpgradeBag upgrades;
   uint XP;
@@ -34,6 +34,15 @@ class ::PerPlayerStats : TF::Force {
   bool legendoomInstalled;
   ::WeaponInfo infoForCurrentWeapon;
   int prevScore;
+
+  Default {
+    Inventory.Amount 1;
+    Inventory.MaxAmount 1;
+    +INVENTORY.IGNORESKILL;
+    +INVENTORY.UNTOSSABLE;
+    +INVENTORY.UNDROPPABLE;
+    +INVENTORY.QUIET;
+  }
 
   States {
     Spawn:
