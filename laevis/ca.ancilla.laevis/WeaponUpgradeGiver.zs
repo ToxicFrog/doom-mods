@@ -6,16 +6,8 @@ class ::WeaponUpgradeGiver : ::UpgradeGiver {
   TFLV_WeaponInfo wielded;
 
   override void CreateUpgradeCandidates() {
-    // TODO: properly handle the case where the number of valid upgrades is
-    // less than the number we want to display.
-    while (candidates.size() < 3) {
-      let upgrade = ::Upgrade::Registry.GenerateUpgradeForWeapon(wielded);
-      if (!AlreadyHasUpgrade(upgrade)) {
-        candidates.push(upgrade);
-      } else {
-        upgrade.Destroy();
-      }
-    }
+    candidates.clear();
+    ::Upgrade::Registry.GenerateUpgradesForWeapon(wielded, candidates);
   }
 
   void InstallUpgrade(int index) {
@@ -24,7 +16,7 @@ class ::WeaponUpgradeGiver : ::UpgradeGiver {
     } else {
       console.printf("Your %s gained a level of %s!",
         wielded.weapon.GetTag(), candidates[index].GetName());
-      wielded.upgrades.AddUpgrade(candidates[index]);
+      wielded.upgrades.Add(candidates[index].GetClassName());
     }
     Destroy();
   }

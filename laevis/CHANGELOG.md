@@ -7,6 +7,9 @@
 - Change: Explosive Death's range now increases more slowly with levels, and is
   based on the radius of the exploding monster; bigger enemies produce bigger booms.
 - Change: split the menu code into a separate library, libtooltipmenu.pk3
+- Change: you can now pick between 4 upgrades when you gain a level
+- Fix: upgrade generation can no longer take unbounded time if you're unlucky
+- Fix: upgrade generation can no longer freeze the game if the pool of upgrade candidates is very small
 - Fix: Added some missing sprites to the repo (they were still in the pk3 but not versioned)
 
 # 0.6.4

@@ -5,17 +5,9 @@
 class ::PlayerUpgradeGiver : ::UpgradeGiver {
   ::PerPlayerStats stats;
 
-  // TODO: we might want to force the first upgrade to always be a damage bonus
-  // or some other simple, generally useful upgrade.
   override void CreateUpgradeCandidates() {
-    while (candidates.size() < 3) {
-      let upgrade = ::Upgrade::Registry.GenerateUpgradeForPlayer(stats);
-      if (!AlreadyHasUpgrade(upgrade)) {
-        candidates.push(upgrade);
-      } else {
-        upgrade.Destroy();
-      }
-    }
+    candidates.clear();
+    ::Upgrade::Registry.GenerateUpgradesForPlayer(stats, candidates);
   }
 
   void InstallUpgrade(int index) {
@@ -23,7 +15,7 @@ class ::PlayerUpgradeGiver : ::UpgradeGiver {
       console.printf("Level-up rejected!");
     } else {
       console.printf("You gained a level of %s!", candidates[index].GetName());
-      stats.upgrades.AddUpgrade(candidates[index]);
+      stats.upgrades.Add(candidates[index].GetClassName());
     }
     Destroy();
   }

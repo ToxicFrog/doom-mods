@@ -1,8 +1,11 @@
 #namespace TFLV::Upgrade;
 #debug off
 
+const UPGRADES_PER_LEVEL = 4;
+
 class ::Registry : Object play {
-  array<string> upgrades;
+  array<string> upgrade_names;
+  array<::BaseUpgrade> upgrades;
 
   static ::Registry GetRegistry() {
     let reg = TFLV::EventHandler(StaticEventHandler.Find("TFLV::EventHandler"));
@@ -13,13 +16,14 @@ class ::Registry : Object play {
 
   static void Register(string upgrade) {
     DEBUG("Register: %s", upgrade);
-    if (GetRegistry().upgrades.find(upgrade) != GetRegistry().upgrades.size()) {
+    if (GetRegistry().upgrade_names.find(upgrade) != GetRegistry().upgrade_names.size()) {
       // Assume that this is because a mod has tried to double-register an upgrade,
       // and permit it as a no-op.
       //ThrowAbortException("Duplicate upgrades named %s", upgrade);
       return;
     }
-    GetRegistry().upgrades.push(upgrade);
+    GetRegistry().upgrade_names.push(upgrade);
+    GetRegistry().upgrades.push(::BaseUpgrade(new(upgrade)));
   }
 
   // Can't be static because we need to call it during eventmanager initialization,
@@ -63,35 +67,40 @@ class ::Registry : Object play {
       "::Embrittlement"
     };
     for (uint i = 0; i < UpgradeNames.size(); ++i) {
-      upgrades.push(UpgradeNames[i]);
+      upgrade_names.push(UpgradeNames[i]);
+      upgrades.push(::BaseUpgrade(new(UpgradeNames[i])));
     }
   }
 
-  static ::BaseUpgrade GenerateUpgrade() {
-    let cls = GetRegistry().upgrades[random(0, GetRegistry().upgrades.size()-1)];
-    DEBUG("GenerateUpgrade(%s)", cls);
-    return ::BaseUpgrade(new(cls));
+  static void PickN(Array<::BaseUpgrade> dst, Array<::BaseUpgrade> src, uint n) {
+    uint max = src.size();
+    while (max > 0 && dst.size() < n) {
+      uint i = random(0, max-1);
+      dst.push(src[i]);
+      src[i] = src[--max];
+    }
   }
 
-  static ::BaseUpgrade GenerateUpgradeForPlayer(TFLV::PerPlayerStats stats) {
-    ::BaseUpgrade upgrade = null;
-    while (upgrade == null) {
-      upgrade = ::Registry.GenerateUpgrade();
-      if (upgrade.IsSuitableForPlayer(stats)) return upgrade;
-      upgrade.Destroy();
-      upgrade = null;
+  static void GenerateUpgradesForPlayer(
+      TFLV::PerPlayerStats stats, Array<::BaseUpgrade> generated) {
+    Array<::BaseUpgrade> candidates;
+    // Array<::BaseUpgrade> all_upgrades = GetRegistry().upgrades;
+    for (uint i = 0; i < GetRegistry().upgrades.size(); ++i) {
+      if (GetRegistry().upgrades[i].IsSuitableForPlayer(stats))
+        candidates.push(GetRegistry().upgrades[i]);
     }
-    return null; // unreachable
+
+    PickN(generated, candidates, UPGRADES_PER_LEVEL);
   }
 
-  static ::BaseUpgrade GenerateUpgradeForWeapon(TFLV::WeaponInfo info) {
-    ::BaseUpgrade upgrade = null;
-    while (upgrade == null) {
-      upgrade = ::Registry.GenerateUpgrade();
-      if (upgrade.IsSuitableForWeapon(info)) return upgrade;
-      upgrade.Destroy();
-      upgrade = null;
+  static void GenerateUpgradesForWeapon(
+      TFLV::WeaponInfo info, Array<::BaseUpgrade> generated) {
+    array<::BaseUpgrade> candidates;
+    for (uint i = 0; i < GetRegistry().upgrades.size(); ++i) {
+      if (GetRegistry().upgrades[i].IsSuitableForWeapon(info))
+        candidates.push(GetRegistry().upgrades[i]);
     }
-    return null; // unreachable
+
+    PickN(generated, candidates, UPGRADES_PER_LEVEL);
   }
 }
