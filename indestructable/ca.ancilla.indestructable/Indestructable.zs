@@ -110,7 +110,6 @@ class ::IndestructableForce : Inventory {
       int damage, Name damageType, out int newdamage,
       Actor inflictor, Actor source, int flags) {
     if (!lives) return;
-    console.printf("Taking damage: %d (health=%d)", damage, owner.health);
     if (damage >= owner.health) {
       newdamage = owner.health - 1;
       ActivateIndestructability();
@@ -131,7 +130,7 @@ class ::IndestructableForce : Inventory {
 
   void ActivateIndestructability() {
     --lives;
-    console.printf("INDESTRUCTABLE!");
+    console.printf("\c+INDESTRUCTABLE!");
     self.SetStateLabel("RestoreHealth");
 
     GivePowerup("::IndestructableScreenEffect");
