@@ -11,12 +11,10 @@ OptionMenu "LaevisOptions"
   StaticText ""
   StaticText "HUD settings", CYAN
 
-  TooltipBlockStart
   Slider "HUD X position", "laevis_hud_x", 0.0, 1.0, 0.01, 2
   Slider "HUD Y position", "laevis_hud_y", 0.0, 1.0, 0.01, 2
   Tooltip "Position of the Laevis HUD on the screen, as a proportion of total screen size. 0.0 is top left, 1.0 is bottom right."
   Tooltip "You can also set a pixel-perfect position by setting laevis_hud_x and laevis_hud_y to your desired coordinates."
-  TooltipBlockEnd
 
   Slider "HUD height", "laevis_hud_size", 10, 500, 10, 0
   Tooltip "Height of the Laevis HUD, in pixels. Width is always 3x height."
@@ -63,14 +61,12 @@ OptionMenu "LaevisOptions"
   Slider "XP needed to reach level 1", "laevis_base_level_cost", 100, 10000, 100, 0
   Tooltip "How much XP you need to earn for a weapon to gain its first level. Roughly, 1 point of damage dealt == 1 XP gained, with a bonus for damaging nastier enemies like Cyberdemons and Archviles."
 
-  TooltipBlockStart
   Slider "XP cost multiplier for melee weapons", "laevis_level_cost_mul_for_melee", 0.1, 5.0, 0.1, 1
   Slider "XP cost multiplier for wimpy weapons", "laevis_level_cost_mul_for_wimpy", 0.1, 5.0, 0.1, 1
   Slider "XP cost multiplier for explosive weapons", "DISABLED_laevis_level_cost_mul_for_explosive", 0.1, 5.0, 0.1, 1
   Slider "XP cost multiplier for BFG-type weapons", "DISABLED_laevis_level_cost_mul_for_bfg", 0.1, 5.0, 0.1, 1
   Tooltip "XP cost multipliers for various classes of weapons. These can stack (e.g. fists are both 'melee' and 'wimpy' in vanilla Doom 2). The default settings make weak and melee weapons easier to level up, and explosive and BFG weapons harder."
   Tooltip "\cgThe 'explosive' and 'bfg' settings do not currently work."
-  TooltipBlockEnd
 
   StaticText ""
   StaticText "Legendoom Integration", GRAY
