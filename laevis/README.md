@@ -96,7 +96,7 @@ You can also simply download a release pk3, unzip it, and edit the preprocessed 
 
 The `GenericMenu`, `StatusDisplay`, and other menu classes are useful examples of how to do dynamic interactive menu creation in ZScript, and how to use a non-interactive OptionsMenu to create a status display.
 
-If you want to use the option menu tooltips, look at [libntear](../libntear/) instead.
+If you want to use the option menu tooltips, look at [libtooltipmenu](../libtooltipmenu/) instead.
 
 ### Adding new Laevis upgrades
 

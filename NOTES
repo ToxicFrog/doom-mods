@@ -10,12 +10,11 @@ Remaining upgrades:
 - submunitions
 - explosive fragmentation
 - extra life (Indestructable)
+- regeneration?
 
 Gameplay changes:
 - pick from four upgrades?
 - do another pass over the prerequisites. Graph paper? submunitions/expldeath should mutex, for example
-- brief delay on AoE effects like Explosive Death so that they ripple across a room rather than causing everything to explode instantly
-- legendoom integration as a separate pk3
 
 Internal changes:
 - rewrite upgrade generation to build the sublist, then pick from it; swap picked items to the end; properly handle case where number of available upgrades is less than desired
