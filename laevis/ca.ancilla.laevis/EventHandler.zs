@@ -8,6 +8,11 @@ class ::EventHandler : StaticEventHandler {
   ::Upgrade::Registry UPGRADE_REGISTRY;
   ui ::HUD hud;
 
+  static string SafeTag(Actor act) {
+    if (!act) return "null";
+    return act.GetTag();
+  }
+
   override void OnRegister() {
     DEBUG("Initializing Laevis...");
     // Register all builtin upgrades.
@@ -113,14 +118,13 @@ class ::EventHandler : StaticEventHandler {
           .GetInfoForCurrentWeapon();
       info.upgrades.Add("::Upgrade::ShockingInscription", 2);
       info.upgrades.Add("::Upgrade::Revivification", 10);
-      info.upgrades.Add("::Upgrade::ChainLightning", 2);
-      info.upgrades.Add("::Upgrade::IncendiaryShots", 2);
+      info.upgrades.Add("::Upgrade::Thunderbolt", 2);
     }
   }
 
   override void WorldThingDamaged(WorldEvent evt) {
     DEBUG("WTD: %s inflictor=%s source=%s damage=%d type=%s flags=%X, hp=%d",
-      ::Util.SafeCls(evt.thing), ::Util.SafeCls(evt.inflictor), ::Util.SafeCls(evt.damagesource),
+      SafeTag(evt.thing), SafeTag(evt.inflictor), SafeTag(evt.damagesource),
       evt.damage, evt.damagetype, evt.damageflags, evt.thing.health);
     if (evt.damagesource == players[consoleplayer].mo
         && evt.thing.bISMONSTER
@@ -147,8 +151,8 @@ class ::EventHandler : StaticEventHandler {
 
     DEBUG("WTS: %s (owner=NONE) (master=%s) (target=%s) (tracer=%s)",
       thing.GetClassName(),
-      ::Util.SafeCls(thing.master),
-      ::Util.SafeCls(thing.target),
-      ::Util.SafeCls(thing.tracer));
+      SafeTag(thing.master),
+      SafeTag(thing.target),
+      SafeTag(thing.tracer));
   }
 }

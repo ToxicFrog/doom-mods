@@ -21,7 +21,8 @@ class ::ShockingInscription : ::ElementalUpgrade {
   override void OnDamageDealt(Actor player, Actor shot, Actor target, int damage) {
     // TODO: softcap support
     // Stack 20% of damage * 200ms of stun, hardcap at 1s + 1s/level
-    ::Dot.GiveStacks(player, target, "::ShockDot", level*damage*0.2, 5+level*5);
+    let thedot = ::ShockDot(::Dot.GiveStacks(player, target, "::ShockDot", level*damage*0.2, 5+level*5));
+    thedot.cap = 5+level*5;
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
@@ -58,7 +59,20 @@ class ::Thunderbolt : ::DotModifier {
 
   override void ModifyDot(Actor player, Actor shot, Actor target, int damage, ::Dot dot_item) {
     let shock = ::ShockDot(dot_item);
-    // Check if we've reached the cap and if so, explode for massive damage
+    DEBUG("Thunderbolt: %d/%d", shock.stacks, shock.cap);
+    if (shock.stacks > shock.cap-1) {
+      // Trigger the thunderbolt!
+      // Damage is number of stacks × (1% of target's health per level) with diminishing returns
+      // TODO: once softcap support is implemented, this should bleed off stacks over the softcap
+      // rather than all stacks.
+      let aux = ::Thunderbolt::Aux(target.Spawn("::Thunderbolt::Aux", target.pos));
+      aux.target = player;
+      aux.tracer = target;
+      let damage = floor(target.SpawnHealth() * 0.01 * shock.stacks * level);
+      DEBUG("Krakoom! You smite the %s for %d damage.", target.GetTag(), damage);
+      target.DamageMobj(aux, player, damage, "Electric", DMG_THRUSTLESS);
+      shock.stacks = 0;
+    }
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
@@ -70,6 +84,7 @@ class ::Thunderbolt : ::DotModifier {
 class ::ShockDot : ::Dot {
   uint revive; // Revivification level
   uint chain; // Chain Lightning level
+  uint cap; // Cap used for Thunderbolt triggers
 
   Default {
     // This matches Hexen's lightning weapons.
@@ -147,6 +162,11 @@ class ::Revivification::Aux : Actor {
     if (!tracer.RaiseActor(tracer)) {
       Destroy(); return;
     }
+    // Clear any dots on it.
+    tracer.TakeInventory("::FireDot", 255);
+    tracer.TakeInventory("::AcidDot", 255);
+    tracer.TakeInventory("::PoisonDot", 255);
+    tracer.TakeInventory("::ShockDot", 255);
     // Make it friendly and ethereal.
     tracer.master = self.target;
     tracer.bFRIENDLY = true;
@@ -184,6 +204,41 @@ class ::Revivification::AuxBuff : Inventory {
     } else {
       // Flat 20% damage bonus on the way out.
       newdamage = floor(damage * (1.0 + 0.2 * level));
+    }
+  }
+}
+
+class ::Thunderbolt::Aux : Actor {
+  property UpgradePriority: special1;
+
+  Default {
+    ::Thunderbolt::Aux.UpgradePriority ::PRI_ELEMENTAL;
+  }
+
+  string GetParticleColour() {
+    static const string colours[] = { "azure", "deepskyblue", "lightskyblue", "ghostwhite" };
+    return colours[random(0,3)];
+  }
+
+  override void PostBeginPlay() {
+    DEBUG("Thunderbolt PostBeginPlay");
+    for (uint i = 0; i < 16; ++i) {
+      self.Warp(tracer,
+        random(-tracer.radius/2, tracer.radius/2),
+        random(-tracer.radius/2, tracer.radius/2),
+        0, 0, WARPF_TOFLOOR);
+      DEBUG("Thunderbolt @[%d,%d,%d]",
+        pos.x, pos.y, pos.z);
+      self.A_CustomRailgun(
+        0, 0, "", GetParticleColour(),
+        RGF_SILENT|RGF_FULLBRIGHT|RGF_EXPLICITANGLE|RGF_CENTERZ,
+        0, 10, // aim and jaggedness
+        "BulletPuff", // pufftype
+        0, -90, //spread
+        0, 0, // range and duration
+        0.5, // particle spacing
+        0.5 // drift speed
+        );
     }
   }
 }
