@@ -64,7 +64,12 @@ class ::Registry : Object play {
       "::CorrosiveShots",
       "::ConcentratedAcid",
       "::AcidSpray",
-      "::Embrittlement"
+      "::Embrittlement",
+      // Lightning upgrades
+      "::ShockingInscription",
+      "::Revivification",
+      "::ChainLightning",
+      "::Thunderbolt"
     };
     for (uint i = 0; i < UpgradeNames.size(); ++i) {
       upgrade_names.push(UpgradeNames[i]);

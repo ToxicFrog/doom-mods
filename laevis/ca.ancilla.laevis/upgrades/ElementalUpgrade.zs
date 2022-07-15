@@ -30,6 +30,7 @@ class ::ElementalUpgrade : ::BaseUpgrade {
     if (upgrades.Level("::IncendiaryShots") > 0) ++count;
     if (upgrades.Level("::PoisonShots") > 0) ++count;
     if (upgrades.Level("::CorrosiveShots") > 0) ++count;
+    if (upgrades.Level("::ShockingInscription") > 0) ++count;
     return count;
   }
 
@@ -45,6 +46,9 @@ class ::ElementalUpgrade : ::BaseUpgrade {
     if (upgrades.Level("::CorrosiveShots") > 0
         && (upgrades.Level("::Embrittlement") + upgrades.Level("::ExplosiveReaction")) == 0)
       return "Acid";
+    if (upgrades.Level("::ShockingInscription") > 0
+        && (upgrades.Level("::ChainLightning") + upgrades.Level("::Thunderbolt")) == 0)
+      return "Lightning";
     return "";
   }
 }
