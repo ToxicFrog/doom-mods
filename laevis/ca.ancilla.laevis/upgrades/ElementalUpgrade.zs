@@ -44,7 +44,7 @@ class ::ElementalUpgrade : ::BaseUpgrade {
         && (upgrades.Level("::Putrefaction") + upgrades.Level("::Hallucinogens")) == 0)
       return "Poison";
     if (upgrades.Level("::CorrosiveShots") > 0
-        && (upgrades.Level("::Embrittlement") + upgrades.Level("::ExplosiveReaction")) == 0)
+        && (upgrades.Level("::Embrittlement") + upgrades.Level("::AcidSpray")) == 0)
       return "Acid";
     if (upgrades.Level("::ShockingInscription") > 0
         && (upgrades.Level("::ChainLightning") + upgrades.Level("::Thunderbolt")) == 0)

@@ -207,7 +207,7 @@ Higher-rank skills cannot exceed the level of lower-rank ones, and lower-rank sk
 
 Each weapon can only have two different elements on it. When you choose your first elemental upgrade, that element is "locked in" until you choose a mastery upgrade for it. At that point you can (if you wish) choose a second element next time it levels up.
 
-Note that unlike the non-elemental upgrades, elemental AoE effects like `Acid Splash` and `Putrefaction` will never harm the player.
+Note that unlike the non-elemental upgrades, elemental AoE effects like `Acid Spray` and `Putrefaction` will never harm the player.
 
 ## Fire
 

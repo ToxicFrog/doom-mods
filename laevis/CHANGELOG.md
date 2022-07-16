@@ -1,3 +1,7 @@
+# 0.7.0
+
+- Fix: learning Acid Spray now properly counts as mastering the Acid element
+
 # 0.6.5
 
 - Change: renamed "Shots" to "Inscription" in elemental upgrades so the names make
