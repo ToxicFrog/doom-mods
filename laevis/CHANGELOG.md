@@ -1,5 +1,8 @@
 # 0.7.0
 
+- Change: softcap mechanic for elemental effects
+  - Elemental stacks no longer have a hard cap, but suffer rapidly diminishing
+    returns once they go above the soft cap
 - Fix: learning Acid Spray now properly counts as mastering the Acid element
 
 # 0.6.5

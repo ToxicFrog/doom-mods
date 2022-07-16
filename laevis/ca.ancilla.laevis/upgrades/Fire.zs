@@ -22,8 +22,10 @@
 
 class ::IncendiaryShots : ::ElementalUpgrade {
   override void OnDamageDealt(Actor player, Actor shot, Actor target, int damage) {
-    // TODO: softcap support
-    ::Dot.GiveStacks(player, target, "::FireDot", level*damage*0.2);
+    // Apply stacks equal to 20% of damage per level.
+    // Softcap == level -- since fire never burns out we can afford to set it pretty low
+    // and gradually turn up the heat.
+    ::Dot.GiveStacks(player, target, "::FireDot", level*damage*0.2, level);
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {

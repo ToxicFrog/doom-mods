@@ -31,27 +31,49 @@ class ::Dot : Inventory {
     SetStateLabel("Dot");
   }
 
+  // Convert between effective stacks (i.e. the amount stored in self.stacks and
+  // used for damage calculations and whatnot) and applied stacks (i.e. the amount
+  // actually applied by the player before softcapping is calculated).
+  // We need both because some things (stacks ticking down with time) modify the
+  // effective stacks and other things (attacks with elemental procs) modify the
+  // applied stacks.
+  // Softcap is defined by the curve y = log10(x^2.1)+1 {x>1}, where x is the
+  // applied stacks as a proportion of cap (so as/cap) and y is the same for
+  // effective stacks.
+  static double EffectiveToApplied(double es, double cap) {
+    if (es <= cap) return es;
+    return (10.0**(((es/cap) - 1)/2.1)) * cap;
+  }
+
+  static double AppliedToEffective(double as, double cap) {
+    if (as <= cap) return as;
+    return (log10((as/cap)**2.1)+1) * cap;
+  }
+
+  // Calculate how many stacks we should end up with taking diminishing returns
+  // once the softcap is exceeded into account.
+  void AddStacks(double extra, double cap) {
+    self.stacks = AppliedToEffective(
+      EffectiveToApplied(self.stacks, cap) + extra,
+      cap);
+  }
+
   // Give count stacks of cls to the target, but don't let their total amount
   // exceed max. Assign the dot's parent (via the target pointer) to owner, so
   // that damage it deals is properly attributed.
   static ::Dot GiveStacks(Actor owner, Actor target, string cls, double count, double max = double.infinity) {
     DEBUG("GiveStacks: %f of %s", count, cls);
     ::Dot item = ::Dot(target.FindInventory(cls));
-    if (item) {
-      item.stacks = min(item.stacks + count, max);
-      DEBUG(" -> stacks=%f", item.stacks);
-      return item;
-    } else {
-      item = ::Dot(target.GiveInventoryType(cls));
-      if (item) {
-        item.target = owner;
-        item.stacks = min(count, max);
-        DEBUG(" -> stacks=%d", item.stacks);
-        return item;
-      }
+    if (!item) item = ::Dot(target.GiveInventoryType(cls));
+    if (!item) {
+      // Couldn't find it or give them a new one!
       DEBUG(" -> failed to GiveInventoryType!");
       return null;
     }
+
+    item.target = owner;
+    item.AddStacks(count, max);
+    return item;
   }
 
   // Count how many stacks of the dot the target has. Return 0 if they don't have

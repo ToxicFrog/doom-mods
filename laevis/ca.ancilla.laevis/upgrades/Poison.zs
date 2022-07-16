@@ -20,8 +20,10 @@
 class ::PoisonShots : ::ElementalUpgrade {
   override void OnDamageDealt(Actor player, Actor shot, Actor target, int damage) {
     if (!shot) return;
-    ::Dot.GiveStacks(player, target, "::PoisonDot", level*2.0);
-    DEBUG("Gave %s %d stacks", target.GetClassName(), level*2.0);
+    // Apply one stack (== 1 second or about 2 points of damage) per shot.
+    // Softcap at 10*level.
+    ::Dot.GiveStacks(player, target, "::PoisonDot", level, 10*level);
+    DEBUG("Gave %s %d stacks", target.GetClassName(), level);
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
@@ -71,7 +73,6 @@ class ::Putrefaction : ::ElementalUpgrade {
   }
 }
 
-// Poison DoT. Note that it burns one stack per dot tick, so 5 stacks == 1 second.
 class ::PoisonDot : ::Dot {
   uint weakness;
   uint hallucinogens;
