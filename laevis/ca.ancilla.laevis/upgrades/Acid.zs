@@ -93,27 +93,32 @@ class ::AcidDot : ::Dot {
   void DamageToStacks() {
     if (damage_this_tick > 0) {
       // We've tallied up all the damage taken this tick.
-      // Convert it into actual acid stacks at a rate of 50% per damage per level.
+      // Convert it into actual acid stacks at a rate of 50%+10%/level of damage dealt,
+      // and a softcap equivalent to the damage dealt.
       double new_stacks = damage_this_tick * (0.5 + 0.1 * level);
-      double cap = new_stacks;
+      double cap = damage_this_tick;
       DEBUG("acid: stacks=%f, damage=%f, added=%f", stacks, damage_this_tick, new_stacks);
 
-      // If the cap set by this attack exceeds the current number of stacks, set
-      // the number of stacks to the new cap.
-      if (stacks < cap) {
-        new_stacks = stacks;
-        stacks = cap;
-      }
+      let old_stacks = stacks;
+      AddStacks(new_stacks, cap);
+      // We tried to apply new_stacks, the amount actually added is stacks - old_stacks.
+      // So our surplus is:
+      let surplus = new_stacks - (stacks - old_stacks);
 
-      DEBUG("acid: now stacks=%f, surplus=%f", stacks, new_stacks);
+      DEBUG("acid: now stacks=%f, surplus=%f", stacks, surplus);
 
       // If there's excess stacks and we have Acid Spray, proc it.
-      if (new_stacks > 0 && splash > 0) {
-        DEBUG("Acid Spray! %d", stacks);
+      if (surplus > 1 && splash > 0) {
+        DEBUG("Acid Spray! %d", surplus);
         let aux = ::AcidSpray::Aux(owner.Spawn("::AcidSpray::Aux", owner.pos));
-        aux.level = self.splash;
-        aux.stacks = new_stacks;
-        aux.cap = self.splash * damage_this_tick * 0.5;
+        // Copy parameters from self.
+        aux.target = self.target;
+        aux.level = self.level;
+        aux.splash = self.splash;
+        aux.concentration = self.concentration;
+        // Splash-specific parameters.
+        aux.stacks = surplus;
+        aux.softcap = cap * self.splash * 0.2;
       }
       damage_this_tick = 0;
     }
@@ -179,13 +184,13 @@ class ::AcidDot : ::Dot {
 }
 
 class ::AcidSpray::Aux : Actor {
-  uint level; // level of Acid Spray
-  double stacks; // total amount of acid we have to disburse
-  double cap; // max acid we can apply to any one target
+  double stacks; // amount of acid to stack on each target
+  double softcap; // softcap to apply to targets.
+  uint level, concentration, splash; // copied from original dot
 
   Default {
     RenderStyle "Translucent";
-    Alpha 0.1;
+    Alpha 0.2;
     +NODAMAGETHRUST;
     +NOGRAVITY;
   }
@@ -195,13 +200,11 @@ class ::AcidSpray::Aux : Actor {
   }
 
   override int DoSpecialDamage(Actor target, int damage, Name damagetype) {
-    if (stacks <= 0) return 0;
-    double count = ::Dot.CountStacks(target, "::AcidDot");
-    if (count >= cap) return 0;
-    DEBUG("Acid Spray spreading: %f (%f left, cap=%f)", (cap-count), stacks, cap);
-    let acid = ::AcidDot(::Dot.GiveStacks(self.target, target, "::AcidDot", stacks, cap));
+    if (!target.bISMONSTER) return 0;
+    let acid = ::AcidDot(::Dot.GiveStacks(self.target, target, "::AcidDot", stacks, softcap));
     acid.level = max(acid.level, level);
-    stacks -= (cap - count);
+    acid.concentration = max(acid.concentration, concentration);
+    acid.splash = max(acid.splash, splash);
     return 0;
   }
 

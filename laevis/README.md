@@ -269,7 +269,7 @@ Each level increases the threshold at which acid damage starts accelerating by 1
 
 ### Acid Spray *(Acid mastery)*
 
-Attacks that exceed the acid cap for the target will splash the acid onto nearby enemies instead. Spray range and the level of the applied acid depends on your level of Acid Spray.
+Attacks that exceed the acid softcap for the target will splash acid onto nearby enemies instead. Spray range and the level of the applied acid depends on your level of Acid Spray. The amount of acid applied depends on how much you've exceeded the softcap by and how much acid you applied in that attack; both doing more damage and exceeding the softcap by more will increase the splash amount.
 
 ### Embrittlement *(Acid mastery)*
 

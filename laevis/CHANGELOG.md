@@ -3,6 +3,10 @@
 - Change: softcap mechanic for elemental effects
   - Elemental stacks no longer have a hard cap, but suffer rapidly diminishing
     returns once they go above the soft cap
+- Change: Acid Spray sprays less acid, but applies it to all enemies in range
+  rather than being able to "run out" of acid.
+- Fix: acid applied by Acid Spray inherits the Concentrated Acid level of the
+  original acid effect.
 - Fix: learning Acid Spray now properly counts as mastering the Acid element
 
 # 0.6.5
