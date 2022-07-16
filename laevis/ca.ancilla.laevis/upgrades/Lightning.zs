@@ -355,7 +355,10 @@ class ::Thunderbolt::Aux : Actor {
   override void PostBeginPlay() {
     DEBUG("Thunderbolt PostBeginPlay");
     // TODO: fancy expanding ring of particles around the target
+    let shootable = tracer.bSHOOTABLE;
+    tracer.bSHOOTABLE = false;
     for (uint i = 0; i < 16; ++i) {
+      // Vertical floor-to-ceiling lightning bolt
       self.Warp(tracer,
         random(-tracer.radius/2, tracer.radius/2),
         random(-tracer.radius/2, tracer.radius/2),
@@ -363,15 +366,23 @@ class ::Thunderbolt::Aux : Actor {
       DEBUG("Thunderbolt @[%d,%d,%d]",
         pos.x, pos.y, pos.z);
       self.A_CustomRailgun(
-        0, 0, "", GetParticleColour(),
+        1, 0, "", GetParticleColour(),
         RGF_SILENT|RGF_FULLBRIGHT|RGF_EXPLICITANGLE|RGF_CENTERZ,
         0, 10, // aim and jaggedness
         "BulletPuff", // pufftype
-        0, -90, //spread
+        0, -90, //spread and pitch
         0, 35*2, // range and duration
         0.5, // particle spacing
         0.2 // drift speed
         );
+      tracer.A_SpawnParticle(
+        GetParticleColour(), SPF_FULLBRIGHT|SPF_RELVEL|SPF_RELACCEL,
+        70, 10, random(0,360), // lifetime, size, angle
+        0, 0, tracer.height/2, // position
+        // random(-owner.radius, owner.radius), random(-owner.radius, owner.radius), random(0, owner.height),
+        2, 0, 0, // v
+        -2/35, 0, 0); // a
     }
+    tracer.bSHOOTABlE = shootable;
   }
 }
