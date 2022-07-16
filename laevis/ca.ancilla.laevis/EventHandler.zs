@@ -117,8 +117,7 @@ class ::EventHandler : StaticEventHandler {
       let info = ::PerPlayerStats.GetStatsFor(players[evt.player].mo)
           .GetInfoForCurrentWeapon();
       info.upgrades.Add("::Upgrade::ShockingInscription", 2);
-      info.upgrades.Add("::Upgrade::Revivification", 10);
-      info.upgrades.Add("::Upgrade::Thunderbolt", 2);
+      info.upgrades.Add("::Upgrade::ChainLightning", 1);
     }
   }
 

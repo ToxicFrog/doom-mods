@@ -1,8 +1,15 @@
 # 0.7.0
 
+- New: Lightning tree
+  - Shocking Inscription paralyzes enemies on hit
+  - Revivification brings back slain enemies to serve you
+  - Chain Lightning electrocutes entire rooms
+  - Thunderbolt smites your target after repeated attacks
 - Change: softcap mechanic for elemental effects
   - Elemental stacks no longer have a hard cap, but suffer rapidly diminishing
     returns once they go above the soft cap
+  - Some effects are linked to exceeding the cap, e.g. Thunderbolt triggers when
+    you have twice as many stacks as the softcap on the target
 - Change: Acid Spray sprays less acid, but applies it to all enemies in range
   rather than being able to "run out" of acid.
 - Fix: acid applied by Acid Spray inherits the Concentrated Acid level of the

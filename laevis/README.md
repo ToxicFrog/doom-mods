@@ -274,3 +274,23 @@ Attacks that exceed the acid softcap for the target will splash acid onto nearby
 ### Embrittlement *(Acid mastery)*
 
 Enemies with acid stacks on them take 1% more damage from all sources per stack. Enemies with low enough HP die instantly; the threshold is based on the number of acid stacks and your Concentrated Acid and Embrittlement levels.
+
+## Lightning
+
+Lightning does no additional damage on its own, but paralyzes targets. Stacks are applied based on weapon damage and capped based on skill level, so it should be effective with both rapid-fire and single-shot guns.
+
+### Shocking Inscription *(Lightning basic upgrade)*
+
+Shots paralyze enemies (in addition to doing their normal amount of damage). Paralysis is softcapped at 1 second per upgrade level.
+
+### Revivification *(Lightning intermediate upgrade)*
+
+Slain enemies have a chance of coming back as ghostly minions. The chance of coming back increases with both the number of lightning stacks and the level of Revivification; the latter also gives revived minions a bonus to damage and armour. You can freely walk through your minions (so they can't block important doorways), and while they are capable of friendly fire they will never do more than 1 damage to you. (They take full damage from your attacks, however.)
+
+### Chain Lightning *(Lightning mastery)*
+
+Slain enemies release a burst of chain lightning that arcs between targets. Chain length is based on upgrade level; chain damage is based on how much health the dead enemy had, how many lightning stacks it had on it, and how many enemies are caught in the chain in total. It cannot arc to you.
+
+### Thunderbolt *(Lightning mastery)*
+
+Once you sufficiently exceed the lightning softcap on a target, it is struck by lightning, taking damage based on its max health and your level of Thunderbolt, with a bonus based on how many lightning stacks it has. This clears all lightning stacks on the target.
