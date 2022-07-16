@@ -233,7 +233,7 @@ Attacking a burning enemy gives you a stacking bonus to attack and defence that 
 
 ## Poison
 
-Poison is a weak and short-lived damage-over-time effect, but adding more stacks increases both the duration and the damage per second. Damage has diminishing returns, but with no upper bound.
+Poison is a weak and short-lived damage-over-time effect, but adding more stacks increases both the duration and the damage per second. Both have diminishing returns, but with no upper bound.
 
 The amount of stacks applied is independent of weapon damage, so it's best used with rapid-fire weapons like the chaingun and plasma rifle.
 
@@ -257,13 +257,13 @@ Once an enemy has enough poison stacks on it to eventually kill it, it fights on
 
 Acid stacks are slowly converted into damage on a 1:1 basis, but the less health the target has and the more acid stacks they have, the faster this happens.
 
-Acid stacks have a cap based on the damage dealt by the attack that inflicted them, so they're best used with weapons that have high per-shot damage like the rocket launcher and SSG. (For shotguns, the total damage of all the pellets that hit is used, not the per-pellet damage.)
+Acid stacks have a soft cap based on the damage dealt by the attack that inflicted them, so they're best used with weapons that have high per-shot damage like the rocket launcher and SSG. (For shotguns, the total damage of all the pellets that hit is used, not the per-pellet damage.)
 
 ### Corrosive Inscription *(Acid basic upgrade)*
 
 Shots poison enemies. The amount of acid applied, and the cap, is 50% of the damage dealt, increased by another 50% per level.
 
-### Concentrated Acid *(Acid mastery)*
+### Concentrated Acid *(Acid intermediate upgrade)*
 
 Each level increases the threshold at which acid damage starts accelerating by 10%, and the ratio at which acid stacks are converted into damage by 10%. Both have diminishing returns.
 
