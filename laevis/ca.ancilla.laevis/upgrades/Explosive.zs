@@ -21,7 +21,6 @@ class ::ExplosiveShots : ::BaseUpgrade {
   }
 }
 
-// TODO: this should propagate effects like poison
 class ::ExplosiveShots::Boom : Actor {
   uint level;
   uint damage;

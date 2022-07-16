@@ -13,14 +13,38 @@ Remaining upgrades:
 - regeneration?
 
 Gameplay changes:
-- pick from four upgrades?
 - do another pass over the prerequisites. Graph paper? submunitions/expldeath should mutex, for example
+- add "eat weapons to gain their power" feature to LD integration
 
 Internal changes:
-- rewrite upgrade generation to build the sublist, then pick from it; swap picked items to the end; properly handle case where number of available upgrades is less than desired
+- all done!
 
 UI changes:
 - all done!
+
+Structural changes:
+- split Laevis (legendoom integration) & Gun Bonsai (weapon leveling) into separate mods
+
+## Splitting Laevis into its own mod
+
+Laevis features:
+- eat LD weapons to add their powers to your own weapon
+- switch between powers
+
+Gun Bonsai features:
+- leveling up LD weapons adds new powers
+
+## Damage numbers
+
+http://www.doom2.net/single/weaponfaq.html has some useful values for attack rates, DPS, etc that can be used for balancing.
+
+DPS: 22/88, 25, 68/147, 88, 159+220, 263
+RPM: 120/480, 150, 58/42, 530, 106, 700
+
+I really need to implement softcap support!
+
+20% damage -> stacks with 35 stacks/second decay == 175 dps for steady state
+5 stacks/second decay (using TickDot()) -> 25 dps for steady state
 
 # Implementation notes for doing it as an addon to LD
 
@@ -165,6 +189,12 @@ LIGHTNING:
 - upgrade: attacks that apply lightning also do damage, or maybe attacks that DON'T apply lightning do bonus damage? attacks release ball lightning?
 - AoE capstone: lightning nova that damages and stuns when certain stack-application breakpoints are reached
 - single-target capstone: enemies killed with enough lightning stacks rise as your minions
+
+Ok, after playing Amid Evil for a while and meditating on the concept of lightning, I have a reworked design for the shock tree, tentatively planned for v0.7:
+- Lightning Inscription: attacks do no extra damage but stun enemies. Stun duration per hit scales with damage, max stun duration scales with upgrade level.
+- Reanimation: enemies killed with lightning stacks on them have a chance to rise as your minions.
+- Chain Lightning: enemies killed with lightning stacks on them chain lightning to nearby enemies. Total jump count scales with level; damage scales with total number of enemies caught in the chain. No effect on single targets, get a few levels in this and try it in Okuplok and you'll gib everything on the screen (and your CPU)
+- Thunderbolt: capping out the lightning stacks on a target converts all of them into damage (possibly based on a % of its health). Mutually exclusive with Chain Lightning.
 
 ## Avoiding infinite recursion
 

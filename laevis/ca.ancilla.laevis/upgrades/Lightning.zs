@@ -17,12 +17,15 @@
 #namespace TFLV::Upgrade;
 #debug on
 
+// TODO:
+// - implement chain lightning
+
 class ::ShockingInscription : ::ElementalUpgrade {
   override void OnDamageDealt(Actor player, Actor shot, Actor target, int damage) {
-    // TODO: softcap support
-    // Stack 20% of damage * 200ms of stun, hardcap at 1s + 1s/level
-    let thedot = ::ShockDot(::Dot.GiveStacks(player, target, "::ShockDot", level*damage*0.2, 5+level*5));
-    thedot.cap = 5+level*5;
+    // Stack 20% of damage * 200ms of stun, softcap at 1s/level
+    let zap = ::ShockDot(::Dot.GiveStacks(
+      player, target, "::ShockDot", level*damage*0.2, level*5));
+    zap.cap = level*5;
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
@@ -60,16 +63,20 @@ class ::Thunderbolt : ::DotModifier {
   override void ModifyDot(Actor player, Actor shot, Actor target, int damage, ::Dot dot_item) {
     let shock = ::ShockDot(dot_item);
     DEBUG("Thunderbolt: %d/%d", shock.stacks, shock.cap);
-    if (shock.stacks > shock.cap-1) {
-      // Trigger the thunderbolt!
-      // Damage is number of stacks × (1% of target's health per level) with diminishing returns
-      // TODO: once softcap support is implemented, this should bleed off stacks over the softcap
-      // rather than all stacks.
+    // Thunderbolt triggers once you exceed the softcap by 2x
+    if (shock.stacks > shock.cap*2) {
+      // Base damage is 10% of the target's max health per level, with diminishing
+      // returns.
+      let damage = target.SpawnHealth() * (1.0 - 0.9**level);
+      DEBUG("Target mhp=%d, bolt=%d", target.SpawnHealth(), damage);
+      // It then gets a bonus of +1% damage per stack, minimum 1 point of damage
+      // per stack.
+      damage += max(shock.stacks, damage * 0.01 * shock.stacks);
+      DEBUG("Damage after stack bonus=%d", damage);
+
       let aux = ::Thunderbolt::Aux(target.Spawn("::Thunderbolt::Aux", target.pos));
       aux.target = player;
       aux.tracer = target;
-      let damage = floor(target.SpawnHealth() * 0.01 * shock.stacks * level);
-      DEBUG("Krakoom! You smite the %s for %d damage.", target.GetTag(), damage);
       target.DamageMobj(aux, player, damage, "Electric", DMG_THRUSTLESS);
       shock.stacks = 0;
     }
