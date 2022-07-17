@@ -15,7 +15,6 @@
 // MASTER: THUNDERBOLT
 // Capping out the lightning stacks on a target converts all of them into damage.
 #namespace TFLV::Upgrade;
-#debug off
 
 class ::ShockingInscription : ::ElementalUpgrade {
   override void OnDamageDealt(Actor player, Actor shot, Actor target, int damage) {

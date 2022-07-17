@@ -1,5 +1,4 @@
 #namespace TFLV::Upgrade;
-#debug on
 
 class ::Submunitions : ::BaseUpgrade {
   override ::UpgradePriority Priority() { return ::PRI_EXPLOSIVE; }
