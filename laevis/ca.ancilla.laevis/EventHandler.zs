@@ -117,7 +117,7 @@ class ::EventHandler : StaticEventHandler {
       let stats = ::PerPlayerStats.GetStatsFor(players[evt.player].mo);
       let info = stats.GetInfoForCurrentWeapon();
       stats.upgrades.Add("::Upgrade::AmmoLeech", 1);
-      // info.upgrades.Add("::Upgrade::Submunitions", 2);
+      info.upgrades.Add("::Upgrade::Submunitions", 2);
     }
   }
 

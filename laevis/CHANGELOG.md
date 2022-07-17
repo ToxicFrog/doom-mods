@@ -5,9 +5,10 @@
   - Revivification brings back slain enemies to serve you
   - Chain Lightning electrocutes entire rooms
   - Thunderbolt smites your target after repeated attacks
+- New: Submunitions, causing enemies to release explosives when killed.
+- New: Scavenge Lead, which causes enemies to drop ammo when killed.
 - Change: Life Leech and Armour Leech replaced with Scavenge Blood and Scavenge Steel
   - Rather than restoring on attack, enemies drop restorative items.
-- New: Scavenge Lead, which causes enemies to drop ammo when killed.
 - Change: softcap mechanic for elemental effects
   - Elemental stacks no longer have a hard cap, but suffer rapidly diminishing
     returns once they go above the soft cap

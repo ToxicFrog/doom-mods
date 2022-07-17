@@ -8,9 +8,10 @@ class ::Submunitions : ::BaseUpgrade {
     let aux = ::Submunitions::Spawner(target.Spawn("::Submunitions::Spawner", target.pos));
     aux.special1 = Priority();
     aux.target = player;
+    aux.tracer = target;
     aux.level = level;
-    aux.damage = (target.SpawnHealth() + abs(target.health)) * (1.0 - 0.8 ** level);
-    aux.radius = 30;
+    aux.damage = abs(target.health) + 5*level; // (target.SpawnHealth()) * (1.0 - 0.8 ** level);
+    aux.blast_radius = target.radius*1.5;
     DEBUG("Created SubmunitionSpawner");
   }
 
@@ -23,7 +24,7 @@ class ::Submunitions : ::BaseUpgrade {
 class ::Submunitions::Spawner : Actor {
   uint level;
   uint damage;
-  uint radius;
+  uint blast_radius;
 
   States {
     Spawn:
@@ -34,55 +35,57 @@ class ::Submunitions::Spawner : Actor {
 
   void SpawnMunitions() {
     for (uint i = 0; i < level * 4; ++i) {
-      let aux = ::Submunitions::Aux(target.A_SpawnProjectile(
-        "::Submunitions::Aux", 32, 0, random(0,360),
+      let aux = ::Submunitions::Grenade(tracer.A_SpawnProjectile(
+        "::Submunitions::Grenade", 32, 0, random(0,360),
         CMF_AIMDIRECTION|CMF_ABSOLUTEANGLE));
       aux.special1 = special1;
       aux.target = target;
       aux.level = level;
       aux.damage = damage;
-      aux.radius = radius;
-      DEBUG("Created submunition: level=%d power=%d overkill=%d",
-        aux.level, aux.damage, abs(target.health));
+      aux.blast_radius = blast_radius;
+      DEBUG("Created submunition: level=%d power=%d",
+        aux.level, aux.damage);
     }
   }
 }
 
-class ::Submunitions::Aux : Actor {
+class ::Submunitions::Grenade : Actor {
   uint level;
   uint damage;
-  uint radius;
+  uint lifetime;
+  uint blast_radius;
 
   Default {
-    Radius 30;
-    Height 60;
+    Radius 12;
+    Height 24;
     Speed 15;
     Scale 0.4;
     DamageType "Extreme";
     Projectile;
-    +FLOORHUGGER;
+    // +FLOORHUGGER;
     +SEEKERMISSILE;
-    BounceType "Doom";
+    +NODAMAGETHRUST;
+    -NOGRAVITY;
+    BounceType "Grenade";
     BounceFactor 1.0;
   }
 
-  override int DoSpecialDamage(Actor target, int damage, Name damagetype) {
-    if (target == self.target) {
-      return damage * (0.5 ** self.level);
-    }
-    return damage;
+  override void PostBeginPlay() {
+    // Counts down five times a second, so this gives it a duration of 5 seconds
+    // per level.
+    self.ReactionTime = level * 5 * 5;
   }
 
   States {
     Spawn:
-      PINS DCBA 7 A_SeekerMissile(1, 1, SMF_LOOK);
+      LSUB DCBA 7 A_CountDown();
       LOOP;
     Death:
-      LFBX A 0 A_Explode(damage, radius, XF_HURTSOURCE|XF_NOSPLASH);
+      LFBX A 0 A_Explode(damage, blast_radius, XF_NOSPLASH, false, blast_radius/4);
       LFBX A 0 A_AlertMonsters();
       // TODO: include a suitable sound effect
-      TNT1 A 0 A_StartSound("imp/shotx", CHAN_WEAPON, CHANF_OVERLAP, 1, 0.5);
-      TNT1 A 0 A_StartSound("imp/shotx", CHAN_7, CHANF_OVERLAP, 0.1, 0.01);
+      LFBX A 0 A_StartSound("imp/shotx", CHAN_WEAPON, CHANF_OVERLAP, 1, 0.5);
+      LFBX A 0 A_StartSound("imp/shotx", CHAN_7, CHANF_OVERLAP, 0.1, 0.01);
       LFBX ABC 7 Bright;
       STOP;
   }

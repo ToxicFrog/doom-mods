@@ -195,6 +195,10 @@ When killed, enemies drop an armour bonus worth 2% of their max health.
 
 Reduces incoming damage by 50% (at level 1) or 75% (at level 2).
 
+### Submunitions *(Weapon only)*
+
+Killing an enemy releases a pile of bouncing explosives. Damage depends on level and how much you overkilled the enemy by; increasing level also increases the number of submunitions.
+
 ### Swiftness *(Melee only)*
 
 Killing an enemy gives you a brief moment of time freeze (and some brief slow-mo as it wears off). Killing multiple enemies in rapid succession will extend the duration, as will increasing the level of Swiftness.
