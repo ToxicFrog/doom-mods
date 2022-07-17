@@ -183,6 +183,10 @@ Reduces incoming damage by 5%. This has diminishing returns as you take more lev
 
 When killed, enemies drop a health bonus worth 1% of their max health.
 
+### Scavenge Lead *(Player only)*
+
+When killed, enemies drop a random ammo item matching a type of ammo you already have. Note that cheats like `give ammo` will confuse it by giving you ammo from other IWADs, but in normal play it should only give you ammo you've already found prior examples of.
+
 ### Scavenge Steel *(Player only)*
 
 When killed, enemies drop an armour bonus worth 2% of their max health.
