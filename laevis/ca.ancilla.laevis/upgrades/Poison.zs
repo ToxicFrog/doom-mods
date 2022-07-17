@@ -18,6 +18,7 @@
 #debug off
 
 class ::PoisonShots : ::ElementalUpgrade {
+  override ::UpgradeElement Element() { return ::ELEM_POISON; }
   override void OnDamageDealt(Actor player, Actor shot, Actor target, int damage) {
     if (!shot) return;
     // Apply one stack (== 1 second or about 2 points of damage) per shot.
@@ -25,13 +26,10 @@ class ::PoisonShots : ::ElementalUpgrade {
     ::Dot.GiveStacks(player, target, "::PoisonDot", level, 10*level);
     DEBUG("Gave %s %d stacks", target.GetClassName(), level);
   }
-
-  override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
-    return ::ElementalUpgrade.CanAcceptElement(info, "Poison");
-  }
 }
 
 class ::Weakness : ::DotModifier {
+  override ::UpgradeElement Element() { return ::ELEM_POISON; }
   override string DotType() { return "::PoisonDot"; }
 
   override void ModifyDot(Actor player, Actor shot, Actor target, int damage, ::Dot dot_item) {
@@ -44,6 +42,7 @@ class ::Weakness : ::DotModifier {
 }
 
 class ::Hallucinogens : ::DotModifier {
+  override ::UpgradeElement Element() { return ::ELEM_POISON; }
   override string DotType() { return "::PoisonDot"; }
 
   override void ModifyDot(Actor player, Actor shot, Actor target, int damage, ::Dot dot_item) {
@@ -57,6 +56,7 @@ class ::Hallucinogens : ::DotModifier {
 }
 
 class ::Putrefaction : ::ElementalUpgrade {
+  override ::UpgradeElement Element() { return ::ELEM_POISON; }
   override void OnKill(Actor player, Actor shot, Actor target) {
     double stacks = ::Dot.CountStacks(target, "::PoisonDot");
     DEBUG("killed %s, poison stacks=%d", TFLV::Util.SafeCls(target), stacks);

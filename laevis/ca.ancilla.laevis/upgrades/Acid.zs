@@ -22,18 +22,16 @@
 #debug off
 
 class ::CorrosiveShots : ::ElementalUpgrade {
+  override ::UpgradeElement Element() { return ::ELEM_ACID; }
   override void OnDamageDealt(Actor player, Actor shot, Actor target, int damage) {
     let ad = ::AcidDot(::Dot.GiveStacks(player, target, "::AcidDot", 0));
     ad.damage_this_tick += damage;
     ad.level = level;
   }
-
-  override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
-    return CanAcceptElement(info, "Acid");
-  }
 }
 
 class ::ConcentratedAcid : ::DotModifier {
+  override ::UpgradeElement Element() { return ::ELEM_ACID; }
   override string DotType() { return "::AcidDot"; }
 
   override void ModifyDot(Actor player, Actor shot, Actor target, int damage, ::Dot dot_item) {
@@ -46,6 +44,7 @@ class ::ConcentratedAcid : ::DotModifier {
 }
 
 class ::AcidSpray : ::DotModifier {
+  override ::UpgradeElement Element() { return ::ELEM_ACID; }
   override string DotType() { return "::AcidDot"; }
 
   override void ModifyDot(Actor player, Actor shot, Actor target, int damage, ::Dot dot_item) {
@@ -58,6 +57,7 @@ class ::AcidSpray : ::DotModifier {
 }
 
 class ::Embrittlement : ::DotModifier {
+  override ::UpgradeElement Element() { return ::ELEM_ACID; }
   override string DotType() { return "::AcidDot"; }
 
   override void ModifyDot(Actor player, Actor shot, Actor target, int damage, ::Dot dot_item) {

@@ -21,19 +21,17 @@
 #debug off
 
 class ::IncendiaryShots : ::ElementalUpgrade {
+  override ::UpgradeElement Element() { return ::ELEM_FIRE; }
   override void OnDamageDealt(Actor player, Actor shot, Actor target, int damage) {
     // Apply stacks equal to 20% of damage per level.
     // Softcap == level -- since fire never burns out we can afford to set it pretty low
     // and gradually turn up the heat.
     ::Dot.GiveStacks(player, target, "::FireDot", level*damage*0.2, level);
   }
-
-  override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
-    return ::ElementalUpgrade.CanAcceptElement(info, "Fire");
-  }
 }
 
 class ::SearingHeat : ::DotModifier {
+  override ::UpgradeElement Element() { return ::ELEM_FIRE; }
   override string DotType() { return "::FireDot"; }
 
   override void ModifyDot(Actor player, Actor shot, Actor target, int damage, ::Dot dot_item) {
@@ -46,6 +44,7 @@ class ::SearingHeat : ::DotModifier {
 }
 
 class ::Conflagration : ::DotModifier {
+  override ::UpgradeElement Element() { return ::ELEM_FIRE; }
   override string DotType() { return "::FireDot"; }
 
   override void ModifyDot(Actor player, Actor shot, Actor target, int damage, ::Dot dot_item) {
@@ -58,6 +57,7 @@ class ::Conflagration : ::DotModifier {
 }
 
 class ::InfernalKiln : ::ElementalUpgrade {
+  override ::UpgradeElement Element() { return ::ELEM_FIRE; }
   double hardness;
 
   // Dealing damage to a burning enemy adds "kiln points" equal to 1% of the

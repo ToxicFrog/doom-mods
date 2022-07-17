@@ -5,8 +5,24 @@
 // can answer questions about themselves.
 #namespace TFLV::Upgrade;
 
+enum ::UpgradeElement {
+  ::ELEM_NULL,
+  ::ELEM_FIRE, ::ELEM_ACID, ::ELEM_POISON, ::ELEM_LIGHTNING,
+  ::ELEM_LAST
+}
+
 class ::ElementalUpgrade : ::BaseUpgrade {
   override ::UpgradePriority Priority() { return ::PRI_ELEMENTAL; }
+  virtual ::UpgradeElement Element() { return ::ELEM_NULL; }
+
+  // Suitable for base-level elemental upgrades, checks if the weapon is capable
+  // of accepting that element.
+  override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
+    ::UpgradeElement inprogress = GetElementInProgress(info.upgrades);
+    return inprogress == Element()
+      || info.upgrades.Level(GetClassName()) > 0
+      || (inprogress == ::ELEM_NULL && GetElementCount(info.upgrades) < 2);
+  }
 
   bool HasIntermediatePrereq(TFLV::WeaponInfo info, string basic) {
     return info.upgrades.Level(basic) >= 2
@@ -19,37 +35,39 @@ class ::ElementalUpgrade : ::BaseUpgrade {
       && info.upgrades.Level(alternate) == 0;
   }
 
-  static bool CanAcceptElement(TFLV::WeaponInfo info, string element) {
-    string inprogress = GetElementInProgress(info.upgrades);
-    return inprogress == element
-      || (inprogress == "" && GetElementCount(info.upgrades) < 2);
+  static uint CountElementLevels(::UpgradeBag upgrades, ::UpgradeElement elem) {
+    let n = 0;
+    for (uint i = 0; i < upgrades.upgrades.size(); ++i) {
+      let eu = ::ElementalUpgrade(upgrades.upgrades[i]);
+      if (eu && eu.Element() == elem) n += eu.level;
+    }
+    return n;
   }
 
   static uint GetElementCount(::UpgradeBag upgrades) {
     uint count = 0;
-    if (upgrades.Level("::IncendiaryShots") > 0) ++count;
-    if (upgrades.Level("::PoisonShots") > 0) ++count;
-    if (upgrades.Level("::CorrosiveShots") > 0) ++count;
-    if (upgrades.Level("::ShockingInscription") > 0) ++count;
+    for (::UpgradeElement elem = ::ELEM_NULL+1; elem < ::ELEM_LAST; ++elem) {
+      if (CountElementLevels(upgrades, elem) > 0) ++count;
+    }
     return count;
   }
 
   // A weapon should only ever have one element in progress, so we just return the
   // first one we find.
-  static string GetElementInProgress(::UpgradeBag upgrades) {
+  static ::UpgradeElement GetElementInProgress(::UpgradeBag upgrades) {
     if (upgrades.Level("::IncendiaryShots") > 0
         && (upgrades.Level("::Conflagration") + upgrades.Level("::InfernalKiln")) == 0)
-      return "Fire";
+      return ::ELEM_FIRE;
     if (upgrades.Level("::PoisonShots") > 0
         && (upgrades.Level("::Putrefaction") + upgrades.Level("::Hallucinogens")) == 0)
-      return "Poison";
+      return ::ELEM_POISON;
     if (upgrades.Level("::CorrosiveShots") > 0
         && (upgrades.Level("::Embrittlement") + upgrades.Level("::AcidSpray")) == 0)
-      return "Acid";
+      return ::ELEM_ACID;
     if (upgrades.Level("::ShockingInscription") > 0
         && (upgrades.Level("::ChainLightning") + upgrades.Level("::Thunderbolt")) == 0)
-      return "Lightning";
-    return "";
+      return ::ELEM_LIGHTNING;
+    return ::ELEM_NULL;
   }
 }
 

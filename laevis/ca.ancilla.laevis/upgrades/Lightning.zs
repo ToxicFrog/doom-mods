@@ -17,19 +17,17 @@
 #namespace TFLV::Upgrade;
 
 class ::ShockingInscription : ::ElementalUpgrade {
+  override ::UpgradeElement Element() { return ::ELEM_LIGHTNING; }
   override void OnDamageDealt(Actor player, Actor shot, Actor target, int damage) {
     // Stack 20% of damage * 200ms of stun, softcap at 1s/level
     let zap = ::ShockDot(::Dot.GiveStacks(
       player, target, "::ShockDot", level*damage*0.2, level*5));
     zap.cap = level*5;
   }
-
-  override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
-    return ::ElementalUpgrade.CanAcceptElement(info, "Lightning");
-  }
 }
 
 class ::Revivification : ::DotModifier {
+  override ::UpgradeElement Element() { return ::ELEM_LIGHTNING; }
   override string DotType() { return "::ShockDot"; }
 
   override void ModifyDot(Actor player, Actor shot, Actor target, int damage, ::Dot dot_item) {
@@ -42,6 +40,7 @@ class ::Revivification : ::DotModifier {
 }
 
 class ::ChainLightning : ::DotModifier {
+  override ::UpgradeElement Element() { return ::ELEM_LIGHTNING; }
   override string DotType() { return "::ShockDot"; }
 
   override void ModifyDot(Actor player, Actor shot, Actor target, int damage, ::Dot dot_item) {
@@ -54,6 +53,7 @@ class ::ChainLightning : ::DotModifier {
 }
 
 class ::Thunderbolt : ::DotModifier {
+  override ::UpgradeElement Element() { return ::ELEM_LIGHTNING; }
   override string DotType() { return "::ShockDot"; }
 
   override void ModifyDot(Actor player, Actor shot, Actor target, int damage, ::Dot dot_item) {
