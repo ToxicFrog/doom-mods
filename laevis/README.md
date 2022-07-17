@@ -135,10 +135,6 @@ Hitting an enemy flinches them for 2/5ths of a second. More levels increase the 
 
 Reduces incoming damage by 1 point per level. Cannot reduce it below 2.
 
-### Armour Leech *(Player only)*
-
-Restores armour when you attack, by 2% per level of the damage dealt.
-
 ### Beam *(Hitscan only)*
 
 Replaces the weapon's normal attack with a perfectly accurate beam that does reduced damage but goes through enemies. Increased level increases the damage dealt, with diminishing returns.
@@ -151,7 +147,7 @@ Shots bounce off walls. Higher levels increase the number of bounces and decreas
 
 Killing an enemy grants you health and armour equal to 5% of its max health. Unlike the health/armour leech upgrades, this ignores normal health/armour limits and can boost you even beyond Megasphere levels.
 
-### Damage
+### Damage *(No restrictions)*
 
 As a player upgrade, increases *all* damage you deal by 5% per level. As a weapon upgrade, increases damage dealt by *that weapon* by 10% per level. In either case it will always add at least one point of damage per level to each of your attacks.
 
@@ -175,10 +171,6 @@ Creates a small explosion on hit doing 40% of the original attack damage. More l
 
 Projectiles home in on enemies. Higher levels will lock on from further away and be more maneuverable when homing.
 
-### Life Leech *(Player only)*
-
-Restores health when you attack, by 1% per level of the damage dealt. Cannot exceed your normal health limit.
-
 ### Piercing Shots *(Projectile only)*
 
 Shots go through enemies (but not walls). Each level allows shots to go through one additional enemy. Note that most shots will hit enemies multiple times as they pass through, so this also acts as a damage bonus.
@@ -186,6 +178,14 @@ Shots go through enemies (but not walls). Each level allows shots to go through 
 ### Resistance *(Player only)*
 
 Reduces incoming damage by 5%. This has diminishing returns as you take more levels of it.
+
+### Scavenge Blood *(Player only)*
+
+When killed, enemies drop a health bonus worth 1% of their max health.
+
+### Scavenge Steel *(Player only)*
+
+When killed, enemies drop an armour bonus worth 2% of their max health.
 
 ### Shield *(Melee only, max two levels)*
 

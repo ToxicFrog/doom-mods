@@ -5,6 +5,8 @@
   - Revivification brings back slain enemies to serve you
   - Chain Lightning electrocutes entire rooms
   - Thunderbolt smites your target after repeated attacks
+- Change: Life Leech and Armour Leech replaced with Scavenge Blood and Scavenge Steel
+  - Rather than restoring on attack, enemies drop restorative items.
 - Change: softcap mechanic for elemental effects
   - Elemental stacks no longer have a hard cap, but suffer rapidly diminishing
     returns once they go above the soft cap

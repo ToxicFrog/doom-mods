@@ -1,15 +1,16 @@
-// TODO: might want to have separate weapon and player leeches with different
-// stats.
+// Health & armour leech abilities.
+// Actually cause enemies to drop bonus health/armour on death. Amount depends
+// on how powerful the enemy was.
 #namespace TFLV::Upgrade;
 
 class ::LifeLeech : ::BaseUpgrade {
-  double leech;
-  override void OnDamageDealt(Actor pawn, Actor shot, Actor target, int damage) {
-    leech += (damage * level * 0.01);
-    if (leech >= 1) {
-      pawn.GiveInventory("Health", floor(leech));
-      leech = leech - floor(leech);
-    }
+  override void OnKill(Actor player, Actor shot, Actor target) {
+    let hp = ::LifeLeech::Bonus(target.Spawn(
+      "::LifeLeech::Bonus",
+      (target.pos.x + random(-target.radius/2, target.radius/2),
+       target.pos.y + random(-target.radius/2, target.radius/2),
+       target.pos.z + target.height/2)));
+    hp.amount = target.SpawnHealth() * 0.01 * level;
   }
 
   override bool IsSuitableForPlayer(TFLV::PerPlayerStats stats) {
@@ -17,17 +18,29 @@ class ::LifeLeech : ::BaseUpgrade {
   }
 }
 
+class ::LifeLeech::Bonus : HealthBonus {
+  States {
+    Spawn:
+      LBHP ABCDCB 6;
+      LOOP;
+  }
+}
+
 class ::ArmourLeech : ::BaseUpgrade {
-  double leech;
-  override void OnDamageDealt(Actor pawn, Actor shot, Actor target, int damage) {
-    leech += (damage * level * 0.02);
-    if (leech >= 1) {
-      pawn.GiveInventory("ArmorBonus", floor(leech));
-      leech = leech - floor(leech);
-    }
+  override void OnKill(Actor player, Actor shot, Actor target) {
+    let ap = ::ArmourLeech::Bonus(target.Spawn("::ArmourLeech::Bonus", target.pos));
+    ap.SaveAmount = target.SpawnHealth() * 0.02 * level;
   }
 
   override bool IsSuitableForPlayer(TFLV::PerPlayerStats stats) {
     return true;
+  }
+}
+
+class ::ArmourLeech::Bonus : ArmorBonus {
+  States {
+    Spawn:
+      LBAP ABCDCB 6;
+      LOOP;
   }
 }
