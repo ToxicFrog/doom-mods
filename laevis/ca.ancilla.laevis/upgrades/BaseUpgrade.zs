@@ -56,11 +56,14 @@ class ::BaseUpgrade : Object play {
   // can proc elemental riders.
   // As a special case, upgrades with PRI_NULL can neither trigger nor be triggered
   // by other upgrades.
+  // CheckPriority is marked virtual so that upgrades doing weird things can
+  // override it to perform more complicated checking logic; see the
+  // ElementalBeam upgrade for an example of this.
   virtual ::UpgradePriority Priority() { return ::PRI_NULL; }
-  bool CheckPriority(Actor inflictor) {
+  virtual bool CheckPriority(Actor inflictor) {
     return !inflictor
       || inflictor.special1 == ::PRI_MISSING
-      || inflictor.special1 > Priority();
+      || (inflictor.special1 > Priority() && Priority() != ::PRI_NULL);
   }
 
   // Upgrade selection functions.
