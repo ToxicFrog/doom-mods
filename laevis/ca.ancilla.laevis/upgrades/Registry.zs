@@ -48,6 +48,7 @@ class ::Registry : Object play {
       "::PlayerDamage",
       "::Resistance",
       "::Shield",
+      //"::Submunitions", // kinda broken right now
       "::Swiftness",
       "::WeaponDamage",
       // Fire upgrades

@@ -51,7 +51,7 @@ class ::ExplosiveShots::Boom : Actor {
       // TODO: include a suitable sound effect
       TNT1 A 0 A_StartSound("imp/shotx", CHAN_WEAPON, CHANF_OVERLAP, 1, 0.5);
       TNT1 A 0 A_StartSound("imp/shotx", CHAN_7, CHANF_OVERLAP, 0.1, 0.01);
-      LFBX ABC 7;
+      LFBX ABC 7 Bright;
       STOP;
   }
 }

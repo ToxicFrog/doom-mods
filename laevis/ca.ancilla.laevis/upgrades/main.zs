@@ -12,6 +12,7 @@
 #include "./Leech.zsc"
 #include "./Melee.zsc"
 #include "./Simpleupgrades.zsc"
+#include "./Submunitions.zsc"
 
 #include "./Fire.zsc"
 #include "./Poison.zsc"
