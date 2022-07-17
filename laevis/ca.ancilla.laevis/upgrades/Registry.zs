@@ -70,7 +70,9 @@ class ::Registry : Object play {
       "::ShockingInscription",
       "::Revivification",
       "::ChainLightning",
-      "::Thunderbolt"
+      "::Thunderbolt",
+      // Dual-element power moves
+      "::ElementalBeam"
     };
     for (uint i = 0; i < UpgradeNames.size(); ++i) {
       upgrade_names.push(UpgradeNames[i]);

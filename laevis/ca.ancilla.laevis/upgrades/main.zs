@@ -18,3 +18,4 @@
 #include "./Poison.zsc"
 #include "./Acid.zsc"
 #include "./Lightning.zsc"
+#include "./ElementalSynthesis.zsc"

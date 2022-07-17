@@ -116,8 +116,10 @@ class ::EventHandler : StaticEventHandler {
     } else if (evt.name == "laevis_debug") {
       let stats = ::PerPlayerStats.GetStatsFor(players[evt.player].mo);
       let info = stats.GetInfoForCurrentWeapon();
-      stats.upgrades.Add("::Upgrade::AmmoLeech", 1);
-      info.upgrades.Add("::Upgrade::Submunitions", 2);
+      // stats.upgrades.Add("::Upgrade::AmmoLeech", 1);
+      info.upgrades.Add("::Upgrade::IncendiaryShots", 5);
+      info.upgrades.Add("::Upgrade::ShockingInscription", 5);
+      info.upgrades.Add("::Upgrade::ElementalBeam", 1);
     }
   }
 
