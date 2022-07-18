@@ -148,7 +148,7 @@ class ::AcidDot : ::Dot {
       damage = 0.2 * level; // 5 dot ticks per second
     } else {
       // Below that it scales up to 10*level
-      damage = max(0.2, (1-hp/threshold)*2*level);
+      damage = max(0.2, (1-hp/threshold)*2*max(1,level));
     }
     DEBUG("acid hp=%f threshold=%f stacks=%f damage=%f", hp, threshold, stacks, damage);
     damage = min(damage, stacks);

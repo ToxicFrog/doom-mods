@@ -72,7 +72,9 @@ class ::Registry : Object play {
       "::ChainLightning",
       "::Thunderbolt",
       // Dual-element power moves
-      "::ElementalBeam"
+      "::ElementalBeam",
+      "::ElementalBlast",
+      "::ElementalWave"
     };
     for (uint i = 0; i < UpgradeNames.size(); ++i) {
       upgrade_names.push(UpgradeNames[i]);

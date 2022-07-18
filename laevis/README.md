@@ -302,3 +302,7 @@ Slain enemies release a burst of chain lightning that arcs between targets. Chai
 ### Thunderbolt *(Lightning mastery)*
 
 Once you sufficiently exceed the lightning softcap on a target, it is struck by lightning, taking damage based on its max health and your level of Thunderbolt, with a bonus based on how many lightning stacks it has. This clears all lightning stacks on the target.
+
+## Elemental Sythesis Powers
+
+Once you have two elemental masteries on a weapon, you have a chance for one of these upgrades -- **Elemental Beam**, **Elemental Blast**, or **Elemental Wave** -- to show up. Each of these copies the elemental effects on whatever enemy you're attacking to other nearby enemies. Only the basic version of the element is copied -- for example, copied lightning won't proc **Thunderbolt** -- but this can still be quite powerful.

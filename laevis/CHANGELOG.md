@@ -5,6 +5,7 @@
   - Revivification brings back slain enemies to serve you
   - Chain Lightning electrocutes entire rooms
   - Thunderbolt smites your target after repeated attacks
+- New: Elemental Synthesis upgrades, available only on weapons with two elemental masteries
 - New: Submunitions, causing enemies to release explosives when killed.
 - New: Scavenge Lead, which causes enemies to drop ammo when killed.
 - Change: Life Leech and Armour Leech replaced with Scavenge Blood and Scavenge Steel

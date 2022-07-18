@@ -6,14 +6,15 @@
 // ELEMENTAL BLAST: projectile only. Copies to all enemies near target.
 // ELEMENTAL WAVE: melee only. Copies to all enemies near you.
 #namespace TFLV::Upgrade;
-#debug on
 
 class ::ElementalSynthesis : ::ElementalUpgrade {
   Array<::UpgradeElement> elements; // Primary and secondary elements
   override ::UpgradePriority Priority() { return ::PRI_NULL; }
 
-  bool HasTwoMasteries(::UpgradeBag bag) {
-    return GetElementCount(bag) >= 2 && GetElementInProgress(bag) == ::ELEM_NULL;
+  override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
+    return GetElementCount(info.upgrades) >= 2
+      && GetElementInProgress(info.upgrades) == ::ELEM_NULL
+      && info.upgrades.Level(GetClassName()) == 0;
   }
 
   override void OnDamageDealt(Actor pawn, Actor shot, Actor target, int damage) {
@@ -38,10 +39,12 @@ class ::ElementalSynthesis : ::ElementalUpgrade {
 
     DEBUG("CopyElements: %s <- %s", dst.GetTag(), src.GetTag());
     for (uint i = 0; i < elements.size(); ++i) {
-      let srcdot = ::Dot(src.FindInventory(dots[i]));
+      let dotname = dots[elements[i]];
+      DEBUG("Check for %s", dotname);
+      let srcdot = ::Dot(src.FindInventory(dotname));
       if (!srcdot) continue;
       DEBUG("  srcdot: %s", srcdot.GetTag());
-      let dstdot = ::Dot.GiveStacks(srcdot.target, dst, dots[i], 0);
+      let dstdot = ::Dot.GiveStacks(srcdot.target, dst, dotname, 0);
       dstdot.stacks = max(dstdot.stacks, srcdot.stacks);
       DEBUG("  afterwards dst stacks=%f", dstdot.amount);
     }
@@ -56,13 +59,16 @@ class ::ElementalBeam : ::ElementalSynthesis {
     return super.CheckPriority(inflictor);
   }
 
+  // TODO: spawn a separate actor that fires the beam and uses DoSpecialDamage
+  // to apply the effect.
   override void OnDamageDealt(Actor pawn, Actor shot, Actor target, int damage) {
     super.OnDamageDealt(pawn, shot, target, damage);
 
-    if (shot)
+    if (shot) {
       DEBUG("OnDamageDealt: %s for %d damage with %s", target.GetTag(), damage, shot.GetTag());
-    else
+    } else {
       DEBUG("OnDamageDealt: %s for %d damage", target.GetTag(), damage);
+    }
 
     if (shot && shot is "::ElementalBeam::Puff") {
       // Copy elements from original victim
@@ -81,15 +87,16 @@ class ::ElementalBeam : ::ElementalSynthesis {
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
-    return info.IsHitscanWeapon() && !info.weapon.bMELEEWEAPON && HasTwoMasteries(info.upgrades);
+    return super.IsSuitableForWeapon(info)
+      && info.IsHitscanWeapon()
+      && !info.weapon.bMELEEWEAPON;
   }
 }
 
 class ::ElementalBeam::Puff : BulletPuff {
   property UpgradePriority: special1;
-  Default {
-    ::ElementalBeam::Puff.UpgradePriority ::PRI_NULL;
-  }
+  Default { ::ElementalBeam::Puff.UpgradePriority ::PRI_NULL; }
+
   States {
     Spawn:
     Melee:
@@ -99,13 +106,78 @@ class ::ElementalBeam::Puff : BulletPuff {
 }
 
 class ::ElementalBlast : ::ElementalSynthesis {
+  override void OnDamageDealt(Actor pawn, Actor shot, Actor target, int damage) {
+    super.OnDamageDealt(pawn, shot, target, damage);
+    let aoe = ::ElementalSynthesis::AoE(target.Spawn(
+      "::ElementalSynthesis::Aoe",
+      (target.pos.x, target.pos.y, target.pos.z + target.height/2)));
+    aoe.src = target;
+    aoe.parent = self;
+  }
+
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
-    return info.IsProjectileWeapon() && HasTwoMasteries(info.upgrades);
+    return super.IsSuitableForWeapon(info)
+      && info.IsProjectileWeapon();
   }
 }
 
 class ::ElementalWave : ::ElementalSynthesis {
+  override void OnDamageDealt(Actor pawn, Actor shot, Actor target, int damage) {
+    super.OnDamageDealt(pawn, shot, target, damage);
+    let aoe = ::ElementalSynthesis::AoE(pawn.Spawn(
+      "::ElementalSynthesis::Aoe",
+      (pawn.pos.x, pawn.pos.y, pawn.pos.z + pawn.height/2)));
+    aoe.src = target;
+    aoe.parent = self;
+  }
+
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
-    return info.weapon.bMELEEWEAPON && HasTwoMasteries(info.upgrades);
+    return super.IsSuitableForWeapon(info)
+      && info.weapon.bMELEEWEAPON;
+  }
+}
+
+class ::ElementalSynthesis::AoE : Actor {
+  Actor src;
+  ::ElementalSynthesis parent;
+
+  property UpgradePriority: special1;
+  Default { ::ElementalSynthesis::AoE.UpgradePriority ::PRI_NULL; }
+
+  override void PostBeginPlay() {
+    self.SetStateLabel("Spawn");
+  }
+
+  override int DoSpecialDamage(Actor target, int damage, Name damagetype) {
+    DEBUG("DoSpecialDamage: AoE vs. %s", target.GetTag());
+    if (target != src && target.bISMONSTER) {
+      parent.CopyElements(src, target);
+    }
+    return 0;
+  }
+
+  void SpawnParticles() {
+    let range = src.radius * 5;
+    for (uint i = 0; i < 16; ++i) {
+      A_SpawnParticle(
+        parent.GetColour(0), SPF_FULLBRIGHT|SPF_RELVEL|SPF_RELACCEL,
+        35, 10, random(0,360), // lifetime, size, angle
+        0, 0, 0, // position
+        range/35.0, 0, 0, // v
+        0, 0, 0); // a
+      A_SpawnParticle(
+        parent.GetColour(1), SPF_FULLBRIGHT|SPF_RELVEL|SPF_RELACCEL,
+        35, 10, random(0,360), // lifetime, size, angle
+        0, 0, 0, // position
+        range/35.0, 0, 0, // v
+        0, 0, 0); // a
+    }
+  }
+
+  States {
+    Spawn:
+      TNT1 A 1 NoDelay SpawnParticles();
+      TNT1 A 1 A_Explode(1, src.radius * 5, XF_NOSPLASH, false, src.radius * 5);
+      STOP;
   }
 }
