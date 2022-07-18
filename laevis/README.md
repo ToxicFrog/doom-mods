@@ -10,7 +10,7 @@ Most settings are configurable through the gzDoom options menu and through cvars
 
 ## Installation & Setup
 
-Add `Laevis-<version>.pk3` to your load order. It doesn't matter where.
+Add `libtooltipmenu-<version>.pk3` and `Laevis-<version>.pk3` to your load order. It doesn't matter where, as long as `libtooltipmenu` loads first.
 
 The first time you play, check your keybindings for "Laevis - Display Info" and, if you're using Legendoom, "Laevis - Cycle Legendoom Weapon Effect" to make sure they're acceptable. You may also want to check the various settings under "Options - Laevis Mod Options".
 

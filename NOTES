@@ -3,7 +3,6 @@
 Remaining upgrades:
 - Ignition
 - max health increase
-- Elemental Beam/Blast/Wave
 - Shoryuken
 - explosive fragmentation -> hard to make work properly without most of the explosions hitting the target
 - extra life (Indestructable) -> moved to separate mod, but might still make sense as its own thing
@@ -13,9 +12,10 @@ Gameplay changes:
 - health/armour/ammo leech should turn into bonus drops from slain enemies
 - do another pass over the prerequisites. Graph paper? submunitions/expldeath should mutex, for example
 - add "eat weapons to gain their power" feature to LD integration
+- make fragmentation shots non-hitscan
 
 Internal changes:
-- all done!
+- factor out some shared code like "spawn a helper actor and set its target pointer appropriately", "spawn an expanding ring of particle effects", "do something to everything within a given radius", etc.
 
 UI changes:
 - all done!
