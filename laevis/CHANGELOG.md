@@ -20,6 +20,9 @@
 - Fix: acid applied by Acid Spray inherits the Concentrated Acid level of the
   original acid effect.
 - Fix: learning Acid Spray now properly counts as mastering the Acid element
+- Fix: damage dealt by DoTs should be less confusing to the "is it a hitscan or
+  a projectile weapon" code, hopefully fixing the issue where (e.g.) the rocket
+  launcher is misidentified as a hitscan weapon
 
 # 0.6.5
 

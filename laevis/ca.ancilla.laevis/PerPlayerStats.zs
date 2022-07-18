@@ -296,6 +296,8 @@ class ::PerPlayerStats : Inventory {
     // deciding what kinds of upgrades to spawn.
     let info = GetInfoForCurrentWeapon();
     if (!info) return;
+    // Don't count damage from special effects.
+    if (shot.special1 != ::Upgrade::PRI_MISSING) return;
     if (shot && shot.bMISSILE) {
       info.projectile_shots++;
     } else {
