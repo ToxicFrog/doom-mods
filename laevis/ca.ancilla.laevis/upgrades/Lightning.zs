@@ -117,7 +117,7 @@ class ::ShockDot : ::Dot {
 
   void MellGetTheElectrodes() {
     // Chance of staying dead is (100% - (0.2% per stack))^level
-    let chance = (1.0 - stacks * 0.2) ** revive;
+    let chance = (1.0 - stacks * 0.002) ** revive;
     if (frandom(0.0, 1.0) < chance) return;
     let aux = ::Revivification::Aux(self.Spawn("::Revivification::Aux", owner.pos));
     aux.target = self.target;
@@ -187,7 +187,7 @@ class ::Revivification::Aux : Actor {
 
     // Give it the force that applies the buff to revivified minions.
     let buff = ::Revivification::AuxBuff(tracer.GiveInventoryType("::Revivification::AuxBuff"));
-    buff.level = self.level;
+    if (buff) buff.level = self.level; // this can fail sometimes?
     Destroy();
   }
 }
@@ -353,7 +353,9 @@ class ::Thunderbolt::Aux : Actor {
 
   override void PostBeginPlay() {
     DEBUG("Thunderbolt PostBeginPlay");
-    // TODO: fancy expanding ring of particles around the target
+    // We clear the SHOOTABLE bit because otherwise the railgun shots we use
+    // for the lightning effect are stopped by the bottom of the actor for
+    // some reason.
     let shootable = tracer.bSHOOTABLE;
     tracer.bSHOOTABLE = false;
     for (uint i = 0; i < 16; ++i) {
