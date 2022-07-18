@@ -296,12 +296,14 @@ class ::PerPlayerStats : Inventory {
     // deciding what kinds of upgrades to spawn.
     let info = GetInfoForCurrentWeapon();
     if (!info) return;
-    // Don't count damage from special effects.
-    if (shot.special1 != ::Upgrade::PRI_MISSING) return;
-    if (shot && shot.bMISSILE) {
-      info.projectile_shots++;
-    } else {
-      info.hitscan_shots++;
+    // Don't count damage from special effects. Do count damage where there's no
+    // inflictor, for now; might want to revisit that later.
+    if (!shot || shot.special1 != ::Upgrade::PRI_MISSING) {
+      if (shot && shot.bMISSILE) {
+        info.projectile_shots++;
+      } else {
+        info.hitscan_shots++;
+      }
     }
     info.upgrades.OnDamageDealt(owner, shot, target, damage);
   }

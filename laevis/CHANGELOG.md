@@ -1,3 +1,8 @@
+# 0.7.1
+
+- Fix: crash in OnDamageDealt when attacks lacked an inflictor
+- Fix: OnDamageDealt didn't properly trigger for some attacks
+
 # 0.7.0
 
 - New: Lightning tree
