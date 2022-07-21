@@ -10,6 +10,7 @@ class ::ExplosiveDeath : ::BaseUpgrade {
     aux.target = player;
     aux.level = level;
     aux.power = (target.SpawnHealth() + abs(target.health)) * (1.0 - 0.8 ** level);
+    aux.radius = target.radius;
     DEBUG("Created explosion: level=%d power=%d overkill=%d",
       aux.level, aux.power, abs(target.health));
   }
@@ -42,7 +43,7 @@ class ::ExplosiveDeath::Aux : Actor {
       LEXP B 7 Bright;
       // Delay 1/5th of a second before actually dealing damage, so that chain
       // reactions "ripple" across the room rather than happening in a single frame.
-      LEXP C 7 Bright A_Explode(power, radius*(1.0 + level*0.2), XF_HURTSOURCE, false, level*16);
+      LEXP C 7 Bright A_Explode(power, radius*(3.0 + level*0.5), XF_HURTSOURCE, false, level*16);
       LEXP D 7 Bright;
       STOP;
   }

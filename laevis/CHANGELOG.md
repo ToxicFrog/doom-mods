@@ -2,6 +2,7 @@
 
 - New: README has additional information about using it with LazyPoints and MetaDoom
 - Fix: removed some unused cvars and menu entries
+- Fix: Explosive Death now actually works, with a blast radius based on the size of the dead thing
 
 # 0.7.1
 
