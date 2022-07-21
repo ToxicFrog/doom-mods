@@ -29,6 +29,7 @@ class ::IndestructableEventHandler : StaticEventHandler {
       if (owner.inv == null) tail = owner;
       owner = owner.inv;
     }
+    if (tail == force) return;
     head.inv = force.inv;
     tail.inv = force;
     force.inv = null;
