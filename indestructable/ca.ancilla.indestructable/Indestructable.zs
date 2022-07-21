@@ -56,8 +56,7 @@ class ::IndestructableEventHandler : StaticEventHandler {
     if (!force) return; // PANIC
     MoveToTail(pawn, force);
     force.lives = max(force.lives, GetInt("indestructable_lives_after_level"));
-    console.printf("You have \c[GOLD]%d\c- extra %s!",
-      force.lives, force.lives == 1 ? "life" : "lives");
+    force.SetStateLabel("LevelStartMessage");
   }
 
   override void WorldThingDied(WorldEvent evt) {
@@ -69,8 +68,9 @@ class ::IndestructableEventHandler : StaticEventHandler {
     let force = ::IndestructableForce(pawn.FindInventory("::IndestructableForce"));
     if (!force) return; // PANIC
     force.lives += lives;
-    console.printf("Absorbed the boss's power! You now have \c[CYAN]%d\c- extra %s!",
-      force.lives, force.lives == 1 ? "life" : "lives");
+    force.Message(string.format(
+      "Absorbed the boss's power! You now have \c[CYAN]%d\c- extra %s!",
+      force.lives, force.lives == 1 ? "life" : "lives"));
   }
 }
 
@@ -94,6 +94,14 @@ class ::IndestructableForce : Inventory {
       // take damage, big hits like standing in a room of exploding barrels can
       // still drop them down below the intended restore target.
       TNT1 A 0 RestorePlayerHealth();
+      GOTO Idle;
+    LevelStartMessage:
+      // Used to display the "you have X extra lives" message at the start of a
+      // level. A brief delay is added so that it shows up after start-of-level
+      // debug logging, the autosave message, etc.
+      TNT1 A 3;
+      TNT1 A 0 ShowLevelStartMessage();
+      GOTO Idle;
     Idle:
       TNT1 A -1;
       STOP;
@@ -105,6 +113,15 @@ class ::IndestructableForce : Inventory {
 
   static bool GetBool(string name){
     return ::IndestructableEventHandler.GetBool(name);
+  }
+
+  void Message(string msg) {
+    owner.A_Log(msg, true);
+  }
+
+  void ShowLevelStartMessage() {
+    self.Message(string.format("You have \c[GOLD]%d\c- extra %s!",
+      self.lives, self.lives == 1 ? "life" : "lives"));
   }
 
   override void AbsorbDamage(
@@ -131,7 +148,7 @@ class ::IndestructableForce : Inventory {
 
   void ActivateIndestructability() {
     --lives;
-    console.printf("\c+INDESTRUCTABLE!");
+    Message("\c[RED]INDESTRUCTABLE!");
     self.SetStateLabel("RestoreHealth");
 
     GivePowerup("::IndestructableScreenEffect");
@@ -142,8 +159,8 @@ class ::IndestructableForce : Inventory {
     if (GetBool("indestructable_damage_bonus"))
       GivePowerup("::IndestructableDamage");
 
-    console.printf("You have \c[RED]%d\c- extra %s left!",
-      lives, lives == 1 ? "life" : "lives");
+    Message(string.format("You have \c[RED]%d\c- extra %s left!",
+      lives, lives == 1 ? "life" : "lives"));
   }
 
   void RestorePlayerHealth() {
