@@ -1,8 +1,11 @@
 # 0.7.2
 
 - New: README has additional information about using it with LazyPoints and MetaDoom
+- Balance: Submunitions do reduced self-damage and have increased blast radius
+- Balance: Explosive Shots do reduced self-damage (this can still add up fast with rapid-fire guns, though!)
 - Fix: removed some unused cvars and menu entries
 - Fix: Explosive Death now actually works, with a blast radius based on the size of the dead thing
+- Fix: Submunitions could crash on enemy death
 
 # 0.7.1
 

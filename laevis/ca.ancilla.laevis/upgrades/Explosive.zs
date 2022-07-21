@@ -36,9 +36,8 @@ class ::ExplosiveShots::Boom : Actor {
   }
 
   override int DoSpecialDamage(Actor target, int damage, Name damagetype) {
-    DEBUG("Boom damaging %s", TFLV::Util.SafeTag(target));
     if (target == self.target) {
-      return damage * (0.50 ** self.level);
+      return 1;
     }
     return damage;
   }
