@@ -37,7 +37,14 @@ server float laevis_level_cost_mul_for_explosive = 1.5;
 server float laevis_level_cost_mul_for_bfg = 1.5;
 
 // Whether to assign XP based on the player's score variable rather than based
-// on damage dealt. Requires a score assigning mod like LazyPoints.
+// on damage dealt. Requires a score assigning mod like LazyPoints or MetaDoom.
+// TODO: add support for War Trophies XP here, which is stored separately. Sadly
+// we can't just fish it out of a cvar because the cvar is only updated on level
+// transition, so we'll need actual integration code that copies it out of the
+// WT thinker and into the player score field (or directly into the Laevis XP
+// pool if someone wants to use, say, WT+Metadoom at the same time).
+// Maybe this eventually becomes an enum switching between builtin, player score,
+// and WT as the XP source?
 server bool laevis_use_score_for_xp = false;
 
 // XP derived from score will be multiplied by this.

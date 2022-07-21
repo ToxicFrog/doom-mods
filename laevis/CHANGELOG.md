@@ -1,5 +1,6 @@
 # 0.7.2
 
+- New: README has additional information about using it with LazyPoints and MetaDoom
 - Fix: removed some unused cvars and menu entries
 
 # 0.7.1

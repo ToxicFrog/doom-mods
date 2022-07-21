@@ -20,13 +20,14 @@ That's all -- if equipping a weapon and then pressing the "display info" key (de
 
 This should be compatible with every IWAD and pretty much every mod, including weapon/enemy replacements and total conversions. It relies entirely on event handlers and runtime reflection, so as long as the player's guns are still subclasses of `Weapon` it should behave properly.
 
-It has been tested (although not necessarily extensively) in:
+It has been tested (although not necessarily extensively) with:
 - Doom, Doom 2, Heretic, and Chex Quest
 - Ashes 2063
 - DoomRL Arsenal
 - Hedon Bloodrite
 - Hideous Destructor
-- Legendoom
+- LegenDoom & LegenDoomLite
+- MetaDoom
 - Trailblazer
 
 Some mods have specific integration features or compatibility concerns; these are detailed below.
@@ -39,11 +40,14 @@ When using a Legendoom weapon, you can press the "Cycle Legendoom Weapon Effect"
 
 There are a lot of settings for this in the mod options, including which weapons can learn effects, how rapidly effects are learned, how many effect slots weapons have, etc. If you want to play with Legendoom installed but turn off integration with Laevis, set `Gun Levels per Legendoom Effect` to 0/Disabled in the settings.
 
-### Score mods
+### Score mods (including LazyPoints & MetaDoom)
 
-Laevis has optional integration with scoremods such as Lazy Points. To enable this, turn on `Earn XP based on player score` in the mod settings. As long as it's on, you will earn XP equal to the points you score, rather than equal to the damage you deal. This generally results in much faster XP gain, so you may also want to tweak the `XP gain multiplier for score mods` setting.
+Laevis has optional integration with mods that award points for actions such as kills. To enable this, turn on `Earn XP based on player score` in the mod settings. As long as it's on, you will earn XP equal to the points you score, rather than equal to the damage you deal. This should work with any mod that uses the `pawn.score` property to record points, but Lazy Points and MetaDoom are the only ones it's actually been tested with.
 
-This should work with any mod that uses the `pawn.score` property to record points, but Lazy Points is the only one it's actually been tested with.
+Laevis is balanced around a rough idea of 1 damage dealt -> 1 XP gained, which score mods don't necessarily follow, so the `XP gain multiplier for score mods` setting is available to tweak the conversion ratio. Recommended settings are:
+
+- **LazyPoints**: 0.4. LP uses the same 1:1 conversion ratio, but awards bonus points for kills, kill combos, items, and secrets, with an additional bonus for kills while above 50% or 100% health.
+- **MetaDoom**: 0.2-0.6. This is hard to tune because MD awards points for kills (not damage) in amounts that range from about the same to more than twice as much as you'd get from Laevis or LazyPoints, depending on the enemy. It also awards huge score bonuses (5-10k) for all kills/secrets/items, which in early levels can account for 5-10x as many points as your kills are worth, but become proportionally less valuable as the levels get larger. Set it lower for relatively sparse levels, higher for slaughtermaps.
 
 ### Universal Pistol Start
 
