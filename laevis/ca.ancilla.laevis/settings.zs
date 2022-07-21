@@ -40,9 +40,6 @@ class TFLV_Settings : Object {
   static int base_level_cost() {
     return GetInt("laevis_base_level_cost");
   }
-  static double gun_damage_bonus() {
-    return GetDouble("laevis_gun_damage_bonus");
-  }
   static double level_cost_mul_for(string flagname) {
     return GetDouble("laevis_level_cost_mul_for_"..flagname);
   }

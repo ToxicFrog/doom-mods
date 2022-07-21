@@ -1,3 +1,7 @@
+# 0.7.2
+
+- Fix: removed some unused cvars and menu entries
+
 # 0.7.1
 
 - Fix: crash in OnDamageDealt when attacks lacked an inflictor

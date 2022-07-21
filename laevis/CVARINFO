@@ -36,12 +36,6 @@ server float laevis_level_cost_mul_for_wimpy = 0.5;
 server float laevis_level_cost_mul_for_explosive = 1.5;
 server float laevis_level_cost_mul_for_bfg = 1.5;
 
-// How much extra damage a weapon does per level. Stacks additively with itself
-// and multiplicatively with laevis_player_damage_bonus; if a gun is level 10
-// wielded by a level 10 player, and both are set to 0.05, shots will do
-// (1.5 * 1.5) = 2.25x normal damage.
-server float laevis_gun_damage_bonus = 0.05;
-
 // Whether to assign XP based on the player's score variable rather than based
 // on damage dealt. Requires a score assigning mod like LazyPoints.
 server bool laevis_use_score_for_xp = false;
