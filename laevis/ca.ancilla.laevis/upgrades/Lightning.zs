@@ -206,14 +206,17 @@ class ::Revivification::AuxBuff : Inventory {
   override void ModifyDamage(
       int damage, Name damageType, out int newdamage, bool passive,
       Actor inflictor, Actor source, int flags) {
+    if (inflictor == owner.master) {
+      // Only ever deal or receive 1 damage to the player who raised you.
+      newdamage = 1;
+      return;
+    }
+
     if (passive) {
       // 20% damage reduction per level with diminishing returns.
       newdamage = ceil(damage * (0.8 ** level));
-    } else if (inflictor == owner.master) {
-      // Only ever deal 1 damage to the player that raised you.
-      newdamage = 1;
     } else {
-      // Flat 20% damage bonus on the way out.
+      // Flat 20% damage bonus per level on the way out.
       newdamage = floor(damage * (1.0 + 0.2 * level));
     }
   }
