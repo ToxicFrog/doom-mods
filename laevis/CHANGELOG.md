@@ -1,5 +1,6 @@
 # 0.7.3
 
+- Balance: remove Agonizer from the melee upgrade pool, as it's redundant with Shock
 - Fix: Scavenge Blood and Scavenge Steel will always grant at least 1 health/armour per kill
 
 # 0.7.2

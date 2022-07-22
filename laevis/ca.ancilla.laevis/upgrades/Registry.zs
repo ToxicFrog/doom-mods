@@ -31,7 +31,7 @@ class ::Registry : Object play {
   void RegisterBuiltins() {
     DEBUG("RegisterBuiltins");
     static const string UpgradeNames[] = {
-      "::Agonizer",
+      // "::Agonizer",
       "::Armour",
       "::ArmourLeech",
       // "::Beam", TODO: fix interactions with HE shots and similar
