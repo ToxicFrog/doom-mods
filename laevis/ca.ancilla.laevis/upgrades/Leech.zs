@@ -17,7 +17,7 @@ class ::LifeLeech : ::BaseUpgrade {
   override void OnKill(Actor player, Actor shot, Actor target) {
     let hp = ::LifeLeech::Bonus(target.Spawn(
       "::LifeLeech::Bonus", ::LeechUtil.WigglePos(target)));
-    hp.amount = target.SpawnHealth() * 0.01 * level;
+    hp.amount = max(1, target.SpawnHealth() * 0.01 * level);
   }
 
   override bool IsSuitableForPlayer(TFLV::PerPlayerStats stats) {
@@ -37,7 +37,7 @@ class ::ArmourLeech : ::BaseUpgrade {
   override void OnKill(Actor player, Actor shot, Actor target) {
     let ap = ::ArmourLeech::Bonus(target.Spawn(
       "::ArmourLeech::Bonus", ::LeechUtil.WigglePos(target)));
-    ap.SaveAmount = target.SpawnHealth() * 0.02 * level;
+    ap.SaveAmount = max(1, target.SpawnHealth() * 0.01 * level);
   }
 
   override bool IsSuitableForPlayer(TFLV::PerPlayerStats stats) {

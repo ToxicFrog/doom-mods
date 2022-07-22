@@ -1,3 +1,7 @@
+# 0.7.3
+
+- Fix: Scavenge Blood and Scavenge Steel will always grant at least 1 health/armour per kill
+
 # 0.7.2
 
 - New: README has additional information about using it with LazyPoints and MetaDoom
