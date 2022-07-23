@@ -4,6 +4,7 @@
 - Balance: remove Agonizer from the melee upgrade pool, as it's redundant with Shock
 - Balance: Revivified enemies only take 1 damage from the player
 - Fix: Scavenge Blood and Scavenge Steel will always grant at least 1 health/armour per kill
+- Fix: Scavenge items added to the level ammo count, and raised monsters to the level monster count
 
 # 0.7.2
 

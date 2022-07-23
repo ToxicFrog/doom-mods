@@ -26,6 +26,9 @@ class ::LifeLeech : ::BaseUpgrade {
 }
 
 class ::LifeLeech::Bonus : HealthBonus {
+  Default {
+    -COUNTITEM;
+  }
   States {
     Spawn:
       LBHP ABCDCB 6;
@@ -46,6 +49,9 @@ class ::ArmourLeech : ::BaseUpgrade {
 }
 
 class ::ArmourLeech::Bonus : ArmorBonus {
+  Default {
+    -COUNTITEM;
+  }
   States {
     Spawn:
       LBAP ABCDCB 6;

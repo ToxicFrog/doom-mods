@@ -15,6 +15,7 @@
 // MASTER: THUNDERBOLT
 // Capping out the lightning stacks on a target converts all of them into damage.
 #namespace TFLV::Upgrade;
+#debug off
 
 class ::ShockingInscription : ::ElementalUpgrade {
   override ::UpgradeElement Element() { return ::ELEM_LIGHTNING; }
@@ -180,10 +181,10 @@ class ::Revivification::Aux : Actor {
     tracer.TakeInventory("::ShockDot", 255);
     // Make it friendly and ethereal.
     tracer.master = self.target;
-    tracer.bFRIENDLY = true;
     tracer.bSOLID = false;
     tracer.A_SetRenderStyle(1.0, STYLE_SHADED);
     tracer.SetShade("8080FF");
+    tracer.A_SetFriendly(true); // Also clears it from the monster count
 
     // Give it the force that applies the buff to revivified minions.
     let buff = ::Revivification::AuxBuff(tracer.GiveInventoryType("::Revivification::AuxBuff"));
