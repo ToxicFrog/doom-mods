@@ -1,5 +1,6 @@
 # 0.7.3
 
+- New: support for DamNums; Laevis damage types will be coloured to match their upgrade names
 - Balance: remove Agonizer from the melee upgrade pool, as it's redundant with Shock
 - Balance: Revivified enemies only take 1 damage from the player
 - Fix: Scavenge Blood and Scavenge Steel will always grant at least 1 health/armour per kill
