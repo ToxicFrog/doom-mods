@@ -33,6 +33,7 @@ class ::Registry : Object play {
     static const string UpgradeNames[] = {
       // "::Agonizer",
       "::Armour",
+      "::AmmoLeech",
       "::ArmourLeech",
       // "::Beam", TODO: fix interactions with HE shots and similar
       "::BouncyShots",

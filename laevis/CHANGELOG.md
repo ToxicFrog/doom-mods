@@ -7,6 +7,7 @@
 - Fix: Scavenge items added to the level ammo count, and raised monsters to the level monster count
 - Fix: Revivified minions didn't apply vs. player damage modifiers properly
 - Fix: certain types of instakill (e.g. in TNT MAP30) could cause crashes
+- Fix: Scavenge Lead wasn't actually in the upgrade pool
 
 # 0.7.2
 
