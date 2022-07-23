@@ -207,9 +207,9 @@ class ::Revivification::AuxBuff : Inventory {
   override void ModifyDamage(
       int damage, Name damageType, out int newdamage, bool passive,
       Actor inflictor, Actor source, int flags) {
-    if (inflictor == owner.master) {
+    if (source == owner.master) {
       // Only ever deal or receive 1 damage to the player who raised you.
-      newdamage = 1;
+      newdamage = min(1, damage);
       return;
     }
 
