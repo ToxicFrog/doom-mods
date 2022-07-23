@@ -8,6 +8,7 @@
 - Fix: Revivified minions didn't apply vs. player damage modifiers properly
 - Fix: certain types of instakill (e.g. in TNT MAP30) could cause crashes
 - Fix: Scavenge Lead wasn't actually in the upgrade pool
+- Fix: remove Beam from the README, as it's an unfinished upgrade that you can't actually unlock
 
 # 0.7.2
 

@@ -139,10 +139,6 @@ Hitting an enemy flinches them for 2/5ths of a second. More levels increase the 
 
 Reduces incoming damage by 1 point per level. Cannot reduce it below 2.
 
-### Beam *(Hitscan only)*
-
-Replaces the weapon's normal attack with a perfectly accurate beam that does reduced damage but goes through enemies. Increased level increases the damage dealt, with diminishing returns.
-
 ### Bouncy Shots *(Projectile only)*
 
 Shots bounce off walls. Higher levels increase the number of bounces and decrease the amount of velocity lost on bounce. At level 3, shots bounce off enemies as well.
