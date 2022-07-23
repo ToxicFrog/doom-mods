@@ -54,8 +54,13 @@ class ::EventHandler : StaticEventHandler {
     if (!ShouldDrawHUD(pawn)) return;
     if (!hud) hud = new("::HUD");
 
+    // Not sure how this can happen, seems to be associated with certain kinds
+    // of player death.
+    ::PerPlayerStats ppstats = ::PerPlayerStats.GetStatsFor(pawn);
+    if (!ppstats) return;
+
     ::CurrentStats stats;
-    if (::PerPlayerStats.GetStatsFor(pawn).GetCurrentStats(stats))
+    if (ppstats.GetCurrentStats(stats))
       hud.Draw(stats);
   }
 

@@ -6,6 +6,7 @@
 - Fix: Scavenge Blood and Scavenge Steel will always grant at least 1 health/armour per kill
 - Fix: Scavenge items added to the level ammo count, and raised monsters to the level monster count
 - Fix: Revivified minions didn't apply vs. player damage modifiers properly
+- Fix: certain types of instakill (e.g. in TNT MAP30) could cause crashes
 
 # 0.7.2
 
