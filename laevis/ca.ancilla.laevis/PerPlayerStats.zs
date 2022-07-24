@@ -296,16 +296,19 @@ class ::PerPlayerStats : Inventory {
     // deciding what kinds of upgrades to spawn.
     let info = GetInfoForCurrentWeapon();
     if (!info) return;
-    // Don't count damage from special effects. Do count damage where there's no
-    // inflictor, for now; might want to revisit that later.
-    if (!shot || shot.special1 != ::Upgrade::PRI_MISSING) {
-      if (shot && shot.bMISSILE) {
-        info.projectile_shots++;
-      } else {
-        info.hitscan_shots++;
-      }
-    }
     info.upgrades.OnDamageDealt(owner, shot, target, damage);
+    // If it has a priority set on it, it's one of ours and we shouldn't use it
+    // for hitscan/projectile inference.
+    if (shot && shot.special1 != ::Upgrade::PRI_MISSING) return;
+
+    // Assume that "missiles" moving faster than 300 du/t are actually projectiles
+    // used as bullet tracers by e.g. Hideous Destructor and should be treated
+    // as hitscans instead.
+    if (shot && shot.bMISSILE && shot.speed < 300) {
+      info.projectile_shots++;
+    } else {
+      info.hitscan_shots++;
+    }
   }
 
   void OnDamageReceived(Actor shot, Actor attacker, uint damage) {

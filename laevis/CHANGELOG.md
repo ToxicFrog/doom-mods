@@ -11,6 +11,8 @@
 - Fix: Scavenge Lead wasn't actually in the upgrade pool
 - Fix: remove Beam from the README, as it's an unfinished upgrade that you can't actually unlock
 - Fix: Scavenge Lead would start giving you ammo from other games if you found a backpack
+- Fix: hitscan/projectile inference was just completely broken all the time
+- Fix: very fast projectiles are now counted as hitscans for e.g. Hideous Destructor
 
 # 0.7.2
 

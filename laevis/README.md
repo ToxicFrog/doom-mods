@@ -185,7 +185,7 @@ When killed, enemies drop a health bonus worth 1% of their max health.
 
 ### Scavenge Lead *(Player only)*
 
-When killed, enemies drop a random ammo item matching a type of ammo you already have. Note that cheats like `give ammo` will confuse it by giving you ammo from other IWADs, but in normal play it should only give you ammo you've already found prior examples of.
+When killed, enemies drop a random ammo item usable by one of your weapons. If you have multiple weapons that share an ammo type, you're more likely to get ammo of that type.
 
 ### Scavenge Steel *(Player only)*
 
