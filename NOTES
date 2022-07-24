@@ -7,18 +7,30 @@ Remaining upgrades:
 - explosive fragmentation -> hard to make work properly without most of the explosions hitting the target
 - extra life (Indestructable) -> moved to separate mod, but might still make sense as its own thing
 - micromissiles -- projectiles turn into micromissile swarms after a few tics of flight. How do we compute damage?
+- add ammo capacity upgrade
+  - walk player inventory and boost the MaxAmount and BackpackMaxAmount
+  - requires OnApply support, probably
+  - won't affect ammo types the player doesn't have yet
+  - will be a player mod, so it should either be fairly powerful or get more powerful with time
+  - we can use GetDefaultByType(ammoitem).MaxAmount to compute the base max amount
+    and then confer bonuses based on that
 
 Gameplay changes:
-- health/armour/ammo leech should turn into bonus drops from slain enemies
 - do another pass over the prerequisites. Graph paper? submunitions/expldeath should mutex, for example
 - add "eat weapons to gain their power" feature to LD integration
 - make fragmentation shots non-hitscan
+- rework Fire to be more useful. Thoughts:
+  - merge Searing Heat with base upgrade
+  - add Burning Terror as intermediate, enemies with overstacked fire flee
+  - maybe overstacks can burn past the limit, too?
 
 Internal changes:
 - factor out some shared code like "spawn a helper actor and set its target pointer appropriately", "spawn an expanding ring of particle effects", "do something to everything within a given radius", etc.
 
 UI changes:
-- all done!
+- Pointing at an enemy should show you how many stacks of each debuff it has. We can
+  use AimTarget to get the target under cursor. Note that AimTarget is play scope, so
+  we can't call it from ui, I think.
 
 Structural changes:
 - split Laevis (legendoom integration) & Gun Bonsai (weapon leveling) into separate mods

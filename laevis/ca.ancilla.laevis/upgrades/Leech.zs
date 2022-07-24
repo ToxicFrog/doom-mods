@@ -6,9 +6,9 @@
 class ::LeechUtil {
   clearscope static Vector3 WigglePos(Actor act) {
     return (
-      act.pos.x + random(-act.radius/2, act.radius/2),
-      act.pos.y + random(-act.radius/2, act.radius/2),
-      act.pos.z + act.height/2
+      act.pos.x + random(-act.radius/1.4, act.radius/1.4),
+      act.pos.y + random(-act.radius/1.4, act.radius/1.4),
+      act.pos.z + random(act.height/4, act.height)
     );
   }
 }
@@ -61,18 +61,20 @@ class ::ArmourLeech::Bonus : ArmorBonus {
 
 class ::AmmoLeech : ::BaseUpgrade {
   override void OnKill(Actor player, Actor shot, Actor target) {
-    Array<Ammo> candidates;
+    Array<String> candidates;
     for (Inventory inv = player.inv; inv != null; inv = inv.inv) {
-      if (inv is "Ammo") {
-        DEBUG("Candidate: %s", inv.GetTag());
-        candidates.push(Ammo(inv));
+      let wpn = Weapon(inv);
+      if (wpn) {
+        if (wpn.AmmoType1) candidates.push(wpn.AmmoType1.GetClassName());
+        if (wpn.AmmoType2) candidates.push(wpn.AmmoType2.GetClassName());
       }
     }
     if (candidates.size() == 0) return;
     for (uint i = 0; i < level; ++i) {
       let chosen = candidates[random(0, candidates.size()-1)];
-      DEBUG("Spawning %s", chosen.GetTag());
-      target.Spawn(chosen.GetClassName(), ::LeechUtil.WigglePos(target));
+      DEBUG("Spawning %s", chosen);
+      let ammo = target.Spawn(chosen, ::LeechUtil.WigglePos(target));
+      ammo.bCOUNTITEM = false;
     }
   }
 

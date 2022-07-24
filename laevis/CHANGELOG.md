@@ -4,11 +4,13 @@
 - Balance: remove Agonizer from the melee upgrade pool, as it's redundant with Shock
 - Balance: Revivified enemies only take 1 damage from the player
 - Fix: Scavenge Blood and Scavenge Steel will always grant at least 1 health/armour per kill
-- Fix: Scavenge items added to the level ammo count, and raised monsters to the level monster count
+- Fix: Scavenge items no longer count towards the level item count
+- Fix: Revivified minions no longer count towards the level monster count
 - Fix: Revivified minions didn't apply vs. player damage modifiers properly
 - Fix: certain types of instakill (e.g. in TNT MAP30) could cause crashes
 - Fix: Scavenge Lead wasn't actually in the upgrade pool
 - Fix: remove Beam from the README, as it's an unfinished upgrade that you can't actually unlock
+- Fix: Scavenge Lead would start giving you ammo from other games if you found a backpack
 
 # 0.7.2
 
