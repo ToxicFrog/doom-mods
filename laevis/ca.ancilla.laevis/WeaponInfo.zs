@@ -10,7 +10,7 @@ class ::WeaponInfo : Object play {
   Weapon weapon;
   string weaponType;
   ::Upgrade::UpgradeBag upgrades;
-  uint XP;
+  double XP;
   uint maxXP;
   uint level;
   // Tracking for how much this gun does hitscans vs. projectiles.
@@ -88,7 +88,7 @@ class ::WeaponInfo : Object play {
     return XP;
   }
 
-  bool AddXP(int newXP) {
+  bool AddXP(double newXP) {
     XP += newXP;
     if (XP >= maxXP) {
       LevelUp();

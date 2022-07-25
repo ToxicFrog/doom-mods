@@ -240,9 +240,10 @@ class ::PerPlayerStats : Inventory {
 
   // Add XP to a weapon. If the weapon leveled up, also do some housekeeping
   // and possibly level up the player as well.
-  void AddXP(int xp) {
+  void AddXP(double xp) {
     ::WeaponInfo info = GetInfoForCurrentWeapon();
     if (!info) return;
+    // TODO more of this should be in the WeaponInfo.
     if (info.AddXP(xp)) {
       // Weapon leveled up!
       DEBUG("level up, level=%d, GLPE=%d",
@@ -268,8 +269,8 @@ class ::PerPlayerStats : Inventory {
     }
   }
 
-  uint GetXPForDamage(Actor target, uint damage) const {
-    uint xp = min(damage, target.health);
+  double GetXPForDamage(Actor target, uint damage) const {
+    double xp = min(damage, target.health) * ::Settings.damage_to_xp_factor();
     if (target.GetSpawnHealth() > 100) {
       // Enemies with lots of HP get a log-scale XP bonus.
       // This works out to about a 1.8x bonus for Archviles and a 2.6x bonus
@@ -359,10 +360,7 @@ class ::PerPlayerStats : Inventory {
         return;
       }
 
-      // XP is based on base damage, not final damage.
-      if (!::Settings.use_score_for_xp()) {
-        AddXP(GetXPForDamage(target, damage));
-      }
+      AddXP(GetXPForDamage(target, newdamage));
 
       double tmpdamage = upgrades.ModifyDamageDealt(owner, inflictor, source, damage);
       if (info)
@@ -383,8 +381,12 @@ class ::PerPlayerStats : Inventory {
     // common case where the weapon already has a WeaponInfo associated with it.
     let info = CreateInfoForCurrentWeapon();
 
+    // Run on-tick effects for upgrades.
+    upgrades.Tick();
+    if (info) info.upgrades.Tick();
+
     // No score integration? Nothing else to do.
-    if (!::Settings.use_score_for_xp()) {
+    if (::Settings.score_to_xp_factor() <= 0) {
       prevScore = -1;
       return;
     }
@@ -396,12 +398,9 @@ class ::PerPlayerStats : Inventory {
       prevScore = owner.score;
       return;
     } else if (owner.score > prevScore) {
-      AddXP(owner.score - prevScore);
+      AddXP((owner.score - prevScore) * ::Settings.score_to_xp_factor());
       prevScore = owner.score;
     }
-
-    upgrades.Tick();
-    if (info) info.upgrades.Tick();
   }
 }
 

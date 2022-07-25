@@ -6,11 +6,10 @@ ZSDIR=ca.ancilla.laevis
 
 include ${TOPDIR}/rules.make
 
-sprites: sprites/ui/hud.xcf
-	$(MAKE) -C sprites/ui/
-	touch sprites
+sprites:
+	$(MAKE) -C sprites/ui
 
 clean: clean.super
 	$(MAKE) -C sprites/ui/ clean
 
-.PHONY: clean
+.PHONY: clean sprites

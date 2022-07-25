@@ -1,6 +1,7 @@
 # 0.7.3
 
 - New: support for DamNums; Laevis damage types will be coloured to match their upgrade names
+- New: XP-from-damage and XP-from-score can both be turned on the same time, with independent multipliers
 - Balance: remove Agonizer from the melee upgrade pool, as it's redundant with Shock
 - Balance: Revivified enemies only take 1 damage from the player
 - Balance: Fragmentation Shots now pass through the enemy you hit, hitting everything around it
@@ -15,6 +16,9 @@
 - Fix: Scavenge Lead would start giving you ammo from other games if you found a backpack
 - Fix: hitscan/projectile inference was just completely broken all the time
 - Fix: very fast projectiles are now counted as hitscans for e.g. Hideous Destructor
+- Fix: upgrades with on-tick effects for the player, such as Infernal Kiln, did not trigger when not using a scoremod
+- Fix: the XP scaling setting for scoremods didn't work
+- Fix: it is now possible to earn fractional XP rather than rounding down to 0
 
 # 0.7.2
 
