@@ -3,6 +3,8 @@
 - New: support for DamNums; Laevis damage types will be coloured to match their upgrade names
 - Balance: remove Agonizer from the melee upgrade pool, as it's redundant with Shock
 - Balance: Revivified enemies only take 1 damage from the player
+- Balance: Fragmentation Shots now pass through the enemy you hit, hitting everything around it
+- Balance: Fragmentation Shots no longer self-damage
 - Fix: Scavenge Blood and Scavenge Steel will always grant at least 1 health/armour per kill
 - Fix: Scavenge items no longer count towards the level item count
 - Fix: Revivified minions no longer count towards the level monster count

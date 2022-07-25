@@ -124,9 +124,7 @@ class ::EventHandler : StaticEventHandler {
       let stats = ::PerPlayerStats.GetStatsFor(players[evt.player].mo);
       let info = stats.GetInfoForCurrentWeapon();
       // stats.upgrades.Add("::Upgrade::AmmoLeech", 1);
-      info.upgrades.Add("::Upgrade::PoisonShots", 5);
-      info.upgrades.Add("::Upgrade::ShockingInscription", 5);
-      info.upgrades.Add("::Upgrade::ElementalWave", 1);
+      info.upgrades.Add("::Upgrade::FragmentationShots", 5);
     }
   }
 

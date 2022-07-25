@@ -7,7 +7,7 @@ class ::FragmentationShots : ::BaseUpgrade {
   override void OnProjectileCreated(Actor pawn, Actor shot) {
     shot.GiveInventoryType("::FragmentationShots::Marker");
     DEBUG("Tagging %s", shot.GetTag());
-    DEBUG("Shot inventory: %s", TFLV::Util.SafeTag(shot.inv));
+    DEBUG("Shot inventory: %s", TAG(shot));
   }
 
   override void OnDamageDealt(Actor pawn, Actor shot, Actor target, int damage) {
@@ -24,6 +24,7 @@ class ::FragmentationShots : ::BaseUpgrade {
     let boom = ::FragmentationShots::Boom(shot.Spawn("::FragmentationShots::Boom", shot.pos));
     boom.special1 = Priority();
     boom.target = pawn;
+    boom.tracer = target; // So that it knows which enemy to ignore
     boom.level = level;
     boom.damage = ceil(damage * 0.2);
   }
@@ -51,15 +52,27 @@ class ::FragmentationShots::Boom : Actor {
     Scale 0.2;
   }
 
+  void Explode() {
+    // TODO: spawn fragments as projectiles rather than as hitscans.
+    // It'll look cooler.
+    // For the purposes of this explosion, make the monster we just shot unshootable,
+    // so the fragments pass through it -- this prevents the upgrade from turning
+    // e.g. the EMG pistol into a pocket shotgun.
+    DEBUG("Kaboom! tracer=%s source=%s", TAG(tracer), TAG(target));
+    if (tracer) tracer.bSHOOTABLE = false;
+    A_Explode(0, 0, XF_NOSPLASH, false, 0, 8+level*8, damage,
+      "::FragmentationShots::Puff");
+    if (tracer) tracer.bSHOOTABLE = true;
+    A_AlertMonsters();
+    // TODO: include a suitable sound effect
+    A_StartSound("imp/shotx", CHAN_WEAPON, CHANF_OVERLAP, 1, 0.5);
+    A_StartSound("imp/shotx", CHAN_7, CHANF_OVERLAP, 0.1, 0.01);
+  }
+
   States {
     Spawn:
       TNT1 A 3; // the fragments take a few millis to travel
-      TNT1 A 0 A_Explode(0, 0, XF_NOSPLASH, false, 0, 8+level*8, damage,
-        "::FragmentationShots::Puff");
-      TNT1 A 0 A_AlertMonsters();
-      // TODO: include a suitable sound effect
-      TNT1 A 0 A_StartSound("imp/shotx", CHAN_WEAPON, CHANF_OVERLAP, 1, 0.5);
-      TNT1 A 0 A_StartSound("imp/shotx", CHAN_7, CHANF_OVERLAP, 0.1, 0.01);
+      TNT1 A 0 Explode();
       LFRG CDE 2;
       STOP;
   }
@@ -71,6 +84,16 @@ class ::FragmentationShots::Puff : BulletPuff {
     ::FragmentationShots::Puff.UpgradePriority ::PRI_FRAGMENTATION;
     +ALWAYSPUFF;
   }
+
+  override int DoSpecialDamage(Actor target, int damage, Name damagetype) {
+    DEBUG("Fragmentation DoSpecialDamage, target=%s owner=%s",
+      TAG(target), TAG(self.target));
+    if (target is "PlayerPawn") {
+      return 0;
+    }
+    return damage;
+  }
+
   States {
     Spawn:
       LPUF A 4 Bright;
