@@ -54,12 +54,17 @@ for line in io.lines(src) do
   end
 end
 
+local function replace_tag(argv)
+  argv = argv:sub(2,-2)
+  return string.format('(%s?%s.GetTag():"null")', argv, argv)
+end
+
 table.insert(lines, '')
 local buf = table.concat(lines, '\n')
 if debug or os.getenv('ZSPP_FORCE_DEBUG') then
   buf = buf:gsub('DEBUG(%b())', function(debugargs)
     -- TODO: add line number
-    return string.format('console.printf("%s: "..%s)', src, debugargs:sub(2,-2))
+    return string.format('console.printf("%s: "..%s)', src, debugargs:sub(2,-2):gsub('TAG(%b())', replace_tag))
   end)
 else
   buf = buf:gsub('%s*DEBUG%b();', function(s) return (s:gsub('\n', '\n//')) end)
