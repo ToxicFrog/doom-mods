@@ -271,11 +271,13 @@ class ::PerPlayerStats : Inventory {
 
   double GetXPForDamage(Actor target, uint damage) const {
     double xp = min(damage, target.health) * ::Settings.damage_to_xp_factor();
+    DEBUG("XPForDamage: damage=%d, xp=%.1f", damage, xp);
     if (target.GetSpawnHealth() > 100) {
       // Enemies with lots of HP get a log-scale XP bonus.
       // This works out to about a 1.8x bonus for Archviles and a 2.6x bonus
       // for the Cyberdemon.
       xp = xp * (log10(target.GetSpawnHealth()) - 1);
+      DEBUG("After hp bonus xp is: %.1f", xp);
     }
     return xp;
   }
@@ -338,7 +340,7 @@ class ::PerPlayerStats : Inventory {
     if (passive) {
       // Incoming damage.
       DEBUG("MD(p): %s <- %s <- %s (%d/%s) flags=%X",
-        ::Util.SafeCls(owner), ::Util.SafeCls(inflictor), ::Util.SafeCls(source),
+        TAG(owner), TAG(inflictor), TAG(source),
         damage, damageType, flags);
 
       // TODO: this (and ModifyDamageDealt below) should take into account the
@@ -349,7 +351,7 @@ class ::PerPlayerStats : Inventory {
       newdamage = tmpdamage;
     } else {
       DEBUG("MD: %s -> %s -> %s (%d/%s) flags=%X",
-        ::Util.SafeCls(owner), ::Util.SafeCls(inflictor), ::Util.SafeCls(source),
+        TAG(owner), TAG(inflictor), TAG(source),
         damage, damageType, flags);
       // Outgoing damage. 'source' is the *target* of the damage.
       let target = source;
@@ -398,6 +400,8 @@ class ::PerPlayerStats : Inventory {
       prevScore = owner.score;
       return;
     } else if (owner.score > prevScore) {
+      DEBUG("Score changed, adding %d points -> %.1f xp",
+        owner.score - prevScore, (owner.score - prevScore) * ::Settings.score_to_xp_factor());
       AddXP((owner.score - prevScore) * ::Settings.score_to_xp_factor());
       prevScore = owner.score;
     }

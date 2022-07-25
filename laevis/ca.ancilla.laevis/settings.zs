@@ -43,10 +43,10 @@ class TFLV_Settings : Object {
   static double level_cost_mul_for(string flagname) {
     return GetDouble("laevis_level_cost_mul_for_"..flagname);
   }
-  static bool damage_to_xp_factor() {
-    return GetBool("laevis_damage_to_xp_factor");
+  static double damage_to_xp_factor() {
+    return GetDouble("laevis_damage_to_xp_factor");
   }
-  static bool score_to_xp_factor() {
+  static double score_to_xp_factor() {
     return GetDouble("laevis_score_to_xp_factor");
   }
   static TFLV_UpgradeBindingMode upgrade_binding_mode() {
