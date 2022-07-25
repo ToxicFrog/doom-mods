@@ -2,8 +2,6 @@
 # LHDW: weapon XP bar
 # LHDP: player XP bar
 # Positions are 2-4-6-8 clockwise from lower left.
-# TODO: use -modulate to generate HUDs in a variety of colours and map them
-# to different animation frames.
 
 FRAMES=LHUDA2.png LHUDA4.png LHUDA6.png LHUDA8.png
 PLAYER=LHDPA2.png LHDPA4.png LHDPA6.png LHDPA8.png
