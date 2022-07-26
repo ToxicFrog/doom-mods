@@ -108,6 +108,8 @@ class ::Dot : Inventory {
     }
     buffer += GetDamage();
     if (buffer > 1) {
+      DEBUG("Dot %s damages %s for %d (source=%s)",
+        TAG(self), TAG(owner), buffer, TAG(self.target));
       owner.DamageMobj(
         self, self.target, floor(buffer), self.DamageType,
         DMG_NO_ARMOR | DMG_NO_PAIN | DMG_THRUSTLESS | DMG_NO_ENHANCE);

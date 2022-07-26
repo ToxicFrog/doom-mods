@@ -5,6 +5,7 @@ class ::ExplosiveShots : ::BaseUpgrade {
   override ::UpgradePriority Priority() { return ::PRI_EXPLOSIVE; }
 
   override void OnDamageDealt(Actor pawn, Actor shot, Actor target, int damage) {
+    if (!shot) return;
     DEBUG("ExplosiveShots::OnDamageDealt damage=%d shot=%s", damage, shot.GetClassName());
     DEBUG("Pawn position: [%d,%d,%d]", pawn.pos.x, pawn.pos.y, pawn.pos.z);
     DEBUG("Shot position: [%d,%d,%d]", shot.pos.x, shot.pos.y, shot.pos.z);

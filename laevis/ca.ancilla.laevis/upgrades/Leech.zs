@@ -65,8 +65,15 @@ class ::AmmoLeech : ::BaseUpgrade {
     for (Inventory inv = player.inv; inv != null; inv = inv.inv) {
       let wpn = Weapon(inv);
       if (wpn) {
-        if (wpn.AmmoType1) candidates.push(wpn.AmmoType1.GetClassName());
-        if (wpn.AmmoType2) candidates.push(wpn.AmmoType2.GetClassName());
+        DEBUG("Considering %s", TAG(wpn));
+        if (wpn.AmmoType1) {
+          candidates.push(wpn.AmmoType1.GetClassName());
+          DEBUG("Primary ammo: %s", wpn.AmmoType1.GetClassName());
+        }
+        if (wpn.AmmoType2) {
+          candidates.push(wpn.AmmoType2.GetClassName());
+          DEBUG("Secondary ammo: %s", wpn.AmmoType2.GetClassName());
+        }
       }
     }
     if (candidates.size() == 0) return;
