@@ -2,11 +2,12 @@
 //
 // APPRENTICE: INCENDIARY SHOTS
 // Burns enemies down to a certain % of health.
-// More stacks increase the burn rate, but not the minimum %.
+// More stacks increase both the burn rate, and the minimum %.
 // Stack application depends on damage dealt.
-// Leveling applies stacks faster and increases the softcap.
+// Leveling increases the softcap.
 //
-// JOURNEYMAN: SEARING HEAT
+// JOURNEYMAN: BURNING TERROR
+//
 // Reduces the health % at which fire stops burning. Cannot reduce it to 0 --
 // diminishing returns.
 //
@@ -23,19 +24,19 @@
 class ::IncendiaryShots : ::ElementalUpgrade {
   override ::UpgradeElement Element() { return ::ELEM_FIRE; }
   override void OnDamageDealt(Actor player, Actor shot, Actor target, int damage) {
-    // Apply stacks equal to 20% of damage per level.
+    // Apply stacks equal to 20% of damage.
     // Softcap == level -- since fire never burns out we can afford to set it pretty low
     // and gradually turn up the heat.
-    ::Dot.GiveStacks(player, target, "::FireDot", level*damage*0.2, level);
+    ::Dot.GiveStacks(player, target, "::FireDot", damage*0.2, level);
   }
 }
 
-class ::SearingHeat : ::DotModifier {
+class ::BurningTerror : ::DotModifier {
   override ::UpgradeElement Element() { return ::ELEM_FIRE; }
   override string DotType() { return "::FireDot"; }
 
   override void ModifyDot(Actor player, Actor shot, Actor target, int damage, ::Dot dot_item) {
-    ::FireDot(dot_item).heat = level;
+    ::FireDot(dot_item).terror = level;
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
@@ -73,20 +74,20 @@ class ::InfernalKiln : ::ElementalUpgrade {
   }
 
   override double ModifyDamageDealt(Actor pawn, Actor shot, Actor target, double damage) {
-    // Adds damage equal to your level of Kiln * 2, and uses up 1 point.
+    // Adds damage equal to your level of Kiln * 2.
     if (hardness <= 0) return damage;
     DEBUG("Kiln: %f + %f (%f)", damage, level*2.0, hardness);
     damage += level*2.0;
-    hardness--;
+    // hardness--;
     return damage;
   }
 
   override double ModifyDamageReceived(Actor pawn, Actor shot, Actor attacker, double damage) {
-    // Blocks damage equal to your level of Kiln * 2, and uses up 1 point.
+    // Blocks damage equal to your level of Kiln * 2.
     if (hardness <= 0) return damage;
     DEBUG("Kiln: %f - %f (%f)", damage, level*2.0, hardness);
     damage -= min(damage, level*2.0);
-    hardness--;
+    // hardness--;
     return damage;
   }
 
@@ -98,11 +99,11 @@ class ::InfernalKiln : ::ElementalUpgrade {
 // Fire will try to do this proportion of the target's health in damage.
 const BASE_FIRE_FACTOR = 0.5;
 const HEAT_FACTOR = 0.8;
-const DAMAGE_PER_STACK = 1.0; // per dot tick, so multiply by 5 to get DPS
+const DAMAGE_PER_STACK = 5.0; // per dot tick, so multiply by 5 to get DPS
 
 class ::FireDot : ::Dot {
   bool burning;
-  uint heat; // level of Searing Heat upgrade
+  uint terror; // level of Searing Heat upgrade
   uint spread; // level of Conflagration upgrade
 
   Default {
@@ -123,42 +124,61 @@ class ::FireDot : ::Dot {
   }
 
   override double GetDamage() {
-    double goal = owner.SpawnHealth() * BASE_FIRE_FACTOR * (HEAT_FACTOR ** heat);
+    double goal = owner.SpawnHealth() * BASE_FIRE_FACTOR * HEAT_FACTOR ** (stacks-1);
     double total_damage = owner.health - goal;
+
+    if (spread > 0)
+      SpreadFlames();
 
     if (total_damage <= 0.0) {
       burning = false;
       return 0.0;
     }
 
-    if (spread > 0)
-      SpreadFlames();
-
     DEBUG("fire damage, hp=%d, goal=%f, total=%f, damage=%f",
       owner.health, goal, total_damage, clamp(total_damage/10.0, 0.2, stacks));
 
     burning = true;
-    return min(total_damage/10.0, stacks);
+    double damage = min(total_damage/10.0+terror/5, stacks * DAMAGE_PER_STACK);
+    DoTerror(damage);
+    return damage;
+  }
+
+  // Burning Terror implementation.
+  void DoTerror(double damage) {
+    // If the target's health is below a certain amount -- which scales with
+    // both levels of terror and stacks of fire -- it flees.
+    let missing_health = 1 - double(owner.health)/owner.SpawnHealth();
+    if (missing_health >= 0.75 ** (stacks+terror)) {
+      owner.bFRIGHTENED = true;
+    }
+
+    // Independent of whether it's fleeing, it has a chance to enter pain based
+    // on the amount of fire damage it's taking and the level of terror.
+    double nopain = (0.95 - damage/owner.SpawnHealth()) ** (terror*2);
+    if (random(0.0, 1.0) > nopain) {
+      DEBUG("Terror! chance was %.2f", 1-nopain);
+      owner.TriggerPainChance("Fire", true);
+    }
   }
 
   // Conflagration implementation.
   // Drop a fire-spreading entity that sets everything around it on fire.
   void SpreadFlames() {
-    // At level 1 we spread half the heat, at level 2 75%, etc.
-    let spread_amount = ceil(stacks * (1.0 - 0.5 ** spread));
-    DEBUG("SpreadFlames: %d -> %d", stacks, spread_amount);
     let aux = ::Conflagration::Aux(Spawn("::Conflagration::Aux", owner.pos));
     aux.target = self.target;
     aux.spread = self.spread;
     aux.stacks = self.stacks;
-    aux.heat = self.heat;
+    aux.terror = self.terror;
+    aux.range = owner.radius;
   }
 }
 
 class ::Conflagration::Aux : Actor {
-  uint stacks;
-  uint heat; // level of Searing Heat upgrade
+  double stacks;
+  uint terror; // level of Burning Terror upgrade
   uint spread; // level of Conflagration upgrade
+  uint range; // radius of parent actor
 
   Default {
     RenderStyle "Translucent";
@@ -174,15 +194,17 @@ class ::Conflagration::Aux : Actor {
 
   uint GetRange() {
     DEBUG("GetRange: %d", 32 + spread*16 + stacks);
-    return 32 + spread*16 + stacks;
+    return range * (1.0 + 0.5*spread + 0.1*stacks);
   }
 
   override int DoSpecialDamage(Actor target, int damage, Name damagetype) {
-    DEBUG("Transfer: %d to %s", stacks, TFLV::Util.SafeCls(target));
-    let fdot = ::FireDot(::Dot.GiveStacks(self.target, target, "::FireDot", 1, stacks));
-    fdot.heat = max(fdot.heat, self.heat);
+    let fdot = ::FireDot(::Dot.GiveStacks(self.target, target, "::FireDot", 0, 1));
+    if (fdot.stacks < self.stacks) {
+      fdot.AddStacks(1, spread);
+      DEBUG("Transfer: %s with softcap %d -> %.1f stacks", TAG(target), spread, fdot.stacks);
+    }
+    fdot.terror = max(fdot.terror, self.terror);
     fdot.spread = max(fdot.spread, self.spread - 1);
-    DEBUG("Dot added: stacks=%d heat=%d spread=%d", fdot.stacks, fdot.heat, fdot.spread);
     return 0;
   }
 

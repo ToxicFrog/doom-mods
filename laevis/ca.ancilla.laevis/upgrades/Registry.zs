@@ -54,7 +54,7 @@ class ::Registry : Object play {
       "::WeaponDamage",
       // Fire upgrades
       "::IncendiaryShots",
-      "::SearingHeat",
+      "::BurningTerror",
       "::Conflagration",
       "::InfernalKiln",
       // Poison upgrades

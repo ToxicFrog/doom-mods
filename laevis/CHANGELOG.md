@@ -1,6 +1,13 @@
 # 0.7.4
 
 - New: README contains information about discovered incompatibilities with Hideous Destructor
+- Balance: Fire tree rework
+  - Fire damage rate increased
+  - Searing Heat removed; you now get the same effect by applying more fire stacks
+  - Infernal Kiln stacks still decay with time but no longer decay faster when you attack
+  - Conflagration ignition radius significantly increased, and scales with actor size
+  - Conflagration still procs even once the enemy is no longer burning
+  - new intermediate upgrade: Burning Terror causes enemies to flee and flinch while burning
 - Fix: XP wasn't gained for damage-over-time effects
 - Fix: XP gained didn't properly correspond to damage in some circumstances
 - Fix: Explosive Shots could crash in some circumstances

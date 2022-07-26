@@ -18,11 +18,6 @@ Remaining upgrades:
 Gameplay changes:
 - do another pass over the prerequisites. Graph paper? submunitions/expldeath should mutex, for example
 - add "eat weapons to gain their power" feature to LD integration
-- make fragmentation shots non-hitscan
-- rework Fire to be more useful. Thoughts:
-  - merge Searing Heat with base upgrade
-  - add Burning Terror as intermediate, enemies with overstacked fire flee
-  - maybe overstacks can burn past the limit, too?
 
 Internal changes:
 - factor out some shared code like "spawn a helper actor and set its target pointer appropriately", "spawn an expanding ring of particle effects", "do something to everything within a given radius", etc.

@@ -239,17 +239,19 @@ Note that unlike the non-elemental upgrades, elemental AoE effects like `Acid Sp
 
 ## Fire
 
-Fire does more damage the more health the target has, and "burns out" once they're below 50% health. If an enemy that has "burned out" heals, it will start taking fire damage again, making this particularly effective against modded enemies with regeneration or self-healing. More stacks cause it to do the damage faster (but do not increase the total damage dealt). Once an enemy has fire stacks it never loses them; they just become dormant once it drops below the health threshold.
+Fire does more damage the more health the target has, and "burns out" once they're below 50% health. If an enemy that has "burned out" heals, it will start taking fire damage again, making this particularly effective against modded enemies with regeneration or self-healing. More stacks increase both the rate at which damage is dealt and the total amount of damage possible, although it's never enough to actually kill the target. Once an enemy has fire stacks it never loses them; they just become dormant once it drops below the health threshold.
 
 More powerful attacks apply more fire stacks, so it should be good on all weapons.
 
-### Burning Inscription *(Fire basic upgrade)*
+### Searing Inscription *(Fire basic upgrade)*
 
-Shots cause enemies to ignite. Higher levels apply fire stacks faster.
+Shots cause enemies to ignite. Higher levels apply fire stacks faster and increase the softcap, thus increasing both the DPS and the total damage of the effect.
 
-### Searing Heat *(Fire intermediate upgrade)*
+### Burning Terror *(Fire intermediate upgrade)*
 
-Reduces the threshold at which fire burns out by 20% (so one level takes it from 50% to 40%). This can be stacked but has diminishing returns.
+Enemies with fire stacks on them will flee once they drop below a certain level of health. More stacks and higher terror level both contribute to them fleeing earlier. Also provides a bonus to the amount of damage the target takes from fire.
+
+In addition, enemies that are still *taking damage* from fire have a chance to flinch; increased fire damage and terror level both contribute to that chance.
 
 ### Conflagration *(Fire mastery)*
 
