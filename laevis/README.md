@@ -8,6 +8,14 @@ It is designed for maximum compatibility, and supports weapon/enemy replacements
 
 Most settings are configurable through the gzDoom options menu and through cvars, so you can adjust things like the level-up rate and the amount of bonus damage to suit your taste.
 
+## Basic Gameplay
+
+Dealing damage earns your current weapon XP based on the amount of damage dealt (with a bonus for attacking more powerful enemies; shooting an archvile gets you more XP than shooting an imp). Once your weapon gains enough XP, it levels up, and you are presented with a choice of four randomly selected abilities it can learn or upgrade. Each subsequent level on a weapon takes more XP to earn, but more powerful upgrades can only be unlocked on high-level weapons. (For a complete list of available upgrades, see the end of this file.)
+
+Every ten weapon levels (which don't have to be on the same weapon), you also gain a player upgrade. This is a powerful bonus that affects everything you do, no matter what weapon you're wielding.
+
+Laevis has a great many configuration options; these are all available via the gzDoom options menu, and have in-game tooltips explaining what they do.
+
 ## Installation & Setup
 
 Add `libtooltipmenu-<version>.pk3` and `Laevis-<version>.pk3` to your load order. It doesn't matter where, as long as `libtooltipmenu` loads first.
@@ -23,6 +31,8 @@ This should be compatible with every IWAD and pretty much every mod, including w
 It has been tested (although not necessarily extensively) with:
 - Doom, Doom 2, Heretic, and Chex Quest
 - Ashes 2063
+- Champions
+- Colourful Hell
 - DoomRL Arsenal
 - Hedon Bloodrite
 - Hideous Destructor
@@ -32,6 +42,21 @@ It has been tested (although not necessarily extensively) with:
 
 Some mods have specific integration features or compatibility concerns; these are detailed below.
 
+### Score mods (including LazyPoints & MetaDoom)
+
+Laevis has optional integration with mods that award points for actions such as kills. To enable this, adjust the `XP gain from damage` and `XP gain from score` options. The default is to award 1 XP per point of damage dealt, and ignore score entirely.
+
+If you're using a scoremod, setting `XP gain from score` to a value above 0 will cause you to earn that much XP per point earned. This should work with any mod that uses the `PlayerPawn.score` property or `ScoreItem` class to award the player points, and has been tested to work with Lazy Points and MetaDoom.
+
+Here are the settings I use for those mods; you'll probably want to tweak them based on personal taste, but these may be a useful starting point:
+
+- **LazyPoints**: 0.0 damage, 1.0 score. LP awards bonus points for kills, secrets, items, keys, combos, and having high health, but awards less points for dealing damage (due to not having a scaling score bonus for more dangerous enemies). It works out about the same in the end.
+- **MetaDoom**: 0.75 damage, 0.25 score. MD awards bonuses for kills (not damage), plus huge score bonuses for all kills/secrets/items on a level. These settings tend to result in getting more XP than the default overall, but MD also tends to be harder than vanilla, so it works out in the end.
+
+### Universal Pistol Start
+
+Laevis works by storing upgrade information in an item in the player's inventory. If this item gets removed all of your levels and upgrades will disappear. If you want to lose your weapons but keep your upgrades, make sure that `Keep Inventory Items` is enabled in the UPS settings.
+
 ### Legendoom
 
 If you have Legendoom installed, legendary weapons can gain new Legendoom effects on level up. Only one effect can be active at a time, but you can change effects at any time. Weapons can hold a limited number of effects; if you gain a new effect and there's no room for it, you'll be prompted to choose an effect to delete. (Make sure you choose the effect you want to **get rid of**, not one of the ones you want to keep!)
@@ -39,19 +64,6 @@ If you have Legendoom installed, legendary weapons can gain new Legendoom effect
 When using a Legendoom weapon, you can press the "Cycle Legendoom Weapon Effect" key to cycle through effects, or manually select an effect from the "Laevis Info" screen.
 
 There are a lot of settings for this in the mod options, including which weapons can learn effects, how rapidly effects are learned, how many effect slots weapons have, etc. If you want to play with Legendoom installed but turn off integration with Laevis, set `Gun Levels per Legendoom Effect` to 0/Disabled in the settings.
-
-### Score mods (including LazyPoints & MetaDoom)
-
-Laevis has optional integration with mods that award points for actions such as kills. To enable this, turn on `Earn XP based on player score` in the mod settings. As long as it's on, you will earn XP equal to the points you score, rather than equal to the damage you deal. This should work with any mod that uses the `pawn.score` property to record points, but Lazy Points and MetaDoom are the only ones it's actually been tested with.
-
-Laevis is balanced around a rough idea of 1 damage dealt -> 1 XP gained, which score mods don't necessarily follow, so the `XP gain multiplier for score mods` setting is available to tweak the conversion ratio. Recommended settings are:
-
-- **LazyPoints**: 0.4. LP uses the same 1:1 conversion ratio, but awards bonus points for kills, kill combos, items, and secrets, with an additional bonus for kills while above 50% or 100% health.
-- **MetaDoom**: 0.2-0.6. This is hard to tune because MD awards points for kills (not damage) in amounts that range from about the same to more than twice as much as you'd get from Laevis or LazyPoints, depending on the enemy. It also awards huge score bonuses (5-10k) for all kills/secrets/items, which in early levels can account for 5-10x as many points as your kills are worth, but become proportionally less valuable as the levels get larger. Set it lower for relatively sparse levels, higher for slaughtermaps.
-
-### Universal Pistol Start
-
-Laevis works by storing upgrade information in an item in the player's inventory. If this item gets removed all of your levels and upgrades will disappear. If you want to lose your weapons but keep your upgrades, make sure that `Keep Inventory Items` is enabled in the UPS settings.
 
 ### DoomRL Arsenal
 

@@ -48,9 +48,9 @@ OptionMenu "LaevisOptions"
   StaticText ""
   StaticText "XP Source Settings", PURPLE
 
-  Slider "XP gain from damage", "laevis_damage_to_xp_factor", 0.0, 10.0, 0.05, 2
+  Slider "XP gain from damage", "laevis_damage_to_xp_factor", 0.0, 2.0, 0.05, 2
   Tooltip "How much XP you earn per point of damage you inflict. This feature is built into Laevis."
-  Slider "XP gain from score", "laevis_score_to_xp_factor", 0.0, 10.0, 0.05, 2
+  Slider "XP gain from score", "laevis_score_to_xp_factor", 0.0, 2.0, 0.05, 2
   Tooltip "How much XP you earn per point of score you accumulate. This requires you to install a mod that lets you score points, such as LazyPoints or MetaDoom. The specific actions that you gain points for, and how many points you get, will depend on the mod you use."
   // Slider "XP gain from War Trophies", "laevis_wt_to_xp_factor", 0.0, 10.0, 0.05, 2
   // Tooltip "How much XP you earn per point of War Trophies XP you accumulate."
