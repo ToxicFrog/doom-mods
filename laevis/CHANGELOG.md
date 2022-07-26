@@ -4,6 +4,7 @@
 - Fix: XP wasn't gained for damage-over-time effects
 - Fix: XP gained didn't properly correspond to damage in some circumstances
 - Fix: Explosive Shots could crash in some circumstances
+- Fix: overkilling an enemy could result in negative XP
 
 # 0.7.3
 

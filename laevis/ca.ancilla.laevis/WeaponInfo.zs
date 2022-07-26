@@ -23,15 +23,11 @@ class ::WeaponInfo : Object play {
 
   // Called when a new WeaponInfo is created. This should initialize the entire object.
   void Init(Actor wpn) {
-    DEBUG("Initializing WeaponInfo for %s", ::Util.SafeTag(wpn));
+    DEBUG("Initializing WeaponInfo for %s", TAG(wpn));
     upgrades = new("::Upgrade::UpgradeBag");
-    DEBUG("A");
     ld_info = new("::LegendoomWeaponInfo");
-    DEBUG("B");
     ld_info.Init(self);
-    DEBUG("C");
     Rebind(wpn);
-    DEBUG("D");
     XP = 0;
     level = 0;
     maxXP = GetXPForLevel(level+1);
@@ -85,11 +81,14 @@ class ::WeaponInfo : Object play {
     // if (weapon.bBFG) {
     //   XP *= ::Settings.level_cost_mul_for("bfg");
     // }
+    DEBUG("GetXPForLevel: level %d -> XP %.1f", level, XP);
     return XP;
   }
 
   bool AddXP(double newXP) {
+    DEBUG("Adding XP: %.3f + %.3f", XP, newXP);
     XP += newXP;
+    DEBUG("XP is now %.3f", XP);
     if (XP >= maxXP) {
       LevelUp();
       return true;

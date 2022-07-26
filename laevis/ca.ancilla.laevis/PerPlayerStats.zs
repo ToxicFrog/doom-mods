@@ -110,7 +110,7 @@ class ::PerPlayerStats : Inventory {
     stats.plvl = level;
     stats.pupgrades = upgrades;
     stats.winfo = info;
-    stats.wxp = info.XP;
+    stats.wxp = floor(info.XP);
     stats.wmax = info.maxXP;
     stats.wlvl = info.level;
     stats.wname = info.weapon.GetTag();
@@ -270,7 +270,11 @@ class ::PerPlayerStats : Inventory {
   }
 
   double GetXPForDamage(Actor target, uint damage) const {
-    double xp = min(damage, target.health) * ::Settings.damage_to_xp_factor();
+    if (target.health < 0) {
+      // No bonus XP for overkills.
+      damage += target.health;
+    }
+    double xp = max(0, damage) * ::Settings.damage_to_xp_factor();
     DEBUG("XPForDamage: damage=%d, xp=%.1f", damage, xp);
     if (target.GetSpawnHealth() > 100) {
       // Enemies with lots of HP get a log-scale XP bonus.
@@ -294,6 +298,8 @@ class ::PerPlayerStats : Inventory {
   }
 
   void OnDamageDealt(Actor shot, Actor target, uint damage) {
+    DEBUG("OnDamageDealt: %d vs. %s via %s",
+      damage, TAG(target), TAG(shot));
     upgrades.OnDamageDealt(owner, shot, target, damage);
     // Record whether it was a missile or a projectile, for the purposes of
     // deciding what kinds of upgrades to spawn.
