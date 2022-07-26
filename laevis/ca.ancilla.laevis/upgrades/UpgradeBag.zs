@@ -61,7 +61,7 @@ class ::UpgradeBag : Object play {
 
   double ModifyDamageDealt(Actor pawn, Actor shot, Actor target, double damage) {
     for (uint i = 0; i < upgrades.Size(); ++i) {
-      DEBUG("UpgradeBag.ModifyDamageDealt: %d %s", i, TFLV::Util.SafeCls(upgrades[i]));
+      DEBUG("UpgradeBag.ModifyDamageDealt: %d %s", i, upgrades[i].GetClassName());
       if (!upgrades[i].CheckPriority(shot)) continue;
       damage = upgrades[i].ModifyDamageDealt(pawn, shot, target, damage);
     }
@@ -78,6 +78,8 @@ class ::UpgradeBag : Object play {
 
   void OnDamageDealt(Actor pawn, Actor shot, Actor target, int damage) {
     for (uint i = 0; i < upgrades.Size(); ++i) {
+      DEBUG("ODD Priority(%s) == %d vs. %d",
+        TAG(shot), (shot?shot.special1:-999), upgrades[i].Priority());
       if (!upgrades[i].CheckPriority(shot)) continue;
       upgrades[i].OnDamageDealt(pawn, shot, target, damage);
     }

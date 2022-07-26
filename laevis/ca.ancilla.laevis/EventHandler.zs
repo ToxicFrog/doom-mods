@@ -2,16 +2,12 @@
 // Handles giving players a stat tracking item when they spawn in, and assigning
 // XP to their currently wielded weapon when they damage something.
 #namespace TFLV;
+#debug off
 
 class ::EventHandler : StaticEventHandler {
   bool legendoomInstalled;
   ::Upgrade::Registry UPGRADE_REGISTRY;
   ui ::HUD hud;
-
-  static string SafeTag(Actor act) {
-    if (!act) return "null";
-    return act.GetTag();
-  }
 
   override void OnRegister() {
     DEBUG("Initializing Laevis...");
@@ -130,7 +126,7 @@ class ::EventHandler : StaticEventHandler {
 
   override void WorldThingDamaged(WorldEvent evt) {
     DEBUG("WTD: %s inflictor=%s source=%s damage=%d type=%s flags=%X, hp=%d",
-      SafeTag(evt.thing), SafeTag(evt.inflictor), SafeTag(evt.damagesource),
+      TAG(evt.thing), TAG(evt.inflictor), TAG(evt.damagesource),
       evt.damage, evt.damagetype, evt.damageflags, evt.thing.health);
     if (evt.damagesource == players[consoleplayer].mo
         && evt.thing.bISMONSTER
@@ -155,10 +151,10 @@ class ::EventHandler : StaticEventHandler {
       ::PerPlayerStats.GetStatsFor(thing.target).OnProjectileCreated(thing);
     }
 
-    DEBUG("WTS: %s (owner=NONE) (master=%s) (target=%s) (tracer=%s)",
-      thing.GetClassName(),
-      SafeTag(thing.master),
-      SafeTag(thing.target),
-      SafeTag(thing.tracer));
+    // DEBUG("WTS: %s (owner=NONE) (master=%s) (target=%s) (tracer=%s)",
+    //   thing.GetClassName(),
+    //   TAG(thing.master),
+    //   TAG(thing.target),
+    //   TAG(thing.tracer));
   }
 }

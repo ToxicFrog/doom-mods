@@ -2,6 +2,7 @@
 
 - New: support for DamNums; Laevis damage types will be coloured to match their upgrade names
 - New: XP-from-damage and XP-from-score can both be turned on the same time, with independent multipliers
+- New: Fragmentation Shots are now fast-moving projectiles rather than hitscans
 - Balance: remove Agonizer from the melee upgrade pool, as it's redundant with Shock
 - Balance: Revivified enemies only take 1 damage from the player
 - Balance: Fragmentation Shots now pass through the enemy you hit, hitting everything around it
@@ -19,6 +20,7 @@
 - Fix: upgrades with on-tick effects for the player, such as Infernal Kiln, did not trigger when not using a scoremod
 - Fix: the XP scaling setting for scoremods didn't work
 - Fix: it is now possible to earn fractional XP rather than rounding down to 0
+- Fix: Fragmentation Shots now properly trigger elemental effects
 
 # 0.7.2
 

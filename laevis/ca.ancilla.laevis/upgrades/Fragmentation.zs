@@ -48,25 +48,27 @@ class ::FragmentationShots::Boom : Actor {
     +NOGRAVITY;
     +NODAMAGETHRUST;
     RenderStyle "Translucent";
-    Alpha 0.7;
-    Scale 0.2;
+    Alpha 0.5;
+    Scale 1.0;
   }
 
   void Explode() {
-    // TODO: spawn fragments as projectiles rather than as hitscans.
-    // It'll look cooler.
-    // For the purposes of this explosion, make the monster we just shot unshootable,
-    // so the fragments pass through it -- this prevents the upgrade from turning
-    // e.g. the EMG pistol into a pocket shotgun.
-    DEBUG("Kaboom! tracer=%s source=%s", TAG(tracer), TAG(target));
-    if (tracer) tracer.bSHOOTABLE = false;
-    A_Explode(0, 0, XF_NOSPLASH, false, 0, 8+level*8, damage,
-      "::FragmentationShots::Puff");
-    if (tracer) tracer.bSHOOTABLE = true;
-    A_AlertMonsters();
-    // TODO: include a suitable sound effect
-    A_StartSound("imp/shotx", CHAN_WEAPON, CHANF_OVERLAP, 1, 0.5);
-    A_StartSound("imp/shotx", CHAN_7, CHANF_OVERLAP, 0.1, 0.01);
+    let nfragments = 8 + level*8;
+    for (uint i = 0; i < nfragments; ++i) {
+      double angle = 360.0/nfragments * i;
+      let aux = ::FragmentationShots::Fragment(
+        A_SpawnProjectile(
+          "::FragmentationShots::Fragment",
+          0, 0, angle,
+          CMF_AIMDIRECTION|CMF_TRACKOWNER,
+          random(-1.0,1.0)));
+      aux.target = self.target;
+      aux.tracer = self.tracer;
+      aux.customdamage = self.damage;
+      aux.bTHRUACTORS = false;
+      DEBUG("Spawned projectile %s angle=%d target=%s tracer=%s damage=%d",
+        TAG(aux), angle, TAG(aux.target), TAG(aux.tracer), aux.damage);
+    }
   }
 
   States {
@@ -78,29 +80,65 @@ class ::FragmentationShots::Boom : Actor {
   }
 }
 
-class ::FragmentationShots::Puff : BulletPuff {
+class ::FragmentationShots::Fragment : FastProjectile {
+  uint customdamage;
   property UpgradePriority: special1;
   Default {
-    ::FragmentationShots::Puff.UpgradePriority ::PRI_FRAGMENTATION;
-    +ALWAYSPUFF;
-  }
-
-  override int DoSpecialDamage(Actor target, int damage, Name damagetype) {
-    DEBUG("Fragmentation DoSpecialDamage, target=%s owner=%s",
-      TAG(target), TAG(self.target));
-    if (target is "PlayerPawn") {
-      return 0;
-    }
-    return damage;
+    ::FragmentationShots::Fragment.UpgradePriority ::PRI_FRAGMENTATION;
+    Radius 2;
+    Height 2;
+    Speed 30;
+    Damage 1; // uses customdamage via DoSpecialDamage() instead
+    MissileType "::FragmentationShots::Trail";
+    MissileHeight 8;
+    Scale 0.4;
+    Alpha 0.9;
+    RenderStyle "Add";
+    PROJECTILE;
+    +THRUACTORS; // used to disable collision when first spawned; gets turned on after.
   }
 
   States {
     Spawn:
-      LPUF A 4 Bright;
-      LPUF B 4;
-      // Intentional fall-through
-    Melee:
-      LPUF CD 4;
+      LPUF A 1 BRIGHT;
+      LOOP;
+    Crash:
+    Death:
+      LPUF ABCD 2 BRIGHT;
+      STOP;
+    XDeath:
       STOP;
   }
+
+  override int DoSpecialDamage(Actor target, int damage, Name damagetype) {
+    return customdamage;
+  }
+
+  override bool CanCollideWith(Actor other, bool passive) {
+    // Don't collide with the player, or with the monster they just shot.
+    DEBUG("CanCollide? other=%s target=%s tracer=%s other=target? %d other=tracer? %d",
+      TAG(other), TAG(self.target), TAG(self.tracer), other == self.target, other == self.tracer);
+    return other != self.tracer && other != self.target;
+  }
 }
+
+class ::FragmentationShots::Trail : Actor {
+  Default {
+    Speed 0;
+    Scale 0.4;
+    Alpha 0.75;
+    RenderStyle "Add";
+    +NOBLOCKMAP;
+    +NOGRAVITY;
+    +NOTELEPORT;
+    +CANNOTPUSH;
+    +NODAMAGETHRUST;
+  }
+
+  States {
+    Spawn:
+      LPUF A 1 BRIGHT A_FadeOut(0.3);
+      LOOP;
+  }
+}
+
