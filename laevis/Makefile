@@ -1,5 +1,5 @@
 NAME=Laevis
-VERSION=0.7.3
+VERSION=0.7.4
 LUMPS=zscript.txt MAPINFO CVARINFO KEYCONF MENUDEF LANGUAGE.* sprites
 LUMPS+=*.md COPYING.freedoom
 ZSDIR=ca.ancilla.laevis

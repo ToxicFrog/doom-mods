@@ -1,3 +1,8 @@
+# 0.7.4
+
+- Fix: XP wasn't gained for damage-over-time effects
+- Fix: XP gained didn't properly correspond to damage in some circumstances
+
 # 0.7.3
 
 - New: support for DamNums; Laevis damage types will be coloured to match their upgrade names

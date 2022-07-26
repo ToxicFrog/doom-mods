@@ -300,6 +300,7 @@ class ::PerPlayerStats : Inventory {
     let info = GetInfoForCurrentWeapon();
     if (!info) return;
     info.upgrades.OnDamageDealt(owner, shot, target, damage);
+    AddXP(GetXPForDamage(target, damage));
     // If it has a priority set on it, it's one of ours and we shouldn't use it
     // for hitscan/projectile inference.
     if (shot && shot.special1 != ::Upgrade::PRI_MISSING) return;
@@ -361,8 +362,6 @@ class ::PerPlayerStats : Inventory {
         newdamage = damage;
         return;
       }
-
-      AddXP(GetXPForDamage(target, newdamage));
 
       double tmpdamage = upgrades.ModifyDamageDealt(owner, inflictor, source, damage);
       if (info)
