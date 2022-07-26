@@ -1,7 +1,9 @@
 # 0.7.4
 
+- New: README contains information about discovered incompatibilities with Hideous Destructor
 - Fix: XP wasn't gained for damage-over-time effects
 - Fix: XP gained didn't properly correspond to damage in some circumstances
+- Fix: Explosive Shots could crash in some circumstances
 
 # 0.7.3
 

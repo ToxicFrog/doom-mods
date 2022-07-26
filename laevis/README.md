@@ -28,17 +28,19 @@ That's all -- if equipping a weapon and then pressing the "display info" key (de
 
 This should be compatible with every IWAD and pretty much every mod, including weapon/enemy replacements and total conversions. It relies entirely on event handlers and runtime reflection, so as long as the player's guns are still subclasses of `Weapon` it should behave properly.
 
-It has been tested (although not necessarily extensively) with:
+It has been tested (although not necessarily extensively) and is known to work with:
 - Doom, Doom 2, Heretic, and Chex Quest
 - Ashes 2063
 - Champions
 - Colourful Hell
 - DoomRL Arsenal
 - Hedon Bloodrite
-- Hideous Destructor
 - LegenDoom & LegenDoomLite
 - MetaDoom
 - Trailblazer
+
+It is known be playable with some issues with:
+- Hideous Destructor
 
 Some mods have specific integration features or compatibility concerns; these are detailed below.
 
@@ -68,6 +70,12 @@ There are a lot of settings for this in the mod options, including which weapons
 ### DoomRL Arsenal
 
 This works fine in general, but building an assembly out of a weapon will reset it to level 0 and clear all upgrades on it, even if the upgrade binding mode is to set to `weapon with inheritance` or `weapon class` (because the assembly is not just a different weapon but an entirely different weapon class from the base weapon you used to assemble it).
+
+### Hideous Destructor
+
+The `Scavenge Lead` upgrade doesn't work at all. Some other upgrades may fail to work or even crash depending on what weapons you put them on.
+
+Damage is not always properly converted into XP.
 
 ## FAQ
 
