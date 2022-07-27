@@ -137,7 +137,7 @@ class ::EventHandler : StaticEventHandler {
         && evt.thing != evt.damagesource
         && evt.damage > 0) {
       let stats = ::PerPlayerStats.GetStatsFor(PlayerPawn(evt.damagesource));
-      stats.OnDamageDealt(evt.inflictor, evt.thing, min(evt.damage, evt.thing.health));
+      stats.OnDamageDealt(evt.inflictor, evt.thing, evt.damage);
       if (evt.thing.health <= 0) {
         stats.OnKill(evt.inflictor, evt.thing);
       }
