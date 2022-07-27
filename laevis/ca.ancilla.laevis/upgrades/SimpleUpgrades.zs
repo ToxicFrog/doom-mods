@@ -1,10 +1,16 @@
 // Simple upgrades that don't need any aux classes and have simple implementations
 #namespace TFLV::Upgrade;
 
-// Damage multiplier per upgrade level. Additive; if this is 0.20 and the player
-// has five levels in it, they do double damage.
-const player_damage_bonus = 0.05;
-const gun_damage_bonus = 0.10;
+class ::BlastShaping : ::BaseUpgrade {
+  override double ModifyDamageReceived(Actor pawn, Actor shot, Actor attacker, double damage) {
+    if (pawn != attacker) return damage;
+    return damage * 0.5 ** level;
+  }
+
+  override bool IsSuitableForPlayer(TFLV::PerPlayerStats stats) {
+    return true;
+  }
+}
 
 // TODO: put some restrictions on this so you can't stack bouncy, piercing, and
 // homing all on the same projectile. Maybe bouncy and piercing are mutually

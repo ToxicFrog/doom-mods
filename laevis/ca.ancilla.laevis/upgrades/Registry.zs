@@ -35,6 +35,7 @@ class ::Registry : Object play {
       "::AmmoLeech",
       "::ArmourLeech",
       // "::Beam", TODO: fix interactions with HE shots and similar
+      "::BlastShaping",
       "::BouncyShots",
       "::DarkHarvest",
       "::ExplosiveDeath",
