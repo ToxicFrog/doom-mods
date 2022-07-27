@@ -140,7 +140,7 @@ class ::FireDot : ::Dot {
 
     burning = true;
     double damage = min(total_damage/10.0+terror/5, stacks * DAMAGE_PER_STACK);
-    DoTerror(damage);
+    if (terror > 0) DoTerror(damage);
     return damage;
   }
 
