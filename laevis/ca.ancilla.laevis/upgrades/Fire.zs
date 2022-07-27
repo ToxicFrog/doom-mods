@@ -69,7 +69,7 @@ class ::InfernalKiln : ::ElementalUpgrade {
     DEBUG("Kiln:  -> %f", hardness);
   }
 
-  override void Tick() {
+  override void Tick(Actor owner) {
     if (hardness > 0) hardness -= 1.0/35.0;
   }
 

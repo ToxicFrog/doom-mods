@@ -379,6 +379,7 @@ class ::PerPlayerStats : Inventory {
   void Initialize() {
     prevScore = -1;
     if (!upgrades) upgrades = new("::Upgrade::UpgradeBag");
+    upgrades.owner = self.owner;
   }
 
   // Runs once per tic.

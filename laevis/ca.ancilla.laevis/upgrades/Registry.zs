@@ -44,6 +44,7 @@ class ::Registry : Object play {
       "::FragmentationShots",
       "::HomingShots",
       // "::Ignition",
+      "::Juggler",
       "::LifeLeech",
       "::PiercingShots",
       "::PlayerDamage",

@@ -36,7 +36,7 @@ class ::BaseUpgrade : Object play {
 
   // Tick function. Equivalent to Thinker.Tick() but we define it here because
   // we can't inherit from Thinker and have the upgrades survive level changes.
-  virtual void Tick() {}
+  virtual void Tick(Actor owner) {}
 
   // Priority system.
   // The basic idea here is that upgrade effects can only be triggered by (a)

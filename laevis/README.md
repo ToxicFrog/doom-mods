@@ -191,6 +191,10 @@ Creates a small explosion on hit doing 40% of the original attack damage. More l
 
 Projectiles home in on enemies. Higher levels will lock on from further away and be more maneuverable when homing.
 
+### Juggler (*Player only, max 1 level)*
+
+Weapon switching is instantaneous, or nearly so. Note that this does not affect reload speed or rate of fire.
+
 ### Piercing Shots *(Projectile only)*
 
 Shots go through enemies (but not walls). Each level allows shots to go through one additional enemy. Note that most shots will hit enemies multiple times as they pass through, so this also acts as a damage bonus.

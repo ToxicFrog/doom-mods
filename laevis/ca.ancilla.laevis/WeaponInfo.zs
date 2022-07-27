@@ -25,6 +25,7 @@ class ::WeaponInfo : Object play {
   void Init(Actor wpn) {
     DEBUG("Initializing WeaponInfo for %s", TAG(wpn));
     upgrades = new("::Upgrade::UpgradeBag");
+    upgrades.owner = wpn.owner;
     ld_info = new("::LegendoomWeaponInfo");
     ld_info.Init(self);
     Rebind(wpn);
