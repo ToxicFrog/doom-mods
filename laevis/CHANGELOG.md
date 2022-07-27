@@ -1,3 +1,7 @@
+# 0.7.5
+
+- Fix: Scavenge Lead no longer spawns ammo types that don't have a valid sprite defined. In particular, this fixes an issue with Ashes 2063.
+
 # 0.7.4
 
 - New: README contains information about discovered incompatibilities with Hideous Destructor

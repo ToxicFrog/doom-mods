@@ -2,6 +2,7 @@
 // Actually cause enemies to drop bonus health/armour on death. Amount depends
 // on how powerful the enemy was.
 #namespace TFLV::Upgrade;
+#debug off
 
 class ::LeechUtil {
   clearscope static Vector3 WigglePos(Actor act) {
@@ -60,19 +61,27 @@ class ::ArmourLeech::Bonus : ArmorBonus {
 }
 
 class ::AmmoLeech : ::BaseUpgrade {
+  bool IsSuitable(Class<Ammo> atype) {
+    return atype && GetDefaultByType(atype).FindState("Spawn").Sprite != 0;
+  }
+
   override void OnKill(Actor player, Actor shot, Actor target) {
     Array<String> candidates;
     for (Inventory inv = player.inv; inv != null; inv = inv.inv) {
       let wpn = Weapon(inv);
       if (wpn) {
         DEBUG("Considering %s", TAG(wpn));
-        if (wpn.AmmoType1) {
+        if (IsSuitable(wpn.AmmoType1)) {
           candidates.push(wpn.AmmoType1.GetClassName());
-          DEBUG("Primary ammo: %s", wpn.AmmoType1.GetClassName());
+          DEBUG("Primary ammo: %s (%d)",
+            wpn.AmmoType1.GetClassName(),
+            GetDefaultByType(wpn.AmmoType1).Amount);
         }
-        if (wpn.AmmoType2) {
+        if (IsSuitable(wpn.AmmoType2)) {
           candidates.push(wpn.AmmoType2.GetClassName());
-          DEBUG("Secondary ammo: %s", wpn.AmmoType2.GetClassName());
+          DEBUG("Secondary ammo: %s (%d)",
+            wpn.AmmoType2.GetClassName(),
+            GetDefaultByType(wpn.AmmoType2).Amount);
         }
       }
     }
