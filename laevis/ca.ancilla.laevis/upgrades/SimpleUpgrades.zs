@@ -81,7 +81,7 @@ class ::Thorns : ::BaseUpgrade {
 class ::ToughAsNails : ::BaseUpgrade {
   override double ModifyDamageReceived(Actor pawn, Actor shot, Actor attacker, double damage) {
     // 10% resistance per level, multiplicative
-    double newdamage * (0.90 ** self.level);
+    double newdamage = damage * (0.90 ** self.level);
     return max(1, min(newdamage, damage - level));
   }
 

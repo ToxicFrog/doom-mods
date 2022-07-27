@@ -25,7 +25,6 @@ class ::WeaponInfo : Object play {
   void Init(Actor wpn) {
     DEBUG("Initializing WeaponInfo for %s", TAG(wpn));
     upgrades = new("::Upgrade::UpgradeBag");
-    upgrades.owner = wpn.owner;
     ld_info = new("::LegendoomWeaponInfo");
     ld_info.Init(self);
     Rebind(wpn);
@@ -40,6 +39,7 @@ class ::WeaponInfo : Object play {
   // should keep most of its stats.
   void Rebind(Actor wpn) {
     self.weapon = Weapon(wpn);
+    self.upgrades.owner = self.weapon.owner;
     if (self.weaponType != wpn.GetClassName()) {
       // Rebinding to a weapon of an entirely different type. Reset the attack
       // modality inference counters.
