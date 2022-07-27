@@ -143,7 +143,7 @@ class ::EventHandler : StaticEventHandler {
       }
     } else if (evt.thing == players[consoleplayer].mo) {
       ::PerPlayerStats.GetStatsFor(PlayerPawn(evt.thing)).OnDamageReceived(
-        evt.inflictor, evt.thing, evt.damage);
+        evt.inflictor, evt.damagesource, evt.damage);
     }
   }
 
