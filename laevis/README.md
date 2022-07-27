@@ -195,10 +195,6 @@ Projectiles home in on enemies. Higher levels will lock on from further away and
 
 Shots go through enemies (but not walls). Each level allows shots to go through one additional enemy. Note that most shots will hit enemies multiple times as they pass through, so this also acts as a damage bonus.
 
-### Resistance *(Player only)*
-
-Reduces incoming damage by 10% (and by at least 1 point per level). This has diminishing returns as you take more levels of it, and cannot reduce damage taken below 1.
-
 ### Scavenge Blood *(Player only)*
 
 When killed, enemies drop a health bonus worth 1% of their max health.
@@ -222,6 +218,15 @@ Killing an enemy releases a pile of bouncing explosives. Damage depends on level
 ### Swiftness *(Melee only)*
 
 Killing an enemy gives you a brief moment of time freeze (and some brief slow-mo as it wears off). Killing multiple enemies in rapid succession will extend the duration, as will increasing the level of Swiftness.
+
+### Thorns *(Player only)*
+
+Enemies attacking you take an equal amount of damage. More levels increases the amount of damage attackers take. Note that you still take full damage from the attack!
+
+### Tough as Nails *(Player only)*
+
+Reduces incoming damage by 10% (and by at least 1 point per level). This has diminishing returns as you take more levels of it, and cannot reduce damage taken below 1.
+
 
 # Elemental Upgrades
 

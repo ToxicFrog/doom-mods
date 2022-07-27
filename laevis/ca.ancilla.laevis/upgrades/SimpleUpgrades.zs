@@ -61,6 +61,17 @@ class ::PlayerDamage : ::BaseUpgrade {
   }
 }
 
+class ::Thorns : ::BaseUpgrade {
+  override void OnDamageReceived(Actor pawn, Actor shot, Actor attacker, int damage) {
+    if (!attacker || pawn == attacker || !attacker.bISMONSTER) return;
+    attacker.DamageMobj(pawn, pawn, damage * level, "Thorns", DMG_THRUSTLESS);
+  }
+
+  override bool IsSuitableForPlayer(TFLV::PerPlayerStats stats) {
+    return true;
+  }
+}
+
 class ::ToughAsNails : ::BaseUpgrade {
   override double ModifyDamageReceived(Actor pawn, Actor shot, Actor attacker, double damage) {
     // 10% resistance per level, multiplicative

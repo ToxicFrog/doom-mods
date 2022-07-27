@@ -49,6 +49,7 @@ class ::Registry : Object play {
       "::Shield",
       "::Submunitions",
       "::Swiftness",
+      "::Thorns",
       "::ToughAsNails",
       "::WeaponDamage",
       // Fire upgrades
