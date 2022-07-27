@@ -62,8 +62,8 @@ class ::PiercingShots : ::BaseUpgrade {
 
 class ::PlayerDamage : ::BaseUpgrade {
   override double ModifyDamageDealt(Actor pawn, Actor shot, Actor target, double damage) {
-    // 5% damage bonus per level, but always at least 1 extra point per level.
-    double bonus = damage * (self.level * 0.05);
+    // 10% damage bonus per level, but always at least 1 extra point per level.
+    double bonus = damage * (self.level * 0.10);
     return damage + (bonus < self.level ? self.level : bonus);
   }
 
