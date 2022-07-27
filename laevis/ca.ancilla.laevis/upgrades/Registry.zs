@@ -32,7 +32,6 @@ class ::Registry : Object play {
     DEBUG("RegisterBuiltins");
     static const string UpgradeNames[] = {
       // "::Agonizer",
-      "::Armour",
       "::AmmoLeech",
       "::ArmourLeech",
       // "::Beam", TODO: fix interactions with HE shots and similar
@@ -47,10 +46,10 @@ class ::Registry : Object play {
       "::LifeLeech",
       "::PiercingShots",
       "::PlayerDamage",
-      "::Resistance",
       "::Shield",
       "::Submunitions",
       "::Swiftness",
+      "::ToughAsNails",
       "::WeaponDamage",
       // Fire upgrades
       "::IncendiaryShots",

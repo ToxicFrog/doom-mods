@@ -14,10 +14,20 @@ Remaining upgrades:
   - will be a player mod, so it should either be fairly powerful or get more powerful with time
   - we can use GetDefaultByType(ammoitem).MaxAmount to compute the base max amount
     and then confer bonuses based on that
+- Thorns aura
+- Juggler (fast weapon switch)
+- Tough as Nails (merge armour/resistance)
+- name tbd (reduce self-damage by 50->75%)
 
 Gameplay changes:
 - do another pass over the prerequisites. Graph paper? submunitions/expldeath should mutex, for example
 - add "eat weapons to gain their power" feature to LD integration
+- Compatibility options:
+  - health pickups: doom vs. laevis
+  - armour pickups: doom vs. laevis
+  - ammo pickups: based on player ammo vs. based on player weapon vs. based on level contents
+  - ammo pickups: suppress ammo that has default pickup message
+  - ammo pickups: suppress ammo with no spawn state
 
 Internal changes:
 - factor out some shared code like "spawn a helper actor and set its target pointer appropriately", "spawn an expanding ring of particle effects", "do something to everything within a given radius", etc.

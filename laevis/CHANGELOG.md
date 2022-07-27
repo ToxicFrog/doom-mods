@@ -1,6 +1,7 @@
 # 0.7.5
 
 - Balance: player damage upgrade renamed Bloodthirsty, now grants +10% damage instead of +5%
+- Balance: Armour and Resistance merged into a single upgrade, Tough as Nails, and buffed
 - Fix: Scavenge Lead no longer spawns ammo types that don't have a valid sprite defined. In particular, this fixes an issue with Ashes 2063.
 
 # 0.7.4

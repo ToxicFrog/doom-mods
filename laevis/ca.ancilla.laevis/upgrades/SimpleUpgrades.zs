@@ -6,17 +6,6 @@
 const player_damage_bonus = 0.05;
 const gun_damage_bonus = 0.10;
 
-class ::Armour : ::BaseUpgrade {
-  override double ModifyDamageReceived(Actor pawn, Actor shot, Actor attacker, double damage) {
-    damage = damage - self.level;
-    return damage < 2 ? 2 : damage;
-  }
-
-  override bool IsSuitableForPlayer(TFLV::PerPlayerStats stats) {
-    return true;
-  }
-}
-
 // TODO: put some restrictions on this so you can't stack bouncy, piercing, and
 // homing all on the same projectile. Maybe bouncy and piercing are mutually
 // exclusive?
@@ -72,10 +61,11 @@ class ::PlayerDamage : ::BaseUpgrade {
   }
 }
 
-class ::Resistance : ::BaseUpgrade {
+class ::ToughAsNails : ::BaseUpgrade {
   override double ModifyDamageReceived(Actor pawn, Actor shot, Actor attacker, double damage) {
-    // 5% resistance per level, multiplicative
-    return damage * (0.95 ** self.level);
+    // 10% resistance per level, multiplicative
+    double newdamage * (0.90 ** self.level);
+    return max(1, min(newdamage, damage - level));
   }
 
   override bool IsSuitableForPlayer(TFLV::PerPlayerStats stats) {
