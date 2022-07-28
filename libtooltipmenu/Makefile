@@ -1,6 +1,6 @@
 NAME=libtooltipmenu
 VERSION=0.1.1
-LUMPS=zscript.txt
+LUMPS=zscript.txt textures
 LUMPS+=*.md
 ZSCRIPT=ca.ancilla.libtooltipmenu/*.zsc
 

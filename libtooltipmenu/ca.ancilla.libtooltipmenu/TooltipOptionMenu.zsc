@@ -201,7 +201,7 @@ class OptionMenuItemTooltip : OptionMenuItem {
 class OptionMenuItemTooltipGeometry : OptionMenuitem {
   double x, y, w, xpad, ypad;
 
-  OptionMenuItemTooltipGeometry Init(double x, double y, double w, double xpad, double ypad) {
+  OptionMenuItemTooltipGeometry Init(double x=-1.0, double y=-1.0, double w=-1.0, double xpad=-1.0, double ypad=-1.0) {
     self.x = x; self.y = y; self.w = w;
     self.xpad = xpad; self.ypad = ypad;
     return self;
@@ -221,10 +221,10 @@ class OptionMenuItemTooltipAppearance : OptionMenuitem {
   Color colour;
   TextureID texture;
 
-  OptionMenuItemTooltipAppearance Init(string myfont, string colour, string texture) {
-    self.myfont = Font.GetFont(myfont);
-    self.colour = Font.FindFontColor(colour);
-    self.texture = TexMan.CheckForTexture(texture, TexMan.TYPE_ANY);
+  OptionMenuItemTooltipAppearance Init(string myfont="", string colour="", string texture="") {
+    if (myfont != "") self.myfont = Font.GetFont(myfont);
+    if (colour != "") self.colour = Font.FindFontColor(colour);
+    if (texture != "") self.texture = TexMan.CheckForTexture(texture, TexMan.TYPE_ANY);
     return self;
   }
 

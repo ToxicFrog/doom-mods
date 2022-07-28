@@ -105,7 +105,9 @@ You can use `TooltipAppearance` to change the font, colour, and background of th
 TooltipApperance "newsmallfont", "pink", "SBOXA0"
 ```
 
-The font and colour will be resolved with `GetFont` and `FindFontColor`. The texture supports animation and will be scaled to fit the tooltip, so it's recommended to choose something that will still look acceptable when stretched or squished into odd shapes.
+The font and colour will be resolved with `GetFont` and `FindFontColor`. The texture supports animation and will be scaled to fit the tooltip, so it's recommended to choose something that will still look acceptable when stretched or squished into odd shapes. If you want a simple black background with antialiased edges, libtooltipmenu ships with one, called "TFTTBG".
+
+Like `TooltipGeometry` this can be specified multiple times to apply different settings to different tooltips. To leave a setting unchanged, use `""`, e.g. `TooltipAppearance "", "blue", ""` to change the font colour and nothing else.
 
 ## License
 
