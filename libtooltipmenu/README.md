@@ -24,20 +24,6 @@ OptionMenu "KittenOptions"
 
 If you do nothing else, this will behave like a normal `OptionMenu`; you must use the `Tooltip` menuentry type to add tooltips.
 
-### Configuring tooltip appearance
-
-The default is white text, no background, against the left side of the screen. You can change the size and position of the tooltips with the `TooltipGeometry` directive:
-
-```
-// Arguments: X, Y, width, horizontal margin, vertical margin
-// Place tooltip in the bottom center with really fat margins.
-TooltipGeometry 0.5, 1.0, 1.0, 4.0, 2.0
-```
-
-`X` and `Y` determine the positioning of the tooltip, as a proportion of screen size; `0.0, 0.0` places the tooltip in the top left, `1.0, 1.0` in the bottom right, and `0.5, 0.5` in the center of the screen. `width` determines the maximum width of the tooltip, also as a screen proportion; a tooltip longer than this will be wrapped to span multiple lines. The `margin` arguments determine the amount of blank space allotted surrounding the actual text of the tooltip; horizontal is in multiples of em width, and vertical in multiples of line height.
-
-You can use as many `TooltipGeometry` directives as you want; each one will affect only the tooltips after it, so you can use this to position different tooltips at different locations. If you want to override only some of the settings, passing `-1` for a setting will leave it unchanged, so (e.g.) `TooltipGeometry -1, -1, -1, 0.0, 0.0` would zero out the margins without affecting the size or position.
-
 ### Adding tooltips
 
 To do this, just follow the menu item with a `Tooltip`:
@@ -90,6 +76,36 @@ Tooltip "Turns the player around."
 ```
 
 The tooltip `Turns the player around` will stick only to `Twirl!` and not either of the earlier tooltips. The blank tooltip skips tooltip rendering entirely, rather than just rendering an empty tooltip; if for some reason you really want it to render an empty tooltip, use `Tooltip " "` instead.
+
+### Configuring tooltip position
+
+The default is to place tooltips in the top left corner, with a maximum width of ⅓ of the screen.
+
+You can change the size and position of the tooltips with the `TooltipGeometry` directive:
+
+```
+// Arguments: X, Y, width, horizontal margin, vertical margin
+// Place tooltip in the bottom center with really fat margins.
+TooltipGeometry 0.5, 1.0, 1.0, 4.0, 2.0
+```
+
+`X` and `Y` determine the positioning of the tooltip, as a proportion of screen size; `0.0, 0.0` places the tooltip in the top left, `1.0, 1.0` in the bottom right, and `0.5, 0.5` in the center of the screen. `width` determines the maximum width of the tooltip, also as a screen proportion; a tooltip longer than this will be wrapped to span multiple lines. The `margin` arguments determine the amount of blank space allotted surrounding the actual text of the tooltip; horizontal is in multiples of em width, and vertical in multiples of line height.
+
+You can use as many `TooltipGeometry` directives as you want; each one will affect only the tooltips after it, so you can use this to position different tooltips at different locations. If you want to override only some of the settings, passing `-1` for a setting will leave it unchanged, so (e.g.) `TooltipGeometry -1, -1, -1, 0.0, 0.0` would zero out the margins without affecting the size or position.
+
+### Configuring tooltip appearance
+
+The default is white text, using `newsmallfont`, with no background.
+
+You can use `TooltipAppearance` to change the font, colour, and background of the tooltips:
+
+```
+// Arguments: font name, colour name, texture name
+// Make tooltips pink against a background of a box of shotgun shells.
+TooltipApperance "newsmallfont", "pink", "SBOXA0"
+```
+
+The font and colour will be resolved with `GetFont` and `FindFontColor`. The texture supports animation and will be scaled to fit the tooltip, so it's recommended to choose something that will still look acceptable when stretched or squished into odd shapes.
 
 ## License
 

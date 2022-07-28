@@ -32,6 +32,7 @@ class TF_Tooltip : Object ui {
   uint first, last; // First and last menuitems this applies to
   Font font;
   Color colour;
+  TextureID texture;
   string text;
 
   void CopyFrom(TF_Tooltip settings) {
@@ -42,40 +43,48 @@ class TF_Tooltip : Object ui {
     self.ypad = settings.ypad;
     self.font = settings.font;
     self.colour = settings.colour;
+    self.texture = settings.texture;
   }
 
   int GetX(uint width) {
     return (screen.GetWidth() - width) * self.x;
   }
 
-  int GetY(uint nlines) {
-    let height = self.font.GetHeight() * (self.ypad * 2.0 + nlines);
+  int GetY(uint height) {
     return (screen.GetHeight() - height) * self.y;
   }
-
-    // Screen.DrawTexture(tex("LHUDA"..face), false, hudx, hudy,
-    //     DTA_Color, frame_rgb,
-    //     DTA_DestWidth, hudw, DTA_DestHeight, hudh);
 
   // TODO: support for arbitrary positioning & background textures using a
   // TooltipConfig menu pseudoitem.
   void Draw() {
-    let nominal_width = screen.GetWidth() * self.w;
+    let em = self.font.GetCharWidth(0x6D);
     let lh = self.font.GetHeight();
+    let nominal_width = screen.GetWidth() * self.w;
     let lines = self.font.BreakLines(self.text, nominal_width);
 
     // Calculate the real width of the tooltip. This may be less than the
     // nominal width if it's a short one-liner.
-    let actual_width = 0;
+    uint actual_width = 0;
     for (uint i = 0; i < lines.count(); ++i) {
       actual_width = max(actual_width, self.font.StringWidth(lines.StringAt(i)));
     }
+    actual_width += self.xpad * 2.0 * em;
+    // Calculate the actual height based on the number of lines we wrapped it into
+    // and the vertical margins.
+    uint actual_height = self.font.GetHeight() * (self.ypad * 2.0 + lines.count());
+
+    uint x = GetX(actual_width);
+    uint y = GetY(actual_height);
+    // Draw the background texture, if defined.
+    Screen.DrawTexture(texture, true, x, y,
+        DTA_LeftOffset, 0, DTA_TopOffset, 0,
+        DTA_DestWidth, actual_width, DTA_DestHeight, actual_height);
 
     for (uint i = 0; i < lines.count(); ++i) {
       screen.DrawText(
         self.font, self.colour,
-        GetX(actual_width) + self.xpad*self.font.GetCharWidth(0x6D), // 1 em
-        GetY(lines.count()) + i*lh + self.ypad*lh,
+        x + self.xpad*em,
+        y + i*lh + self.ypad*lh,
         lines.StringAt(i));
     }
   }
@@ -127,6 +136,8 @@ class TF_TooltipOptionMenu : OptionMenu {
         }
       } else if (items[i] is "OptionMenuItemTooltipGeometry") {
         OptionMenuItemTooltipGeometry(items[i]).CopyTo(settings);
+      } else if (items[i] is "OptionMenuItemTooltipAppearance") {
+        OptionMenuItemTooltipAppearance(items[i]).CopyTo(settings);
       } else {
         if (tooltip_mode) {
           // Just finished a run of tooltips.
@@ -202,5 +213,24 @@ class OptionMenuItemTooltipGeometry : OptionMenuitem {
     if (self.w >= 0) settings.w = self.w;
     if (self.xpad >= 0) settings.xpad = self.xpad;
     if (self.ypad >= 0) settings.ypad = self.ypad;
+  }
+}
+
+class OptionMenuItemTooltipAppearance : OptionMenuitem {
+  Font myfont;
+  Color colour;
+  TextureID texture;
+
+  OptionMenuItemTooltipAppearance Init(string myfont, string colour, string texture) {
+    self.myfont = Font.GetFont(myfont);
+    self.colour = Font.FindFontColor(colour);
+    self.texture = TexMan.CheckForTexture(texture, TexMan.TYPE_ANY);
+    return self;
+  }
+
+  void CopyTo(TF_Tooltip settings) {
+    if (self.myfont) settings.font = self.myfont;
+    if (self.colour) settings.colour = self.colour;
+    if (self.texture) settings.texture = self.texture;
   }
 }
