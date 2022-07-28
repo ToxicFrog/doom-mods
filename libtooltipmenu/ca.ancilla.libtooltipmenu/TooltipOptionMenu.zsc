@@ -27,8 +27,51 @@
 //   TooltipBlockEnd
 // }
 
+class TF_Tooltip : Object ui {
+  double x, y, w, xpad, ypad; // Geometry
+  uint first, last; // First and last menuitems this applies to
+  Font font;
+  Color colour;
+  string text;
+
+  int GetX(uint width) {
+    return (screen.GetWidth() - width) * self.x;
+  }
+
+  int GetY(uint nlines) {
+    return (screen.GetHeight() - nlines * self.font.GetHeight()) * self.y;
+  }
+
+    // Screen.DrawTexture(tex("LHUDA"..face), false, hudx, hudy,
+    //     DTA_Color, frame_rgb,
+    //     DTA_DestWidth, hudw, DTA_DestHeight, hudh);
+
+  // TODO: support for arbitrary positioning & background textures using a
+  // TooltipConfig menu pseudoitem.
+  void Draw() {
+    let nominal_width = screen.GetWidth() * self.w;
+    let lh = self.font.GetHeight();
+    let lines = self.font.BreakLines(self.text, nominal_width);
+
+    // Calculate the real width of the tooltip. This may be less than the
+    // nominal width if it's a short one-liner.
+    let actual_width = 0;
+    for (uint i = 0; i < lines.count(); ++i) {
+      actual_width = max(actual_width, self.font.StringWidth(lines.StringAt(i)));
+    }
+
+    for (uint i = 0; i < lines.count(); ++i) {
+      screen.DrawText(
+        self.font, self.colour,
+        GetX(actual_width) + self.xpad*self.font.GetCharWidth(0x6D), // 1 em
+        GetY(lines.count()) + i*lh + self.ypad*lh,
+        lines.StringAt(i));
+    }
+  }
+}
+
 class TF_TooltipOptionMenu : OptionMenu {
-  array<string> tooltips;
+  array<TF_Tooltip> tooltips;
 
   override void Init(Menu parent, OptionMenuDescriptor desc) {
     super.Init(parent, desc);
@@ -65,38 +108,49 @@ class TF_TooltipOptionMenu : OptionMenu {
     }
   }
 
+  TF_Tooltip AppendableTooltip(uint first, uint last) {
+    if (tooltips.size() <= 0) return null;
+    let tt = tooltips[tooltips.size()-1];
+    if (tt.first == first && tt.last == last) return tt;
+    return null;
+  }
+
   void AddTooltip(uint first, uint last, string tooltip) {
     if (first < 0) ThrowAbortException("Tooltip must have at least one menu item preceding it!");
-    while (tooltips.size() <= last) {
-      tooltips.push("");
+    let tt = AppendableTooltip(first, last);
+    if (tt) {
+      // Existing tooltip that we're just appending to.
+      tt.text = tt.text .. "\n" .. tooltip;
+      return;
     }
-    for (uint i = first; i <= last; ++i) {
-      if (tooltips[i].length() > 0) {
-        tooltips[i] = tooltips[i].."\n"..tooltip;
-      } else {
-        tooltips[i] = tooltip;
-      }
+    // No existing tooltip for these menu entries, create a new one.
+    tt = new("TF_Tooltip");
+    tt.first = first;
+    tt.last = last;
+    tt.text = tooltip;
+    // Default geometry settings for now.
+    tt.x = tt.y = 0.0;
+    tt.w = 0.3;
+    tt.xpad = 1.0;
+    tt.ypad = 0.5;
+    tt.font = newsmallfont;
+    tt.colour = Font.CR_WHITE;
+
+    tooltips.push(tt);
+  }
+
+  TF_Tooltip FindTooltipFor(int item) {
+    for (uint i = 0; i < tooltips.size(); ++i) {
+      if (tooltips[i].first <= item && item <= tooltips[i].last)
+        return tooltips[i];
     }
+    return null;
   }
 
   override void Drawer() {
     super.Drawer();
-    let selected = mDesc.mSelectedItem;
-    if (selected >= 0 && selected < tooltips.size() && tooltips[selected].length() > 0) {
-      DrawTooltip(tooltips[selected]);
-    }
-  }
-
-  // TODO: support for arbitrary positioning & background textures using a
-  // TooltipConfig menu pseudoitem.
-  void DrawTooltip(string tt) {
-    let lines = newsmallfont.BreakLines(tt, screen.GetWidth()/3);
-    let lh = newsmallfont.GetHeight();
-    for (uint i = 0; i < lines.count(); ++i) {
-      screen.DrawText(
-        newsmallfont, Font.CR_WHITE,
-        newsmallfont.GetCharWidth(0x20), lh/2+i*lh, lines.StringAt(i));
-    }
+    let tt = FindTooltipFor(mDesc.mSelectedItem);
+    if (tt) tt.Draw();
   }
 }
 
