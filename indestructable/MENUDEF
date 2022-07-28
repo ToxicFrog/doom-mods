@@ -1,0 +1,30 @@
+AddOptionMenu "OptionsMenu"
+{
+  Submenu "Indestructable Mod Options", "IndestructableOptions"
+}
+
+OptionMenu "IndestructableOptions"
+{
+  class TF_TooltipOptionMenu
+  Title "Indestructable Mod Options"
+
+  TooltipGeometry 0.5, 1.0, 1.0, 1.0, 0.5
+
+  StaticText ""
+  ScaleSlider "Starting lives", "indestructable_starting_lives", 0, 100, 1, "Infinite"
+  Tooltip "How many lives you start the game with."
+  Slider "Refill lives on level clear", "indestructable_lives_after_level", 0, 100, 1, 0
+  Tooltip "After clearing a level, if you have less than this many lives, refill to this many."
+  Slider "Extra lives per boss killed", "indestructable_lives_per_boss", 0, 100, 1, 0
+  Tooltip "Gain this many bonus lives after killing a boss, even if it exceeds the refill amount."
+  Slider "Indestructability duration", "indestructable_duration", 0, 300, 1, 0
+  Tooltip "On-death buff lasts this many seconds."
+  Slider "Restore health", "indestructable_restore_hp", 1, 200, 1, 0
+  Tooltip "Restore this much HP instead of dying."
+  Option "Invincibility", "indestructable_invincibility", "YesNo"
+  Tooltip "Buff makes you invincibile."
+  Option "Damage Bonus", "indestructable_damage_bonus", "YesNo"
+  Tooltip "Buff makes you do double damage."
+  Option "Time Stop", "indestructable_timestop", "YesNo"
+  Tooltip "Buff stops time for most enemies and projectiles."
+}
