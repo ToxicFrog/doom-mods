@@ -4,7 +4,7 @@ Remaining upgrades:
 - Ignition
 - max health increase
 - Shoryuken
-- explosive fragmentation -> hard to make work properly without most of the explosions hitting the target
+- explosive fragmentation
 - extra life (Indestructable) -> moved to separate mod, but might still make sense as its own thing
 - micromissiles -- projectiles turn into micromissile swarms after a few tics of flight. How do we compute damage?
 - add ammo capacity upgrade
@@ -14,10 +14,6 @@ Remaining upgrades:
   - will be a player mod, so it should either be fairly powerful or get more powerful with time
   - we can use GetDefaultByType(ammoitem).MaxAmount to compute the base max amount
     and then confer bonuses based on that
-- Thorns aura
-- Juggler (fast weapon switch)
-- Tough as Nails (merge armour/resistance)
-- name tbd (reduce self-damage by 50->75%)
 
 Gameplay changes:
 - do another pass over the prerequisites. Graph paper? submunitions/expldeath should mutex, for example
