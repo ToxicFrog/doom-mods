@@ -8,6 +8,9 @@ OptionMenu "LaevisOptions"
   class TF_TooltipOptionMenu
   Title "Laevis Mod Options"
 
+  TooltipGeometry 0.0, 0.5, 0.25, 1.0, 0.5
+  TooltipAppearance "", "", "tfttbg"
+
   StaticText ""
   StaticText "HUD settings", CYAN
 
@@ -35,9 +38,9 @@ OptionMenu "LaevisOptions"
 
   Option "Weapon upgrades bind to", "laevis_upgrade_binding_mode", "LaevisUpgradeBindingMode"
   Tooltip "Determines how weapon upgrades behave when you drop a weapon or are carrying multiple weapons of the same type."
-  Tooltip "\cz[individual weapon]:\c- each weapon has its own upgrades. When you drop a weapon, the upgrades go with it. In some mods dropping the weapon will lose the upgrades permanently."
-  Tooltip "\cz[individual w/inheritance]:\c- each weapon has its own upgrades, but if you drop a weapon and later pick up a new weapon of the same type, it will inherit the upgrades from the weapon you dropped."
-  Tooltip "\cz[weapon class]:\c- all weapons of the same type share the same upgrades, even if you have more than one of them in your inventory."
+  Tooltip "\c[CYAN][individual weapon]:\c- each weapon has its own upgrades. When you drop a weapon, the upgrades go with it. In some mods dropping the weapon will lose the upgrades permanently."
+  Tooltip "\c[CYAN][individual w/inheritance]:\c- each weapon has its own upgrades, but if you drop a weapon and later pick up a new weapon of the same type, it will inherit the upgrades from the weapon you dropped."
+  Tooltip "\c[CYAN][weapon class]:\c- all weapons of the same type share the same upgrades, even if you have more than one of them in your inventory."
 
   StaticText ""
   StaticText "Player Bonus Settings", GREEN
@@ -63,10 +66,11 @@ OptionMenu "LaevisOptions"
 
   Slider "XP cost multiplier for melee weapons", "laevis_level_cost_mul_for_melee", 0.1, 5.0, 0.1, 1
   Slider "XP cost multiplier for wimpy weapons", "laevis_level_cost_mul_for_wimpy", 0.1, 5.0, 0.1, 1
-  Slider "XP cost multiplier for explosive weapons", "DISABLED_laevis_level_cost_mul_for_explosive", 0.1, 5.0, 0.1, 1
-  Slider "XP cost multiplier for BFG-type weapons", "DISABLED_laevis_level_cost_mul_for_bfg", 0.1, 5.0, 0.1, 1
-  Tooltip "XP cost multipliers for various classes of weapons. These can stack (e.g. fists are both 'melee' and 'wimpy' in vanilla Doom 2). The default settings make weak and melee weapons easier to level up, and explosive and BFG weapons harder."
-  Tooltip "\cgThe 'explosive' and 'bfg' settings do not currently work."
+  // Slider "XP cost multiplier for explosive weapons", "DISABLED_laevis_level_cost_mul_for_explosive", 0.1, 5.0, 0.1, 1
+  // Slider "XP cost multiplier for BFG-type weapons", "DISABLED_laevis_level_cost_mul_for_bfg", 0.1, 5.0, 0.1, 1
+  Tooltip "XP cost multipliers for various classes of weapons. These can stack (e.g. fists are both 'melee' and 'wimpy' in vanilla Doom 2). The default settings make both weak and melee weapons easier to level up."
+  Tooltip "Note that not all mods use these flags."
+  // Tooltip "\cgThe 'explosive' and 'bfg' settings do not currently work."
 
   StaticText ""
   StaticText "Legendoom Integration", GRAY
