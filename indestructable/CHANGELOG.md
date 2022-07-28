@@ -1,3 +1,7 @@
+# 0.1.2
+
+- Change: fancier tooltips using libtooltipmenu-0.1.1
+
 # 0.1.1
 
 - Fix: removed some stray debug logging
