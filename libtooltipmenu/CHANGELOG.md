@@ -1,6 +1,6 @@
 # 0.1.1
 
-- Internal cleanup
+- New: TooltipGeometry directive to set tooltip size and position
 
 # 0.1.0
 
