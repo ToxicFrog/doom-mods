@@ -34,6 +34,16 @@ class TF_Tooltip : Object ui {
   Color colour;
   string text;
 
+  void CopyFrom(TF_Tooltip settings) {
+    self.x = settings.x;
+    self.y = settings.y;
+    self.w = settings.w;
+    self.xpad = settings.xpad;
+    self.ypad = settings.ypad;
+    self.font = settings.font;
+    self.colour = settings.colour;
+  }
+
   int GetX(uint width) {
     return (screen.GetWidth() - width) * self.x;
   }
@@ -73,8 +83,25 @@ class TF_Tooltip : Object ui {
 class TF_TooltipOptionMenu : OptionMenu {
   array<TF_Tooltip> tooltips;
 
+  // Default settings:
+  // - top left corner
+  // - 30% of the screen width
+  // - 1em horizontal margin and 0.5lh vertical margin
+  // - white text using newsmallfont
+  TF_Tooltip GetDefaults() {
+    let tt = TF_Tooltip(new("TF_Tooltip"));
+    tt.x = tt.y = 0.0;
+    tt.w = 0.3;
+    tt.xpad = 1.0;
+    tt.ypad = 0.5;
+    tt.font = newsmallfont;
+    tt.colour = Font.CR_WHITE;
+    return tt;
+  }
+
   override void Init(Menu parent, OptionMenuDescriptor desc) {
     super.Init(parent, desc);
+    let settings = GetDefaults();
 
     // Steal the descriptor's list of menu items, then rebuild it containing
     // only the items we want to display.
@@ -94,7 +121,7 @@ class TF_TooltipOptionMenu : OptionMenu {
           // Explicit marker that the above items should have no tooltips.
           startblock = desc.mItems.size();
         } else {
-          AddTooltip(startblock, desc.mItems.size()-1, tt.tooltip);
+          AddTooltip(settings, startblock, desc.mItems.size()-1, tt.tooltip);
           tooltip_mode = true;
         }
       } else {
@@ -115,7 +142,7 @@ class TF_TooltipOptionMenu : OptionMenu {
     return null;
   }
 
-  void AddTooltip(uint first, uint last, string tooltip) {
+  void AddTooltip(TF_Tooltip settings, uint first, uint last, string tooltip) {
     if (first < 0) ThrowAbortException("Tooltip must have at least one menu item preceding it!");
     let tt = AppendableTooltip(first, last);
     if (tt) {
@@ -125,17 +152,10 @@ class TF_TooltipOptionMenu : OptionMenu {
     }
     // No existing tooltip for these menu entries, create a new one.
     tt = new("TF_Tooltip");
+    tt.CopyFrom(settings);
     tt.first = first;
     tt.last = last;
     tt.text = tooltip;
-    // Default geometry settings for now.
-    tt.x = tt.y = 0.0;
-    tt.w = 0.3;
-    tt.xpad = 1.0;
-    tt.ypad = 0.5;
-    tt.font = newsmallfont;
-    tt.colour = Font.CR_WHITE;
-
     tooltips.push(tt);
   }
 
