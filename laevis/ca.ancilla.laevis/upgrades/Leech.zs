@@ -16,9 +16,18 @@ class ::LeechUtil {
 
 class ::LifeLeech : ::BaseUpgrade {
   override void OnKill(Actor player, Actor shot, Actor target) {
-    let hp = ::LifeLeech::Bonus(target.Spawn(
-      "::LifeLeech::Bonus", ::LeechUtil.WigglePos(target)));
+    let hp = Health(target.Spawn(
+      GetBonusName(), ::LeechUtil.WigglePos(target), ALLOW_REPLACE));
+    if (!hp) return;
     hp.amount = max(1, target.SpawnHealth() * 0.01 * level);
+  }
+
+  string GetBonusName() {
+    if (TFLV::Settings.use_builtin_actors()) {
+      return "::LifeLeech::Bonus";
+    } else {
+      return "HealthBonus";
+    }
   }
 
   override bool IsSuitableForPlayer(TFLV::PerPlayerStats stats) {
@@ -42,9 +51,18 @@ class ::LifeLeech::Bonus : HealthBonus {
 
 class ::ArmourLeech : ::BaseUpgrade {
   override void OnKill(Actor player, Actor shot, Actor target) {
-    let ap = ::ArmourLeech::Bonus(target.Spawn(
-      "::ArmourLeech::Bonus", ::LeechUtil.WigglePos(target)));
+    let ap = BasicArmorBonus(target.Spawn(
+      GetBonusName(), ::LeechUtil.WigglePos(target), ALLOW_REPLACE));
+    if (!ap) return;
     ap.SaveAmount = max(1, target.SpawnHealth() * 0.01 * level);
+  }
+
+  string GetBonusName() {
+    if (TFLV::Settings.use_builtin_actors()) {
+      return "::ArmourLeech::Bonus";
+    } else {
+      return "ArmorBonus";
+    }
   }
 
   override bool IsSuitableForPlayer(TFLV::PerPlayerStats stats) {

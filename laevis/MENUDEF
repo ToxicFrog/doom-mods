@@ -34,6 +34,13 @@ OptionMenu "LaevisOptions"
   Tooltip "Colour of the player XP bar and player level text."
 
   StaticText ""
+  StaticText "Compatibility Options", WHITE
+
+  Option "Use builtin actors for Scavenge drops", "laevis_use_builtin_actors", "OnOff"
+  Tooltip "Whether the Scavenge Blood and Scavenge Steel upgrades should use actors built into Laevis, or the generic Doom 2 HealthBonus and ArmorBonus actors."
+  Tooltip "The builtins should work in any IWAD. The generic ones are more likely to 'blend in' when playing with mods that define replacements for the generic bonuses, but (depending on the mod) may no longer give the correct amounts of health/armour."
+
+  StaticText ""
   StaticText "Weapon Bonus Settings", BLUE
 
   Option "Weapon upgrades bind to", "laevis_upgrade_binding_mode", "LaevisUpgradeBindingMode"

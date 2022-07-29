@@ -67,6 +67,9 @@ class TFLV_Settings : Object {
   static bool ignore_gun_rarity() {
     return GetBool("laevis_ignore_gun_rarity");
   }
+  static bool use_builtin_actors() {
+    return GetBool("laevis_use_builtin_actors");
+  }
 
   static int screenblocks() {
     return GetInt("screenblocks");
