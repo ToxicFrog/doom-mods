@@ -68,6 +68,7 @@ class ::LegendoomWeaponInfo : Object play {
   }
 
   void CycleEffect() {
+    if (effects.size() == 0) return;
     SelectEffect((currentEffect + 1) % effects.size());
   }
 
