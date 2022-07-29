@@ -1,3 +1,7 @@
+# 0.1.3
+
+- Change: other mods can now add/remove lives by emitting an `indestructable_adjust_lives` netevent with the first arg being the number of lives to add (or remove, if negative)
+
 # 0.1.2
 
 - Change: fancier tooltips using libtooltipmenu-0.1.1

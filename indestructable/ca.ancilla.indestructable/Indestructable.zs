@@ -72,6 +72,24 @@ class ::IndestructableEventHandler : StaticEventHandler {
       "Absorbed the boss's power! You now have \c[CYAN]%d\c- extra %s!",
       force.lives, force.lives == 1 ? "life" : "lives"));
   }
+
+  override void NetworkProcess(ConsoleEvent evt) {
+    if (evt.player != consoleplayer) {
+      return;
+    } else if (evt.name == "indestructable_adjust_lives") {
+      let pawn = players[evt.player].mo;
+      let force = ::IndestructableForce(pawn.FindInventory("::IndestructableForce"));
+      if (!force) return;
+      force.lives = max(0, force.lives + evt.args[0]);
+      if (evt.args[0] > 0) {
+        force.Message(string.format("You have \c[CYAN]%d\c- extra %s.",
+          force.lives, force.lives == 1 ? "life" : "lives"));
+      } else {
+        force.Message(string.format("You have \c[RED]%d\c- extra %s.",
+          force.lives, force.lives == 1 ? "life" : "lives"));
+      }
+    }
+  }
 }
 
 class ::IndestructableForce : Inventory {
@@ -120,7 +138,7 @@ class ::IndestructableForce : Inventory {
   }
 
   void ShowLevelStartMessage() {
-    self.Message(string.format("You have \c[GOLD]%d\c- extra %s!",
+    self.Message(string.format("You have \c[GOLD]%d\c- extra %s.",
       self.lives, self.lives == 1 ? "life" : "lives"));
   }
 
