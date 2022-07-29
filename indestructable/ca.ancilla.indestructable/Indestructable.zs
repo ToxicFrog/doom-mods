@@ -81,6 +81,7 @@ class ::IndestructableEventHandler : StaticEventHandler {
       let force = ::IndestructableForce(pawn.FindInventory("::IndestructableForce"));
       if (!force) return;
       force.lives = max(0, force.lives + evt.args[0]);
+      if (evt.args[1]) force.lives = min(force.lives, evt.args[1]);
       if (evt.args[0] > 0) {
         force.Message(string.format("You have \c[CYAN]%d\c- extra %s.",
           force.lives, force.lives == 1 ? "life" : "lives"));
