@@ -73,9 +73,14 @@ This works fine in general, but building an assembly out of a weapon will reset 
 
 ### Hideous Destructor
 
-The `Scavenge Lead` upgrade doesn't work at all. Some other upgrades may fail to work or even crash depending on what weapons you put them on.
+Hideous Destructor replaces a lot of default Doom behaviours, in ways that Laevis has trouble coping with. A non-exhaustive list of issues:
+- `Scavenge Lead` doesn't work at all
+- `Scavenge Blood` and `Scavenge Steel` produce powerups that may not work properly
+- damage is not always properly converted into XP
+- some upgrades are kind of crashy on some weapons
+- dead enemies may still register as alive to minions/submunitions/etc
 
-Damage is not always properly converted into XP.
+It still works, mostly, but Laevis is definitely confused by HDest and I can't guarantee that it won't break parts of HDest, too. Caveat lusor.
 
 ## FAQ
 
