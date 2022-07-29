@@ -20,5 +20,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 Content in sprites/ui/ is ⓒ 2022 Sungraphica <sungraphica.itch.io>, released
 under the CC-BY-4.0 licence.
 
+Content in sprites/items/ is ⓒ 2020 Willibab <willibab.itch.io>, released as
+"free for non-commercial and commercial use" with no formal license.
+
 Other content in sprites/ is from the Freedoom Project; see COPYING.freedoom for
 the license terms.

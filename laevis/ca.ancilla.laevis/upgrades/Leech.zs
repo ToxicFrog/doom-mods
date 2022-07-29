@@ -29,10 +29,13 @@ class ::LifeLeech : ::BaseUpgrade {
 class ::LifeLeech::Bonus : HealthBonus {
   Default {
     -COUNTITEM;
+    Scale 0.07;
+    RenderStyle "Add";
   }
   States {
     Spawn:
-      LBHP ABCDCB 6;
+      LHP1 ABCDEFGHIJKLMNOPQRSTUVWXYZ 2;
+      LHP2 ABCDEFGH 2;
       LOOP;
   }
 }
@@ -52,10 +55,13 @@ class ::ArmourLeech : ::BaseUpgrade {
 class ::ArmourLeech::Bonus : ArmorBonus {
   Default {
     -COUNTITEM;
+    Scale 0.07;
+    RenderStyle "Add";
   }
   States {
     Spawn:
-      LBAP ABCDCB 6;
+      LAP1 ABCDEFGHIJKLMNOPQRSTUVWXYZ 2;
+      LAP2 ABCDEFGH 2;
       LOOP;
   }
 }

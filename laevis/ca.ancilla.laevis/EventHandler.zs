@@ -120,8 +120,8 @@ class ::EventHandler : StaticEventHandler {
       let stats = ::PerPlayerStats.GetStatsFor(players[evt.player].mo);
       let info = stats.GetInfoForCurrentWeapon();
       stats.upgrades.Add("::Upgrade::Juggler", 1);
-      stats.upgrades.Add("::Upgrade::Thorns", 1);
-      stats.upgrades.Add("::Upgrade::BlastShaping", 2);
+      stats.upgrades.Add("::Upgrade::LifeLeech", 1);
+      stats.upgrades.Add("::Upgrade::ArmourLeech", 1);
       // info.upgrades.Add("::Upgrade::IncendiaryShots", 1);
       // info.upgrades.Add("::Upgrade::BurningTerror", 1);
       // info.upgrades.Add("::Upgrade::Conflagration", 1);
