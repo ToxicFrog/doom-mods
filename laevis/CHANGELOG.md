@@ -7,6 +7,7 @@
 - New: Fancy graphics for HP/AP bonuses from <willibab.itch.io>
 - Balance: Armour and Resistance merged into a single upgrade, Tough as Nails, and buffed
 - Balance: player damage upgrade renamed Bloodthirsty, now grants +10% damage instead of +5%
+- Balance: player upgrades default to every 7 levels instead of every 10
 - Fix: Scavenge Lead no longer spawns ammo types that don't have a valid sprite defined. In particular, this fixes an issue with Ashes 2063.
 - Fix: OnDamageReceived handlers believed all damage was self-inflicted
 

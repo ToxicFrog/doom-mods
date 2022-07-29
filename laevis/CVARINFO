@@ -17,7 +17,7 @@ user int laevis_hud_mirror = 0;
 
 // How many times the player needs to level up their guns before they get a
 // permanent player-wide bonus.
-server int laevis_gun_levels_per_player_level = 10;
+server int laevis_gun_levels_per_player_level = 7;
 
 // Base XP needed to go from level 0 to level 1. Cost for future levels is
 // (base xp) * (destination level).
@@ -36,10 +36,6 @@ server float laevis_level_cost_mul_for_wimpy = 0.5;
 server float laevis_level_cost_mul_for_explosive = 1.5;
 server float laevis_level_cost_mul_for_bfg = 1.5;
 
-// Whether to assign XP based on the player's score variable rather than based
-// on damage dealt. Requires a score assigning mod like LazyPoints or MetaDoom.
-
-// XP derived from score will be multiplied by this.
 // Multipliers for generation of weapon XP. Damage is builtin and by default assigns
 // XP on a 1:1 basis. Score requires an appropriate mod installed like LazyPoints
 // or MetaDoom.
