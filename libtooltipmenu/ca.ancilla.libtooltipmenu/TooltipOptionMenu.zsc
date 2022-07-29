@@ -3,29 +3,9 @@
 //
 // To use this, declare your option menu in MENUDEF as normal, but add:
 //   class TF_TooltipOptionMenu
-// to it. You can then use the "Tooltip", "TooltipBlockStart", and "TooltipBlockEnd"
-// menu items, as in the following example:
-//
-// OptionMenu "ExampleTooltipOptions"
-// {
-//   class TFLIB_TooltipOptionMenu
-//   Title "Example Tooltip Menu"
-//
-//   Slider "Kitten Amount", "sv_kitten_amount", 0, 100, 1, 0
-//   Tooltip "The number of kittens to spawn."
-//
-//   Option "Spicy Kittens", "sv_kitten_spicy", "YesNo"
-//   Tooltip "Whether kittens are spicy or not."
-//   Tooltip "I don't know what that means, but isn't this multiline tooltip cool?"
-//   Tooltip "Tooltips support \c[GREEN]escape sequences\c-, too."
-//
-//   TooltipBlockStart
-//   Slider "Kitten Min Rating", "sv_kitten_min_rating", 1, 10, 1, 0
-//   Slider "Kitten Max Rating", "sv_kitten_min_rating", 1, 10, 1, 0
-//   Tooltip "Min/max ratings (out for 10) for kittens. Setting this to values other than 10 may destroy the fabric of spacetime."
-//   Tooltip "The TooltipBlockStart/End means this tooltip sticks to both of the above Sliders."
-//   TooltipBlockEnd
-// }
+// You can then use the "Tooltip", "TooltipGeometry", and "TooltipAppearance"
+// menu pseudo-items to add and configure tooltips.
+// For details, see the included README.
 
 class TF_Tooltip : Object ui {
   double x, y, w, xpad, ypad; // Geometry
@@ -54,8 +34,6 @@ class TF_Tooltip : Object ui {
     return (screen.GetHeight() - height) * self.y;
   }
 
-  // TODO: support for arbitrary positioning & background textures using a
-  // TooltipConfig menu pseudoitem.
   void Draw() {
     let em = self.font.GetCharWidth(0x6D);
     let lh = self.font.GetHeight();
@@ -111,7 +89,21 @@ class TF_TooltipOptionMenu : OptionMenu {
 
   override void Init(Menu parent, OptionMenuDescriptor desc) {
     super.Init(parent, desc);
+    // console.printf("Init menu, items=%d", desc.mItems.size());
     let settings = GetDefaults();
+
+    // If there's already a TooltipHolder in tail position, we've already been
+    // initialized and just need to retrieve our saved tooltips from it.
+    // for (uint i = 0; i < desc.mItems.size(); ++i) {
+      // console.printf("Item: %s", desc.mItems[i].GetClassName());
+    // }
+    let tail = OptionMenuItemTooltipHolder(desc.mItems[desc.mItems.size()-1]);
+    if (tail) {
+      tooltips.copy(tail.tooltips);
+      // console.printf("Cache hit, items=%d, tooltips=%d",
+        // desc.mItems.size(), tooltips.size());
+      return;
+    }
 
     // Steal the descriptor's list of menu items, then rebuild it containing
     // only the items we want to display.
@@ -147,6 +139,12 @@ class TF_TooltipOptionMenu : OptionMenu {
         desc.mItems.push(items[i]);
       }
     }
+
+    // Store our tooltips inside the menu descriptor so we can recover them when
+    // the menu is redisplayed.
+    desc.mItems.push(new("OptionMenuItemTooltipHolder").Init(tooltips));
+
+    // console.printf("Init done, items=%d, tooltips=%d", desc.mItems.size(), tooltips.size());
   }
 
   TF_Tooltip AppendableTooltip(uint first, uint last) {
@@ -174,10 +172,14 @@ class TF_TooltipOptionMenu : OptionMenu {
   }
 
   TF_Tooltip FindTooltipFor(int item) {
+    // console.printf("FindTooltipFor(%d)", item);
     if (!mDesc.mItems[item].Selectable()) return null;
     for (uint i = 0; i < tooltips.size(); ++i) {
-      if (tooltips[i].first <= item && item <= tooltips[i].last)
+      if (tooltips[i].first <= item && item <= tooltips[i].last) {
+        // console.printf("Found %d <= %d <= %d",
+        //   tooltips[i].first, i, tooltips[i].last);
         return tooltips[i];
+      }
     }
     return null;
   }
@@ -186,6 +188,15 @@ class TF_TooltipOptionMenu : OptionMenu {
     super.Drawer();
     let tt = FindTooltipFor(mDesc.mSelectedItem);
     if (tt) tt.Draw();
+  }
+}
+
+class OptionMenuItemTooltipHolder : OptionMenuItem {
+  array<TF_Tooltip> tooltips;
+
+  OptionMenuItemTooltipHolder Init(array<TF_Tooltip> tts) {
+    self.tooltips.copy(tts);
+    return self;
   }
 }
 
