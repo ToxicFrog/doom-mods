@@ -4,6 +4,7 @@
 - New: Thorns upgrade copies damage you take onto your enemies
 - New: Juggler upgrade gives you instant weapon switching
 - New: Fancier tooltips via libtooltip-0.1.1
+- New: Fancy graphics for HP/AP bonuses from <willibab.itch.io>
 - Balance: Armour and Resistance merged into a single upgrade, Tough as Nails, and buffed
 - Balance: player damage upgrade renamed Bloodthirsty, now grants +10% damage instead of +5%
 - Fix: Scavenge Lead no longer spawns ammo types that don't have a valid sprite defined. In particular, this fixes an issue with Ashes 2063.
