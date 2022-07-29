@@ -10,9 +10,9 @@ Most settings are configurable through the gzDoom options menu and through cvars
 
 ## Basic Gameplay
 
-Dealing damage earns your current weapon XP based on the amount of damage dealt (with a bonus for attacking more powerful enemies; shooting an archvile gets you more XP than shooting an imp). Once your weapon gains enough XP, it levels up, and you are presented with a choice of four randomly selected abilities it can learn or upgrade. Each subsequent level on a weapon takes more XP to earn, but more powerful upgrades can only be unlocked on high-level weapons. (For a complete list of available upgrades, see the end of this file.)
+Dealing damage earns your current weapon XP based on the amount of damage dealt (with a bonus for attacking more powerful enemies; shooting an archvile gets you more XP than shooting an imp). Once your weapon gains enough XP, it levels up, and the next time you open the Laevis info screen you are presented with a choice of four randomly selected abilities it can learn or upgrade. Each subsequent level on a weapon takes more XP to earn, but more powerful upgrades can only be unlocked on high-level weapons. (For a complete list of available upgrades, see the end of this file.)
 
-Every ten weapon levels (which don't have to be on the same weapon), you also gain a player upgrade. This is a powerful bonus that affects everything you do, no matter what weapon you're wielding.
+Every seven weapon levels (which don't have to be on the same weapon), you also gain a player upgrade. This is a powerful bonus that affects everything you do, no matter what weapon you're wielding.
 
 Laevis has a great many configuration options; these are all available via the gzDoom options menu, and have in-game tooltips explaining what they do.
 

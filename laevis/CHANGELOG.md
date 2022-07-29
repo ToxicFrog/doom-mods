@@ -15,6 +15,7 @@
 - Fix: Scavenge Lead no longer spawns ammo types that don't have a valid sprite defined. In particular, this fixes an issue with Ashes 2063.
 - Fix: OnDamageReceived handlers believed all damage was self-inflicted
 - Fix: trying to cycle Legendoom weapon effects when wielding a weapon with no effects crashed the game
+- Fix: setting "gun levels per LD effect" to 0 would crash the game next time you leveled up
 
 # 0.7.4
 

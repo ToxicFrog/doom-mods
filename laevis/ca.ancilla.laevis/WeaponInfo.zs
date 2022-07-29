@@ -104,7 +104,9 @@ class ::WeaponInfo : Object play {
     let giver = ::WeaponUpgradeGiver(weapon.owner.GiveInventoryType("::WeaponUpgradeGiver"));
     giver.wielded = self;
 
-    if (::Settings.have_legendoom() && (level % ::Settings.gun_levels_per_ld_effect()) == 0) {
+    if (::Settings.have_legendoom()
+        && ::Settings.gun_levels_per_ld_effect() > 0
+        && (level % ::Settings.gun_levels_per_ld_effect()) == 0) {
       let ldGiver = ::LegendoomEffectGiver(weapon.owner.GiveInventoryType("::LegendoomEffectGiver"));
       ldGiver.info = self.ld_info;
     }
