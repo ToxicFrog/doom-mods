@@ -31,7 +31,6 @@ class ::PerPlayerStats : Inventory {
   ::Upgrade::UpgradeBag upgrades;
   uint XP;
   uint level;
-  bool legendoomInstalled;
   ::WeaponInfo infoForCurrentWeapon;
   int prevScore;
 
@@ -238,35 +237,51 @@ class ::PerPlayerStats : Inventory {
     }
   }
 
-  // Add XP to a weapon. If the weapon leveled up, also do some housekeeping
-  // and possibly level up the player as well.
+  // Add XP to the player. This is called by weapons when they level up to track
+  // progress towards player-level upgrades.
+  void AddPlayerXP(uint xp) {
+    let maxXP = ::Settings.gun_levels_per_player_level();
+    self.XP += xp;
+    if (self.XP >= maxXP && self.XP - xp < maxXP) {
+      // Just gained a level.
+      owner.A_Log("You leveled up!", true);
+      owner.A_SetBlend("FF FF FF", 0.8, 40);
+    }
+    // Do some cleanup here, since it'll be called occasionally but not super
+    // frequently, and when the player is just leaving a menu.
+    PruneStaleInfo();
+  }
+
+  bool StartLevelUp() {
+    if (self.XP < ::Settings.gun_levels_per_player_level()) return false;
+    let giver = ::PlayerUpgradeGiver(owner.GiveInventoryType("::PlayerUpgradeGiver"));
+    giver.stats = self;
+    return true;
+  }
+
+  void FinishLevelUp(::Upgrade::BaseUpgrade upgrade) {
+    let maxXP = ::Settings.gun_levels_per_player_level();
+    if (!upgrade) {
+      // Player level-ups are expensive, so we take away *half* of a level's
+      // worth of XP.
+      XP -= maxXP/2;
+      owner.A_Log("Level-up rejected!", true);
+      return;
+    }
+
+    XP -= maxXP;
+    ++level;
+    upgrades.AddUpgrade(upgrade);
+    owner.A_Log(
+      string.format("You gained a level of %s!", upgrade.GetName()),
+      true);
+  }
+
+  // Add XP to the current weapon.
   void AddXP(double xp) {
     ::WeaponInfo info = GetInfoForCurrentWeapon();
     if (!info) return;
-    // TODO more of this should be in the WeaponInfo.
-    if (info.AddXP(xp)) {
-      // Weapon leveled up!
-      DEBUG("level up, level=%d, GLPE=%d",
-        info.level, ::Settings.gun_levels_per_ld_effect());
-      if (legendoomInstalled && (info.level % ::Settings.gun_levels_per_ld_effect()) == 0) {
-        let ldGiver = ::LegendoomEffectGiver(owner.GiveInventoryType("::LegendoomEffectGiver"));
-        ldGiver.info = GetInfoForCurrentWeapon().ld_info;
-      }
-
-      // Also give the player some XP.
-      ++self.XP;
-      if (self.XP >= ::Settings.gun_levels_per_player_level()) {
-        self.XP -= ::Settings.gun_levels_per_player_level();
-        ++level;
-        console.printf("You are now level %d!", level);
-        owner.A_SetBlend("FF FF FF", 0.8, 40);
-        let giver = ::PlayerUpgradeGiver(owner.GiveInventoryType("::PlayerUpgradeGiver"));
-        giver.stats = self;
-      }
-
-      // Do some cleanup.
-      PruneStaleInfo();
-    }
+    info.AddXP(xp);
   }
 
   double GetXPForDamage(Actor target, uint damage) const {

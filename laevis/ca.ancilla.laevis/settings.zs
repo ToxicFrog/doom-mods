@@ -84,4 +84,12 @@ class TFLV_Settings : Object {
            GetInt("laevis_hud_rgb_weapon") | 0xFF000000,
            GetInt("laevis_hud_rgb_player") | 0xFF000000;
   }
+
+  static bool have_legendoom() {
+    // If we just do cls = "LDPistol" it will get checked at compile time; we
+    // need to defer this to runtime so that everything has a chance to load.
+    string ldpistol = "LDPistol";
+    class<Actor> cls = ldpistol;
+    return cls != null;
+  }
 }

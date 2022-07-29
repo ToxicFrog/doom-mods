@@ -12,11 +12,9 @@ class ::WeaponUpgradeGiver : ::UpgradeGiver {
 
   void InstallUpgrade(int index) {
     if (index < 0) {
-      console.printf("Level-up rejected!");
+      wielded.FinishLevelUp(null);
     } else {
-      console.printf("Your %s gained a level of %s!",
-        wielded.weapon.GetTag(), candidates[index].GetName());
-      wielded.upgrades.Add(candidates[index].GetClassName());
+      wielded.FinishLevelUp(::Upgrade::BaseUpgrade(new(candidates[index].GetClassName())));
     }
     Destroy();
   }

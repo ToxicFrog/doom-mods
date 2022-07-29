@@ -86,31 +86,48 @@ class ::WeaponInfo : Object play {
     return XP;
   }
 
-  bool AddXP(double newXP) {
+  void AddXP(double newXP) {
     DEBUG("Adding XP: %.3f + %.3f", XP, newXP);
     XP += newXP;
     DEBUG("XP is now %.3f", XP);
-    if (XP >= maxXP) {
-      LevelUp();
-      return true;
+    if (XP >= maxXP && XP - newXP < maxXP) {
+      weapon.owner.A_SetBlend("00 80 FF", 0.8, 40);
+      weapon.owner.A_Log(
+        string.format("Your %s leveled up!", weapon.GetTag()),
+        true);
     }
-    return false;
   }
 
-  // TODO: if the player rejects a level-up, reset the weapon to its previous
-  // level.
-  void LevelUp() {
-    ++level;
-    console.printf("Your %s is now level %d!", weapon.GetTag(), level);
-    // TODO: leave the XP bar filled until the giver is done working. This is
-    // harder than it looks because the giver may take several tics to do its thing.
-    XP = XP - maxXP;
-    maxXP = GetXPForLevel(level+1);
-    weapon.owner.A_SetBlend("00 80 FF", 0.8, 40);
-    // TODO: upgrades that modify the weapon's base stats should be activated here,
-    // in some kind of ApplyUpgradesToWeapon() call.
+  bool StartLevelUp() {
+    if (XP < maxXP) return false;
+
     let giver = ::WeaponUpgradeGiver(weapon.owner.GiveInventoryType("::WeaponUpgradeGiver"));
     giver.wielded = self;
+
+    if (::Settings.have_legendoom() && (level % ::Settings.gun_levels_per_ld_effect()) == 0) {
+      let ldGiver = ::LegendoomEffectGiver(weapon.owner.GiveInventoryType("::LegendoomEffectGiver"));
+      ldGiver.info = self.ld_info;
+    }
+
+    return true;
+  }
+
+  void FinishLevelUp(::Upgrade::BaseUpgrade upgrade) {
+    XP -= maxXP;
+    if (!upgrade) {
+      // Don't adjust maxXP -- they didn't gain a level.
+      weapon.owner.A_Log("Level-up rejected!", true);
+      return;
+    }
+
+    ++level;
+    ::PerPlayerStats.GetStatsFor(weapon.owner).AddPlayerXP(1);
+    maxXP = GetXPForLevel(level+1);
+    upgrades.AddUpgrade(upgrade);
+    weapon.owner.A_Log(
+      string.format("Your %s gained a level of %s!",
+        weapon.GetTag(), upgrade.GetName()),
+      true);
+
   }
 }
-

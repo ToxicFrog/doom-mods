@@ -5,7 +5,6 @@
 #debug off
 
 class ::EventHandler : StaticEventHandler {
-  bool legendoomInstalled;
   ::Upgrade::Registry UPGRADE_REGISTRY;
   ui ::HUD hud;
 
@@ -15,16 +14,10 @@ class ::EventHandler : StaticEventHandler {
     UPGRADE_REGISTRY = new("::Upgrade::Registry");
     UPGRADE_REGISTRY.RegisterBuiltins();
 
-    // If we just do cls = "LDPistol" it will get checked at compile time; we
-    // need to defer this to runtime so that everything has a chance to load.
-    string ldpistol = "LDPistol";
-    class<Actor> cls = ldpistol;
-    if (cls) {
+    if (::Settings.have_legendoom()) {
       console.printf("Legendoom is enabled, enabling LD compatibility for Laevis.");
-      legendoomInstalled = true;
     } else {
       console.printf("Couldn't find Legendoom, LD-specific features in Laevis disabled.");
-      legendoomInstalled = false;
     }
   }
 
@@ -33,7 +26,6 @@ class ::EventHandler : StaticEventHandler {
     if (pawn) {
       let stats = ::PerPlayerStats.GetStatsFor(pawn);
       if (!stats) stats = ::PerPlayerStats(pawn.GiveInventoryType("::PerPlayerStats"));
-      stats.legendoomInstalled = legendoomInstalled;
       stats.SetStateLabel("Spawn");
     }
   }
@@ -61,6 +53,10 @@ class ::EventHandler : StaticEventHandler {
   }
 
   void ShowInfo(PlayerPawn pawn) {
+    ::PerPlayerStats stats = ::PerPlayerStats.GetStatsFor(pawn);
+    // Check for pending level ups and apply those if present.
+    if (stats.GetInfoForCurrentWeapon().StartLevelUp()) return;
+    if (stats.StartLevelUp()) return;
     Menu.SetMenu("LaevisStatusDisplay");
     return;
   }
@@ -107,10 +103,10 @@ class ::EventHandler : StaticEventHandler {
     } else if (evt.name == "laevis_show_info_console") {
       ShowInfoConsole(players[evt.player].mo);
     } else if (evt.name == "laevis_cycle_ld_effect") {
-      if (legendoomInstalled) {
+      if (::Settings.have_legendoom()) {
         CycleLDEffect(players[evt.player].mo);
       } else {
-        console.printf("This feature only works if you also have Legendoom installed.");
+        players[evt.player].mo.A_Log("This feature only works if you also have Legendoom installed.");
       }
     } else if (evt.name == "laevis_select_effect") {
       SelectLDEffect(players[evt.player].mo, evt.args[0]);

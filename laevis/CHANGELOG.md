@@ -3,8 +3,11 @@
 - New: Blast Shaping upgrade significantly reduces self-damage
 - New: Thorns upgrade copies damage you take onto your enemies
 - New: Juggler upgrade gives you instant weapon switching
-- New: Fancier tooltips via libtooltip-0.1.1
-- New: Fancy graphics for HP/AP bonuses from <willibab.itch.io>
+- New: fancier tooltips via libtooltip-0.1.1
+- New: fancy graphics for HP/AP bonuses from <willibab.itch.io>
+- New: the level-up menu opens next time you press "view Laevis info", rather than immediately
+- New: rejecting a level-up with ESC still costs XP but does not level-up the weapon (and thus increase the XP cost for the next level)
+- New: rejecting a player level-up now refunds half the cost of the level
 - New: HUD gets all fancy when it's level-up time
 - Balance: Armour and Resistance merged into a single upgrade, Tough as Nails, and buffed
 - Balance: player damage upgrade renamed Bloodthirsty, now grants +10% damage instead of +5%

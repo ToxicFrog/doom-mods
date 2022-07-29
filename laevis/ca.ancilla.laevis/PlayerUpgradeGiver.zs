@@ -12,10 +12,9 @@ class ::PlayerUpgradeGiver : ::UpgradeGiver {
 
   void InstallUpgrade(int index) {
     if (index < 0) {
-      console.printf("Level-up rejected!");
+      stats.FinishLevelUp(null);
     } else {
-      console.printf("You gained a level of %s!", candidates[index].GetName());
-      stats.upgrades.Add(candidates[index].GetClassName());
+      stats.FinishLevelUp(::Upgrade::BaseUpgrade(new(candidates[index].GetClassName())));
     }
     Destroy();
   }
