@@ -114,6 +114,39 @@ class ::HUD : Object ui {
         clip_at);
   }
 
+  // We want the spike for each colour channel to sweep from 0 to 17, hold for 34,
+  // then back down to 0, hold for 34, etc.
+  // This is equivalent to sweeping from 0 to 51 and then back to 0, continuously,
+  // but then subtracting 17 and clipping it at y=[0,17]
+  // To get a triangle wave of wavelength 102 and amplitude 51, we need a sawtooth
+  // wave of wavelength 102, which is just y = x % 102
+  int sawtooth(int x) {
+    return x % 102;
+  }
+  int triangle(int x) {
+    return abs(sawtooth(x) - 51);
+  }
+  int clamped_triangle(int x) {
+    return clamp(triangle(x) - 17, 0, 17);
+  }
+
+  uint GetShinyColour(int offset) {
+    // Simple RGB cycle. Ramps up R to max, then G to max, then R to 0, then B
+    // to max, etc. Ramps are in increments of 15.
+    // To do this we generate a triangle wave with a wavelength of (255/15*6)
+    // from the tic counter, centered at 0 for red, 34 for green, and 68 for blue.
+    int tick = gametic % (255/15*6) - 255/15*3;
+    uint r = 15 * clamped_triangle(offset + gametic);
+    uint g = 15 * clamped_triangle(offset + gametic - 34);
+    uint b = 15 * clamped_triangle(offset + gametic - 68);
+    // ARGB8 format
+    return 0xFF000000 | r<<16 | g<<8 | b;
+  }
+
+  bool LevelUp(::CurrentStats stats) {
+    return stats.wxp >= stats.wmax || stats.pxp >= stats.pmax;
+  }
+
   void DrawHUD(::CurrentStats stats) {
     uint frame_rgb, weapon_rgb, player_rgb;
     [frame_rgb, weapon_rgb, player_rgb] = ::Settings.hud_colours();
@@ -122,15 +155,15 @@ class ::HUD : Object ui {
     if (mirror & HUD_MIRROR_H) face = 10 - face;
 
     Screen.DrawTexture(tex("LHUDA"..face), false, hudx, hudy,
-        DTA_Color, frame_rgb,
+        DTA_Color, LevelUp(stats) ? GetShinyColour(0) : frame_rgb,
         DTA_DestWidth, hudw, DTA_DestHeight, hudh);
 
     DrawProgressBar(
-        tex("LHDWA"..face), weapon_rgb, double(stats.wxp)/(stats.wmax),
-        HUD_WXP_X, HUD_WXP_W);
+        tex("LHDWA"..face), LevelUp(stats) ? GetShinyColour(34) : weapon_rgb,
+        double(stats.wxp)/(stats.wmax), HUD_WXP_X, HUD_WXP_W);
     DrawProgressBar(
-        tex("LHDPA"..face), player_rgb, double(stats.pxp)/(stats.pmax),
-        HUD_PXP_X, HUD_PXP_W);
+        tex("LHDPA"..face), LevelUp(stats) ? GetShinyColour(68) : player_rgb,
+        double(stats.pxp)/(stats.pmax), HUD_PXP_X, HUD_PXP_W);
 
     Text("P:"..stats.plvl, player_rgb, HUD_TOPTEXT_X, HUD_TOPTEXT_Y, HUD_GRAV_NW);
     Text("W:"..stats.wlvl, weapon_rgb, HUD_BOTTEXT_X, HUD_BOTTEXT_Y, HUD_GRAV_SE);

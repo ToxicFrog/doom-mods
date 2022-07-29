@@ -4,6 +4,7 @@
 // TODO: this is pretty gross. It should be generalized so that elemental upgrades
 // can answer questions about themselves.
 #namespace TFLV::Upgrade;
+#debug off
 
 enum ::UpgradeElement {
   ::ELEM_NULL,
@@ -19,6 +20,10 @@ class ::ElementalUpgrade : ::BaseUpgrade {
   // of accepting that element.
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
     ::UpgradeElement inprogress = GetElementInProgress(info.upgrades);
+    DEBUG("%s: me=%d weapon=%d mylvl=%d elementcount=%d",
+      self.GetClassName(), Element(), inprogress,
+      info.upgrades.Level(GetClassName()),
+      GetElementCount(info.upgrades));
     return inprogress == Element()
       || info.upgrades.Level(GetClassName()) > 0
       || (inprogress == ::ELEM_NULL && GetElementCount(info.upgrades) < 2);
