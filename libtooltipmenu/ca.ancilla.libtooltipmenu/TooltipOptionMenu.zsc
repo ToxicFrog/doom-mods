@@ -150,7 +150,7 @@ class TF_TooltipOptionMenu : OptionMenu {
   TF_Tooltip AppendableTooltip(uint first, uint last) {
     if (tooltips.size() <= 0) return null;
     let tt = tooltips[tooltips.size()-1];
-    if (tt.first == first && tt.last == last) return tt;
+    if (tt.first == first) return tt;
     return null;
   }
 
@@ -198,6 +198,8 @@ class OptionMenuItemTooltipHolder : OptionMenuItem {
     self.tooltips.copy(tts);
     return self;
   }
+
+  override bool Selectable() { return false; }
 }
 
 class OptionMenuItemTooltip : OptionMenuItem {
@@ -205,7 +207,6 @@ class OptionMenuItemTooltip : OptionMenuItem {
 
   OptionMenuItemTooltip Init(string tooltip) {
     self.tooltip = tooltip.filter();
-    super.init("", "");
     return self;
   }
 }
