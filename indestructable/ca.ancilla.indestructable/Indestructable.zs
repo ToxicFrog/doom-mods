@@ -7,7 +7,7 @@ class ::IndestructableEventHandler : StaticEventHandler {
     return -1;
   }
 
-  static bool GetBool(string name){
+  static bool GetBool(string name) {
     let cv = CVar.FindCVar(name);
     if (cv) return cv.GetBool();
     return false;
@@ -55,8 +55,7 @@ class ::IndestructableEventHandler : StaticEventHandler {
 
     if (!force) return; // PANIC
     MoveToTail(pawn, force);
-    force.lives = max(force.lives, GetInt("indestructable_lives_after_level"));
-    force.SetStateLabel("LevelStartMessage");
+    force.AddLevelStartLives();
   }
 
   override void WorldThingDied(WorldEvent evt) {
@@ -67,10 +66,7 @@ class ::IndestructableEventHandler : StaticEventHandler {
     if (!pawn) return;
     let force = ::IndestructableForce(pawn.FindInventory("::IndestructableForce"));
     if (!force) return; // PANIC
-    force.lives += lives;
-    force.Message(string.format(
-      "Absorbed the boss's power! You now have \c[CYAN]%d\c- extra %s!",
-      force.lives, force.lives == 1 ? "life" : "lives"));
+    force.AddBossKillLives();
   }
 
   override void NetworkProcess(ConsoleEvent evt) {
@@ -80,15 +76,7 @@ class ::IndestructableEventHandler : StaticEventHandler {
       let pawn = players[evt.player].mo;
       let force = ::IndestructableForce(pawn.FindInventory("::IndestructableForce"));
       if (!force) return;
-      force.lives = max(0, force.lives + evt.args[0]);
-      if (evt.args[1]) force.lives = min(force.lives, evt.args[1]);
-      if (evt.args[0] > 0) {
-        force.Message(string.format("You have \c[CYAN]%d\c- extra %s.",
-          force.lives, force.lives == 1 ? "life" : "lives"));
-      } else {
-        force.Message(string.format("You have \c[RED]%d\c- extra %s.",
-          force.lives, force.lives == 1 ? "life" : "lives"));
-      }
+      force.AdjustLives(evt.args[0], evt.args[1], evt.args[2]);
     }
   }
 }
@@ -118,7 +106,7 @@ class ::IndestructableForce : Inventory {
       // Used to display the "you have X extra lives" message at the start of a
       // level. A brief delay is added so that it shows up after start-of-level
       // debug logging, the autosave message, etc.
-      TNT1 A 3;
+      TNT1 A 15;
       TNT1 A 0 ShowLevelStartMessage();
       GOTO Idle;
     Idle:
@@ -166,7 +154,6 @@ class ::IndestructableForce : Inventory {
   }
 
   void ActivateIndestructability() {
-    --lives;
     Message("\c[RED]INDESTRUCTABLE!");
     self.SetStateLabel("RestoreHealth");
 
@@ -178,12 +165,77 @@ class ::IndestructableForce : Inventory {
     if (GetBool("indestructable_damage_bonus"))
       GivePowerup("::IndestructableDamage");
 
-    Message(string.format("You have \c[RED]%d\c- extra %s left!",
-      lives, lives == 1 ? "life" : "lives"));
+    if (lives > 0) {
+      --lives;
+      Message(string.format("You have \c[RED]%d\c- extra %s left!",
+        lives, lives == 1 ? "life" : "lives"));
+      ReportLivesCount(-1);
+    }
   }
 
   void RestorePlayerHealth() {
     owner.GiveInventory("Health", GetInt("indestructable_restore_hp") - owner.health);
+  }
+
+  void AddLevelStartLives() {
+    SetStateLabel("LevelStartMessage");
+    // Infinite lives? Nothing to do here.
+    if (lives < 0) return;
+
+    let max_lives = GetInt("indestructable_max_lives_per_level");
+    let old_lives = lives;
+    lives = clamp(
+      lives + GetInt("indestructable_lives_per_level"),
+      GetInt("indestructable_min_lives_per_level"),
+      max_lives ? max_lives : 0xFFFFFF);
+    ReportLivesCount(lives - old_lives);
+  }
+
+  void AddBossKillLives() {
+    // Infinite lives? Nothing to do here.
+    if (lives < 0) return;
+    // Also don't add more lives if they're already above the max, but don't
+    // take any away either (unlike level transitions).
+    let max_lives = GetInt("indestructable_max_lives_per_boss");
+    if (lives >= max_lives) return;
+
+    let old_lives = lives;
+    lives = clamp(
+      lives + GetInt("indestructable_lives_per_boss"),
+      GetInt("indestructable_min_lives_per_boss"),
+      max_lives ? max_lives : 0xFFFFFF);
+    if (lives > old_lives) {
+      Message(string.format("You have \c[CYAN]%d\c- extra %s.",
+        lives, lives == 1 ? "life" : "lives"));
+    }
+    ReportLivesCount(lives - old_lives);
+  }
+
+  void AdjustLives(int delta, int min_lives, int max_lives) {
+    let old_lives = lives;
+    if (lives >= 0) {
+      lives += delta;
+    }
+    if (min_lives != -1) lives = max(lives, min_lives);
+    if (max_lives != -1) lives = min(lives, max_lives);
+
+    if (lives == old_lives) {
+      // Display no message if lives haven't changed.
+    } else if (lives < 0) {
+      Message(string.format("You have \c[GOLD]unlimited\c- extra lives."));
+    } else if (lives < old_lives || old_lives < 0) {
+      Message(string.format("You have \c[RED]%d\c- extra %s.",
+        lives, lives == 1 ? "life" : "lives"));
+    } else if (lives > old_lives) {
+      Message(string.format("You have \c[CYAN]%d\c- extra %s.",
+        lives, lives == 1 ? "life" : "lives"));
+    }
+    ReportLivesCount(lives - old_lives);
+  }
+
+  void ReportLivesCount(int delta) {
+    if (!delta) return;
+    EventHandler.SendNetworkEvent("indestructable_report_lives", lives, delta, 0);
   }
 }
 

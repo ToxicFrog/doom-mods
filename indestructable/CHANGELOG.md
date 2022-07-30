@@ -1,6 +1,8 @@
 # 0.1.3
 
-- Change: other mods can now add/remove lives by emitting an `indestructable_adjust_lives` netevent with the first arg being the number of lives to add (or remove, if negative). The second arg is the lives cap to apply, or 0 for no cap.
+- New: more configuration options (and some of the existing ones now behave slightly differently)
+- New: other mods can listen for `indestructable_report_lives` netevents to get updates on Indestructable's internal state
+- New: other mods can add/remove lives by emitting an `indestructable_adjust_lives` netevent
 
 # 0.1.2
 
