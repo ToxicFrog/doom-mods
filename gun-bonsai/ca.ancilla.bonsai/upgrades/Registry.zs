@@ -86,11 +86,18 @@ class ::Registry : Object play {
     // Only load Indestructable if the mod itself is installed.
     string forcename = "TFIS_IndestructableForce";
     class<Actor> cls = forcename;
-    if (cls) {
+    if (cls && IsIndestructableDelegated()) {
       console.printf("Indestructable installed, enabling upgrade.");
       upgrade_names.push("::Indestructable");
       upgrades.push(::BaseUpgrade(new("::Indestructable")));
     }
+  }
+
+  // Returns true if Indestructable has delegated management of lives to Gun Bonsai.
+  static bool IsIndestructableDelegated() {
+    return CVar.FindCVar("indestructable_starting_lives").GetInt() == 0
+      && CVar.FindCVar("indestructable_lives_per_level").GetInt() == 0
+      && CVar.FindCVar("indestructable_max_lives_per_level").GetInt() == 0;
   }
 
   static void PickN(Array<::BaseUpgrade> dst, Array<::BaseUpgrade> src, uint n) {
