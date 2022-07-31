@@ -16,12 +16,14 @@ endif
 
 ### Rules ###
 
-.PHONY: all clean.super
+.PHONY: all clean.super clean
 
 all: ${PK3}
 
 clean.super:
 	rm -f ${PK3} ${ZSCRIPT_TO_CLEAN}
+
+clean: clean.super
 
 ${PK3}: ${LUMPS} ${ZSCRIPT} ${ZSCRIPT_AUTO}
 	rm -f $@

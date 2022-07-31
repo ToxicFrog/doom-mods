@@ -4,7 +4,7 @@ This is a small library for displaying tooltips in option menus. It provides a c
 
 It is a single file containing two classes, which can be either loaded as a separate pk3 (available on the [releases page](https://github.com/ToxicFrog/doom-mods/releases)) or simply copied into your mod wholesale. (In the latter case, don't forget to rename the classes to avoid conflicts with other uses of it!)
 
-For an example of this library in use, check out [Gun Bonsai's MENUDEF](https://github.com/ToxicFrog/doom-mods/blob/main/laevis/MENUDEF).
+For an example of this library in use, check out [Gun Bonsai's MENUDEF](https://github.com/ToxicFrog/doom-mods/blob/main/gun-bonsai/MENUDEF).
 
 ## API
 
