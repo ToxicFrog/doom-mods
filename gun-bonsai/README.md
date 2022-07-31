@@ -1,63 +1,65 @@
 # Gun Bonsai
 
-Gun Bonsai is a mod about growing your weapons into beautiful murder trees, designed for maximum compatibility.
+Gun Bonsai is a mod about growing your weapons from delicate pain saplings into beautiful murder trees. It is designed for maximum compatibility, and pairs well with total conversions and monster/weapon replacements, especially ones that increase the overall difficulty.
 
-Based on the damage you do, weapons will gain XP, and upon leveling up, will gain permanent bonuses.
+As you fight the hordes of hell, your weapons will gain XP based on how much damage you do and what you're attacking. Once a weapon levels up, you can open the info screen to get a choice of four randomly selected upgrades, of which you can pick one. Higher levels take more XP to earn, but some upgrades can only be unlocked on high-level weapons.
 
-It is designed for maximum compatibility, and supports weapon/enemy replacements and total conversions. It also has special integration with [Lazy Points](https://forum.zdoom.org/viewtopic.php?f=105&t=66565) and [Legendoom](https://forum.zdoom.org/viewtopic.php?t=51035).
+Every seven weapon levels, you also get to choose a player upgrade: a powerful bonus that is always in effect no matter what weapon you're wielding.
 
-Most settings are configurable through the gzDoom options menu and through cvars, so you can adjust things like the level-up rate and the amount of bonus damage to suit your taste.
+It is also highly configurable, allowing you to tweak the balance to your liking.
 
-## Basic Gameplay
+It is inspired primarily by [War of Attrition](https://fissile.duke4.net/fissile_attrition.html), heartily seasoned with [LegenDoom](https://forum.zdoom.org/viewtopic.php?t=51035) and a bit of [DoomRL](https://drl.chaosforge.org/).
 
-Dealing damage earns your current weapon XP based on the amount of damage dealt (with a bonus for attacking more powerful enemies; shooting an archvile gets you more XP than shooting an imp). Once your weapon gains enough XP, it levels up, and the next time you open the Gun Bonsai info screen you are presented with a choice of four randomly selected abilities it can learn or upgrade. Each subsequent level on a weapon takes more XP to earn, but more powerful upgrades can only be unlocked on high-level weapons. (For a complete list of available upgrades, see the end of this file.)
 
-Every seven weapon levels (which don't have to be on the same weapon), you also gain a player upgrade. This is a powerful bonus that affects everything you do, no matter what weapon you're wielding.
-
-Gun Bonsai has a great many configuration options; these are all available via the gzDoom options menu, and have in-game tooltips explaining what they do.
-
-## Installation & Setup
+## Setup
 
 Add `libtooltipmenu-<version>.pk3` and `GunBonsai-<version>.pk3` to your load order. It doesn't matter where, as long as `libtooltipmenu` loads first.
 
-The first time you play, check your keybindings for "Gun Bonsai - Display Info" and, if you're using Legendoom, "Gun Bonsai - Cycle Legendoom Weapon Effect" to make sure they're acceptable. You may also want to check the various settings under "Options - Gun Bonsai Mod Options".
+Gun Bonsai adds one new mandatory command, "Show Info", bound to `I` by default; this shows you information on your character and current weapon, and is used to select upgrades on level-up. If you are playing with Legendoom integration (see below), you will also want to make sure "Cycle Legendoom Power" is bound to something convenient.
 
-That's all -- if equipping a weapon and then pressing the "display info" key (default I) in game brings up the Gun Bonsai status screen, you should be good to go.
+Gun Bonsai also has its own options page, with many tuning and compatibility options. The defaults should be sensible for vanilla Doom 2 play, but I highly recommend flipping through it and making sure they are to your taste; the settings are self-documenting with in-game tooltips. In particular, if you are using a mod that takes away weapons/items (like Universal Pistol Start) or awards points (like Lazy Points, MetaDoom, or Reelism), you will likely need to adjust some settings.
+
 
 ## Mod Compatibility
 
-This should be compatible with every IWAD and pretty much every mod, including weapon/enemy replacements and total conversions. It relies entirely on event handlers and runtime reflection, so as long as the player's guns are still subclasses of `Weapon` it should behave properly.
+This should be compatible with pretty much every IWAD and mod, including weapon/enemy replacements and total conversions. It relies entirely on event handlers and inventory items, and doesn't rely on replacing or modifying existing actors.
 
 It has been tested (although not necessarily extensively) and is known to work with:
-- Doom, Doom 2, Heretic, and Chex Quest
-- Ashes 2063
-- Champions
-- Colourful Hell
+- Doom, Doom 2, Heretic, Chex Quest, Hedon Bloodrite, Ashes 2063, and Ashes Afterglow
+- Champions and Colourful Hell
 - DoomRL Arsenal
-- Hedon Bloodrite
-- LegenDoom & LegenDoomLite
+- LegenDoom and LegenDoomLite
 - MetaDoom
+- Reelism 2
 - Trailblazer
+- Lots of smaller mutators like War Trophies, Slomo Bullet Time, MOShuffle, etc
 
 It is known be playable with some issues with:
 - Hideous Destructor
 
 Some mods have specific integration features or compatibility concerns; these are detailed below.
 
-### Score mods (including LazyPoints & MetaDoom)
+### Indestructable
+
+If you have my other mod, [Indestructable](../indestructable), installed, Gun Bonsai can add an `Indestructable` upgrade to the player upgrade pool that lets you earn extra lives by taking damage once you select it. To enable this upgrade, adjust the following Indestructable settings:
+
+- `Starting lives`: 0
+- `Extra lives at level start`: 0
+- `Max lives at level start`: Unlimited
+
+Any other settings will cause it to assume that you want to use Indestructable normally and disable Indestructable/Bonsai integration.
+
+### Score mods (including LazyPoints, MetaDoom, and Reelism)
 
 Gun Bonsai has optional integration with mods that award points for actions such as kills. To enable this, adjust the `XP gain from damage` and `XP gain from score` options. The default is to award 1 XP per point of damage dealt, and ignore score entirely.
 
-If you're using a scoremod, setting `XP gain from score` to a value above 0 will cause you to earn that much XP per point earned. This should work with any mod that uses the `PlayerPawn.score` property or `ScoreItem` class to award the player points, and has been tested to work with Lazy Points and MetaDoom.
+If you're using a scoremod, setting `XP gain from score` to a value above 0 will cause you to earn that much XP per point earned. This should work with any mod that uses the `PlayerPawn.score` property or `ScoreItem` class to award the player points, and has been tested to work with Lazy Points, MetaDoom, and Reelism.
 
 Here are the settings I use for those mods; you'll probably want to tweak them based on personal taste, but these may be a useful starting point:
 
 - **LazyPoints**: 0.0 damage, 1.0 score. LP awards bonus points for kills, secrets, items, keys, combos, and having high health, but awards less points for dealing damage (due to not having a scaling score bonus for more dangerous enemies). It works out about the same in the end.
 - **MetaDoom**: 0.75 damage, 0.25 score. MD awards bonuses for kills (not damage), plus huge score bonuses for all kills/secrets/items on a level. These settings tend to result in getting more XP than the default overall, but MD also tends to be harder than vanilla, so it works out in the end.
-
-### Universal Pistol Start
-
-Gun Bonsai works by storing upgrade information in an item in the player's inventory. If this item gets removed all of your levels and upgrades will disappear. If you want to lose your weapons but keep your upgrades, make sure that `Keep Inventory Items` is enabled in the UPS settings.
+- **Reelism**: I haven't tested this extensively yet, but 1.0 damage/0.5 score seemed to work ok for a first pass; Reelism rounds are pretty short.
 
 ### Legendoom
 
@@ -66,6 +68,10 @@ If you have Legendoom installed, legendary weapons can gain new Legendoom effect
 When using a Legendoom weapon, you can press the "Cycle Legendoom Weapon Effect" key to cycle through effects, or manually select an effect from the weapon info screen.
 
 There are a lot of settings for this in the mod options, including which weapons can learn effects, how rapidly effects are learned, how many effect slots weapons have, etc. If you want to play with Legendoom installed but turn off integration with Gun Bonsai, set `Gun Levels per Legendoom Effect` to 0/Disabled in the settings.
+
+### Universal Pistol Start
+
+Gun Bonsai works by storing upgrade information in an item in the player's inventory. If this item gets removed all of your levels and upgrades will disappear. If you want to lose your weapons but keep your upgrades, make sure that `Keep Inventory Items` is enabled in the UPS settings.
 
 ### DoomRL Arsenal
 
@@ -86,21 +92,16 @@ It still works, mostly, but Gun Bonsai is definitely confused by HDest and I can
 
 The sawn-off shotgun gets melee upgrades rather than hitscan upgrades. This is a bug in Ashes -- the sawn-off is flagged as a melee weapon.
 
+
 ## FAQ
 
-### Didn't this used to be called "Laevis"?
+### What do the various upgrades do?
 
-Yes -- that was its working title, after *Lepidobatrachus laevis*, aka the Wednesday Frog, which consumes anything smaller than itself and grows more powerful thereby. I eventually settled on "Gun Bonsai" as the release name.
+See the "Upgrades" section at the end of this file.
 
-I may someday split the Legendoom integration into its own (somewhat more featureful) mod, in which case it will probably inherit the Laevis name.
+### Doesn't this make the player a *lot* more powerful?
 
-### What do the upgrades do?
-
-See the end of this file.
-
-### Doesn't this significantly unbalance the game in the player's favour?
-
-Yep! You might want to pair it with a mod like *Champions* or *Colourful Hell* to make things a bit spicier, if, unlike me, you are actually good at Doom. (Or you can pair it with *Russian Overkill*, load up Okuplok, and go nuts.)
+Yes, especially since I've generally tried to err on the side of upgrades being too powerful rather than too weak. I recommend playing it on a higher difficulty than you're normally comfortable with, and/or pairing it with mods that make things more difficult in general like [Champions](FIXME), [Colourful Hell](FIXME), [Legendoom Lite](FIXME), or (MetaDoom)[FIXME].
 
 ### Can I use parts of this in my mod?
 
@@ -110,6 +111,13 @@ Go nuts! It's released under the MIT license; see COPYING.md for details. See al
 
 See "modding notes" below.
 
+### Didn't this used to be called "Laevis"?
+
+Yes -- that was its working title, after *Lepidobatrachus laevis*, aka the Wednesday Frog, which consumes anything smaller than itself and grows more powerful thereby. I eventually settled on "Gun Bonsai" as the release name.
+
+I may someday split the Legendoom integration into its own (somewhat more featureful) mod, in which case it will probably inherit the Laevis name.
+
+
 ## Known Issues
 
 - XP is assigned to the currently wielded weapon at the time the damage is dealt, so it possible for XP to be assigned to the wrong weapon if you switch weapons while projectiles are in flight.
@@ -117,7 +125,9 @@ See "modding notes" below.
 - The distinction between projectile and hitscan weapons is guesswork and may in some cases be incorrect.
 - Most effects will trigger only on shots that hit a monster, e.g. HE Rounds will not detonate if you shoot a wall.
 - Piercing Shots may interfere with the detonation of exploding shots like rockets.
-- Upgrade-specific sound effects (at the moment just the HE and fragmentation sounds) may not play when using iwads other than `DOOM2.WAD`.
+- Some sound effects (at the moment just the HE and fragmentation sounds) may not play when using iwads other than Doom 1/2.
+- The music stops whenever the `Swiftness` upgrade triggers.
+
 
 ## Modding Notes
 
@@ -148,11 +158,13 @@ These are safe to call from UI code, but can return null:
 - `stats.GetInfoFor(wpn)` will get the info for an arbitrary weapon, but only if the info object already exists; it won't return info for a weapon the player has not yet wielded.
 
 This is not UI-safe, but is more flexible:
+- `stats.CreateInfoForCurrentWeapon()` is the same as `GetInfoForCurrentWeapon()` but will create the info if it doesn't exist. It can still return `null` if the player has no equipped weapon.
 - `stats.GetOrCreateInfoFor(wpn)` will return existing info for `wpn` if any exists; if not, it will (if the game settings permit this) attempt to re-use an existing `WeaponInfo` for another weapon of the same type. If both of those fail it will create, register, and return a new `WeaponInfo`. Note that calling this on a `Weapon` that is not in the player's inventory will *work*, in the sense that a `WeaponInfo` will be created and returned, but isn't particularly useful unless you subsequently add the weapon to the player's inventory.
 
 If you have an existing `WeaponInfo` and want to stick it to a new weapon, perhaps to transfer upgrades, you can do so by calling `info.Rebind(new_weapon)`. Note that this removes its association with the old weapon entirely -- the "weapon upgrades are shared by weapons of the same class" option is actually implemented by calling `Rebind()` every time the player switches weapons.
 
-# Upgrade List
+
+# Appendix: Upgrade List
 
 This is a list of all the upgrades in the game and their effects and prerequisites. Upgrades have brief in-game descriptions, but this list often has more details.
 
