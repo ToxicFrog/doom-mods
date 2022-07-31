@@ -8,6 +8,7 @@
 ### Values computed at include time ###
 
 PK3=${TOPDIR}/release/${NAME}-${VERSION}.pk3
+PK3LN=${TOPDIR}/release/${NAME}-latest.pk3
 ifdef ZSDIR
 	ZSCRIPT_AUTO=$(patsubst %.zs,%.zsc,$(shell find ${ZSDIR} -name "*.zs"))
 	ZSCRIPT_TO_CLEAN=${ZSCRIPT_AUTO}
@@ -25,6 +26,7 @@ clean.super:
 ${PK3}: ${LUMPS} ${ZSCRIPT} ${ZSCRIPT_AUTO}
 	rm -f $@
 	zip -qr $@ $^
+	ln -sf $@ "${PK3LN}"
 
 %.zsc: %.zs
 	${TOPDIR}/zspp $< $@
