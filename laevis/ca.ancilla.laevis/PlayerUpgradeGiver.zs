@@ -24,7 +24,7 @@ class ::PlayerUpgradeGiver : ::UpgradeGiver {
   // times.
   States {
     ChooseUpgrade:
-      TNT1 A 1 AwaitChoice("LaevisPlayerLevelUpMenu");
+      TNT1 A 1 AwaitChoice("GunBonsaiPlayerLevelUpMenu");
       LOOP;
     Chosen:
       TNT1 A 0 InstallUpgrade(chosen);

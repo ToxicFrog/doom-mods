@@ -1,11 +1,11 @@
-addkeysection "Laevis" Laevis
+addkeysection "Gun Bonsai" GunBonsai
 
-addmenukey "Display Info" laevis_show_info
-alias laevis_show_info "netevent laevis_show_info"
-defaultbind I laevis_show_info
+addmenukey "Display Info" bonsai_show_info
+alias bonsai_show_info "netevent bonsai_show_info"
+defaultbind I bonsai_show_info
 
-addkeysection "Laevis/Legendoom Integration" Laevis
+addkeysection "Gun Bonsai/Legendoom Integration" GunBonsaiLegendoom
 
-addmenukey "Cycle Legendoom Weapon Effect" laevis_cycle_ld_effect
-alias laevis_cycle_ld_effect "netevent laevis_cycle_ld_effect"
-defaultbind P laevis_cycle_ld_effect
+addmenukey "Cycle Legendoom Weapon Effect" bonsai_cycle_ld_effect
+alias bonsai_cycle_ld_effect "netevent bonsai_cycle_ld_effect"
+defaultbind P bonsai_cycle_ld_effect

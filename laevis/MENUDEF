@@ -1,12 +1,12 @@
 AddOptionMenu "OptionsMenu"
 {
-  Submenu "Laevis Options", "LaevisOptions"
+  Submenu "Gun Bonsai Options", "GunBonsaiOptions"
 }
 
-OptionMenu "LaevisOptions"
+OptionMenu "GunBonsaiOptions"
 {
   class TF_TooltipOptionMenu
-  Title "Laevis Options"
+  Title "Gun Bonsai Options"
 
   TooltipGeometry 0.0, 0.5, 0.25, 1.0, 0.5
   TooltipAppearance "", "", "tfttbg"
@@ -14,36 +14,36 @@ OptionMenu "LaevisOptions"
   StaticText ""
   StaticText "HUD settings", CYAN
 
-  Slider "HUD X position", "laevis_hud_x", 0.0, 1.0, 0.01, 2
-  Slider "HUD Y position", "laevis_hud_y", 0.0, 1.0, 0.01, 2
-  Tooltip "Position of the Laevis HUD on the screen, as a proportion of total screen size. 0.0 is top left, 1.0 is bottom right."
-  Tooltip "You can also set a pixel-perfect position by setting laevis_hud_x and laevis_hud_y to your desired coordinates."
+  Slider "HUD X position", "bonsai_hud_x", 0.0, 1.0, 0.01, 2
+  Slider "HUD Y position", "bonsai_hud_y", 0.0, 1.0, 0.01, 2
+  Tooltip "Position of the Gun Bonsai HUD on the screen, as a proportion of total screen size. 0.0 is top left, 1.0 is bottom right."
+  Tooltip "You can also set a pixel-perfect position by setting bonsai_hud_x and bonsai_hud_y to your desired coordinates."
 
-  Slider "HUD height", "laevis_hud_size", 10, 500, 10, 0
-  Tooltip "Height of the Laevis HUD, in pixels. Width is always 3x height."
+  Slider "HUD height", "bonsai_hud_size", 10, 500, 10, 0
+  Tooltip "Height of the Gun Bonsai HUD, in pixels. Width is always 3x height."
   Tooltip "You can also set a scale factor by setting this to a value between 0.0 and 1.0; 1.0 makes it 512px high."
 
-  Option "HUD mirroring", "laevis_hud_mirror", "LaevisHudMirrorMode"
+  Option "HUD mirroring", "bonsai_hud_mirror", "GunBonsaiHudMirrorMode"
   Tooltip "Whether to mirror the hud. Default has the level box on the left and the XP bars on the bottom."
 
-  ColorPicker "HUD frame colour", "laevis_hud_rgb_frame"
+  ColorPicker "HUD frame colour", "bonsai_hud_rgb_frame"
   Tooltip "Colour of the HUD frame."
-  ColorPicker "Weapon info colour", "laevis_hud_rgb_weapon"
+  ColorPicker "Weapon info colour", "bonsai_hud_rgb_weapon"
   Tooltip "Colour of the weapon XP bar and weapon name, level, and XP indicator text."
-  ColorPicker "Player info colour", "laevis_hud_rgb_player"
+  ColorPicker "Player info colour", "bonsai_hud_rgb_player"
   Tooltip "Colour of the player XP bar and player level text."
 
   StaticText ""
   StaticText "Compatibility Options", WHITE
 
-  Option "Use builtin actors for Scavenge drops", "laevis_use_builtin_actors", "OnOff"
-  Tooltip "Whether the Scavenge Blood and Scavenge Steel upgrades should use actors built into Laevis, or the generic Doom 2 HealthBonus and ArmorBonus actors."
+  Option "Use builtin actors for Scavenge drops", "bonsai_use_builtin_actors", "OnOff"
+  Tooltip "Whether the Scavenge Blood and Scavenge Steel upgrades should use actors built into Gun Bonsai, or the generic Doom 2 HealthBonus and ArmorBonus actors."
   Tooltip "The builtins should work in any IWAD. The generic ones are more likely to 'blend in' when playing with mods that define replacements for the generic bonuses, but (depending on the mod) may no longer give the correct amounts of health/armour."
 
   StaticText ""
   StaticText "Weapon Bonus Settings", BLUE
 
-  Option "Weapon upgrades bind to", "laevis_upgrade_binding_mode", "LaevisUpgradeBindingMode"
+  Option "Weapon upgrades bind to", "bonsai_upgrade_binding_mode", "GunBonsaiUpgradeBindingMode"
   Tooltip "Determines how weapon upgrades behave when you drop a weapon or are carrying multiple weapons of the same type."
   Tooltip "\c[CYAN][individual weapon]:\c- each weapon has its own upgrades. When you drop a weapon, the upgrades go with it. In some mods dropping the weapon will lose the upgrades permanently."
   Tooltip "\c[CYAN][individual w/inheritance]:\c- each weapon has its own upgrades, but if you drop a weapon and later pick up a new weapon of the same type, it will inherit the upgrades from the weapon you dropped."
@@ -52,29 +52,29 @@ OptionMenu "LaevisOptions"
   StaticText ""
   StaticText "Player Bonus Settings", GREEN
 
-  Slider "Gun levels per player level", "laevis_gun_levels_per_player_level", 1, 100, 1, 0
+  Slider "Gun levels per player level", "bonsai_gun_levels_per_player_level", 1, 100, 1, 0
   Tooltip "How many times you need to level up a weapon to gain a player bonus."
 
   StaticText ""
   StaticText "XP Source Settings", PURPLE
 
-  Slider "XP gain from damage", "laevis_damage_to_xp_factor", 0.0, 2.0, 0.05, 2
-  Tooltip "How much XP you earn per point of damage you inflict. This feature is built into Laevis."
-  Slider "XP gain from score", "laevis_score_to_xp_factor", 0.0, 2.0, 0.05, 2
+  Slider "XP gain from damage", "bonsai_damage_to_xp_factor", 0.0, 2.0, 0.05, 2
+  Tooltip "How much XP you earn per point of damage you inflict. This feature is built into Gun Bonsai."
+  Slider "XP gain from score", "bonsai_score_to_xp_factor", 0.0, 2.0, 0.05, 2
   Tooltip "How much XP you earn per point of score you accumulate. This requires you to install a mod that lets you score points, such as LazyPoints or MetaDoom. The specific actions that you gain points for, and how many points you get, will depend on the mod you use."
-  // Slider "XP gain from War Trophies", "laevis_wt_to_xp_factor", 0.0, 10.0, 0.05, 2
+  // Slider "XP gain from War Trophies", "bonsai_wt_to_xp_factor", 0.0, 10.0, 0.05, 2
   // Tooltip "How much XP you earn per point of War Trophies XP you accumulate."
 
   StaticText ""
   StaticText "XP balance settings", GOLD
 
-  Slider "XP needed to reach level 1", "laevis_base_level_cost", 100, 10000, 100, 0
+  Slider "XP needed to reach level 1", "bonsai_base_level_cost", 100, 10000, 100, 0
   Tooltip "How much XP you need to earn for a weapon to gain its first level. Roughly, 1 point of damage dealt == 1 XP gained, with a bonus for damaging nastier enemies like Cyberdemons and Archviles."
 
-  Slider "XP cost multiplier for melee weapons", "laevis_level_cost_mul_for_melee", 0.1, 5.0, 0.1, 1
-  Slider "XP cost multiplier for wimpy weapons", "laevis_level_cost_mul_for_wimpy", 0.1, 5.0, 0.1, 1
-  // Slider "XP cost multiplier for explosive weapons", "DISABLED_laevis_level_cost_mul_for_explosive", 0.1, 5.0, 0.1, 1
-  // Slider "XP cost multiplier for BFG-type weapons", "DISABLED_laevis_level_cost_mul_for_bfg", 0.1, 5.0, 0.1, 1
+  Slider "XP cost multiplier for melee weapons", "bonsai_level_cost_mul_for_melee", 0.1, 5.0, 0.1, 1
+  Slider "XP cost multiplier for wimpy weapons", "bonsai_level_cost_mul_for_wimpy", 0.1, 5.0, 0.1, 1
+  // Slider "XP cost multiplier for explosive weapons", "DISABLED_bonsai_level_cost_mul_for_explosive", 0.1, 5.0, 0.1, 1
+  // Slider "XP cost multiplier for BFG-type weapons", "DISABLED_bonsai_level_cost_mul_for_bfg", 0.1, 5.0, 0.1, 1
   Tooltip "XP cost multipliers for various classes of weapons. These can stack (e.g. fists are both 'melee' and 'wimpy' in vanilla Doom 2). The default settings make both weak and melee weapons easier to level up."
   Tooltip "Note that not all mods use these flags."
   // Tooltip "\cgThe 'explosive' and 'bfg' settings do not currently work."
@@ -82,62 +82,62 @@ OptionMenu "LaevisOptions"
   StaticText ""
   StaticText "Legendoom Integration", GRAY
 
-  ScaleSlider "Gun levels per LD effect", "laevis_gun_levels_per_ld_effect", 0, 100, 1, "Disabled"
+  ScaleSlider "Gun levels per LD effect", "bonsai_gun_levels_per_ld_effect", 0, 100, 1, "Disabled"
   Tooltip "How many times a gun needs to level up to gain a new Legendoom effect. Only functions if Legendoom is installed. Set to 0 to disable."
 
-  Option "LD effects learnable by", "laevis_which_guns_can_learn", "LaevisWhatKindOfGunSelector"
+  Option "LD effects learnable by", "bonsai_which_guns_can_learn", "GunBonsaiWhatKindOfGunSelector"
   Tooltip "Which weapons can learn new LD effects."
-  Option "LD effects replaceable by", "laevis_which_guns_can_replace", "LaevisWhatKindOfGunSelector"
+  Option "LD effects replaceable by", "bonsai_which_guns_can_replace", "GunBonsaiWhatKindOfGunSelector"
   Tooltip "Which weapons can replace old LD effects with new ones once they're full."
 
-  Slider "Base number of LD effect slots", "laevis_base_ld_effect_slots", 0, 16, 1, 0
+  Slider "Base number of LD effect slots", "bonsai_base_ld_effect_slots", 0, 16, 1, 0
   Tooltip "How many slots for LD effects non-legendary guns have."
-  Slider "Bonus slots per LD rarity level", "laevis_bonus_ld_effect_slots", 0, 16, 1, 0
+  Slider "Bonus slots per LD rarity level", "bonsai_bonus_ld_effect_slots", 0, 16, 1, 0
   Tooltip "How many extra effect slots legendary guns get per rarity level (Common=1, Epic=4)."
 
-  Option "Ignore original gun rarity for new effects", "laevis_ignore_gun_rarity", "OnOff"
+  Option "Ignore original gun rarity for new effects", "bonsai_ignore_gun_rarity", "OnOff"
   Tooltip "Whether weapons can learn LD effects that are rarer than the one they spawned with."
 }
 
-OptionValue "LaevisHudMirrorMode" {
+OptionValue "GunBonsaiHudMirrorMode" {
   0, "no mirroring"
   1, "mirror horizontally (box on left)"
   2, "mirror vertically (XP bars on top)"
   3, "mirror both (box on left & bars on top)"
 }
 
-OptionValue "LaevisUpgradeBindingMode" {
+OptionValue "GunBonsaiUpgradeBindingMode" {
   0, "individual weapon"
   1, "individual weapon with inheritance"
   2, "weapon class"
 }
 
-OptionValue "LaevisWhatKindOfGunSelector" {
+OptionValue "GunBonsaiWhatKindOfGunSelector" {
   0, "None"
   1, "Basic Weapons Only"
   2, "Legendary Weapons Only"
   3, "All Weapons"
 }
 
-OptionMenu "LaevisPlayerLevelUpMenu"
+OptionMenu "GunBonsaiPlayerLevelUpMenu"
 {
   class TFLV_Menu_PlayerLevelUpMenu
   Title "Player Level Up!"
 }
 
-OptionMenu "LaevisWeaponLevelUpMenu"
+OptionMenu "GunBonsaiWeaponLevelUpMenu"
 {
   class TFLV_Menu_WeaponLevelUpMenu
   Title "Weapon Level Up!"
 }
 
-OptionMenu "LaevisNewLDEffectMenu"
+OptionMenu "GunBonsaiNewLDEffectMenu"
 {
   class TFLV_Menu_NewLDEffectMenu
   Title "New Legendoom Effect!"
 }
 
-OptionMenu "LaevisStatusDisplay"
+OptionMenu "GunBonsaiStatusDisplay"
 {
   class TFLV_Menu_StatusDisplay
   Title "Status"

@@ -50,7 +50,7 @@ class ::StatusDisplay : ::GenericMenu {
     PushKeyValueOption(
       TFLV::LegendoomUtil.GetEffectTitle(effect),
       TFLV::LegendoomUtil.GetEffectDesc(effect),
-      "laevis_select_effect",
+      "bonsai_select_effect",
       index,
       isDefault ? Font.CR_ORANGE : Font.CR_DARKRED,
       isDefault ? Font.CR_YELLOW : Font.CR_RED);

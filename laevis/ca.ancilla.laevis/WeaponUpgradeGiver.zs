@@ -24,7 +24,7 @@ class ::WeaponUpgradeGiver : ::UpgradeGiver {
   // times.
   States {
     ChooseUpgrade:
-      TNT1 A 1 AwaitChoice("LaevisWeaponLevelUpMenu");
+      TNT1 A 1 AwaitChoice("GunBonsaiWeaponLevelUpMenu");
       LOOP;
     Chosen:
       TNT1 A 0 InstallUpgrade(chosen);

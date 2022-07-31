@@ -51,7 +51,7 @@ class ::NewLDEffectMenu : ::GenericMenu {
     PushKeyValueOption(
       TFLV::LegendoomUtil.GetEffectTitle(effect),
       TFLV::LegendoomUtil.GetEffectDesc(effect),
-      "laevis_choose_level_up_option",
+      "bonsai_choose_level_up_option",
       index);
   }
 }

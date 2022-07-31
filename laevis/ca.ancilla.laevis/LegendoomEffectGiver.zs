@@ -142,7 +142,7 @@ class ::LegendoomEffectGiver : ::UpgradeGiver {
       TNT1 A 0 InstallUpgrade();
       STOP;
     ChooseEffectToDiscard:
-      TNT1 A 1 AwaitChoice("LaevisNewLDEffectMenu");
+      TNT1 A 1 AwaitChoice("GunBonsaiNewLDEffectMenu");
       LOOP;
     Chosen:
       TNT1 A 0 DiscardEffect(chosen);

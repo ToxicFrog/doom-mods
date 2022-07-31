@@ -1,5 +1,5 @@
 // Base class for weapon and player upgrades.
-// To implement a Laevis upgrade in your own mod:
+// To implement a Gun Bonsai upgrade in your own mod:
 // - Subclass TFLV_Upgrade_BaseUpgrade
 // - Implement at least one of the IsSuitableFor* functions with the conditions
 //   needed for the upgrade to spawn
@@ -10,20 +10,25 @@
 // - Add the name and description to your LANGUAGE file; the keys should be
 //   [upgrade_class_name]_Name and [upgrade_class_name]_Desc, e.g.
 //   TFLV_Upgrade_Pyre_Name and TFLV_Upgrade_Pyre_Desc.
-// - In your startup code (e.g. in your StaticEventHandler's OnRegister), call
-//   TFLV_Upgrade_Registry.Register("upgrade_class_name"). Make sure this runs
-//   *after* TFLV_EventHandler or the registry won't exist yet.
+// - In your startup code, call TFLV_Upgrade_Registry.Register("upgrade_class").
+//   Make sure this runs *after* TFLV_EventHandler's OnRegister; if unsure,
+//   defer it to WorldLoaded or something. It's safe to Register() the same
+//   upgrade multiple times.
 // - All done! The upgrade should now start appearing in play when your mod is
-//   loaded after Laevis.
-// If for some reason you can't register it in a StaticEventHandler -- say you
-// have to register it in WorldLoaded() or in an actor's Spawn: state -- it's
-// safe to register the same upgrade multiple times; it'll just ignore every
-// registration after the first.
+//   loaded after Gun Bonsai.
 #namespace TFLV::Upgrade;
 
+// Upgrade priority levels. Higher priorities can trigger lower priorities,
+// but not vice versa.
+// So (e.g.) the fragments from Fragmentation Shots (PRI_FRAGMENTATION) can
+// proc poison effects (PRI_ELEMENTAL), but the poison DoT won't cause the
+// afflicted enemy to start emitting fragments.
+// As a special case, attacks with no defined priority (PRI_MISSING) can trigger
+// anything -- this is the "priority" associated with attacks not governed by
+// Gun Bonsai.
 enum ::UpgradePriority {
-  ::PRI_NULL = -1,
-  ::PRI_MISSING = 0,
+  ::PRI_NULL = -1,   // Disallow cross-upgrade triggering at all
+  ::PRI_MISSING = 0, // SPECIAL PURPOSE -- DO NOT USE
   ::PRI_ELEMENTAL,
   ::PRI_EXPLOSIVE,
   ::PRI_FRAGMENTATION

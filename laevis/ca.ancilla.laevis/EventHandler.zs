@@ -1,4 +1,4 @@
-// Event handler for Laevis.
+// Event handler for Gun Bonsai.
 // Handles giving players a stat tracking item when they spawn in, and assigning
 // XP to their currently wielded weapon when they damage something.
 #namespace TFLV;
@@ -9,15 +9,15 @@ class ::EventHandler : StaticEventHandler {
   ui ::HUD hud;
 
   override void OnRegister() {
-    DEBUG("Initializing Laevis...");
+    DEBUG("Initializing Gun Bonsai...");
     // Register all builtin upgrades.
     UPGRADE_REGISTRY = new("::Upgrade::Registry");
     UPGRADE_REGISTRY.RegisterBuiltins();
 
     if (::Settings.have_legendoom()) {
-      console.printf("Legendoom is enabled, enabling LD compatibility for Laevis.");
+      console.printf("Legendoom is installed, enabling LD compatibility for Gun Bonsai.");
     } else {
-      console.printf("Couldn't find Legendoom, LD-specific features in Laevis disabled.");
+      console.printf("Couldn't find Legendoom, LD-specific features in Gun Bonsai disabled.");
     }
   }
 
@@ -57,7 +57,7 @@ class ::EventHandler : StaticEventHandler {
     // Check for pending level ups and apply those if present.
     if (stats.GetInfoForCurrentWeapon().StartLevelUp()) return;
     if (stats.StartLevelUp()) return;
-    Menu.SetMenu("LaevisStatusDisplay");
+    Menu.SetMenu("GunBonsaiStatusDisplay");
     return;
   }
 
@@ -84,7 +84,7 @@ class ::EventHandler : StaticEventHandler {
     let stats = ::PerPlayerStats.GetStatsFor(pawn);
     let giver = stats.currentEffectGiver;
     if (!giver) {
-      console.printf("error: laevis_choose_level_up_option without active level up menu");
+      console.printf("error: bonsai_choose_level_up_option without active level up menu");
       return;
     }
     giver.Choose(index);
@@ -98,21 +98,21 @@ class ::EventHandler : StaticEventHandler {
   override void NetworkProcess(ConsoleEvent evt) {
     if (evt.player != consoleplayer) {
       return;
-    } else if (evt.name == "laevis_show_info") {
+    } else if (evt.name == "bonsai_show_info") {
       ShowInfo(players[evt.player].mo);
-    } else if (evt.name == "laevis_show_info_console") {
+    } else if (evt.name == "bonsai_show_info_console") {
       ShowInfoConsole(players[evt.player].mo);
-    } else if (evt.name == "laevis_cycle_ld_effect") {
+    } else if (evt.name == "bonsai_cycle_ld_effect") {
       if (::Settings.have_legendoom()) {
         CycleLDEffect(players[evt.player].mo);
       } else {
         players[evt.player].mo.A_Log("This feature only works if you also have Legendoom installed.");
       }
-    } else if (evt.name == "laevis_select_effect") {
+    } else if (evt.name == "bonsai_select_effect") {
       SelectLDEffect(players[evt.player].mo, evt.args[0]);
-    } else if (evt.name == "laevis_choose_level_up_option") {
+    } else if (evt.name == "bonsai_choose_level_up_option") {
       ChooseLevelUpOption(players[evt.player].mo, evt.args[0]);
-    } else if (evt.name == "laevis_debug") {
+    } else if (evt.name == "bonsai_debug") {
       let stats = ::PerPlayerStats.GetStatsFor(players[evt.player].mo);
       let info = stats.GetInfoForCurrentWeapon();
       stats.upgrades.Add("::Upgrade::Juggler", 1);

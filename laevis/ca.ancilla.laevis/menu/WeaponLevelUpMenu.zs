@@ -31,13 +31,13 @@ class ::WeaponLevelUpMenu : ::GenericMenu {
   void PushUpgrade(TFLV::Upgrade::BaseUpgrade upgrade, int index) {
     PushKeyValueOption(
       upgrade.GetName(), upgrade.GetDesc(),
-      "laevis_choose_level_up_option",
+      "bonsai_choose_level_up_option",
       index);
   }
 
   override bool MenuEvent(int key, bool fromController) {
     if (key == Menu.MKey_Back) {
-      EventHandler.SendNetworkEvent("laevis_choose_level_up_option", -1);
+      EventHandler.SendNetworkEvent("bonsai_choose_level_up_option", -1);
     }
 
     return super.MenuEvent(key, fromController);
