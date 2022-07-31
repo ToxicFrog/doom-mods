@@ -87,6 +87,7 @@ class ::Registry : Object play {
     string forcename = "TFIS_IndestructableForce";
     class<Actor> cls = forcename;
     if (cls) {
+      console.printf("Indestructable installed, enabling upgrade.");
       upgrade_names.push("::Indestructable");
       upgrades.push(::BaseUpgrade(new("::Indestructable")));
     }
