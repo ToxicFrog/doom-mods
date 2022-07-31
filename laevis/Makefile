@@ -1,4 +1,4 @@
-NAME=Laevis
+NAME=GunBonsai
 VERSION=0.8.0
 LUMPS=zscript.txt MAPINFO CVARINFO KEYCONF MENUDEF LANGUAGE.* sprites
 LUMPS+=*.md COPYING.freedoom

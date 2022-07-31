@@ -2,9 +2,9 @@
 
 This is a small library for displaying tooltips in option menus. It provides a convenient way to display in-game information about mod settings (or anything else you might use an option menu for), without crowding the menu with lots of `StaticText` entries. The tooltips can be written directly in the MENUDEF and require no special handling in your mod's code.
 
-It is a single file containing two classes, which can be either loaded as a separate pk3 (available on the [releases page](https://github.com/ToxicFrog/laevis/releases)) or simply copied into your mod wholesale. (In the latter case, don't forget to rename the classes to avoid conflicts with other uses of it!)
+It is a single file containing two classes, which can be either loaded as a separate pk3 (available on the [releases page](https://github.com/ToxicFrog/doom-mods/releases)) or simply copied into your mod wholesale. (In the latter case, don't forget to rename the classes to avoid conflicts with other uses of it!)
 
-For an example of this library in use, check out [Laevis's MENUDEF](https://github.com/ToxicFrog/laevis/blob/main/laevis/MENUDEF).
+For an example of this library in use, check out [Gun Bonsai's MENUDEF](https://github.com/ToxicFrog/doom-mods/blob/main/laevis/MENUDEF).
 
 ## API
 

@@ -1,6 +1,6 @@
 # Indestructable - an extra lives mini-mod
 
-This mod is a standalone version of Laevis's planned *Indestructable* upgrade, which gives you a limited number of opportunities to cheat death. When you die, if it has any charges left, you instead get a partial heal and a short-lived buff containing invincibility, time stop, and double damage.
+This mod gives you a limited number of opportunities to cheat death. When you die, if it has any charges left, you instead get a partial heal and a short-lived buff containing invincibility, time stop, and double damage.
 
 It is highly configurable, but the default settings mimic the Death Rage mechanic (from *Duke Nukem 3D: War of Attrition*) that inspired it: 10 second duration, triggers once per level and recharges at the end of the level.
 
@@ -26,8 +26,10 @@ This is emitted every time the player gains or loses lives (whether through norm
 
 ## Compatibility
 
-This mod should be compatible with anything. If using it with Laevis, you should load it after Laevis proper.
+This mod should be compatible with almost anything; the main exception is things that rely heavily on scripted damage that bypasses defences and damage modifiers.
+
+If using it with Gun Bonsai, load Indestructable *first*.
 
 ## License
 
-This is released under the same MIT license as the rest of Laevis.
+This is released under the same MIT license as the rest of this repo. See [COPYING.md](./COPYING.md) for details.

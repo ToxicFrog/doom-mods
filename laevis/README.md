@@ -1,6 +1,6 @@
-# Laevis
+# Gun Bonsai
 
-Laevis is a simple gzDoom mod, with high compatibility, where your weapons grow more powerful with use.
+Gun Bonsai is a mod about growing your weapons into beautiful murder trees, designed for maximum compatibility.
 
 Based on the damage you do, weapons will gain XP, and upon leveling up, will gain permanent bonuses.
 
@@ -10,19 +10,19 @@ Most settings are configurable through the gzDoom options menu and through cvars
 
 ## Basic Gameplay
 
-Dealing damage earns your current weapon XP based on the amount of damage dealt (with a bonus for attacking more powerful enemies; shooting an archvile gets you more XP than shooting an imp). Once your weapon gains enough XP, it levels up, and the next time you open the Laevis info screen you are presented with a choice of four randomly selected abilities it can learn or upgrade. Each subsequent level on a weapon takes more XP to earn, but more powerful upgrades can only be unlocked on high-level weapons. (For a complete list of available upgrades, see the end of this file.)
+Dealing damage earns your current weapon XP based on the amount of damage dealt (with a bonus for attacking more powerful enemies; shooting an archvile gets you more XP than shooting an imp). Once your weapon gains enough XP, it levels up, and the next time you open the Gun Bonsai info screen you are presented with a choice of four randomly selected abilities it can learn or upgrade. Each subsequent level on a weapon takes more XP to earn, but more powerful upgrades can only be unlocked on high-level weapons. (For a complete list of available upgrades, see the end of this file.)
 
 Every seven weapon levels (which don't have to be on the same weapon), you also gain a player upgrade. This is a powerful bonus that affects everything you do, no matter what weapon you're wielding.
 
-Laevis has a great many configuration options; these are all available via the gzDoom options menu, and have in-game tooltips explaining what they do.
+Gun Bonsai has a great many configuration options; these are all available via the gzDoom options menu, and have in-game tooltips explaining what they do.
 
 ## Installation & Setup
 
-Add `libtooltipmenu-<version>.pk3` and `Laevis-<version>.pk3` to your load order. It doesn't matter where, as long as `libtooltipmenu` loads first.
+Add `libtooltipmenu-<version>.pk3` and `GunBonsai-<version>.pk3` to your load order. It doesn't matter where, as long as `libtooltipmenu` loads first.
 
-The first time you play, check your keybindings for "Laevis - Display Info" and, if you're using Legendoom, "Laevis - Cycle Legendoom Weapon Effect" to make sure they're acceptable. You may also want to check the various settings under "Options - Laevis Mod Options".
+The first time you play, check your keybindings for "Gun Bonsai - Display Info" and, if you're using Legendoom, "Gun Bonsai - Cycle Legendoom Weapon Effect" to make sure they're acceptable. You may also want to check the various settings under "Options - Gun Bonsai Mod Options".
 
-That's all -- if equipping a weapon and then pressing the "display info" key (default I) in game brings up the Laevis status screen, you should be good to go.
+That's all -- if equipping a weapon and then pressing the "display info" key (default I) in game brings up the Gun Bonsai status screen, you should be good to go.
 
 ## Mod Compatibility
 
@@ -46,7 +46,7 @@ Some mods have specific integration features or compatibility concerns; these ar
 
 ### Score mods (including LazyPoints & MetaDoom)
 
-Laevis has optional integration with mods that award points for actions such as kills. To enable this, adjust the `XP gain from damage` and `XP gain from score` options. The default is to award 1 XP per point of damage dealt, and ignore score entirely.
+Gun Bonsai has optional integration with mods that award points for actions such as kills. To enable this, adjust the `XP gain from damage` and `XP gain from score` options. The default is to award 1 XP per point of damage dealt, and ignore score entirely.
 
 If you're using a scoremod, setting `XP gain from score` to a value above 0 will cause you to earn that much XP per point earned. This should work with any mod that uses the `PlayerPawn.score` property or `ScoreItem` class to award the player points, and has been tested to work with Lazy Points and MetaDoom.
 
@@ -57,15 +57,15 @@ Here are the settings I use for those mods; you'll probably want to tweak them b
 
 ### Universal Pistol Start
 
-Laevis works by storing upgrade information in an item in the player's inventory. If this item gets removed all of your levels and upgrades will disappear. If you want to lose your weapons but keep your upgrades, make sure that `Keep Inventory Items` is enabled in the UPS settings.
+Gun Bonsai works by storing upgrade information in an item in the player's inventory. If this item gets removed all of your levels and upgrades will disappear. If you want to lose your weapons but keep your upgrades, make sure that `Keep Inventory Items` is enabled in the UPS settings.
 
 ### Legendoom
 
 If you have Legendoom installed, legendary weapons can gain new Legendoom effects on level up. Only one effect can be active at a time, but you can change effects at any time. Weapons can hold a limited number of effects; if you gain a new effect and there's no room for it, you'll be prompted to choose an effect to delete. (Make sure you choose the effect you want to **get rid of**, not one of the ones you want to keep!)
 
-When using a Legendoom weapon, you can press the "Cycle Legendoom Weapon Effect" key to cycle through effects, or manually select an effect from the "Laevis Info" screen.
+When using a Legendoom weapon, you can press the "Cycle Legendoom Weapon Effect" key to cycle through effects, or manually select an effect from the weapon info screen.
 
-There are a lot of settings for this in the mod options, including which weapons can learn effects, how rapidly effects are learned, how many effect slots weapons have, etc. If you want to play with Legendoom installed but turn off integration with Laevis, set `Gun Levels per Legendoom Effect` to 0/Disabled in the settings.
+There are a lot of settings for this in the mod options, including which weapons can learn effects, how rapidly effects are learned, how many effect slots weapons have, etc. If you want to play with Legendoom installed but turn off integration with Gun Bonsai, set `Gun Levels per Legendoom Effect` to 0/Disabled in the settings.
 
 ### DoomRL Arsenal
 
@@ -73,14 +73,14 @@ This works fine in general, but building an assembly out of a weapon will reset 
 
 ### Hideous Destructor
 
-Hideous Destructor replaces a lot of default Doom behaviours, in ways that Laevis has trouble coping with. A non-exhaustive list of issues:
+Hideous Destructor replaces a lot of default Doom behaviours, in ways that Gun Bonsai has trouble coping with. A non-exhaustive list of issues:
 - `Scavenge Lead` doesn't work at all
 - `Scavenge Blood` and `Scavenge Steel` produce powerups that may not work properly
 - damage is not always properly converted into XP
 - some upgrades are kind of crashy on some weapons
 - dead enemies may still register as alive to minions/submunitions/etc
 
-It still works, mostly, but Laevis is definitely confused by HDest and I can't guarantee that it won't break parts of HDest, too. Caveat lusor.
+It still works, mostly, but Gun Bonsai is definitely confused by HDest and I can't guarantee that it won't break parts of HDest, too. Caveat lusor.
 
 # Ashes 2063/Afterglow
 
@@ -88,11 +88,11 @@ The sawn-off shotgun gets melee upgrades rather than hitscan upgrades. This is a
 
 ## FAQ
 
-### Why "Laevis"?
+### Didn't this used to be called "Laevis"?
 
-It's named after *Lepidobatrachus laevis*, aka the Wednesday Frog, which consumes anything smaller than itself and grows more powerful thereby.
+Yes -- that was its working title, after *Lepidobatrachus laevis*, aka the Wednesday Frog, which consumes anything smaller than itself and grows more powerful thereby. I eventually settled on "Gun Bonsai" as the release name.
 
-I have also considered renaming it "Gun Bonsai".
+I may someday split the Legendoom integration into its own (somewhat more featureful) mod, in which case it will probably inherit the Laevis name.
 
 ### What do the upgrades do?
 
@@ -106,7 +106,7 @@ Yep! You might want to pair it with a mod like *Champions* or *Colourful Hell* t
 
 Go nuts! It's released under the MIT license; see COPYING.md for details. See also the "modding notes" section.
 
-### Can I add Laevis integration to my mod?
+### Can I add Gun Bonsai integration to my mod?
 
 See "modding notes" below.
 
@@ -131,11 +131,11 @@ The `GenericMenu`, `StatusDisplay`, and other menu classes are useful examples o
 
 If you want to use the option menu tooltips, look at [libtooltipmenu](../libtooltipmenu/) instead.
 
-### Adding new Laevis upgrades
+### Adding new Gun Bonsai upgrades
 
 See `BaseUpgrade.zs` for detailed instructions. The short form is: you need to subclass `TFLV_Upgrade_BaseUpgrade`, override some virtual methods, and then register your new upgrade class(es) on mod startup, probably in `StaticEventHandler.OnRegister()`.
 
-### Fiddling with Laevis's internal state
+### Fiddling with Gun Bonsai's internal state
 
 Everything you're likely to want to interact with is stored in the `TFLV_PerPlayerStats` (held in the `PlayerPawn`'s inventory) and the `TFLV_WeaponInfo` (one per gun, stored in the PerPlayerStats). Look at the .zs files for those for details on the fields and methods available.
 

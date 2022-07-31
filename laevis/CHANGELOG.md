@@ -1,11 +1,13 @@
-# 0.7.5
+# 0.8.0
+
+**Note:** Renamed to Gun Bonsai (from Laevis) for general release.
 
 - New: Blast Shaping upgrade significantly reduces self-damage
 - New: Thorns upgrade copies damage you take onto your enemies
 - New: Juggler upgrade gives you instant weapon switching
 - New: fancier tooltips via libtooltip-0.1.1
 - New: fancy graphics for HP/AP bonuses from <willibab.itch.io>
-- New: the level-up menu opens next time you press "view Laevis info", rather than immediately
+- New: the level-up menu opens next time you open the weapon info screen, rather than immediately
 - New: rejecting a level-up with ESC still costs XP but does not level-up the weapon (and thus increase the XP cost for the next level)
 - New: rejecting a player level-up now refunds half the cost of the level
 - New: HUD gets all fancy when it's level-up time
