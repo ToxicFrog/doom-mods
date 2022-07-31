@@ -101,7 +101,7 @@ See the "Upgrades" section at the end of this file.
 
 ### Doesn't this make the player a *lot* more powerful?
 
-Yes, especially since I've generally tried to err on the side of upgrades being too powerful rather than too weak. I recommend playing it on a higher difficulty than you're normally comfortable with, and/or pairing it with mods that make things more difficult in general like [Champions](FIXME), [Colourful Hell](FIXME), [Legendoom Lite](FIXME), or (MetaDoom)[FIXME].
+Yes, especially since I've generally tried to err on the side of upgrades being too powerful rather than too weak. I recommend playing it on a higher difficulty than you're normally comfortable with, and/or pairing it with mods that make things more difficult in general like [Champions](https://forum.zdoom.org/viewtopic.php?t=60456), [Colourful Hell](https://forum.zdoom.org/viewtopic.php?t=47980), [Legendoom Lite](https://forum.zdoom.org/viewtopic.php?t=51035), or [MetaDoom](https://forum.zdoom.org/viewtopic.php?t=53010).
 
 ### Can I use parts of this in my mod?
 
@@ -164,6 +164,15 @@ This is not UI-safe, but is more flexible:
 If you have an existing `WeaponInfo` and want to stick it to a new weapon, perhaps to transfer upgrades, you can do so by calling `info.Rebind(new_weapon)`. Note that this removes its association with the old weapon entirely -- the "weapon upgrades are shared by weapons of the same class" option is actually implemented by calling `Rebind()` every time the player switches weapons.
 
 
+## Credits
+
+Coding was done by me, Rebecca "ToxicFrog" Kelly; no code from other mods is incorporated, but I did learn a great deal about ZScript by studying existing mods, especially LegenDoom, MetaDoom, Universal Pistol Start, Champions, and Corruption Cards.
+
+Graphics and sound were taken from FreeDoom and various asset packs on itch.io; see the COPYING file for details.
+
+I also owe a debt of gratitude to everyone on the Secreta Lounge who helped me learn the ins and outs of Doom modding, answered my incessant questions about ZScript, and playtested this mod.
+
+
 # Appendix: Upgrade List
 
 This is a list of all the upgrades in the game and their effects and prerequisites. Upgrades have brief in-game descriptions, but this list often has more details.
@@ -214,7 +223,7 @@ Projectiles home in on enemies. Higher levels will lock on from further away and
 
 ### Indestructable *(Player only, max 4 levels)*
 
-**Note:** this requires the mod [Indestructable](../indestructable/) to be installed, or it will not appear in the upgrade pool. Recommended settings are: no lives on boss kills or level completion, no limit on lives.
+**Note:** this requires the mod [Indestructable](../indestructable/) to be installed, or it will not appear in the upgrade pool. See the Mod Compatibility section for required settings.
 
 Gives you extra lives that are automatically expended when you receive lethal damage, restoring some health and temporarily making you invulnerable. Each level reduces the amount of damage you need to take to earn an extra life and increases the maximum number you can carry.
 
