@@ -91,14 +91,18 @@ class ::WeaponInfo : Object play {
     XP += newXP;
     DEBUG("XP is now %.3f", XP);
     if (XP >= maxXP && XP - newXP < maxXP) {
-      weapon.owner.A_Log(
-        string.format("Your %s leveled up!", weapon.GetTag()),
-        true);
-      weapon.owner.A_SetBlend("00 80 FF", 0.8, 40);
-      weapon.owner.A_SetBlend("00 80 FF", 0.4, 700);
-      weapon.owner.A_StartSound("bonsai/gunlevelup", CHAN_AUTO,
-        CHANF_OVERLAP|CHANF_UI|CHANF_NOPAUSE|CHANF_LOCAL);
+      Fanfare();
     }
+  }
+
+  void Fanfare() {
+    weapon.owner.A_Log(
+      string.format("Your %s is ready to level up!", weapon.GetTag()),
+      true);
+    weapon.owner.A_SetBlend("00 80 FF", 0.8, 40);
+    weapon.owner.A_SetBlend("00 80 FF", 0.4, 350);
+    weapon.owner.A_StartSound("bonsai/gunlevelup", CHAN_AUTO,
+      CHANF_OVERLAP|CHANF_UI|CHANF_NOPAUSE|CHANF_LOCAL);
   }
 
   bool StartLevelUp() {
@@ -122,6 +126,7 @@ class ::WeaponInfo : Object play {
     if (!upgrade) {
       // Don't adjust maxXP -- they didn't gain a level.
       weapon.owner.A_Log("Level-up rejected!", true);
+      if (XP >= maxXP) Fanfare();
       return;
     }
 
@@ -133,6 +138,6 @@ class ::WeaponInfo : Object play {
       string.format("Your %s gained a level of %s!",
         weapon.GetTag(), upgrade.GetName()),
       true);
-
+    if (XP >= maxXP) Fanfare();
   }
 }
