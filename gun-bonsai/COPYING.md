@@ -25,3 +25,6 @@ Content in sprites/items/ is ⓒ 2020 Willibab <willibab.itch.io>, released as
 
 Other content in sprites/ is from the Freedoom Project; see COPYING.freedoom for
 the license terms.
+
+Content in sounds/ is ⓒ 2021 GameSupplyGuy <gamesupply.itch.io>, released as
+"yes bro u can use it" with no formal license.
