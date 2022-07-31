@@ -92,9 +92,9 @@ class ::ToughAsNails : ::BaseUpgrade {
 
 class ::WeaponDamage : ::BaseUpgrade {
   override double ModifyDamageDealt(Actor pawn, Actor shot, Actor target, double damage) {
-    // 10% damage bonus per level, but always at least 1 extra point per level.
-    double bonus = damage * (self.level * 0.10);
-    return damage + (bonus < self.level ? self.level : bonus);
+    // 25% damage bonus per level, but always at least 2 extra points per level.
+    double bonus = damage * (self.level * 0.25);
+    return damage + (bonus < self.level ? self.level*2 : bonus);
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
