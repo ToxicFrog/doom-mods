@@ -48,9 +48,8 @@ class ::ExplosiveShots::Boom : Actor {
       TNT1 A 1;
       TNT1 A 0 A_Explode(damage, radius, XF_HURTSOURCE|XF_NOSPLASH);
       TNT1 A 0 A_AlertMonsters();
-      // TODO: include a suitable sound effect
-      TNT1 A 0 A_StartSound("imp/shotx", CHAN_WEAPON, CHANF_OVERLAP, 1, 0.5);
-      TNT1 A 0 A_StartSound("imp/shotx", CHAN_7, CHANF_OVERLAP, 0.1, 0.01);
+      TNT1 A 0 A_StartSound("bonsai/smallboom", CHAN_WEAPON, CHANF_OVERLAP, 1, 0.5);
+      TNT1 A 0 A_StartSound("bonsai/smallboom", CHAN_7, CHANF_OVERLAP, 0.1, 0.01);
       LFBX ABC 7 Bright;
       STOP;
   }

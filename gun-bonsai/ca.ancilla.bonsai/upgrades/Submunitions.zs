@@ -90,9 +90,8 @@ class ::Submunitions::Grenade : Actor {
     Death:
       LFBX A 0 A_Explode(damage, blast_radius, XF_NOSPLASH, false, blast_radius/4);
       LFBX A 0 A_AlertMonsters();
-      // TODO: include a suitable sound effect
-      LFBX A 0 A_StartSound("imp/shotx", CHAN_WEAPON, CHANF_OVERLAP, 1, 0.5);
-      LFBX A 0 A_StartSound("imp/shotx", CHAN_7, CHANF_OVERLAP, 0.1, 0.01);
+      LFBX A 0 A_StartSound("bonsai/smallboom", CHAN_WEAPON, CHANF_OVERLAP, 1, 0.5);
+      LFBX A 0 A_StartSound("bonsai/smallboom", CHAN_7, CHANF_OVERLAP, 0.1, 0.01);
       LFBX ABC 7 Bright;
       STOP;
   }
