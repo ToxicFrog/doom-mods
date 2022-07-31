@@ -246,6 +246,9 @@ class ::PerPlayerStats : Inventory {
       // Just gained a level.
       owner.A_Log("You leveled up!", true);
       owner.A_SetBlend("FF FF FF", 0.8, 40);
+      // Start the levelup immediately, since player XP is awarded only when they
+      // already have the levelup screen open anyways.
+      StartLevelUp();
     }
     // Do some cleanup here, since it'll be called occasionally but not super
     // frequently, and when the player is just leaving a menu.

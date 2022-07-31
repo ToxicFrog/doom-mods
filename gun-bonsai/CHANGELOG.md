@@ -12,6 +12,7 @@
 - New: rejecting a player level-up now refunds half the cost of the level
 - New: HUD gets all fancy when it's level-up time
 - New: Indestructable upgrade integrates with the mod of the same name
+- New: a sound plays on level-up to make it harder to miss
 - Balance: Armour and Resistance merged into a single upgrade, Tough as Nails, and buffed
 - Balance: player damage upgrade renamed Bloodthirsty, now grants +10%/1 damage instead of +5%/1
 - Balance: weapon damage upgrade now grants +25%/2 damage instead of +10%/1 to make it more competitive with other upgrades

@@ -91,10 +91,13 @@ class ::WeaponInfo : Object play {
     XP += newXP;
     DEBUG("XP is now %.3f", XP);
     if (XP >= maxXP && XP - newXP < maxXP) {
-      weapon.owner.A_SetBlend("00 80 FF", 0.8, 40);
       weapon.owner.A_Log(
         string.format("Your %s leveled up!", weapon.GetTag()),
         true);
+      weapon.owner.A_SetBlend("00 80 FF", 0.8, 40);
+      weapon.owner.A_SetBlend("00 80 FF", 0.4, 700);
+      weapon.owner.A_StartSound("bonsai/gunlevelup", CHAN_AUTO,
+        CHANF_OVERLAP|CHANF_UI|CHANF_NOPAUSE|CHANF_LOCAL);
     }
   }
 
