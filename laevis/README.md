@@ -82,6 +82,10 @@ Hideous Destructor replaces a lot of default Doom behaviours, in ways that Laevi
 
 It still works, mostly, but Laevis is definitely confused by HDest and I can't guarantee that it won't break parts of HDest, too. Caveat lusor.
 
+# Ashes 2063/Afterglow
+
+The sawn-off shotgun gets melee upgrades rather than hitscan upgrades. This is a bug in Ashes -- the sawn-off is flagged as a melee weapon.
+
 ## FAQ
 
 ### Why "Laevis"?
