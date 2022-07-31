@@ -83,6 +83,13 @@ class ::Registry : Object play {
       upgrade_names.push(UpgradeNames[i]);
       upgrades.push(::BaseUpgrade(new(UpgradeNames[i])));
     }
+    // Only load Indestructable if the mod itself is installed.
+    string forcename = "TFIS_IndestructableForce";
+    class<Actor> cls = forcename;
+    if (cls) {
+      upgrade_names.push("::Indestructable");
+      upgrades.push(::BaseUpgrade(new("::Indestructable")));
+    }
   }
 
   static void PickN(Array<::BaseUpgrade> dst, Array<::BaseUpgrade> src, uint n) {

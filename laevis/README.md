@@ -196,6 +196,12 @@ Creates a small explosion on hit doing 40% of the original attack damage. More l
 
 Projectiles home in on enemies. Higher levels will lock on from further away and be more maneuverable when homing.
 
+### Indestructable *(Player only, max 4 levels)*
+
+**Note:** this requires the mod [Indestructable](../indestructable/) to be installed, or it will not appear in the upgrade pool. Recommended settings are: no lives on boss kills or level completion, no limit on lives.
+
+Gives you extra lives that are automatically expended when you receive lethal damage, restoring some health and temporarily making you invulnerable. Each level reduces the amount of damage you need to take to earn an extra life and increases the maximum number you can carry.
+
 ### Juggler (*Player only, max 1 level)*
 
 Weapon switching is instantaneous, or nearly so. Note that this does not affect reload speed or rate of fire.

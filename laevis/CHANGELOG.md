@@ -9,6 +9,7 @@
 - New: rejecting a level-up with ESC still costs XP but does not level-up the weapon (and thus increase the XP cost for the next level)
 - New: rejecting a player level-up now refunds half the cost of the level
 - New: HUD gets all fancy when it's level-up time
+- New: Indestructable upgrade integrates with the mod of the same name
 - Balance: Armour and Resistance merged into a single upgrade, Tough as Nails, and buffed
 - Balance: player damage upgrade renamed Bloodthirsty, now grants +10% damage instead of +5%
 - Balance: player upgrades default to every 7 levels instead of every 10
@@ -16,6 +17,7 @@
 - Fix: OnDamageReceived handlers believed all damage was self-inflicted
 - Fix: trying to cycle Legendoom weapon effects when wielding a weapon with no effects crashed the game
 - Fix: setting "gun levels per LD effect" to 0 would crash the game next time you leveled up
+- Fix: earning large amounts of XP at once made it possible to take otherwise impossible combinations of upgrades
 
 # 0.7.4
 

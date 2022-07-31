@@ -9,6 +9,7 @@
 #include "./ExplosiveDeath.zsc"
 #include "./Fragmentation.zsc"
 #include "./HomingShots.zsc"
+#include "./Indestructable.zsc"
 #include "./Juggler.zsc"
 #include "./Leech.zsc"
 #include "./Melee.zsc"
