@@ -278,7 +278,7 @@ Elemental upgrades add powerful debuffs and damage-over-time effects to your att
 
 Higher-rank skills cannot exceed the level of lower-rank ones, and lower-rank skills need to be at least level 2 to unlock higher-rank ones, so the earliest you can get a mastery on a weapon is level 5.
 
-Each weapon can only have two different elements on it. When you choose your first elemental upgrade, that element is "locked in" until you choose a mastery upgrade for it. At that point you can (if you wish) choose a second element next time it levels up.
+Each weapon can only have two different elements on it. When you choose your first elemental upgrade, that element is "locked in" until you choose a mastery upgrade for it. At that point you can (if you wish) choose a second element on future level-ups.
 
 Note that unlike the non-elemental upgrades, elemental AoE effects like `Acid Spray` and `Putrefaction` will never harm the player.
 
