@@ -3,6 +3,7 @@
 - New: health/armour drops cast light.
 - New: LZDoom compatibility. Some menus have rendering problems but it is playable.
 - Fix: some errors in README corrected; layout improved.
+- Fix: Juggler caused rendering errors when paired with weapon states that manually adjusted the weapon y-offset.
 
 # 0.8.1
 
