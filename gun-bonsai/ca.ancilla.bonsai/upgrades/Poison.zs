@@ -20,7 +20,6 @@
 class ::PoisonShots : ::ElementalUpgrade {
   override ::UpgradeElement Element() { return ::ELEM_POISON; }
   override void OnDamageDealt(Actor player, Actor shot, Actor target, int damage) {
-    if (!shot) return;
     // Apply one stack (== 1 second or about 2 points of damage) per shot.
     // Softcap at 10*level.
     ::Dot.GiveStacks(player, target, "::PoisonDot", level, 10*level);
