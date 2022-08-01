@@ -1,6 +1,8 @@
 # 0.8.1
 
-- Fix: crash when using Homing Projectiles in some situations. The projectiles may stop homing but that's better than crashing.
+- New: Chain Lightning has a pretty on-hit graphic.
+- Fix: intermitten crash when Homing Projectiles impact something.
+- Fix: crash when enemies are erased after Chain Lightning starts arcing to them but before it finishes.
 
 # 0.8.0
 

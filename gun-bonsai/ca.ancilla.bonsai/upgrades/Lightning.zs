@@ -130,10 +130,10 @@ class ::ShockDot : ::Dot {
     let pos = owner.pos;
     pos.z += owner.height/2;
     let aux = ::ChainLightning::Aux(self.Spawn("::ChainLightning::Aux", pos));
+    aux.tracer = owner;
     aux.target = self.target;
     aux.level = self.chain; // determines max jumps
     aux.damage = owner.SpawnHealth() * (0.5 + 0.003 * stacks);
-    aux.targets.push(owner);
     DEBUG("Chain lightning, base damage=%d", aux.damage);
     return;
   }
@@ -223,8 +223,39 @@ class ::Revivification::AuxBuff : Inventory {
   }
 }
 
+class ::ChainLightning::Arc : Object play {
+  // Actors defining the start and end of the arc.
+  Actor from;
+  Actor to;
+  // Vectors locating those actors at the time the arc was prepared. If the
+  // actors no longer exist these positions are used instead.
+  Vector3 start;
+  Vector3 end;
+  // How many jumps were left in the chain when this arc was recorded. Used for
+  // timing -- higher ttls display earlier.
+  uint ttl;
+
+  void RecordPositions(Actor from, Actor to, uint ttl) {
+    self.from = from; self.to = to; self.ttl = ttl;
+    UpdatePositions();
+  }
+
+  // If our start/end actors still exist, update our positions to match them.
+  void UpdatePositions() {
+    if (self.from) {
+      self.start = self.from.pos;
+      self.start.z += self.from.height/2;
+    }
+    if (self.to) {
+      self.end = self.to.pos;
+      self.end.z += self.to.height/2;
+    }
+  }
+}
+
 class ::ChainLightning::Aux : Actor {
   Array<Actor> targets;
+  Array<::ChainLightning::Arc> arcs;
   uint next_target;
   uint level;
   uint jumps;
@@ -233,46 +264,73 @@ class ::ChainLightning::Aux : Actor {
   property UpgradePriority: special1;
   Default {
     DamageType "Electric";
+    // About one caco. Used as the default for targets that disappear before
+    // we can arc through them.
+    Radius 32;
     ::ChainLightning::Aux.UpgradePriority ::PRI_ELEMENTAL;
   }
 
   States {
     Zap:
-      // TODO: cool zappy ball lightning effect
-      TNT1 A 5 Zap();
+      TNT1 A 7 Zap();
       LOOP;
   }
 
-  string GetParticleColour() {
-    static const string colours[] = { "azure", "deepskyblue", "lightskyblue", "ghostwhite" };
-    return colours[random(0,3)];
+  // Immediately on PostBeginPlay, we find everything that we can arc to and
+  // record its identity and position in the arcs array. The targets array is
+  // used for bookkeeping to make sure we don't form loops.
+  override void PostBeginPlay() {
+    self.Spawn("::ChainLightning::VFX", self.pos);
+    jumps = level;
+    if (self.tracer) {
+      targets.push(self.tracer);
+      FindTargets(self.tracer, self.level);
+    } else {
+      // Originating actor disappeared (gibbed?). Use ourself as the start point
+      // instead.
+      FindTargets(self, self.level);
+    }
+    self.SetStateLabel("Zap");
   }
 
-  void Zap() {
-    if (jumps <= 0 || next_target == targets.size()) {
-      DEBUG("Max jumps reached, zapping everything.");
-      ZapAll();
-      Destroy();
-      return;
-    }
+  // Recursively find everything around the victim we can arc to within max_jumps.
+  // The victim MUST exist; we guarantee this by doing everything within a single
+  // tic, so anything found by A_Explode() will still exist when we recurse.
+  // Populates the targets array with all the targets found, and the arcs array
+  // with all the lightning arcs between them.
+  void FindTargets(Actor victim, uint max_jumps) {
+    if (max_jumps <= 0) return;
 
-    uint last_target = targets.size();
-    DEBUG("Starting spread, last_target=%d, jumps left=%d",
-      last_target, jumps);
-    for (uint i = next_target; i < last_target; ++i) {
-      ZapFrom(targets[i]);
+    self.warp(victim, 0, 0, victim.height/2, 0, WARPF_NOCHECKPOSITION|WARPF_BOB);
+    DEBUG("FindTargets: %s [ttl=%d] (%d,%d,%d) @ (%d,%d,%d)",
+      TAG(victim), max_jumps,
+      victim.pos.x, victim.pos.y, victim.pos.z,
+      self.pos.x, self.pos.y, self.pos.z);
+    uint radius = victim.radius * (3+level);
+    uint next_target = targets.size();
+    // We are now in position, so explode to find everything nearby.
+    // DoSpecialDamage will add them all to the targets array.
+    // XF_EXPLICITDAMAGETYPE with no explicit damage type defaults to None.
+    A_Explode(1, radius, XF_NOSPLASH|XF_EXPLICITDAMAGETYPE, false, radius);
+    // Collect all the new targets, if any, and record the arcs to them.
+    DEBUG("Processing %d new targets", targets.size() - next_target);
+    for (uint i = next_target; i < targets.size(); ++i) {
+      let arc = new("::ChainLightning::Arc");
+      arc.RecordPositions(victim, targets[i], max_jumps);
+      arcs.push(arc);
+      DEBUG("Recorded arc %d [ttl=%d] from %s (%d,%d,%d) to %s (%d,%d,%d)",
+        arcs.size()-1, max_jumps,
+        TAG(victim), arc.start.x, arc.start.y, arc.start.z,
+        TAG(targets[i]), arc.end.x, arc.end.y, arc.end.z);
     }
-    next_target = last_target;
-    --jumps;
-  }
-
-  void ZapFrom(Actor tgt) {
-    self.Warp(tgt, 0, 0, tgt.height, 0, WARPF_NOCHECKPOSITION|WARPF_BOB);
-    let range = tgt.radius * (3 + level);
-    DEBUG("ZapFrom: %s @ [%d,%d,%d] range=%d",
-      tgt.GetTag(), tgt.pos.x, tgt.pos.y, tgt.pos.z, range);
-    self.tracer = tgt;
-    self.A_Explode(1, range, XF_NOSPLASH|XF_EXPLICITDAMAGETYPE, false, range);
+    DEBUG("Target processing complete, recursing");
+    // Now that we've done that, we can safely recurse. Count down so that
+    // targets.size() is evaluated only once, before we start adding stuff to it.
+    for (uint i = targets.size()-1; i >= next_target; --i) {
+      DEBUG("Processing target %d", i);
+      FindTargets(targets[i], max_jumps-1);
+    }
+    DEBUG("FindTargets complete.");
   }
 
   override int DoSpecialDamage(Actor target, int damage, Name damagetype) {
@@ -280,66 +338,90 @@ class ::ChainLightning::Aux : Actor {
     if (damagetype != "None") return damage;
     if (targets.find(target) != targets.size() || !target.bISMONSTER) {
       // Don't zap non-monsters, and don't zap the same thing twice
-      DEBUG("Skipping %s", target.GetTag());
       return 0;
     }
-    DEBUG("Chain lightning arcs to %s", target.GetTag());
     targets.push(target);
-    ::Dot.GiveStacks(self.target, target, "::ShockDot", 5, 5);
-    DrawZap(target);
+    // ::Dot.GiveStacks(self.target, target, "::ShockDot", 5, 5);
+    // DrawZap(target);
     return 0;
+  }
+
+  // Called every few tics to actually draw the lightning and do the damage.
+  void Zap() {
+    if (jumps <= 0) { // Nothing left to zap.
+      Destroy();
+      return;
+    }
+
+    DEBUG("Zapping everything with ttl=%d", jumps);
+    for (uint i = 0; i < arcs.size(); ++i) {
+      let arc = arcs[i];
+      arc.UpdatePositions();
+      if (arc.ttl != jumps) continue;
+      DrawZap(arc.start, arc.end);
+      if (arc.to) ApplyDamage(arc.to);
+      // TODO: lightning bolt sound effect here
+    }
+    --jumps;
   }
 
   // TODO: still not entirely happy about this VFX, it seems to consistently
   // aim low even with FAF_TOP.
-  void DrawZap(Actor target) {
-    let source = self.tracer;
-    let range = source.Distance3D(target);
-    A_Face(target, 0, 180, 0, 0, FAF_TOP, 0);
-    // A_FaceTracer(0, 180, 0, 0, FAF_MIDDLE, 0);
+  void DrawZap(Vector3 start, Vector3 end) {
+    self.warp(self, start.x, start.y, start.z, 0, WARPF_NOCHECKPOSITION|WARPF_ABSOLUTEPOSITION);
+    // There's no equivalent to A_Face that takes a position rather than an actor,
+    // so instead we spawn in the on-hit vfx and then turn to look at it.
+    let beacon = self.Spawn("::ChainLightning::VFX", end);
+    let range = self.Distance3D(beacon);
+    self.A_Face(beacon, 0, 180, 0, 0, FAF_BOTTOM, 0);
     DEBUG("Draw zap from [%d,%d,%d] to [%d,%d,%d] range=%d",
-      source.pos.x, source.pos.y, source.pos.z,
-      target.pos.x, target.pos.y, target.pos.z,
-      range);
-    for (uint i = 0; i < 8; ++i) {
+      start.x, start.y, start.z, end.x, end.y, end.z, range);
+    for (uint i = 0; i < 4; ++i) {
       self.A_CustomRailgun(
         0, 0, "", GetParticleColour(),
-        RGF_SILENT|RGF_FULLBRIGHT|RGF_EXPLICITANGLE|RGF_CENTERZ,
+        RGF_SILENT|RGF_FULLBRIGHT|RGF_EXPLICITANGLE,
         0, 3, // aim and jaggedness
         "None", // pufftype
         0, 0, //spread
         range, 35*2, // range and duration
-        0.5, // particle spacing
+        1.0, // particle spacing
         0.2 // drift speed
         );
     }
   }
 
-  void ZapAll() {
-    let damage = self.damage * (1.0 + 0.01 * (targets.size()-1));
-    for (uint i = 0; i < targets.size(); ++i) {
-      if (!targets[i] || targets[i].bCORPSE) continue;
-      DEBUG("Chain lightning damaging %s (%d) for %d", targets[i].GetTag(), targets[i].health, damage);
-      targets[i].DamageMobj(
-        self, self.target, floor(damage), self.DamageType,
-        DMG_THRUSTLESS | DMG_NO_ENHANCE);
-    }
+  void ApplyDamage(Actor victim) {
+    let damage = self.damage * (1.0 + 0.05 * (targets.size()-1));
+    DEBUG("Chain lightning damaging %s @ (%d,%d,%d) for %d",
+      TAG(victim), victim.x, victim.y, victim.z, damage);
+    victim.DamageMobj(
+      self, self.target, floor(damage), self.DamageType,
+      DMG_THRUSTLESS | DMG_NO_ENHANCE);
+
   }
 
-  // This is a bit tricky.
-  // We start by exploding at our current position. Every enemy caught in the
-  // blast gets added to the targets array and we draw a lightning bolt to it.
-  // We probably also want to draw a ball of lightning on each enemy we arc to.
-  // Then we need to sleep for a few tics, then explode again at the position
-  // of every enemy we just added to the targets array. Any new enemies get
-  // added to the array, draw lightning to them, etc.
-  // Continue until either next_target == targets.size() (meaning we've arced to
-  // everything in range) or the number of arc steps matches the level.
-  // We need to explode, and every living enemy hit by the explosion needs to
-  // get a lightning marker.
+  string GetParticleColour() {
+    static const string colours[] = { "azure", "deepskyblue", "lightskyblue", "ghostwhite" };
+    return colours[random(0,3)];
+  }
+}
+
+class ::ChainLightning::VFX : Actor {
+  Default {
+    RenderStyle "Add";
+    Alpha 0.7;
+    Scale 0.2;
+    +NOBLOCKMAP +NOGRAVITY;
+  }
+
   override void PostBeginPlay() {
-    jumps = level;
-    self.SetStateLabel("Zap");
+    DEBUG("VFX spawned @ %d,%d,%d", self.pos.x, self.pos.y, self.pos.z);
+  }
+
+  States {
+    Spawn:
+      LLIT ABCDEFGHIJK 3;
+      STOP;
   }
 }
 
@@ -388,6 +470,7 @@ class ::Thunderbolt::Aux : Actor {
         2, 0, 0, // v
         -2/35, 0, 0); // a
     }
+    // TODO: some sort of roll of thunder sound effect here.
     tracer.bSHOOTABlE = shootable;
   }
 }
