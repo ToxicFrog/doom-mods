@@ -91,7 +91,7 @@ It still works, mostly, but Gun Bonsai is definitely confused by HDest and I can
 ### Ashes 2063/Afterglow
 
 The sawn-off shotgun gets melee upgrades rather than hitscan upgrades. This is a bug in Ashes -- the sawn-off is flagged as a melee weapon.
-
+Installing weapon upgrades in Afterglow will lose all XP and upgrades on the upgraded weapon.
 
 ## FAQ
 
