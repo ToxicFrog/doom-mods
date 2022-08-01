@@ -104,6 +104,10 @@ HE rounds don't trigger properly due to an incompatibility with FD+'s custom puf
 
 See the "Upgrades" section at the end of this file.
 
+### I can't see the HUD! Is it broken?
+
+Go into the settings (Main Menu -> Options -> Full Options Menu -> Gun Bonsai Options). If you're able to view this menu at all, Gun Bonsai is installed and working; adjust the HUD position and size sliders until the HUD is visible.
+
 ### Doesn't this make the player a *lot* more powerful?
 
 Yes, especially since I've generally tried to err on the side of upgrades being too powerful rather than too weak. I recommend playing it on a higher difficulty than you're normally comfortable with, and/or pairing it with mods that make things more difficult in general like [Champions](https://forum.zdoom.org/viewtopic.php?t=60456), [Colourful Hell](https://forum.zdoom.org/viewtopic.php?t=47980), [Legendoom Lite](https://forum.zdoom.org/viewtopic.php?t=51035), or [MetaDoom](https://forum.zdoom.org/viewtopic.php?t=53010).
