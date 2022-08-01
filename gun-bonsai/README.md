@@ -88,7 +88,7 @@ Hideous Destructor replaces a lot of default Doom behaviours, in ways that Gun B
 
 It still works, mostly, but Gun Bonsai is definitely confused by HDest and I can't guarantee that it won't break parts of HDest, too. Caveat lusor.
 
-# Ashes 2063/Afterglow
+### Ashes 2063/Afterglow
 
 The sawn-off shotgun gets melee upgrades rather than hitscan upgrades. This is a bug in Ashes -- the sawn-off is flagged as a melee weapon.
 
@@ -190,17 +190,52 @@ I also owe a debt of gratitude to everyone on the Secreta Lounge who helped me l
 
 This is a list of all the upgrades in the game and their effects and prerequisites. Upgrades have brief in-game descriptions, but this list often has more details.
 
-## General Upgrades
+## Player Upgrades
 
-General-purpose player and weapon upgrades.
+Upgrades that you gain for your character, and apply no matter what weapon you're wielding.
+
+### Bloodthirsty
+
+Increases all damage you deal by 10% (with a minimum increase of 1) per level. This stacks with per-weapon damage upgrades.
+
+### Indestructable *(max 4 levels)*
+
+**Note:** this requires the mod [Indestructable](../indestructable/) to be installed, or it will not appear in the upgrade pool. See the Mod Compatibility section for required settings.
+
+Gives you extra lives that are automatically expended when you receive lethal damage, restoring some health and temporarily making you invulnerable. Each level reduces the amount of damage you need to take to earn an extra life and increases the maximum number you can carry.
+
+### Juggler *(max 1 level)*
+
+Weapon switching is instantaneous, or nearly so. Note that this does not affect reload speed or rate of fire.
+
+### Scavenge Blood
+
+When killed, enemies drop a health bonus worth 1% of their max health. Level increases the amount of health dropped.
+
+### Scavenge Lead
+
+When killed, enemies drop a random ammo item usable by one of your weapons. If you have multiple weapons that share an ammo type, you're more likely to get ammo of that type. Level increases the number of ammo drops per kill.
+
+### Scavenge Steel
+
+When killed, enemies drop an armour bonus worth 2% of their max health. Level increases the amount of armour dropped.
+
+### Thorns
+
+Enemies attacking you take an equal amount of damage. More levels increases the amount of damage attackers take. Note that you still take full damage from the attack!
+
+### Tough as Nails
+
+Reduces incoming damage by 10% (and by at least 1 point per level). This has diminishing returns as you take more levels of it, and cannot reduce damage taken below 1.
+
+
+## Generic Weapon Upgrades
+
+Non-elemental upgrades for your weapons.
 
 ### Agonizer *(Melee only)*
 
 Hitting an enemy flinches them for 2/5ths of a second. More levels increase the duration.
-
-### Bloodthirsty *(Player only)*
-
-Increases all damage you deal by 10% (with a minimum increase of 1) per level. This stacks with per-weapon damage upgrades.
 
 ### Bouncy Shots *(Projectile only)*
 
@@ -210,7 +245,7 @@ Shots bounce off walls. Higher levels increase the number of bounces and decreas
 
 Killing an enemy grants you health and armour equal to 5% of its max health. Unlike the health/armour leech upgrades, this ignores normal health/armour limits and can boost you even beyond Megasphere levels.
 
-### Damage *(Weapon only)*
+### Damage
 
 Increases damage dealt by this weapon by 10%, with a minimum inrease of 1 point, per level.
 
@@ -234,31 +269,9 @@ Creates a small explosion on hit doing 40% of the original attack damage. More l
 
 Projectiles home in on enemies. Higher levels will lock on from further away and be more maneuverable when homing.
 
-### Indestructable *(Player only, max 4 levels)*
-
-**Note:** this requires the mod [Indestructable](../indestructable/) to be installed, or it will not appear in the upgrade pool. See the Mod Compatibility section for required settings.
-
-Gives you extra lives that are automatically expended when you receive lethal damage, restoring some health and temporarily making you invulnerable. Each level reduces the amount of damage you need to take to earn an extra life and increases the maximum number you can carry.
-
-### Juggler (*Player only, max 1 level)*
-
-Weapon switching is instantaneous, or nearly so. Note that this does not affect reload speed or rate of fire.
-
 ### Piercing Shots *(Projectile only)*
 
 Shots go through enemies (but not walls). Each level allows shots to go through one additional enemy. Note that most shots will hit enemies multiple times as they pass through, so this also acts as a damage bonus.
-
-### Scavenge Blood *(Player only)*
-
-When killed, enemies drop a health bonus worth 1% of their max health.
-
-### Scavenge Lead *(Player only)*
-
-When killed, enemies drop a random ammo item usable by one of your weapons. If you have multiple weapons that share an ammo type, you're more likely to get ammo of that type.
-
-### Scavenge Steel *(Player only)*
-
-When killed, enemies drop an armour bonus worth 2% of their max health.
 
 ### Shield *(Melee only, max two levels)*
 
@@ -272,16 +285,8 @@ Killing an enemy releases a pile of bouncing explosives. Damage depends on level
 
 Killing an enemy gives you a brief moment of time freeze (and some brief slow-mo as it wears off). Killing multiple enemies in rapid succession will extend the duration, as will increasing the level of Swiftness.
 
-### Thorns *(Player only)*
 
-Enemies attacking you take an equal amount of damage. More levels increases the amount of damage attackers take. Note that you still take full damage from the attack!
-
-### Tough as Nails *(Player only)*
-
-Reduces incoming damage by 10% (and by at least 1 point per level). This has diminishing returns as you take more levels of it, and cannot reduce damage taken below 1.
-
-
-# Elemental Upgrades
+## Elemental Upgrades
 
 Elemental upgrades add powerful debuffs and damage-over-time effects to your attacks. They work a bit differently from other upgrades. Each element has four associated upgrades:
 
@@ -291,7 +296,7 @@ Elemental upgrades add powerful debuffs and damage-over-time effects to your att
 
 Higher-rank skills cannot exceed the level of lower-rank ones, and lower-rank skills need to be at least level 2 to unlock higher-rank ones, so the earliest you can get a mastery on a weapon is level 5.
 
-Each weapon can only have two different elements on it. When you choose your first elemental upgrade, that element is "locked in" until you choose a mastery upgrade for it. At that point you can (if you wish) choose a second element on future level-ups.
+Each weapon can only have two different elements on it. When you choose your first elemental upgrade, that element is "locked in" until you choose a mastery upgrade for it. At that point you can (if you wish) choose a second element on future level-ups. Mastering two elements on a weapon unlocks a special *elemental sythesis upgrade* for it.
 
 Note that unlike the non-elemental upgrades, elemental AoE effects like `Acid Spray` and `Putrefaction` will never harm the player.
 

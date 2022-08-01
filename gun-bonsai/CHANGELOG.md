@@ -1,5 +1,9 @@
 # 0.8.1
 
+- Fix: some errors in README corrected; layout improved.
+
+# 0.8.1
+
 - New: Chain Lightning has a pretty on-hit graphic.
 - New: Console debug interface using `netevent bonsai-debug`. See the README for details.
 - Balance: Chain Lightning minimum arc distance increased to make it more viable against small enemies
