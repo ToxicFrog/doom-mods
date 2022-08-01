@@ -1,5 +1,5 @@
 NAME=GunBonsai
-VERSION=0.8.0
+VERSION=0.8.1
 LUMPS=zscript.txt MAPINFO CVARINFO SNDINFO KEYCONF MENUDEF LANGUAGE.* sprites sounds
 LUMPS+=*.md COPYING.freedoom
 ZSDIR=ca.ancilla.bonsai

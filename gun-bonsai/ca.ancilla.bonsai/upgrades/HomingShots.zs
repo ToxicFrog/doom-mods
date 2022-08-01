@@ -22,6 +22,12 @@ class ::HomingShots::Aux : Inventory {
   }
 
   void DoHoming() {
+    if (!owner) {
+      // Our owning projectile vanished. Ideally this should have destroyed us
+      // as well, but sometimes that doesn't happen.
+      Destroy();
+      return;
+    }
     owner.A_SeekerMissile(
       level, // terminal homing cone radius
       level+2, // max turn angle per tic, degrees

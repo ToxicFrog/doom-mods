@@ -1,3 +1,7 @@
+# 0.8.1
+
+- Fix: crash when using Homing Projectiles in some situations. The projectiles may stop homing but that's better than crashing.
+
 # 0.8.0
 
 **Note:** Renamed to Gun Bonsai (from Laevis) for general release.
