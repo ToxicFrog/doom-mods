@@ -184,7 +184,8 @@ class ::Revivification::Aux : Actor {
     tracer.bSOLID = false;
     tracer.A_SetRenderStyle(1.0, STYLE_SHADED);
     tracer.SetShade("8080FF");
-    tracer.A_SetFriendly(true); // Also clears it from the monster count
+    if (tracer.CountsAsKill()) tracer.level.total_monsters--;
+    tracer.bFRIENDLY = true;
 
     // Give it the force that applies the buff to revivified minions.
     let buff = ::Revivification::AuxBuff(tracer.GiveInventoryType("::Revivification::AuxBuff"));

@@ -1,6 +1,7 @@
 # 0.8.1
 
 - New: health/armour drops cast light.
+- New: LZDoom compatibility. Some menus have rendering problems but it is playable.
 - Fix: some errors in README corrected; layout improved.
 
 # 0.8.1
