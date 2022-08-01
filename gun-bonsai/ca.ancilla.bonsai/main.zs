@@ -1,6 +1,7 @@
 #include "./menu/main.zsc"
 #include "./upgrades/main.zsc"
 
+#include "./debug.zsc"
 #include "./hud.zsc"
 #include "./settings.zsc"
 

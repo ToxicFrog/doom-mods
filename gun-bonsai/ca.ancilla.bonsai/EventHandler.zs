@@ -112,15 +112,8 @@ class ::EventHandler : StaticEventHandler {
       SelectLDEffect(players[evt.player].mo, evt.args[0]);
     } else if (evt.name == "bonsai_choose_level_up_option") {
       ChooseLevelUpOption(players[evt.player].mo, evt.args[0]);
-    } else if (evt.name == "bonsai_debug") {
-      let stats = ::PerPlayerStats.GetStatsFor(players[evt.player].mo);
-      let info = stats.GetInfoForCurrentWeapon();
-      stats.upgrades.Add("::Upgrade::Juggler", 1);
-      stats.upgrades.Add("::Upgrade::Indestructable", 1);
-      // stats.upgrades.Add("::Upgrade::ArmourLeech", 1);
-      // info.upgrades.Add("::Upgrade::IncendiaryShots", 1);
-      // info.upgrades.Add("::Upgrade::BurningTerror", 1);
-      // info.upgrades.Add("::Upgrade::Conflagration", 1);
+    } else if (evt.name.IndexOf("bonsai-debug") == 0) {
+      ::Debug.DebugCommand(players[evt.player].mo, evt.name, evt.args[0]);
     }
   }
 

@@ -135,6 +135,19 @@ The ZScript files included in this mod are not loadable as-is; they need to be p
 
 You can also simply download a release pk3, unzip it, and edit the preprocessed files.
 
+### Debug commands
+
+You can use netevents to add upgrades and XP using the console:
+
+- `netevent bonsai-debug,w-up,<upgrade name> <levels>`
+- `netevent bonsai-debug,p-up,<upgrade name> <levels>`
+- `netevent bonsai-debug,w-xp <xp>`
+- `netevent bonsai-debug,p-xp <xp>`
+
+`levels` defaults to 1 if unspecified. The `upgrade name` must be the class name, e.g. `TFLV_Upgrade_HomingShots`; as a convenience, it understands `::` as a shorthand for the leading `TFLV_Upgrade_`, e.g. `netevent bonsai-debug,w-up,::HomingShots 5`.
+
+The class names do not always exactly correspond to the human-readable names. Consult `LANGUAGE.en` to find out the class names.
+
 ### Reusable Parts
 
 The `GenericMenu`, `StatusDisplay`, and other menu classes are useful examples of how to do dynamic interactive menu creation in ZScript, and how to use a non-interactive OptionsMenu to create a status display.
