@@ -306,7 +306,7 @@ class ::ChainLightning::Aux : Actor {
       TAG(victim), max_jumps,
       victim.pos.x, victim.pos.y, victim.pos.z,
       self.pos.x, self.pos.y, self.pos.z);
-    uint radius = victim.radius * (3+level);
+    uint radius = max(victim.radius, 32) * (3+level);
     uint next_target = targets.size();
     // We are now in position, so explode to find everything nearby.
     // DoSpecialDamage will add them all to the targets array.
@@ -391,7 +391,7 @@ class ::ChainLightning::Aux : Actor {
   }
 
   void ApplyDamage(Actor victim) {
-    let damage = self.damage * (1.0 + 0.05 * (targets.size()-1));
+    let damage = self.damage * (1.0 + 0.01 * (targets.size()-1));
     DEBUG("Chain lightning damaging %s @ (%d,%d,%d) for %d",
       TAG(victim), victim.x, victim.y, victim.z, damage);
     victim.DamageMobj(
