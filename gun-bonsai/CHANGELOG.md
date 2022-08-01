@@ -1,5 +1,6 @@
 # 0.8.1
 
+- New: health/armour drops cast light.
 - Fix: some errors in README corrected; layout improved.
 
 # 0.8.1

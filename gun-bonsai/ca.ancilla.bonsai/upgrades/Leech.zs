@@ -43,8 +43,9 @@ class ::LifeLeech::Bonus : HealthBonus {
   }
   States {
     Spawn:
-      LHP1 ABCDEFGHIJKLMNOPQRSTUVWXYZ 2;
-      LHP2 ABCDEFGH 2;
+      LHP1 A 3 Light("SCAVBLOODLIGHT");
+      LHP1 BCDEFGHIJKLMNOPQRSTUVWXYZ 2 Light("SCAVBLOODLIGHT");
+      LHP2 ABCDEFGH 2 Light("SCAVBLOODLIGHT");
       LOOP;
   }
 }
@@ -78,8 +79,9 @@ class ::ArmourLeech::Bonus : ArmorBonus {
   }
   States {
     Spawn:
-      LAP1 ABCDEFGHIJKLMNOPQRSTUVWXYZ 2;
-      LAP2 ABCDEFGH 2;
+      LAP1 A 3 Light("SCAVSTEELLIGHT");
+      LAP1 BCDEFGHIJKLMNOPQRSTUVWXYZ 2 Light("SCAVSTEELLIGHT");
+      LAP2 ABCDEFGH 2 Light("SCAVSTEELLIGHT");
       LOOP;
   }
 }
