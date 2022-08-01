@@ -35,6 +35,7 @@ It has been tested (although not necessarily extensively) and is known to work w
 - Lots of smaller mutators like War Trophies, Slomo Bullet Time, MOShuffle, etc
 
 It is known be playable with some issues with:
+- Final Doomer +
 - Hideous Destructor
 
 Some mods have specific integration features or compatibility concerns; these are detailed below.
@@ -92,6 +93,10 @@ It still works, mostly, but Gun Bonsai is definitely confused by HDest and I can
 
 The sawn-off shotgun gets melee upgrades rather than hitscan upgrades. This is a bug in Ashes -- the sawn-off is flagged as a melee weapon.
 Installing weapon upgrades in Afterglow will lose all XP and upgrades on the upgraded weapon.
+
+### Final Doomer +
+
+HE rounds don't trigger properly due to an incompatibility with FD+'s custom puff behaviours. This may affect other upgrades as well.
 
 ## FAQ
 

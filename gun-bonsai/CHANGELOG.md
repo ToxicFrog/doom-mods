@@ -2,6 +2,7 @@
 
 - New: health/armour drops cast light.
 - New: WIP LZDoom compatibility. Some menus have rendering problems but it is playable.
+- New: compatibility note about Final Doomer.
 - Balance: Poison Shots no longer depends on a puff. This makes it consistent with the other elemental upgrades. This means that (like the other such upgrades) it can trigger in a variety of situations that might not make sense, so this behaviour might be revised in a future version.
 - Fix: some errors in README corrected; layout improved.
 - Fix: Juggler caused rendering errors when paired with weapon states that manually adjusted the weapon y-offset.
