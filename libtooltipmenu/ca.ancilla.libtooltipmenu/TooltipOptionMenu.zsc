@@ -173,6 +173,7 @@ class TF_TooltipOptionMenu : OptionMenu {
 
   TF_Tooltip FindTooltipFor(int item) {
     // console.printf("FindTooltipFor(%d)", item);
+    if (item < 0 || item >= mDesc.mItems.size()) return null;
     if (!mDesc.mItems[item].Selectable()) return null;
     for (uint i = 0; i < tooltips.size(); ++i) {
       if (tooltips[i].first <= item && item <= tooltips[i].last) {

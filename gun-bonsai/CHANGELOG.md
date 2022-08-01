@@ -1,6 +1,7 @@
 # 0.8.0
 
 **Note:** Renamed to Gun Bonsai (from Laevis) for general release.
+**Note:** If upgrading from any earlier version, *all of your configuration will be reset to defaults*.
 
 - New: Blast Shaping upgrade significantly reduces self-damage
 - New: Thorns upgrade copies damage you take onto your enemies
