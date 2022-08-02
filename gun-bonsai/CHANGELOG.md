@@ -10,6 +10,7 @@
 - Fix: some errors in README corrected; layout improved.
 - Fix: Juggler caused rendering errors when paired with weapon states that manually adjusted the weapon y-offset.
 - Fix: crash when Chain Lightning can't find anything to arc to or from at all
+- Fix: Submunitions are meant to be ranged-only
 
 # 0.8.1
 

@@ -286,7 +286,7 @@ Shots go through enemies (but not walls). Each level allows shots to go through 
 
 Reduces incoming damage by 50% (at level 1) or 75% (at level 2).
 
-### Submunitions *(Weapon only)*
+### Submunitions *(Ranged only)*
 
 Killing an enemy releases a pile of bouncing explosives. Damage depends on level and how much you overkilled the enemy by; increasing level also increases the number of submunitions.
 
