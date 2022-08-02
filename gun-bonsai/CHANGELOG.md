@@ -8,6 +8,8 @@
 - New: alternate HUD skins selectable from the options, thanks to Craneo
 - Change: default HUD position changed to top right to make it less likely to be covered by other HUDs by default.
 - Balance: Poison Shots no longer depends on a puff. This makes it consistent with the other elemental upgrades. This means that (like the other such upgrades) it can trigger in a variety of situations that might not make sense, so this behaviour might be revised in a future version.
+- Balance: HE Rounds damage bonus reduced from 40%/0 (what was I thinking?) to 10%/1. It's now an actual choice between the Damage upgrade for pure damage output or HE Rounds for area of effect.
+- Balance: HE Rounds damage falls off more gradually.
 - Fix: some errors in README corrected; layout improved.
 - Fix: Juggler caused rendering errors when paired with weapon states that manually adjusted the weapon y-offset.
 - Fix: crash when Chain Lightning can't find anything to arc to or from at all

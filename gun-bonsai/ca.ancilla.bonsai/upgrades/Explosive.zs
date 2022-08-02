@@ -13,7 +13,7 @@ class ::ExplosiveShots : ::BaseUpgrade {
     DEBUG("Boom position = [%d,%d,%d]", boom.pos.x, boom.pos.y, boom.pos.z);
     boom.special1 = Priority();
     boom.target = pawn;
-    boom.damage = damage * level * 0.4;
+    boom.damage = max(level, damage * level * 0.1);
     boom.radius = 64 + 16 * level;
   }
 
@@ -46,7 +46,7 @@ class ::ExplosiveShots::Boom : Actor {
   States {
     Spawn:
       TNT1 A 1;
-      TNT1 A 0 A_Explode(damage, radius, XF_HURTSOURCE|XF_NOSPLASH);
+      TNT1 A 0 A_Explode(damage, radius, XF_HURTSOURCE|XF_NOSPLASH, false, radius/2);
       TNT1 A 0 A_AlertMonsters();
       TNT1 A 0 A_StartSound("bonsai/smallboom", CHAN_WEAPON, CHANF_OVERLAP, 1, 0.5);
       TNT1 A 0 A_StartSound("bonsai/smallboom", CHAN_7, CHANF_OVERLAP, 0.1, 0.01);
