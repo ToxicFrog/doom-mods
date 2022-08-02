@@ -17,8 +17,10 @@ COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-Content in sprites/ui/ is ⓒ 2022 Sungraphica <sungraphica.itch.io>, released
+sprites/ui/hud.xcf is ⓒ 2022 Sungraphica <sungraphica.itch.io>, released
 under the CC-BY-4.0 licence.
+
+sprites/ui/penta* and circle* contributed by Craneo.
 
 Content in sprites/items/ and sprites/vfx/ is ⓒ 2020 Willibab
 <willibab.itch.io>, released as "free for non-commercial and commercial use"

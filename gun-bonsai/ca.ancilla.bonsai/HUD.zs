@@ -148,21 +148,26 @@ class ::HUD : Object ui {
   }
 
   void DrawHUD(::CurrentStats stats) {
+    string frame_tex, weapon_tex, player_tex;
+    [frame_tex, weapon_tex, player_tex] = ::Settings.hud_skin();
     uint frame_rgb, weapon_rgb, player_rgb;
     [frame_rgb, weapon_rgb, player_rgb] = ::Settings.hud_colours();
     uint face = 2;
     if (mirror & HUD_MIRROR_V) face = 4;
     if (mirror & HUD_MIRROR_H) face = 10 - face;
 
-    Screen.DrawTexture(tex("LHUDA"..face), false, hudx, hudy,
+    // HUD disabled completely?
+    if (frame_tex == "") return;
+
+    Screen.DrawTexture(tex(frame_tex..face), false, hudx, hudy,
         DTA_Color, LevelUp(stats) ? GetShinyColour(0) : frame_rgb,
         DTA_DestWidth, hudw, DTA_DestHeight, hudh);
 
     DrawProgressBar(
-        tex("LHDWA"..face), LevelUp(stats) ? GetShinyColour(34) : weapon_rgb,
+        tex(weapon_tex..face), LevelUp(stats) ? GetShinyColour(34) : weapon_rgb,
         double(stats.wxp)/(stats.wmax), HUD_WXP_X, HUD_WXP_W);
     DrawProgressBar(
-        tex("LHDPA"..face), LevelUp(stats) ? GetShinyColour(68) : player_rgb,
+        tex(player_tex..face), LevelUp(stats) ? GetShinyColour(68) : player_rgb,
         double(stats.pxp)/(stats.pmax), HUD_PXP_X, HUD_PXP_W);
 
     Text("P:"..stats.plvl, player_rgb, HUD_TOPTEXT_X, HUD_TOPTEXT_Y, HUD_GRAV_NW);

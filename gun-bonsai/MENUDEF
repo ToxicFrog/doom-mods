@@ -14,6 +14,8 @@ OptionMenu "GunBonsaiOptions"
   StaticText ""
   StaticText "UI settings", CYAN
 
+  Option "HUD skin", "bonsai_hud_skin", "GunBonsaiHudSkin"
+  Tooltip "What graphics to use for the HUD. You can also disable it entirely if you want your levelups to be a surprise."
   Slider "HUD X position", "bonsai_hud_x", 0.0, 1.0, 0.01, 2
   Slider "HUD Y position", "bonsai_hud_y", 0.0, 1.0, 0.01, 2
   Tooltip "Position of the Gun Bonsai HUD on the screen, as a proportion of total screen size. 0.0 is top left, 1.0 is bottom right."
@@ -109,6 +111,13 @@ OptionValue "GunBonsaiHudMirrorMode" {
   1, "mirror horizontally (box on left)"
   2, "mirror vertically (XP bars on top)"
   3, "mirror both (box on left & bars on top)"
+}
+
+OptionValue "GunBonsaiHudSkin" {
+  0, "no HUD"
+  1, "scifi"
+  2, "ORB_"
+  3, "pentagram"
 }
 
 OptionValue "GunBonsaiLevelUpSoundOption" {

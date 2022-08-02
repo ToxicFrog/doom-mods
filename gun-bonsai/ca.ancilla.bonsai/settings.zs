@@ -81,6 +81,14 @@ class TFLV_Settings : Object {
     return GetInt("screenblocks");
   }
 
+  static string, string, string hud_skin() {
+    static const string skins[] = { "", "A", "B", "C" };
+    let skin = GetInt("bonsai_hud_skin");
+    if (skin == 0 || skin > 3) return "","","";
+    return string.format("LHUD%c", skin+0x40),
+           string.format("LHDW%c", skin+0x40),
+           string.format("LHDP%c", skin+0x40);
+  }
   static double, double, double, uint hud_params() {
     return GetDouble("bonsai_hud_x"), GetDouble("bonsai_hud_y"), GetDouble("bonsai_hud_size"), GetInt("bonsai_hud_mirror");
   }
