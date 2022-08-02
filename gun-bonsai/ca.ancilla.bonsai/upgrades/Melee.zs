@@ -30,11 +30,25 @@ class ::Agonizer::Aux : Inventory {
 
 class ::DarkHarvest : ::BaseUpgrade {
   override void OnKill(Actor player, Actor shot, Actor target) {
-    double leech = target.SpawnHealth() * level * 0.05;
-    if (leech >= 1) {
-      player.GiveInventory("::DarkHarvest::Health", floor(leech));
-      player.GiveInventory("::DarkHarvest::Armour", floor(leech));
+    let amount = target.bBOSS ? level*10 : level;
+    let hp = Health(player.Spawn("::DarkHarvest::Health"));
+    if (hp) {
+      hp.Amount = amount;
+      hp.MaxAmount = 100 + (level*20);
+      GiveItem(player, hp);
     }
+
+    let ap = BasicArmorBonus(player.Spawn("::DarkHarvest::Armour"));
+    if (ap) {
+      ap.SaveAmount = amount;
+      ap.MaxSaveAmount = 100 + (level*20);
+      GiveItem(player, ap);
+    }
+  }
+
+  void GiveItem(Actor player, Inventory item) {
+    item.ClearCounters();
+    if (!item.CallTryPickup(player)) item.Destroy();
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
@@ -45,14 +59,16 @@ class ::DarkHarvest : ::BaseUpgrade {
 class ::DarkHarvest::Health : Health {
   Default {
     Inventory.Amount 1;
-    Inventory.MaxAmount 999;
+    Inventory.MaxAmount 200;
+    Inventory.PickupMessage "";
   }
 }
 
 class ::DarkHarvest::Armour : BasicArmorBonus {
   Default {
     Armor.SaveAmount 1;
-    Armor.MaxSaveAmount 999;
+    Armor.MaxSaveAmount 200;
+    Inventory.PickupMessage "";
   }
 }
 

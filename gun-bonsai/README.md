@@ -252,7 +252,7 @@ Shots bounce off walls. Higher levels increase the number of bounces and decreas
 
 ### Dark Harvest *(Melee only)*
 
-Killing an enemy grants you health and armour equal to 5% of its max health. Unlike the health/armour leech upgrades, this ignores normal health/armour limits and can boost you even beyond Megasphere levels.
+Killing an enemy grants you 1 point of health and armour per level (×10 for boss kills). This is capped at 100, +20 for each level (so 120 at level 1 and 200 at level 5). If you boost it above level 5 you can exceed the normal 200 health/armour limit.
 
 ### Damage
 
