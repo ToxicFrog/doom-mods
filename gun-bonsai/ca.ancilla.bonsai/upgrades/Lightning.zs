@@ -324,11 +324,12 @@ class ::ChainLightning::Aux : Actor {
         TAG(victim), arc.start.x, arc.start.y, arc.start.z,
         TAG(targets[i]), arc.end.x, arc.end.y, arc.end.z);
     }
+
     DEBUG("Target processing complete, recursing");
     // Now that we've done that, we can safely recurse. Count down so that
     // targets.size() is evaluated only once, before we start adding stuff to it.
-    for (uint i = targets.size()-1; i >= next_target; --i) {
-      DEBUG("Processing target %d", i);
+    for (int i = targets.size()-1; i >= next_target; --i) {
+      DEBUG("Processing target %d (nt=%d)", i, next_target);
       FindTargets(targets[i], max_jumps-1);
     }
     DEBUG("FindTargets complete.");
@@ -342,8 +343,6 @@ class ::ChainLightning::Aux : Actor {
       return 0;
     }
     targets.push(target);
-    // ::Dot.GiveStacks(self.target, target, "::ShockDot", 5, 5);
-    // DrawZap(target);
     return 0;
   }
 
