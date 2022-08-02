@@ -25,10 +25,16 @@ class TFLV_Settings : Object {
     return -1.0;
   }
 
-  static bool GetBool(string name){
+  static bool GetBool(string name) {
     let cv = CVar.FindCVar(name);
     if (cv) return cv.GetBool();
     return false;
+  }
+
+  static string GetString(string name) {
+    let cv = CVar.FindCVar(name);
+    if (cv) return cv.GetString();
+    return "";
   }
 
   static int gun_levels_per_player_level() {
@@ -83,6 +89,17 @@ class TFLV_Settings : Object {
     return GetInt("bonsai_hud_rgb_frame") | 0xFF000000,
            GetInt("bonsai_hud_rgb_weapon") | 0xFF000000,
            GetInt("bonsai_hud_rgb_player") | 0xFF000000;
+  }
+  static bool levelup_flash() {
+    return GetBool("bonsai_levelup_flash");
+  }
+  static string levelup_sound() {
+    // Must be kept in sync with the GunBonsaiLevelUpSoundOption in MENUDEF
+    static const string sounds[] = { "", "bonsai/gunlevelup", "misc/secret", "misc/teleport" };
+    let mode = GetInt("bonsai_levelup_sound_mode");
+    if (mode < 0) return GetString("bonsai_levelup_sound");
+    if (mode > 3) return "";
+    return sounds[mode];
   }
 
   static bool have_legendoom() {

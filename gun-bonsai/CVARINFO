@@ -15,6 +15,11 @@ user color bonsai_hud_rgb_weapon = "00 80 FF";
 user color bonsai_hud_rgb_player = "00 FF 80";
 user int bonsai_hud_mirror = 2;
 
+// Other non-HUD UI settings
+user bool bonsai_levelup_flash = true;
+user int bonsai_levelup_sound_mode = 1;
+user string bonsai_levelup_sound = "";
+
 // How many times the player needs to level up their guns before they get a
 // permanent player-wide bonus.
 server int bonsai_gun_levels_per_player_level = 7;

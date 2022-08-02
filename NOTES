@@ -1,6 +1,20 @@
 ## Roadmap
 
-### Future
+### 0.8.2
+
+- fix chain lightning crash when entire room got gibbed
+- option to toggle flash on level up
+- option to toggle level up noise between no noise, secret noise, builtin noise
+- nerf Dark Harvest and maybe also all the Scavenge upgrades
+- integrate alternate HUD skin
+
+### Soon
+
+- option to specify custom level up noise
+- Thorns attenuation with distance
+- investigate use of A_SetTics() instead of freeze powerup for Swiftness
+
+### Later
 
 Remaining upgrades:
 - Ignition
@@ -19,12 +33,6 @@ Remaining upgrades:
 Gameplay changes:
 - do another pass over the prerequisites. Graph paper? submunitions/expldeath should mutex, for example
 - add "eat weapons to gain their power" feature to LD integration
-- Compatibility options:
-  - health pickups: doom vs. laevis
-  - armour pickups: doom vs. laevis
-  - ammo pickups: based on player ammo vs. based on player weapon vs. based on level contents
-  - ammo pickups: suppress ammo that has default pickup message
-  - ammo pickups: suppress ammo with no spawn state
 
 Internal changes:
 - factor out some shared code like "spawn a helper actor and set its target pointer appropriately", "spawn an expanding ring of particle effects", "do something to everything within a given radius", etc.

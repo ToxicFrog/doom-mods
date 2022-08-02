@@ -4,6 +4,7 @@
 - New: WIP LZDoom compatibility. Some menus have rendering problems but it is playable.
 - New: compatibility note about Final Doomer.
 - New: FAQ entry about the HUD being covered up by other UI elements.
+- New: options to disable the level-up flash and sound effect
 - Change: default HUD position changed to top right to make it less likely to be covered by other HUDs by default.
 - Balance: Poison Shots no longer depends on a puff. This makes it consistent with the other elemental upgrades. This means that (like the other such upgrades) it can trigger in a variety of situations that might not make sense, so this behaviour might be revised in a future version.
 - Fix: some errors in README corrected; layout improved.

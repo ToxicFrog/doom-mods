@@ -99,10 +99,14 @@ class ::WeaponInfo : Object play {
     weapon.owner.A_Log(
       string.format("Your %s is ready to level up!", weapon.GetTag()),
       true);
-    weapon.owner.A_SetBlend("00 80 FF", 0.8, 40);
-    weapon.owner.A_SetBlend("00 80 FF", 0.4, 350);
-    weapon.owner.A_StartSound("bonsai/gunlevelup", CHAN_AUTO,
-      CHANF_OVERLAP|CHANF_UI|CHANF_NOPAUSE|CHANF_LOCAL);
+    if (::Settings.levelup_flash()) {
+      weapon.owner.A_SetBlend("00 80 FF", 0.8, 40);
+      weapon.owner.A_SetBlend("00 80 FF", 0.4, 350);
+    }
+    if (::Settings.levelup_sound() != "") {
+      weapon.owner.A_StartSound(::Settings.levelup_sound(), CHAN_AUTO,
+        CHANF_OVERLAP|CHANF_UI|CHANF_NOPAUSE|CHANF_LOCAL);
+    }
   }
 
   bool StartLevelUp() {

@@ -12,7 +12,7 @@ OptionMenu "GunBonsaiOptions"
   TooltipAppearance "", "", "tfttbg"
 
   StaticText ""
-  StaticText "HUD settings", CYAN
+  StaticText "UI settings", CYAN
 
   Slider "HUD X position", "bonsai_hud_x", 0.0, 1.0, 0.01, 2
   Slider "HUD Y position", "bonsai_hud_y", 0.0, 1.0, 0.01, 2
@@ -32,6 +32,11 @@ OptionMenu "GunBonsaiOptions"
   Tooltip "Colour of the weapon XP bar and weapon name, level, and XP indicator text."
   ColorPicker "Player info colour", "bonsai_hud_rgb_player"
   Tooltip "Colour of the player XP bar and player level text."
+
+  Option "Flash on level-up", "bonsai_levelup_flash", "OnOff"
+  Tooltip "Whether to flash the screen when your weapon gains a level."
+  Option "Sound on level-up", "bonsai_levelup_sound_mode", "GunBonsaiLevelUpSoundOption"
+  Tooltip "What sound to play when your weapon gains a level. If set to 'custom' it will use whatever the value of the 'bonsai_levelup_sound' cvar is."
 
   StaticText ""
   StaticText "Compatibility Options", WHITE
@@ -104,6 +109,14 @@ OptionValue "GunBonsaiHudMirrorMode" {
   1, "mirror horizontally (box on left)"
   2, "mirror vertically (XP bars on top)"
   3, "mirror both (box on left & bars on top)"
+}
+
+OptionValue "GunBonsaiLevelUpSoundOption" {
+  -1, "custom"
+  0, "nothing"
+  1, "Gun Bonsai levelup effect"
+  2, "secret discovery effect"
+  3, "teleport effect"
 }
 
 OptionValue "GunBonsaiUpgradeBindingMode" {
