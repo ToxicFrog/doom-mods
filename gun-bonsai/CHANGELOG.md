@@ -1,6 +1,7 @@
 # 0.8.3
 
 - Fix: crash when dying with the Juggler upgrade
+- Change: README compatibility/known issues sections reworked some; compat note for Hellrider
 
 # 0.8.2
 

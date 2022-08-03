@@ -33,12 +33,9 @@ It has been tested (although not necessarily extensively) and is known to work w
 - Reelism 2
 - Trailblazer
 - Lots of smaller mutators like War Trophies, Slomo Bullet Time, MOShuffle, etc
+- and more!
 
-It is known be playable with some issues with:
-- Final Doomer +
-- Hideous Destructor
-
-Some mods have specific integration features or compatibility concerns; these are detailed below.
+Some mods have special integration features or require specific compatibility settings; these are detailed below. Make sure to also check the [known issues](#known-issues) section for bugs that only manifest with paired with specific mods.
 
 ### Indestructable
 
@@ -72,11 +69,7 @@ There are a lot of settings for this in the mod options, including which weapons
 
 ### Universal Pistol Start
 
-Gun Bonsai works by storing upgrade information in an item in the player's inventory. If this item gets removed all of your levels and upgrades will disappear. If you want to lose your weapons but keep your upgrades, make sure that `Keep Inventory Items` is enabled in the UPS settings.
-
-### DoomRL Arsenal
-
-This works fine in general, but building an assembly out of a weapon will reset it to level 0 and clear all upgrades on it, even if the upgrade binding mode is to set to `weapon with inheritance` or `weapon class` (because the assembly is not just a different weapon but an entirely different weapon class from the base weapon you used to assemble it).
+Gun Bonsai works by storing upgrade information in an item in the player's inventory. If this item gets removed all of your levels and upgrades will disappear. If you want to lose your weapons but keep your upgrades, make sure that `Keep Inventory Items` is enabled in the UPS settings, and that your upgrade binding setting is set to `weapon class` or `individual with inheritance`.
 
 ### Hideous Destructor
 
@@ -88,15 +81,6 @@ Hideous Destructor replaces a lot of default Doom behaviours, in ways that Gun B
 - dead enemies may still register as alive to minions/submunitions/etc
 
 It still works, mostly, but Gun Bonsai is definitely confused by HDest and I can't guarantee that it won't break parts of HDest, too. Caveat lusor.
-
-### Ashes 2063/Afterglow
-
-The sawn-off shotgun gets melee upgrades rather than hitscan upgrades. This is a bug in Ashes -- the sawn-off is flagged as a melee weapon.
-Installing weapon upgrades in Afterglow will lose all XP and upgrades on the upgraded weapon.
-
-### Final Doomer +
-
-HE rounds don't trigger properly due to an incompatibility with FD+'s custom puff behaviours. This may affect other upgrades as well.
 
 ## FAQ
 
@@ -137,6 +121,19 @@ I may someday split the Legendoom integration into its own (somewhat more featur
 - Some sound effects (at the moment just the HE and fragmentation sounds) may not play when using iwads other than Doom 1/2.
 - The music stops whenever the `Swiftness` upgrade triggers.
 
+### Known issues with specific mods
+
+Some of these are minor bugs in the mods themselves that aren't visible in normal play; others are issues with Gun Bonsai that are brought to light by the way these mods work.
+
+- **Ashes series**: all sawn-off shotguns are flagged as melee weapons and thus get melee upgrades
+- **Ashes Afterglow**: upgrading a weapon resets it to level 0
+- **Angelic Aviary**: some decorations are flagged as monsters and thus grant XP for attacking them
+- **DoomRL Arsenal**: building an assembly resets it to level 0
+- **Final Doomer +**: HE rounds don't detonate properly
+- **Hellrider**: Juggler has no effect
+- **Hideous Destructor**: none of the Scavenge upgrades work (in addition to various minor issues)
+- **Slomo Bullet Time**: interacts oddly with Swiftness and may cause you to get stuck in place until both effects wear off
+- **XRPG**: melee weapons are not flagged correctly and thus get ranged weapon upgrades instead
 
 ## Modding Notes
 
