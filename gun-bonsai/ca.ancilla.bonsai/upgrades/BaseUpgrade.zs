@@ -30,6 +30,7 @@ enum ::UpgradePriority {
   ::PRI_NULL = -1,   // Disallow cross-upgrade triggering at all
   ::PRI_MISSING = 0, // SPECIAL PURPOSE -- DO NOT USE
   ::PRI_ELEMENTAL,
+  ::PRI_THORNS,
   ::PRI_EXPLOSIVE,
   ::PRI_FRAGMENTATION
 }

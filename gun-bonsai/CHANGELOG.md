@@ -3,6 +3,8 @@
 - Fix: crash when dying with the Juggler upgrade
 - Fix: attacking friendlies no longer awards XP or procs upgrade effects
 - Fix: HP/AC caps for Scavenge and Dark Harvest are now based on the player's MaxHealth rather than on a hardcoded value of 100.
+- Balance: Thorns reflects more damage the closer enemies get, but no damage at all to distant enemies.
+- Balance: Thorns only procs elemental effects on nearby enemies.
 - Change: README compatibility/known issues sections reworked some; compat note for Hellrider
 
 # 0.8.2

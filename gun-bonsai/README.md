@@ -228,7 +228,9 @@ Killing an enemy drops an armour bonus worth 2 points per level (×10 for boss k
 
 ### Thorns
 
-Enemies attacking you take an equal amount of damage. More levels increases the amount of damage attackers take. Note that you still take full damage from the attack!
+Enemies attacking you take damage in proportion to the amount of damage they dealt, increasing as they get closer to you. Enemies that are close enough will also suffer the elemental effects of your weapon as if you had shot them. Increasing the level increases both the amount of damage returned and the effective radius.
+
+Note that you still take full damage from the attack!
 
 ### Tough as Nails
 
