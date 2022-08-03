@@ -93,7 +93,7 @@ class ::UpgradeBag : Object play {
     }
   }
 
-  void OnKill(Actor pawn, Actor shot, Actor target) {
+  void OnKill(PlayerPawn pawn, Actor shot, Actor target) {
     for (uint i = 0; i < upgrades.Size(); ++i) {
       // No priority checks -- fires unconditionally.
       upgrades[i].OnKill(pawn, shot, target);

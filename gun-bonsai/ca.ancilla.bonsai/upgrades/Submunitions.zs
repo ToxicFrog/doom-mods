@@ -3,7 +3,7 @@
 class ::Submunitions : ::BaseUpgrade {
   override ::UpgradePriority Priority() { return ::PRI_EXPLOSIVE; }
 
-  override void OnKill(Actor player, Actor shot, Actor target) {
+  override void OnKill(PlayerPawn player, Actor shot, Actor target) {
     let aux = ::Submunitions::Spawner(target.Spawn("::Submunitions::Spawner", target.pos));
     aux.special1 = Priority();
     aux.target = player;

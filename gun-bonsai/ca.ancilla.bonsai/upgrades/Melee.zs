@@ -29,7 +29,7 @@ class ::Agonizer::Aux : Inventory {
 }
 
 class ::DarkHarvest : ::BaseUpgrade {
-  override void OnKill(Actor player, Actor shot, Actor target) {
+  override void OnKill(PlayerPawn player, Actor shot, Actor target) {
     let amount = target.bBOSS ? level*10 : level;
     let hp = Health(player.Spawn("::DarkHarvest::Health"));
     if (hp) {
@@ -46,7 +46,7 @@ class ::DarkHarvest : ::BaseUpgrade {
     }
   }
 
-  void GiveItem(Actor player, Inventory item) {
+  void GiveItem(PlayerPawn player, Inventory item) {
     item.ClearCounters();
     if (!item.CallTryPickup(player)) item.Destroy();
   }
@@ -85,7 +85,7 @@ class ::Shield : ::BaseUpgrade {
 }
 
 class ::Swiftness : ::BaseUpgrade {
-  override void OnKill(Actor player, Actor shot, Actor target) {
+  override void OnKill(PlayerPawn player, Actor shot, Actor target) {
     player.GiveInventory("::Swiftness::Aux", level);
   }
 

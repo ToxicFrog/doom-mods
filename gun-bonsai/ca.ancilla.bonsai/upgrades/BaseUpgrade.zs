@@ -129,7 +129,7 @@ class ::BaseUpgrade : Object play {
     return;
   }
 
-  virtual void OnKill(Actor pawn, Actor shot, Actor target) {
+  virtual void OnKill(PlayerPawn pawn, Actor shot, Actor target) {
     return;
   }
 

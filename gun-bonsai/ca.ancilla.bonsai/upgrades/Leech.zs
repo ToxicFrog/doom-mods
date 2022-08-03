@@ -15,7 +15,7 @@ class ::LeechUtil {
 }
 
 class ::LifeLeech : ::BaseUpgrade {
-  override void OnKill(Actor player, Actor shot, Actor target) {
+  override void OnKill(PlayerPawn player, Actor shot, Actor target) {
     let hp = Health(target.Spawn(
       GetBonusName(), ::LeechUtil.WigglePos(target), ALLOW_REPLACE));
     if (!hp) return;
@@ -53,7 +53,7 @@ class ::LifeLeech::Bonus : HealthBonus {
 }
 
 class ::ArmourLeech : ::BaseUpgrade {
-  override void OnKill(Actor player, Actor shot, Actor target) {
+  override void OnKill(PlayerPawn player, Actor shot, Actor target) {
     let ap = BasicArmorBonus(target.Spawn(
       GetBonusName(), ::LeechUtil.WigglePos(target), ALLOW_REPLACE));
     if (!ap) return;
@@ -95,7 +95,7 @@ class ::AmmoLeech : ::BaseUpgrade {
     return atype && GetDefaultByType(atype).FindState("Spawn").Sprite != 0;
   }
 
-  override void OnKill(Actor player, Actor shot, Actor target) {
+  override void OnKill(PlayerPawn player, Actor shot, Actor target) {
     Array<String> candidates;
     for (Inventory inv = player.inv; inv != null; inv = inv.inv) {
       let wpn = Weapon(inv);

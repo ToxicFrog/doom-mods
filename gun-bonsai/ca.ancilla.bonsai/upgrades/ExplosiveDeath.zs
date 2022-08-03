@@ -4,7 +4,7 @@
 class ::ExplosiveDeath : ::BaseUpgrade {
   override ::UpgradePriority Priority() { return ::PRI_EXPLOSIVE; }
 
-  override void OnKill(Actor player, Actor shot, Actor target) {
+  override void OnKill(PlayerPawn player, Actor shot, Actor target) {
     let aux = ::ExplosiveDeath::Aux(target.Spawn("::ExplosiveDeath::Aux", target.pos));
     aux.special1 = Priority();
     aux.target = player;

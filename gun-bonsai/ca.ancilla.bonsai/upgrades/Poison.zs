@@ -56,7 +56,7 @@ class ::Hallucinogens : ::DotModifier {
 
 class ::Putrefaction : ::ElementalUpgrade {
   override ::UpgradeElement Element() { return ::ELEM_POISON; }
-  override void OnKill(Actor player, Actor shot, Actor target) {
+  override void OnKill(PlayerPawn player, Actor shot, Actor target) {
     double stacks = ::Dot.CountStacks(target, "::PoisonDot");
     DEBUG("killed %s, poison stacks=%d", TFLV::Util.SafeCls(target), stacks);
     if (stacks <= 0) return;

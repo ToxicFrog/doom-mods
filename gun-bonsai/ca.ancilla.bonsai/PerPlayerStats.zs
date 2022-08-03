@@ -347,10 +347,10 @@ class ::PerPlayerStats : Inventory {
   }
 
   void OnKill(Actor shot, Actor target) {
-    upgrades.OnKill(owner, shot, target);
+    upgrades.OnKill(PlayerPawn(owner), shot, target);
     let info = GetInfoForCurrentWeapon();
     if (!info) return;
-    info.upgrades.OnKill(owner, shot, target);
+    info.upgrades.OnKill(PlayerPawn(owner), shot, target);
   }
 
   // Apply all upgrades with ModifyDamageReceived/Dealt handlers here.
