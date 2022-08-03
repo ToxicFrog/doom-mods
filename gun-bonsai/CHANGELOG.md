@@ -11,6 +11,8 @@
 - Balance: HE Rounds damage bonus reduced from 40%/0 (what was I thinking?) to 10%/1. It's now an actual choice between the Damage upgrade for pure damage output or HE Rounds for area of effect.
 - Balance: HE Rounds damage falls off more gradually.
 - Balance: Dark Harvest now restores a flat 1/1 hp/ac per level, x10 for bosses, capped at 100 + 20/level.
+- Balance: Scavenge Blood restores a flat 1 hp, with a cap of 100 at level 1 and 200 at level 2+
+- Balance: Scavenge Steel restores a flat 2 ac, with a cap of 100 at level 1 and 200 at level 2+
 - Fix: some errors in README corrected; layout improved.
 - Fix: Juggler caused rendering errors when paired with weapon states that manually adjusted the weapon y-offset.
 - Fix: crash when Chain Lightning can't find anything to arc to or from at all

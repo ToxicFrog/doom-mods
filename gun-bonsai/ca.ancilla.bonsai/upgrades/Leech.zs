@@ -19,7 +19,8 @@ class ::LifeLeech : ::BaseUpgrade {
     let hp = Health(target.Spawn(
       GetBonusName(), ::LeechUtil.WigglePos(target), ALLOW_REPLACE));
     if (!hp) return;
-    hp.amount = max(1, target.SpawnHealth() * 0.01 * level);
+    hp.amount = target.bBOSS ? level*10 : level;
+    hp.maxamount = clamp(100*level, 100, 200);
   }
 
   string GetBonusName() {
@@ -40,6 +41,7 @@ class ::LifeLeech::Bonus : HealthBonus {
     -COUNTITEM;
     Scale 0.07;
     RenderStyle "Add";
+    Inventory.PickupMessage "";
   }
   States {
     Spawn:
@@ -55,7 +57,8 @@ class ::ArmourLeech : ::BaseUpgrade {
     let ap = BasicArmorBonus(target.Spawn(
       GetBonusName(), ::LeechUtil.WigglePos(target), ALLOW_REPLACE));
     if (!ap) return;
-    ap.SaveAmount = max(1, target.SpawnHealth() * 0.01 * level);
+    ap.SaveAmount = target.bBOSS ? level*20 : level*2;
+    ap.MaxSaveAmount = clamp(100*level, 100, 200);
   }
 
   string GetBonusName() {
@@ -76,6 +79,7 @@ class ::ArmourLeech::Bonus : ArmorBonus {
     -COUNTITEM;
     Scale 0.07;
     RenderStyle "Add";
+    Inventory.PickupMessage "";
   }
   States {
     Spawn:

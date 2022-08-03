@@ -219,7 +219,7 @@ Weapon switching is instantaneous, or nearly so. Note that this does not affect 
 
 ### Scavenge Blood
 
-When killed, enemies drop a health bonus worth 1% of their max health. Level increases the amount of health dropped.
+Killing an enemy drops a health bonus worth 1 point per level (×10 for boss kills). This is capped at 100, raised to 200 at level 2.
 
 ### Scavenge Lead
 
@@ -227,7 +227,7 @@ When killed, enemies drop a random ammo item usable by one of your weapons. If y
 
 ### Scavenge Steel
 
-When killed, enemies drop an armour bonus worth 2% of their max health. Level increases the amount of armour dropped.
+Killing an enemy drops an armour bonus worth 2 points per level (×10 for boss kills). This is capped at 100, raised to 200 at level 2.
 
 ### Thorns
 
