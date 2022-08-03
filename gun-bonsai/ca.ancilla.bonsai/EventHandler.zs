@@ -123,6 +123,7 @@ class ::EventHandler : StaticEventHandler {
       evt.damage, evt.damagetype, evt.damageflags, evt.thing.health);
     if (evt.damagesource == players[consoleplayer].mo
         && evt.thing.bISMONSTER
+        && !evt.thing.bFRIENDLY // do not award XP or trigger procs when attacking friendlies
         && evt.thing != evt.damagesource
         && evt.damage > 0) {
       let stats = ::PerPlayerStats.GetStatsFor(PlayerPawn(evt.damagesource));

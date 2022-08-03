@@ -353,8 +353,9 @@ class ::PerPlayerStats : Inventory {
     info.upgrades.OnKill(owner, shot, target);
   }
 
-  // Apply player level-up bonuses whenever the player deals or receives damage.
-  // This is also where bonuses to individual weapon damage are applied.
+  // Apply all upgrades with ModifyDamageReceived/Dealt handlers here.
+  // At this point the damage has not yet been inflicted; see OnDamageDealt/
+  // OnDamageReceived for that, as well as for XP assignment.
   override void ModifyDamage(
       int damage, Name damageType, out int newdamage, bool passive,
       Actor inflictor, Actor source, int flags) {
@@ -380,9 +381,9 @@ class ::PerPlayerStats : Inventory {
         damage, damageType, flags);
       // Outgoing damage. 'source' is the *target* of the damage.
       let target = source;
-      if (!target.bIsMonster) {
+      if (!target.bISMONSTER || target.bFRIENDLY || source == owner) {
         // Damage bonuses and XP assignment apply only when attacking monsters,
-        // not decorations or yourself.
+        // not decorations, friendly NPCs, or yourself.
         newdamage = damage;
         return;
       }
