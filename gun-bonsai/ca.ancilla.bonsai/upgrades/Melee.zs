@@ -31,17 +31,23 @@ class ::Agonizer::Aux : Inventory {
 class ::DarkHarvest : ::BaseUpgrade {
   override void OnKill(PlayerPawn player, Actor shot, Actor target) {
     let amount = target.bBOSS ? level*10 : level;
+    // same cap for health and armour; in vanilla this will be 100 + 20 per level.
+    // we derive the cap for armour from the cap for health because armour caps
+    // aren't intrinsic to the player or even intrinsic to the armour they're
+    // wearing, they're intrinsic to the *armour pickup* which vanishes as soon
+    // as it grants them AC!
+    let cap = player.MaxHealth * (1.0 + 0.2*level);
     let hp = Health(player.Spawn("::DarkHarvest::Health"));
     if (hp) {
       hp.Amount = amount;
-      hp.MaxAmount = 100 + (level*20);
+      hp.MaxAmount = cap;
       GiveItem(player, hp);
     }
 
     let ap = BasicArmorBonus(player.Spawn("::DarkHarvest::Armour"));
     if (ap) {
       ap.SaveAmount = amount;
-      ap.MaxSaveAmount = 100 + (level*20);
+      ap.MaxSaveAmount = cap;
       GiveItem(player, ap);
     }
   }

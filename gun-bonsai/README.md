@@ -216,7 +216,7 @@ Weapon switching is instantaneous, or nearly so. Note that this does not affect 
 
 ### Scavenge Blood
 
-Killing an enemy drops a health bonus worth 1 point per level (×10 for boss kills). This is capped at 100, raised to 200 at level 2.
+Killing an enemy drops a health bonus worth 1 point per level (×10 for boss kills). This is capped at 100% of your normal max health, raised to 200% at level 2.
 
 ### Scavenge Lead
 
@@ -224,7 +224,7 @@ When killed, enemies drop a random ammo item usable by one of your weapons. If y
 
 ### Scavenge Steel
 
-Killing an enemy drops an armour bonus worth 2 points per level (×10 for boss kills). This is capped at 100, raised to 200 at level 2.
+Killing an enemy drops an armour bonus worth 2 points per level (×10 for boss kills). This is capped at 100% of your normal max health, raised to 200% at level 2.
 
 ### Thorns
 
@@ -249,7 +249,7 @@ Shots bounce off walls. Higher levels increase the number of bounces and decreas
 
 ### Dark Harvest *(Melee only)*
 
-Killing an enemy grants you 1 point of health and armour per level (×10 for boss kills). This is capped at 100, +20 for each level (so 120 at level 1 and 200 at level 5). If you boost it above level 5 you can exceed the normal 200 health/armour limit.
+Killing an enemy grants you 1 point of health and armour per level (×10 for boss kills). This is capped at 100% of your max health, +20% for each level (so 120% at level 1 and 200% at level 5). If you boost it above level 5 you can exceed the normal 200 health/armour limit.
 
 ### Damage
 
