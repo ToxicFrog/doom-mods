@@ -157,7 +157,7 @@ class ::IndestructableForce : Inventory {
     Message("\c[RED]INDESTRUCTABLE!");
     self.SetStateLabel("RestoreHealth");
 
-    GivePowerup("::IndestructableScreenEffect");
+    GiveScreenEffect(GetInt("indestructable_screen_effect"));
     if (GetBool("indestructable_invincibility"))
       GivePowerup("PowerInvulnerable");
     if (GetBool("indestructable_timestop"))
@@ -171,6 +171,14 @@ class ::IndestructableForce : Inventory {
         lives, lives == 1 ? "life" : "lives"));
       ReportLivesCount(-1);
     }
+  }
+
+  void GiveScreenEffect(uint effect) {
+    static const string effects[] = {
+      "", "Red", "Gold", "Green", "Blue", "Inverse", "RedWhite", "Desaturate" };
+    if (effect <= 0 || effect > 7) return;
+    GivePowerup("::IndestructableScreenEffect_"..effects[effect]);
+
   }
 
   void RestorePlayerHealth() {
@@ -241,10 +249,25 @@ class ::IndestructableForce : Inventory {
 
 class ::IndestructableScreenEffect : Powerup {
   Default {
-    Powerup.ColorMap 1.0,1.0,1.0, 1.0,0.0,0.0;
+    Powerup.Color "None";
     +INVENTORY.NOSCREENBLINK;
   }
 }
+
+class ::IndestructableScreenEffect::Red : ::IndestructableScreenEffect
+{ Default { Powerup.Color "RedMap"; } }
+class ::IndestructableScreenEffect::Gold : ::IndestructableScreenEffect
+{ Default { Powerup.Color "GoldMap"; } }
+class ::IndestructableScreenEffect::Green : ::IndestructableScreenEffect
+{ Default { Powerup.Color "GreenMap"; } }
+class ::IndestructableScreenEffect::Blue : ::IndestructableScreenEffect
+{ Default { Powerup.Color "BlueMap"; } }
+class ::IndestructableScreenEffect::Inverse : ::IndestructableScreenEffect
+{ Default { Powerup.Color "InverseMap"; } }
+class ::IndestructableScreenEffect::RedWhite : ::IndestructableScreenEffect
+{ Default { Powerup.ColorMap 1.0,1.0,1.0, 1.0,0.0,0.0; } }
+class ::IndestructableScreenEffect::Desaturate : ::IndestructableScreenEffect
+{ Default { Powerup.ColorMap 0.0,0.0,0.0, 1.0,1.0,1.0; } }
 
 class ::IndestructableDamage : Powerup {
   override void ModifyDamage(

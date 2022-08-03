@@ -1,4 +1,8 @@
-# 0.1.3
+# 0.2.1
+
+- New: options for different visual effects when the mod activates, as well as disabling VFX entirely.
+
+# 0.2.0
 
 - New: more configuration options (and some of the existing ones now behave slightly differently)
 - New: other mods can listen for `indestructable_report_lives` netevents to get updates on Indestructable's internal state

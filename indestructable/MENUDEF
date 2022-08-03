@@ -11,6 +11,10 @@ OptionMenu "IndestructableOptions"
   TooltipGeometry 0.5, 1.0, 1.0, 1.0, 0.5
   TooltipAppearance "", "", "tfttbg"
 
+  StaticText "Appearance"
+  Option "Screen Effect", "indestructable_screen_effect", "IndestructableScreenEffect"
+  Tooltip "What colour to turn the screen when indestructability triggers."
+
   StaticText ""
   StaticText "Buff Configuration"
   Slider "Indestructability duration", "indestructable_duration", 0, 300, 1, 0
@@ -43,4 +47,15 @@ OptionMenu "IndestructableOptions"
   Tooltip "Killing a boss will always refill you to at least this many lives."
   ScaleSlider "Max lives on boss kill", "indestructable_max_lives_per_boss", 0, 20, 1, "Unlimited"
   Tooltip "Killing a boss cannot take you above this limit (but will not remove lives if you're already above it). Set to 0 for unlimited."
+}
+
+OptionValue "IndestructableScreenEffect" {
+  0, "None"
+  1, "Red"
+  2, "Gold"
+  3, "Green"
+  4, "Blue"
+  5, "Inverse"
+  6, "Red & White"
+  7, "Desaturate"
 }
