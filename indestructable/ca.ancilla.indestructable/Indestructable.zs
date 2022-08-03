@@ -127,8 +127,8 @@ class ::IndestructableForce : Inventory {
   }
 
   void ShowLevelStartMessage() {
-    self.Message(string.format("You have \c[GOLD]%d\c- extra %s.",
-      self.lives, self.lives == 1 ? "life" : "lives"));
+    console.printf("showstartmsg");
+    AdjustLives(0, -1, -1);
   }
 
   override void AbsorbDamage(
@@ -227,9 +227,7 @@ class ::IndestructableForce : Inventory {
     if (min_lives != -1) lives = max(lives, min_lives);
     if (max_lives != -1) lives = min(lives, max_lives);
 
-    if (lives == old_lives) {
-      // Display no message if lives haven't changed.
-    } else if (lives < 0) {
+    if (lives < 0) {
       Message(string.format("You have \c[GOLD]unlimited\c- extra lives."));
     } else if (lives < old_lives || old_lives < 0) {
       Message(string.format("You have \c[RED]%d\c- extra %s.",
@@ -237,7 +235,11 @@ class ::IndestructableForce : Inventory {
     } else if (lives > old_lives) {
       Message(string.format("You have \c[CYAN]%d\c- extra %s.",
         lives, lives == 1 ? "life" : "lives"));
+    } else if (lives == old_lives) {
+      Message(string.format("You have \c[GOLD]%d\c- extra %s.",
+        lives, lives == 1 ? "life" : "lives"));
     }
+
     ReportLivesCount(lives - old_lives);
   }
 

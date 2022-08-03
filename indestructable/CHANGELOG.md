@@ -1,6 +1,7 @@
 # 0.2.1
 
 - New: options for different visual effects when the mod activates, as well as disabling VFX entirely.
+- Fix: correctly display starting lives even when you have unlimited
 
 # 0.2.0
 
