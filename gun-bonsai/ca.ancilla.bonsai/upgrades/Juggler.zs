@@ -3,6 +3,7 @@
 
 class ::Juggler : ::BaseUpgrade {
   bool InState(PSprite psp, State state) {
+    if (!psp.CurState || !state) return false;
     return psp.CurState.InStateSequence(state);
     // return wpn.InStateSequence(wpn.CurState, wpn.ResolveState(state));
   }

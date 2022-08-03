@@ -1,3 +1,7 @@
+# 0.8.3
+
+- Fix: crash when dying with the Juggler upgrade
+
 # 0.8.2
 
 - New: health/armour drops cast light.
