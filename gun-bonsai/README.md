@@ -398,4 +398,9 @@ Once you sufficiently exceed the lightning softcap on a target, it is struck by 
 
 ## Elemental Sythesis Powers
 
-Once you have two elemental masteries on a weapon, you have a chance for one of these upgrades -- **Elemental Beam**, **Elemental Blast**, or **Elemental Wave** -- to show up. Each of these copies the elemental effects on whatever enemy you're attacking to other nearby enemies. Only the basic version of the element is copied -- for example, copied lightning won't proc **Thunderbolt** -- but this can still be quite powerful.
+Once you have two elemental masteries on a weapon, you have a chance for one of these upgrades to show up. Each one of them copies all the elemental effects on whatever you're attacking to other enemies. Only the basic version of the element is copied -- for example, copied lightning won't proc **Thunderbolt** -- but this can still be quite powerful.
+
+There are three of these, for three different kinds of weapons:
+- **Elemental Beam** appears on hitscan weapons and copies elements to all enemies in a line
+- **Elemental Blast** appears on projectile weapons and copies elements to all enemies near your target
+- **Elemental Wave** appears on melee weapons and copies elements to all enemies near you.
