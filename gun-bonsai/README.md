@@ -119,7 +119,6 @@ I may someday split the Legendoom integration into its own (somewhat more featur
 - Most effects will trigger only on shots that hit a monster, e.g. HE Rounds will not detonate if you shoot a wall.
 - Piercing Shots may interfere with the detonation of exploding shots like rockets.
 - Some sound effects (at the moment just the HE and fragmentation sounds) may not play when using iwads other than Doom 1/2.
-- The music stops whenever the `Swiftness` upgrade triggers.
 
 ### Known issues with specific mods
 
@@ -291,7 +290,7 @@ Killing an enemy releases a pile of bouncing explosives. Damage depends on level
 
 ### Swiftness *(Melee only)*
 
-Killing an enemy gives you a brief moment of time freeze (and some brief slow-mo as it wears off). Killing multiple enemies in rapid succession will extend the duration, as will increasing the level of Swiftness.
+Killing an enemy gives you a 1 second of time freeze (+200ms per additional level). You can extend this by killing more enemies before it wears off.
 
 
 ## Elemental Upgrades

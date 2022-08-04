@@ -92,7 +92,15 @@ class ::Shield : ::BaseUpgrade {
 
 class ::Swiftness : ::BaseUpgrade {
   override void OnKill(PlayerPawn player, Actor shot, Actor target) {
-    player.GiveInventory("::Swiftness::Aux", level);
+    let aux = ::Swiftness::Aux(player.Spawn("::Swiftness::Aux"));
+    aux.EffectTics = 27 + 7*level; // 1s + 200ms per extra level
+    aux.strength = level;
+    GiveItem(player, aux);
+  }
+
+  void GiveItem(PlayerPawn player, Inventory item) {
+    item.ClearCounters();
+    if (!item.CallTryPickup(player)) item.Destroy();
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
@@ -103,11 +111,36 @@ class ::Swiftness : ::BaseUpgrade {
 class ::Swiftness::Aux : PowerupGiver {
   Default {
     +Inventory.AUTOACTIVATE;
-    +Inventory.ADDITIVETIME;
+    // +Inventory.ADDITIVETIME;
     +Inventory.NOSCREENBLINK;
-    Powerup.Type "PowerTimeFreezer";
-    Powerup.Duration 70;
+    +Inventory.ALWAYSPICKUP;
+    Powerup.Type "::Swiftness::Power";
+    // Powerup.Type "PowerTimeFreezer";
+    Powerup.Duration 999;
     Inventory.Amount 1;
     Inventory.MaxAmount 0;
+  }
+}
+
+class ::Swiftness::Power : PowerTimeFreezer {
+  Default { Powerup.ColorMap 0.2,0.2,0.2, 0.0,0.0,0.0; }
+
+  override void InitEffect() {
+    super.InitEffect();
+    S_ResumeSound(false); // unpause music and SFX
+  }
+
+  override bool CanPickup(Actor other) { return true; }
+  override bool IsBlinking() { return false; }
+
+  override bool HandlePickup(Inventory item) {
+    if (item.GetClass() != GetClass()) return super.HandlePickup(item);
+    self.amount++;
+    let cap = 28 + 7*strength + 5*amount;
+    let add = Powerup(item).EffectTics + self.amount;
+    self.EffectTics = min(cap, self.EffectTics + add);
+    DEBUG("Added %d tics, total now %d/%d", add, self.EffectTics, cap);
+    item.bPICKUPGOOD = true;
+    return true;
   }
 }

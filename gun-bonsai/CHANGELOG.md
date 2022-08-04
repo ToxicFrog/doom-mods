@@ -1,12 +1,15 @@
 # 0.8.3
 
+- Balance: Thorns reflects more damage the closer enemies get, but no damage at all to distant enemies.
+- Balance: Thorns only procs elemental effects on nearby enemies.
+- Balance: Swiftness now grants 35 tics (+7 per additional level) per kill
+- Balance: Swiftness cap is now the same as the initial grant, and increases by 5 tics per kill during a swiftness combo
+- Change: README compatibility/known issues sections reworked some; compat note for Hellrider
 - Fix: crash when dying with the Juggler upgrade
 - Fix: attacking friendlies no longer awards XP or procs upgrade effects
 - Fix: HP/AC caps for Scavenge and Dark Harvest are now based on the player's max health rather than on a hardcoded value of 100.
 - Fix: crash when using debug commands to add an upgrade that doesn't exist
-- Balance: Thorns reflects more damage the closer enemies get, but no damage at all to distant enemies.
-- Balance: Thorns only procs elemental effects on nearby enemies.
-- Change: README compatibility/known issues sections reworked some; compat note for Hellrider
+- Fix: music and sound effects no longer stop when Swiftness triggers
 
 # 0.8.2
 
