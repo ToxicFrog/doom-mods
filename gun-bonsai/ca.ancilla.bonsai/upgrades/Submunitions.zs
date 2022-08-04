@@ -4,10 +4,10 @@ class ::Submunitions : ::BaseUpgrade {
   override ::UpgradePriority Priority() { return ::PRI_EXPLOSIVE; }
 
   override void OnKill(PlayerPawn player, Actor shot, Actor target) {
+    if (shot is "::Submunitions::Grenade") return;
     let aux = ::Submunitions::Spawner(target.Spawn("::Submunitions::Spawner", target.pos));
     aux.special1 = Priority();
     aux.target = player;
-    aux.tracer = target;
     aux.level = level;
     aux.damage = abs(target.health) + 5*level; // (target.SpawnHealth()) * (1.0 - 0.8 ** level);
     aux.blast_radius = target.radius*3;
@@ -33,8 +33,7 @@ class ::Submunitions::Spawner : Actor {
 
   void SpawnMunitions() {
     for (uint i = 0; i < level * 4; ++i) {
-      if (!tracer) break;
-      let aux = ::Submunitions::Grenade(tracer.A_SpawnProjectile(
+      let aux = ::Submunitions::Grenade(A_SpawnProjectile(
         "::Submunitions::Grenade", 32, 0, random(0,360),
         CMF_AIMDIRECTION|CMF_ABSOLUTEANGLE));
       aux.special1 = special1;
@@ -53,8 +52,10 @@ class ::Submunitions::Grenade : Actor {
   uint damage;
   uint lifetime;
   uint blast_radius;
+  property UpgradePriority: special1;
 
   Default {
+    ::Submunitions::Grenade.UpgradePriority ::PRI_EXPLOSIVE;
     Radius 12;
     Height 24;
     Speed 15;

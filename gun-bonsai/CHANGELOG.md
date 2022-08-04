@@ -4,6 +4,7 @@
 - Balance: Thorns only procs elemental effects on nearby enemies.
 - Balance: Swiftness now grants 35 tics (+7 per additional level) per kill
 - Balance: Swiftness cap is now the same as the initial grant, and increases by 5 tics per kill during a swiftness combo
+- Balance: Submunitions no longer trigger more Submunitions on kill
 - Change: README compatibility/known issues sections reworked some; compat note for Hellrider
 - Fix: crash when dying with the Juggler upgrade
 - Fix: attacking friendlies no longer awards XP or procs upgrade effects

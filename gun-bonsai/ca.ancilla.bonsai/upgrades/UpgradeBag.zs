@@ -95,7 +95,9 @@ class ::UpgradeBag : Object play {
 
   void OnKill(PlayerPawn pawn, Actor shot, Actor target) {
     for (uint i = 0; i < upgrades.Size(); ++i) {
-      // No priority checks -- fires unconditionally.
+      // No priority checks -- fires unconditionally. This is so that upgrades that
+      // have both an ondamage effect and an onkill effect can function, but means
+      // that upgrades that want to avoid recursing must check for that themselves.
       upgrades[i].OnKill(pawn, shot, target);
     }
   }
