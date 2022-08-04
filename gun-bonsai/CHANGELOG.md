@@ -11,6 +11,7 @@
 - Fix: crash when using debug commands to add an upgrade that doesn't exist
 - Fix: music and sound effects no longer stop when Swiftness triggers
 - Fix: crash when using `bonsai-debug,w-up` incorrectly
+- Fix: crash when using Elemental Blast or Elemental Wave and the target vanishes unexpectedly
 
 # 0.8.2
 

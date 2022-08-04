@@ -111,8 +111,7 @@ class ::ElementalBlast : ::ElementalSynthesis {
     let aoe = ::ElementalSynthesis::AoE(target.Spawn(
       "::ElementalSynthesis::Aoe",
       (target.pos.x, target.pos.y, target.pos.z + target.height/2)));
-    aoe.src = target;
-    aoe.parent = self;
+    aoe.InitFrom(self, target, target.radius*7);
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
@@ -127,8 +126,7 @@ class ::ElementalWave : ::ElementalSynthesis {
     let aoe = ::ElementalSynthesis::AoE(pawn.Spawn(
       "::ElementalSynthesis::Aoe",
       (pawn.pos.x, pawn.pos.y, pawn.pos.z + pawn.height/2)));
-    aoe.src = target;
-    aoe.parent = self;
+    aoe.InitFrom(self, target, pawn.radius*10);
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
@@ -139,10 +137,18 @@ class ::ElementalWave : ::ElementalSynthesis {
 
 class ::ElementalSynthesis::AoE : Actor {
   Actor src;
+  uint range;
   ::ElementalSynthesis parent;
 
   property UpgradePriority: special1;
   Default { ::ElementalSynthesis::AoE.UpgradePriority ::PRI_NULL; }
+
+  void InitFrom(::ElementalSynthesis parent, Actor src, uint radius) {
+    self.parent = parent;
+    self.src = src;
+    self.range = radius;
+    parent.CopyElements(src, self); // copy the dots into ourself just in case the source vanishes
+  }
 
   override void PostBeginPlay() {
     self.SetStateLabel("Spawn");
@@ -151,13 +157,12 @@ class ::ElementalSynthesis::AoE : Actor {
   override int DoSpecialDamage(Actor target, int damage, Name damagetype) {
     DEBUG("DoSpecialDamage: AoE vs. %s", target.GetTag());
     if (target != src && target.bISMONSTER) {
-      parent.CopyElements(src, target);
+      parent.CopyElements(self, target);
     }
     return 0;
   }
 
   void SpawnParticles() {
-    let range = src.radius * 5;
     for (uint i = 0; i < 16; ++i) {
       A_SpawnParticle(
         parent.GetColour(0), SPF_FULLBRIGHT|SPF_RELVEL|SPF_RELACCEL,
@@ -177,7 +182,7 @@ class ::ElementalSynthesis::AoE : Actor {
   States {
     Spawn:
       TNT1 A 1 NoDelay SpawnParticles();
-      TNT1 A 1 A_Explode(1, src.radius * 5, XF_NOSPLASH, false, src.radius * 5);
+      TNT1 A 1 A_Explode(1, range, XF_NOSPLASH, false, range);
       STOP;
   }
 }
