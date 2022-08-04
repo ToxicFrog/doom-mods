@@ -23,7 +23,7 @@ class ::Debug : Object play {
     if (upgrade.IndexOf(":"..":") == 0) upgrade = "TFLV_Upgrade_" .. upgrade.Mid(2);
     class<::Upgrade::BaseUpgrade> cls = upgrade;
     if (!cls) {
-      console.printf("%s either doesn't exist or isn't a subclass of BaseUpgrade");
+      console.printf("%s either doesn't exist or isn't a subclass of BaseUpgrade", upgrade);
       return;
     }
     console.printf("Adding %d levels of %s to current weapon.", n, upgrade);

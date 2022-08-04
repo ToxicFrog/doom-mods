@@ -10,6 +10,7 @@
 - Fix: HP/AC caps for Scavenge and Dark Harvest are now based on the player's max health rather than on a hardcoded value of 100.
 - Fix: crash when using debug commands to add an upgrade that doesn't exist
 - Fix: music and sound effects no longer stop when Swiftness triggers
+- Fix: crash when using `bonsai-debug,w-up` incorrectly
 
 # 0.8.2
 
