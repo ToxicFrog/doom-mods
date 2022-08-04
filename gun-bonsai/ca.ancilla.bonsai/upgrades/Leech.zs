@@ -19,8 +19,10 @@ class ::LifeLeech : ::BaseUpgrade {
     let hp = Health(target.Spawn(
       GetBonusName(), ::LeechUtil.WigglePos(target), ALLOW_REPLACE));
     if (!hp) return;
+    let cap = player.GetMaxHealth(true);
     hp.amount = target.bBOSS ? level*10 : level;
-    hp.maxamount = clamp(player.MaxHealth * level, player.MaxHealth, 2*player.MaxHealth);
+    hp.maxamount = clamp(cap * level, cap, 2*cap);
+    DEBUG("hp=%d/%d (base: %d)", hp.amount, hp.maxamount, cap);
   }
 
   string GetBonusName() {
@@ -42,6 +44,8 @@ class ::LifeLeech::Bonus : HealthBonus {
     Scale 0.07;
     RenderStyle "Add";
     Inventory.PickupMessage "";
+    Inventory.Amount 1;
+    Inventory.MaxAmount 100;
   }
   States {
     Spawn:
@@ -57,10 +61,12 @@ class ::ArmourLeech : ::BaseUpgrade {
     let ap = BasicArmorBonus(target.Spawn(
       GetBonusName(), ::LeechUtil.WigglePos(target), ALLOW_REPLACE));
     if (!ap) return;
+    let cap = player.GetMaxHealth(true);
     ap.SaveAmount = target.bBOSS ? level*20 : level*2;
     // Armour cap is based on max health rather than max armour because max armour
     // is not stored in the player but in individual armour pickups.
-    ap.MaxSaveAmount = clamp(player.MaxHealth * level, player.MaxHealth, 2*player.MaxHealth);
+    ap.MaxSaveAmount = clamp(cap * level, cap, 2*cap);
+    DEBUG("ap=%d/%d (base: %d)", ap.SaveAmount, ap.MaxSaveAmount, cap);
   }
 
   string GetBonusName() {
@@ -76,12 +82,14 @@ class ::ArmourLeech : ::BaseUpgrade {
   }
 }
 
-class ::ArmourLeech::Bonus : ArmorBonus {
+class ::ArmourLeech::Bonus : BasicArmorBonus {
   Default {
     -COUNTITEM;
     Scale 0.07;
     RenderStyle "Add";
     Inventory.PickupMessage "";
+    Armor.SaveAmount 2;
+    Armor.MaxSaveAmount 100;
   }
   States {
     Spawn:

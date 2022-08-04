@@ -1,7 +1,7 @@
 // Melee-only upgrades.
 // These tend to be much more powerful than the non-melee equivalents.
 #namespace TFLV::Upgrade;
-#debug off
+#debug off;
 
 class ::Agonizer : ::BaseUpgrade {
   override void OnDamageDealt(Actor pawn, Actor shot, Actor target, int damage) {
@@ -36,7 +36,7 @@ class ::DarkHarvest : ::BaseUpgrade {
     // aren't intrinsic to the player or even intrinsic to the armour they're
     // wearing, they're intrinsic to the *armour pickup* which vanishes as soon
     // as it grants them AC!
-    let cap = player.MaxHealth * (1.0 + 0.2*level);
+    let cap = player.GetMaxHealth() * (1.0 + 0.2*level);
     let hp = Health(player.Spawn("::DarkHarvest::Health"));
     if (hp) {
       hp.Amount = amount;
@@ -62,7 +62,7 @@ class ::DarkHarvest : ::BaseUpgrade {
   }
 }
 
-class ::DarkHarvest::Health : Health {
+class ::DarkHarvest::Health : HealthBonus {
   Default {
     Inventory.Amount 1;
     Inventory.MaxAmount 200;
