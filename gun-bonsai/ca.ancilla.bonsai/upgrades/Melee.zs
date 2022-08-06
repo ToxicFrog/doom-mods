@@ -123,8 +123,6 @@ class ::Swiftness::Aux : PowerupGiver {
 }
 
 class ::Swiftness::Power : PowerTimeFreezer {
-  Default { Powerup.ColorMap 0.2,0.2,0.2, 0.0,0.0,0.0; }
-
   override void InitEffect() {
     super.InitEffect();
     S_ResumeSound(false); // unpause music and SFX

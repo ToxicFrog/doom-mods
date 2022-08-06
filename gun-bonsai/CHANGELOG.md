@@ -1,3 +1,7 @@
+# 0.8.5
+
+- Fix: remove stray VFX from Swiftness that were left in there from debugging
+
 # 0.8.4
 
 - Balance: Swiftness now grants 35 tics (+7 per additional level) per kill

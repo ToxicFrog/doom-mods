@@ -1,7 +1,7 @@
 NAME=GunBonsai
-VERSION=0.8.4
-LUMPS=zscript.txt MAPINFO CVARINFO SNDINFO KEYCONF MENUDEF GLDEFS LANGUAGE.* sprites sounds
-LUMPS+=*.md COPYING.freedoom
+VERSION=0.8.5
+LUMPS=zscript.txt LANGUAGE.* sprites sounds *.md COPYING.freedoom
+LUMPS+=MAPINFO CVARINFO SNDINFO KEYCONF MENUDEF GLDEFS BONSAIRC
 ZSDIR=ca.ancilla.bonsai
 
 include ${TOPDIR}/rules.make
