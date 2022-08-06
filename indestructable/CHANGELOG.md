@@ -1,3 +1,7 @@
+# 0.2.2
+
+- Fix: remove leftover debugging message
+
 # 0.2.1
 
 - New: options for different visual effects when the mod activates, as well as disabling VFX entirely.

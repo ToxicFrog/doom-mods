@@ -127,7 +127,6 @@ class ::IndestructableForce : Inventory {
   }
 
   void ShowLevelStartMessage() {
-    console.printf("showstartmsg");
     AdjustLives(0, -1, -1);
   }
 
