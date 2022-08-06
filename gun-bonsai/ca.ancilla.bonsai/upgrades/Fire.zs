@@ -53,7 +53,7 @@ class ::Conflagration : ::DotModifier {
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
-    return HasMasteryPrereq(info, "::SearingHeat", "::InfernalKiln");
+    return HasMasteryPrereq(info, "::BurningTerror", "::InfernalKiln");
   }
 }
 
@@ -92,7 +92,7 @@ class ::InfernalKiln : ::ElementalUpgrade {
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
-    return HasMasteryPrereq(info, "::SearingHeat", "::Conflagration");
+    return HasMasteryPrereq(info, "::BurningTerror", "::Conflagration");
   }
 }
 

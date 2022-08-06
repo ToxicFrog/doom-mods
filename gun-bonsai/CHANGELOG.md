@@ -1,6 +1,7 @@
 # 0.8.5
 
 - Fix: remove stray VFX from Swiftness that were left in there from debugging
+- Fix: Infernal Kiln and Conflagration should now actually be available in the upgrade pool
 
 # 0.8.4
 
