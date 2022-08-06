@@ -1,5 +1,6 @@
 # 0.8.5
 
+- Balance: Fire now burns slightly less aggressively
 - Fix: remove stray VFX from Swiftness that were left in there from debugging
 - Fix: Infernal Kiln and Conflagration should now actually be available in the upgrade pool
 

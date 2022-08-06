@@ -98,8 +98,8 @@ class ::InfernalKiln : ::ElementalUpgrade {
 
 // Fire will try to do this proportion of the target's health in damage.
 const BASE_FIRE_FACTOR = 0.5;
-const HEAT_FACTOR = 0.8;
-const DAMAGE_PER_STACK = 5.0; // per dot tick, so multiply by 5 to get DPS
+const HEAT_FACTOR = 0.9;
+const DAMAGE_PER_STACK = 4.0; // per dot tick, so multiply by 5 to get DPS
 
 class ::FireDot : ::Dot {
   bool burning;
