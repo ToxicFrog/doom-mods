@@ -89,7 +89,7 @@ class ::ElementalBeam : ::ElementalSynthesis {
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
     return super.IsSuitableForWeapon(info)
       && info.IsHitscanWeapon()
-      && !info.weapon.bMELEEWEAPON;
+      && !info.wpn.bMELEEWEAPON;
   }
 }
 
@@ -131,7 +131,7 @@ class ::ElementalWave : ::ElementalSynthesis {
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
     return super.IsSuitableForWeapon(info)
-      && info.weapon.bMELEEWEAPON;
+      && info.wpn.bMELEEWEAPON;
   }
 }
 

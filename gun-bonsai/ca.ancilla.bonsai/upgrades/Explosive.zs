@@ -18,7 +18,7 @@ class ::ExplosiveShots : ::BaseUpgrade {
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
-    return info.IsHitscanWeapon() && !info.weapon.bMELEEWEAPON;
+    return info.IsHitscanWeapon() && !info.wpn.bMELEEWEAPON;
   }
 }
 

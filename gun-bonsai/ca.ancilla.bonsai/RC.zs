@@ -55,7 +55,7 @@ class ::RC::Node : Object play {
   }
 
   virtual void Configure(::WeaponInfo info) {
-    console.printf("Configure: %s", info.weaponType);
+    console.printf("Configure: %s", info.wpnType);
   }
 
   static void ValidateUpgrades(array<string> upgrades) {

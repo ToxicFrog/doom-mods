@@ -4,11 +4,14 @@
 #namespace TFLV;
 
 class ::WeaponInfo : Object play {
-  // At the moment "weapon" is used both as a convenient way to remember a reference
+  // At the moment "wpn" is used both as a convenient way to remember a reference
   // to the weapon itself, and as the key for the info lookup when the caller has
   // a weapon but not the WeaponInfo.
-  Weapon weapon;
-  string weaponType;
+  // We call it "wpn" rather than "weapon" because ZScript gets super confused
+  // if we have both a type and an instance variable in scope with the same name.
+  // Sigh.
+  Weapon wpn;
+  string wpnType;
   ::Upgrade::UpgradeBag upgrades;
   double XP;
   uint maxXP;
@@ -22,7 +25,7 @@ class ::WeaponInfo : Object play {
   ::LegendoomWeaponInfo ld_info;
 
   // Called when a new WeaponInfo is created. This should initialize the entire object.
-  void Init(Actor wpn) {
+  void Init(Weapon wpn) {
     DEBUG("Initializing WeaponInfo for %s", TAG(wpn));
     upgrades = new("::Upgrade::UpgradeBag");
     ld_info = new("::LegendoomWeaponInfo");
@@ -32,18 +35,18 @@ class ::WeaponInfo : Object play {
     level = 0;
     maxXP = GetXPForLevel(level+1);
     DEBUG("WeaponInfo initialize, class=%s level=%d xp=%d/%d",
-        weaponType, level, XP, maxXP);
+        wpnType, level, XP, maxXP);
   }
 
   // Called when this WeaponInfo is being reassociated with a new weapon. It
   // should keep most of its stats.
-  void Rebind(Actor wpn) {
-    self.weapon = Weapon(wpn);
-    self.upgrades.owner = self.weapon.owner;
-    if (self.weaponType != wpn.GetClassName()) {
+  void Rebind(Weapon wpn) {
+    self.wpn = wpn;
+    self.upgrades.owner = self.wpn.owner;
+    if (self.wpnType != wpn.GetClassName()) {
       // Rebinding to a weapon of an entirely different type. Reset the attack
       // modality inference counters.
-      self.weaponType = wpn.GetClassName();
+      self.wpnType = wpn.GetClassName();
       hitscan_shots = 0;
       projectile_shots = 0;
     }
@@ -69,10 +72,10 @@ class ::WeaponInfo : Object play {
 
   uint GetXPForLevel(uint level) const {
     uint XP = ::Settings.base_level_cost() * level;
-    if (weapon.bMeleeWeapon) {
+    if (wpn.bMeleeWeapon) {
       XP *= ::Settings.level_cost_mul_for("melee");
     }
-    if (weapon.bWimpy_Weapon) {
+    if (wpn.bWimpy_Weapon) {
       XP *= ::Settings.level_cost_mul_for("wimpy");
     }
     // For some reason it can't resolve bExplosive and bBFG
@@ -96,15 +99,15 @@ class ::WeaponInfo : Object play {
   }
 
   void Fanfare() {
-    weapon.owner.A_Log(
-      string.format("Your %s is ready to level up!", weapon.GetTag()),
+    wpn.owner.A_Log(
+      string.format("Your %s is ready to level up!", wpn.GetTag()),
       true);
     if (::Settings.levelup_flash()) {
-      weapon.owner.A_SetBlend("00 80 FF", 0.8, 40);
-      weapon.owner.A_SetBlend("00 80 FF", 0.4, 350);
+      wpn.owner.A_SetBlend("00 80 FF", 0.8, 40);
+      wpn.owner.A_SetBlend("00 80 FF", 0.4, 350);
     }
     if (::Settings.levelup_sound() != "") {
-      weapon.owner.A_StartSound(::Settings.levelup_sound(), CHAN_AUTO,
+      wpn.owner.A_StartSound(::Settings.levelup_sound(), CHAN_AUTO,
         CHANF_OVERLAP|CHANF_UI|CHANF_NOPAUSE|CHANF_LOCAL);
     }
   }
@@ -112,13 +115,13 @@ class ::WeaponInfo : Object play {
   bool StartLevelUp() {
     if (XP < maxXP) return false;
 
-    let giver = ::WeaponUpgradeGiver(weapon.owner.GiveInventoryType("::WeaponUpgradeGiver"));
+    let giver = ::WeaponUpgradeGiver(wpn.owner.GiveInventoryType("::WeaponUpgradeGiver"));
     giver.wielded = self;
 
     if (::Settings.have_legendoom()
         && ::Settings.gun_levels_per_ld_effect() > 0
         && (level % ::Settings.gun_levels_per_ld_effect()) == 0) {
-      let ldGiver = ::LegendoomEffectGiver(weapon.owner.GiveInventoryType("::LegendoomEffectGiver"));
+      let ldGiver = ::LegendoomEffectGiver(wpn.owner.GiveInventoryType("::LegendoomEffectGiver"));
       ldGiver.info = self.ld_info;
     }
 
@@ -129,18 +132,18 @@ class ::WeaponInfo : Object play {
     XP -= maxXP;
     if (!upgrade) {
       // Don't adjust maxXP -- they didn't gain a level.
-      weapon.owner.A_Log("Level-up rejected!", true);
+      wpn.owner.A_Log("Level-up rejected!", true);
       if (XP >= maxXP) Fanfare();
       return;
     }
 
     ++level;
-    ::PerPlayerStats.GetStatsFor(weapon.owner).AddPlayerXP(1);
+    ::PerPlayerStats.GetStatsFor(wpn.owner).AddPlayerXP(1);
     maxXP = GetXPForLevel(level+1);
     upgrades.AddUpgrade(upgrade);
-    weapon.owner.A_Log(
+    wpn.owner.A_Log(
       string.format("Your %s gained a level of %s!",
-        weapon.GetTag(), upgrade.GetName()),
+        wpn.GetTag(), upgrade.GetName()),
       true);
     if (XP >= maxXP) Fanfare();
   }

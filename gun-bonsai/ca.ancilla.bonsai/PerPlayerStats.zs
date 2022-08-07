@@ -88,8 +88,8 @@ class ::PerPlayerStats : Inventory {
     // an existing entry for a mundane weapon of the same type and clear it if so.
     cls = cls.Left(cls.IndexOf("EffectActive"));
     for (int i = 0; i < weapons.size(); ++i) {
-      if (weapons[i].weapon is cls) {
-        weapons[i].weapon = null;
+      if (weapons[i].wpn is cls) {
+        weapons[i].wpn = null;
       }
     }
     return super.HandlePickup(item);
@@ -112,7 +112,7 @@ class ::PerPlayerStats : Inventory {
     stats.wxp = floor(info.XP);
     stats.wmax = info.maxXP;
     stats.wlvl = info.level;
-    stats.wname = info.weapon.GetTag();
+    stats.wname = info.wpn.GetTag();
     stats.wupgrades = info.upgrades;
     stats.effect = info.ld_info.currentEffectName;
     return true;
@@ -127,7 +127,7 @@ class ::PerPlayerStats : Inventory {
   // and anything calling this should be null-checking anyways.
   ::WeaponInfo GetInfoForCurrentWeapon() const {
     Weapon wielded = owner.player.ReadyWeapon;
-    if (wielded && infoForCurrentWeapon && infoForCurrentWeapon.weapon == wielded) {
+    if (wielded && infoForCurrentWeapon && infoForCurrentWeapon.wpn == wielded) {
       return infoForCurrentWeapon;
     }
     return null;
@@ -139,7 +139,7 @@ class ::PerPlayerStats : Inventory {
   // wielded at least once and is still bound to its info object.
   ::WeaponInfo GetInfoFor(Weapon wpn) const {
     for (int i = 0; i < weapons.size(); ++i) {
-      if (weapons[i].weapon == wpn) {
+      if (weapons[i].wpn == wpn) {
         return weapons[i];
       }
     }
@@ -201,7 +201,7 @@ class ::PerPlayerStats : Inventory {
     for (int i = 0; i < weapons.size(); ++i) {
       // Can never rebind across different weapon classes.
       // BONSAIRC: we need to take equivalencies into account here.
-      if (weapons[i].weaponType != wpn.GetClassName()) continue;
+      if (weapons[i].wpnType != wpn.GetClassName()) continue;
       if (mode == TFLV_BIND_CLASS) {
         // In class-bound mode, all weapons of the same type share the same WeaponInfo.
         // When you switch weapons, the WeaponInfo for that type gets rebound to the
@@ -212,7 +212,7 @@ class ::PerPlayerStats : Inventory {
         // In inheritable weapon-bound mode, a weaponinfo is only reusable if (a)
         // the weapon it was bound to no longer exists, or (b) the weapon it was bound
         // to is no longer in our inventory. We prefer the latter, if both are options.
-        if (!maybe_info || maybe_info.weapon && weapons[i].weapon == null) {
+        if (!maybe_info || maybe_info.wpn && weapons[i].wpn == null) {
           maybe_info = weapons[i];
         }
       } else {
@@ -234,7 +234,7 @@ class ::PerPlayerStats : Inventory {
     // can be rebound to new weapons.
     if (::Settings.upgrade_binding_mode() != TFLV_BIND_WEAPON) return;
     for (int i = weapons.size() - 1; i >= 0; --i) {
-      if (!weapons[i].weapon) {
+      if (!weapons[i].wpn) {
         weapons.Delete(i);
       }
     }

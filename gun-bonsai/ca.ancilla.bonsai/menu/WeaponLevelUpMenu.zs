@@ -13,7 +13,7 @@ class ::WeaponLevelUpMenu : ::GenericMenu {
     PushText(
       string.format(
         "Your %s has gained a level!",
-        giver.wielded.weapon.GetTag()),
+        giver.wielded.wpn.GetTag()),
       Font.CR_GOLD);
     PushText("Choose an upgrade:", Font.CR_GOLD);
 

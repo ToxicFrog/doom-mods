@@ -22,7 +22,7 @@ class ::LegendoomEffectGiver : ::UpgradeGiver {
       return false;
     }
 
-    wpn = info.info.weapon; // Get it from the enclosing WeaponInfo
+    wpn = info.info.wpn; // Get it from the enclosing WeaponInfo
     prefix = wpn.GetClassName();
 
     if (info.effects.Size() >= info.effectSlots && !info.canReplaceEffects) {

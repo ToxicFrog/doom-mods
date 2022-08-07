@@ -4,7 +4,6 @@
 #include "./Registry.zsc"
 #include "./UpgradeBag.zsc"
 
-#include "./Beam.zsc"
 #include "./Explosive.zsc"
 #include "./ExplosiveDeath.zsc"
 #include "./Fragmentation.zsc"

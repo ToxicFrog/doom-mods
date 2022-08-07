@@ -19,7 +19,7 @@ class ::LegendoomWeaponInfo : Object play {
 
   void Rebind(::WeaponInfo info) {
     string LDWeaponType = "LDWeapon";
-    if (info.weapon is LDWeaponType) {
+    if (info.wpn is LDWeaponType) {
       // If it's a Legendoom weapon, calling this should be safe; it'll keep
       // its current effects, but inherit the rarity of the new weapon. If the
       // new weapon has a new effect on it, that'll be added to the effect list
@@ -33,9 +33,9 @@ class ::LegendoomWeaponInfo : Object play {
   }
 
   void InitLegendoom() {
-    string prefix = info.weapon.GetClassName();
+    string prefix = info.wpn.GetClassName();
 
-    maxRarity = ::LegendoomUtil.GetWeaponRarity(info.weapon.owner, prefix);
+    maxRarity = ::LegendoomUtil.GetWeaponRarity(info.wpn.owner, prefix);
     canReplaceEffects = GunRarityMatchesSetting(::Settings.which_guns_can_replace(), maxRarity);
     if (GunRarityMatchesSetting(::Settings.which_guns_can_learn(), maxRarity)) {
       effectSlots = ::Settings.base_ld_effect_slots()
@@ -50,7 +50,7 @@ class ::LegendoomWeaponInfo : Object play {
     }
 
     // And they might start with an effect, so we should record that.
-    string effect = ::LegendoomUtil.GetActiveWeaponEffect(info.weapon.owner, prefix);
+    string effect = ::LegendoomUtil.GetActiveWeaponEffect(info.wpn.owner, prefix);
     if (effects.find(effect) != effects.size()) {
       currentEffect = effects.find(effect);
       currentEffectName = ::LegendoomUtil.GetEffectTitle(effect);
@@ -64,7 +64,7 @@ class ::LegendoomWeaponInfo : Object play {
     }
 
     DEBUG("%s: effects=%d, rarity=%d, effect=%s",
-        info.weapon.GetTag(), effectSlots, maxRarity, effect);
+        info.wpn.GetTag(), effectSlots, maxRarity, effect);
   }
 
   void CycleEffect() {
@@ -77,10 +77,10 @@ class ::LegendoomWeaponInfo : Object play {
     //if (index == currentEffect) return;
 
     if (currentEffect >= 0)
-      info.weapon.owner.TakeInventory(effects[currentEffect], 1);
+      info.wpn.owner.TakeInventory(effects[currentEffect], 1);
     currentEffect = index;
     currentEffectName = ::LegendoomUtil.GetEffectTitle(effects[currentEffect]);
-    info.weapon.owner.GiveInventory(effects[currentEffect], 1);
+    info.wpn.owner.GiveInventory(effects[currentEffect], 1);
   }
 
   void DiscardEffect(uint index) {
@@ -90,7 +90,7 @@ class ::LegendoomWeaponInfo : Object play {
     if (index == currentEffect) {
       // The effect they want to discard is the current one.
       // Remove the effect now, then CycleEffect afterwards to select a new valid one.
-      info.weapon.owner.TakeInventory(effects[index], 1);
+      info.wpn.owner.TakeInventory(effects[index], 1);
       effects.Delete(index);
       CycleEffect();
     } else if (index < currentEffect) {

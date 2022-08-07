@@ -15,7 +15,7 @@ class ::Submunitions : ::BaseUpgrade {
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
-    return !info.weapon.bMELEEWEAPON;
+    return !info.wpn.bMELEEWEAPON;
   }
 }
 

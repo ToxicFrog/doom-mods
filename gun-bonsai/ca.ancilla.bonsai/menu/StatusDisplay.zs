@@ -25,7 +25,7 @@ class ::StatusDisplay : ::GenericMenu {
     PushText("", Font.CR_GOLD);
     PushText("Weapon Stats", Font.CR_GOLD);
     PushKeyValueText("Type", string.format("%s (%s)",
-        stats.winfo.weapon.GetTag(), stats.winfo.weapon.GetClassName()));
+        stats.winfo.wpn.GetTag(), stats.winfo.wpn.GetClassName()));
     PushKeyValueText(string.format("Level %d", stats.wlvl),
         string.format("%d/%d XP", stats.wxp, stats.wmax));
     stats.wupgrades.DumpToMenu(self);
