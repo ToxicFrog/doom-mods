@@ -193,11 +193,14 @@ class ::PerPlayerStats : Inventory {
     TFLV_UpgradeBindingMode mode = ::Settings.upgrade_binding_mode();
 
     // Can't rebind WeaponInfo in BIND_WEAPON mode.
+    // BONSAIRC: might want to special case this for weapons considered equivalent
+    // if the original is null, similar to BIND_WEAPON_INHERITABLE.
     if (mode == TFLV_BIND_WEAPON) return null;
 
     ::WeaponInfo maybe_info = null;
     for (int i = 0; i < weapons.size(); ++i) {
       // Can never rebind across different weapon classes.
+      // BONSAIRC: we need to take equivalencies into account here.
       if (weapons[i].weaponType != wpn.GetClassName()) continue;
       if (mode == TFLV_BIND_CLASS) {
         // In class-bound mode, all weapons of the same type share the same WeaponInfo.

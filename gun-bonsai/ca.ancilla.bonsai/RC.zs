@@ -63,24 +63,53 @@ class ::RC::Node : Object play {
     for (uint i = 0; i < upgrades.size(); ++i) {
       let cls = (Class<::Upgrade::BaseUpgrade>)(upgrades[i]);
       if (cls) real.push(upgrades[i]);
-      else console.printf("\c[YELLOW]Class '%s' is not defined or is not a subclass of BaseUpgrade", upgrades[i]);
+      else console.printf("\c[YELLOW][BONSAIRC] Class '%s' is not defined or is not a subclass of BaseUpgrade.", upgrades[i]);
     }
     upgrades.move(real);
+  }
+
+  static void ExpandWildcard(array<string> real, string wildcard) {
+    if (wildcard.IndexOf("*") != wildcard.length()-1) {
+      console.printf("\c[YELLOW][BONSAIRC] Malformed wildcard '%s' -- only prefixes ('foo*') are currently supported.", wildcard);
+      return;
+    }
+    string prefix = wildcard.left(wildcard.length()-1).MakeLower();
+    uint nrof = 0;
+    for (uint i = 0; i < allactorclasses.size(); ++i) {
+      let wepcls = (Class<Weapon>)(allactorclasses[i]);
+      if (!wepcls) continue;
+      string nm = wepcls.GetClassName();
+      nm = nm.MakeLower();
+      if (nm.IndexOf(prefix) == 0) {
+        DEBUG("Add class %s from wildcard %s", nm, wildcard);
+        real.push(wepcls.GetClassName());
+        ++nrof;
+      }
+    }
+    if (!nrof)
+      console.printf("\c[YELLOW][BONSAIRC] Wildcard '%s' did not match any weapon actors.", wildcard);
   }
 
   static void ValidateWeapons(array<string> weapons) {
     array<string> real;
     for (uint i = 0; i < weapons.size(); ++i) {
       if (weapons[i].IndexOf("*") != -1) {
-        // wildcard handling
-        console.printf("\c[YELLOW]Wildcard '%s' is not supported yet", weapons[i]);
+        ExpandWildcard(real, weapons[i]);
       } else {
         let cls = (Class<Weapon>)(weapons[i]);
         if (cls) real.push(weapons[i]);
-        else console.printf("\c[YELLOW]Class '%s' is not defined or is not a subclass of Weapon", weapons[i]);
+        else console.printf("\c[YELLOW][BONSAIRC] Class '%s' is not defined or is not a subclass of Weapon", weapons[i]);
       }
     }
     weapons.move(real);
+  }
+
+  static void PrintArray(string head, array<string> tail) {
+    let buf = "";
+    buf.AppendFormat("%s", head);
+    for (uint i = 0; i < tail.size(); ++i)
+      buf.AppendFormat(" %s", tail[i]);
+    console.printf(buf);
   }
 }
 
@@ -177,7 +206,8 @@ class ::RC::Merge : ::RC::Node {
   }
 
   override void Finalize(::EventHandler handler) {
-    ValidateWeapons(self.weapons);
+    ValidateWeapons(weapons);
+    PrintArray("[BONSAIRC] Merging weapons:", weapons);
   }
 
   override void Configure(::WeaponInfo info) {
@@ -199,6 +229,8 @@ class ::RC::Disable : ::RC::Node {
   override void Finalize(::EventHandler handler) {
     ValidateWeapons(self.weapons);
     ValidateUpgrades(self.upgrades);
+    PrintArray("[BONSAIRC] Disabling upgrades:", upgrades);
+    PrintArray("           On weapons:", weapons);
   }
 
   override void Configure(::WeaponInfo info) {
@@ -219,6 +251,9 @@ class ::RC::Type : ::RC::Node {
 
   override void Finalize(::EventHandler handler) {
     ValidateWeapons(self.weapons);
+    PrintArray(
+      string.format("[BONSAIRC] Forcing type %d for:", type),
+      weapons);
   }
 
   override void Configure(::WeaponInfo info) {
