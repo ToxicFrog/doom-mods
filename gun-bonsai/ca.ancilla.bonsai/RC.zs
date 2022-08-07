@@ -12,6 +12,12 @@ enum ::WeaponType {
 }
 
 class ::RC : Object play {
+  static ::RC GetRC() {
+    let seh = ::EventHandler(StaticEventHandler.Find("::EventHandler"));
+    if (!seh) return null;
+    return seh.rc;
+  }
+
   static ::RC LoadAll(string lumpname) {
     let rc = ::RC(new("::RC"));
     let parser = ::RCParser(new("::RCParser"));
@@ -42,6 +48,7 @@ class ::RC : Object play {
   }
 
   void Configure(::WeaponInfo info) {
+    DEBUG("Configure: %s", info.wpnType);
     for (uint i = 0; i < nodes.size(); ++i) {
       nodes[i].Configure(info);
     }
@@ -97,7 +104,7 @@ class ::RC::Node : Object play {
         ExpandWildcard(real, weapons[i]);
       } else {
         let cls = (Class<Weapon>)(weapons[i]);
-        if (cls) real.push(weapons[i]);
+        if (cls) real.push(cls.GetClassName());
         else console.printf("\c[YELLOW][BONSAIRC] Class '%s' is not defined or is not a subclass of Weapon", weapons[i]);
       }
     }
@@ -211,7 +218,8 @@ class ::RC::Merge : ::RC::Node {
   }
 
   override void Configure(::WeaponInfo info) {
-    super.configure(info);
+    PrintArray("[RC] Installing equivalencies:", weapons);
+    info.SetEquivalencies(weapons);
   }
 }
 

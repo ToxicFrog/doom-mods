@@ -51,6 +51,20 @@ class ::WeaponInfo : Object play {
       projectile_shots = 0;
     }
     ld_info.Rebind(self);
+    ::RC.GetRC().Configure(self);
+  }
+
+  // List of classes that this weapon is considered equivalent to.
+  array<string> equivalencies;
+  void SetEquivalencies(array<string> classes) {
+    equivalencies.copy(classes);
+  }
+
+  bool IsEquivalentTo(Weapon wpn) {
+    let result = wpn.GetClassName() == self.wpnType
+      || equivalencies.find(wpn.GetClassName()) != equivalencies.size();
+    DEBUG("Eqv? %s %s -> %d", wpnType, TAG(wpn), result);
+    return result;
   }
 
   // Given another weapon to look at, determine if this WeaponInfo can be rebound
@@ -74,15 +88,13 @@ class ::WeaponInfo : Object play {
     // When you switch weapons, the WeaponInfo for that type gets rebound to the
     // newly wielded weapon.
     if (mode == ::BIND_CLASS) {
-      // TODO: check equivalencies here.
-      return self.wpnType == wpn.GetClassName();
+      return IsEquivalentTo(wpn);
     }
 
     // In inheritable weapon-bound mode, a weaponinfo is only reusable if the
     // weapon it was bound to no longer exists.
     if (mode == ::BIND_WEAPON_INHERITABLE) {
-      // TODO: check equivalencies here.
-      return self.wpnType == wpn.GetClassName() && self.wpn == null;
+      return IsEquivalentTo(wpn) && self.wpn == null;
     }
 
     ThrowAbortException("Unknown UpgradeBindingMode %d!", mode);
