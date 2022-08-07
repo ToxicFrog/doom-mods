@@ -190,14 +190,6 @@ class ::PerPlayerStats : Inventory {
   // Given a weapon, try to find a compatible existing unused WeaponInfo we can
   // attach to it.
   ::WeaponInfo BindExistingInfoTo(Weapon wpn) {
-    TFLV_UpgradeBindingMode mode = ::Settings.upgrade_binding_mode();
-
-    // Can't rebind WeaponInfo in BIND_WEAPON mode.
-    // BONSAIRC: might want to special case this for weapons considered equivalent
-    // if the original is null, similar to BIND_WEAPON_INHERITABLE.
-    if (mode == TFLV_BIND_WEAPON) return null;
-
-    ::WeaponInfo maybe_info = null;
     for (int i = 0; i < weapons.size(); ++i) {
       if (weapons[i].CanRebindTo(wpn)) {
         weapons[i].Rebind(wpn);
