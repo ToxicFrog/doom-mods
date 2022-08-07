@@ -1,0 +1,53 @@
+# ifdef <classes> { ... }
+# Executes the given block only if at least one of the listed classes is defined.
+# Note that wildcards are not supported here -- you must use actual class names.
+#
+# register <upgrades> ;
+# Add the listed upgrades to the registry, making them available for play.
+# It's safe to add the same upgrade more than once.
+#
+# unregister <upgrades> ;
+# Remove the listed upgrades from the registry. Use this to disable upgrades that
+# aren't compatible with some mods.
+#
+# merge <classes> ;
+# Consider all of the listed classes to the same weapon type. This is primarily
+# useful when one weapon is used as a replacement or upgrade for another one.
+#
+# disable <classes> : <upgrades> ;
+# Disable the listed upgrades on the given weapon classes only.
+#
+# type <classes> : <type> ;
+# Declare the listed weapons to be of the given type, overriding autodetection.
+# Type is one of: MELEE HITSCAN PROJECTILE IGNORE AUTO
+# IGNORE will force Bonsai to ignore that weapon entirely and not assign XP to it.
+# AUTO will force it to autodetect, useful for overriding an earlier directive.
+#
+# A <classes> list is just one or more class names separated by whitespace. It
+# can also be a class prefix by appending *, e.g. Endi* will match all weapon
+# classes starting with "Endie". Class names are not case sensitive.
+#
+# An <upgrades> list is the same but for upgrade names. Wildcards are not
+# supported; exact class names must be used.
+
+# Load Indestructable upgrade only if the Indestructable mod is also present.
+ifdef TFIS_IndestructableEventHandler { register TFLV_Upgrade_Indestructable; }
+
+# Disable Juggler upgrade in Hellrider, since it doesn't work with HR weapon switching.
+ifdef EndieWeapon { unregister TFLV_Upgrade_Juggler; }
+
+# Ashes Afterglow: keep upgrades when customizing weapons, and fix melee flag on sawn-off.
+ifdef ItemAthena {
+  merge jackhammer*;
+  merge revolver*; merge glock*;
+  merge pumpaction*; merge sawedoff*;
+  merge ingram*;
+  merge napalmgun*;
+  merge junkermusket*; merge m16*;
+  type sawedoff*: HITSCAN;
+}
+
+# Hideous Destructor: ignore stuff that looks like a weapon but isn't.
+ifdef HDWeapon {
+  type HDWoundFixer HDBackpack MagManager PickupManager: IGNORE;
+}

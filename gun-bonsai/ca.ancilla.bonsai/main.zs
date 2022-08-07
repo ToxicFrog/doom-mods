@@ -4,6 +4,7 @@
 #include "./debug.zsc"
 #include "./hud.zsc"
 #include "./settings.zsc"
+#include "./RC.zsc"
 
 #include "./EventHandler.zsc"
 #include "./LegendoomEffectGiver.zsc"

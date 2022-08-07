@@ -6,6 +6,7 @@
 
 class ::EventHandler : StaticEventHandler {
   ::Upgrade::Registry UPGRADE_REGISTRY;
+  ::RC rc;
   ui ::HUD hud;
 
   override void OnRegister() {
@@ -19,6 +20,9 @@ class ::EventHandler : StaticEventHandler {
     } else {
       console.printf("Couldn't find Legendoom, LD-specific features in Gun Bonsai disabled.");
     }
+
+    rc = ::RC.LoadAll("BONSAIRC");
+    rc.Finalize(self);
   }
 
   override void PlayerSpawned(PlayerEvent evt) {
