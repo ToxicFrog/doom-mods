@@ -199,30 +199,12 @@ class ::PerPlayerStats : Inventory {
 
     ::WeaponInfo maybe_info = null;
     for (int i = 0; i < weapons.size(); ++i) {
-      // Can never rebind across different weapon classes.
-      // BONSAIRC: we need to take equivalencies into account here.
-      if (weapons[i].wpnType != wpn.GetClassName()) continue;
-      if (mode == TFLV_BIND_CLASS) {
-        // In class-bound mode, all weapons of the same type share the same WeaponInfo.
-        // When you switch weapons, the WeaponInfo for that type gets rebound to the
-        // newly wielded weapon.
+      if (weapons[i].CanRebindTo(wpn)) {
         weapons[i].Rebind(wpn);
         return weapons[i];
-      } else if (mode == TFLV_BIND_WEAPON_INHERITABLE) {
-        // In inheritable weapon-bound mode, a weaponinfo is only reusable if (a)
-        // the weapon it was bound to no longer exists, or (b) the weapon it was bound
-        // to is no longer in our inventory. We prefer the latter, if both are options.
-        if (!maybe_info || maybe_info.wpn && weapons[i].wpn == null) {
-          maybe_info = weapons[i];
-        }
-      } else {
-        ThrowAbortException("Unknown UpgradeBindingMode %d!", mode);
       }
     }
-    if (maybe_info) {
-      maybe_info.Rebind(wpn);
-    }
-    return maybe_info;
+    return null;
   }
 
   // Delete WeaponInfo entries for weapons that don't exist anymore.

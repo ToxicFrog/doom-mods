@@ -52,9 +52,9 @@ OptionMenu "GunBonsaiOptions"
 
   Option "Weapon upgrades bind to", "bonsai_upgrade_binding_mode", "GunBonsaiUpgradeBindingMode"
   Tooltip "Determines how weapon upgrades behave when you drop a weapon or are carrying multiple weapons of the same type."
-  Tooltip "\c[CYAN][individual weapon]:\c- each weapon has its own upgrades. When you drop a weapon, the upgrades go with it. In some mods dropping the weapon will lose the upgrades permanently."
-  Tooltip "\c[CYAN][individual w/inheritance]:\c- each weapon has its own upgrades, but if you drop a weapon and later pick up a new weapon of the same type, it will inherit the upgrades from the weapon you dropped."
-  Tooltip "\c[CYAN][weapon class]:\c- all weapons of the same type share the same upgrades, even if you have more than one of them in your inventory."
+  Tooltip "\c[CYAN][individual weapon]:\c- each weapon has its own upgrades. When you drop a weapon, the upgrades go with it, and if you lose a weapon permanently, the upgrades are lost forever."
+  Tooltip "\c[CYAN][individual w/inheritance]:\c- each weapon has its own upgrades, but if a weapon is lost and you later pick up a new weapon of the same type, the new weapon will inherit the upgrades of the old one."
+  Tooltip "\c[CYAN][weapon class]:\c- all weapons of the same type share the same upgrades, even if you have more than one of them in your inventory. If you lose a weapon,"
 
   StaticText ""
   StaticText "Player Bonus Settings", GREEN

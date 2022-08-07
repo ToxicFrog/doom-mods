@@ -53,6 +53,42 @@ class ::WeaponInfo : Object play {
     ld_info.Rebind(self);
   }
 
+  // Given another weapon to look at, determine if this WeaponInfo can be rebound
+  // to it. The actual logic used depends on the bonsai_upgrade_binding_mode cvar.
+  bool CanRebindTo(Weapon wpn) {
+    ::UpgradeBindingMode mode = ::Settings.upgrade_binding_mode();
+
+    // Can't rebind at all in BIND_WEAPON mode under normal circumstances.
+    // As a special case, we will permit rebinds if:
+    // - the new weapon has a different class from the old one;
+    // - the old weapon no longer exists;
+    // - the two classes are marked equivalent in BONSAIRC.
+    // TODO: this needs support in BONSAIRC itself, and also needs us to clean
+    // up dead weapons more aggressively, maybe on every weapon switch.
+    if (mode == ::BIND_WEAPON) {
+      // TODO: check equivalencies here.
+      return false;
+    }
+
+    // In class-bound mode, all weapons of the same type share the same WeaponInfo.
+    // When you switch weapons, the WeaponInfo for that type gets rebound to the
+    // newly wielded weapon.
+    if (mode == ::BIND_CLASS) {
+      // TODO: check equivalencies here.
+      return self.wpnType == wpn.GetClassName();
+    }
+
+    // In inheritable weapon-bound mode, a weaponinfo is only reusable if the
+    // weapon it was bound to no longer exists.
+    if (mode == ::BIND_WEAPON_INHERITABLE) {
+      // TODO: check equivalencies here.
+      return self.wpnType == wpn.GetClassName() && self.wpn == null;
+    }
+
+    ThrowAbortException("Unknown UpgradeBindingMode %d!", mode);
+    return false;
+  }
+
   // Heuristics for guessing whether this is a projectile or hitscan weapon.
   // Note that for some weapons, both of these may return true, e.g. in the case
   // of a weapon that has a hitscan primary and projectile alt-fire that both
