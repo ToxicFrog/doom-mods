@@ -7,7 +7,7 @@ class ::WeaponUpgradeGiver : ::UpgradeGiver {
 
   override void CreateUpgradeCandidates() {
     candidates.clear();
-    ::Upgrade::Registry.GenerateUpgradesForWeapon(wielded, candidates);
+    ::Upgrade::Registry.GetRegistry().GenerateUpgradesForWeapon(wielded, candidates);
   }
 
   void InstallUpgrade(int index) {

@@ -10,7 +10,8 @@
 // - Add the name and description to your LANGUAGE file; the keys should be
 //   [upgrade_class_name]_Name and [upgrade_class_name]_Desc, e.g.
 //   TFLV_Upgrade_Pyre_Name and TFLV_Upgrade_Pyre_Desc.
-// - In your startup code, call TFLV_Upgrade_Registry.Register("upgrade_class").
+// - In your startup code, call:
+//     TFLV_Upgrade_Registry.GetRegistry().Register("upgrade_class").
 //   Make sure this runs *after* TFLV_EventHandler's OnRegister; if unsure,
 //   defer it to WorldLoaded or something. It's safe to Register() the same
 //   upgrade multiple times.

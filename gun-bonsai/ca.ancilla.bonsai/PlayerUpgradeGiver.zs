@@ -7,7 +7,7 @@ class ::PlayerUpgradeGiver : ::UpgradeGiver {
 
   override void CreateUpgradeCandidates() {
     candidates.clear();
-    ::Upgrade::Registry.GenerateUpgradesForPlayer(stats, candidates);
+    ::Upgrade::Registry.GetRegistry().GenerateUpgradesForPlayer(stats, candidates);
   }
 
   void InstallUpgrade(int index) {
