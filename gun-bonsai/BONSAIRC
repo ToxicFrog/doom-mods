@@ -45,6 +45,8 @@ ifdef ItemAthena {
   merge napalmgun*;
   merge junkermusket*; merge m16*;
   type sawedoff*: HITSCAN;
+  # Napalm gun, as a naturally fire-elemental weapon, can only get fire-elemental upgrades.
+  #disable napalmgun*: TFLV_Upgrade_PoisonShots TFLV_Upgrade_AcidShots TFLV_Upgrade_ShockingInscription;
 }
 
 # Hideous Destructor: ignore stuff that looks like a weapon but isn't.

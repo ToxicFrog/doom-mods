@@ -129,7 +129,10 @@ class ::RC::Register : ::RC::Node {
   override void Finalize(::EventHandler handler) {
     for (uint i = 0; i < upgrades.size(); ++i) {
       let cls = (Class<::Upgrade::BaseUpgrade>)(upgrades[i]);
-      if (cls) handler.UPGRADE_REGISTRY.Register(upgrades[i]);
+      if (cls) {
+        console.printf("[BONSAIRC] Registering %s", upgrades[i]);
+        handler.UPGRADE_REGISTRY.Register(upgrades[i]);
+      }
       else console.printf(
         "\c[YELLOW][BONSAIRC] Class '%s' is not defined or is not a subclass of BaseUpgrade",
         upgrades[i]);
@@ -151,7 +154,10 @@ class ::RC::Unregister : ::RC::Node {
   override void Finalize(::EventHandler handler) {
     for (uint i = 0; i < upgrades.size(); ++i) {
       let cls = (Class<::Upgrade::BaseUpgrade>)(upgrades[i]);
-      if (cls) handler.UPGRADE_REGISTRY.Unregister(upgrades[i]);
+      if (cls) {
+        console.printf("[BONSAIRC] Unregistering %s", upgrades[i]);
+        handler.UPGRADE_REGISTRY.Unregister(upgrades[i]);
+      }
       else console.printf(
         "\c[YELLOW][BONSAIRC] Class '%s' is not defined or is not a subclass of BaseUpgrade",
         upgrades[i]);
