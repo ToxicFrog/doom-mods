@@ -25,6 +25,12 @@ class ::Registry : Object play {
     upgrades.push(::BaseUpgrade(new(upgrade)));
   }
 
+  void Unregister(string upgrade) {
+    DEBUG("Unregister: %s", upgrade);
+    let idx = upgrade_names.find(upgrade);
+    if (idx == upgrade_names.size()) return;
+    upgrade_names.delete(idx);
+    upgrades.delete(idx);
   }
 
   // Can't be static because we need to call it during eventmanager initialization,
