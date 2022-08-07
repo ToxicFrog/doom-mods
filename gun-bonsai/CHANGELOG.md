@@ -1,3 +1,7 @@
+# 0.8.6
+
+- Balance: Burning Terror no longer triggers pain, but recovery from fear takes longer.
+
 # 0.8.5
 
 - Balance: Fire now burns slightly less aggressively
