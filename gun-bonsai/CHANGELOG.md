@@ -1,3 +1,14 @@
+# 0.9.0
+
+- New: BONSAIRC chunk support
+  - Text chunk that contains rules for configuring Gun Bonsai based on what mods are loaded
+  - Selectively enable or disable upgrades globally
+  - Mark certain weapons as equivalent to each other and thus capable of sharing upgrades (e.g. a base weapon and its upgraded form)
+- New: builtin BONSAIRC configs for Hellrider, Indestructable, Hideous Destructor, and the Ashes series
+- New: even in "upgrades bind to individual weapons" mode, upgrades can be carried from weapons to their upgraded forms
+  - The weapon and its upgrade must be marked as merged in BONSAIRC
+  - The old weapon must be removed and the new weapon added in the same game tic
+
 # 0.8.5
 
 - Balance: Fire now burns slightly less aggressively

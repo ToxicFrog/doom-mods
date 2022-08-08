@@ -77,11 +77,13 @@ class ::WeaponInfo : Object play {
     // - the new weapon has a different class from the old one;
     // - the old weapon no longer exists;
     // - the two classes are marked equivalent in BONSAIRC.
-    // TODO: this needs support in BONSAIRC itself, and also needs us to clean
-    // up dead weapons more aggressively, maybe on every weapon switch.
     if (mode == ::BIND_WEAPON) {
-      // TODO: check equivalencies here.
-      return false;
+      DEBUG("BIND_WEAPON reuse check: orphaned=%d equivalent=%d",
+        self.wpn == null, IsEquivalentTo(wpn));
+      return
+        self.wpnType != wpn.GetClassName()
+        && self.wpn == null
+        && IsEquivalentTo(wpn);
     }
 
     // In class-bound mode, all weapons of the same type share the same WeaponInfo.

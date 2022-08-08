@@ -218,6 +218,7 @@ class ::RC::Merge : ::RC::Node {
   }
 
   override void Configure(::WeaponInfo info) {
+    if (weapons.find(info.wpnType) == weapons.size()) return;
     PrintArray("[RC] Installing equivalencies:", weapons);
     info.SetEquivalencies(weapons);
   }

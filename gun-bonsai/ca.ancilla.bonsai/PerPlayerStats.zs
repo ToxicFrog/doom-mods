@@ -69,6 +69,17 @@ class ::PerPlayerStats : Inventory {
   // than thinking it's a mundane weapon that earned an LD effect through leveling
   // up.
   override bool HandlePickup(Inventory item) {
+    if (Weapon(item)) {
+      // Flag the weaponinfo for a full rebuild on the next tick.
+      // We don't do it immediately because the purpose of this is to transfer
+      // weaponinfo from old weapons to new weapons that replace them, and in some
+      // mods the new weapon is added before the old one is removed.
+      // This is only really relevant when using BIND_WEAPON and it's important
+      // that we rebind the info to the replacement before it gets cleaned up.
+      weaponinfo_dirty = true;
+      return super.HandlePickup(item);
+    }
+
     // Workaround for zscript `is` operator being weird.
     string LDWeaponNameAlternationType = "LDWeaponNameAlternation";
     string LDPermanentInventoryType = "LDPermanentInventory";
@@ -86,6 +97,7 @@ class ::PerPlayerStats : Inventory {
     // At this point we know that the pickup is a Legendoom weapon effect token
     // and it's not one we created. So we need to figure out if the player has
     // an existing entry for a mundane weapon of the same type and clear it if so.
+    // TODO: this may need a redesign in light of the new rebinding code.
     cls = cls.Left(cls.IndexOf("EffectActive"));
     for (int i = 0; i < weapons.size(); ++i) {
       if (weapons[i].wpn is cls) {
@@ -163,6 +175,22 @@ class ::PerPlayerStats : Inventory {
     return infoForCurrentWeapon;
   }
 
+  bool weaponinfo_dirty;
+  ::WeaponInfo RebuildWeaponInfo() {
+    if (weaponinfo_dirty) {
+      DEBUG("Dirty flag set, full weaponinfo rebuild triggered.");
+      for (Inventory inv = owner.inv; inv; inv = inv.inv) {
+        let wep = Weapon(inv);
+        if (wep) {
+          DEBUG("Rebuilding weaponinfo for %s", TAG(wep));
+          GetOrCreateInfoFor(wep);
+        }
+      }
+      weaponinfo_dirty = false;
+    }
+    return CreateInfoForcurrentWeapon();
+  }
+
   // If a WeaponInfo already exists for this weapon, return it.
   // Otherwise, if a compatible orphaned WeaponInfo exists, rebind and return that.
   // Otherwise, create a new WeaponInfo, bind it to this weapon, add it to the
@@ -170,8 +198,8 @@ class ::PerPlayerStats : Inventory {
   ::WeaponInfo GetOrCreateInfoFor(Weapon wpn) {
     if (!wpn) return null;
 
-    // Fast path -- player has a weapon but we need to select the WeaponInfo
-    // for it.
+    // Fast path -- we already have a WeaponInfo for the player's current weapon
+    // and just need to find it.
     let info = GetInfoFor(wpn);
 
     // Slow path -- no associated WeaponInfo, but there might be one we can
@@ -184,6 +212,9 @@ class ::PerPlayerStats : Inventory {
       info.Init(wpn);
       weapons.push(info);
     }
+
+    // Clean up orphaned WeaponInfos.
+    PruneStaleInfo();
     return info;
   }
 
@@ -191,6 +222,7 @@ class ::PerPlayerStats : Inventory {
   // attach to it.
   ::WeaponInfo BindExistingInfoTo(Weapon wpn) {
     for (int i = 0; i < weapons.size(); ++i) {
+      DEBUG("Checking if %s can host info for %s", TAG(wpn), weapons[i].wpnType);
       if (weapons[i].CanRebindTo(wpn)) {
         weapons[i].Rebind(wpn);
         return weapons[i];
@@ -200,9 +232,6 @@ class ::PerPlayerStats : Inventory {
   }
 
   // Delete WeaponInfo entries for weapons that don't exist anymore.
-  // Called as a housekeeping task whenever a weapon levels up.
-  // Depending on whether the game being played permits dropping/destroying/upgrading
-  // weapons, this might be a no-op.
   void PruneStaleInfo() {
     // Only do this in BIND_WEAPON mode. In other binding modes the WeaponInfos
     // can be rebound to new weapons.
@@ -227,9 +256,6 @@ class ::PerPlayerStats : Inventory {
       // already have the levelup screen open anyways.
       StartLevelUp();
     }
-    // Do some cleanup here, since it'll be called occasionally but not super
-    // frequently, and when the player is just leaving a menu.
-    PruneStaleInfo();
   }
 
   bool StartLevelUp() {
@@ -373,6 +399,7 @@ class ::PerPlayerStats : Inventory {
   }
 
   void Initialize() {
+    weaponinfo_dirty = true; // Force a full rebuild of the weaponinfo on startup.
     prevScore = -1;
     if (!upgrades) upgrades = new("::Upgrade::UpgradeBag");
     upgrades.owner = self.owner;
@@ -383,7 +410,9 @@ class ::PerPlayerStats : Inventory {
     // This ensures that the currently wielded weapon always has a WeaponInfo
     // struct associated with it. It should be pretty fast, especially in the
     // common case where the weapon already has a WeaponInfo associated with it.
-    let info = CreateInfoForCurrentWeapon();
+    // If the weaponinfo_dirty flag is set, it will do a full rebuild, scanning
+    // the player's entire inventory and building info for all of their weapons.
+    let info = RebuildWeaponInfo();
 
     // Run on-tick effects for upgrades.
     upgrades.Tick();
