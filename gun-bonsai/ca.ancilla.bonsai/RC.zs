@@ -4,11 +4,11 @@
 #debug on;
 
 enum ::WeaponType {
-  ::TYPE_IGNORE = 0x00,
-  ::TYPE_MELEE = 0x01,
-  ::TYPE_HITSCAN = 0x02,
-  ::TYPE_PROJECTILE = 0x04,
-  ::TYPE_AUTO = 0xFF
+  ::TYPE_AUTO = 0x00,
+  ::TYPE_IGNORE = 0x01,
+  ::TYPE_MELEE = 0x02,
+  ::TYPE_HITSCAN = 0x04,
+  ::TYPE_PROJECTILE = 0x08
 }
 
 class ::RC : Object play {
@@ -48,7 +48,7 @@ class ::RC : Object play {
   }
 
   void Configure(::WeaponInfo info) {
-    DEBUG("Configure: %s", info.wpnType);
+    DEBUG("Configure: %s", info.wpnClass);
     for (uint i = 0; i < nodes.size(); ++i) {
       nodes[i].Configure(info);
     }
@@ -62,7 +62,7 @@ class ::RC::Node : Object play {
   }
 
   virtual void Configure(::WeaponInfo info) {
-    console.printf("Configure: %s", info.wpnType);
+    console.printf("Configure: %s", info.wpnClass);
   }
 
   static void ValidateUpgrades(array<string> upgrades) {
@@ -218,8 +218,8 @@ class ::RC::Merge : ::RC::Node {
   }
 
   override void Configure(::WeaponInfo info) {
-    if (weapons.find(info.wpnType) == weapons.size()) return;
-    PrintArray("[RC] Installing equivalencies:", weapons);
+    if (weapons.find(info.wpnClass) == weapons.size()) return;
+    // PrintArray("[RC] Installing equivalencies:", weapons);
     info.SetEquivalencies(weapons);
   }
 }
@@ -266,7 +266,12 @@ class ::RC::Type : ::RC::Node {
   }
 
   override void Configure(::WeaponInfo info) {
-    super.configure(info);
+    for (uint i = 0; i < weapons.size(); ++i) {
+      if (weapons[i] == info.wpnClass) {
+        info.wpnType = type;
+        return;
+      }
+    }
   }
 }
 
@@ -368,6 +373,11 @@ class ::RCParser : Object play {
       line+1, expected, ErrorContext());
     return false;
   }
+  bool ErrorNoExpectation(string err) {
+    console.printf("\c[RED]Error parsing BONSAIRC line %d: %s",
+      line+1, err);
+    return false;
+  }
 
   string ErrorContext() {
     if (token < tokens.size()) return "'"..tokens[token].."'";
@@ -448,19 +458,29 @@ class ::RCParser : Object play {
   bool Type() {
     require("type");
     array<string> classes;
-    ::WeaponType type;
     while (!peek(":")) classes.push(classpattern()); require(":");
     if (classes.size() == 0) return Error("list of classes or class prefixes for type");
     // TODO: allow setting multiple types on the same weapon? E.g. a rifle with underslung
     // grenade launcher might be HITSCAN PROJECTILE.
-    if (peek("MELEE")) { type = ::TYPE_MELEE; }
-    else if (peek("HITSCAN")) { type = ::TYPE_HITSCAN; }
-    else if (peek("PROJECTILE")) { type = ::TYPE_PROJECTILE; }
-    else if (peek("AUTO")) { type = ::TYPE_AUTO; }
-    else if (peek("IGNORE")) { type = ::TYPE_IGNORE; }
-    else return Error("weapon type");
+    ::WeaponType type;
+    bool auto_type;
+    while (!peek(";")) {
+      // auto is type 0 and gets special handling.
+      if (peek("AUTO")) { auto_type = true; }
+      else if (peek("MELEE")) { type |= ::TYPE_MELEE; }
+      else if (peek("HITSCAN")) { type |= ::TYPE_HITSCAN; }
+      else if (peek("PROJECTILE")) { type |= ::TYPE_PROJECTILE; }
+      else if (peek("IGNORE")) { type |= ::TYPE_IGNORE; }
+      else return Error("AUTO or IGNORE or weapon type");
+      next("");
+    }
+
+    if (type && auto_type || type & ::TYPE_IGNORE && type != ::TYPE_IGNORE) {
+      return ErrorNoExpectation("can't combine AUTO or IGNORE with other types");
+    } else if (!type && !auto_type) {
+      return Error("AUTO or IGNORE or one or more weapon types");
+    }
     rc.push(::RC::Type.Init(classes, type));
-    next("");
     return require(";");
   }
 

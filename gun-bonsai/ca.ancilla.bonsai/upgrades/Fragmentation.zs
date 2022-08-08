@@ -30,7 +30,7 @@ class ::FragmentationShots : ::BaseUpgrade {
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
-    return info.IsProjectileWeapon() && !info.wpn.bMELEEWEAPON;
+    return info.IsProjectile() && !info.IsMelee();
   }
 }
 

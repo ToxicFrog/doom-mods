@@ -30,7 +30,7 @@ class ::BouncyShots : ::BaseUpgrade {
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
-    return info.IsProjectileWeapon();
+    return info.IsProjectile();
   }
 }
 
@@ -40,7 +40,7 @@ class ::FastShots : ::BaseUpgrade {
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
-    return info.IsProjectileWeapon();
+    return info.IsProjectile();
   }
 }
 
@@ -51,7 +51,7 @@ class ::PiercingShots : ::BaseUpgrade {
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
-    return info.IsProjectileWeapon() && info.upgrades.Level("::PiercingShots") < 5;
+    return info.IsProjectile() && info.upgrades.Level("::PiercingShots") < 5;
   }
 }
 

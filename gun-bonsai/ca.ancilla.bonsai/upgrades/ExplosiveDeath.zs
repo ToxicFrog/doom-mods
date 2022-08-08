@@ -16,7 +16,7 @@ class ::ExplosiveDeath : ::BaseUpgrade {
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
-    return !info.wpn.bMELEEWEAPON;
+    return !info.IsMelee();
   }
 }
 

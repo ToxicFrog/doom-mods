@@ -8,7 +8,7 @@ class ::HomingShots : ::BaseUpgrade {
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
-    return info.IsProjectileWeapon() && info.upgrades.Level("::HomingShots") < 4;
+    return info.IsProjectile() && info.upgrades.Level("::HomingShots") < 4;
   }
 }
 

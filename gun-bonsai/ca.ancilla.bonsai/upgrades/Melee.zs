@@ -15,7 +15,7 @@ class ::Agonizer : ::BaseUpgrade {
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
-    return info.wpn.bMELEEWEAPON;
+    return info.IsMelee();
   }
 }
 
@@ -58,7 +58,7 @@ class ::DarkHarvest : ::BaseUpgrade {
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
-    return info.wpn.bMELEEWEAPON;
+    return info.IsMelee();
   }
 }
 
@@ -86,7 +86,7 @@ class ::Shield : ::BaseUpgrade {
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
-    return info.wpn.bMELEEWEAPON && info.upgrades.Level("::Shield") < 2;
+    return info.IsMelee() && info.upgrades.Level("::Shield") < 2;
   }
 }
 
@@ -104,7 +104,7 @@ class ::Swiftness : ::BaseUpgrade {
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
-    return info.wpn.bMELEEWEAPON;
+    return info.IsMelee();
   }
 }
 

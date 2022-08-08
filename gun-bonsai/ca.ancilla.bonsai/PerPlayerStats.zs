@@ -222,7 +222,7 @@ class ::PerPlayerStats : Inventory {
   // attach to it.
   ::WeaponInfo BindExistingInfoTo(Weapon wpn) {
     for (int i = 0; i < weapons.size(); ++i) {
-      DEBUG("Checking if %s can host info for %s", TAG(wpn), weapons[i].wpnType);
+      DEBUG("Checking if %s can host info for %s", TAG(wpn), weapons[i].wpnClass);
       if (weapons[i].CanRebindTo(wpn)) {
         weapons[i].Rebind(wpn);
         return weapons[i];

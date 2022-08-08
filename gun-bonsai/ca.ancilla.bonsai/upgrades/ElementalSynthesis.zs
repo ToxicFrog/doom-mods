@@ -88,8 +88,8 @@ class ::ElementalBeam : ::ElementalSynthesis {
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
     return super.IsSuitableForWeapon(info)
-      && info.IsHitscanWeapon()
-      && !info.wpn.bMELEEWEAPON;
+      && info.IsHitscan()
+      && !info.IsMelee();
   }
 }
 
@@ -116,7 +116,7 @@ class ::ElementalBlast : ::ElementalSynthesis {
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
     return super.IsSuitableForWeapon(info)
-      && info.IsProjectileWeapon();
+      && info.IsProjectile();
   }
 }
 
@@ -131,7 +131,7 @@ class ::ElementalWave : ::ElementalSynthesis {
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
     return super.IsSuitableForWeapon(info)
-      && info.wpn.bMELEEWEAPON;
+      && info.IsMelee();
   }
 }
 

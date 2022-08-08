@@ -11,7 +11,8 @@ class ::WeaponInfo : Object play {
   // if we have both a type and an instance variable in scope with the same name.
   // Sigh.
   Weapon wpn;
-  string wpnType;
+  string wpnClass;
+  ::WeaponType wpnType;
   ::Upgrade::UpgradeBag upgrades;
   double XP;
   uint maxXP;
@@ -35,7 +36,7 @@ class ::WeaponInfo : Object play {
     level = 0;
     maxXP = GetXPForLevel(level+1);
     DEBUG("WeaponInfo initialize, class=%s level=%d xp=%d/%d",
-        wpnType, level, XP, maxXP);
+        wpnClass, level, XP, maxXP);
   }
 
   // Called when this WeaponInfo is being reassociated with a new weapon. It
@@ -43,10 +44,10 @@ class ::WeaponInfo : Object play {
   void Rebind(Weapon wpn) {
     self.wpn = wpn;
     self.upgrades.owner = self.wpn.owner;
-    if (self.wpnType != wpn.GetClassName()) {
+    if (self.wpnClass != wpn.GetClassName()) {
       // Rebinding to a weapon of an entirely different type. Reset the attack
       // modality inference counters.
-      self.wpnType = wpn.GetClassName();
+      self.wpnClass = wpn.GetClassName();
       hitscan_shots = 0;
       projectile_shots = 0;
     }
@@ -61,9 +62,9 @@ class ::WeaponInfo : Object play {
   }
 
   bool IsEquivalentTo(Weapon wpn) {
-    let result = wpn.GetClassName() == self.wpnType
+    let result = wpn.GetClassName() == self.wpnClass
       || equivalencies.find(wpn.GetClassName()) != equivalencies.size();
-    DEBUG("Eqv? %s %s -> %d", wpnType, TAG(wpn), result);
+    DEBUG("Eqv? %s %s -> %d", wpnClass, TAG(wpn), result);
     return result;
   }
 
@@ -81,7 +82,7 @@ class ::WeaponInfo : Object play {
       DEBUG("BIND_WEAPON reuse check: orphaned=%d equivalent=%d",
         self.wpn == null, IsEquivalentTo(wpn));
       return
-        self.wpnType != wpn.GetClassName()
+        self.wpnClass != wpn.GetClassName()
         && self.wpn == null
         && IsEquivalentTo(wpn);
     }
@@ -112,29 +113,31 @@ class ::WeaponInfo : Object play {
   // We have this threshold to limit false positives in the case of e.g. mods
   // that add offhand grenades that get attributed to the current weapon, or
   // weapons that have a projectile alt-fire that is used only very rarely.
-  bool IsHitscanWeapon() {
+  bool IsHitscan() {
+    if (wpnType) return wpnType & ::TYPE_HITSCAN;
     return hitscan_shots / 4 > projectile_shots;
   }
-
-  bool IsProjectileWeapon() {
+  bool IsProjectile() {
+    if (wpnType) return wpnType & ::TYPE_PROJECTILE;
     return projectile_shots / 4 > hitscan_shots;
+  }
+  bool IsMelee() {
+    if (wpnType) return wpnType & ::TYPE_MELEE;
+    return wpn.bMELEEWEAPON;
+  }
+  bool IsIgnored() {
+    if (wpnType) return wpnType & ::TYPE_IGNORE;
+    return false;
   }
 
   uint GetXPForLevel(uint level) const {
     uint XP = ::Settings.base_level_cost() * level;
-    if (wpn.bMeleeWeapon) {
+    if (IsMelee()) {
       XP *= ::Settings.level_cost_mul_for("melee");
     }
     if (wpn.bWimpy_Weapon) {
       XP *= ::Settings.level_cost_mul_for("wimpy");
     }
-    // For some reason it can't resolve bExplosive and bBFG
-    // if (weapon.bExplosive) {
-    //   XP *= ::Settings.level_cost_mul_for("explosive");
-    // }
-    // if (weapon.bBFG) {
-    //   XP *= ::Settings.level_cost_mul_for("bfg");
-    // }
     DEBUG("GetXPForLevel: level %d -> XP %.1f", level, XP);
     return XP;
   }
