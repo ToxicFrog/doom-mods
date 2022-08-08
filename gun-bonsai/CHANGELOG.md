@@ -4,6 +4,7 @@
   - Text chunk that contains rules for configuring Gun Bonsai based on what mods are loaded
   - Selectively enable or disable upgrades globally
   - Override Bonsai's weapon type detection for individual weapons
+  - Disable individual upgrades on a per-weapon basis, or disable all upgrades for a weapon
   - Mark certain weapons as equivalent to each other and thus capable of sharing upgrades (e.g. a base weapon and its upgraded form)
 - New: builtin BONSAIRC configs for Hellrider, Indestructable, Hideous Destructor, and the Ashes series
 - New: even in "upgrades bind to individual weapons" mode, upgrades can be carried from weapons to their upgraded forms

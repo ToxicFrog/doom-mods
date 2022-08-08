@@ -55,6 +55,16 @@ class ::WeaponInfo : Object play {
     ::RC.GetRC().Configure(self);
   }
 
+  // List of upgrade classes that are unavailable on this weapon, even if they
+  // would normally spawn.
+  array<string> disabled_upgrades;
+  void DisableUpgrades(array<string> upgrades) {
+    disabled_upgrades.copy(upgrades);
+  }
+  bool CanAcceptUpgrade(string upgrade) {
+    return disabled_upgrades.find(upgrade) == disabled_upgrades.size();
+  }
+
   // List of classes that this weapon is considered equivalent to.
   array<string> equivalencies;
   void SetEquivalencies(array<string> classes) {

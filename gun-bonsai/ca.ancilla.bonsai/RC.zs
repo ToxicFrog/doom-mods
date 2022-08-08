@@ -243,7 +243,12 @@ class ::RC::Disable : ::RC::Node {
   }
 
   override void Configure(::WeaponInfo info) {
-    super.configure(info);
+    for (uint i = 0; i < weapons.size(); ++i) {
+      if (weapons[i] == info.wpnClass) {
+        info.DisableUpgrades(upgrades);
+        return;
+      }
+    }
   }
 }
 
@@ -511,8 +516,8 @@ class ::RCParser : Object play {
 //  unregister := "unregister" upgrades ";"
 //       merge := "merge" classes ";"
 //     disable := "disable" classes ":" upgrades ";"
-//        type := "type" classes ":" typename ";"
+//        type := "type" classes ":" typename+ ";"
 //    typename := "MELEE" | "HITSCAN" | "PROJECTILE" | "IGNORE" | "AUTO"
-//     classes := (CLASSNAME | classprefix)*
-//    upgrades := CLASSNAME*
+//     classes := (CLASSNAME | classprefix)+
+//    upgrades := CLASSNAME+
 // classprefix := CLASSNAME "*"

@@ -132,7 +132,7 @@ class ::Registry : Object play {
       TFLV::WeaponInfo info, Array<::BaseUpgrade> generated) {
     array<::BaseUpgrade> candidates;
     for (uint i = 0; i < upgrades.size(); ++i) {
-      if (upgrades[i].IsSuitableForWeapon(info))
+      if (upgrades[i].IsSuitableForWeapon(info) && info.CanAcceptUpgrade(upgrade_names[i]))
         candidates.push(upgrades[i]);
     }
 
