@@ -1,3 +1,8 @@
+# 0.2.0
+
+- Fix: tooltip font size now automatically scales based on screen resolution
+- New: `TooltipGeometry` allows specifying a font scaling factor
+
 # 0.1.3
 
 - Fix: intermitten array index out of bounds crash when opening the menu
