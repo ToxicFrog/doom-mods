@@ -8,7 +8,7 @@
 // For details, see the included README.
 
 class TF_Tooltip : Object ui {
-  double x, y, w, xpad, ypad; // Geometry
+  double x, y, w, xpad, ypad, scale; // Geometry
   uint first, last; // First and last menuitems this applies to
   Font font;
   Color colour;
@@ -21,40 +21,62 @@ class TF_Tooltip : Object ui {
     self.w = settings.w;
     self.xpad = settings.xpad;
     self.ypad = settings.ypad;
+    self.scale = settings.scale;
     self.font = settings.font;
     self.colour = settings.colour;
     self.texture = settings.texture;
   }
 
-  int GetX(uint width) {
-    return (screen.GetWidth() - width) * self.x;
+  int GetX(uint screen_width, uint width) {
+    return (screen_width - width) * self.x;
   }
 
-  int GetY(uint height) {
-    return (screen.GetHeight() - height) * self.y;
+  int GetY(uint screen_width, uint height) {
+    return (screen_width - height) * self.y;
   }
 
   void Draw() {
+    // In order to draw the text readably at high resolutions, we calculate
+    // everything using a virtual screen size and then tell DrawTexture and
+    // DrawText to scale appropriately when blitting the background and tooltip
+    // text to the real screen.
+    uint virtual_height = screen.GetHeight() / CleanYFac_1 / scale;
+    let aspect = screen.GetAspectRatio();
+    let virtual_width = virtual_height * aspect;
+    // Font metrics: em width and line height.
     let em = self.font.GetCharWidth(0x6D);
     let lh = self.font.GetHeight();
-    let nominal_width = screen.GetWidth() * self.w;
+    // Nominal width is the maximum width of the tooltip based on configuration
+    // in the MENUDEF.
+    let nominal_width = virtual_width * self.w;
     let lines = self.font.BreakLines(self.text, nominal_width);
 
     // Calculate the real width of the tooltip. This may be less than the
-    // nominal width if it's a short one-liner.
+    // nominal width if it's a short one-liner. This is still in virtual screen
+    // coordinates, not real screen!
     uint actual_width = 0;
     for (uint i = 0; i < lines.count(); ++i) {
       actual_width = max(actual_width, self.font.StringWidth(lines.StringAt(i)));
     }
     actual_width += self.xpad * 2.0 * em;
-    // Calculate the actual height based on the number of lines we wrapped it into
+
+    // Calculate the real height based on the number of lines we wrapped it into
     // and the vertical margins.
     uint actual_height = self.font.GetHeight() * (self.ypad * 2.0 + lines.count());
 
-    uint x = GetX(actual_width);
-    uint y = GetY(actual_height);
-    // Draw the background texture, if defined.
+    // Get the coordinates of the top left corner of the tooltip's bounding box,
+    // including padding, in virtual screen coordinates.
+    uint x = GetX(virtual_width, actual_width);
+    uint y = GetY(virtual_height, actual_height);
+
+    // Draw the background texture, if defined. DTA_Virtual* commands it to scale
+    // the virtual screen size to match the real screen; DTA_KeepRatio tells it
+    // to assume the ratio of the virtual screen matches the real screen. (The
+    // documentation on the wiki is wrong here; leaving it false forces a 4:3
+    // aspect ratio.)
     Screen.DrawTexture(texture, true, x, y,
+        DTA_VirtualWidthF, virtual_width, DTA_VirtualHeight, virtual_height,
+        DTA_KeepRatio, true,
         DTA_LeftOffset, 0, DTA_TopOffset, 0,
         DTA_DestWidth, actual_width, DTA_DestHeight, actual_height);
 
@@ -63,7 +85,9 @@ class TF_Tooltip : Object ui {
         self.font, self.colour,
         x + self.xpad*em,
         y + i*lh + self.ypad*lh,
-        lines.StringAt(i));
+        lines.StringAt(i),
+        DTA_VirtualWidthF, virtual_width, DTA_VirtualHeight, virtual_height,
+        DTA_KeepRatio, true);
     }
   }
 }
@@ -82,6 +106,7 @@ class TF_TooltipOptionMenu : OptionMenu {
     tt.w = 0.3;
     tt.xpad = 1.0;
     tt.ypad = 0.5;
+    tt.scale = 1.0;
     tt.font = newsmallfont;
     tt.colour = Font.CR_WHITE;
     return tt;
@@ -89,19 +114,13 @@ class TF_TooltipOptionMenu : OptionMenu {
 
   override void Init(Menu parent, OptionMenuDescriptor desc) {
     super.Init(parent, desc);
-    // console.printf("Init menu, items=%d", desc.mItems.size());
     let settings = GetDefaults();
 
     // If there's already a TooltipHolder in tail position, we've already been
     // initialized and just need to retrieve our saved tooltips from it.
-    // for (uint i = 0; i < desc.mItems.size(); ++i) {
-      // console.printf("Item: %s", desc.mItems[i].GetClassName());
-    // }
     let tail = OptionMenuItemTooltipHolder(desc.mItems[desc.mItems.size()-1]);
     if (tail) {
       tooltips.copy(tail.tooltips);
-      // console.printf("Cache hit, items=%d, tooltips=%d",
-        // desc.mItems.size(), tooltips.size());
       return;
     }
 
@@ -143,8 +162,6 @@ class TF_TooltipOptionMenu : OptionMenu {
     // Store our tooltips inside the menu descriptor so we can recover them when
     // the menu is redisplayed.
     desc.mItems.push(new("OptionMenuItemTooltipHolder").Init(tooltips));
-
-    // console.printf("Init done, items=%d, tooltips=%d", desc.mItems.size(), tooltips.size());
   }
 
   TF_Tooltip AppendableTooltip(uint first, uint last) {
@@ -213,11 +230,15 @@ class OptionMenuItemTooltip : OptionMenuItem {
 }
 
 class OptionMenuItemTooltipGeometry : OptionMenuitem {
-  double x, y, w, xpad, ypad;
+  double x, y, w, xpad, ypad, scale;
 
-  OptionMenuItemTooltipGeometry Init(double x=-1.0, double y=-1.0, double w=-1.0, double xpad=-1.0, double ypad=-1.0) {
+  OptionMenuItemTooltipGeometry Init(
+      double x=-1.0, double y=-1.0, double w=-1.0,
+      double xpad=-1.0, double ypad=-1.0,
+      double scale=-1.0) {
     self.x = x; self.y = y; self.w = w;
     self.xpad = xpad; self.ypad = ypad;
+    self.scale = scale;
     return self;
   }
 
@@ -227,6 +248,7 @@ class OptionMenuItemTooltipGeometry : OptionMenuitem {
     if (self.w >= 0) settings.w = self.w;
     if (self.xpad >= 0) settings.xpad = self.xpad;
     if (self.ypad >= 0) settings.ypad = self.ypad;
+    if (self.scale > 0) settings.scale = self.scale;
   }
 }
 
