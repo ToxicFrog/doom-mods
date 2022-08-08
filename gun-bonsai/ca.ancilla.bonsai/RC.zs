@@ -402,7 +402,7 @@ class ::RCParser : Object play {
   bool IfDef() {
     require("ifdef");
     array<string> classes;
-    while (!peek("{")) classes.push(classname()); require("{");
+    if (!ClassList(classes, "{")) return false;
     if (classes.size() == 0) return Error("list of classes for ifdef");
     push();
     // read in statements and save them until the "}" is reached, but do not execute
@@ -419,26 +419,26 @@ class ::RCParser : Object play {
 
   bool Register() {
     require("register");
-    array<string> classes;
-    while (!peek(";")) classes.push(classname()); require(";");
-    if (classes.size() == 0) return Error("list of classes for register");
-    rc.push(::RC::Register.Init(classes));
+    array<string> upgrades;
+    if (!ClassList(upgrades, ";")) return false;
+    if (upgrades.size() == 0) return Error("list of upgrades for register");
+    rc.push(::RC::Register.Init(upgrades));
     return true;
   }
 
   bool Unregister() {
     require("unregister");
-    array<string> classes;
-    while (!peek(";")) classes.push(classname()); require(";");
-    if (classes.size() == 0) return Error("list of classes for unregister");
-    rc.push(::RC::Unregister.Init(classes));
+    array<string> upgrades;
+    if (!ClassList(upgrades, ";")) return false;
+    if (upgrades.size() == 0) return Error("list of upgrades for unregister");
+    rc.push(::RC::Unregister.Init(upgrades));
     return true;
   }
 
   bool Merge() {
     require("merge");
     array<string> classes;
-    while (!peek(";")) classes.push(classpattern()); require(";");
+    if (!PatternList(classes, ";")) return false;
     if (classes.size() == 0) return Error("list of classes or class prefixes for merge");
     rc.push(::RC::Merge.Init(classes));
     return true;
@@ -447,23 +447,39 @@ class ::RCParser : Object play {
   bool Disable() {
     require("disable");
     array<string> classes; array<string> upgrades;
-    while (!peek(":")) classes.push(classpattern()); require(":");
+    if (!PatternList(classes, ":")) return false;
     if (classes.size() == 0) return Error("list of classes or class prefixes for disable");
-    while (!peek(";")) upgrades.push(classname()); require(";");
+    if (!ClassList(upgrades, ";")) return false;
     if (upgrades.size() == 0) return Error("list of upgrade classes for disable");
     rc.push(::RC::Disable.Init(classes, upgrades));
+    return true;
+  }
+
+  bool ClassList(array<string> tokens, string terminator) {
+    return TokenList(tokens, terminator, "class name");
+  }
+  bool PatternList(array<string> tokens, string terminator) {
+    return TokenList(tokens, terminator, "class name or prefix");
+  }
+  bool TokenList(array<string> tokens, string terminator, string expected) {
+    while (!peek(terminator)) {
+      string buf = next(expected);
+      if (buf == "") return false; // error already reported by next()
+      tokens.push(buf);
+    }
+    require(terminator);
     return true;
   }
 
   bool Type() {
     require("type");
     array<string> classes;
-    while (!peek(":")) classes.push(classpattern()); require(":");
+    if (!PatternList(classes, ":")) return false;
     if (classes.size() == 0) return Error("list of classes or class prefixes for type");
     // TODO: allow setting multiple types on the same weapon? E.g. a rifle with underslung
     // grenade launcher might be HITSCAN PROJECTILE.
-    ::WeaponType type;
-    bool auto_type;
+    ::WeaponType type = 0;
+    bool auto_type = false;
     while (!peek(";")) {
       // auto is type 0 and gets special handling.
       if (peek("AUTO")) { auto_type = true; }
@@ -483,9 +499,6 @@ class ::RCParser : Object play {
     rc.push(::RC::Type.Init(classes, type));
     return require(";");
   }
-
-  string classname() { return next("class name"); }
-  string classpattern() { return next("class name or prefix"); }
 }
 
 // Lump grammar:
