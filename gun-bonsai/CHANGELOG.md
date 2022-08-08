@@ -8,6 +8,7 @@
 - New: even in "upgrades bind to individual weapons" mode, upgrades can be carried from weapons to their upgraded forms
   - The weapon and its upgrade must be marked as merged in BONSAIRC
   - The old weapon must be removed and the new weapon added in the same game tic
+- New: `bonsai-debug,reset` debug command
 
 # 0.8.5
 

@@ -21,6 +21,11 @@ You can use netevents to add upgrades and XP using the console:
 
 The class names do not always exactly correspond to the human-readable names. Consult `LANGUAGE.en` to find out the class names.
 
+You can also fully reset the Gun Bonsai state for your character with:
+
+- `netevent bonsai-debug,reset`
+
+
 ## Reusable Parts
 
 The `GenericMenu`, `StatusDisplay`, and other menu classes are useful examples of how to do dynamic interactive menu creation in ZScript, and how to use a non-interactive OptionsMenu to create a status display.

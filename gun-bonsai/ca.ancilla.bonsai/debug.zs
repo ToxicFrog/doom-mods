@@ -13,6 +13,15 @@ class ::Debug : Object play {
       AddWeaponXP(pawn, arg);
     } else if (argv[1] == "p-xp") {
       AddPlayerXP(pawn, arg);
+    } else if (argv[1] == "reset") {
+      console.printf("Fully resetting all weapon info.");
+      let stats = ::PerPlayerStats.GetStatsFor(pawn);
+      stats.weapons.clear();
+      stats.weaponinfo_dirty = true;
+      stats.XP = 0;
+      stats.level = 0;
+      stats.upgrades = null;
+      stats.Initialize();
     } else {
       console.printf("Unknown or malformed debug command: %s", argv[1]);
     }
