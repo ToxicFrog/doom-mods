@@ -21,9 +21,8 @@ OptionMenu "GunBonsaiOptions"
   Tooltip "Position of the Gun Bonsai HUD on the screen, as a proportion of total screen size. 0.0 is top left, 1.0 is bottom right."
   Tooltip "You can also set a pixel-perfect position by setting bonsai_hud_x and bonsai_hud_y to your desired coordinates."
 
-  Slider "HUD height", "bonsai_hud_size", 10, 500, 10, 0
-  Tooltip "Height of the Gun Bonsai HUD, in pixels. Width is always 3x height."
-  Tooltip "You can also set a scale factor by setting this to a value between 0.0 and 1.0; 1.0 makes it 512px high."
+  Slider "HUD size", "bonsai_hud_size", 0.05, 0.2, 0.01, 2
+  Tooltip "Height of the Gun Bonsai HUD, as a fraction of screen height."
 
   Option "HUD mirroring", "bonsai_hud_mirror", "GunBonsaiHudMirrorMode"
   Tooltip "Whether to mirror the hud. Default has the level box on the left and the XP bars on the bottom."
