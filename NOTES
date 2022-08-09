@@ -1,8 +1,78 @@
 ## Roadmap
 
+### 0.8.6
+
+- investigate embrittlement instakill proccing earlier than it should; observed offing a 3000hp enemy at 1300hp
+- mage shots don't bounce in Hexen
+- speed + pierce are a downgrade from speed alone, since it means the projectile doesn't stay in the target as long -- not sure how to rework pierce
+- how does pierce + bounce work?
+- projectile modifying upgrades shouldn't make things worse, e.g. lowering riplevel
+- thunderbolt should be easier to trigger? Alex can't trigger it at all with one level and a pistol against a pinky
+
+### 0.9.0
+
+- BONSAIRC lump parser
+- store state in the staticeventhandler and mirror it in the player so events can carry across deathexits
+- option whether to respect deathexits/inventory resets or not
+- support SisterWeapon field as equivalent
+
+### 0.9.1
+
+- more hexen bugfixes?
+- selective disabling of upgrades
+
+### 0.10.x?
+
+- split laevis into its own mod
+
 ### Soon
 
 - investigate use of A_SetTics() instead of freeze powerup for Swiftness
+- add ammo capacity upgrade
+  - walk player inventory and boost the MaxAmount and BackpackMaxAmount
+  - requires OnApply support, probably
+  - won't affect ammo types the player doesn't have yet
+  - will be a player mod, so it should either be fairly powerful or get more powerful with time
+  - we can use GetDefaultByType(ammoitem).MaxAmount to compute the base max amount
+    and then confer bonuses based on that
+
+### Not Soon
+
+- per-state overrides in BONSAIRC, e.g. "if the weapon is in this state, treat it as this other weapon instead"
+- allow per-state overrides to create virtual weapons for cases where there is no underlying real weapon, like the Ashes boot knife
+- allow tracking primary and alt fire separately, probably using state overrides to tell it which states count as which
+
+### Hexen issues
+
+Bounce doesn't work on:
+Cleric 3 (Firestorm)
+Mage 1 (Sapphire Staff)
+Mage 2 (Frost Shards)
+
+It does work on all of the other projectile weapons (Warrior 3, Warrior 4, Mage 4). I'm not sure what I'd expect from Mage 3, the weird lightning storm isn't really a projectile, and I'm not sure any of the upgrades would make sense for it.
+
+Bounce is weird on Cleric 4 (Wraithverge) - the projectile sometimes doesn't seem to bounce, sometimes bounces and almost immediately erupts into ghosts.
+
+
+Piercing Shots doesn't work on:
+Warrior 4
+Cleric 3
+Mage 2
+
+I'm not sure if it works on Mage 1 since that has infinite pierce already. Wraithverge seems to work (the shot punctures, then explode a little ways afterward, rather than exploding on impact). Lightning storm is... lightning storm. Pierce wouldn't make sense on this one either, and I don't even know how I'd interpret "works" or "doesn't work." Mage 4 is another "already has piercing" situation.
+
+Homing Shots doesn't work on:
+Cleric 3
+Mage 2
+
+Weirdly, Mage 3, the lightning storm, is affected by homing shots.
+Mage 4 is unknown, the shots already home.
+
+Fragmentation Shots seems to work on everything just fine.
+
+Fast Shots doesn't work on:
+Cleric 3
+Mage 2
 
 ### Later
 
@@ -15,13 +85,6 @@ Remaining upgrades:
 - Shoryuken
 - explosive fragmentation
 - micromissiles -- projectiles turn into micromissile swarms after a few tics of flight. How do we compute damage?
-- add ammo capacity upgrade
-  - walk player inventory and boost the MaxAmount and BackpackMaxAmount
-  - requires OnApply support, probably
-  - won't affect ammo types the player doesn't have yet
-  - will be a player mod, so it should either be fairly powerful or get more powerful with time
-  - we can use GetDefaultByType(ammoitem).MaxAmount to compute the base max amount
-    and then confer bonuses based on that
 
 Gameplay changes:
 - do another pass over the prerequisites. Graph paper? submunitions/expldeath should mutex, for example
