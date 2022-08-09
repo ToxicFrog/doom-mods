@@ -204,15 +204,24 @@ class ::HUD : Object ui {
         tex(player_tex..face), LevelUp(stats) ? GetShinyColour(68) : player_rgb,
         double(stats.pxp)/(stats.pmax), HUD_PXP_X, HUD_PXP_W);
 
-    Text("P:"..stats.plvl, player_rgb, HUD_TOPTEXT_X, HUD_TOPTEXT_Y, HUD_GRAV_NW);
-    Text("W:"..stats.wlvl, weapon_rgb, HUD_BOTTEXT_X, HUD_BOTTEXT_Y, HUD_GRAV_SE);
+    Text(
+      string.format("Lv.%d", stats.plvl),
+      player_rgb, HUD_TOPTEXT_X, HUD_TOPTEXT_Y, HUD_GRAV_NW);
+    Text(
+      string.format("%d/%d", stats.pxp, stats.pmax),
+      player_rgb, HUD_BOTTEXT_X, HUD_BOTTEXT_Y, HUD_GRAV_SE);
 
-    Text(stats.effect .. (stats.effect == "" ? "" : " ") .. stats.wname,
-        // HACK HACK HACK, we adjust y in HUD coordinate space so that it ends up
-        // in the right place (directly above the XP: line) when it gets rendered.
-        weapon_rgb, HUD_INFOTEXT_X, HUD_INFOTEXT_Y, HUD_GRAV_SW);
-    // Text("XP: "..stats.wxp.."/"..stats.wmax,
-    //     weapon_rgb, HUD_INFOTEXT_X, HUD_INFOTEXT_Y, HUD_GRAV_SW);
+    let spacer = stats.effect == "" ? "" : " ";
+    Text(
+      string.format("%s%s%s", stats.effect, spacer, stats.wname),
+      weapon_rgb, HUD_INFOTEXT_X,
+      // HACK HACK HACK, we adjust y in HUD coordinate space so that it ends up
+      // in the right place (directly above the weapon name) when it gets rendered.
+      HUD_INFOTEXT_Y - NewSmallFont.GetHeight()/scale/screenscale,
+      HUD_GRAV_SW);
+    Text(
+      string.format("Lv.%d (%d/%d)", stats.wlvl, stats.wxp, stats.wmax),
+      weapon_rgb, HUD_INFOTEXT_X, HUD_INFOTEXT_Y, HUD_GRAV_SW);
   }
 }
 

@@ -1,6 +1,7 @@
 # 0.8.6
 
 - Change: HUD scale is now always set as a fraction of screen size rather than a size in pixels
+- Change: HUD text layout adjusted, now shows level and XP for both player and weapon
 - Balance: Burning Terror no longer triggers pain, but recovery from fear takes longer.
 - Fix: HUD text now scales properly with screen size and HUD size
 
