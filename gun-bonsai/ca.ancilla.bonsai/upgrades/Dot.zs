@@ -8,7 +8,7 @@
 
 class ::Dot : Inventory {
   double stacks;
-  property UpgradePriority: special1;
+  property UpgradePriority: weaponspecial;
 
   Default {
     DamageType "None";

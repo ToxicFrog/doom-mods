@@ -11,7 +11,7 @@ class ::ExplosiveShots : ::BaseUpgrade {
     DEBUG("Shot position: [%d,%d,%d]", shot.pos.x, shot.pos.y, shot.pos.z);
     let boom = ::ExplosiveShots::Boom(shot.Spawn("::ExplosiveShots::Boom", shot.pos));
     DEBUG("Boom position = [%d,%d,%d]", boom.pos.x, boom.pos.y, boom.pos.z);
-    boom.special1 = Priority();
+    boom.weaponspecial = Priority();
     boom.target = pawn;
     boom.damage = max(level, damage * level * 0.1);
     boom.radius = 64 + 16 * level;

@@ -330,7 +330,7 @@ class ::PerPlayerStats : Inventory {
     AddXP(GetXPForDamage(target, damage));
     // If it has a priority set on it, it's one of ours and we shouldn't use it
     // for hitscan/projectile inference.
-    if (shot && shot.special1 != ::Upgrade::PRI_MISSING) return;
+    if (shot && shot.weaponspecial != ::Upgrade::PRI_MISSING) return;
 
     // Assume that "missiles" moving faster than 300 du/t are actually projectiles
     // used as bullet tracers by e.g. Hideous Destructor and should be treated

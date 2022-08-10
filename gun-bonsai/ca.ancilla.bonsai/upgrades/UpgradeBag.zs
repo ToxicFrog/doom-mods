@@ -80,7 +80,7 @@ class ::UpgradeBag : Object play {
   void OnDamageDealt(Actor pawn, Actor shot, Actor target, int damage) {
     for (uint i = 0; i < upgrades.Size(); ++i) {
       DEBUG("ODD Priority(%s) == %d vs. %d",
-        TAG(shot), (shot?shot.special1:-999), upgrades[i].Priority());
+        TAG(shot), (shot?shot.weaponspecial:-999), upgrades[i].Priority());
       if (!upgrades[i].CheckPriority(shot)) continue;
       upgrades[i].OnDamageDealt(pawn, shot, target, damage);
     }

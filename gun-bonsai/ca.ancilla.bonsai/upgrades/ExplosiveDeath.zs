@@ -6,7 +6,7 @@ class ::ExplosiveDeath : ::BaseUpgrade {
 
   override void OnKill(PlayerPawn player, Actor shot, Actor target) {
     let aux = ::ExplosiveDeath::Aux(target.Spawn("::ExplosiveDeath::Aux", target.pos));
-    aux.special1 = Priority();
+    aux.weaponspecial = Priority();
     aux.target = player;
     aux.level = level;
     aux.power = (target.SpawnHealth() + abs(target.health)) * (1.0 - 0.8 ** level);

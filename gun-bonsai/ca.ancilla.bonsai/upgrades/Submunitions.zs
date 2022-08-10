@@ -6,7 +6,7 @@ class ::Submunitions : ::BaseUpgrade {
   override void OnKill(PlayerPawn player, Actor shot, Actor target) {
     if (shot is "::Submunitions::Grenade") return;
     let aux = ::Submunitions::Spawner(target.Spawn("::Submunitions::Spawner", target.pos));
-    aux.special1 = Priority();
+    aux.weaponspecial = Priority();
     aux.target = player;
     aux.level = level;
     aux.damage = abs(target.health) + 5*level; // (target.SpawnHealth()) * (1.0 - 0.8 ** level);
@@ -36,7 +36,7 @@ class ::Submunitions::Spawner : Actor {
       let aux = ::Submunitions::Grenade(A_SpawnProjectile(
         "::Submunitions::Grenade", 32, 0, random(0,360),
         CMF_AIMDIRECTION|CMF_ABSOLUTEANGLE));
-      aux.special1 = special1;
+      aux.weaponspecial = weaponspecial;
       aux.target = target;
       aux.level = level;
       aux.damage = damage;
@@ -52,7 +52,7 @@ class ::Submunitions::Grenade : Actor {
   uint damage;
   uint lifetime;
   uint blast_radius;
-  property UpgradePriority: special1;
+  property UpgradePriority: weaponspecial;
 
   Default {
     ::Submunitions::Grenade.UpgradePriority ::PRI_EXPLOSIVE;

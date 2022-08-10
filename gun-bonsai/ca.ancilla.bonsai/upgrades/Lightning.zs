@@ -264,7 +264,7 @@ class ::ChainLightning::Aux : Actor {
   uint jumps;
   double damage;
 
-  property UpgradePriority: special1;
+  property UpgradePriority: weaponspecial;
   Default {
     DamageType "Electric";
     // About one caco. Used as the default for targets that disappear before
@@ -428,7 +428,7 @@ class ::ChainLightning::VFX : Actor {
 }
 
 class ::Thunderbolt::Aux : Actor {
-  property UpgradePriority: special1;
+  property UpgradePriority: weaponspecial;
 
   Default {
     ::Thunderbolt::Aux.UpgradePriority ::PRI_ELEMENTAL;

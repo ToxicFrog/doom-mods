@@ -18,11 +18,11 @@ class ::FragmentationShots : ::BaseUpgrade {
     if (!shot || !shot.FindInventory("::FragmentationShots::Marker")) return;
     shot.TakeInventory("::FragmentationShots::Marker", 999);
 
-    // TODO: new Upgrade-specific Spawn function that sets special1
+    // TODO: new Upgrade-specific Spawn function that sets weaponspecial
     // and target appropriately.
     DEBUG("OnDamageDealt, source=%s", shot.GetTag());
     let boom = ::FragmentationShots::Boom(shot.Spawn("::FragmentationShots::Boom", shot.pos));
-    boom.special1 = Priority();
+    boom.weaponspecial = Priority();
     boom.target = pawn;
     boom.tracer = target; // So that it knows which enemy to ignore
     boom.level = level;
@@ -37,7 +37,7 @@ class ::FragmentationShots : ::BaseUpgrade {
 }
 
 class ::FragmentationShots::Marker : Inventory {
-  property Priority: special1;
+  property Priority: weaponspecial;
   Default { ::FragmentationShots::Marker.Priority ::PRI_FRAGMENTATION; }
 }
 
@@ -84,7 +84,7 @@ class ::FragmentationShots::Boom : Actor {
 
 class ::FragmentationShots::Fragment : FastProjectile {
   uint customdamage;
-  property UpgradePriority: special1;
+  property UpgradePriority: weaponspecial;
   Default {
     ::FragmentationShots::Fragment.UpgradePriority ::PRI_FRAGMENTATION;
     Radius 2;

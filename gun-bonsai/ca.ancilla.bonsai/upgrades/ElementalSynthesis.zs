@@ -94,7 +94,7 @@ class ::ElementalBeam : ::ElementalSynthesis {
 }
 
 class ::ElementalBeam::Puff : BulletPuff {
-  property UpgradePriority: special1;
+  property UpgradePriority: weaponspecial;
   Default { ::ElementalBeam::Puff.UpgradePriority ::PRI_NULL; }
 
   States {
@@ -140,7 +140,7 @@ class ::ElementalSynthesis::AoE : Actor {
   uint range;
   ::ElementalSynthesis parent;
 
-  property UpgradePriority: special1;
+  property UpgradePriority: weaponspecial;
   Default { ::ElementalSynthesis::AoE.UpgradePriority ::PRI_NULL; }
 
   void InitFrom(::ElementalSynthesis parent, Actor src, uint radius) {

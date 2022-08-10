@@ -27,6 +27,12 @@
 // As a special case, attacks with no defined priority (PRI_MISSING) can trigger
 // anything -- this is the "priority" associated with attacks not governed by
 // Gun Bonsai.
+// It is currently stored in the `weaponspecial` field, on the assumption that
+// this is not used for anything on projectiles.
+// Possible other places if that turns out to be unsuitable:
+// - movecount (used by monsters)
+// - accuracy, stamina, health, or reactiontime
+// - score
 enum ::UpgradePriority {
   ::PRI_NULL = -1,   // Disallow cross-upgrade triggering at all
   ::PRI_MISSING = 0, // SPECIAL PURPOSE -- DO NOT USE
@@ -69,8 +75,8 @@ class ::BaseUpgrade : Object play {
   virtual ::UpgradePriority Priority() { return ::PRI_NULL; }
   virtual bool CheckPriority(Actor inflictor) {
     return !inflictor
-      || inflictor.special1 == ::PRI_MISSING
-      || (inflictor.special1 > Priority() && Priority() != ::PRI_NULL);
+      || inflictor.weaponspecial == ::PRI_MISSING
+      || (inflictor.weaponspecial > Priority() && Priority() != ::PRI_NULL);
   }
 
   // Upgrade selection functions.
