@@ -4,8 +4,12 @@
 - Change: HUD text layout adjusted, now shows level and XP for both player and weapon
 - Change: lightning now freezes enemies into their current state rather than their pain state
 - Balance: Burning Terror no longer triggers pain, but recovery from fear takes longer.
+- Balance: Piercing Shots now requires two levels of Fast Shots
+- Balance: Piercing Shots is now mutually exclusive with Bouncy Shots and Fragmentation Shots
 - Fix: HUD text now scales properly with screen size and HUD size
 - Fix: Fire and Lightning effects no longer make Hexen Centaurs immortal
+- Fix: Bouncy Shots no longer makes things worse when taken on an already-bouncy weapon (making it not appear on those weapons at all will be fixed in a future version)
+- Fix: Bouncy Shots no longer slow down when hitting a wall
 
 # 0.8.5
 

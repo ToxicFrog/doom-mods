@@ -30,7 +30,9 @@ class ::FragmentationShots : ::BaseUpgrade {
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
-    return info.IsProjectileWeapon() && !info.weapon.bMELEEWEAPON;
+    return info.IsProjectileWeapon()
+      && info.upgrades.Level("::PiercingShots") == 0
+      && !info.weapon.bMELEEWEAPON;
   }
 }
 

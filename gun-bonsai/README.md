@@ -240,11 +240,7 @@ Reduces incoming damage by 10% (and by at least 1 point per level). This has dim
 
 Non-elemental upgrades for your weapons.
 
-### Agonizer *(Melee only)*
-
-Hitting an enemy flinches them for 2/5ths of a second. More levels increase the duration.
-
-### Bouncy Shots *(Projectile only)*
+### Bouncy Shots *(Projectile only, incompatible with Piercing Shots)*
 
 Shots bounce off walls. Higher levels increase the number of bounces and decrease the amount of velocity lost on bounce. At level 3, shots bounce off enemies as well.
 
@@ -264,7 +260,7 @@ Killing an enemy causes an explosion dealing 20% of (its health + the amount you
 
 Projectiles move 50% faster per level.
 
-### Fragmentation Shots *(Projectile only)*
+### Fragmentation Shots *(Projectile only, incompatible with Piercing Shots)*
 
 On impact, projectiles release a ring of hitscan attacks. Increasing the upgrade level adds more fragments; damage is based on the base damage of the shot. These can't self-damage.
 
@@ -276,9 +272,9 @@ Creates a small explosion on hit doing 40% of the original attack damage. More l
 
 Projectiles home in on enemies. Higher levels will lock on from further away and be more maneuverable when homing.
 
-### Piercing Shots *(Projectile only)*
+### Piercing Shots *(Projectile only, requires two levels of Fast Shots)*
 
-Shots go through enemies (but not walls). Each level allows shots to go through one additional enemy. Note that most shots will hit enemies multiple times as they pass through, so this also acts as a damage bonus.
+Shots go through enemies (but not walls). Note that most shots will hit enemies multiple times as they pass through, so this also acts as a damage bonus which hits harder against larger enemies.
 
 ### Shield *(Melee only, max two levels)*
 
