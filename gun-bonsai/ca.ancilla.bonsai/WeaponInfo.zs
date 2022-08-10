@@ -83,6 +83,10 @@ class ::WeaponInfo : Object play {
   bool CanRebindTo(Weapon wpn) {
     ::UpgradeBindingMode mode = ::Settings.upgrade_binding_mode();
 
+    // SisterWeapon overrides everything else; a weapon and its sister are always
+    // considered to share a binding regardless of binding mode.
+    if (self.wpn && self.wpn.SisterWeapon == wpn) return true;
+
     // Can't rebind at all in BIND_WEAPON mode under normal circumstances.
     // As a special case, we will permit rebinds if:
     // - the new weapon has a different class from the old one;

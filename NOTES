@@ -11,10 +11,8 @@
 
 ### 0.9.0
 
-- BONSAIRC lump parser
 - store state in the staticeventhandler and mirror it in the player so events can carry across deathexits
 - option whether to respect deathexits/inventory resets or not
-- support SisterWeapon field as equivalent
 - improved type inference:
   - detect FastProjectiles, bouncy shots, and ripper shots and disable the appropriate upgrades
 

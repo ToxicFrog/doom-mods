@@ -11,6 +11,7 @@
   - The weapon and its upgrade must be marked as merged in BONSAIRC
   - The old weapon must be removed and the new weapon added in the same game tic
 - New: `bonsai-debug,reset` debug command
+- Fix: Weapons retain their upgrades when empowered by the Tome of Power
 
 # 0.8.6
 
