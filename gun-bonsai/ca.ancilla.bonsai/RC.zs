@@ -1,7 +1,7 @@
 // Loader for the BONSAIRC lump, including lump parser. See end of file for the
 // formal grammar, and the included BONSAIRC for a working example.
 #namespace TFLV;
-#debug on;
+#debug off;
 
 enum ::WeaponType {
   ::TYPE_AUTO = 0x00,
@@ -266,7 +266,7 @@ class ::RC::Type : ::RC::Node {
   override void Finalize(::EventHandler handler) {
     ValidateWeapons(self.weapons);
     PrintArray(
-      string.format("[BONSAIRC] Forcing type %d for:", type),
+      string.format("[BONSAIRC] Forcing type 0x%2X for:", type),
       weapons);
   }
 
@@ -413,12 +413,8 @@ class ::RCParser : Object play {
     // read in statements and save them until the "}" is reached, but do not execute
     while (!peek("}")) if (!Statement()) return false;
     let conditioned = pop();
-    DEBUG("init ifdef");
     let ifd = ::RC::IfDef.Init(classes, conditioned);
-    DEBUG("done ifdef");
-    if (!rc) DEBUG("oh noes");
     rc.push(ifd);
-    DEBUG("done push");
     return require("}");
   }
 
