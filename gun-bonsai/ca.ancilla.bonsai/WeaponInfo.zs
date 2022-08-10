@@ -123,19 +123,21 @@ class ::WeaponInfo : Object play {
   // We have this threshold to limit false positives in the case of e.g. mods
   // that add offhand grenades that get attributed to the current weapon, or
   // weapons that have a projectile alt-fire that is used only very rarely.
-  bool IsHitscan() {
+  bool IsHitscan() const {
     if (wpnType) return wpnType & ::TYPE_HITSCAN;
     return hitscan_shots / 4 > projectile_shots;
   }
-  bool IsProjectile() {
+  bool IsProjectile() const {
     if (wpnType) return wpnType & ::TYPE_PROJECTILE;
     return projectile_shots / 4 > hitscan_shots;
   }
-  bool IsMelee() {
+  bool IsMelee() const {
     if (wpnType) return wpnType & ::TYPE_MELEE;
     return wpn.bMELEEWEAPON;
   }
-  bool IsIgnored() {
+  // Ignored weapons cannot earn XP or levels and have a special display in
+  // the HUD.
+  bool IsIgnored() const {
     if (wpnType) return wpnType & ::TYPE_IGNORE;
     return false;
   }
@@ -153,6 +155,7 @@ class ::WeaponInfo : Object play {
   }
 
   void AddXP(double newXP) {
+    if (IsIgnored()) return;
     DEBUG("Adding XP: %.3f + %.3f", XP, newXP);
     XP += newXP;
     DEBUG("XP is now %.3f", XP);

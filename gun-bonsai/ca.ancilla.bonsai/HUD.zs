@@ -219,9 +219,14 @@ class ::HUD : Object ui {
       // in the right place (directly above the weapon name) when it gets rendered.
       HUD_INFOTEXT_Y - NewSmallFont.GetHeight()/scale/screenscale,
       HUD_GRAV_SW);
-    Text(
-      string.format("Lv.%d (%d/%d)", stats.wlvl, stats.wxp, stats.wmax),
-      weapon_rgb, HUD_INFOTEXT_X, HUD_INFOTEXT_Y, HUD_GRAV_SW);
+    if (stats.winfo.IsIgnored()) {
+      Text("Lv.- (---/---)", weapon_rgb, HUD_INFOTEXT_X, HUD_INFOTEXT_Y, HUD_GRAV_SW);
+      DrawProgressBar(tex(weapon_tex..face), 0xFF808080, 1.0, HUD_WXP_X, HUD_WXP_W);
+    } else {
+      Text(
+        string.format("Lv.%d (%d/%d)", stats.wlvl, stats.wxp, stats.wmax),
+        weapon_rgb, HUD_INFOTEXT_X, HUD_INFOTEXT_Y, HUD_GRAV_SW);
+    }
   }
 }
 
