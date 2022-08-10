@@ -58,6 +58,9 @@ class TFLV_Settings : Object {
   static TFLV_UpgradeBindingMode upgrade_binding_mode() {
     return GetInt("bonsai_upgrade_binding_mode");
   }
+  static bool ignore_death_exits() {
+    return GetBool("bonsai_ignore_death_exits");
+  }
   static TFLV_WhichGuns which_guns_can_learn() {
     return GetInt("bonsai_which_guns_can_learn");
   }

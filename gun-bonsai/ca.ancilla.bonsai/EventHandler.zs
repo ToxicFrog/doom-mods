@@ -51,7 +51,10 @@ class ::EventHandler : StaticEventHandler {
       // Spawned in player doesn't have stats, give them a proxy holding whatever
       // stats we have for them.
       DEBUG("Player %d doesn't have stats, reassigning", p);
-      if (!playerstats[p]) {
+      if (!playerstats[p] || !::Settings.ignore_death_exits()) {
+        // Either we don't have stats for this player, or we do but we're meant
+        // to respect death exits; in either case create new stats for them ex
+        // nihilo.
         DEBUG("No stats recorded in playerstats[%d], starting from scratch", p);
         playerstats[p] = new("::PerPlayerStats");
       }

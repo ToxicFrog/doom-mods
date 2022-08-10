@@ -42,24 +42,16 @@ OptionMenu "GunBonsaiOptions"
   StaticText ""
   StaticText "Compatibility Options", WHITE
 
-  Option "Use builtin actors for Scavenge drops", "bonsai_use_builtin_actors", "OnOff"
-  Tooltip "Whether the Scavenge Blood and Scavenge Steel upgrades should use actors built into Gun Bonsai, or the generic Doom 2 HealthBonus and ArmorBonus actors."
-  Tooltip "The builtins should work in any IWAD. The generic ones are more likely to 'blend in' when playing with mods that define replacements for the generic bonuses, but (depending on the mod) may no longer give the correct amounts of health/armour."
-
-  StaticText ""
-  StaticText "Weapon Bonus Settings", BLUE
-
   Option "Weapon upgrades bind to", "bonsai_upgrade_binding_mode", "GunBonsaiUpgradeBindingMode"
   Tooltip "Determines how weapon upgrades behave when you drop a weapon or are carrying multiple weapons of the same type."
   Tooltip "\c[CYAN][individual weapon]:\c- each weapon has its own upgrades. When you drop a weapon, the upgrades go with it, and if you lose a weapon permanently, the upgrades are lost forever."
   Tooltip "\c[CYAN][individual w/inheritance]:\c- each weapon has its own upgrades, but if a weapon is lost and you later pick up a new weapon of the same type, the new weapon will inherit the upgrades of the old one."
-  Tooltip "\c[CYAN][weapon class]:\c- all weapons of the same type share the same upgrades, even if you have more than one of them in your inventory. If you lose a weapon,"
-
-  StaticText ""
-  StaticText "Player Bonus Settings", GREEN
-
-  Slider "Gun levels per player level", "bonsai_gun_levels_per_player_level", 1, 100, 1, 0
-  Tooltip "How many times you need to level up a weapon to gain a player bonus."
+  Tooltip "\c[CYAN][weapon class]:\c- all weapons of the same type share the same upgrades, even if you have more than one of them in your inventory. Upgrades are remembered even if you lose all copies of a weapon."
+  Option "Keep upgrades on death exit/pistol start", "bonsai_ignore_death_exits", "OnOff"
+  Tooltip "If on, you'll keep your upgrades on level transition even if you lose your inventory (subject to the upgrades-bind-to setting above). If off, level transitions that take your inventory will also cost you your upgrades."
+  Option "Use builtin actors for Scavenge drops", "bonsai_use_builtin_actors", "OnOff"
+  Tooltip "Whether the Scavenge Blood and Scavenge Steel upgrades should use actors built into Gun Bonsai, or the generic Doom 2 HealthBonus and ArmorBonus actors."
+  Tooltip "The builtins should work in any IWAD. The generic ones are more likely to 'blend in' when playing with mods that define replacements for the generic bonuses, but (depending on the mod) may no longer give the correct amounts of health/armour."
 
   StaticText ""
   StaticText "XP Source Settings", PURPLE
@@ -76,6 +68,8 @@ OptionMenu "GunBonsaiOptions"
 
   Slider "XP needed to reach level 1", "bonsai_base_level_cost", 100, 10000, 100, 0
   Tooltip "How much XP you need to earn for a weapon to gain its first level. Roughly, 1 point of damage dealt == 1 XP gained, with a bonus for damaging nastier enemies like Cyberdemons and Archviles."
+  Slider "Gun levels per player level", "bonsai_gun_levels_per_player_level", 1, 100, 1, 0
+  Tooltip "How many times you need to level up a weapon to gain a player bonus."
 
   Slider "XP cost multiplier for melee weapons", "bonsai_level_cost_mul_for_melee", 0.1, 5.0, 0.1, 1
   Slider "XP cost multiplier for wimpy weapons", "bonsai_level_cost_mul_for_wimpy", 0.1, 5.0, 0.1, 1
