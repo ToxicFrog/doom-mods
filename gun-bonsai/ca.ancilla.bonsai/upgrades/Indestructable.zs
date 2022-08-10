@@ -15,7 +15,9 @@ class ::Indestructable : ::BaseUpgrade {
   }
 
   override bool IsSuitableForPlayer(TFLV::PerPlayerStats stats) {
-    return stats.upgrades.Level("::Indestructable") < 3;
+    return stats.upgrades.Level("::Indestructable") < 3
+      && CVar.FindCVar("indestructable_starting_lives").GetInt() == 0
+      && CVar.FindCVar("indestructable_lives_per_level").GetInt() == 0;
   }
 }
 

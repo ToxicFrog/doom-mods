@@ -39,13 +39,7 @@ Some mods have special integration features or require specific compatibility se
 
 ### Indestructable
 
-If you have my other mod, [Indestructable](../indestructable), installed, Gun Bonsai can add an `Indestructable` upgrade to the player upgrade pool that lets you earn extra lives by taking damage once you select it. To enable this upgrade, adjust the following Indestructable settings:
-
-- `Starting lives`: 0
-- `Extra lives at level start`: 0
-- `Max lives at level start`: Unlimited
-
-Any other settings will cause it to assume that you want to use Indestructable normally and disable Indestructable/Bonsai integration.
+If you have my other mod, [Indestructable](../indestructable), installed, Gun Bonsai will add an `Indestructable` upgrade to the player upgrade pool that lets you earn extra lives by taking damage once you select it. It will do this only if the "starting lives" and "extra lives at level start" settings are both 0.
 
 ### Score mods (including LazyPoints, MetaDoom, and Reelism)
 

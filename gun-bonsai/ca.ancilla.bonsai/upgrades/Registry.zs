@@ -90,14 +90,6 @@ class ::Registry : Object play {
       upgrade_names.push(UpgradeNames[i]);
       upgrades.push(::BaseUpgrade(new(UpgradeNames[i])));
     }
-    // Only load Indestructable if the mod itself is installed.
-    string forcename = "TFIS_IndestructableForce";
-    class<Actor> cls = forcename;
-    if (cls && IsIndestructableDelegated()) {
-      console.printf("Indestructable installed, enabling upgrade.");
-      upgrade_names.push("::Indestructable");
-      upgrades.push(::BaseUpgrade(new("::Indestructable")));
-    }
   }
 
   // Returns true if Indestructable has delegated management of lives to Gun Bonsai.
