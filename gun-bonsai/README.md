@@ -96,7 +96,7 @@ Go nuts! It's released under the MIT license; see COPYING.md for details. See al
 
 ### Can I add Gun Bonsai integration to my mod?
 
-See "modding notes" below.
+Yes! See the `MODDING.md` file for instructions; if you just want to automatically apply a few compatibility tweaks, you probably just need to include a `BONSAIRC` lump in your mod.
 
 ### Didn't this used to be called "Laevis"?
 

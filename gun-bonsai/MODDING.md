@@ -2,11 +2,20 @@
 
 This document contains information of interest to other modders, whether you want to hack on Gun Bonsai itself, re-use parts of it in your own mod, write addon mods for it, or add mod-specific compatibility tweaks.
 
-## Building
 
-The ZScript files included in this mod are not loadable as-is; they need to be preprocessed with `zspp`, which is included. The easiest way to do this is simply to run `make` and then retrieve the compiled pk3 from the `release` directory. In addition to `make` itself you will need `find` and `luajit` (for the zscript preprocessor) and the ImageMagick `convert` command (to generate the HUD textures).
+## The BONSAIRC Lump
 
-You can also simply download a release pk3, unzip it, and edit the preprocessed files.
+Gun Bonsai, on startup, loads and parses all BONSAIRC lumps available. These can be used to:
+
+- register new upgrades (`register`)
+- disable existing upgrades globally (`unregister`)
+- disable specific upgrades for a given weapon or set of weapons (`disable`)
+- mark a set of weapons as being the same underlying weapon (`merge`)
+- override Gun Bonsai's built in weapon type inference (`type`)
+- mark a weapon as a "weapon-like tool" that shouldn't earn XP (also `type`)
+
+For an example, see Gun Bonsai's built in BONSAIRC, which applies compatibility settings for a number of mods. Mod authors who want to automatically "play nice" with Gun Bonsai can include this lump to apply mod- and weapon-specific tweaks in a non-intrusive way.
+
 
 ## Debug commands
 
@@ -26,17 +35,26 @@ You can also fully reset the Gun Bonsai state for your character with:
 - `netevent bonsai-debug,reset`
 
 
+## Building from source
+
+The ZScript files included in this mod are not loadable as-is; they need to be preprocessed with `zspp`, which is included. The easiest way to do this is simply to run `make` and then retrieve the compiled pk3 from the `release` directory. In addition to `make` itself you will need `find` and `luajit` (for the zscript preprocessor) and the ImageMagick `convert` command (to generate the HUD textures).
+
+You can also simply download a release pk3, unzip it, and edit the preprocessed files.
+
+
 ## Reusable Parts
 
 The `GenericMenu`, `StatusDisplay`, and other menu classes are useful examples of how to do dynamic interactive menu creation in ZScript, and how to use a non-interactive OptionsMenu to create a status display.
 
 If you want to use the option menu tooltips, look at [libtooltipmenu](../libtooltipmenu/) instead.
 
-### Adding new Gun Bonsai upgrades
 
-See `BaseUpgrade.zs` for detailed instructions. The short form is: you need to subclass `TFLV_Upgrade_BaseUpgrade`, override some virtual methods, and then register your new upgrade class(es) on mod startup, probably in `StaticEventHandler.OnRegister()`.
+## Adding new Gun Bonsai upgrades
 
-### Fiddling with Gun Bonsai's internal state
+See `BaseUpgrade.zs` for detailed instructions. The short form is: you need to subclass `TFLV_Upgrade_BaseUpgrade`, override some virtual methods, and then register your new upgrade class(es) using the BONSAIRC lump.
+
+
+## Fiddling with Gun Bonsai's internal state
 
 Everything you're likely to want to interact with is stored in the `TFLV_PerPlayerStats` (held in the `PlayerPawn`'s inventory) and the `TFLV_WeaponInfo` (one per gun, stored in the PerPlayerStats). Look at the .zs files for those for details on the fields and methods available.
 
@@ -53,5 +71,3 @@ This is not UI-safe, but is more flexible:
 - `stats.GetOrCreateInfoFor(wpn)` will return existing info for `wpn` if any exists; if not, it will (if the game settings permit this) attempt to re-use an existing `WeaponInfo` for another weapon of the same type. If both of those fail it will create, register, and return a new `WeaponInfo`. Note that calling this on a `Weapon` that is not in the player's inventory will *work*, in the sense that a `WeaponInfo` will be created and returned, but isn't particularly useful unless you subsequently add the weapon to the player's inventory.
 
 If you have an existing `WeaponInfo` and want to stick it to a new weapon, perhaps to transfer upgrades, you can do so by calling `info.Rebind(new_weapon)`. Note that this removes its association with the old weapon entirely -- the "weapon upgrades are shared by weapons of the same class" option is actually implemented by calling `Rebind()` every time the player switches weapons.
-
-

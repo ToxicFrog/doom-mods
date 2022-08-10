@@ -21,7 +21,8 @@
 # Declare the listed weapons to be of the given type, overriding autodetection.
 # Type is one of: MELEE HITSCAN PROJECTILE IGNORE AUTO
 # IGNORE will force Bonsai to ignore that weapon entirely and not assign XP to it.
-# AUTO will force it to autodetect, useful for overriding an earlier directive.
+# AUTO will force it to autodetect; this is the default, but can be specified
+# explicitly to override a prior non-AUTO type directive.
 #
 # A <classes> list is just one or more class names separated by whitespace. It
 # can also be a class prefix by appending *, e.g. Endi* will match all weapon
@@ -38,6 +39,7 @@ ifdef EndieWeapon { unregister TFLV_Upgrade_Juggler; }
 
 # Ashes Afterglow: keep upgrades when customizing weapons, and fix melee flag on sawn-off.
 ifdef ItemAthena {
+  # Base weapons and their upgraded forms should be merged.
   merge jackhammer*;
   merge revolver*; merge glock*;
   merge pumpaction*; merge sawedoff*;
@@ -46,13 +48,14 @@ ifdef ItemAthena {
   merge junkermusket*; merge m16*;
   # Sawed-off is incorrectly flagged as a melee weapon
   type sawedoff*: HITSCAN;
-  # Upgraded pump-action has a bayonet.
-  #type pumpaction2 pumpaction2: HITSCAN MELEE;
+  # Example overrides that are disabled by default:
+  # Upgraded pump-action has a bayonet and should count as both hitscan and melee.
+  #type pumpaction2 pumpaction3: HITSCAN MELEE;
   # Napalm gun, as a naturally fire-elemental weapon, can only get fire-elemental upgrades.
-  # disable napalmgun*:
-  #   TFLV_Upgrade_PoisonShots
-  #   TFLV_Upgrade_CorrosiveShots
-  #   TFLV_Upgrade_ShockingInscription;
+  #disable napalmgun*:
+  #  TFLV_Upgrade_PoisonShots
+  #  TFLV_Upgrade_CorrosiveShots
+  #  TFLV_Upgrade_ShockingInscription;
 }
 
 # Hideous Destructor: ignore stuff that looks like a weapon but isn't.
