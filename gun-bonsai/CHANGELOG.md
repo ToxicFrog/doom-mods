@@ -13,6 +13,10 @@
 - New: `bonsai-debug,reset` debug command
 - Fix: Weapons retain their upgrades when empowered by the Tome of Power
 
+# 0.8.6.1
+
+- Fix: crash on startup when using -warp, +load, or other commands that bypass the main menu
+
 # 0.8.6
 
 - Change: HUD scale is now always set as a fraction of screen size rather than a size in pixels

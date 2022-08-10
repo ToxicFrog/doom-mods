@@ -81,7 +81,7 @@ class ::HUD : Object ui {
   // Coordinates are in HUD texture coordinate space, relative to the top left
   // corner of the HUD.
   void Text(string text, uint colour, uint x, uint y, ::HUD::Gravity grav) {
-    let font = NewSmallFont;
+    let thefont = NewSmallFont;
     // Apply mirroring settings.
     if (mirror & HUD_MIRROR_H) x = HUD_WIDTH - x;
     if (mirror & HUD_MIRROR_V) y = HUD_HEIGHT - y + 10; // A bit of padding
@@ -102,18 +102,18 @@ class ::HUD : Object ui {
         // No changes needed.
         break;
       case HUD_GRAV_SE:
-        x = x - font.StringWidth(text);
-        y = y - font.GetHeight();
+        x = x - thefont.StringWidth(text);
+        y = y - thefont.GetHeight();
         break;
       case HUD_GRAV_NE:
-        x = x - font.StringWidth(text);
+        x = x - thefont.StringWidth(text);
         break;
       case HUD_GRAV_SW:
-        y = y - font.GetHeight();
+        y = y - thefont.GetHeight();
         break;
     }
 
-    screen.DrawText(font, colour, x, y, text,
+    screen.DrawText(thefont, thefont.CR_WHITE, x, y, text,
       DTA_VirtualWidth, fbw, DTA_VirtualHeight, fbh, DTA_KeepRatio, true,
       DTA_Color, colour);
   }
