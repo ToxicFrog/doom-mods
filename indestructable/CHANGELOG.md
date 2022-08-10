@@ -1,3 +1,7 @@
+# 0.2.3
+
+- Fix: Universal Pistol Start compatibility; with pistol start enabled you will get lives as if starting a new game.
+
 # 0.2.2
 
 - Fix: remove leftover debugging message

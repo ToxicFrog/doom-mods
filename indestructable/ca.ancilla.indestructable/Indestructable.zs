@@ -35,7 +35,7 @@ class ::IndestructableEventHandler : StaticEventHandler {
     force.inv = null;
   }
 
-  override void PlayerSpawned(PlayerEvent evt) {
+  override void PlayerEntered(PlayerEvent evt) {
     PlayerPawn pawn = players[evt.playerNumber].mo;
     if (!pawn) return;
 
@@ -49,7 +49,7 @@ class ::IndestructableEventHandler : StaticEventHandler {
     // Don't trigger on game loads or returns to hub levels.
     if (evt.IsSaveGame || evt.IsReopen) return;
     // New level? Refill their lives.
-    // PlayerSpawned runs first, so they should already have the force.
+    // PlayerEntered runs first, so they should already have the force.
     let pawn = players[consoleplayer].mo;
     let force = ::IndestructableForce(pawn.FindInventory("::IndestructableForce"));
 

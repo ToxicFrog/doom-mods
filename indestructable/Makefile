@@ -1,5 +1,5 @@
 NAME=Indestructable
-VERSION=0.2.2
+VERSION=0.2.3
 LUMPS=CVARINFO MAPINFO MENUDEF zscript.txt
 LUMPS+=*.md
 ZSDIR=ca.ancilla.indestructable
