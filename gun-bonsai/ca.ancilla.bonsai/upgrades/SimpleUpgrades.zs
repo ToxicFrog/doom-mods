@@ -22,6 +22,7 @@ class ::BouncyShots : ::BaseUpgrade {
     shot.bBOUNCEONFLOORS = true;
     shot.bBOUNCEAUTOOFFFLOORONLY = true;
     shot.BounceCount = max(shot.BounceCount, 1 + level);
+    shot.BounceFactor = 1.0;
     if (level >= 3) {
       shot.bALLOWBOUNCEONACTORS = true;
       shot.bBOUNCEONACTORS = true;
