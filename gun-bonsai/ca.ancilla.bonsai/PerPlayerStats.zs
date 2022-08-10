@@ -26,30 +26,14 @@ struct ::CurrentStats {
 // TODO: see if there's a way we can evacuate this to the StaticEventHandler
 // and reinsert it into the player when something happens, so that it reliably
 // persists across deaths, pistol starts, etc -- make this an option.
-class ::PerPlayerStats : Inventory {
+class ::PerPlayerStats : Object play {
   array<::WeaponInfo> weapons;
   ::Upgrade::UpgradeBag upgrades;
   uint XP;
   uint level;
   ::WeaponInfo infoForCurrentWeapon;
   int prevScore;
-
-  Default {
-    Inventory.Amount 1;
-    Inventory.MaxAmount 1;
-    +INVENTORY.IGNORESKILL;
-    +INVENTORY.UNTOSSABLE;
-    +INVENTORY.UNDROPPABLE;
-    +INVENTORY.QUIET;
-  }
-
-  States {
-    Spawn:
-      TNT1 A 0 NoDelay Initialize();
-    Poll:
-      TNT1 A 1 TickStats();
-      LOOP;
-  }
+  Actor owner;
 
   // HACK HACK HACK
   // The various level up menus need to be able to get a handle to the specific
@@ -61,50 +45,9 @@ class ::PerPlayerStats : Inventory {
   ::UpgradeGiver currentEffectGiver;
 
   clearscope static ::PerPlayerStats GetStatsFor(Actor pawn) {
-    return ::PerPlayerStats(pawn.FindInventory("::PerPlayerStats"));
-  }
-
-  // Special pickup handling so that if the player picks up an LD legendary weapon
-  // that upgrades their mundane weapon in-place, we handle this correctly rather
-  // than thinking it's a mundane weapon that earned an LD effect through leveling
-  // up.
-  override bool HandlePickup(Inventory item) {
-    if (Weapon(item)) {
-      // Flag the weaponinfo for a full rebuild on the next tick.
-      // We don't do it immediately because the purpose of this is to transfer
-      // weaponinfo from old weapons to new weapons that replace them, and in some
-      // mods the new weapon is added before the old one is removed.
-      // This is only really relevant when using BIND_WEAPON and it's important
-      // that we rebind the info to the replacement before it gets cleaned up.
-      weaponinfo_dirty = true;
-      return super.HandlePickup(item);
-    }
-
-    // Workaround for zscript `is` operator being weird.
-    string LDWeaponNameAlternationType = "LDWeaponNameAlternation";
-    string LDPermanentInventoryType = "LDPermanentInventory";
-    if (item is LDWeaponNameAlternationType) return super.HandlePickup(item);
-    if (!(item is LDPermanentInventoryType)) return super.HandlePickup(item);
-
-    string cls = item.GetClassName();
-    if (cls.IndexOf("EffectActive") < 0) return super.HandlePickup(item);
-
-    // If this is flagged as "notelefrag", it means it was produced by the level-
-    // up code and should upgrade our current item in place rather than invalidating
-    // its info block.
-    if (item.bNOTELEFRAG) return super.HandlePickup(item);
-
-    // At this point we know that the pickup is a Legendoom weapon effect token
-    // and it's not one we created. So we need to figure out if the player has
-    // an existing entry for a mundane weapon of the same type and clear it if so.
-    // TODO: this may need a redesign in light of the new rebinding code.
-    cls = cls.Left(cls.IndexOf("EffectActive"));
-    for (int i = 0; i < weapons.size(); ++i) {
-      if (weapons[i].wpn is cls) {
-        weapons[i].wpn = null;
-      }
-    }
-    return super.HandlePickup(item);
+    let proxy = ::PerPlayerStatsProxy(pawn.FindInventory("::PerPlayerStatsProxy"));
+    if (proxy) return proxy.stats;
+    return null;
   }
 
   // Fill in a CurrentStats struct with the current state of the player & their
@@ -178,7 +121,7 @@ class ::PerPlayerStats : Inventory {
   bool weaponinfo_dirty;
   ::WeaponInfo RebuildWeaponInfo() {
     if (weaponinfo_dirty) {
-      DEBUG("Dirty flag set, full weaponinfo rebuild triggered.");
+      DEBUG("Dirty flag set, full weaponinfo rebuild triggered for %s.", TAG(owner));
       for (Inventory inv = owner.inv; inv; inv = inv.inv) {
         let wep = Weapon(inv);
         if (wep) {
@@ -359,7 +302,7 @@ class ::PerPlayerStats : Inventory {
   // Apply all upgrades with ModifyDamageReceived/Dealt handlers here.
   // At this point the damage has not yet been inflicted; see OnDamageDealt/
   // OnDamageReceived for that, as well as for XP assignment.
-  override void ModifyDamage(
+  void ModifyDamage(
       int damage, Name damageType, out int newdamage, bool passive,
       Actor inflictor, Actor source, int flags) {
     if (damage <= 0) {
@@ -398,11 +341,16 @@ class ::PerPlayerStats : Inventory {
     }
   }
 
-  void Initialize() {
+  // This is called both when first created, and when reassigned to a new PlayerPawn
+  // (e.g. because of a load game operation). So it should initialize any missing
+  // fields but not clear valid ones.
+  void Initialize(Actor owner) {
+    DEBUG("Initializing PerPlayerStats for %s", TAG(owner));
     weaponinfo_dirty = true; // Force a full rebuild of the weaponinfo on startup.
     prevScore = -1;
     if (!upgrades) upgrades = new("::Upgrade::UpgradeBag");
-    upgrades.owner = self.owner;
+    self.owner = owner;
+    upgrades.owner = owner;
   }
 
   // Runs once per tic.

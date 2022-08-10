@@ -21,7 +21,7 @@ class ::Debug : Object play {
       stats.XP = 0;
       stats.level = 0;
       stats.upgrades = null;
-      stats.Initialize();
+      stats.Initialize(PlayerPawn(pawn));
     } else {
       console.printf("Unknown or malformed debug command: %s", argv[1]);
     }

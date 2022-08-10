@@ -5,6 +5,7 @@
 #debug off
 
 class ::EventHandler : StaticEventHandler {
+  ::PerPlayerStats playerstats[8];
   ::Upgrade::Registry UPGRADE_REGISTRY;
   ::RC rc;
   ui ::HUD hud;
@@ -25,12 +26,37 @@ class ::EventHandler : StaticEventHandler {
     rc.Finalize(self);
   }
 
-  override void PlayerSpawned(PlayerEvent evt) {
-    PlayerPawn pawn = players[evt.playerNumber].mo;
-    if (pawn) {
-      let stats = ::PerPlayerStats.GetStatsFor(pawn);
-      if (!stats) stats = ::PerPlayerStats(pawn.GiveInventoryType("::PerPlayerStats"));
-      stats.SetStateLabel("Spawn");
+  override void WorldUnloaded(WorldEvent evt) {
+    DEBUG("WorldUnloaded: nextmap=%s", evt.NextMap);
+    if (evt.NextMap != "" && !evt.IsSaveGame) return;
+    // On world unload for something other than a normal level transition, clear
+    // all player info. Either we're about to load a save game (in which case we
+    // recover it from the player's inventory) or we're about to start a new game
+    // (in which case we should forget everything we know anyways).
+    for (uint i = 0; i < 8; ++i) playerstats[i] = null;
+  }
+
+  override void PlayerEntered(PlayerEvent evt) {
+    DEBUG("PlayerEntered");
+    let p = evt.PlayerNumber;
+    PlayerPawn pawn = players[p].mo;
+    if (!pawn) return;
+    let proxy = ::PerPlayerStatsProxy(pawn.FindInventory("::PerPlayerStatsProxy"));
+    if (proxy) {
+      // Spawned in player already has stats, those take precedence over whatever
+      // we remember.
+      DEBUG("Restoring old stats already held by player %d", p);
+      playerstats[p] = proxy.stats;
+    } else {
+      // Spawned in player doesn't have stats, give them a proxy holding whatever
+      // stats we have for them.
+      DEBUG("Player %d doesn't have stats, reassigning", p);
+      if (!playerstats[p]) {
+        DEBUG("No stats recorded in playerstats[%d], starting from scratch", p);
+        playerstats[p] = new("::PerPlayerStats");
+      }
+      proxy = ::PerPlayerStatsProxy(pawn.GiveInventoryType("::PerPlayerStatsProxy"));
+      proxy.Initialize(playerstats[p]);
     }
   }
 

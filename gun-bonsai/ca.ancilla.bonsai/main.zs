@@ -11,6 +11,7 @@
 #include "./LegendoomUtil.zsc"
 #include "./LegendoomWeaponInfo.zsc"
 #include "./PerPlayerStats.zsc"
+#include "./PerPlayerStatsProxy.zsc"
 #include "./PlayerUpgradeGiver.zsc"
 #include "./UpgradeGiver.zsc"
 #include "./WeaponUpgradeGiver.zsc"
