@@ -1,17 +1,35 @@
 ## Roadmap
 
+### 0.8.x
+
+- investigate embrittlement instakill proccing earlier than it should; observed offing a 3000hp enemy at 1300hp
+- mage shots don't bounce in Hexen
+- speed + pierce are a downgrade from speed alone, since it means the projectile doesn't stay in the target as long -- not sure how to rework pierce
+- how does pierce + bounce work?
+- projectile modifying upgrades shouldn't make things worse, e.g. lowering riplevel
+- thunderbolt should be easier to trigger? Alex can't trigger it at all with one level and a pistol against a pinky
+
+### 0.9.0
+
+- BONSAIRC lump parser
+- store state in the staticeventhandler and mirror it in the player so events can carry across deathexits
+- option whether to respect deathexits/inventory resets or not
+- support SisterWeapon field as equivalent
+- improved type inference:
+  - detect FastProjectiles, bouncy shots, and ripper shots and disable the appropriate upgrades
+
+### 0.9.1
+
+- more hexen bugfixes?
+- selective disabling of upgrades
+
+### 0.10.x?
+
+- split laevis into its own mod
+
 ### Soon
 
 - investigate use of A_SetTics() instead of freeze powerup for Swiftness
-
-### Later
-
-Remaining upgrades:
-- Ignition
-- max health increase
-- Shoryuken
-- explosive fragmentation
-- micromissiles -- projectiles turn into micromissile swarms after a few tics of flight. How do we compute damage?
 - add ammo capacity upgrade
   - walk player inventory and boost the MaxAmount and BackpackMaxAmount
   - requires OnApply support, probably
@@ -19,6 +37,100 @@ Remaining upgrades:
   - will be a player mod, so it should either be fairly powerful or get more powerful with time
   - we can use GetDefaultByType(ammoitem).MaxAmount to compute the base max amount
     and then confer bonuses based on that
+
+### Not Soon
+
+- per-state overrides in BONSAIRC, e.g. "if the weapon is in this state, treat it as this other weapon instead"
+- allow per-state overrides to create virtual weapons for cases where there is no underlying real weapon, like the Ashes boot knife
+- allow tracking primary and alt fire separately, probably using state overrides to tell it which states count as which
+
+### Hexen issues
+
+Bounce doesn't work on:
+Cleric 3 (Firestorm)
+Mage 1 (Sapphire Staff)
+Mage 2 (Frost Shards)
+
+It does work on all of the other projectile weapons (Warrior 3, Warrior 4, Mage 4). I'm not sure what I'd expect from Mage 3, the weird lightning storm isn't really a projectile, and I'm not sure any of the upgrades would make sense for it.
+
+Bounce is weird on Cleric 4 (Wraithverge) - the projectile sometimes doesn't seem to bounce, sometimes bounces and almost immediately erupts into ghosts.
+
+
+Piercing Shots doesn't work on:
+Warrior 4
+Cleric 3
+Mage 2
+
+I'm not sure if it works on Mage 1 since that has infinite pierce already. Wraithverge seems to work (the shot punctures, then explode a little ways afterward, rather than exploding on impact). Lightning storm is... lightning storm. Pierce wouldn't make sense on this one either, and I don't even know how I'd interpret "works" or "doesn't work." Mage 4 is another "already has piercing" situation.
+
+Homing Shots doesn't work on:
+Cleric 3
+Mage 2
+
+Weirdly, Mage 3, the lightning storm, is affected by homing shots.
+Mage 4 is unknown, the shots already home.
+
+Fragmentation Shots seems to work on everything just fine.
+
+Fast Shots doesn't work on:
+Cleric 3
+Mage 2
+
+### ideas from retronutcase
+
+First off, this is an absolutely solid mod. LOVE IT! There's definitely some things I think it could use, tweak wise, but that's just me, so take anything I say with a grain of salt, these are just my thoughts, I'm not gonna hound you over these ideas or anything.
+
+-The fact things like Submunitions and Fragmentation can proc elemental effects from the get go makes them obscenely powerful for element purposes. I feel like they should require a rare weapon upgrade to be able to proc elemental effects.
+
+-I am not 100% sure on this, but can Submunitions that kill an enemy trigger more submunitions? If so, this feels like it should also require a rare upgrade to actually allow for it. Something like "Chain Reaction: Allows death explosions and submunitions to trigger their effects on enemies they kill."
+
+On another note, maybe to spice things up, offer upgrades that come with upsides and downsides? Some examples of what I mean:
+
+-Superdense: Adds 50% more damage to projectile weapons, but also inflicts a 25% speed penalty in exchange per level.
+
+-HP Ammo: Adds 50% more damage to hitscan weapons, but they now fire projectiles (They cannot gain projectile based upgrades however). Further upgrades increase weapon spread by 25% per level.
+
+-Big Spender: The weapon gains 50% more damage, but its ammo cost is doubled. Both bonuses are doubled on future level ups: 100% more damage and 4x ammo cost, 200% more damage but 8x ammo cost, etc.
+
+Also, I feel like we could use some more common type upgrades to balance out the really strong ones like Submunitions and Fragmentation. I admit, I dunno how feasible these would be for a universal system
+
+-Reduced Spread: Reduces spread of hitscan weapons by 10% per level. Caps at level 5.
+
+-Increased Fire Rate: Increase weapon rate of fire by 10% per level. I admit I dunno how easy this to implement with the universal upgrade style you're aiming for.
+
+-Critical Hit: 10% chance to increase weapon damage by 50% when firing. Unlocks Critical Damage and Critical Chance upgrades which further improve these. Critical chance is +5% chance per level, caps at level 8. Critical Damage increases the damage bonus by 5% per level and caps at level 10.
+
+-Critical Gamble: Reduces non critical damage by by 50%, but boosts Critical Chance by 5% per level, and Critical Damage by 10% per level. Caps at Level 5.
+
+-Suppressor: Reduces weapon noise and distance per level. At level 5, the weapon becomes completely silent.
+
+-Free Shot: 5% chance to not consume ammo per level, caps at level 10.
+
+There's definitely potential for more variety in character upgrades too, I think:
+
+-Better Healing: +1 Health from Health Bonuses, +5 Health from Stimpacks, +10 Health from Medkits per level. Caps at Level 5. Rare upgrade
+
+-Charged Shots: When not firing, the damage of your next shot increases over time. Starts at 50% with a 25% damage gain per second. Upgrades increase max charge and charge rate by 25% per level. Rare uipgrade.
+
+-Stronger Armor: Adds +5% to green armor protection value and +10% blue armor protection value per level. rare upgrade.
+
+-Sneak Attack: Adds 50% damage when striking an unaware enemy. Damage increases by 12.5% per level, caps at level 4. Rare upgrade.
+
+Also, is there any way one could add overrides to the upgrade list for specific weapons? In case a certain weapon just ends up being TOO good with certain upgrades? (Looking at the MetaDoom EKG pistol, which is way too easy to make overpowered for a basic pistol, give this thing some piercing, fragmentation, and submunitions and becomes way too beastly for a low end gun)
+
+Anyway, regardless of if these ideas have any merit and end up being something you can use, I'm looking forward to seeing where this mod goes! :)
+
+### Later
+
+- BONSAIRC support for binding specific weapon *states* to other weapons?
+- general purpose pluggable XP sources for e.g. currency in mods that have it?
+
+Remaining upgrades:
+- Ignition
+- max health increase
+- Shoryuken
+- explosive fragmentation
+- micromissiles -- projectiles turn into micromissile swarms after a few tics of flight. How do we compute damage?
 
 Gameplay changes:
 - do another pass over the prerequisites. Graph paper? submunitions/expldeath should mutex, for example
@@ -116,7 +228,6 @@ On drop weapon:
 
 ## Player-level upgrades
 
-- life/armour/ammo leech
 - max health
 - life/armour regeneration out of combat?
 
@@ -125,28 +236,14 @@ On drop weapon:
 These all have to be possible without subclassing, so this is kind of spitballing; some of these may not be feasible to implement.
 I think that we have access to the projectile at creation time (via WorldThingSpawned) and the projectile/puff at damage time (via ModifyDamage and/or WorldThingDamaged).
 
-! infeasible
-
 Basic "number go up" upgrades:
-! ROF
-  requires modifying state info
-! accuracy (only if below a certain accuracy threshold)
-  requires modifying calls to fire functions; there is an Accuracy prop but it
-  doesn't do anything without custom code (except in Strife)
 - knockback
   weapon kickback & projectilekickback property
   will need some tuning (a value of 500 gives noticeable but not excessive kickback to the pistol)
   needs to be applied before the gun fires, so we need some kind of ApplyUpgradesToWeapon(wpn)
   call we can call after LevelUp
-! # of hits per shot (burst only)
-  probably infeasible since this is set in A_CustomBulletAttack; might be able
-  to get attack vector and synth additional shots?
-! reach (melee only)
-  requires changing A_Saw
 
 More complicated upgrades:
-- shrapnel on hit/kill
-  use the "# of nails" argument to A_Explode()
 - AoE stun
   Use A_Explode and then have a custom damage handler? Spawn some kind of explosion actor?
 - submunitions in flight
@@ -155,108 +252,11 @@ More complicated upgrades:
   as above
 - turns enemies into friends
   set FRIENDLY flag when damage threshold reached or w/e
-- health/armour/ammo leech
-  in OnDamageDealt
 
 Upgrades inspired by DoomRL:
 - increase max health
 - increased speed
-- fast weapon switching
 - berserk after successful hits/kills
 - show secrets/monsters/items/etc on map
 - damage type modifications (e.g. shrapnel -> AP)
-- ammoleech (on kill?)
 - damage resistance while firing
-
-## Elemental upgrade redesign
-
-Elements are mutually exclusive with each other. Each one has base, upgrade, and capstone options.
-Possible alternate design: both later-tier upgrades are "capstone" and you can only choose one, probably with either a "better for single targets/better for crowd control" split or a "better for big guns/better for rapid fire" split.
-
-FIRE: does more damage to enemies at full health; total damage capped as a % of target's max health. Stacks increase damage rate but not total damage. Hard counter to regen/healing. Upgrade: damage cap increased. Masteries: fire spreads between enemies OR sufficiently burning enemies turn into fireworks
-POISON: initially weak but both damage and duration increase as it stacks. Upgrade: poisoned enemies deal less damage. Masteries: dead enemies explode in a poison cloud OR enemies with enough poison to eventually kill them die instantly.
-ACID: does damage faster as the target gets closer to death. Stacking increases duration and stack cap depends on weapon damage (so it benefits more from guns with powerful single shots). Upgrade: not sure yet. Masteries: attacking acidified enemies splashes acid on their surroundings OR acidified enemies take more damage from non-acid damage types.
-LIGHTNING: no damage, but stuns the target by triggering their pain state. Upgrade: not sure yet. Masteries: softcapping lightning stacks starts damaging + stunning nearby enemies (but not applying stacks to them) OR enemies that die with enough lightning stacks rise as your minions.
-
-Idea for per-weapon limitations:
-- one element per weapon is easiest
-- or two elements
-- or: taking one element locks you into that until you claim a mastery for it, at which point you can choose a second element; getting that mastery unlocks a "dual mastery" upgrade appropriate to the two elements
-- fire+acid: it burns (enemies with both flee)
-- fire+lightning:
-- fire+poison: constant pain effect
-- acid+lightning: idk something about batteries?
-- acid+poison:
-- lightning+poison:
-or, one set of dual-element supermasteries:
-- ELEMENTAL BEAM, railgun attack that does no damage but copies dots on the enemy you just attacked to everything hit by the beam;
-- ELEMENTAL BLAST, ditto but has a blast radius and is for projectiles;
-- ELEMENTAL WAVE, as BLAST but for melee weapons
-
-LIGHTNING:
-- no damage, but stuns target; more stacks == longer duration
-- level: apply more stacks/stack softcap increased
-- upgrade: attacks that apply lightning also do damage, or maybe attacks that DON'T apply lightning do bonus damage? attacks release ball lightning?
-- AoE capstone: lightning nova that damages and stuns when certain stack-application breakpoints are reached
-- single-target capstone: enemies killed with enough lightning stacks rise as your minions
-
-Ok, after playing Amid Evil for a while and meditating on the concept of lightning, I have a reworked design for the shock tree, tentatively planned for v0.7:
-- Lightning Inscription: attacks do no extra damage but stun enemies. Stun duration per hit scales with damage, max stun duration scales with upgrade level.
-- Reanimation: enemies killed with lightning stacks on them have a chance to rise as your minions.
-- Chain Lightning: enemies killed with lightning stacks on them chain lightning to nearby enemies. Total jump count scales with level; damage scales with total number of enemies caught in the chain. No effect on single targets, get a few levels in this and try it in Okuplok and you'll gib everything on the screen (and your CPU)
-- Thunderbolt: capping out the lightning stacks on a target converts all of them into damage (possibly based on a % of its health). Mutually exclusive with Chain Lightning.
-
-## Avoiding infinite recursion
-
-So, say we have a weapon with the Fragmentation upgrade (shots release shrapnel on impact).
-
-It has an OnDamageDealt() handler, called from WorldThingDamaged, which calls Explode() on the puff/projectile in the mode that causes it to spray shrapnel everywhere. As the shrapnel hits the surroundings, it calls WorldThingDamaged again, which spawns more shrapnel...
-
-One way is just to say that OnDamageDealt can't trigger on any of the TFLV_* classes, and then tell it to use TFLV_ShrapnelPuff as the puff type or something -- but I think if we call Explode() in non-shrapnel mode the puff is the originator?
-
-Probably what we need to do is repurpose some kind of flag and set it on actors as we process them, and other actors that we spawn?
-
-Possibilities:
-DONTMORPH (cannot be Polymorphed)
-NOTDMATCH (don't spawn in deathmatch games)
-INCOMBAT (strife flag used for the dialogue system)
-
-Ended up going with +INCOMBAT, but that's an imperfect solution if we want *different* upgrades to be able to chain off each other, e.g. the fragments from fragmentation shots applying poison; we may want a way to restrict *which* upgrades individual upgrades can trigger, with a default that blocks recursion but not non-recursive chaining -- say, if an actor has the name TFLV::Upgrade::Foo:Aux, it can't trigger anything in TFLV::Upgrade::Foo but other stuff in the Upgrade namespace is fair game.
-
-Better idea: use the `master` pointer in auxes and dots -- basically anything we'd set +INCOMBAT on -- to point to the upgrade that created it. Then we can assign a priority to each upgrade and only higher-priority ones can trigger lower-priority effects.
-
-At the moment, this probably means that ExplosiveDeath, ExplosiveShots, and FragmentationShots are PRI_SECONDARY_DAMAGE or so, and all the elemental upgrades are PRI_ELEMENTAL, which is lower.
-
-Then in UpgradeBag event handlers, rather than checking +INCOMBAT, we check if the master point is set and castable to upgrade; if so, we compare its priority to the priority of the upgrade we're about to trigger.
-
-This runs into a problem: the `master` field can only point to actors, not objects. We need a different field we can re-use to store priority, probably a uint or int. Plausible fields:
-- score -- probably safe since these aren't ScoreItems or players
-- activationtype -- should only be relevant for activateables
-- accuracy/stamina -- only used by Strife players, I think
-- special1/special2 -- used by various special attack scripts on monsters, should be safe on non-monsters -- can't set these in properties though
-
-## OnApply() based mods
-
-This is stuff like knockback, increased health, etc that requires making a permanent change to the player or the weapon.
-For these, we record a separate level and applied_level and default the latter to 0.
-In OnApply(), we figure out how much is currently applied based on the applied_level, then apply the difference between that and the current level.
-
-## Damage calculation stuff
-
-So, when the player damages a monster:
-- ModifyDamage() for prior inventory items runs;
-- then ModifyDamage() for all player upgrades in the order they were acquired;
-- then ModifyDamage() for all weapon upgrades, in the order the player got them;
-- then ModifyDamage() for all subsequent inventory items.
-
-The value returned from that is the actual outgoing damage, which is then applied (subject to target resistances and whatnot).
-Once the damage is applied, the OnDamageDealt handlers run:
-
-- OnDamageDealt() for all player upgrades;
-- then OnDamageDealt() for all weapon upgrades.
-
-OnDamageDealt() has no idea what the original outgoing damage was, or even the value after all the ModifyDamage() checks run; it only gets the final damage actually dealt to the target. This is fine most of the time -- we want to apply stacks, etc based on the actual damage done.
-
-Where it gets weird is when we're doing stuff in ModifyDamage based on the attack damage. Infernal Forge and +Damage are both actual damage modifiers, but with the Beam upgrade we want to do stuff in ModifyDamage to cancel out the attack and replace it with a beam attack.
-
-We could instead do it in OnDamageDealt and cancel out the damage by giving the target health, but this might make the scoring weird.

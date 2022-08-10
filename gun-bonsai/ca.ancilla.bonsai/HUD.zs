@@ -10,7 +10,7 @@ const HUD_PXP_X = 491;
 const HUD_PXP_W = 304;
 // Text positioning.
 // Northwest gravity
-const HUD_TOPTEXT_X = 135;
+const HUD_TOPTEXT_X = 150;
 const HUD_TOPTEXT_Y = 117;
 // Southeast gravity
 const HUD_BOTTEXT_X = 400;
@@ -32,9 +32,10 @@ enum ::HUD::Mirror {
 }
 
 class ::HUD : Object ui {
-  double hudscale;
+  double scale, screenscale;
   uint hudx, hudy;
   uint hudw, hudh;
+  uint fbw, fbh;
   uint mirror;
 
   void Draw(::CurrentStats stats) {
@@ -42,15 +43,25 @@ class ::HUD : Object ui {
     DrawHUD(stats);
   }
 
+  // at scale 1.0, the framebuffer height is 512 and the width is whatever is
+  // appropriate to the screen AR based on that.
+  // For a framebuffer size of 768, the font looks about right for a HUD size
+  // of 0.1.
   void Calibrate() {
-    double x, y, size;
-    [x, y, size, self.mirror] = ::Settings.hud_params();
-    uint h = (size <= 1) ? floor(HUD_HEIGHT * size) : size;
-    self.hudh = h;
-    self.hudw = 3*h;
-    self.hudx = realposition(screen.GetWidth(), self.hudw, x);
-    self.hudy = realposition(screen.GetHeight(), self.hudh, y);
-    self.hudscale = double(h)/HUD_HEIGHT;
+    double x, y;
+    [x, y, self.scale, self.mirror] = ::Settings.hud_params();
+    if (scale > 1) // compatibility hack for pre-0.8.6 configs
+      scale = scale/1080;
+    // For a framebuffer size of 768, the font looks about right for a HUD scale
+    // of 0.1.
+    // This means that for a size of 512 it would be about right for a scale of 0.15.
+    self.fbh = 512/(scale/0.15);
+    self.fbw = self.fbh*screen.GetAspectRatio();
+    self.hudh = self.fbh * self.scale;
+    self.hudw = 3*self.hudh;
+    self.hudx = realposition(self.fbw, self.hudw, x);
+    self.hudy = realposition(self.fbh, self.hudh, y);
+    self.screenscale = float(self.fbh)/HUD_HEIGHT;
   }
 
   static uint realposition(double field_size, double obj_size, double setting) {
@@ -70,13 +81,20 @@ class ::HUD : Object ui {
   // Coordinates are in HUD texture coordinate space, relative to the top left
   // corner of the HUD.
   void Text(string text, uint colour, uint x, uint y, ::HUD::Gravity grav) {
+    let font = NewSmallFont;
     // Apply mirroring settings.
     if (mirror & HUD_MIRROR_H) x = HUD_WIDTH - x;
     if (mirror & HUD_MIRROR_V) y = HUD_HEIGHT - y + 10; // A bit of padding
     grav ^= mirror;
 
-    // Convert to screen coordinate space.
-    x = hudx + x*hudscale; y = hudy + y*hudscale;
+    // Convert to framebuffer coordinate space. hudx/y are already in framebuffer
+    // coordinates.
+    // x/y are in texture coordinates, which we need to convert based on both the
+    // ratio between the texture size (1536x512) and the framebuffer size, and
+    // the configured scale factor.
+    x = hudx + x * scale * screenscale;
+    y = hudy + y * scale * screenscale;
+    // x = (hudx + x)*(scale/0.15)*scale; y = (hudy + y)*(scale/0.15)*scale;
 
     // Adjust for gravity based on the as-rendered size of the text.
     switch (grav) {
@@ -84,30 +102,45 @@ class ::HUD : Object ui {
         // No changes needed.
         break;
       case HUD_GRAV_SE:
-        x = x - NewSmallFont.StringWidth(text);
-        y = y - NewSmallFont.GetHeight();
+        x = x - font.StringWidth(text);
+        y = y - font.GetHeight();
         break;
       case HUD_GRAV_NE:
-        x = x - NewSmallFont.StringWidth(text);
+        x = x - font.StringWidth(text);
         break;
       case HUD_GRAV_SW:
-        y = y - NewSmallFont.GetHeight();
+        y = y - font.GetHeight();
         break;
     }
 
-    screen.DrawText(NewSmallFont, Font.CR_WHITE, x, y, text, DTA_Color, colour);
+    screen.DrawText(font, colour, x, y, text,
+      DTA_VirtualWidth, fbw, DTA_VirtualHeight, fbh, DTA_KeepRatio, true,
+      DTA_Color, colour);
   }
 
+  // Draw a progress bar overlay using the given texture and colour, starting at
+  // texture coordinate tx and with a maximum width of tw.
   void DrawProgressBar(TextureID texture, uint colour, double progress, uint tx, uint tw) {
+    // This is real nasty.
+    // tx and tw are given in HUD texture coordinate space, 1536x512.
+    // hudx is in framebuffer coordinate space, nominally 1536x512 but adjusted
+    // based on HUD scale and screen aspect ratio.
+    // The clipping plane needs to be configured in SCREEN coordinate space,
+    // for some demented reason.
+    // So we need to convert tx and tw into framebuffer coordinate
+    // So we convert everything into framebuffer coordinate space, then convert
+    // that into screen space, then cry for a while.
     uint clip_at;
     if (mirror & HUD_MIRROR_H) {
-      clip_at = hudx + hudscale*(HUD_WIDTH - tx - tw*progress);
-      // clip_at = hudx + hudscale*tw*progress; //hudscale*(3*HUD_WIDTH - tx - tw);;
+      clip_at = hudx + HUD_WIDTH * scale * screenscale; // right edge of hud
+      clip_at -= (tx + tw * progress) * scale * screenscale;
     } else {
-      clip_at = hudx + hudscale*(tx + tw*progress);
+      clip_at = hudx + (tx + tw * progress) * scale * screenscale;
     }
+    clip_at *= screen.GetWidth()/float(fbw);
     Screen.DrawTexture(
         texture, false, hudx, hudy,
+        DTA_VirtualWidth, fbw, DTA_VirtualHeight, fbh, DTA_KeepRatio, true,
         DTA_DestWidth, hudw, DTA_DestHeight, hudh,
         DTA_Color, colour,
         (mirror & HUD_MIRROR_H) ? DTA_ClipLeft : DTA_ClipRight,
@@ -160,6 +193,7 @@ class ::HUD : Object ui {
     if (frame_tex == "") return;
 
     Screen.DrawTexture(tex(frame_tex..face), false, hudx, hudy,
+        DTA_VirtualWidth, fbw, DTA_VirtualHeight, fbh, DTA_KeepRatio, true,
         DTA_Color, LevelUp(stats) ? GetShinyColour(0) : frame_rgb,
         DTA_DestWidth, hudw, DTA_DestHeight, hudh);
 
@@ -170,15 +204,24 @@ class ::HUD : Object ui {
         tex(player_tex..face), LevelUp(stats) ? GetShinyColour(68) : player_rgb,
         double(stats.pxp)/(stats.pmax), HUD_PXP_X, HUD_PXP_W);
 
-    Text("P:"..stats.plvl, player_rgb, HUD_TOPTEXT_X, HUD_TOPTEXT_Y, HUD_GRAV_NW);
-    Text("W:"..stats.wlvl, weapon_rgb, HUD_BOTTEXT_X, HUD_BOTTEXT_Y, HUD_GRAV_SE);
+    Text(
+      string.format("Lv.%d", stats.plvl),
+      player_rgb, HUD_TOPTEXT_X, HUD_TOPTEXT_Y, HUD_GRAV_NW);
+    Text(
+      string.format("%d/%d", stats.pxp, stats.pmax),
+      player_rgb, HUD_BOTTEXT_X, HUD_BOTTEXT_Y, HUD_GRAV_SE);
 
-    Text("XP: "..stats.wxp.."/"..stats.wmax,
-        weapon_rgb, HUD_INFOTEXT_X, HUD_INFOTEXT_Y, HUD_GRAV_SW);
-    Text(stats.effect .. (stats.effect == "" ? "" : " ") .. stats.wname,
-        // HACK HACK HACK, we adjust y in HUD coordinate space so that it ends up
-        // in the right place (directly above the XP: line) when it gets rendered.
-        weapon_rgb, HUD_INFOTEXT_X, HUD_INFOTEXT_Y - NewSmallFont.GetHeight()/hudscale, HUD_GRAV_SW);
+    let spacer = stats.effect == "" ? "" : " ";
+    Text(
+      string.format("%s%s%s", stats.effect, spacer, stats.wname),
+      weapon_rgb, HUD_INFOTEXT_X,
+      // HACK HACK HACK, we adjust y in HUD coordinate space so that it ends up
+      // in the right place (directly above the weapon name) when it gets rendered.
+      HUD_INFOTEXT_Y - NewSmallFont.GetHeight()/scale/screenscale,
+      HUD_GRAV_SW);
+    Text(
+      string.format("Lv.%d (%d/%d)", stats.wlvl, stats.wxp, stats.wmax),
+      weapon_rgb, HUD_INFOTEXT_X, HUD_INFOTEXT_Y, HUD_GRAV_SW);
   }
 }
 

@@ -12,16 +12,14 @@ class ::BlastShaping : ::BaseUpgrade {
   }
 }
 
-// TODO: put some restrictions on this so you can't stack bouncy, piercing, and
-// homing all on the same projectile. Maybe bouncy and piercing are mutually
-// exclusive?
 class ::BouncyShots : ::BaseUpgrade {
   override void OnProjectileCreated(Actor player, Actor shot) {
     shot.bBOUNCEONWALLS = true;
     shot.bBOUNCEONCEILINGS = true;
     shot.bBOUNCEONFLOORS = true;
     shot.bBOUNCEAUTOOFFFLOORONLY = true;
-    shot.BounceCount = 1 + level;
+    shot.BounceCount = max(shot.BounceCount, 1 + level);
+    shot.BounceFactor = 1.0;
     if (level >= 3) {
       shot.bALLOWBOUNCEONACTORS = true;
       shot.bBOUNCEONACTORS = true;
@@ -30,7 +28,7 @@ class ::BouncyShots : ::BaseUpgrade {
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
-    return info.IsProjectile();
+    return info.IsProjectile() && info.upgrades.Level("::PiercingShots") == 0;
   }
 }
 
@@ -47,11 +45,15 @@ class ::FastShots : ::BaseUpgrade {
 class ::PiercingShots : ::BaseUpgrade {
   override void OnProjectileCreated(Actor player, Actor shot) {
     shot.bRIPPER = true;
-    shot.RipperLevel = level;
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
-    return info.IsProjectile() && info.upgrades.Level("::PiercingShots") < 5;
+    return info.IsProjectile()
+      && info.upgrades.Level("::PiercingShots") == 0
+      && info.upgrades.Level("::FastShots") >= 2
+      && info.upgrades.Level("::PiercingShots") < 5
+      && info.upgrades.Level("::BouncyShots") == 0
+      && info.upgrades.Level("::FragmentationShots") == 0;
   }
 }
 

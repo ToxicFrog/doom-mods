@@ -148,21 +148,13 @@ class ::FireDot : ::Dot {
   void DoTerror(double damage) {
     // If the target's health is below a certain amount -- which scales with
     // both levels of terror and stacks of fire -- it flees.
-    if (damage >= 1) {
+    if (damage > 0.1) {
       let missing_health = 1 - double(owner.health)/owner.SpawnHealth();
       if (missing_health >= 0.7 ** (stacks+terror)) {
         owner.bFRIGHTENED = true;
       }
-    } else if (random(0.0, 1.0) > damage) {
+    } else if (random(0.0, 1.0) > 0.95) {
       owner.bFRIGHTENED = false;
-    }
-
-    // Independent of whether it's fleeing, it has a chance to enter pain based
-    // on the amount of fire damage it's taking and the level of terror.
-    double nopain = (0.95 - damage/owner.SpawnHealth()) ** (terror*2);
-    if (random(0.0, 1.0) > nopain) {
-      DEBUG("Terror! chance was %.2f", 1-nopain);
-      owner.TriggerPainChance("Fire", true);
     }
   }
 
