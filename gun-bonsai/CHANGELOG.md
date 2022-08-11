@@ -14,6 +14,7 @@
   - "keep upgrades on death exit" option controls this behaviour
 - New: upgrades can be selectively toggled on and off from the info menu
 - Fix: Weapons retain their upgrades when empowered by the Tome of Power
+- Fix: rejecting a player level-up now refunds half the cost of that level, rounded up
 - Fix: A number of general compatibility fixes that especially benefit Hexen; many projectile weapon upgrades now function that didn't before
 - Game-specific fixes:
   - Hexen: several weapons had upgrades that do not work on them, or which duplicate effects already built into the weapon, disabled

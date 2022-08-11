@@ -213,7 +213,7 @@ class ::PerPlayerStats : Object play {
     if (!upgrade) {
       // Player level-ups are expensive, so we take away *half* of a level's
       // worth of XP.
-      XP -= maxXP/2;
+      XP -= max(1, maxXP/2);
       owner.A_Log("Level-up rejected!", true);
       return;
     }
