@@ -141,11 +141,11 @@ class ::WeaponInfo : Object play {
   // weapons that have a projectile alt-fire that is used only very rarely.
   bool IsHitscan() const {
     if (wpnType) return wpnType & ::TYPE_HITSCAN;
-    return hitscan_shots / 4 > projectile_shots;
+    return hitscan_shots > 3 * projectile_shots;
   }
   bool IsProjectile() const {
     if (wpnType) return wpnType & ::TYPE_PROJECTILE;
-    return projectile_shots / 4 > hitscan_shots;
+    return projectile_shots > 3 * hitscan_shots;
   }
   bool IsMelee() const {
     if (wpnType) return wpnType & ::TYPE_MELEE;
