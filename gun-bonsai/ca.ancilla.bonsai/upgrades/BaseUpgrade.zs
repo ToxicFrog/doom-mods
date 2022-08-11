@@ -44,6 +44,7 @@ enum ::UpgradePriority {
 
 class ::BaseUpgrade : Object play {
   uint level;
+  bool enabled;
 
   // VIRTUAL FUNCTIONS //
 

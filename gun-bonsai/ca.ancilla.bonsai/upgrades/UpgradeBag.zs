@@ -24,6 +24,7 @@ class ::UpgradeBag : Object play {
       }
     }
     upgrade.level = level;
+    upgrade.enabled = true;
     upgrades.Push(upgrade);
     return upgrade;
   }
@@ -53,9 +54,15 @@ class ::UpgradeBag : Object play {
     }
   }
 
+  ui void DumpInteractableToMenu(TFLV::Menu::GenericMenu menu, uint bag_index) {
+    for (uint i = 0; i < upgrades.Size(); ++i) {
+      menu.PushUpgradeToggle(upgrades[i], bag_index, i);
+    }
+  }
+
   void OnProjectileCreated(Actor pawn, Actor shot) {
     for (uint i = 0; i < upgrades.Size(); ++i) {
-      if (!upgrades[i].CheckPriority(shot)) continue;
+      if (!upgrades[i].enabled || !upgrades[i].CheckPriority(shot)) continue;
       upgrades[i].OnProjectileCreated(pawn, shot);
     }
   }
@@ -63,7 +70,7 @@ class ::UpgradeBag : Object play {
   double ModifyDamageDealt(Actor pawn, Actor shot, Actor target, double damage) {
     for (uint i = 0; i < upgrades.Size(); ++i) {
       DEBUG("UpgradeBag.ModifyDamageDealt: %d %s", i, upgrades[i].GetClassName());
-      if (!upgrades[i].CheckPriority(shot)) continue;
+      if (!upgrades[i].enabled || !upgrades[i].CheckPriority(shot)) continue;
       damage = upgrades[i].ModifyDamageDealt(pawn, shot, target, damage);
     }
     return damage;
@@ -71,6 +78,7 @@ class ::UpgradeBag : Object play {
 
   double ModifyDamageReceived(Actor pawn, Actor shot, Actor attacker, double damage) {
     for (uint i = 0; i < upgrades.Size(); ++i) {
+      if (!upgrades[i].enabled) continue;
       // No priority checks -- always triggers, even on self-damage.
       damage = upgrades[i].ModifyDamageReceived(pawn, shot, attacker, damage);
     }
@@ -81,13 +89,14 @@ class ::UpgradeBag : Object play {
     for (uint i = 0; i < upgrades.Size(); ++i) {
       DEBUG("ODD Priority(%s) == %d vs. %d",
         TAG(shot), (shot?shot.weaponspecial:-999), upgrades[i].Priority());
-      if (!upgrades[i].CheckPriority(shot)) continue;
+      if (!upgrades[i].enabled || !upgrades[i].CheckPriority(shot)) continue;
       upgrades[i].OnDamageDealt(pawn, shot, target, damage);
     }
   }
 
   void OnDamageReceived(Actor pawn, Actor shot, Actor attacker, int damage) {
     for (uint i = 0; i < upgrades.Size(); ++i) {
+      if (!upgrades[i].enabled) continue;
       // No priority checks -- always triggers, even on self-damage.
       upgrades[i].OnDamageReceived(pawn, shot, attacker, damage);
     }
@@ -95,6 +104,7 @@ class ::UpgradeBag : Object play {
 
   void OnKill(PlayerPawn pawn, Actor shot, Actor target) {
     for (uint i = 0; i < upgrades.Size(); ++i) {
+      if (!upgrades[i].enabled) continue;
       // No priority checks -- fires unconditionally. This is so that upgrades that
       // have both an ondamage effect and an onkill effect can function, but means
       // that upgrades that want to avoid recursing must check for that themselves.

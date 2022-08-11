@@ -20,7 +20,7 @@ class ::StatusDisplay : ::GenericMenu {
     PushText("", Font.CR_GOLD);
     PushText("Player Stats", Font.CR_GOLD);
     PushKeyValueText(string.format("Level %d", stats.plvl), string.format("%d/%d XP", stats.pxp, stats.pmax));
-    stats.pupgrades.DumpToMenu(self);
+    stats.pupgrades.DumpInteractableToMenu(self, 0);
 
     PushText("", Font.CR_GOLD);
     PushText("Weapon Stats", Font.CR_GOLD);
@@ -28,7 +28,7 @@ class ::StatusDisplay : ::GenericMenu {
         stats.winfo.wpn.GetTag(), stats.winfo.wpn.GetClassName()));
     PushKeyValueText(string.format("Level %d", stats.wlvl),
         string.format("%d/%d XP", stats.wxp, stats.wmax));
-    stats.wupgrades.DumpToMenu(self);
+    stats.wupgrades.DumpInteractableToMenu(self, 1);
 
     mDesc.mSelectedItem = -1;
     let ld_info = stats.winfo.ld_info;

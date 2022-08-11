@@ -12,6 +12,7 @@
 - New: `bonsai-debug,reset` debug command
 - New: upgrades are now kept across death-exits and pistol starts
   - "keep upgrades on death exit" option controls this behaviour
+- New: upgrades can be selectively toggled on and off from the info menu
 - Fix: Weapons retain their upgrades when empowered by the Tome of Power
 - Fix: A number of general compatibility fixes that especially benefit Hexen; many projectile weapon upgrades now function that didn't before
 - Game-specific fixes:

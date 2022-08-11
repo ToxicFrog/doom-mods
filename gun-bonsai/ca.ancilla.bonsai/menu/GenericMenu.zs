@@ -18,6 +18,10 @@ class ::GenericMenu : OptionMenu {
       uint idle = Font.CR_DARKRED, uint hot = Font.CR_RED) {
     mDesc.mItems.Push(new("::KeyValueOption").Init(key, value, command, index, idle, hot));
   }
+
+  void PushUpgradeToggle(TFLV::Upgrade::BaseUpgrade upgrade, uint bag_index, uint index) {
+    mDesc.mItems.Push(new("::UpgradeToggle").Init(upgrade, bag_index, index));
+  }
 }
 
 class ::KeyValueText : OptionMenuItem {
@@ -39,6 +43,45 @@ class ::KeyValueText : OptionMenuItem {
     drawLabel(indent, y, colour);
     drawValue(indent, y, colour, value);
     return indent;
+  }
+}
+
+class ::UpgradeToggle : ::KeyValueText {
+  TFLV::Upgrade::BaseUpgrade upgrade;
+  uint bag_index;
+  uint index;
+
+  ::UpgradeToggle Init(TFLV::Upgrade::BaseUpgrade upgrade, uint bag_index, uint index) {
+    self.upgrade = upgrade;
+    self.bag_index = bag_index;
+    self.index = index;
+    super.Init(
+      string.format("%s (%d)", upgrade.GetName(), upgrade.level),
+      upgrade.GetDesc(),
+      Font.CR_WHITE);
+    return self;
+  }
+
+  override bool Selectable() { return true; }
+
+  override int Draw(OptionMenuDescriptor d, int y, int indent, bool selected) {
+    if (upgrade.enabled) {
+      drawLabel(indent, y, font.CR_DARKRED);
+      drawValue(indent, y, selected ? font.CR_RED : font.CR_DARKRED, self.value);
+    } else {
+      drawLabel(indent, y, font.CR_DARKRED);
+      drawValue(indent, y, selected ? font.CR_GRAY : font.CR_DARKGRAY, self.value);
+    }
+    return indent;
+  }
+
+  override bool MenuEvent(int key, bool fromController) {
+    if (key != Menu.MKey_Enter)
+      return super.MenuEvent(key, fromController);
+
+    Menu.MenuSound("menu/choose");
+    EventHandler.SendNetworkEvent("bonsai-toggle-upgrade", bag_index, index);
+    return true;
   }
 }
 
