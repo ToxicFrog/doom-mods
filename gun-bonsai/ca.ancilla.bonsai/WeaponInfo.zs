@@ -109,12 +109,24 @@ class ::WeaponInfo : Object play {
     }
 
     // In inheritable weapon-bound mode, a weaponinfo is only reusable if the
-    // weapon it was bound to no longer exists.
+    // weapon it was bound to is no longer carried by the player.
     if (mode == ::BIND_WEAPON_INHERITABLE) {
-      return IsEquivalentTo(wpn) && self.wpn == null;
+      // We need IsReallyInInventory here because sometimes, for some reason,
+      // PlayerPawn.RemoveInventory(i) doesn't set i.owner to null, even though
+      // it absolutely should and the source code says it does, and this is most
+      // obvious when dealing with Universal Pistol Start.
+      return (self.wpn == null || self.wpn.owner == null || !IsReallyInInventory(wpn.owner, self.wpn))
+        && self.IsEquivalentTo(wpn);
     }
 
     ThrowAbortException("Unknown UpgradeBindingMode %d!", mode);
+    return false;
+  }
+
+  bool IsReallyInInventory(Actor stack, Actor needle) {
+    for (Inventory inv = stack.inv; inv; inv = inv.inv) {
+      if (inv == needle) return true;
+    }
     return false;
   }
 

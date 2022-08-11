@@ -17,7 +17,7 @@ Add `libtooltipmenu-<version>.pk3` and `GunBonsai-<version>.pk3` to your load or
 
 Gun Bonsai adds one new mandatory command, "Show Info", bound to `I` by default; this shows you information on your character and current weapon, and is used to select upgrades on level-up. If you are playing with Legendoom integration (see below), you will also want to make sure "Cycle Legendoom Power" is bound to something convenient.
 
-Gun Bonsai also has its own options page, with many tuning and compatibility options. The defaults should be sensible for vanilla Doom 2 play, but I highly recommend flipping through it and making sure they are to your taste; the settings are self-documenting with in-game tooltips. In particular, if you are using a mod that takes away weapons/items (like Universal Pistol Start) or awards points (like Lazy Points, MetaDoom, or Reelism), you will likely need to adjust some settings.
+Gun Bonsai also has its own options page, with many tuning and compatibility options. The defaults should be sensible for vanilla Doom 2 play, but I highly recommend flipping through it and making sure they are to your taste; the settings are self-documenting with in-game tooltips. In particular, if you are using a mod that assigns points (like Reelism, Lazy Points, or MetaDoom) and want to earn XP that way, you will need to adjust some settings.
 
 
 ## Mod Compatibility
@@ -60,10 +60,6 @@ If you have Legendoom installed, legendary weapons can gain new Legendoom effect
 When using a Legendoom weapon, you can press the "Cycle Legendoom Weapon Effect" key to cycle through effects, or manually select an effect from the weapon info screen.
 
 There are a lot of settings for this in the mod options, including which weapons can learn effects, how rapidly effects are learned, how many effect slots weapons have, etc. If you want to play with Legendoom installed but turn off integration with Gun Bonsai, set `Gun Levels per Legendoom Effect` to 0/Disabled in the settings.
-
-### Universal Pistol Start
-
-Gun Bonsai works by storing upgrade information in an item in the player's inventory. If this item gets removed all of your levels and upgrades will disappear. If you want to lose your weapons but keep your upgrades, make sure that `Keep Inventory Items` is enabled in the UPS settings, and that your upgrade binding setting is set to `weapon class` or `individual with inheritance`.
 
 ### Hideous Destructor
 

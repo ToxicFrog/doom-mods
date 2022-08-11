@@ -131,7 +131,7 @@ class ::PerPlayerStats : Object play {
       }
       weaponinfo_dirty = false;
     }
-    return CreateInfoForcurrentWeapon();
+    return CreateInfoForCurrentWeapon();
   }
 
   // If a WeaponInfo already exists for this weapon, return it.
