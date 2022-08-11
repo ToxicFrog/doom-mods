@@ -6,7 +6,6 @@
   - Override Bonsai's weapon type detection for individual weapons
   - Disable individual upgrades on a per-weapon basis, or disable all upgrades for a weapon
   - Mark certain weapons as equivalent to each other and thus capable of sharing upgrades (e.g. a base weapon and its upgraded form)
-- New: builtin BONSAIRC configs for Hellrider, Indestructable, Hideous Destructor, and the Ashes series
 - New: even in "upgrades bind to individual weapons" mode, upgrades can be carried from weapons to their upgraded forms
   - The weapon and its upgrade must be marked as merged in BONSAIRC
   - The old weapon must be removed and the new weapon added in the same game tic
@@ -14,6 +13,14 @@
 - New: upgrades are now kept across death-exits and pistol starts
   - "keep upgrades on death exit" option controls this behaviour
 - Fix: Weapons retain their upgrades when empowered by the Tome of Power
+- Fix: A number of general compatibility fixes that especially benefit Hexen; many projectile weapon upgrades now function that didn't before
+- Game-specific fixes:
+  - Hexen: several weapons had upgrades that do not work on them, or which duplicate effects already built into the weapon, disabled
+    - some of these will eventually turn into general fixes but for now they are a Hexen-specific tweak
+  - Hellrider: Juggler will no longer be offered as an upgrade
+  - Hideous Destructor: non-weapons like the clip manager no longer earn XP and level up
+  - Ashes Afterglow: sawn-off now gets hitscan upgrades instead of melee
+  - Ashes Afterglow: upgrading a weapon keeps the upgrades on it
 
 # 0.8.6.1
 

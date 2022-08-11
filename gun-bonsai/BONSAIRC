@@ -37,6 +37,27 @@ ifdef TFIS_IndestructableEventHandler { register TFLV_Upgrade_Indestructable; }
 # Disable Juggler upgrade in Hellrider, since it doesn't work with HR weapon switching.
 ifdef EndieWeapon { unregister TFLV_Upgrade_Juggler; }
 
+# Hexen fixes. For now just disable upgrades that are known not to work on some weapons.
+# TODO: move as many of these to autodetection as possible, e.g. detecting weapons
+# that emit homing, piercing, or bouncing projectiles or use FastProjectile.
+ifdef MWeapWand {
+  # Weapons that fire FastProjectiles can't home or bounce and don't benefit from Fast Shots.
+  disable MWeapWand CWeapFlame:
+    TFLV_Upgrade_FastShots TFLV_Upgrade_HomingShots TFLV_Upgrade_BouncyShots;
+  # Weapons that are intrinsically piercing can't get bouncy shots or fragmentation shots.
+  # They also shouldn't get piercing because it's a no-op.
+  disable MWeapWand MWeapBloodscourge:
+    TFLV_Upgrade_PiercingShots TFLV_Upgrade_BouncyShots TFLV_Upgrade_FragmentationShots;
+  # Bloodscourge is already homing.
+  disable MWeapBloodscourge: TFLV_Upgrade_HomingShots;
+  # Lightning glitches out with homing, doesn't benefit from piercing, and fragmentation
+  # doesn't work on it at all.
+  disable MWeapLightning:
+    TFLV_Upgrade_HomingShots TFLV_Upgrade_PiercingShots TFLV_Upgrade_FragmentationShots;
+  # Wraithverge shots don't bounce.
+  disable CWeapWraithverge: TFLV_Upgrade_BouncyShots;
+}
+
 # Ashes Afterglow: keep upgrades when customizing weapons, and fix melee flag on sawn-off.
 ifdef ItemAthena {
   # Base weapons and their upgraded forms should be merged.
