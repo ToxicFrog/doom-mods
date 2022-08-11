@@ -1,6 +1,8 @@
 # 0.2.3
 
-- Fix: Universal Pistol Start compatibility; with pistol start enabled you will get lives as if starting a new game.
+- Fix: pistol start/death exit compatibility
+  - Pistol-starting a level now gives you extra lives as if you had started a new game
+- Fix: Universal Pistol Start no longer causes Indestructable to stop working
 
 # 0.2.2
 

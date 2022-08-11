@@ -35,27 +35,31 @@ class ::IndestructableEventHandler : StaticEventHandler {
     force.inv = null;
   }
 
-  override void PlayerEntered(PlayerEvent evt) {
-    PlayerPawn pawn = players[evt.playerNumber].mo;
-    if (!pawn) return;
-
+  // Initialize a player by giving them the IndestructableForce. Returns false if
+  // the player was already inited and true if they're new.
+  bool InitPlayer(PlayerPawn pawn) {
     let force = ::IndestructableForce(pawn.GiveInventoryType("::IndestructableForce"));
-    if (!force) return; // Either we couldn't give it or they already have one
+    if (!force) return false; // Either we couldn't give it or they already have one
     // We gave them a new one, so give them the starting number of lives.
     force.lives = GetInt("indestructable_starting_lives");
+    force.SetStateLabel("LevelStartMessage");
+    return true;
   }
 
   override void WorldLoaded(WorldEvent evt) {
     // Don't trigger on game loads or returns to hub levels.
     if (evt.IsSaveGame || evt.IsReopen) return;
-    // New level? Refill their lives.
-    // PlayerEntered runs first, so they should already have the force.
-    let pawn = players[consoleplayer].mo;
-    let force = ::IndestructableForce(pawn.FindInventory("::IndestructableForce"));
 
-    if (!force) return; // PANIC
-    MoveToTail(pawn, force);
-    force.AddLevelStartLives();
+    // Make sure all the players have a force.
+    for (uint i = 0; i < 8; ++i) {
+      if (!playeringame[i]) continue;
+      let pawn = players[i].mo;
+      if (InitPlayer(pawn)) continue; // don't apply start-of-level modifiers when starting a new game
+      let force = ::IndestructableForce(pawn.FindInventory("::IndestructableForce"));
+      if (!force) continue; // should never happen
+      MoveToTail(pawn, force);
+      force.AddLevelStartLives();
+    }
   }
 
   override void WorldThingDied(WorldEvent evt) {
