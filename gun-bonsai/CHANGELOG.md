@@ -6,9 +6,9 @@
   - Override Bonsai's weapon type detection for individual weapons
   - Disable individual upgrades on a per-weapon basis, or disable all upgrades for a weapon
   - Mark certain weapons as equivalent to each other and thus capable of sharing upgrades (e.g. a base weapon and its upgraded form)
-- New: even in "upgrades bind to individual weapons" mode, upgrades can be carried from weapons to their upgraded forms
-  - The weapon and its upgrade must be marked as merged in BONSAIRC
-  - The old weapon must be removed and the new weapon added in the same game tic
+- New: upgrades can be carried from weapons to their upgraded forms
+  - The weapon and its upgrade(s) must be marked as merged in a BONSAIRC lump
+  - The old weapon must be removed and the new weapon added in the same game tic if using "upgrades bind to individual weapons"
 - New: `bonsai-debug,reset` debug command
 - New: upgrades are now kept across death-exits and pistol starts
   - "keep upgrades on death exit" option controls this behaviour
@@ -23,7 +23,7 @@
   - Ashes Afterglow: sawn-off now gets hitscan upgrades instead of melee
   - Ashes Afterglow: upgrading a weapon keeps the upgrades on it
 
-# 0.8.6.1
+# 0.8.6 hotfix
 
 - Fix: crash on startup when using -warp, +load, or other commands that bypass the main menu
 

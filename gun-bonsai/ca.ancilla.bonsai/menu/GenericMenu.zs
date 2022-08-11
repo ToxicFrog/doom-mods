@@ -70,7 +70,8 @@ class ::UpgradeToggle : ::KeyValueText {
       drawValue(indent, y, selected ? font.CR_RED : font.CR_DARKRED, self.value);
     } else {
       drawLabel(indent, y, font.CR_DARKRED);
-      drawValue(indent, y, selected ? font.CR_GRAY : font.CR_DARKGRAY, self.value);
+      drawValue(indent, y, selected ? font.CR_DARKGRAY : font.CR_BLACK,
+        string.format("\c[BLACK][OFF]\c- %s", self.value));
     }
     return indent;
   }
