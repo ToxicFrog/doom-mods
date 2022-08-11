@@ -1,5 +1,7 @@
 # 0.9.0
 
+**This release breaks save compatibility.**
+
 - New: BONSAIRC chunk support (see `MODDING.md` for details)
   - Text chunk that contains rules for configuring Gun Bonsai based on what mods are loaded
   - Selectively enable or disable upgrades globally
