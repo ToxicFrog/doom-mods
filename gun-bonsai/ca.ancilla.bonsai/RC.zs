@@ -57,13 +57,8 @@ class ::RC : Object play {
 
 // Individual AST node types.
 class ::RC::Node : Object play {
-  virtual void Finalize(::EventHandler handler) {
-    console.printf("Node: %s", self.GetClassName());
-  }
-
-  virtual void Configure(::WeaponInfo info) {
-    console.printf("Configure: %s", info.wpnClass);
-  }
+  virtual void Finalize(::EventHandler handler) {}
+  virtual void Configure(::WeaponInfo info) {}
 
   static void ValidateUpgrades(array<string> upgrades) {
     array<string> real;
