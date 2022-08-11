@@ -28,8 +28,6 @@ This is emitted every time the player gains or loses lives (whether through norm
 
 This mod should be compatible with almost anything; the main exception is things that rely heavily on scripted damage that bypasses defences and damage modifiers.
 
-If using it with Gun Bonsai, load Indestructable *first*.
-
 ## License
 
 This is released under the same MIT license as the rest of this repo. See [COPYING.md](./COPYING.md) for details.
