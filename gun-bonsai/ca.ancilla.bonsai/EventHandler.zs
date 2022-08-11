@@ -26,6 +26,13 @@ class ::EventHandler : StaticEventHandler {
     rc.Finalize(self);
   }
 
+  override void WorldLoaded(WorldEvent evt) {
+    DEBUG("WorldLoaded");
+    for (uint i = 0; i < 8; ++i) {
+      if (playeringame[i]) InitPlayer(i);
+    }
+  }
+
   override void WorldUnloaded(WorldEvent evt) {
     DEBUG("WorldUnloaded: nextmap=%s", evt.NextMap);
     if (evt.NextMap != "" && !evt.IsSaveGame) return;
@@ -36,9 +43,10 @@ class ::EventHandler : StaticEventHandler {
     for (uint i = 0; i < 8; ++i) playerstats[i] = null;
   }
 
-  override void PlayerEntered(PlayerEvent evt) {
-    DEBUG("PlayerEntered");
-    let p = evt.PlayerNumber;
+  // TODO this doesn't trigger on savegame load for some reason?
+  // We need to replace this with a WorldLoaded event that walks all players in
+  // game and initializes them as needed.
+  void InitPlayer(uint p) {
     PlayerPawn pawn = players[p].mo;
     if (!pawn) return;
     let proxy = ::PerPlayerStatsProxy(pawn.FindInventory("::PerPlayerStatsProxy"));
