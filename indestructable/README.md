@@ -22,7 +22,7 @@ The `indestructable_report_lives` event emitted afterwards will contain the actu
 
 ### `indestructable_report_lives <lives> <delta> 0`
 
-This is emitted every time the player gains or loses lives (whether through normal gameplay or due to an `indestructable_adjust_lives` netevent). It can be listened for by other mods to keep track of how many extra lives the player has. `delta` is the change in amount and will always be non-zero. The third argument is currently unused.
+This is emitted every time the player gains or loses lives (whether through normal gameplay or due to an `indestructable_adjust_lives` netevent). It can be listened for by other mods to keep track of how many extra lives the player has. `delta` is the change in amount and will always be non-zero. The third argument is currently unused. Note that negative values of `lives` signify an unlimited supply.
 
 ## Compatibility
 

@@ -43,6 +43,7 @@ class ::IndestructableEventHandler : StaticEventHandler {
     // We gave them a new one, so give them the starting number of lives.
     force.lives = GetInt("indestructable_starting_lives");
     force.SetStateLabel("LevelStartMessage");
+    force.ReportLivesCount(force.lives);
     return true;
   }
 

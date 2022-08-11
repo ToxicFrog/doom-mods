@@ -3,6 +3,7 @@
 - Fix: pistol start/death exit compatibility
   - Pistol-starting a level now gives you extra lives as if you had started a new game
 - Fix: Universal Pistol Start no longer causes Indestructable to stop working
+- Fix: `indestructable_report_lives` netevent is now properly emitted on startup
 
 # 0.2.2
 
