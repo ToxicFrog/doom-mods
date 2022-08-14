@@ -1,25 +1,24 @@
 ## Roadmap
 
-### 0.8.x
-
-- investigate embrittlement instakill proccing earlier than it should; observed offing a 3000hp enemy at 1300hp
-  - might be working as intended
-- mage shots don't bounce in Hexen
-- projectile modifying upgrades shouldn't make things worse, e.g. lowering riplevel
-- thunderbolt should be easier to trigger? Alex can't trigger it at all with one level and a pistol against a pinky
-
-### 0.9.1
+### 0.9.x
 
 - more hexen bugfixes?
-- selective disabling of upgrades
 - improved type inference:
   - detect FastProjectiles, bouncy shots, and ripper shots and disable the appropriate upgrades
+- optional confirmation prompt when choosing an upgrade
+- XP slider should be a text entry field instead
+- refund 50% XP on level rejection
+- option for "how many choices on level up", 0 == everything
+- AAS support, see github
+- tone down damage upgrade to 20%
+- scavenge lead probabalistic below 100hp & for ammo that produces low amounts
+  - something like: ammo count = (base ammo count * 0.1 * target health/100)
 
 ### 0.10.x?
 
 - split laevis into its own mod
 
-### Soon
+### Someday
 
 - investigate use of A_SetTics() instead of freeze powerup for Swiftness
 - add ammo capacity upgrade
@@ -29,8 +28,12 @@
   - will be a player mod, so it should either be fairly powerful or get more powerful with time
   - we can use GetDefaultByType(ammoitem).MaxAmount to compute the base max amount
     and then confer bonuses based on that
+- investigate embrittlement instakill proccing earlier than it should; observed offing a 3000hp enemy at 1300hp
+  - might be working as intended
+- thunderbolt should be easier to trigger? Alex can't trigger it at all with one level and a pistol against a pinky
 
-### Not Soon
+
+### Eventually?
 
 - per-state overrides in BONSAIRC, e.g. "if the weapon is in this state, treat it as this other weapon instead"
 - allow per-state overrides to create virtual weapons for cases where there is no underlying real weapon, like the Ashes boot knife

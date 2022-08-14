@@ -56,6 +56,8 @@ ifdef MWeapWand {
     TFLV_Upgrade_HomingShots TFLV_Upgrade_PiercingShots TFLV_Upgrade_FragmentationShots;
   # Wraithverge shots don't bounce.
   disable CWeapWraithverge: TFLV_Upgrade_BouncyShots;
+  # Cleric mace is tagged incorrectly.
+  type MWeapMace MELEE;
 }
 
 # Ashes Afterglow: keep upgrades when customizing weapons, and fix melee flag on sawn-off.

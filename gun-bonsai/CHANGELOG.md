@@ -1,6 +1,7 @@
 # 0.9.1
 
 - Change: "base level cost" menu item is now a textfield
+- Fix: Hexen cleric mace is a melee weapon
 
 # 0.9.0
 
