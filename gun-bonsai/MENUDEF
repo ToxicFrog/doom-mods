@@ -66,7 +66,7 @@ OptionMenu "GunBonsaiOptions"
   StaticText ""
   StaticText "XP balance settings", GOLD
 
-  Slider "XP needed to reach level 1", "bonsai_base_level_cost", 100, 10000, 100, 0
+  TextField "XP needed to reach level 1", "bonsai_base_level_cost" //, 100, 10000, 100, 0
   Tooltip "How much XP you need to earn for a weapon to gain its first level. Roughly, 1 point of damage dealt == 1 XP gained, with a bonus for damaging nastier enemies like Cyberdemons and Archviles."
   Slider "Gun levels per player level", "bonsai_gun_levels_per_player_level", 1, 100, 1, 0
   Tooltip "How many times you need to level up a weapon to gain a player bonus."

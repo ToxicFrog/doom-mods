@@ -1,3 +1,7 @@
+# 0.9.1
+
+- Change: "base level cost" menu item is now a textfield
+
 # 0.9.0
 
 **This release breaks save compatibility.**
