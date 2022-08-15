@@ -1,8 +1,6 @@
 #namespace TFLV::Upgrade;
 #debug off
 
-const UPGRADES_PER_LEVEL = 4;
-
 class ::Registry : Object play {
   array<string> upgrade_names;
   array<::BaseUpgrade> upgrades;
@@ -117,7 +115,12 @@ class ::Registry : Object play {
         candidates.push(upgrades[i]);
     }
 
-    PickN(generated, candidates, UPGRADES_PER_LEVEL);
+    let nrof = TFLV::Settings.upgrade_choices_per_player_level();
+    if (!nrof) {
+      generated.Copy(candidates);
+    } else {
+      PickN(generated, candidates, nrof);
+    }
   }
 
   void GenerateUpgradesForWeapon(
@@ -128,6 +131,11 @@ class ::Registry : Object play {
         candidates.push(upgrades[i]);
     }
 
-    PickN(generated, candidates, UPGRADES_PER_LEVEL);
+    let nrof = TFLV::Settings.upgrade_choices_per_gun_level();
+    if (!nrof) {
+      generated.Copy(candidates);
+    } else {
+      PickN(generated, candidates, nrof);
+    }
   }
 }

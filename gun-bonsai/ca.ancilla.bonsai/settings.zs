@@ -40,6 +40,12 @@ class TFLV_Settings : Object {
   static int gun_levels_per_player_level() {
     return GetInt("bonsai_gun_levels_per_player_level");
   }
+  static int upgrade_choices_per_gun_level() {
+    return GetInt("bonsai_upgrade_choices_per_gun_level");
+  }
+  static int upgrade_choices_per_player_level() {
+    return GetInt("bonsai_upgrade_choices_per_player_level");
+  }
   static int gun_levels_per_ld_effect() {
     return GetInt("bonsai_gun_levels_per_ld_effect");
   }

@@ -192,12 +192,19 @@ class ::PerPlayerStats : Object play {
     let maxXP = ::Settings.gun_levels_per_player_level();
     self.XP += xp;
     if (self.XP >= maxXP && self.XP - xp < maxXP) {
+      owner.A_SetBlend("FF FF FF", 0.8, 40);
+      if (::Settings.upgrade_choices_per_player_level() == 1) {
+        // If autochoose is on, immediately pick an upgrade for the player.
+        StartLevelUp();
+      }
       // Just gained a level.
       owner.A_Log("You leveled up!", true);
-      owner.A_SetBlend("FF FF FF", 0.8, 40);
-      // Start the levelup immediately, since player XP is awarded only when they
-      // already have the levelup screen open anyways.
-      StartLevelUp();
+      // Earlier versions automatically opened the level-up screen, on the assumption
+      // that the player had just closed a weapon level-up screen. However, (a)
+      // with the addition of autochoose this is no longer a safe assumption, and
+      // (b) this caused problems for some players where they'd close the weapon
+      // screen and immediately start blasting, causing them to choose the wrong
+      // player upgrade.
     }
   }
 

@@ -32,15 +32,14 @@ class ::UpgradeGiver : Inventory {
     return false;
   }
 
-  bool AlreadyHasUpgrade(::Upgrade::BaseUpgrade upgrade) {
-    for (uint i = 0; i < candidates.size(); ++i) {
-      if (candidates[i].GetClassName() == upgrade.GetClassName()) return true;
-    }
-    return false;
-  }
-
   void AwaitChoice(string menuname) {
     DEBUG("%s awaitchoice: %s", self.GetClassName(), menuname);
+    if (candidates.size() == 1) {
+      // Only one option? Skip the menu and auto-choose it.
+      chosen = 0;
+      self.SetStateLabel("Chosen");
+      return;
+    }
     let stats = ::PerPlayerStats.GetStatsFor(owner);
     if (stats.currentEffectGiver) {
       // Someone else using the menu system.

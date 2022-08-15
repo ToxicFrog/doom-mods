@@ -181,9 +181,6 @@ class ::WeaponInfo : Object play {
   }
 
   void Fanfare() {
-    wpn.owner.A_Log(
-      string.format("Your %s is ready to level up!", wpn.GetTag()),
-      true);
     if (::Settings.levelup_flash()) {
       wpn.owner.A_SetBlend("00 80 FF", 0.8, 40);
       wpn.owner.A_SetBlend("00 80 FF", 0.4, 350);
@@ -191,6 +188,13 @@ class ::WeaponInfo : Object play {
     if (::Settings.levelup_sound() != "") {
       wpn.owner.A_StartSound(::Settings.levelup_sound(), CHAN_AUTO,
         CHANF_OVERLAP|CHANF_UI|CHANF_NOPAUSE|CHANF_LOCAL);
+    }
+    if (::Settings.upgrade_choices_per_gun_level() == 1) {
+      StartLevelUp();
+    } else {
+      wpn.owner.A_Log(
+        string.format("Your %s is ready to level up!", wpn.GetTag()),
+        true);
     }
   }
 

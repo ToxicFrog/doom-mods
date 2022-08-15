@@ -68,6 +68,10 @@ OptionMenu "GunBonsaiOptions"
 
   TextField "XP needed to reach level 1", "bonsai_base_level_cost" //, 100, 10000, 100, 0
   Tooltip "How much XP you need to earn for a weapon to gain its first level. Roughly, 1 point of damage dealt == 1 XP gained, with a bonus for damaging nastier enemies like Cyberdemons and Archviles."
+  ScaleSlider "Upgrade choices on gun level up", "bonsai_upgrade_choices_per_gun_level", 0, 50, 1, "All of them"
+  ScaleSlider "Upgrade choices on player level up", "bonsai_upgrade_choices_per_player_level", 0, 50, 1, "All of them"
+  Tooltip "How many different upgrades it offers you on level up. Setting it to 0 will let you pick from the full list of available upgrades. Setting it to 1 will randomly pick an upgrade for you without opening the menu."
+
   Slider "Gun levels per player level", "bonsai_gun_levels_per_player_level", 1, 100, 1, 0
   Tooltip "How many times you need to level up a weapon to gain a player bonus."
 
