@@ -462,6 +462,8 @@ class ::RCParser : Object play {
     while (!peek(terminator)) {
       string buf = next(expected);
       if (buf == "") return false; // error already reported by next()
+      if (buf == ";" || buf == ":" || buf == "{" || buf == "}")
+        return Error(expected);
       tokens.push(buf);
     }
     require(terminator);

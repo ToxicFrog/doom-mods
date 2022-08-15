@@ -8,6 +8,7 @@
 - Fix: HUD should now render overtop of other HUD elements
 - Fix: Hexen cleric mace is a melee weapon
 - Fix: BONSAIRC now reports when it's enabling conditional configurations, and which ones
+- Fix: BONSAIRC now produces a single error and stops parsing when encountering a malformed type, enable, or disable command
 
 # 0.9.0
 
