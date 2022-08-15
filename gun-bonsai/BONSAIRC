@@ -60,6 +60,11 @@ ifdef MWeapWand {
   type CWeapMace: MELEE;
 }
 
+# Strife fixes.
+ifdef StrifeWeapon {
+  type PunchDagger: MELEE;
+}
+
 # Ashes Afterglow: keep upgrades when customizing weapons, and fix melee flag on sawn-off.
 ifdef ItemAthena {
   # Base weapons and their upgraded forms should be merged.

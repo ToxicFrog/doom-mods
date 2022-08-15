@@ -7,7 +7,7 @@
 - Change: "base level cost" menu item is now a textfield
 - Balance: Damage (weapon) is now +20%/+1 rather than +25%/+2
 - Fix: HUD should now render overtop of other HUD elements
-- Fix: Hexen cleric mace is a melee weapon
+- Fix: Hexen cleric mace & Strife punch dagger are now considered melee weapons
 - Fix: BONSAIRC now reports when it's enabling conditional configurations, and which ones
 - Fix: BONSAIRC now produces a single error and stops parsing when encountering a malformed type, enable, or disable command
 
