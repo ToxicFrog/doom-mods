@@ -5,6 +5,7 @@
   - A setting of 1 will randomly choose an upgrade for you as soon as you gain a level
   - A setting of 0 will let you choose from the complete list of available upgrades
 - Change: "base level cost" menu item is now a textfield
+- Fix: HUD should now render overtop of other HUD elements
 - Fix: Hexen cleric mace is a melee weapon
 
 # 0.9.0

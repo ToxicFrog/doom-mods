@@ -78,7 +78,7 @@ class ::EventHandler : StaticEventHandler {
       && !automapactive;
   }
 
-  override void RenderUnderlay(RenderEvent evt) {
+  override void RenderOverlay(RenderEvent evt) {
     PlayerPawn pawn = players[consoleplayer].mo;
     if (!ShouldDrawHUD(pawn)) return;
     if (!hud) hud = new("::HUD");
