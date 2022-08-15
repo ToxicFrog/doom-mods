@@ -134,6 +134,7 @@ class ::RC::IfDef : ::RC::Node {
     for (uint i = 0; i < classes.size(); ++i) {
       let cls = (Class<Object>)(classes[i]);
       if (cls) {
+        console.printf("\c[CYAN][BONSAIRC] Activating configuration for class %s.", classes[i]);
         rc.Finalize(handler);
         return;
       }
@@ -261,7 +262,7 @@ class ::RC::Type : ::RC::Node {
   override void Finalize(::EventHandler handler) {
     ValidateWeapons(self.weapons);
     PrintArray(
-      string.format("[BONSAIRC] Forcing type 0x%2X for:", type),
+      string.format("[BONSAIRC] Forcing type 0x%02X for:", type),
       weapons);
   }
 

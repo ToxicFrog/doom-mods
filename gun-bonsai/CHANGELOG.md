@@ -7,6 +7,7 @@
 - Change: "base level cost" menu item is now a textfield
 - Fix: HUD should now render overtop of other HUD elements
 - Fix: Hexen cleric mace is a melee weapon
+- Fix: BONSAIRC now reports when it's enabling conditional configurations, and which ones
 
 # 0.9.0
 
