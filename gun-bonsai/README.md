@@ -332,7 +332,7 @@ Shots paralyze enemies (in addition to doing their normal amount of damage). Par
 
 ### Revivification *(Lightning intermediate upgrade)*
 
-Slain enemies have a chance of coming back as ghostly minions. The chance of coming back increases with both the number of lightning stacks and the level of Revivification; the latter also gives revived minions a bonus to damage and armour. You can freely walk through your minions (so they can't block important doorways), and while they are capable of friendly fire they will never do more than 1 damage to you. (They take full damage from your attacks, however.)
+Slain enemies have a chance of coming back as ghostly minions. The chance of coming back increases with both the number of lightning stacks and the level of Revivification; the latter also gives revived minions a bonus to damage and armour. You can freely walk through your minions (so they can't block important doorways), and while they are capable of friendly fire they will never do more than 1 damage to you (and take only 1 damage from your attacks).
 
 ### Chain Lightning *(Lightning mastery)*
 

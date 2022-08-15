@@ -6,20 +6,25 @@
 - improved type inference:
   - detect FastProjectiles, bouncy shots, and ripper shots and disable the appropriate upgrades
 - optional confirmation prompt when choosing an upgrade
-- XP slider should be a text entry field instead
-- refund 50% XP on level rejection
 - option for "how many choices on level up", 0 == everything
 - AAS support, see github
 - tone down damage upgrade to 20%
 - scavenge lead probabalistic below 100hp & for ammo that produces low amounts
   - something like: ammo count = (base ammo count * 0.1 * target health/100)
+- move HUD to renderOverlay
+- Strife punch dagger is not meleeflagged
 
 ### 0.10.x?
 
 - split laevis into its own mod
 
+### Soon
+
+- Revivification should summon copies of the dead enemy and/or friendly lightning constructs rather than reviving the enemy in place
+
 ### Someday
 
+- refund 50% XP on level rejection?
 - investigate use of A_SetTics() instead of freeze powerup for Swiftness
 - add ammo capacity upgrade
   - walk player inventory and boost the MaxAmount and BackpackMaxAmount
