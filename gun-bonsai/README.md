@@ -201,7 +201,7 @@ Killing an enemy grants you 1 point of health and armour per level (×10 for bos
 
 ### Damage
 
-Increases damage dealt by this weapon by 10%, with a minimum inrease of 1 point, per level.
+Increases damage dealt by this weapon by 20%, with a minimum increase of 1 point, per level.
 
 ### Explosive Death *(Ranged only)*
 

@@ -5,6 +5,7 @@
   - A setting of 1 will randomly choose an upgrade for you as soon as you gain a level
   - A setting of 0 will let you choose from the complete list of available upgrades
 - Change: "base level cost" menu item is now a textfield
+- Balance: Damage (weapon) is now +20%/+1 rather than +25%/+2
 - Fix: HUD should now render overtop of other HUD elements
 - Fix: Hexen cleric mace is a melee weapon
 - Fix: BONSAIRC now reports when it's enabling conditional configurations, and which ones
