@@ -49,7 +49,8 @@ class TF_Tooltip : Object ui {
     // Nominal width is the maximum width of the tooltip based on configuration
     // in the MENUDEF.
     let nominal_width = virtual_width * self.w;
-    let lines = self.font.BreakLines(self.text, nominal_width);
+    let localtext = Stringtable.localize(self.text);
+    let lines = self.font.BreakLines(localtext, nominal_width);
 
     // Calculate the real width of the tooltip. This may be less than the
     // nominal width if it's a short one-liner. This is still in virtual screen
