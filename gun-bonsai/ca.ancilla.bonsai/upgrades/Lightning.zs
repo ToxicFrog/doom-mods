@@ -108,8 +108,10 @@ class ::ShockDot : ::Dot {
 
   override void Tick() {
     if (owner.health <= 0) return;
-    if (stacks <= 1) owner.TriggerPainChance(self.damagetype, true);
-    owner.A_SetTics(ceil(self.stacks*5.0));
+    if (self.stacks < 1)
+      owner.A_SetTics(2);
+    else
+      owner.A_SetTics(ceil(self.stacks*7.0));
     super.Tick();
   }
 

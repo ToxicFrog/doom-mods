@@ -10,6 +10,7 @@
 - Fix: Hexen cleric mace & Strife punch dagger are now considered melee weapons
 - Fix: BONSAIRC now reports when it's enabling conditional configurations, and which ones
 - Fix: BONSAIRC now produces a single error and stops parsing when encountering a malformed type, enable, or disable command
+- Fix: Lightning will *probably* no longer permanently paralyze enemies, or (in some mods) make them immortal
 
 # 0.9.0
 
