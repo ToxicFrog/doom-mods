@@ -49,8 +49,7 @@ class TF_Tooltip : Object ui {
     // Nominal width is the maximum width of the tooltip based on configuration
     // in the MENUDEF.
     let nominal_width = virtual_width * self.w;
-    let localtext = Stringtable.localize(self.text);
-    let lines = self.font.BreakLines(localtext, nominal_width);
+    let lines = self.font.BreakLines(text, nominal_width);
 
     // Calculate the real width of the tooltip. This may be less than the
     // nominal width if it's a short one-liner. This is still in virtual screen
@@ -174,10 +173,11 @@ class TF_TooltipOptionMenu : OptionMenu {
 
   void AddTooltip(TF_Tooltip settings, uint first, uint last, string tooltip) {
     if (first < 0) ThrowAbortException("Tooltip must have at least one menu item preceding it!");
+	let localtooltip = Stringtable.localize(tooltip);
     let tt = AppendableTooltip(first, last);
     if (tt) {
       // Existing tooltip that we're just appending to.
-      tt.text = tt.text .. "\n" .. tooltip;
+      tt.text = tt.text .. "\n" .. localtooltip;
       return;
     }
     // No existing tooltip for these menu entries, create a new one.
@@ -185,7 +185,7 @@ class TF_TooltipOptionMenu : OptionMenu {
     tt.CopyFrom(settings);
     tt.first = first;
     tt.last = last;
-    tt.text = tooltip;
+    tt.text = localtooltip;
     tooltips.push(tt);
   }
 
