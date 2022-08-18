@@ -278,18 +278,9 @@ class ::PerPlayerStats : Object play {
     if (!info) return;
     info.upgrades.OnDamageDealt(owner, shot, target, damage);
     AddXP(GetXPForDamage(target, damage));
-    // If it has a priority set on it, it's one of ours and we shouldn't use it
-    // for hitscan/projectile inference.
-    if (shot && shot.weaponspecial != ::Upgrade::PRI_MISSING) return;
 
-    // Assume that "missiles" moving faster than 300 du/t are actually projectiles
-    // used as bullet tracers by e.g. Hideous Destructor and should be treated
-    // as hitscans instead.
-    if (shot && shot.bMISSILE && shot.speed < 300) {
-      info.projectile_shots++;
-    } else {
-      info.hitscan_shots++;
-    }
+    if (!shot || shot.weaponspecial == ::Upgrade::PRI_MISSING)
+      info.InferWeaponTypeFromDamage(owner, shot, target);
   }
 
   void OnDamageReceived(Actor shot, Actor attacker, uint damage) {

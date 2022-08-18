@@ -269,7 +269,7 @@ class ::RC::Type : ::RC::Node {
   override void Configure(::WeaponInfo info) {
     for (uint i = 0; i < weapons.size(); ++i) {
       if (weapons[i] == info.wpnClass) {
-        info.wpnType = type;
+        info.typeflags = type;
         return;
       }
     }

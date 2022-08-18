@@ -12,17 +12,10 @@ class ::WeaponInfo : Object play {
   // Sigh.
   Weapon wpn;
   string wpnClass;
-  ::WeaponType wpnType;
   ::Upgrade::UpgradeBag upgrades;
   double XP;
   uint maxXP;
   uint level;
-  // Tracking for how much this gun does hitscans vs. projectiles.
-  // Use doubles rather than uints so that at high values it saturates rather
-  // than overflowing.
-  double hitscan_shots;
-  double projectile_shots;
-
   ::LegendoomWeaponInfo ld_info;
 
   // Called when a new WeaponInfo is created. This should initialize the entire object.
@@ -48,8 +41,7 @@ class ::WeaponInfo : Object play {
       // Rebinding to a weapon of an entirely different type. Reset the attack
       // modality inference counters.
       self.wpnClass = wpn.GetClassName();
-      hitscan_shots = 0;
-      projectile_shots = 0;
+      self.ResetTypeInference();
     }
     ld_info.Rebind(self);
     ::RC.GetRC().Configure(self);
@@ -127,34 +119,6 @@ class ::WeaponInfo : Object play {
     for (Inventory inv = stack.inv; inv; inv = inv.inv) {
       if (inv == needle) return true;
     }
-    return false;
-  }
-
-  // Heuristics for guessing whether this is a projectile or hitscan weapon.
-  // Note that for some weapons, both of these may return true, e.g. in the case
-  // of a weapon that has a hitscan primary and projectile alt-fire that both
-  // get used frequency.
-  // The heuristic we use is that if more than 20% of the attacks made with this
-  // weapon are hitscan, it's a hitscan weapon, and similarly for projectile attacks.
-  // We have this threshold to limit false positives in the case of e.g. mods
-  // that add offhand grenades that get attributed to the current weapon, or
-  // weapons that have a projectile alt-fire that is used only very rarely.
-  bool IsHitscan() const {
-    if (wpnType) return wpnType & ::TYPE_HITSCAN;
-    return hitscan_shots > 3 * projectile_shots;
-  }
-  bool IsProjectile() const {
-    if (wpnType) return wpnType & ::TYPE_PROJECTILE;
-    return projectile_shots > 3 * hitscan_shots;
-  }
-  bool IsMelee() const {
-    if (wpnType) return wpnType & ::TYPE_MELEE;
-    return wpn.bMELEEWEAPON;
-  }
-  // Ignored weapons cannot earn XP or levels and have a special display in
-  // the HUD.
-  bool IsIgnored() const {
-    if (wpnType) return wpnType & ::TYPE_IGNORE;
     return false;
   }
 

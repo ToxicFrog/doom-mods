@@ -16,3 +16,4 @@
 #include "./UpgradeGiver.zsc"
 #include "./WeaponUpgradeGiver.zsc"
 #include "./WeaponInfo.zsc"
+#include "./WeaponTypeInference.zsc"

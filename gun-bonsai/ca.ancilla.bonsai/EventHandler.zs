@@ -110,10 +110,9 @@ class ::EventHandler : StaticEventHandler {
     stats.pupgrades.DumpToConsole("    ");
     console.printf("%s:\n    Level %d (%d/%d XP)",
       stats.wname, stats.wlvl, stats.wxp, stats.wmax);
-    console.printf("    Hitscan: %d\n    Projectile: %d\n",
-      stats.winfo.hitscan_shots, stats.winfo.projectile_shots);
     stats.wupgrades.DumpToConsole("    ");
     stats.winfo.ld_info.DumpToConsole();
+    stats.winfo.DumpTypeInfo();
   }
 
   play void CycleLDEffect(PlayerPawn pawn) {
