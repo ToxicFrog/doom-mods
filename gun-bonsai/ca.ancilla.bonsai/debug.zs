@@ -5,7 +5,9 @@ class ::Debug : Object play {
     Array<string> argv;
     cmd.split(argv, ",");
     // 0: bonsai-debug, 1: <command>, 2: args...
-    if (argv[1] == "w-up" && argv.size() >= 3) {
+    if (argv[1] == "info") {
+      ShowInfoConsole(pawn);
+    } else if (argv[1] == "w-up" && argv.size() >= 3) {
       AddWeaponUpgrade(pawn, argv[2], arg);
     } else if (argv[1] == "p-up" && argv.size() >= 3) {
       AddPlayerUpgrade(pawn, argv[2], arg);
@@ -25,6 +27,19 @@ class ::Debug : Object play {
     } else {
       console.printf("Unknown or malformed debug command: %s", argv[1]);
     }
+  }
+
+  static void ShowInfoConsole(Actor pawn) {
+    ::CurrentStats stats;
+    if (!::PerPlayerStats.GetStatsFor(pawn).GetCurrentStats(stats)) return;
+    console.printf("Player:\n    Level %d (%d/%d XP)",
+      stats.plvl, stats.pxp, stats.pmax);
+    stats.pupgrades.DumpToConsole("    ");
+    console.printf("%s:\n    Level %d (%d/%d XP)",
+      stats.wname, stats.wlvl, stats.wxp, stats.wmax);
+    stats.wupgrades.DumpToConsole("    ");
+    stats.winfo.ld_info.DumpToConsole();
+    stats.winfo.DumpTypeInfo();
   }
 
   static void AddWeaponUpgrade(Actor pawn, string upgrade, uint n) {

@@ -30,7 +30,7 @@ extend class ::WeaponInfo {
 
   void DumpTypeInfo() {
     console.printf("Weapon type inference:");
-    console.printf("%12s %f", "BONSAIRC", typeflags);
+    console.printf("%12s %04X", "BONSAIRC", typeflags);
     console.printf("%12s %f", "total", total);
     console.printf("%12s %f", "hitscan", hitscans);
     console.printf("%12s %f", "projectile", projectiles);

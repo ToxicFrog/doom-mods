@@ -102,19 +102,6 @@ class ::EventHandler : StaticEventHandler {
     return;
   }
 
-  void ShowInfoConsole(PlayerPawn pawn) {
-    ::CurrentStats stats;
-    if (!::PerPlayerStats.GetStatsFor(pawn).GetCurrentStats(stats)) return;
-    console.printf("Player:\n    Level %d (%d/%d XP)",
-      stats.plvl, stats.pxp, stats.pmax);
-    stats.pupgrades.DumpToConsole("    ");
-    console.printf("%s:\n    Level %d (%d/%d XP)",
-      stats.wname, stats.wlvl, stats.wxp, stats.wmax);
-    stats.wupgrades.DumpToConsole("    ");
-    stats.winfo.ld_info.DumpToConsole();
-    stats.winfo.DumpTypeInfo();
-  }
-
   play void CycleLDEffect(PlayerPawn pawn) {
     let info = ::PerPlayerStats.GetStatsFor(pawn).GetInfoForCurrentWeapon();
     if (info) info.ld_info.CycleEffect();
@@ -142,8 +129,6 @@ class ::EventHandler : StaticEventHandler {
       return;
     } else if (evt.name == "bonsai_show_info") {
       ShowInfo(players[evt.player].mo);
-    } else if (evt.name == "bonsai_show_info_console") {
-      ShowInfoConsole(players[evt.player].mo);
     } else if (evt.name == "bonsai_cycle_ld_effect") {
       if (::Settings.have_legendoom()) {
         CycleLDEffect(players[evt.player].mo);
