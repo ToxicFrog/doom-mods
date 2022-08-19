@@ -5,11 +5,12 @@ extend class ::WeaponInfo {
   ::WeaponType typeflags;
   // Counters for different kinds of attacks. These are all doubles so that over
   // the course of a long game they will saturate rather than wrapping around.
-  // Fundamental weapon types.
   double total;
+  // Fundamental weapon types (hitscan/projectile/melee).
+  // More than one of these can in principle be true at once.
   double hitscans;
   double projectiles;
-  double melees;
+  double avg_range; // running average of mean range to target, used to determine IsMelee()
   // Additional modifiers.
   double fastprojectiles;
   double bouncers;
@@ -24,21 +25,25 @@ extend class ::WeaponInfo {
 
   void ResetTypeInference() {
     total = 0.01; // avoid division by zero because gzdoom traps if that happens
-    hitscans = projectiles = melees = 0;
+    hitscans = projectiles = avg_range = 0;
     fastprojectiles = bouncers = seekers = rippers = 0;
+  }
+
+  void InfoLine(string title, double count) {
+    console.printf("%12s %f (%0.2f)", title, count, count/total);
   }
 
   void DumpTypeInfo() {
     console.printf("Weapon type inference:");
     console.printf("%12s %04X", "BONSAIRC", typeflags);
     console.printf("%12s %f", "total", total);
-    console.printf("%12s %f", "hitscan", hitscans);
-    console.printf("%12s %f", "projectile", projectiles);
-    console.printf("%12s %f", "melee", melees);
-    console.printf("%12s %f", "fast", fastprojectiles);
-    console.printf("%12s %f", "bouncy", bouncers);
-    console.printf("%12s %f", "seeker", seekers);
-    console.printf("%12s %f", "ripper", rippers);
+    InfoLine("hitscan", hitscans);
+    InfoLine("projectile", projectiles);
+    console.printf("%12s %f", "avg.range", avg_range);
+    InfoLine("fast", fastprojectiles);
+    InfoLine("bouncer", bouncers);
+    InfoLine("ripper", rippers);
+    InfoLine("seeker", seekers);
     // TODO: burstfire
   }
 
@@ -63,42 +68,46 @@ extend class ::WeaponInfo {
       // TODO: burstfire hitscan tracking
       ++hitscans;
     }
-    // This value is tricky to set.
-    // Range for fists, chainsaw, Heretic staff, and Gauntlets of the Necromancer
-    // is 64. Range for Strife punch dagger is 80.
-    // Hexen continues to bedevil me with a range of 128 for most melee weapons
-    // and 144(!) for the axe.
-    // For now we just say that "melee range" is 96 and manually melee-flag
-    // the Hexen weapons in BONSAIRC.
-    if (player.Distance3D(target) - target.radius < 96) ++melees;
     ++total;
+    let range = player.Distance3D(target) - target.radius;
+    avg_range += (range - avg_range)/total;
   }
 
   // Heuristics for guessing whether this is a projectile or hitscan weapon.
   // Note that for some weapons, both of these may return true, e.g. in the case
   // of a weapon that has a hitscan primary and projectile alt-fire that both
   // get used frequency.
-  // The heuristic we use is that if more than 25% of the attacks made with this
+  // The heuristic we use is that if more than 33% of the attacks made with this
   // weapon are hitscan, it's a hitscan weapon, and similarly for projectile attacks.
   // We have this threshold to limit false positives in the case of e.g. mods
   // that add offhand grenades that get attributed to the current weapon, or
   // weapons that have a projectile alt-fire that is used only very rarely.
-  // For melee weapons, we require that >80% of its attacks be made in melee range.
   bool IsHitscan() const {
     if (typeflags) return typeflags & ::TYPE_HITSCAN;
-    return hitscans/total > 0.25;
+    return hitscans/total > 0.33;
   }
   bool IsProjectile() const {
     if (typeflags) return typeflags & ::TYPE_PROJECTILE;
-    return projectiles/total > 0.25;
+    return projectiles/total > 0.33;
   }
   bool IsMelee() const {
     if (typeflags) return typeflags & ::TYPE_MELEE;
-    return melees/total > 0.8;
+    // This value is tricky to set.
+    // Range for fists, chainsaw, Heretic staff, and Gauntlets of the Necromancer
+    // is 64. Range for Strife punch dagger is 80.
+    // Hexen continues to bedevil me with a range of 128 for most melee weapons
+    // and 144(!) for the axe.
+    // For now we just say that "melee range" is 85 and manually melee-flag
+    // the Hexen weapons in BONSAIRC.
+    return avg_range <= 85;
   }
+  // For additional modifiers we use a cutoff of 50%.
   bool IsFastProjectile() const {
     if (typeflags) return typeflags & ::TYPE_FASTPROJECTILE;
     return fastprojectiles/total > 0.5;
+  }
+  bool IsSlowProjectile() const {
+    return IsProjectile() && !IsFastProjectile();
   }
   bool IsRipper() const {
     if (typeflags) return typeflags & ::TYPE_RIPPER;
