@@ -11,11 +11,14 @@
   - upgrade selection will avoid spawning upgrades that don't work (e.g. Homing on a FastProjectile weapon) or are redundant (e.g. Piercing on a weapon that fires ripper shots)
 - Change: "base level cost" menu item is now a textfield
 - Balance: Damage (weapon) is now +20%/+1 rather than +25%/+2
+- Balance: Shield is now 20% and stacks up to a max of 60%, rather than 50% -> 75%
+- Balance: Shield cannot reduce incoming damage below 1
 - Fix: HUD should now render overtop of other HUD elements
 - Fix: Hexen cleric mace & Strife punch dagger are now considered melee weapons
 - Fix: BONSAIRC now reports when it's enabling conditional configurations, and which ones
 - Fix: BONSAIRC now produces a single error and stops parsing when encountering a malformed type, enable, or disable command
 - Fix: Lightning will *probably* no longer permanently paralyze enemies, or (in some mods) make them immortal
+- Fix: Homing Shots now properly sets the `+SEEKERMISSILE` flag on projectiles
 
 # 0.9.0
 

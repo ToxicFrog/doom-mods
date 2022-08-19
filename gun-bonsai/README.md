@@ -223,13 +223,13 @@ Creates a small explosion on hit doing 40% of the original attack damage. More l
 
 Projectiles home in on enemies. Higher levels will lock on from further away and be more maneuverable when homing.
 
-### Piercing Shots *(Projectile only, requires two levels of Fast Shots)*
+### Piercing Shots *(Projectile only, requires two levels of Fast Shots, max 1 level)*
 
 Shots go through enemies (but not walls). Note that most shots will hit enemies multiple times as they pass through, so this also acts as a damage bonus which hits harder against larger enemies.
 
 ### Shield *(Melee only, max two levels)*
 
-Reduces incoming damage by 50% (at level 1) or 75% (at level 2).
+Reduces incoming damage by ~20%. Can be stacked, with diminishing returns maxing out at 60% damage reduction. Cannot reduce incoming damage below 1 point.
 
 ### Submunitions *(Ranged only)*
 

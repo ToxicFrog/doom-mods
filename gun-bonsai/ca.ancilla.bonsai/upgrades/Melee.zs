@@ -79,10 +79,11 @@ class ::DarkHarvest::Armour : BasicArmorBonus {
 }
 
 // Like Resistance, but a much more powerful melee-only version.
-// 50% resistance, 75% when upgraded.
+// Starts at ~18% resistance and improves with diminishing returns to a max
+// of 60%.
 class ::Shield : ::BaseUpgrade {
   override double ModifyDamageReceived(Actor pawn, Actor shot, Actor attacker, double damage) {
-    return damage * (0.5 ** self.level);
+    return max(1, damage * (0.4 + 0.6 * 0.8 ** self.level));
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
