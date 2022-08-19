@@ -2,6 +2,7 @@
 
 class ::HomingShots : ::BaseUpgrade {
   override void OnProjectileCreated(Actor player, Actor shot) {
+    shot.bSEEKERMISSILE = true;
     let aux = ::HomingShots::Aux(shot.GiveInventoryType("TFLV_Upgrade_HomingShots_Aux"));
     aux.level = level;
     aux.SetStateLabel("Homing");
