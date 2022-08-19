@@ -4,11 +4,15 @@
 #debug off;
 
 enum ::WeaponType {
-  ::TYPE_AUTO = 0x00,
-  ::TYPE_IGNORE = 0x01,
-  ::TYPE_MELEE = 0x02,
-  ::TYPE_HITSCAN = 0x04,
-  ::TYPE_PROJECTILE = 0x08
+  ::TYPE_AUTO       = 0x00,
+  ::TYPE_IGNORE     = 1<<0,
+  ::TYPE_MELEE      = 1<<1,
+  ::TYPE_HITSCAN    = 1<<2,
+  ::TYPE_PROJECTILE = 1<<3,
+  ::TYPE_FASTPROJECTILE = 1<<4,
+  ::TYPE_SEEKER     = 1<<5,
+  ::TYPE_RIPPER     = 1<<6,
+  ::TYPE_BOUNCER    = 1<<7,
 }
 
 class ::RC : Object play {
@@ -482,10 +486,14 @@ class ::RCParser : Object play {
     while (!peek(";")) {
       // auto is type 0 and gets special handling.
       if (peek("AUTO")) { auto_type = true; }
+      else if (peek("IGNORE")) { type |= ::TYPE_IGNORE; }
       else if (peek("MELEE")) { type |= ::TYPE_MELEE; }
       else if (peek("HITSCAN")) { type |= ::TYPE_HITSCAN; }
       else if (peek("PROJECTILE")) { type |= ::TYPE_PROJECTILE; }
-      else if (peek("IGNORE")) { type |= ::TYPE_IGNORE; }
+      else if (peek("FASTPROJECTILE")) { type |= ::TYPE_FASTPROJECTILE; }
+      else if (peek("SEEKER")) { type |= ::TYPE_SEEKER; }
+      else if (peek("RIPPER")) { type |= ::TYPE_RIPPER; }
+      else if (peek("BOUNCER")) { type |= ::TYPE_BOUNCER; }
       else return Error("AUTO or IGNORE or weapon type");
       next("");
     }
@@ -503,15 +511,17 @@ class ::RCParser : Object play {
 // Lump grammar:
 //          rc := statement*
 //   statement := comment | ifdef | directive
-//     comment := "#" SINGLELINE EOL
-//       ifdef := "ifdef" classes "{" rc "}"
+//     comment := '#' SINGLELINE EOL
+//       ifdef := 'ifdef' classes '{' rc '}'
 //   directive := register | unregister | merge | disable | type
-//    register := "register" upgrades ";"
-//  unregister := "unregister" upgrades ";"
-//       merge := "merge" classes ";"
-//     disable := "disable" classes ":" upgrades ";"
-//        type := "type" classes ":" typename+ ";"
-//    typename := "MELEE" | "HITSCAN" | "PROJECTILE" | "IGNORE" | "AUTO"
+//    register := 'register' upgrades ';'
+//  unregister := 'unregister' upgrades ';'
+//       merge := 'merge' classes ';'
+//     disable := 'disable' classes ':' upgrades ';'
+//        type := 'type' classes ':' typename+ ';'
+//    typename := primarytype | secondarytype
+// primarytype := 'MELEE' | 'HITSCAN' | 'PROJECTILE' | 'IGNORE' | 'AUTO'
+// secondarytype:='FASTPROJECTILE' | 'SEEKER' | 'RIPPER' | 'BOUNCER'
 //     classes := (CLASSNAME | classprefix)+
 //    upgrades := CLASSNAME+
-// classprefix := CLASSNAME "*"
+// classprefix := CLASSNAME '*'

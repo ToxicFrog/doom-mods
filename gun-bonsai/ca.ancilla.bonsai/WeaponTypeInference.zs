@@ -97,15 +97,19 @@ extend class ::WeaponInfo {
     return melees/total > 0.8;
   }
   bool IsFastProjectile() const {
+    if (typeflags) return typeflags & ::TYPE_FASTPROJECTILE;
     return fastprojectiles/total > 0.5;
   }
   bool IsRipper() const {
+    if (typeflags) return typeflags & ::TYPE_RIPPER;
     return rippers/total > 0.5;
   }
   bool IsSeeker() const {
+    if (typeflags) return typeflags & ::TYPE_SEEKER;
     return seekers/total > 0.5;
   }
-  bool IsBouncy() const {
+  bool IsBouncer() const {
+    if (typeflags) return typeflags & ::TYPE_BOUNCER;
     return bouncers/total > 0.5;
   }
   // Ignored weapons cannot earn XP or levels and have a special display in
