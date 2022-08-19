@@ -4,6 +4,11 @@
   - Player and weapon counts can be configured separately
   - A setting of 1 will randomly choose an upgrade for you as soon as you gain a level
   - A setting of 0 will let you choose from the complete list of available upgrades
+- New: improved weapon type inference code
+  - detects melee weapons based on average engagement range rather than trusting the (often missing or misused) `+MELEEWEAPON` flag
+  - detects FastProjectile weapons and weapons firing seeking, bouncing, and ripping projectiles
+  - these types can also be set manually in the BONSAIRC lump
+  - upgrade selection will avoid spawning upgrades that don't work (e.g. Homing on a FastProjectile weapon) or are redundant (e.g. Piercing on a weapon that fires ripper shots)
 - Change: "base level cost" menu item is now a textfield
 - Balance: Damage (weapon) is now +20%/+1 rather than +25%/+2
 - Fix: HUD should now render overtop of other HUD elements

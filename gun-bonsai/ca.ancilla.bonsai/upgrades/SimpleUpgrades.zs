@@ -28,7 +28,9 @@ class ::BouncyShots : ::BaseUpgrade {
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
-    return info.IsProjectile() && info.upgrades.Level("::PiercingShots") == 0;
+    return info.IsSlowProjectile()
+      && !info.IsRipper()
+      && !info.IsBouncer(false);
   }
 }
 
@@ -38,7 +40,7 @@ class ::FastShots : ::BaseUpgrade {
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
-    return info.IsProjectile();
+    return info.IsSlowProjectile();
   }
 }
 
@@ -49,11 +51,13 @@ class ::PiercingShots : ::BaseUpgrade {
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
     return info.IsProjectile()
-      && info.upgrades.Level("::PiercingShots") == 0
-      && info.upgrades.Level("::FastShots") >= 2
-      && info.upgrades.Level("::PiercingShots") < 5
-      && info.upgrades.Level("::BouncyShots") == 0
-      && info.upgrades.Level("::FragmentationShots") == 0;
+      // Not allowed with bouncer or fragmentation shots, and don't spawn on
+      // weapons that are natural rippers or already have this upgrade.
+      && !info.IsRipper()
+      && !info.IsBouncer()
+      && info.upgrades.Level("::FragmentationShots") == 0
+      // Also requires either FastProjectile weapon or two levels in Fast Shots
+      && (info.IsFastProjectile() || info.upgrades.Level("::FastShots") >= 2);
   }
 }
 

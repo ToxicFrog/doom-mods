@@ -109,17 +109,23 @@ extend class ::WeaponInfo {
   bool IsSlowProjectile() const {
     return IsProjectile() && !IsFastProjectile();
   }
-  bool IsRipper() const {
+  bool IsRipper(bool includeUpgrades=true) const {
     if (typeflags) return typeflags & ::TYPE_RIPPER;
-    return rippers/total > 0.5;
+    return
+      (includeUpgrades && upgrades.Level("::Upgrade::PiercingShots"))
+      || rippers/total > 0.5;
   }
-  bool IsSeeker() const {
+  bool IsSeeker(bool includeUpgrades=true) const {
     if (typeflags) return typeflags & ::TYPE_SEEKER;
-    return seekers/total > 0.5;
+    return
+      (includeUpgrades && upgrades.Level("::Upgrade::HomingShots"))
+      || seekers/total > 0.5;
   }
-  bool IsBouncer() const {
+  bool IsBouncer(bool includeUpgrades=true) const {
     if (typeflags) return typeflags & ::TYPE_BOUNCER;
-    return bouncers/total > 0.5;
+    return
+      (includeUpgrades && upgrades.Level("::Upgrade::BouncyShots"))
+      || bouncers/total > 0.5;
   }
   // Ignored weapons cannot earn XP or levels and have a special display in
   // the HUD.
