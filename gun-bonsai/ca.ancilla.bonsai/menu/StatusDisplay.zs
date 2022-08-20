@@ -5,8 +5,7 @@ class ::StatusDisplay : ::GenericMenu {
     super.Init(parent, desc);
     mDesc.mItems.Clear();
 
-    let pawn = PlayerPawn(players[consoleplayer].mo);
-    let pps = TFLV_PerPlayerStats.GetStatsFor(pawn);
+    let pps = TFLV::EventHandler.GetConsolePlayerStats();
 
     TFLV_CurrentStats stats;
     if (!pps.GetCurrentStats(stats)) {

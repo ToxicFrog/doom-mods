@@ -71,6 +71,14 @@ class ::EventHandler : StaticEventHandler {
     }
   }
 
+  // Return the stats struct for the consoleplayer, without modifying the playsim.
+  // If the stats are missing, null will be returned, and if the playerpawn doesn't
+  // have a proxy object or disagrees with the contents of playerstats, too bad.
+  // This is used by menu code to get the stats for the player-at-keyboard.
+  ui static ::PerPlayerStats GetConsolePlayerStats() {
+    return ::EventHandler(StaticEventHandler.Find("::EventHandler")).playerstats[consoleplayer];
+  }
+
   ui bool ShouldDrawHUD(uint p) const {
     return playeringame[p]
       && playerstats[p]

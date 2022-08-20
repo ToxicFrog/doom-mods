@@ -5,8 +5,7 @@ class ::WeaponLevelUpMenu : ::GenericMenu {
     super.Init(parent, desc);
     mDesc.mItems.Clear();
 
-    let pawn = PlayerPawn(players[consoleplayer].mo);
-    let stats = TFLV_PerPlayerStats.GetStatsFor(pawn);
+    let stats = TFLV::EventHandler.GetConsolePlayerStats();
     let giver = TFLV::WeaponUpgradeGiver(stats.currentEffectGiver);
 
     PushText("", Font.CR_GOLD);

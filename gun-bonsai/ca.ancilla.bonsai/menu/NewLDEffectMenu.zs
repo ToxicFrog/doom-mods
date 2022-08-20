@@ -6,8 +6,7 @@ class ::NewLDEffectMenu : ::GenericMenu {
     mDesc.mItems.Clear();
     mDesc.mSelectedItem = -1;
 
-    let pawn = PlayerPawn(players[consoleplayer].mo);
-    let stats = TFLV_PerPlayerStats.GetStatsFor(pawn);
+    let stats = TFLV::EventHandler.GetConsolePlayerStats();
     let giver = TFLV::LegendoomEffectGiver(stats.currentEffectGiver);
     if (!giver) {
       console.printf("missing/wrong giver in NewLDEffectMenu");
