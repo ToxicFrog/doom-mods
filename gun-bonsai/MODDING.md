@@ -19,6 +19,8 @@ For an example, see Gun Bonsai's built in BONSAIRC, which applies compatibility 
 
 ## Debug commands
 
+### Adding XP and levels
+
 You can use netevents to add upgrades and XP using the console:
 
 - `netevent bonsai-debug,w-up,<upgrade name> <levels>`
@@ -30,9 +32,17 @@ You can use netevents to add upgrades and XP using the console:
 
 The class names do not always exactly correspond to the human-readable names. Consult `LANGUAGE.en` to find out the class names.
 
-You can also fully reset the Gun Bonsai state for your character with:
+### Resetting your upgrades
+
+You can fully reset the Gun Bonsai state for your character with:
 
 - `netevent bonsai-debug,reset`
+
+### Viewing weapon info
+
+You can dump detailed information about Gun Bonsai's `WeaponInfo` object for the current weapon with:
+
+- `netevent bonsai-debug,info`
 
 
 ## Building from source

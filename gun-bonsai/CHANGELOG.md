@@ -11,6 +11,7 @@
   - upgrade selection will avoid spawning upgrades that don't work (e.g. Homing on a FastProjectile weapon) or are redundant (e.g. Piercing on a weapon that fires ripper shots)
 - Change: "base level cost" menu item is now a textfield
 - Change: the player levelup menu will no longer open automatically on levelup
+- Change: `bonsai_show_info_console` replaced with `bonsai-dump`, which is an alias for `netevent bonsai-debug,info`.
 - Balance: Damage (weapon) is now +20%/+1 rather than +25%/+2
 - Balance: Shield is now 20% and stacks up to a max of 60%, rather than 50% -> 75%
 - Balance: Shield cannot reduce incoming damage below 1
