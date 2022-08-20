@@ -111,7 +111,7 @@ class ::EventHandler : StaticEventHandler {
     let stats = ::PerPlayerStats.GetStatsFor(pawn);
     let giver = stats.currentEffectGiver;
     if (!giver) {
-      console.printf("error: bonsai_choose_level_up_option without active level up menu");
+      console.printf("error: bonsai-choose-level-up-option without active level up menu");
       return;
     }
     giver.Choose(index);
@@ -137,8 +137,11 @@ class ::EventHandler : StaticEventHandler {
       }
     } else if (evt.name == "bonsai_select_effect") {
       SelectLDEffect(players[evt.player].mo, evt.args[0]);
-    } else if (evt.name == "bonsai_choose_level_up_option") {
+    } else if (evt.name == "bonsai-choose-level-up-option") {
       ChooseLevelUpOption(players[evt.player].mo, evt.args[0]);
+      // Backwards compatibility with AAS.
+      // TODO(0.10.x): remove
+      EventHandler.SendNetworkEvent("bonsai_choose_level_up_option");
     } else if (evt.name == "bonsai-toggle-upgrade") {
       // args[0] holds the bag index, args[1] the index of the upgrade within that bag.
       // In the future this might be extended to allow viewing and toggling of upgrades

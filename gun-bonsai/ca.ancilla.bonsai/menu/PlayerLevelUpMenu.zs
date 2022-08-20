@@ -27,13 +27,13 @@ class ::PlayerLevelUpMenu : ::GenericMenu {
   void PushUpgrade(TFLV::Upgrade::BaseUpgrade upgrade, int index) {
     PushKeyValueOption(
       upgrade.GetName(), upgrade.GetDesc(),
-      "bonsai_choose_level_up_option",
+      "bonsai-choose-level-up-option",
       index);
   }
 
   override bool MenuEvent(int key, bool fromController) {
     if (key == Menu.MKey_Back) {
-      EventHandler.SendNetworkEvent("bonsai_choose_level_up_option", -1);
+      EventHandler.SendNetworkEvent("bonsai-choose-level-up-option", -1);
     }
 
     return super.MenuEvent(key, fromController);
