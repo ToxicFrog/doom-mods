@@ -84,3 +84,8 @@ ifdef ItemAthena {
 ifdef HDWeapon {
   type HDWoundFixer HDBackpack MagManager PickupManager: IGNORE;
 }
+
+# Blade of Agony: ignore unarmed
+ifdef BoAPlayer {
+  type NullWeapon: IGNORE;
+}
