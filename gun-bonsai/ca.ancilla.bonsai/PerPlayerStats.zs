@@ -192,12 +192,22 @@ class ::PerPlayerStats : Object play {
     let maxXP = ::Settings.gun_levels_per_player_level();
     self.XP += xp;
     if (self.XP >= maxXP && self.XP - xp < maxXP) {
+      Fanfare();
+    }
+  }
+
+  void Fanfare() {
+    if (::Settings.levelup_flash()) {
       owner.A_SetBlend("FF FF FF", 0.8, 40);
-      if (::Settings.upgrade_choices_per_player_level() == 1) {
-        // If autochoose is on, immediately pick an upgrade for the player.
-        StartLevelUp();
-      }
-      // Just gained a level.
+    }
+    if (::Settings.levelup_sound() != "") {
+      wpn.owner.A_StartSound(::Settings.levelup_sound(), CHAN_AUTO,
+        CHANF_OVERLAP|CHANF_UI|CHANF_NOPAUSE|CHANF_LOCAL);
+    }
+    if (::Settings.upgrade_choices_per_player_level() == 1) {
+      // If autochoose is on, immediately pick an upgrade for the player.
+      StartLevelUp();
+    } else {
       owner.A_Log("You leveled up!", true);
       // Earlier versions automatically opened the level-up screen, on the assumption
       // that the player had just closed a weapon level-up screen. However, (a)

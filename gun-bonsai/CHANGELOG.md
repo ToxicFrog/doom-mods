@@ -10,6 +10,7 @@
   - these types can also be set manually in the BONSAIRC lump
   - upgrade selection will avoid spawning upgrades that don't work (e.g. Homing on a FastProjectile weapon) or are redundant (e.g. Piercing on a weapon that fires ripper shots)
 - Change: "base level cost" menu item is now a textfield
+- Change: the player levelup menu will no longer open automatically on levelup
 - Balance: Damage (weapon) is now +20%/+1 rather than +25%/+2
 - Balance: Shield is now 20% and stacks up to a max of 60%, rather than 50% -> 75%
 - Balance: Shield cannot reduce incoming damage below 1
@@ -19,6 +20,7 @@
 - Fix: BONSAIRC now produces a single error and stops parsing when encountering a malformed type, enable, or disable command
 - Fix: Lightning will *probably* no longer permanently paralyze enemies, or (in some mods) make them immortal
 - Fix: Homing Shots now properly sets the `+SEEKERMISSILE` flag on projectiles
+- Fix: the levelup flash/sound settings are now respected for player levelups
 
 # 0.9.0
 
