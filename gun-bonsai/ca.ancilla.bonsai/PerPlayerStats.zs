@@ -197,6 +197,7 @@ class ::PerPlayerStats : Object play {
   }
 
   void Fanfare() {
+    EventHandler.SendNetworkEvent("bonsai-level-up", 0, self.level+1);
     if (::Settings.levelup_flash()) {
       owner.A_SetBlend("FF FF FF", 0.8, 40);
     }

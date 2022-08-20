@@ -145,6 +145,7 @@ class ::WeaponInfo : Object play {
   }
 
   void Fanfare() {
+    EventHandler.SendNetworkEvent("bonsai-level-up", 1, self.level+1);
     if (::Settings.levelup_flash()) {
       wpn.owner.A_SetBlend("00 80 FF", 0.8, 40);
       wpn.owner.A_SetBlend("00 80 FF", 0.4, 350);
