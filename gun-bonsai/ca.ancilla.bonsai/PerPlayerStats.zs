@@ -81,6 +81,7 @@ class ::PerPlayerStats : Object play {
   // The latter two cases should only happen for one tic after switching weapons,
   // and anything calling this should be null-checking anyways.
   ::WeaponInfo GetInfoForCurrentWeapon() const {
+    if (!owner || !owner.player) return null;
     Weapon wielded = owner.player.ReadyWeapon;
     if (wielded && infoForCurrentWeapon && infoForCurrentWeapon.wpn == wielded) {
       return infoForCurrentWeapon;
@@ -364,6 +365,7 @@ class ::PerPlayerStats : Object play {
 
   // Runs once per tic.
   void TickStats() {
+    if (!owner || !owner.player) return;
     // This ensures that the currently wielded weapon always has a WeaponInfo
     // struct associated with it. It should be pretty fast, especially in the
     // common case where the weapon already has a WeaponInfo associated with it.

@@ -26,6 +26,7 @@
 - Fix: Lightning will *probably* no longer permanently paralyze enemies, or (in some mods) make them immortal
 - Fix: Homing Shots now properly sets the `+SEEKERMISSILE` flag on projectiles
 - Fix: the levelup flash/sound settings are now respected for player levelups
+- Fix: crash when subjected to an instadeath (e.g. bottomless pit) that kills `PlayerInfo` but leaves `PlayerPawn` intact
 
 # 0.9.0
 
