@@ -202,7 +202,7 @@ class ::PerPlayerStats : Object play {
       owner.A_SetBlend("FF FF FF", 0.8, 40);
     }
     if (::Settings.levelup_sound() != "") {
-      wpn.owner.A_StartSound(::Settings.levelup_sound(), CHAN_AUTO,
+      owner.A_StartSound(::Settings.levelup_sound(), CHAN_AUTO,
         CHANF_OVERLAP|CHANF_UI|CHANF_NOPAUSE|CHANF_LOCAL);
     }
     if (::Settings.upgrade_choices_per_player_level() == 1) {
