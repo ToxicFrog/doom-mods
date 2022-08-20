@@ -2,7 +2,7 @@
 // Handles giving players a stat tracking item when they spawn in, and assigning
 // XP to their currently wielded weapon when they damage something.
 #namespace TFLV;
-#debug off
+#debug on
 
 class ::EventHandler : StaticEventHandler {
   ::PerPlayerStats playerstats[8];
@@ -77,6 +77,23 @@ class ::EventHandler : StaticEventHandler {
   // This is used by menu code to get the stats for the player-at-keyboard.
   ui static ::PerPlayerStats GetConsolePlayerStats() {
     return ::EventHandler(StaticEventHandler.Find("::EventHandler")).playerstats[consoleplayer];
+  }
+
+  // Get the stats struct for the consoleplayer, resolving any mismatches between
+  // the EventHandler's view of things and the PlayerPawn. In particular, if only
+  // one of them has the info, that is taken as authoritative and copied to the other;
+  // if they both have info but disagree on it, PlayerPawn wins.
+  // TODO: some planned upgrades probably need the proxy to be moved to the head
+  // of the player's inventory when this happens.
+  ::PerPlayerStats GetStatsFor(PlayerPawn pawn) {
+    // DEBUG("GetStatsFor: %s", TAG(pawn));
+    if (!pawn) return null;
+    let p = pawn.PlayerNumber();
+    let proxy = ::PerPlayerStatsProxy(pawn.FindInventory("::PerPlayerStatsProxy"));
+    // DEBUG("Got stats: %s %d", TAG(proxy), proxy ? proxy.stats != null : 0);
+    if (proxy && proxy.stats == playerstats[p]) return proxy.stats;
+    InitPlayer(p);
+    return playerstats[p];
   }
 
   ui bool ShouldDrawHUD(uint p) const {

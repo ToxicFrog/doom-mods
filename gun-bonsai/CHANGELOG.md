@@ -27,6 +27,7 @@
 - Fix: Homing Shots now properly sets the `+SEEKERMISSILE` flag on projectiles
 - Fix: the levelup flash/sound settings are now respected for player levelups
 - Fix: crash when subjected to an instadeath (e.g. bottomless pit) that kills `PlayerInfo` but leaves `PlayerPawn` intact
+- Fix: crash when the player's inventory is taken away (fixes Blade of Agony)
 
 # 0.9.0
 

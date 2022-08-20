@@ -2,7 +2,7 @@
 // Holds information about the player's guns and the player themself.
 // Also handles applying some damage/resistance bonuses using ModifyDamage().
 #namespace TFLV;
-#debug off
+#debug on
 
 // Used to get all the information needed for the UI.
 struct ::CurrentStats {
@@ -44,10 +44,10 @@ class ::PerPlayerStats : Object play {
   // to have up to three upgrade givers going off at once).
   ::UpgradeGiver currentEffectGiver;
 
-  clearscope static ::PerPlayerStats GetStatsFor(Actor pawn) {
-    let proxy = ::PerPlayerStatsProxy(pawn.FindInventory("::PerPlayerStatsProxy"));
-    if (proxy) return proxy.stats;
-    return null;
+  static ::PerPlayerStats GetStatsFor(Actor pawn) {
+    let realpawn = PlayerPawn(pawn);
+    if (!realpawn) return null;
+    return ::EventHandler(StaticEventHandler.Find("::EventHandler")).GetStatsFor(realpawn);
   }
 
   // Fill in a CurrentStats struct with the current state of the player & their
