@@ -127,15 +127,15 @@ class ::EventHandler : StaticEventHandler {
   override void NetworkProcess(ConsoleEvent evt) {
     if (evt.player != consoleplayer) {
       return;
-    } else if (evt.name == "bonsai_show_info") {
+    } else if (evt.name == "bonsai-show-info") {
       ShowInfo(players[evt.player].mo);
-    } else if (evt.name == "bonsai_cycle_ld_effect") {
+    } else if (evt.name == "bonsai-cycle-ld-effect") {
       if (::Settings.have_legendoom()) {
         CycleLDEffect(players[evt.player].mo);
       } else {
         players[evt.player].mo.A_Log("This feature only works if you also have Legendoom installed.");
       }
-    } else if (evt.name == "bonsai_select_effect") {
+    } else if (evt.name == "bonsai-select-effect") {
       SelectLDEffect(players[evt.player].mo, evt.args[0]);
     } else if (evt.name == "bonsai-choose-level-up-option") {
       ChooseLevelUpOption(players[evt.player].mo, evt.args[0]);
