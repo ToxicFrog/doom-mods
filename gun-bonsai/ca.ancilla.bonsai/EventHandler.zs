@@ -71,30 +71,30 @@ class ::EventHandler : StaticEventHandler {
     }
   }
 
-  ui bool ShouldDrawHUD(PlayerPawn pawn) const {
-    return pawn
-      && players[consoleplayer].ReadyWeapon
+  ui bool ShouldDrawHUD(uint p) const {
+    return playeringame[p]
+      && playerstats[p]
+      && players[p].ReadyWeapon
       && screenblocks <= 11
       && !automapactive;
   }
 
-  override void RenderOverlay(RenderEvent evt) {
-    PlayerPawn pawn = players[consoleplayer].mo;
-    if (!ShouldDrawHUD(pawn)) return;
+  /* ui */ override void RenderOverlay(RenderEvent evt) {
+    if (!ShouldDrawHUD(consoleplayer)) return;
     if (!hud) hud = new("::HUD");
 
-    // Not sure how this can happen, seems to be associated with certain kinds
-    // of player death.
-    ::PerPlayerStats ppstats = ::PerPlayerStats.GetStatsFor(pawn);
-    if (!ppstats) return;
-
     ::CurrentStats stats;
-    if (ppstats.GetCurrentStats(stats))
+    if (playerstats[consoleplayer].GetCurrentStats(stats))
       hud.Draw(stats);
   }
 
-  void ShowInfo(PlayerPawn pawn) {
-    ::PerPlayerStats stats = ::PerPlayerStats.GetStatsFor(pawn);
+  void ShowInfo(uint p) {
+    // Force info creation
+    let stats = playerstats[p];
+    if (!stats) {
+      console.printf("No info available for player %d", p);
+      return;
+    }
     // Check for pending level ups and apply those if present.
     if (stats.GetInfoForCurrentWeapon().StartLevelUp()) return;
     if (stats.StartLevelUp()) return;
@@ -102,14 +102,9 @@ class ::EventHandler : StaticEventHandler {
     return;
   }
 
-  play void CycleLDEffect(PlayerPawn pawn) {
-    let info = ::PerPlayerStats.GetStatsFor(pawn).GetInfoForCurrentWeapon();
-    if (info) info.ld_info.CycleEffect();
-  }
-
-  void ChooseLevelUpOption(PlayerPawn pawn, int index) {
-    let stats = ::PerPlayerStats.GetStatsFor(pawn);
-    let giver = stats.currentEffectGiver;
+  void ChooseLevelUpOption(uint p, int index) {
+    if (!playerstats[p]) return;
+    let giver = playerstats[p].currentEffectGiver;
     if (!giver) {
       console.printf("error: bonsai-choose-level-up-option without active level up menu");
       return;
@@ -117,10 +112,15 @@ class ::EventHandler : StaticEventHandler {
     giver.Choose(index);
   }
 
-  // TODO: replace GetStatsFor (here and elsewhere) with direct reads of the
-  // playerstats array.
-  play void SelectLDEffect(PlayerPawn pawn, int index) {
-    let info = ::PerPlayerStats.GetStatsFor(pawn).GetInfoForCurrentWeapon();
+  void CycleLDEffect(uint p) {
+    if (!playerstats[p]) return;
+    let info = playerstats[p].GetInfoForCurrentWeapon();
+    if (info) info.ld_info.CycleEffect();
+  }
+
+  void SelectLDEffect(uint p, int index) {
+    if (!playerstats[p]) return;
+    let info = playerstats[p].GetInfoForCurrentWeapon();
     if (info) info.ld_info.SelectEffect(index);
   }
 
@@ -128,17 +128,17 @@ class ::EventHandler : StaticEventHandler {
     if (evt.player != consoleplayer) {
       return;
     } else if (evt.name == "bonsai-show-info") {
-      ShowInfo(players[evt.player].mo);
+      ShowInfo(evt.player);
     } else if (evt.name == "bonsai-cycle-ld-effect") {
       if (::Settings.have_legendoom()) {
-        CycleLDEffect(players[evt.player].mo);
+        CycleLDEffect(evt.player);
       } else {
         players[evt.player].mo.A_Log("This feature only works if you also have Legendoom installed.");
       }
     } else if (evt.name == "bonsai-select-effect") {
-      SelectLDEffect(players[evt.player].mo, evt.args[0]);
+      SelectLDEffect(evt.player, evt.args[0]);
     } else if (evt.name == "bonsai-choose-level-up-option") {
-      ChooseLevelUpOption(players[evt.player].mo, evt.args[0]);
+      ChooseLevelUpOption(evt.player, evt.args[0]);
       // Backwards compatibility with AAS.
       // TODO(0.10.x): remove
       EventHandler.SendNetworkEvent("bonsai_choose_level_up_option");
