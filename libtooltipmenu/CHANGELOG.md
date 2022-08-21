@@ -1,3 +1,7 @@
+# 0.2.1
+
+- Fix: tooltips are now localized (via the LANGUAGE lump) before being formatted and rendered. Fix contributed by <https://github.com/idiotbitz>.
+
 # 0.2.0
 
 - Fix: tooltip font size now automatically scales based on screen resolution
