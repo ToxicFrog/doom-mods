@@ -29,7 +29,7 @@ class ::EventHandler : StaticEventHandler {
   override void WorldLoaded(WorldEvent evt) {
     DEBUG("WorldLoaded");
     for (uint i = 0; i < 8; ++i) {
-      if (playeringame[i]) InitPlayer(i);
+      if (playeringame[i]) InitPlayer(i, true);
     }
   }
 
@@ -43,10 +43,7 @@ class ::EventHandler : StaticEventHandler {
     for (uint i = 0; i < 8; ++i) playerstats[i] = null;
   }
 
-  // TODO this doesn't trigger on savegame load for some reason?
-  // We need to replace this with a WorldLoaded event that walks all players in
-  // game and initializes them as needed.
-  void InitPlayer(uint p) {
+  void InitPlayer(uint p, bool new_map=false) {
     PlayerPawn pawn = players[p].mo;
     if (!pawn) return;
     let proxy = ::PerPlayerStatsProxy(pawn.FindInventory("::PerPlayerStatsProxy"));
@@ -55,14 +52,25 @@ class ::EventHandler : StaticEventHandler {
       // we remember.
       DEBUG("Restoring old stats already held by player %d", p);
       playerstats[p] = proxy.stats;
+      playerstats[p].Initialize(proxy);
+      DEBUG("proxy ring ok: %d", proxy.stats.proxy == proxy);
+      DEBUG("stats ring ok: %d", playerstats[p].proxy.stats == playerstats[p]);
+      DEBUG("pawn ring ok: %d %d",
+        pawn == proxy.owner,
+        pawn == proxy.stats.owner);
     } else {
       // Spawned in player doesn't have stats, give them a proxy holding whatever
       // stats we have for them.
       DEBUG("Player %d doesn't have stats, reassigning", p);
-      if (!playerstats[p] || !::Settings.ignore_death_exits()) {
+      if (!playerstats[p] || (new_map && !::Settings.ignore_death_exits())) {
         // Either we don't have stats for this player, or we do but we're meant
         // to respect death exits; in either case create new stats for them ex
         // nihilo.
+        // Note that in the latter case we run this branch only when starting a
+        // new map; if the player's inventory has vanished mid-map we make sure
+        // to restore the upgrades they already have, for compatibility with mods
+        // like Blade of Agony that are constantly taking away your inventory for
+        // cutscenes and stuff and then giving it back later.
         DEBUG("No stats recorded in playerstats[%d], starting from scratch", p);
         playerstats[p] = new("::PerPlayerStats");
       }
@@ -88,12 +96,17 @@ class ::EventHandler : StaticEventHandler {
   ::PerPlayerStats GetStatsFor(PlayerPawn pawn) {
     // DEBUG("GetStatsFor: %s", TAG(pawn));
     if (!pawn) return null;
-    let p = pawn.PlayerNumber();
-    let proxy = ::PerPlayerStatsProxy(pawn.FindInventory("::PerPlayerStatsProxy"));
-    // DEBUG("Got stats: %s %d", TAG(proxy), proxy ? proxy.stats != null : 0);
-    if (proxy && proxy.stats == playerstats[p]) return proxy.stats;
-    InitPlayer(p);
-    return playerstats[p];
+    let stats = playerstats[pawn.PlayerNumber()];
+    // If the stats are still attached to the proxy object and the proxy object
+    // is still attached to the player, we don't need to rummage through the
+    // player's inventory.
+    if (stats && stats.proxy && stats.proxy.owner == stats.owner && stats.owner == pawn)
+      return stats;
+    // Otherwise, something has gone wrong -- either we don't have playerstats
+    // recorded here, or they don't match the stats in the player's inventory.
+    DEBUG("GetStats: eventhandler/playsim mismatch for player %d", pawn.PlayerNumber());
+    InitPlayer(pawn.PlayerNumber());
+    return playerstats[pawn.PlayerNumber()];
   }
 
   ui bool ShouldDrawHUD(uint p) const {

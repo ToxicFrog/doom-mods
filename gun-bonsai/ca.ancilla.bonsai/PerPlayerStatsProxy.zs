@@ -35,7 +35,7 @@ class ::PerPlayerStatsProxy : Inventory {
 
   void Initialize(::PerPlayerStats stats) {
     self.stats = stats;
-    self.stats.Initialize(owner);
+    self.stats.Initialize(self);
     self.SetStateLabel("Poll");
   }
 

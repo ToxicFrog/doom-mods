@@ -33,6 +33,7 @@ class ::PerPlayerStats : Object play {
   uint level;
   ::WeaponInfo infoForCurrentWeapon;
   int prevScore;
+  ::PerPlayerStatsProxy proxy;
   Actor owner;
 
   // HACK HACK HACK
@@ -354,13 +355,14 @@ class ::PerPlayerStats : Object play {
   // This is called both when first created, and when reassigned to a new PlayerPawn
   // (e.g. because of a load game operation). So it should initialize any missing
   // fields but not clear valid ones.
-  void Initialize(Actor owner) {
+  void Initialize(::PerPlayerStatsProxy proxy) {
     DEBUG("Initializing PerPlayerStats for %s", TAG(owner));
     weaponinfo_dirty = true; // Force a full rebuild of the weaponinfo on startup.
     prevScore = -1;
     if (!upgrades) upgrades = new("::Upgrade::UpgradeBag");
-    self.owner = owner;
-    upgrades.owner = owner;
+    self.proxy = proxy;
+    self.owner = proxy.owner;
+    upgrades.owner = self.owner;
   }
 
   // Runs once per tic.
