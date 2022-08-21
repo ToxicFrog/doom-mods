@@ -1,9 +1,9 @@
 addkeysection "Gun Bonsai" GunBonsai
 
 addmenukey "Display Info" bonsai-show-info
-alias bonsai_show_info "netevent bonsai-show-info"
+alias bonsai-show-info "netevent bonsai-show-info"
 alias bonsai-dump "netevent bonsai-debug,info"
-defaultbind I bonsai_show_info
+defaultbind I bonsai-show-info
 
 addkeysection "Gun Bonsai/Legendoom Integration" GunBonsaiLegendoom
 
