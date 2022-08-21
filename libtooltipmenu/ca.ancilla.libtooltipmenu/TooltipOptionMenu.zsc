@@ -173,10 +173,11 @@ class TF_TooltipOptionMenu : OptionMenu {
 
   void AddTooltip(TF_Tooltip settings, uint first, uint last, string tooltip) {
     if (first < 0) ThrowAbortException("Tooltip must have at least one menu item preceding it!");
+    let localtooltip = Stringtable.localize(tooltip);
     let tt = AppendableTooltip(first, last);
     if (tt) {
       // Existing tooltip that we're just appending to.
-      tt.text = tt.text .. "\n" .. tooltip;
+      tt.text = tt.text .. "\n" .. localtooltip;
       return;
     }
     // No existing tooltip for these menu entries, create a new one.
@@ -184,7 +185,7 @@ class TF_TooltipOptionMenu : OptionMenu {
     tt.CopyFrom(settings);
     tt.first = first;
     tt.last = last;
-    tt.text = tooltip;
+    tt.text = localtooltip;
     tooltips.push(tt);
   }
 
