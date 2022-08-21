@@ -23,7 +23,7 @@ class ::Debug : Object play {
       stats.XP = 0;
       stats.level = 0;
       stats.upgrades = null;
-      stats.Initialize(PlayerPawn(pawn));
+      stats.Initialize(stats.proxy);
     } else {
       console.printf("Unknown or malformed debug command: %s", argv[1]);
     }
@@ -31,7 +31,10 @@ class ::Debug : Object play {
 
   static void ShowInfoConsole(Actor pawn) {
     ::CurrentStats stats;
-    if (!::PerPlayerStats.GetStatsFor(pawn).GetCurrentStats(stats)) return;
+    if (!::PerPlayerStats.GetStatsFor(pawn).GetCurrentStats(stats)) {
+      console.printf("Error getting current stats for player.");
+      return;
+    }
     console.printf("Player:\n    Level %d (%d/%d XP)",
       stats.plvl, stats.pxp, stats.pmax);
     stats.pupgrades.DumpToConsole("    ");

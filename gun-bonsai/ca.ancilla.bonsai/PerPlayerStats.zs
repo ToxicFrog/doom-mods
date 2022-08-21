@@ -2,7 +2,7 @@
 // Holds information about the player's guns and the player themself.
 // Also handles applying some damage/resistance bonuses using ModifyDamage().
 #namespace TFLV;
-#debug on
+#debug off;
 
 // Used to get all the information needed for the UI.
 struct ::CurrentStats {
@@ -355,8 +355,15 @@ class ::PerPlayerStats : Object play {
   // This is called both when first created, and when reassigned to a new PlayerPawn
   // (e.g. because of a load game operation). So it should initialize any missing
   // fields but not clear valid ones.
+  uint id;
   void Initialize(::PerPlayerStatsProxy proxy) {
     DEBUG("Initializing PerPlayerStats for %s", TAG(owner));
+    if (!id) {
+      DEBUG("this is NEW, giving it id=%d", gametic);
+      id = gametic;
+    } else {
+      DEBUG("this is OLD, id=%d", id);
+    }
     weaponinfo_dirty = true; // Force a full rebuild of the weaponinfo on startup.
     prevScore = -1;
     if (!upgrades) upgrades = new("::Upgrade::UpgradeBag");

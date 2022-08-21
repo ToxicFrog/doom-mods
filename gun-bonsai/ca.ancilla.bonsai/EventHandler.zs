@@ -2,7 +2,7 @@
 // Handles giving players a stat tracking item when they spawn in, and assigning
 // XP to their currently wielded weapon when they damage something.
 #namespace TFLV;
-#debug on
+#debug off;
 
 class ::EventHandler : StaticEventHandler {
   ::PerPlayerStats playerstats[8];
