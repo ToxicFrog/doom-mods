@@ -9,6 +9,9 @@ Slomo option instead of timestop?
 - scavenge lead probabalistic below 100hp & for ammo that produces low amounts
   - something like: ammo count = (base ammo count * 0.1 * target health/100)
 - menuing crash when opening the menu just after leveling up?
+- Make Revivification less annoying; in particular:
+  - spawn lightning ghosts with stats based on the victim rather than reviving the victim
+  - player shots pass through lightning ghosts, or maybe EVERYTHING passes through lightning ghosts but they have a limited lifespan
 
 ### 0.10.x?
 
@@ -17,11 +20,6 @@ Slomo option instead of timestop?
 ### Soon
 
 - Revivification should summon copies of the dead enemy and/or friendly lightning constructs rather than reviving the enemy in place
-
-### Someday
-
-- refund 50% XP on level rejection?
-- investigate use of A_SetTics() instead of freeze powerup for Swiftness
 - add ammo capacity upgrade
   - walk player inventory and boost the MaxAmount and BackpackMaxAmount
   - requires OnApply support, probably
@@ -29,16 +27,20 @@ Slomo option instead of timestop?
   - will be a player mod, so it should either be fairly powerful or get more powerful with time
   - we can use GetDefaultByType(ammoitem).MaxAmount to compute the base max amount
     and then confer bonuses based on that
-- investigate embrittlement instakill proccing earlier than it should; observed offing a 3000hp enemy at 1300hp
-  - might be working as intended
-- thunderbolt should be easier to trigger? Alex can't trigger it at all with one level and a pistol against a pinky
+- Make melee detection more permissive, but only trigger melee upgrades when the player is in melee
+- RoF upgrades can be implemented by studying the PowerDoubleFiringSpeed powerup
+
+### More ideas
 
 
-### Eventually?
+    Spectral Inscription: On dealing damage with a weapon with this applied, the player will fire an additional spectral projectile from their eyes once every 35 tics (-2 tic per level). The projectile is summoned by player-attributed damage events rather than the player's attacking states. The spectral projectile inherits no properties from the weapon that fired it other than copying the damage from the damage instance that summon it. Intermediate and Mastery upgrades increase the projectile's speed and add homing capabilities. [The idea here is to provide a roundabout fire rate increase without actually modifying a weapon's states in any way and potentially breaking compatibility, since it's been suggested before and shot down.]
+    ​
+    Resurrecting Inscription: This ability will resurrect the first enemy killed with a weapon that has it applied. The enemy will fight for the player until they die or until 8 seconds have passed (+2 seconds per level), in which case they are automatically killed. Enemies with more than 600 health, or who have the +FRIENDLY tag already applied, are exempt. Taking this on multiple weapons allows additional enemies to be resurrected, without having to switch to other weapons that have it applied. [The idea here is to provide a sort of 'summoner build' to be possible. The timer restriction is there to prevent a cascading windfall of summons, while the >600 health restriction is mainly just there to prevent anything as strong as or stronger than an Arch-Vile from being resurrected. Taking multiple copies of the inscription is there to encourage people to really build into it by sacrificing other inscription slots if they want summons to really be a major part of their playstyle, instead of handing players it for free.]
+    ​
+    Crossfire: Weapons with this ability will do 30% extra damage for 3 seconds after it is switched to. Afterwards, it will do -15% damage. Mutually exclusive with the Damage upgrade. [To benefit the chronic weapon switchers out there, or especially weapon mods which contain reloading weapons.]
+    ​
+    Tracker: Player upgrade. Map-revealing items show enemy locations. At level 2, they show items as well. At level 3, the player starts every level with a map revealed, as if they had picked up a map-revealing item.
 
-- per-state overrides in BONSAIRC, e.g. "if the weapon is in this state, treat it as this other weapon instead"
-- allow per-state overrides to create virtual weapons for cases where there is no underlying real weapon, like the Ashes boot knife
-- allow tracking primary and alt fire separately, probably using state overrides to tell it which states count as which
 
 ### ideas from retronutcase
 
@@ -83,6 +85,21 @@ There's definitely potential for more variety in character upgrades too, I think
 Also, is there any way one could add overrides to the upgrade list for specific weapons? In case a certain weapon just ends up being TOO good with certain upgrades? (Looking at the MetaDoom EKG pistol, which is way too easy to make overpowered for a basic pistol, give this thing some piercing, fragmentation, and submunitions and becomes way too beastly for a low end gun)
 
 Anyway, regardless of if these ideas have any merit and end up being something you can use, I'm looking forward to seeing where this mod goes! :)
+
+### Someday
+
+- investigate use of A_SetTics() instead of freeze powerup for Swiftness
+- investigate embrittlement instakill proccing earlier than it should; observed offing a 3000hp enemy at 1300hp
+  - might be working as intended
+- thunderbolt should be easier to trigger? Alex can't trigger it at all with one level and a pistol against a pinky
+
+
+### Eventually?
+
+- per-state overrides in BONSAIRC, e.g. "if the weapon is in this state, treat it as this other weapon instead"
+- allow per-state overrides to create virtual weapons for cases where there is no underlying real weapon, like the Ashes boot knife
+- allow tracking primary and alt fire separately, probably using state overrides to tell it which states count as which
+
 
 ### Later
 
@@ -131,65 +148,6 @@ I really need to implement softcap support!
 
 20% damage -> stacks with 35 stacks/second decay == 175 dps for steady state
 5 stacks/second decay (using TickDot()) -> 25 dps for steady state
-
-# Implementation notes for doing it as an addon to LD
-
-## LD architecture notes
-
-Using Pistol here for illustration, but other weapons follow the same pattern.
-
-Legendoom adds LDPistol as the weapon in hand and LDPistolPickup as the item on ground. There's also LDPistolPickupLegendary for the legendary version (which gets a random effect when spawned, by giving it an LDPistolRandomLegendary item), and LDPistolPickupDroppedLegendary, which is the version used when dropped from your inventory and is the same except without getting the random effect on spawn.
-
-Effects are stored in the player's inventory:
-- LDPistolEffectActive shows that you have a legendary pistol
-- LDPistolLegendary(Common|Uncommon|Rare|Epic) shows what rarity it is
-- LDPistolEffect_Foo shows that you have effect Foo on the pistol
-
-When you pick up an LDPistolPickupLegendary, the effects in it are transferred to the player, because it has the +INVENTORY.TRANSFER flag set.
-
-When you drop a weapon, and you have the PistolEffectActive effect in inventory:
-- it spawns an LDPistolPickupDroppedLegendary item
-- it gives it copies of LDPistolEffectActive, LDPistolLegendary$RARITY, and the *first* LDPistolEffect_* effect it finds in your inventory
-- it clears all LDPistol forces from your inventory
-This means the rarity will be carried over correctly but only the first special ability will stick to it.
-
-Specifically:
-- check if you have LDPistolEffectActive
-  - if not, drop a normal pistol
-- spawn an LDPistolPickupDroppedLegendary item
-- wait one tic
-- do the copy described above
-- spawn the remover
-
-pThe spawned item waits FOUR tics before clearing the parent/child relationship with the player, so we can have our new remover move everything over.
-
-## LVLD handlers and stuff
-
-On damage:
-- increment player XP
-  - if >= level threshhold, increment level, apply level-up bonus, subtract level threshold from XP and set new threshold
-- increment weapon XP
-  - if >= level threshold, increment level, subtract threshold from XP, set new threshold, and maybe give bonus (see below)
-
-To give bonus:
-- if the weapon is basic and already has an effect:
-  - do nothing
-- choose a random effect appropriate to the weapon rarity (maybe we can give LDPistolRandomLegendary to a temporary actor and see what items it ended up with, rerolling if we get something too good for the item?)
-- if the effect is a duplicate of one we already have:
-  - reroll
-- if it's mutually exclusive with one we already have:
-  - ask which one to keep
-  - if they answer "the old one", do nothing
-  - if they answer "the new one", remove the old one from their inventory and add the new one
-- if the number of effects they have exceeds the number of slots for that weapon:
-  - list all effects for that weapon and ask which one they want to keep
-  - see mutual exclusion above
-- else give them the effect
-
-On drop weapon:
-- BEFORE the remover goes and removes all the effects, copy ALL of the effects into the dropped weapon
-  Maybe we can do this by subclassing the weapons and overriding the RemoveWeapon state so that we go through and copy all the things before it spawns the remover? Or by replacing the remover
-
 ## Player-level upgrades
 
 - max health

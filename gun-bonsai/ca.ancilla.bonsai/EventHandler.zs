@@ -134,7 +134,7 @@ class ::EventHandler : StaticEventHandler {
       return;
     }
     // Check for pending level ups and apply those if present.
-    if (stats.GetInfoForCurrentWeapon().StartLevelUp()) return;
+    if (stats.GetInfoForCurrentWeapon() && stats.GetInfoForCurrentWeapon().StartLevelUp()) return;
     if (stats.StartLevelUp()) return;
     Menu.SetMenu("GunBonsaiStatusDisplay");
     return;
