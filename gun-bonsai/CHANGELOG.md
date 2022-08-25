@@ -1,3 +1,8 @@
+# 0.9.2
+
+- Change: Fast Shots renamed High Velocity to address confusion about whether it affects shot travel speed or rate of fire
+- Fix: crash when opening the menu while no weapon is equipped
+
 # 0.9.1
 
 - New: number of upgrades you can choose from on level up is configurable

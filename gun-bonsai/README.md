@@ -207,7 +207,7 @@ Increases damage dealt by this weapon by 20%, with a minimum increase of 1 point
 
 Killing an enemy causes an explosion dealing 20% of (its health + the amount you overkilled it by). Increasing the level increases the damage (with diminishing returns), increases the blast radius (linearly), and reduces the damage you take from the blast.
 
-### Fast Shots *(Projectile only)*
+### High Velocity *(Projectile only)*
 
 Projectiles move 50% faster per level.
 
