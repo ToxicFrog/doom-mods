@@ -9,9 +9,8 @@ Slomo option instead of timestop?
 - scavenge lead probabalistic below 100hp & for ammo that produces low amounts
   - something like: ammo count = (base ammo count * 0.1 * target health/100)
 - menuing crash when opening the menu just after leveling up?
-- Make Revivification less annoying; in particular:
-  - spawn lightning ghosts with stats based on the victim rather than reviving the victim
-  - player shots pass through lightning ghosts, or maybe EVERYTHING passes through lightning ghosts but they have a limited lifespan
+- Revivification rework:
+  - raised enemies don't collide with player projectiles, if possible
 
 ### 0.10.x?
 
@@ -19,7 +18,6 @@ Slomo option instead of timestop?
 
 ### Soon
 
-- Revivification should summon copies of the dead enemy and/or friendly lightning constructs rather than reviving the enemy in place
 - add ammo capacity upgrade
   - walk player inventory and boost the MaxAmount and BackpackMaxAmount
   - requires OnApply support, probably

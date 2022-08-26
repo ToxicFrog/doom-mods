@@ -122,7 +122,7 @@ class ::ShockDot : ::Dot {
 
   void MellGetTheElectrodes() {
     // Chance of staying dead is (100% - (0.2% per stack))^level
-    let chance = (1.0 - stacks * 0.002) ** revive;
+    let chance = (1.0 - stacks * 0.01) ** revive;
     if (frandom(0.0, 1.0) < chance) return;
     let aux = ::Revivification::Aux(self.Spawn("::Revivification::Aux", owner.pos));
     aux.target = self.target;
@@ -200,6 +200,7 @@ class ::Revivification::Aux : Actor {
 
 class ::Revivification::AuxBuff : Inventory {
   uint level;
+  uint timer;
   Default {
     Inventory.Amount 1;
     Inventory.MaxAmount 1;
@@ -207,6 +208,15 @@ class ::Revivification::AuxBuff : Inventory {
     +INVENTORY.UNTOSSABLE;
     +INVENTORY.UNDROPPABLE;
     +INVENTORY.QUIET;
+  }
+
+  override void Tick() {
+    super.Tick();
+    ++timer;
+    if (timer > 35 * (level+5)) {
+      owner.A_Die("Lightning");
+      Destroy();
+    }
   }
 
   override void ModifyDamage(
@@ -218,6 +228,8 @@ class ::Revivification::AuxBuff : Inventory {
       return;
     }
 
+    // Reset lifetimer.
+    timer = 0;
     if (passive) {
       // 20% damage reduction per level with diminishing returns.
       newdamage = ceil(damage * (0.8 ** level));

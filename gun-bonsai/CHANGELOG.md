@@ -1,5 +1,8 @@
 # 0.9.2
 
+- Balance: Revivification changes:
+  - Revivified enemies will now die after a few seconds out of combat, hopefully fixing "I revived something and now it won't die and the level scripting is broken" issues
+  - Revivification triggers more often to make up for the fact that enemies can no longer be kept as pets for the entire level
 - Change: Fast Shots renamed High Velocity to address confusion about whether it affects shot travel speed or rate of fire
 - Fix: crash when opening the menu while no weapon is equipped
 
