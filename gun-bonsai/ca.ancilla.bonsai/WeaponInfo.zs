@@ -12,6 +12,7 @@ class ::WeaponInfo : Object play {
   // Sigh.
   Weapon wpn;
   string wpnClass;
+  ::PerPlayerStats stats;
   ::Upgrade::UpgradeBag upgrades;
   double XP;
   uint maxXP;

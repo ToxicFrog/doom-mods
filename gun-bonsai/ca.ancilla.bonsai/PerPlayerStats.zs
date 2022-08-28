@@ -154,6 +154,7 @@ class ::PerPlayerStats : Object play {
     // Slowest path -- create a new WeaponInfo and stick it to this weapon.
     if (!info) {
       info = new("::WeaponInfo");
+      info.stats = self;
       info.Init(wpn);
       weapons.push(info);
     }
