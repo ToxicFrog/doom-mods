@@ -36,7 +36,6 @@ class ::WeaponInfo : Object play {
   // should keep most of its stats.
   void Rebind(Weapon wpn) {
     self.wpn = wpn;
-    self.upgrades.owner = self.wpn.owner;
     if (self.wpnClass != wpn.GetClassName()) {
       // Rebinding to a weapon of an entirely different type. Reset the attack
       // modality inference counters.

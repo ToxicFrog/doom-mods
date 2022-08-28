@@ -3,11 +3,10 @@
 // A collection of BaseUpgrades and some utility functions to manipulate them.
 class ::UpgradeBag : Object play {
   array<::BaseUpgrade> upgrades;
-  Actor owner;
 
-  void Tick() {
+  void Tick(Actor owner) {
     for (uint i = 0; i < upgrades.Size(); ++i) {
-      upgrades[i].Tick(owner);
+      if (upgrades[i].enabled) upgrades[i].Tick(owner);
     }
   }
 

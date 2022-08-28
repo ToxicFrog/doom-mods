@@ -369,7 +369,6 @@ class ::PerPlayerStats : Object play {
     if (!upgrades) upgrades = new("::Upgrade::UpgradeBag");
     self.proxy = proxy;
     self.owner = proxy.owner;
-    upgrades.owner = self.owner;
   }
 
   // Runs once per tic.
@@ -383,8 +382,8 @@ class ::PerPlayerStats : Object play {
     let info = RebuildWeaponInfo();
 
     // Run on-tick effects for upgrades.
-    upgrades.Tick();
-    if (info) info.upgrades.Tick();
+    upgrades.Tick(owner);
+    if (info) info.upgrades.Tick(owner);
 
     // No score integration? Nothing else to do.
     if (::Settings.score_to_xp_factor() <= 0) {
