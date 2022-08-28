@@ -16,6 +16,10 @@ Increases all damage you deal by 10% (with a minimum increase of 1) per level. T
 
 Gives you extra lives that are automatically expended when you receive lethal damage, restoring some health and temporarily making you invulnerable. Each level reduces the amount of damage you need to take to earn an extra life and increases the maximum number you can carry.
 
+### Intuition *(max 2 levels)*
+
+At level 1, you start every level with the map revealed. At level 2, the locations of most actors are revealed on the map as well.
+
 ### Juggler *(max 1 level)*
 
 Weapon switching is instantaneous, or nearly so. Note that this does not affect reload speed or rate of fire.
