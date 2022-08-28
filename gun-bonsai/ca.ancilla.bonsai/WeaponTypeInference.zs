@@ -10,7 +10,7 @@ extend class ::WeaponInfo {
   // More than one of these can in principle be true at once.
   double hitscans;
   double projectiles;
-  double avg_range; // running average of mean range to target, used to determine IsMelee()
+  double melees;
   // Additional modifiers.
   double fastprojectiles;
   double bouncers;
@@ -25,7 +25,7 @@ extend class ::WeaponInfo {
 
   void ResetTypeInference() {
     total = 0.01; // avoid division by zero because gzdoom traps if that happens
-    hitscans = projectiles = avg_range = 0;
+    hitscans = projectiles = melees = 0;
     fastprojectiles = bouncers = seekers = rippers = 0;
   }
 
@@ -39,7 +39,7 @@ extend class ::WeaponInfo {
     console.printf("%12s %f", "total", total);
     InfoLine("hitscan", hitscans);
     InfoLine("projectile", projectiles);
-    console.printf("%12s %f", "avg.range", avg_range);
+    InfoLine("melee", melees);
     InfoLine("fast", fastprojectiles);
     InfoLine("bouncer", bouncers);
     InfoLine("ripper", rippers);
@@ -70,7 +70,12 @@ extend class ::WeaponInfo {
     }
     ++total;
     let range = player.Distance3D(target) - target.radius;
-    avg_range += (range - avg_range)/total;
+    // This is based on the "avoid melee" radius in the gzDoom AI -- enemies with
+    // +AVOIDMELEE will try to stay at least this many units away from you when
+    // you have a melee-flagged weapon equipped.
+    // Doom/Heretic melee weapns are generally range 64. Strife is 80.
+    // Hexen is 128-144.
+    if (range < 192) ++melees;
   }
 
   // Heuristics for guessing whether this is a projectile or hitscan weapon.
@@ -92,14 +97,9 @@ extend class ::WeaponInfo {
   }
   bool IsMelee() const {
     if (typeflags) return typeflags & ::TYPE_MELEE;
-    // This value is tricky to set.
-    // Range for fists, chainsaw, Heretic staff, and Gauntlets of the Necromancer
-    // is 64. Range for Strife punch dagger is 80.
-    // Hexen continues to bedevil me with a range of 128 for most melee weapons
-    // and 144(!) for the axe.
-    // For now we just say that "melee range" is 85 and manually melee-flag
-    // the Hexen weapons in BONSAIRC.
-    return avg_range <= 85;
+    // TODO: at some point we might want to use the +MELEEWEAPON flag as a hint
+    // here and adjust the threshold accordingly.
+    return melees/total > 0.75;
   }
   // For additional modifiers we use a cutoff of 50%.
   bool IsFastProjectile() const {
