@@ -59,6 +59,23 @@ class ::UpgradeBag : Object play {
     }
   }
 
+  // Called to activate/deactivate the entire UpgradeBag at once, usually when
+  // switching weapons.
+  // Not called for disabled upgrades; they should have gotten OnDeactivate when
+  // they were originally disabled and should not OnActivate until they are re-
+  // enabled.
+  void OnActivate(TFLV::PerPlayerStats stats, TFLV::WeaponInfo info) {
+    for (uint i = 0; i < upgrades.Size(); ++i) {
+      if (upgrades[i].enabled) upgrades[i].OnActivate(stats, info);
+    }
+  }
+
+  void OnDeactivate(TFLV::PerPlayerStats stats, TFLV::WeaponInfo info) {
+    for (uint i = 0; i < upgrades.Size(); ++i) {
+      if (upgrades[i].enabled) upgrades[i].OnDeactivate(stats, info);
+    }
+  }
+
   void OnProjectileCreated(Actor pawn, Actor shot) {
     for (uint i = 0; i < upgrades.Size(); ++i) {
       if (!upgrades[i].enabled || !upgrades[i].CheckPriority(shot)) continue;

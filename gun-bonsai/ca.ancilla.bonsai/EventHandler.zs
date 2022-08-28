@@ -190,12 +190,11 @@ class ::EventHandler : StaticEventHandler {
       ::Upgrade::BaseUpgrade upgrade;
       if (evt.args[0] == 0) {
         DEBUG("player has upgrades: %d", stats.upgrades != null);
-        upgrade = stats.upgrades.upgrades[evt.args[1]];
+        stats.ToggleUpgrade(evt.args[1]);
       } else {
         DEBUG("weapon has upgrades: %d", stats.GetInfoForCurrentWeapon().upgrades != null);
-        upgrade = stats.GetInfoForCurrentWeapon().upgrades.upgrades[evt.args[1]];
+        stats.GetInfoForCurrentWeapon().ToggleUpgrade(evt.args[1]);
       }
-      upgrade.enabled = !upgrade.enabled;
     } else if (evt.name.IndexOf("bonsai-debug") == 0) {
       ::Debug.DebugCommand(players[evt.player].mo, evt.name, evt.args[0]);
     }

@@ -112,11 +112,15 @@ class ::PerPlayerStats : Object play {
     // Fastest path -- WeaponInfo is already initialized and selected.
     if (GetInfoForCurrentWeapon()) return infoForCurrentWeapon;
 
-    // Otherwise we need to at least select it. This will return it if it
-    // already exists, rebinding an existing compatible WeaponInfo or creating
-    // a new one if needed.
-    // It is guaranteed to succeed.
+    // Otherwise we need to at least select it. GetOrCreateInfoFor will always
+    // succeed in either re-using an existing WeaponInfo or, failing that,
+    // creating a new one.
+    // First we need to deactivate the old one.
+    if (infoForCurrentWeapon) infoForCurrentWeapon.OnDeactivate();
     infoForCurrentWeapon = GetOrCreateInfoFor(owner.player.ReadyWeapon);
+    // Now we activate the new one -- depending on rebinding settings this may
+    // actually be the same WeaponInfo, but it's now sticking to a new weapon.
+    infoForCurrentWeapon.OnActivate();
     return infoForCurrentWeapon;
   }
 
@@ -189,6 +193,16 @@ class ::PerPlayerStats : Object play {
     }
   }
 
+  void ToggleUpgrade(uint index) {
+    let upgrade = upgrades.upgrades[index];
+    upgrade.enabled = !upgrade.enabled;
+    if (upgrade.enabled) {
+      upgrade.OnActivate(self, null);
+    } else {
+      upgrade.OnDeactivate(self, null);
+    }
+  }
+
   // Add XP to the player. This is called by weapons when they level up to track
   // progress towards player-level upgrades.
   void AddPlayerXP(uint xp) {
@@ -241,7 +255,7 @@ class ::PerPlayerStats : Object play {
 
     XP -= maxXP;
     ++level;
-    upgrades.AddUpgrade(upgrade);
+    upgrades.AddUpgrade(upgrade).OnActivate(self, null);
     owner.A_Log(
       string.format("You gained a level of %s!", upgrade.GetName()),
       true);
@@ -370,6 +384,7 @@ class ::PerPlayerStats : Object play {
     if (!upgrades) upgrades = new("::Upgrade::UpgradeBag");
     self.proxy = proxy;
     self.owner = proxy.owner;
+    upgrades.OnActivate(self, null);
   }
 
   // Runs once per tic.

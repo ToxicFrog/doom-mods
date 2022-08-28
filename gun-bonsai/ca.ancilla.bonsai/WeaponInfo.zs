@@ -47,6 +47,23 @@ class ::WeaponInfo : Object play {
     ::RC.GetRC().Configure(self);
   }
 
+  void ToggleUpgrade(uint index) {
+    let upgrade = upgrades.upgrades[index];
+    upgrade.enabled = !upgrade.enabled;
+    if (upgrade.enabled) {
+      upgrade.OnActivate(stats, self);
+    } else {
+      upgrade.OnDeactivate(stats, self);
+    }
+  }
+
+  void OnActivate() {
+    return self.upgrades.OnActivate(stats, self);
+  }
+  void OnDeactivate() {
+    return self.upgrades.OnDeactivate(stats, self);
+  }
+
   // List of upgrade classes that are unavailable on this weapon, even if they
   // would normally spawn.
   array<string> disabled_upgrades;
@@ -191,7 +208,7 @@ class ::WeaponInfo : Object play {
     ++level;
     ::PerPlayerStats.GetStatsFor(wpn.owner).AddPlayerXP(1);
     maxXP = GetXPForLevel(level+1);
-    upgrades.AddUpgrade(upgrade);
+    upgrades.AddUpgrade(upgrade).OnActivate(stats, self);
     wpn.owner.A_Log(
       string.format("Your %s gained a level of %s!",
         wpn.GetTag(), upgrade.GetName()),

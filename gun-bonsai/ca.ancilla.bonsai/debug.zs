@@ -54,7 +54,9 @@ class ::Debug : Object play {
       return;
     }
     console.printf("Adding %d levels of %s to current weapon.", n, upgrade);
-    ::PerPlayerStats.GetStatsFor(pawn).GetInfoForCurrentWeapon().upgrades.Add(upgrade, n);
+    let stats = ::PerPlayerStats.GetStatsFor(pawn);
+    let info = stats.GetInfoForCurrentWeapon();
+    info.upgrades.Add(upgrade, n).OnActivate(stats, info);
   }
 
   static void AddPlayerUpgrade(Actor pawn, string upgrade, uint n) {
@@ -66,7 +68,8 @@ class ::Debug : Object play {
       return;
     }
     console.printf("Adding %d levels of %s to player.", n, upgrade);
-    ::PerPlayerStats.GetStatsFor(pawn).upgrades.Add(upgrade, n);
+    let stats = ::PerPlayerStats.GetStatsFor(pawn);
+    stats.upgrades.Add(upgrade, n).OnActivate(stats, null);
   }
 
   static void AddWeaponXP(Actor pawn, uint xp) {

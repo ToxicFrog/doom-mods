@@ -18,6 +18,7 @@
 // - All done! The upgrade should now start appearing in play when your mod is
 //   loaded after Gun Bonsai.
 #namespace TFLV::Upgrade;
+#debug on;
 
 // Upgrade priority levels. Higher priorities can trigger lower priorities,
 // but not vice versa.
@@ -94,6 +95,34 @@ class ::BaseUpgrade : Object play {
 
   // Event handler functions.
   // Subclasses must override at least one of these to have any effect!
+
+  // Called to activate upgrades that have permanent rather than event-driven
+  // effects.
+  // THIS FUNCTION MUST BE IDEMPOTENT. It may be called multiple times without
+  // intervening calls to OnDeactivate(). Do not attempt to keep track of whether
+  // the upgrade is "active" or not and decide whether to act based on that,
+  // because it can also (e.g.) be activated, then moved to another weapon and
+  // activated again with no intermediate OnDeactivate(), depending on the user's
+  // settings.
+  // On call, the PerPlayerStats will always be defined; the WeaponInfo will be
+  // null unless the upgrade is associated with a weapon.
+  // It is called:
+  // - when the upgrade is first learned or leveled up
+  // - when the upgrade is enabled via the status menu after having been disabled
+  // - (player) when the PerPlayerStats are (re)associated with a PlayerPawn
+  // - (weapon) when the corresponding weapon becomes selected
+  virtual void OnActivate(TFLV::PerPlayerStats stats, TFLV::WeaponInfo info) {
+    DEBUG("OnActivate: %s", self.GetClassName());
+  }
+
+  // Called to deactivate upgrades; should undo whatever OnActivate did. Like
+  // OnActivate, this should be idempotent.
+  // It is called:
+  // - when an upgrade is disabled via the status menu
+  // - (weapon) when the corresponding weapon becomes deselected
+  virtual void OnDeactivate(TFLV::PerPlayerStats stats, TFLV::WeaponInfo info) {
+    DEBUG("OnDeactivate: %s", self.GetClassName());
+  }
 
   // Called when the player fires a projectile shot. Note that this is not called
   // for hitscans -- only for stuff like the rocket launcher and plasma rifle.
