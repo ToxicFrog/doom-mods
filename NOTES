@@ -11,6 +11,8 @@ Slomo option instead of timestop?
 - menuing crash when opening the menu just after leveling up?
 - Revivification rework:
   - raised enemies don't collide with player projectiles, if possible
+- Shield upgrade rework
+  - rather than a flat damage reduction, have it charge up when making kills in melee, and gradually fade when not doing so
 
 ### 0.10.x?
 
@@ -52,8 +54,7 @@ X Making a bullet remote controlled (doom storm ,unreal and russian overkill use
 X A wall piercing bullet .
 X An upgrade transforming the whole weapon in something else entirely maybe ? Or changing the ammunition from ballistic to energy ? No idea if that's possible .
 X Upgrades like Red dot / holo sights maybe ? Sights in general ?
-
-Making a gun shoot turrets.
+X Making a gun shoot turrets.
 
 A bullet which lands on an enemies and exploded in 4 grenade like thingies which itself fly upwards only to. Come crashing down resulting in 4 more big explosions .
 
@@ -78,9 +79,6 @@ Spectral Inscription: On dealing damage with a weapon with this applied, the pla
 Resurrecting Inscription: This ability will resurrect the first enemy killed with a weapon that has it applied. The enemy will fight for the player until they die or until 8 seconds have passed (+2 seconds per level), in which case they are automatically killed. Enemies with more than 600 health, or who have the +FRIENDLY tag already applied, are exempt. Taking this on multiple weapons allows additional enemies to be resurrected, without having to switch to other weapons that have it applied. [The idea here is to provide a sort of 'summoner build' to be possible. The timer restriction is there to prevent a cascading windfall of summons, while the >600 health restriction is mainly just there to prevent anything as strong as or stronger than an Arch-Vile from being resurrected. Taking multiple copies of the inscription is there to encourage people to really build into it by sacrificing other inscription slots if they want summons to really be a major part of their playstyle, instead of handing players it for free.]
     ​
 Crossfire: Weapons with this ability will do 30% extra damage for 3 seconds after it is switched to. Afterwards, it will do -15% damage. Mutually exclusive with the Damage upgrade. [To benefit the chronic weapon switchers out there, or especially weapon mods which contain reloading weapons.]
-    ​
-Tracker: Player upgrade. Map-revealing items show enemy locations. At level 2, they show items as well. At level 3, the player starts every level with a map revealed, as if they had picked up a map-revealing item.
-
 
 ### ideas from retronutcase
 
