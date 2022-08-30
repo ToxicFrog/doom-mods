@@ -83,7 +83,9 @@ class ::LegendoomEffectGiver : ::UpgradeGiver {
 
     string effect = ::LegendoomUtil.GetActiveWeaponEffect(upgrade, prefix);
     string effectname = ::LegendoomUtil.GetEffectTitle(effect);
-    console.printf("Your %s gained the effect [%s]!", wpn.GetTag(), effectname);
+    console.printf(
+      StringTable.Localize("$TFLV_MSG_LD_EFFECT"),
+      wpn.GetTag(), effectname);
 
     if (info.effects.Size() == 0) {
       // No existing effects, so just pick it up as is.

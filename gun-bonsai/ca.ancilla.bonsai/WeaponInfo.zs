@@ -174,8 +174,9 @@ class ::WeaponInfo : Object play {
     if (::Settings.upgrade_choices_per_gun_level() == 1) {
       StartLevelUp();
     } else {
-      wpn.owner.A_Log(
-        string.format("Your %s is ready to level up!", wpn.GetTag()),
+      wpn.owner.A_Log(string.format(
+        StringTable.Localize("$TFLV_MSG_WEAPON_LEVELUP_READY"),
+        wpn.GetTag()),
         true);
     }
   }
@@ -200,7 +201,7 @@ class ::WeaponInfo : Object play {
     XP -= maxXP;
     if (!upgrade) {
       // Don't adjust maxXP -- they didn't gain a level.
-      wpn.owner.A_Log("Level-up rejected!", true);
+      wpn.owner.A_Log(StringTable.Localize("$TFLV_MSG_LEVELUP_REJECTED"), true);
       if (XP >= maxXP) Fanfare();
       return;
     }
@@ -209,8 +210,8 @@ class ::WeaponInfo : Object play {
     ::PerPlayerStats.GetStatsFor(wpn.owner).AddPlayerXP(1);
     maxXP = GetXPForLevel(level+1);
     upgrades.AddUpgrade(upgrade).OnActivate(stats, self);
-    wpn.owner.A_Log(
-      string.format("Your %s gained a level of %s!",
+    wpn.owner.A_Log(string.format(
+        StringTable.Localize("$TFLV_MSG_WEAPON_LEVELUP"),
         wpn.GetTag(), upgrade.GetName()),
       true);
     if (XP >= maxXP) Fanfare();

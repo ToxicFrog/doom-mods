@@ -17,9 +17,9 @@ class ::EventHandler : StaticEventHandler {
     UPGRADE_REGISTRY.RegisterBuiltins();
 
     if (::Settings.have_legendoom()) {
-      console.printf("Legendoom is installed, enabling LD compatibility for Gun Bonsai.");
+      console.printf("%s", StringTable.Localize("$TFLV_MSG_LD_YES"));
     } else {
-      console.printf("Couldn't find Legendoom, LD-specific features in Gun Bonsai disabled.");
+      console.printf("%s", StringTable.Localize("$TFLV_MSG_LD_NO"));
     }
 
     rc = ::RC.LoadAll("BONSAIRC");
@@ -130,7 +130,7 @@ class ::EventHandler : StaticEventHandler {
     // Force info creation
     let stats = playerstats[p];
     if (!stats) {
-      console.printf("No info available for player %d", p);
+      console.printf(StringTable.Localize("$TFLV_MSG_PLAYERSTATS_MISSING"), p);
       return;
     }
     // Check for pending level ups and apply those if present.
@@ -171,10 +171,14 @@ class ::EventHandler : StaticEventHandler {
       if (::Settings.have_legendoom()) {
         CycleLDEffect(evt.player);
       } else {
-        players[evt.player].mo.A_Log("This feature only works if you also have Legendoom installed.");
+        players[evt.player].mo.A_Log(StringTable.Localize("$TFLV_MSG_LD_REQUIRED"));
       }
     } else if (evt.name == "bonsai-select-effect") {
-      SelectLDEffect(evt.player, evt.args[0]);
+      if (::Settings.have_legendoom()) {
+        SelectLDEffect(evt.player, evt.args[0]);
+      } else {
+        players[evt.player].mo.A_Log(StringTable.Localize("$TFLV_MSG_LD_REQUIRED"));
+      }
     } else if (evt.name == "bonsai-choose-level-up-option") {
       ChooseLevelUpOption(evt.player, evt.args[0]);
       // Backwards compatibility with AAS.

@@ -226,7 +226,7 @@ class ::PerPlayerStats : Object play {
       // If autochoose is on, immediately pick an upgrade for the player.
       StartLevelUp();
     } else {
-      owner.A_Log("You leveled up!", true);
+      owner.A_Log(StringTable.Localize("$TFLV_MSG_PLAYER_LEVELUP_READY"), true);
       // Earlier versions automatically opened the level-up screen, on the assumption
       // that the player had just closed a weapon level-up screen. However, (a)
       // with the addition of autochoose this is no longer a safe assumption, and
@@ -249,15 +249,15 @@ class ::PerPlayerStats : Object play {
       // Player level-ups are expensive, so we take away *half* of a level's
       // worth of XP.
       XP -= max(1, maxXP/2);
-      owner.A_Log("Level-up rejected!", true);
+      owner.A_Log(StringTable.Localize("$TFLV_MSG_LEVELUP_REJECTED"), true);
       return;
     }
 
     XP -= maxXP;
     ++level;
     upgrades.AddUpgrade(upgrade).OnActivate(self, null);
-    owner.A_Log(
-      string.format("You gained a level of %s!", upgrade.GetName()),
+    owner.A_Log(string.format(
+      StringTable.Localize("$TFLV_MSG_PLAYER_LEVELUP"), upgrade.GetName()),
       true);
   }
 
