@@ -9,8 +9,7 @@ class ::PlayerLevelUpMenu : ::GenericMenu {
     let giver = TFLV::PlayerUpgradeGiver(stats.currentEffectGiver);
 
     PushText("", Font.CR_GOLD);
-    PushText("You gained a level!", Font.CR_GOLD);
-    PushText("Choose an upgrade:", Font.CR_GOLD);
+    PushText("$TFLV_MENU_PLAYER_LEVELUP", Font.CR_GOLD);
 
     mDesc.mSelectedItem = -1;
     for (uint i = 0; i < giver.candidates.size(); ++i) {
@@ -18,7 +17,7 @@ class ::PlayerLevelUpMenu : ::GenericMenu {
     }
 
     PushText("", Font.CR_LIGHTBLUE);
-    PushText("Current upgrades:", Font.CR_LIGHTBLUE);
+    PushText("$TFLV_MENU_CURRENT_UPGRADES", Font.CR_LIGHTBLUE);
     giver.stats.upgrades.DumpToMenu(self);
     return;
   }

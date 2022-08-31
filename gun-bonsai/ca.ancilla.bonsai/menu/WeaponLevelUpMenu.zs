@@ -11,10 +11,9 @@ class ::WeaponLevelUpMenu : ::GenericMenu {
     PushText("", Font.CR_GOLD);
     PushText(
       string.format(
-        "Your %s has gained a level!",
+        StringTable.Localize("$TFLV_MENU_WEAPON_LEVELUP"),
         giver.wielded.wpn.GetTag()),
       Font.CR_GOLD);
-    PushText("Choose an upgrade:", Font.CR_GOLD);
 
     mDesc.mSelectedItem = -1;
     for (uint i = 0; i < giver.candidates.size(); ++i) {
@@ -22,7 +21,7 @@ class ::WeaponLevelUpMenu : ::GenericMenu {
     }
 
     PushText("", Font.CR_LIGHTBLUE);
-    PushText("Current upgrades:", Font.CR_LIGHTBLUE);
+    PushText("$TFLV_MENU_CURRENT_UPGRADES", Font.CR_LIGHTBLUE);
     giver.wielded.upgrades.DumpToMenu(self);
     return;
   }
