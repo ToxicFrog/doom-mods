@@ -1,5 +1,12 @@
 [en default]
+// Displayed when you try to open the menu and it can't find any weapon stats.
 TFLV_MENU_NO_STATS_FOUND = "No stats available for current weapon.\nMake sure you have a weapon equipped.\nIf you do, shoot something with it and try again.";
+// Headers for the status menu.
 TFLV_MENU_HEADER_PLAYER_STATUS = "Player Status";
 TFLV_MENU_HEADER_WEAPON_STATUS = "Weapon Status";
 TFLV_MENU_HEADER_WEAPON_LD_EFFECTS = "LegenDoom Effects";
+// Headers for the LegenDoom level-up menu.
+TFLV_MENU_LD_NEW_EFFECT = "New effect:";
+TFLV_MENU_LD_EXISTING_EFFECTS = "Existing effects:";
+// "please select an upgrade to discard" message for LegenDoom level-ups
+TFLV_MENU_LD_TOO_MANY_EFFECTS = "Your %s has unlocked the effect %s\nbut already has as many effects as it can hold.\nSelect an effect to discard.";
