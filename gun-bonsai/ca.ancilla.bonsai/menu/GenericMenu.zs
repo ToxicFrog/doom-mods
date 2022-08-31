@@ -6,7 +6,11 @@ class ::GenericMenu : OptionMenu {
   }
 
   void PushText(string text, uint colour) {
-    mDesc.mItems.Push(new("OptionMenuItemStaticText").InitDirect(text, colour));
+    Array<string> lines;
+    StringTable.Localize(text).Split(lines, "\n");
+    for (uint i = 0; i < lines.size(); ++i) {
+      mDesc.mItems.Push(new("OptionMenuItemStaticText").InitDirect(lines[i], colour));
+    }
   }
 
   void PushKeyValueText(string key, string value, uint colour = Font.CR_DARKRED) {

@@ -10,19 +10,17 @@ class ::StatusDisplay : ::GenericMenu {
     TFLV_CurrentStats stats;
     if (!pps.GetCurrentStats(stats)) {
       PushText("", Font.CR_RED);
-      PushText("No stats available for current weapon.", Font.CR_RED);
-      PushText("Make sure you have a weapon equipped.", Font.CR_RED);
-      PushText("If you do, shoot something with it and try again.", Font.CR_RED);
+      PushText("$TFLV_MENU_NO_STATS_FOUND", Font.CR_RED);
       return;
     }
 
     PushText("", Font.CR_GOLD);
-    PushText("Player Stats", Font.CR_GOLD);
+    PushText("$TFLV_MENU_HEADER_PLAYER_STATUS", Font.CR_GOLD);
     PushKeyValueText(string.format("Level %d", stats.plvl), string.format("%d/%d XP", stats.pxp, stats.pmax));
     stats.pupgrades.DumpInteractableToMenu(self, 0);
 
     PushText("", Font.CR_GOLD);
-    PushText("Weapon Stats", Font.CR_GOLD);
+    PushText("$TFLV_MENU_HEADER_WEAPON_STATUS", Font.CR_GOLD);
     PushKeyValueText("Type", string.format("%s (%s)",
         stats.winfo.wpn.GetTag(), stats.winfo.wpn.GetClassName()));
     PushKeyValueText(string.format("Level %d", stats.wlvl),
@@ -33,7 +31,7 @@ class ::StatusDisplay : ::GenericMenu {
     let ld_info = stats.winfo.ld_info;
     if (ld_info.effects.size() > 0) {
       PushText("", Font.CR_GOLD);
-      PushText("Weapon Effects", Font.CR_GOLD);
+      PushText("$TFLV_MENU_HEADER_WEAPON_LD_EFFECTS", Font.CR_GOLD);
       for (uint i = 0; i < ld_info.effects.size(); ++i) {
         if (ld_info.currentEffect == i) {
           PushEffect(ld_info.effects[i], i, true);
