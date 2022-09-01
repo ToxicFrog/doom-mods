@@ -2,6 +2,11 @@
 
 - New:
   - Intuition player upgrade reveals map geometry and actor locations
+  - LANGUAGE lump support:
+    - gameplay log/printf messages (except for debug messages)
+    - level-up and status displays
+    - menu titles and enum names (full support for options menu coming next version)
+  - partial Brazilian Portugese translation by Generic Name Guy
 - Balance:
   - Revivified enemies will now die after a few seconds out of combat, hopefully fixing "I revived something and now it won't die and the level scripting is broken" issues
   - Revivification triggers more often to make up for the fact that enemies can no longer be kept as pets for the entire level
