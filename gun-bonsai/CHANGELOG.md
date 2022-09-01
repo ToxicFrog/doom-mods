@@ -18,7 +18,6 @@
   - melee weapon detection should be more permissive now
 - Fix:
   - crash when opening the menu while no weapon is equipped
-  - gameplay log and printf messages are now defined in a LANGUAGE lump and can be localized (debug messages are still hardcoded, sorry!)
 
 # 0.9.1
 
