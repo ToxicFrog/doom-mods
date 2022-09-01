@@ -31,6 +31,59 @@
 # An <upgrades> list is the same but for upgrade names. Wildcards are not
 # supported; exact class names must be used.
 
+# All builtin upgrades that don't require other mods to function are registered
+# here. Mod-specific stanzas below tweak things further.
+register
+  # player upgrades
+  TFLV_Upgrade_AmmoLeech
+  TFLV_Upgrade_ArmourLeech
+  TFLV_Upgrade_BlastShaping
+  TFLV_Upgrade_Intuition
+  TFLV_Upgrade_Juggler
+  TFLV_Upgrade_LifeLeech
+  TFLV_Upgrade_PlayerDamage
+  TFLV_Upgrade_Thorns
+  TFLV_Upgrade_ToughAsNails
+  # generic weapon upgrades
+  TFLV_Upgrade_BouncyShots
+  TFLV_Upgrade_DarkHarvest
+  TFLV_Upgrade_ExplosiveDeath
+  TFLV_Upgrade_ExplosiveShots
+  TFLV_Upgrade_FastShots
+  TFLV_Upgrade_FragmentationShots
+  TFLV_Upgrade_HomingShots
+  TFLV_Upgrade_PiercingShots
+  TFLV_Upgrade_RapidFire
+  TFLV_Upgrade_Shield
+  TFLV_Upgrade_Submunitions
+  TFLV_Upgrade_Swiftness
+  TFLV_Upgrade_WeaponDamage
+  # Fire upgrades
+  TFLV_Upgrade_IncendiaryShots
+  TFLV_Upgrade_BurningTerror
+  TFLV_Upgrade_Conflagration
+  TFLV_Upgrade_InfernalKiln
+  # Poison upgrades
+  TFLV_Upgrade_PoisonShots
+  TFLV_Upgrade_Weakness
+  TFLV_Upgrade_Putrefaction
+  TFLV_Upgrade_Hallucinogens
+  # Acid upgrades
+  TFLV_Upgrade_CorrosiveShots
+  TFLV_Upgrade_ConcentratedAcid
+  TFLV_Upgrade_AcidSpray
+  TFLV_Upgrade_Embrittlement
+  # Lightning upgrades
+  TFLV_Upgrade_ShockingInscription
+  TFLV_Upgrade_Revivification
+  TFLV_Upgrade_ChainLightning
+  TFLV_Upgrade_Thunderbolt
+  # elemental synthesis dual-element upgrades
+  TFLV_Upgrade_ElementalBeam
+  TFLV_Upgrade_ElementalBlast
+  TFLV_Upgrade_ElementalWave
+  ;
+
 # Load Indestructable upgrade only if the Indestructable mod is also present.
 ifdef TFIS_IndestructableEventHandler { register TFLV_Upgrade_Indestructable; }
 

@@ -31,67 +31,6 @@ class ::Registry : Object play {
     upgrades.delete(idx);
   }
 
-  // Can't be static because we need to call it during eventmanager initialization,
-  // and at that point the EventHandler isn't findable.
-  void RegisterBuiltins() {
-    DEBUG("RegisterBuiltins");
-    static const string UpgradeNames[] = {
-      // "::Agonizer",
-      "::AmmoLeech",
-      "::ArmourLeech",
-      // "::Beam", TODO: fix interactions with HE shots and similar
-      "::BlastShaping",
-      "::BouncyShots",
-      "::DarkHarvest",
-      "::ExplosiveDeath",
-      "::ExplosiveShots",
-      "::FastShots",
-      "::FragmentationShots",
-      "::HomingShots",
-      // "::Ignition",
-      "::Intuition",
-      "::Juggler",
-      "::LifeLeech",
-      "::PiercingShots",
-      "::PlayerDamage",
-      "::RapidFire",
-      "::Shield",
-      "::Submunitions",
-      "::Swiftness",
-      "::Thorns",
-      "::ToughAsNails",
-      "::WeaponDamage",
-      // Fire upgrades
-      "::IncendiaryShots",
-      "::BurningTerror",
-      "::Conflagration",
-      "::InfernalKiln",
-      // Poison upgrades
-      "::PoisonShots",
-      "::Weakness",
-      "::Putrefaction",
-      "::Hallucinogens",
-      // Acid upgrades
-      "::CorrosiveShots",
-      "::ConcentratedAcid",
-      "::AcidSpray",
-      "::Embrittlement",
-      // Lightning upgrades
-      "::ShockingInscription",
-      "::Revivification",
-      "::ChainLightning",
-      "::Thunderbolt",
-      // Dual-element power moves
-      "::ElementalBeam",
-      "::ElementalBlast",
-      "::ElementalWave"
-    };
-    for (uint i = 0; i < UpgradeNames.size(); ++i) {
-      upgrade_names.push(UpgradeNames[i]);
-      upgrades.push(::BaseUpgrade(new(UpgradeNames[i])));
-    }
-  }
-
   // Returns true if Indestructable has delegated management of lives to Gun Bonsai.
   static bool IsIndestructableDelegated() {
     return CVar.FindCVar("indestructable_starting_lives").GetInt() == 0

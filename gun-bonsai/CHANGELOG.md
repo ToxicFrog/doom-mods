@@ -16,6 +16,7 @@
   - upgrade appendix moved into [its own file](./UPGRADES.md)
   - OnActivate/OnDeactivate API enabling new kinds of upgrades to be written
   - melee weapon detection should be more permissive now
+  - builtin upgrades are now registered via BONSAIRC lump
 - Fix:
   - crash when opening the menu while no weapon is equipped
 

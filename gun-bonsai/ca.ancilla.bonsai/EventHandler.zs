@@ -12,9 +12,7 @@ class ::EventHandler : StaticEventHandler {
 
   override void OnRegister() {
     DEBUG("Initializing Gun Bonsai...");
-    // Register all builtin upgrades.
     UPGRADE_REGISTRY = new("::Upgrade::Registry");
-    UPGRADE_REGISTRY.RegisterBuiltins();
 
     if (::Settings.have_legendoom()) {
       console.printf("%s", StringTable.Localize("$TFLV_MSG_LD_YES"));
