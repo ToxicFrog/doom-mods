@@ -1,12 +1,12 @@
 AddOptionMenu "OptionsMenu"
 {
-  Submenu "Gun Bonsai Options", "GunBonsaiOptions"
+  Submenu "$TFLV_OPT_TITLE", "GunBonsaiOptions"
 }
 
 OptionMenu "GunBonsaiOptions"
 {
   class TF_TooltipOptionMenu
-  Title "Gun Bonsai Options"
+  Title "$TFLV_OPT_TITLE"
 
   TooltipGeometry 0.0, 0.5, 0.25, 1.0, 0.5
   TooltipAppearance "", "", "tfttbg"
@@ -104,38 +104,38 @@ OptionMenu "GunBonsaiOptions"
 }
 
 OptionValue "GunBonsaiHudMirrorMode" {
-  0, "no mirroring"
-  1, "mirror horizontally (box on left)"
-  2, "mirror vertically (XP bars on top)"
-  3, "mirror both (box on left & bars on top)"
+  0, "$TFLV_OPT_MIRRORMODE_0"
+  1, "$TFLV_OPT_MIRRORMODE_1"
+  2, "$TFLV_OPT_MIRRORMODE_2"
+  3, "$TFLV_OPT_MIRRORMODE_3"
 }
 
 OptionValue "GunBonsaiHudSkin" {
-  0, "no HUD"
-  1, "scifi"
-  2, "ORB_"
-  3, "pentagram"
+  0, "$TFLV_OPT_HUDSKIN_0"
+  1, "$TFLV_OPT_HUDSKIN_1"
+  2, "$TFLV_OPT_HUDSKIN_2"
+  3, "$TFLV_OPT_HUDSKIN_3"
 }
 
 OptionValue "GunBonsaiLevelUpSoundOption" {
-  -1, "custom"
-  0, "nothing"
-  1, "Gun Bonsai levelup effect"
-  2, "secret discovery effect"
-  3, "teleport effect"
+  -1, "$TFLV_OPT_FANFARE_N"
+  0, "$TFLV_OPT_FANFARE_0"
+  1, "$TFLV_OPT_FANFARE_1"
+  2, "$TFLV_OPT_FANFARE_2"
+  3, "$TFLV_OPT_FANFARE_3"
 }
 
 OptionValue "GunBonsaiUpgradeBindingMode" {
-  0, "individual weapon"
-  1, "individual weapon with inheritance"
-  2, "weapon class"
+  0, "$TFLV_OPT_BINDMODE_0"
+  1, "$TFLV_OPT_BINDMODE_1"
+  2, "$TFLV_OPT_BINDMODE_2"
 }
 
 OptionValue "GunBonsaiWhatKindOfGunSelector" {
-  0, "None"
-  1, "Basic Weapons Only"
-  2, "Legendary Weapons Only"
-  3, "All Weapons"
+  0, "$TFLV_OPT_LDMODE_0"
+  1, "$TFLV_OPT_LDMODE_1"
+  2, "$TFLV_OPT_LDMODE_2"
+  3, "$TFLV_OPT_LDMODE_3"
 }
 
 OptionMenu "GunBonsaiPlayerLevelUpMenu"
