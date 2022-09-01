@@ -2,6 +2,7 @@
 
 - New:
   - Intuition player upgrade reveals map geometry and actor locations
+  - Rapid Fire weapon upgrade doubles firing speed
   - LANGUAGE lump support:
     - gameplay log/printf messages (except for debug messages)
     - level-up and status displays

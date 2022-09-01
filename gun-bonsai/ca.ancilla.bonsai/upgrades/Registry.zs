@@ -54,6 +54,7 @@ class ::Registry : Object play {
       "::LifeLeech",
       "::PiercingShots",
       "::PlayerDamage",
+      "::RapidFire",
       "::Shield",
       "::Submunitions",
       "::Swiftness",

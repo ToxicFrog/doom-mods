@@ -13,6 +13,7 @@
 #include "./Juggler.zsc"
 #include "./Leech.zsc"
 #include "./Melee.zsc"
+#include "./RapidFire.zsc"
 #include "./Simpleupgrades.zsc"
 #include "./Submunitions.zsc"
 #include "./Thorns.zsc"
