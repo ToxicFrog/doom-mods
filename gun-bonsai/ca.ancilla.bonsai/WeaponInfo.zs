@@ -58,9 +58,11 @@ class ::WeaponInfo : Object play {
   }
 
   void OnActivate() {
+    if ( !self ) return;
     return self.upgrades.OnActivate(stats, self);
   }
   void OnDeactivate() {
+    if ( !self ) return;
     return self.upgrades.OnDeactivate(stats, self);
   }
 
