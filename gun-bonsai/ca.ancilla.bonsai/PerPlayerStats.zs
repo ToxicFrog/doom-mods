@@ -120,7 +120,7 @@ class ::PerPlayerStats : Object play {
     infoForCurrentWeapon = GetOrCreateInfoFor(owner.player.ReadyWeapon);
     // Now we activate the new one -- depending on rebinding settings this may
     // actually be the same WeaponInfo, but it's now sticking to a new weapon.
-    infoForCurrentWeapon.OnActivate();
+    if (infoForCurrentWeapon) infoForCurrentWeapon.OnActivate();
     return infoForCurrentWeapon;
   }
 

@@ -1,3 +1,12 @@
+# 0.9.2 hotfix
+
+- Change:
+  - Updates to Brazilian Portugese translation
+- Fix:
+  - Crash on TITLEMAP and some other situations where the PlayerPawn exists but has no weapon equipped
+  - Debug messages were left enabled in the release build
+  - Missing description and name for Intuition upgrade
+
 # 0.9.2
 
 - New:
