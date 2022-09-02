@@ -18,7 +18,7 @@
 // - All done! The upgrade should now start appearing in play when your mod is
 //   loaded after Gun Bonsai.
 #namespace TFLV::Upgrade;
-#debug on;
+#debug off;
 
 // Upgrade priority levels. Higher priorities can trigger lower priorities,
 // but not vice versa.
