@@ -25,20 +25,13 @@ class ::EventHandler : StaticEventHandler {
   }
 
   override void WorldLoaded(WorldEvent evt) {
-    DEBUG("WorldLoaded");
+    if (level.totaltime == 0) {
+      // Starting a new game? Clear all info.
+      for (uint i = 0; i < 8; ++i) playerstats[i] = null;
+    }
     for (uint i = 0; i < 8; ++i) {
       if (playeringame[i]) InitPlayer(i, true);
     }
-  }
-
-  override void WorldUnloaded(WorldEvent evt) {
-    DEBUG("WorldUnloaded: nextmap=%s", evt.NextMap);
-    if (evt.NextMap != "" && !evt.IsSaveGame) return;
-    // On world unload for something other than a normal level transition, clear
-    // all player info. Either we're about to load a save game (in which case we
-    // recover it from the player's inventory) or we're about to start a new game
-    // (in which case we should forget everything we know anyways).
-    for (uint i = 0; i < 8; ++i) playerstats[i] = null;
   }
 
   void InitPlayer(uint p, bool new_map=false) {
