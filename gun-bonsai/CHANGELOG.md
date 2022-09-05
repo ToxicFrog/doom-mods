@@ -2,6 +2,7 @@
 
 - Fix:
   - Melee weapon detection reverted to its pre-0.9 behaviour of trusting the +MELEEWEAPON flag, since the more complicated approaches caused more problems than they solved
+  - LegenDoom bonus effects are now earned at the correct levels
 
 # 0.9.2 hotfix
 

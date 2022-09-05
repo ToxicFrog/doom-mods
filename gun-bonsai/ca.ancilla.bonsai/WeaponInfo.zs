@@ -187,13 +187,6 @@ class ::WeaponInfo : Object play {
     let giver = ::WeaponUpgradeGiver(wpn.owner.GiveInventoryType("::WeaponUpgradeGiver"));
     giver.wielded = self;
 
-    if (::Settings.have_legendoom()
-        && ::Settings.gun_levels_per_ld_effect() > 0
-        && (level % ::Settings.gun_levels_per_ld_effect()) == 0) {
-      let ldGiver = ::LegendoomEffectGiver(wpn.owner.GiveInventoryType("::LegendoomEffectGiver"));
-      ldGiver.info = self.ld_info;
-    }
-
     return true;
   }
 
@@ -215,5 +208,12 @@ class ::WeaponInfo : Object play {
         wpn.GetTag(), upgrade.GetName()),
       true);
     if (XP >= maxXP) Fanfare();
+    if (::Settings.have_legendoom()
+        && ::Settings.gun_levels_per_ld_effect() > 0
+        && (level % ::Settings.gun_levels_per_ld_effect()) == 0) {
+      let ldGiver = ::LegendoomEffectGiver(wpn.owner.GiveInventoryType("::LegendoomEffectGiver"));
+      ldGiver.info = self.ld_info;
+    }
+
   }
 }
