@@ -99,6 +99,9 @@ extend class ::WeaponInfo {
     if (typeflags) return typeflags & ::TYPE_MELEE;
     return wpn.bMELEEWEAPON;
   }
+  bool IsWimpy() const {
+    return wpn.bWIMPY_WEAPON;
+  }
   // For additional modifiers we use a cutoff of 50%.
   bool IsFastProjectile() const {
     if (typeflags) return typeflags & ::TYPE_FASTPROJECTILE;

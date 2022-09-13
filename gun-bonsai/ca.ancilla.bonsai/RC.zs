@@ -13,6 +13,7 @@ enum ::WeaponType {
   ::TYPE_SEEKER     = 1<<5,
   ::TYPE_RIPPER     = 1<<6,
   ::TYPE_BOUNCER    = 1<<7,
+  ::TYPE_WIMPY      = 1<<8,
 }
 
 class ::RC : Object play {
@@ -494,6 +495,7 @@ class ::RCParser : Object play {
       else if (peek("SEEKER")) { type |= ::TYPE_SEEKER; }
       else if (peek("RIPPER")) { type |= ::TYPE_RIPPER; }
       else if (peek("BOUNCER")) { type |= ::TYPE_BOUNCER; }
+      else if (peek("WIMPY")) { type |= ::TYPE_WIMPY; }
       else return Error("AUTO or IGNORE or weapon type");
       next("");
     }

@@ -144,7 +144,7 @@ class ::WeaponInfo : Object play {
     if (IsMelee()) {
       XP *= ::Settings.level_cost_mul_for("melee");
     }
-    if (wpn.bWimpy_Weapon) {
+    if (IsWimpy()) {
       XP *= ::Settings.level_cost_mul_for("wimpy");
     }
     DEBUG("GetXPForLevel: level %d -> XP %.1f", level, XP);
