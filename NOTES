@@ -4,6 +4,13 @@
 
 Slomo option instead of timestop?
 
+### 0.9.3
+
+Make melee and wimpy XP bonuses not stack
+clarify how the custom levelup sound cvar works
+figure out XP wraparound
+stop including PENTAHUD and other badlumps
+
 ### 0.9.x
 
 - scavenge lead probabalistic below 100hp & for ammo that produces low amounts
@@ -30,6 +37,10 @@ Slomo option instead of timestop?
 - Make melee detection more permissive, but only trigger melee upgrades when the player is in melee
 - RoF upgrades can be implemented by studying the PowerDoubleFiringSpeed powerup
 
+### Ideas
+
+Detect weapons that don't use ammo as WIMPY and make some of the same upgrades exclusive to melee weapons available on them
+
 ### DarkkOne suggests a shield rework
 
 An idea for shield - can you tell how far away the monster that damaged you is?
@@ -39,6 +50,10 @@ Like, only apply shield to close-range damage? Maybe even scaling it up the clos
 Another option, if detecting incoming damage source range isn't possible, is change shield - instead of going 20, 40, 60, just have the first upgrade cap it at 50 (and honestly, maybe even reinstate 75 for this one). But each further upgrade of it increases a duration. When you hit an enemy with a "melee" attack (as defined by whatever the current detection method is at the time), you get 10 (or maybe 5) seconds of shield per rank, non-cumulative (so it refreshes up to 10/20/whatever on kill, but can't be stockpiled). So for shield to be useful you have to be very aggressive. You take full damage while closing (during which time you often have a bit more option in how to dodge) but once you're engaged, your goal is to keep landing hits, to keep yourself actively shielded until the fight is over.
 
 Both of these also mean you can't just like... pull out your chainsaw to reduce damage from arachnotron turrets on the other side of a canyon or whatever.
+
+### ideas from Netheritor
+
+
 
 ### Ideas from Shatter-Thought
 

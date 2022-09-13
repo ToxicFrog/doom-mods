@@ -199,7 +199,7 @@ class ::HUD : Object ui {
 
     DrawProgressBar(
         tex(weapon_tex..face), LevelUp(stats) ? GetShinyColour(34) : weapon_rgb,
-        double(stats.wxp)/(stats.wmax), HUD_WXP_X, HUD_WXP_W);
+        stats.wxp/stats.wmax, HUD_WXP_X, HUD_WXP_W);
     DrawProgressBar(
         tex(player_tex..face), LevelUp(stats) ? GetShinyColour(68) : player_rgb,
         double(stats.pxp)/(stats.pmax), HUD_PXP_X, HUD_PXP_W);
@@ -224,7 +224,7 @@ class ::HUD : Object ui {
       DrawProgressBar(tex(weapon_tex..face), 0xFF808080, 1.0, HUD_WXP_X, HUD_WXP_W);
     } else {
       Text(
-        string.format("Lv.%d (%d/%d)", stats.wlvl, stats.wxp, stats.wmax),
+        string.format("Lv.%d (%.0f/%.0f)", stats.wlvl, stats.wxp, stats.wmax),
         weapon_rgb, HUD_INFOTEXT_X, HUD_INFOTEXT_Y, HUD_GRAV_SW);
     }
   }

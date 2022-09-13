@@ -15,7 +15,7 @@ class ::WeaponInfo : Object play {
   ::PerPlayerStats stats;
   ::Upgrade::UpgradeBag upgrades;
   double XP;
-  uint maxXP;
+  double maxXP;
   uint level;
   ::LegendoomWeaponInfo ld_info;
 
@@ -139,8 +139,8 @@ class ::WeaponInfo : Object play {
     return false;
   }
 
-  uint GetXPForLevel(uint level) const {
-    uint XP = ::Settings.base_level_cost() * level;
+  double GetXPForLevel(uint level) const {
+    double XP = ::Settings.base_level_cost() * double(level);
     if (IsMelee()) {
       XP *= ::Settings.level_cost_mul_for("melee");
     }

@@ -14,8 +14,8 @@ struct ::CurrentStats {
   // Stats for current weapon.
   ::WeaponInfo winfo;
   ::Upgrade::UpgradeBag wupgrades;
-  uint wxp;
-  uint wmax;
+  double wxp;
+  double wmax;
   uint wlvl;
   // Name of current weapon.
   string wname;
