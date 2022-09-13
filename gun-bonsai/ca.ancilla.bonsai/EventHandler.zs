@@ -217,6 +217,7 @@ class ::EventHandler : StaticEventHandler {
 
   override void WorldThingSpawned(WorldEvent evt) {
     Actor thing = evt.thing;
+    if (!thing) return;
     if (thing.bMISSILE && thing.target == players[consoleplayer].mo) {
       // If it's a projectile (MISSILE flag is set) and target=player, the player
       // just fired a shot. This is our chance to fiddle with its flags and whatnot.

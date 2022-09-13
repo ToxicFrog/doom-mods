@@ -7,6 +7,7 @@
   - LegenDoom bonus effects are now earned at the correct levels
   - LZDoom compatibility restored
   - Tentative fix for XP overflow issues some users have reported
+  - Crash in WorldThingSpawned if the thing spawned stops existing before the event handler is called; this doesn't happen in normal play but some mods can cause it
 
 # 0.9.2 hotfix
 
