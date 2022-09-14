@@ -1,6 +1,70 @@
 [en default]
 TFLV_OPT_TITLE = "Gun Bonsai Options";
+
+// Strings for option headers
+
+TFLV_OPT_HEADER_UI = "UI Settings";
+TFLV_OPT_HEADER_COMPATIBILITY = "Compatibility Settings";
+TFLV_OPT_HEADER_XP_SOURCE = "XP Source Settings";
+TFLV_OPT_HEADER_XP_BALANCE = "XP Balance Settings";
+TFLV_OPT_HEADER_LEGENDOOM = "LegenDoom Integration";
+
+// Strings for option names and tooltips
+
+TFLV_OPT_NAME_HUD_SKIN = "HUD skin";
+TFLV_OPT_TT_HUD_SKIN = "What graphics to use for the HUD. You can also disable it entirely if you want your levelups to be a surprise.";
+TFLV_OPT_NAME_HUD_X = "HUD X position";
+TFLV_OPT_NAME_HUD_Y = "HUD Y position";
+TFLV_OPT_TT_HUD_XY = "Position of the Gun Bonsai HUD on the screen, as a proportion of total screen size. 0.0 is top left, 1.0 is bottom right.\nYou can also set a pixel-perfect position by setting bonsai_hud_x and bonsai_hud_y to your desired coordinates.";
+TFLV_OPT_NAME_HUD_SIZE = "HUD size";
+TFLV_OPT_TT_HUD_SIZE = "Height of the Gun Bonsai HUD, as a fraction of screen height.";
+TFLV_OPT_NAME_HUD_MIRROR = "HUD mirroring";
+TFLV_OPT_TT_HUD_MIRROR = "Whether to mirror the hud. Default has the level box on the left and the XP bars on the bottom.";
+TFLV_OPT_NAME_HUD_RGB_FRAME = "HUD frame colour";
+TFLV_OPT_TT_HUD_RGB_FRAME = "Colour of the HUD frame.";
+TFLV_OPT_NAME_HUD_RGB_WEAPON = "Weapon info colour";
+TFLV_OPT_TT_HUD_RGB_WEAPON = "Colour of the weapon XP bar and weapon name, level, and XP indicator text.";
+TFLV_OPT_NAME_HUD_RGB_PLAYER = "Player info colour";
+TFLV_OPT_TT_HUD_RGB_PLAYER = "Colour of the player XP bar and player level text.";
+TFLV_OPT_NAME_LEVELUP_FLASH = "Flash on level-up";
+TFLV_OPT_TT_LEVELUP_FLASH = "Whether to flash the screen when your weapon gains a level.";
+TFLV_OPT_NAME_LEVELUP_SOUND_MODE = "Sound on level-up";
+TFLV_OPT_TT_LEVELUP_SOUND_MODE = "What sound to play when your weapon gains a level. If set to 'custom' it will use whatever the value of the 'bonsai_levelup_sound' cvar is.";
+TFLV_OPT_NAME_UPGRADE_BINDING_MODE = "Weapon upgrades bind to";
+TFLV_OPT_TT_UPGRADE_BINDING_MODE = "Determines how weapon upgrades behave when you drop a weapon or are carrying multiple weapons of the same type.\n\c[CYAN][individual weapon]:\c- each weapon has its own upgrades. When you drop a weapon, the upgrades go with it, and if you lose a weapon permanently, the upgrades are lost forever.\n\c[CYAN][individual w/inheritance]:\c- each weapon has its own upgrades, but if a weapon is lost and you later pick up a new weapon of the same type, the new weapon will inherit the upgrades of the old one.\n\c[CYAN][weapon class]:\c- all weapons of the same type share the same upgrades, even if you have more than one of them in your inventory. Upgrades are remembered even if you lose all copies of a weapon.";
+TFLV_OPT_NAME_IGNORE_DEATH_EXITS = "Keep upgrades on death exit/pistol start";
+TFLV_OPT_TT_IGNORE_DEATH_EXITS = "If on, you'll keep your upgrades on level transition even if you lose your inventory (subject to the upgrades-bind-to setting above). If off, level transitions that take your inventory will also cost you your upgrades.";
+TFLV_OPT_NAME_USE_BUILTIN_ACTORS = "Use builtin actors for Scavenge drops";
+TFLV_OPT_TT_USE_BUILTIN_ACTORS = "Whether the Scavenge Blood and Scavenge Steel upgrades should use actors built into Gun Bonsai, or the generic Doom 2 HealthBonus and ArmorBonus actors.\nThe builtins should work in any IWAD. The generic ones are more likely to 'blend in' when playing with mods that define replacements for the generic bonuses, but (depending on the mod) may no longer give the correct amounts of health/armour.";
+TFLV_OPT_NAME_DAMAGE_TO_XP_FACTOR = "XP gain from damage";
+TFLV_OPT_NAME_SCORE_TO_XP_FACTOR = "XP gain from score";
+TFLV_OPT_TT_DAMAGE_TO_XP_FACTOR = "How much XP you earn per point of damage you inflict. This feature is built into Gun Bonsai.";
+TFLV_OPT_TT_SCORE_TO_XP_FACTOR = "How much XP you earn per point of score you accumulate. This requires you to install a mod that lets you score points, such as LazyPoints or MetaDoom. The specific actions that you gain points for, and how many points you get, will depend on the mod you use.";
+TFLV_OPT_NAME_BASE_LEVEL_COST = "XP needed to reach level 1";
+TFLV_OPT_TT_BASE_LEVEL_COST = "How much XP you need to earn for a weapon to gain its first level. Roughly, 1 point of damage dealt == 1 XP gained, with a bonus for damaging nastier enemies like Cyberdemons and Archviles.";
+TFLV_OPT_NAME_UPGRADE_CHOICES_PER_GUN_LEVEL = "Upgrade choices on gun level up";
+TFLV_OPT_NAME_UPGRADE_CHOICES_PER_PLAYER_LEVEL = "Upgrade choices on player level up";
+TFLV_OPT_TT_UPGRADE_CHOICES_PER_LEVEL = "How many different upgrades it offers you on level up. Setting it to 0 will let you pick from the full list of available upgrades. Setting it to 1 will randomly pick an upgrade for you without opening the menu.";
+TFLV_OPT_NAME_GUN_LEVELS_PER_PLAYER_LEVEL = "Gun levels per player level";
+TFLV_OPT_TT_GUN_LEVELS_PER_PLAYER_LEVEL = "How many times you need to level up a weapon to gain a player bonus.";
+TFLV_OPT_NAME_LEVEL_COST_MUL_FOR_MELEE = "XP cost multiplier for melee weapons";
+TFLV_OPT_NAME_LEVEL_COST_MUL_FOR_WIMPY = "XP cost multiplier for wimpy weapons";
+TFLV_OPT_TT_LEVEL_COST_MUL = "XP cost multipliers for various classes of weapons. These can stack (e.g. fists are both 'melee' and 'wimpy' in vanilla Doom 2). The default settings make both weak and melee weapons easier to level up.\nNote that not all mods use these flags, or use them correctly -- in that case overrides can be applied in the BONSAIRC lump.";
+TFLV_OPT_NAME_GUN_LEVELS_PER_LD_EFFECT = "Gun levels per LD effect";
+TFLV_OPT_TT_GUN_LEVELS_PER_LD_EFFECT = "How many times a gun needs to level up to gain a new Legendoom effect. Only functions if Legendoom is installed. Set to 0 to disable.";
+TFLV_OPT_NAME_WHICH_GUNS_CAN_LEARN = "LD effects learnable by";
+TFLV_OPT_TT_WHICH_GUNS_CAN_LEARN = "Which weapons can learn new LD effects.";
+TFLV_OPT_NAME_WHICH_GUNS_CAN_REPLACE = "LD effects replaceable by";
+TFLV_OPT_TT_WHICH_GUNS_CAN_REPLACE = "Which weapons can replace old LD effects with new ones once they're full.";
+TFLV_OPT_NAME_BASE_LD_EFFECT_SLOTS = "Base number of LD effect slots";
+TFLV_OPT_TT_BASE_LD_EFFECT_SLOTS = "How many slots for LD effects non-legendary guns have.";
+TFLV_OPT_NAME_BONUS_LD_EFFECT_SLOTS = "Bonus slots per LD rarity level";
+TFLV_OPT_TT_BONUS_LD_EFFECT_SLOTS = "How many extra effect slots legendary guns get per rarity level (Common=1, Epic=4).";
+TFLV_OPT_NAME_IGNORE_GUN_RARITY = "Ignore original gun rarity for new effects";
+TFLV_OPT_TT_IGNORE_GUN_RARITY = "Whether weapons can learn LD effects that are rarer than the one they spawned with.";
+
 // Strings for the various option enums
+
 // HUD orientation settings
 TFLV_OPT_MIRRORMODE_0 = "no mirroring";
 TFLV_OPT_MIRRORMODE_1 = "mirror horizontally (box on left)";

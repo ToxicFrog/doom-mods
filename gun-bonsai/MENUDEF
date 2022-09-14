@@ -12,95 +12,84 @@ OptionMenu "GunBonsaiOptions"
   TooltipAppearance "", "", "tfttbg"
 
   StaticText ""
-  StaticText "UI settings", CYAN
+  StaticText "$TFLV_OPT_HEADER_UI", CYAN
 
-  Option "HUD skin", "bonsai_hud_skin", "GunBonsaiHudSkin"
-  Tooltip "What graphics to use for the HUD. You can also disable it entirely if you want your levelups to be a surprise."
-  Slider "HUD X position", "bonsai_hud_x", 0.0, 1.0, 0.01, 2
-  Slider "HUD Y position", "bonsai_hud_y", 0.0, 1.0, 0.01, 2
-  Tooltip "Position of the Gun Bonsai HUD on the screen, as a proportion of total screen size. 0.0 is top left, 1.0 is bottom right."
-  Tooltip "You can also set a pixel-perfect position by setting bonsai_hud_x and bonsai_hud_y to your desired coordinates."
+  Option "$TFLV_OPT_NAME_HUD_SKIN", "bonsai_hud_skin", "GunBonsaiHudSkin"
+  Tooltip "$TFLV_OPT_TT_HUD_SKIN"
+  Slider "$TFLV_OPT_NAME_HUD_X", "bonsai_hud_x", 0.0, 1.0, 0.01, 2
+  Slider "$TFLV_OPT_NAME_HUD_Y", "bonsai_hud_y", 0.0, 1.0, 0.01, 2
+  Tooltip "$TFLV_OPT_TT_HUD_XY"
 
-  Slider "HUD size", "bonsai_hud_size", 0.05, 0.3, 0.01, 2
-  Tooltip "Height of the Gun Bonsai HUD, as a fraction of screen height."
+  Slider "$TFLV_OPT_NAME_HUD_SIZE", "bonsai_hud_size", 0.05, 0.3, 0.01, 2
+  Tooltip "$TFLV_OPT_TT_HUD_SIZE"
 
-  Option "HUD mirroring", "bonsai_hud_mirror", "GunBonsaiHudMirrorMode"
-  Tooltip "Whether to mirror the hud. Default has the level box on the left and the XP bars on the bottom."
+  Option "$TFLV_OPT_NAME_HUD_MIRROR", "bonsai_hud_mirror", "GunBonsaiHudMirrorMode"
+  Tooltip "$TFLV_OPT_TT_HUD_MIRROR"
 
-  ColorPicker "HUD frame colour", "bonsai_hud_rgb_frame"
-  Tooltip "Colour of the HUD frame."
-  ColorPicker "Weapon info colour", "bonsai_hud_rgb_weapon"
-  Tooltip "Colour of the weapon XP bar and weapon name, level, and XP indicator text."
-  ColorPicker "Player info colour", "bonsai_hud_rgb_player"
-  Tooltip "Colour of the player XP bar and player level text."
+  ColorPicker "$TFLV_OPT_NAME_HUD_RGB_FRAME", "bonsai_hud_rgb_frame"
+  Tooltip "$TFLV_OPT_TT_HUD_RGB_FRAME"
+  ColorPicker "$TFLV_OPT_NAME_HUD_RGB_WEAPON", "bonsai_hud_rgb_weapon"
+  Tooltip "$TFLV_OPT_TT_HUD_RGB_WEAPON"
+  ColorPicker "$TFLV_OPT_NAME_HUD_RGB_PLAYER", "bonsai_hud_rgb_player"
+  Tooltip "$TFLV_OPT_TT_HUD_RGB_PLAYER"
 
-  Option "Flash on level-up", "bonsai_levelup_flash", "OnOff"
-  Tooltip "Whether to flash the screen when your weapon gains a level."
-  Option "Sound on level-up", "bonsai_levelup_sound_mode", "GunBonsaiLevelUpSoundOption"
-  Tooltip "What sound to play when your weapon gains a level. If set to 'custom' it will use whatever the value of the 'bonsai_levelup_sound' cvar is."
-
-  StaticText ""
-  StaticText "Compatibility Options", WHITE
-
-  Option "Weapon upgrades bind to", "bonsai_upgrade_binding_mode", "GunBonsaiUpgradeBindingMode"
-  Tooltip "Determines how weapon upgrades behave when you drop a weapon or are carrying multiple weapons of the same type."
-  Tooltip "\c[CYAN][individual weapon]:\c- each weapon has its own upgrades. When you drop a weapon, the upgrades go with it, and if you lose a weapon permanently, the upgrades are lost forever."
-  Tooltip "\c[CYAN][individual w/inheritance]:\c- each weapon has its own upgrades, but if a weapon is lost and you later pick up a new weapon of the same type, the new weapon will inherit the upgrades of the old one."
-  Tooltip "\c[CYAN][weapon class]:\c- all weapons of the same type share the same upgrades, even if you have more than one of them in your inventory. Upgrades are remembered even if you lose all copies of a weapon."
-  Option "Keep upgrades on death exit/pistol start", "bonsai_ignore_death_exits", "OnOff"
-  Tooltip "If on, you'll keep your upgrades on level transition even if you lose your inventory (subject to the upgrades-bind-to setting above). If off, level transitions that take your inventory will also cost you your upgrades."
-  Option "Use builtin actors for Scavenge drops", "bonsai_use_builtin_actors", "OnOff"
-  Tooltip "Whether the Scavenge Blood and Scavenge Steel upgrades should use actors built into Gun Bonsai, or the generic Doom 2 HealthBonus and ArmorBonus actors."
-  Tooltip "The builtins should work in any IWAD. The generic ones are more likely to 'blend in' when playing with mods that define replacements for the generic bonuses, but (depending on the mod) may no longer give the correct amounts of health/armour."
+  Option "$TFLV_OPT_NAME_LEVELUP_FLASH", "bonsai_levelup_flash", "OnOff"
+  Tooltip "$TFLV_OPT_TT_LEVELUP_FLASH"
+  Option "$TFLV_OPT_NAME_LEVELUP_SOUND_MODE", "bonsai_levelup_sound_mode", "GunBonsaiLevelUpSoundOption"
+  Tooltip "$TFLV_OPT_TT_LEVELUP_SOUND_MODE"
 
   StaticText ""
-  StaticText "XP Source Settings", PURPLE
+  StaticText "$TFLV_OPT_HEADER_COMPATIBILITY", WHITE
 
-  Slider "XP gain from damage", "bonsai_damage_to_xp_factor", 0.0, 2.0, 0.05, 2
-  Tooltip "How much XP you earn per point of damage you inflict. This feature is built into Gun Bonsai."
-  Slider "XP gain from score", "bonsai_score_to_xp_factor", 0.0, 2.0, 0.05, 2
-  Tooltip "How much XP you earn per point of score you accumulate. This requires you to install a mod that lets you score points, such as LazyPoints or MetaDoom. The specific actions that you gain points for, and how many points you get, will depend on the mod you use."
-  // Slider "XP gain from War Trophies", "bonsai_wt_to_xp_factor", 0.0, 10.0, 0.05, 2
-  // Tooltip "How much XP you earn per point of War Trophies XP you accumulate."
-
-  StaticText ""
-  StaticText "XP balance settings", GOLD
-
-  TextField "XP needed to reach level 1", "bonsai_base_level_cost" //, 100, 10000, 100, 0
-  Tooltip "How much XP you need to earn for a weapon to gain its first level. Roughly, 1 point of damage dealt == 1 XP gained, with a bonus for damaging nastier enemies like Cyberdemons and Archviles."
-  ScaleSlider "Upgrade choices on gun level up", "bonsai_upgrade_choices_per_gun_level", 0, 50, 1, "All of them"
-  ScaleSlider "Upgrade choices on player level up", "bonsai_upgrade_choices_per_player_level", 0, 50, 1, "All of them"
-  Tooltip "How many different upgrades it offers you on level up. Setting it to 0 will let you pick from the full list of available upgrades. Setting it to 1 will randomly pick an upgrade for you without opening the menu."
-
-  Slider "Gun levels per player level", "bonsai_gun_levels_per_player_level", 1, 100, 1, 0
-  Tooltip "How many times you need to level up a weapon to gain a player bonus."
-
-  Slider "XP cost multiplier for melee weapons", "bonsai_level_cost_mul_for_melee", 0.1, 5.0, 0.1, 1
-  Slider "XP cost multiplier for wimpy weapons", "bonsai_level_cost_mul_for_wimpy", 0.1, 5.0, 0.1, 1
-  // Slider "XP cost multiplier for explosive weapons", "DISABLED_bonsai_level_cost_mul_for_explosive", 0.1, 5.0, 0.1, 1
-  // Slider "XP cost multiplier for BFG-type weapons", "DISABLED_bonsai_level_cost_mul_for_bfg", 0.1, 5.0, 0.1, 1
-  Tooltip "XP cost multipliers for various classes of weapons. These can stack (e.g. fists are both 'melee' and 'wimpy' in vanilla Doom 2). The default settings make both weak and melee weapons easier to level up."
-  Tooltip "Note that not all mods use these flags."
-  // Tooltip "\cgThe 'explosive' and 'bfg' settings do not currently work."
+  Option "$TFLV_OPT_NAME_UPGRADE_BINDING_MODE", "bonsai_upgrade_binding_mode", "GunBonsaiUpgradeBindingMode"
+  Tooltip "$TFLV_OPT_TT_UPGRADE_BINDING_MODE"
+  Option "$TFLV_OPT_NAME_IGNORE_DEATH_EXITS", "bonsai_ignore_death_exits", "OnOff"
+  Tooltip "$TFLV_OPT_TT_IGNORE_DEATH_EXITS"
+  Option "$TFLV_OPT_NAME_USE_BUILTIN_ACTORS", "bonsai_use_builtin_actors", "OnOff"
+  Tooltip "$TFLV_OPT_TT_USE_BUILTIN_ACTORS"
 
   StaticText ""
-  StaticText "Legendoom Integration", GRAY
+  StaticText "$TFLV_OPT_HEADER_XP_SOURCE", PURPLE
 
-  ScaleSlider "Gun levels per LD effect", "bonsai_gun_levels_per_ld_effect", 0, 100, 1, "Disabled"
-  Tooltip "How many times a gun needs to level up to gain a new Legendoom effect. Only functions if Legendoom is installed. Set to 0 to disable."
+  Slider "$TFLV_OPT_NAME_DAMAGE_TO_XP_FACTOR", "bonsai_damage_to_xp_factor", 0.0, 2.0, 0.05, 2
+  Tooltip "$TFLV_OPT_TT_DAMAGE_TO_XP_FACTOR"
+  Slider "$TFLV_OPT_NAME_SCORE_TO_XP_FACTOR", "bonsai_score_to_xp_factor", 0.0, 2.0, 0.05, 2
+  Tooltip "$TFLV_OPT_TT_SCORE_TO_XP_FACTOR"
 
-  Option "LD effects learnable by", "bonsai_which_guns_can_learn", "GunBonsaiWhatKindOfGunSelector"
-  Tooltip "Which weapons can learn new LD effects."
-  Option "LD effects replaceable by", "bonsai_which_guns_can_replace", "GunBonsaiWhatKindOfGunSelector"
-  Tooltip "Which weapons can replace old LD effects with new ones once they're full."
+  StaticText ""
+  StaticText "$TFLV_OPT_HEADER_XP_BALANCE", GOLD
 
-  Slider "Base number of LD effect slots", "bonsai_base_ld_effect_slots", 0, 16, 1, 0
-  Tooltip "How many slots for LD effects non-legendary guns have."
-  Slider "Bonus slots per LD rarity level", "bonsai_bonus_ld_effect_slots", 0, 16, 1, 0
-  Tooltip "How many extra effect slots legendary guns get per rarity level (Common=1, Epic=4)."
+  TextField "$TFLV_OPT_NAME_BASE_LEVEL_COST", "bonsai_base_level_cost" //, 100, 10000, 100, 0
+  Tooltip "$TFLV_OPT_TT_BASE_LEVEL_COST"
+  ScaleSlider "$TFLV_OPT_NAME_UPGRADE_CHOICES_PER_GUN_LEVEL", "bonsai_upgrade_choices_per_gun_level", 0, 50, 1, "All of them"
+  ScaleSlider "$TFLV_OPT_NAME_UPGRADE_CHOICES_PER_PLAYER_LEVEL", "bonsai_upgrade_choices_per_player_level", 0, 50, 1, "All of them"
+  Tooltip "$TFLV_OPT_TT_UPGRADE_CHOICES_PER_LEVEL"
 
-  Option "Ignore original gun rarity for new effects", "bonsai_ignore_gun_rarity", "OnOff"
-  Tooltip "Whether weapons can learn LD effects that are rarer than the one they spawned with."
+  Slider "$TFLV_OPT_NAME_GUN_LEVELS_PER_PLAYER_LEVEL", "bonsai_gun_levels_per_player_level", 1, 100, 1, 0
+  Tooltip "$TFLV_OPT_TT_GUN_LEVELS_PER_PLAYER_LEVEL"
+
+  Slider "$TFLV_OPT_NAME_LEVEL_COST_MUL_FOR_MELEE", "bonsai_level_cost_mul_for_melee", 0.1, 5.0, 0.1, 1
+  Slider "$TFLV_OPT_NAME_LEVEL_COST_MUL_FOR_WIMPY", "bonsai_level_cost_mul_for_wimpy", 0.1, 5.0, 0.1, 1
+  Tooltip "$TFLV_OPT_TT_LEVEL_COST_MUL"
+
+  StaticText ""
+  StaticText "$TFLV_OPT_HEADER_LEGENDOOM", GRAY
+
+  ScaleSlider "$TFLV_OPT_NAME_GUN_LEVELS_PER_LD_EFFECT", "bonsai_gun_levels_per_ld_effect", 0, 100, 1, "Disabled"
+  Tooltip "$TFLV_OPT_TT_GUN_LEVELS_PER_LD_EFFECT"
+
+  Option "$TFLV_OPT_NAME_WHICH_GUNS_CAN_LEARN", "bonsai_which_guns_can_learn", "GunBonsaiWhatKindOfGunSelector"
+  Tooltip "$TFLV_OPT_TT_WHICH_GUNS_CAN_LEARN"
+  Option "$TFLV_OPT_NAME_WHICH_GUNS_CAN_REPLACE", "bonsai_which_guns_can_replace", "GunBonsaiWhatKindOfGunSelector"
+  Tooltip "$TFLV_OPT_TT_WHICH_GUNS_CAN_REPLACE"
+
+  Slider "$TFLV_OPT_NAME_BASE_LD_EFFECT_SLOTS", "bonsai_base_ld_effect_slots", 0, 16, 1, 0
+  Tooltip "$TFLV_OPT_TT_BASE_LD_EFFECT_SLOTS"
+  Slider "$TFLV_OPT_NAME_BONUS_LD_EFFECT_SLOTS", "bonsai_bonus_ld_effect_slots", 0, 16, 1, 0
+  Tooltip "$TFLV_OPT_TT_BONUS_LD_EFFECT_SLOTS"
+
+  Option "$TFLV_OPT_NAME_IGNORE_GUN_RARITY", "bonsai_ignore_gun_rarity", "OnOff"
+  Tooltip "$TFLV_OPT_TT_IGNORE_GUN_RARITY"
 }
 
 OptionValue "GunBonsaiHudMirrorMode" {
