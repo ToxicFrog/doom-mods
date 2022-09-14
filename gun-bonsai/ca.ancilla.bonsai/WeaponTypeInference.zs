@@ -1,4 +1,5 @@
 #namespace TFLV;
+#debug off;
 
 extend class ::WeaponInfo {
   // Overrides from BONSAIRC;
@@ -36,6 +37,16 @@ extend class ::WeaponInfo {
   void DumpTypeInfo() {
     console.printf("Weapon type inference:");
     console.printf("%12s %04X", "BONSAIRC", typeflags);
+    console.printf("%12s%s%s%s%s%s%s%s%s%s", "inferences",
+      IsHitscan() ? " hitscan":"",
+      IsProjectile() ? " projectile":"",
+      IsMelee() ? " melee":"",
+      IsWimpy() ? " wimpy":"",
+      IsFastProjectile() ? " fastproj":"",
+      IsSlowProjectile() ? " slowproj":"",
+      IsRipper() ? " ripper":"",
+      IsSeeker() ? " seeker":"",
+      IsBouncer() ? " bouncer":"");
     console.printf("%12s %f", "total", total);
     InfoLine("hitscan", hitscans);
     InfoLine("projectile", projectiles);
@@ -100,7 +111,8 @@ extend class ::WeaponInfo {
     return wpn.bMELEEWEAPON;
   }
   bool IsWimpy() const {
-    return wpn.bWIMPY_WEAPON;
+    if (typeflags) return typeflags & ::TYPE_WIMPY;
+    return wpn.bWIMPY_WEAPON || (!wpn.AmmoType1 && !wpn.AmmoType2);
   }
   // For additional modifiers we use a cutoff of 50%.
   bool IsFastProjectile() const {
