@@ -58,10 +58,10 @@ class ::WeaponInfo : Object play {
   }
 
   void OnActivate() {
-    return self.upgrades.OnActivate(stats, self);
+    self.upgrades.OnActivate(stats, self);
   }
   void OnDeactivate() {
-    return self.upgrades.OnDeactivate(stats, self);
+    self.upgrades.OnDeactivate(stats, self);
   }
 
   // List of upgrade classes that are unavailable on this weapon, even if they
