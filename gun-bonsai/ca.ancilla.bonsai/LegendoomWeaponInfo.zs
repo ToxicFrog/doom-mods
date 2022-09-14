@@ -110,6 +110,7 @@ class ::LegendoomWeaponInfo : Object play {
   }
 
   void DumpToConsole() {
+    if (!::Settings.have_legendoom()) return;
     if (effectSlots == 0) {
       console.printf("(no Legendoom data)");
       return;
