@@ -141,14 +141,15 @@ class ::WeaponInfo : Object play {
 
   double GetXPForLevel(uint level) const {
     double XP = ::Settings.base_level_cost() * double(level);
+    double mul = 1.0;
     if (IsMelee()) {
-      XP *= ::Settings.level_cost_mul_for("melee");
+      mul = min(mul, ::Settings.level_cost_mul_for("melee"));
     }
     if (IsWimpy()) {
-      XP *= ::Settings.level_cost_mul_for("wimpy");
+      mul = min(mul, ::Settings.level_cost_mul_for("wimpy"));
     }
     DEBUG("GetXPForLevel: level %d -> XP %.1f", level, XP);
-    return XP;
+    return XP * mul;
   }
 
   void AddXP(double newXP) {
