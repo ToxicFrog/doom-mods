@@ -1,3 +1,7 @@
+# 0.2.4
+
+- Fix: warning about malformed colour format in Indestructable.zsc
+
 # 0.2.3
 
 - Fix: pistol start/death exit compatibility

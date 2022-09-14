@@ -255,7 +255,6 @@ class ::IndestructableForce : Inventory {
 
 class ::IndestructableScreenEffect : Powerup {
   Default {
-    Powerup.Color "None";
     +INVENTORY.NOSCREENBLINK;
   }
 }
