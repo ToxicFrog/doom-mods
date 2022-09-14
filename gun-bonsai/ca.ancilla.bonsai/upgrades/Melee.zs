@@ -58,7 +58,7 @@ class ::DarkHarvest : ::BaseUpgrade {
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
-    return info.IsMelee();
+    return info.IsMelee() || info.IsWimpy();
   }
 }
 
@@ -87,7 +87,8 @@ class ::Shield : ::BaseUpgrade {
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
-    return info.IsMelee() && info.upgrades.Level("::Shield") < 2;
+    return (info.IsMelee() || info.IsWimpy())
+      && info.upgrades.Level("::Shield") < 2;
   }
 }
 
@@ -105,7 +106,7 @@ class ::Swiftness : ::BaseUpgrade {
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
-    return info.IsMelee();
+    return info.IsMelee() || info.IsWimpy();
   }
 }
 

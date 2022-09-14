@@ -6,6 +6,7 @@
 - Balance:
   - XP cost reductions for Wimpy and Melee weapons no longer stack; weapons that are both will have whichever is lower of the two costs
   - (experimental) Weapons that do not use ammo are considered Wimpy
+  - (experimental) Some previously melee-only upgrades -- Shield, Dark Harvest, and Swiftness -- are now also available on wimpy weapons
 - Fix:
   - Melee weapon detection reverted to its pre-0.9 behaviour of trusting the +MELEEWEAPON flag, since the more complicated approaches caused more problems than they solved
   - LegenDoom bonus effects are now earned at the correct levels
