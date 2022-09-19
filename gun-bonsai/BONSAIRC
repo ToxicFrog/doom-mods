@@ -134,8 +134,9 @@ ifdef ItemAthena {
 }
 
 # Hideous Destructor: ignore stuff that looks like a weapon but isn't.
+# There's lots of these so it should be expected, most of them are just HDWeapon for the cool menu stuff I believe. This includes a couple addons also that people commonly use. - [Ted the Dragon]
 ifdef HDWeapon {
-  type HDWoundFixer HDBackpack MagManager PickupManager: IGNORE;
+  type HDWoundFixer HDInjectorMaker HDBackpack MagManager PickupManager AutoReloader WeaponStashSwitcher Tripwire HDBinoculars HDDeployableBarricade HDTeleporter HDMagazineReloader LadderLauncher HDRearviewMirror HDPersonalShieldGenerator HDRoomba HDSecretFinder Despicyto HDSupplyBeacon HDUniversalReloader HDArmorPatchKit HDFieldAssemblyKit: IGNORE;
 }
 
 # Blade of Agony: ignore unarmed
