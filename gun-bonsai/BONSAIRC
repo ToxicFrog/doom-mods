@@ -134,9 +134,18 @@ ifdef ItemAthena {
 }
 
 # Hideous Destructor: ignore stuff that looks like a weapon but isn't.
-# There's lots of these so it should be expected, most of them are just HDWeapon for the cool menu stuff I believe. This includes a couple addons also that people commonly use. - [Ted the Dragon]
+# There's lots of these so it should be expected, most of them are just HDWeapon
+# for the cool menu stuff I believe. This includes a couple addons also that
+# people commonly use. - [Ted the Dragon]
 ifdef HDWeapon {
-  type HDWoundFixer HDInjectorMaker HDBackpack MagManager PickupManager AutoReloader WeaponStashSwitcher Tripwire HDBinoculars HDDeployableBarricade HDTeleporter HDMagazineReloader LadderLauncher HDRearviewMirror HDPersonalShieldGenerator HDRoomba HDSecretFinder Despicyto HDSupplyBeacon HDUniversalReloader HDArmorPatchKit HDFieldAssemblyKit: IGNORE;
+  type HDWoundFixer HDInjectorMaker HDBackpack MagManager PickupManager
+    AutoReloader WeaponStashSwitcher Tripwire HDBinoculars HDDeployableBarricade
+    HDTeleporter HDMagazineReloader LadderLauncher HDRearviewMirror
+    HDPersonalShieldGenerator HDRoomba HDSecretFinder Despicyto
+    HDSupplyBeacon HDUniversalReloader HDArmorPatchKit HDFieldAssemblyKit:
+    IGNORE;
+  # Also disable upgrades that don't work properly in it.
+  unregister TFLV_Upgrade_AmmoLeech TFLV_Upgrade_LifeLeech TFLV_Upgrade_ArmourLeech;
 }
 
 # Blade of Agony: ignore unarmed
