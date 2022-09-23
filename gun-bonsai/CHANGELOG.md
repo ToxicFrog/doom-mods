@@ -1,7 +1,10 @@
 # 0.9.4
 
+- New:
+  - "Ammoless weapons are wimpy" setting; turn this off for Hideous Destructor
 - Fix:
   - Improved Hideous Destructor compatibility (thanks to Ted the Dragon)
+  - Internal cleanup of how cvars are accessed
 
 # 0.9.3
 

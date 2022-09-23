@@ -71,6 +71,9 @@ server bool bonsai_ignore_death_exits = true;
 // properly, but won't respect replacements some mods make of these actors.
 server bool bonsai_use_builtin_actors = true;
 
+// Whether weapons that don't use ammo count as "wimpy".
+server bool bonsai_ammoless_weapons_are_wimpy = true;
+
 // LEGENDOOM INTEGRATION //
 
 // How many times a gun needs to level up before it gets a new Legendoom effect.

@@ -75,13 +75,18 @@ There are a lot of settings for this in the mod options, including which weapons
 ### Hideous Destructor
 
 Hideous Destructor replaces a lot of default Doom behaviours, in ways that Gun Bonsai has trouble coping with. A non-exhaustive list of issues:
-- `Scavenge Lead` doesn't work at all
-- `Scavenge Blood` and `Scavenge Steel` produce powerups that may not work properly
+- all `Scavenge` upgrades are disabled
 - damage is not always properly converted into XP
 - some upgrades are kind of crashy on some weapons
 - dead enemies may still register as alive to minions/submunitions/etc
 
+You also need to set the `treat weapons that don't use ammo as wimpy` option to `off` or it will spawn the wrong upgrades on most weapons.
+
 It still works, mostly, but Gun Bonsai is definitely confused by HDest and I can't guarantee that it won't break parts of HDest, too. Caveat lusor.
+
+### Corruption Cards
+
+The combination of Thorns Totem and the Thorns bonsai upgrade can crash the game.
 
 ## FAQ
 
