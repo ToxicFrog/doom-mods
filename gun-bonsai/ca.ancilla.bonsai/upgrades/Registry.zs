@@ -56,7 +56,7 @@ class ::Registry : Object play {
         candidates.push(upgrades[i]);
     }
 
-    let nrof = TFLV::Settings.upgrade_choices_per_player_level();
+    let nrof = bonsai_upgrade_choices_per_player_level;
     if (!nrof) {
       generated.Copy(candidates);
     } else {
@@ -72,7 +72,7 @@ class ::Registry : Object play {
         candidates.push(upgrades[i]);
     }
 
-    let nrof = TFLV::Settings.upgrade_choices_per_gun_level();
+    let nrof = bonsai_upgrade_choices_per_gun_level;
     if (!nrof) {
       generated.Copy(candidates);
     } else {

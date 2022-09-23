@@ -61,7 +61,7 @@ class ::PerPlayerStats : Object play {
     if (!info) return false;
 
     stats.pxp = XP;
-    stats.pmax = ::Settings.gun_levels_per_player_level();
+    stats.pmax = bonsai_gun_levels_per_player_level;
     stats.plvl = level;
     stats.pupgrades = upgrades;
     stats.winfo = info;
@@ -185,7 +185,7 @@ class ::PerPlayerStats : Object play {
   void PruneStaleInfo() {
     // Only do this in BIND_WEAPON mode. In other binding modes the WeaponInfos
     // can be rebound to new weapons.
-    if (::Settings.upgrade_binding_mode() != TFLV_BIND_WEAPON) return;
+    if (bonsai_upgrade_binding_mode != TFLV_BIND_WEAPON) return;
     for (int i = weapons.size() - 1; i >= 0; --i) {
       if (!weapons[i].wpn) {
         weapons.Delete(i);
@@ -206,7 +206,7 @@ class ::PerPlayerStats : Object play {
   // Add XP to the player. This is called by weapons when they level up to track
   // progress towards player-level upgrades.
   void AddPlayerXP(uint xp) {
-    let maxXP = ::Settings.gun_levels_per_player_level();
+    let maxXP = bonsai_gun_levels_per_player_level;
     self.XP += xp;
     if (self.XP >= maxXP && self.XP - xp < maxXP) {
       Fanfare();
@@ -222,7 +222,7 @@ class ::PerPlayerStats : Object play {
       owner.A_StartSound(::Settings.levelup_sound(), CHAN_AUTO,
         CHANF_OVERLAP|CHANF_UI|CHANF_NOPAUSE|CHANF_LOCAL);
     }
-    if (::Settings.upgrade_choices_per_player_level() == 1) {
+    if (bonsai_upgrade_choices_per_player_level == 1) {
       // If autochoose is on, immediately pick an upgrade for the player.
       StartLevelUp();
     } else {
@@ -237,14 +237,14 @@ class ::PerPlayerStats : Object play {
   }
 
   bool StartLevelUp() {
-    if (self.XP < ::Settings.gun_levels_per_player_level()) return false;
+    if (self.XP < bonsai_gun_levels_per_player_level) return false;
     let giver = ::PlayerUpgradeGiver(owner.GiveInventoryType("::PlayerUpgradeGiver"));
     giver.stats = self;
     return true;
   }
 
   void FinishLevelUp(::Upgrade::BaseUpgrade upgrade) {
-    let maxXP = ::Settings.gun_levels_per_player_level();
+    let maxXP = bonsai_gun_levels_per_player_level;
     if (!upgrade) {
       // Player level-ups are expensive, so we take away *half* of a level's
       // worth of XP.
@@ -273,7 +273,7 @@ class ::PerPlayerStats : Object play {
       // No bonus XP for overkills.
       damage += target.health;
     }
-    double xp = max(0, damage) * ::Settings.damage_to_xp_factor();
+    double xp = max(0, damage) * bonsai_damage_to_xp_factor;
     DEBUG("XPForDamage: damage=%d, xp=%.1f", damage, xp);
     if (target.GetSpawnHealth() > 100) {
       // Enemies with lots of HP get a log-scale XP bonus.
@@ -402,7 +402,7 @@ class ::PerPlayerStats : Object play {
     if (info) info.upgrades.Tick(owner);
 
     // No score integration? Nothing else to do.
-    if (::Settings.score_to_xp_factor() <= 0) {
+    if (bonsai_score_to_xp_factor <= 0) {
       prevScore = -1;
       return;
     }
@@ -415,8 +415,8 @@ class ::PerPlayerStats : Object play {
       return;
     } else if (owner.score > prevScore) {
       DEBUG("Score changed, adding %d points -> %.1f xp",
-        owner.score - prevScore, (owner.score - prevScore) * ::Settings.score_to_xp_factor());
-      AddXP((owner.score - prevScore) * ::Settings.score_to_xp_factor());
+        owner.score - prevScore, (owner.score - prevScore) * bonsai_score_to_xp_factor);
+      AddXP((owner.score - prevScore) * bonsai_score_to_xp_factor);
       prevScore = owner.score;
     }
   }

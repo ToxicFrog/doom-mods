@@ -90,7 +90,7 @@ class ::WeaponInfo : Object play {
   // Given another weapon to look at, determine if this WeaponInfo can be rebound
   // to it. The actual logic used depends on the bonsai_upgrade_binding_mode cvar.
   bool CanRebindTo(Weapon wpn) {
-    ::UpgradeBindingMode mode = ::Settings.upgrade_binding_mode();
+    ::UpgradeBindingMode mode = bonsai_upgrade_binding_mode;
 
     // SisterWeapon overrides everything else; a weapon and its sister are always
     // considered to share a binding regardless of binding mode.
@@ -140,13 +140,13 @@ class ::WeaponInfo : Object play {
   }
 
   double GetXPForLevel(uint level) const {
-    double XP = ::Settings.base_level_cost() * double(level);
+    double XP = bonsai_base_level_cost * double(level);
     double mul = 1.0;
     if (IsMelee()) {
-      mul = min(mul, ::Settings.level_cost_mul_for("melee"));
+      mul = min(mul, bonsai_level_cost_mul_for_melee);
     }
     if (IsWimpy()) {
-      mul = min(mul, ::Settings.level_cost_mul_for("wimpy"));
+      mul = min(mul, bonsai_level_cost_mul_for_wimpy);
     }
     DEBUG("GetXPForLevel: level %d -> XP %.1f", level, XP);
     return XP * mul;
@@ -172,7 +172,7 @@ class ::WeaponInfo : Object play {
       wpn.owner.A_StartSound(::Settings.levelup_sound(), CHAN_AUTO,
         CHANF_OVERLAP|CHANF_UI|CHANF_NOPAUSE|CHANF_LOCAL);
     }
-    if (::Settings.upgrade_choices_per_gun_level() == 1) {
+    if (bonsai_upgrade_choices_per_gun_level == 1) {
       StartLevelUp();
     } else {
       wpn.owner.A_Log(string.format(
@@ -210,8 +210,8 @@ class ::WeaponInfo : Object play {
       true);
     if (XP >= maxXP) Fanfare();
     if (::Settings.have_legendoom()
-        && ::Settings.gun_levels_per_ld_effect() > 0
-        && (level % ::Settings.gun_levels_per_ld_effect()) == 0) {
+        && bonsai_gun_levels_per_ld_effect > 0
+        && (level % bonsai_gun_levels_per_ld_effect) == 0) {
       let ldGiver = ::LegendoomEffectGiver(wpn.owner.GiveInventoryType("::LegendoomEffectGiver"));
       ldGiver.info = self.ld_info;
     }

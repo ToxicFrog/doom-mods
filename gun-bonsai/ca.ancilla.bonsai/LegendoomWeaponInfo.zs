@@ -36,14 +36,14 @@ class ::LegendoomWeaponInfo : Object play {
     string prefix = info.wpn.GetClassName();
 
     maxRarity = ::LegendoomUtil.GetWeaponRarity(info.wpn.owner, prefix);
-    canReplaceEffects = GunRarityMatchesSetting(::Settings.which_guns_can_replace(), maxRarity);
-    if (GunRarityMatchesSetting(::Settings.which_guns_can_learn(), maxRarity)) {
-      effectSlots = ::Settings.base_ld_effect_slots()
-        + maxRarity * ::Settings.bonus_ld_effect_slots();
+    canReplaceEffects = GunRarityMatchesSetting(bonsai_which_guns_can_replace, maxRarity);
+    if (GunRarityMatchesSetting(bonsai_which_guns_can_learn, maxRarity)) {
+      effectSlots = bonsai_base_ld_effect_slots
+        + maxRarity * bonsai_bonus_ld_effect_slots;
     } else {
       effectSlots = 0;
     }
-    if (::Settings.ignore_gun_rarity()) {
+    if (bonsai_ignore_gun_rarity) {
       maxRarity = RARITY_EPIC;
     } else {
       maxRarity = max(RARITY_COMMON, maxRarity);

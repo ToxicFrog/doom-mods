@@ -37,59 +37,6 @@ class TFLV_Settings : Object {
     return "";
   }
 
-  static int gun_levels_per_player_level() {
-    return GetInt("bonsai_gun_levels_per_player_level");
-  }
-  static int upgrade_choices_per_gun_level() {
-    return GetInt("bonsai_upgrade_choices_per_gun_level");
-  }
-  static int upgrade_choices_per_player_level() {
-    return GetInt("bonsai_upgrade_choices_per_player_level");
-  }
-  static int gun_levels_per_ld_effect() {
-    return GetInt("bonsai_gun_levels_per_ld_effect");
-  }
-  static int base_level_cost() {
-    return GetInt("bonsai_base_level_cost");
-  }
-  static double level_cost_mul_for(string flagname) {
-    return GetDouble("bonsai_level_cost_mul_for_"..flagname);
-  }
-  static double damage_to_xp_factor() {
-    return GetDouble("bonsai_damage_to_xp_factor");
-  }
-  static double score_to_xp_factor() {
-    return GetDouble("bonsai_score_to_xp_factor");
-  }
-  static TFLV_UpgradeBindingMode upgrade_binding_mode() {
-    return GetInt("bonsai_upgrade_binding_mode");
-  }
-  static bool ignore_death_exits() {
-    return GetBool("bonsai_ignore_death_exits");
-  }
-  static TFLV_WhichGuns which_guns_can_learn() {
-    return GetInt("bonsai_which_guns_can_learn");
-  }
-  static TFLV_WhichGuns which_guns_can_replace() {
-    return GetInt("bonsai_which_guns_can_learn");
-  }
-  static int base_ld_effect_slots() {
-    return GetInt("bonsai_base_ld_effect_slots");
-  }
-  static int bonus_ld_effect_slots() {
-    return GetInt("bonsai_bonus_ld_effect_slots");
-  }
-  static bool ignore_gun_rarity() {
-    return GetBool("bonsai_ignore_gun_rarity");
-  }
-  static bool use_builtin_actors() {
-    return GetBool("bonsai_use_builtin_actors");
-  }
-
-  static int screenblocks() {
-    return GetInt("screenblocks");
-  }
-
   static string, string, string hud_skin() {
     static const string skins[] = { "", "A", "B", "C" };
     let skin = GetInt("bonsai_hud_skin");
@@ -98,18 +45,22 @@ class TFLV_Settings : Object {
            string.format("LHDW%c", skin+0x40),
            string.format("LHDP%c", skin+0x40);
   }
+
   static double, double, double, uint hud_params() {
     return GetDouble("bonsai_hud_x"), GetDouble("bonsai_hud_y"), GetDouble("bonsai_hud_size"), GetInt("bonsai_hud_mirror");
   }
+
   static uint, uint, uint hud_colours() {
     // These are in RGB format rather than ARGB format, so add the alpha channel.
     return GetInt("bonsai_hud_rgb_frame") | 0xFF000000,
            GetInt("bonsai_hud_rgb_weapon") | 0xFF000000,
            GetInt("bonsai_hud_rgb_player") | 0xFF000000;
   }
+
   static bool levelup_flash() {
     return GetBool("bonsai_levelup_flash");
   }
+
   static string levelup_sound() {
     // Must be kept in sync with the GunBonsaiLevelUpSoundOption in MENUDEF
     static const string sounds[] = { "", "bonsai/gunlevelup", "misc/secret", "misc/teleport" };

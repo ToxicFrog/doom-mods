@@ -26,7 +26,7 @@ class ::LifeLeech : ::BaseUpgrade {
   }
 
   string GetBonusName() {
-    if (TFLV::Settings.use_builtin_actors()) {
+    if (TFLVbonsai_use_builtin_actors) {
       return "::LifeLeech::Bonus";
     } else {
       return "HealthBonus";
@@ -70,7 +70,7 @@ class ::ArmourLeech : ::BaseUpgrade {
   }
 
   string GetBonusName() {
-    if (TFLV::Settings.use_builtin_actors()) {
+    if (TFLVbonsai_use_builtin_actors) {
       return "::ArmourLeech::Bonus";
     } else {
       return "ArmorBonus";
