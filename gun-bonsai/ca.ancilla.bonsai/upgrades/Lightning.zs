@@ -184,7 +184,7 @@ class ::Revivification::Aux : Actor {
     tracer.TakeInventory("::PoisonDot", 255);
     tracer.TakeInventory("::ShockDot", 255);
     // Make it friendly and ethereal.
-    tracer.master = self.target;
+    tracer.master = null;
     tracer.bSOLID = false;
     tracer.A_SetRenderStyle(1.0, STYLE_SHADED);
     tracer.SetShade("8080FF");
