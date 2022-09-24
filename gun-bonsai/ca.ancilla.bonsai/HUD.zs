@@ -32,7 +32,7 @@ enum ::HUD::Mirror {
 }
 
 class ::HUD : Object ui {
-  double scale, screenscale;
+  double scale, screenscale, alpha;
   uint hudx, hudy;
   uint hudw, hudh;
   uint fbw, fbh;
@@ -49,7 +49,7 @@ class ::HUD : Object ui {
   // of 0.1.
   void Calibrate() {
     double x, y;
-    [x, y, self.scale, self.mirror] = ::Settings.hud_params();
+    [x, y, self.scale, self.alpha, self.mirror] = ::Settings.hud_params();
     if (scale > 1) // compatibility hack for pre-0.8.6 configs
       scale = scale/1080;
     // For a framebuffer size of 768, the font looks about right for a HUD scale
@@ -115,7 +115,7 @@ class ::HUD : Object ui {
 
     screen.DrawText(thefont, thefont.CR_WHITE, x, y, text,
       DTA_VirtualWidth, fbw, DTA_VirtualHeight, fbh, DTA_KeepRatio, true,
-      DTA_Color, colour);
+      DTA_Color, colour, DTA_Alpha, alpha);
   }
 
   // Draw a progress bar overlay using the given texture and colour, starting at
@@ -142,7 +142,7 @@ class ::HUD : Object ui {
         texture, false, hudx, hudy,
         DTA_VirtualWidth, fbw, DTA_VirtualHeight, fbh, DTA_KeepRatio, true,
         DTA_DestWidth, hudw, DTA_DestHeight, hudh,
-        DTA_Color, colour,
+        DTA_Color, colour, DTA_Alpha, alpha,
         (mirror & HUD_MIRROR_H) ? DTA_ClipLeft : DTA_ClipRight,
         clip_at);
   }
@@ -195,6 +195,7 @@ class ::HUD : Object ui {
     Screen.DrawTexture(tex(frame_tex..face), false, hudx, hudy,
         DTA_VirtualWidth, fbw, DTA_VirtualHeight, fbh, DTA_KeepRatio, true,
         DTA_Color, LevelUp(stats) ? GetShinyColour(0) : frame_rgb,
+        DTA_Alpha, alpha,
         DTA_DestWidth, hudw, DTA_DestHeight, hudh);
 
     DrawProgressBar(

@@ -46,8 +46,12 @@ class TFLV_Settings : Object {
            string.format("LHDP%c", skin+0x40);
   }
 
-  static double, double, double, uint hud_params() {
-    return GetDouble("bonsai_hud_x"), GetDouble("bonsai_hud_y"), GetDouble("bonsai_hud_size"), GetInt("bonsai_hud_mirror");
+  static double, double, double, double, uint hud_params() {
+    return GetDouble("bonsai_hud_x"),
+        GetDouble("bonsai_hud_y"),
+        GetDouble("bonsai_hud_size"),
+        GetDouble("bonsai_hud_alpha"),
+        GetInt("bonsai_hud_mirror");
   }
 
   static uint, uint, uint hud_colours() {

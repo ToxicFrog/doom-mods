@@ -2,6 +2,7 @@
 
 - New:
   - "Ammoless weapons are wimpy" setting; turn this off for Hideous Destructor
+  - HUD opacity setting
 - Fix:
   - Improved Hideous Destructor compatibility (thanks to Ted the Dragon)
   - Internal cleanup of how cvars are accessed

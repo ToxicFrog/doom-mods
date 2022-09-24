@@ -23,6 +23,9 @@ OptionMenu "GunBonsaiOptions"
   Slider "$TFLV_OPT_NAME_HUD_SIZE", "bonsai_hud_size", 0.05, 0.3, 0.01, 2
   Tooltip "$TFLV_OPT_TT_HUD_SIZE"
 
+  Slider "$TFLV_OPT_NAME_HUD_ALPHA", "bonsai_hud_alpha", 0.0, 1.0, 0.05, 2
+  Tooltip "$TFLV_OPT_TT_HUD_ALPHA"
+
   Option "$TFLV_OPT_NAME_HUD_MIRROR", "bonsai_hud_mirror", "GunBonsaiHudMirrorMode"
   Tooltip "$TFLV_OPT_TT_HUD_MIRROR"
 
