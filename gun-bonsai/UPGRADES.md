@@ -204,7 +204,7 @@ Slain enemies release a burst of chain lightning that arcs between targets. Chai
 
 ### Thunderbolt *(Lightning mastery)*
 
-Once you sufficiently exceed the lightning softcap on a target, it is struck by lightning, taking damage based on its max health and your level of Thunderbolt, with a bonus based on how many lightning stacks it has. This clears all lightning stacks on the target.
+Once you sufficiently exceed the lightning softcap on a target, it is struck by lightning, taking damage based on its max health and your level of Thunderbolt, with a bonus based on how many lightning stacks it has. This clears all lightning stacks on the target. Increasing the level increases both the damage and how frequently it triggers.
 
 ## Elemental Sythesis Powers
 

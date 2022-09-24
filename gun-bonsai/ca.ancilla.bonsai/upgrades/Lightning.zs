@@ -60,8 +60,9 @@ class ::Thunderbolt : ::DotModifier {
   override void ModifyDot(Actor player, Actor shot, Actor target, int damage, ::Dot dot_item) {
     let shock = ::ShockDot(dot_item);
     DEBUG("Thunderbolt: %d/%d", shock.stacks, shock.cap);
-    // Thunderbolt triggers once you exceed the softcap by 2x
-    if (shock.stacks > shock.cap*2) {
+    // Thunderbolt triggers once you exceed the softcap by 2x; levels in thunderbolt
+    // reduce this, making it easier to trigger
+    if (shock.stacks > (shock.cap*2) * (0.9 ** level)) {
       // Base damage is 10% of the target's max health per level, with diminishing
       // returns.
       let damage = target.SpawnHealth() * (1.0 - 0.9**level);

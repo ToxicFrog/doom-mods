@@ -3,6 +3,8 @@
 - New:
   - "Ammoless weapons are wimpy" setting; turn this off for Hideous Destructor
   - HUD opacity setting
+- Balance:
+  - Thunderbolt is now a bit easier to trigger, and gets easier as you add more levels
 - Fix:
   - Improved Hideous Destructor compatibility (thanks to Ted the Dragon)
   - Internal cleanup of how cvars are accessed
