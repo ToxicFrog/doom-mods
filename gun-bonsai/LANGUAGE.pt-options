@@ -1,6 +1,70 @@
 [pt]
 TFLV_OPT_TITLE = "Opções do Gun Bonsai";
+
+// Strings for option headers
+
+TFLV_OPT_HEADER_UI = "Configurações da IU";
+TFLV_OPT_HEADER_COMPATIBILITY = "Configurações de Compatibilidade";
+TFLV_OPT_HEADER_XP_SOURCE = "Configurações de fontes de XP";
+TFLV_OPT_HEADER_XP_BALANCE = "Configurações de Balanceamento de XP";
+TFLV_OPT_HEADER_LEGENDOOM = "Integração com Legendoom";
+
+// Strings for option names and tooltips
+
+TFLV_OPT_NAME_HUD_SKIN = "Skin da HUD";
+TFLV_OPT_TT_HUD_SKIN = "Os gráficos que você quer usar para a HUD. Você também pode desativá-lo completamente se quiser que seus upgrades sejam uma surpresa.";
+TFLV_OPT_NAME_HUD_X = "Posição X da HUD";
+TFLV_OPT_NAME_HUD_Y = "Posição Y da HUD";
+TFLV_OPT_TT_HUD_XY = "Posição da HUD do Gun Bonsai na tela, como uma proporção do tamanho total da tela. 0.0 é o canto superior esquerdo, 1.0 é o canto inferior direito.\nVocê também consegue usar coordenadas exatas por definindo bonsai_hud_x e bonsai_hud_y à suas coordenadas desejadas.";
+TFLV_OPT_NAME_HUD_SIZE = "Tamanho da HUD";
+TFLV_OPT_TT_HUD_SIZE = "Altura da HUD do Gun Bonsai, como uma fração do tamanho da tela.";
+TFLV_OPT_NAME_HUD_MIRROR = "Espelhamento da HUD";
+TFLV_OPT_TT_HUD_MIRROR = "Se deve espelhar a HUD. O padrão tem a caixa de nível na esquerda e as barras de XP na parte inferior.";
+TFLV_OPT_NAME_HUD_RGB_FRAME = "Cor da borda da HUD";
+TFLV_OPT_TT_HUD_RGB_FRAME = "Cor da borda da HUD.";
+TFLV_OPT_NAME_HUD_RGB_WEAPON = "Cor da informação de Arma";
+TFLV_OPT_TT_HUD_RGB_WEAPON = "Cor da barra de XP, nome, nível e texto do indicador de XP da arma.";
+TFLV_OPT_NAME_HUD_RGB_PLAYER = "Cor da informação do jogador";
+TFLV_OPT_TT_HUD_RGB_PLAYER = "Cor da barra de XP e texto do nível do jogador.";
+TFLV_OPT_NAME_LEVELUP_FLASH = "Piscar quando subir de nível";
+TFLV_OPT_TT_LEVELUP_FLASH = "Se deve piscar a tela quando sua arma ganha um nível.";
+TFLV_OPT_NAME_LEVELUP_SOUND_MODE = "Som de melhoria";
+TFLV_OPT_TT_LEVELUP_SOUND_MODE = "Que som tocar quando sua arma ganha um nível. Se definido como 'personalizado' irá usar qualquer coisa que a cvar 'bonsai_levelup_sound' seja.";
+TFLV_OPT_NAME_UPGRADE_BINDING_MODE = "Melhorias vinculam-se à arma";
+TFLV_OPT_TT_UPGRADE_BINDING_MODE = "Determina como as melhorias de armas se comportam quando você derruba ou está carregando várias armas do mesmo tipo.\n\c[CYAN][arma individual]:\c-cada arma tem suas próprias melhorias. Quando você deixa cair uma arma, as melhorias vão com ela, e se você perder uma arma permanentemente, as melhorias são perdidas para sempre.\n\c[CYAN][individual c/herança]:\c- cada arma tem suas próprias melhorias, but mas se uma arma for perdida e você pegar uma nova do mesmo tipo, a nova arma irá herdar as melhorias da antiga.\n\c[CYAN][classe de arma]:\c- todas as armas do mesmo tipo compartilham melhorias, mesmo se tiver mais de uma no seu inventário. Melhorias são guardadas mesmo se você perder uma arma.";
+TFLV_OPT_NAME_IGNORE_DEATH_EXITS = "Guardar melhorias em saídas de morte ou pistol start";
+TFLV_OPT_TT_IGNORE_DEATH_EXITS = "Se ativado, você manterá suas melhorias na transição de nível mesmo se perder seu inventário (sujeito à configuração melhorias vinculam-se à arma acima). Se desativado, as transições de nível que limpam seu inventário custarão suas melhorias.";
+TFLV_OPT_NAME_USE_BUILTIN_ACTORS = "Usar atores embutidos para drops de Caçador";
+TFLV_OPT_TT_USE_BUILTIN_ACTORS = "Se as melhorias Caça-Chumbo e Caça-Aço devem usar atores embutidos no Gun Bonsai, ou os atores HealthBonus e ArmorBonus genéricos do Doom 2.\nOs embutidos devem funcionar em qualquer IWAD. Os genéricos são mais propensos a 'misturar' ao jogar com mods que definem substituições para os bônuses genéricos, mas (dependendo do mod) pode não dar a quantidade correta de armadura.";
+TFLV_OPT_NAME_DAMAGE_TO_XP_FACTOR = "Ganhar XP de dano";
+TFLV_OPT_NAME_SCORE_TO_XP_FACTOR = "Ganhar XP de pontuação";
+TFLV_OPT_TT_DAMAGE_TO_XP_FACTOR = "A quantidade de XP que você ganha por ponto de dano que você inflige. Este recurso vem com o Gun Bonsai.";
+TFLV_OPT_TT_SCORE_TO_XP_FACTOR = "A quantidade de XP que você ganha pela pontuação que você acumula. Isso requer que você instale um mod que lhe permita ganhar pontos, como LazyPoints ou MetaDoom. As ações específicas que te dão pontos e quantos pontos você obtém dependerão do mod que você usa.";
+TFLV_OPT_NAME_BASE_LEVEL_COST = "XP necessário para chegar no nível 1";
+TFLV_OPT_TT_BASE_LEVEL_COST = "A quantidade de XP que você precisa para uma arma ganhar seu primeiro nível. Aproximadamente, 1 ponto de dano causado == 1 XP dado, com um bônus ao causar dano à inimigos mais desagradáveis como Ciberdemônios e Arquivís.";
+TFLV_OPT_NAME_UPGRADE_CHOICES_PER_GUN_LEVEL = "Escolhas de melhoria ao subir de nível de arma";
+TFLV_OPT_NAME_UPGRADE_CHOICES_PER_PLAYER_LEVEL = "Escolhas de melhoria ao subir de nível do jogador";
+TFLV_OPT_TT_UPGRADE_CHOICES_PER_LEVEL = "Quantas melhorias diferentes o mod te oferece ao subir de nível. Defini-lo como 0 permitirá que você escolha de uma lista completa de melhorias disponíveis. Defini-lo como 1 escolherá aleatoriamente uma melhoria para você sem abrir o menu.";
+TFLV_OPT_NAME_GUN_LEVELS_PER_PLAYER_LEVEL = "Níveis de arma à cada nível de jogador";
+TFLV_OPT_TT_GUN_LEVELS_PER_PLAYER_LEVEL = "Quantas vezes você precisa aumentar o nível de uma arma para ganhar um bônus de jogador.";
+TFLV_OPT_NAME_LEVEL_COST_MUL_FOR_MELEE = "Multiplicador de custo de XP para armas brancas";
+TFLV_OPT_NAME_LEVEL_COST_MUL_FOR_WIMPY = "Multiplicador de custo de XP para armas fracas";
+TFLV_OPT_TT_LEVEL_COST_MUL = "Multiplicadores de custo de XP para várias classes de armas. Estes podem empilhar (por exemplo, os punhos são 'armas brancas' e 'fracas' no Doom 2 vanilla). As configurações padrão tornam as armas fracas e brancas mais fáceis de subir de nível.\nobserve que nem todos os mods usam esses tipos ou os usam-os incorretamente - nesse caso, as substituições podem ser aplicadas no lump BONSAIRC.";
+TFLV_OPT_NAME_GUN_LEVELS_PER_LD_EFFECT = "Níveis de arma por efeito LD";
+TFLV_OPT_TT_GUN_LEVELS_PER_LD_EFFECT = "Quantas vezes uma arma precisa subir de nível para ganhar um novo efeito Legendoom. Funciona apenas se o Legendoom estiver instalado. Defina-o como 0 para desabilitar.";
+TFLV_OPT_NAME_WHICH_GUNS_CAN_LEARN = "Efeitos do LD podem ser aprendidos por";
+TFLV_OPT_TT_WHICH_GUNS_CAN_LEARN = "Quais armas podem ganhar novos efeitos do LD.";
+TFLV_OPT_NAME_WHICH_GUNS_CAN_REPLACE = "Efeitos LD substituíveis por";
+TFLV_OPT_TT_WHICH_GUNS_CAN_REPLACE = "Quais armas podem substituir efeitos de LD antigos por novos quando estiverem cheios.";
+TFLV_OPT_NAME_BASE_LD_EFFECT_SLOTS = "Número base de slots de efeito LD";
+TFLV_OPT_TT_BASE_LD_EFFECT_SLOTS = "Quantos slots para efeitos LD que armas não lendárias têm.";
+TFLV_OPT_NAME_BONUS_LD_EFFECT_SLOTS = "Slots de bônus por nível de raridade LD";
+TFLV_OPT_TT_BONUS_LD_EFFECT_SLOTS = "Quantos slots de efeitos extras as armas lendárias recebem por nível de raridade (Comum=1, Épico=4).";
+TFLV_OPT_NAME_IGNORE_GUN_RARITY = "Ignore a raridade da arma original para novos efeitos";
+TFLV_OPT_TT_IGNORE_GUN_RARITY = "Se as armas podem aprender efeitos de LD que são mais raros do que aqueles com os quais elas geraram.";
+
 // Strings for the various option enums
+
 // HUD orientation settings
 TFLV_OPT_MIRRORMODE_0 = "sem espelhamento";
 TFLV_OPT_MIRRORMODE_1 = "espelhar horizontalmente (caixa na esquerda)";
