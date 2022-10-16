@@ -9,6 +9,7 @@
   - Improved Hideous Destructor compatibility (thanks to Ted the Dragon)
   - Internal cleanup of how cvars are accessed
   - Revivified enemies no longer have their `master` set to the player, so enemies with (e.g.) `KillMaster` scripts won't vaporize the player when revived
+  - Elemental Synthesis upgrades copy all properties, not just the base level, of elemental effects
 
 # 0.9.3
 

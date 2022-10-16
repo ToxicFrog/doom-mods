@@ -45,7 +45,7 @@ class ::ElementalSynthesis : ::ElementalUpgrade {
       if (!srcdot) continue;
       DEBUG("  srcdot: %s", srcdot.GetTag());
       let dstdot = ::Dot.GiveStacks(srcdot.target, dst, dotname, 0);
-      dstdot.stacks = max(dstdot.stacks, srcdot.stacks);
+      dstdot.CopyFrom(srcdot);
       DEBUG("  afterwards dst stacks=%f", dstdot.amount);
     }
   }

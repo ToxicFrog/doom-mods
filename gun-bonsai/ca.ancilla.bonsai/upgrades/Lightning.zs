@@ -148,6 +148,14 @@ class ::ShockDot : ::Dot {
     if (revive > 0) MellGetTheElectrodes();
     if (chain > 0) ZapZap();
   }
+
+  override void CopyFrom(::Dot _src) {
+    super.CopyFrom(_src);
+    let src = ::ShockDot(_src);
+    self.revive = max(self.revive, src.revive);
+    self.chain = max(self.chain, src.chain);
+    self.cap = max(self.cap, src.cap);
+  }
 }
 
 class ::Revivification::Aux : Actor {

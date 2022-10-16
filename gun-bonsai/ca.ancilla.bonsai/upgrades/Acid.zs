@@ -69,13 +69,21 @@ class ::Embrittlement : ::DotModifier {
   }
 }
 
-// Poison DoT. Note that it burns one stack per dot tick, so 5 stacks == 1 second.
+// Acid DoT. Note that it burns one stack per dot tick, so 5 stacks == 1 second.
 class ::AcidDot : ::Dot {
   uint damage_this_tick;
   uint level;
   uint concentration;
   uint splash;
   uint embrittlement;
+
+  override void CopyFrom(::Dot _src) {
+    super.CopyFrom(_src);
+    let src = ::AcidDot(_src);
+    self.concentration = max(self.concentration, src.concentration);
+    self.splash = max(self.splash, src.splash);
+    self.embrittlement = max(self.embrittlement, src.embrittlement);
+  }
 
   Default {
     DamageType "Acid";

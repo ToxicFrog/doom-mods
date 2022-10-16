@@ -168,6 +168,13 @@ class ::FireDot : ::Dot {
     aux.terror = self.terror;
     aux.range = owner.radius;
   }
+
+  override void CopyFrom(::Dot _src) {
+    super.CopyFrom(_src);
+    let src = ::FireDot(_src);
+    self.terror = max(self.terror, src.terror);
+    self.spread = max(self.spread, src.spread);
+  }
 }
 
 class ::Conflagration::Aux : Actor {

@@ -11,6 +11,10 @@ clarify how the custom levelup sound cvar works
 ? figure out XP wraparound ? maybe fixed
 stop including PENTAHUD and other badlumps
 add secondary upgrade support to elemental sythesis by implenting ::Dot.CopyFrom
+rapid fire wears off on level transitions and you need to switch weapons to reapply it
+nullpointer when attacking upgraded centaurs in Serpent Resurrection:
+  Called from TFLV_Upgrade_Thunderbolt_Aux.PostBeginPlay at GunBonsai-0.9.3.pk3:ca.ancilla.bonsai/upgrades/lightning.zsc, line 461 
+co-op doesn't work at all (maybe bump this to 0.10)
 
 ### 0.9.x
 
@@ -40,7 +44,9 @@ add secondary upgrade support to elemental sythesis by implenting ::Dot.CopyFrom
 
 ### Ideas
 
-Detect weapons that don't use ammo as WIMPY and make some of the same upgrades exclusive to melee weapons available on them
+### MsrSgtShooterPerson
+
+Upgrade that adds random projectiles from any player weapon or monster in the game into your shots (either picked at random when you choose the upgrade or as you fire).
 
 ### DarkkOne suggests a shield rework
 

@@ -131,4 +131,9 @@ class ::Dot : Inventory {
     ThrowAbortException("Subclass of ::Dot did not implement GetParticleZV()!");
     return 0;
   }
+
+  // Used by Elemental Synthesis effects to correctly copy secondary effect stacks.
+  virtual void CopyFrom(::Dot src) {
+    self.stacks = max(self.stacks, src.stacks);
+  }
 }

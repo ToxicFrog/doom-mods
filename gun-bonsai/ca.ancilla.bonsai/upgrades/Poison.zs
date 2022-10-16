@@ -124,6 +124,13 @@ class ::PoisonDot : ::Dot {
     }
     DEBUG("Weakness: %d -> %d", damage, newdamage);
   }
+
+  override void CopyFrom(::Dot _src) {
+    super.CopyFrom(_src);
+    let src = ::PoisonDot(_src);
+    self.weakness = max(self.weakness, src.weakness);
+    self.hallucinogens = max(self.hallucinogens, src.hallucinogens);
+  }
 }
 
 class ::Putrefaction::Aux : Actor {
