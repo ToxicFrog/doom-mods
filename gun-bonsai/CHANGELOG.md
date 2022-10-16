@@ -3,6 +3,7 @@
 - New:
   - "Ammoless weapons are wimpy" setting; turn this off for Hideous Destructor
   - HUD opacity setting
+  - Complete Brazilian Portugese translation for options screen
 - Balance:
   - Thunderbolt is now a bit easier to trigger, and gets easier as you add more levels
 - Fix:
