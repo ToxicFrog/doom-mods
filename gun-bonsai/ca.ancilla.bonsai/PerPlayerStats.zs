@@ -111,6 +111,7 @@ class ::PerPlayerStats : Object play {
   ::WeaponInfo CreateInfoForCurrentWeapon() {
     // Fastest path -- WeaponInfo is already initialized and selected.
     if (GetInfoForCurrentWeapon()) return infoForCurrentWeapon;
+    DEBUG("CreateInfoForCurrentWeapon: fastpath failed");
 
     // Otherwise we need to at least select it. GetOrCreateInfoFor will always
     // succeed in either re-using an existing WeaponInfo or, failing that,
@@ -134,6 +135,12 @@ class ::PerPlayerStats : Object play {
           DEBUG("Rebuilding weaponinfo for %s", TAG(wep));
           GetOrCreateInfoFor(wep);
         }
+      }
+      if (infoForCurrentWeapon) {
+        // Force CreateInfoForCurrentWeapon to re-select the active info and
+        // re-activate it.
+        infoForCurrentWeapon.OnDeactivate();
+        infoForCurrentWeapon = null;
       }
       weaponinfo_dirty = false;
     }
