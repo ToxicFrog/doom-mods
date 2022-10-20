@@ -6,6 +6,9 @@
   - Complete Brazilian Portugese translation for options screen
 - Balance:
   - Thunderbolt is now a bit easier to trigger, and gets easier as you add more levels
+  - Rapid Fire now increases attack speed by 50%
+  - Rapid Fire now caps at 10 (6x IAS) rather than 1 (2x)
+  - Rapid Fire is available only on weapons that use ammo, to prevent it from being strictly better than Damage+ on weapons without
 - Fix:
   - Improved Hideous Destructor compatibility (thanks to Ted the Dragon)
   - Internal cleanup of how cvars are accessed

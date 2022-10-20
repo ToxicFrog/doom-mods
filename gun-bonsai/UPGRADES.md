@@ -87,9 +87,9 @@ Projectiles home in on enemies. Higher levels will lock on from further away and
 
 Shots go through enemies (but not walls). Note that most shots will hit enemies multiple times as they pass through, so this also acts as a damage bonus which hits harder against larger enemies.
 
-### Rapid Fire *(Max 1 level)*
+### Rapid Fire *(Max 10 levels; weapons with ammo only)*
 
-Doubles your attack speed, doubling both damage output and ammo consumption.
+Increases attack speed by 50% (additive). Maxes out at +500% (6x normal attack speed). High levels may have graphical glitches. This is a great way to get more DPS, but it comes at the cost of increased ammo consumption.
 
 ### Shield *(Melee only, max two levels)*
 
