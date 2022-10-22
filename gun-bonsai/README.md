@@ -1,6 +1,6 @@
 # Gun Bonsai
 
-Gun Bonsai is a mod about growing your weapons from delicate pain saplings into beautiful murder trees. It is designed for maximum compatibility, and pairs well with total conversions and monster/weapon replacements, especially ones that increase the overall difficulty.
+Gun Bonsai is a mod about growing your weapons from delicate pain saplings into beautiful murder trees. It is designed for maximum compatibility; it works in both gzDoom and lzDoom, supports multiplayer, and pairs well with total conversions and monster/weapon replacements, especially ones that increase the overall difficulty.
 
 As you fight the hordes of hell, your weapons will gain XP based on how much damage you do and what you're attacking. Once a weapon levels up, you can open the info screen to browse a list of randomly selected upgrades (four by default), of which you can pick one. Higher levels take more XP to earn, but some upgrades can only be unlocked on high-level weapons.
 

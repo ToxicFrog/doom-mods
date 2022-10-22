@@ -127,7 +127,7 @@ class ::EventHandler : StaticEventHandler {
     // Check for pending level ups and apply those if present.
     if (stats.GetInfoForCurrentWeapon() && stats.GetInfoForCurrentWeapon().StartLevelUp()) return;
     if (stats.StartLevelUp()) return;
-    Menu.SetMenu("GunBonsaiStatusDisplay");
+    if (p == consoleplayer) Menu.SetMenu("GunBonsaiStatusDisplay");
     return;
   }
 
@@ -154,9 +154,7 @@ class ::EventHandler : StaticEventHandler {
   }
 
   override void NetworkProcess(ConsoleEvent evt) {
-    if (evt.player != consoleplayer) {
-      return;
-    } else if (evt.name == "bonsai-show-info") {
+    if (evt.name == "bonsai-show-info") {
       ShowInfo(evt.player);
     } else if (evt.name == "bonsai-cycle-ld-effect") {
       if (::Settings.have_legendoom()) {
@@ -199,7 +197,7 @@ class ::EventHandler : StaticEventHandler {
     DEBUG("WTD: %s inflictor=%s source=%s damage=%d type=%s flags=%X, hp=%d",
       TAG(evt.thing), TAG(evt.inflictor), TAG(evt.damagesource),
       evt.damage, evt.damagetype, evt.damageflags, evt.thing.health);
-    if (evt.damagesource == players[consoleplayer].mo
+    if (PlayerPawn(evt.damagesource)
         && evt.thing.bISMONSTER
         && !evt.thing.bFRIENDLY // do not award XP or trigger procs when attacking friendlies
         && evt.thing != evt.damagesource
@@ -209,7 +207,7 @@ class ::EventHandler : StaticEventHandler {
       if (evt.thing.health <= 0) {
         stats.OnKill(evt.inflictor, evt.thing);
       }
-    } else if (evt.thing == players[consoleplayer].mo) {
+    } else if (PlayerPawn(evt.thing)) {
       ::PerPlayerStats.GetStatsFor(PlayerPawn(evt.thing)).OnDamageReceived(
         evt.inflictor, evt.damagesource, evt.damage);
     }
@@ -218,7 +216,7 @@ class ::EventHandler : StaticEventHandler {
   override void WorldThingSpawned(WorldEvent evt) {
     Actor thing = evt.thing;
     if (!thing) return;
-    if (thing.bMISSILE && thing.target == players[consoleplayer].mo) {
+    if (thing.bMISSILE && PlayerPawn(thing.target)) {
       // If it's a projectile (MISSILE flag is set) and target=player, the player
       // just fired a shot. This is our chance to fiddle with its flags and whatnot.
       ::PerPlayerStats.GetStatsFor(thing.target).OnProjectileCreated(thing);

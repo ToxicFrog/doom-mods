@@ -1,3 +1,8 @@
+# 0.9.5
+
+- Fix:
+  - Multiplayer should now stay synced
+
 # 0.9.4
 
 - New:

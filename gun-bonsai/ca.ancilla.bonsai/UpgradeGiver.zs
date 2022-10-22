@@ -48,7 +48,7 @@ class ::UpgradeGiver : Inventory {
 
     DEBUG("%s claiming menu", self.GetClassName());
     stats.currentEffectGiver = self;
-    Menu.SetMenu(menuname);
+    if (players[consoleplayer].mo == owner) Menu.SetMenu(menuname);
     self.SetStateLabel("AwaitChoice");
   }
 

@@ -4,18 +4,6 @@
 
 Slomo option instead of timestop?
 
-### 0.9.4
-
-make rapid fire work on things that have 1-tic frames
-clarify how the custom levelup sound cvar works
-? figure out XP wraparound ? maybe fixed
-stop including PENTAHUD and other badlumps
-add secondary upgrade support to elemental sythesis by implenting ::Dot.CopyFrom
-rapid fire wears off on level transitions and you need to switch weapons to reapply it
-nullpointer when attacking upgraded centaurs in Serpent Resurrection:
-  Called from TFLV_Upgrade_Thunderbolt_Aux.PostBeginPlay at GunBonsai-0.9.3.pk3:ca.ancilla.bonsai/upgrades/lightning.zsc, line 461 
-co-op doesn't work at all (maybe bump this to 0.10)
-
 ### 0.9.x
 
 - scavenge lead probabalistic below 100hp & for ammo that produces low amounts
@@ -25,6 +13,11 @@ co-op doesn't work at all (maybe bump this to 0.10)
   - raised enemies don't collide with player projectiles, if possible
 - Shield upgrade rework
   - rather than a flat damage reduction, have it charge up when making kills in melee, and gradually fade when not doing so
+- clarify how the custom levelup sound cvar works
+- stop including PENTAHUD and other badlumps
+-  nullpointer when attacking upgraded centaurs in Serpent Resurrection:
+  - Called from TFLV_Upgrade_Thunderbolt_Aux.PostBeginPlay at GunBonsai-0.9.3.pk3:ca.ancilla.bonsai/upgrades/lightning.zsc, line 461
+
 
 ### 0.10.x?
 
