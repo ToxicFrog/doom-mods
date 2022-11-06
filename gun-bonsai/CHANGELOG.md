@@ -1,3 +1,8 @@
+# 0.9.6
+
+- Fix:
+  - Crash when Thunderbolt triggers on an enemy as it's killed
+
 # 0.9.5
 
 - Fix:

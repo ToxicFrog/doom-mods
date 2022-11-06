@@ -467,6 +467,7 @@ class ::Thunderbolt::Aux : Actor {
     // We clear the SHOOTABLE bit because otherwise the railgun shots we use
     // for the lightning effect are stopped by the bottom of the actor for
     // some reason.
+    if (!tracer) return; // Target got removed from play before we started.
     let shootable = tracer.bSHOOTABLE;
     tracer.bSHOOTABLE = false;
     for (uint i = 0; i < 16; ++i) {

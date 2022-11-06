@@ -4,20 +4,29 @@
 
 Slomo option instead of timestop?
 
+### next
+
+- disable particles option to help narrow down causes of heavy lag
+- disable trails option for frag shots likewise
+- if the level ends while someone has the upgrade menu open they become unable to claim upgrades
+- submunitions can chain-trigger on enemies killed by dots; this is probably due to dot damage not properly setting the weaponspecial field
+- submunitions cause high levels of lag for some players
+  - implement hard cap on submunition count, increase damage instead
+  - dan_the_noob suggests reducing the number of bomblets released per level but increasing damage
+- replace lightning particle effect with assets/thunder effect 02/thunder strike for thunderbolt?
+- swap thunderbolt and paralysis because para is wicked powerful?
+- thunderbolt crashes if the target got deleted after taking damage
+  - crash when bd21monstersonlyfix is loaded: https://imgur.com/a/OPJJXlH -- this may be related
+
 ### 0.9.x
 
-- scavenge lead probabalistic below 100hp & for ammo that produces low amounts
-  - something like: ammo count = (base ammo count * 0.1 * target health/100)
-- menuing crash when opening the menu just after leveling up?
-- Revivification rework:
-  - raised enemies don't collide with player projectiles, if possible
-- Shield upgrade rework
-  - rather than a flat damage reduction, have it charge up when making kills in melee, and gradually fade when not doing so
-- clarify how the custom levelup sound cvar works
 - stop including PENTAHUD and other badlumps
 -  nullpointer when attacking upgraded centaurs in Serpent Resurrection:
   - Called from TFLV_Upgrade_Thunderbolt_Aux.PostBeginPlay at GunBonsai-0.9.3.pk3:ca.ancilla.bonsai/upgrades/lightning.zsc, line 461
-
+- ditto particle effects, fragmentation
+- redo build system so I can force debug on globally for dev or off globally for release
+- Naku-Naru fire speed increases idle/reload anims of some weapons but not firing speed
+- Naku-Naru gives the wrong weapons melee upgrades
 
 ### 0.10.x?
 
@@ -25,6 +34,12 @@ Slomo option instead of timestop?
 
 ### Soon
 
+- scavenge lead probabalistic below 100hp & for ammo that produces low amounts
+  - something like: ammo count = (base ammo count * 0.1 * target health/100)
+- Revivification rework:
+  - raised enemies don't collide with player projectiles, if possible
+- Shield upgrade rework
+  - rather than a flat damage reduction, have it charge up when making kills in melee, and gradually fade when not doing so
 - add ammo capacity upgrade
   - walk player inventory and boost the MaxAmount and BackpackMaxAmount
   - requires OnApply support, probably
@@ -33,7 +48,7 @@ Slomo option instead of timestop?
   - we can use GetDefaultByType(ammoitem).MaxAmount to compute the base max amount
     and then confer bonuses based on that
 - Make melee detection more permissive, but only trigger melee upgrades when the player is in melee
-- RoF upgrades can be implemented by studying the PowerDoubleFiringSpeed powerup
+- upgrade that spawns extra projectiles every N shots
 
 ### Ideas
 
