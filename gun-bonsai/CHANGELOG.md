@@ -1,12 +1,9 @@
-# 0.9.6
-
-- Fix:
-  - Crash when Thunderbolt triggers on an enemy as it's killed
-
 # 0.9.5
 
+- New:
+  - Multiplayer support! Please report any desyncs you find.
 - Fix:
-  - Multiplayer should now stay synced
+  - Crash when Thunderbolt triggers on an enemy as it's killed when certain mods are installed.
 
 # 0.9.4
 
