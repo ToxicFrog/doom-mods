@@ -392,6 +392,12 @@ class ::PerPlayerStats : Object play {
     self.proxy = proxy;
     self.owner = proxy.owner;
     upgrades.OnActivate(self, null);
+    if (currentEffectGiver) {
+      // Player was in the middle of getting a level-up! Reset the effectgiver
+      // so that the menu reopens after a level transition.
+      DEBUG("resetting currenteffectgiver");
+      currentEffectGiver.SetStateLabel("ChooseUpgrade");
+    }
   }
 
   // Runs once per tic.

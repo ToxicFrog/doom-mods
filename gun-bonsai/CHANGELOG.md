@@ -1,7 +1,8 @@
 # 0.9.5
 
 - New:
-  - Multiplayer support! Please report any desyncs you find.
+  - Multiplayer support! There may still be some issues but hopefully they should be more on the "weird glitch" side than the "desyncs/breaks" side.
+  - Thank you Dan_The_Noob in particular for testing MP!
 - Fix:
   - Crash when Thunderbolt triggers on an enemy as it's killed when certain mods are installed.
 

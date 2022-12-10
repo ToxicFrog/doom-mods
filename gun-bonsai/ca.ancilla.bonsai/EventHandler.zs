@@ -135,7 +135,10 @@ class ::EventHandler : StaticEventHandler {
     if (!playerstats[p]) return;
     let giver = playerstats[p].currentEffectGiver;
     if (!giver) {
-      console.printf("error: bonsai-choose-level-up-option without active level up menu");
+      // They chose a level up but their effectgiver is missing! This probably means
+      // that something ate their inventory between them opening the menu and choosing
+      // an option.
+      DEBUG("Stats for player %d have id %d and no effect giver", p, playerstats[p].id);
       return;
     }
     giver.Choose(index);
