@@ -90,6 +90,12 @@ ifdef TFIS_IndestructableEventHandler { register TFLV_Upgrade_Indestructable; }
 # Disable Juggler upgrade in Hellrider, since it doesn't work with HR weapon switching.
 ifdef EndieWeapon { unregister TFLV_Upgrade_Juggler; }
 
+# Heretic fixes.
+ifdef GoldWand {
+  type Staff: HITSCAN MELEE WIMPY;
+  type GoldWand: HITSCAN WIMPY;
+}
+
 # Hexen fixes.
 ifdef MWeapWand {
   # Hexen melee weapons have unusually long reach and may not autodetect

@@ -1,3 +1,8 @@
+# 0.9.6
+
+- Fix:
+  - Heretic's wand and staff are now considered "wimpy" weapons.
+
 # 0.9.5
 
 - New:
