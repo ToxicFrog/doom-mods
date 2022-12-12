@@ -4,7 +4,7 @@ This is a small library for displaying tooltips in gzDoom menus (both ListMenus 
 
 It is a single file containing two classes, which can be either loaded as a separate pk3 (available on the [releases page](https://github.com/ToxicFrog/doom-mods/releases)) or simply copied into your mod wholesale. (In the latter case, don't forget to rename the classes to avoid conflicts with other uses of it!)
 
-For an example of this library in use, check out [Gun Bonsai's MENUDEF](https://github.com/ToxicFrog/doom-mods/blob/main/gun-bonsai/MENUDEF).
+For an example of this library in use, check out [Gun Bonsai's MENUDEF](https://github.com/ToxicFrog/doom-mods/blob/main/gun-bonsai/MENUDEF). If you have questions, comments, or bug reports, use the Github issues system or post in the [ZDoom forums thread](https://forum.zdoom.org/viewtopic.php?p=1233646).
 
 ## API
 
