@@ -8,24 +8,7 @@
 // For details, see the included README.
 
 class TF_TooltipListMenu : ListMenu {
-  array<TF_Tooltip> tooltips;
-
-  // Default settings:
-  // - top left corner
-  // - 30% of the screen width
-  // - 1em horizontal margin and 0.5lh vertical margin
-  // - white text using newsmallfont
-  TF_Tooltip GetDefaults() {
-    let tt = TF_Tooltip(new("TF_Tooltip"));
-    tt.x = tt.y = 0.0;
-    tt.w = 0.3;
-    tt.xpad = 1.0;
-    tt.ypad = 0.5;
-    tt.scale = 1.0;
-    tt.font = newsmallfont;
-    tt.colour = Font.CR_WHITE;
-    return tt;
-  }
+  mixin TF_TooltipMenu;
 
   override void Init(Menu parent, ListMenuDescriptor desc) {
     super.Init(parent, desc);
@@ -77,51 +60,6 @@ class TF_TooltipListMenu : ListMenu {
     // Store our tooltips inside the menu descriptor so we can recover them when
     // the menu is redisplayed.
     desc.mItems.push(ListMenuItemTooltipHolder(new("ListMenuItemTooltipHolder").Init(tooltips)));
-  }
-
-  TF_Tooltip AppendableTooltip(uint first, uint last) {
-    if (tooltips.size() <= 0) return null;
-    let tt = tooltips[tooltips.size()-1];
-    if (tt.first == first) return tt;
-    return null;
-  }
-
-  void AddTooltip(TF_Tooltip settings, uint first, uint last, string tooltip) {
-    if (first < 0) ThrowAbortException("Tooltip must have at least one menu item preceding it!");
-    let localtooltip = Stringtable.localize(tooltip);
-    let tt = AppendableTooltip(first, last);
-    if (tt) {
-      // Existing tooltip that we're just appending to.
-      tt.text = tt.text .. "\n" .. localtooltip;
-      return;
-    }
-    // No existing tooltip for these menu entries, create a new one.
-    tt = new("TF_Tooltip");
-    tt.CopyFrom(settings);
-    tt.first = first;
-    tt.last = last;
-    tt.text = localtooltip;
-    tooltips.push(tt);
-  }
-
-  TF_Tooltip FindTooltipFor(int item) {
-    // console.printf("FindTooltipFor(%d)", item);
-    if (item < 0 || item >= mDesc.mItems.size()) return null;
-    if (!mDesc.mItems[item].Selectable()) return null;
-    for (uint i = 0; i < tooltips.size(); ++i) {
-      if (tooltips[i].first <= item && item <= tooltips[i].last) {
-        // console.printf("Found %d <= %d <= %d",
-        //   tooltips[i].first, i, tooltips[i].last);
-        return tooltips[i];
-      }
-    }
-    return null;
-  }
-
-  override void Drawer() {
-    super.Drawer();
-    let tt = FindTooltipFor(mDesc.mSelectedItem);
-    if (tt) tt.Draw();
   }
 }
 
