@@ -55,7 +55,7 @@ Non-elemental upgrades for your weapons.
 
 Shots bounce off walls. Higher levels increase the number of bounces and decrease the amount of velocity lost on bounce. At level 3, shots bounce off enemies as well.
 
-### Dark Harvest *(Melee only)*
+### Dark Harvest *(Melee or Wimpy only)*
 
 Killing an enemy grants you 1 point of health and armour per level (×10 for boss kills). This is capped at 100% of your max health, +20% for each level (so 120% at level 1 and 200% at level 5). If you boost it above level 5 you can exceed the normal 200 health/armour limit.
 
@@ -91,7 +91,7 @@ Shots go through enemies (but not walls). Note that most shots will hit enemies 
 
 Increases attack speed by 50% (additive). Maxes out at +500% (6x normal attack speed). High levels may have graphical glitches. This is a great way to get more DPS, but it comes at the cost of increased ammo consumption.
 
-### Shield *(Melee only, max two levels)*
+### Shield *(Melee or Wimpy only)*
 
 Reduces incoming damage by ~20%. Can be stacked, with diminishing returns maxing out at 60% damage reduction. Cannot reduce incoming damage below 1 point.
 
@@ -99,7 +99,7 @@ Reduces incoming damage by ~20%. Can be stacked, with diminishing returns maxing
 
 Killing an enemy releases a pile of bouncing explosives. Damage depends on level and how much you overkilled the enemy by; increasing level also increases the number of submunitions.
 
-### Swiftness *(Melee only)*
+### Swiftness *(Melee or Wimpy only)*
 
 Killing an enemy gives you a 1 second of time freeze (+200ms per additional level). You can extend this by killing more enemies before it wears off.
 
