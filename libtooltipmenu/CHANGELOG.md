@@ -2,6 +2,7 @@
 
 - New:
   - support for `ListMenu` menus.
+  - README now includes more detailed instructions on how to incorporate this into a mod without conflicts.
 
 # 0.2.1
 

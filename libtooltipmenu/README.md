@@ -2,7 +2,7 @@
 
 This is a small library for displaying tooltips in gzDoom menus (both ListMenus and OptionMenus). It provides a convenient way to display in-game information about mod settings (or anything else you might use an option menu for), without crowding the menu with lots of `StaticText` entries. The tooltips can be written directly in the MENUDEF and require no special handling in your mod's code. They support `Print` colour/format escapes and `LANGUAGE` localization.
 
-It is a single file containing two classes, which can be either loaded as a separate pk3 (available on the [releases page](https://github.com/ToxicFrog/doom-mods/releases)) or simply copied into your mod wholesale. (In the latter case, don't forget to rename the classes to avoid conflicts with other uses of it!)
+It consists of three ZScript files, which can be either loaded as a separate pk3 (available on the [releases page](https://github.com/ToxicFrog/doom-mods/releases)) or simply copied into your mod wholesale. (In the latter case, don't forget to rename the classes to avoid conflicts with other mods that use it -- see the end of tihs file for details.)
 
 For an example of this library in use, check out [Gun Bonsai's MENUDEF](https://github.com/ToxicFrog/doom-mods/blob/main/gun-bonsai/MENUDEF). If you have questions, comments, or bug reports, use the Github issues system or post in the [ZDoom forums thread](https://forum.zdoom.org/viewtopic.php?p=1233646).
 
@@ -121,6 +121,21 @@ TooltipApperance "newsmallfont", "pink", "SBOXA0"
 The font and colour will be resolved with `GetFont` and `FindFontColor`. The texture supports animation and will be scaled to fit the tooltip, so it's recommended to choose something that will still look acceptable when stretched or squished into odd shapes. If you want a simple black background with antialiased edges, libtooltipmenu ships with one, called "TFTTBG".
 
 Like `TooltipGeometry` this can be specified multiple times to apply different settings to different tooltips. To leave a setting unchanged, use `""`, e.g. `TooltipAppearance "", "blue", ""` to change the font colour and nothing else.
+
+## Renaming to avoid conflicts
+
+If you don't want to add the pk3 as a separate dependency and instead want to copy libtooltipmenu into your own mod, you should rename the libtooltipmenu classes to avoid conflicts with other mods that use it. The classes you'll need to rename are:
+
+- `Tooltips.zsc`: `TF_Tooltip`, `TF_TooltipHolder`, `TF_TooltipItem`, `TF_TooltipGeometry`, `TF_TooltipAppearance`
+- `TooltipOptionMenu.zsc`: `TF_TooltipOptionMenu`, `OptionMenuItemTooltipHolder`, `OptionMenuItemTooltip`, `OptionMenuItemTooltipGeometry`, `OptionMenuItemTooltipAppearance`
+- `TooltipListMenu.zsc`: `TF_TooltipListMenu`, `ListMenuItemTooltipHolder`, `ListMenuItemTooltip`, `ListMenuItemTooltipGeometry`, `ListMenuItemTooltipAppearance`
+
+The class names starting with `TF_` you can just change to have another prefix, e.g. `MyCoolMod_`. Class names starting with `ListMenuItem` or `OptionMenuItem` *need to start with those* for interoperability with the MENUDEF system; for those you're best off adding an infix (e.g. `ListMenuItemMyCoolModTooltip`), and then referencing them in the MENUDEF as `MyCoolModTooltip` et al.
+
+You should be able to do this with two global search-and-replaces on these files, without any false positives:
+
+- `TF_` → `MyCoolMod_`
+- `ItemTooltip` → `ItemMyCoolModTooltip`
 
 ## License
 
