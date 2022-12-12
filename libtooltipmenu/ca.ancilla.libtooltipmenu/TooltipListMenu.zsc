@@ -1,13 +1,13 @@
-// TooltipOptionMenu -- a drop-in replacement for OptionMenu with tooltip support.
+// TooltipListMenu -- a drop-in replacement for ListMenu with tooltip support.
 // Released under the MIT license; see COPYING.md for details.
 //
-// To use this, declare your option menu in MENUDEF as normal, but add:
-//   class TF_TooltipOptionMenu
+// To use this, declare your list menu in MENUDEF as normal, but add:
+//   class TF_TooltipListMenu
 // You can then use the "Tooltip", "TooltipGeometry", and "TooltipAppearance"
 // menu pseudo-items to add and configure tooltips.
 // For details, see the included README.
 
-class TF_TooltipOptionMenu : OptionMenu {
+class TF_TooltipListMenu : ListMenu {
   array<TF_Tooltip> tooltips;
 
   // Default settings:
@@ -27,13 +27,13 @@ class TF_TooltipOptionMenu : OptionMenu {
     return tt;
   }
 
-  override void Init(Menu parent, OptionMenuDescriptor desc) {
+  override void Init(Menu parent, ListMenuDescriptor desc) {
     super.Init(parent, desc);
     let settings = GetDefaults();
 
     // If there's already a TooltipHolder in tail position, we've already been
     // initialized and just need to retrieve our saved tooltips from it.
-    let tail = OptionMenuItemTooltipHolder(desc.mItems[desc.mItems.size()-1]);
+    let tail = ListMenuItemTooltipHolder(desc.mItems[desc.mItems.size()-1]);
     if (tail) {
       tooltips.copy(tail.tooltips);
       return;
@@ -41,7 +41,7 @@ class TF_TooltipOptionMenu : OptionMenu {
 
     // Steal the descriptor's list of menu items, then rebuild it containing
     // only the items we want to display.
-    array<OptionMenuItem> items;
+    array<ListMenuItem> items;
     items.Move(desc.mItems);
 
     // Start of tooltip block, i.e. index of the topmost menu item the next
@@ -51,8 +51,8 @@ class TF_TooltipOptionMenu : OptionMenu {
     // items.
     bool tooltip_mode = true;
     for (uint i = 0; i < items.size(); ++i) {
-      if (items[i] is "OptionMenuItemTooltip") {
-        let tt = OptionMenuItemTooltip(items[i]);
+      if (items[i] is "ListMenuItemTooltip") {
+        let tt = ListMenuItemTooltip(items[i]);
         if (tt.tooltip == "" && !tooltip_mode) {
           // Explicit marker that the above items should have no tooltips.
           startblock = desc.mItems.size();
@@ -60,10 +60,10 @@ class TF_TooltipOptionMenu : OptionMenu {
           AddTooltip(settings, startblock, desc.mItems.size()-1, tt.tooltip);
           tooltip_mode = true;
         }
-      } else if (items[i] is "OptionMenuItemTooltipGeometry") {
-        OptionMenuItemTooltipGeometry(items[i]).CopyTo(settings);
-      } else if (items[i] is "OptionMenuItemTooltipAppearance") {
-        OptionMenuItemTooltipAppearance(items[i]).CopyTo(settings);
+      } else if (items[i] is "ListMenuItemTooltipGeometry") {
+        ListMenuItemTooltipGeometry(items[i]).CopyTo(settings);
+      } else if (items[i] is "ListMenuItemTooltipAppearance") {
+        ListMenuItemTooltipAppearance(items[i]).CopyTo(settings);
       } else {
         if (tooltip_mode) {
           // Just finished a run of tooltips.
@@ -76,7 +76,7 @@ class TF_TooltipOptionMenu : OptionMenu {
 
     // Store our tooltips inside the menu descriptor so we can recover them when
     // the menu is redisplayed.
-    desc.mItems.push(OptionMenuItemTooltipHolder(new("OptionMenuItemTooltipHolder").Init(tooltips)));
+    desc.mItems.push(ListMenuItemTooltipHolder(new("ListMenuItemTooltipHolder").Init(tooltips)));
   }
 
   TF_Tooltip AppendableTooltip(uint first, uint last) {
@@ -125,18 +125,18 @@ class TF_TooltipOptionMenu : OptionMenu {
   }
 }
 
-class OptionMenuItemTooltipHolder : OptionMenuItem {
+class ListMenuItemTooltipHolder : ListMenuItem {
   mixin TF_TooltipHolder;
 }
 
-class OptionMenuItemTooltip : OptionMenuItem {
+class ListMenuItemTooltip : ListMenuItem {
   mixin TF_TooltipItem;
 }
 
-class OptionMenuItemTooltipGeometry : OptionMenuItem {
+class ListMenuItemTooltipGeometry : ListMenuitem {
   mixin TF_TooltipGeometry;
 }
 
-class OptionMenuItemTooltipAppearance : OptionMenuItem {
+class ListMenuItemTooltipAppearance : ListMenuitem {
   mixin TF_TooltipAppearance;
 }

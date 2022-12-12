@@ -1,6 +1,6 @@
-# libtooltipmenu - tooltips in gzdoom option menus
+# libtooltipmenu - tooltips in gzdoom menus
 
-This is a small library for displaying tooltips in option menus. It provides a convenient way to display in-game information about mod settings (or anything else you might use an option menu for), without crowding the menu with lots of `StaticText` entries. The tooltips can be written directly in the MENUDEF and require no special handling in your mod's code.
+This is a small library for displaying tooltips in gzDoom menus (both ListMenus and OptionMenus). It provides a convenient way to display in-game information about mod settings (or anything else you might use an option menu for), without crowding the menu with lots of `StaticText` entries. The tooltips can be written directly in the MENUDEF and require no special handling in your mod's code. They support `Print` colour/format escapes and `LANGUAGE` localization.
 
 It is a single file containing two classes, which can be either loaded as a separate pk3 (available on the [releases page](https://github.com/ToxicFrog/doom-mods/releases)) or simply copied into your mod wholesale. (In the latter case, don't forget to rename the classes to avoid conflicts with other uses of it!)
 
@@ -12,17 +12,23 @@ N.b. tooltips will work with *any* selectable menu item, including new ones you 
 
 ### Loading the library
 
-The library provides `TF_TooltipOptionMenu`, a drop-in replacement for gzDoom's `OptionMenu`, which you can load with the `class` directive in your MENUDEF:
+The library provides `TF_TooltipOptionMenu` and `TF_TooltipListMenu`, drop-in replacements for gzDoom's `OptionMenu` and `ListMenu`, which you can load with the `class` directive in your MENUDEF:
 
 ```
+ListMenu "KittenMainMenu"
+{
+  class TF_TooltipListMenu
+  ...
+}
+
 OptionMenu "KittenOptions"
 {
-  class `TF_TooltipOptionMenu`
+  class TF_TooltipOptionMenu
   ...
 }
 ```
 
-If you do nothing else, this will behave like a normal `OptionMenu`; you must use the `Tooltip` menuentry type to add tooltips.
+If you do nothing else, these will behave like the built-in gzDoom menu types; you must use the `Tooltip` menuentry type to add tooltips.
 
 ### Adding tooltips
 
@@ -45,7 +51,7 @@ Tooltip "\c[CYAN]Frisky:\c- kittens will scamper around and get into trouble, bu
 Tooltip "\c[CYAN]Full Kitten:\c- kittens will actively climb your legs."
 ```
 
-As you can see, they also support the same escape sequences as `Print`.
+As you can see, they also support the same escape sequences as `Print` (and `$` localization directives, too).
 
 ### Sharing tooltips between menu items
 
