@@ -1,12 +1,12 @@
 # libtooltipmenu - tooltips in gzdoom menus
 
-This is a small library for displaying tooltips in gzDoom menus (both ListMenus and OptionMenus). It provides a convenient way to display in-game information about mod settings (or anything else you might use an option menu for), without crowding the menu with lots of `StaticText` entries. The tooltips can be written directly in the MENUDEF and require no special handling in your mod's code. They support `Print` colour/format escapes and `LANGUAGE` localization.
+This is a small library for displaying tooltips in gzDoom menus (both ListMenus and OptionMenus). It provides a convenient way to display in-game information about mod settings (or anything else you might use an option menu for), without crowding the menu with lots of `StaticText` entries. The tooltips can be written directly in the MENUDEF and require no special handling in your mod's code, or inserted at runtime as part of dynamic menu creation. They support `Print` colour/format escapes and `LANGUAGE` localization.
 
 It consists of three ZScript files, which can be either loaded as a separate pk3 (available on the [releases page](https://github.com/ToxicFrog/doom-mods/releases)) or simply copied into your mod wholesale. (In the latter case, don't forget to rename the classes to avoid conflicts with other mods that use it -- see the end of tihs file for details.)
 
 For an example of this library in use, check out [Gun Bonsai's MENUDEF](https://github.com/ToxicFrog/doom-mods/blob/main/gun-bonsai/MENUDEF). If you have questions, comments, or bug reports, use the Github issues system or post in the [ZDoom forums thread](https://forum.zdoom.org/viewtopic.php?p=1233646).
 
-## API
+## MENUDEF API
 
 N.b. tooltips will work with *any* selectable menu item, including new ones you add yourself, but for convenience these examples mostly use `Option`.
 
@@ -121,6 +121,75 @@ TooltipApperance "newsmallfont", "pink", "SBOXA0"
 The font and colour will be resolved with `GetFont` and `FindFontColor`. The texture supports animation and will be scaled to fit the tooltip, so it's recommended to choose something that will still look acceptable when stretched or squished into odd shapes. If you want a simple black background with antialiased edges, libtooltipmenu ships with one, called "TFTTBG".
 
 Like `TooltipGeometry` this can be specified multiple times to apply different settings to different tooltips. To leave a setting unchanged, use `""`, e.g. `TooltipAppearance "", "blue", ""` to change the font colour and nothing else.
+
+
+## Dynamic Menu ZScript API
+
+This API is for adding tooltips to menus created at runtime. The basic idea is:
+
+- Subclass `TF_TooltipOptionMenu` or `TF_TooltipListMenu`
+- In its `Init(parent, descriptor)` function, call `super.InitDynamic()` rather than `super.Init()`
+- Call `TooltipGeometry()` and `TooltipAppearance()` to configure tooltips
+- Add your menu entries to `self.mDesc.mItems`
+- Call `PushTooltip()` to add tooltips
+- Create a MENUDEF entry using your subclass and including no menu items
+- Activate the menu at runtime with `Menu.SetMenu(menu_name)`
+
+The following sections go into more detail; for an example of it in use, see Gun Bonsai's [GenericMenu](https://github.com/ToxicFrog/doom-mods/blob/main/gun-bonsai/ca.ancilla.bonsai/menu/GenericMenu.zs) and [WeaponUpgradeMenu](gun-bonsai/ca.ancilla.bonsai/menu/StatusDisplay.zs) classes.
+
+### Class inheritance and initialization
+
+`InitDynamic()` handles initializing the tooltip configuration structures and clearing the descriptor's item list so that items from previous iterations of the menu don't re-appear.
+
+```
+class KittenListMenu : TF_TooltipOptionMenu {
+  override void Init(Menu parent, OptionMenuDescriptor desc) {
+    super.InitDynamic(parent, desc);
+    ConfigureTooltips();
+    BuildMenu();
+  }
+}
+```
+
+### Tooltip configuration
+
+`TooltipGeometry()` and `TooltipAppearance()` take the same arguments as the MENUDEF entries of the same name, and behave the same way, affecting all tooltips after them.
+
+```
+  void ConfigureTooltips() {
+    TooltipGeometry(0.5, 1.0, 0.9);
+    TooltipAppearance("", "", "TTIPBG");
+  }
+```
+
+### Adding tooltips and menu items
+
+`PushTooltip(text)` adds a tooltip to the preceding menu item. As with the `Tooltip` MENUDEF directive, it supports print escapes and `LANGUAGE` lump references. If you want to attach a tooltip to multiple items, you can specify a second argument indicating how many to attach to.
+
+```
+  void BuildMenu() {
+    mDesc.mItems.Push(new("OptionMenuItemCommand").Init("$TWIRL_MENUITEM", "spin180"));
+    PushTooltip("$TWIRL_TOOLTIP");
+    mDesc.mItems.Push(new("OptionMenuItemCommand").Init("Restart", "restart"));
+    mDesc.mItems.Push(new("OptionMenuItemCommand").Init("Exit", "exit"));
+    PushTooltip("Do these really need descriptions?", 2);
+  }
+```
+
+### Create and activate the menu
+
+You still need an empty MENUDEF entry so you can activate it:
+
+```
+OptionMenu "KittenListMenu"
+{
+  class KittenListMenu
+  Title "Kittens!"
+}
+```
+
+Once you have that, you can just use the menu API to activate it by calling `Menu.SetMenu("KittenListMenu")`, which will automatically call your `Init()` function.
+
 
 ## Renaming to avoid conflicts
 

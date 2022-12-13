@@ -2,6 +2,7 @@
 
 - New:
   - support for `ListMenu` menus.
+  - support for tooltips in dynamically generated menus. This was always possible, but gross; now there's an actual API for it.
   - README now includes more detailed instructions on how to incorporate this into a mod without conflicts.
 
 # 0.2.1

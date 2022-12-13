@@ -10,9 +10,16 @@
 class TF_TooltipOptionMenu : OptionMenu {
   mixin TF_TooltipMenu;
 
+  void InitDynamic(Menu parent, OptionMenuDescriptor desc) {
+    desc.mItems.Clear();
+    self.tooltip_settings = GetDefaults();
+    super.Init(parent, desc);
+  }
+
   override void Init(Menu parent, OptionMenuDescriptor desc) {
     super.Init(parent, desc);
-    let settings = GetDefaults();
+    self.tooltip_settings = GetDefaults();
+    if (desc.mItems.size() == 0) return;
 
     // If there's already a TooltipHolder in tail position, we've already been
     // initialized and just need to retrieve our saved tooltips from it.
@@ -40,13 +47,13 @@ class TF_TooltipOptionMenu : OptionMenu {
           // Explicit marker that the above items should have no tooltips.
           startblock = desc.mItems.size();
         } else {
-          AddTooltip(settings, startblock, desc.mItems.size()-1, tt.tooltip);
+          AddTooltip(startblock, desc.mItems.size()-1, tt.tooltip);
           tooltip_mode = true;
         }
       } else if (items[i] is "OptionMenuItemTooltipGeometry") {
-        OptionMenuItemTooltipGeometry(items[i]).CopyTo(settings);
+        OptionMenuItemTooltipGeometry(items[i]).CopyTo(tooltip_settings);
       } else if (items[i] is "OptionMenuItemTooltipAppearance") {
-        OptionMenuItemTooltipAppearance(items[i]).CopyTo(settings);
+        OptionMenuItemTooltipAppearance(items[i]).CopyTo(tooltip_settings);
       } else {
         if (tooltip_mode) {
           // Just finished a run of tooltips.

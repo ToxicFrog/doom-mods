@@ -85,9 +85,10 @@ class TF_Tooltip : Object ui {
   }
 }
 
-// Mixin classes used for the actual MenuItems.
+// Mixin classes used for the menu and menu items.
 mixin class TF_TooltipMenu {
   array<TF_Tooltip> tooltips;
+  TF_Tooltip tooltip_settings;
 
   // Default settings:
   // - top left corner
@@ -113,7 +114,7 @@ mixin class TF_TooltipMenu {
     return null;
   }
 
-  void AddTooltip(TF_Tooltip settings, uint first, uint last, string tooltip) {
+  void AddTooltip(uint first, uint last, string tooltip) {
     if (first < 0) ThrowAbortException("Tooltip must have at least one menu item preceding it!");
     let localtooltip = Stringtable.localize(tooltip);
     let tt = AppendableTooltip(first, last);
@@ -124,7 +125,7 @@ mixin class TF_TooltipMenu {
     }
     // No existing tooltip for these menu entries, create a new one.
     tt = new("TF_Tooltip");
-    tt.CopyFrom(settings);
+    tt.CopyFrom(tooltip_settings);
     tt.first = first;
     tt.last = last;
     tt.text = localtooltip;
@@ -149,6 +150,30 @@ mixin class TF_TooltipMenu {
     super.Drawer();
     let tt = FindTooltipFor(mDesc.mSelectedItem);
     if (tt) tt.Draw();
+  }
+
+  // Dynamic tooltip API.
+  void PushTooltip(String tooltip, uint n=1) {
+    if (n<1) ThrowAbortException("Tooltip must apply to at least one menu item!");
+    AddTooltip(mDesc.mItems.size()-n, mDesc.mItems.size()-1, tooltip);
+  }
+
+  // ZScript doesn't have reify, so we just duplicate the CopyTo logic below here.
+  void TooltipAppearance(string myfont="", string colour="", string texture="") {
+    if (myfont != "") tooltip_settings.font = Font.GetFont(myfont);
+    if (colour != "") tooltip_settings.colour = Font.FindFontColor(colour);
+    if (texture != "") tooltip_settings.texture = TexMan.CheckForTexture(texture, TexMan.TYPE_ANY);
+  }
+
+  void TooltipGeometry(
+      double x=-1.0, double y=-1.0, double w=-1.0,
+      double xpad=-1.0, double ypad=-1.0, double scale=-1.0) {
+    if (x >= 0) tooltip_settings.x = x;
+    if (y >= 0) tooltip_settings.y = y;
+    if (w >= 0) tooltip_settings.w = w;
+    if (xpad >= 0) tooltip_settings.xpad = xpad;
+    if (ypad >= 0) tooltip_settings.ypad = ypad;
+    if (scale > 0) tooltip_settings.scale = scale;
   }
 }
 
