@@ -1,6 +1,6 @@
 #namespace TFLV::Menu;
 
-class ::GenericMenu : OptionMenu {
+class ::GenericMenu : TF::TooltipOptionMenu {
   override int GetIndent() {
     return super.GetIndent() - 200 * CleanXFac_1;
   }
@@ -25,6 +25,8 @@ class ::GenericMenu : OptionMenu {
 
   void PushUpgradeToggle(TFLV::Upgrade::BaseUpgrade upgrade, uint bag_index, uint index) {
     mDesc.mItems.Push(new("::UpgradeToggle").Init(upgrade, bag_index, index));
+    let tt = upgrade.GetTooltip(upgrade.level);
+    if (tt) PushTooltip(tt);
   }
 }
 

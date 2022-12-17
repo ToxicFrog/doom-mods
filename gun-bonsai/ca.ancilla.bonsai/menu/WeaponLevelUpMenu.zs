@@ -2,8 +2,9 @@
 
 class ::WeaponLevelUpMenu : ::GenericMenu {
   override void Init(Menu parent, OptionMenuDescriptor desc) {
-    super.Init(parent, desc);
-    mDesc.mItems.Clear();
+    super.Initdynamic(parent, desc);
+    TooltipGeometry(0.5, 1.0, 0.9, 1.0, 0.5);
+    TooltipAppearance("", "", "tfttbg");
 
     let stats = TFLV::EventHandler.GetConsolePlayerStats();
     let giver = TFLV::WeaponUpgradeGiver(stats.currentEffectGiver);
@@ -31,6 +32,7 @@ class ::WeaponLevelUpMenu : ::GenericMenu {
       upgrade.GetName(), upgrade.GetDesc(),
       "bonsai-choose-level-up-option",
       index);
+    PushTooltip(upgrade.GetTooltipDiff(0, 1));
   }
 
   override bool MenuEvent(int key, bool fromController) {

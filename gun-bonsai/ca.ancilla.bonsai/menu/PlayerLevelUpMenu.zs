@@ -2,8 +2,9 @@
 
 class ::PlayerLevelUpMenu : ::GenericMenu {
   override void Init(Menu parent, OptionMenuDescriptor desc) {
-    super.Init(parent, desc);
-    mDesc.mItems.Clear();
+    super.InitDynamic(parent, desc);
+    TooltipGeometry(0.5, 1.0, 0.9, 1.0, 0.5);
+    TooltipAppearance("", "", "tfttbg");
 
     let stats = TFLV::EventHandler.GetConsolePlayerStats();
     let giver = TFLV::PlayerUpgradeGiver(stats.currentEffectGiver);

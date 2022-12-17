@@ -1,5 +1,7 @@
 # 0.9.6
 
+- New:
+  - Upgrades can now declare tooltips that will display in the status and level-up menus for additional detail.
 - Fix:
   - Heretic's wand and staff are now considered "wimpy" weapons.
   - Some errors in `UPGRADES.md` about what upgrades were available on what weapons corrected.

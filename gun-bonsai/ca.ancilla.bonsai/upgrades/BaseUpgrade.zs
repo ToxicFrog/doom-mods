@@ -171,6 +171,24 @@ class ::BaseUpgrade : Object play {
     return;
   }
 
+  // Called to get the details tooltip when hovered over in the status or level-up
+  // screen. Should report stats as if the upgrade were the given level.
+  // Stats inserted into fields will be used to substitute the @1, @2, etc markers
+  // in the upgrade's corresponding _FF LANGUAGE key.
+  virtual void GetTooltipFields(Array<string> fields, uint level) const {}
+
+  // Utility functions for GetTooltipFields
+  // 0.25 -> 25%
+  static string AsPercent(double mult) {
+    return string.format("%d%%", mult * 100);
+  }
+  // 0.25 -> +25%
+  static string AsPercentIncrease(double mult) { return "+"..AsPercent(mult); }
+  // 0.25 -> -75%, e.g. all damage taken x0.25 is a 75% damage reduction
+  static string AsPercentDecrease(double mult) {
+    return string.format("-%d%%", (1.0 - mult) * 100);
+  }
+
   // INTERNAL DETAILS //
   string GetName() const {
     return StringTable.Localize("$"..self.GetClassName().."_Name");
@@ -178,5 +196,38 @@ class ::BaseUpgrade : Object play {
 
   string GetDesc() const {
     return StringTable.Localize("$"..self.GetClassName().."_Desc");
+  }
+
+  string GetTooltip(uint level) const {
+    Array<string> fields;
+    GetTooltipFields(fields, level);
+    let format = GetTooltipFormat();
+    if (!format) return "";
+    for (uint i = 0; i < fields.size(); ++i) {
+      format.Substitute("@"..i, fields[i]);
+    }
+    return format;
+  }
+
+  static string FieldDiff(string from, string to) {
+    return string.format("(\c[RED]%s\c- -> \c[GREEN]%s\c-)", from, to);
+  }
+
+  string GetTooltipDiff(uint lv1, uint lv2) const {
+    Array<string> fields1, fields2;
+    GetTooltipFields(fields1, lv1);
+    GetTooltipFields(fields2, lv2);
+    let format = GetTooltipFormat();
+    if (!format) return "";
+    for (uint i = 0; i < fields1.size(); ++i) {
+      format.Substitute("@"..(i+1), FieldDiff(fields1[i], fields2[i]));
+    }
+    return format;
+  }
+
+  string GetTooltipFormat(uint n=0) const {
+    let key = "$"..self.GetClassName().."_TT";
+    if (n) key = key..n;
+    return StringTable.Localize(key);
   }
 }

@@ -2,8 +2,9 @@
 
 class ::StatusDisplay : ::GenericMenu {
   override void Init(Menu parent, OptionMenuDescriptor desc) {
-    super.Init(parent, desc);
-    mDesc.mItems.Clear();
+    super.InitDynamic(parent, desc);
+    TooltipGeometry(0.5, 1.0, 0.9, 1.0, 0.5);
+    TooltipAppearance("", "", "tfttbg");
 
     let pps = TFLV::EventHandler.GetConsolePlayerStats();
 
