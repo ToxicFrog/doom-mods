@@ -4,6 +4,7 @@
   - Heretic's wand and staff are now considered "wimpy" weapons.
   - Some errors in `UPGRADES.md` about what upgrades were available on what weapons corrected.
   - Shield now properly stacks infinitely, albeit with diminishing returns.
+  - Scavenge Lead spawns now respect actor replacement rules
 
 # 0.9.5
 

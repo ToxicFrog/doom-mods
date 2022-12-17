@@ -129,7 +129,7 @@ class ::AmmoLeech : ::BaseUpgrade {
     for (uint i = 0; i < level; ++i) {
       let chosen = candidates[random(0, candidates.size()-1)];
       DEBUG("Spawning %s", chosen);
-      let ammo = target.Spawn(chosen, ::LeechUtil.WigglePos(target));
+      let ammo = target.Spawn(chosen, ::LeechUtil.WigglePos(target), ALLOW_REPLACE);
       ammo.bCOUNTITEM = false;
     }
   }
