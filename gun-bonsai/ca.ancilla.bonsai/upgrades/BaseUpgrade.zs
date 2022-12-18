@@ -227,8 +227,9 @@ class ::BaseUpgrade : Object play {
   }
 
   string GetTooltipFormat(uint n=0) const {
-    let key = "$"..self.GetClassName().."_TT";
+    let key = self.GetClassName().."_TT";
     if (n) key = key..n;
-    return StringTable.Localize(key);
+    let tt = StringTable.Localize("$"..key);
+    return (tt == key && !n) ? "" : tt;
   }
 }
