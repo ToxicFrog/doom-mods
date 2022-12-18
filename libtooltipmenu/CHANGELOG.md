@@ -1,3 +1,8 @@
+# 0.2.3
+
+- Fix:
+  - `PushTooltip("")` has the same behaviour as `Tooltip ""` in MENUDEF, omitting the tooltip instead of installing an empty one.
+
 # 0.2.2
 
 - New:

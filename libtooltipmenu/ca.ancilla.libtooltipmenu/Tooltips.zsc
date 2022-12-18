@@ -154,6 +154,7 @@ mixin class TF_TooltipMenu {
 
   // Dynamic tooltip API.
   void PushTooltip(String tooltip, uint n=1) {
+    if (!tooltip) return;
     if (n<1) ThrowAbortException("Tooltip must apply to at least one menu item!");
     AddTooltip(mDesc.mItems.size()-n, mDesc.mItems.size()-1, tooltip);
   }
