@@ -34,6 +34,9 @@ class ::FragmentationShots : ::BaseUpgrade {
       && !info.IsRipper()
       && !info.IsMelee();
   }
+  override void GetTooltipFields(Array <string> fields, uint level) {
+    fields.push(""..(level ? 8*level+8 : 0));
+  }
 }
 
 class ::FragmentationShots::Marker : Inventory {
