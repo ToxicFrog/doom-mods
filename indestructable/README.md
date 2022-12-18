@@ -6,6 +6,10 @@ It is highly configurable, but the default settings mimic the Death Rage mechani
 
 Note that some sources of damage, such as crushers, telefrags, and some types of scripted damage, can still kill you outright.
 
+## Configuration
+
+Indestructable's configuration settings are accessible via the in-game option screen. There, you can adjust what buffs you get when it triggers, how frequently you earn new lives, and what visual effects it uses.
+
 ## Mod integration
 
 Integration with other mods is done via netevents.

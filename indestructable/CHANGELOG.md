@@ -1,3 +1,9 @@
+# 0.2.5
+
+- Fix:
+  - Options menu now accurately reflects how "starting lives" and "lives per level" interact.
+  - README tells players about the options menu.
+
 # 0.2.4
 
 - Fix: warning about malformed colour format in Indestructable.zsc

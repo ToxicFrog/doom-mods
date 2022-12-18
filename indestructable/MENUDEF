@@ -3,6 +3,7 @@ AddOptionMenu "OptionsMenu"
   Submenu "Indestructable Options", "IndestructableOptions"
 }
 
+// TODO: move these into a LANGUAGE lump
 OptionMenu "IndestructableOptions"
 {
   class TF_TooltipOptionMenu
@@ -31,14 +32,13 @@ OptionMenu "IndestructableOptions"
   StaticText ""
   StaticText "Lives Configuration"
   ScaleSlider "Starting lives", "indestructable_starting_lives", -1, 20, 1, "None", "Infinite"
-  Tooltip "How many lives you start the game with. These are given to you before any bonus lives for starting the first level."
-  Tooltip "Set to -1 to have unlimited extra lives."
+  Tooltip "How many lives you start the game with. Set to -1 to have unlimited extra lives."
 
-  Slider "Extra lives at level start", "indestructable_lives_per_level", 0, 20, 1, 0
-  Tooltip "How many extra lives you're given on starting a new level."
-  Slider "Min lives at level start", "indestructable_min_lives_per_level", 0, 20, 1, 0
-  Tooltip "You will always start a level with at least these many lives."
-  ScaleSlider "Max lives at level start", "indestructable_max_lives_per_level", 0, 20, 1, "Unlimited"
+  Slider "Extra lives on level clear", "indestructable_lives_per_level", 0, 20, 1, 0
+  Tooltip "How many extra lives you're given for clearing a level."
+  Slider "Min lives carried between levels", "indestructable_min_lives_per_level", 0, 20, 1, 0
+  Tooltip "You will always start a level with at least this many lives."
+  ScaleSlider "Max lives carried between levels", "indestructable_max_lives_per_level", 0, 20, 1, "Unlimited"
   Tooltip "You cannot carry more than this many lives between levels. Set to 0 for unlimited."
 
   Slider "Extra lives on boss kill", "indestructable_lives_per_boss", 0, 20, 1, 0
