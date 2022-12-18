@@ -25,6 +25,10 @@ class ::RapidFire : ::BaseUpgrade {
     return info.upgrades.Level("::RapidFire") < 10
       && (info.wpn.AmmoType1 || info.wpn.AmmoType2);
   }
+
+  override void GetTooltipFields(Array <string> fields, uint level) {
+    fields.push(string.format("x%.1f", 1 + level/2));
+  }
 }
 
 // Kept around for compatibility with older saves.
