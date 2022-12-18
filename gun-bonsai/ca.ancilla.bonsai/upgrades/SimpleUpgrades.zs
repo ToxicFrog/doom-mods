@@ -10,6 +10,10 @@ class ::BlastShaping : ::BaseUpgrade {
   override bool IsSuitableForPlayer(TFLV::PerPlayerStats stats) {
     return true;
   }
+
+  override void GetTooltipFields(Array <string> fields, uint level) {
+    fields.push(AsPercentDecrease(0.5**level));
+  }
 }
 
 class ::BouncyShots : ::BaseUpgrade {
@@ -32,6 +36,15 @@ class ::BouncyShots : ::BaseUpgrade {
       && !info.IsRipper()
       && !info.IsBouncer(false);
   }
+
+  override void GetTooltipFields(Array <string> fields, uint level) {
+    fields.push(""..(1 + level));
+    if (level < 3) {
+      fields.push("");
+    } else {
+      fields.push(GetTooltipFormat(1)); // "Shots bounce off enemies."
+    }
+  }
 }
 
 class ::FastShots : ::BaseUpgrade {
@@ -42,10 +55,15 @@ class ::FastShots : ::BaseUpgrade {
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
     return info.IsSlowProjectile();
   }
+
+  override void GetTooltipFields(Array <string> fields, uint level) {
+    fields.push(string.format("x%.1f", 1 + 0.5*level));
+  }
 }
 
 class ::PiercingShots : ::BaseUpgrade {
   override void OnProjectileCreated(Actor player, Actor shot) {
+    // TODO this should also reduce damage.
     shot.bRIPPER = true;
   }
 
@@ -71,6 +89,11 @@ class ::PlayerDamage : ::BaseUpgrade {
   override bool IsSuitableForPlayer(TFLV::PerPlayerStats stats) {
     return true;
   }
+
+  override void GetTooltipFields(Array <string> fields, uint level) {
+    fields.push(AsPercentIncrease(level*0.1));
+    fields.push("+"..level);
+  }
 }
 
 class ::ToughAsNails : ::BaseUpgrade {
@@ -83,6 +106,11 @@ class ::ToughAsNails : ::BaseUpgrade {
   override bool IsSuitableForPlayer(TFLV::PerPlayerStats stats) {
     return true;
   }
+
+  override void GetTooltipFields(Array <string> fields, uint level) {
+    fields.push(AsPercentDecrease(0.9**level));
+    fields.push("-"..level);
+  }
 }
 
 class ::WeaponDamage : ::BaseUpgrade {
@@ -94,5 +122,10 @@ class ::WeaponDamage : ::BaseUpgrade {
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
     return true;
+  }
+
+  override void GetTooltipFields(Array <string> fields, uint level) {
+    fields.push(AsPercentIncrease(level*0.2));
+    fields.push("+"..level);
   }
 }
