@@ -25,8 +25,26 @@ class ::GenericMenu : TF::TooltipOptionMenu {
 
   void PushUpgradeToggle(TFLV::Upgrade::BaseUpgrade upgrade, uint bag_index, uint index) {
     mDesc.mItems.Push(new("::UpgradeToggle").Init(upgrade, bag_index, index));
-    let tt = upgrade.GetTooltip(upgrade.level);
-    if (tt) PushTooltip(tt);
+    PushTooltip(upgrade.GetTooltip(upgrade.level));
+  }
+}
+
+class ::GenericLevelUpMenu : ::GenericMenu {
+  void PushUpgrade(TFLV::Upgrade::UpgradeBag upgrades, TFLV::Upgrade::BaseUpgrade upgrade, int index) {
+    PushKeyValueOption(
+      upgrade.GetName(), upgrade.GetDesc(),
+      "bonsai-choose-level-up-option",
+      index);
+    let lvl = upgrades.Level(upgrade.GetClassName());
+    PushTooltip(upgrade.GetTooltipDiff(lvl, lvl+1));
+  }
+
+  override bool MenuEvent(int key, bool fromController) {
+    if (key == Menu.MKey_Back) {
+      EventHandler.SendNetworkEvent("bonsai-choose-level-up-option", -1);
+    }
+
+    return super.MenuEvent(key, fromController);
   }
 }
 

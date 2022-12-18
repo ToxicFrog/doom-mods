@@ -204,12 +204,13 @@ class ::BaseUpgrade : Object play {
     let format = GetTooltipFormat();
     if (!format) return "";
     for (uint i = 0; i < fields.size(); ++i) {
-      format.Substitute("@"..i, fields[i]);
+      format.Substitute("@"..(i+1), fields[i]);
     }
     return format;
   }
 
   static string FieldDiff(string from, string to) {
+    if (from == to) return from;
     return string.format("(\c[RED]%s\c- -> \c[GREEN]%s\c-)", from, to);
   }
 

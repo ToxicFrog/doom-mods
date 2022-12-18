@@ -1,6 +1,6 @@
 #namespace TFLV::Menu;
 
-class ::WeaponLevelUpMenu : ::GenericMenu {
+class ::WeaponLevelUpMenu : ::GenericLevelUpMenu {
   override void Init(Menu parent, OptionMenuDescriptor desc) {
     super.Initdynamic(parent, desc);
     TooltipGeometry(0.5, 1.0, 0.9, 1.0, 0.5);
@@ -18,28 +18,12 @@ class ::WeaponLevelUpMenu : ::GenericMenu {
 
     mDesc.mSelectedItem = -1;
     for (uint i = 0; i < giver.candidates.size(); ++i) {
-      PushUpgrade(giver.candidates[i], i);
+      PushUpgrade(giver.wielded.upgrades, giver.candidates[i], i);
     }
 
     PushText("", Font.CR_LIGHTBLUE);
     PushText("$TFLV_MENU_CURRENT_UPGRADES", Font.CR_LIGHTBLUE);
     giver.wielded.upgrades.DumpToMenu(self);
     return;
-  }
-
-  void PushUpgrade(TFLV::Upgrade::BaseUpgrade upgrade, int index) {
-    PushKeyValueOption(
-      upgrade.GetName(), upgrade.GetDesc(),
-      "bonsai-choose-level-up-option",
-      index);
-    PushTooltip(upgrade.GetTooltipDiff(0, 1));
-  }
-
-  override bool MenuEvent(int key, bool fromController) {
-    if (key == Menu.MKey_Back) {
-      EventHandler.SendNetworkEvent("bonsai-choose-level-up-option", -1);
-    }
-
-    return super.MenuEvent(key, fromController);
   }
 }

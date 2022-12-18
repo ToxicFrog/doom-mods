@@ -28,7 +28,7 @@ class ::UpgradeBag : Object play {
     return upgrade;
   }
 
-  uint Level(string cls) {
+  uint Level(string cls) const {
     for (uint i = 0; i < upgrades.Size(); ++i) {
       if (upgrades[i].GetClassName() == cls) {
         return upgrades[i].level;
