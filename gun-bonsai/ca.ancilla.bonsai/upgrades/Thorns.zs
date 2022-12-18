@@ -14,6 +14,17 @@ class ::Thorns : ::BaseUpgrade {
   override bool IsSuitableForPlayer(TFLV::PerPlayerStats stats) {
     return true;
   }
+
+  static string AsMeters(uint u) {
+    return string.format("%dm", u/32);
+  }
+
+  override void GetTooltipFields(Array <string> fields, uint level) {
+    fields.push(AsMeters(192*level));
+    fields.push(AsMeters(1024*level));
+    let elem_threshold = 1 - 0.9/level;
+    fields.push(AsMeters(192*level + elem_threshold * (1024*level - 192*level)));
+  }
 }
 
 // We have a special actor for actually inflicting the thorns damage so that we
