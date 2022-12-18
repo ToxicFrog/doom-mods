@@ -17,6 +17,11 @@ class ::Submunitions : ::BaseUpgrade {
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
     return !info.IsMelee();
   }
+
+  override void GetTooltipFields(Array <string> fields, uint level) {
+    fields.push(""..(level * 4)); // Number of submunitions
+    fields.push("+"..(level * 5)); // Damage bonus
+  }
 }
 
 class ::Submunitions::Spawner : Actor {
