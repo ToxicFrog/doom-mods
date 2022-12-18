@@ -11,6 +11,11 @@ class ::HomingShots : ::BaseUpgrade {
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
     return info.IsSlowProjectile() && info.upgrades.Level("::HomingShots") < 4;
   }
+
+  override void GetTooltipFields(Array <string> fields, uint level) {
+    fields.push(string.format("%dm", min(level,10)*4));
+    fields.push(string.format("%d", !level ? 0 : (level+2)*35));
+  }
 }
 
 class ::HomingShots::Aux : Inventory {
