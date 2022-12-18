@@ -38,7 +38,7 @@ class ::BouncyShots : ::BaseUpgrade {
   }
 
   override void GetTooltipFields(Array <string> fields, uint level) {
-    fields.push(""..(1 + level));
+    fields.push(""..(!level ? 0 : 1 + level));
     if (level < 3) {
       fields.push("");
     } else {
