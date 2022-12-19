@@ -2,6 +2,7 @@
 
 - New:
   - Upgrades can now declare tooltips that will display in the status and level-up menus for additional detail.
+  - As a debugging tool, you can set `bonsai_upgrade_choices_per_player_level` and `bonsai_gun_choices_per_player_level` to -1 to list all upgrades. This will produce upgrade choices that do not work, so it is mostly useful for testing menu display code.
 - Balance:
   - Swiftness now goes into slow-mo for the last 0.5s of its duration rather than the last 3.5s, meaning it does actually stop time even at low levels.
 - Fix:

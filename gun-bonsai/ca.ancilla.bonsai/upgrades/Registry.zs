@@ -50,13 +50,17 @@ class ::Registry : Object play {
   void GenerateUpgradesForPlayer(
       TFLV::PerPlayerStats stats, Array<::BaseUpgrade> generated) {
     Array<::BaseUpgrade> candidates;
-    // Array<::BaseUpgrade> all_upgrades = GetRegistry().upgrades;
+    let nrof = bonsai_upgrade_choices_per_player_level;
+    if (nrof < 0) {
+      generated.Copy(upgrades);
+      return;
+    }
+
     for (uint i = 0; i < upgrades.size(); ++i) {
       if (upgrades[i].IsSuitableForPlayer(stats))
         candidates.push(upgrades[i]);
     }
 
-    let nrof = bonsai_upgrade_choices_per_player_level;
     if (!nrof) {
       generated.Copy(candidates);
     } else {
@@ -67,12 +71,17 @@ class ::Registry : Object play {
   void GenerateUpgradesForWeapon(
       TFLV::WeaponInfo info, Array<::BaseUpgrade> generated) {
     array<::BaseUpgrade> candidates;
+    let nrof = bonsai_upgrade_choices_per_gun_level;
+    if (nrof < 0) {
+      generated.Copy(upgrades);
+      return;
+    }
+
     for (uint i = 0; i < upgrades.size(); ++i) {
       if (upgrades[i].IsSuitableForWeapon(info) && info.CanAcceptUpgrade(upgrade_names[i]))
         candidates.push(upgrades[i]);
     }
 
-    let nrof = bonsai_upgrade_choices_per_gun_level;
     if (!nrof) {
       generated.Copy(candidates);
     } else {
