@@ -10,11 +10,10 @@
 // - Add the name and description to your LANGUAGE file; the keys should be
 //   [upgrade_class_name]_Name and [upgrade_class_name]_Desc, e.g.
 //   TFLV_Upgrade_Pyre_Name and TFLV_Upgrade_Pyre_Desc.
-// - In your startup code, call:
-//     TFLV_Upgrade_Registry.GetRegistry().Register("upgrade_class").
-//   Make sure this runs *after* TFLV_EventHandler's OnRegister; if unsure,
-//   defer it to WorldLoaded or something. It's safe to Register() the same
-//   upgrade multiple times.
+// - Optionally, add a tooltip with more details, in [upgrade_class_name]_TT; if
+//   you want to add dynamic details, put @field-name markers in the tooltip and
+//   populate them in GetTooltipFields() in your upgrade.
+// - Add a BONSAIRC lump to your mod with a Register directive for your upgrade(s).
 // - All done! The upgrade should now start appearing in play when your mod is
 //   loaded after Gun Bonsai.
 #namespace TFLV::Upgrade;
