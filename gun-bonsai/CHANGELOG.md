@@ -2,6 +2,8 @@
 
 - New:
   - Upgrades can now declare tooltips that will display in the status and level-up menus for additional detail.
+- Balance:
+  - Swiftness now goes into slow-mo for the last 0.5s of its duration rather than the last 3.5s, meaning it does actually stop time even at low levels.
 - Fix:
   - Heretic's wand and staff are now considered "wimpy" weapons.
   - Some errors in `UPGRADES.md` about what upgrades were available on what weapons corrected.
