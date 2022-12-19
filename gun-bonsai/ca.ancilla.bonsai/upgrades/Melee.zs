@@ -36,7 +36,7 @@ class ::DarkHarvest : ::BaseUpgrade {
     // aren't intrinsic to the player or even intrinsic to the armour they're
     // wearing, they're intrinsic to the *armour pickup* which vanishes as soon
     // as it grants them AC!
-    let cap = player.GetMaxHealth() * (1.0 + 0.2*level);
+    let cap = player.GetMaxHealth(true) * (1.0 + 0.2*level);
     let hp = Health(player.Spawn("::DarkHarvest::Health"));
     if (hp) {
       hp.Amount = amount;
