@@ -1,6 +1,4 @@
 [en default]
-TFLV_Upgrade_AcidSpray_Name = "\c[PURPLE]Acid Spray";
-TFLV_Upgrade_AcidSpray_Desc = "Excess acid stacks on enemies spray onto nearby targets.";
 TFLV_Upgrade_Agonizer_Name = "Agonizer"; // Disabled due to not working right
 TFLV_Upgrade_Agonizer_Desc = "Increases pain chance when attacking enemies.";
 TFLV_Upgrade_AmmoLeech_Name = "Scavenge Lead";
@@ -20,17 +18,11 @@ TFLV_Upgrade_BouncyShots_TT = "Bounces @count times.@extra-effect";
 TFLV_Upgrade_BouncyShots_TT1 = " Shots bounce off enemies.";
 TFLV_Upgrade_BurningTerror_Name = "\c[ORANGE]Burning Terror";
 TFLV_Upgrade_BurningTerror_Desc = "Burning enemies flee in terror. Fire damage increased.";
-TFLV_Upgrade_ConcentratedAcid_Name = "\c[PURPLE]Concentrated Acid";
-TFLV_Upgrade_ConcentratedAcid_Desc = "Acid does more damage per stack and affects stronger enemies more.";
 TFLV_Upgrade_Conflagration_Name = "\c[ORANGE]Conflagration";
 TFLV_Upgrade_Conflagration_Desc = "Burning enemies ignite everything around them.";
-TFLV_Upgrade_CorrosiveShots_Name = "\c[PURPLE]Corrosive Inscription";
-TFLV_Upgrade_Corrosiveshots_Desc = "Attacks cover enemies in acid, dealing damage over time.";
 TFLV_Upgrade_DarkHarvest_Name = "Dark Harvest";
 TFLV_Upgrade_DarkHarvest_Desc = "Killing an enemy restores health and armour.";
 TFLV_Upgrade_DarkHarvest_TT = "Gives @leech HP/AC per kill (10x for bosses), up to a maximum of @cap.";
-TFLV_Upgrade_Embrittlement_Name = "\c[PURPLE]Embrittlement";
-TFLV_Upgrade_Embrittlement_Desc = "Acidified enemies take increased damage from non-acid attacks.";
 TFLV_Upgrade_ElementalBeam_Name = "\c[GOLD]Elemental Beam";
 TFLV_Upgrade_ElementalBeam_Desc = "A piercing beam that duplicates elemental effects between enemies.";
 TFLV_Upgrade_ElementalBeam_TT = "All elemental effects on the target are copied to enemies behind it.";
@@ -103,6 +95,20 @@ TFLV_Upgrade_WeaponDamage_Desc = "Increases all damage dealt with this weapon.";
 TFLV_Upgrade_WeaponDamage_TT = "All damage @percent-bonus or @flat-bonus, whichever is more.";
 TFLV_Upgrade_Weakness_Name = "\c[GREEN]Weakness";
 TFLV_Upgrade_Weakness_Desc = "Poisoned enemies deal less damage.";
+
+// Acid tree
+TFLV_Upgrade_CorrosiveShots_Name = "\c[PURPLE]Corrosive Inscription";
+TFLV_Upgrade_Corrosiveshots_Desc = "Attacks cover enemies in acid, dealing damage over time.";
+TFLV_Upgrade_Corrosiveshots_TT = "Adds @conversion damage dealt as acid, dealing @min-damage dps when the target is above 50% and gradually increasing to @max-damage dps below it. Softcap is based on per-shot damage, so this works best with slow but powerful weapons like the SSG.";
+TFLV_Upgrade_ConcentratedAcid_Name = "\c[PURPLE]Concentrated Acid";
+TFLV_Upgrade_ConcentratedAcid_Desc = "Acid does more damage per stack and ramps up to full damage sooner.";
+TFLV_Upgrade_ConcentratedAcid_TT = "Acid duration @efficiency (while still doing the same amount of dps) and dps starts increasing once the target is below @threshold health.";
+TFLV_Upgrade_Embrittlement_Name = "\c[PURPLE]Embrittlement";
+TFLV_Upgrade_Embrittlement_Desc = "Acid attacks make enemies vulnerable and can instakill.";
+TFLV_Upgrade_Embrittlement_TT = "All damage @damage-increase per acid stack. Acid damage instakills enemies once they have enough acid stacks to eventually remove @instakill of their remaining health.";
+TFLV_Upgrade_AcidSpray_Name = "\c[PURPLE]Acid Spray";
+TFLV_Upgrade_AcidSpray_Desc = "Excess acid stacks on enemies spray onto nearby targets.";
+TFLV_Upgrade_AcidSpray_TT = "Acid splashes onto enemies within @radius of target, with a softcap based on @cap-percent of damage dealt.";
 
 // Lightning tree
 TFLV_Upgrade_ShockingInscription_Name = "\c[CYAN]Shocking Inscription";

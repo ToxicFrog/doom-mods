@@ -28,6 +28,12 @@ class ::CorrosiveShots : ::ElementalUpgrade {
     ad.damage_this_tick += damage;
     ad.level = level;
   }
+
+  override void GetTooltipFields(Dictionary fields, uint level) {
+    fields.insert("conversion", AsPercent(0.5 + 0.1*level));
+    fields.insert("min-damage", ""..level);
+    fields.insert("max-damage", ""..(10*level));
+  }
 }
 
 class ::ConcentratedAcid : ::DotModifier {
@@ -40,6 +46,11 @@ class ::ConcentratedAcid : ::DotModifier {
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
     return HasIntermediatePrereq(info, "::CorrosiveShots");
+  }
+
+  override void GetTooltipFields(Dictionary fields, uint level) {
+    fields.insert("efficiency", AsPercentIncrease(1.0/0.9**level));
+    fields.insert("threshold", AsPercent(0.5 * (2.0 - 0.8 ** level)));
   }
 }
 
@@ -54,6 +65,11 @@ class ::AcidSpray : ::DotModifier {
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
     return HasMasteryPrereq(info, "::ConcentratedAcid", "::Embrittlement");
   }
+
+  override void GetTooltipFields(Dictionary fields, uint level) {
+    fields.insert("radius", (2+level).."m");
+    fields.insert("cap-percent", AsPercent(0.2*level));
+  }
 }
 
 class ::Embrittlement : ::DotModifier {
@@ -66,6 +82,11 @@ class ::Embrittlement : ::DotModifier {
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
     return HasMasteryPrereq(info, "::ConcentratedAcid", "::AcidSpray");
+  }
+
+  override void GetTooltipFields(Dictionary fields, uint level) {
+    fields.insert("damage-increase", AsPercentIncrease(level*0.01));
+    fields.insert("instakill", AsPercent(1/(1+0.1*level)));
   }
 }
 
