@@ -60,6 +60,11 @@ class ::DarkHarvest : ::BaseUpgrade {
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
     return info.IsMelee() || info.IsWimpy();
   }
+
+  override void GetTooltipFields(Dictionary fields, uint level) {
+    fields.insert("leech", "+"..level);
+    fields.insert("cap", AsPercent(1.0 + 0.2*level));
+  }
 }
 
 class ::DarkHarvest::Health : HealthBonus {
@@ -89,6 +94,10 @@ class ::Shield : ::BaseUpgrade {
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
     return (info.IsMelee() || info.IsWimpy());
   }
+
+  override void GetTooltipFields(Dictionary fields, uint level) {
+    fields.insert("shield", AsPercentDecrease(0.4 + 0.6 * 0.8 ** level));
+  }
 }
 
 class ::Swiftness : ::BaseUpgrade {
@@ -106,6 +115,10 @@ class ::Swiftness : ::BaseUpgrade {
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
     return info.IsMelee() || info.IsWimpy();
+  }
+
+  override void GetTooltipFields(Dictionary fields, uint level) {
+    fields.insert("duration", string.format("%.1fs", (27 + 7*level)/35.0));
   }
 }
 
