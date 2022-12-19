@@ -27,7 +27,7 @@ class ::ShockingInscription : ::ElementalUpgrade {
   }
 
   override void GetTooltipFields(Dictionary fields, uint level) {
-    fields.insert("damage-per-stack", string.format("%d", 1.0/(0.2*level/5.0)));
+    fields.insert("damage-per-stack", string.format("%d", level? 1.0/(0.2*level/5.0) : 0));
     fields.insert("softcap", level.."s");
   }
 }
