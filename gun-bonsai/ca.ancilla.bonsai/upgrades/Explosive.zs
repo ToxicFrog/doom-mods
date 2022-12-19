@@ -20,6 +20,12 @@ class ::ExplosiveShots : ::BaseUpgrade {
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
     return info.IsHitscan() && !info.IsMelee();
   }
+
+  override void GetTooltipFields(Dictionary fields, uint level) {
+    fields.insert("radius", string.format("%.1fm", (64 + 16*level)/32.0));
+    fields.insert("damage", AsPercent(level * 0.1));
+    fields.insert("min-damage", ""..level);
+  }
 }
 
 class ::ExplosiveShots::Boom : Actor {

@@ -18,6 +18,12 @@ class ::ExplosiveDeath : ::BaseUpgrade {
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
     return !info.IsMelee();
   }
+
+  override void GetTooltipFields(Dictionary fields, uint level) {
+    fields.insert("radius", AsPercent(3.0 + 0.5*level));
+    fields.insert("damage", AsPercent(1.0 - 0.8**level));
+    fields.insert("self-damage", AsPercentDecrease(0.5 ** level));
+  }
 }
 
 class ::ExplosiveDeath::Aux : Actor {
