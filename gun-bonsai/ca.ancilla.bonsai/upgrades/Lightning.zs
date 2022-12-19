@@ -25,6 +25,11 @@ class ::ShockingInscription : ::ElementalUpgrade {
       player, target, "::ShockDot", level*damage*0.2, level*5));
     zap.cap = level*5;
   }
+
+  override void GetTooltipFields(Dictionary fields, uint level) {
+    fields.insert("damage-per-stack", string.format("%d", 1.0/(0.2*level/5.0)));
+    fields.insert("softcap", level.."s");
+  }
 }
 
 class ::Revivification : ::DotModifier {
@@ -38,7 +43,15 @@ class ::Revivification : ::DotModifier {
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
     return HasIntermediatePrereq(info, "::ShockingInscription");
   }
+
+  override void GetTooltipFields(Dictionary fields, uint level) {
+    fields.insert("revive-chance", AsPercent(1.0 - 0.99 ** level));
+    fields.insert("lifetime", (level*5).."s");
+    fields.insert("damage-bonus", AsPercentIncrease(0.2*level));
+    fields.insert("armour-bonus", AsPercentDecrease(0.8 ** level));
+  }
 }
+
 
 class ::ChainLightning : ::DotModifier {
   override ::UpgradeElement Element() { return ::ELEM_LIGHTNING; }
@@ -50,6 +63,11 @@ class ::ChainLightning : ::DotModifier {
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
     return HasMasteryPrereq(info, "::Revivification", "::Thunderbolt");
+  }
+
+  override void GetTooltipFields(Dictionary fields, uint level) {
+    fields.insert("arc-count", ""..level);
+    fields.insert("arc-range", (level*3).."m");
   }
 }
 
@@ -82,6 +100,11 @@ class ::Thunderbolt : ::DotModifier {
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
     return HasMasteryPrereq(info, "::Revivification", "::ChainLightning");
+  }
+
+  override void GetTooltipFields(Dictionary fields, uint level) {
+    fields.insert("damage-percent", AsPercent(1.0 - 0.9**level));
+    fields.insert("zap-cap", AsPercent(2 * 0.9**level));
   }
 }
 
