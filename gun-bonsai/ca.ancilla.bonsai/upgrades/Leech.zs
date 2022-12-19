@@ -36,6 +36,11 @@ class ::LifeLeech : ::BaseUpgrade {
   override bool IsSuitableForPlayer(TFLV::PerPlayerStats stats) {
     return true;
   }
+
+  override void GetTooltipFields(Dictionary fields, uint level) {
+    fields.insert("amount", ""..level);
+    fields.insert("cap", AsPercent(level >= 2 ? 2 : 1));
+  }
 }
 
 class ::LifeLeech::Bonus : HealthBonus {
@@ -79,6 +84,11 @@ class ::ArmourLeech : ::BaseUpgrade {
 
   override bool IsSuitableForPlayer(TFLV::PerPlayerStats stats) {
     return true;
+  }
+
+  override void GetTooltipFields(Dictionary fields, uint level) {
+    fields.insert("amount", ""..(level*2));
+    fields.insert("cap", AsPercent(level >= 2 ? 2 : 1));
   }
 }
 
@@ -136,5 +146,9 @@ class ::AmmoLeech : ::BaseUpgrade {
 
   override bool IsSuitableForPlayer(TFLV::PerPlayerStats stats) {
     return true;
+  }
+
+  override void GetTooltipFields(Dictionary fields, uint level) {
+    fields.insert("amount", ""..level);
   }
 }
