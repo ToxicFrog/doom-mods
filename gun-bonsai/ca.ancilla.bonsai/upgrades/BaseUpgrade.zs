@@ -175,7 +175,7 @@ class ::BaseUpgrade : Object play {
   // screen. Should report stats as if the upgrade were the given level.
   // Stats inserted into fields will be used to substitute the @1, @2, etc markers
   // in the upgrade's corresponding _FF LANGUAGE key.
-  virtual void GetTooltipFields(Array<string> fields, uint level) const {}
+  virtual void GetTooltipFields(Dictionary fields, uint level) const {}
 
   // Utility functions for GetTooltipFields
   // 0.25 -> 25%
@@ -199,12 +199,12 @@ class ::BaseUpgrade : Object play {
   }
 
   string GetTooltip(uint level) const {
-    Array<string> fields;
+    let fields = Dictionary.Create();
     GetTooltipFields(fields, level);
     let format = GetTooltipFormat();
     if (!format) return "";
-    for (uint i = 0; i < fields.size(); ++i) {
-      format.Substitute("@"..(i+1), fields[i]);
+    for (let i = DictionaryIterator.Create(fields); i.Next();) {
+      format.Substitute("@"..i.Key(), i.Value());
     }
     return format;
   }
@@ -215,13 +215,14 @@ class ::BaseUpgrade : Object play {
   }
 
   string GetTooltipDiff(uint lv1, uint lv2) const {
-    Array<string> fields1, fields2;
+    let fields1 = Dictionary.Create();
+    let fields2 = Dictionary.Create();
     GetTooltipFields(fields1, lv1);
     GetTooltipFields(fields2, lv2);
     let format = GetTooltipFormat();
     if (!format) return "";
-    for (uint i = 0; i < fields1.size(); ++i) {
-      format.Substitute("@"..(i+1), FieldDiff(fields1[i], fields2[i]));
+    for (let i = DictionaryIterator.Create(fields1); i.Next();) {
+      format.Substitute("@"..i.Key(), FieldDiff(i.Value(), fields2.At(i.Key())));
     }
     return format;
   }

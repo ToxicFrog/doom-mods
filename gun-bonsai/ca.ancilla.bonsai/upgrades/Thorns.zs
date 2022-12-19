@@ -19,11 +19,11 @@ class ::Thorns : ::BaseUpgrade {
     return string.format("%dm", u/32);
   }
 
-  override void GetTooltipFields(Array <string> fields, uint level) {
-    fields.push(AsMeters(192*level));
-    fields.push(AsMeters(1024*level));
+  override void GetTooltipFields(Dictionary fields, uint level) {
+    fields.insert("min-range", AsMeters(192*level));
+    fields.insert("max-range", AsMeters(1024*level));
     let elem_threshold = 1 - 0.9/level;
-    fields.push(AsMeters(192*level + elem_threshold * (1024*level - 192*level)));
+    fields.insert("elem-proc-range", AsMeters(192*level + elem_threshold * (1024*level - 192*level)));
   }
 }
 

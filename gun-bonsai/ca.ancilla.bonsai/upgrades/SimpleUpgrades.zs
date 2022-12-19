@@ -11,8 +11,8 @@ class ::BlastShaping : ::BaseUpgrade {
     return true;
   }
 
-  override void GetTooltipFields(Array <string> fields, uint level) {
-    fields.push(AsPercentDecrease(0.5**level));
+  override void GetTooltipFields(Dictionary fields, uint level) {
+    fields.insert("damage-reduction", AsPercentDecrease(0.5**level));
   }
 }
 
@@ -37,12 +37,12 @@ class ::BouncyShots : ::BaseUpgrade {
       && !info.IsBouncer(false);
   }
 
-  override void GetTooltipFields(Array <string> fields, uint level) {
-    fields.push(""..(!level ? 0 : 1 + level));
+  override void GetTooltipFields(Dictionary fields, uint level) {
+    fields.insert("count", ""..(!level ? 0 : 1 + level));
     if (level < 3) {
-      fields.push("");
+      fields.insert("extra-effect", "");
     } else {
-      fields.push(GetTooltipFormat(1)); // "Shots bounce off enemies."
+      fields.insert("extra-effect", GetTooltipFormat(1)); // "Shots bounce off enemies."
     }
   }
 }
@@ -56,8 +56,8 @@ class ::FastShots : ::BaseUpgrade {
     return info.IsSlowProjectile();
   }
 
-  override void GetTooltipFields(Array <string> fields, uint level) {
-    fields.push(string.format("x%.1f", 1 + 0.5*level));
+  override void GetTooltipFields(Dictionary fields, uint level) {
+    fields.insert("v-multiplier", string.format("x%.1f", 1 + 0.5*level));
   }
 }
 
@@ -90,9 +90,9 @@ class ::PlayerDamage : ::BaseUpgrade {
     return true;
   }
 
-  override void GetTooltipFields(Array <string> fields, uint level) {
-    fields.push(AsPercentIncrease(level*0.1));
-    fields.push("+"..level);
+  override void GetTooltipFields(Dictionary fields, uint level) {
+    fields.insert("percent-bonus", AsPercentIncrease(level*0.1));
+    fields.insert("flat-bonus", "+"..level);
   }
 }
 
@@ -107,9 +107,9 @@ class ::ToughAsNails : ::BaseUpgrade {
     return true;
   }
 
-  override void GetTooltipFields(Array <string> fields, uint level) {
-    fields.push(AsPercentDecrease(0.9**level));
-    fields.push("-"..level);
+  override void GetTooltipFields(Dictionary fields, uint level) {
+    fields.insert("percent-bonus", AsPercentDecrease(0.9**level));
+    fields.insert("flat-bonus", "-"..level);
   }
 }
 
@@ -124,8 +124,8 @@ class ::WeaponDamage : ::BaseUpgrade {
     return true;
   }
 
-  override void GetTooltipFields(Array <string> fields, uint level) {
-    fields.push(AsPercentIncrease(level*0.2));
-    fields.push("+"..level);
+  override void GetTooltipFields(Dictionary fields, uint level) {
+    fields.insert("percent-bonus", AsPercentIncrease(level*0.2));
+    fields.insert("flat-bonus", "+"..level);
   }
 }

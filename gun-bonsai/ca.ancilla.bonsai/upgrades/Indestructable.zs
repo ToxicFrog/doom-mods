@@ -25,9 +25,9 @@ class ::Indestructable : ::BaseUpgrade {
     return 100 + (200 * 0.5**level);
   }
 
-  override void GetTooltipFields(Array <string> fields, uint level) {
-    fields.push(""..GetMaxCharge(level));
-    fields.push(string.format("%d", 2**level));
+  override void GetTooltipFields(Dictionary fields, uint level) {
+    fields.insert("damage-per-life", ""..GetMaxCharge(level));
+    fields.insert("max-lives", string.format("%d", 2**level));
   }
 }
 

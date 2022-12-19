@@ -18,9 +18,9 @@ class ::Submunitions : ::BaseUpgrade {
     return !info.IsMelee();
   }
 
-  override void GetTooltipFields(Array <string> fields, uint level) {
-    fields.push(""..(level * 4)); // Number of submunitions
-    fields.push("+"..(level * 5)); // Damage bonus
+  override void GetTooltipFields(Dictionary fields, uint level) {
+    fields.insert("count", ""..(level * 4));
+    fields.insert("bonus-damage", "+"..(level * 5));
   }
 }
 

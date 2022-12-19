@@ -26,8 +26,8 @@ class ::RapidFire : ::BaseUpgrade {
       && (info.wpn.AmmoType1 || info.wpn.AmmoType2);
   }
 
-  override void GetTooltipFields(Array <string> fields, uint level) {
-    fields.push(string.format("x%.1f", 1 + level/2));
+  override void GetTooltipFields(Dictionary fields, uint level) {
+    fields.insert("speedup", string.format("x%.1f", 1 + level/2.0));
   }
 }
 

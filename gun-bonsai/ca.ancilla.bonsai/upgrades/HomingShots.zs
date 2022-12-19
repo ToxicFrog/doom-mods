@@ -12,9 +12,9 @@ class ::HomingShots : ::BaseUpgrade {
     return info.IsSlowProjectile() && info.upgrades.Level("::HomingShots") < 4;
   }
 
-  override void GetTooltipFields(Array <string> fields, uint level) {
-    fields.push(string.format("%dm", min(level,10)*4));
-    fields.push(string.format("%d", !level ? 0 : (level+2)*35));
+  override void GetTooltipFields(Dictionary fields, uint level) {
+    fields.insert("lock-range", string.format("%dm", min(level,10)*4));
+    fields.insert("dps", string.format("%d", !level ? 0 : (level+2)*35));
   }
 }
 
