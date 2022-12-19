@@ -3,7 +3,7 @@
 class ::PlayerLevelUpMenu : ::GenericLevelUpMenu {
   override void Init(Menu parent, OptionMenuDescriptor desc) {
     super.InitDynamic(parent, desc);
-    TooltipGeometry(0.5, 1.0, 0.9, 1.0, 0.5);
+    TooltipGeometry(0.5, 1.0, 0.75, 1.0, 0.5);
     TooltipAppearance("", "", "tfttbg");
 
     let stats = TFLV::EventHandler.GetConsolePlayerStats();
