@@ -25,6 +25,11 @@ class ::PoisonShots : ::ElementalUpgrade {
     ::Dot.GiveStacks(player, target, "::PoisonDot", level, 10*level);
     DEBUG("Gave %s %d stacks", target.GetClassName(), level);
   }
+
+  override void GetTooltipFields(Dictionary fields, uint level) {
+    fields.insert("stacks", ""..level);
+    fields.insert("softcap", ""..(level*10));
+  }
 }
 
 class ::Weakness : ::DotModifier {
@@ -37,6 +42,10 @@ class ::Weakness : ::DotModifier {
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
     return HasIntermediatePrereq(info, "::PoisonShots");
+  }
+
+  override void GetTooltipFields(Dictionary fields, uint level) {
+    fields.insert("reduction", AsPercentDecrease(0.99 ** level));
   }
 }
 
@@ -51,6 +60,10 @@ class ::Hallucinogens : ::DotModifier {
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
     return HasMasteryPrereq(info, "::Weakness", "::Putrefaction");
+  }
+
+  override void GetTooltipFields(Dictionary fields, uint level) {
+    fields.insert("increase", AsPercentIncrease(0.01 * level));
   }
 }
 
@@ -69,6 +82,11 @@ class ::Putrefaction : ::ElementalUpgrade {
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
     return HasMasteryPrereq(info, "::Weakness", "::Hallucinogens");
+  }
+
+  override void GetTooltipFields(Dictionary fields, uint level) {
+    fields.insert("transfer", AsPercent(1.0 - 0.5**level));
+    fields.insert("range", "3m");
   }
 }
 
@@ -108,6 +126,8 @@ class ::PoisonDot : ::Dot {
   }
 
   // Damage modifier for Weakness and Hallucinogens upgrades.
+  // TODO: hallu enemies should take reduced damage from the player and have
+  // poison tick more slowly.
   override void ModifyDamage(
       int damage, Name damageType, out int newdamage, bool passive,
       Actor inflictor, Actor source, int flags) {
@@ -149,6 +169,7 @@ class ::Putrefaction::Aux : Actor {
 
   States {
     Spawn:
+      // TODO: scale blast radius with level?
       LPBX ABABABCBCBCDCDCDEE 7 A_Explode(1, 100, XF_NOSPLASH, false, 100);
       STOP;
   }
