@@ -6,6 +6,7 @@
   - As a debugging tool, you can set `bonsai_upgrade_choices_per_player_level` and `bonsai_gun_choices_per_player_level` to -1 to list all upgrades. This will produce upgrade choices that do not work, so it is mostly useful for testing menu display code.
 - Balance:
   - Swiftness now goes into slow-mo for the last 0.5s of its duration rather than the last 3.5s, meaning it does actually stop time even at low levels.
+  - Piercing Shots now applies a damage penalty. Taking more levels mitigates the penalty
 - Fix:
   - Heretic's wand and staff are now considered "wimpy" weapons.
   - Some errors in `UPGRADES.md` about what upgrades were available on what weapons corrected.

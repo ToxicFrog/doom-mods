@@ -63,8 +63,18 @@ class ::FastShots : ::BaseUpgrade {
 
 class ::PiercingShots : ::BaseUpgrade {
   override void OnProjectileCreated(Actor player, Actor shot) {
-    // TODO this should also reduce damage.
     shot.bRIPPER = true;
+  }
+
+  override double ModifyDamageDealt(Actor pawn, Actor shot, Actor target, double damage) {
+    if (shot.bRIPPER && shot.bMISSILE) {
+      // For the plasma rifle, against a Revenant-sized enemy, setting this to 0.5
+      // without any other upgrades results in it doing roughly normal damage.
+      // With two levels of High Velocity setting it to 0.7 results in about 25%
+      // normal damage, which is probably ok?
+      return damage * (1.0 - 0.7 ** level);
+    }
+    return damage;
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
@@ -76,6 +86,10 @@ class ::PiercingShots : ::BaseUpgrade {
       && info.upgrades.Level("::FragmentationShots") == 0
       // Also requires either FastProjectile weapon or two levels in Fast Shots
       && (info.IsFastProjectile() || info.upgrades.Level("::FastShots") >= 2);
+  }
+
+  override void GetTooltipFields(Dictionary fields, uint level) {
+    fields.insert("damage-reduction", AsPercentDecrease(1.0 - 0.7 ** level));
   }
 }
 
