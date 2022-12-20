@@ -161,7 +161,7 @@ class ::FireDot : ::Dot {
       owner.health, goal, total_damage, clamp(total_damage/10.0, 0.2, stacks));
 
     burning = true;
-    double damage = min(total_damage/10.0+terror/5, stacks * DAMAGE_PER_STACK);
+    double damage = min(total_damage/10.0+terror/5.0, stacks * DAMAGE_PER_STACK);
     if (terror > 0) DoTerror(damage);
     return damage;
   }

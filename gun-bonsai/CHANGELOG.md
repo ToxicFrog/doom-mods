@@ -12,6 +12,7 @@
   - Shield now properly stacks infinitely, albeit with diminishing returns.
   - Scavenge Lead spawns now respect actor replacement rules.
   - Dark Harvest now respects permanent health upgrades when calculating the cap.
+  - Burning Terror now gives +1 dps per level, rather than +5 dps every five levels.
 
 # 0.9.5
 
