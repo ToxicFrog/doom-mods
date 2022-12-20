@@ -21,6 +21,11 @@
 #namespace TFLV::Upgrade;
 #debug off
 
+// Fire will try to do this proportion of the target's health in damage.
+const BASE_FIRE_FACTOR = 0.5;
+const HEAT_FACTOR = 0.9;
+const DAMAGE_PER_STACK = 4.0; // per dot tick, so multiply by 5 to get DPS
+
 class ::IncendiaryShots : ::ElementalUpgrade {
   override ::UpgradeElement Element() { return ::ELEM_FIRE; }
   override void OnDamageDealt(Actor player, Actor shot, Actor target, int damage) {
@@ -28,6 +33,12 @@ class ::IncendiaryShots : ::ElementalUpgrade {
     // Softcap == level -- since fire never burns out we can afford to set it pretty low
     // and gradually turn up the heat.
     ::Dot.GiveStacks(player, target, "::FireDot", damage*0.2, level);
+  }
+
+  override void GetTooltipFields(Dictionary fields, uint level) {
+    fields.insert("stacks", AsPercent(level*0.2));
+    fields.insert("softcap", ""..level);
+    fields.insert("cutoff", AsPercent(BASE_FIRE_FACTOR));
   }
 }
 
@@ -42,6 +53,11 @@ class ::BurningTerror : ::DotModifier {
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
     return HasIntermediatePrereq(info, "::IncendiaryShots");
   }
+
+  override void GetTooltipFields(Dictionary fields, uint level) {
+    fields.insert("threshold", AsPercent(1.0 - 0.7**level));
+    fields.insert("damage", "+"..level);
+  }
 }
 
 class ::Conflagration : ::DotModifier {
@@ -54,6 +70,11 @@ class ::Conflagration : ::DotModifier {
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
     return HasMasteryPrereq(info, "::BurningTerror", "::InfernalKiln");
+  }
+
+  override void GetTooltipFields(Dictionary fields, uint level) {
+    fields.insert("range", AsPercent(1.0 + level*0.5));
+    fields.insert("softcap", ""..level);
   }
 }
 
@@ -94,12 +115,13 @@ class ::InfernalKiln : ::ElementalUpgrade {
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
     return HasMasteryPrereq(info, "::BurningTerror", "::Conflagration");
   }
-}
 
-// Fire will try to do this proportion of the target's health in damage.
-const BASE_FIRE_FACTOR = 0.5;
-const HEAT_FACTOR = 0.9;
-const DAMAGE_PER_STACK = 4.0; // per dot tick, so multiply by 5 to get DPS
+  override void GetTooltipFields(Dictionary fields, uint level) {
+    fields.insert("hardness", AsPercent(level * 0.01));
+    fields.insert("damage", "+"..(level*2));
+    fields.insert("block", "-"..(level*2));
+  }
+}
 
 class ::FireDot : ::Dot {
   bool burning;
