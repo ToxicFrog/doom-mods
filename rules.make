@@ -13,6 +13,7 @@ ifdef ZSDIR
 	ZSCRIPT_AUTO=$(patsubst %.zs,%.zsc,$(shell find ${ZSDIR} -name "*.zs"))
 	ZSCRIPT_TO_CLEAN=${ZSCRIPT_AUTO}
 endif
+MOD_VERSION=${VERSION}+$(shell git rev-parse --short=8 HEAD)
 
 ### Rules ###
 
@@ -31,5 +32,5 @@ ${PK3}: ${LUMPS} ${ZSCRIPT} ${ZSCRIPT_AUTO}
 	ln -sf $@ "${PK3LN}"
 
 %.zsc: %.zs
-	${TOPDIR}/zspp $< $@
+	MOD_VERSION=${MOD_VERSION} ${TOPDIR}/zspp $< $@
 

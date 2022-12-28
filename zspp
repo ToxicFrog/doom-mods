@@ -69,5 +69,6 @@ if debug or os.getenv('ZSPP_FORCE_DEBUG') then
 else
   buf = buf:gsub('%s*DEBUG%b();', function(s) return (s:gsub('\n', '\n//')) end)
 end
+buf = buf:gsub("%s*MOD_VERSION%b()", '"'..(os.getenv('MOD_VERSION') or "<unknown>")..'"')
 
 dst = assert(io.open(dst, 'wb')):write(buf)

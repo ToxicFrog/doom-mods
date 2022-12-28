@@ -11,7 +11,7 @@ class ::EventHandler : StaticEventHandler {
   ui ::HUD hud;
 
   override void OnRegister() {
-    DEBUG("Initializing Gun Bonsai...");
+    console.printf("Initializing Gun Bonsai v%s...", MOD_VERSION());
     UPGRADE_REGISTRY = new("::Upgrade::Registry");
 
     if (::Settings.have_legendoom()) {

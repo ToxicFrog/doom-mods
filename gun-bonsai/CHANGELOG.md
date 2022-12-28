@@ -1,5 +1,7 @@
 # 0.9.7
 
+- New:
+  - Gun Bonsai logs its release version and git commit ID to the console on startup
 - Fix:
   - Rapid Fire now works properly with Doom Nukem, and probably a lot of other mods where it didn't work right before
 
