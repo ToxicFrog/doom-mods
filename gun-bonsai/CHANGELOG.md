@@ -1,3 +1,8 @@
+# 0.9.7
+
+- Fix:
+  - Rapid Fire now works properly with Doom Nukem, and probably a lot of other mods where it didn't work right before
+
 # 0.9.6
 
 - New:

@@ -3,21 +3,26 @@
 
 class ::RapidFire : ::BaseUpgrade {
   void SpeedUp(PSprite psp, uint n) {
-    DEBUG("reduce tic for psp by %d", n);
+    DEBUG("rapidfire: state %p, tics %d - %d", psp.CurState, psp.tics, n);
     for (uint i = 0; i < n; ++i) {
       if (psp.tics) {
         psp.tics--;
-        while (psp.tics == 0) psp.SetState(psp.CurState.NextState);
+        while (psp.tics == 0) {
+          psp.SetState(psp.CurState.NextState, true);
+          DEBUG("rapidfire: advance state to %p tics = %d to remove = %d", psp.CurState, psp.tics, n - i);
+        }
       }
     }
   }
 
   override void Tick(Actor owner) {
     let psp = owner.player.GetPSprite(PSP_WEAPON);
-    if (psp.processPending && psp.tics != -1) {
+    if (psp.tics != -1) {
       // Speed up by 1 tic for every 2 levels of the upgrade; on odd-numbered levels,
       // speed up by an extra tic on odd-numbered gametics.
       SpeedUp(psp, level/2 + (level % 2) * (gametic % 2));
+    } else {
+      DEBUG("Skipping rapidfire, process=%d tics=%d", psp.processPending, psp.tics);
     }
   }
 

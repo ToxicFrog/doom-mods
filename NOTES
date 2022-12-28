@@ -1,5 +1,12 @@
 ## Roadmap
 
+### Ideas for Laevis split-off
+
+Three possible operating modes:
+- Laevis; eat weapons to gain powers, eat higher ranked weapons to rank up and increase your power slots
+- Bonsai level integration; respond to bonsai level-up messages by giving new upgrades
+- Bonsai upgrade integration; add a set of bonsai upgrades corresponding to different LD upgrades? don't quite remember
+
 ### Indestructable
 
 Slomo option instead of timestop?
@@ -14,15 +21,12 @@ Slomo option instead of timestop?
   - dan_the_noob suggests reducing the number of bomblets released per level but increasing damage
 - replace lightning particle effect with assets/thunder effect 02/thunder strike for thunderbolt?
 - swap thunderbolt and paralysis because para is wicked powerful?
-- add tooltips to upgrade menu listing current/next stats and adding more details
 
 ### 0.9.x
 
 - stop including PENTAHUD and other badlumps
 -  nullpointer when attacking upgraded centaurs in Serpent Resurrection:
   - Called from TFLV_Upgrade_Thunderbolt_Aux.PostBeginPlay at GunBonsai-0.9.3.pk3:ca.ancilla.bonsai/upgrades/lightning.zsc, line 461
-- ditto particle effects, fragmentation
-- redo build system so I can force debug on globally for dev or off globally for release
 - Naku-Naru fire speed increases idle/reload anims of some weapons but not firing speed
 - Naku-Naru gives the wrong weapons melee upgrades
 
