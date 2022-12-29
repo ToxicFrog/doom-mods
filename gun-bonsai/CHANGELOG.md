@@ -1,9 +1,10 @@
 # 0.9.7
 
 - New:
-  - Gun Bonsai logs its release version and git commit ID to the console on startup
+  - Gun Bonsai logs its release version and git commit ID to the console on startup.
 - Fix:
-  - Rapid Fire now works properly with Doom Nukem, and probably a lot of other mods where it didn't work right before
+  - Rapid Fire now works properly with Doom Nukem, and probably a lot of other mods where it didn't work right before.
+  - libtooltipmenu is now integrated. This fixes compatibility with other mods that have improperly copied libttm into their pk3.
 
 # 0.9.6
 

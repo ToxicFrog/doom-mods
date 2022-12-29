@@ -5,96 +5,96 @@ AddOptionMenu "OptionsMenu"
 
 OptionMenu "GunBonsaiOptions"
 {
-  class TF_TooltipOptionMenu
+  class TFLV_TooltipOptionMenu
   Title "$TFLV_OPT_TITLE"
 
-  TooltipGeometry 0.0, 0.5, 0.25, 1.0, 0.5
-  TooltipAppearance "", "", "tfttbg"
+  TFLV_TooltipGeometry 0.0, 0.5, 0.25, 1.0, 0.5
+  TFLV_TooltipAppearance "", "", "tfttbg"
 
   StaticText ""
   StaticText "$TFLV_OPT_HEADER_UI", CYAN
 
   Option "$TFLV_OPT_NAME_HUD_SKIN", "bonsai_hud_skin", "GunBonsaiHudSkin"
-  Tooltip "$TFLV_OPT_TT_HUD_SKIN"
+  TFLV_Tooltip "$TFLV_OPT_TT_HUD_SKIN"
   Slider "$TFLV_OPT_NAME_HUD_X", "bonsai_hud_x", 0.0, 1.0, 0.01, 2
   Slider "$TFLV_OPT_NAME_HUD_Y", "bonsai_hud_y", 0.0, 1.0, 0.01, 2
-  Tooltip "$TFLV_OPT_TT_HUD_XY"
+  TFLV_Tooltip "$TFLV_OPT_TT_HUD_XY"
 
   Slider "$TFLV_OPT_NAME_HUD_SIZE", "bonsai_hud_size", 0.05, 0.3, 0.01, 2
-  Tooltip "$TFLV_OPT_TT_HUD_SIZE"
+  TFLV_Tooltip "$TFLV_OPT_TT_HUD_SIZE"
 
   Slider "$TFLV_OPT_NAME_HUD_ALPHA", "bonsai_hud_alpha", 0.0, 1.0, 0.05, 2
-  Tooltip "$TFLV_OPT_TT_HUD_ALPHA"
+  TFLV_Tooltip "$TFLV_OPT_TT_HUD_ALPHA"
 
   Option "$TFLV_OPT_NAME_HUD_MIRROR", "bonsai_hud_mirror", "GunBonsaiHudMirrorMode"
-  Tooltip "$TFLV_OPT_TT_HUD_MIRROR"
+  TFLV_Tooltip "$TFLV_OPT_TT_HUD_MIRROR"
 
   ColorPicker "$TFLV_OPT_NAME_HUD_RGB_FRAME", "bonsai_hud_rgb_frame"
-  Tooltip "$TFLV_OPT_TT_HUD_RGB_FRAME"
+  TFLV_Tooltip "$TFLV_OPT_TT_HUD_RGB_FRAME"
   ColorPicker "$TFLV_OPT_NAME_HUD_RGB_WEAPON", "bonsai_hud_rgb_weapon"
-  Tooltip "$TFLV_OPT_TT_HUD_RGB_WEAPON"
+  TFLV_Tooltip "$TFLV_OPT_TT_HUD_RGB_WEAPON"
   ColorPicker "$TFLV_OPT_NAME_HUD_RGB_PLAYER", "bonsai_hud_rgb_player"
-  Tooltip "$TFLV_OPT_TT_HUD_RGB_PLAYER"
+  TFLV_Tooltip "$TFLV_OPT_TT_HUD_RGB_PLAYER"
 
   Option "$TFLV_OPT_NAME_LEVELUP_FLASH", "bonsai_levelup_flash", "OnOff"
-  Tooltip "$TFLV_OPT_TT_LEVELUP_FLASH"
+  TFLV_Tooltip "$TFLV_OPT_TT_LEVELUP_FLASH"
   Option "$TFLV_OPT_NAME_LEVELUP_SOUND_MODE", "bonsai_levelup_sound_mode", "GunBonsaiLevelUpSoundOption"
-  Tooltip "$TFLV_OPT_TT_LEVELUP_SOUND_MODE"
+  TFLV_Tooltip "$TFLV_OPT_TT_LEVELUP_SOUND_MODE"
 
   StaticText ""
   StaticText "$TFLV_OPT_HEADER_COMPATIBILITY", WHITE
 
   Option "$TFLV_OPT_NAME_UPGRADE_BINDING_MODE", "bonsai_upgrade_binding_mode", "GunBonsaiUpgradeBindingMode"
-  Tooltip "$TFLV_OPT_TT_UPGRADE_BINDING_MODE"
+  TFLV_Tooltip "$TFLV_OPT_TT_UPGRADE_BINDING_MODE"
   Option "$TFLV_OPT_NAME_IGNORE_DEATH_EXITS", "bonsai_ignore_death_exits", "OnOff"
-  Tooltip "$TFLV_OPT_TT_IGNORE_DEATH_EXITS"
+  TFLV_Tooltip "$TFLV_OPT_TT_IGNORE_DEATH_EXITS"
   Option "$TFLV_OPT_NAME_USE_BUILTIN_ACTORS", "bonsai_use_builtin_actors", "OnOff"
-  Tooltip "$TFLV_OPT_TT_USE_BUILTIN_ACTORS"
+  TFLV_Tooltip "$TFLV_OPT_TT_USE_BUILTIN_ACTORS"
   Option "$TFLV_OPT_NAME_AMMOLESS_WEAPONS_ARE_WIMPY", "bonsai_ammoless_weapons_are_wimpy", "OnOff"
-  Tooltip "$TFLV_OPT_TT_AMMOLESS_WEAPONS_ARE_WIMPY"
+  TFLV_Tooltip "$TFLV_OPT_TT_AMMOLESS_WEAPONS_ARE_WIMPY"
 
   StaticText ""
   StaticText "$TFLV_OPT_HEADER_XP_SOURCE", PURPLE
 
   Slider "$TFLV_OPT_NAME_DAMAGE_TO_XP_FACTOR", "bonsai_damage_to_xp_factor", 0.0, 2.0, 0.05, 2
-  Tooltip "$TFLV_OPT_TT_DAMAGE_TO_XP_FACTOR"
+  TFLV_Tooltip "$TFLV_OPT_TT_DAMAGE_TO_XP_FACTOR"
   Slider "$TFLV_OPT_NAME_SCORE_TO_XP_FACTOR", "bonsai_score_to_xp_factor", 0.0, 2.0, 0.05, 2
-  Tooltip "$TFLV_OPT_TT_SCORE_TO_XP_FACTOR"
+  TFLV_Tooltip "$TFLV_OPT_TT_SCORE_TO_XP_FACTOR"
 
   StaticText ""
   StaticText "$TFLV_OPT_HEADER_XP_BALANCE", GOLD
 
   TextField "$TFLV_OPT_NAME_BASE_LEVEL_COST", "bonsai_base_level_cost" //, 100, 10000, 100, 0
-  Tooltip "$TFLV_OPT_TT_BASE_LEVEL_COST"
+  TFLV_Tooltip "$TFLV_OPT_TT_BASE_LEVEL_COST"
   ScaleSlider "$TFLV_OPT_NAME_UPGRADE_CHOICES_PER_GUN_LEVEL", "bonsai_upgrade_choices_per_gun_level", 0, 50, 1, "All of them"
   ScaleSlider "$TFLV_OPT_NAME_UPGRADE_CHOICES_PER_PLAYER_LEVEL", "bonsai_upgrade_choices_per_player_level", 0, 50, 1, "All of them"
-  Tooltip "$TFLV_OPT_TT_UPGRADE_CHOICES_PER_LEVEL"
+  TFLV_Tooltip "$TFLV_OPT_TT_UPGRADE_CHOICES_PER_LEVEL"
 
   Slider "$TFLV_OPT_NAME_GUN_LEVELS_PER_PLAYER_LEVEL", "bonsai_gun_levels_per_player_level", 1, 100, 1, 0
-  Tooltip "$TFLV_OPT_TT_GUN_LEVELS_PER_PLAYER_LEVEL"
+  TFLV_Tooltip "$TFLV_OPT_TT_GUN_LEVELS_PER_PLAYER_LEVEL"
 
   Slider "$TFLV_OPT_NAME_LEVEL_COST_MUL_FOR_MELEE", "bonsai_level_cost_mul_for_melee", 0.1, 5.0, 0.1, 1
   Slider "$TFLV_OPT_NAME_LEVEL_COST_MUL_FOR_WIMPY", "bonsai_level_cost_mul_for_wimpy", 0.1, 5.0, 0.1, 1
-  Tooltip "$TFLV_OPT_TT_LEVEL_COST_MUL"
+  TFLV_Tooltip "$TFLV_OPT_TT_LEVEL_COST_MUL"
 
   StaticText ""
   StaticText "$TFLV_OPT_HEADER_LEGENDOOM", GRAY
 
   ScaleSlider "$TFLV_OPT_NAME_GUN_LEVELS_PER_LD_EFFECT", "bonsai_gun_levels_per_ld_effect", 0, 100, 1, "Disabled"
-  Tooltip "$TFLV_OPT_TT_GUN_LEVELS_PER_LD_EFFECT"
+  TFLV_Tooltip "$TFLV_OPT_TT_GUN_LEVELS_PER_LD_EFFECT"
 
   Option "$TFLV_OPT_NAME_WHICH_GUNS_CAN_LEARN", "bonsai_which_guns_can_learn", "GunBonsaiWhatKindOfGunSelector"
-  Tooltip "$TFLV_OPT_TT_WHICH_GUNS_CAN_LEARN"
+  TFLV_Tooltip "$TFLV_OPT_TT_WHICH_GUNS_CAN_LEARN"
   Option "$TFLV_OPT_NAME_WHICH_GUNS_CAN_REPLACE", "bonsai_which_guns_can_replace", "GunBonsaiWhatKindOfGunSelector"
-  Tooltip "$TFLV_OPT_TT_WHICH_GUNS_CAN_REPLACE"
+  TFLV_Tooltip "$TFLV_OPT_TT_WHICH_GUNS_CAN_REPLACE"
 
   Slider "$TFLV_OPT_NAME_BASE_LD_EFFECT_SLOTS", "bonsai_base_ld_effect_slots", 0, 16, 1, 0
-  Tooltip "$TFLV_OPT_TT_BASE_LD_EFFECT_SLOTS"
+  TFLV_Tooltip "$TFLV_OPT_TT_BASE_LD_EFFECT_SLOTS"
   Slider "$TFLV_OPT_NAME_BONUS_LD_EFFECT_SLOTS", "bonsai_bonus_ld_effect_slots", 0, 16, 1, 0
-  Tooltip "$TFLV_OPT_TT_BONUS_LD_EFFECT_SLOTS"
+  TFLV_Tooltip "$TFLV_OPT_TT_BONUS_LD_EFFECT_SLOTS"
 
   Option "$TFLV_OPT_NAME_IGNORE_GUN_RARITY", "bonsai_ignore_gun_rarity", "OnOff"
-  Tooltip "$TFLV_OPT_TT_IGNORE_GUN_RARITY"
+  TFLV_Tooltip "$TFLV_OPT_TT_IGNORE_GUN_RARITY"
 }
 
 OptionValue "GunBonsaiHudMirrorMode" {

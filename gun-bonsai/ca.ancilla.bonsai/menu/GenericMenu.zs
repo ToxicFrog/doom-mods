@@ -1,6 +1,6 @@
 #namespace TFLV::Menu;
 
-class ::GenericMenu : TF::TooltipOptionMenu {
+class ::GenericMenu : TFLV::TooltipOptionMenu {
   override int GetIndent() {
     return super.GetIndent() - 200 * CleanXFac_1;
   }
