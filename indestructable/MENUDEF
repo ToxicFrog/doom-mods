@@ -26,8 +26,8 @@ OptionMenu "IndestructableOptions"
   TFIS_Tooltip "Buff makes you invincibile."
   Option "Damage Bonus", "indestructable_damage_bonus", "YesNo"
   TFIS_Tooltip "Buff makes you do double damage."
-  Option "Time Stop", "indestructable_timestop", "YesNo"
-  TFIS_Tooltip "Buff stops time for most enemies and projectiles."
+  Option "Slomo Effect", "indestructable_slomo", "IndestructableSlomoEffect"
+  TFIS_Tooltip "Buff slows or stops time for most enemies and projectiles."
 
   StaticText ""
   StaticText "Lives Configuration"
@@ -58,4 +58,12 @@ OptionValue "IndestructableScreenEffect" {
   5, "Inverse"
   6, "Red & White"
   7, "Desaturate"
+}
+
+OptionValue "IndestructableSlomoEffect" {
+  0, "None"
+  2, "1/2 speed"
+  4, "1/4 speed"
+  8, "1/8 speed"
+  1, "Stop time entirely"
 }

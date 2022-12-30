@@ -1,5 +1,7 @@
 # 0.2.6
 
+- New:
+  - Time stop behaviour can be configured to slow time by ½, ¼, or ⅛ instead of stopping time outright.
 - Fix:
   - libtooltipmenu is now integrated. This fixes compatibility with other mods that have improperly copied libttm into their pk3.
 

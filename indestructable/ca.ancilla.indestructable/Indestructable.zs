@@ -162,11 +162,11 @@ class ::IndestructableForce : Inventory {
     self.SetStateLabel("RestoreHealth");
 
     GiveScreenEffect(GetInt("indestructable_screen_effect"));
-    if (GetBool("indestructable_invincibility"))
+    if (indestructable_invincibility)
       GivePowerup("PowerInvulnerable");
-    if (GetBool("indestructable_timestop"))
-      GivePowerup("PowerTimeFreezer");
-    if (GetBool("indestructable_damage_bonus"))
+    if (indestructable_slomo)
+      GivePowerup("::IndestructableSloMo");
+    if (indestructable_damage_bonus)
       GivePowerup("::IndestructableDamage");
 
     if (lives > 0) {
@@ -281,4 +281,22 @@ class ::IndestructableDamage : Powerup {
     if (passive) return;
     newdamage = damage*2;
   }
+}
+
+class ::IndestructableSlomo : PowerTimeFreezer {
+  bool ShouldFreeze() {
+    return indestructable_slomo == 1 || (level.maptime/2) % indestructable_slomo;
+  }
+
+  override void DoEffect() {
+    // Check copied from PowerTimeFreezer::DoEffect
+    if (Level.maptime & 1 || (Owner != null && Owner.player != null && Owner.player.cheats & CF_PREDICTING)) {
+      return;
+    }
+    DEBUG("maptime=%d effectTics=%d shouldFreeze=%d", effectTics, level.maptime, shouldfreeze());
+    Level.setFrozen(effectTics > 0 && ShouldFreeze());
+ }
+
+  override bool CanPickup(Actor other) { return true; }
+  override bool IsBlinking() { return false; }
 }
