@@ -38,7 +38,7 @@ class ::BouncyShots : ::BaseUpgrade {
   }
 
   override void GetTooltipFields(Dictionary fields, uint level) {
-    fields.insert("count", ""..(!level ? 0 : 1 + level));
+    fields.insert("count", ""..(1 + level));
     if (level < 3) {
       fields.insert("extra-effect", "");
     } else {

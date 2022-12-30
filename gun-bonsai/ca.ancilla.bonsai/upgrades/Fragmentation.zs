@@ -35,7 +35,7 @@ class ::FragmentationShots : ::BaseUpgrade {
       && !info.IsMelee();
   }
   override void GetTooltipFields(Dictionary fields, uint level) {
-    fields.insert("fragments", ""..(level ? 8*level+8 : 0));
+    fields.insert("fragments", ""..(8*level+8));
   }
 }
 

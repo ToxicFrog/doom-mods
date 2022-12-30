@@ -214,6 +214,9 @@ class ::BaseUpgrade : Object play {
   }
 
   string GetTooltipDiff(uint lv1, uint lv2) const {
+    // Levels must be at least 1, since level 0 upgrades definitionally do nothing.
+    lv1 = max(lv1, 1);
+    lv2 = max(lv2, 1);
     let fields1 = Dictionary.Create();
     let fields2 = Dictionary.Create();
     GetTooltipFields(fields1, lv1);

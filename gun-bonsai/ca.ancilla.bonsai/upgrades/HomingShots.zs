@@ -14,7 +14,7 @@ class ::HomingShots : ::BaseUpgrade {
 
   override void GetTooltipFields(Dictionary fields, uint level) {
     fields.insert("lock-range", string.format("%dm", min(level,10)*4));
-    fields.insert("dps", string.format("%d", !level ? 0 : (level+2)*35));
+    fields.insert("dps", string.format("%d", (level+2)*35));
   }
 }
 

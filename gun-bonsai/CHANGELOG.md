@@ -5,6 +5,8 @@
 - Fix:
   - Rapid Fire now works properly with Doom Nukem, and probably a lot of other mods where it didn't work right before.
   - libtooltipmenu is now integrated. This fixes compatibility with other mods that have improperly copied libttm into their pk3.
+  - Upgrade tooltips no longer show a diff against a theoretical level 0 upgrade when choosing them for the first time.
+  - The Thorns tooltip no longer causes a division by 0 crash on some builds of gzDoom.
 
 # 0.9.6
 
