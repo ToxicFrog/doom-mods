@@ -4,16 +4,30 @@
 #VERSION= pk3 version
 #LUMPS= list of top-level lump files and dirs
 #ZSDIR= list of directories holding zscript to compile
+#LIBTTM= path to libtooltipmenu to integrate, if any
+#LIBTTM_PREFIX= prefix (e.g. TFIS) to use when specializing libtooltipmenu for this mod
 
 ### Values computed at include time ###
 
 PK3=${TOPDIR}/release/${NAME}-${VERSION}.pk3
 PK3LN=${TOPDIR}/release/${NAME}-latest.pk3
-ifdef ZSDIR
-	ZSCRIPT_AUTO=$(patsubst %.zs,%.zsc,$(shell find ${ZSDIR} -name "*.zs"))
-	ZSCRIPT_TO_CLEAN=${ZSCRIPT_AUTO}
-endif
 MOD_VERSION=${VERSION}+$(shell git rev-parse --short=8 HEAD)
+
+ifdef ZSDIR
+ZSCRIPT_AUTO=$(patsubst %.zs,%.zsc,$(shell find ${ZSDIR} -name "*.zs"))
+ZSCRIPT_TO_CLEAN=${ZSCRIPT_AUTO}
+
+ifdef LIBTTM
+LIBTTM_ZS=${ZSDIR}/libtooltipmenu/TooltipListMenu.zsc
+LIBTTM_ZS+=${ZSDIR}/libtooltipmenu/TooltipOptionMenu.zsc
+LIBTTM_ZS+=${ZSDIR}/libtooltipmenu/Tooltips.zsc
+ZSCRIPT+=${LIBTTM_ZS}
+ZSCRIPT_TO_CLEAN+=${LIBTTM_ZS}
+${ZSDIR}/libtooltipmenu/%:
+	sed -E 's,TF_,${LIBTTM_PREFIX}_,g; s,ItemTooltip,Item${LIBTTM_PREFIX}_Tooltip,g' ${LIBTTM}/$* > $@
+
+endif # libttm
+endif # zsdir
 
 ### Rules ###
 
