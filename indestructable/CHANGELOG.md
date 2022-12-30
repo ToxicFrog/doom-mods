@@ -1,3 +1,8 @@
+# 0.2.6
+
+- Fix:
+  - libtooltipmenu is now integrated. This fixes compatibility with other mods that have improperly copied libttm into their pk3.
+
 # 0.2.5
 
 - Fix:

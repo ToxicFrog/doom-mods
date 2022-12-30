@@ -6,47 +6,47 @@ AddOptionMenu "OptionsMenu"
 // TODO: move these into a LANGUAGE lump
 OptionMenu "IndestructableOptions"
 {
-  class TF_TooltipOptionMenu
+  class TFIS_TooltipOptionMenu
   Title "Indestructable Options"
 
-  TooltipGeometry 0.5, 1.0, 1.0, 1.0, 0.5
-  TooltipAppearance "", "", "tfttbg"
+  TFIS_TooltipGeometry 0.5, 1.0, 1.0, 1.0, 0.5
+  TFIS_TooltipAppearance "", "", "tfttbg"
 
   StaticText "Appearance"
   Option "Screen Effect", "indestructable_screen_effect", "IndestructableScreenEffect"
-  Tooltip "What colour to turn the screen when indestructability triggers."
+  TFIS_Tooltip "What colour to turn the screen when indestructability triggers."
 
   StaticText ""
   StaticText "Buff Configuration"
   Slider "Indestructability duration", "indestructable_duration", 0, 300, 1, 0
-  Tooltip "On-death buff lasts this many seconds."
+  TFIS_Tooltip "On-death buff lasts this many seconds."
   Slider "Restore health", "indestructable_restore_hp", 1, 200, 1, 0
-  Tooltip "Restore this much HP instead of dying."
+  TFIS_Tooltip "Restore this much HP instead of dying."
   Option "Invincibility", "indestructable_invincibility", "YesNo"
-  Tooltip "Buff makes you invincibile."
+  TFIS_Tooltip "Buff makes you invincibile."
   Option "Damage Bonus", "indestructable_damage_bonus", "YesNo"
-  Tooltip "Buff makes you do double damage."
+  TFIS_Tooltip "Buff makes you do double damage."
   Option "Time Stop", "indestructable_timestop", "YesNo"
-  Tooltip "Buff stops time for most enemies and projectiles."
+  TFIS_Tooltip "Buff stops time for most enemies and projectiles."
 
   StaticText ""
   StaticText "Lives Configuration"
   ScaleSlider "Starting lives", "indestructable_starting_lives", -1, 20, 1, "None", "Infinite"
-  Tooltip "How many lives you start the game with. Set to -1 to have unlimited extra lives."
+  TFIS_Tooltip "How many lives you start the game with. Set to -1 to have unlimited extra lives."
 
   Slider "Extra lives on level clear", "indestructable_lives_per_level", 0, 20, 1, 0
-  Tooltip "How many extra lives you're given for clearing a level."
+  TFIS_Tooltip "How many extra lives you're given for clearing a level."
   Slider "Min lives carried between levels", "indestructable_min_lives_per_level", 0, 20, 1, 0
-  Tooltip "You will always start a level with at least this many lives."
+  TFIS_Tooltip "You will always start a level with at least this many lives."
   ScaleSlider "Max lives carried between levels", "indestructable_max_lives_per_level", 0, 20, 1, "Unlimited"
-  Tooltip "You cannot carry more than this many lives between levels. Set to 0 for unlimited."
+  TFIS_Tooltip "You cannot carry more than this many lives between levels. Set to 0 for unlimited."
 
   Slider "Extra lives on boss kill", "indestructable_lives_per_boss", 0, 20, 1, 0
-  Tooltip "How many extra lives you're given after killing a boss."
+  TFIS_Tooltip "How many extra lives you're given after killing a boss."
   Slider "Min lives on boss kill", "indestructable_min_lives_per_boss", 0, 20, 1, 0
-  Tooltip "Killing a boss will always refill you to at least this many lives."
+  TFIS_Tooltip "Killing a boss will always refill you to at least this many lives."
   ScaleSlider "Max lives on boss kill", "indestructable_max_lives_per_boss", 0, 20, 1, "Unlimited"
-  Tooltip "Killing a boss cannot take you above this limit (but will not remove lives if you're already above it). Set to 0 for unlimited."
+  TFIS_Tooltip "Killing a boss cannot take you above this limit (but will not remove lives if you're already above it). Set to 0 for unlimited."
 }
 
 OptionValue "IndestructableScreenEffect" {
