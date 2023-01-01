@@ -8,10 +8,12 @@ class ::Submunitions : ::BaseUpgrade {
     let aux = ::Submunitions::Spawner(target.Spawn("::Submunitions::Spawner", target.pos));
     aux.weaponspecial = Priority();
     aux.target = player;
-    aux.level = level;
-    aux.damage = abs(target.health) + 5*level; // (target.SpawnHealth()) * (1.0 - 0.8 ** level);
-    aux.blast_radius = target.radius*3;
-    DEBUG("Created SubmunitionSpawner");
+    let count = 3+level;
+    aux.ReactionTime = count;
+    aux.damage = ((target.SpawnHealth() + abs(target.health)) * (1.0 - 0.8 ** level))/count + 4*level;
+    aux.blast_radius = target.radius*2.5;
+    aux.ttl = level*5; // in seconds
+    DEBUG("Created SubmunitionSpawner, damage=%d", aux.damage);
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
@@ -20,42 +22,42 @@ class ::Submunitions : ::BaseUpgrade {
 
   override void GetTooltipFields(Dictionary fields, uint level) {
     fields.insert("count", ""..(3 + level));
-    fields.insert("bonus-damage", "+"..(level * 5));
+    fields.insert("bonusdamage", ""..(level * 4));
+    fields.insert("damage", AsPercent(1.0 - 0.8 ** level));
+    fields.insert("ttl", AsSeconds(level*5*35));
   }
 }
 
 class ::Submunitions::Spawner : Actor {
-  uint level;
   uint damage;
   uint blast_radius;
+  uint ttl;
 
   States {
     Spawn:
       TNT1 A 7;
-      TNT1 A 0 SpawnMunitions();
-      STOP;
+    SpawnMunition:
+      TNT1 A 1 SpawnMunition();
+      TNT1 A 0 A_CountDown();
+      LOOP;
   }
 
-  void SpawnMunitions() {
-    for (uint i = 0; i < 3+level; ++i) {
-      let aux = ::Submunitions::Grenade(A_SpawnProjectile(
-        "::Submunitions::Grenade", 32, 0, random(0,360),
-        CMF_AIMDIRECTION|CMF_ABSOLUTEANGLE));
-      aux.weaponspecial = weaponspecial;
-      aux.target = target;
-      aux.level = level;
-      aux.damage = damage;
-      aux.blast_radius = blast_radius;
-      DEBUG("Created submunition: level=%d power=%d",
-        aux.level, aux.damage);
-    }
+  void SpawnMunition() {
+    let aux = ::Submunitions::Grenade(A_SpawnProjectile(
+      "::Submunitions::Grenade", 32, 0, random(0,360),
+      CMF_AIMDIRECTION|CMF_ABSOLUTEANGLE));
+    aux.weaponspecial = weaponspecial;
+    aux.target = target;
+    aux.damage = damage;
+    aux.blast_radius = blast_radius;
+    aux.ReactionTime = ttl*5 + random(0,5); // bomblets tick 5 times a second, so multiply by 5
+    DEBUG("Created submunition: level=%d power=%d",
+      aux.level, aux.damage);
   }
 }
 
 class ::Submunitions::Grenade : Actor {
-  uint level;
   uint damage;
-  uint lifetime;
   uint blast_radius;
   property UpgradePriority: weaponspecial;
 
@@ -75,12 +77,6 @@ class ::Submunitions::Grenade : Actor {
     BounceFactor 1.0;
   }
 
-  override void PostBeginPlay() {
-    // Counts down five times a second, so this gives it a duration of 5 seconds
-    // per level.
-    self.ReactionTime = level * 5 * 5;
-  }
-
   override int DoSpecialDamage(Actor target, int damage, Name damagetype) {
     if (target == self.target) {
       return 1;
@@ -93,7 +89,7 @@ class ::Submunitions::Grenade : Actor {
       LSUB DCBA 7 A_CountDown();
       LOOP;
     Death:
-      LFBX A 0 A_Explode(damage, blast_radius, XF_NOSPLASH, false, blast_radius/4);
+      LFBX A 0 A_Explode(damage, blast_radius, XF_NOSPLASH, false, blast_radius);
       LFBX A 0 A_AlertMonsters();
       LFBX A 0 A_StartSound("bonsai/smallboom", CHAN_WEAPON, CHANF_OVERLAP, 1, 0.5);
       LFBX A 0 A_StartSound("bonsai/smallboom", CHAN_7, CHANF_OVERLAP, 0.1, 0.01);
