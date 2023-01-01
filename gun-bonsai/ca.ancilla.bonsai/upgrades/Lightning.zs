@@ -52,7 +52,6 @@ class ::Revivification : ::DotModifier {
   }
 }
 
-
 class ::ChainLightning : ::DotModifier {
   override ::UpgradeElement Element() { return ::ELEM_LIGHTNING; }
   override string DotType() { return "::ShockDot"; }
@@ -90,10 +89,8 @@ class ::Thunderbolt : ::DotModifier {
       damage += max(shock.stacks, damage * 0.01 * shock.stacks);
       DEBUG("Damage after stack bonus=%d", damage);
 
-      let aux = ::Thunderbolt::Aux(target.Spawn("::Thunderbolt::Aux", target.pos));
-      aux.target = player;
-      aux.tracer = target;
-      target.DamageMobj(aux, player, damage, "Electric", DMG_THRUSTLESS);
+      target.Spawn("::Thunderbolt::VFX", target.pos);
+      target.DamageMobj(dot_item, player, damage, "Electric", DMG_THRUSTLESS);
       shock.stacks = 0;
     }
   }
@@ -473,53 +470,23 @@ class ::ChainLightning::VFX : Actor {
   }
 }
 
-class ::Thunderbolt::Aux : Actor {
-  property UpgradePriority: weaponspecial;
-
+class ::Thunderbolt::VFX : Actor {
   Default {
-    ::Thunderbolt::Aux.UpgradePriority ::PRI_ELEMENTAL;
-  }
-
-  string GetParticleColour() {
-    static const string colours[] = { "azure", "deepskyblue", "lightskyblue", "ghostwhite" };
-    return colours[random(0,3)];
+    RenderStyle "Add";
+    Alpha 1.0;
+    Scale 2.0;
+    +NOBLOCKMAP +NOGRAVITY;
   }
 
   override void PostBeginPlay() {
-    DEBUG("Thunderbolt PostBeginPlay");
-    // We clear the SHOOTABLE bit because otherwise the railgun shots we use
-    // for the lightning effect are stopped by the bottom of the actor for
-    // some reason.
-    if (!tracer) return; // Target got removed from play before we started.
-    let shootable = tracer.bSHOOTABLE;
-    tracer.bSHOOTABLE = false;
-    for (uint i = 0; i < 16; ++i) {
-      // Vertical floor-to-ceiling lightning bolt
-      self.Warp(tracer,
-        random(-tracer.radius/2, tracer.radius/2),
-        random(-tracer.radius/2, tracer.radius/2),
-        0, 0, WARPF_TOFLOOR);
-      DEBUG("Thunderbolt @[%d,%d,%d]",
-        pos.x, pos.y, pos.z);
-      self.A_CustomRailgun(
-        1, 0, "", GetParticleColour(),
-        RGF_SILENT|RGF_FULLBRIGHT|RGF_EXPLICITANGLE|RGF_CENTERZ,
-        0, 10, // aim and jaggedness
-        "BulletPuff", // pufftype
-        0, -90, //spread and pitch
-        0, 35*2, // range and duration
-        0.5, // particle spacing
-        0.2 // drift speed
-        );
-      tracer.A_SpawnParticle(
-        GetParticleColour(), SPF_FULLBRIGHT|SPF_RELVEL|SPF_RELACCEL,
-        70, 10, random(0,360), // lifetime, size, angle
-        0, 0, tracer.height/2, // position
-        // random(-owner.radius, owner.radius), random(-owner.radius, owner.radius), random(0, owner.height),
-        2, 0, 0, // v
-        -2/35, 0, 0); // a
-    }
-    // TODO: some sort of roll of thunder sound effect here.
-    tracer.bSHOOTABlE = shootable;
+    DEBUG("VFX spawned @ %d,%d,%d", self.pos.x, self.pos.y, self.pos.z);
+  }
+
+  States {
+    Spawn:
+      LTHN ABCD 1;
+      LTHN EFGHI 4;
+      LTHN JKLM 1;
+      STOP;
   }
 }

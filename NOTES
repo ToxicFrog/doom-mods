@@ -15,20 +15,10 @@ Slomo option instead of timestop?
 
 - disable particles option to help narrow down causes of heavy lag
 - disable trails option for frag shots likewise
-- submunitions can chain-trigger on enemies killed by dots; this is probably due to dot damage not properly setting the weaponspecial field
-- submunitions cause high levels of lag for some players
-  - implement hard cap on submunition count, increase damage instead
-  - dan_the_noob suggests reducing the number of bomblets released per level but increasing damage
-- replace lightning particle effect with assets/thunder effect 02/thunder strike for thunderbolt?
 - swap thunderbolt and paralysis because para is wicked powerful?
-
-### 0.9.x
-
 - stop including PENTAHUD and other badlumps
 -  nullpointer when attacking upgraded centaurs in Serpent Resurrection:
   - Called from TFLV_Upgrade_Thunderbolt_Aux.PostBeginPlay at GunBonsai-0.9.3.pk3:ca.ancilla.bonsai/upgrades/lightning.zsc, line 461
-- Naku-Naru fire speed increases idle/reload anims of some weapons but not firing speed
-- Naku-Naru gives the wrong weapons melee upgrades
 
 ### 0.10.x?
 
