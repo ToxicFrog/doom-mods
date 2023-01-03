@@ -129,10 +129,8 @@ class ::ShockDot : ::Dot {
 
   override void Tick() {
     if (owner.health <= 0) return;
-    if (self.stacks < 1)
-      owner.A_SetTics(2);
-    else
-      owner.A_SetTics(ceil(self.stacks*7.0));
+    if (gametic % 2) return;
+    owner.tics++;
     super.Tick();
   }
 

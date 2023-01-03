@@ -1,3 +1,8 @@
+# 0.9.8
+
+- Balance:
+  - Shocking Inscription now reduces enemies to 50% speed rather than paralyzing them completely.
+
 # 0.9.7
 
 - New:

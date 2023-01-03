@@ -188,11 +188,11 @@ Enemies with acid stacks on them take 1% more damage from all sources per stack.
 
 ## Lightning
 
-Lightning does no additional damage on its own, but paralyzes targets. Stacks are applied based on weapon damage and capped based on skill level, so it should be effective with both rapid-fire and single-shot guns.
+Lightning does no additional damage on its own, but slows targets. Stacks are applied based on weapon damage and capped based on skill level, so it should be effective with both rapid-fire and single-shot guns. More stacks extend the duration but do not intensify the effect.
 
 ### Shocking Inscription *(Lightning basic upgrade)*
 
-Shots paralyze enemies (in addition to doing their normal amount of damage). Paralysis is softcapped at 1 second per upgrade level.
+Shots reduce targest to half speed (in addition to doing their normal amount of damage). Paralysis is softcapped at 1 second per upgrade level.
 
 ### Revivification *(Lightning intermediate upgrade)*
 
