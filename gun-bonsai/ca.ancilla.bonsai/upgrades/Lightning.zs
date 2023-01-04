@@ -75,24 +75,7 @@ class ::Thunderbolt : ::DotModifier {
   override string DotType() { return "::ShockDot"; }
 
   override void ModifyDot(Actor player, Actor shot, Actor target, int damage, ::Dot dot_item) {
-    let shock = ::ShockDot(dot_item);
-    DEBUG("Thunderbolt: %d/%d", shock.stacks, shock.cap);
-    // Thunderbolt triggers once you exceed the softcap by 2x; levels in thunderbolt
-    // reduce this, making it easier to trigger
-    if (shock.stacks > (shock.cap*2) * (0.9 ** level)) {
-      // Base damage is 10% of the target's max health per level, with diminishing
-      // returns.
-      let damage = target.SpawnHealth() * (1.0 - 0.9**level);
-      DEBUG("Target mhp=%d, bolt=%d", target.SpawnHealth(), damage);
-      // It then gets a bonus of +1% damage per stack, minimum 1 point of damage
-      // per stack.
-      damage += max(shock.stacks, damage * 0.01 * shock.stacks);
-      DEBUG("Damage after stack bonus=%d", damage);
-
-      target.Spawn("::Thunderbolt::VFX", target.pos);
-      target.DamageMobj(dot_item, player, damage, "Electric", DMG_THRUSTLESS);
-      shock.stacks = 0;
-    }
+    ::ShockDot(dot_item).thunderbolt = level;
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
@@ -109,6 +92,7 @@ class ::Thunderbolt : ::DotModifier {
 class ::ShockDot : ::Dot {
   uint revive; // Revivification level
   uint chain; // Chain Lightning level
+  uint thunderbolt; // Thunderbolt level
   uint cap; // Cap used for Thunderbolt triggers
 
   Default {
@@ -135,7 +119,13 @@ class ::ShockDot : ::Dot {
   }
 
   override double GetDamage() {
-    --stacks;
+    // Thunderbolt triggers once you exceed the softcap by 2x; levels in thunderbolt
+    // reduce this, making it easier to trigger
+    if (thunderbolt && stacks > (cap*2) * (0.9 ** thunderbolt)) {
+      Kaboom();
+    } else {
+      --stacks;
+    }
     return 0.0;
   }
 
@@ -161,6 +151,21 @@ class ::ShockDot : ::Dot {
     return;
   }
 
+  void Kaboom() {
+    // Base damage is 10% of the target's max health per level, with diminishing
+    // returns.
+    let damage = owner.SpawnHealth() * (1.0 - 0.9**thunderbolt);
+    DEBUG("Target mhp=%d, bolt=%d", target.SpawnHealth(), damage);
+    // It then gets a bonus of +1% damage per stack, minimum 1 point of damage
+    // per stack.
+    damage += max(stacks, damage * 0.01 * stacks);
+    DEBUG("Damage after stack bonus=%d", damage);
+
+    owner.Spawn("::Thunderbolt::VFX", owner.pos);
+    owner.DamageMobj(self, self.target, damage, "Electric", DMG_THRUSTLESS);
+    stacks = 0;
+  }
+
   override void OwnerDied() {
     // Trigger revivification & chain lightning.
     if (revive > 0) MellGetTheElectrodes();
@@ -172,6 +177,7 @@ class ::ShockDot : ::Dot {
     let src = ::ShockDot(_src);
     self.revive = max(self.revive, src.revive);
     self.chain = max(self.chain, src.chain);
+    self.thunderbolt = max(self.thunderbolt, src.thunderbolt);
     self.cap = max(self.cap, src.cap);
   }
 }

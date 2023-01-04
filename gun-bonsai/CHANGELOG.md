@@ -4,6 +4,7 @@
   - Shocking Inscription now reduces enemies to 50% speed rather than paralyzing them completely.
 - Fix:
   - Burning Terror now respects the `+NOFEAR` flag.
+  - Thunderbolt now procs on DoT tick, which may fix crashes attacking certain enemies with Thunderbolt-enabled weapons.
 
 # 0.9.7
 
