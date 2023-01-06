@@ -4,6 +4,10 @@
 #include "./Registry.zsc"
 #include "./UpgradeBag.zsc"
 
+#include "./melee/DarkHarvest.zsc"
+#include "./melee/Shield.zsc"
+#include "./melee/Swiftness.zsc"
+
 #include "./Explosive.zsc"
 #include "./ExplosiveDeath.zsc"
 #include "./Fragmentation.zsc"
@@ -12,7 +16,6 @@
 #include "./Intuition.zsc"
 #include "./Juggler.zsc"
 #include "./Leech.zsc"
-#include "./Melee.zsc"
 #include "./RapidFire.zsc"
 #include "./Simpleupgrades.zsc"
 #include "./Submunitions.zsc"
