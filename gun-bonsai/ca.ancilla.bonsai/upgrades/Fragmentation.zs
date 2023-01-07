@@ -35,7 +35,7 @@ class ::FragmentationShots : ::BaseUpgrade {
       && !info.IsMelee();
   }
   override void GetTooltipFields(Dictionary fields, uint level) {
-    fields.insert("fragments", ""..(8*level+8));
+    fields.insert("fragments", ""..(6 + 2*level));
   }
 }
 
@@ -58,7 +58,7 @@ class ::FragmentationShots::Boom : Actor {
   }
 
   void Explode() {
-    let nfragments = 8 + level*8;
+    let nfragments = 6 + 2*level;
     let trail = TFLV::Settings.vfx_mode() == TFLV::VFX_FULL;
     for (uint i = 0; i < nfragments; ++i) {
       double angle = 360.0/nfragments * i;

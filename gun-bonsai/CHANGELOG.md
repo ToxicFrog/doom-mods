@@ -4,6 +4,8 @@
   - `bonsai_vfx_mode` setting can be used to turn off particle effects, optionally replacing them with sprite-flash effects.
 - Balance:
   - Shocking Inscription now reduces enemies to 50% speed rather than paralyzing them completely.
+  - Submunitions now gains 1 bomblet per level rather than 4.
+  - Fragmentation Shots now start at 8 fragments rather than 16, and gain 2 per level rather than 8.
 - Fix:
   - Burning Terror now respects the `+NOFEAR` flag.
   - Thunderbolt now procs on DoT tick, which may fix crashes attacking certain enemies with Thunderbolt-enabled weapons.

@@ -19,7 +19,7 @@ class ::Submunitions : ::BaseUpgrade {
   }
 
   override void GetTooltipFields(Dictionary fields, uint level) {
-    fields.insert("count", ""..(level * 4));
+    fields.insert("count", ""..(3 + level));
     fields.insert("bonus-damage", "+"..(level * 5));
   }
 }
@@ -37,7 +37,7 @@ class ::Submunitions::Spawner : Actor {
   }
 
   void SpawnMunitions() {
-    for (uint i = 0; i < level * 4; ++i) {
+    for (uint i = 0; i < 3+level; ++i) {
       let aux = ::Submunitions::Grenade(A_SpawnProjectile(
         "::Submunitions::Grenade", 32, 0, random(0,360),
         CMF_AIMDIRECTION|CMF_ABSOLUTEANGLE));
