@@ -425,6 +425,8 @@ class ::ChainLightning::Aux : Actor {
     self.A_Face(beacon, 0, 180, 0, 0, FAF_BOTTOM, 0);
     DEBUG("Draw zap from [%d,%d,%d] to [%d,%d,%d] range=%d",
       start.x, start.y, start.z, end.x, end.y, end.z, range);
+    // Skip beam drawing if particle VFX are turned off.
+    if (TFLV::Settings.vfx_mode() != TFLV::VFX_FULL) return;
     for (uint i = 0; i < 4; ++i) {
       self.A_CustomRailgun(
         0, 0, "", GetParticleColour(),

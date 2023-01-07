@@ -29,7 +29,7 @@ class ::ElementalSynthesis : ::ElementalUpgrade {
     }
   }
 
-  string GetColour(uint i) {
+  Color GetColour(uint i) {
     static const string colours[] = { "black", "orange", "purple", "green", "cyan" };
     return colours[elements[i]];
   }
@@ -76,10 +76,11 @@ class ::ElementalBeam : ::ElementalSynthesis {
       return;
     }
 
+    let particles = TFLV::Settings.vfx_mode() == TFLV::VFX_FULL;
     first_hit = target;
     pawn.A_CustomRailgun(
       1, 0,
-      GetColour(0), GetColour(1),
+      particles ? GetColour(0) : -1, particles ? GetColour(1) : -1,
       RGF_SILENT|RGF_FULLBRIGHT,
       0, 0, // spread
       "::ElementalBeam::Puff");
@@ -162,7 +163,16 @@ class ::ElementalSynthesis::AoE : Actor {
     return 0;
   }
 
-  void SpawnParticles() {
+  void DrawVFX() {
+    uint mode = TFLV::Settings.vfx_mode();
+    if (mode == TFLV::VFX_FULL) {
+      ParticleRing();
+    } else if (mode == TFLV::VFX_REDUCED) {
+      // TODO: cool sprite goes here
+    }
+  }
+
+  void ParticleRing() {
     for (uint i = 0; i < 16; ++i) {
       A_SpawnParticle(
         parent.GetColour(0), SPF_FULLBRIGHT|SPF_RELVEL|SPF_RELACCEL,
@@ -181,7 +191,7 @@ class ::ElementalSynthesis::AoE : Actor {
 
   States {
     Spawn:
-      TNT1 A 1 NoDelay SpawnParticles();
+      TNT1 A 1 NoDelay DrawVFX();
       TNT1 A 1 A_Explode(1, range, XF_NOSPLASH, false, range);
       STOP;
   }

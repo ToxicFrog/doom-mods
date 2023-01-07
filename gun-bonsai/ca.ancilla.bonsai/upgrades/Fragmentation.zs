@@ -59,11 +59,12 @@ class ::FragmentationShots::Boom : Actor {
 
   void Explode() {
     let nfragments = 8 + level*8;
+    let trail = TFLV::Settings.vfx_mode() == TFLV::VFX_FULL;
     for (uint i = 0; i < nfragments; ++i) {
       double angle = 360.0/nfragments * i;
       let aux = ::FragmentationShots::Fragment(
         A_SpawnProjectile(
-          "::FragmentationShots::Fragment",
+          trail ? "::FragmentationShots::Fragment" : "::FragmentationShots::NoTrailFragment",
           0, 0, angle,
           CMF_AIMDIRECTION|CMF_TRACKOWNER,
           random(-1.0,1.0)));
@@ -125,6 +126,10 @@ class ::FragmentationShots::Fragment : FastProjectile {
       TAG(other), TAG(self.target), TAG(self.tracer), other == self.target, other == self.tracer);
     return other != self.tracer && other != self.target;
   }
+}
+
+class ::FragmentationShots::NoTrailFragment : ::FragmentationShots::Fragment {
+  Default { MissileType "None"; }
 }
 
 class ::FragmentationShots::Trail : Actor {
