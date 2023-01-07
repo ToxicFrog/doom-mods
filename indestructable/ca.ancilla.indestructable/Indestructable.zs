@@ -1,4 +1,5 @@
 #namespace TFIS;
+#debug off;
 
 class ::IndestructableEventHandler : StaticEventHandler {
   static int GetInt(string name) {
@@ -25,14 +26,18 @@ class ::IndestructableEventHandler : StaticEventHandler {
   static void MoveToTail(Actor owner, ::IndestructableForce force) {
     Actor head, tail;
     while (owner) {
+      DEBUG("MoveToTail: inspecting %s", TAG(owner));
       if (owner.inv == force) head = owner;
       if (owner.inv == null) tail = owner;
       owner = owner.inv;
     }
+    DEBUG("MoveToTail: head=%s, tail=%s", TAG(head), TAG(tail));
     if (tail == force) return;
     head.inv = force.inv;
     tail.inv = force;
     force.inv = null;
+    DEBUG("MoveToTail: head %s; head> %s; tail %s; tail> %s; force> %s",
+      TAG(head), TAG(head.inv), TAG(tail), TAG(tail.inv), TAG(force.inv));
   }
 
   // Initialize a player by giving them the IndestructableForce. Returns false if
@@ -44,6 +49,7 @@ class ::IndestructableEventHandler : StaticEventHandler {
     force.lives = GetInt("indestructable_starting_lives");
     force.SetStateLabel("LevelStartMessage");
     force.ReportLivesCount(force.lives);
+    MoveToTail(pawn, force);
     return true;
   }
 
@@ -58,7 +64,6 @@ class ::IndestructableEventHandler : StaticEventHandler {
       if (InitPlayer(pawn)) continue; // don't apply start-of-level modifiers when starting a new game
       let force = ::IndestructableForce(pawn.FindInventory("::IndestructableForce"));
       if (!force) continue; // should never happen
-      MoveToTail(pawn, force);
       force.AddLevelStartLives();
     }
   }

@@ -1,3 +1,8 @@
+# 0.2.7
+
+- Fix:
+  - Under rare circumstances, when wearing armour in the first level of the game, it was possible for invincibility to trigger on hits that would have almost, but not quite, killed you. It should now only trigger on hits that would otherwise be lethal, even in the first level.
+
 # 0.2.6
 
 - New:
