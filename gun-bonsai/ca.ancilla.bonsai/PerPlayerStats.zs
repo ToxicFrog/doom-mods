@@ -332,6 +332,13 @@ class ::PerPlayerStats : Object play {
     info.upgrades.OnKill(PlayerPawn(owner), shot, target);
   }
 
+  void OnPickup(Inventory item) {
+    upgrades.OnPickup(PlayerPawn(owner), item);
+    let info = GetInfoForCurrentWeapon();
+    if (!info) return;
+    info.upgrades.OnPickup(PlayerPawn(owner), item);
+  }
+
   // Apply all upgrades with ModifyDamageReceived/Dealt handlers here.
   // At this point the damage has not yet been inflicted; see OnDamageDealt/
   // OnDamageReceived for that, as well as for XP assignment.

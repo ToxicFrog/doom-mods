@@ -127,4 +127,11 @@ class ::UpgradeBag : Object play {
       upgrades[i].OnKill(pawn, shot, target);
     }
   }
+
+  void OnPickup(PlayerPawn pawn, Inventory item) {
+    for (uint i = 0; i < upgrades.Size(); ++i) {
+      if (!upgrades[i].enabled) continue;
+      upgrades[i].OnPickup(pawn, item);
+    }
+  }
 }

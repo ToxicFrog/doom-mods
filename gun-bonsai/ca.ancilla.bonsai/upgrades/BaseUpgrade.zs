@@ -162,11 +162,22 @@ class ::BaseUpgrade : Object play {
     return;
   }
 
+  // As OnDamageDealt but called after something damages the player.
   virtual void OnDamageReceived(Actor pawn, Actor shot, Actor target, int damage) {
     return;
   }
 
+  // Called when the player kills something. This won't be called for all deaths,
+  // only those where the player is attributed as the killer. Note that this does
+  // not obey normal upgrade-trigger priority rules -- it is always called and it
+  // is the upgrade's responsibility to avoid unwanted recursion.
   virtual void OnKill(PlayerPawn pawn, Actor shot, Actor target) {
+    return;
+  }
+
+  // Called when the player picks up an item. See the comments in UpgradeBag for
+  // warnings about what this is and isn't called for. It's safe to use for armour.
+  virtual void OnPickup(PlayerPawn pawn, Inventory item) {
     return;
   }
 

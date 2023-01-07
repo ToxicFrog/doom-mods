@@ -26,10 +26,7 @@ class ::PerPlayerStatsProxy : Inventory {
       TNT1 A -1;
       STOP;
     Poll:
-      TNT1 A 1 {
-        DEBUG("PPSP poll");
-        stats.TickStats();
-      }
+      TNT1 A 1 { stats.TickStats(); }
       LOOP;
   }
 
@@ -50,6 +47,7 @@ class ::PerPlayerStatsProxy : Inventory {
   // than thinking it's a mundane weapon that earned an LD effect through leveling
   // up.
   override bool HandlePickup(Inventory item) {
+    DEBUG("OnPickup: %s", TAG(item));
     if (Weapon(item)) {
       // Flag the weaponinfo for a full rebuild on the next tick.
       // We don't do it immediately because the purpose of this is to transfer
@@ -58,23 +56,42 @@ class ::PerPlayerStatsProxy : Inventory {
       // This is only really relevant when using BIND_WEAPON and it's important
       // that we rebind the info to the replacement before it gets cleaned up.
       stats.weaponinfo_dirty = true;
-      return super.HandlePickup(item);
+    } else {
+      HandleLDWeaponPickup(item);
     }
+    // Fire OnPickup events for GB upgrades.
+    // TODO: this won't fire for items that get merged with other items before
+    // the proxy sees them, e.g. it will fire for the first box of rockets you
+    // pick up but not subsequent ones. At the moment OnPickup() is only used for
+    // upgrades that care about armour, which is fine because armour doesn't
+    // merge in the inventory. If we ever want it to support mergeable inventory
+    // types, though, we'll need to rework this so that after calling super.HandlePickup,
+    // it moves the proxy to head position so it can intercept all pickup events.
+    // TODO: this fires every time you *touch a pickupable item* whether or not you're able
+    // to pick it up or not; for example, if you have blue armour and touch a green
+    // armour, it will fire these even though you can't pick it up. There doesn't seem
+    // to be a good way to check for this until all the HandlePickup handlers have run.
+    // :(
+    stats.OnPickup(item);
+    return super.HandlePickup(item);
+  }
 
+  void HandleLDWeaponPickup(Inventory item) {
     // TODO: peel most of this into a separate mod.
     // Workaround for zscript `is` operator being weird.
     string LDWeaponNameAlternationType = "LDWeaponNameAlternation";
     string LDPermanentInventoryType = "LDPermanentInventory";
-    if (item is LDWeaponNameAlternationType) return super.HandlePickup(item);
-    if (!(item is LDPermanentInventoryType)) return super.HandlePickup(item);
+    if (item is LDWeaponNameAlternationType || !(item is LDPermanentInventoryType)) {
+      return;
+    }
 
     string cls = item.GetClassName();
-    if (cls.IndexOf("EffectActive") < 0) return super.HandlePickup(item);
+    if (cls.IndexOf("EffectActive") < 0) return;
 
     // If this is flagged as "notelefrag", it means it was produced by the level-
     // up code and should upgrade our current item in place rather than invalidating
     // its info block.
-    if (item.bNOTELEFRAG) return super.HandlePickup(item);
+    if (item.bNOTELEFRAG) return;
 
     // At this point we know that the pickup is a Legendoom weapon effect token
     // and it's not one we created. So we need to figure out if the player has
@@ -86,6 +103,5 @@ class ::PerPlayerStatsProxy : Inventory {
         stats.weapons[i].wpn = null;
       }
     }
-    return super.HandlePickup(item);
   }
 }
