@@ -15,7 +15,9 @@ TFLV_OPT_NAME_HUD_SKIN = "HUD skin";
 TFLV_OPT_TT_HUD_SKIN = "What graphics to use for the HUD. You can also disable it entirely if you want your levelups to be a surprise.";
 TFLV_OPT_NAME_HUD_X = "HUD X position";
 TFLV_OPT_NAME_HUD_Y = "HUD Y position";
-TFLV_OPT_TT_HUD_XY = "Position of the Gun Bonsai HUD on the screen, as a proportion of total screen size. 0.0 is top left, 1.0 is bottom right.\nYou can also set a pixel-perfect position by setting bonsai_hud_x and bonsai_hud_y to your desired coordinates.";
+TFLV_OPT_TT_HUD_XY =
+  "Position of the Gun Bonsai HUD on the screen, as a proportion of total screen size. 0.0 is top left, 1.0 is bottom right.\n"
+  "You can also set a pixel-perfect position by setting bonsai_hud_x and bonsai_hud_y to your desired coordinates.";
 TFLV_OPT_NAME_HUD_SIZE = "HUD size";
 TFLV_OPT_TT_HUD_SIZE = "Height of the Gun Bonsai HUD, as a fraction of screen height.";
 TFLV_OPT_NAME_HUD_ALPHA = "HUD opacity";
@@ -28,16 +30,28 @@ TFLV_OPT_NAME_HUD_RGB_WEAPON = "Weapon info colour";
 TFLV_OPT_TT_HUD_RGB_WEAPON = "Colour of the weapon XP bar and weapon name, level, and XP indicator text.";
 TFLV_OPT_NAME_HUD_RGB_PLAYER = "Player info colour";
 TFLV_OPT_TT_HUD_RGB_PLAYER = "Colour of the player XP bar and player level text.";
+TFLV_OPT_NAME_VFX_MODE = "Visual effects";
+TFLV_OPT_TT_VFX_MODE =
+  "Setting this to 'reduced' or 'minimal' may help performance, especially on maps featuring large groups of enemies.\n"
+  "\c[CYAN][full]:\c- Visual effects use a mix of particles and sprites.\n"
+  "\c[CYAN][reduced]:\c- All particle effects are disabled. Elemental debuffs are displayed by flashing the affected monster in different colours.\n"
+  "\c[CYAN][minimal]:\c- All particle effects are disabled. Monsters don't flash.";
 TFLV_OPT_NAME_LEVELUP_FLASH = "Flash on level-up";
 TFLV_OPT_TT_LEVELUP_FLASH = "Whether to flash the screen when your weapon gains a level.";
 TFLV_OPT_NAME_LEVELUP_SOUND_MODE = "Sound on level-up";
 TFLV_OPT_TT_LEVELUP_SOUND_MODE = "What sound to play when your weapon gains a level. If set to 'custom' it will use whatever the value of the 'bonsai_levelup_sound' cvar is.";
 TFLV_OPT_NAME_UPGRADE_BINDING_MODE = "Weapon upgrades bind to";
-TFLV_OPT_TT_UPGRADE_BINDING_MODE = "Determines how weapon upgrades behave when you drop a weapon or are carrying multiple weapons of the same type.\n\c[CYAN][individual weapon]:\c- each weapon has its own upgrades. When you drop a weapon, the upgrades go with it, and if you lose a weapon permanently, the upgrades are lost forever.\n\c[CYAN][individual w/inheritance]:\c- each weapon has its own upgrades, but if a weapon is lost and you later pick up a new weapon of the same type, the new weapon will inherit the upgrades of the old one.\n\c[CYAN][weapon class]:\c- all weapons of the same type share the same upgrades, even if you have more than one of them in your inventory. Upgrades are remembered even if you lose all copies of a weapon.";
+TFLV_OPT_TT_UPGRADE_BINDING_MODE =
+  "Determines how weapon upgrades behave when you drop a weapon or are carrying multiple weapons of the same type.\n"
+  "\c[CYAN][individual weapon]:\c- each weapon has its own upgrades. When you drop a weapon, the upgrades go with it, and if you lose a weapon permanently, the upgrades are lost forever.\n"
+  "\c[CYAN][individual w/inheritance]:\c- each weapon has its own upgrades, but if a weapon is lost and you later pick up a new weapon of the same type, the new weapon will inherit the upgrades of the old one.\n"
+  "\c[CYAN][weapon class]:\c- all weapons of the same type share the same upgrades, even if you have more than one of them in your inventory. Upgrades are remembered even if you lose all copies of a weapon.";
 TFLV_OPT_NAME_IGNORE_DEATH_EXITS = "Keep upgrades on death exit/pistol start";
 TFLV_OPT_TT_IGNORE_DEATH_EXITS = "If on, you'll keep your upgrades on level transition even if you lose your inventory (subject to the upgrades-bind-to setting above). If off, level transitions that take your inventory will also cost you your upgrades.";
 TFLV_OPT_NAME_USE_BUILTIN_ACTORS = "Use builtin actors for Scavenge drops";
-TFLV_OPT_TT_USE_BUILTIN_ACTORS = "Whether the Scavenge Blood and Scavenge Steel upgrades should use actors built into Gun Bonsai, or the generic Doom 2 HealthBonus and ArmorBonus actors.\nThe builtins should work in any IWAD. The generic ones are more likely to 'blend in' when playing with mods that define replacements for the generic bonuses, but (depending on the mod) may no longer give the correct amounts of health/armour.";
+TFLV_OPT_TT_USE_BUILTIN_ACTORS =
+  "Whether the Scavenge Blood and Scavenge Steel upgrades should use actors built into Gun Bonsai, or the generic Doom 2 HealthBonus and ArmorBonus actors.\n"
+  "The builtins should work in any IWAD. The generic ones are more likely to 'blend in' when playing with mods that define replacements for the generic bonuses, but (depending on the mod) may no longer give the correct amounts of health/armour.";
 TFLV_OPT_NAME_AMMOLESS_WEAPONS_ARE_WIMPY = "Treat weapons that don't use ammo as wimpy";
 TFLV_OPT_TT_AMMOLESS_WEAPONS_ARE_WIMPY = "By default, weapons that don't use ammo are considered to be 'peashooter' type weapons which can get some upgrades specific to weaker or difficult-to-use weapons. Turn this off if you are playing a mod, like Hideous Destructor, that overrides normal ammo handling mechanics, or one that has powerful ammoless weapons.";
 TFLV_OPT_NAME_DAMAGE_TO_XP_FACTOR = "XP gain from damage";
@@ -53,7 +67,9 @@ TFLV_OPT_NAME_GUN_LEVELS_PER_PLAYER_LEVEL = "Gun levels per player level";
 TFLV_OPT_TT_GUN_LEVELS_PER_PLAYER_LEVEL = "How many times you need to level up a weapon to gain a player bonus.";
 TFLV_OPT_NAME_LEVEL_COST_MUL_FOR_MELEE = "XP cost multiplier for melee weapons";
 TFLV_OPT_NAME_LEVEL_COST_MUL_FOR_WIMPY = "XP cost multiplier for wimpy weapons";
-TFLV_OPT_TT_LEVEL_COST_MUL = "XP cost multipliers for various classes of weapons. These can stack (e.g. fists are both 'melee' and 'wimpy' in vanilla Doom 2). The default settings make both weak and melee weapons easier to level up.\nNote that not all mods use these flags, or use them correctly -- in that case overrides can be applied in the BONSAIRC lump.";
+TFLV_OPT_TT_LEVEL_COST_MUL =
+  "XP cost multipliers for various classes of weapons. These can stack (e.g. fists are both 'melee' and 'wimpy' in vanilla Doom 2). The default settings make both weak and melee weapons easier to level up.\n"
+  "Note that not all mods use these flags, or use them correctly -- in that case overrides can be applied in the BONSAIRC lump.";
 TFLV_OPT_NAME_GUN_LEVELS_PER_LD_EFFECT = "Gun levels per LD effect";
 TFLV_OPT_TT_GUN_LEVELS_PER_LD_EFFECT = "How many times a gun needs to level up to gain a new Legendoom effect. Only functions if Legendoom is installed. Set to 0 to disable.";
 TFLV_OPT_NAME_WHICH_GUNS_CAN_LEARN = "LD effects learnable by";
@@ -79,6 +95,10 @@ TFLV_OPT_HUDSKIN_0 = "no HUD";
 TFLV_OPT_HUDSKIN_1 = "scifi";
 TFLV_OPT_HUDSKIN_2 = "ORB_";
 TFLV_OPT_HUDSKIN_3 = "pentagram";
+// VFX mode
+TFLV_OPT_VFX_MODE_0 = "Minimal";
+TFLV_OPT_VFX_MODE_1 = "Reduced";
+TFLV_OPT_VFX_MODE_2 = "Full";
 // level-up fanfare
 TFLV_OPT_FANFARE_N = "custom (bonsai_levelup_sound cvar)";
 TFLV_OPT_FANFARE_0 = "nothing";

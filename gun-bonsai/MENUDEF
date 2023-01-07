@@ -36,6 +36,8 @@ OptionMenu "GunBonsaiOptions"
   ColorPicker "$TFLV_OPT_NAME_HUD_RGB_PLAYER", "bonsai_hud_rgb_player"
   TFLV_Tooltip "$TFLV_OPT_TT_HUD_RGB_PLAYER"
 
+  Option "$TFLV_OPT_NAME_VFX_MODE", "bonsai_vfx_mode", "GunBonsaiVfxMode"
+  TFLV_Tooltip "$TFLV_OPT_TT_VFX_MODE"
   Option "$TFLV_OPT_NAME_LEVELUP_FLASH", "bonsai_levelup_flash", "OnOff"
   TFLV_Tooltip "$TFLV_OPT_TT_LEVELUP_FLASH"
   Option "$TFLV_OPT_NAME_LEVELUP_SOUND_MODE", "bonsai_levelup_sound_mode", "GunBonsaiLevelUpSoundOption"
@@ -109,6 +111,12 @@ OptionValue "GunBonsaiHudSkin" {
   1, "$TFLV_OPT_HUDSKIN_1"
   2, "$TFLV_OPT_HUDSKIN_2"
   3, "$TFLV_OPT_HUDSKIN_3"
+}
+
+OptionValue "GunBonsaiVfxMode" {
+  0, "$TFLV_OPT_VFX_MODE_0"
+  1, "$TFLV_OPT_VFX_MODE_1"
+  2, "$TFLV_OPT_VFX_MODE_2"
 }
 
 OptionValue "GunBonsaiLevelUpSoundOption" {

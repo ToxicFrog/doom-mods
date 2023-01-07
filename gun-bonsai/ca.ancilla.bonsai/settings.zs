@@ -11,6 +11,12 @@ enum TFLV_UpgradeBindingMode {
   TFLV_BIND_CLASS
 }
 
+enum TFLV_VfxMode {
+  TFLV_VFX_OFF,
+  TFLV_VFX_REDUCED,
+  TFLV_VFX_FULL
+}
+
 // Interface to the CVar settings for this mod.
 class TFLV_Settings : Object {
   static int GetInt(string name) {
@@ -63,6 +69,10 @@ class TFLV_Settings : Object {
 
   static bool levelup_flash() {
     return GetBool("bonsai_levelup_flash");
+  }
+
+  static uint vfx_mode() {
+    return GetInt("bonsai_vfx_mode");
   }
 
   static string levelup_sound() {
