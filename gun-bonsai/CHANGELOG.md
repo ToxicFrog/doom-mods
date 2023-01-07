@@ -1,5 +1,7 @@
 # 0.9.8
 
+- New:
+  - `bonsai_vfx_mode` setting can be used to turn off particle effects, optionally replacing them with sprite-flash effects.
 - Balance:
   - Shocking Inscription now reduces enemies to 50% speed rather than paralyzing them completely.
 - Fix:

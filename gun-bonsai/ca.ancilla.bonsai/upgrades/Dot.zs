@@ -21,7 +21,7 @@ class ::Dot : Inventory {
   States {
     Dot:
       TNT1 A 0 TickDot();
-      TNT1 A 7 SpawnParticles();
+      TNT1 AAAAAAA 1 DrawVFX();
       LOOP;
   }
 
@@ -84,9 +84,26 @@ class ::Dot : Inventory {
     return dotitem.stacks;
   }
 
-  void SpawnParticles() {
-    for (uint i = 0; i < 9; i++) {
+  int stylin; // number of tics left in drawing sprite-flash effect
+  void DrawVFX() {
+    uint mode = TFLV::Settings.vfx_mode();
+    if (mode == TFLV::VFX_FULL) {
       SpawnOneParticle(GetParticleColour(), GetParticleZV());
+    } else if (mode == TFLV::VFX_REDUCED) {
+      if (stylin > 0) {
+        owner.A_SetRenderStyle(1.0, STYLE_STENCIL);
+        owner.SetShade(GetParticleColour());
+      } else if (stylin == 0) {
+        // Last tic, turn off flashy flashy
+        owner.RestoreRenderStyle();
+      } else if (random(0, -stylin) > 5) {
+        // Not currently flashing? chance to start based on how long it's been.
+        stylin = 1+ceil(stacks**0.5);
+      }
+      --stylin;
+    } else {
+      stylin = 0;
+      owner.RestoreRenderStyle();
     }
   }
 
@@ -103,6 +120,8 @@ class ::Dot : Inventory {
   double buffer; // Accumlated damage for fractional damage amounts.
   virtual void TickDot() {
     if (!owner || owner.bKILLED || stacks <= 0) {
+      DEBUG("removing dot");
+      if (owner) owner.RestoreRenderStyle();
       Destroy();
       return;
     }
@@ -115,6 +134,11 @@ class ::Dot : Inventory {
         DMG_NO_ARMOR | DMG_NO_PAIN | DMG_THRUSTLESS | DMG_NO_ENHANCE);
       buffer -= floor(buffer);
     }
+  }
+
+  override void OwnerDied() {
+      DEBUG("owner died");
+    if (owner) owner.RestoreRenderStyle();
   }
 
   virtual double GetDamage() {

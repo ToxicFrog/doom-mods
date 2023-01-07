@@ -113,9 +113,8 @@ class ::AcidDot : ::Dot {
   // Custom states so that we can tick down damage_this_tick immediately.
   States {
     Dot:
-      TNT1 AAAAAAA 1 DamageToStacks();
+      TNT1 AAAAAAA 1 { DamageToStacks(); DrawVFX(); }
       TNT1 A 0 TickDot();
-      TNT1 A 0 SpawnParticles();
       LOOP;
   }
 

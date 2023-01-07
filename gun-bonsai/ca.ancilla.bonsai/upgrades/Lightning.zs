@@ -167,6 +167,7 @@ class ::ShockDot : ::Dot {
   }
 
   override void OwnerDied() {
+    super.OwnerDied();
     // Trigger revivification & chain lightning.
     if (revive > 0) MellGetTheElectrodes();
     if (chain > 0) ZapZap();
