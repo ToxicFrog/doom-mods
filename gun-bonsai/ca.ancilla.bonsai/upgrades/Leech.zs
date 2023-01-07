@@ -62,14 +62,20 @@ class ::LifeLeech::Bonus : HealthBonus {
 }
 
 class ::ArmourLeech : ::BaseUpgrade {
+  uint armour_cap;
+
+  override void OnPickup(PlayerPawn pawn, Inventory item) {
+    let armour = BasicArmorPickup(item);
+    if (!armour) return;
+    armour_cap = max(self.armour_cap, armour.SaveAmount);
+  }
+
   override void OnKill(PlayerPawn player, Actor shot, Actor target) {
     let ap = BasicArmorBonus(target.Spawn(
       GetBonusName(), ::LeechUtil.WigglePos(target), ALLOW_REPLACE));
     if (!ap) return;
-    let cap = player.GetMaxHealth(true);
+    uint cap = (armour_cap ? armour_cap : player.GetMaxHealth(true));
     ap.SaveAmount = target.bBOSS ? level*20 : level*2;
-    // Armour cap is based on max health rather than max armour because max armour
-    // is not stored in the player but in individual armour pickups.
     ap.MaxSaveAmount = clamp(cap * level, cap, 2*cap);
     DEBUG("ap=%d/%d (base: %d)", ap.SaveAmount, ap.MaxSaveAmount, cap);
   }

@@ -4,25 +4,35 @@
 #debug off;
 
 class ::DarkHarvest : ::BaseUpgrade {
+  // Armour cap is based on the best armour you have thus far tried to pick up.
+  // Note that it will register the armour even if for some reason the pickup is
+  // unsuccessful, and it will also remember it even if your armour is later
+  // destroyed or downgraded, so e.g. once you find a blue armour it will use the
+  // blue armour cap for the rest of the game.
+  // TODO: improve armour cap detection logic.
+  uint armour_cap;
+  override void OnPickup(PlayerPawn pawn, Inventory item) {
+    let armour = BasicArmorPickup(item);
+    if (!armour) return;
+    armour_cap = max(self.armour_cap, armour.SaveAmount);
+  }
+
   override void OnKill(PlayerPawn player, Actor shot, Actor target) {
     let amount = target.bBOSS ? level*10 : level;
-    // same cap for health and armour; in vanilla this will be 100 + 20 per level.
-    // we derive the cap for armour from the cap for health because armour caps
-    // aren't intrinsic to the player or even intrinsic to the armour they're
-    // wearing, they're intrinsic to the *armour pickup* which vanishes as soon
-    // as it grants them AC!
-    let cap = player.GetMaxHealth(true) * (1.0 + 0.2*level);
+    uint hp_cap = player.GetMaxHealth(true) * (1.0 + 0.2*(level-1));
+    uint ap_cap = (armour_cap ? armour_cap : hp_cap) * (1.0 + 0.2*(level-1));
+    DEBUG("OnKill: cap %d, %d", hp_cap, ap_cap);
     let hp = Health(player.Spawn("::DarkHarvest::Health"));
     if (hp) {
       hp.Amount = amount;
-      hp.MaxAmount = cap;
+      hp.MaxAmount = hp_cap;
       GiveItem(player, hp);
     }
 
     let ap = BasicArmorBonus(player.Spawn("::DarkHarvest::Armour"));
     if (ap) {
       ap.SaveAmount = amount;
-      ap.MaxSaveAmount = cap;
+      ap.MaxSaveAmount = ap_cap;
       GiveItem(player, ap);
     }
   }
