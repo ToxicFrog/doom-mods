@@ -15,10 +15,6 @@ class ::Thorns : ::BaseUpgrade {
     return true;
   }
 
-  static string AsMeters(uint u) {
-    return string.format("%dm", u/32);
-  }
-
   override void GetTooltipFields(Dictionary fields, uint level) {
     fields.insert("min-range", AsMeters(192*level));
     fields.insert("max-range", AsMeters(1024*level));

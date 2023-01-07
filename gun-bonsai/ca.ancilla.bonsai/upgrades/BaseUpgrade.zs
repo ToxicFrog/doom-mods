@@ -198,6 +198,10 @@ class ::BaseUpgrade : Object play {
   static string AsPercentDecrease(double mult) {
     return string.format("-%d%%", (1.0 - mult) * 100);
   }
+  // 64 -> 2m
+  static string AsMeters(uint u) {
+    return string.format("%dm", u/32);
+  }
 
   // INTERNAL DETAILS //
   string GetName() const {
