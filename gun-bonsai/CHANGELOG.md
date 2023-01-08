@@ -12,6 +12,7 @@
 - Fix:
   - Burning Terror now respects the `+NOFEAR` flag.
   - Thunderbolt now procs on DoT tick, which may fix crashes attacking certain enemies with Thunderbolt-enabled weapons.
+  - Swiftness description now properly notes that it triggers on all kills, not just melee ones (although it will still prefer to spawn on melee weapons).
 
 # 0.9.7
 
