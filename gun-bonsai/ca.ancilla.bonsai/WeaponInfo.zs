@@ -28,7 +28,6 @@ class ::WeaponInfo : Object play {
     Rebind(wpn);
     XP = 0;
     level = 0;
-    maxXP = GetXPForLevel(level+1);
     DEBUG("WeaponInfo initialize, class=%s level=%d xp=%d/%d",
         wpnClass, level, XP, maxXP);
   }
@@ -42,9 +41,13 @@ class ::WeaponInfo : Object play {
       // modality inference counters.
       self.wpnClass = wpn.GetClassName();
       self.ResetTypeInference();
+      ::RC.GetRC().Configure(self);
+      if (!wpn.bPOWERED_UP || !maxXP)
+        // If this is not a PoweredUp weapon, recalculate max XP as well. If it is
+        // powered up, assume that we're using the max XP for it's unpowered sister.
+        self.maxXP = GetXPForLevel(level+1);
     }
     ld_info.Rebind(self);
-    ::RC.GetRC().Configure(self);
   }
 
   void ToggleUpgrade(uint index) {

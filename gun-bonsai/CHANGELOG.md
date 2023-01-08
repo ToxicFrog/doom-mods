@@ -1,3 +1,8 @@
+# 0.9.9
+
+- Fix:
+  - Weapons didn't recalculate the amount of XP needed to level up when rebinding, which caused issues in Heretic when normal and powered-up weapons needed different amounts of XP -- it would in effect pick one at random and commit to it until the next level up. It should now use the amount of XP needed for the specific weapon you are currently wielding, and for powered-up weapons, this should be the same as the cost for the base weapon.
+
 # 0.9.8
 
 - New:
