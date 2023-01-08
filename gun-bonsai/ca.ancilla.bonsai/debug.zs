@@ -15,6 +15,8 @@ class ::Debug : Object play {
       AddWeaponXP(pawn, arg);
     } else if (argv[1] == "p-xp") {
       AddPlayerXP(pawn, arg);
+    } else if (argv[1] == "allupgrades") {
+      AddAllUpgrades(pawn);
     } else if (argv[1] == "reset") {
       console.printf("Fully resetting all weapon info.");
       let stats = ::PerPlayerStats.GetStatsFor(pawn);
@@ -80,5 +82,13 @@ class ::Debug : Object play {
   static void AddPlayerXP(Actor pawn, uint xp) {
     console.printf("Add %d XP to player.", xp);
     ::PerPlayerStats.GetStatsFor(pawn).XP += xp;
+  }
+
+  static void AddAllUpgrades(Actor pawn) {
+    let registry = ::Upgrade::Registry.GetRegistry();
+    for (uint i = 0; i < registry.upgrades.size(); ++i) {
+      AddWeaponUpgrade(pawn, registry.upgrades[i].GetClassName(), 1);
+      AddPlayerUpgrade(pawn, registry.upgrades[i].GetClassName(), 1);
+    }
   }
 }
