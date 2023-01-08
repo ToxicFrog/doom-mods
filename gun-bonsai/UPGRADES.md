@@ -194,17 +194,17 @@ Lightning does no additional damage on its own, but slows targets. Stacks are ap
 
 Shots reduce targest to half speed (in addition to doing their normal amount of damage). Paralysis is softcapped at 1 second per upgrade level.
 
-### Revivification *(Lightning intermediate upgrade)*
+### Thunderbolt *(Lightning intermediate upgrade)*
+
+Once you sufficiently exceed the lightning softcap on a target, it is struck by lightning, taking damage based on its max health and your level of Thunderbolt, with a bonus based on how many lightning stacks it has. This clears all lightning stacks on the target. Increasing the level increases both the damage and how frequently it triggers.
+
+### Revivification *(Lightning mastery)*
 
 Slain enemies have a chance of coming back as ghostly minions. The chance of coming back increases with both the number of lightning stacks and the level of Revivification; the latter also gives revived minions a bonus to damage and armour. You can freely walk through your minions (so they can't block important doorways), and while they are capable of friendly fire they will never do more than 1 damage to you (and take only 1 damage from your attacks).
 
 ### Chain Lightning *(Lightning mastery)*
 
 Slain enemies release a burst of chain lightning that arcs between targets. Chain length is based on upgrade level; chain damage is based on how much health the dead enemy had, how many lightning stacks it had on it, and how many enemies are caught in the chain in total. It cannot arc to you.
-
-### Thunderbolt *(Lightning mastery)*
-
-Once you sufficiently exceed the lightning softcap on a target, it is struck by lightning, taking damage based on its max health and your level of Thunderbolt, with a bonus based on how many lightning stacks it has. This clears all lightning stacks on the target. Increasing the level increases both the damage and how frequently it triggers.
 
 ## Elemental Sythesis Powers
 

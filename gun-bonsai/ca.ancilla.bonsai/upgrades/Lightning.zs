@@ -41,7 +41,7 @@ class ::Revivification : ::DotModifier {
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
-    return HasIntermediatePrereq(info, "::ShockingInscription");
+    return HasMasteryPrereq(info, "::Thunderbolt", "::ChainLightning");
   }
 
   override void GetTooltipFields(Dictionary fields, uint level) {
@@ -79,7 +79,7 @@ class ::Thunderbolt : ::DotModifier {
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
-    return HasMasteryPrereq(info, "::Revivification", "::ChainLightning");
+    return HasIntermediatePrereq(info, "::ShockingInscription");
   }
 
   override void GetTooltipFields(Dictionary fields, uint level) {
