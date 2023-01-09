@@ -1,3 +1,9 @@
+# 0.10.0
+
+- Balance:
+  - Thunderbolt is now the intermediate lightning upgrade.
+  - Revivification is now one of the two lightning masteries, opposite Chain Lightning.
+
 # 0.9.8
 
 - New:
