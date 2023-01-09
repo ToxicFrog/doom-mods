@@ -3,6 +3,8 @@
 - Balance:
   - Thunderbolt is now the intermediate lightning upgrade.
   - Revivification is now one of the two lightning masteries, opposite Chain Lightning.
+- Fix:
+  - Friendly monsters, if they have a controlling player (via the `FriendlyPlayer` field), will inherit that player's attack upgrades, and that player will get XP for the monster's attacks.
 
 # 0.9.8
 
