@@ -218,7 +218,7 @@ class ::Revivification::Aux : Actor {
     tracer.TakeInventory("::PoisonDot", 255);
     tracer.TakeInventory("::ShockDot", 255);
     // Make it friendly and ethereal.
-    tracer.master = null;
+    tracer.SetFriendPlayer(self.target.player);
     tracer.bSOLID = false;
     tracer.A_SetRenderStyle(1.0, STYLE_SHADED);
     tracer.SetShade("8080FF");
@@ -256,8 +256,8 @@ class ::Revivification::AuxBuff : Inventory {
   override void ModifyDamage(
       int damage, Name damageType, out int newdamage, bool passive,
       Actor inflictor, Actor source, int flags) {
-    if (source == owner.master) {
-      // Only ever deal or receive 1 damage to the player who raised you.
+    if (source is "PlayerPawn") {
+      // Only ever deal or receive 1 damage to players.
       newdamage = min(1, damage);
       return;
     }

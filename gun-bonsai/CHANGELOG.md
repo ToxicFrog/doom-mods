@@ -3,8 +3,11 @@
 - Balance:
   - Thunderbolt is now the intermediate lightning upgrade.
   - Revivification is now one of the two lightning masteries, opposite Chain Lightning.
+  - Minion damage reduction applies to all players, not just the player who raised them.
 - Fix:
   - Friendly monsters, if they have a controlling player (via the `FriendlyPlayer` field), will inherit that player's attack upgrades, and that player will get XP for the monster's attacks.
+  - Revivified monsters properly set the `FriendlyPlayer` field to the player that raised them.
+  - Revivified monsters properly take and receive 1 damage from the player again.
 
 # 0.9.8
 
