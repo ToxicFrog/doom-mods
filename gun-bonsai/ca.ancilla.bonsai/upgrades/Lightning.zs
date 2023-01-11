@@ -309,7 +309,9 @@ class ::Revivification::AuxBuff : Inventory {
   }
 
   override void OwnerDied() {
-    owner.Spawn("::Thunderbolt::VFX", owner.pos);
+    let pos = owner.pos;
+    pos.z += owner.height/2;
+    owner.Spawn("::Revivification::VFX", pos);
     // Destroying the owner ensures that it can't be re-raised or anything.
     // However, we can't do that right away, because Destroy() nulls out existing
     // refs and then our other OnKill/OnDamage handlers will crash.
@@ -553,6 +555,25 @@ class ::Thunderbolt::VFX : Actor {
       LTHN ABCD 1;
       LTHN EFGHI 4;
       LTHN JKLM 1;
+      STOP;
+  }
+}
+
+class ::Revivification::VFX : Actor {
+  Default {
+    RenderStyle "Add";
+    Alpha 1.0;
+    Scale 0.3;
+    +NOBLOCKMAP +NOGRAVITY;
+  }
+
+  override void PostBeginPlay() {
+    DEBUG("VFX spawned @ %d,%d,%d", self.pos.x, self.pos.y, self.pos.z);
+  }
+
+  States {
+    Spawn:
+      LRVV ABCDEFGHIJKLMNOPQRSTUVWXY 1;
       STOP;
   }
 }

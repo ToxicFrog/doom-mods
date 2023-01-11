@@ -1,7 +1,7 @@
 # 0.10.0
 
 - New:
-  - Cool lightning bolt effect when a Revivification minion dies.
+  - Cool fizzy effect when a Revivification minion dies.
 - Balance:
   - Thunderbolt is now the intermediate lightning upgrade.
   - Revivification is now one of the two lightning masteries, opposite Chain Lightning.
