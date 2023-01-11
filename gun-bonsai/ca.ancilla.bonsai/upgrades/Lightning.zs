@@ -186,9 +186,14 @@ class ::ShockDot : ::Dot {
 class ::Revivification::Aux : Actor {
   uint level;
 
+  Default {
+    ReactionTime 175; // 5 seconds
+  }
+
   States {
     CheckRevive:
-      TNT1 A 1 CheckRevive();
+      TNT1 A 0 CheckRevive();
+      TNT1 A 1 A_CountDown();
       LOOP;
   }
 

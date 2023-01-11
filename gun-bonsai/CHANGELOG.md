@@ -8,6 +8,7 @@
   - Friendly monsters, if they have a controlling player (via the `FriendlyPlayer` field), will inherit that player's attack upgrades, and that player will get XP for the monster's attacks.
   - Revivified monsters properly set the `FriendlyPlayer` field to the player that raised them.
   - Revivified monsters properly take and receive 1 damage from the player again.
+  - Killing an unraisable monster no longer creates a Revivification helper actor that sticks around forever.
 
 # 0.9.8
 
