@@ -32,22 +32,66 @@ class ::ShockingInscription : ::ElementalUpgrade {
   }
 }
 
-class ::Revivification : ::DotModifier {
+class ::Revivification : ::ElementalUpgrade {
   override ::UpgradeElement Element() { return ::ELEM_LIGHTNING; }
-  override string DotType() { return "::ShockDot"; }
-
-  override void ModifyDot(Actor player, Actor shot, Actor target, int damage, ::Dot dot_item) {
-    ::ShockDot(dot_item).revive = level;
-  }
+  Actor minion; // Current revivification minion, if any
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
     return HasMasteryPrereq(info, "::Thunderbolt", "::ChainLightning");
   }
 
   override void GetTooltipFields(Dictionary fields, uint level) {
-    fields.insert("revive-chance", AsPercent(1.0 - 0.99 ** level));
     fields.insert("damage-bonus", AsPercentIncrease(0.2*level));
     fields.insert("armour-bonus", AsPercentDecrease(0.8 ** level));
+  }
+
+  override void OnKill(PlayerPawn player, Actor shot, Actor target) {
+    if (!ShouldRevive(target)) return;
+    DEBUG("Raising %s", TAG(target));
+    let aux = ::Revivification::Aux(target.Spawn("::Revivification::Aux", target.pos));
+    aux.target = player;
+    aux.tracer = target;
+    aux.upgrade = self;
+    aux.level = self.level;
+  }
+
+  // Should we even attempt to revive the thing we've just killed? Returning true
+  // here doesn't guarantee we do -- we might raise something else in the meantime,
+  // or it might be unrevivifiable -- but means we will create the aux object that
+  // tries to raise it later. Returning false here skips it entirely.
+  bool ShouldRevive(Actor target) {
+    DEBUG("ShouldRevive: %s", TAG(target));
+    // Don't revive friendlies. Teamkillers never prosper. :(
+    if (target.bFRIENDLY || !target.bISMONSTER) return false;
+    // Always revive if we don't currently have a minion.
+    if (!minion || minion.health <= 0) return true;
+    // Compute chance based on relative power. If the target is weaker than the
+    // current minion, we shouldn't revive. If it's stronger, it gets an increasing
+    // chance based on how much stronger.
+    let rp = RelativePower(minion, target);
+    // New one needs to be at least 20% stronger to consider it.
+    if (rp <= 1.2) return false;
+    // Chance is 20% if it's 20% stronger scaling linearly to 100% at 2x.
+    return random(1, 100) <= (rp - 1.0) * 100;
+  }
+
+  // Return the "relative power level" of the new actor with respect to the old.
+  // This is 1.0 if they are equally powerful, 2.0 if new is twice as powerful, etc.
+  // At the moment we use a very simple metric of maxhp * speed. This gives us a
+  // monster ranking of:
+  // zombie < imp < chaingunner < soul < pinkie < revenant < caco = pain elemental
+  // < hell knight < mancubus < arachnotron < baron < archvile, which looks reasonable.
+  // Note that we use max HP for both; earlier designs used current HP for the old,
+  // so that as it "wore out" the chance of replacement increased, but this resulted
+  // in outcomes where a single minion could reliably solo entire rooms, because by
+  // the time it killed something it had probably taken enough damage to be replaced,
+  // and the freshly slain enemy would then get immediately raised.
+  static double RelativePower(Actor old, Actor new) {
+    double oldp = old.SpawnHealth() * old.speed;
+    double newp = new.SpawnHealth() * new.speed;
+    DEBUG("RelativePower: %s (%d) vs %s (%d) -> %f",
+      TAG(old), oldp, TAG(new), newp, newp/oldp);
+    return newp/oldp;
   }
 }
 
@@ -89,7 +133,6 @@ class ::Thunderbolt : ::DotModifier {
 
 // Lightning "dot". Doesn't actually do damage over time, but has some other effects.
 class ::ShockDot : ::Dot {
-  uint revive; // Revivification level
   uint chain; // Chain Lightning level
   uint thunderbolt; // Thunderbolt level
   uint cap; // Cap used for Thunderbolt triggers
@@ -128,16 +171,6 @@ class ::ShockDot : ::Dot {
     return 0.0;
   }
 
-  void MellGetTheElectrodes() {
-    // Chance of staying dead is (100% - (0.2% per stack))^level
-    let chance = (1.0 - stacks * 0.01) ** revive;
-    if (frandom(0.0, 1.0) < chance) return;
-    let aux = ::Revivification::Aux(self.Spawn("::Revivification::Aux", owner.pos));
-    aux.target = self.target;
-    aux.tracer = self.owner;
-    aux.level = self.revive;
-  }
-
   void ZapZap() {
     let pos = owner.pos;
     pos.z += owner.height/2;
@@ -167,15 +200,13 @@ class ::ShockDot : ::Dot {
 
   override void OwnerDied() {
     super.OwnerDied();
-    // Trigger revivification & chain lightning.
-    if (revive > 0) MellGetTheElectrodes();
+    // Trigger chain lightning.
     if (chain > 0) ZapZap();
   }
 
   override void CopyFrom(::Dot _src) {
     super.CopyFrom(_src);
     let src = ::ShockDot(_src);
-    self.revive = max(self.revive, src.revive);
     self.chain = max(self.chain, src.chain);
     self.thunderbolt = max(self.thunderbolt, src.thunderbolt);
     self.cap = max(self.cap, src.cap);
@@ -183,6 +214,7 @@ class ::ShockDot : ::Dot {
 }
 
 class ::Revivification::Aux : Actor {
+  ::Revivification upgrade;
   uint level;
 
   Default {
@@ -207,8 +239,24 @@ class ::Revivification::Aux : Actor {
       Destroy();
       return;
     }
+
     // This might be temporary because e.g. there's something standing on it.
-    if (!tracer.CanRaise()) return;
+    if (!tracer.CanRaise()) {
+      DEBUG("Can't raise %s, will retry later.", TAG(tracer));
+      return;
+    }
+
+    // Final check: we can raise it, but has the player raised something else
+    // more powerful in the meantime?
+    // Note that this is non-random -- if the player already had a more powerful
+    // minion when our tracer was killed, we wouldn't have been created in the first
+    // place. So this check is to here to handle the case where the player kills
+    // a bunch of enemies at once and one of the weaker ones gets revived first;
+    // given a group kill we always want to revive the more powerful enemy.
+    if (upgrade.minion && upgrade.minion.health >= 0
+        && upgrade.RelativePower(upgrade.minion, tracer) <= 1.0) {
+      Destroy(); return;
+    }
 
     // Attempt the actual resurrection.
     DEBUG("Raising %s by %s", tracer.GetTag(), target.GetTag());
@@ -216,6 +264,13 @@ class ::Revivification::Aux : Actor {
     if (!tracer.RaiseActor(tracer)) {
       Destroy(); return;
     }
+
+    if (upgrade.minion) {
+      DEBUG("Killing minion %s", TAG(upgrade.minion));
+      upgrade.minion.A_Die("extreme");
+    }
+    upgrade.minion = tracer;
+
     // Clear any dots on it.
     tracer.TakeInventory("::FireDot", 255);
     tracer.TakeInventory("::AcidDot", 255);

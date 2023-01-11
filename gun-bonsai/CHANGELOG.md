@@ -1,8 +1,13 @@
 # 0.10.0
 
+- New:
+  - Cool lightning bolt effect when a Revivification minion dies.
 - Balance:
   - Thunderbolt is now the intermediate lightning upgrade.
   - Revivification is now one of the two lightning masteries, opposite Chain Lightning.
+  - Revivification always succeeds (if the target can be revived at all), but is limited to a single minion.
+  - Killing a more powerful enemy has a chance to replace your current minion with the enemy you just killed.
+  - Minions are now erased on death to prevent them from being re-raised by viles and the like.
   - Your minion does not die after a period of time out of combat.
   - Minion damage reduction applies to all players, not just the player who raised them.
 - Fix:

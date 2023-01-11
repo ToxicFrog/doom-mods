@@ -99,15 +99,15 @@ TFLV_Upgrade_AcidSpray_TT = "Acid splashes onto enemies within @radius of target
 TFLV_Upgrade_ShockingInscription_Name = "\c[CYAN]Shocking Inscription";
 TFLV_Upgrade_ShockingInscription_Desc = "Attacks slow enemies.";
 TFLV_Upgrade_ShockingInscription_TT = "Adds 1 second of 50% slow per @damage-per-stack damage, with a soft cap of @softcap.";
-TFLV_Upgrade_Revivification_Name = "\c[CYAN]Revivification";
-TFLV_Upgrade_Revivification_Desc = "Slain enemies may rise as ghostly minions.";
-TFLV_Upgrade_Revivification_TT = "@revive-chance chance per stack to revive slain enemies. Revivified minions live for @lifetime (or until killed), take @armour-bonus damage, and deal @damage-bonus damage to enemies (and 1 damage to you) with all attacks.";
 TFLV_Upgrade_Thunderbolt_Name = "\c[CYAN]Thunderbolt";
 TFLV_Upgrade_Thunderbolt_Desc = "Sustained attacks smite your target with lightning.";
 TFLV_Upgrade_Thunderbolt_TT = "Thunderbolt does @damage-percent of the target's health in damage. It triggers when they reach @zap-cap of the lightning softcap, and removes all lightning stacks when it does so, doing +5% damage per stack.";
 TFLV_Upgrade_ChainLightning_Name = "\c[CYAN]Chain Lightning";
 TFLV_Upgrade_ChainLightning_Desc = "Kills release lightning bolts that arc between nearby enemies.";
 TFLV_Upgrade_ChainLightning_TT = "Bolts arc up to @arc-count hops from the target, with an arc distance of at least @arc-range (longer for bigger enemies). Damage is 50% of target health, +1.5% per second of lightning stacks and +1% per enemy arced to.";
+TFLV_Upgrade_Revivification_Name = "\c[CYAN]Revivification";
+TFLV_Upgrade_Revivification_Desc = "The most powerful enemy you kill becomes your loyal minion.";
+TFLV_Upgrade_Revivification_TT = "Minion takes @armour-bonus damage, and deals @damage-bonus damage to enemies. Friendly fire to (and from) it deals 1 damage. Killing a more powerful enemy has a chance to replace your current minion, depending on how much more powerful it is.";
 
 // Poison
 TFLV_Upgrade_PoisonShots_Name = "\c[GREEN]Venomous Inscription";
