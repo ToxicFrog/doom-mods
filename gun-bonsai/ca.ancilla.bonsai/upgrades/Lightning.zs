@@ -62,7 +62,7 @@ class ::Revivification : ::ElementalUpgrade {
   bool ShouldRevive(Actor target) {
     DEBUG("ShouldRevive: %s", TAG(target));
     // Don't revive friendlies. Teamkillers never prosper. :(
-    if (target.bFRIENDLY || !target.bISMONSTER) return false;
+    if (target.bFRIENDLY || target.bBOSS || !target.bISMONSTER) return false;
     // Always revive if we don't currently have a minion.
     if (!minion || minion.health <= 0) return true;
     // Compute chance based on relative power. If the target is weaker than the

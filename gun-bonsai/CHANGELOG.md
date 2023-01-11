@@ -10,6 +10,7 @@
   - Minions are now erased on death to prevent them from being re-raised by viles and the like.
   - Your minion does not die after a period of time out of combat.
   - Minion damage reduction applies to all players, not just the player who raised them.
+  - Revivification can't raise bosses. No pet Cyberdemon, sorry.
 - Fix:
   - Friendly monsters, if they have a controlling player (via the `FriendlyPlayer` field), will inherit that player's attack upgrades, and that player will get XP for the monster's attacks.
   - Revivified monsters properly set the `FriendlyPlayer` field to the player that raised them.
