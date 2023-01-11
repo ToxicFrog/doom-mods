@@ -46,7 +46,6 @@ class ::Revivification : ::DotModifier {
 
   override void GetTooltipFields(Dictionary fields, uint level) {
     fields.insert("revive-chance", AsPercent(1.0 - 0.99 ** level));
-    fields.insert("lifetime", (level*5).."s");
     fields.insert("damage-bonus", AsPercentIncrease(0.2*level));
     fields.insert("armour-bonus", AsPercentDecrease(0.8 ** level));
   }
@@ -239,7 +238,6 @@ class ::Revivification::Aux : Actor {
 
 class ::Revivification::AuxBuff : Inventory {
   uint level;
-  uint timer;
   Default {
     Inventory.Amount 1;
     Inventory.MaxAmount 1;
@@ -249,13 +247,19 @@ class ::Revivification::AuxBuff : Inventory {
     +INVENTORY.QUIET;
   }
 
-  override void Tick() {
-    super.Tick();
-    ++timer;
-    if (timer > 35 * (level+5)) {
-      owner.A_Die("Lightning");
-      Destroy();
-    }
+  States {
+    DestroyOwner:
+      TNT1 A 5;
+      TNT1 A 0 { owner.Destroy(); }
+  }
+
+  override void OwnerDied() {
+    owner.Spawn("::Thunderbolt::VFX", owner.pos);
+    // Destroying the owner ensures that it can't be re-raised or anything.
+    // However, we can't do that right away, because Destroy() nulls out existing
+    // refs and then our other OnKill/OnDamage handlers will crash.
+    // So instead we schedule it for deletion a few tics from now.
+    SetStateLabel("DestroyOwner");
   }
 
   override void ModifyDamage(
@@ -264,12 +268,7 @@ class ::Revivification::AuxBuff : Inventory {
     if (source is "PlayerPawn") {
       // Only ever deal or receive 1 damage to players.
       newdamage = min(1, damage);
-      return;
-    }
-
-    // Reset lifetimer.
-    timer = 0;
-    if (passive) {
+    } else if (passive) {
       // 20% damage reduction per level with diminishing returns.
       newdamage = ceil(damage * (0.8 ** level));
     } else {

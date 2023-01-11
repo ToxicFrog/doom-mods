@@ -3,6 +3,7 @@
 - Balance:
   - Thunderbolt is now the intermediate lightning upgrade.
   - Revivification is now one of the two lightning masteries, opposite Chain Lightning.
+  - Your minion does not die after a period of time out of combat.
   - Minion damage reduction applies to all players, not just the player who raised them.
 - Fix:
   - Friendly monsters, if they have a controlling player (via the `FriendlyPlayer` field), will inherit that player's attack upgrades, and that player will get XP for the monster's attacks.
