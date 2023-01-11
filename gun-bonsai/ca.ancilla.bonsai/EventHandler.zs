@@ -199,6 +199,7 @@ class ::EventHandler : StaticEventHandler {
   static PlayerPawn GetPlayerDamageSource(WorldEvent evt) {
     if (evt.damage <= 0
         || !evt.thing.bISMONSTER
+        || !evt.damagesource
         || evt.thing.bFRIENDLY
         || evt.thing == evt.damagesource) {
       // Don't trigger on non-damaging "attacks", attacks against things that
