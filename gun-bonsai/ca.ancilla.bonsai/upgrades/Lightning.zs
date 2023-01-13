@@ -16,6 +16,8 @@
 // Capping out the lightning stacks on a target converts all of them into damage.
 #namespace TFLV::Upgrade;
 #debug off
+// Time that reviv minions will hang around once combat is over (seconds).
+const ::TTL = 7;
 
 class ::ShockingInscription : ::ElementalUpgrade {
   override ::UpgradeElement Element() { return ::ELEM_LIGHTNING; }
@@ -43,6 +45,45 @@ class ::Revivification : ::ElementalUpgrade {
   override void GetTooltipFields(Dictionary fields, uint level) {
     fields.insert("damage-bonus", AsPercentIncrease(0.2*level));
     fields.insert("armour-bonus", AsPercentDecrease(0.8 ** level));
+    fields.insert("ttl", ::TTL.."s");
+  }
+
+  override void OnDeactivate(TFLV::PerPlayerStats stats, TFLV::WeaponInfo info) {
+    DisableMinion();
+  }
+
+  override void OnActivate(TFLV::PerPlayerStats stats, TFLV::WeaponInfo info) {
+    EnableMinion();
+  }
+
+  void EnableMinion() {
+    if (!minion) return;
+    if (!minion.bDORMANT) return;
+    let buff = ::Revivification::AuxBuff(minion.FindInventory("::Revivification::AuxBuff"));
+    if (buff) {
+      buff.ActivateOwner();
+    } else {
+      minion = null;
+    }
+  }
+
+  void DisableMinion() {
+    if (!minion) return;
+    if (minion.bDORMANT) return;
+    let buff = ::Revivification::AuxBuff(minion.FindInventory("::Revivification::AuxBuff"));
+    if (buff) {
+      buff.DeactivateOwner();
+    } else {
+      minion = null;
+    }
+  }
+
+  override void OnDamageReceived(Actor pawn, Actor shot, Actor attacker, int damage) {
+    EnableMinion();
+  }
+
+  override void OnDamageDealt(Actor pawn, Actor shot, Actor target, int damage) {
+    EnableMinion();
   }
 
   override void OnKill(PlayerPawn player, Actor shot, Actor target) {
@@ -286,13 +327,21 @@ class ::Revivification::Aux : Actor {
 
     // Give it the force that applies the buff to revivified minions.
     let buff = ::Revivification::AuxBuff(tracer.GiveInventoryType("::Revivification::AuxBuff"));
-    if (buff) buff.level = self.level; // this can fail sometimes?
+    if (buff) {
+      buff.level = self.level;
+      buff.SetStateLabel("Spawn");
+    } else {
+      DEBUG("Error raising %s", TAG(tracer));
+      tracer.Destroy();
+    }
     Destroy();
   }
 }
 
 class ::Revivification::AuxBuff : Inventory {
   uint level;
+  uint ttl;
+
   Default {
     Inventory.Amount 1;
     Inventory.MaxAmount 1;
@@ -303,15 +352,55 @@ class ::Revivification::AuxBuff : Inventory {
   }
 
   States {
+    Spawn:
+      TNT1 A 0 { ttl = ::TTL; }
+    CheckTTL:
+      TNT1 A 35 CheckTTL();
+      LOOP;
+    Idle:
+      TNT1 A -1;
+      STOP;
     DestroyOwner:
       TNT1 A 5;
       TNT1 A 0 { owner.Destroy(); }
   }
 
-  override void OwnerDied() {
+  PlayerPawn Controller() {
+    return players[owner.FriendPlayer-1].mo;
+  }
+
+  void CheckTTL() {
+    --ttl;
+    DEBUG("ttl=%d", ttl);
+    if (!ttl) DeactivateOwner();
+  }
+
+  void ActivateOwner() {
+    owner.bINVISIBLE = false;
+    owner.bSHOOTABLE = true;
+    owner.Warp(Controller());
+    owner.Activate(self);
+    VFX();
+    SetStateLabel("Spawn");
+  }
+
+  void DeactivateOwner() {
+    DEBUG("deactivating %s", TAG(owner));
+    VFX();
+    owner.Deactivate(self);
+    owner.bINVISIBLE = true;
+    owner.bSHOOTABLE = false;
+    SetStateLabel("Idle");
+  }
+
+  void VFX() {
     let pos = owner.pos;
     pos.z += owner.height/2;
     owner.Spawn("::Revivification::VFX", pos);
+  }
+
+  override void OwnerDied() {
+    VFX();
     // Destroying the owner ensures that it can't be re-raised or anything.
     // However, we can't do that right away, because Destroy() nulls out existing
     // refs and then our other OnKill/OnDamage handlers will crash.
@@ -322,6 +411,7 @@ class ::Revivification::AuxBuff : Inventory {
   override void ModifyDamage(
       int damage, Name damageType, out int newdamage, bool passive,
       Actor inflictor, Actor source, int flags) {
+    ttl = ::TTL;
     if (source is "PlayerPawn") {
       // Only ever deal or receive 1 damage to players.
       newdamage = min(1, damage);
