@@ -106,14 +106,8 @@ class ::Revivification : ::ElementalUpgrade {
     if (target.bFRIENDLY || target.bBOSS || !target.bISMONSTER) return false;
     // Always revive if we don't currently have a minion.
     if (!minion || minion.health <= 0) return true;
-    // Compute chance based on relative power. If the target is weaker than the
-    // current minion, we shouldn't revive. If it's stronger, it gets an increasing
-    // chance based on how much stronger.
-    let rp = RelativePower(minion, target);
-    // New one needs to be at least 20% stronger to consider it.
-    if (rp <= 1.2) return false;
-    // Chance is 20% if it's 20% stronger scaling linearly to 100% at 2x.
-    return random(1, 100) <= (rp - 1.0) * 100;
+    // If we do, only revive if the new one is stronger.
+    return RelativePower(minion, target) > 1.0;
   }
 
   // Return the "relative power level" of the new actor with respect to the old.
@@ -288,12 +282,9 @@ class ::Revivification::Aux : Actor {
     }
 
     // Final check: we can raise it, but has the player raised something else
-    // more powerful in the meantime?
-    // Note that this is non-random -- if the player already had a more powerful
-    // minion when our tracer was killed, we wouldn't have been created in the first
-    // place. So this check is to here to handle the case where the player kills
-    // a bunch of enemies at once and one of the weaker ones gets revived first;
-    // given a group kill we always want to revive the more powerful enemy.
+    // more powerful in the meantime? This is particularly intended to handle
+    // the case where the player fires a rocket into a heterogenous group of
+    // enemies -- we want to raise the strongest one available.
     if (upgrade.minion && upgrade.minion.health >= 0
         && upgrade.RelativePower(upgrade.minion, tracer) <= 1.0) {
       Destroy(); return;
