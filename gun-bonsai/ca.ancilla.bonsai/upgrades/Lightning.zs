@@ -496,22 +496,21 @@ class ::ChainLightning::Aux : Actor {
   void FindTargets(Actor victim, uint max_jumps) {
     if (max_jumps <= 0) return;
 
-    self.warp(victim, 0, 0, victim.height/2, 0, WARPF_NOCHECKPOSITION|WARPF_BOB);
     DEBUG("FindTargets: %s [ttl=%d] (%d,%d,%d) @ (%d,%d,%d)",
       TAG(victim), max_jumps,
       victim.pos.x, victim.pos.y, victim.pos.z,
       self.pos.x, self.pos.y, self.pos.z);
     uint radius = max(victim.radius, 32) * (3+level);
     uint next_target = targets.size();
-    // We are now in position, so explode to find everything nearby.
-    // DoSpecialDamage will add them all to the targets array.
-    // XF_EXPLICITDAMAGETYPE with no explicit damage type defaults to None.
-    A_Explode(1, radius, XF_NOSPLASH|XF_EXPLICITDAMAGETYPE, false, radius);
+
     // Collect all the new targets, if any, and record the arcs to them.
-    DEBUG("Processing %d new targets", targets.size() - next_target);
-    for (uint i = next_target; i < targets.size(); ++i) {
+    Array<Actor> new_targets;
+    TFLV::Util.MonstersInRadius(victim, radius, new_targets);
+    for (uint i = 0; i < new_targets.size(); ++i) {
+      if (targets.find(new_targets[i]) != targets.size()) continue; // Skip monsters we've already hit
+      targets.push(new_targets[i]);
       let arc = new("::ChainLightning::Arc");
-      arc.RecordPositions(victim, targets[i], max_jumps);
+      arc.RecordPositions(victim, new_targets[i], max_jumps);
       arcs.push(arc);
       DEBUG("Recorded arc %d [ttl=%d] from %s (%d,%d,%d) to %s (%d,%d,%d)",
         arcs.size()-1, max_jumps,
@@ -527,17 +526,6 @@ class ::ChainLightning::Aux : Actor {
       FindTargets(targets[i], max_jumps-1);
     }
     DEBUG("FindTargets complete.");
-  }
-
-  override int DoSpecialDamage(Actor target, int damage, Name damagetype) {
-    // Don't modify hits that aren't part of the initial sweep
-    if (damagetype != "None") return damage;
-    if (targets.find(target) != targets.size() || !target.bISMONSTER) {
-      // Don't zap non-monsters, and don't zap the same thing twice
-      return 0;
-    }
-    targets.push(target);
-    return 0;
   }
 
   // Called every few tics to actually draw the lightning and do the damage.

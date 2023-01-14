@@ -155,12 +155,12 @@ class ::ElementalSynthesis::AoE : Actor {
     self.SetStateLabel("Spawn");
   }
 
-  override int DoSpecialDamage(Actor target, int damage, Name damagetype) {
-    DEBUG("DoSpecialDamage: AoE vs. %s", target.GetTag());
-    if (target != src && target.bISMONSTER) {
-      parent.CopyElements(self, target);
+  void Spread() {
+    Array<Actor> targets;
+    TFLV::Util.MonstersInRadius(self, range, targets);
+    for (uint i = 0; i < targets.size(); ++i) {
+      parent.CopyElements(self, targets[i]);
     }
-    return 0;
   }
 
   void DrawVFX() {
@@ -192,7 +192,7 @@ class ::ElementalSynthesis::AoE : Actor {
   States {
     Spawn:
       TNT1 A 1 NoDelay DrawVFX();
-      TNT1 A 1 A_Explode(1, range, XF_NOSPLASH, false, range);
+      TNT1 A 1 Spread();
       STOP;
   }
 }

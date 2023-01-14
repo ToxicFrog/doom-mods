@@ -187,7 +187,8 @@ class ::BaseUpgrade : Object play {
   // in the upgrade's corresponding _FF LANGUAGE key.
   virtual void GetTooltipFields(Dictionary fields, uint level) const {}
 
-  // Utility functions for GetTooltipFields
+  // Utility functions for GetTooltipFields //
+
   // 0.25 -> 25%
   static string AsPercent(double mult) {
     return string.format("%d%%", mult * 100);

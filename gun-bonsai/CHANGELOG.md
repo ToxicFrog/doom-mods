@@ -19,6 +19,7 @@
   - Revivified monsters properly set the `FriendlyPlayer` field to the player that raised them.
   - Revivified monsters properly take and receive 1 damage from the player again.
   - Killing an unraisable monster no longer creates a Revivification helper actor that sticks around forever.
+  - Code that needs to find all monsters in an area now uses `BlockThingsIterator` rather than `A_Explode`+`DoSpecialDamage`. This should improve both performance and maintainability. Thanks to RatCircus for pointing me in the right direction.
 
 # 0.9.8
 
