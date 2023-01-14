@@ -6,6 +6,7 @@
 
 #include "./melee/DarkHarvest.zsc"
 #include "./melee/Shield.zsc"
+#include "./melee/Sweep.zsc"
 #include "./melee/Swiftness.zsc"
 
 #include "./Explosive.zsc"

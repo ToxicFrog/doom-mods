@@ -99,6 +99,10 @@ Reduces incoming damage by ~20%. Can be stacked, with diminishing returns maxing
 
 Killing an enemy releases a pile of bouncing explosives. Damage depends on level and how much you overkilled the enemy by; increasing level also increases the number of submunitions.
 
+### Sweep *(Melee only)*
+
+Attacking an enemy in melee does a portion of the damage to other enemies that are in melee range of both you and your target.
+
 ### Swiftness *(Melee or Wimpy only)*
 
 Killing an enemy gives you a 1 second of time freeze (+200ms per additional level). You can extend this by killing more enemies before it wears off.
