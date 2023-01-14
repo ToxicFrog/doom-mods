@@ -1,5 +1,3 @@
-// Melee-only upgrades.
-// These tend to be much more powerful than the non-melee equivalents.
 #namespace TFLV::Upgrade;
 #debug on;
 
