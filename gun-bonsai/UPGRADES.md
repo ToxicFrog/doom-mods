@@ -55,6 +55,10 @@ Non-elemental upgrades for your weapons.
 
 Shots bounce off walls. Higher levels increase the number of bounces and decrease the amount of velocity lost on bounce. At level 3, shots bounce off enemies as well.
 
+### Cleave *(Melee only)*
+
+Killing an enemy in melee automatically gets you a free attack against another nearby enemy. Damage scales with how much you overkilled the original target by *and* how much health it spawned with.
+
 ### Dark Harvest *(Melee or Wimpy only)*
 
 Killing an enemy grants you 1 point of health and armour per level (×10 for boss kills). This is capped at 100% of your max health, +20% for each level (so 120% at level 1 and 200% at level 5). If you boost it above level 5 you can exceed the normal 200 health/armour limit.

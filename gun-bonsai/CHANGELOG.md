@@ -2,7 +2,8 @@
 
 - New:
   - Cool fizzy effect when a Revivification minion dies.
-  - `Sweep`: a melee-only upgrade that hits multiple enemies whenever you attack
+  - `Sweep`: a melee-only upgrade that hits multiple enemies whenever you attack.
+  - `Cleave`: a melee-only upgrade that gives you free attacks with every kill.
 - Balance:
   - Thunderbolt is now the intermediate lightning upgrade.
   - Revivification is now one of the two lightning masteries, opposite Chain Lightning.

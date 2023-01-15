@@ -4,6 +4,7 @@
 #include "./Registry.zsc"
 #include "./UpgradeBag.zsc"
 
+#include "./melee/Cleave.zsc"
 #include "./melee/DarkHarvest.zsc"
 #include "./melee/Shield.zsc"
 #include "./melee/Sweep.zsc"
