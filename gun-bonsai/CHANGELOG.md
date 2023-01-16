@@ -8,7 +8,7 @@
   - Thunderbolt is now the intermediate lightning upgrade.
   - Revivification is now one of the two lightning masteries, opposite Chain Lightning.
   - Revivification can't raise bosses. No pet Cyberdemon, sorry.
-  - Major redesign of Revivification; see below.
+  - Major redesign of Revivification and Shield; see below.
 - Revivification changes:
   - Revivification now gives you a single minion. It sticks around until it either dies, or you kill something more powerful (which replaces it).
   - Revivification always succeeds, if the target can be raised at all.
@@ -16,6 +16,13 @@
   - Minions are hasted (+ALWAYSFAST) if the underlying actor supports it.
   - Minions inherit most of your offensive upgrades. This potentially makes them much more powerful.
   - Each weapon with Revivification on it hosts a different minion; putting away your weapon will unsummon its minion, and drawing it will summon it again.
+- Shield changes:
+  - Shield is now melee-only and cannot appear on wimpy weapons.
+  - Shield provides significantly improved protection against melee attacks
+  - Shield provides slightly worse protection against ranged attacks
+  - Shield's protection is only active while you are attacking something *in melee*.
+  - Killing an enemy in melee extends the protection by several seconds so you can find a new demon to punch.
+  - Thanks to DarkkOne for the idea.
 - Fix:
   - Friendly monsters, if they have a controlling player (via the `FriendlyPlayer` field), will inherit that player's attack upgrades, and that player will get XP for the monster's attacks.
   - Revivified monsters properly set the `FriendlyPlayer` field to the player that raised them.
