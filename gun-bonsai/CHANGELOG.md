@@ -7,19 +7,21 @@
 - Balance:
   - Thunderbolt is now the intermediate lightning upgrade.
   - Revivification is now one of the two lightning masteries, opposite Chain Lightning.
-  - Revivification always succeeds (if the target can be revived at all), but is limited to a single minion.
-  - Killing a more powerful enemy has a chance to replace your current minion with the enemy you just killed.
-  - Minions are now erased on death to prevent them from being re-raised by viles and the like.
-  - Your minion does not die after a period of time out of combat.
-  - Minion damage reduction applies to all players, not just the player who raised them.
   - Revivification can't raise bosses. No pet Cyberdemon, sorry.
-  - Minions unsummon when out of combat; dealing or taking damage will re-summon them.
+  - Major redesign of Revivification; see below.
+- Revivification changes:
+  - Revivification now gives you a single minion. It sticks around until it either dies, or you kill something more powerful (which replaces it).
+  - Revivification always succeeds, if the target can be raised at all.
+  - After a period of time out of combat, your minion will unsummon; it will reappear at your locatoin the next time you take damage.
   - Minions are hasted (+ALWAYSFAST) if the underlying actor supports it.
-  - Minions inherit most of your offensive upgrades.
+  - Minions inherit most of your offensive upgrades. This potentially makes them much more powerful.
+  - Each weapon with Revivification on it hosts a different minion; putting away your weapon will unsummon its minion, and drawing it will summon it again.
 - Fix:
   - Friendly monsters, if they have a controlling player (via the `FriendlyPlayer` field), will inherit that player's attack upgrades, and that player will get XP for the monster's attacks.
   - Revivified monsters properly set the `FriendlyPlayer` field to the player that raised them.
   - Revivified monsters properly take and receive 1 damage from the player again.
+  - Revivified monsters take and deal reduced damage to all players, not just the player who raised them.
+  - Revivified monsters are erased on death to prevent them from being re-raised by viles and the like.
   - Killing an unraisable monster no longer creates a Revivification helper actor that sticks around forever.
   - Code that needs to find all monsters in an area now uses `BlockThingsIterator` rather than `A_Explode`+`DoSpecialDamage`. This should improve both performance and maintainability. Thanks to RatCircus for pointing me in the right direction.
 
