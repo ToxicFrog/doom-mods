@@ -7,10 +7,6 @@ Three possible operating modes:
 - Bonsai level integration; respond to bonsai level-up messages by giving new upgrades
 - Bonsai upgrade integration; add a set of bonsai upgrades corresponding to different LD upgrades? don't quite remember
 
-### Indestructable
-
-Slomo option instead of timestop?
-
 ### next
 
 - Spread Fire projectile upgrade, projectile shots spawn multiple reduced-damage projectiles
@@ -22,7 +18,6 @@ Slomo option instead of timestop?
 ### 0.11.x?
 
 - split laevis into its own mod
-- swap thunderbolt and paralysis because para is wicked powerful?
 
 ### Soon
 
@@ -49,6 +44,8 @@ Slomo option instead of timestop?
 Upgrade that adds random projectiles from any player weapon or monster in the game into your shots (either picked at random when you choose the upgrade or as you fire).
 
 ### Ideas from Shatter-Thought
+
+Timer on upgrade menu that chooses a random upgrade for you after time expires
 
 Blood-Sourced replicated ammo: Enemies killed by this weapon have a 10% to put out ammo for the **** weapon (**** would be adjustable in the options so the player can choose a weapon that the effect helps to spit out ammo for.)
 
@@ -81,9 +78,7 @@ Skills like :Faster walking ,higher jumping ,better environmental resistance,loo
 Trauma Kit: Player upgrade. Healing is now 25% more effective from all sources (minimum of 1 additional healing), however all healing except the additional 25% is applied slowly, with a healing rate of 3 (more per level) HP per second. [This upgrade would massively benefit things like Health Bonuses, effectively doubling their healing from 1 to 2 with basically no downside, but only mildly benefit things like Soul Spheres with the potential downside of forcing the player to play better and avoid damage for longer to maximize this upgrade's effectiveness.]
     ​
 Center of Mass: Weapon upgrade. Standing still builds stacks of Focus. Firing or moving expends all stacks of Focus. Focus increases damage, with more stacks increasing damage further. Level increases the maximum amount of Focus stacks the player may obtain. [Basically just a sniper-style upgrade, benefiting weapons which do a lot of damage all at once.]
-
-Spectral Inscription: On dealing damage with a weapon with this applied, the player will fire an additional spectral projectile from their eyes once every 35 tics (-2 tic per level). The projectile is summoned by player-attributed damage events rather than the player's attacking states. The spectral projectile inherits no properties from the weapon that fired it other than copying the damage from the damage instance that summon it. Intermediate and Mastery upgrades increase the projectile's speed and add homing capabilities. [The idea here is to provide a roundabout fire rate increase without actually modifying a weapon's states in any way and potentially breaking compatibility, since it's been suggested before and shot down.]
-    ​
+​
 Resurrecting Inscription: This ability will resurrect the first enemy killed with a weapon that has it applied. The enemy will fight for the player until they die or until 8 seconds have passed (+2 seconds per level), in which case they are automatically killed. Enemies with more than 600 health, or who have the +FRIENDLY tag already applied, are exempt. Taking this on multiple weapons allows additional enemies to be resurrected, without having to switch to other weapons that have it applied. [The idea here is to provide a sort of 'summoner build' to be possible. The timer restriction is there to prevent a cascading windfall of summons, while the >600 health restriction is mainly just there to prevent anything as strong as or stronger than an Arch-Vile from being resurrected. Taking multiple copies of the inscription is there to encourage people to really build into it by sacrificing other inscription slots if they want summons to really be a major part of their playstyle, instead of handing players it for free.]
     ​
 Crossfire: Weapons with this ability will do 30% extra damage for 3 seconds after it is switched to. Afterwards, it will do -15% damage. Mutually exclusive with the Damage upgrade. [To benefit the chronic weapon switchers out there, or especially weapon mods which contain reloading weapons.]

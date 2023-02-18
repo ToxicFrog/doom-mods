@@ -5,18 +5,21 @@
   - `Sweep`: a melee-only upgrade that hits multiple enemies whenever you attack.
   - `Cleave`: a melee-only upgrade that gives you free attacks with every kill.
 - Balance:
-  - Thunderbolt is now the intermediate lightning upgrade.
-  - Revivification is now one of the two lightning masteries, opposite Chain Lightning.
-  - Revivification can't raise bosses. No pet Cyberdemon, sorry.
-  - Major redesign of Revivification and Shield; see below.
-- Revivification changes:
+  - `Thunderbolt` is now the intermediate lightning upgrade.
+  - `Revivification` is now one of the two lightning masteries, opposite `Chain Lightning`.
+  - `Revivification` can't raise bosses. No pet Cyberdemon, sorry.
+  - `Homing Shots` will now fly straight until they get within a certain distance of their target.
+  - `Homing Shots` max level increased from 4 to 12.
+  - `Homing Shots` turn rate adjusted.
+  - Major redesign of `Revivification` and `Shield`; see below.
+- `Revivification` changes:
   - Revivification now gives you a single minion. It sticks around until it either dies, or you kill something more powerful (which replaces it).
   - Revivification always succeeds, if the target can be raised at all.
-  - After a period of time out of combat, your minion will unsummon; it will reappear at your locatoin the next time you take damage.
+  - After a period of time out of combat, your minion will unsummon; it will reappear at your location the next time you take damage.
   - Minions are hasted (+ALWAYSFAST) if the underlying actor supports it.
   - Minions inherit most of your offensive upgrades. This potentially makes them much more powerful.
   - Each weapon with Revivification on it hosts a different minion; putting away your weapon will unsummon its minion, and drawing it will summon it again.
-- Shield changes:
+- `Shield` changes:
   - Shield is now melee-only and cannot appear on wimpy weapons.
   - Shield provides significantly improved protection against melee attacks
   - Shield provides slightly worse protection against ranged attacks
@@ -31,6 +34,7 @@
   - Revivified monsters are erased on death to prevent them from being re-raised by viles and the like.
   - Killing an unraisable monster no longer creates a Revivification helper actor that sticks around forever.
   - Code that needs to find all monsters in an area now uses `BlockThingsIterator` rather than `A_Explode`+`DoSpecialDamage`. This should improve both performance and maintainability. Thanks to RatCircus for pointing me in the right direction.
+  - `Homing Shots` now checks line of sight to the monster it's locked onto and does not change course until it has a clear flight path. In conjunction with the balance changes above they should now be much less prone to flying into the floor/ceiling.
 
 # 0.9.8
 
