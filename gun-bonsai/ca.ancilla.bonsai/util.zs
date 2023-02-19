@@ -2,7 +2,6 @@
 #debug off;
 
 class ::Util : Object {
-  // Utility functions for subclasses //
   static uint MonstersInRadius(Actor origin, double radius, out Array<Actor> found) {
     BlockThingsIterator it = BlockThingsIterator.Create(origin, radius);
     found.clear();
