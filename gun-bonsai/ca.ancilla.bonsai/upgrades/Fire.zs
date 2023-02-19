@@ -175,7 +175,7 @@ class ::FireDot : ::Dot {
       if (missing_health >= 0.7 ** (stacks+terror)) {
         owner.bFRIGHTENED = true;
       }
-    } else if (random(0.0, 1.0) > 0.95) {
+    } else if (frandom(0.0, 1.0) > 0.95) {
       owner.bFRIGHTENED = false;
     }
   }
