@@ -16,6 +16,7 @@ ones. The new upgrades, in particular, will probably need balance tweaks in the
   - `Cleave`: a melee-only upgrade that gives you free attacks with every kill.
   - `Personal ECM`: a player upgrade that reprograms hostile seekers to hunt nearby monsters instead.
   - `Decoy Flares`: projectiles you fire distract enemy seekers.
+  - `Aggressive Defence`: attacking an enemy will destroy projectiles near it.
 - Balance:
   - `Thunderbolt` is now the intermediate lightning upgrade.
   - `Revivification` is now one of the two lightning masteries, opposite `Chain Lightning`.

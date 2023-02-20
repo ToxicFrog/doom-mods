@@ -10,6 +10,7 @@
 #include "./melee/Sweep.zsc"
 #include "./melee/Swiftness.zsc"
 
+#include "./AggressiveDefence.zsc"
 #include "./DecoyFlares.zsc"
 #include "./ECM.zsc"
 #include "./Explosive.zsc"
