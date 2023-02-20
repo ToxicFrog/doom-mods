@@ -55,6 +55,10 @@ Non-elemental upgrades for your weapons.
 
 Shots bounce off walls. Higher levels increase the number of bounces and decrease the amount of velocity lost on bounce. At level 3, shots bounce off enemies as well.
 
+### Cleave *(Melee only)*
+
+Killing an enemy in melee automatically gets you a free attack against another nearby enemy. Damage scales with how much you overkilled the original target by *and* how much health it spawned with.
+
 ### Dark Harvest *(Melee or Wimpy only)*
 
 Killing an enemy grants you 1 point of health and armour per level (×10 for boss kills). This is capped at 100% of your max health, +20% for each level (so 120% at level 1 and 200% at level 5). If you boost it above level 5 you can exceed the normal 200 health/armour limit.
@@ -98,6 +102,10 @@ Reduces incoming damage by ~20%. Can be stacked, with diminishing returns maxing
 ### Submunitions *(Ranged only)*
 
 Killing an enemy releases a pile of bouncing explosives. Damage depends on level and how much you overkilled the enemy by; increasing level also increases the number of submunitions.
+
+### Sweep *(Melee only)*
+
+Attacking an enemy in melee does a portion of the damage to other enemies that are in melee range of both you and your target.
 
 ### Swiftness *(Melee or Wimpy only)*
 
@@ -194,17 +202,17 @@ Lightning does no additional damage on its own, but slows targets. Stacks are ap
 
 Shots reduce targest to half speed (in addition to doing their normal amount of damage). Paralysis is softcapped at 1 second per upgrade level.
 
-### Revivification *(Lightning intermediate upgrade)*
+### Thunderbolt *(Lightning intermediate upgrade)*
+
+Once you sufficiently exceed the lightning softcap on a target, it is struck by lightning, taking damage based on its max health and your level of Thunderbolt, with a bonus based on how many lightning stacks it has. This clears all lightning stacks on the target. Increasing the level increases both the damage and how frequently it triggers.
+
+### Revivification *(Lightning mastery)*
 
 Slain enemies have a chance of coming back as ghostly minions. The chance of coming back increases with both the number of lightning stacks and the level of Revivification; the latter also gives revived minions a bonus to damage and armour. You can freely walk through your minions (so they can't block important doorways), and while they are capable of friendly fire they will never do more than 1 damage to you (and take only 1 damage from your attacks).
 
 ### Chain Lightning *(Lightning mastery)*
 
 Slain enemies release a burst of chain lightning that arcs between targets. Chain length is based on upgrade level; chain damage is based on how much health the dead enemy had, how many lightning stacks it had on it, and how many enemies are caught in the chain in total. It cannot arc to you.
-
-### Thunderbolt *(Lightning mastery)*
-
-Once you sufficiently exceed the lightning softcap on a target, it is struck by lightning, taking damage based on its max health and your level of Thunderbolt, with a bonus based on how many lightning stacks it has. This clears all lightning stacks on the target. Increasing the level increases both the damage and how frequently it triggers.
 
 ## Elemental Sythesis Powers
 

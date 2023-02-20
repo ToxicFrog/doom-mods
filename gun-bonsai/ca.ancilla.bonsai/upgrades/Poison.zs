@@ -71,7 +71,7 @@ class ::Putrefaction : ::ElementalUpgrade {
   override ::UpgradeElement Element() { return ::ELEM_POISON; }
   override void OnKill(PlayerPawn player, Actor shot, Actor target) {
     double stacks = ::Dot.CountStacks(target, "::PoisonDot");
-    DEBUG("killed %s, poison stacks=%d", TFLV::Util.SafeCls(target), stacks);
+    DEBUG("killed %s, poison stacks=%d", TAG(target), stacks);
     if (stacks <= 0) return;
 
     let aux = ::Putrefaction::Aux(target.Spawn("::Putrefaction::Aux", target.pos));
@@ -162,15 +162,18 @@ class ::Putrefaction::Aux : Actor {
     +NODAMAGETHRUST;
   }
 
-  override int DoSpecialDamage(Actor target, int damage, Name damagetype) {
-    ::Dot.GiveStacks(self.target, target, "::PoisonDot", level, level);
-    return 0;
+  void Spread() {
+    Array<Actor> targets;
+    // TODO: scale blast radius with level?
+    TFLV::Util.MonstersInRadius(self, 100, targets);
+    for (uint i = 0; i < targets.size(); ++i) {
+      ::Dot.GiveStacks(self.target, targets[i], "::PoisonDot", level, level);
+    }
   }
 
   States {
     Spawn:
-      // TODO: scale blast radius with level?
-      LPBX ABABABCBCBCDCDCDEE 7 A_Explode(1, 100, XF_NOSPLASH, false, 100);
+      LPBX ABABABCBCBCDCDCDEE 7 Spread();
       STOP;
   }
 }

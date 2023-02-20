@@ -206,7 +206,7 @@ class ::HUD : Object ui {
         double(stats.pxp)/(stats.pmax), HUD_PXP_X, HUD_PXP_W);
 
     Text(
-      string.format("Lv.%d", stats.plvl),
+      string.format(StringTable.Localize("$TFLV_HUD_LV"), stats.plvl),
       player_rgb, HUD_TOPTEXT_X, HUD_TOPTEXT_Y, HUD_GRAV_NW);
     Text(
       string.format("%d/%d", stats.pxp, stats.pmax),
@@ -221,11 +221,14 @@ class ::HUD : Object ui {
       HUD_INFOTEXT_Y - NewSmallFont.GetHeight()/scale/screenscale,
       HUD_GRAV_SW);
     if (stats.winfo.IsIgnored()) {
-      Text("Lv.- (---/---)", weapon_rgb, HUD_INFOTEXT_X, HUD_INFOTEXT_Y, HUD_GRAV_SW);
+      Text(
+        StringTable.Localize("$TFLV_HUD_LV_IGNORED"),
+        weapon_rgb, HUD_INFOTEXT_X, HUD_INFOTEXT_Y, HUD_GRAV_SW);
       DrawProgressBar(tex(weapon_tex..face), 0xFF808080, 1.0, HUD_WXP_X, HUD_WXP_W);
     } else {
       Text(
-        string.format("Lv.%d (%.0f/%.0f)", stats.wlvl, stats.wxp, stats.wmax),
+        string.format(StringTable.Localize("$TFLV_HUD_LVXP"),
+          stats.wlvl, stats.wxp, stats.wmax),
         weapon_rgb, HUD_INFOTEXT_X, HUD_INFOTEXT_Y, HUD_GRAV_SW);
     }
   }

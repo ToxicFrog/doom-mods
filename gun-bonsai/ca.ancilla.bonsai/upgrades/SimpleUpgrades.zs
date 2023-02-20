@@ -2,7 +2,7 @@
 #namespace TFLV::Upgrade;
 
 class ::BlastShaping : ::BaseUpgrade {
-  override double ModifyDamageReceived(Actor pawn, Actor shot, Actor attacker, double damage) {
+  override double ModifyDamageReceived(Actor pawn, Actor shot, Actor attacker, double damage, Name attacktype) {
     if (pawn != attacker) return damage;
     return damage * 0.5 ** level;
   }
@@ -66,7 +66,7 @@ class ::PiercingShots : ::BaseUpgrade {
     shot.bRIPPER = true;
   }
 
-  override double ModifyDamageDealt(Actor pawn, Actor shot, Actor target, double damage) {
+  override double ModifyDamageDealt(Actor pawn, Actor shot, Actor target, double damage, Name attacktype) {
     if (shot.bRIPPER && shot.bMISSILE) {
       // For the plasma rifle, against a Revenant-sized enemy, setting this to 0.5
       // without any other upgrades results in it doing roughly normal damage.
@@ -94,7 +94,7 @@ class ::PiercingShots : ::BaseUpgrade {
 }
 
 class ::PlayerDamage : ::BaseUpgrade {
-  override double ModifyDamageDealt(Actor pawn, Actor shot, Actor target, double damage) {
+  override double ModifyDamageDealt(Actor pawn, Actor shot, Actor target, double damage, Name attacktype) {
     // 10% damage bonus per level, but always at least 1 extra point per level.
     double bonus = damage * (self.level * 0.10);
     return damage + (bonus < self.level ? self.level : bonus);
@@ -111,7 +111,7 @@ class ::PlayerDamage : ::BaseUpgrade {
 }
 
 class ::ToughAsNails : ::BaseUpgrade {
-  override double ModifyDamageReceived(Actor pawn, Actor shot, Actor attacker, double damage) {
+  override double ModifyDamageReceived(Actor pawn, Actor shot, Actor attacker, double damage, Name attacktype) {
     // 10% resistance per level, multiplicative
     double newdamage = damage * (0.90 ** self.level);
     return max(1, min(newdamage, damage - level));
@@ -128,7 +128,7 @@ class ::ToughAsNails : ::BaseUpgrade {
 }
 
 class ::WeaponDamage : ::BaseUpgrade {
-  override double ModifyDamageDealt(Actor pawn, Actor shot, Actor target, double damage) {
+  override double ModifyDamageDealt(Actor pawn, Actor shot, Actor target, double damage, Name attacktype) {
     // 20% damage bonus per level, but always at least 1 extra point per level.
     double bonus = damage * (self.level * 0.20);
     return damage + (bonus < self.level ? self.level : bonus);

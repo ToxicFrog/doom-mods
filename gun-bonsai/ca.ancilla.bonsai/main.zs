@@ -1,6 +1,8 @@
 #include "./libtooltipmenu/Tooltips.zsc"
 #include "./libtooltipmenu/TooltipOptionMenu.zsc"
 
+#include "./util.zsc"
+
 #include "./menu/main.zsc"
 #include "./upgrades/main.zsc"
 

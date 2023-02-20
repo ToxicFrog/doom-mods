@@ -357,9 +357,9 @@ class ::PerPlayerStats : Object play {
 
       // TODO: this (and ModifyDamageDealt below) should take into account the
       // difference between current and original damage
-      double tmpdamage = upgrades.ModifyDamageReceived(owner, inflictor, source, damage);
+      double tmpdamage = upgrades.ModifyDamageReceived(owner, inflictor, source, damage, damageType);
       if (info)
-        tmpdamage = info.upgrades.ModifyDamageReceived(owner, inflictor, source, tmpdamage);
+        tmpdamage = info.upgrades.ModifyDamageReceived(owner, inflictor, source, tmpdamage, damageType);
       newdamage = tmpdamage;
     } else {
       DEBUG("MD: %s -> %s -> %s (%d/%s) flags=%X",
@@ -374,9 +374,9 @@ class ::PerPlayerStats : Object play {
         return;
       }
 
-      double tmpdamage = upgrades.ModifyDamageDealt(owner, inflictor, source, damage);
+      double tmpdamage = upgrades.ModifyDamageDealt(owner, inflictor, source, damage, damageType);
       if (info)
-        tmpdamage = info.upgrades.ModifyDamageDealt(owner, inflictor, source, tmpdamage);
+        tmpdamage = info.upgrades.ModifyDamageDealt(owner, inflictor, source, tmpdamage, damageType);
       newdamage = tmpdamage;
     }
   }

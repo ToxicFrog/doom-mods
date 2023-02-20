@@ -227,18 +227,24 @@ class ::AcidSpray::Aux : Actor {
     return 64 + level*32;
   }
 
-  override int DoSpecialDamage(Actor target, int damage, Name damagetype) {
-    if (!target.bISMONSTER) return 0;
+  void SpreadTo(Actor target) {
     let acid = ::AcidDot(::Dot.GiveStacks(self.target, target, "::AcidDot", stacks, softcap));
     acid.level = max(acid.level, level);
     acid.concentration = max(acid.concentration, concentration);
     acid.splash = max(acid.splash, splash);
-    return 0;
+  }
+
+  void Spread() {
+    Array<Actor> targets;
+    TFLV::Util.MonstersInRadius(self, GetRange(), targets);
+    for (uint i = 0; i < targets.size(); ++i) {
+      SpreadTo(targets[i]);
+    }
   }
 
   States {
     Spawn:
-      LACD A 5 Bright NoDelay A_Explode(1, GetRange(), XF_NOSPLASH, false, GetRange());
+      LACD A 5 Bright NoDelay Spread();
       LACD BCDE 5 Bright;
       STOP;
   }

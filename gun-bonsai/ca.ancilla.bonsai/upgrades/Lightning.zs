@@ -16,6 +16,8 @@
 // Capping out the lightning stacks on a target converts all of them into damage.
 #namespace TFLV::Upgrade;
 #debug off
+// Time that reviv minions will hang around once combat is over (seconds).
+const ::TTL = 7;
 
 class ::ShockingInscription : ::ElementalUpgrade {
   override ::UpgradeElement Element() { return ::ELEM_LIGHTNING; }
@@ -32,23 +34,99 @@ class ::ShockingInscription : ::ElementalUpgrade {
   }
 }
 
-class ::Revivification : ::DotModifier {
+class ::Revivification : ::ElementalUpgrade {
   override ::UpgradeElement Element() { return ::ELEM_LIGHTNING; }
-  override string DotType() { return "::ShockDot"; }
-
-  override void ModifyDot(Actor player, Actor shot, Actor target, int damage, ::Dot dot_item) {
-    ::ShockDot(dot_item).revive = level;
-  }
+  Actor minion; // Current revivification minion, if any
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
-    return HasIntermediatePrereq(info, "::ShockingInscription");
+    return HasMasteryPrereq(info, "::Thunderbolt", "::ChainLightning");
   }
 
   override void GetTooltipFields(Dictionary fields, uint level) {
-    fields.insert("revive-chance", AsPercent(1.0 - 0.99 ** level));
-    fields.insert("lifetime", (level*5).."s");
     fields.insert("damage-bonus", AsPercentIncrease(0.2*level));
     fields.insert("armour-bonus", AsPercentDecrease(0.8 ** level));
+    fields.insert("ttl", ::TTL.."s");
+  }
+
+  override void OnDeactivate(TFLV::PerPlayerStats stats, TFLV::WeaponInfo info) {
+    DisableMinion();
+  }
+
+  override void OnActivate(TFLV::PerPlayerStats stats, TFLV::WeaponInfo info) {
+    EnableMinion();
+  }
+
+  void EnableMinion() {
+    if (!minion) return;
+    if (!minion.bDORMANT) return;
+    let buff = ::Revivification::AuxBuff(minion.FindInventory("::Revivification::AuxBuff"));
+    if (buff) {
+      buff.ActivateOwner();
+    } else {
+      minion = null;
+    }
+  }
+
+  void DisableMinion() {
+    if (!minion) return;
+    if (minion.bDORMANT) return;
+    let buff = ::Revivification::AuxBuff(minion.FindInventory("::Revivification::AuxBuff"));
+    if (buff) {
+      buff.DeactivateOwner();
+    } else {
+      minion = null;
+    }
+  }
+
+  override void OnDamageReceived(Actor pawn, Actor shot, Actor attacker, int damage) {
+    EnableMinion();
+  }
+
+  override void OnDamageDealt(Actor pawn, Actor shot, Actor target, int damage) {
+    EnableMinion();
+  }
+
+  override void OnKill(PlayerPawn player, Actor shot, Actor target) {
+    if (!ShouldRevive(target)) return;
+    DEBUG("Raising %s", TAG(target));
+    let aux = ::Revivification::Aux(target.Spawn("::Revivification::Aux", target.pos));
+    aux.target = player;
+    aux.tracer = target;
+    aux.upgrade = self;
+    aux.level = self.level;
+  }
+
+  // Should we even attempt to revive the thing we've just killed? Returning true
+  // here doesn't guarantee we do -- we might raise something else in the meantime,
+  // or it might be unrevivifiable -- but means we will create the aux object that
+  // tries to raise it later. Returning false here skips it entirely.
+  bool ShouldRevive(Actor target) {
+    DEBUG("ShouldRevive: %s", TAG(target));
+    // Don't revive friendlies. Teamkillers never prosper. :(
+    if (target.bFRIENDLY || target.bBOSS || !target.bISMONSTER) return false;
+    // Always revive if we don't currently have a minion.
+    if (!minion || minion.health <= 0) return true;
+    // If we do, only revive if the new one is stronger.
+    return RelativePower(minion, target) > 1.0;
+  }
+
+  // Return the "relative power level" of the new actor with respect to the old.
+  // This is 1.0 if they are equally powerful, 2.0 if new is twice as powerful, etc.
+  // At the moment we use a very simple metric of maxhp * speed. This gives us a
+  // monster ranking of:
+  // zombie < imp < chaingunner < soul < pinkie < revenant < caco = pain elemental
+  // < hell knight < mancubus < arachnotron < baron < archvile, which looks reasonable.
+  // Note that we use max HP for both; earlier designs used current HP for the old,
+  // so that as it "wore out" the chance of replacement increased, but this resulted
+  // in outcomes where a single minion could reliably solo entire rooms, because by
+  // the time it killed something it had probably taken enough damage to be replaced,
+  // and the freshly slain enemy would then get immediately raised.
+  static double RelativePower(Actor old, Actor new) {
+    double oldp = old.SpawnHealth() * old.speed;
+    double newp = new.SpawnHealth() * new.speed;
+    DEBUG("RelativePower: %s (%d) vs %s (%d) -> %f",
+      TAG(old), oldp, TAG(new), newp, newp/oldp);
+    return newp/oldp;
   }
 }
 
@@ -79,7 +157,7 @@ class ::Thunderbolt : ::DotModifier {
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
-    return HasMasteryPrereq(info, "::Revivification", "::ChainLightning");
+    return HasIntermediatePrereq(info, "::ShockingInscription");
   }
 
   override void GetTooltipFields(Dictionary fields, uint level) {
@@ -90,7 +168,6 @@ class ::Thunderbolt : ::DotModifier {
 
 // Lightning "dot". Doesn't actually do damage over time, but has some other effects.
 class ::ShockDot : ::Dot {
-  uint revive; // Revivification level
   uint chain; // Chain Lightning level
   uint thunderbolt; // Thunderbolt level
   uint cap; // Cap used for Thunderbolt triggers
@@ -129,16 +206,6 @@ class ::ShockDot : ::Dot {
     return 0.0;
   }
 
-  void MellGetTheElectrodes() {
-    // Chance of staying dead is (100% - (0.2% per stack))^level
-    let chance = (1.0 - stacks * 0.01) ** revive;
-    if (frandom(0.0, 1.0) < chance) return;
-    let aux = ::Revivification::Aux(self.Spawn("::Revivification::Aux", owner.pos));
-    aux.target = self.target;
-    aux.tracer = self.owner;
-    aux.level = self.revive;
-  }
-
   void ZapZap() {
     let pos = owner.pos;
     pos.z += owner.height/2;
@@ -168,15 +235,13 @@ class ::ShockDot : ::Dot {
 
   override void OwnerDied() {
     super.OwnerDied();
-    // Trigger revivification & chain lightning.
-    if (revive > 0) MellGetTheElectrodes();
+    // Trigger chain lightning.
     if (chain > 0) ZapZap();
   }
 
   override void CopyFrom(::Dot _src) {
     super.CopyFrom(_src);
     let src = ::ShockDot(_src);
-    self.revive = max(self.revive, src.revive);
     self.chain = max(self.chain, src.chain);
     self.thunderbolt = max(self.thunderbolt, src.thunderbolt);
     self.cap = max(self.cap, src.cap);
@@ -184,11 +249,17 @@ class ::ShockDot : ::Dot {
 }
 
 class ::Revivification::Aux : Actor {
+  ::Revivification upgrade;
   uint level;
+
+  Default {
+    ReactionTime 175; // 5 seconds
+  }
 
   States {
     CheckRevive:
-      TNT1 A 1 CheckRevive();
+      TNT1 A 0 CheckRevive();
+      TNT1 A 1 A_CountDown();
       LOOP;
   }
 
@@ -203,8 +274,21 @@ class ::Revivification::Aux : Actor {
       Destroy();
       return;
     }
+
     // This might be temporary because e.g. there's something standing on it.
-    if (!tracer.CanRaise()) return;
+    if (!tracer.CanRaise()) {
+      DEBUG("Can't raise %s, will retry later.", TAG(tracer));
+      return;
+    }
+
+    // Final check: we can raise it, but has the player raised something else
+    // more powerful in the meantime? This is particularly intended to handle
+    // the case where the player fires a rocket into a heterogenous group of
+    // enemies -- we want to raise the strongest one available.
+    if (upgrade.minion && upgrade.minion.health >= 0
+        && upgrade.RelativePower(upgrade.minion, tracer) <= 1.0) {
+      Destroy(); return;
+    }
 
     // Attempt the actual resurrection.
     DEBUG("Raising %s by %s", tracer.GetTag(), target.GetTag());
@@ -212,13 +296,22 @@ class ::Revivification::Aux : Actor {
     if (!tracer.RaiseActor(tracer)) {
       Destroy(); return;
     }
+
+    if (upgrade.minion) {
+      DEBUG("Killing minion %s", TAG(upgrade.minion));
+      upgrade.minion.A_Die("extreme");
+    }
+    upgrade.minion = tracer;
+
     // Clear any dots on it.
     tracer.TakeInventory("::FireDot", 255);
     tracer.TakeInventory("::AcidDot", 255);
     tracer.TakeInventory("::PoisonDot", 255);
     tracer.TakeInventory("::ShockDot", 255);
     // Make it friendly and ethereal.
-    tracer.master = null;
+    tracer.SetFriendPlayer(self.target.player);
+    tracer.bDONTFOLLOWPLAYERS = false;
+    tracer.bALWAYSFAST = true;
     tracer.bSOLID = false;
     tracer.A_SetRenderStyle(1.0, STYLE_SHADED);
     tracer.SetShade("8080FF");
@@ -227,14 +320,21 @@ class ::Revivification::Aux : Actor {
 
     // Give it the force that applies the buff to revivified minions.
     let buff = ::Revivification::AuxBuff(tracer.GiveInventoryType("::Revivification::AuxBuff"));
-    if (buff) buff.level = self.level; // this can fail sometimes?
+    if (buff) {
+      buff.level = self.level;
+      buff.SetStateLabel("Spawn");
+    } else {
+      DEBUG("Error raising %s", TAG(tracer));
+      tracer.Destroy();
+    }
     Destroy();
   }
 }
 
 class ::Revivification::AuxBuff : Inventory {
   uint level;
-  uint timer;
+  uint ttl;
+
   Default {
     Inventory.Amount 1;
     Inventory.MaxAmount 1;
@@ -244,27 +344,71 @@ class ::Revivification::AuxBuff : Inventory {
     +INVENTORY.QUIET;
   }
 
-  override void Tick() {
-    super.Tick();
-    ++timer;
-    if (timer > 35 * (level+5)) {
-      owner.A_Die("Lightning");
-      Destroy();
-    }
+  States {
+    Spawn:
+      TNT1 A 0 { ttl = ::TTL; }
+    CheckTTL:
+      TNT1 A 35 CheckTTL();
+      LOOP;
+    Idle:
+      TNT1 A -1;
+      STOP;
+    DestroyOwner:
+      TNT1 A 5;
+      TNT1 A 0 { owner.Destroy(); }
+  }
+
+  PlayerPawn Controller() {
+    return players[owner.FriendPlayer-1].mo;
+  }
+
+  void CheckTTL() {
+    --ttl;
+    DEBUG("ttl=%d", ttl);
+    if (!ttl) DeactivateOwner();
+  }
+
+  void ActivateOwner() {
+    owner.bINVISIBLE = false;
+    owner.bSHOOTABLE = true;
+    owner.Warp(Controller());
+    owner.Activate(self);
+    VFX();
+    SetStateLabel("Spawn");
+  }
+
+  void DeactivateOwner() {
+    DEBUG("deactivating %s", TAG(owner));
+    VFX();
+    owner.Deactivate(self);
+    owner.bINVISIBLE = true;
+    owner.bSHOOTABLE = false;
+    SetStateLabel("Idle");
+  }
+
+  void VFX() {
+    let pos = owner.pos;
+    pos.z += owner.height/2;
+    owner.Spawn("::Revivification::VFX", pos);
+  }
+
+  override void OwnerDied() {
+    VFX();
+    // Destroying the owner ensures that it can't be re-raised or anything.
+    // However, we can't do that right away, because Destroy() nulls out existing
+    // refs and then our other OnKill/OnDamage handlers will crash.
+    // So instead we schedule it for deletion a few tics from now.
+    SetStateLabel("DestroyOwner");
   }
 
   override void ModifyDamage(
       int damage, Name damageType, out int newdamage, bool passive,
       Actor inflictor, Actor source, int flags) {
-    if (source == owner.master) {
-      // Only ever deal or receive 1 damage to the player who raised you.
+    ttl = ::TTL;
+    if (source is "PlayerPawn") {
+      // Only ever deal or receive 1 damage to players.
       newdamage = min(1, damage);
-      return;
-    }
-
-    // Reset lifetimer.
-    timer = 0;
-    if (passive) {
+    } else if (passive) {
       // 20% damage reduction per level with diminishing returns.
       newdamage = ceil(damage * (0.8 ** level));
     } else {
@@ -352,22 +496,21 @@ class ::ChainLightning::Aux : Actor {
   void FindTargets(Actor victim, uint max_jumps) {
     if (max_jumps <= 0) return;
 
-    self.warp(victim, 0, 0, victim.height/2, 0, WARPF_NOCHECKPOSITION|WARPF_BOB);
     DEBUG("FindTargets: %s [ttl=%d] (%d,%d,%d) @ (%d,%d,%d)",
       TAG(victim), max_jumps,
       victim.pos.x, victim.pos.y, victim.pos.z,
       self.pos.x, self.pos.y, self.pos.z);
     uint radius = max(victim.radius, 32) * (3+level);
     uint next_target = targets.size();
-    // We are now in position, so explode to find everything nearby.
-    // DoSpecialDamage will add them all to the targets array.
-    // XF_EXPLICITDAMAGETYPE with no explicit damage type defaults to None.
-    A_Explode(1, radius, XF_NOSPLASH|XF_EXPLICITDAMAGETYPE, false, radius);
+
     // Collect all the new targets, if any, and record the arcs to them.
-    DEBUG("Processing %d new targets", targets.size() - next_target);
-    for (uint i = next_target; i < targets.size(); ++i) {
+    Array<Actor> new_targets;
+    TFLV::Util.MonstersInRadius(victim, radius, new_targets);
+    for (uint i = 0; i < new_targets.size(); ++i) {
+      if (targets.find(new_targets[i]) != targets.size()) continue; // Skip monsters we've already hit
+      targets.push(new_targets[i]);
       let arc = new("::ChainLightning::Arc");
-      arc.RecordPositions(victim, targets[i], max_jumps);
+      arc.RecordPositions(victim, new_targets[i], max_jumps);
       arcs.push(arc);
       DEBUG("Recorded arc %d [ttl=%d] from %s (%d,%d,%d) to %s (%d,%d,%d)",
         arcs.size()-1, max_jumps,
@@ -383,17 +526,6 @@ class ::ChainLightning::Aux : Actor {
       FindTargets(targets[i], max_jumps-1);
     }
     DEBUG("FindTargets complete.");
-  }
-
-  override int DoSpecialDamage(Actor target, int damage, Name damagetype) {
-    // Don't modify hits that aren't part of the initial sweep
-    if (damagetype != "None") return damage;
-    if (targets.find(target) != targets.size() || !target.bISMONSTER) {
-      // Don't zap non-monsters, and don't zap the same thing twice
-      return 0;
-    }
-    targets.push(target);
-    return 0;
   }
 
   // Called every few tics to actually draw the lightning and do the damage.
@@ -494,6 +626,25 @@ class ::Thunderbolt::VFX : Actor {
       LTHN ABCD 1;
       LTHN EFGHI 4;
       LTHN JKLM 1;
+      STOP;
+  }
+}
+
+class ::Revivification::VFX : Actor {
+  Default {
+    RenderStyle "Add";
+    Alpha 1.0;
+    Scale 0.3;
+    +NOBLOCKMAP +NOGRAVITY;
+  }
+
+  override void PostBeginPlay() {
+    DEBUG("VFX spawned @ %d,%d,%d", self.pos.x, self.pos.y, self.pos.z);
+  }
+
+  States {
+    Spawn:
+      LRVV ABCDEFGHIJKLMNOPQRSTUVWXY 1;
       STOP;
   }
 }

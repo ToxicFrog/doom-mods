@@ -1,6 +1,59 @@
-# 0.9.9
+# 0.10.0
 
+This release changes a lot. While it is save compatible with 0.9.x in the sense
+that your save files will still load, depending on what the circumstances of the
+save were you may experience unusual effects or be permanently locked out of
+some upgrades. Starting a new game is recommended.
+
+I haven't been playing a lot of Doom lately, so these changes have not seen as
+much playtesting and, in particular, as much *balance* testing as some earlier
+ones. The new upgrades, in particular, will probably need balance tweaks in the
+0.10.x update series.
+
+- New:
+  - Cool fizzy effect when a Revivification minion dies.
+  - `Sweep`: a melee-only upgrade that hits multiple enemies whenever you attack.
+  - `Cleave`: a melee-only upgrade that gives you free attacks with every kill.
+  - `Personal ECM`: a player upgrade that reprograms hostile seekers to hunt nearby monsters instead.
+  - `Decoy Flares`: projectiles you fire distract enemy seekers.
+  - `Aggressive Defence`: attacking an enemy will destroy projectiles near it.
+  - `Hazard Suit`: reduces environmental damage (e.g. hurtfloors).
+  - `Bandoliers`: increases ammo capacity for all weapons.
+- Balance:
+  - `Thunderbolt` is now the intermediate lightning upgrade.
+  - `Revivification` is now one of the two lightning masteries, opposite `Chain Lightning`.
+  - `Revivification` can't raise bosses. No pet Cyberdemon, sorry.
+  - `Homing Shots` will now fly straight until they get within a certain distance of their target.
+  - `Homing Shots` max level increased from 4 to 12.
+  - `Homing Shots` turn rate adjusted.
+- `Scavenge Lead` ammo drops quantities adjusted, and now range from 20% normal for the weakest enemies to 400% normal for the Cyberdemon. If this would result in fractional ammo the drop is probabalistic, e.g. if an enemy drops 0.5 rockets that's a 50/50 chance of getting one rocket or no rocket.
+  - Major redesign of `Revivification` and `Shield`; see below.
+- `Revivification` changes:
+  - Revivification now gives you a single minion. It sticks around until it either dies, or you kill something more powerful (which replaces it).
+  - Revivification always succeeds, if the target can be raised at all.
+  - After a period of time out of combat, your minion will unsummon; it will reappear at your location the next time you take damage.
+  - Minions are hasted (+ALWAYSFAST) if the underlying actor supports it.
+  - Minions inherit most of your offensive upgrades. This potentially makes them much more powerful.
+  - Each weapon with Revivification on it hosts a different minion; putting away your weapon will unsummon its minion, and drawing it will summon it again.
+- `Shield` changes:
+  - Shield is now melee-only and cannot appear on wimpy weapons.
+  - Shield provides significantly improved protection against melee attacks
+  - Shield provides slightly worse protection against ranged attacks
+  - Shield's protection is only active while you are attacking something *in melee*.
+  - Killing an enemy in melee extends the protection by several seconds so you can find a new demon to punch.
+  - Thanks to DarkkOne for the idea.
 - Fix:
+  - Friendly monsters, if they have a controlling player (via the `FriendlyPlayer` field), will inherit that player's attack upgrades, and that player will get XP for the monster's attacks.
+  - Revivified monsters properly set the `FriendlyPlayer` field to the player that raised them.
+  - Revivified monsters properly take and receive 1 damage from the player again.
+  - Revivified monsters take and deal reduced damage to all players, not just the player who raised them.
+  - Revivified monsters are erased on death to prevent them from being re-raised by viles and the like.
+  - Killing an unraisable monster no longer creates a Revivification helper actor that sticks around forever.
+  - Code that needs to find all monsters in an area now uses `BlockThingsIterator` rather than `A_Explode`+`DoSpecialDamage`. This should improve both performance and maintainability. Thanks to RatCircus for pointing me in the right direction.
+  - `Homing Shots` now checks line of sight to the monster it's locked onto and does not change course until it has a clear flight path. In conjunction with the balance changes above they should now be much less prone to flying into the floor/ceiling.
+  - More HUD and menu elements (the Lv. and XP abbreviations and the Level header) are now drawn from the LANGUAGE lumps.
+  - `Burning Terror` has the intended ~20%/second chance to wear off once the enemy stops burning rather than a ~97%/second chance.
+  - `ModifyDamageDealt` and `ModifyDamageReceived` are now aware of the damagetype and can use it to make decisions
   - Weapons didn't recalculate the amount of XP needed to level up when rebinding, which caused issues in Heretic when normal and powered-up weapons needed different amounts of XP -- it would in effect pick one at random and commit to it until the next level up. It should now use the amount of XP needed for the specific weapon you are currently wielding, and for powered-up weapons, this should be the same as the cost for the base weapon.
 
 # 0.9.8

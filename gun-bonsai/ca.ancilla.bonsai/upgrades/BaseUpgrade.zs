@@ -144,13 +144,13 @@ class ::BaseUpgrade : Object play {
   // to modify projectiles in flight use OnProjectileCreated, and to add on-hit
   // effects (which, for hitscans, is the only way to add effects at all), use
   // OnDamageDealt.
-  virtual double ModifyDamageDealt(Actor pawn, Actor shot, Actor target, double damage) {
+  virtual double ModifyDamageDealt(Actor pawn, Actor shot, Actor target, double damage, Name attacktype) {
     return damage;
   }
 
   // As ModifyDamageDealt but called when something else is about to damage the
   // player.
-  virtual double ModifyDamageReceived(Actor pawn, Actor shot, Actor attacker, double damage) {
+  virtual double ModifyDamageReceived(Actor pawn, Actor shot, Actor attacker, double damage, Name attacktype) {
     return damage;
   }
 
@@ -187,7 +187,8 @@ class ::BaseUpgrade : Object play {
   // in the upgrade's corresponding _FF LANGUAGE key.
   virtual void GetTooltipFields(Dictionary fields, uint level) const {}
 
-  // Utility functions for GetTooltipFields
+  // Utility functions for GetTooltipFields //
+
   // 0.25 -> 25%
   static string AsPercent(double mult) {
     return string.format("%d%%", mult * 100);

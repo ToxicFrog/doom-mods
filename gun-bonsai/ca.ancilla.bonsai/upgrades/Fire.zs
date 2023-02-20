@@ -94,7 +94,7 @@ class ::InfernalKiln : ::ElementalUpgrade {
     if (hardness > 0) hardness -= 1.0/35.0;
   }
 
-  override double ModifyDamageDealt(Actor pawn, Actor shot, Actor target, double damage) {
+  override double ModifyDamageDealt(Actor pawn, Actor shot, Actor target, double damage, Name attacktype) {
     // Adds damage equal to your level of Kiln * 2.
     if (hardness <= 0) return damage;
     DEBUG("Kiln: %f + %f (%f)", damage, level*2.0, hardness);
@@ -103,7 +103,7 @@ class ::InfernalKiln : ::ElementalUpgrade {
     return damage;
   }
 
-  override double ModifyDamageReceived(Actor pawn, Actor shot, Actor attacker, double damage) {
+  override double ModifyDamageReceived(Actor pawn, Actor shot, Actor attacker, double damage, Name attacktype) {
     // Blocks damage equal to your level of Kiln * 2.
     if (hardness <= 0) return damage;
     DEBUG("Kiln: %f - %f (%f)", damage, level*2.0, hardness);
@@ -175,7 +175,7 @@ class ::FireDot : ::Dot {
       if (missing_health >= 0.7 ** (stacks+terror)) {
         owner.bFRIGHTENED = true;
       }
-    } else if (random(0.0, 1.0) > 0.95) {
+    } else if (frandom(0.0, 1.0) > 0.95) {
       owner.bFRIGHTENED = false;
     }
   }
@@ -222,7 +222,7 @@ class ::Conflagration::Aux : Actor {
     return range * (1.0 + 0.5*spread + 0.1*stacks);
   }
 
-  override int DoSpecialDamage(Actor target, int damage, Name damagetype) {
+  void SpreadTo(Actor target) {
     let fdot = ::FireDot(::Dot.GiveStacks(self.target, target, "::FireDot", 0, 1));
     if (fdot.stacks < self.stacks) {
       fdot.AddStacks(1, spread);
@@ -230,12 +230,19 @@ class ::Conflagration::Aux : Actor {
     }
     fdot.terror = max(fdot.terror, self.terror);
     fdot.spread = max(fdot.spread, self.spread - 1);
-    return 0;
+  }
+
+  void Ignite() {
+    Array<Actor> targets;
+    TFLV::Util.MonstersInRadius(self, GetRange(), targets);
+    for (uint i = 0; i < targets.size(); ++i) {
+      SpreadTo(targets[i]);
+    }
   }
 
   States {
     Spawn:
-      LFIR G 7 NoDelay A_Explode(1, GetRange(), XF_NOSPLASH, false, GetRange());
+      LFIR G 7 NoDelay Ignite();
       LFIR H 7;
       STOP;
   }

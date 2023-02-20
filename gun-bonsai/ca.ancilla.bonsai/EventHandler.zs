@@ -196,23 +196,51 @@ class ::EventHandler : StaticEventHandler {
     }
   }
 
+  static PlayerPawn GetPlayerDamageSource(WorldEvent evt) {
+    if (evt.damage <= 0
+        || !evt.thing.bISMONSTER
+        || !evt.damagesource
+        || evt.thing.bFRIENDLY
+        || evt.thing == evt.damagesource) {
+      // Don't trigger on non-damaging "attacks", attacks against things that
+      // aren't monsters, attacks on friendlies, or self-damage.
+      return null;
+    }
+    // If the damage source is a player, we're good to go.
+    if (evt.damagesource is "PlayerPawn") return PlayerPawn(evt.damagesource);
+    // If the damage source has a FriendPlayer defined, attribute the damage to
+    // them instead of the real source. Subtract 1 because FriendPlayer is 1-indexed.
+    if (evt.damagesource.FriendPlayer && playeringame[evt.damagesource.FriendPlayer-1])
+      return players[evt.damagesource.FriendPlayer-1].mo;
+    //
+    return null;
+  }
+
   override void WorldThingDamaged(WorldEvent evt) {
     DEBUG("WTD: %s inflictor=%s source=%s damage=%d type=%s flags=%X, hp=%d",
       TAG(evt.thing), TAG(evt.inflictor), TAG(evt.damagesource),
       evt.damage, evt.damagetype, evt.damageflags, evt.thing.health);
-    if (PlayerPawn(evt.damagesource)
-        && evt.thing.bISMONSTER
-        && !evt.thing.bFRIENDLY // do not award XP or trigger procs when attacking friendlies
-        && evt.thing != evt.damagesource
-        && evt.damage > 0) {
-      let stats = ::PerPlayerStats.GetStatsFor(PlayerPawn(evt.damagesource));
+
+    // Player taking damage from something.
+    // Note that this triggers even on self-damage, which is what allows upgrades
+    // like Blast Shaping to work.
+    if (PlayerPawn(evt.thing)) {
+      ::PerPlayerStats.GetStatsFor(PlayerPawn(evt.thing)).OnDamageReceived(
+        evt.inflictor, evt.damagesource, evt.damage);
+      return;
+    }
+
+    // Player damaging something. This does not trigger on self-damage (c.f.
+    // GetPlayerDamageSource()) so you don't end up applying dots to yourself
+    // or exploding or something.
+    PlayerPawn source = GetPlayerDamageSource(evt);
+    if (source) {
+      let stats = ::PerPlayerStats.GetStatsFor(PlayerPawn(source));
       stats.OnDamageDealt(evt.inflictor, evt.thing, evt.damage);
       if (evt.thing.health <= 0) {
         stats.OnKill(evt.inflictor, evt.thing);
       }
-    } else if (PlayerPawn(evt.thing)) {
-      ::PerPlayerStats.GetStatsFor(PlayerPawn(evt.thing)).OnDamageReceived(
-        evt.inflictor, evt.damagesource, evt.damage);
+      return;
     }
   }
 

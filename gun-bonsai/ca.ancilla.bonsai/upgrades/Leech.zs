@@ -121,6 +121,11 @@ class ::AmmoLeech : ::BaseUpgrade {
     return atype && GetDefaultByType(atype).FindState("Spawn").Sprite != 0;
   }
 
+  float AmmoFactor(Actor target) {
+    // 1x per thousand hitpoints. Minimum of 20%.
+    return max(target.GetSpawnHealth()/1000.0, 0.2);
+  }
+
   override void OnKill(PlayerPawn player, Actor shot, Actor target) {
     Array<String> candidates;
     for (Inventory inv = player.inv; inv != null; inv = inv.inv) {
@@ -147,6 +152,19 @@ class ::AmmoLeech : ::BaseUpgrade {
       DEBUG("Spawning %s", chosen);
       let ammo = target.Spawn(chosen, ::LeechUtil.WigglePos(target), ALLOW_REPLACE);
       ammo.bCOUNTITEM = false;
+      let ammoitem = Inventory(ammo);
+      if (ammoitem) {
+        // Adjust quantity, for ammo drops where we know how to do so.
+        // We drop ¼ as much ammo as normal.
+        // If this results in fractional ammo, roll the dice; a drop of 1 has a
+        // 25% chance to appear at all, a drop of 10 will be 2 half the time and
+        // 3 half the time.
+        float amount = ammoitem.amount * AmmoFactor(target);
+        ammoitem.amount = floor(amount);
+        float partial = amount % 1.0;
+        if (partial > 0.0 && frandom(0.0, 1.0) <= partial) ammoitem.amount += 1;
+        if (ammoitem.amount == 0) ammo.Destroy();
+      }
     }
   }
 

@@ -17,15 +17,19 @@ class ::StatusDisplay : ::GenericMenu {
 
     PushText("", Font.CR_GOLD);
     PushText("$TFLV_MENU_HEADER_PLAYER_STATUS", Font.CR_GOLD);
-    PushKeyValueText(string.format("Level %d", stats.plvl), string.format("%d/%d XP", stats.pxp, stats.pmax));
+    PushKeyValueText(
+      string.format(StringTable.Localize("$TFLV_MENU_LEVEL"), stats.plvl),
+      string.format(StringTable.Localize("$TFLV_MENU_XP"), stats.pxp, stats.pmax));
     stats.pupgrades.DumpInteractableToMenu(self, 0);
 
     PushText("", Font.CR_GOLD);
     PushText("$TFLV_MENU_HEADER_WEAPON_STATUS", Font.CR_GOLD);
-    PushKeyValueText("Type", string.format("%s (%s)",
-        stats.winfo.wpn.GetTag(), stats.winfo.wpn.GetClassName()));
-    PushKeyValueText(string.format("Level %d", stats.wlvl),
-        string.format("%d/%d XP", stats.wxp, stats.wmax));
+    PushKeyValueText("$TFLV_MENU_TYPE",
+      string.format("%s (%s)",
+      stats.winfo.wpn.GetTag(), stats.winfo.wpn.GetClassName()));
+    PushKeyValueText(
+      string.format(StringTable.Localize("$TFLV_MENU_LEVEL"), stats.wlvl),
+      string.format(StringTable.Localize("$TFLV_MENU_XP"), stats.wxp, stats.wmax));
     stats.wupgrades.DumpInteractableToMenu(self, 1);
 
     mDesc.mSelectedItem = -1;
