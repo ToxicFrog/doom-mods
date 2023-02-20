@@ -1,5 +1,15 @@
 # 0.10.0
 
+This release changes a lot. While it is save compatible with 0.9.x in the sense
+that your save files will still load, depending on what the circumstances of the
+save were you may experience unusual effects or be permanently locked out of
+some upgrades. Starting a new game is recommended.
+
+I haven't been playing a lot of Doom lately, so these changes have not seen as
+much playtesting and, in particular, as much *balance* testing as some earlier
+ones. The new upgrades, in particular, will probably need balance tweaks in the
+0.10.x update series.
+
 - New:
   - Cool fizzy effect when a Revivification minion dies.
   - `Sweep`: a melee-only upgrade that hits multiple enemies whenever you attack.
@@ -38,7 +48,7 @@
   - Code that needs to find all monsters in an area now uses `BlockThingsIterator` rather than `A_Explode`+`DoSpecialDamage`. This should improve both performance and maintainability. Thanks to RatCircus for pointing me in the right direction.
   - `Homing Shots` now checks line of sight to the monster it's locked onto and does not change course until it has a clear flight path. In conjunction with the balance changes above they should now be much less prone to flying into the floor/ceiling.
   - More HUD and menu elements (the Lv. and XP abbreviations and the Level header) are now drawn from the LANGUAGE lumps.
-  - `Burning Terror` has a ~20%/second chance to wear off once the enemy stops burning rather than a ~97%/second chance.
+  - `Burning Terror` has the intended ~20%/second chance to wear off once the enemy stops burning rather than a ~97%/second chance.
 
 
 # 0.9.8
