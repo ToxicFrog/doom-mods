@@ -25,7 +25,7 @@ class ::ECM : ::BaseUpgrade {
 
   override void Tick(Actor owner) {
     let radius = EcmRange(self.level);
-    ThinkerIterator it = ThinkerIterator.Create("Actor");
+    ThinkerIterator it = ThinkerIterator.Create("Actor", Thinker.STAT_DEFAULT);
     Actor shot;
     Array<Actor> monsters; bool did_monsters = false;
     while (shot = Actor(it.next())) {

@@ -10,7 +10,7 @@ class ::DecoyFlares : ::BaseUpgrade {
   override void OnProjectileCreated(Actor player, Actor new_shot) {
     // Find nearby seekers and redirect them at this projectile.
     let radius = FlareRange(self.level);
-    ThinkerIterator it = ThinkerIterator.Create("Actor");
+    ThinkerIterator it = ThinkerIterator.Create("Actor", Thinker.STAT_DEFAULT);
     Actor shot;
     while (shot = Actor(it.next())) {
       if (!shot || !shot.bSEEKERMISSILE || shot.tracer != player || player.Distance3D(shot) > radius) {
