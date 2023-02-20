@@ -1,5 +1,5 @@
 #namespace TFLV::Upgrade;
-#debug on;
+#debug off;
 
 class ::ECM : ::BaseUpgrade {
   override bool IsSuitableForPlayer(TFLV::PerPlayerStats info) {
