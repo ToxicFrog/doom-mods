@@ -16,6 +16,7 @@
 #include "./Explosive.zsc"
 #include "./ExplosiveDeath.zsc"
 #include "./Fragmentation.zsc"
+#include "./HazardSuit.zsc"
 #include "./HomingShots.zsc"
 #include "./Indestructable.zsc"
 #include "./Intuition.zsc"
