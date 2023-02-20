@@ -144,13 +144,13 @@ class ::BaseUpgrade : Object play {
   // to modify projectiles in flight use OnProjectileCreated, and to add on-hit
   // effects (which, for hitscans, is the only way to add effects at all), use
   // OnDamageDealt.
-  virtual double ModifyDamageDealt(Actor pawn, Actor shot, Actor target, double damage) {
+  virtual double ModifyDamageDealt(Actor pawn, Actor shot, Actor target, double damage, Name attacktype) {
     return damage;
   }
 
   // As ModifyDamageDealt but called when something else is about to damage the
   // player.
-  virtual double ModifyDamageReceived(Actor pawn, Actor shot, Actor attacker, double damage) {
+  virtual double ModifyDamageReceived(Actor pawn, Actor shot, Actor attacker, double damage, Name attacktype) {
     return damage;
   }
 

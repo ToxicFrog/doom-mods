@@ -83,20 +83,20 @@ class ::UpgradeBag : Object play {
     }
   }
 
-  double ModifyDamageDealt(Actor pawn, Actor shot, Actor target, double damage) {
+  double ModifyDamageDealt(Actor pawn, Actor shot, Actor target, double damage, Name attacktype) {
     for (uint i = 0; i < upgrades.Size(); ++i) {
       DEBUG("UpgradeBag.ModifyDamageDealt: %d %s", i, upgrades[i].GetClassName());
       if (!upgrades[i].enabled || !upgrades[i].CheckPriority(shot)) continue;
-      damage = upgrades[i].ModifyDamageDealt(pawn, shot, target, damage);
+      damage = upgrades[i].ModifyDamageDealt(pawn, shot, target, damage, attacktype);
     }
     return damage;
   }
 
-  double ModifyDamageReceived(Actor pawn, Actor shot, Actor attacker, double damage) {
+  double ModifyDamageReceived(Actor pawn, Actor shot, Actor attacker, double damage, Name attacktype) {
     for (uint i = 0; i < upgrades.Size(); ++i) {
       if (!upgrades[i].enabled) continue;
       // No priority checks -- always triggers, even on self-damage.
-      damage = upgrades[i].ModifyDamageReceived(pawn, shot, attacker, damage);
+      damage = upgrades[i].ModifyDamageReceived(pawn, shot, attacker, damage, attacktype);
     }
     return damage;
   }

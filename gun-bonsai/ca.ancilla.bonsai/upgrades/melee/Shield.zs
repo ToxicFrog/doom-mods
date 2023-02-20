@@ -19,7 +19,7 @@ class ::Shield : ::BaseUpgrade {
     ticks = max(ticks, KillTTL(level));
   }
 
-  override double ModifyDamageReceived(Actor pawn, Actor shot, Actor attacker, double damage) {
+  override double ModifyDamageReceived(Actor pawn, Actor shot, Actor attacker, double damage, Name attacktype) {
     DEBUG("Shield: ticks=%d", ticks);
     if (!ticks) return damage;
     let range = pawn.Distance3D(attacker);

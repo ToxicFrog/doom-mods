@@ -50,7 +50,7 @@ ones. The new upgrades, in particular, will probably need balance tweaks in the
   - `Homing Shots` now checks line of sight to the monster it's locked onto and does not change course until it has a clear flight path. In conjunction with the balance changes above they should now be much less prone to flying into the floor/ceiling.
   - More HUD and menu elements (the Lv. and XP abbreviations and the Level header) are now drawn from the LANGUAGE lumps.
   - `Burning Terror` has the intended ~20%/second chance to wear off once the enemy stops burning rather than a ~97%/second chance.
-
+  - `ModifyDamageDealt` and `ModifyDamageReceived` are now aware of the damagetype and can use it to make decisions
 
 # 0.9.8
 
