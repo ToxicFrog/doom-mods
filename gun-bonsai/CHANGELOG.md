@@ -17,7 +17,8 @@ ones. The new upgrades, in particular, will probably need balance tweaks in the
   - `Personal ECM`: a player upgrade that reprograms hostile seekers to hunt nearby monsters instead.
   - `Decoy Flares`: projectiles you fire distract enemy seekers.
   - `Aggressive Defence`: attacking an enemy will destroy projectiles near it.
-  - `Hazard Suit`: reduces environmental damage (e.g. hurtfloors)
+  - `Hazard Suit`: reduces environmental damage (e.g. hurtfloors).
+  - `Bandoliers`: increases ammo capacity for all weapons.
 - Balance:
   - `Thunderbolt` is now the intermediate lightning upgrade.
   - `Revivification` is now one of the two lightning masteries, opposite `Chain Lightning`.

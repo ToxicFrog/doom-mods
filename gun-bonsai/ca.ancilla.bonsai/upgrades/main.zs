@@ -11,6 +11,7 @@
 #include "./melee/Swiftness.zsc"
 
 #include "./AggressiveDefence.zsc"
+#include "./Bandoliers.zsc"
 #include "./DecoyFlares.zsc"
 #include "./ECM.zsc"
 #include "./Explosive.zsc"

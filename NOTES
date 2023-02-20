@@ -18,13 +18,6 @@ Three possible operating modes:
 
 ### Soon
 
-- add ammo capacity upgrade
-  - walk player inventory and boost the MaxAmount and BackpackMaxAmount
-  - requires OnApply support, probably
-  - won't affect ammo types the player doesn't have yet
-  - will be a player mod, so it should either be fairly powerful or get more powerful with time
-  - we can use GetDefaultByType(ammoitem).MaxAmount to compute the base max amount
-    and then confer bonuses based on that
 - Make melee detection more permissive, but only trigger melee upgrades when the player is in melee
 - Spread Fire projectile upgrade, projectile shots spawn multiple reduced-damage projectiles
   - upgrade that spawns extra projectiles every N shots
