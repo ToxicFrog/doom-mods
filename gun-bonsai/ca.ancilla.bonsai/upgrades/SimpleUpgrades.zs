@@ -105,7 +105,7 @@ class ::PlayerDamage : ::BaseUpgrade {
   }
 
   override void GetTooltipFields(Dictionary fields, uint level) {
-    fields.insert("percent-bonus", AsPercentIncrease(level*0.1));
+    fields.insert("percent-bonus", AsPercentIncrease(1.0 + level*0.1));
     fields.insert("flat-bonus", "+"..level);
   }
 }
@@ -139,7 +139,7 @@ class ::WeaponDamage : ::BaseUpgrade {
   }
 
   override void GetTooltipFields(Dictionary fields, uint level) {
-    fields.insert("percent-bonus", AsPercentIncrease(level*0.2));
+    fields.insert("percent-bonus", AsPercentIncrease(1.0 + level*0.2));
     fields.insert("flat-bonus", "+"..level);
   }
 }

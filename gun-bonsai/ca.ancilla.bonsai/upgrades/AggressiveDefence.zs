@@ -16,12 +16,12 @@ class ::AggressiveDefence : ::BaseUpgrade {
   }
 
   float GetBonus(uint level) {
-    return 0.01 * level;
+    return 1.0 + 0.01 * level;
   }
 
   override void OnDamageDealt(Actor pawn, Actor shot, Actor target, int damage) {
     if (!shot || !target) return;
-    let radius = GetRadius(self.level) * (1.0 + GetBonus(self.level));
+    let radius = GetRadius(self.level) * GetBonus(self.level);
     ThinkerIterator it = ThinkerIterator.Create("Actor", Thinker.STAT_DEFAULT);
     Actor projectile;
     while (projectile = Actor(it.next())) {

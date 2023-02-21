@@ -63,7 +63,7 @@ class ::Hallucinogens : ::DotModifier {
   }
 
   override void GetTooltipFields(Dictionary fields, uint level) {
-    fields.insert("increase", AsPercentIncrease(0.01 * level));
+    fields.insert("increase", AsPercentIncrease(1.0 + 0.01 * level));
   }
 }
 

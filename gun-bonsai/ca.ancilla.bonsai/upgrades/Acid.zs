@@ -85,7 +85,7 @@ class ::Embrittlement : ::DotModifier {
   }
 
   override void GetTooltipFields(Dictionary fields, uint level) {
-    fields.insert("damage-increase", AsPercentIncrease(level*0.01));
+    fields.insert("damage-increase", AsPercentIncrease(1.0 + level*0.01));
     fields.insert("instakill", AsPercent(1/(1+0.1*level)));
   }
 }

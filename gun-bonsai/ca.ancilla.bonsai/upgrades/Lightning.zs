@@ -43,7 +43,7 @@ class ::Revivification : ::ElementalUpgrade {
   }
 
   override void GetTooltipFields(Dictionary fields, uint level) {
-    fields.insert("damage-bonus", AsPercentIncrease(0.2*level));
+    fields.insert("damage-bonus", AsPercentIncrease(1.0 + 0.2*level));
     fields.insert("armour-bonus", AsPercentDecrease(0.8 ** level));
     fields.insert("ttl", ::TTL.."s");
   }

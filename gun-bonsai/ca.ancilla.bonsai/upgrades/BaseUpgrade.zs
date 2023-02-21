@@ -193,8 +193,8 @@ class ::BaseUpgrade : Object play {
   static string AsPercent(double mult) {
     return string.format("%d%%", mult * 100);
   }
-  // 0.25 -> +25%
-  static string AsPercentIncrease(double mult) { return "+"..AsPercent(mult); }
+  // 1.25 -> +25%
+  static string AsPercentIncrease(double mult) { return "+"..AsPercent(mult - 1.0); }
   // 0.25 -> -75%, e.g. all damage taken x0.25 is a 75% damage reduction
   static string AsPercentDecrease(double mult) {
     return string.format("-%d%%", (1.0 - mult) * 100);
