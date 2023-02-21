@@ -26,7 +26,7 @@ ones. The new upgrades, in particular, will probably need balance tweaks in the
   - `Homing Shots` will now fly straight until they get within a certain distance of their target.
   - `Homing Shots` max level increased from 4 to 12.
   - `Homing Shots` turn rate adjusted.
-- `Scavenge Lead` ammo drops quantities adjusted, and now range from 20% normal for the weakest enemies to 400% normal for the Cyberdemon. If this would result in fractional ammo the drop is probabalistic, e.g. if an enemy drops 0.5 rockets that's a 50/50 chance of getting one rocket or no rocket.
+  - `Scavenge Lead` ammo drops quantities adjusted, and now range from 20% normal for the weakest enemies to 400% normal for the Cyberdemon. If this would result in fractional ammo the drop is probabalistic, e.g. if an enemy drops 0.5 rockets that's a 50/50 chance of getting one rocket or no rocket.
   - Major redesign of `Revivification` and `Shield`; see below.
 - `Revivification` changes:
   - Revivification now gives you a single minion. It sticks around until it either dies, or you kill something more powerful (which replaces it).
