@@ -165,3 +165,9 @@ ifdef HDWeapon {
 ifdef BoAPlayer {
   type NullWeapon: IGNORE;
 }
+
+# Pandemonia: Bandoliers upgrade overrides the ammo upgrades you get from picking
+# up duplicate sidegrades.
+ifdef DustFist {
+  unregister TFLV_Upgrade_Bandoliers;
+}
