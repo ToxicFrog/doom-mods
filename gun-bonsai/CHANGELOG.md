@@ -31,6 +31,7 @@ ones. The new upgrades, in particular, will probably need balance tweaks in the
   - `Scavenge Blood` and `Scavenge Steel` pickup radius increased from 20 to 32.
   - `Swiftness` transition period from time stop to normal speed increased from 0.5s to 1.8s
   - `Swiftness` transition period runs at 50-75% normal speed rather than 25%.
+  - Acid damage buffed; it now starts at 5 dps and ramps up to 30 from 50%->10% hp, rather than 1->10 dps from 50%->0% hp. The total amount of damage remains the same but it is inflicted more quickly.
   - Major redesign of `Revivification` and `Shield`; see below.
 - `Revivification` changes:
   - Revivification now gives you a single minion. It sticks around until it either dies, or you kill something more powerful (which replaces it).
