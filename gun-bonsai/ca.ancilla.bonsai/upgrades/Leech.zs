@@ -48,6 +48,7 @@ class ::LifeLeech::Bonus : HealthBonus {
     -COUNTITEM;
     Scale 0.07;
     RenderStyle "Add";
+    Radius 32;
     Inventory.PickupMessage "";
     Inventory.Amount 1;
     Inventory.MaxAmount 100;
@@ -103,6 +104,7 @@ class ::ArmourLeech::Bonus : BasicArmorBonus {
     -COUNTITEM;
     Scale 0.07;
     RenderStyle "Add";
+    Radius 32;
     Inventory.PickupMessage "";
     Armor.SaveAmount 2;
     Armor.MaxSaveAmount 100;
