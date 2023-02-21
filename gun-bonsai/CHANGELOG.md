@@ -19,6 +19,7 @@ ones. The new upgrades, in particular, will probably need balance tweaks in the
   - `Aggressive Defence`: attacking an enemy will destroy projectiles near it.
   - `Hazard Suit`: reduces environmental damage (e.g. hurtfloors).
   - `Bandoliers`: increases ammo capacity for all weapons.
+  - Level-up menus now let you view the tooltips for, and toggle on and off, the upgrades you already have.
 - Balance:
   - `Thunderbolt` is now the intermediate lightning upgrade.
   - `Revivification` is now one of the two lightning masteries, opposite `Chain Lightning`.

@@ -19,7 +19,7 @@ class ::PlayerLevelUpMenu : ::GenericLevelUpMenu {
 
     PushText("", Font.CR_LIGHTBLUE);
     PushText("$TFLV_MENU_CURRENT_UPGRADES", Font.CR_LIGHTBLUE);
-    giver.stats.upgrades.DumpToMenu(self);
+    giver.stats.upgrades.DumpInteractableToMenu(self, 0);
     return;
   }
 }

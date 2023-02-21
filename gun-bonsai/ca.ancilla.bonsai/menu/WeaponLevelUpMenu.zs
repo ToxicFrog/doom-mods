@@ -23,7 +23,7 @@ class ::WeaponLevelUpMenu : ::GenericLevelUpMenu {
 
     PushText("", Font.CR_LIGHTBLUE);
     PushText("$TFLV_MENU_CURRENT_UPGRADES", Font.CR_LIGHTBLUE);
-    giver.wielded.upgrades.DumpToMenu(self);
+    giver.wielded.upgrades.DumpInteractableToMenu(self, 1);
     return;
   }
 }
