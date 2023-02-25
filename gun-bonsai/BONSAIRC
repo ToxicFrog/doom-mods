@@ -166,8 +166,11 @@ ifdef BoAPlayer {
   type NullWeapon: IGNORE;
 }
 
-# Pandemonia: Bandoliers upgrade overrides the ammo upgrades you get from picking
-# up duplicate sidegrades.
+# Pandemonia fixes.
 ifdef DustFist {
+  # Bandoliers upgrade conflicts with the ammo upgrades you get from picking up
+  # duplicate sidegrades.
   unregister TFLV_Upgrade_Bandoliers;
+  # Railgun puffs have the +MISSILE flag, which confuses weapon type inference.
+  # type DustRailgun: HITSCAN;  # Believed to be fixed now
 }

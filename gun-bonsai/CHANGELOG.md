@@ -59,6 +59,7 @@ ones. The new upgrades, in particular, will probably need balance tweaks in the
   - More HUD and menu elements (the Lv. and XP abbreviations and the Level header) are now drawn from the LANGUAGE lumps.
   - `Burning Terror` has the intended ~20%/second chance to wear off once the enemy stops burning rather than a ~97%/second chance.
   - `ModifyDamageDealt` and `ModifyDamageReceived` are now aware of the damagetype and can use it to make decisions
+  - 0-speed "projectiles" are now guessed to be puffs instead; this fixes the Railgun in Pandemonia being mis-detected as a projectile weapon.
 
 # 0.9.8
 
