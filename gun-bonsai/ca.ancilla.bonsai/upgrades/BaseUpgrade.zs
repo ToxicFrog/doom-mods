@@ -203,6 +203,14 @@ class ::BaseUpgrade : Object play {
   static string AsMeters(uint u) {
     return string.format("%dm", u/32);
   }
+  // 28 -> 0.8s
+  static string AsSeconds(uint tics) {
+    if (tics % 35 == 0) {
+      return string.format("%ds", tics/35);
+    } else {
+      return string.format("%.1fs", tics/35.0);
+    }
+  }
 
   // INTERNAL DETAILS //
   string GetName() const {
