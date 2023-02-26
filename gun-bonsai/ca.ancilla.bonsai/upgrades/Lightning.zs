@@ -242,7 +242,7 @@ class ::ShockDot : ::Dot {
     let scale = 1.0 + 0.01 * stacks;
     // Apply stun to target.
     owner.tics += ceil(::Thunderbolt.GetStunDuration(thunderbolt) * scale);
-    bolt_cap = ceil(bolt.cap * 1.25);
+    bolt_cap = ceil(bolt_cap * 1.25);
     stacks = stacks/2.0;
 
     // Cut current stacks in half and apply those to everything in the vicinity.
