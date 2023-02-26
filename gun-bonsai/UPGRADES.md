@@ -1,14 +1,28 @@
 # Upgrade List
 
-This is a list of all the upgrades in Gun Bonsai and their effects and prerequisites. Upgrades have brief in-game descriptions, but this list often has more details.
+This is a list of all the upgrades in Gun Bonsai and their effects and prerequisites.
+
+This is meant only as a quick reference; the in-game tooltips have more details.
 
 ## Player Upgrades
 
 Upgrades that you gain for your character, and apply no matter what weapon you're wielding.
 
+### Bandoliers
+
+Increases ammo capacity. Stacks with the backpack. May have weird interactions with mods that have their own mechanics for adjusting ammo capacity.
+
+### Blast Shaping
+
+Reduces damage from your own AoE attacks, such as rockets. Cannot reduce damage below 1.
+
 ### Bloodthirsty
 
-Increases all damage you deal by 10% (with a minimum increase of 1) per level. This stacks with per-weapon damage upgrades.
+Increases the damage you deal with all weapons. Stacks with per-weapon damage upgrades.
+
+### Hazard Suit
+
+Reduces damage from environmental hazards such as acid and lava.
 
 ### Indestructable *(max 4 levels)*
 
@@ -22,11 +36,15 @@ At level 1, you start every level with the map revealed. At level 2, the locatio
 
 ### Juggler *(max 1 level)*
 
-Weapon switching is instantaneous, or nearly so. Note that this does not affect reload speed or rate of fire.
+Weapon switching is instantaneous, or nearly so. Note that this does not affect reload speed or rate of fire, and may not work with some mods.
+
+### Personal ECM
+
+Attempts to hack incoming seeker missiles, redirecting them against nearby enemies or the enemy that fired them.
 
 ### Scavenge Blood
 
-Killing an enemy drops a health bonus worth 1 point per level (×10 for boss kills). This is capped at 100% of your normal max health, raised to 200% at level 2.
+Killing an enemy drops a health bonus worth 1 point per level.
 
 ### Scavenge Lead
 
@@ -34,7 +52,7 @@ When killed, enemies drop a random ammo item usable by one of your weapons. If y
 
 ### Scavenge Steel
 
-Killing an enemy drops an armour bonus worth 2 points per level (×10 for boss kills). This is capped at 100% of your normal max health, raised to 200% at level 2.
+Killing an enemy drops an armour bonus worth 2 points per level.
 
 ### Thorns
 
@@ -44,16 +62,20 @@ Note that you still take full damage from the attack!
 
 ### Tough as Nails
 
-Reduces incoming damage by 10% (and by at least 1 point per level). This has diminishing returns as you take more levels of it, and cannot reduce damage taken below 1.
+Reduces incoming damage. This has diminishing returns as you take more levels of it, and cannot reduce damage taken below 1.
 
 
 ## Generic Weapon Upgrades
 
 Non-elemental upgrades for your weapons.
 
+### Aggressive Defence *(Hitscan only)*
+
+Damaging an enemy destroys hostile projectiles around it.
+
 ### Bouncy Shots *(Projectile only, incompatible with Piercing Shots)*
 
-Shots bounce off walls. Higher levels increase the number of bounces and decrease the amount of velocity lost on bounce. At level 3, shots bounce off enemies as well.
+Shots bounce off walls. Higher levels increase the number of bounces and decrease the amount of velocity lost on bounce. At level 3, shots bounce off enemies as well (while still damaging them).
 
 ### Cleave *(Melee only)*
 
@@ -61,19 +83,19 @@ Killing an enemy in melee automatically gets you a free attack against another n
 
 ### Dark Harvest *(Melee or Wimpy only)*
 
-Killing an enemy grants you 1 point of health and armour per level (×10 for boss kills). This is capped at 100% of your max health, +20% for each level (so 120% at level 1 and 200% at level 5). If you boost it above level 5 you can exceed the normal 200 health/armour limit.
+Killing an enemy grants you 1 point of health and armour per level.
 
 ### Damage
 
 Increases damage dealt by this weapon by 20%, with a minimum increase of 1 point, per level.
 
+### Decoy Flares *(Projectile only)*
+
+Firing shots causes enemy seekers that are far enough away to lock onto your shots instead of you.
+
 ### Explosive Death *(Ranged only)*
 
-Killing an enemy causes an explosion dealing 20% of (its health + the amount you overkilled it by). Increasing the level increases the damage (with diminishing returns), increases the blast radius (linearly), and reduces the damage you take from the blast.
-
-### High Velocity *(Projectile only)*
-
-Projectiles move 50% faster per level.
+Killing an enemy causes an explosion based on its health.
 
 ### Fragmentation Shots *(Projectile only, incompatible with Piercing Shots)*
 
@@ -81,23 +103,27 @@ On impact, projectiles release a ring of hitscan attacks. Increasing the upgrade
 
 ### HE Rounds *(Hitscan only)*
 
-Creates a small explosion on hit doing 40% of the original attack damage. More levels increase the damage and blast radius, and reduce the damage you take from your own explosions.
+Creates a small explosion on hit. More levels increase the damage and blast radius, and reduce the damage you take from your own explosions.
+
+### High Velocity *(Projectile only)*
+
+Projectiles move 50% faster per level.
 
 ### Homing Shots *(Projectile only)*
 
 Projectiles home in on enemies. Higher levels will lock on from further away and be more maneuverable when homing.
 
-### Piercing Shots *(Projectile only, requires two levels of Fast Shots, max 1 level)*
+### Piercing Shots *(Projectile only, requires two levels of Fast Shots)*
 
-Shots go through enemies (but not walls). Note that most shots will hit enemies multiple times as they pass through, so this also acts as a damage bonus which hits harder against larger enemies.
+Shots go through enemies (but not walls). Shots do reduced damage but hit enemies multiple times as they pass through; taking more levels ameliorates the damage penalty.
 
 ### Rapid Fire *(Max 10 levels; weapons with ammo only)*
 
 Increases attack speed by 50% (additive). Maxes out at +500% (6x normal attack speed). High levels may have graphical glitches. This is a great way to get more DPS, but it comes at the cost of increased ammo consumption.
 
-### Shield *(Melee or Wimpy only)*
+### Shield *(Melee only)*
 
-Reduces incoming damage by ~20%. Can be stacked, with diminishing returns maxing out at 60% damage reduction. Cannot reduce incoming damage below 1 point.
+Reduces incoming ranged damage moderately and incoming melee damage by a lot, but only while you are actively attacking an enemy in melee, or for a brief period after making a melee kill.
 
 ### Submunitions *(Ranged only)*
 
@@ -109,7 +135,7 @@ Attacking an enemy in melee does a portion of the damage to other enemies that a
 
 ### Swiftness *(Melee or Wimpy only)*
 
-Killing an enemy gives you a 1 second of time freeze (+200ms per additional level). You can extend this by killing more enemies before it wears off.
+Killing an enemy temporarily freezes time. Killing more enemies before time unfreezes gives you a small duration bonus.
 
 
 ## Elemental Upgrades
@@ -204,11 +230,11 @@ Shots reduce targest to half speed (in addition to doing their normal amount of 
 
 ### Thunderbolt *(Lightning intermediate upgrade)*
 
-Once you sufficiently exceed the lightning softcap on a target, it is struck by lightning, taking damage based on its max health and your level of Thunderbolt, with a bonus based on how many lightning stacks it has. This clears all lightning stacks on the target. Increasing the level increases both the damage and how frequently it triggers.
+Once you sufficiently exceed the lightning softcap on a target, it is struck by lightning, stunning it and spreading lightning stacks to nearby enemies.
 
 ### Revivification *(Lightning mastery)*
 
-Slain enemies have a chance of coming back as ghostly minions. The chance of coming back increases with both the number of lightning stacks and the level of Revivification; the latter also gives revived minions a bonus to damage and armour. You can freely walk through your minions (so they can't block important doorways), and while they are capable of friendly fire they will never do more than 1 damage to you (and take only 1 damage from your attacks).
+Slaying an enemy raises it as a ghostly minion. It remains with you until it dies or you kill something stronger, which replaces it.
 
 ### Chain Lightning *(Lightning mastery)*
 
