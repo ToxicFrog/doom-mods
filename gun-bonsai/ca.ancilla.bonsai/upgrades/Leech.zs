@@ -2,7 +2,7 @@
 // Actually cause enemies to drop bonus health/armour on death. Amount depends
 // on how powerful the enemy was.
 #namespace TFLV::Upgrade;
-#debug off
+#debug on
 
 class ::LeechUtil {
   clearscope static Vector3 WigglePos(Actor act) {
@@ -18,7 +18,17 @@ class ::LifeLeech : ::BaseUpgrade {
   override void OnKill(PlayerPawn player, Actor shot, Actor target) {
     let hp = Health(target.Spawn(
       GetBonusName(), ::LeechUtil.WigglePos(target), ALLOW_REPLACE));
-    if (!hp) return;
+    if (!hp) {
+      // We couldn't turn this into Health. This probably means that the
+      // current setup replaces them with a HealthItemSpawner or something.
+      // So instead of dropping one and multiplying the effectiveness by level,
+      // instead just generate more drops.
+      for (uint n = 1; n < level; ++n) {
+        target.Spawn(GetBonusName(), ::LeechUtil.WigglePos(target), ALLOW_REPLACE);
+      }
+      return;
+    }
+    // We could, so multiply the health amount by our level.
     let cap = player.GetMaxHealth(true);
     hp.amount = target.bBOSS ? level*10 : level;
     hp.maxamount = clamp(cap * level, cap, 2*cap);
@@ -74,7 +84,18 @@ class ::ArmourLeech : ::BaseUpgrade {
   override void OnKill(PlayerPawn player, Actor shot, Actor target) {
     let ap = BasicArmorBonus(target.Spawn(
       GetBonusName(), ::LeechUtil.WigglePos(target), ALLOW_REPLACE));
-    if (!ap) return;
+    if (!ap) {
+      // We couldn't turn this into BasicArmorBonus. This probably means that the
+      // current setup replaces them with an ArmorBonusSpawner or something.
+      // So instead of dropping one and multiplying the effectiveness by level,
+      // instead just generate more drops.
+      for (uint n = 1; n < level; ++n) {
+        target.Spawn(GetBonusName(), ::LeechUtil.WigglePos(target), ALLOW_REPLACE);
+      }
+      return;
+    }
+    // We could, so set the armour cap appropriately and multiply the save amount
+    // by our level.
     uint cap = (armour_cap ? armour_cap : player.GetMaxHealth(true));
     ap.SaveAmount = target.bBOSS ? level*20 : level*2;
     ap.MaxSaveAmount = clamp(cap * level, cap, 2*cap);
