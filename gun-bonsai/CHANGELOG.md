@@ -22,6 +22,8 @@ ones. The new upgrades, in particular, will probably need balance tweaks in the
   - Level-up menus now let you view the tooltips for, and toggle on and off, the upgrades you already have.
 - Balance:
   - `Thunderbolt` is now the intermediate lightning upgrade.
+  - `Thunderbolt` is now a temporary stun and AoE slow, rather than a damage bonus.
+  - `Thunderbolt` gets harder to trigger (on that enemy) every time it procs.
   - `Revivification` is now one of the two lightning masteries, opposite `Chain Lightning`.
   - `Revivification` can't raise bosses. No pet Cyberdemon, sorry.
   - `Homing Shots` will now fly straight until they get within a certain distance of their target.
