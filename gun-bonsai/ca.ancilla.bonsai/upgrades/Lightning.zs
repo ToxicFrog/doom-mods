@@ -139,7 +139,7 @@ class ::ChainLightning : ::DotModifier {
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
-    return HasMasteryPrereq(info, "::Revivification", "::Thunderbolt");
+    return HasMasteryPrereq(info, "::Thunderbolt", "::Revivification");
   }
 
   override void GetTooltipFields(Dictionary fields, uint level) {
