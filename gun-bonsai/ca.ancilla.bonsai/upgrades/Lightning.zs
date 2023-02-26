@@ -242,7 +242,7 @@ class ::ShockDot : ::Dot {
     let scale = 1.0 + 0.01 * stacks;
     // Apply stun to target.
     owner.tics += ceil(::Thunderbolt.GetStunDuration(thunderbolt) * scale);
-    bolt_cap *= 1.5;
+    bolt_cap = ceil(bolt.cap * 1.25);
     stacks = stacks/2.0;
 
     // Cut current stacks in half and apply those to everything in the vicinity.
@@ -250,6 +250,7 @@ class ::ShockDot : ::Dot {
     TFLV::Util.MonstersInRadius(owner, ceil(::Thunderbolt.GetRadius(thunderbolt) * scale), targets);
     for (uint i = 0; i < targets.size(); ++i) {
       if (targets[i] == owner) continue;
+
       let zap = ::ShockDot(
         ::Dot.GiveStacks(self.target, targets[i], "::ShockDot", stacks, thunderbolt*5));
       zap.stacks = max(zap.stacks, self.stacks);
