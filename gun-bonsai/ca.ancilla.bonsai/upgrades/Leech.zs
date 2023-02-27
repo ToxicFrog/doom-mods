@@ -2,7 +2,7 @@
 // Actually cause enemies to drop bonus health/armour on death. Amount depends
 // on how powerful the enemy was.
 #namespace TFLV::Upgrade;
-#debug on
+#debug off
 
 class ::LeechUtil {
   clearscope static Vector3 WigglePos(Actor act) {
