@@ -63,6 +63,7 @@ ones. The new upgrades, in particular, will probably need balance tweaks in the
   - `ModifyDamageDealt` and `ModifyDamageReceived` are now aware of the damagetype and can use it to make decisions
   - 0-speed "projectiles" are now guessed to be puffs instead; this fixes the Railgun in Pandemonia being mis-detected as a projectile weapon.
   - If `bonsai_use_builtin_actors` is false, it will fall back to generating multiple small health/armour drops if, for some reason, it can't generate one big one.
+  - `Bouncy Shots` now actually bounce the listed number of times.
 
 # 0.9.8
 
