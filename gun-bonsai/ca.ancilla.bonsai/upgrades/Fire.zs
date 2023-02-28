@@ -154,6 +154,7 @@ class ::FireDot : ::Dot {
 
     if (total_damage <= 0.0) {
       burning = false;
+      if (terror && !owner.bNOFEAR) DoTerror(0);
       return 0.0;
     }
 
@@ -170,12 +171,15 @@ class ::FireDot : ::Dot {
   void DoTerror(double damage) {
     // If the target's health is below a certain amount -- which scales with
     // both levels of terror and stacks of fire -- it flees.
-    if (damage > 0.1) {
+    DEBUG("DoTerror: %s health %f", TAG(owner), double(owner.health)/owner.SpawnHealth());
+    if (damage > 0.1 && !owner.bFRIGHTENED) {
       let missing_health = 1 - double(owner.health)/owner.SpawnHealth();
       if (missing_health >= 0.7 ** (stacks+terror)) {
+        DEBUG("Making %s frightened", TAG(owner));
         owner.bFRIGHTENED = true;
       }
-    } else if (frandom(0.0, 1.0) > 0.95) {
+    } else if (owner.bFRIGHTENED && frandom(0.0, 1.0) > 0.95) {
+      DEBUG("Making %s unfrightened", TAG(owner));
       owner.bFRIGHTENED = false;
     }
   }
