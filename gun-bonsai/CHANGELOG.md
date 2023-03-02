@@ -65,6 +65,7 @@ ones. The new upgrades, in particular, will probably need balance tweaks in the
   - 0-speed "projectiles" are now guessed to be puffs instead; this fixes the Railgun in Pandemonia being mis-detected as a projectile weapon.
   - If `bonsai_use_builtin_actors` is false, it will fall back to generating multiple small health/armour drops if, for some reason, it can't generate one big one.
   - `Bouncy Shots` now actually bounce the listed number of times.
+  - `Revivification` and `Hallucinogens` should no longer make it impossible to get 100% kills under some circumstances.
 
 # 0.9.8
 

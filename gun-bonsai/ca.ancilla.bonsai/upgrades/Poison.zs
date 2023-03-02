@@ -116,7 +116,7 @@ class ::PoisonDot : ::Dot {
     DEBUG("GetDamage: hallu=%d damage=%f health=%d", hallucinogens, GetTotalDamage(), owner.health);
     if (hallucinogens > 0 && GetTotalDamage() >= owner.health && !owner.bFRIENDLY) {
       DEBUG("Made the %s friendly!", owner.GetClassName());
-      owner.bFRIENDLY = true;
+      owner.A_SetFriendly(true);
       owner.bDONTHARMCLASS = false;
       owner.bDONTHARMSPECIES = false;
     }

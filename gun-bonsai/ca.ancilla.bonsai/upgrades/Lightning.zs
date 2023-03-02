@@ -329,9 +329,13 @@ class ::Revivification::Aux : Actor {
     }
 
     // Attempt the actual resurrection.
-    DEBUG("Raising %s by %s", tracer.GetTag(), target.GetTag());
-    // We need to do this before we start wiggling its flags.
-    if (!tracer.RaiseActor(tracer)) {
+    DEBUG("Raising %s by %s; current monster count %d/%d",
+      tracer.GetTag(), target.GetTag(), tracer.level.killed_monsters, tracer.level.total_monsters);
+    // We need to do this before we start wiggling its flags. If we try setting
+    // it friendly before we raise it, it won't stick for some reason and will
+    // start attacking us.
+    if (!target.RaiseActor(tracer)) {
+      DEBUG("RaiseActor for %s failed", TAG(tracer));
       Destroy(); return;
     }
 
@@ -347,14 +351,13 @@ class ::Revivification::Aux : Actor {
     tracer.TakeInventory("::PoisonDot", 255);
     tracer.TakeInventory("::ShockDot", 255);
     // Make it friendly and ethereal.
+    tracer.A_SetFriendly(true);
     tracer.SetFriendPlayer(self.target.player);
     tracer.bDONTFOLLOWPLAYERS = false;
     tracer.bALWAYSFAST = true;
     tracer.bSOLID = false;
     tracer.A_SetRenderStyle(1.0, STYLE_SHADED);
     tracer.SetShade("8080FF");
-    if (tracer.CountsAsKill()) tracer.level.total_monsters--;
-    tracer.bFRIENDLY = true;
 
     // Give it the force that applies the buff to revivified minions.
     let buff = ::Revivification::AuxBuff(tracer.GiveInventoryType("::Revivification::AuxBuff"));
