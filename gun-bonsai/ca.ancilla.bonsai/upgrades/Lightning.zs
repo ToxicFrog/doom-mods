@@ -46,6 +46,11 @@ class ::Revivification : ::ElementalUpgrade {
     fields.insert("damage-bonus", AsPercentIncrease(1.0 + 0.2*level));
     fields.insert("armour-bonus", AsPercentDecrease(0.8 ** level));
     fields.insert("ttl", ::TTL.."s");
+    if (minion) {
+      fields.insert("minion", string.format("%s [%d/%d]", minion.GetTag(), minion.health, minion.SpawnHealth()));
+    } else {
+      fields.insert("minion", "-");
+    }
   }
 
   override void OnDeactivate(TFLV::PerPlayerStats stats, TFLV::WeaponInfo info) {
