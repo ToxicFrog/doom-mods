@@ -64,6 +64,7 @@ class ::Revivification : ::ElementalUpgrade {
   void EnableMinion() {
     if (!minion) return;
     if (!minion.bDORMANT) return;
+    DEBUG("EnableMinion(%s)", TAG(minion));
     let buff = ::Revivification::AuxBuff(minion.FindInventory("::Revivification::AuxBuff"));
     if (buff) {
       buff.ActivateOwner();
@@ -73,6 +74,7 @@ class ::Revivification : ::ElementalUpgrade {
   }
 
   void DisableMinion() {
+    DEBUG("DisableMinion(%s)", TAG(minion));
     if (!minion) return;
     if (minion.bDORMANT) return;
     let buff = ::Revivification::AuxBuff(minion.FindInventory("::Revivification::AuxBuff"));
@@ -93,7 +95,7 @@ class ::Revivification : ::ElementalUpgrade {
 
   override void OnKill(PlayerPawn player, Actor shot, Actor target) {
     if (!ShouldRevive(target)) return;
-    DEBUG("Raising %s", TAG(target));
+    DEBUG("Attempting to raise %s", TAG(target));
     let aux = ::Revivification::Aux(target.Spawn("::Revivification::Aux", target.pos));
     aux.target = player;
     aux.tracer = target;
@@ -106,7 +108,7 @@ class ::Revivification : ::ElementalUpgrade {
   // or it might be unrevivifiable -- but means we will create the aux object that
   // tries to raise it later. Returning false here skips it entirely.
   bool ShouldRevive(Actor target) {
-    DEBUG("ShouldRevive: %s", TAG(target));
+    // DEBUG("ShouldRevive: %s", TAG(target));
     // Don't revive friendlies. Teamkillers never prosper. :(
     if (target.bFRIENDLY || target.bBOSS || !target.bISMONSTER) return false;
     // Always revive if we don't currently have a minion.
@@ -129,8 +131,8 @@ class ::Revivification : ::ElementalUpgrade {
   static double RelativePower(Actor old, Actor new) {
     double oldp = old.SpawnHealth() * old.speed;
     double newp = new.SpawnHealth() * new.speed;
-    DEBUG("RelativePower: %s (%d) vs %s (%d) -> %f",
-      TAG(old), oldp, TAG(new), newp, newp/oldp);
+    // DEBUG("RelativePower: %s (%d) vs %s (%d) -> %f",
+    //   TAG(old), oldp, TAG(new), newp, newp/oldp);
     return newp/oldp;
   }
 }
@@ -301,14 +303,17 @@ class ::Revivification::Aux : Actor {
   void CheckRevive() {
     // Just in case.
     if (!tracer || !tracer.ResolveState("Raise")) {
-      DEBUG("tracer vanished");
+      DEBUG("%s: giving up, tracer disappeared", TAG(self));
       Destroy();
       return;
     }
 
     // This might be temporary because e.g. there's something standing on it.
     if (!tracer.CanRaise()) {
-      DEBUG("Can't raise %s, will retry later.", TAG(tracer));
+      // DEBUG("Can't raise %s, will retry later.", TAG(tracer));
+      if (ReactionTime <= 1) {
+        DEBUG("%s: giving up on %s, tried too many times", TAG(self), TAG(tracer));
+      }
       return;
     }
 
@@ -318,6 +323,8 @@ class ::Revivification::Aux : Actor {
     // enemies -- we want to raise the strongest one available.
     if (upgrade.minion && upgrade.minion.health >= 0
         && upgrade.RelativePower(upgrade.minion, tracer) <= 1.0) {
+      DEBUG("%s: giving up on %s, current minion %s is more powerful",
+        TAG(self), TAG(tracer), TAG(upgrade.minion));
       Destroy(); return;
     }
 
@@ -329,7 +336,7 @@ class ::Revivification::Aux : Actor {
     }
 
     if (upgrade.minion) {
-      DEBUG("Killing minion %s", TAG(upgrade.minion));
+      DEBUG("Killing minion %s to replace it with %s", TAG(upgrade.minion), TAG(tracer));
       upgrade.minion.A_Die("extreme");
     }
     upgrade.minion = tracer;
@@ -395,11 +402,14 @@ class ::Revivification::AuxBuff : Inventory {
 
   void CheckTTL() {
     --ttl;
-    DEBUG("ttl=%d", ttl);
-    if (!ttl) DeactivateOwner();
+    //DEBUG("ttl=%d", ttl);
+    if (!ttl) {
+      DeactivateOwner();
+    }
   }
 
   void ActivateOwner() {
+    DEBUG("raux: activating %s", TAG(owner));
     owner.bINVISIBLE = false;
     owner.bSHOOTABLE = true;
     owner.Warp(Controller());
@@ -409,7 +419,7 @@ class ::Revivification::AuxBuff : Inventory {
   }
 
   void DeactivateOwner() {
-    DEBUG("deactivating %s", TAG(owner));
+    DEBUG("raux: deactivating %s", TAG(owner));
     VFX();
     owner.Deactivate(self);
     owner.bINVISIBLE = true;
@@ -424,6 +434,7 @@ class ::Revivification::AuxBuff : Inventory {
   }
 
   override void OwnerDied() {
+    DEBUG("raux: %s died", TAG(owner));
     VFX();
     // Destroying the owner ensures that it can't be re-raised or anything.
     // However, we can't do that right away, because Destroy() nulls out existing
