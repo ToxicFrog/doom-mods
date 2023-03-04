@@ -20,6 +20,7 @@ ones. The new upgrades, in particular, will probably need balance tweaks in the
   - `Hazard Suit`: reduces environmental damage (e.g. hurtfloors).
   - `Bandoliers`: increases ammo capacity for all weapons.
   - Level-up menus now let you view the tooltips for, and toggle on and off, the upgrades you already have.
+  - Enemies affected by `Hallucinogens` now have rainbow particles/flashes.
 - Balance:
   - `Thunderbolt` is now the intermediate lightning upgrade.
   - `Thunderbolt` is now a temporary stun and AoE slow, rather than a damage bonus.

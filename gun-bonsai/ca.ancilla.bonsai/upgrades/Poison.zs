@@ -100,7 +100,11 @@ class ::PoisonDot : ::Dot {
 
   override string GetParticleColour() {
     static const string colours[] = { "green", "green1", "black" };
-    return colours[random(0,2)];
+    static const string hallu[] = { "red", "orange", "yellow", "green1", "blue", "purple" };
+    if (!owner.bFRIENDLY)
+      return colours[random(0,2)];
+    else
+      return hallu[random(0,5)];
   }
 
   override double GetParticleZV() {
