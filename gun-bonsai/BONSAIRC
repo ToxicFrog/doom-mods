@@ -37,7 +37,10 @@ register
   # player upgrades
   TFLV_Upgrade_AmmoLeech
   TFLV_Upgrade_ArmourLeech
+  TFLV_Upgrade_Bandoliers
   TFLV_Upgrade_BlastShaping
+  TFLV_Upgrade_ECM
+  TFLV_Upgrade_HazardSuit
   TFLV_Upgrade_Intuition
   TFLV_Upgrade_Juggler
   TFLV_Upgrade_LifeLeech
@@ -45,9 +48,11 @@ register
   TFLV_Upgrade_Thorns
   TFLV_Upgrade_ToughAsNails
   # generic weapon upgrades
+  TFLV_Upgrade_AggressiveDefence
   TFLV_Upgrade_BouncyShots
   TFLV_Upgrade_Cleave
   TFLV_Upgrade_DarkHarvest
+  TFLV_Upgrade_DecoyFlares
   TFLV_Upgrade_ExplosiveDeath
   TFLV_Upgrade_ExplosiveShots
   TFLV_Upgrade_FastShots
@@ -159,4 +164,13 @@ ifdef HDWeapon {
 # Blade of Agony: ignore unarmed
 ifdef BoAPlayer {
   type NullWeapon: IGNORE;
+}
+
+# Pandemonia fixes.
+ifdef DustFist {
+  # Bandoliers upgrade conflicts with the ammo upgrades you get from picking up
+  # duplicate sidegrades.
+  unregister TFLV_Upgrade_Bandoliers;
+  # Railgun puffs have the +MISSILE flag, which confuses weapon type inference.
+  # type DustRailgun: HITSCAN;  # Believed to be fixed now
 }

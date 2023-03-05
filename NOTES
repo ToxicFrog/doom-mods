@@ -7,13 +7,12 @@ Three possible operating modes:
 - Bonsai level integration; respond to bonsai level-up messages by giving new upgrades
 - Bonsai upgrade integration; add a set of bonsai upgrades corresponding to different LD upgrades? don't quite remember
 
+### 0.10.0 playtesting
+
 ### next
 
-- Spread Fire projectile upgrade, projectile shots spawn multiple reduced-damage projectiles
 - Beam hitscan upgrade -- currently WIP, rename Hypervelocity
 - Singularity on-kill upgrade, spawns a black hole that sucks enemies (but not the player) towards it
-- floor damage reduction upgrade
-- seeker jammer, possibly add aggressive defence features later
 
 ### 0.11.x?
 
@@ -21,23 +20,15 @@ Three possible operating modes:
 
 ### Soon
 
-- scavenge lead probabalistic below 100hp & for ammo that produces low amounts
-  - something like: ammo count = (base ammo count * 0.1 * target health/100)
-- Revivification rework:
-  - raised enemies don't collide with player projectiles, if possible
-- Shield upgrade rework
-  - rather than a flat damage reduction, have it charge up when making kills in melee, and gradually fade when not doing so
-- add ammo capacity upgrade
-  - walk player inventory and boost the MaxAmount and BackpackMaxAmount
-  - requires OnApply support, probably
-  - won't affect ammo types the player doesn't have yet
-  - will be a player mod, so it should either be fairly powerful or get more powerful with time
-  - we can use GetDefaultByType(ammoitem).MaxAmount to compute the base max amount
-    and then confer bonuses based on that
 - Make melee detection more permissive, but only trigger melee upgrades when the player is in melee
-- upgrade that spawns extra projectiles every N shots
+- Spread Fire projectile upgrade, projectile shots spawn multiple reduced-damage projectiles
+  - upgrade that spawns extra projectiles every N shots
 
 ### Ideas
+
+### AvzinTW
+
+An upgrade that causes projectiles to bounce off you, as an alternative to the ECM upgrade collection.
 
 ### MsrSgtShooterPerson
 

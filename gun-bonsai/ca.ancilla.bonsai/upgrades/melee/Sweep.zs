@@ -1,5 +1,5 @@
 #namespace TFLV::Upgrade;
-#debug on;
+#debug off;
 
 class ::Sweep : ::BaseUpgrade {
   override void OnDamageDealt(Actor pawn, Actor shot, Actor target, int damage) {

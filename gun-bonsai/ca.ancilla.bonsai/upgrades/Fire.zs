@@ -94,7 +94,7 @@ class ::InfernalKiln : ::ElementalUpgrade {
     if (hardness > 0) hardness -= 1.0/35.0;
   }
 
-  override double ModifyDamageDealt(Actor pawn, Actor shot, Actor target, double damage) {
+  override double ModifyDamageDealt(Actor pawn, Actor shot, Actor target, double damage, Name attacktype) {
     // Adds damage equal to your level of Kiln * 2.
     if (hardness <= 0) return damage;
     DEBUG("Kiln: %f + %f (%f)", damage, level*2.0, hardness);
@@ -103,7 +103,7 @@ class ::InfernalKiln : ::ElementalUpgrade {
     return damage;
   }
 
-  override double ModifyDamageReceived(Actor pawn, Actor shot, Actor attacker, double damage) {
+  override double ModifyDamageReceived(Actor pawn, Actor shot, Actor attacker, double damage, Name attacktype) {
     // Blocks damage equal to your level of Kiln * 2.
     if (hardness <= 0) return damage;
     DEBUG("Kiln: %f - %f (%f)", damage, level*2.0, hardness);
@@ -175,7 +175,7 @@ class ::FireDot : ::Dot {
       if (missing_health >= 0.7 ** (stacks+terror)) {
         owner.bFRIGHTENED = true;
       }
-    } else if (random(0.0, 1.0) > 0.95) {
+    } else if (frandom(0.0, 1.0) > 0.95) {
       owner.bFRIGHTENED = false;
     }
   }

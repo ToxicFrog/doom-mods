@@ -1,16 +1,39 @@
 # 0.10.0
 
+This release changes a lot. While it is save compatible with 0.9.x in the sense
+that your save files will still load, depending on what the circumstances of the
+save were you may experience unusual effects or be permanently locked out of
+some upgrades. Starting a new game is recommended.
+
+I haven't been playing a lot of Doom lately, so these changes have not seen as
+much playtesting and, in particular, as much *balance* testing as some earlier
+ones. The new upgrades, in particular, will probably need balance tweaks in the
+0.10.x update series.
+
 - New:
   - Cool fizzy effect when a Revivification minion dies.
   - `Sweep`: a melee-only upgrade that hits multiple enemies whenever you attack.
   - `Cleave`: a melee-only upgrade that gives you free attacks with every kill.
+  - `Personal ECM`: a player upgrade that reprograms hostile seekers to hunt nearby monsters instead.
+  - `Decoy Flares`: projectiles you fire distract enemy seekers.
+  - `Aggressive Defence`: attacking an enemy will destroy projectiles near it.
+  - `Hazard Suit`: reduces environmental damage (e.g. hurtfloors).
+  - `Bandoliers`: increases ammo capacity for all weapons.
+  - Level-up menus now let you view the tooltips for, and toggle on and off, the upgrades you already have.
 - Balance:
   - `Thunderbolt` is now the intermediate lightning upgrade.
+  - `Thunderbolt` is now a temporary stun and AoE slow, rather than a damage bonus.
+  - `Thunderbolt` gets harder to trigger (on that enemy) every time it procs.
   - `Revivification` is now one of the two lightning masteries, opposite `Chain Lightning`.
   - `Revivification` can't raise bosses. No pet Cyberdemon, sorry.
   - `Homing Shots` will now fly straight until they get within a certain distance of their target.
   - `Homing Shots` max level increased from 4 to 12.
   - `Homing Shots` turn rate adjusted.
+  - `Scavenge Lead` ammo drops quantities adjusted, and now range from 20% normal for the weakest enemies to 400% normal for the Cyberdemon. If this would result in fractional ammo the drop is probabalistic, e.g. if an enemy drops 0.5 rockets that's a 50/50 chance of getting one rocket or no rocket.
+  - `Scavenge Blood` and `Scavenge Steel` pickup radius increased from 20 to 32.
+  - `Swiftness` transition period from time stop to normal speed increased from 0.5s to 1.8s
+  - `Swiftness` transition period runs at 50-75% normal speed rather than 25%.
+  - Acid damage buffed; it now starts at 5 dps and ramps up to 30 from 50%->10% hp, rather than 1->10 dps from 50%->0% hp. The total amount of damage remains the same but it is inflicted more quickly.
   - Major redesign of `Revivification` and `Shield`; see below.
 - `Revivification` changes:
   - Revivification now gives you a single minion. It sticks around until it either dies, or you kill something more powerful (which replaces it).
@@ -36,6 +59,9 @@
   - Code that needs to find all monsters in an area now uses `BlockThingsIterator` rather than `A_Explode`+`DoSpecialDamage`. This should improve both performance and maintainability. Thanks to RatCircus for pointing me in the right direction.
   - `Homing Shots` now checks line of sight to the monster it's locked onto and does not change course until it has a clear flight path. In conjunction with the balance changes above they should now be much less prone to flying into the floor/ceiling.
   - More HUD and menu elements (the Lv. and XP abbreviations and the Level header) are now drawn from the LANGUAGE lumps.
+  - `Burning Terror` has the intended ~20%/second chance to wear off once the enemy stops burning rather than a ~97%/second chance.
+  - `ModifyDamageDealt` and `ModifyDamageReceived` are now aware of the damagetype and can use it to make decisions
+  - 0-speed "projectiles" are now guessed to be puffs instead; this fixes the Railgun in Pandemonia being mis-detected as a projectile weapon.
 
 # 0.9.8
 

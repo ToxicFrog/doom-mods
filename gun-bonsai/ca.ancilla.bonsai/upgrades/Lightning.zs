@@ -1,19 +1,19 @@
 // The lightning (air) upgrade tree.
 //
 // APPRENTICE: SHOCKING INSCRIPTION
-// Attacks stun enemies. Stun duration scales with level and weapon damage.
+// Attacks slow enemies. Slow duration scales with level and weapon damage.
 //
-// UPGRADE: REVIVIFICATION
-// Slain enemies have chance to rise as your minions based on the number of
-// lightning stacks on them.
+// UPGRADE: THUNDERBOLT
+// Repeated attacks against the same enemy release a wave of energy that stuns
+// it and slows enemies near it.
 //
 // MASTER: CHAIN LIGHTNING
 // Enemies killed with lightning stacks on them chain lightning to nearby
 // enemies. Total jump count scales with level; damage scales with total number
 // of enemies caught in the chain.
 //
-// MASTER: THUNDERBOLT
-// Capping out the lightning stacks on a target converts all of them into damage.
+// MASTER: REVIVIFICATION
+// Your most powerful slain enemy rises as a loyal minion.
 #namespace TFLV::Upgrade;
 #debug off
 // Time that reviv minions will hang around once combat is over (seconds).
@@ -25,12 +25,12 @@ class ::ShockingInscription : ::ElementalUpgrade {
     // Stack 20% of damage * 200ms of stun, softcap at 1s/level
     let zap = ::ShockDot(::Dot.GiveStacks(
       player, target, "::ShockDot", level*damage*0.2, level*5));
-    zap.cap = level*5;
+    zap.level = self.level;
   }
 
   override void GetTooltipFields(Dictionary fields, uint level) {
     fields.insert("damage-per-stack", string.format("%d", 1.0/(0.2*level/5.0)));
-    fields.insert("softcap", level.."s");
+    fields.insert("softcap", AsSeconds(level*35));
   }
 }
 
@@ -43,7 +43,7 @@ class ::Revivification : ::ElementalUpgrade {
   }
 
   override void GetTooltipFields(Dictionary fields, uint level) {
-    fields.insert("damage-bonus", AsPercentIncrease(0.2*level));
+    fields.insert("damage-bonus", AsPercentIncrease(1.0 + 0.2*level));
     fields.insert("armour-bonus", AsPercentDecrease(0.8 ** level));
     fields.insert("ttl", ::TTL.."s");
   }
@@ -139,7 +139,7 @@ class ::ChainLightning : ::DotModifier {
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
-    return HasMasteryPrereq(info, "::Revivification", "::Thunderbolt");
+    return HasMasteryPrereq(info, "::Thunderbolt", "::Revivification");
   }
 
   override void GetTooltipFields(Dictionary fields, uint level) {
@@ -153,7 +153,9 @@ class ::Thunderbolt : ::DotModifier {
   override string DotType() { return "::ShockDot"; }
 
   override void ModifyDot(Actor player, Actor shot, Actor target, int damage, ::Dot dot_item) {
-    ::ShockDot(dot_item).thunderbolt = level;
+    let zap = ::ShockDot(dot_item);
+    zap.thunderbolt = level;
+    zap.bolt_cap = max(zap.bolt_cap, zap.level * 5);
   }
 
   override bool IsSuitableForWeapon(TFLV::WeaponInfo info) {
@@ -161,16 +163,30 @@ class ::Thunderbolt : ::DotModifier {
   }
 
   override void GetTooltipFields(Dictionary fields, uint level) {
-    fields.insert("damage-percent", AsPercent(1.0 - 0.9**level));
-    fields.insert("zap-cap", AsPercent(2 * 0.9**level));
+    fields.insert("stun-duration", AsSeconds(GetStunDuration(level)));
+    fields.insert("radius", AsMeters(GetRadius(level)));
+    fields.insert("cap-multiplier", AsPercent(GetCapMultiplier(level)));
+  }
+
+  static uint GetRadius(uint level) {
+    return 64 + level*64;
+  }
+
+  static uint GetStunDuration(uint level) {
+    return 14 + 7*level;
+  }
+
+  static float GetCapMultiplier(uint level) {
+    return 1.0 + (0.9 ** level);
   }
 }
 
 // Lightning "dot". Doesn't actually do damage over time, but has some other effects.
 class ::ShockDot : ::Dot {
+  uint level; // Shocking Inscription level
   uint chain; // Chain Lightning level
   uint thunderbolt; // Thunderbolt level
-  uint cap; // Cap used for Thunderbolt triggers
+  uint bolt_cap; // Cap used for Thunderbolt triggers
 
   Default {
     // This matches Hexen's lightning weapons.
@@ -196,9 +212,13 @@ class ::ShockDot : ::Dot {
   }
 
   override double GetDamage() {
+    DEBUG("GetDamage() stacks=%f level=%d boltcap=%d",
+      self.stacks, self.level, self.bolt_cap);
     // Thunderbolt triggers once you exceed the softcap by 2x; levels in thunderbolt
     // reduce this, making it easier to trigger
-    if (thunderbolt && stacks > (cap*2) * (0.9 ** thunderbolt)) {
+    if (thunderbolt && bolt_cap && stacks >= bolt_cap * ::Thunderbolt.GetCapMultiplier(thunderbolt)) {
+      DEBUG("tbolt: lv=%d stacks=%f cap=%f (actual: %f)",
+        thunderbolt, stacks, bolt_cap * ::Thunderbolt.GetCapMultiplier(thunderbolt), bolt_cap);
       Kaboom();
     } else {
       --stacks;
@@ -219,18 +239,24 @@ class ::ShockDot : ::Dot {
   }
 
   void Kaboom() {
-    // Base damage is 10% of the target's max health per level, with diminishing
-    // returns.
-    let damage = owner.SpawnHealth() * (1.0 - 0.9**thunderbolt);
-    DEBUG("Target mhp=%d, bolt=%d", target.SpawnHealth(), damage);
-    // It then gets a bonus of +1% damage per stack, minimum 1 point of damage
-    // per stack.
-    damage += max(stacks, damage * 0.01 * stacks);
-    DEBUG("Damage after stack bonus=%d", damage);
+    let scale = 1.0 + 0.01 * stacks;
+    // Apply stun to target.
+    owner.tics += ceil(::Thunderbolt.GetStunDuration(thunderbolt) * scale);
+    bolt_cap = ceil(bolt.cap * 1.25);
+    stacks = stacks/2.0;
 
+    // Cut current stacks in half and apply those to everything in the vicinity.
+    Array<Actor> targets;
+    TFLV::Util.MonstersInRadius(owner, ceil(::Thunderbolt.GetRadius(thunderbolt) * scale), targets);
+    for (uint i = 0; i < targets.size(); ++i) {
+      if (targets[i] == owner) continue;
+
+      let zap = ::ShockDot(
+        ::Dot.GiveStacks(self.target, targets[i], "::ShockDot", stacks, thunderbolt*5));
+      zap.stacks = max(zap.stacks, self.stacks);
+      zap.bolt_cap = max(zap.bolt_cap, zap.level * 5);
+    }
     owner.Spawn("::Thunderbolt::VFX", owner.pos);
-    owner.DamageMobj(self, self.target, damage, "Electric", DMG_THRUSTLESS);
-    stacks = 0;
   }
 
   override void OwnerDied() {
@@ -244,7 +270,7 @@ class ::ShockDot : ::Dot {
     let src = ::ShockDot(_src);
     self.chain = max(self.chain, src.chain);
     self.thunderbolt = max(self.thunderbolt, src.thunderbolt);
-    self.cap = max(self.cap, src.cap);
+    self.bolt_cap = max(self.bolt_cap, src.bolt_cap);
   }
 }
 

@@ -144,13 +144,13 @@ class ::BaseUpgrade : Object play {
   // to modify projectiles in flight use OnProjectileCreated, and to add on-hit
   // effects (which, for hitscans, is the only way to add effects at all), use
   // OnDamageDealt.
-  virtual double ModifyDamageDealt(Actor pawn, Actor shot, Actor target, double damage) {
+  virtual double ModifyDamageDealt(Actor pawn, Actor shot, Actor target, double damage, Name attacktype) {
     return damage;
   }
 
   // As ModifyDamageDealt but called when something else is about to damage the
   // player.
-  virtual double ModifyDamageReceived(Actor pawn, Actor shot, Actor attacker, double damage) {
+  virtual double ModifyDamageReceived(Actor pawn, Actor shot, Actor attacker, double damage, Name attacktype) {
     return damage;
   }
 
@@ -193,8 +193,8 @@ class ::BaseUpgrade : Object play {
   static string AsPercent(double mult) {
     return string.format("%d%%", mult * 100);
   }
-  // 0.25 -> +25%
-  static string AsPercentIncrease(double mult) { return "+"..AsPercent(mult); }
+  // 1.25 -> +25%
+  static string AsPercentIncrease(double mult) { return "+"..AsPercent(mult - 1.0); }
   // 0.25 -> -75%, e.g. all damage taken x0.25 is a 75% damage reduction
   static string AsPercentDecrease(double mult) {
     return string.format("-%d%%", (1.0 - mult) * 100);
@@ -202,6 +202,14 @@ class ::BaseUpgrade : Object play {
   // 64 -> 2m
   static string AsMeters(uint u) {
     return string.format("%dm", u/32);
+  }
+  // 28 -> 0.8s
+  static string AsSeconds(uint tics) {
+    if (tics % 35 == 0) {
+      return string.format("%ds", tics/35);
+    } else {
+      return string.format("%.1fs", tics/35.0);
+    }
   }
 
   // INTERNAL DETAILS //

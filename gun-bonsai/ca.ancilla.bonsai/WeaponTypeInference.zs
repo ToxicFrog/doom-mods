@@ -59,6 +59,8 @@ extend class ::WeaponInfo {
   }
 
   void InferWeaponTypeFromProjectile(Actor shot) {
+    DEBUG("InferWeaponType: is projectile; fast=%d bouncy=%d seeker=%d ripper=%d",
+      (shot is "FastProjectile"), shot.bBOUNCEONWALLS, shot.bSEEKERMISSILE, shot.bRIPPER);
     ++projectiles;
     if (shot is "FastProjectile") ++fastprojectiles;
     if (shot.bBOUNCEONWALLS) ++bouncers;
@@ -73,7 +75,11 @@ extend class ::WeaponInfo {
     if (shot && shot.weaponspecial != ::Upgrade::PRI_MISSING) return;
     // Record fast-moving projectiles (>300 wu/tic) as hitscans, for mods like
     // HDest that use very fast projectiles to simulate bullet drop and stuff.
-    if (shot && shot.bMISSILE && shot.speed < 300) {
+    DEBUG("InferWeaponType: %s missile=%d speed=%d", TAG(shot), shot.bMISSILE, shot.speed);
+    // HACK HACK HACK -- assume that projectiles with speed=0 are puffs, not
+    // shots -- this fixes the Railgun in Pandemonia and I don't think it breaks
+    // anything else?
+    if (shot && shot.bMISSILE && shot.speed > 0 && shot.speed < 300) {
       InferWeaponTypeFromProjectile(shot);
     } else {
       // TODO: burstfire hitscan tracking

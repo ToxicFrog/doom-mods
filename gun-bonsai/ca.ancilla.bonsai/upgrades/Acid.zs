@@ -19,7 +19,7 @@
 // stacks die instantly.
 
 #namespace TFLV::Upgrade;
-#debug off
+#debug off;
 
 class ::CorrosiveShots : ::ElementalUpgrade {
   override ::UpgradeElement Element() { return ::ELEM_ACID; }
@@ -31,8 +31,8 @@ class ::CorrosiveShots : ::ElementalUpgrade {
 
   override void GetTooltipFields(Dictionary fields, uint level) {
     fields.insert("conversion", AsPercent(0.5 + 0.1*level));
-    fields.insert("min-damage", ""..level);
-    fields.insert("max-damage", ""..(10*level));
+    fields.insert("min-damage", ""..(level*5));
+    fields.insert("max-damage", ""..(level*30));
   }
 }
 
@@ -85,7 +85,7 @@ class ::Embrittlement : ::DotModifier {
   }
 
   override void GetTooltipFields(Dictionary fields, uint level) {
-    fields.insert("damage-increase", AsPercentIncrease(level*0.01));
+    fields.insert("damage-increase", AsPercentIncrease(1.0 + level*0.01));
     fields.insert("instakill", AsPercent(1/(1+0.1*level)));
   }
 }
@@ -173,10 +173,10 @@ class ::AcidDot : ::Dot {
     double threshold = 0.5 * (2.0 - (0.8 ** concentration));
     double damage;
     if (hp > threshold) {
-      damage = 0.2 * level; // 5 dot ticks per second
+      damage = 1 * level; // 5 dot ticks per second = 5 dps/level
     } else {
-      // Below that it scales up to 10*level
-      damage = max(0.2, (1-hp/threshold)*2*max(1,level));
+      // Below that it scales up to 30*level/second once the target is at 10% health
+      damage = max(level, min(1.0, 1.2 - hp/threshold)*6*level);
     }
     DEBUG("acid hp=%f threshold=%f stacks=%f damage=%f", hp, threshold, stacks, damage);
     damage = min(damage, stacks);

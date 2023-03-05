@@ -1,5 +1,5 @@
 #namespace TFLV::Upgrade;
-#debug on;
+#debug off;
 
 class ::Cleave : ::BaseUpgrade {
   override void OnKill(PlayerPawn pawn, Actor shot, Actor target) {
