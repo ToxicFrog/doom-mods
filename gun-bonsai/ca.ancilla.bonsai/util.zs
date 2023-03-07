@@ -2,6 +2,11 @@
 #debug off;
 
 class ::Util : Object {
+  static string DebugTag(Actor act) {
+    if (!act) return "null";
+    return string.format("%s[%p]", act.GetTag(), act);
+  }
+
   static uint MonstersInRadius(Actor origin, double radius, out Array<Actor> found) {
     BlockThingsIterator it = BlockThingsIterator.Create(origin, radius);
     found.clear();

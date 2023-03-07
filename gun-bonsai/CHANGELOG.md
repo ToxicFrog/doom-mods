@@ -20,6 +20,7 @@ ones. The new upgrades, in particular, will probably need balance tweaks in the
   - `Hazard Suit`: reduces environmental damage (e.g. hurtfloors).
   - `Bandoliers`: increases ammo capacity for all weapons.
   - Level-up menus now let you view the tooltips for, and toggle on and off, the upgrades you already have.
+  - Enemies affected by `Hallucinogens` now have rainbow particles/flashes.
 - Balance:
   - `Thunderbolt` is now the intermediate lightning upgrade.
   - `Thunderbolt` is now a temporary stun and AoE slow, rather than a damage bonus.
@@ -34,14 +35,20 @@ ones. The new upgrades, in particular, will probably need balance tweaks in the
   - `Swiftness` transition period from time stop to normal speed increased from 0.5s to 1.8s
   - `Swiftness` transition period runs at 50-75% normal speed rather than 25%.
   - Acid damage buffed; it now starts at 5 dps and ramps up to 30 from 50%->10% hp, rather than 1->10 dps from 50%->0% hp. The total amount of damage remains the same but it is inflicted more quickly.
-  - Major redesign of `Revivification` and `Shield`; see below.
+  - `Hallucinogens` cause enemies to deal and receive 1 damage vs. players.
+  - `Hallucinogens` cause poison to tick down more slowly.
+  - `Submunitions` producer fewer bomblets
+  - `Submunitions` do damage based on target total HP, split across all bomblets
+  - `Submunitions` bomblets do full damage to enemies anywhere in the blast radius
+  - **Major redesign of `Revivification` and `Shield`; see below.**
 - `Revivification` changes:
   - Revivification now gives you a single minion. It sticks around until it either dies, or you kill something more powerful (which replaces it).
   - Revivification always succeeds, if the target can be raised at all.
   - After a period of time out of combat, your minion will unsummon; it will reappear at your location the next time you take damage.
-  - Minions are hasted (+ALWAYSFAST) if the underlying actor supports it.
   - Minions inherit most of your offensive upgrades. This potentially makes them much more powerful.
   - Each weapon with Revivification on it hosts a different minion; putting away your weapon will unsummon its minion, and drawing it will summon it again.
+  - From level 2 onwards, minions are hasted and aggressive (+ALWAYSFAST and +MISSILEMORE).
+  - From level 3 onwards, they are even more aggressive and can fly (+FLOAT, +NOGRAVITY, and +MISSILEEVENMORE).
 - `Shield` changes:
   - Shield is now melee-only and cannot appear on wimpy weapons.
   - Shield provides significantly improved protection against melee attacks
@@ -59,9 +66,15 @@ ones. The new upgrades, in particular, will probably need balance tweaks in the
   - Code that needs to find all monsters in an area now uses `BlockThingsIterator` rather than `A_Explode`+`DoSpecialDamage`. This should improve both performance and maintainability. Thanks to RatCircus for pointing me in the right direction.
   - `Homing Shots` now checks line of sight to the monster it's locked onto and does not change course until it has a clear flight path. In conjunction with the balance changes above they should now be much less prone to flying into the floor/ceiling.
   - More HUD and menu elements (the Lv. and XP abbreviations and the Level header) are now drawn from the LANGUAGE lumps.
+  - `Burning Terror` now properly checks to see if it should wear off.
   - `Burning Terror` has the intended ~20%/second chance to wear off once the enemy stops burning rather than a ~97%/second chance.
   - `ModifyDamageDealt` and `ModifyDamageReceived` are now aware of the damagetype and can use it to make decisions
   - 0-speed "projectiles" are now guessed to be puffs instead; this fixes the Railgun in Pandemonia being mis-detected as a projectile weapon.
+  - If `bonsai_use_builtin_actors` is false, it will fall back to generating multiple small health/armour drops if, for some reason, it can't generate one big one.
+  - `Bouncy Shots` now actually bounce the listed number of times.
+  - `Revivification` and `Hallucinogens` should no longer make it impossible to get 100% kills under some circumstances.
+  - `Submunitions` bomblet spawning and despawning is smeared across multiple tics
+  - Weapons with alternate powered-up forms (e.g. via the Heretic Tome of Power) now have the same XP cost to level up as their non-powered-up form, even if they are a different weapon type. This also fixes some issues with weapons marked as "equivalent" in some mods that require different amounts of XP to level up.
 
 # 0.9.8
 

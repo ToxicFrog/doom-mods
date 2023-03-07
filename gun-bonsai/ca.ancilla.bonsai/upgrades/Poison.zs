@@ -63,7 +63,19 @@ class ::Hallucinogens : ::DotModifier {
   }
 
   override void GetTooltipFields(Dictionary fields, uint level) {
-    fields.insert("increase", AsPercentIncrease(1.0 + 0.01 * level));
+    fields.insert("increase", AsPercentIncrease(GetDamageFactor(level, 1)));
+    fields.insert("armour", AsPercentDecrease(GetArmourFactor(level, 1)));
+    fields.insert("poisonrate", AsPercent(GetPoisonFactor(level)));
+  }
+
+  static double GetDamageFactor(uint level, double stacks) {
+    return 1.0 + 0.01 * level * stacks;
+  }
+  static double GetArmourFactor(uint level, double stacks) {
+    return (0.95 ** level) ** stacks;
+  }
+  static double GetPoisonFactor(uint level) {
+    return 0.5 ** level;
   }
 }
 
@@ -100,7 +112,11 @@ class ::PoisonDot : ::Dot {
 
   override string GetParticleColour() {
     static const string colours[] = { "green", "green1", "black" };
-    return colours[random(0,2)];
+    static const string hallu[] = { "red", "orange", "yellow", "green1", "blue", "purple" };
+    if (!owner.bFRIENDLY)
+      return colours[random(0,2)];
+    else
+      return hallu[random(0,5)];
   }
 
   override double GetParticleZV() {
@@ -116,33 +132,56 @@ class ::PoisonDot : ::Dot {
     DEBUG("GetDamage: hallu=%d damage=%f health=%d", hallucinogens, GetTotalDamage(), owner.health);
     if (hallucinogens > 0 && GetTotalDamage() >= owner.health && !owner.bFRIENDLY) {
       DEBUG("Made the %s friendly!", owner.GetClassName());
-      owner.bFRIENDLY = true;
+      owner.A_SetFriendly(true);
       owner.bDONTHARMCLASS = false;
       owner.bDONTHARMSPECIES = false;
     }
     DEBUG("poison stacks=%f damage=%f", stacks, (stacks**0.5 / 2.0));
-    stacks -= 0.2;
-    return (stacks+0.2)**0.5 / 2.0; // poison damage scales with square root of remaining seconds
+    double factor = 1.0;
+    if (owner.bFRIENDLY) factor = ::Hallucinogens.GetPoisonFactor(hallucinogens);
+    double delta = 0.2 * factor;
+    stacks -= delta;
+    return ((stacks+delta)**0.5 / 2.0) * factor; // poison damage scales with square root of remaining seconds
   }
 
   // Damage modifier for Weakness and Hallucinogens upgrades.
-  // TODO: hallu enemies should take reduced damage from the player and have
-  // poison tick more slowly.
+  // TODO: there should be some visual effect when hallu kicks in other than the
+  // particles changing colour, so the player knows when to switch targets even
+  // if they don't have DamNums installed.
   override void ModifyDamage(
       int damage, Name damageType, out int newdamage, bool passive,
       Actor inflictor, Actor source, int flags) {
+    if (owner.bFRIENDLY && damageType != "Poison") {
+      // Hallucinating enemies have special damage rules.
+      newdamage = ModifyDamageWhileHallucinating(damage, passive, source);
+      DEBUG("Hallucinating: %d damage (pasv=%d) -> %d", damage, passive, newdamage);
+      return;
+    }
+    // No effect on incoming damage or if poison has worn off or does not have
+    // any levels in Weakness.
     if (passive || damage <= 0 || weakness <= 0 || stacks <= 0) {
       return;
     }
-
-    // Outgoing damage. Scale it down based on the number of poison stacks.
-    // ...unless the monster is friendly, in which case it gets stronger.
-    if (owner.bFRIENDLY) {
-      newdamage = ceil(damage * (1.0 + 0.01 * stacks * hallucinogens));
-    } else {
-      newdamage = max(1, floor(damage * 0.99 ** (stacks * weakness)));
-    }
+    // Scale damage down based on total stacks + weakness level.
+    newdamage = max(1, floor(damage * 0.99 ** (stacks * weakness)));
     DEBUG("Weakness: %d -> %d", damage, newdamage);
+  }
+
+  // Called for damage dealt or received while under the influence of Hallucinogens.
+  // Incoming damage is reduced and outgoing damage to non-players is increased.
+  int ModifyDamageWhileHallucinating(int damage, bool passive, Actor source) {
+    if (source.player) {
+      // Hallucinating enemies deal and receive 1 damage vs. players.
+      return 1;
+    }
+
+    if (passive) {
+      // Incoming damage reduced
+      return max(1, floor(damage * ::Hallucinogens.GetArmourFactor(hallucinogens, stacks)));
+    } else {
+      // Outgoing damage increased.
+      return ceil(damage * ::Hallucinogens.GetDamageFactor(hallucinogens, stacks));
+    }
   }
 
   override void CopyFrom(::Dot _src) {
