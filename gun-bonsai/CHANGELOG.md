@@ -74,6 +74,7 @@ ones. The new upgrades, in particular, will probably need balance tweaks in the
   - `Bouncy Shots` now actually bounce the listed number of times.
   - `Revivification` and `Hallucinogens` should no longer make it impossible to get 100% kills under some circumstances.
   - `Submunitions` bomblet spawning and despawning is smeared across multiple tics
+  - Weapons with alternate powered-up forms (e.g. via the Heretic Tome of Power) now have the same XP cost to level up as their non-powered-up form, even if they are a different weapon type. This also fixes some issues with weapons marked as "equivalent" in some mods that require different amounts of XP to level up.
 
 # 0.9.8
 
