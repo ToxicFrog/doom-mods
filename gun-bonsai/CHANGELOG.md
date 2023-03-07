@@ -45,9 +45,10 @@ ones. The new upgrades, in particular, will probably need balance tweaks in the
   - Revivification now gives you a single minion. It sticks around until it either dies, or you kill something more powerful (which replaces it).
   - Revivification always succeeds, if the target can be raised at all.
   - After a period of time out of combat, your minion will unsummon; it will reappear at your location the next time you take damage.
-  - Minions are hasted (+ALWAYSFAST) if the underlying actor supports it.
   - Minions inherit most of your offensive upgrades. This potentially makes them much more powerful.
   - Each weapon with Revivification on it hosts a different minion; putting away your weapon will unsummon its minion, and drawing it will summon it again.
+  - From level 2 onwards, minions are hasted and aggressive (+ALWAYSFAST and +MISSILEMORE).
+  - From level 3 onwards, they are even more aggressive and can fly (+FLOAT, +NOGRAVITY, and +MISSILEEVENMORE).
 - `Shield` changes:
   - Shield is now melee-only and cannot appear on wimpy weapons.
   - Shield provides significantly improved protection against melee attacks

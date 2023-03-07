@@ -353,11 +353,22 @@ class ::Revivification::Aux : Actor {
     // Make it friendly and ethereal.
     tracer.A_SetFriendly(true);
     tracer.SetFriendPlayer(self.target.player);
-    tracer.bDONTFOLLOWPLAYERS = false;
-    tracer.bALWAYSFAST = true;
-    tracer.bSOLID = false;
     tracer.A_SetRenderStyle(1.0, STYLE_SHADED);
     tracer.SetShade("8080FF");
+    tracer.bDONTFOLLOWPLAYERS = false;
+    tracer.bSOLID = false;
+    tracer.bDONTHARMCLASS = false;
+    tracer.bDONTHARMSPECIES = false;
+
+    if (upgrade.level >= 2) {
+      tracer.bALWAYSFAST = true;
+      tracer.bMISSILEMORE = true;
+    }
+    if (upgrade.level >= 3) {
+      tracer.bFLOAT = true;
+      tracer.bNOGRAVITY = true;
+      tracer.bMISSILEEVENMORE = true;
+    }
 
     // Give it the force that applies the buff to revivified minions.
     let buff = ::Revivification::AuxBuff(tracer.GiveInventoryType("::Revivification::AuxBuff"));
