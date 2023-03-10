@@ -180,7 +180,7 @@ class ::Thunderbolt : ::DotModifier {
   }
 
   static uint GetStunDuration(uint level) {
-    return 14 + 7*level;
+    return 5 + 5*level;
   }
 
   static float GetCapMultiplier(uint level) {
