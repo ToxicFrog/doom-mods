@@ -22,7 +22,7 @@ class ::ExplosiveShots : ::BaseUpgrade {
   }
 
   override void GetTooltipFields(Dictionary fields, uint level) {
-    fields.insert("radius", string.format("%.1fm", (64 + 16*level)/32.0));
+    fields.insert("radius", AsMeters(64 + 16*level));
     fields.insert("damage", AsPercent(level * 0.1));
     fields.insert("min-damage", ""..level);
   }

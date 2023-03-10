@@ -199,16 +199,21 @@ class ::BaseUpgrade : Object play {
   static string AsPercentDecrease(double mult) {
     return string.format("-%d%%", (1.0 - mult) * 100);
   }
-  // 64 -> 2m
+  // 64 -> 2m; 80 -> 2.5m
   static string AsMeters(uint u) {
-    return string.format("%dm", u/32);
+    if (u % 32 == 0) {
+      return string.format(StringTable.Localize("$TFLV_TT_METERS_INT"), u/32);
+    } else {
+      return string.format(StringTable.Localize("$TFLV_TT_METERS_REAL"), u/32.0);
+    }
   }
-  // 28 -> 0.8s
+
+  // 28 -> 0.8s; 70 -> 2s
   static string AsSeconds(uint tics) {
     if (tics % 35 == 0) {
-      return string.format("%ds", tics/35);
+      return string.format(StringTable.Localize("$TFLV_TT_SECONDS_INT"), tics/35);
     } else {
-      return string.format("%.1fs", tics/35.0);
+      return string.format(StringTable.Localize("$TFLV_TT_SECONDS_REAL"), tics/35.0);
     }
   }
 

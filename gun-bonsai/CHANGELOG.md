@@ -12,6 +12,7 @@ ones. The new upgrades, in particular, will probably need balance tweaks in the
 
 - New:
   - Russian translation! Thank you Blueberryy for the contribution.
+  - More HUD elements and abbreviations are now in the LANGUAGE lump.
   - Cool fizzy effect when a Revivification minion dies.
   - `Sweep`: a melee-only upgrade that hits multiple enemies whenever you attack.
   - `Cleave`: a melee-only upgrade that gives you free attacks with every kill.
