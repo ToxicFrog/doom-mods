@@ -193,15 +193,28 @@ class ::BaseUpgrade : Object play {
   static string AsPercent(double mult) {
     return string.format("%d%%", mult * 100);
   }
-  // 0.25 -> +25%
-  static string AsPercentIncrease(double mult) { return "+"..AsPercent(mult); }
+  // 1.25 -> +25%
+  static string AsPercentIncrease(double mult) { return "+"..AsPercent(mult - 1.0); }
   // 0.25 -> -75%, e.g. all damage taken x0.25 is a 75% damage reduction
   static string AsPercentDecrease(double mult) {
     return string.format("-%d%%", (1.0 - mult) * 100);
   }
-  // 64 -> 2m
+  // 64 -> 2m; 80 -> 2.5m
   static string AsMeters(uint u) {
-    return string.format("%dm", u/32);
+    if (u % 32 == 0) {
+      return string.format(StringTable.Localize("$TFLV_TT_METERS_INT"), u/32);
+    } else {
+      return string.format(StringTable.Localize("$TFLV_TT_METERS_REAL"), u/32.0);
+    }
+  }
+
+  // 28 -> 0.8s; 70 -> 2s
+  static string AsSeconds(uint tics) {
+    if (tics % 35 == 0) {
+      return string.format(StringTable.Localize("$TFLV_TT_SECONDS_INT"), tics/35);
+    } else {
+      return string.format(StringTable.Localize("$TFLV_TT_SECONDS_REAL"), tics/35.0);
+    }
   }
 
   // INTERNAL DETAILS //

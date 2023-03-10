@@ -3,7 +3,7 @@
 
 class ::Bandoliers : ::BaseUpgrade {
   float AmmoBonus(uint level) {
-    return 0.5 * level;
+    return 1.0 + 0.5 * level;
   }
 
   void UpdateAmmoCaps(Actor player, float bonus) {
@@ -20,7 +20,7 @@ class ::Bandoliers : ::BaseUpgrade {
 
   override void OnActivate(TFLV::PerPlayerStats stats, TFLV::WeaponInfo info) {
     super.OnActivate(stats, info);
-    UpdateAmmoCaps(stats.owner, 1.0 + AmmoBonus(self.level));
+    UpdateAmmoCaps(stats.owner, AmmoBonus(self.level));
   }
 
   override void OnDeactivate(TFLV::PerPlayerStats stats, TFLV::WeaponInfo info) {

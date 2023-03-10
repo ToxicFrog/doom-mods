@@ -56,7 +56,7 @@ end
 
 local function replace_tag(argv)
   argv = argv:sub(2,-2)
-  return string.format('(%s?%s.GetTag():"null")', argv, argv)
+  return string.format('TFLV_Util.DebugTag(%s)', argv, argv, argv)
 end
 
 table.insert(lines, '')

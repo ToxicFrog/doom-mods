@@ -16,23 +16,19 @@ class ::AggressiveDefence : ::BaseUpgrade {
   }
 
   float GetBonus(uint level) {
-    return 0.01 * level;
+    return 1.0 + 0.01 * level;
   }
 
   override void OnDamageDealt(Actor pawn, Actor shot, Actor target, int damage) {
     if (!shot || !target) return;
-    let radius = GetRadius(self.level) * (1.0 + GetBonus(self.level));
+    let radius = GetRadius(self.level) * GetBonus(self.level);
     ThinkerIterator it = ThinkerIterator.Create("Actor", Thinker.STAT_DEFAULT);
-    Actor projectile;
-    while (projectile = Actor(it.next())) {
-      if ((projectile.target && projectile.target.player) || target.Distance3D(projectile) > radius) {
-        // Skip shots that are owned by a player and shots that are too far away
-        // from the target.
+    Actor act;
+    while (act = Actor(it.next())) {
+      if (!act.bMISSILE || (act.target && act.target.player) || act.Distance3D(target) > radius)
+        // Skip things that aren't missiles, and missiles which are controlled by a player.
         continue;
-      }
-      projectile.SetStateLabel("Death");
+      act.SetStateLabel("Death");
     }
   }
-
 }
-

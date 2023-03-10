@@ -70,7 +70,7 @@ class ::ElementalUpgrade : ::BaseUpgrade {
         && (upgrades.Level("::Embrittlement") + upgrades.Level("::AcidSpray")) == 0)
       return ::ELEM_ACID;
     if (upgrades.Level("::ShockingInscription") > 0
-        && (upgrades.Level("::ChainLightning") + upgrades.Level("::Thunderbolt")) == 0)
+        && (upgrades.Level("::ChainLightning") + upgrades.Level("::Revivification")) == 0)
       return ::ELEM_LIGHTNING;
     return ::ELEM_NULL;
   }

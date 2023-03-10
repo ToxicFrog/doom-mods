@@ -48,10 +48,13 @@ class ::Swiftness::Aux : PowerupGiver {
 // it down.
 // We work around this by:
 // (a) adding 128t to the duration, so that time stops immediately
-// (b) once the time remaining drops below (128+32), setting it to 48, giving us
-//     a 75% slowdown, and then
-// (c) once it drops below 32, cancelling the effect.
-// This gives us a ramp from full time stop to normal speed in half a second.
+// (b) once the time remaining drops below 128, setting it to 64, giving the
+//     player about 1.8s of slowdown before it wears off.
+// This gives us a ramp from full time stop to normal speed in about two seconds,
+// and also gives the player a "grace period" where if they make more kills while
+// it's in slowdown, they get the "kill made while swiftness active" bonus, which
+// is good for projectile weapons, especially in mods like HDest and Pandemonia
+// where even bullets and lasers are very fast projectiles.
 class ::Swiftness::Power : PowerTimeFreezer {
   override void InitEffect() {
     EffectTics = 128 + ::Swiftness.GetCap(strength, amount);
@@ -62,8 +65,7 @@ class ::Swiftness::Power : PowerTimeFreezer {
 
   override void DoEffect() {
     super.DoEffect();
-    if (EffectTics <= 32) EffectTics = 1;
-    else if (EffectTics <= 128 && EffectTics > 64) EffectTics = 48;
+    if (EffectTics <= 128 && EffectTics > 64) EffectTics = 64;
   }
 
   override bool CanPickup(Actor other) { return true; }
