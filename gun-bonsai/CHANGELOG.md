@@ -11,6 +11,7 @@ ones. The new upgrades, in particular, will probably need balance tweaks in the
 0.10.x update series.
 
 - New:
+  - Russian translation! Thank you Blueberryy for the contribution.
   - Cool fizzy effect when a Revivification minion dies.
   - `Sweep`: a melee-only upgrade that hits multiple enemies whenever you attack.
   - `Cleave`: a melee-only upgrade that gives you free attacks with every kill.
