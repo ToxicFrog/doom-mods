@@ -174,3 +174,13 @@ ifdef DustFist {
   # Railgun puffs have the +MISSILE flag, which confuses weapon type inference.
   # type DustRailgun: HITSCAN;  # Believed to be fixed now
 }
+
+# Project Brutality
+ifdef PB_Shotgun {
+  # Incorrectly flagged as melee.
+  type PB_SSG: HITSCAN;
+  # Incorrectly flagged as wimpy.
+  type PB_Carbine Rifle: HITSCAN;
+  # Incompatible with fancy weapon switch animations.
+  unregister TFLV_Upgrade_Juggler;
+}
