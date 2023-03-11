@@ -19,16 +19,21 @@ class ::AggressiveDefence : ::BaseUpgrade {
     return 1.0 + 0.01 * level;
   }
 
+  static bool IsEnemyMissile(Actor act) {
+    return act.bMISSILE // Must be missile-flagged
+      && (!act.target || !act.target.player) // Not owned by a player
+      && act.speed < 300; // Super-fast missiles are ersatz hitscans
+  }
+
   override void OnDamageDealt(Actor pawn, Actor shot, Actor target, int damage) {
     if (!shot || !target) return;
     let radius = GetRadius(self.level) * GetBonus(self.level);
     ThinkerIterator it = ThinkerIterator.Create("Actor", Thinker.STAT_DEFAULT);
     Actor act;
     while (act = Actor(it.next())) {
-      if (!act.bMISSILE || (act.target && act.target.player) || act.Distance3D(target) > radius)
-        // Skip things that aren't missiles, and missiles which are controlled by a player.
+      if (!IsEnemyMissile(act) || act.Distance3D(target) > radius)
         continue;
-      act.SetStateLabel("Death");
+      act.Die(pawn, shot);
     }
   }
 }

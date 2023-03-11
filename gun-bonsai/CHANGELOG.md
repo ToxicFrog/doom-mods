@@ -3,6 +3,7 @@
 - Fix:
   - Some weapons in Project Brutality were incorrectly flagged as melee or wimpy.
   - Crash when using the Shield upgrade.
+  - Aggressive Defence was not properly disposing of some missiles, allowing them to still hit the player.
 
 # 0.10.0
 
