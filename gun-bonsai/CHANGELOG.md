@@ -2,6 +2,8 @@
 
 - Fix:
   - Some weapons in Project Brutality were incorrectly flagged as melee or wimpy.
+  - Crash when using the Shield upgrade.
+
 # 0.10.0
 
 This release changes a lot. While it is save compatible with 0.9.x in the sense

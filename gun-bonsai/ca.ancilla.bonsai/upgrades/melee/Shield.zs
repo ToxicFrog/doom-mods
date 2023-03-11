@@ -21,7 +21,7 @@ class ::Shield : ::BaseUpgrade {
 
   override double ModifyDamageReceived(Actor pawn, Actor shot, Actor attacker, double damage, Name attacktype) {
     DEBUG("Shield: ticks=%d", ticks);
-    if (!ticks) return damage;
+    if (!ticks || !pawn || !attacker) return damage;
     let range = pawn.Distance3D(attacker);
     double short_range = ShortRange(level);
     double long_range = LongRange(level);
