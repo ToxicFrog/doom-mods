@@ -23,8 +23,8 @@ class ::Swiftness : ::BaseUpgrade {
   }
 
   override void GetTooltipFields(Dictionary fields, uint level) {
-    fields.insert("duration", string.format("%.1fs", GetCap(level, 1)/35.0));
-    fields.insert("combo-bonus", string.format("%.2fs", 5.0/35.0));
+    fields.insert("duration", AsSeconds(GetCap(level, 1)));
+    fields.insert("combo-bonus", AsSeconds(5));
   }
 }
 

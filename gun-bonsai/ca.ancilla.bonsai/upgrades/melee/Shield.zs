@@ -64,7 +64,7 @@ class ::Shield : ::BaseUpgrade {
     fields.insert("longrange", AsMeters(LongRange(level)));
     fields.insert("meleedamagepct", AsPercentDecrease(MeleeDamageFactor(level)));
     fields.insert("rangeddamagepct", AsPercentDecrease(RangedDamageFactor(level)));
-    fields.insert("attackttl", string.format("%.1fs", AttackTTL(level)/35.0));
-    fields.insert("killttl", string.format("%.1fs", KillTTL(level)/35.0));
+    fields.insert("attackttl", AsSeconds(AttackTTL(level)));
+    fields.insert("killttl", AsSeconds(KillTTL(level)));
   }
 }
