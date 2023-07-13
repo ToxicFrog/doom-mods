@@ -1,3 +1,8 @@
+# 0.10.2
+
+- Fix:
+  - Crash when loading GB with Adventures of Square
+
 # 0.10.1
 
 - Fix:

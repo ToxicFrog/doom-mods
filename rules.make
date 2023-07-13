@@ -42,7 +42,7 @@ clean: clean.super
 
 ${PK3}: ${LUMPS} ${ZSCRIPT} ${ZSCRIPT_AUTO}
 	rm -f $@
-	zip -qr $@ $^
+	zip -qr $@ $^ --exclude @.pk3ignore
 	ln -sf $@ "${PK3LN}"
 
 %.zsc: %.zs
