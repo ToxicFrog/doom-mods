@@ -3,6 +3,7 @@
 - Fix:
   - Crash when hallucinating monster receives sourceless damage
   - [speculative] Crash in Sweep and Cleave when monsters vanish in mid-attack
+  - Clear target when Revivified minion blinks in, preventing it from remaining obsessed with enemies elsewhere in the map
 
 # 0.10.2
 

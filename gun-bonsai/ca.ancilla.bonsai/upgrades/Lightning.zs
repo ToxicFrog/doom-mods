@@ -428,6 +428,7 @@ class ::Revivification::AuxBuff : Inventory {
     owner.bSHOOTABLE = true;
     owner.Warp(Controller());
     owner.Activate(self);
+    owner.target = null;
     VFX();
     SetStateLabel("Spawn");
   }
