@@ -1,3 +1,9 @@
+# 0.10.3
+
+- Fix:
+  - Crash when hallucinating monster receives sourceless damage
+  - [speculative] Crash in Sweep and Cleave when monsters vanish in mid-attack
+
 # 0.10.2
 
 - Fix:

@@ -170,7 +170,7 @@ class ::PoisonDot : ::Dot {
   // Called for damage dealt or received while under the influence of Hallucinogens.
   // Incoming damage is reduced and outgoing damage to non-players is increased.
   int ModifyDamageWhileHallucinating(int damage, bool passive, Actor source) {
-    if (source.player) {
+    if (source && source.player) {
       // Hallucinating enemies deal and receive 1 damage vs. players.
       return 1;
     }

@@ -9,7 +9,7 @@ class ::Cleave : ::BaseUpgrade {
     Array<Actor> targets;
     TFLV::Util.MonstersInRadius(pawn, radius, targets);
     for (uint i = 0; i < targets.size(); ++i) {
-      if (targets[i] == target) continue;
+      if (!targets[i] || targets[i] == target) continue;
       DEBUG("Range to target %s is %f and it has %d health",
         TAG(targets[i]), target.Distance3D(targets[i]), targets[i].health);
       ::Cleave::Aux aux = ::Cleave::Aux(pawn.Spawn("::Cleave::Aux"));

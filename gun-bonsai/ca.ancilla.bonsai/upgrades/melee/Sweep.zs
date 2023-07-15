@@ -13,7 +13,9 @@ class ::Sweep : ::BaseUpgrade {
     for (uint i = 0; i < targets.size(); ++i) {
       DEBUG("Range to target %s is %f", TAG(targets[i]), target.Distance3D(targets[i]));
       // Target also needs to be in melee range of the thing we're attacking
-      if (target.Distance3D(targets[i]) > radius) continue;
+      // Double check that targets[i] exists since apparently sometimes monsters
+      // found by MonstersInRadius can vanish while we're processing it?!
+      if (!targets[i] || target.Distance3D(targets[i]) > radius) continue;
       // Don't double-dip
       if (target == targets[i]) continue;
       DEBUG("Damaging sweep target %s for %d", TAG(targets[i]), damage);
