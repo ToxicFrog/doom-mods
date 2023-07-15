@@ -23,8 +23,8 @@ LIBTTM_ZS+=${ZSDIR}/libtooltipmenu/TooltipOptionMenu.zsc
 LIBTTM_ZS+=${ZSDIR}/libtooltipmenu/Tooltips.zsc
 ZSCRIPT+=${LIBTTM_ZS}
 ZSCRIPT_TO_CLEAN+=${LIBTTM_ZS}
-${ZSDIR}/libtooltipmenu/%:
-	sed -E 's,TF_,${LIBTTM_PREFIX}_,g; s,ItemTooltip,Item${LIBTTM_PREFIX}_Tooltip,g' ${LIBTTM}/$* > $@
+${ZSDIR}/libtooltipmenu/%.zsc: ${LIBTTM}/%.zsc
+	sed -E 's,TF_,${LIBTTM_PREFIX}_,g; s,ItemTooltip,Item${LIBTTM_PREFIX}_Tooltip,g' $< > $@
 
 endif # libttm
 endif # zsdir
