@@ -29,6 +29,20 @@ class TF_TooltipListMenu : ListMenu {
       return;
     }
 
+    // Save the selected item so we can restore it later even after all the
+    // item indexes have changed.
+    MenuItemBase selected = null;
+    if (desc.mSelectedItem >= 0 && desc.mSelectedItem < desc.mItems.size()) {
+      int i = desc.mSelectedItem;
+      // ListMenu uses SelectedItem after the default selection to mark it; if
+      // the MENUDEF places it after a tooltip, the default selection will be
+      // the tooltip, not the item it's attached to. So scan backwards until
+      // we find the real item.
+      while (i >= 0 && !desc.mItems[i].Selectable()) { --i; }
+      if (i >= 0)
+        selected = desc.mItems[i];
+    }
+
     // Steal the descriptor's list of menu items, then rebuild it containing
     // only the items we want to display.
     array<ListMenuItem> items;
@@ -67,6 +81,13 @@ class TF_TooltipListMenu : ListMenu {
     // Store our tooltips inside the menu descriptor so we can recover them when
     // the menu is redisplayed.
     desc.mItems.push(ListMenuItemTooltipHolder(new("ListMenuItemTooltipHolder").Init(tooltips)));
+
+    // Restore the originally selected item at its new index.
+    if (selected) {
+      for (uint i = 0; i < desc.mItems.size(); ++i) {
+        if (desc.mItems[i] == selected) { desc.mSelectedItem = i; break; }
+      }
+    }
   }
 }
 

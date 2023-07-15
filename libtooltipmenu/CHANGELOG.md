@@ -1,3 +1,8 @@
+# 0.2.4
+
+- Fix:
+  - `SelectedItem` and `DefaultSelection` were not handled properly, resulting in a default selection further down the menu than intended for some menus.
+
 # 0.2.3
 
 - Fix:
