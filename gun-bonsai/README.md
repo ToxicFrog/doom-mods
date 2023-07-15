@@ -13,7 +13,7 @@ It is inspired primarily by [War of Attrition](https://fissile.duke4.net/fissile
 
 ## Setup
 
-Add `libtooltipmenu-<version>.pk3` and `GunBonsai-<version>.pk3` to your load order. It doesn't matter where, as long as `libtooltipmenu` loads first.
+Add `GunBonsai-<version>.pk3` to your load order. It doesn't matter where.
 
 Gun Bonsai adds one new mandatory command, "Show Info", bound to `I` by default; this shows you information on your character and current weapon, and is used to select upgrades on level-up. If you are playing with Legendoom integration (see below), you will also want to make sure "Cycle Legendoom Power" is bound to something convenient.
 
