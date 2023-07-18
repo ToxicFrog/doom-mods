@@ -214,7 +214,7 @@ class ::IndestructableForce : Inventory {
     // Also don't add more lives if they're already above the max, but don't
     // take any away either (unlike level transitions).
     let max_lives = GetInt("indestructable_max_lives_per_boss");
-    if (lives >= max_lives) return;
+    if (max_lives && lives >= max_lives) return;
 
     let old_lives = lives;
     lives = clamp(
