@@ -1,0 +1,17 @@
+version "2.5"
+
+class BowArrowFixed : BowArrow replaces BowArrow {
+  override int SpecialMissileHit(actor victim) {
+    if (self.victim || victim == self.target || !victim.bSHOOTABLE) {
+      return -1;
+    }
+    // Does 100 damage or 25% of target health, whichever is more. Bosses only
+    // get a flat 100 with no damage scaling.
+    int damage = min(victim.Health, 100);
+    if (victim.Health >= 400 && !victim.bBOSS) {
+      damage = victim.Health/4;
+    }
+    victim.DamageMobj(self, self.target, damage, self.DamageType, DMG_NO_ARMOR);
+    return -1;
+  }
+}

@@ -1,6 +1,7 @@
 MODS=libtooltipmenu gun-bonsai indestructable
+COMPATS:=$(shell ls compat)
 
-all: ${MODS}
+all: ${MODS} ${COMPATS}
 
 clean: clean.libtooltipmenu clean.gun-bonsai clean.indestructable
 
@@ -13,7 +14,10 @@ deploy: all
 ${MODS}:
 	$(MAKE) -C $@ TOPDIR=..
 
+${COMPATS}:
+	$(MAKE) -C compat TOPDIR=.. $@.pk3
+
 deploy: all
-	cp -L release/*-latest.pk3 /ancilla/installs/games/PC/DOOM/Laevis/
+	cp -L release/*-latest.pk3 release/*×*.pk3 /ancilla/installs/games/PC/DOOM/Laevis/
 
 .PHONY: all clean clean.* ${MODS} deploy
