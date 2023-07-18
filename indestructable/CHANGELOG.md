@@ -2,6 +2,7 @@
 
 - Fix:
   - "max lives per boss kill" did not function correctly when set to 0/unlimited
+  - boss kills were not reliably detected
 
 # 0.2.7
 

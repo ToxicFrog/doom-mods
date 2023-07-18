@@ -68,11 +68,11 @@ class ::IndestructableEventHandler : StaticEventHandler {
     }
   }
 
-  override void WorldThingDied(WorldEvent evt) {
-    if (!evt.thing.bBOSS || !evt.inflictor) return;
+  override void WorldThingDamaged(WorldEvent evt) {
+    if (!evt.thing || !evt.damagesource || !evt.thing.bBOSS || evt.thing.health > 0) return;
     let lives = GetInt("indestructable_lives_per_boss");
     if (!lives) return;
-    let pawn = PlayerPawn(evt.inflictor.target);
+    let pawn = PlayerPawn(evt.damagesource);
     if (!pawn) return;
     let force = ::IndestructableForce(pawn.FindInventory("::IndestructableForce"));
     if (!force) return; // PANIC
