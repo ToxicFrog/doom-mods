@@ -2,6 +2,7 @@
 
 - Fix:
   - A few additional option strings are now defined in LANGUAGE and can be localized
+  - Leveling up while somehow having no upgrades available no longer crashes the game
 
 # 0.10.3
 

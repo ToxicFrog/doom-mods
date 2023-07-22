@@ -194,23 +194,27 @@ class ::WeaponInfo : Object play {
     return true;
   }
 
+  void RejectLevelUp() {
+    // Don't adjust maxXP -- they didn't gain a level.
+    wpn.owner.A_Log(StringTable.Localize("$TFLV_MSG_LEVELUP_REJECTED"), true);
+    if (XP >= maxXP) Fanfare();
+    return;
+  }
+
   void FinishLevelUp(::Upgrade::BaseUpgrade upgrade) {
     XP -= maxXP;
-    if (!upgrade) {
-      // Don't adjust maxXP -- they didn't gain a level.
-      wpn.owner.A_Log(StringTable.Localize("$TFLV_MSG_LEVELUP_REJECTED"), true);
-      if (XP >= maxXP) Fanfare();
-      return;
-    }
-
     ++level;
     ::PerPlayerStats.GetStatsFor(wpn.owner).AddPlayerXP(1);
     maxXP = GetXPForLevel(level+1);
-    upgrades.AddUpgrade(upgrade).OnActivate(stats, self);
-    wpn.owner.A_Log(string.format(
-        StringTable.Localize("$TFLV_MSG_WEAPON_LEVELUP"),
-        wpn.GetTag(), upgrade.GetName()),
-      true);
+
+    if (upgrade) {
+      upgrades.AddUpgrade(upgrade).OnActivate(stats, self);
+      wpn.owner.A_Log(string.format(
+          StringTable.Localize("$TFLV_MSG_WEAPON_LEVELUP"),
+          wpn.GetTag(), upgrade.GetName()),
+        true);
+    }
+
     if (XP >= maxXP) Fanfare();
     if (::Settings.have_legendoom()
         && bonsai_gun_levels_per_ld_effect > 0
@@ -218,6 +222,5 @@ class ::WeaponInfo : Object play {
       let ldGiver = ::LegendoomEffectGiver(wpn.owner.GiveInventoryType("::LegendoomEffectGiver"));
       ldGiver.info = self.ld_info;
     }
-
   }
 }

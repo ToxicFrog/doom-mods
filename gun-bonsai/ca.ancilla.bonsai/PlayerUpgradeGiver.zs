@@ -12,6 +12,8 @@ class ::PlayerUpgradeGiver : ::UpgradeGiver {
 
   void InstallUpgrade(int index) {
     if (index < 0) {
+      stats.RejectLevelUp();
+    } else if (candidates.size() == 0) {
       stats.FinishLevelUp(null);
     } else {
       stats.FinishLevelUp(::Upgrade::BaseUpgrade(new(candidates[index].GetClassName())));

@@ -12,6 +12,8 @@ class ::WeaponUpgradeGiver : ::UpgradeGiver {
 
   void InstallUpgrade(int index) {
     if (index < 0) {
+      wielded.RejectLevelUp();
+    } else if (candidates.size() == 0) {
       wielded.FinishLevelUp(null);
     } else {
       wielded.FinishLevelUp(::Upgrade::BaseUpgrade(new(candidates[index].GetClassName())));

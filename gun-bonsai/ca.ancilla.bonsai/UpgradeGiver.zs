@@ -34,8 +34,8 @@ class ::UpgradeGiver : Inventory {
 
   void AwaitChoice(string menuname) {
     DEBUG("%s awaitchoice: %s", self.GetClassName(), menuname);
-    if (candidates.size() == 1) {
-      // Only one option? Skip the menu and auto-choose it.
+    if (candidates.size() <= 1) {
+      // Zero or one options? Skip the menu entirely.
       chosen = 0;
       self.SetStateLabel("Chosen");
       return;

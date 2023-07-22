@@ -250,22 +250,26 @@ class ::PerPlayerStats : Object play {
     return true;
   }
 
+  void RejectLevelUp() {
+    // Player level-ups are expensive, so we take away *half* of a level's
+    // worth of XP.
+    let maxXP = bonsai_gun_levels_per_player_level;
+    XP -= max(1, maxXP/2);
+    owner.A_Log(StringTable.Localize("$TFLV_MSG_LEVELUP_REJECTED"), true);
+    return;
+  }
+
   void FinishLevelUp(::Upgrade::BaseUpgrade upgrade) {
     let maxXP = bonsai_gun_levels_per_player_level;
-    if (!upgrade) {
-      // Player level-ups are expensive, so we take away *half* of a level's
-      // worth of XP.
-      XP -= max(1, maxXP/2);
-      owner.A_Log(StringTable.Localize("$TFLV_MSG_LEVELUP_REJECTED"), true);
-      return;
-    }
-
     XP -= maxXP;
     ++level;
-    upgrades.AddUpgrade(upgrade).OnActivate(self, null);
-    owner.A_Log(string.format(
-      StringTable.Localize("$TFLV_MSG_PLAYER_LEVELUP"), upgrade.GetName()),
-      true);
+
+    if (upgrade) {
+      upgrades.AddUpgrade(upgrade).OnActivate(self, null);
+      owner.A_Log(string.format(
+        StringTable.Localize("$TFLV_MSG_PLAYER_LEVELUP"), upgrade.GetName()),
+        true);
+    }
   }
 
   // Add XP to the current weapon.
