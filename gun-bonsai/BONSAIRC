@@ -162,9 +162,7 @@ ifdef HDWeapon {
 }
 
 # Blade of Agony: ignore unarmed
-ifdef BoAPlayer {
-  type NullWeapon: IGNORE;
-}
+ifdef BoAPlayer { type NullWeapon: IGNORE; }
 
 # Pandemonia fixes.
 ifdef DustFist {
@@ -184,3 +182,6 @@ ifdef PB_Shotgun {
   # Incompatible with fancy weapon switch animations.
   unregister TFLV_Upgrade_Juggler;
 }
+
+# Trailblazer and Dehacked Defence
+ifdef Macheterang DehackedWeaponGiver { unregister TFLV_Upgrade_Bandoliers; }

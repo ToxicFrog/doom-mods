@@ -3,6 +3,7 @@
 - Fix:
   - A few additional option strings are now defined in LANGUAGE and can be localized
   - Leveling up while somehow having no upgrades available no longer crashes the game
+  - Bandoliers upgrade is disabled when Trailblazer or Dehacked Defence is loaded
 
 # 0.10.3
 
