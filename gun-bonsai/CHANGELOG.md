@@ -1,3 +1,8 @@
+# 0.10.4
+
+- Fix:
+  - A few additional option strings are now defined in LANGUAGE and can be localized
+
 # 0.10.3
 
 - Fix:
