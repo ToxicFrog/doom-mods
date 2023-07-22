@@ -9,15 +9,15 @@ clean.%:
 	make -C $* TOPDIR=.. clean
 
 deploy: all
-	cp release/*.pk3 /ancilla/installs/games/PC/DOOM/Laevis/
+	cp -L release/*-latest.pk3 release/*×*.pk3 /ancilla/installs/games/PC/DOOM/Laevis/
+
+check: all
+	gzdoom -iwad freedoom2.wad -file release/*-latest.pk3 +quit
 
 ${MODS}:
 	$(MAKE) -C $@ TOPDIR=..
 
 ${COMPATS}:
 	$(MAKE) -C compat TOPDIR=.. $@.pk3
-
-deploy: all
-	cp -L release/*-latest.pk3 release/*×*.pk3 /ancilla/installs/games/PC/DOOM/Laevis/
 
 .PHONY: all clean clean.* ${MODS} deploy
