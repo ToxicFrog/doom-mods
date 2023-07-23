@@ -1,5 +1,22 @@
 # 0.10.4
 
+**This update breaks configuration compatibility.** If you have set either of the
+"upgrade choices per level" options to "all upgrades", you will need to open the
+options screen and fix them.
+
+- Balance:
+  - `Infernal Kiln`:
+    - softcap at 10 seconds, +5/level
+    - hardcap at 20 seconds, +10/level
+    - charges 2x as fast
+    - adds 1-3 damage/level depending on how charged it is, rather than a flat 2/level
+    - still blocks 2/level, but cannot reduce damage below 1
+    - blocking damage reduces duration by 1 second per 10 damage blocked
+    - These changes are meant to make it more useful at low levels, while also making it impossible to rack up tens of minutes of duration and get effectively permanent damage/armour bonuses and complete immunity to scratch damage.
+- Change:
+  - `bonsai_upgrades_per_gun_level` can now be set to 0 to let you gain levels without actually gaining upgrades
+  - `bonsai_upgrades_per_player_level` likewise
+  - **Check your settings**: if you previously had these set to 0 for "all upgrades", you will need to go into the menu and change them to -1.
 - Fix:
   - A few additional option strings are now defined in LANGUAGE and can be localized
   - Leveling up while somehow having no upgrades available no longer crashes the game

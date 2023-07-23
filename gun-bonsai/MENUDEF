@@ -69,8 +69,8 @@ OptionMenu "GunBonsaiOptions"
 
   TextField "$TFLV_OPT_NAME_BASE_LEVEL_COST", "bonsai_base_level_cost" //, 100, 10000, 100, 0
   TFLV_Tooltip "$TFLV_OPT_TT_BASE_LEVEL_COST"
-  ScaleSlider "$TFLV_OPT_NAME_UPGRADE_CHOICES_PER_GUN_LEVEL", "bonsai_upgrade_choices_per_gun_level", 0, 50, 1, "$TFLV_OPT_SLIDER_ALLUPGRADES"
-  ScaleSlider "$TFLV_OPT_NAME_UPGRADE_CHOICES_PER_PLAYER_LEVEL", "bonsai_upgrade_choices_per_player_level", 0, 50, 1, "$TFLV_OPT_SLIDER_ALLUPGRADES"
+  ScaleSlider "$TFLV_OPT_NAME_UPGRADE_CHOICES_PER_GUN_LEVEL", "bonsai_upgrade_choices_per_gun_level", -1, 50, 1, "$TFLV_OPT_SLIDER_NOUPGRADES", "$TFLV_OPT_SLIDER_ALLUPGRADES"
+  ScaleSlider "$TFLV_OPT_NAME_UPGRADE_CHOICES_PER_PLAYER_LEVEL", "bonsai_upgrade_choices_per_player_level", -1, 50, 1, "$TFLV_OPT_SLIDER_NOUPGRADES", "$TFLV_OPT_SLIDER_ALLUPGRADES"
   TFLV_Tooltip "$TFLV_OPT_TT_UPGRADE_CHOICES_PER_LEVEL"
 
   Slider "$TFLV_OPT_NAME_GUN_LEVELS_PER_PLAYER_LEVEL", "bonsai_gun_levels_per_player_level", 1, 100, 1, 0

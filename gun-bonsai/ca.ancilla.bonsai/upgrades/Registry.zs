@@ -51,7 +51,9 @@ class ::Registry : Object play {
       TFLV::PerPlayerStats stats, Array<::BaseUpgrade> generated) {
     Array<::BaseUpgrade> candidates;
     let nrof = bonsai_upgrade_choices_per_player_level;
-    if (nrof < 0) {
+
+    if (nrof == -2) {
+      // Debug mode -- return all upgrades, even invalid ones.
       generated.Copy(upgrades);
       return;
     }
@@ -61,7 +63,8 @@ class ::Registry : Object play {
         candidates.push(upgrades[i]);
     }
 
-    if (!nrof) {
+    if (nrof == -1) {
+      // "All upgrades" mode
       generated.Copy(candidates);
     } else {
       PickN(generated, candidates, nrof);
@@ -72,7 +75,9 @@ class ::Registry : Object play {
       TFLV::WeaponInfo info, Array<::BaseUpgrade> generated) {
     array<::BaseUpgrade> candidates;
     let nrof = bonsai_upgrade_choices_per_gun_level;
-    if (nrof < 0) {
+
+    if (nrof == -2) {
+      // Debug mode -- return all upgrades, even invalid ones.
       generated.Copy(upgrades);
       return;
     }
@@ -82,7 +87,8 @@ class ::Registry : Object play {
         candidates.push(upgrades[i]);
     }
 
-    if (!nrof) {
+    if (nrof == -1) {
+      // "All upgrades" mode
       generated.Copy(candidates);
     } else {
       PickN(generated, candidates, nrof);

@@ -229,7 +229,7 @@ class ::PerPlayerStats : Object play {
       owner.A_StartSound(::Settings.levelup_sound(), CHAN_AUTO,
         CHANF_OVERLAP|CHANF_UI|CHANF_NOPAUSE|CHANF_LOCAL);
     }
-    if (bonsai_upgrade_choices_per_player_level == 1) {
+    if (0 <= bonsai_upgrade_choices_per_player_level && bonsai_upgrade_choices_per_player_level <= 1) {
       // If autochoose is on, immediately pick an upgrade for the player.
       StartLevelUp();
     } else {

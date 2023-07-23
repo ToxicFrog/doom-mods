@@ -175,7 +175,7 @@ class ::WeaponInfo : Object play {
       wpn.owner.A_StartSound(::Settings.levelup_sound(), CHAN_AUTO,
         CHANF_OVERLAP|CHANF_UI|CHANF_NOPAUSE|CHANF_LOCAL);
     }
-    if (bonsai_upgrade_choices_per_gun_level == 1) {
+    if (0 <= bonsai_upgrade_choices_per_gun_level && bonsai_upgrade_choices_per_gun_level <= 1) {
       StartLevelUp();
     } else {
       wpn.owner.A_Log(string.format(
