@@ -56,7 +56,12 @@ end
 
 local function replace_tag(argv)
   argv = argv:sub(2,-2)
-  return string.format('TFLV_Util.DebugTag(%s)', argv, argv, argv)
+  return string.format('TFLV_Util.DebugTag(%s)', argv)
+end
+
+local function replace_cls(argv)
+  argv = argv:sub(2,-2)
+  return string.format('TFLV_Util.DebugClass(%s)', argv)
 end
 
 table.insert(lines, '')
@@ -64,7 +69,9 @@ local buf = table.concat(lines, '\n')
 if debug or os.getenv('ZSPP_FORCE_DEBUG') then
   buf = buf:gsub('DEBUG(%b())', function(debugargs)
     -- TODO: add line number
-    return string.format('console.printf("%s: "..%s)', src, debugargs:sub(2,-2):gsub('TAG(%b())', replace_tag))
+    return string.format(
+      'console.printf("%s: "..%s)', src,
+      debugargs:sub(2,-2):gsub('TAG(%b())', replace_tag):gsub('CLS(%b())', replace_cls))
   end)
 else
   buf = buf:gsub('%s*DEBUG%b();', function(s) return (s:gsub('\n', '\n//')) end)

@@ -7,6 +7,11 @@ class ::Util : Object {
     return string.format("%s[%p]", act.GetTag(), act);
   }
 
+  static string DebugClass(Class<Actor> cls) {
+    if (!cls) return "Class<Null>";
+    return string.format("Class<%s>", cls.GetClassName());
+  }
+
   static uint MonstersInRadius(Actor origin, double radius, out Array<Actor> found) {
     BlockThingsIterator it = BlockThingsIterator.Create(origin, radius);
     found.clear();
