@@ -154,7 +154,9 @@ class ::AmmoLeech : ::BaseUpgrade {
     for (Inventory inv = player.inv; inv != null; inv = inv.inv) {
       let wpn = Weapon(inv);
       if (wpn) {
-        DEBUG("Considering %s", TAG(wpn));
+        DEBUG("Considering %s [%s/%s]", TAG(wpn),
+          CLS(wpn.AmmoType1),
+          CLS(wpn.AmmoType2));
         if (IsSuitable(wpn.AmmoType1)) {
           candidates.push(wpn.AmmoType1.GetClassName());
           DEBUG("Primary ammo: %s (%d)",
@@ -186,6 +188,7 @@ class ::AmmoLeech : ::BaseUpgrade {
         ammoitem.amount = floor(amount);
         float partial = amount % 1.0;
         if (partial > 0.0 && frandom(0.0, 1.0) <= partial) ammoitem.amount += 1;
+        DEBUG("AmmoFactor=%f, remainder=%f, amount=%f", AmmoFactor(target), partial, amount);
         if (ammoitem.amount == 0) ammo.Destroy();
       }
     }
