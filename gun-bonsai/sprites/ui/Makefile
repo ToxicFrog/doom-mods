@@ -36,10 +36,16 @@ LHDPA%.png: hud.xcf
 	convert "hud.xcf[2]" $(IMFLAGS) -flop LHDPA8.png
 
 # The B- and C- frames use the same bars as the A-frame for now
-LHDWB%.png LHDWC%.png: LHDWA%.png
+LHDWB%.png: LHDWA%.png
 	cp $< $@
 
-LHDPB%.png LHDPC%.png: LHDPA%.png
+LHDWC%.png: LHDWA%.png
+	cp $< $@
+
+LHDPB%.png: LHDPA%.png
+	cp $< $@
+
+LHDPC%.png: LHDPA%.png
 	cp $< $@
 
 # circlehud just needs to be flipflopped around
@@ -55,3 +61,5 @@ LHUDC%.png: pentahud.png pentahudinverse.png
 	cp pentahudinverse.png LHUDC4.png
 	convert pentahudinverse.png -flop LHUDC6.png
 	convert pentahud.png -flop LHUDC8.png
+
+.PHONY: all clean

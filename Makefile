@@ -1,9 +1,9 @@
 MODS=libtooltipmenu gun-bonsai indestructable
-COMPATS:=$(shell ls compat)
 
-all: ${MODS} ${COMPATS}
+all: ${MODS}
+	$(MAKE) -C compat TOPDIR=..
 
-clean: clean.libtooltipmenu clean.gun-bonsai clean.indestructable
+clean: clean.libtooltipmenu clean.gun-bonsai clean.indestructable clean.compat
 
 clean.%:
 	make -C $* TOPDIR=.. clean
@@ -16,8 +16,5 @@ check: all
 
 ${MODS}:
 	$(MAKE) -C $@ TOPDIR=..
-
-${COMPATS}:
-	$(MAKE) -C compat TOPDIR=.. $@.pk3
 
 .PHONY: all clean clean.* ${MODS} deploy

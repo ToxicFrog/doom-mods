@@ -9,10 +9,12 @@ LIBTTM_PREFIX=TFLV
 
 include ${TOPDIR}/rules.make
 
-sprites:
+sprites: FORCE
 	$(MAKE) -C sprites/ui
+	if find sprites -type f -newer sprites | egrep -q .; then touch sprites; fi
 
 clean: clean.super
 	$(MAKE) -C sprites/ui/ clean
 
-.PHONY: clean sprites
+.PHONY: clean
+FORCE:
