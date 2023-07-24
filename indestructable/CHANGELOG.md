@@ -1,3 +1,10 @@
+# 0.2.9
+
+- Fix:
+  - Indestructable buff timer no longer counts down when the player has the
+    `TOTALLYFROZEN` flag set. In particular, this means that it won't expire
+    while the player is frozen by mods like Gearbox.
+
 # 0.2.8
 
 - Fix:

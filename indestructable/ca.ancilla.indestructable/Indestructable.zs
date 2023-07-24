@@ -168,7 +168,7 @@ class ::IndestructableForce : Inventory {
 
     GiveScreenEffect(GetInt("indestructable_screen_effect"));
     if (indestructable_invincibility)
-      GivePowerup("PowerInvulnerable");
+      GivePowerup("::IndestructableInvincibility");
     if (indestructable_slomo)
       GivePowerup("::IndestructableSloMo");
     if (indestructable_damage_bonus)
@@ -258,7 +258,19 @@ class ::IndestructableForce : Inventory {
   }
 }
 
+mixin class IndestructableStopWhenFrozen {
+  override void Tick() {
+    if (owner && owner.player && owner.player.IsTotallyFrozen()) return;
+    super.Tick();
+  }
+}
+
+class ::IndestructableInvincibility : PowerInvulnerable {
+  mixin IndestructableStopWhenFrozen;
+}
+
 class ::IndestructableScreenEffect : Powerup {
+  mixin IndestructableStopWhenFrozen;
   Default {
     +INVENTORY.NOSCREENBLINK;
   }
@@ -280,6 +292,7 @@ class ::IndestructableScreenEffect::Desaturate : ::IndestructableScreenEffect
 { Default { Powerup.ColorMap 0.0,0.0,0.0, 1.0,1.0,1.0; } }
 
 class ::IndestructableDamage : Powerup {
+  mixin IndestructableStopWhenFrozen;
   override void ModifyDamage(
       int damage, Name damageType, out int newdamage,
       bool passive, Actor inflictor, Actor source, int flags) {
@@ -289,13 +302,20 @@ class ::IndestructableDamage : Powerup {
 }
 
 class ::IndestructableSlomo : PowerTimeFreezer {
+  mixin IndestructableStopWhenFrozen;
   bool ShouldFreeze() {
     return indestructable_slomo == 1 || (level.maptime/2) % indestructable_slomo;
   }
 
   override void DoEffect() {
-    // Check copied from PowerTimeFreezer::DoEffect
-    if (Level.maptime & 1 || (Owner != null && Owner.player != null && Owner.player.cheats & CF_PREDICTING)) {
+    // Check based on PowerTimeFreezer::DoEffect
+    // We need to check IsTotallyFrozen() here too, because DoEffect() is called
+    // whether or not Tick() is, and that means that even if the player is frozen
+    // we'll keep toggling freeze on and off in slow-mo mode, which can interfere
+    // with other mods like Gearbox.
+    if (Level.maptime & 1
+        || (Owner && Owner.player
+            && (Owner.player.cheats & CF_PREDICTING || Owner.player.IsTotallyFrozen()))) {
       return;
     }
     DEBUG("maptime=%d effectTics=%d shouldFreeze=%d", effectTics, level.maptime, shouldfreeze());
