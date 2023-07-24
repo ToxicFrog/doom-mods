@@ -21,6 +21,9 @@ options screen and fix them.
   - A few additional option strings are now defined in LANGUAGE and can be localized
   - Leveling up while somehow having no upgrades available no longer crashes the game
   - Bandoliers upgrade is disabled when Trailblazer or Dehacked Defence is loaded
+  - Upgrades no longer tick (and buffs no longer count down) when the player has
+    the `TOTALLYFROZEN` flag set. In particular, this fixes some weirdness (and
+    a potential softlock) when using the Gearbox weapon selector in "freeze" mode.
 
 # 0.10.3
 

@@ -63,6 +63,11 @@ class ::Swiftness::Power : PowerTimeFreezer {
     S_ResumeSound(false); // unpause music and SFX
   }
 
+  override void Tick() {
+    if (!owner || !owner.player || owner.player.IsTotallyFrozen()) return;
+    super.Tick();
+  }
+
   override void DoEffect() {
     super.DoEffect();
     if (EffectTics <= 128 && EffectTics > 64) EffectTics = 64;

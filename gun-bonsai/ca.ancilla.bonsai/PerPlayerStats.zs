@@ -413,7 +413,7 @@ class ::PerPlayerStats : Object play {
 
   // Runs once per tic.
   void TickStats() {
-    if (!owner || !owner.player) return;
+    if (!owner || !owner.player || owner.player.IsTotallyFrozen()) return;
     // This ensures that the currently wielded weapon always has a WeaponInfo
     // struct associated with it. It should be pretty fast, especially in the
     // common case where the weapon already has a WeaponInfo associated with it.
