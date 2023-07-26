@@ -85,30 +85,41 @@ class ::InfernalKiln : ::ElementalUpgrade {
   // Dealing damage to a burning enemy adds "kiln points" equal to 1% of the
   // amount of damage dealt times the number of stacks.
   override void OnDamageDealt(Actor player, Actor shot, Actor target, int damage) {
-    DEBUG("Kiln: hardness %f", hardness);
-    hardness += ::Dot.CountStacks(target, "::FireDot") * 0.01 * damage;
-    DEBUG("Kiln:  -> %f", hardness);
+    let softcap = GetSoftcap(level);
+    let hardcap = GetHardcap(level);
+    DEBUG("Kiln: hardness %f/%d", hardness, softcap);
+    double bonus = ::Dot.CountStacks(target, "::FireDot") * GetDamageFactor(level) * damage;
+    if (hardness > softcap) {
+      bonus *= 1.0 - double(hardness - softcap)/double(hardcap - softcap);
+    }
+    DEBUG("Kiln: %f -> %f", hardness, hardness + bonus);
+    hardness = min(hardcap, hardness + bonus);
   }
 
   override void Tick(Actor owner) {
-    if (hardness > 0) hardness -= 1.0/35.0;
+    if (hardness > 0) hardness = max(0, hardness - 1.0/35.0);
   }
 
   override double ModifyDamageDealt(Actor pawn, Actor shot, Actor target, double damage, Name attacktype) {
-    // Adds damage equal to your level of Kiln * 2.
+    // Adds damage ranging from (upgrade level) to (upgrade level * 3)
+    // depending on how much buff is stacked.
     if (hardness <= 0) return damage;
-    DEBUG("Kiln: %f + %f (%f)", damage, level*2.0, hardness);
-    damage += level*2.0;
-    // hardness--;
-    return damage;
+    DEBUG("Kiln: %f + %f (%f)", damage, GetDamageBonus(level, hardness), hardness);
+    return damage + GetDamageBonus(level, hardness);
   }
 
   override double ModifyDamageReceived(Actor pawn, Actor shot, Actor attacker, double damage, Name attacktype) {
-    // Blocks damage equal to your level of Kiln * 2.
+    // Blocks damage up to level*2, and loses 1 second of time per 10 damage blocked.
     if (hardness <= 0) return damage;
-    DEBUG("Kiln: %f - %f (%f)", damage, level*2.0, hardness);
-    damage -= min(damage, level*2.0);
-    // hardness--;
+    let block = GetBlock(level);
+    DEBUG("Kiln: %f - %f (%f)", damage, block, hardness);
+    if (damage > block) {
+      hardness = max(0, hardness - block/10.0);
+      damage -= block;
+    } else {
+      hardness = max(0, hardness - (damage-1)/10.0);
+      damage = 1;
+    }
     return damage;
   }
 
@@ -116,10 +127,21 @@ class ::InfernalKiln : ::ElementalUpgrade {
     return HasMasteryPrereq(info, "::BurningTerror", "::Conflagration");
   }
 
+  static double GetDamageFactor(uint level) { return level*0.02; }
+  static uint GetSoftcap(uint level) { return 5+level*5; }
+  static uint GetHardcap(uint level) { return GetSoftcap(level)*2; }
+  static uint GetDamageBonus(uint level, double hardness) {
+    if (hardness <= 0) return 0;
+    return ceil(level + level * hardness/GetSoftcap(level));
+  }
+  static uint GetBlock(uint level) { return level * 2; }
+
   override void GetTooltipFields(Dictionary fields, uint level) {
-    fields.insert("hardness", AsPercent(level * 0.01));
-    fields.insert("damage", "+"..(level*2));
-    fields.insert("block", "-"..(level*2));
+    fields.insert("hardness", AsPercent(GetDamageFactor(level)));
+    fields.insert("softcap", AsSeconds(GetSoftcap(level)*35));
+    fields.insert("hardcap", AsSeconds(GetHardcap(level)*35));
+    fields.insert("damage", AsRange(GetDamageBonus(level, 1), GetDamageBonus(level, GetHardcap(level))));
+    fields.insert("block", ""..GetBlock(level));
   }
 }
 

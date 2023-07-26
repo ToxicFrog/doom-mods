@@ -217,6 +217,11 @@ class ::BaseUpgrade : Object play {
     }
   }
 
+  // (1,3) -> 1-3
+  static string AsRange(uint low, uint high) {
+    return string.format("%d-%d", low, high);
+  }
+
   // INTERNAL DETAILS //
   string GetName() const {
     return StringTable.Localize("$"..self.GetClassName().."_Name");
