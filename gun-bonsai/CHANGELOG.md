@@ -24,6 +24,7 @@ options screen and fix them.
   - Upgrades no longer tick (and buffs no longer count down) when the player has
     the `TOTALLYFROZEN` flag set. In particular, this fixes some weirdness (and
     a potential softlock) when using the Gearbox weapon selector in "freeze" mode.
+  - Some upgrade tooltips were incorrect or incomplete.
 
 # 0.10.3
 

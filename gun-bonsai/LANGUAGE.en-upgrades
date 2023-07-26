@@ -145,10 +145,10 @@ TFLV_Upgrade_Putrefaction_TT = "@transfer of poison stacks spread to enemies wit
 // Fire
 TFLV_Upgrade_IncendiaryShots_Name = "\c[ORANGE]Searing Inscription";
 TFLV_Upgrade_IncendiaryShots_Desc = "Enemies burn down to 50% health. Higher levels burn faster and hotter.";
-TFLV_Upgrade_IncendiaryShots_TT = "Applies @stacks of damage as fire stacks with a softcap of 1. Fire stacks never expire, but do more damage when the enemy has higher health, and stop doing damage entirely below @cutoff health.";
+TFLV_Upgrade_IncendiaryShots_TT = "Applies @stacks of damage as fire stacks with a softcap of @softcap. Fire stacks never expire, but do more damage when the enemy has higher health, and stop doing damage entirely below @cutoff health.";
 TFLV_Upgrade_BurningTerror_Name = "\c[ORANGE]Burning Terror";
 TFLV_Upgrade_BurningTerror_Desc = "Burning enemies flee in terror. Fire damage increased.";
-TFLV_Upgrade_BurningTerror_TT = "Enemies below @threshold flee. Fire damage/second @damage.";
+TFLV_Upgrade_BurningTerror_TT = "Enemies below @threshold health flee. Fire damage/second @damage.";
 TFLV_Upgrade_InfernalKiln_Name = "\c[ORANGE]Infernal Forge";
 TFLV_Upgrade_InfernalKiln_Desc = "Attacking burning enemies gives you a temporary attack/defence buff.";
 TFLV_Upgrade_InfernalKiln_TT = "Converts @hardness of damage per fire stack into seconds of Forge buff. While the buff lasts you deal @damage damage with all attacks and take @block damage.";
