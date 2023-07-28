@@ -196,6 +196,7 @@ class ::WeaponInfo : Object play {
 
   void RejectLevelUp() {
     // Don't adjust maxXP -- they didn't gain a level.
+    XP -= maxXP;
     wpn.owner.A_Log(StringTable.Localize("$TFLV_MSG_LEVELUP_REJECTED"), true);
     if (XP >= maxXP) Fanfare();
     return;
