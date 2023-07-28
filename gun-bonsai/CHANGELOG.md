@@ -14,6 +14,7 @@ options screen and fix them.
     - blocking damage reduces duration by 1 second per 10 damage blocked
     - These changes are meant to make it more useful at low levels, while also making it impossible to rack up tens of minutes of duration and get effectively permanent damage/armour bonuses and complete immunity to scratch damage.
 - Change:
+  - If you have multiple pending upgrades, you will be prompted for all of them in succession rather than neding to open the menu for each one
   - `bonsai_upgrades_per_gun_level` can now be set to 0 to let you gain levels without actually gaining upgrades
   - `bonsai_upgrades_per_player_level` likewise
   - **Check your settings**: if you previously had these set to 0 for "all upgrades", you will need to go into the menu and change them to -1.

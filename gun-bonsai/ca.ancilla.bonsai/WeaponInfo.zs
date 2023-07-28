@@ -185,11 +185,25 @@ class ::WeaponInfo : Object play {
     }
   }
 
+  uint CountPendingLevels() {
+    uint pending = 0;
+    uint xp = self.XP;
+    uint maxXP = self.maxXP;
+    while (xp >= maxXP) {
+      DEBUG("CountPending: xp=%d/%d pending=%d", xp, maxXP, pending);
+      xp -= maxXP;
+      ++pending;
+      maxXP = GetXPForLevel(1+level+pending);
+    }
+    return pending;
+  }
+
   bool StartLevelUp() {
     if (XP < maxXP) return false;
 
     let giver = ::WeaponUpgradeGiver(wpn.owner.GiveInventoryType("::WeaponUpgradeGiver"));
     giver.wielded = self;
+    giver.nrof = CountPendingLevels();
 
     return true;
   }

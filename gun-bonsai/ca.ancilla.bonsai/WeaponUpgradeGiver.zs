@@ -4,6 +4,7 @@
 
 class ::WeaponUpgradeGiver : ::UpgradeGiver {
   TFLV_WeaponInfo wielded;
+  uint nrof;
 
   override void CreateUpgradeCandidates() {
     candidates.clear();
@@ -13,12 +14,17 @@ class ::WeaponUpgradeGiver : ::UpgradeGiver {
   void InstallUpgrade(int index) {
     if (index < 0) {
       wielded.RejectLevelUp();
+      Destroy(); return;
     } else if (candidates.size() == 0) {
       wielded.FinishLevelUp(null);
     } else {
       wielded.FinishLevelUp(::Upgrade::BaseUpgrade(new(candidates[index].GetClassName())));
     }
-    Destroy();
+    if (--nrof) {
+      PostBeginPlay();
+    } else {
+      Destroy();
+    }
   }
 
   // We use States here and not just a simple method because we need to be able
