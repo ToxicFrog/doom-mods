@@ -230,7 +230,6 @@ class ::WeaponInfo : Object play {
         true);
     }
 
-    if (XP >= maxXP) Fanfare();
     if (::Settings.have_legendoom()
         && bonsai_gun_levels_per_ld_effect > 0
         && (level % bonsai_gun_levels_per_ld_effect) == 0) {
