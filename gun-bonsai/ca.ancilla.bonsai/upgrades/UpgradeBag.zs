@@ -28,6 +28,10 @@ class ::UpgradeBag : Object play {
     return upgrade;
   }
 
+  void Clear() {
+    upgrades.clear();
+  }
+
   uint Level(string cls) const {
     for (uint i = 0; i < upgrades.Size(); ++i) {
       if (upgrades[i].GetClassName() == cls) {

@@ -1,3 +1,8 @@
+# 0.11.0
+
+- New:
+  - "Respec interval" setting, which lets you periodically re-create your weapons. Combine with "upgrade choices: 1" to automatically, randomly reroll your weapon's upgrades.
+
 # 0.10.4
 
 **This update breaks configuration compatibility.** If you have set either of the

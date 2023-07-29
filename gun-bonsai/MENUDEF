@@ -83,6 +83,12 @@ OptionMenu "GunBonsaiOptions"
   TFLV_Tooltip "$TFLV_OPT_TT_LEVEL_COST_MUL"
 
   StaticText ""
+  StaticText "$TFLV_OPT_HEADER_LEVELING_MODES", GOLD
+
+  ScaleSlider "$TFLV_OPT_NAME_RESPEC_INTERVAL", "bonsai_respec_interval", 0, 32, 1, "$TFLV_OPT_SLIDER_DISABLED"
+  TFLV_Tooltip "$TFLV_OPT_TT_RESPEC_INTERVAL"
+
+  StaticText ""
   StaticText "$TFLV_OPT_HEADER_AUTOAUTOSAVE_INTEGRATION", GOLD
   StaticText "$TFLV_OPT_AUTOAUTOSAVE_NOTE"
 

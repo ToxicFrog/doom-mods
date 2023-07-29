@@ -205,6 +205,18 @@ class ::WeaponInfo : Object play {
     let giver = ::WeaponUpgradeGiver(wpn.owner.GiveInventoryType("::WeaponUpgradeGiver"));
     giver.wielded = self;
 
+    if (bonsai_respec_interval) {
+      // Check if any of the pending levels would trigger a respec.
+      for (uint i = level+1; i <= level+CountPendingLevels(); ++i) {
+        if (i % bonsai_respec_interval == 0) {
+          // Respec triggered. Clear all existing upgrades.
+          OnDeactivate(); upgrades.Clear();
+          bonus_levels = level;
+          break;
+        }
+      }
+    }
+
     giver.nrof = CountPendingLevels();  // Includes bonus_levels
     return true;
   }
