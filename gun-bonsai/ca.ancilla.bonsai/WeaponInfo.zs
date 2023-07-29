@@ -14,9 +14,10 @@ class ::WeaponInfo : Object play {
   string wpnClass;
   ::PerPlayerStats stats;
   ::Upgrade::UpgradeBag upgrades;
-  double XP;
-  double maxXP;
-  uint level;
+  double XP;         // current XP, resets to 0 every level
+  double maxXP;      // XP to next level up
+  uint level;        // current level, resets to 0 on respec
+  uint bonus_levels; // "free" levels that don't affect XP, used when respeccing
   ::LegendoomWeaponInfo ld_info;
 
   // Called when a new WeaponInfo is created. This should initialize the entire object.
@@ -186,7 +187,7 @@ class ::WeaponInfo : Object play {
   }
 
   uint CountPendingLevels() {
-    uint pending = 0;
+    uint pending = bonus_levels;
     uint xp = self.XP;
     uint maxXP = self.maxXP;
     while (xp >= maxXP) {
@@ -199,28 +200,36 @@ class ::WeaponInfo : Object play {
   }
 
   bool StartLevelUp() {
-    if (XP < maxXP) return false;
+    if (!CountPendingLevels()) return false;
 
     let giver = ::WeaponUpgradeGiver(wpn.owner.GiveInventoryType("::WeaponUpgradeGiver"));
     giver.wielded = self;
-    giver.nrof = CountPendingLevels();
 
+    giver.nrof = CountPendingLevels();  // Includes bonus_levels
     return true;
   }
 
   void RejectLevelUp() {
-    // Don't adjust maxXP -- they didn't gain a level.
-    XP -= maxXP;
+    if (bonus_levels) {
+      --bonus_levels;
+    } else {
+      // Don't adjust maxXP -- they didn't gain a level.
+      XP -= maxXP;
+    }
     wpn.owner.A_Log(StringTable.Localize("$TFLV_MSG_LEVELUP_REJECTED"), true);
     if (XP >= maxXP) Fanfare();
     return;
   }
 
   void FinishLevelUp(::Upgrade::BaseUpgrade upgrade) {
-    XP -= maxXP;
-    ++level;
-    ::PerPlayerStats.GetStatsFor(wpn.owner).AddPlayerXP(1);
-    maxXP = GetXPForLevel(level+1);
+    if (bonus_levels) {
+      --bonus_levels;
+    } else {
+      XP -= maxXP;
+      ++level;
+      ::PerPlayerStats.GetStatsFor(wpn.owner).AddPlayerXP(1);
+      maxXP = GetXPForLevel(level+1);
+    }
 
     if (upgrade) {
       upgrades.AddUpgrade(upgrade).OnActivate(stats, self);
