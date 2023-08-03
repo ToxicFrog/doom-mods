@@ -1,0 +1,9 @@
+addkeysection "Laevis" Laevis
+
+addmenukey "Show Effect Library" laevis-show-info
+alias laevis-show-info "netevent laevis-show-info"
+alias laevis-dump "netevent laevis-debug,info"
+defaultbind L laevis-show-info
+addmenukey "Cycle Legendoom Weapon Effect" laevis_cycle_ld_effect
+alias laevis_cycle_ld_effect "netevent laevis-cycle-ld-effect"
+defaultbind P laevis_cycle_ld_effect

@@ -1,0 +1,31 @@
+// HUD configuration.
+// x and y are HUD position. Values in the [0,1] range position it as a proportion
+// of the screen size; so (0,0) is flush to the top left corner and (1,1) flush
+// to the bottom right.
+// Positive integer values >1 place it at that absolute pixel position from the
+// top left, and negative values likewise from the bottom right.
+// Scale values <=1 are a scaling factor to be applied; >1 are a size in px
+// to scale the height to. The width will be scaled automatically and is 3x the
+// height.
+user float laevis_hud_x = 0.01;
+user float laevis_hud_y = 0.02;
+user float laevis_hud_size = 0.15;
+user float laevis_hud_alpha = 1.0;
+user color laevis_hud_rgb = "00 80 FF";
+
+// How to remember weapon upgrade info.
+// 0 - per weapon object
+// 1 - per weapon object but transferable to a new weapon of the same type if you lose the old one
+// 2 - per weapon class
+server int laevis_upgrade_binding_mode = 1;
+server bool laevis_ignore_death_exits = true;
+
+// Settings for which guns can learn/replace effects; see enum in settings.zs
+server int laevis_which_guns_can_learn = 3;
+server int laevis_which_guns_can_replace = 2;
+// How many effect slots do guns have and how many extras do they get from rarity;
+// basic guns == -1 rarity
+server int laevis_base_ld_effect_slots = 2;
+server int laevis_bonus_ld_effect_slots = 1;
+// Whether the effect pool is limited based on original gun rarity
+server bool laevis_ignore_gun_rarity = false;
