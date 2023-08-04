@@ -4,7 +4,7 @@
 // This code is largely a stripped-down version of the event handler from Gun
 // Bonsai.
 #namespace TFLV;
-#debug on;
+#debug off;
 
 class ::EventHandler : StaticEventHandler {
   ::PerPlayerStats playerstats[8];

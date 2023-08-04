@@ -1,6 +1,6 @@
 // The parts of WeaponInfo that are specific to Legendoom.
 #namespace TFLV;
-#debug on;
+#debug off;
 
 class ::LegendoomEffect : Object play {
   string name;        // Class name of effect, e.g. LDShotgunEffect_Scanner
@@ -109,7 +109,7 @@ class ::WeaponInfo : Object play {
     }
     let name = token.GetClassName();
     if (HasEffect(name)) {
-      console.printf("Your %s already knows the ability \"%s\".",
+      console.printf("Your %s already contains the ability \"%s\".",
         wpn.GetTag(), ::LegendoomUtil.GetEffectTitle(name));
       return false;
     }
@@ -120,7 +120,7 @@ class ::WeaponInfo : Object play {
     effect.rarityName = effect.weapon .. ::LegendoomUtil.GetRarityName(effect.rarity, effect.weapon);
     effect.passive = ::LegendoomUtil.GetEffectDescFull(effect.name).IndexOf("[PASSIVE]") >= 0;
     effects.push(effect);
-    console.printf("Your %s learned the ability \"%s\"!",
+    console.printf("Your %s absorbed the ability \"%s\"!",
       wpn.GetTag(), ::LegendoomUtil.GetEffectTitle(name));
     return true;
   }

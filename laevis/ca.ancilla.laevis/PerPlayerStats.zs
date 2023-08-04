@@ -2,7 +2,7 @@
 // Holds information about the player's guns and the player themself.
 // Also handles applying some damage/resistance bonuses using ModifyDamage().
 #namespace TFLV;
-#debug on;
+#debug off;
 
 // Used to get all the information needed for the UI.
 struct ::CurrentStats {

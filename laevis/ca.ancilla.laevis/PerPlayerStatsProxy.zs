@@ -8,7 +8,7 @@
 // In normal play, the PerPlayerStats held by this are also referenced by the
 // StaticEventHandler and most lookups go through that.
 #namespace TFLV;
-#debug on;
+#debug off;
 
 class ::PerPlayerStatsProxy : Inventory {
   ::PerPlayerStats stats;
