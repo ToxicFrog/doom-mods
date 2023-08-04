@@ -21,6 +21,20 @@ class ::LegendoomUtil {
     }
   }
 
+  static string GetRarityName(::LDrarity rarity, string prefix) {
+    if (rarity == RARITY_EPIC) {
+      return "LegendaryEpic";
+    } else if (rarity == RARITY_RARE) {
+      return "LegendaryRare";
+    } else if (rarity == RARITY_UNCOMMON) {
+      return "LegendaryUncommon";
+    } else if (rarity == RARITY_COMMON) {
+      return "LegendaryCommon";
+    } else {
+      return "";
+    }
+  }
+
   static Inventory FindItemWithPrefix(Actor act, string prefix) {
     // GetClassName() isn't consistent about case, so lowercase everything before
     // we compare it to avoid, e.g., "LDPistolEffectActive" comparing different

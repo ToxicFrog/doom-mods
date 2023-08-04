@@ -52,7 +52,6 @@ class ::PerPlayerStatsProxy : Inventory {
 
     if (pawn.player.buttons & BT_USE) {
       let seen = LookingAt();
-      DEBUG("AimTarget: %s", TAG(seen));
       if (seen is "LDWeaponPickup") {
         PickupLDWeapon(Inventory(seen));
       }
@@ -75,7 +74,7 @@ class ::PerPlayerStatsProxy : Inventory {
     string prefix = cls.Left(cls.IndexOf("Pickup"));
     Inventory effect = ::LegendoomUtil.FindItemWithPrefix(item, prefix.."Effect_");
     if (effect) {
-      PickupEffect(effect.GetClassName());
+      PickupEffect(item, prefix);
     }
     // FIXME: also extract the rarity and associate it with the effect
     // we probably need to replace the effect list with structs rather than strings,
@@ -84,15 +83,12 @@ class ::PerPlayerStatsProxy : Inventory {
     // some sort of fancy visual effect here?
   }
 
-  void PickupEffect(string effect) {
-    int idx = effect.IndexOf("Effect_");
-    string prefix = effect.Left(idx);
+  void PickupEffect(Actor item, string prefix) {
     Weapon wpn = Weapon(owner.FindInventory(prefix));
-    DEBUG("PickupEffect(%s): prefix=%s weapon=%s", effect, prefix, TAG(wpn));
     if (!wpn) return;
     let info = stats.GetOrCreateInfoFor(wpn);
     if (!info) return;
-    info.AddEffect(effect);
+    info.AddEffectFromActor(item);
   }
 
   // Special pickup handling so that if the player picks up an LD legendary weapon
@@ -100,6 +96,7 @@ class ::PerPlayerStatsProxy : Inventory {
   // than thinking it's a mundane weapon that earned an LD effect through leveling
   // up.
   override bool HandlePickup(Inventory item) {
+    // if (item is "LDWeaponNameAlternation") return super.HandlePickup(item);
     // DEBUG("HandlePickup: %s", item.GetClassName());
     if (Weapon(item)) {
       // Flag the weaponinfo for a full rebuild on the next tick.
@@ -124,35 +121,22 @@ class ::PerPlayerStatsProxy : Inventory {
 
     string cls = item.GetClassName();
 
-    int idx = cls.IndexOf("Effect_");
+    int idx = cls.IndexOf("EffectActive");
     if (idx >= 0) {
       // Picked up a new effect.
-      HandleLDEffectPickup(item, cls.Left(idx));
-    }
-
-    idx = cls.IndexOf("Legendary");
-    if (idx >= 0) {
-      // Picked up a rarity marker.
-      HandleLDRarityPickup(item, cls.Left(idx));
+      HandleLDEffectPickup(cls.Left(idx));
     }
   }
 
-  void HandleLDEffectPickup(Inventory item, string prefix) {
+  // Note that this depends on picking up the rarity token before the effect
+  // token! If the order gets reversed this will crash.
+  void HandleLDEffectPickup(string prefix) {
+    DEBUG("HandleLDEffectPickup: %s", prefix);
     Weapon wpn = Weapon(owner.FindInventory(prefix));
-    DEBUG("LDPickup(%s): prefix=%s weapon=%s", TAG(item), prefix, TAG(wpn));
     if (!wpn) return;
     let info = stats.GetOrCreateInfoFor(wpn);
     if (!info) return;
-    info.AddEffect(item.GetClassName());
-  }
-
-  void HandleLDRarityPickup(Inventory item, string prefix) {
-    Weapon wpn = Weapon(owner.FindInventory(prefix));
-    DEBUG("LDPickup(%s): prefix=%s weapon=%s", TAG(item), prefix, TAG(wpn));
-    if (!wpn) return;
-    let info = stats.GetOrCreateInfoFor(wpn);
-    if (!info) return;
-    // FIXME: set rarity for weapon
+    info.AddEffectFromActor(owner);
   }
 
     // if (cls.IndexOf("EffectActive") < 0) return false;

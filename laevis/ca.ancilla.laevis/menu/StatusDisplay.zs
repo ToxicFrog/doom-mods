@@ -37,10 +37,10 @@ class ::StatusDisplay : ::GenericMenu {
     }
   }
 
-  void PushEffect(string effect, uint index, bool isDefault) {
+  void PushEffect(TFLV::LegendoomEffect effect, uint index, bool isDefault) {
     PushKeyValueOption(
-      TFLV::LegendoomUtil.GetEffectTitle(effect),
-      TFLV::LegendoomUtil.GetEffectDesc(effect),
+      TFLV::LegendoomUtil.GetEffectTitle(effect.name),
+      TFLV::LegendoomUtil.GetEffectDesc(effect.name),
       "laevis-select-effect",
       index,
       isDefault ? Font.CR_ORANGE : Font.CR_DARKRED,
