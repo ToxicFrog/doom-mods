@@ -35,6 +35,16 @@ class ::StatusDisplay : ::GenericMenu {
         }
       }
     }
+
+    if (info.passives.size() > 0) {
+      PushText("", Font.CR_GOLD);
+      PushText("$TFLV_MENU_HEADER_WEAPON_LD_PASSIVES", Font.CR_GOLD);
+      for (uint i = 0; i < info.passives.size(); ++i) {
+        PushKeyValueText(
+          TFLV::LegendoomUtil.GetEffectTitle(info.passives[i].name),
+          TFLV::LegendoomUtil.GetEffectDesc(info.passives[i].name));
+      }
+    }
   }
 
   void PushEffect(TFLV::LegendoomEffect effect, uint index, bool isDefault) {

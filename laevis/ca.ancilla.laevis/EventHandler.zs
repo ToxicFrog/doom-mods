@@ -108,7 +108,6 @@ class ::EventHandler : StaticEventHandler {
       console.printf(StringTable.Localize("$TFLV_MSG_PLAYERSTATS_MISSING"), p);
       return;
     }
-    // Check for pending level ups and apply those if present.
     if (p == consoleplayer) Menu.SetMenu("LaevisStatusDisplay");
     return;
   }

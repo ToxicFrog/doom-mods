@@ -1,6 +1,6 @@
 NAME=Laevis
 VERSION=0.1.0
-LUMPS=zscript.txt *.md MAPINFO MENUDEF CVARINFO KEYCONF
+LUMPS=zscript.txt *.md MAPINFO MENUDEF CVARINFO KEYCONF LANGUAGE.*
 ZSDIR=ca.ancilla.laevis
 LIBTTM=${TOPDIR}/libtooltipmenu/ca.ancilla.libtooltipmenu
 LIBTTM_PREFIX=TFLV

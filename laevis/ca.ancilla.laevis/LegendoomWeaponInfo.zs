@@ -16,7 +16,8 @@ class ::WeaponInfo : Object play {
   uint effectSlots;
   uint maxRarity;
   bool canReplaceEffects;
-  array<::LegendoomEffect> effects; // Class names of effect tokens, e.g. "LDShotgunEffect_Scanner"
+  array<::LegendoomEffect> effects;
+  array<::LegendoomEffect> passives; // Always on
   int currentEffect;
   string currentEffectName;
 
@@ -65,23 +66,11 @@ class ::WeaponInfo : Object play {
       maxRarity = max(RARITY_COMMON, maxRarity);
     }
 
-    // FIXME: bug here on initial items and when picking up an LDEffect that
-    // gets added on to an existing, non-legendary weapon.
-    // In the former case, we see the weapon pickup and rebuild the info before
-    // we get the effect pickup.
-    // In the latter case, we don't see a weapon pickup at all because the
-    // weapon doesn't get picked up, only the effect.
-    // We should probably trigger a rebind on effect pickups to make sure they
-    // get recorded in the effect list properly.
-    // And they might start with an effect, so we should record that.
-    string effect = ::LegendoomUtil.GetActiveWeaponEffect(wpn.owner, prefix);
-    if (effect == "") {
-      // Mundane weapon with no special powers.
-      currentEffect = -1;
-      currentEffectName = "";
-    } else {
-      AddEffectFromActor(wpn.owner);
+    AddEffectFromActor(wpn.owner);
+    if (currentEffect >= effects.size()) {
       currentEffect = effects.size()-1;
+    }
+    if (effects.size() > 0) {
       currentEffectName = effects[currentEffect].name;
     }
   }
@@ -89,6 +78,9 @@ class ::WeaponInfo : Object play {
   bool HasEffect(string effect) {
     for (uint i = 0; i < effects.size(); ++i) {
       if (effects[i].name == effect) return true;
+    }
+    for (uint i = 0; i < passives.size(); ++i) {
+      if (passives[i].name == effect) return true;
     }
     return false;
   }
@@ -119,7 +111,13 @@ class ::WeaponInfo : Object play {
     effect.rarity = ::LegendoomUtil.GetWeaponRarity(act, effect.weapon);
     effect.rarityName = effect.weapon .. ::LegendoomUtil.GetRarityName(effect.rarity, effect.weapon);
     effect.passive = ::LegendoomUtil.GetEffectDescFull(effect.name).IndexOf("[PASSIVE]") >= 0;
-    effects.push(effect);
+    if (effect.passive) {
+      passives.push(effect);
+    } else {
+      effects.push(effect);
+      if (effects.size() == 1) SelectEffect(0);
+    }
+    EnablePassives();
     console.printf("Your %s absorbed the ability \"%s\"!",
       wpn.GetTag(), ::LegendoomUtil.GetEffectTitle(name));
     return true;
@@ -130,9 +128,6 @@ class ::WeaponInfo : Object play {
     SelectEffect((currentEffect + 1) % effects.size());
   }
 
-  // TODO -- we should put passive effects in their own section, and make them
-  // part of the player's inventory at all times, since they usually have effects
-  // whether or not the weapon is wielded and don't interfere with firing behaviour.
   void SelectEffect(uint index) {
     if (effects.size() <= index) return;
     //if (index == currentEffect) return;
@@ -157,6 +152,14 @@ class ::WeaponInfo : Object play {
     DEBUG("EnableEffect, idx=%d size=%d", currentEffect, effects.size());
     wpn.owner.GiveInventory(effect.name, 1);
     wpn.owner.GiveInventory(effect.rarityName, 1);
+  }
+
+  void EnablePassives() {
+    for (uint i = 0; i < passives.size(); ++i) {
+      DEBUG("Activating %s", passives[i].name);
+      wpn.owner.TakeInventory(passives[i].name, 999);
+      wpn.owner.GiveInventory(passives[i].name, 1);
+    }
   }
 
   void DiscardEffect(uint index) {
