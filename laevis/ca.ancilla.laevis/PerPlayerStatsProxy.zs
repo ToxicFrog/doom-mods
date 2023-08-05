@@ -39,7 +39,7 @@ class ::PerPlayerStatsProxy : Inventory {
 
   Actor LookingAt() {
     FTranslatedLineTarget target;
-    owner.AimLineAttack(owner.angle, 256, target, 0,
+    owner.AimLineAttack(owner.angle, 128, target, 0,
       ALF_CHECKNONSHOOTABLE|ALF_FORCENOSMART|128);
     return target.linetarget;
   }
