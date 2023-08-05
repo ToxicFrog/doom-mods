@@ -21,7 +21,7 @@ class ::LegendoomUtil {
     }
   }
 
-  static string GetRarityName(::LDrarity rarity, string prefix) {
+  static string GetRarityName(::LDRarity rarity, string prefix) {
     if (rarity == RARITY_EPIC) {
       return "LegendaryEpic";
     } else if (rarity == RARITY_RARE) {
@@ -32,6 +32,20 @@ class ::LegendoomUtil {
       return "LegendaryCommon";
     } else {
       return "";
+    }
+  }
+
+  static int,int,int GetRarityColour(::LDRarity rarity) {
+    if (rarity == RARITY_EPIC) {
+      return 255,165,0;
+    } else if (rarity == RARITY_RARE) {
+      return 160,32,240;
+    } else if (rarity == RARITY_UNCOMMON) {
+      return 0,0,255;
+    } else if (rarity == RARITY_COMMON) {
+      return 0,255,0;
+    } else {
+      return 0,0,0;
     }
   }
 

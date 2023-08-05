@@ -27,8 +27,7 @@ class ::WeaponInfo : Object play {
   Weapon wpn;
   string wpnClass;
   uint effectSlots;
-  uint maxRarity;
-  bool canReplaceEffects;
+  uint xp;
   array<::LegendoomEffect> effects;
   array<::LegendoomEffect> passives; // Always on
   int currentEffect;
@@ -93,20 +92,20 @@ class ::WeaponInfo : Object play {
   // this on and thus don't double-check prefix or anything.
   // Returns true if a new effect was ingested, false if it wasn't (either because
   // there wasn't one to ingest, or because we already had this one).
-  bool AddEffectFromActor(Actor act) {
+  ::LDRarity AddEffectFromActor(Actor act) {
     DEBUG("AddEffectFromActor: %s", TAG(act));
     let token = ::LegendoomUtil.FindItemWithPrefix(act, wpnClass.."Effect_");
     if (!token) {
       // actor doesn't have an effect in it (or maybe wrong weapon?)
       DEBUG("no token!");
-      return false;
+      return RARITY_MUNDANE;
     }
     let name = token.GetClassName();
     if (HasEffect(name)) {
       // TODO - count this as a discard and potentially upgrade the weapon
       console.printf("Your %s already contains the ability \"%s\".",
         wpn.GetTag(), ::LegendoomUtil.GetEffectTitle(name));
-      return false;
+      return RARITY_MUNDANE;
     }
 
     let effect = ::LegendoomEffect.Create(
@@ -123,7 +122,7 @@ class ::WeaponInfo : Object play {
     EnablePassives();
     console.printf("Your %s absorbed the ability \"%s\"!",
       wpn.GetTag(), effect.Title());
-    return true;
+    return effect.rarity;
   }
 
   void CycleEffect() {
@@ -187,19 +186,6 @@ class ::WeaponInfo : Object play {
       return setting & 1;
     } else {
       return setting & 2;
-    }
-  }
-
-  void DumpToConsole() {
-    if (!::Settings.have_legendoom()) return;
-    if (effectSlots == 0) {
-      console.printf("(no Legendoom data)");
-      return;
-    }
-    console.printf("Legendoom: %d slots, %s replace, rarity: %d",
-      effectSlots, (canReplaceEffects ? "can" : "can't"), maxRarity);
-    for (uint i = 0; i < effects.size(); ++i) {
-      console.printf("    %s (%s)", effects[i].Title(), effects[i].Desc());
     }
   }
 }

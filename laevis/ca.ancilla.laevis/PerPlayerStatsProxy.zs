@@ -58,6 +58,9 @@ class ::PerPlayerStatsProxy : Inventory {
     }
   }
 
+  // TODO a bunch of pickup handler code in here should probably be moved into
+  // the PerPlayerStats and out of the proxy
+
   void PickupLDWeapon(Inventory item) {
     // First, install a cooldown so it doesn't pop up the info screen, then try
     // picking it up normally.
@@ -70,25 +73,26 @@ class ::PerPlayerStatsProxy : Inventory {
     owner.TakeInventory("LDWeaponDisplayCooldown", 999);
 
     // Otherwise, try to extract the powerup from it.
+    DEBUG("PickupLDWeapon(%s)", TAG(item));
     string cls = item.GetClassName();
     string prefix = cls.Left(cls.IndexOf("Pickup"));
     Inventory effect = ::LegendoomUtil.FindItemWithPrefix(item, prefix.."Effect_");
     if (effect) {
-      PickupEffect(item, prefix);
+      uint r,g,b;
+      [r,g,b] = ::LegendoomUtil.GetRarityColour(PickupEffect(item, prefix));
+      item.ACS_ScriptCall("Draw_Pentagram", item.radius, r, g, b);
+      item.Destroy();
+    } else {
+      item.ACS_ScriptCall("Draw_Pentagram", item.radius, 0, 0, 0);
     }
-    // FIXME: also extract the rarity and associate it with the effect
-    // we probably need to replace the effect list with structs rather than strings,
-    // so it can store effect name + rarity level + maybe other stuff in the future
-    item.Destroy();
-    // some sort of fancy visual effect here?
   }
 
-  void PickupEffect(Actor item, string prefix) {
+  ::LDRarity PickupEffect(Actor item, string prefix) {
     Weapon wpn = Weapon(owner.FindInventory(prefix));
-    if (!wpn) return;
+    if (!wpn) return RARITY_MUNDANE;
     let info = stats.GetOrCreateInfoFor(wpn);
-    if (!info) return;
-    info.AddEffectFromActor(item);
+    if (!info) return RARITY_MUNDANE;
+    return info.AddEffectFromActor(item);
   }
 
   // Special pickup handling so that if the player picks up an LD legendary weapon
@@ -119,6 +123,7 @@ class ::PerPlayerStatsProxy : Inventory {
   void HandleLegendoomPickup(Inventory item) {
     if (item is "LDWeaponNameAlternation") return;
 
+    DEBUG("HandleLegendoomPickup(%s)", TAG(item));
     string cls = item.GetClassName();
 
     int idx = cls.IndexOf("EffectActive");
@@ -138,23 +143,4 @@ class ::PerPlayerStatsProxy : Inventory {
     if (!info) return;
     info.AddEffectFromActor(owner);
   }
-
-    // if (cls.IndexOf("EffectActive") < 0) return false;
-
-    // // If this is flagged as "notelefrag", it means it was produced by the level-
-    // // up code and should upgrade our current item in place rather than invalidating
-    // // its info block.
-    // if (item.bNOTELEFRAG) return;
-
-    // // At this point we know that the pickup is a Legendoom weapon effect token
-    // // and it's not one we created. So we need to figure out if the player has
-    // // an existing entry for a mundane weapon of the same type and clear it if so.
-    // // TODO: this may need a redesign in light of the new rebinding code.
-    // cls = cls.Left(cls.IndexOf("EffectActive"));
-    // for (int i = 0; i < stats.weapons.size(); ++i) {
-    //   if (stats.weapons[i].wpn is cls) {
-    //     stats.weapons[i].wpn = null;
-    //   }
-    // }
-  // }
 }
