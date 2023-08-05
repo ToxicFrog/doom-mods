@@ -74,6 +74,7 @@ class ::WeaponInfo : Object play {
     if (effects.size() > 0) {
       currentEffectName = effects[currentEffect].name;
     }
+    EnablePassives();
   }
 
   bool HasEffect(string effect) {
