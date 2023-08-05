@@ -8,6 +8,19 @@ class ::LegendoomEffect : Object play {
   ::LDRarity rarity;  // never RARITY_MUNDANE
   string rarityName;  // LDShotgunLegendaryEpic, etc
   bool passive;       // true if this is a passive effect that can be always-on
+
+  static ::LegendoomEffect Create(string name, string weapon, ::LDRarity rarity) {
+    let effect = new("::LegendoomEffect");
+    effect.name = name;
+    effect.weapon = weapon;
+    effect.rarity = rarity;
+    effect.rarityName = weapon .. ::LegendoomUtil.GetRarityName(rarity, weapon);
+    effect.passive = ::LegendoomUtil.GetEffectDescFull(name).IndexOf("[PASSIVE]") >= 0;
+    return effect;
+  }
+
+  string Title() const { return ::LegendoomUtil.GetEffectTitle(self.name); }
+  string Desc() const { return ::LegendoomUtil.GetEffectDesc(self.name); }
 }
 
 class ::WeaponInfo : Object play {
@@ -89,16 +102,17 @@ class ::WeaponInfo : Object play {
     }
     let name = token.GetClassName();
     if (HasEffect(name)) {
+      // TODO - count this as a discard and potentially upgrade the weapon
       console.printf("Your %s already contains the ability \"%s\".",
         wpn.GetTag(), ::LegendoomUtil.GetEffectTitle(name));
       return false;
     }
-    let effect = new("::LegendoomEffect");
-    effect.name = name;
-    effect.weapon = self.wpnClass;
-    effect.rarity = ::LegendoomUtil.GetWeaponRarity(act, effect.weapon);
-    effect.rarityName = effect.weapon .. ::LegendoomUtil.GetRarityName(effect.rarity, effect.weapon);
-    effect.passive = ::LegendoomUtil.GetEffectDescFull(effect.name).IndexOf("[PASSIVE]") >= 0;
+
+    let effect = ::LegendoomEffect.Create(
+      name, self.wpnClass,
+      ::LegendoomUtil.GetWeaponRarity(act, self.wpnClass));
+
+    // TODO -- check capacity limits
     if (effect.passive) {
       passives.push(effect);
     } else {
@@ -107,7 +121,7 @@ class ::WeaponInfo : Object play {
     }
     EnablePassives();
     console.printf("Your %s absorbed the ability \"%s\"!",
-      wpn.GetTag(), ::LegendoomUtil.GetEffectTitle(name));
+      wpn.GetTag(), effect.Title());
     return true;
   }
 
@@ -124,10 +138,9 @@ class ::WeaponInfo : Object play {
       DisableEffect(effects[currentEffect]);
     }
     currentEffect = index;
-    currentEffectName = ::LegendoomUtil.GetEffectTitle(effects[currentEffect].name);
+    currentEffectName = effects[currentEffect].Title();
     EnableEffect(effects[currentEffect]);
-    console.printf("%s: %s", currentEffectName,
-      ::LegendoomUtil.GetEffectDesc(effects[currentEffect].name));
+    console.printf("%s: %s", currentEffectName, effects[currentEffect].Desc());
   }
 
   void DisableEffect(::LegendoomEffect effect) {
@@ -185,9 +198,7 @@ class ::WeaponInfo : Object play {
     console.printf("Legendoom: %d slots, %s replace, rarity: %d",
       effectSlots, (canReplaceEffects ? "can" : "can't"), maxRarity);
     for (uint i = 0; i < effects.size(); ++i) {
-      console.printf("    %s (%s)",
-        ::LegendoomUtil.GetEffectTitle(effects[i].name),
-        ::LegendoomUtil.GetEffectDesc(effects[i].name));
+      console.printf("    %s (%s)", effects[i].Title(), effects[i].Desc());
     }
   }
 }

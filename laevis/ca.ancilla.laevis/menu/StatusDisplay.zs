@@ -40,19 +40,15 @@ class ::StatusDisplay : ::GenericMenu {
       PushText("", Font.CR_GOLD);
       PushText("$TFLV_MENU_HEADER_WEAPON_LD_PASSIVES", Font.CR_GOLD);
       for (uint i = 0; i < info.passives.size(); ++i) {
-        PushKeyValueText(
-          TFLV::LegendoomUtil.GetEffectTitle(info.passives[i].name),
-          TFLV::LegendoomUtil.GetEffectDesc(info.passives[i].name));
+        PushKeyValueText(info.passives[i].Title(), info.passives[i].Desc());
       }
     }
   }
 
   void PushEffect(TFLV::LegendoomEffect effect, uint index, bool isDefault) {
     PushKeyValueOption(
-      TFLV::LegendoomUtil.GetEffectTitle(effect.name),
-      TFLV::LegendoomUtil.GetEffectDesc(effect.name),
-      "laevis-select-effect",
-      index,
+      effect.Title(), effect.Desc(),
+      "laevis-select-effect", index,
       isDefault ? Font.CR_ORANGE : Font.CR_DARKRED,
       isDefault ? Font.CR_YELLOW : Font.CR_RED);
   }
