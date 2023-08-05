@@ -52,19 +52,7 @@ class ::WeaponInfo : Object play {
   void InitLegendoom() {
     string prefix = wpn.GetClassName();
 
-    maxRarity = ::LegendoomUtil.GetWeaponRarity(wpn.owner, prefix);
-    canReplaceEffects = GunRarityMatchesSetting(laevis_which_guns_can_replace, maxRarity);
-    if (GunRarityMatchesSetting(laevis_which_guns_can_learn, maxRarity)) {
-      effectSlots = laevis_base_ld_effect_slots
-        + maxRarity * laevis_bonus_ld_effect_slots;
-    } else {
-      effectSlots = 0;
-    }
-    if (laevis_ignore_gun_rarity) {
-      maxRarity = RARITY_EPIC;
-    } else {
-      maxRarity = max(RARITY_COMMON, maxRarity);
-    }
+    effectSlots = laevis_base_effect_slots;
 
     AddEffectFromActor(wpn.owner);
     if (currentEffect >= effects.size()) {

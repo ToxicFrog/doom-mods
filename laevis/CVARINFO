@@ -7,25 +7,23 @@
 // Scale values <=1 are a scaling factor to be applied; >1 are a size in px
 // to scale the height to. The width will be scaled automatically and is 3x the
 // height.
-user float laevis_hud_x = 0.01;
-user float laevis_hud_y = 0.02;
-user float laevis_hud_size = 0.15;
-user float laevis_hud_alpha = 1.0;
-user color laevis_hud_rgb = "00 80 FF";
+//user float laevis_hud_x = 0.01;
+//user float laevis_hud_y = 0.02;
+//user float laevis_hud_size = 0.15;
+//user float laevis_hud_alpha = 1.0;
+//user color laevis_hud_rgb = "00 80 FF";
 
-// How to remember weapon upgrade info.
-// 0 - per weapon object
-// 1 - per weapon object but transferable to a new weapon of the same type if you lose the old one
-// 2 - per weapon class
-server int laevis_upgrade_binding_mode = 1;
+// If true, upgrades carry across death exits/inventory loss. Even if you lose
+// your weapon, the next version you pick up will still have the same upgrades.
+// If false, a death exit also takes away all of your ugpades.
 server bool laevis_ignore_death_exits = true;
 
 // Settings for which guns can learn/replace effects; see enum in settings.zs
-server int laevis_which_guns_can_learn = 3;
-server int laevis_which_guns_can_replace = 2;
+//server int laevis_which_guns_can_learn = 3;
+//server int laevis_which_guns_can_replace = 2;
 // How many effect slots do guns have and how many extras do they get from rarity;
 // basic guns == -1 rarity
-server int laevis_base_ld_effect_slots = 2;
-server int laevis_bonus_ld_effect_slots = 1;
+server int laevis_base_effect_slots = 2;
+server int laevis_bonus_effect_slots = 1;
 // Whether the effect pool is limited based on original gun rarity
 server bool laevis_ignore_gun_rarity = false;

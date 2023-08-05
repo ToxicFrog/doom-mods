@@ -130,8 +130,6 @@ class ::PerPlayerStats : Object play {
       weapons.push(info);
     }
 
-    // Clean up orphaned WeaponInfos.
-    PruneStaleInfo();
     return info;
   }
 
@@ -147,18 +145,6 @@ class ::PerPlayerStats : Object play {
       }
     }
     return null;
-  }
-
-  // Delete WeaponInfo entries for weapons that don't exist anymore.
-  void PruneStaleInfo() {
-    // Only do this in BIND_WEAPON mode. In other binding modes the WeaponInfos
-    // can be rebound to new weapons.
-    if (laevis_upgrade_binding_mode != TFLV_BIND_WEAPON) return;
-    for (int i = weapons.size() - 1; i >= 0; --i) {
-      if (!weapons[i].wpn) {
-        weapons.Delete(i);
-      }
-    }
   }
 
   // This is called both when first created, and when reassigned to a new PlayerPawn
