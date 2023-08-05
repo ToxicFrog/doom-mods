@@ -1,16 +1,39 @@
-//AddOptionMenu "OptionsMenu"
-//{
-//  Submenu "$TFLV_OPT_TITLE", "LaevisOptions"
-//}
+AddOptionMenu "OptionsMenu"
+{
+  Submenu "$TFLV_OPT_TITLE", "LaevisOptions"
+}
 
-//OptionMenu "LaevisNewLDEffectMenu"
-//{
-//  class TFLV_Menu_NewLDEffectMenu
-//  Title "$TFLV_MENU_LD_NEW_EFFECT_TITLE"
-//}
+OptionMenu "LaevisOptions"
+{
+  class TFLV_TooltipOptionMenu
+  Title "$TFLV_OPT_TITLE"
+  TFLV_TooltipGeometry 0.5, 1.0, 0.7, 1.0, 0.5
+  TFLV_TooltipAppearance "", "", "tfttbg"
+
+  Slider "$TFLV_OPT_NAME_BASE_EFFECT_SLOTS", "laevis_base_effect_slots", 1, 16, 1, 0
+  TFLV_Tooltip "$TFLV_OPT_TT_BASE_EFFECT_SLOTS"
+  Slider "$TFLV_OPT_NAME_EXTRA_SLOT_COST", "laevis_extra_slot_cost", 1, 16, 1, 0
+  TFLV_Tooltip "$TFLV_OPT_TT_EXTRA_SLOT_COST"
+  Option "$TFLV_OPT_NAME_DISCARD_VALUE", "laevis_discard_value", "LaevisDiscardValue"
+  TFLV_Tooltip "$TFLV_OPT_TT_DISCARD_VALUE"
+  Option "$TFLV_OPT_NAME_IGNORE_DEATH_EXITS", "laevis_ignore_death_exits", "OnOff"
+  TFLV_Tooltip "$TFLV_OPT_TT_IGNORE_DEATH_EXITS"
+}
+
+OptionValue "LaevisDiscardValue" {
+  0, "$TFLV_OPT_DISCARDVALUE_0"
+  1, "$TFLV_OPT_DISCARDVALUE_1"
+  2, "$TFLV_OPT_DISCARDVALUE_2"
+}
 
 OptionMenu "LaevisStatusDisplay"
 {
   class TFLV_Menu_StatusDisplay
   Title "$TFLV_MENU_STATUS_TITLE"
 }
+
+//OptionMenu "LaevisNewLDEffectMenu"
+//{
+//  class TFLV_Menu_NewLDEffectMenu
+//  Title "$TFLV_MENU_LD_NEW_EFFECT_TITLE"
+//}

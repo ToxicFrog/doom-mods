@@ -16,3 +16,20 @@ TFLV_MENU_LD_NEW_EFFECT = "New effect:";
 TFLV_MENU_LD_EXISTING_EFFECTS = "Existing effects:";
 // "please select an upgrade to discard" message for LegenDoom level-ups
 TFLV_MENU_LD_TOO_MANY_EFFECTS = "Your %s has unlocked the effect %s\nbut already has as many effects as it can hold.\nSelect an effect to discard.";
+
+// Option menu
+TFLV_OPT_TITLE = "Laevis Options";
+
+TFLV_OPT_NAME_IGNORE_DEATH_EXITS = "Keep upgrades on death exit/pistol start";
+TFLV_OPT_TT_IGNORE_DEATH_EXITS = "If on, you'll keep your effect library even if you go through a death exit or are using a pistol-start mod. If off, level transitions that take your inventory will also reset your Legendoom effect collection.";
+TFLV_OPT_NAME_BASE_EFFECT_SLOTS = "Starting effect slots";
+TFLV_OPT_TT_BASE_EFFECT_SLOTS = "How many slots for Legendoom effects each weapon starts with.";
+TFLV_OPT_NAME_EXTRA_SLOT_COST = "Extra effect slot cost";
+TFLV_OPT_TT_EXTRA_SLOT_COST = "How many points of effects you need to discard to unlock a new slot on a weapon.";
+TFLV_OPT_NAME_DISCARD_VALUE = "Effect discard value";
+TFLV_OPT_TT_DISCARD_VALUE = "How many points for slot unlocks you get by discarding effects.\nValues listed are for common/uncommon/rare/epic effects.";
+
+// Discard value enum
+TFLV_OPT_DISCARDVALUE_0 = "Flat (1/1/1/1)";
+TFLV_OPT_DISCARDVALUE_1 = "Linear (1/2/3/4)";
+TFLV_OPT_DISCARDVALUE_2 = "Exponential (1/2/4/8)";

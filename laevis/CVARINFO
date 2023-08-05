@@ -21,9 +21,12 @@ server bool laevis_ignore_death_exits = true;
 // Settings for which guns can learn/replace effects; see enum in settings.zs
 //server int laevis_which_guns_can_learn = 3;
 //server int laevis_which_guns_can_replace = 2;
-// How many effect slots do guns have and how many extras do they get from rarity;
-// basic guns == -1 rarity
+// How many effect slots do guns have and how many rarity points do they need
+// to earn new ones.
 server int laevis_base_effect_slots = 2;
-server int laevis_bonus_effect_slots = 1;
-// Whether the effect pool is limited based on original gun rarity
-server bool laevis_ignore_gun_rarity = false;
+server int laevis_extra_slot_cost = 8;
+// How many points discarding an effect is worth.
+// 0 - flat - 1 point
+// 1 - linear - 1/2/3/4 points
+// 2 - exponential - 1/2/4/8 points
+server int laevis_discard_value = 2;
