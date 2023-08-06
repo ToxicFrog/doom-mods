@@ -20,6 +20,11 @@ class ::StatusDisplay : ::GenericMenu {
     PushKeyValueText("$TFLV_MENU_TYPE",
       string.format("%s (%s)",
       stats.winfo.wpn.GetTag(), stats.winfo.wpn.GetClassName()));
+    PushKeyValueText("$TFLV_MENU_SLOTS",
+      string.format("%d/%d",
+      stats.winfo.CountEffects(), stats.winfo.effectSlots));
+    PushKeyValueText("$TFLV_MENU_NEXT_COST",
+      string.format("%d", laevis_extra_slot_cost - (stats.winfo.xp % laevis_extra_slot_cost)));
 
     mDesc.mSelectedItem = -1;
     let info = stats.winfo;

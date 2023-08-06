@@ -64,7 +64,7 @@ class ::WeaponInfo : Object play {
   void InitLegendoom() {
     string prefix = wpn.GetClassName();
 
-    effectSlots = laevis_base_effect_slots;
+    effectSlots = laevis_base_effect_slots + floor(xp/laevis_extra_slot_cost);
 
     AddEffectFromActor(wpn.owner);
     if (currentEffect >= effects.size()) {
@@ -84,6 +84,10 @@ class ::WeaponInfo : Object play {
       if (passives[i].name == effect) return true;
     }
     return false;
+  }
+
+  uint CountEffects() const {
+    return effects.size() + passives.size();
   }
 
   // Ingest an effect from an actor, either the player who has just picked up a
