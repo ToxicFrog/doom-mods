@@ -25,15 +25,33 @@ class ::LegendoomUtil {
     }
   }
 
-  static string GetRarityName(::LDRarity rarity, string prefix) {
+  static string GetRarityName(::LDRarity rarity) {
     if (rarity == RARITY_EPIC) {
-      return "LegendaryEpic";
+      return StringTable.Localize("$LD_RARITY_NAME_Epic");
     } else if (rarity == RARITY_RARE) {
-      return "LegendaryRare";
+      return StringTable.Localize("$LD_RARITY_NAME_Rare");
     } else if (rarity == RARITY_UNCOMMON) {
-      return "LegendaryUncommon";
+      return StringTable.Localize("$LD_RARITY_NAME_Uncommon");
     } else if (rarity == RARITY_COMMON) {
-      return "LegendaryCommon";
+      return StringTable.Localize("$LD_RARITY_NAME_Common");
+    } else {
+      return StringTable.Localize("$LD_RARITY_NAME_Standard");
+    }
+  }
+
+  // Returns the typename for the rarity indicator token for this weapon/rarity
+  // pairing, e.g. LDShotgunLegendaryEpic.
+  // Sadly we can't just delegate to GetRarityName() here because that returns
+  // localized strings and typenames are not localized.Z
+  static string GetRarityTokenType(::LDRarity rarity, string prefix) {
+    if (rarity == RARITY_EPIC) {
+      return prefix .. "LegendaryEpic";
+    } else if (rarity == RARITY_RARE) {
+      return prefix .. "LegendaryRare";
+    } else if (rarity == RARITY_UNCOMMON) {
+      return prefix .. "LegendaryUncommon";
+    } else if (rarity == RARITY_COMMON) {
+      return prefix .. "LegendaryCommon";
     } else {
       return "";
     }

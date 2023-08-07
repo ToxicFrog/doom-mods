@@ -6,7 +6,7 @@ class ::LegendoomEffect : Object play {
   string name;        // Class name of effect, e.g. LDShotgunEffect_Scanner
   string weapon;      // Class name of weapon, e.g. LDShotgun
   ::LDRarity rarity;  // never RARITY_MUNDANE
-  string rarityName;  // LDShotgunLegendaryEpic, etc
+  string rarityTokenType;  // LDShotgunLegendaryEpic, etc
   bool passive;       // true if this is a passive effect that can be always-on
 
   static ::LegendoomEffect Create(string name, string weapon, ::LDRarity rarity) {
@@ -14,7 +14,7 @@ class ::LegendoomEffect : Object play {
     effect.name = name;
     effect.weapon = weapon;
     effect.rarity = rarity;
-    effect.rarityName = weapon .. ::LegendoomUtil.GetRarityName(rarity, weapon);
+    effect.rarityTokenType = ::LegendoomUtil.GetRarityTokenType(rarity, weapon);
     effect.passive = ::LegendoomUtil.GetEffectDescFull(name).IndexOf("[PASSIVE]") >= 0;
     return effect;
   }
@@ -33,6 +33,7 @@ class ::WeaponInfo : Object play {
   array<::LegendoomEffect> passives; // Always on
   int currentEffect;
   string currentEffectName;
+  ::LDRarity rarity;
 
   void Init(Weapon wpn) {
     currentEffect = -1;
@@ -116,6 +117,9 @@ class ::WeaponInfo : Object play {
     let effect = ::LegendoomEffect.Create(
       name, self.wpnClass,
       ::LegendoomUtil.GetWeaponRarity(act, self.wpnClass));
+    if (effect.rarity > self.rarity) {
+      self.rarity = effect.rarity;
+    }
 
     // TODO -- check capacity limits
     if (effect.passive) {
@@ -151,13 +155,13 @@ class ::WeaponInfo : Object play {
   void DisableEffect(::LegendoomEffect effect) {
     DEBUG("DisableEffect, idx=%d size=%d", currentEffect, effects.size());
     wpn.owner.TakeInventory(effect.name, 999);
-    wpn.owner.TakeInventory(effect.rarityName, 999);
+    wpn.owner.TakeInventory(effect.rarityTokenType, 999);
   }
 
   void EnableEffect(::LegendoomEffect effect) {
     DEBUG("EnableEffect, idx=%d size=%d", currentEffect, effects.size());
     wpn.owner.GiveInventory(effect.name, 1);
-    wpn.owner.GiveInventory(effect.rarityName, 1);
+    wpn.owner.GiveInventory(effect.rarityTokenType, 1);
   }
 
   void EnablePassives() {

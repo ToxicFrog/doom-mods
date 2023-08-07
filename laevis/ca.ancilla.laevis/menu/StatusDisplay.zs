@@ -18,8 +18,10 @@ class ::StatusDisplay : ::GenericMenu {
     PushText("", Font.CR_GOLD);
     PushText("$TFLV_MENU_HEADER_WEAPON_STATUS", Font.CR_GOLD);
     PushKeyValueText("$TFLV_MENU_TYPE",
-      string.format("%s (%s)",
-      stats.winfo.wpn.GetTag(), stats.winfo.wpn.GetClassName()));
+      string.format("%s %s (%s)",
+      TFLV::LegendoomUtil.GetRarityName(stats.winfo.rarity),
+      stats.winfo.wpn.GetTag(),
+      stats.winfo.wpn.GetClassName()));
     PushKeyValueText("$TFLV_MENU_SLOTS",
       string.format("%d/%d",
       stats.winfo.effects.size(), stats.winfo.effectSlots));
