@@ -25,6 +25,8 @@ server bool laevis_ignore_death_exits = true;
 // to earn new ones.
 server int laevis_base_effect_slots = 2;
 server int laevis_extra_slot_cost = 8;
+// How many extra slots do you get from weapon rarity.
+server int laevis_slots_per_rarity = 0;
 // How many points discarding an effect is worth.
 // 0 - flat - 1 point
 // 1 - linear - 1/2/3/4 points

@@ -59,14 +59,28 @@ class ::WeaponInfo : Object play {
       // list fits again.
       InitLegendoom();
     } else {
-      effectSlots = 0;
+      self.rarity = RARITY_MUNDANE;
+    }
+    UpdateSlotCount();
+  }
+
+  void UpdateSlotCount() {
+    if (self.rarity == RARITY_MUNDANE) {
+      self.effectSlots = 0;
+    } else {
+      let slots =
+        laevis_base_effect_slots
+        + floor(xp/laevis_extra_slot_cost)
+        + self.rarity * laevis_slots_per_rarity;
+      if (slots != self.effectSlots) {
+        // TODO: informative message
+        self.effectSlots = slots;
+      }
     }
   }
 
   void InitLegendoom() {
     string prefix = wpn.GetClassName();
-
-    effectSlots = laevis_base_effect_slots + floor(xp/laevis_extra_slot_cost);
 
     AddEffectFromActor(wpn.owner);
     if (currentEffect >= effects.size()) {
@@ -119,9 +133,9 @@ class ::WeaponInfo : Object play {
       ::LegendoomUtil.GetWeaponRarity(act, self.wpnClass));
     if (effect.rarity > self.rarity) {
       self.rarity = effect.rarity;
+      UpdateSlotCount();
     }
 
-    // TODO -- check capacity limits
     if (effect.passive) {
       passives.push(effect);
     } else {
@@ -191,11 +205,7 @@ class ::WeaponInfo : Object play {
     // TODO: informative message
     xp += efs[index].XPValue();
     efs.delete(index);
-    let slots = laevis_base_effect_slots + floor(xp/laevis_extra_slot_cost);
-    if (slots > effectSlots) {
-      // TODO: informative message
-      effectSlots = slots;
-    }
+    UpdateSlotCount();
   }
 
   void DiscardEffect(uint index) {
