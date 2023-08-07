@@ -60,8 +60,8 @@ class ::PerPlayerStats : Object play {
     stats.plvl = level;
     stats.pupgrades = upgrades;
     stats.winfo = info;
-    stats.wxp = floor(info.XP);
-    stats.wmax = info.maxXP;
+    stats.wxp = info.LevelXP();
+    stats.wmax = info.GetXPForLevel(info.level+1);
     stats.wlvl = info.level;
     stats.wname = info.wpn.GetTag();
     stats.wupgrades = info.upgrades;
