@@ -94,25 +94,6 @@ OptionMenu "GunBonsaiOptions"
 
   Option "$TFLV_OPT_NAME_AUTOSAVE_AFTER_LEVEL", "bonsai_autosave_after_level", "OnOff"
   TFLV_Tooltip "$TFLV_OPT_TT_AUTOSAVE_AFTER_LEVEL"
-
-  StaticText ""
-  StaticText "$TFLV_OPT_HEADER_LEGENDOOM", GRAY
-
-  ScaleSlider "$TFLV_OPT_NAME_GUN_LEVELS_PER_LD_EFFECT", "bonsai_gun_levels_per_ld_effect", 0, 100, 1, "$TFLV_OPT_SLIDER_DISABLED"
-  TFLV_Tooltip "$TFLV_OPT_TT_GUN_LEVELS_PER_LD_EFFECT"
-
-  Option "$TFLV_OPT_NAME_WHICH_GUNS_CAN_LEARN", "bonsai_which_guns_can_learn", "GunBonsaiWhatKindOfGunSelector"
-  TFLV_Tooltip "$TFLV_OPT_TT_WHICH_GUNS_CAN_LEARN"
-  Option "$TFLV_OPT_NAME_WHICH_GUNS_CAN_REPLACE", "bonsai_which_guns_can_replace", "GunBonsaiWhatKindOfGunSelector"
-  TFLV_Tooltip "$TFLV_OPT_TT_WHICH_GUNS_CAN_REPLACE"
-
-  Slider "$TFLV_OPT_NAME_BASE_LD_EFFECT_SLOTS", "bonsai_base_ld_effect_slots", 0, 16, 1, 0
-  TFLV_Tooltip "$TFLV_OPT_TT_BASE_LD_EFFECT_SLOTS"
-  Slider "$TFLV_OPT_NAME_BONUS_LD_EFFECT_SLOTS", "bonsai_bonus_ld_effect_slots", 0, 16, 1, 0
-  TFLV_Tooltip "$TFLV_OPT_TT_BONUS_LD_EFFECT_SLOTS"
-
-  Option "$TFLV_OPT_NAME_IGNORE_GUN_RARITY", "bonsai_ignore_gun_rarity", "OnOff"
-  TFLV_Tooltip "$TFLV_OPT_TT_IGNORE_GUN_RARITY"
 }
 
 OptionValue "GunBonsaiHudMirrorMode" {
@@ -166,12 +147,6 @@ OptionMenu "GunBonsaiWeaponLevelUpMenu"
 {
   class TFLV_Menu_WeaponLevelUpMenu
   Title "$TFLV_MENU_WEAPON_LEVELUP_TITLE"
-}
-
-OptionMenu "GunBonsaiNewLDEffectMenu"
-{
-  class TFLV_Menu_NewLDEffectMenu
-  Title "$TFLV_MENU_LD_NEW_EFFECT_TITLE"
 }
 
 OptionMenu "GunBonsaiStatusDisplay"

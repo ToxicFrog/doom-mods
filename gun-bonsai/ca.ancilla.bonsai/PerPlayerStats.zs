@@ -19,13 +19,8 @@ struct ::CurrentStats {
   uint wlvl;
   // Name of current weapon.
   string wname;
-  // Currently active weapon effect.
-  string effect;
 }
 
-// TODO: see if there's a way we can evacuate this to the StaticEventHandler
-// and reinsert it into the player when something happens, so that it reliably
-// persists across deaths, pistol starts, etc -- make this an option.
 class ::PerPlayerStats : Object play {
   array<::WeaponInfo> weapons;
   ::Upgrade::UpgradeBag upgrades;
@@ -70,7 +65,6 @@ class ::PerPlayerStats : Object play {
     stats.wlvl = info.level;
     stats.wname = info.wpn.GetTag();
     stats.wupgrades = info.upgrades;
-    stats.effect = info.ld_info.currentEffectName;
     return true;
   }
 

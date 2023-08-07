@@ -18,14 +18,11 @@ class ::WeaponInfo : Object play {
   double maxXP;      // XP to next level up
   uint level;        // current level, resets to 0 on respec
   uint bonus_levels; // "free" levels that don't affect XP, used when respeccing
-  ::LegendoomWeaponInfo ld_info;
 
   // Called when a new WeaponInfo is created. This should initialize the entire object.
   void Init(Weapon wpn) {
     DEBUG("Initializing WeaponInfo for %s", TAG(wpn));
     upgrades = new("::Upgrade::UpgradeBag");
-    ld_info = new("::LegendoomWeaponInfo");
-    ld_info.Init(self);
     Rebind(wpn);
     XP = 0;
     level = 0;
@@ -48,7 +45,6 @@ class ::WeaponInfo : Object play {
         // powered up, assume that we're using the max XP for it's unpowered sister.
         self.maxXP = GetXPForLevel(level+1);
     }
-    ld_info.Rebind(self);
   }
 
   void ToggleUpgrade(uint index) {
@@ -249,13 +245,6 @@ class ::WeaponInfo : Object play {
           StringTable.Localize("$TFLV_MSG_WEAPON_LEVELUP"),
           wpn.GetTag(), upgrade.GetName()),
         true);
-    }
-
-    if (::Settings.have_legendoom()
-        && bonsai_gun_levels_per_ld_effect > 0
-        && (level % bonsai_gun_levels_per_ld_effect) == 0) {
-      let ldGiver = ::LegendoomEffectGiver(wpn.owner.GiveInventoryType("::LegendoomEffectGiver"));
-      ldGiver.info = self.ld_info;
     }
   }
 }

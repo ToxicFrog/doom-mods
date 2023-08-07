@@ -43,7 +43,6 @@ class ::Debug : Object play {
     console.printf("%s (%s):\n    Level %d (%d/%d XP)",
       stats.winfo.wpnClass, stats.wname, stats.wlvl, stats.wxp, stats.wmax);
     stats.wupgrades.DumpToConsole("    ");
-    stats.winfo.ld_info.DumpToConsole();
     stats.winfo.DumpTypeInfo();
   }
 

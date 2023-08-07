@@ -85,19 +85,3 @@ server int bonsai_respec_interval = 0;
 // token object into the game, and if users have different settings for this
 // it will desync.
 server bool bonsai_autosave_after_level = true;
-
-// LEGENDOOM INTEGRATION //
-
-// How many times a gun needs to level up before it gets a new Legendoom effect.
-// No effect if LD isn't installed.
-server int bonsai_gun_levels_per_ld_effect = 3;
-
-// Settings for which guns can learn/replace effects; see enum in settings.zs
-server int bonsai_which_guns_can_learn = 3;
-server int bonsai_which_guns_can_replace = 2;
-// How many effect slots do guns have and how many extras do they get from rarity;
-// basic guns == -1 rarity
-server int bonsai_base_ld_effect_slots = 2;
-server int bonsai_bonus_ld_effect_slots = 1;
-// Whether the effect pool is limited based on original gun rarity
-server bool bonsai_ignore_gun_rarity = false;

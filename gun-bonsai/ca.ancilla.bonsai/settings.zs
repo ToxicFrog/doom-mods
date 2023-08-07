@@ -87,12 +87,4 @@ class TFLV_Settings : Object {
     if (mode > 3) return "";
     return sounds[mode];
   }
-
-  static bool have_legendoom() {
-    // If we just do cls = "LDPistol" it will get checked at compile time; we
-    // need to defer this to runtime so that everything has a chance to load.
-    string ldpistol = "LDPistol";
-    class<Actor> cls = ldpistol;
-    return cls != null;
-  }
 }

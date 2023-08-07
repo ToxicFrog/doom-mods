@@ -15,7 +15,7 @@ It is inspired primarily by [War of Attrition](https://fissile.duke4.net/fissile
 
 Add `GunBonsai-<version>.pk3` to your load order. It doesn't matter where.
 
-Gun Bonsai adds one new mandatory command, "Show Info", bound to `I` by default; this shows you information on your character and current weapon, and is used to select upgrades on level-up. If you are playing with Legendoom integration (see below), you will also want to make sure "Cycle Legendoom Power" is bound to something convenient.
+Gun Bonsai adds one new mandatory command, "Show Info", bound to `I` by default; this shows you information on your character and current weapon, and is used to select upgrades on level-up.
 
 Gun Bonsai also has its own options page, with many tuning and compatibility options. The defaults should be sensible for vanilla Doom 2 play, but I highly recommend flipping through it and making sure they are to your taste; the settings are self-documenting with in-game tooltips. In particular, if you are using a mod that assigns points (like Reelism, Lazy Points, or MetaDoom) and want to earn XP that way, you will need to adjust some settings.
 
@@ -64,14 +64,6 @@ Here are the settings I use for those mods; you'll probably want to tweak them b
 - **MetaDoom**: 0.75 damage, 0.25 score. MD awards bonuses for kills (not damage), plus huge score bonuses for all kills/secrets/items on a level. These settings tend to result in getting more XP than the default overall, but MD also tends to be harder than vanilla, so it works out in the end.
 - **Reelism**: I haven't tested this extensively yet, but 1.0 damage/0.5 score seemed to work ok for a first pass; Reelism rounds are pretty short.
 
-### Legendoom
-
-If you have Legendoom installed, legendary weapons can gain new Legendoom effects on level up. Only one effect can be active at a time, but you can change effects at any time. Weapons can hold a limited number of effects; if you gain a new effect and there's no room for it, you'll be prompted to choose an effect to delete. (Make sure you choose the effect you want to **get rid of**, not one of the ones you want to keep!)
-
-When using a Legendoom weapon, you can press the "Cycle Legendoom Weapon Effect" key to cycle through effects, or manually select an effect from the weapon info screen.
-
-There are a lot of settings for this in the mod options, including which weapons can learn effects, how rapidly effects are learned, how many effect slots weapons have, etc. If you want to play with Legendoom installed but turn off integration with Gun Bonsai, set `Gun Levels per Legendoom Effect` to 0/Disabled in the settings.
-
 ### Hideous Destructor
 
 Hideous Destructor replaces a lot of default Doom behaviours, in ways that Gun Bonsai has trouble coping with. A non-exhaustive list of issues:
@@ -116,15 +108,12 @@ Yes! See the `MODDING.md` file for instructions; if you just want to automatical
 
 ### Didn't this used to be called "Laevis"?
 
-Yes -- that was its working title, after *Lepidobatrachus laevis*, aka the Wednesday Frog, which consumes anything smaller than itself and grows more powerful thereby. I eventually settled on "Gun Bonsai" as the release name.
-
-I may someday split the Legendoom integration into its own (somewhat more featureful) mod, in which case it will probably inherit the Laevis name.
+That was the working title of early prototypes of this mod. It was renamed "Gun Bonsai" before the first official release. The name "Laevis" is now used by [another one of my mods](FIXME).
 
 
 ## Known Issues
 
 - XP is assigned to the currently wielded weapon at the time the damage is dealt, so it possible for XP to be assigned to the wrong weapon if you switch weapons while projectiles are in flight.
-- When using Legendoom, it is possible to permanently downgrade (or, in some cases, upgrade) weapons by changing which effect is active on them before dropping them.
 - The distinction between projectile and hitscan weapons is guesswork and may in some cases be incorrect.
 - Most effects will trigger only on shots that hit a monster, e.g. HE Rounds will not detonate if you shoot a wall.
 - Piercing Shots may interfere with the detonation of exploding shots like rockets.
@@ -134,12 +123,9 @@ I may someday split the Legendoom integration into its own (somewhat more featur
 
 Some of these are minor bugs in the mods themselves that aren't visible in normal play; others are issues with Gun Bonsai that are brought to light by the way these mods work.
 
-- **Ashes series**: all sawn-off shotguns are flagged as melee weapons and thus get melee upgrades
-- **Ashes Afterglow**: upgrading a weapon resets it to level 0
 - **Angelic Aviary**: some decorations are flagged as monsters and thus grant XP for attacking them
 - **DoomRL Arsenal**: building an assembly resets it to level 0
 - **Final Doomer +**: HE rounds don't detonate properly
-- **Hellrider**: Juggler has no effect
 - **Hideous Destructor**: none of the Scavenge upgrades work (in addition to various minor issues)
 - **Slomo Bullet Time**: interacts oddly with Swiftness and may cause you to get stuck in place until both effects wear off
 - **XRPG**: melee weapons are not flagged correctly and thus get ranged weapon upgrades instead

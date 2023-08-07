@@ -7,7 +7,6 @@ TFLV_OPT_HEADER_UI = "Configurações da IU";
 TFLV_OPT_HEADER_COMPATIBILITY = "Configurações de Compatibilidade";
 TFLV_OPT_HEADER_XP_SOURCE = "Configurações de fontes de XP";
 TFLV_OPT_HEADER_XP_BALANCE = "Configurações de Balanceamento de XP";
-TFLV_OPT_HEADER_LEGENDOOM = "Integração com Legendoom";
 
 // Strings for option names and tooltips
 
@@ -50,18 +49,6 @@ TFLV_OPT_TT_GUN_LEVELS_PER_PLAYER_LEVEL = "Quantas vezes você precisa aumentar 
 TFLV_OPT_NAME_LEVEL_COST_MUL_FOR_MELEE = "Multiplicador de custo de XP para armas brancas";
 TFLV_OPT_NAME_LEVEL_COST_MUL_FOR_WIMPY = "Multiplicador de custo de XP para armas fracas";
 TFLV_OPT_TT_LEVEL_COST_MUL = "Multiplicadores de custo de XP para várias classes de armas. Estes podem empilhar (por exemplo, os punhos são 'armas brancas' e 'fracas' no Doom 2 vanilla). As configurações padrão tornam as armas fracas e brancas mais fáceis de subir de nível.\nobserve que nem todos os mods usam esses tipos ou os usam-os incorretamente - nesse caso, as substituições podem ser aplicadas no lump BONSAIRC.";
-TFLV_OPT_NAME_GUN_LEVELS_PER_LD_EFFECT = "Níveis de arma por efeito LD";
-TFLV_OPT_TT_GUN_LEVELS_PER_LD_EFFECT = "Quantas vezes uma arma precisa subir de nível para ganhar um novo efeito Legendoom. Funciona apenas se o Legendoom estiver instalado. Defina-o como 0 para desabilitar.";
-TFLV_OPT_NAME_WHICH_GUNS_CAN_LEARN = "Efeitos do LD podem ser aprendidos por";
-TFLV_OPT_TT_WHICH_GUNS_CAN_LEARN = "Quais armas podem ganhar novos efeitos do LD.";
-TFLV_OPT_NAME_WHICH_GUNS_CAN_REPLACE = "Efeitos LD substituíveis por";
-TFLV_OPT_TT_WHICH_GUNS_CAN_REPLACE = "Quais armas podem substituir efeitos de LD antigos por novos quando estiverem cheios.";
-TFLV_OPT_NAME_BASE_LD_EFFECT_SLOTS = "Número base de slots de efeito LD";
-TFLV_OPT_TT_BASE_LD_EFFECT_SLOTS = "Quantos slots para efeitos LD que armas não lendárias têm.";
-TFLV_OPT_NAME_BONUS_LD_EFFECT_SLOTS = "Slots de bônus por nível de raridade LD";
-TFLV_OPT_TT_BONUS_LD_EFFECT_SLOTS = "Quantos slots de efeitos extras as armas lendárias recebem por nível de raridade (Comum=1, Épico=4).";
-TFLV_OPT_NAME_IGNORE_GUN_RARITY = "Ignore a raridade da arma original para novos efeitos";
-TFLV_OPT_TT_IGNORE_GUN_RARITY = "Se as armas podem aprender efeitos de LD que são mais raros do que aqueles com os quais elas geraram.";
 
 // Strings for the various option enums
 
@@ -87,9 +74,3 @@ TFLV_OPT_FANFARE_3 = "efeito sonoro de teleporte";
 TFLV_OPT_BINDMODE_0 = "arma individual";
 TFLV_OPT_BINDMODE_1 = "arma individual com herança";
 TFLV_OPT_BINDMODE_2 = "classe de arma";
-// what sorts of weapons can get Legendoom effects by leveling up (if LD integration
-// is enabled)
-TFLV_OPT_LDMODE_0 = "nenhum";
-TFLV_OPT_LDMODE_1 = "apenas armas básicas";
-TFLV_OPT_LDMODE_2 = "apenas armas lendárias";
-TFLV_OPT_LDMODE_3 = "todas as armas";

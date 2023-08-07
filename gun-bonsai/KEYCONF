@@ -4,9 +4,3 @@ addmenukey "Display Info" bonsai-show-info
 alias bonsai-show-info "netevent bonsai-show-info"
 alias bonsai-dump "netevent bonsai-debug,info"
 defaultbind I bonsai-show-info
-
-addkeysection "Gun Bonsai/Legendoom Integration" GunBonsaiLegendoom
-
-addmenukey "Cycle Legendoom Weapon Effect" bonsai_cycle_ld_effect
-alias bonsai_cycle_ld_effect "netevent bonsai-cycle-ld-effect"
-defaultbind P bonsai_cycle_ld_effect

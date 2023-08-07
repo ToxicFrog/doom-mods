@@ -42,10 +42,6 @@ class ::PerPlayerStatsProxy : Inventory {
     stats.ModifyDamage(damage, damageType, newdamage, passive, inflictor, source, flags);
   }
 
-  // Special pickup handling so that if the player picks up an LD legendary weapon
-  // that upgrades their mundane weapon in-place, we handle this correctly rather
-  // than thinking it's a mundane weapon that earned an LD effect through leveling
-  // up.
   override bool HandlePickup(Inventory item) {
     DEBUG("OnPickup: %s", TAG(item));
     if (Weapon(item)) {
@@ -56,8 +52,6 @@ class ::PerPlayerStatsProxy : Inventory {
       // This is only really relevant when using BIND_WEAPON and it's important
       // that we rebind the info to the replacement before it gets cleaned up.
       stats.weaponinfo_dirty = true;
-    } else {
-      HandleLDWeaponPickup(item);
     }
     // Fire OnPickup events for GB upgrades.
     // TODO: this won't fire for items that get merged with other items before
@@ -74,34 +68,5 @@ class ::PerPlayerStatsProxy : Inventory {
     // :(
     stats.OnPickup(item);
     return super.HandlePickup(item);
-  }
-
-  void HandleLDWeaponPickup(Inventory item) {
-    // TODO: peel most of this into a separate mod.
-    // Workaround for zscript `is` operator being weird.
-    string LDWeaponNameAlternationType = "LDWeaponNameAlternation";
-    string LDPermanentInventoryType = "LDPermanentInventory";
-    if (item is LDWeaponNameAlternationType || !(item is LDPermanentInventoryType)) {
-      return;
-    }
-
-    string cls = item.GetClassName();
-    if (cls.IndexOf("EffectActive") < 0) return;
-
-    // If this is flagged as "notelefrag", it means it was produced by the level-
-    // up code and should upgrade our current item in place rather than invalidating
-    // its info block.
-    if (item.bNOTELEFRAG) return;
-
-    // At this point we know that the pickup is a Legendoom weapon effect token
-    // and it's not one we created. So we need to figure out if the player has
-    // an existing entry for a mundane weapon of the same type and clear it if so.
-    // TODO: this may need a redesign in light of the new rebinding code.
-    cls = cls.Left(cls.IndexOf("EffectActive"));
-    for (int i = 0; i < stats.weapons.size(); ++i) {
-      if (stats.weapons[i].wpn is cls) {
-        stats.weapons[i].wpn = null;
-      }
-    }
   }
 }

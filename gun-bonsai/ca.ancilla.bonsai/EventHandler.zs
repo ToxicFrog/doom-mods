@@ -13,13 +13,6 @@ class ::EventHandler : StaticEventHandler {
   override void OnRegister() {
     console.printf("Initializing Gun Bonsai v%s...", MOD_VERSION());
     UPGRADE_REGISTRY = new("::Upgrade::Registry");
-
-    if (::Settings.have_legendoom()) {
-      console.printf("%s", StringTable.Localize("$TFLV_MSG_LD_YES"));
-    } else {
-      console.printf("%s", StringTable.Localize("$TFLV_MSG_LD_NO"));
-    }
-
     rc = ::RC.LoadAll("BONSAIRC");
     rc.Finalize(self);
   }
@@ -144,33 +137,9 @@ class ::EventHandler : StaticEventHandler {
     giver.Choose(index);
   }
 
-  void CycleLDEffect(uint p) {
-    if (!playerstats[p]) return;
-    let info = playerstats[p].GetInfoForCurrentWeapon();
-    if (info) info.ld_info.CycleEffect();
-  }
-
-  void SelectLDEffect(uint p, int index) {
-    if (!playerstats[p]) return;
-    let info = playerstats[p].GetInfoForCurrentWeapon();
-    if (info) info.ld_info.SelectEffect(index);
-  }
-
   override void NetworkProcess(ConsoleEvent evt) {
     if (evt.name == "bonsai-show-info") {
       ShowInfo(evt.player);
-    } else if (evt.name == "bonsai-cycle-ld-effect") {
-      if (::Settings.have_legendoom()) {
-        CycleLDEffect(evt.player);
-      } else {
-        players[evt.player].mo.A_Log(StringTable.Localize("$TFLV_MSG_LD_REQUIRED"));
-      }
-    } else if (evt.name == "bonsai-select-effect") {
-      if (::Settings.have_legendoom()) {
-        SelectLDEffect(evt.player, evt.args[0]);
-      } else {
-        players[evt.player].mo.A_Log(StringTable.Localize("$TFLV_MSG_LD_REQUIRED"));
-      }
     } else if (evt.name == "bonsai-choose-level-up-option") {
       ChooseLevelUpOption(evt.player, evt.args[0]);
       // Backwards compatibility with AAS.

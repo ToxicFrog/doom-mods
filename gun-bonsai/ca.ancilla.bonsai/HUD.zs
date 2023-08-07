@@ -212,9 +212,8 @@ class ::HUD : Object ui {
       string.format("%d/%d", stats.pxp, stats.pmax),
       player_rgb, HUD_BOTTEXT_X, HUD_BOTTEXT_Y, HUD_GRAV_SE);
 
-    let spacer = stats.effect == "" ? "" : " ";
     Text(
-      string.format("%s%s%s", stats.effect, spacer, stats.wname),
+      string.format("%s", stats.wname),
       weapon_rgb, HUD_INFOTEXT_X,
       // HACK HACK HACK, we adjust y in HUD coordinate space so that it ends up
       // in the right place (directly above the weapon name) when it gets rendered.
