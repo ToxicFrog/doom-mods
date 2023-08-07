@@ -413,13 +413,14 @@ class ::PerPlayerStats : Object play {
 
   // Runs once per tic.
   void TickStats() {
-    if (!owner || !owner.player || owner.player.IsTotallyFrozen()) return;
+    if (!owner || !owner.player) return;
     // This ensures that the currently wielded weapon always has a WeaponInfo
     // struct associated with it. It should be pretty fast, especially in the
     // common case where the weapon already has a WeaponInfo associated with it.
     // If the weaponinfo_dirty flag is set, it will do a full rebuild, scanning
     // the player's entire inventory and building info for all of their weapons.
     let info = RebuildWeaponInfo();
+    if (owner.player.IsTotallyFrozen()) return;
 
     // Run on-tick effects for upgrades.
     upgrades.Tick(owner);
