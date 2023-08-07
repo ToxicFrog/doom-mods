@@ -14,6 +14,8 @@ OptionMenu "LaevisOptions"
   TFLV_Tooltip "$TFLV_OPT_TT_BASE_EFFECT_SLOTS"
   Slider "$TFLV_OPT_NAME_EXTRA_SLOT_COST", "laevis_extra_slot_cost", 1, 16, 1, 0
   TFLV_Tooltip "$TFLV_OPT_TT_EXTRA_SLOT_COST"
+  Slider "$TFLV_OPT_NAME_SLOTS_PER_RARITY", "laevis_slots_per_rarity", 0, 8, 1, 0
+  TFLV_Tooltip "$TFLV_OPT_TT_SLOTS_PER_RARITY"
   Option "$TFLV_OPT_NAME_DISCARD_VALUE", "laevis_discard_value", "LaevisDiscardValue"
   TFLV_Tooltip "$TFLV_OPT_TT_DISCARD_VALUE"
   Option "$TFLV_OPT_NAME_IGNORE_DEATH_EXITS", "laevis_ignore_death_exits", "OnOff"
