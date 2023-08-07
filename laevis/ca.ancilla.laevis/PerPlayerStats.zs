@@ -173,5 +173,30 @@ class ::PerPlayerStats : Object play {
     // If the weaponinfo_dirty flag is set, it will do a full rebuild, scanning
     // the player's entire inventory and building info for all of their weapons.
     RebuildWeaponInfo();
+    DiscardExcessEffects();
+  }
+
+  bool discard_needed;
+  ::WeaponInfo discarding;
+  void DiscardExcessEffects() {
+    if (!discard_needed) return;
+    if (discarding) return; // menu already open
+    for (int i = 0; i < weapons.size(); ++i) {
+      if (weapons[i].NeedsDiscard()) {
+        discarding = weapons[i];
+        Menu.SetMenu("LaevisDiscardEffectMenu");
+        return;
+      }
+    }
+    discard_needed = false;
+  }
+
+  ::LDRarity PickupEffect(Actor item, string prefix) {
+    Weapon wpn = Weapon(owner.FindInventory(prefix));
+    if (!wpn) return RARITY_MUNDANE;
+    let info = GetOrCreateInfoFor(wpn);
+    if (!info) return RARITY_MUNDANE;
+    discard_needed = true;
+    return info.AddEffectFromActor(item);
   }
 }

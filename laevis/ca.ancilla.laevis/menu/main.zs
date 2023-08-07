@@ -1,3 +1,3 @@
 #include "./GenericMenu.zsc"
-//#include "./NewLDEffectMenu.zsc"
+#include "./DiscardEffectMenu.zsc"
 #include "./StatusDisplay.zsc"

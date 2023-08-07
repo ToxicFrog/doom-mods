@@ -112,12 +112,6 @@ class ::EventHandler : StaticEventHandler {
     return;
   }
 
-  void ChooseLevelUpOption(uint p, int index) {
-    if (!playerstats[p]) return;
-    // player should be in the middle of picking up a new LD weapon; pick an
-    // upgrade to discard.
-  }
-
   void CycleLDEffect(uint p) {
     if (!playerstats[p]) return;
     let info = playerstats[p].GetInfoForCurrentWeapon();
@@ -130,6 +124,12 @@ class ::EventHandler : StaticEventHandler {
     if (info) info.SelectEffect(index);
   }
 
+  void DiscardEffect(uint p, int index) {
+    if (!playerstats[p]) return;
+    playerstats[p].discarding.DiscardEffect(index);
+    playerstats[p].discarding = null;
+  }
+
   override void NetworkProcess(ConsoleEvent evt) {
     if (evt.name == "laevis-show-info") {
       ShowInfo(evt.player);
@@ -137,8 +137,8 @@ class ::EventHandler : StaticEventHandler {
       CycleLDEffect(evt.player);
     } else if (evt.name == "laevis-select-effect") {
       SelectLDEffect(evt.player, evt.args[0]);
-    } else if (evt.name == "laevis-choose-level-up-option") {
-      ChooseLevelUpOption(evt.player, evt.args[0]);
+    } else if (evt.name == "laevis-discard-effect") {
+      DiscardEffect(evt.player, evt.args[0]);
     }
   }
 

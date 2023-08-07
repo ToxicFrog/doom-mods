@@ -21,6 +21,7 @@ class ::LegendoomEffect : Object play {
 
   string Title() const { return ::LegendoomUtil.GetEffectTitle(self.name); }
   string Desc() const { return ::LegendoomUtil.GetEffectDesc(self.name); }
+  uint XPValue() const { return ::LegendoomUtil.GetRarityValue(self.rarity); }
 }
 
 class ::WeaponInfo : Object play {
@@ -160,6 +161,7 @@ class ::WeaponInfo : Object play {
   }
 
   void EnablePassives() {
+    DisablePassives();
     for (uint i = 0; i < passives.size(); ++i) {
       DEBUG("Activating %s", passives[i].name);
       wpn.owner.TakeInventory(passives[i].name, 999);
@@ -167,29 +169,66 @@ class ::WeaponInfo : Object play {
     }
   }
 
+  void DisablePassives() {
+    for (uint i = 0; i < passives.size(); ++i) {
+      wpn.owner.TakeInventory(passives[i].name, 999);
+    }
+  }
+
+  // Returns true if this info is overpopulated, i.e. if its number of active
+  // effects exceeds its effect limit or it has more than one passive effect.
+  bool NeedsDiscard() {
+    return effects.size() > effectSlots
+      || passives.size() > 1;
+  }
+
+  // Delete the given effect from the array and grant XP based on the effect rarity.
+  void Digest(array<::LegendoomEffect> efs, uint index) {
+    // TODO: informative message
+    xp += efs[index].XPValue();
+    efs.delete(index);
+    let slots = laevis_base_effect_slots + floor(xp/laevis_extra_slot_cost);
+    if (slots > effectSlots) {
+      // TODO: informative message
+      effectSlots = slots;
+    }
+  }
+
   void DiscardEffect(uint index) {
-    DEBUG("DiscardEffect, total=%d, index=%d, current=%d",
+    if (passives.size() > 1) {
+      // Discard menu will always prioritize discarding passives if both types
+      // are over budget.
+      return DiscardPassive(index);
+    } else {
+      return DiscardActive(index);
+    }
+  }
+
+  void DiscardActive(uint index) {
+    DEBUG("DiscardActive, total=%d, index=%d, current=%d",
         effects.size(), index, currentEffect);
     if (effects.size() <= index) return;
     if (index == currentEffect) {
       // The effect they want to discard is the current one.
       // Remove the effect now, then CycleEffect afterwards to select a new valid one.
       DisableEffect(effects[index]);
-      effects.Delete(index);
+      Digest(effects, index);
       CycleEffect();
     } else if (index < currentEffect) {
       // They want to discard an effect before the current one, which will result
       // in later effects being renumbered.
       currentEffect--;
-      effects.Delete(index);
+      Digest(effects, index);
+    } else {
+      Digest(effects, index);
     }
   }
 
-  bool GunRarityMatchesSetting(::WhichGuns setting, ::LDRarity rarity) {
-    if (rarity == RARITY_MUNDANE) {
-      return setting & 1;
-    } else {
-      return setting & 2;
-    }
+  void DiscardPassive(uint index) {
+    DEBUG("DiscardPassive, total=%d, index=%d", passives.size(), index);
+    if (passives.size() <= index) return;
+    DisablePassives();
+    Digest(passives, index);
+    EnablePassives();
   }
 }

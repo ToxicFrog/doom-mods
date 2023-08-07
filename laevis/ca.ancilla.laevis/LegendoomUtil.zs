@@ -6,6 +6,10 @@ enum ::LDRarity {
   RARITY_COMMON, RARITY_UNCOMMON, RARITY_RARE, RARITY_EPIC
 }
 
+enum ::DiscardValueMode {
+  DISCARD_VALUE_FLAT, DISCARD_VALUE_LINEAR, DISCARD_VALUE_EXPONENTIAL
+}
+
 class ::LegendoomUtil {
   static ::LDRarity GetWeaponRarity(Actor act, string prefix) {
     if (act.FindInventory(prefix.."LegendaryEpic")) {
@@ -46,6 +50,20 @@ class ::LegendoomUtil {
       return 0,255,0;
     } else {
       return 0,0,0;
+    }
+  }
+
+  static uint GetRarityValue(::LDRarity rarity) {
+    if (rarity < 0) return 0;
+
+    if (laevis_discard_value == DISCARD_VALUE_FLAT) {
+      return 1;
+    } else if (laevis_discard_value == DISCARD_VALUE_LINEAR) {
+      return uint(rarity);
+    } else if (laevis_discard_value == DISCARD_VALUE_EXPONENTIAL) {
+      return 2 ** uint(rarity);
+    } else {
+      return 0;
     }
   }
 

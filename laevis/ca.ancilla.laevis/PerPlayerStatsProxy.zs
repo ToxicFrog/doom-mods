@@ -79,20 +79,12 @@ class ::PerPlayerStatsProxy : Inventory {
     Inventory effect = ::LegendoomUtil.FindItemWithPrefix(item, prefix.."Effect_");
     if (effect) {
       uint r,g,b;
-      [r,g,b] = ::LegendoomUtil.GetRarityColour(PickupEffect(item, prefix));
+      [r,g,b] = ::LegendoomUtil.GetRarityColour(stats.PickupEffect(item, prefix));
       item.ACS_ScriptCall("Draw_Pentagram", item.radius, r, g, b);
       item.Destroy();
     } else {
       item.ACS_ScriptCall("Draw_Pentagram", item.radius, 0, 0, 0);
     }
-  }
-
-  ::LDRarity PickupEffect(Actor item, string prefix) {
-    Weapon wpn = Weapon(owner.FindInventory(prefix));
-    if (!wpn) return RARITY_MUNDANE;
-    let info = stats.GetOrCreateInfoFor(wpn);
-    if (!info) return RARITY_MUNDANE;
-    return info.AddEffectFromActor(item);
   }
 
   // Special pickup handling so that if the player picks up an LD legendary weapon
