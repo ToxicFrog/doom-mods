@@ -222,8 +222,10 @@ class ::PerPlayerStats : Object play {
 
   void Fanfare() {
     EventHandler.SendNetworkEvent("bonsai-level-up", 0, self.level+1);
-    if (::Settings.levelup_flash()) {
-      owner.A_SetBlend("FF FF FF", 0.8, 40);
+    let flash = ::Settings.levelup_flash();
+    if (flash) {
+      owner.A_SetBlend(flash, 0.8, 35);
+      owner.A_SetBlend(flash, 0.4, 105);
     }
     if (::Settings.levelup_sound() != "") {
       owner.A_StartSound(::Settings.levelup_sound(), CHAN_AUTO,

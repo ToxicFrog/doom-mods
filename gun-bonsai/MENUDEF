@@ -41,6 +41,8 @@ OptionMenu "GunBonsaiOptions"
   TFLV_Tooltip "$TFLV_OPT_TT_VFX_MODE"
   Option "$TFLV_OPT_NAME_LEVELUP_FLASH", "bonsai_levelup_flash", "OnOff"
   TFLV_Tooltip "$TFLV_OPT_TT_LEVELUP_FLASH"
+  ColorPicker "$TFLV_OPT_NAME_LEVELUP_FLASH_RGB", "bonsai_levelup_flash_rgb"
+  TFLV_Tooltip ""
   Option "$TFLV_OPT_NAME_LEVELUP_SOUND_MODE", "bonsai_levelup_sound_mode", "GunBonsaiLevelUpSoundOption"
   TFLV_Tooltip "$TFLV_OPT_TT_LEVELUP_SOUND_MODE"
 

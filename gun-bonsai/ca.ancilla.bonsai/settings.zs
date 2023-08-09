@@ -67,8 +67,12 @@ class TFLV_Settings : Object {
            GetInt("bonsai_hud_rgb_player") | 0xFF000000;
   }
 
-  static bool levelup_flash() {
-    return GetBool("bonsai_levelup_flash");
+  static uint levelup_flash() {
+    if (GetBool("bonsai_levelup_flash")) {
+      return GetInt("bonsai_levelup_flash_rgb") | 0xFF000000;
+    } else {
+      return 0;
+    }
   }
 
   static uint vfx_mode() {

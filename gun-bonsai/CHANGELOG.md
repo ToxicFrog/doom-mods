@@ -4,6 +4,8 @@
 "upgrade choices per level" options to "all upgrades", you will need to open the
 options screen and fix them.
 
+- New:
+  - Screen flash colour on level up can be customized
 - Balance:
   - `Infernal Kiln`:
     - softcap at 10 seconds, +5/level
@@ -18,6 +20,7 @@ options screen and fix them.
   - `bonsai_upgrades_per_gun_level` can now be set to 0 to let you gain levels without actually gaining upgrades
   - `bonsai_upgrades_per_player_level` likewise
   - **Check your settings**: if you previously had these set to 0 for "all upgrades", you will need to go into the menu and change them to -1.
+  - Screen flashes are shorter overall; weapon level-up flashes are shorter than player level-up.
 - Fix:
   - A few additional option strings are now defined in LANGUAGE and can be localized
   - Leveling up while somehow having no upgrades available no longer crashes the game
