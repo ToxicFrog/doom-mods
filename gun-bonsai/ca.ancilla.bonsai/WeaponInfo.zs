@@ -165,7 +165,7 @@ class ::WeaponInfo : Object play {
     XP += newXP;
     DEBUG("XP is now %.3f", XP);
     let xp_since = XP - GetXPForLevel(level);
-    if (LevelXP() >= maxXP && LevelXP() - newXP < maxXP) {
+    if (XP >= maxXP && XP - newXP < maxXP) {
       Fanfare();
     }
   }
