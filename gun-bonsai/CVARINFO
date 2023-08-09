@@ -77,6 +77,12 @@ server bool bonsai_use_builtin_actors = true;
 // Whether weapons that don't use ammo count as "wimpy".
 server bool bonsai_ammoless_weapons_are_wimpy = true;
 
+// AutoAutoSave integration
+// Need to be server, not user, because AAS integration works by injecting a
+// token object into the game, and if users have different settings for this
+// it will desync.
+server bool bonsai_autosave_after_level = true;
+
 // LEGENDOOM INTEGRATION //
 
 // How many times a gun needs to level up before it gets a new Legendoom effect.

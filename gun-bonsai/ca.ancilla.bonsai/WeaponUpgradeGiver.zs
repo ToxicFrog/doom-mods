@@ -14,6 +14,7 @@ class ::WeaponUpgradeGiver : ::UpgradeGiver {
   void InstallUpgrade(int index) {
     if (index < 0) {
       wielded.RejectLevelUp();
+      if (bonsai_autosave_after_level) { wielded.stats.Autosave(); }
       Destroy(); return;
     } else if (candidates.size() == 0) {
       wielded.FinishLevelUp(null);
@@ -23,6 +24,7 @@ class ::WeaponUpgradeGiver : ::UpgradeGiver {
     if (--nrof) {
       PostBeginPlay();
     } else {
+      if (bonsai_autosave_after_level) { wielded.stats.Autosave(); }
       Destroy();
     }
   }

@@ -447,5 +447,9 @@ class ::PerPlayerStats : Object play {
       prevScore = owner.score;
     }
   }
+
+  void Autosave() {
+    owner.Spawn("aas_instant_bonsai_token", owner.pos);
+  }
 }
 

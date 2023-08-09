@@ -83,6 +83,13 @@ OptionMenu "GunBonsaiOptions"
   TFLV_Tooltip "$TFLV_OPT_TT_LEVEL_COST_MUL"
 
   StaticText ""
+  StaticText "$TFLV_OPT_HEADER_AUTOAUTOSAVE_INTEGRATION", GOLD
+  StaticText "$TFLV_OPT_AUTOAUTOSAVE_NOTE"
+
+  Option "$TFLV_OPT_NAME_AUTOSAVE_AFTER_LEVEL", "bonsai_autosave_after_level", "OnOff"
+  TFLV_Tooltip "$TFLV_OPT_TT_AUTOSAVE_AFTER_LEVEL"
+
+  StaticText ""
   StaticText "$TFLV_OPT_HEADER_LEGENDOOM", GRAY
 
   ScaleSlider "$TFLV_OPT_NAME_GUN_LEVELS_PER_LD_EFFECT", "bonsai_gun_levels_per_ld_effect", 0, 100, 1, "$TFLV_OPT_SLIDER_DISABLED"

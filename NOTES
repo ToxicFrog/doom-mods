@@ -23,6 +23,18 @@ Three possible operating modes:
 
 - feature: automatic respec on level up, clearing all upgrades and resetting level to 0
 - feature: automatic level up on map clear
+  - how do we configure this? levels per map, maps per level, both?
+    - maps per level
+    - are levels flat or catch-up
+
+- automatically generate UPGRADES.md using console commands
+
+- weapon: Familiarization, scales damage based on levels cleared (ever, or since you got the upgrade?)
+- player: Ammo Crate, refills ammo up to 40/70/90/100% between maps
+- player: Medical Supplies & Repair Kit, as above but for health and armour, probably 50/100/150/200
+- weapon: some sort of upgrade that resets on level change and gets stronger per kill or something?
+- per kill scaling of stuff in general?
+
 - HE shots do lots of self-damage when used with weapons like the shotgun/SSG
 - Juggler should work with fancy weapon switch animations (Hellrider, Project Brutality, etc)
 - Bandolier incompatible with Dehacked Defence and with Trailblazer
@@ -30,20 +42,25 @@ Three possible operating modes:
 - Balance: thunderbolt is probably still too powerful
 - Balance: dark harvest and leech health/armour should probably only increase the cap when leveled and increase the amount much more rarely
 - Minelayer upgrade? Dead enemies turn into mines, or you drop mines sometimes. Upgrade for Explosive Death maybe? Appears only if you have ExD and Minelayer?
+- submunitions are still completely OP
 
 ### 0.11.x?
 
-- split laevis into its own mod
+### Soon
+
+- Juggler should work with fancy weapon switch animations (Hellrider, Project Brutality, etc)
+- Balance: thunderbolt is probably still too powerful
+- Spread Fire projectile upgrade, projectile shots spawn multiple reduced-damage projectiles
+  - upgrade that spawns extra projectiles every N shots
 - Beam hitscan upgrade -- currently WIP, rename Hypervelocity
 - Singularity on-kill upgrade, spawns a black hole that sucks enemies (but not the player) towards it
 
-### Soon
-
-- Make melee detection more permissive, but only trigger melee upgrades when the player is in melee
-- Spread Fire projectile upgrade, projectile shots spawn multiple reduced-damage projectiles
-  - upgrade that spawns extra projectiles every N shots
-
 ### Ideas
+
+### doomthing445
+
+- night vision upgrade that adjusts sector light levels
+- projectile/impact aoe effect that does something other than damage
 
 ### AvzinTW
 

@@ -27,3 +27,11 @@ class ::Util : Object {
     return found.size();
   }
 }
+
+class aas_instant_bonsai_token : Actor {
+  States {
+    Spawn:
+      TNT1 A 0;
+      Stop;
+  }
+}

@@ -18,6 +18,7 @@ class ::PlayerUpgradeGiver : ::UpgradeGiver {
     } else {
       stats.FinishLevelUp(::Upgrade::BaseUpgrade(new(candidates[index].GetClassName())));
     }
+    if (bonsai_autosave_after_level) { stats.Autosave(); }
     Destroy();
   }
 

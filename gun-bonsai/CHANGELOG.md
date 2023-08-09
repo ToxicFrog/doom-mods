@@ -6,6 +6,7 @@ options screen and fix them.
 
 - New:
   - Screen flash colour on level up can be customized
+  - AutoAutoSave support
 - Balance:
   - `Infernal Kiln`:
     - softcap at 10 seconds, +5/level
