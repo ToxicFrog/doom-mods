@@ -339,6 +339,34 @@ class ::PerPlayerStats : Object play {
     info.upgrades.OnPickup(PlayerPawn(owner), item);
   }
 
+  void OnMapEntry(string mapname, uint mapnum) {
+    upgrades.OnMapEntry(mapname, mapnum);
+    for (uint i = 0; i < weapons.size(); ++i) {
+      // TODO this is kind of hinky.
+      // It will get called even for unbound weaponinfos.
+      // It will also not get called when a weaponinfo is newly created or
+      // an upgrade is newly added to a weapon, so stuff that scales with map
+      // depth won't actually start scaling until later.
+      // So we probably need some way for upgrades to know what level they're on,
+      // rather than relying entirely on OnMapEntry handlers, and only use OME
+      // for things that need to trigger at the moment of map transition, like
+      // gaining/losing resources, rather than things that scale with map depth.
+      // Upgrades can get the player stats currently by calling
+      // PerPlayerStats.GetStatsFor(pawn), which is relatively fast (finds the
+      // event handler, then does an array lookup in there with some safety checks).
+      // If we're doing that a lot, though, we might want to save a pointer to
+      // the PerPlayerStats in the upgrade object itself, probably by recording
+      // it in OnActivate.
+      weapons[i].upgrades.OnMapEntry(mapname, mapnum);
+    }
+    // Bonus levels on map transition feature.
+    // There's a bunch of things to check here:
+    // - is it enabled at all?
+    // - how many levels do we get per map transition?
+    // - are levels added only to weapons that have "fallen behind" or are they
+    //   a bonus for all held weapons?
+  }
+
   // Apply all upgrades with ModifyDamageReceived/Dealt handlers here.
   // At this point the damage has not yet been inflicted; see OnDamageDealt/
   // OnDamageReceived for that, as well as for XP assignment.

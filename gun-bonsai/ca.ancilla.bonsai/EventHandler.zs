@@ -17,6 +17,7 @@ class ::EventHandler : StaticEventHandler {
     rc.Finalize(self);
   }
 
+  int mapnum;
   override void WorldLoaded(WorldEvent evt) {
     if (level.totaltime == 0) {
       // Starting a new game? Clear all info.
@@ -24,6 +25,20 @@ class ::EventHandler : StaticEventHandler {
     }
     for (uint i = 0; i < 8; ++i) {
       if (playeringame[i]) InitPlayer(i, true);
+    }
+    if (!evt.IsSaveGame && !evt.IsReopen) {
+      console.printf("New level: %d [%d/%d]", mapnum, level.MapTime, level.Time);
+      for (uint i = 0; i < 8; ++i) {
+        // Report to all players that they have entered a new level.
+        // Note that MAP01 is levelnum=0; for linear games mapnum is thus the
+        // number of maps *cleared*. It gets weird for hubbed games like Hexen,
+        // it basically becomes the number of maps you have visited at least once
+        // minus one.
+        if (playeringame[i] && playerstats[i]) {
+          playerstats[i].OnMapEntry(level.mapname, mapnum);
+        }
+      }
+      ++mapnum;
     }
   }
 

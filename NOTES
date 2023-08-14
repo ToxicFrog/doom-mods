@@ -14,8 +14,7 @@
     - maps per level
     - are levels flat or catch-up
 
-- automatically generate UPGRADES.md using console commands
-
+- fire rebalance
 - weapon: Familiarization, scales damage based on levels cleared (ever, or since you got the upgrade?)
 - player: Ammo Crate, refills ammo up to 40/70/90/100% between maps
 - player: Medical Supplies & Repair Kit, as above but for health and armour, probably 50/100/150/200
@@ -36,6 +35,18 @@
 ### 0.11.x?
 
 ### Soon
+
+- automatically generate UPGRADES.md using console commands
+  - this is more annoying than it looks, because in addition to upgrade names, descriptions,
+    and tooltips, UPGRADES also contains:
+    - overviews of the different elemental debuffs and how they work
+    - an overview of how elemental trees, mastery, and dual-mastery upgrades work
+    - level limits, for ugprades that have level caps
+    - prerequisites (sometimes)
+    so doing this properly will have to combine pre-written text with the dump contents,
+    probably using some sort of templating system, which in turn means it needs to be
+    smart about categorizing the upgrades, and each upgrade needs to be annotate with
+    its requirement information.
 
 - Juggler should work with fancy weapon switch animations (Hellrider, Project Brutality, etc)
 - Balance: thunderbolt is probably still too powerful
