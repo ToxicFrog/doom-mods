@@ -190,7 +190,7 @@ ifdef Macheterang DehackedWeaponGiver { unregister TFLV_Upgrade_Bandoliers; }
 ifdef IsSamsaraClass {
 	# Remove a couple of upgrades that have issues in Samsara.
 	# Player upgrades
-	unregister TFLV_Upgrade_AmmoLeech TFLV_Upgrade_ArmourLeech TFLV_Upgrade_Bandoliers TFLV_Upgrade_LifeLeech TFLV_Upgrade_Juggler TFLV_Upgrade_PiercingShots;
+	unregister TFLV_Upgrade_AmmoLeech TFLV_Upgrade_ArmourLeech TFLV_Upgrade_Bandoliers TFLV_Upgrade_LifeLeech TFLV_Upgrade_Juggler;
 	# Generic weapon upgrades
 	unregister TFLV_Upgrade_PiercingShots;
 	
@@ -199,6 +199,7 @@ ifdef IsSamsaraClass {
 	type DescentWeaponPadUp: IGNORE;
 	type DescentWeaponPadDown: IGNORE;
 	type DescentLaser: IGNORE;
+	type DescentSuperLaser: IGNORE;
 	type DescentVulcan: IGNORE;
 	type DescentGauss: IGNORE;
 	type DescentSpreadFire: IGNORE;
