@@ -194,6 +194,8 @@ ifdef IsSamsaraClass {
 	# Generic weapon upgrades
 	unregister TFLV_Upgrade_PiercingShots;
 	
+	type Duke3D_MightyStomp: IGNORE;
+	
 	# Mostly fixes the Descent weapons.
 	type DescentWeapon: PROJECTILE;
 	type DescentWeaponPadUp: IGNORE;
