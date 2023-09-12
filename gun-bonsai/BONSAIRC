@@ -187,3 +187,17 @@ ifdef PB_Shotgun {
 ifdef Macheterang DehackedWeaponGiver DoomRLPlayer {
   unregister TFLV_Upgrade_Bandoliers;
 }
+
+# Samsara Reincarnation
+ifdef IsSamsaraClass {
+	# Remove a couple of upgrades that have issues in Samsara.
+	# Player upgrades
+	unregister TFLV_Upgrade_AmmoLeech TFLV_Upgrade_ArmourLeech TFLV_Upgrade_LifeLeech
+    TFLV_Upgrade_Bandoliers TFLV_Upgrade_Juggler;
+	# Generic weapon upgrades
+	unregister TFLV_Upgrade_PiercingShots;
+
+  type Descent*: IGNORE;
+	type DescentWeapon: PROJECTILE; # Override the blanket ban on Descent*
+	type Duke3D_MightyStomp: IGNORE;
+}
