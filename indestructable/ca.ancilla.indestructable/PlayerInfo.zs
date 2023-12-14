@@ -6,6 +6,13 @@ class ::PlayerInfo : Object play {
   int delta_since_report;
   ::IndestructableForce force;
 
+  static ::PlayerInfo Create() {
+    ::PlayerInfo info = new("::PlayerInfo");
+    info.lives = indestructable_starting_lives;
+    info.delta_since_report = info.lives;
+    return info;
+  }
+
   void Message(string msg) {
     force.Message(msg);
   }

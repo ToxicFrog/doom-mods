@@ -38,6 +38,48 @@ class ::IndestructableForce : Inventory {
       STOP;
   }
 
+  void Initialize(::PlayerInfo info) {
+    self.info = info;
+    self.info.force = self;
+    info.ReportLivesCount(info.lives);
+    MoveToTail();
+  }
+
+  // The IndestructableForce does all the work in AbsorbDamage, since that's the
+  // last event handler called before the engine decides if the player is dead
+  // or not. However, in order to make sure that it sees the true damage that's
+  // about to be dealt, after protection powers, armour, etc have all processed
+  // it, we need to make sure it's at the end of the inventory chain. Items are
+  // always inserted in head position and the player's starting inventory usually
+  // includes armour, so there's a good chance that during initialization, we
+  // are not in tail position and there's armour after us. On the plus side, this
+  // means that once we move to tail position, we should stay there.
+  // TODO: certain classes of attack completely bypass all protections, including
+  // AbsorbDamage. These will kill the player outright even if Indestructable is
+  // in use! Fortunately they are rare, but we should keep an eye out for
+  // workarounds.
+  void MoveToTail() {
+    // Fastpath: if we're already in tail position, nothing to do.
+    if (self.inv == null) return;
+
+    Actor head, tail;
+    Actor item = owner;
+    // Scan the entire inventory to find the item immediately before this one
+    // (head) and the current tail item (tail).
+    while (item) {
+      DEBUG("MoveToTail: inspecting %s", TAG(item));
+      if (item.inv == self) head = item;
+      if (item.inv == null) tail = item;
+      item = item.inv;
+    }
+    DEBUG("MoveToTail: head=%s, tail=%s", TAG(head), TAG(tail));
+    head.inv = self.inv;
+    tail.inv = self;
+    self.inv = null;
+    DEBUG("MoveToTail: head %s; head> %s; tail %s; tail> %s; force> %s",
+      TAG(head), TAG(head.inv), TAG(tail), TAG(tail.inv), TAG(force.inv));
+  }
+
   void Message(string msg) {
     owner.A_Log(msg, true);
   }

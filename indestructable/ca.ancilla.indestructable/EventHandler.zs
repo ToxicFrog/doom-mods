@@ -2,44 +2,13 @@
 #debug off;
 
 class ::IndestructableEventHandler : StaticEventHandler {
-  // The IndestructableForce does all the work in AbsorbDamage, since that's the
-  // last event handler called before the engine decides if the player is dead
-  // or not. However, in order to make sure that it sees the true damage that's
-  // about to be dealt, after protection powers, armour, etc have all processed
-  // it, we need to make sure it's at the end of the inventory chain. Items are
-  // always inserted in head position and the player's starting inventory usually
-  // includes armour, so there's a good chance that during initialization, we
-  // are not in tail position and there's armour after us. On the plus side, this
-  // means that once we move to tail position, we should stay there.
-  static void MoveToTail(Actor owner, ::IndestructableForce force) {
-    Actor head, tail;
-    while (owner) {
-      DEBUG("MoveToTail: inspecting %s", TAG(owner));
-      if (owner.inv == force) head = owner;
-      if (owner.inv == null) tail = owner;
-      owner = owner.inv;
-    }
-    DEBUG("MoveToTail: head=%s, tail=%s", TAG(head), TAG(tail));
-    if (tail == force) return;
-    head.inv = force.inv;
-    tail.inv = force;
-    force.inv = null;
-    DEBUG("MoveToTail: head %s; head> %s; tail %s; tail> %s; force> %s",
-      TAG(head), TAG(head.inv), TAG(tail), TAG(tail.inv), TAG(force.inv));
-  }
-
   // Initialize a player by giving them the IndestructableForce. Returns false if
   // the player was already inited and true if they're new.
   bool InitPlayer(PlayerPawn pawn) {
     let force = ::IndestructableForce(pawn.GiveInventoryType("::IndestructableForce"));
     if (!force) return false; // Either we couldn't give it or they already have one
     // We gave them a new one, so give them the starting number of lives.
-    force.info = new("::PlayerInfo");
-    force.info.force = force;
-    force.info.lives = indestructable_starting_lives;
-    force.info.delta_since_report = force.info.lives;
-    force.info.ReportLivesCount(force.info.lives);
-    MoveToTail(pawn, force);
+    force.Initialize(::PlayerInfo.Create());
     return true;
   }
 
