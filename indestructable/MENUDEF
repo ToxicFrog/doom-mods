@@ -1,70 +1,71 @@
 AddOptionMenu "OptionsMenu"
 {
-  Submenu "Indestructable Options", "IndestructableOptions"
+  Submenu "$TFIS_HEADER_OPTIONS", "IndestructableOptions"
 }
 
-// TODO: move these into a LANGUAGE lump
 OptionMenu "IndestructableOptions"
 {
   class TFIS_TooltipOptionMenu
-  Title "Indestructable Options"
+  Title "$TFIS_HEADER_OPTIONS"
   DefaultSelection 3
 
   TFIS_TooltipGeometry 0.5, 1.0, 1.0, 1.0, 0.5
   TFIS_TooltipAppearance "", "", "tfttbg"
 
-  StaticText "Appearance"
-  Option "Screen Effect", "indestructable_screen_effect", "IndestructableScreenEffect"
-  TFIS_Tooltip "What colour to turn the screen when indestructability triggers."
+  StaticText "$TFIS_HEADER_APPEARANCE"
+  Option "$TFIS_OPT_SCREEN_EFFECT", "indestructable_screen_effect", "IndestructableScreenEffect"
+  TFIS_Tooltip "$TFIS_TT_SCREEN_EFFECT"
 
   StaticText ""
-  StaticText "Buff Configuration"
-  Slider "Indestructability duration", "indestructable_duration", 0, 300, 1, 0
-  TFIS_Tooltip "On-death buff lasts this many seconds."
-  Slider "Restore health", "indestructable_restore_hp", 1, 200, 1, 0
-  TFIS_Tooltip "Restore this much HP instead of dying."
-  Option "Invincibility", "indestructable_invincibility", "YesNo"
-  TFIS_Tooltip "Buff makes you invincibile."
-  Option "Damage Bonus", "indestructable_damage_bonus", "YesNo"
-  TFIS_Tooltip "Buff makes you do double damage."
-  Option "Slomo Effect", "indestructable_slomo", "IndestructableSlomoEffect"
-  TFIS_Tooltip "Buff slows or stops time for most enemies and projectiles."
+  StaticText "$TFIS_HEADER_BUFF_CONFIG"
+  Slider "$TFIS_OPT_DURATION", "indestructable_duration", 0, 300, 1, 0
+  TFIS_Tooltip "$TFIS_TT_DURATION"
+  Slider "$TFIS_OPT_HEAL", "indestructable_restore_hp", 1, 200, 1, 0
+  TFIS_Tooltip "$TFIS_TT_HEAL"
+  Option "$TFIS_OPT_INVINCIBLE", "indestructable_invincibility", "YesNo"
+  TFIS_Tooltip "$TFIS_TT_INVINCIBLE"
+  Option "$TFIS_OPT_DAMAGEBUFF", "indestructable_damage_bonus", "YesNo"
+  TFIS_Tooltip "$TFIS_TT_DAMAGEBUFF"
+  Option "$TFIS_OPT_SLOMO", "indestructable_slomo", "IndestructableSlomoEffect"
+  TFIS_Tooltip "$TFIS_TT_SLOMO"
 
   StaticText ""
-  StaticText "Lives Configuration"
-  ScaleSlider "Starting lives", "indestructable_starting_lives", -1, 20, 1, "None", "Infinite"
-  TFIS_Tooltip "How many lives you start the game with. Set to -1 to have unlimited extra lives."
+  StaticText "$TFIS_HEADER_LIVES_CONFIG"
+  ScaleSlider "$TFIS_OPT_INITIAL_LIVES", "indestructable_starting_lives", -1, 20, 1, "None", "Infinite"
+  TFIS_Tooltip "$TFIS_TT_INITIAL_LIVES"
 
-  Slider "Extra lives on level clear", "indestructable_lives_per_level", 0, 20, 1, 0
-  TFIS_Tooltip "How many extra lives you're given for clearing a level."
-  Slider "Min lives carried between levels", "indestructable_min_lives_per_level", 0, 20, 1, 0
-  TFIS_Tooltip "You will always start a level with at least this many lives."
-  ScaleSlider "Max lives carried between levels", "indestructable_max_lives_per_level", 0, 20, 1, "Unlimited"
-  TFIS_Tooltip "You cannot carry more than this many lives between levels. Set to 0 for unlimited."
+  Slider "$TFIS_OPT_LEVEL_LIVES_GRANT", "indestructable_lives_per_level", 0, 20, 1, 0
+  TFIS_Tooltip "$TFIS_TT_LEVEL_LIVES_GRANT"
+  Slider "$TFIS_OPT_LEVEL_LIVES_MIN", "indestructable_min_lives_per_level", 0, 20, 1, 0
+  TFIS_Tooltip "$TFIS_TT_LEVEL_LIVES_MIN"
+  ScaleSlider "$TFIS_OPT_LEVEL_LIVES_MAX", "indestructable_max_lives_per_level", 0, 20, 1, "Unlimited"
+  TFIS_Tooltip "$TFIS_TT_LEVEL_LIVES_MAX"
 
-  Slider "Extra lives on boss kill", "indestructable_lives_per_boss", 0, 20, 1, 0
-  TFIS_Tooltip "How many extra lives you're given after killing a boss."
-  Slider "Min lives on boss kill", "indestructable_min_lives_per_boss", 0, 20, 1, 0
-  TFIS_Tooltip "Killing a boss will always refill you to at least this many lives."
-  ScaleSlider "Max lives on boss kill", "indestructable_max_lives_per_boss", 0, 20, 1, "Unlimited"
-  TFIS_Tooltip "Killing a boss cannot take you above this limit (but will not remove lives if you're already above it). Set to 0 for unlimited."
+  Slider "$TFIS_OPT_BOSS_LIVES_GRANT", "indestructable_lives_per_boss", 0, 20, 1, 0
+  TFIS_Tooltip "$TFIS_TT_BOSS_LIVES_GRANT"
+  Slider "$TFIS_OPT_BOSS_LIVES_MIN", "indestructable_min_lives_per_boss", 0, 20, 1, 0
+  TFIS_Tooltip "$TFIS_TT_BOSS_LIVES_MIN"
+  ScaleSlider "$TFIS_OPT_BOSS_LIVES_MAX", "indestructable_max_lives_per_boss", 0, 20, 1, "Unlimited"
+  TFIS_Tooltip "$TFIS_TT_BOSS_LIVES_MAX"
 }
 
 OptionValue "IndestructableScreenEffect" {
-  0, "None"
-  1, "Red"
-  2, "Gold"
-  3, "Green"
-  4, "Blue"
-  5, "Inverse"
-  6, "Red & White"
-  7, "Desaturate"
+  0, "$TFIS_ENUM_NONE"
+  1, "$TFIS_ENUM_RED"
+  2, "$TFIS_ENUM_GOLD"
+  3, "$TFIS_ENUM_GREEN"
+  4, "$TFIS_ENUM_BLUE"
+  5, "$TFIS_ENUM_INVERSE"
+  6, "$TFIS_ENUM_REDWHITE"
+  7, "$TFIS_ENUM_GREYSCALE"
 }
 
 OptionValue "IndestructableSlomoEffect" {
-  0, "None"
-  2, "1/2 speed"
-  4, "1/4 speed"
-  8, "1/8 speed"
-  1, "Stop time entirely"
+  0, "$TFIS_ENUM_NONE"
+  2, "$TFIS_ENUM_HALF_SPEED"
+  4, "$TFIS_ENUM_QUARTER_SPEED"
+  8, "$TFIS_ENUM_EIGHTH_SPEED"
+  1, "$TFIS_ENUM_TIME_STOP"
+}
+
 }

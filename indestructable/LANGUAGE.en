@@ -1,0 +1,55 @@
+// Localization strings for Indestructable.
+[en default]
+TFIS_HEADER_OPTIONS = "Indestructable Options";
+
+// Appearance options
+TFIS_HEADER_APPEARANCE = "Appearance";
+TFIS_OPT_SCREEN_EFFECT = "Screen Effect";
+TFIS_TT_SCREEN_EFFECT = "What colour to turn the screen when indestructability triggers.";
+
+// Buff effect options
+TFIS_HEADER_BUFF_CONFIG = "Buff Configuration";
+TFIS_OPT_DURATION = "Indestructability duration";
+TFIS_TT_DURATION = "On-death buff lasts this many seconds.";
+TFIS_OPT_HEAL = "Restore health";
+TFIS_TT_HEAL = "Restore this much HP instead of dying.";
+TFIS_OPT_INVINCIBLE = "Invincibility";
+TFIS_TT_INVINCIBLE = "Buff makes you invincibile.";
+TFIS_OPT_DAMAGEBUFF = "Damage Bonus";
+TFIS_TT_DAMAGEBUFF = "Buff makes you do double damage.";
+TFIS_OPT_SLOMO = "Slomo Effect";
+TFIS_TT_SLOMO = "Buff slows or stops time for most enemies and projectiles.";
+
+// Extra lives amount options
+TFIS_HEADER_LIVES_CONFIG = "Lives Configuration";
+TFIS_OPT_INITIAL_LIVES = "Starting lives";
+TFIS_TT_INITIAL_LIVES = "How many lives you start the game with. Set to -1 to have unlimited extra lives.";
+TFIS_OPT_LEVEL_LIVES_GRANT = "Extra lives on level clear";
+TFIS_TT_LEVEL_LIVES_GRANT = "How many extra lives you're given for clearing a level.";
+TFIS_OPT_LEVEL_LIVES_MIN = "Min lives carried between levels";
+TFIS_TT_LEVEL_LIVES_MIN = "You will always start a level with at least this many lives.";
+TFIS_OPT_LEVEL_LIVES_MAX = "Max lives carried between levels";
+TFIS_TT_LEVEL_LIVES_MAX = "You cannot carry more than this many lives between levels. Set to 0 for unlimited.";
+TFIS_OPT_BOSS_LIVES_GRANT = "Extra lives on boss kill";
+TFIS_TT_BOSS_LIVES_GRANT = "How many extra lives you're given after killing a boss.";
+TFIS_OPT_BOSS_LIVES_MIN = "Min lives on boss kill";
+TFIS_TT_BOSS_LIVES_MIN = "Killing a boss will always refill you to at least this many lives.";
+TFIS_OPT_BOSS_LIVES_MAX = "Max lives on boss kill";
+TFIS_TT_BOSS_LIVES_MAX = "Killing a boss cannot take you above this limit (but will not remove lives if you're already above it). Set to 0 for unlimited.";
+
+// Colour enum
+TFIS_ENUM_NONE = "None";
+TFIS_ENUM_RED = "Red";
+TFIS_ENUM_GOLD = "Gold";
+TFIS_ENUM_GREEN = "Green";
+TFIS_ENUM_BLUE = "Blue";
+TFIS_ENUM_INVERSE = "Inverse";
+TFIS_ENUM_REDWHITE = "Red & White";
+TFIS_ENUM_GREYSCALE = "Desaturate";
+
+// Speed enum
+TFIS_ENUM_HALF_SPEED = "1/2 speed";
+TFIS_ENUM_QUARTER_SPEED = "1/4 speed";
+TFIS_ENUM_EIGHTH_SPEED = "1/8 speed";
+TFIS_ENUM_TIME_STOP = "Stop time entirely";
+

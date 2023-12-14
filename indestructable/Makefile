@@ -1,6 +1,6 @@
 NAME=Indestructable
 VERSION=0.2.9
-LUMPS=CVARINFO MAPINFO MENUDEF zscript.txt
+LUMPS=CVARINFO MAPINFO MENUDEF zscript.txt LANGUAGE.*
 LUMPS+=*.md textures
 ZSDIR=ca.ancilla.indestructable
 LIBTTM=${TOPDIR}/libtooltipmenu/ca.ancilla.libtooltipmenu
