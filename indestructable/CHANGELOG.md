@@ -1,7 +1,8 @@
 # 0.2.9
 
 - New:
-  - Menu strings are now stored in a `LANGUAGE` lump and can be translated.
+  - Menu strings and in-game messages are now stored in a `LANGUAGE` lump and
+    can be translated.
 - Fix:
   - Indestructable buff timer no longer counts down when the player has the
     `TOTALLYFROZEN` flag set. In particular, this means that it won't expire

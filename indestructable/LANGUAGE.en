@@ -53,3 +53,10 @@ TFIS_ENUM_QUARTER_SPEED = "1/4 speed";
 TFIS_ENUM_EIGHTH_SPEED = "1/8 speed";
 TFIS_ENUM_TIME_STOP = "Stop time entirely";
 
+// Gameplay messages. %d is going to be the quantity of lives, as a non-negative
+// integer.
+TFIS_MSG_ACTIVATED = "\c[RED]INDESTRUCTABLE!";
+TFIS_MSG_UNLIMITED_LIVES = "Lives remaining: \c[GOLD]unlimited\c-";
+TFIS_MSG_REDUCED_LIVES = "Lives remaining: \c[RED]%d\c-";
+TFIS_MSG_INCREASED_LIVES = "Lives remaining: \c[CYAN]%d\c-";
+TFIS_MSG_UNCHANGED_LIVES = "Lives remaining: \c[GOLD]%d\c-";

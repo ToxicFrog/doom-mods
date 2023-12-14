@@ -47,7 +47,7 @@ class ::IndestructableEventHandler : StaticEventHandler {
     if (!force) return false; // Either we couldn't give it or they already have one
     // We gave them a new one, so give them the starting number of lives.
     force.lives = GetInt("indestructable_starting_lives");
-    force.SetStateLabel("LevelStartMessage");
+    force.delta_since_report = force.lives;
     force.ReportLivesCount(force.lives);
     MoveToTail(pawn, force);
     return true;
@@ -93,6 +93,7 @@ class ::IndestructableEventHandler : StaticEventHandler {
 
 class ::IndestructableForce : Inventory {
   int lives;
+  int delta_since_report;
   Default {
     Inventory.Amount 1;
     Inventory.MaxAmount 1;
@@ -112,12 +113,13 @@ class ::IndestructableForce : Inventory {
       // still drop them down below the intended restore target.
       TNT1 A 0 RestorePlayerHealth();
       GOTO Idle;
-    LevelStartMessage:
+    DisplayLivesCount:
       // Used to display the "you have X extra lives" message at the start of a
-      // level. A brief delay is added so that it shows up after start-of-level
+      // level, after gaining/losing lives, etc.
+      // A brief delay is added so that it shows up after start-of-level
       // debug logging, the autosave message, etc.
       TNT1 A 15;
-      TNT1 A 0 ShowLevelStartMessage();
+      TNT1 A 0 DisplayLivesCount();
       GOTO Idle;
     Idle:
       TNT1 A -1;
@@ -136,8 +138,17 @@ class ::IndestructableForce : Inventory {
     owner.A_Log(msg, true);
   }
 
-  void ShowLevelStartMessage() {
-    AdjustLives(0, -1, -1);
+  void DisplayLivesCount() {
+    if (lives < 0) {
+      Message("$TFIS_MSG_UNLIMITED_LIVES");
+    } else if (delta_since_report < 0) {
+      Message(string.format(StringTable.Localize("$TFIS_MSG_REDUCED_LIVES"), lives));
+    } else if (delta_since_report > 0) {
+      Message(string.format(StringTable.Localize("$TFIS_MSG_INCREASED_LIVES"), lives));
+    } else {
+      Message(string.format(StringTable.Localize("$TFIS_MSG_UNCHANGED_LIVES"), lives));
+    }
+    delta_since_report = 0;
   }
 
   bool IsUndying(PlayerInfo player) {
@@ -167,7 +178,7 @@ class ::IndestructableForce : Inventory {
   }
 
   void ActivateIndestructability() {
-    Message("\c[RED]INDESTRUCTABLE!");
+    Message("$TFIS_MSG_ACTIVATED");
     self.SetStateLabel("RestoreHealth");
 
     GiveScreenEffect(GetInt("indestructable_screen_effect"));
@@ -179,10 +190,7 @@ class ::IndestructableForce : Inventory {
       GivePowerup("::IndestructableDamage");
 
     if (lives > 0) {
-      --lives;
-      Message(string.format("You have \c[RED]%d\c- extra %s left!",
-        lives, lives == 1 ? "life" : "lives"));
-      ReportLivesCount(-1);
+      AdjustLives(-1, -1, -1);
     }
   }
 
@@ -199,37 +207,21 @@ class ::IndestructableForce : Inventory {
   }
 
   void AddLevelStartLives() {
-    SetStateLabel("LevelStartMessage");
-    // Infinite lives? Nothing to do here.
-    if (lives < 0) return;
-
     let max_lives = GetInt("indestructable_max_lives_per_level");
-    let old_lives = lives;
-    lives = clamp(
-      lives + GetInt("indestructable_lives_per_level"),
+    AdjustLives(
+      GetInt("indestructable_lives_per_level"),
       GetInt("indestructable_min_lives_per_level"),
-      max_lives ? max_lives : 0xFFFFFF);
-    ReportLivesCount(lives - old_lives);
+      // If life capping is disabled, pass -1 for "no maximum"
+      max_lives ? max_lives : -1);
   }
 
   void AddBossKillLives() {
-    // Infinite lives? Nothing to do here.
-    if (lives < 0) return;
-    // Also don't add more lives if they're already above the max, but don't
-    // take any away either (unlike level transitions).
     let max_lives = GetInt("indestructable_max_lives_per_boss");
-    if (max_lives && lives >= max_lives) return;
-
-    let old_lives = lives;
-    lives = clamp(
-      lives + GetInt("indestructable_lives_per_boss"),
+    AdjustLives(
+      GetInt("indestructable_lives_per_boss"),
       GetInt("indestructable_min_lives_per_boss"),
-      max_lives ? max_lives : 0xFFFFFF);
-    if (lives > old_lives) {
-      Message(string.format("You have \c[CYAN]%d\c- extra %s.",
-        lives, lives == 1 ? "life" : "lives"));
-    }
-    ReportLivesCount(lives - old_lives);
+      // If life capping is disabled, pass -1 for "no maximum"
+      max_lives ? max_lives : -1);
   }
 
   void AdjustLives(int delta, int min_lives, int max_lives) {
@@ -240,23 +232,20 @@ class ::IndestructableForce : Inventory {
     if (min_lives != -1) lives = max(lives, min_lives);
     if (max_lives != -1) lives = min(lives, max_lives);
 
-    if (lives < 0) {
-      Message(string.format("You have \c[GOLD]unlimited\c- extra lives."));
-    } else if (lives < old_lives || old_lives < 0) {
-      Message(string.format("You have \c[RED]%d\c- extra %s.",
-        lives, lives == 1 ? "life" : "lives"));
-    } else if (lives > old_lives) {
-      Message(string.format("You have \c[CYAN]%d\c- extra %s.",
-        lives, lives == 1 ? "life" : "lives"));
-    } else if (lives == old_lives) {
-      Message(string.format("You have \c[GOLD]%d\c- extra %s.",
-        lives, lives == 1 ? "life" : "lives"));
+    if (old_lives < 0 && lives >= 0) {
+      delta_since_report = -9999; // going from infinite to finite lives is a reduction
+    } else if (old_lives >= 0 && lives < 0) {
+      delta_since_report = 9999; // going from finite to infinite is an increase
+    } else {
+      delta_since_report += (lives - old_lives); // for everything else use the actual delta
     }
-
     ReportLivesCount(lives - old_lives);
   }
 
   void ReportLivesCount(int delta) {
+    // Display the message unconditionally, so the player gets reminders as they
+    // clear levels and kill bosses even if the lives count didn't change.
+    SetStateLabel("DisplayLivesCount");
     if (!delta) return;
     EventHandler.SendNetworkEvent("indestructable_report_lives", lives, delta, 0);
   }
