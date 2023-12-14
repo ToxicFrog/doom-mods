@@ -34,9 +34,11 @@ class ::IndestructableEventHandler : StaticEventHandler {
     let force = ::IndestructableForce(pawn.GiveInventoryType("::IndestructableForce"));
     if (!force) return false; // Either we couldn't give it or they already have one
     // We gave them a new one, so give them the starting number of lives.
-    force.lives = indestructable_starting_lives;
-    force.delta_since_report = force.lives;
-    force.ReportLivesCount(force.lives);
+    force.info = new("::PlayerInfo");
+    force.info.force = force;
+    force.info.lives = indestructable_starting_lives;
+    force.info.delta_since_report = force.info.lives;
+    force.info.ReportLivesCount(force.info.lives);
     MoveToTail(pawn, force);
     return true;
   }
@@ -52,7 +54,7 @@ class ::IndestructableEventHandler : StaticEventHandler {
       if (InitPlayer(pawn)) continue; // don't apply start-of-level modifiers when starting a new game
       let force = ::IndestructableForce(pawn.FindInventory("::IndestructableForce"));
       if (!force) continue; // should never happen
-      force.AddLevelStartLives();
+      force.info.AddLevelStartLives();
     }
   }
 
@@ -64,7 +66,7 @@ class ::IndestructableEventHandler : StaticEventHandler {
     if (!pawn) return;
     let force = ::IndestructableForce(pawn.FindInventory("::IndestructableForce"));
     if (!force) return; // PANIC
-    force.AddBossKillLives();
+    force.info.AddBossKillLives();
   }
 
   override void NetworkProcess(ConsoleEvent evt) {
@@ -74,7 +76,7 @@ class ::IndestructableEventHandler : StaticEventHandler {
       let pawn = players[evt.player].mo;
       let force = ::IndestructableForce(pawn.FindInventory("::IndestructableForce"));
       if (!force) return;
-      force.AdjustLives(evt.args[0], evt.args[1], evt.args[2]);
+      force.info.AdjustLives(evt.args[0], evt.args[1], evt.args[2]);
     }
   }
 }

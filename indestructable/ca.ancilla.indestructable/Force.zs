@@ -1,9 +1,11 @@
 #namespace TFIS;
 #debug off;
 
+// This is the 'force', the invisible inventory item that handles actor-local
+// event handlers for Indestructable.
 class ::IndestructableForce : Inventory {
-  int lives;
-  int delta_since_report;
+  ::PlayerInfo info;
+
   Default {
     Inventory.Amount 1;
     Inventory.MaxAmount 1;
@@ -29,7 +31,7 @@ class ::IndestructableForce : Inventory {
       // A brief delay is added so that it shows up after start-of-level
       // debug logging, the autosave message, etc.
       TNT1 A 15;
-      TNT1 A 0 DisplayLivesCount();
+      TNT1 A 0 { info.DisplayLivesCount(); }
       GOTO Idle;
     Idle:
       TNT1 A -1;
@@ -40,19 +42,6 @@ class ::IndestructableForce : Inventory {
     owner.A_Log(msg, true);
   }
 
-  void DisplayLivesCount() {
-    if (lives < 0) {
-      Message("$TFIS_MSG_UNLIMITED_LIVES");
-    } else if (delta_since_report < 0) {
-      Message(string.format(StringTable.Localize("$TFIS_MSG_REDUCED_LIVES"), lives));
-    } else if (delta_since_report > 0) {
-      Message(string.format(StringTable.Localize("$TFIS_MSG_INCREASED_LIVES"), lives));
-    } else {
-      Message(string.format(StringTable.Localize("$TFIS_MSG_UNCHANGED_LIVES"), lives));
-    }
-    delta_since_report = 0;
-  }
-
   bool IsUndying(PlayerInfo player) {
     return player.cheats & (CF_BUDDHA | CF_BUDDHA2 | CF_GODMODE | CF_GODMODE2);
   }
@@ -60,7 +49,7 @@ class ::IndestructableForce : Inventory {
   override void AbsorbDamage(
       int damage, Name damageType, out int newdamage,
       Actor inflictor, Actor source, int flags) {
-    if (!lives || IsUndying(owner.player)) return;
+    if (!info.lives || IsUndying(owner.player)) return;
     if (damage >= owner.health) {
       newdamage = owner.health - 1;
       ActivateIndestructability();
@@ -92,8 +81,8 @@ class ::IndestructableForce : Inventory {
     if (indestructable_damage_bonus)
       GivePowerup("::IndestructableDamage");
 
-    if (lives > 0) {
-      AdjustLives(-1, -1, -1);
+    if (info.lives > 0) {
+      info.AdjustLives(-1, -1, -1);
     }
   }
 
@@ -107,49 +96,5 @@ class ::IndestructableForce : Inventory {
 
   void RestorePlayerHealth() {
     owner.GiveInventory("Health", indestructable_restore_hp - owner.health);
-  }
-
-  void AddLevelStartLives() {
-    let max_lives = indestructable_max_lives_per_level;
-    AdjustLives(
-      indestructable_lives_per_level,
-      indestructable_min_lives_per_level,
-      // If life capping is disabled, pass -1 for "no maximum"
-      max_lives ? max_lives : -1);
-  }
-
-  void AddBossKillLives() {
-    let max_lives = indestructable_max_lives_per_boss;
-    AdjustLives(
-      indestructable_lives_per_boss,
-      indestructable_min_lives_per_boss,
-      // If life capping is disabled, pass -1 for "no maximum"
-      max_lives ? max_lives : -1);
-  }
-
-  void AdjustLives(int delta, int min_lives, int max_lives) {
-    let old_lives = lives;
-    if (lives >= 0) {
-      lives += delta;
-    }
-    if (min_lives != -1) lives = max(lives, min_lives);
-    if (max_lives != -1) lives = min(lives, max_lives);
-
-    if (old_lives < 0 && lives >= 0) {
-      delta_since_report = -9999; // going from infinite to finite lives is a reduction
-    } else if (old_lives >= 0 && lives < 0) {
-      delta_since_report = 9999; // going from finite to infinite is an increase
-    } else {
-      delta_since_report += (lives - old_lives); // for everything else use the actual delta
-    }
-    ReportLivesCount(lives - old_lives);
-  }
-
-  void ReportLivesCount(int delta) {
-    // Display the message unconditionally, so the player gets reminders as they
-    // clear levels and kill bosses even if the lives count didn't change.
-    SetStateLabel("DisplayLivesCount");
-    if (!delta) return;
-    EventHandler.SendNetworkEvent("indestructable_report_lives", lives, delta, 0);
   }
 }
