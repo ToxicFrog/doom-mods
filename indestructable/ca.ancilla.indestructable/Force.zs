@@ -69,7 +69,7 @@ class ::IndestructableForce : Inventory {
 
   void GivePowerup(Name power) {
     let force = Powerup(owner.FindInventory(power));
-    let duration = ::Util.GetInt("indestructable_duration")*35; // tics per second
+    let duration = indestructable_duration*35; // tics per second
     if (force) {
       force.effectTics = max(force.effectTics, duration);
     } else {
@@ -83,7 +83,8 @@ class ::IndestructableForce : Inventory {
     Message("$TFIS_MSG_ACTIVATED");
     self.SetStateLabel("RestoreHealth");
 
-    GiveScreenEffect(::Util.GetInt("indestructable_screen_effect"));
+    let cv = CVar.FindCVar("indestructable_screen_effect");
+    GiveScreenEffect(cv ? cv.GetInt() : -1);
     if (indestructable_invincibility)
       GivePowerup("::IndestructableInvincibility");
     if (indestructable_slomo)
@@ -105,23 +106,23 @@ class ::IndestructableForce : Inventory {
   }
 
   void RestorePlayerHealth() {
-    owner.GiveInventory("Health", ::Util.GetInt("indestructable_restore_hp") - owner.health);
+    owner.GiveInventory("Health", indestructable_restore_hp - owner.health);
   }
 
   void AddLevelStartLives() {
-    let max_lives = ::Util.GetInt("indestructable_max_lives_per_level");
+    let max_lives = indestructable_max_lives_per_level;
     AdjustLives(
-      ::Util.GetInt("indestructable_lives_per_level"),
-      ::Util.GetInt("indestructable_min_lives_per_level"),
+      indestructable_lives_per_level,
+      indestructable_min_lives_per_level,
       // If life capping is disabled, pass -1 for "no maximum"
       max_lives ? max_lives : -1);
   }
 
   void AddBossKillLives() {
-    let max_lives = ::Util.GetInt("indestructable_max_lives_per_boss");
+    let max_lives = indestructable_max_lives_per_boss;
     AdjustLives(
-      ::Util.GetInt("indestructable_lives_per_boss"),
-      ::Util.GetInt("indestructable_min_lives_per_boss"),
+      indestructable_lives_per_boss,
+      indestructable_min_lives_per_boss,
       // If life capping is disabled, pass -1 for "no maximum"
       max_lives ? max_lives : -1);
   }

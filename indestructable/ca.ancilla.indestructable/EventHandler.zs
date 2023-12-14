@@ -34,7 +34,7 @@ class ::IndestructableEventHandler : StaticEventHandler {
     let force = ::IndestructableForce(pawn.GiveInventoryType("::IndestructableForce"));
     if (!force) return false; // Either we couldn't give it or they already have one
     // We gave them a new one, so give them the starting number of lives.
-    force.lives = ::Util.GetInt("indestructable_starting_lives");
+    force.lives = indestructable_starting_lives;
     force.delta_since_report = force.lives;
     force.ReportLivesCount(force.lives);
     MoveToTail(pawn, force);
@@ -58,7 +58,7 @@ class ::IndestructableEventHandler : StaticEventHandler {
 
   override void WorldThingDamaged(WorldEvent evt) {
     if (!evt.thing || !evt.damagesource || !evt.thing.bBOSS || evt.thing.health > 0) return;
-    let lives = ::Util.GetInt("indestructable_lives_per_boss");
+    let lives = indestructable_lives_per_boss;
     if (!lives) return;
     let pawn = PlayerPawn(evt.damagesource);
     if (!pawn) return;
