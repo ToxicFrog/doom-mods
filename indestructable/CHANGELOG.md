@@ -4,6 +4,8 @@
   - Indestructable buff timer no longer counts down when the player has the
     `TOTALLYFROZEN` flag set. In particular, this means that it won't expire
     while the player is frozen by mods like Gearbox.
+  - Extra lives are not consumed if the player is using god mode or has the
+    buddha-nature, even if it looks like they are about to die.
 
 # 0.2.8
 

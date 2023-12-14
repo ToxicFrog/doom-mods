@@ -140,10 +140,14 @@ class ::IndestructableForce : Inventory {
     AdjustLives(0, -1, -1);
   }
 
+  bool IsUndying(PlayerInfo player) {
+    return player.cheats & (CF_BUDDHA | CF_BUDDHA2 | CF_GODMODE | CF_GODMODE2);
+  }
+
   override void AbsorbDamage(
       int damage, Name damageType, out int newdamage,
       Actor inflictor, Actor source, int flags) {
-    if (!lives) return;
+    if (!lives || IsUndying(owner.player)) return;
     if (damage >= owner.health) {
       newdamage = owner.health - 1;
       ActivateIndestructability();
