@@ -11,6 +11,8 @@
     while the player is frozen by mods like Gearbox.
   - Extra lives are not consumed if the player is using god mode or has the
     buddha-nature, even if it looks like they are about to die.
+  - Softlocks should no longer happen when Indestructable triggers at the same
+    time as Gun Bonsai's `Swiftness` upgrade.
 
 # 0.2.8
 

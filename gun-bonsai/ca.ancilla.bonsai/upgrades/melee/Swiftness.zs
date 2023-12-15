@@ -73,6 +73,10 @@ class ::Swiftness::Power : PowerTimeFreezer {
     if (EffectTics <= 128 && EffectTics > 64) EffectTics = 64;
   }
 
+  override void EndEffect() {
+    level.SetFrozen(false);
+  }
+
   override bool CanPickup(Actor other) { return true; }
   override bool IsBlinking() { return false; }
 

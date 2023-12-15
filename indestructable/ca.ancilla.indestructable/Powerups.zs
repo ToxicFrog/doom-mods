@@ -63,7 +63,11 @@ class ::IndestructableSlomo : PowerTimeFreezer {
     }
     DEBUG("maptime=%d effectTics=%d shouldFreeze=%d", effectTics, level.maptime, shouldfreeze());
     Level.setFrozen(effectTics > 0 && ShouldFreeze());
- }
+  }
+
+  override void EndEffect() {
+    level.setFrozen(false);
+  }
 
   override bool CanPickup(Actor other) { return true; }
   override bool IsBlinking() { return false; }

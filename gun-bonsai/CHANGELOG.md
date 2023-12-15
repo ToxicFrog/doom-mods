@@ -1,7 +1,10 @@
 # 0.10.5
 
 - Fix:
-  - Multiplayer games with more than 8 players are now (theoretically) supported, if the underlying engine supports that
+  - Multiplayer games with more than 8 players are now (theoretically) supported,
+    if the underlying engine supports that.
+  - Softlock when `Swiftness` upgrade and Indestructable trigger at the same
+    time should no longer occur.
 
 # 0.10.4
 
