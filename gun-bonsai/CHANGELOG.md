@@ -1,3 +1,8 @@
+# 0.10.5
+
+- Fix:
+  - Multiplayer games with more than 8 players are now (theoretically) supported, if the underlying engine supports that
+
 # 0.10.4
 
 **This update breaks configuration compatibility.** If you have set either of the

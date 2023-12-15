@@ -5,7 +5,7 @@
 #debug off;
 
 class ::EventHandler : StaticEventHandler {
-  ::PerPlayerStats playerstats[8];
+  ::PerPlayerStats playerstats[MAXPLAYERS];
   ::Upgrade::Registry UPGRADE_REGISTRY;
   ::RC rc;
   ui ::HUD hud;
@@ -27,9 +27,9 @@ class ::EventHandler : StaticEventHandler {
   override void WorldLoaded(WorldEvent evt) {
     if (level.totaltime == 0) {
       // Starting a new game? Clear all info.
-      for (uint i = 0; i < 8; ++i) playerstats[i] = null;
+      for (uint i = 0; i < MAXPLAYERS; ++i) playerstats[i] = null;
     }
-    for (uint i = 0; i < 8; ++i) {
+    for (uint i = 0; i < MAXPLAYERS; ++i) {
       if (playeringame[i]) InitPlayer(i, true);
     }
   }
