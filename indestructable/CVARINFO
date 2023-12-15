@@ -1,5 +1,6 @@
 // Theme settings
 user int indestructable_screen_effect = 6;
+
 // Default settings mimic War of Attrition but with time stop as well.
 server int indestructable_starting_lives = 1;
 server int indestructable_lives_per_level = 1;
@@ -8,10 +9,13 @@ server int indestructable_max_lives_per_level = 0;
 server int indestructable_lives_per_boss = 0;
 server int indestructable_min_lives_per_boss = 0;
 server int indestructable_max_lives_per_boss = 0;
+
 // Settings for what happens when it actually goes off.
 server int indestructable_duration = 10;
 server int indestructable_restore_hp = 50;
 server bool indestructable_invincibility = true;
 server bool indestructable_damage_bonus = true;
-// server bool indestructable_timestop = true; // deprecated
 server int indestructable_slomo = 1;
+
+// Compatibility options
+server bool indestructable_ignore_death_exits = true;

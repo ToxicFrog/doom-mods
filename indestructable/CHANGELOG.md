@@ -3,6 +3,8 @@
 - New:
   - Menu strings and in-game messages are now stored in a `LANGUAGE` lump and
     can be translated.
+  - Optional compatibility with death exits and pistol start mods (see the
+    `Compatibility` section in the options menu).
 - Fix:
   - Indestructable buff timer no longer counts down when the player has the
     `TOTALLYFROZEN` flag set. In particular, this means that it won't expire

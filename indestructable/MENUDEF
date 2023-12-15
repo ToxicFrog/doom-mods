@@ -12,6 +12,11 @@ OptionMenu "IndestructableOptions"
   TFIS_TooltipGeometry 0.5, 1.0, 1.0, 1.0, 0.5
   TFIS_TooltipAppearance "", "", "tfttbg"
 
+  StaticText "$TFIS_HEADER_COMPATIBILITY"
+  Option "$TFIS_OPT_IGNORE_DEATH_EXITS", "indestructable_ignore_death_exits", "YesNo"
+  TFIS_Tooltip "$TFIS_TT_IGNORE_DEATH_EXITS"
+
+  StaticText ""
   StaticText "$TFIS_HEADER_APPEARANCE"
   Option "$TFIS_OPT_SCREEN_EFFECT", "indestructable_screen_effect", "IndestructableScreenEffect"
   TFIS_Tooltip "$TFIS_TT_SCREEN_EFFECT"
