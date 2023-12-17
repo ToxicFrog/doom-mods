@@ -13,6 +13,14 @@
     buddha-nature, even if it looks like they are about to die.
   - Softlocks should no longer happen when Indestructable triggers at the same
     time as Gun Bonsai's `Swiftness` upgrade.
+  - Multiplayer games with more than 8 players are now (theoretically) supported,
+    if the underlying engine supports that.
+  - Players joining a multiplayer game partway through a level should get some
+    extra lives as if they had started a new game.
+  - Lives for clearing a level are now assigned as you exit the cleared level,
+    not as you enter the new one, fixing some weird edge cases.
+  - Improved detection for return visits to the same level, so that it doesn't
+    award level-clear lives multiple times in games like Hexen.
 
 # 0.2.8
 

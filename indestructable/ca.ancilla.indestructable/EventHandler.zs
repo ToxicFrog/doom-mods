@@ -7,59 +7,73 @@ class ::IndestructableEventHandler : StaticEventHandler {
   // Behaviour here is largely copied from Gun Bonsai.
   // This is called on every player in the game whenever a level is loaded.
   void InitPlayer(uint p) {
-    DEBUG("get player");
+    DEBUG("Initializing player[%d]", p);
     let pawn = players[p].mo;
-    DEBUG("get force");
     let force = ::IndestructableForce(pawn.FindInventory("::IndestructableForce"));
     if (force) {
-      DEBUG("initplayer fastpath?");
       // Player is already set up? Nothing to do.
-      if (force.info && force.info == info[p]) return;
+      if (force.info && force.info == info[p]) {
+        DEBUG("player is already set up");
+        return;
+      }
 
       // Player has a force, but it doesn't match what we have; probably we just
       // loaded a savegame. Force takes precedence, throw away whatever the
       // event handler has.
-      DEBUG("force takes precedence");
+      DEBUG("actor state takes precedence");
       info[p] = force.info;
       force.Initialize(force.info);
 
     } else if (!info[p] || !indestructable_ignore_death_exits) {
-      DEBUG("reinitializing");
+      DEBUG("no actor state and no usable stored info, doing from-scratch initialization");
       // Player doesn't have a force and we either don't have anything stored
       // for them, or are meant to pretend we don't. Set them up from scratch.
       force = ::IndestructableForce(pawn.GiveInventoryType("::IndestructableForce"));
-      DEBUG("done give, calling initialize");
       force.Initialize(::PlayerInfo.Create());
       info[p] = force.info;
 
     } else {
-      DEBUG("assuming direct control, info");
+      DEBUG("no actor state, restoring stored info");
       // Player doesn't have a force, we do remember data from them and are
       // allowed to use it.
       force = ::IndestructableForce(pawn.GiveInventoryType("::IndestructableForce"));
       force.Initialize(info[p]);
     }
-    DEBUG("initialization complete");
   }
 
-  override void WorldLoaded(WorldEvent evt) {
-    DEBUG("WorldLoaded");
+  // Called when a player "enters the game", after their corresponding Actor is
+  // initialized, and before WorldLoaded is called. This is called on new games
+  // and "normal" level transitions, but not when loading a savegame.
+  override void PlayerEntered(PlayerEvent evt) {
+    DEBUG("PlayerEntered: %d %d", evt.playernumber, players[evt.playernumber].mo != null);
     if (level.totaltime == 0) {
-      DEBUG("Clearing all info");
-      // Starting a new game? Clear all info.
-      for (uint i = 0; i < MAXPLAYERS; ++i) info[i] = null;
+      // New game. Clear our saved info. The player shouldn't have any info either,
+      // so this will result in them being set up from scratch.
+      info[evt.playernumber] = null;
     }
+    InitPlayer(evt.playernumber);
+  }
 
+  // Called when world loading is complete, just before the first tic runs. This
+  // happens after PlayerEntered for all players.
+  // Unlike PlayerEntered, this is called when loading a savegame, so we try to
+  // initialize everyone here to handle the savegame case.
+  override void WorldLoaded(WorldEvent evt) {
+    DEBUG("WorldLoaded: t=%d", level.totaltime);
     for (uint i = 0; i < MAXPLAYERS; ++i) {
-      if (!playeringame[i]) continue;
-      DEBUG("Initializing player[%d]", i);
-      InitPlayer(i);
-      // Don't give the player per-level lives when loading an earlier save or
-      // returning to a hubmap or starting a new game.
-      if (evt.isSaveGame || evt.isReopen || level.totaltime == 0) continue;
-      info[i].AddLevelStartLives();
+      if (playeringame[i]) InitPlayer(i);
     }
-    DEBUG("world load complete");
+  }
+
+  override void WorldUnloaded(WorldEvent evt) {
+    // Don't do anything if we're unloading this to load a savegame or quit.
+    if (evt.isSaveGame || !evt.nextMap) return;
+
+    for (uint i = 0; i < 8; ++i) {
+      if (!playeringame[i]) continue;
+      // We trust the PlayerInfo not to twice-count here.
+      info[i].AddLevelClearLives(level.GetChecksum());
+    }
   }
 
   override void WorldThingDamaged(WorldEvent evt) {

@@ -4,6 +4,7 @@
 class ::PlayerInfo : Object play {
   int lives;
   int delta_since_report;
+  Array<string> levels_cleared;
   ::IndestructableForce force;
 
   static ::PlayerInfo Create() {
@@ -17,8 +18,25 @@ class ::PlayerInfo : Object play {
     force.Message(msg);
   }
 
+  bool LevelSeen(string md5) {
+    return levels_cleared.find(md5) != levels_cleared.size();
+  }
+
   // Called when starting a new level.
   void AddLevelStartLives() {
+    let max_lives = indestructable_max_lives_per_level;
+    AdjustLives(
+      indestructable_lives_per_level,
+      indestructable_min_lives_per_level,
+      // If life capping is disabled, pass -1 for "no maximum"
+      max_lives ? max_lives : -1);
+  }
+
+  // Called when clearing a level. md5 is the md5 checksum of the level, used
+  // to ensure we don't award lives for clearing the same level twice.
+  void AddLevelClearLives(string md5) {
+    if (LevelSeen(md5)) return;
+    levels_cleared.push(md5);
     let max_lives = indestructable_max_lives_per_level;
     AdjustLives(
       indestructable_lives_per_level,
