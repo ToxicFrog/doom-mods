@@ -28,12 +28,18 @@ TFIS_TT_SLOMO = "Buff slows or stops time for most enemies and projectiles.";
 TFIS_HEADER_LIVES_CONFIG = "Lives Configuration";
 TFIS_OPT_INITIAL_LIVES = "Starting lives";
 TFIS_TT_INITIAL_LIVES = "How many lives you start the game with. Set to -1 to have unlimited extra lives.";
-TFIS_OPT_LEVEL_LIVES_GRANT = "Extra lives on level clear";
-TFIS_TT_LEVEL_LIVES_GRANT = "How many extra lives you're given for clearing a level.";
-TFIS_OPT_LEVEL_LIVES_MIN = "Min lives carried between levels";
+TFIS_OPT_LEVEL_LIVES_MIN = "Min lives at level start";
 TFIS_TT_LEVEL_LIVES_MIN = "You will always start a level with at least this many lives.";
 TFIS_OPT_LEVEL_LIVES_MAX = "Max lives carried between levels";
 TFIS_TT_LEVEL_LIVES_MAX = "You cannot carry more than this many lives between levels. Set to 0 for unlimited.";
+
+TFIS_HEADER_LIVES_CONFIG_LEVEL = "Lives from Level Clears";
+TFIS_OPT_LEVEL_LIVES_GRANT = "Lives gained per level clear";
+TFIS_TT_LEVEL_LIVES_GRANT = "How many extra lives you're given when exiting a level. Lives are only awarded once per level in games like Hexen which use hubmaps.";
+TFIS_OPT_LEVEL_COMPLETION_REQUIREMENT = "Completion requirements";
+TFIS_TT_LEVEL_COMPLETION_REQUIREMENT = "Additional requirements to be awarded extra lives at the end of a level. \c[CYAN]None\c- gives you lives just for reaching the exit. \c[CYAN]Either\c- requires either one; the \c[CYAN]stacking\c- version gives you twice as many lives if you get both. \c[CYAN]Both\c- requires 100% kills and 100% secrets.";
+
+TFIS_HEADER_LIVES_CONFIG_BOSS = "Lives from Boss Kills";
 TFIS_OPT_BOSS_LIVES_GRANT = "Extra lives on boss kill";
 TFIS_TT_BOSS_LIVES_GRANT = "How many extra lives you're given after killing a boss.";
 TFIS_OPT_BOSS_LIVES_MIN = "Min lives on boss kill";
@@ -56,6 +62,13 @@ TFIS_ENUM_HALF_SPEED = "1/2 speed";
 TFIS_ENUM_QUARTER_SPEED = "1/4 speed";
 TFIS_ENUM_EIGHTH_SPEED = "1/8 speed";
 TFIS_ENUM_TIME_STOP = "Stop time entirely";
+
+// Level clear requirements enum
+TFIS_ENUM_ALL_KILLS = "100% kills";
+TFIS_ENUM_ALL_SECRETS = "100% secrets";
+TFIS_ENUM_KILLS_OR_SECRETS = "either kills or secrets (non-stacking)";
+TFIS_ENUM_KILLS_OR_SECRETS_STACKING = "either kills or secrets (stacking)";
+TFIS_ENUM_KILLS_AND_SECRETS = "both kills and secrets";
 
 // Gameplay messages. %d is going to be the quantity of lives, as a non-negative
 // integer.

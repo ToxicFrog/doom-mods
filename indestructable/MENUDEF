@@ -12,17 +12,17 @@ OptionMenu "IndestructableOptions"
   TFIS_TooltipGeometry 0.5, 1.0, 1.0, 1.0, 0.5
   TFIS_TooltipAppearance "", "", "tfttbg"
 
-  StaticText "$TFIS_HEADER_COMPATIBILITY"
+  StaticText "$TFIS_HEADER_COMPATIBILITY", GOLD
   Option "$TFIS_OPT_IGNORE_DEATH_EXITS", "indestructable_ignore_death_exits", "YesNo"
   TFIS_Tooltip "$TFIS_TT_IGNORE_DEATH_EXITS"
 
   StaticText ""
-  StaticText "$TFIS_HEADER_APPEARANCE"
+  StaticText "$TFIS_HEADER_APPEARANCE", GOLD
   Option "$TFIS_OPT_SCREEN_EFFECT", "indestructable_screen_effect", "IndestructableScreenEffect"
   TFIS_Tooltip "$TFIS_TT_SCREEN_EFFECT"
 
   StaticText ""
-  StaticText "$TFIS_HEADER_BUFF_CONFIG"
+  StaticText "$TFIS_HEADER_BUFF_CONFIG", GOLD
   Slider "$TFIS_OPT_DURATION", "indestructable_duration", 0, 300, 1, 0
   TFIS_Tooltip "$TFIS_TT_DURATION"
   Slider "$TFIS_OPT_HEAL", "indestructable_restore_hp", 1, 200, 1, 0
@@ -35,17 +35,23 @@ OptionMenu "IndestructableOptions"
   TFIS_Tooltip "$TFIS_TT_SLOMO"
 
   StaticText ""
-  StaticText "$TFIS_HEADER_LIVES_CONFIG"
+  StaticText "$TFIS_HEADER_LIVES_CONFIG", GOLD
   ScaleSlider "$TFIS_OPT_INITIAL_LIVES", "indestructable_starting_lives", -1, 20, 1, "None", "Infinite"
   TFIS_Tooltip "$TFIS_TT_INITIAL_LIVES"
-
-  Slider "$TFIS_OPT_LEVEL_LIVES_GRANT", "indestructable_lives_per_level", 0, 20, 1, 0
-  TFIS_Tooltip "$TFIS_TT_LEVEL_LIVES_GRANT"
   Slider "$TFIS_OPT_LEVEL_LIVES_MIN", "indestructable_min_lives_per_level", 0, 20, 1, 0
   TFIS_Tooltip "$TFIS_TT_LEVEL_LIVES_MIN"
-  ScaleSlider "$TFIS_OPT_LEVEL_LIVES_MAX", "indestructable_max_lives_per_level", 0, 20, 1, "Unlimited"
+  ScaleSlider "$TFIS_OPT_LEVEL_LIVES_MAX", "indestructable_max_lives", 0, 20, 1, "Unlimited"
   TFIS_Tooltip "$TFIS_TT_LEVEL_LIVES_MAX"
 
+  StaticText ""
+  StaticText "$TFIS_HEADER_LIVES_CONFIG_LEVEL", GOLD
+  Slider "$TFIS_OPT_LEVEL_LIVES_GRANT", "indestructable_lives_per_level", 0, 20, 1, 0
+  TFIS_Tooltip "$TFIS_TT_LEVEL_LIVES_GRANT"
+  Option "$TFIS_OPT_LEVEL_COMPLETION_REQUIREMENT", "indestructable_completion_requirement", "IndestructableCompletionRequirements"
+  TFIS_Tooltip "$TFIS_TT_LEVEL_COMPLETION_REQUIREMENT"
+
+  StaticText ""
+  Statictext "$TFIS_HEADER_LIVES_CONFIG_BOSS", GOLD
   Slider "$TFIS_OPT_BOSS_LIVES_GRANT", "indestructable_lives_per_boss", 0, 20, 1, 0
   TFIS_Tooltip "$TFIS_TT_BOSS_LIVES_GRANT"
   Slider "$TFIS_OPT_BOSS_LIVES_MIN", "indestructable_min_lives_per_boss", 0, 20, 1, 0
@@ -71,4 +77,13 @@ OptionValue "IndestructableSlomoEffect" {
   4, "$TFIS_ENUM_QUARTER_SPEED"
   8, "$TFIS_ENUM_EIGHTH_SPEED"
   1, "$TFIS_ENUM_TIME_STOP"
+}
+
+OptionValue "IndestructableCompletionRequirements" {
+  0, "$TFIS_ENUM_NONE"
+  1, "$TFIS_ENUM_ALL_KILLS"
+  2, "$TFIS_ENUM_ALL_SECRETS"
+  3, "$TFIS_ENUM_KILLS_OR_SECRETS"
+  4, "$TFIS_ENUM_KILLS_OR_SECRETS_STACKING"
+  5, "$TFIS_ENUM_KILLS_AND_SECRETS"
 }
