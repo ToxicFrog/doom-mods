@@ -23,6 +23,8 @@
     not as you enter the new one, fixing some weird edge cases.
   - Improved detection for return visits to the same level, so that it doesn't
     award level-clear lives multiple times in games like Hexen.
+  - Tooltips now display on the left side of the screen rather than the bottom,
+    so that they no longer cover the last few options.
 
 # 0.2.8
 
