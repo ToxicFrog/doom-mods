@@ -61,7 +61,10 @@ class ::IndestructableEventHandler : StaticEventHandler {
   override void WorldLoaded(WorldEvent evt) {
     DEBUG("WorldLoaded: t=%d", level.totaltime);
     for (uint i = 0; i < MAXPLAYERS; ++i) {
-      if (playeringame[i]) InitPlayer(i);
+      if (playeringame[i]) {
+        InitPlayer(i);
+        info[i].LevelEntered();
+      }
     }
   }
 

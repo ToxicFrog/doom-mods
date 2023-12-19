@@ -3,19 +3,17 @@ user int indestructable_screen_effect = 6;
 
 // Default settings mimic War of Attrition but with time stop as well.
 server int indestructable_starting_lives = 1;
-server int indestructable_lives_per_level = 1;
 server int indestructable_min_lives_per_level = 1;
-server int indestructable_max_lives_per_level = 0;
-server int indestructable_lives_per_boss = 0;
-server int indestructable_min_lives_per_boss = 0;
-server int indestructable_max_lives_per_boss = 0;
+server int indestructable_max_lives = 0;
 
 // Additional requirements to add bonus lives when clearing a level
 // 0: none
 // 1,2: all kills, all secrets
 // 3,4: all kills or all secrets (non-stacking, stacking)
 // 5: both kills and secrets
+server int indestructable_lives_per_level = 1;
 server int indestructable_completion_requirement = 0;
+server int indestructable_lives_per_boss = 0;
 
 // Settings for what happens when it actually goes off.
 server int indestructable_duration = 10;

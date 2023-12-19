@@ -1,6 +1,6 @@
 # 0.3.0
 
-⚠ This update breaks save compatibility! ⚠
+⚠ This update breaks save and setting compatibility! ⚠
 
 - New:
   - Menu strings and in-game messages are now stored in a `LANGUAGE` lump and
@@ -9,6 +9,11 @@
     `Compatibility` section in the options menu).
   - Awarding of extra lives on level clear can now be made contingent on 100%
     kills, 100% secrets, either, or both.
+- Changed:
+  - `Min lives on boss kill` setting removed
+  - `Max lives on boss kill` and `max lives on level clear` settings combined
+    into one `max lives` setting
+  - `Lives on new game` and `min lives on entering level` settings ignore `max lives`
 - Fix:
   - Indestructable buff timer no longer counts down when the player has the
     `TOTALLYFROZEN` flag set. In particular, this means that it won't expire
