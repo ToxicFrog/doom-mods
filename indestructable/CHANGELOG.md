@@ -1,4 +1,6 @@
-# 0.2.9
+# 0.3.0
+
+⚠ This update breaks save compatibility! ⚠
 
 - New:
   - Menu strings and in-game messages are now stored in a `LANGUAGE` lump and
