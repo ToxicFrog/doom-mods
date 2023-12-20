@@ -1,8 +1,6 @@
 # 0.3.0
 
-⚠ This update breaks save compatibility! ⚠
-⚠ This update breaks setting compatibility! ⚠
-⚠ This update breaks netevent compatibility! ⚠
+⚠ This update breaks save, setting, and netevent compatibility! ⚠
 
 - New:
   - Menu strings and in-game messages are now stored in a `LANGUAGE` lump and
