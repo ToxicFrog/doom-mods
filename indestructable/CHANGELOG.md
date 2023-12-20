@@ -1,6 +1,8 @@
 # 0.3.0
 
-⚠ This update breaks save and setting compatibility! ⚠
+⚠ This update breaks save compatibility! ⚠
+⚠ This update breaks setting compatibility! ⚠
+⚠ This update breaks netevent compatibility! ⚠
 
 - New:
   - Menu strings and in-game messages are now stored in a `LANGUAGE` lump and
@@ -14,6 +16,11 @@
   - `Max lives on boss kill` and `max lives on level clear` settings combined
     into one `max lives` setting
   - `Lives on new game` and `min lives on entering level` settings ignore `max lives`
+  - Mod interoperability changes:
+    - `indestructable_report_lives` netevent renamed `indestructable-report-lives`
+    - `indestructable_adjust_lives` netevent renamed `indestructable-adjust-lives`,
+    and the API changed
+    - New `indestructable-set-lives` netevent
 - Fix:
   - Indestructable buff timer no longer counts down when the player has the
     `TOTALLYFROZEN` flag set. In particular, this means that it won't expire

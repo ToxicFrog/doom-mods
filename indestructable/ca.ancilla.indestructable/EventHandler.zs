@@ -93,11 +93,11 @@ class ::IndestructableEventHandler : StaticEventHandler {
   override void NetworkProcess(ConsoleEvent evt) {
     if (evt.player != consoleplayer) {
       return;
-    } else if (evt.name == "indestructable_adjust_lives") {
-      let pawn = players[evt.player].mo;
-      let force = ::IndestructableForce(pawn.FindInventory("::IndestructableForce"));
-      if (!force) return;
-      force.info.AdjustLives(evt.args[0], evt.args[1], evt.args[2]);
+    } else if (evt.name == "indestructable-adjust-lives") {
+      info[evt.player].AdjustLives(evt.args[0], evt.args[1] != 0);
+    } else if (evt.name == "indestructable-set-lives") {
+      info[evt.player].lives = evt.args[0] < 0 ? -1 : evt.args[0];
+      info[evt.player].AdjustLives(0, false);
     }
   }
 }

@@ -12,14 +12,14 @@ enum ::CompletionRequirements {
 
 class ::PlayerInfo : Object play {
   int lives;
-  int delta_since_report;
+  int lives_reported; // as of last time ReportLives() was called
   Array<string> levels_cleared;
   ::IndestructableForce force;
 
   static ::PlayerInfo Create() {
     ::PlayerInfo info = new("::PlayerInfo");
     info.lives = indestructable_starting_lives;
-    info.delta_since_report = info.lives;
+    info.lives_reported = 0;
     return info;
   }
 
@@ -59,73 +59,74 @@ class ::PlayerInfo : Object play {
   // Called when clearing a level. md5 is the md5 checksum of the level, used
   // to ensure we don't award lives for clearing the same level twice.
   void AddLevelClearLives(string md5) {
+    DEBUG("AddLevelClearLives(%s)", md5);
     if (LevelSeen(md5)) return;
     let bonus_count = BonusCount();
+    DEBUG("bonus_count = %d", bonus_count);
     if (!bonus_count) return;
 
     levels_cleared.push(md5);
-    let max_lives = indestructable_max_lives;
-    AdjustLives(
-      indestructable_lives_per_level * bonus_count,
-      0,
-      // If life capping is disabled, pass -1 for "no maximum"
-      max_lives ? max_lives : -1);
+    AdjustLives(indestructable_lives_per_level * bonus_count, true);
+    if (lives < indestructable_min_lives_per_level) {
+      AdjustLives(indestructable_min_lives_per_level - lives, false);
+    }
   }
 
   // Called when a boss is killed.
   void AddBossKillLives() {
-    let max_lives = indestructable_max_lives;
-    AdjustLives(
-      indestructable_lives_per_boss,
-      0,
-      // If life capping is disabled, pass -1 for "no maximum"
-      max_lives ? max_lives : -1);
+    AdjustLives(indestructable_lives_per_boss, true);
   }
 
-  // Master function for adjusting the number of stored lives. Properly handles
-  // infinities, and adjusts delta_since_report accordingly.
-  void AdjustLives(int delta, int min_lives, int max_lives) {
+  // Master function for adjusting the number of stored lives. Adjusts the lives
+  // count, emits a netevent, and schedules a lives quantity display.
+  // The netevent will only be emitted if the quantity of lives changed.
+  // If apply_maximum is set, lives will not be granted if this would take you
+  // above the configured maximum, but it will not take away lives you already
+  // have.
+  void AdjustLives(int delta, bool apply_maximum) {
+    if (lives < 0) {
+      ReportLivesCount();
+      return;
+    }
+
     let old_lives = lives;
-    if (lives >= 0) {
-      lives += delta;
-    }
-    if (min_lives != -1) lives = max(lives, min_lives);
-    if (max_lives != -1) lives = min(lives, max_lives);
 
-    if (old_lives < 0 && lives >= 0) {
-      delta_since_report = -9999; // going from infinite to finite lives is a reduction
-    } else if (old_lives >= 0 && lives < 0) {
-      delta_since_report = 9999; // going from finite to infinite is an increase
-    } else {
-      delta_since_report += (lives - old_lives); // for everything else use the actual delta
+    if (!apply_maximum || !indestructable_max_lives) {
+      lives = max(0, lives + delta);
+    } else if (lives < indestructable_max_lives) {
+      lives = max(0, min(lives + delta, indestructable_max_lives));
     }
-    ReportLivesCount(lives - old_lives);
+
+    ReportLivesCount();
   }
 
-  // Called after any AdjustLives call, this displays a message to the player
-  // and emits a netevent showing how many lives the player has.
-  // Note that this may be called even if the number of lives has not changed.
-  void ReportLivesCount(int delta) {
-    // Display the message unconditionally, so the player gets reminders as they
-    // clear levels and kill bosses even if the lives count didn't change.
-    // We do this by setting a state on the force because that delays the message
-    // slightly.
+  // Called after any AdjustLives call, this schedules a message to the player
+  // and netevent reporting how many lives the player has and how much they've
+  // changed.
+  void ReportLivesCount() {
     force.SetStateLabel("DisplayLivesCount");
-    EventHandler.SendNetworkEvent("indestructable_report_lives", lives, delta, 0);
   }
 
   // Display a helpful message indicating how many lives the player has.
   void DisplayLivesCount() {
+    let delta = lives - lives_reported;
+    if (lives_reported < 0 && lives >= 0) {
+      delta = -9999; // going from infinite to finite lives is a reduction
+    } else if (lives_reported >= 0 && lives < 0) {
+      delta = 9999; // going from finite to infinite is an increase
+    }
+
+    EventHandler.SendNetworkEvent("indestructable-report-lives", lives, delta, 0);
     if (lives < 0) {
       Message("$TFIS_MSG_UNLIMITED_LIVES");
-    } else if (delta_since_report < 0) {
+    } else if (delta < 0) {
       Message(string.format(StringTable.Localize("$TFIS_MSG_REDUCED_LIVES"), lives));
-    } else if (delta_since_report > 0) {
+    } else if (delta > 0) {
       Message(string.format(StringTable.Localize("$TFIS_MSG_INCREASED_LIVES"), lives));
     } else {
       Message(string.format(StringTable.Localize("$TFIS_MSG_UNCHANGED_LIVES"), lives));
     }
-    delta_since_report = 0;
+    lives_reported = lives;
   }
 
 }

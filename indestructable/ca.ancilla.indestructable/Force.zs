@@ -41,7 +41,7 @@ class ::IndestructableForce : Inventory {
   void Initialize(::PlayerInfo info) {
     self.info = info;
     self.info.force = self;
-    info.ReportLivesCount(info.lives);
+    info.ReportLivesCount();
     MoveToTail();
   }
 
@@ -124,7 +124,7 @@ class ::IndestructableForce : Inventory {
       GivePowerup("::IndestructableDamage");
 
     if (info.lives > 0) {
-      info.AdjustLives(-1, -1, -1);
+      info.AdjustLives(-1, false);
     }
   }
 
