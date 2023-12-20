@@ -9,14 +9,14 @@ class ::Indestructable : ::BaseUpgrade {
     if (charge >= maxCharge) {
       charge -= maxCharge;
       pawn.A_SetBlend("FF FF 00", 0.8, 40);
-      EventHandler.SendNetworkEvent("indestructable_adjust_lives", 1, 0, 2**level);
+      EventHandler.SendNetworkEvent("indestructable-adjust-lives", 1, 0);
+      EventHandler.SendNetworkEvent("indestructable-clamp-lives", 0, 2**level);
     }
   }
 
   override bool IsSuitableForPlayer(TFLV::PerPlayerStats stats) {
     return stats.upgrades.Level("::Indestructable") < 3
-      && CVar.FindCVar("indestructable_starting_lives").GetInt() == 0
-      && CVar.FindCVar("indestructable_lives_per_level").GetInt() == 0;
+      && CVar.FindCVar("indestructable_gun_bonsai_mode").GetBool() == true;
   }
 
   // Charge between lives starts at 200 and asymptotically approaches 100.
@@ -30,4 +30,3 @@ class ::Indestructable : ::BaseUpgrade {
     fields.insert("max-lives", string.format("%d", 2**level));
   }
 }
-

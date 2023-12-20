@@ -69,6 +69,7 @@ class ::IndestructableEventHandler : StaticEventHandler {
 
   override void WorldUnloaded(WorldEvent evt) {
     // Don't do anything if we're unloading this to load a savegame or quit.
+    if (indestructable_gun_bonsai_mode) return;
     if (evt.isSaveGame || !evt.nextMap) return;
 
     for (uint i = 0; i < 8; ++i) {
@@ -79,6 +80,7 @@ class ::IndestructableEventHandler : StaticEventHandler {
   }
 
   override void WorldThingDamaged(WorldEvent evt) {
+    if (indestructable_gun_bonsai_mode) return;
     if (!evt.thing || !evt.damagesource || !evt.thing.bBOSS || evt.thing.health > 0) return;
     let lives = indestructable_lives_per_boss;
     if (!lives) return;
@@ -94,6 +96,14 @@ class ::IndestructableEventHandler : StaticEventHandler {
       return;
     } else if (evt.name == "indestructable-adjust-lives") {
       info[evt.player].AdjustLives(evt.args[0], evt.args[1] != 0);
+    } else if (evt.name == "indestructable-clamp-lives") {
+      let min_lives = evt.args[0];
+      let max_lives = evt.args[1];
+      let pinfo = info[evt.player];
+
+      if (min_lives >= 0) pinfo.lives = max(min_lives, pinfo.lives);
+      if (max_lives >= 0) pinfo.lives = min(max_lives, pinfo.lives);
+      info[evt.player].AdjustLives(0, false);
     } else if (evt.name == "indestructable-set-lives") {
       info[evt.player].lives = evt.args[0] < 0 ? -1 : evt.args[0];
       info[evt.player].AdjustLives(0, false);

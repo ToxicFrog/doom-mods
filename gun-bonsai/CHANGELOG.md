@@ -1,5 +1,8 @@
 # 0.10.5
 
+- Change:
+  - `Indestructable` integration updated to support Indestructable 0.3.x. If you
+    use the integration, you must update both mods for it to function properly.
 - Fix:
   - Multiplayer games with more than 8 players are now (theoretically) supported,
     if the underlying engine supports that.

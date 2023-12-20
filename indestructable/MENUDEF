@@ -15,6 +15,8 @@ OptionMenu "IndestructableOptions"
   StaticText "$TFIS_HEADER_COMPATIBILITY", GOLD
   Option "$TFIS_OPT_IGNORE_DEATH_EXITS", "indestructable_ignore_death_exits", "YesNo"
   TFIS_Tooltip "$TFIS_TT_IGNORE_DEATH_EXITS"
+  Option "$TFIS_OPT_GUN_BONSAI_MODE", "indestructable_gun_bonsai_mode", "YesNo"
+  TFIS_Tooltip "$TFIS_TT_GUN_BONSAI_MODE"
 
   StaticText ""
   StaticText "$TFIS_HEADER_APPEARANCE", GOLD

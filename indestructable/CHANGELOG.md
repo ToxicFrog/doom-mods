@@ -13,6 +13,9 @@
     kills, 100% secrets, either, or both.
   - Optional granting of bonus lives based on damage survived, similar to how
     the Gun Bonsai upgrade `Indestructable` works.
+  - Gun Bonsai integration is now explicitly turned on with a configuration option
+    rather than implicitly turned on based on your other settings. See the
+    `Compatibility` section.
 - Changed:
   - `Min lives on boss kill` setting removed
   - `Max lives on boss kill` and `max lives on level clear` settings combined

@@ -95,7 +95,8 @@ class ::IndestructableForce : Inventory {
     if (damage >= owner.health) {
       newdamage = owner.health - 1;
       ActivateIndestructability();
-    } else {
+    } else if (!indestructable_gun_bonsai_mode) {
+      // The hit that activates invulnerability doesn't contribute to the charge.
       info.AddDamageCharge(damage);
     }
   }

@@ -10,6 +10,18 @@ Note that some sources of damage, such as crushers, telefrags, and some types of
 
 Indestructable's configuration settings are accessible via the in-game option screen. There, you can adjust what buffs you get when it triggers, how frequently you earn new lives, and what visual effects it uses.
 
+## Compatibility
+
+This mod should be compatible with almost anything; the main exception is things that rely heavily on scripted damage that bypasses defences and damage modifiers.
+
+### Pistol Start
+
+If you are using Universal Pistol Start or another pistol start mod, there is a setting available to control whether pistol starts also reset your lives, or if lives carry over across levels.
+
+### Gun Bonsai
+
+Turning on the `gun bonsai integration` option will replace the mod's normal operation with a Gun Bonsai player upgrade you can roll. See the in-game tooltips for more information.
+
 ## Mod integration
 
 Integration with other mods is done via netevents.
@@ -22,6 +34,12 @@ If the player has unlimited lives, this has no effect.
 
 The `indestructable-report-lives` event emitted afterwards will contain the actual delta between previous and current lives, which may be less than the `delta` if limits were hit.
 
+### `indestructable-clamp-lives <min> <max>`
+
+If the player has fewer than `min` lives, sets them to `min`; if more than `max` lives, sets them to `max`. In combination with `indestructable-adjust-lives` this can be used to replicate the old behaviour.
+
+Passing -1 as either value will cause it to be ignored.
+
 ### `indestructable-set-lives <val>`
 
 Sets the player's lives to `val`, ignoring all configured limits. Use `-1` to give the player unlimited lives.
@@ -33,10 +51,6 @@ The `indestructable-report-lives` event emitted afterwards will contain the delt
 This is emitted every time the player gains or loses lives (whether through normal gameplay or due to an `indestructable_adjust_lives` netevent). It can be listened for by other mods to keep track of how many extra lives the player has. `delta` is the change in amount and will always be non-zero. The third argument is currently unused. Note that negative values of `lives` signify an unlimited supply.
 
 If it is reporting a change from unlimited to limited lives, `delta` will be -9999; if a change from limited to unlimited lives, 9999.
-
-## Compatibility
-
-This mod should be compatible with almost anything; the main exception is things that rely heavily on scripted damage that bypasses defences and damage modifiers.
 
 ## License
 

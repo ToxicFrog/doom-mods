@@ -19,7 +19,7 @@ class ::PlayerInfo : Object play {
 
   static ::PlayerInfo Create() {
     ::PlayerInfo info = new("::PlayerInfo");
-    info.lives = indestructable_starting_lives;
+    info.lives = indestructable_gun_bonsai_mode ? 0 : indestructable_starting_lives;
     info.lives_reported = 0;
     return info;
   }
