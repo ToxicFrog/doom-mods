@@ -52,11 +52,6 @@ class ::PlayerInfo : Object play {
     }
   }
 
-  void LevelEntered() {
-    // Apply level entry minimum.
-    AdjustLives(0, indestructable_min_lives_per_level, -1);
-  }
-
   // Called when clearing a level. md5 is the md5 checksum of the level, used
   // to ensure we don't award lives for clearing the same level twice.
   void AddLevelClearLives(string md5) {

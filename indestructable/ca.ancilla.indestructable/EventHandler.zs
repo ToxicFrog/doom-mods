@@ -63,7 +63,6 @@ class ::IndestructableEventHandler : StaticEventHandler {
     for (uint i = 0; i < MAXPLAYERS; ++i) {
       if (playeringame[i]) {
         InitPlayer(i);
-        info[i].LevelEntered();
       }
     }
   }
