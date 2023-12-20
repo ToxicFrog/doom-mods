@@ -48,6 +48,10 @@ It has been tested (although not necessarily extensively) and is known to work w
 
 Some mods have special integration features or require specific compatibility settings; these are detailed below. Make sure to also check the [known issues](#known-issues) section for bugs that only manifest with paired with specific mods.
 
+### AutoAutoSave
+
+If you have this installed, turning on `autosave after level-up` will make it request a save from AAS when you close the menu after choosing your upgrades.
+
 ### Indestructable
 
 If you have my other mod, [Indestructable](../indestructable), installed, you can turn on `Gun Bonsai integration` in its settings, which will add an `Indestructable` upgrade to the player upgrade pool that lets you earn extra lives by taking damage.

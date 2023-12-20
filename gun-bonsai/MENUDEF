@@ -49,6 +49,8 @@ OptionMenu "GunBonsaiOptions"
   StaticText ""
   StaticText "$TFLV_OPT_HEADER_COMPATIBILITY", WHITE
 
+  Option "$TFLV_OPT_NAME_AUTOSAVE_AFTER_LEVEL", "bonsai_autosave_after_level", "OnOff"
+  TFLV_Tooltip "$TFLV_OPT_TT_AUTOSAVE_AFTER_LEVEL"
   Option "$TFLV_OPT_NAME_UPGRADE_BINDING_MODE", "bonsai_upgrade_binding_mode", "GunBonsaiUpgradeBindingMode"
   TFLV_Tooltip "$TFLV_OPT_TT_UPGRADE_BINDING_MODE"
   Option "$TFLV_OPT_NAME_IGNORE_DEATH_EXITS", "bonsai_ignore_death_exits", "OnOff"
@@ -81,13 +83,6 @@ OptionMenu "GunBonsaiOptions"
   Slider "$TFLV_OPT_NAME_LEVEL_COST_MUL_FOR_MELEE", "bonsai_level_cost_mul_for_melee", 0.1, 5.0, 0.1, 1
   Slider "$TFLV_OPT_NAME_LEVEL_COST_MUL_FOR_WIMPY", "bonsai_level_cost_mul_for_wimpy", 0.1, 5.0, 0.1, 1
   TFLV_Tooltip "$TFLV_OPT_TT_LEVEL_COST_MUL"
-
-  StaticText ""
-  StaticText "$TFLV_OPT_HEADER_AUTOAUTOSAVE_INTEGRATION", GOLD
-  StaticText "$TFLV_OPT_AUTOAUTOSAVE_NOTE"
-
-  Option "$TFLV_OPT_NAME_AUTOSAVE_AFTER_LEVEL", "bonsai_autosave_after_level", "OnOff"
-  TFLV_Tooltip "$TFLV_OPT_TT_AUTOSAVE_AFTER_LEVEL"
 
   StaticText ""
   StaticText "$TFLV_OPT_HEADER_LEGENDOOM", GRAY

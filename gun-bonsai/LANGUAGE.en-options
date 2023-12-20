@@ -42,6 +42,10 @@ TFLV_OPT_TT_LEVELUP_FLASH = "Whether to flash the screen when your weapon gains 
 TFLV_OPT_NAME_LEVELUP_FLASH_RGB = "Flash colour";
 TFLV_OPT_NAME_LEVELUP_SOUND_MODE = "Sound on level-up";
 TFLV_OPT_TT_LEVELUP_SOUND_MODE = "What sound to play when your weapon gains a level. If set to 'custom' it will use whatever the value of the 'bonsai_levelup_sound' cvar is.";
+
+// Compatibility options
+TFLV_OPT_NAME_AUTOSAVE_AFTER_LEVEL = "Autosave after level-up";
+TFLV_OPT_TT_AUTOSAVE_AFTER_LEVEL = "Autosave after choosing your upgrades for a level-up (i.e. as soon as the level-up menu closes). This requires \c[GOLD]AutoAutoSave\c- installed to do anything.";
 TFLV_OPT_NAME_UPGRADE_BINDING_MODE = "Weapon upgrades bind to";
 TFLV_OPT_TT_UPGRADE_BINDING_MODE =
   "Determines how weapon upgrades behave when you drop a weapon or are carrying multiple weapons of the same type.\n"
@@ -84,11 +88,6 @@ TFLV_OPT_NAME_BONUS_LD_EFFECT_SLOTS = "Bonus slots per LD rarity level";
 TFLV_OPT_TT_BONUS_LD_EFFECT_SLOTS = "How many extra effect slots legendary guns get per rarity level (Common=1, Epic=4).";
 TFLV_OPT_NAME_IGNORE_GUN_RARITY = "Ignore original gun rarity for new effects";
 TFLV_OPT_TT_IGNORE_GUN_RARITY = "Whether weapons can learn LD effects that are rarer than the one they spawned with.";
-
-// Mod integrations
-TFLV_OPT_AUTOAUTOSAVE_NOTE = "These options require \c[WHITE]AutoAutoSave\c- installed.";
-TFLV_OPT_NAME_AUTOSAVE_AFTER_LEVEL = "Autosave after level-up";
-TFLV_OPT_TT_AUTOSAVE_AFTER_LEVEL = "Autosave after choosing your upgrades for a level-up (i.e. as soon as the level-up menu closes).";
 
 // Strings for the various option enums
 

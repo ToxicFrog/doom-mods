@@ -8,6 +8,7 @@
     if the underlying engine supports that.
   - Softlock when `Swiftness` upgrade and Indestructable trigger at the same
     time should no longer occur.
+  - AutoAutoSave integration is now properly documented in the README.
 
 # 0.10.4
 
