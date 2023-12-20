@@ -51,6 +51,8 @@ OptionMenu "IndestructableOptions"
   TFIS_Tooltip "$TFIS_TT_LEVEL_COMPLETION_REQUIREMENT"
   Slider "$TFIS_OPT_BOSS_LIVES_GRANT", "indestructable_lives_per_boss", 0, 20, 1, 0
   TFIS_Tooltip "$TFIS_TT_BOSS_LIVES_GRANT"
+  ScaleSlider "$TFIS_OPT_DAMAGE_TO_LIVES_RATIO", "indestructable_damage_per_bonus_life", 0, 2000, 100, 0, "Disabled"
+  TFIS_Tooltip "$TFIS_TT_DAMAGE_TO_LIVES_RATIO"
 }
 
 OptionValue "IndestructableScreenEffect" {

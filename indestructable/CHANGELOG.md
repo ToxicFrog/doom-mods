@@ -11,6 +11,8 @@
     `Compatibility` section in the options menu).
   - Awarding of extra lives on level clear can now be made contingent on 100%
     kills, 100% secrets, either, or both.
+  - Optional granting of bonus lives based on damage survived, similar to how
+    the Gun Bonsai upgrade `Indestructable` works.
 - Changed:
   - `Min lives on boss kill` setting removed
   - `Max lives on boss kill` and `max lives on level clear` settings combined

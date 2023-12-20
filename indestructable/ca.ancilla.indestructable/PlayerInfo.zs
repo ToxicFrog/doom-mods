@@ -13,6 +13,7 @@ enum ::CompletionRequirements {
 class ::PlayerInfo : Object play {
   int lives;
   int lives_reported; // as of last time ReportLives() was called
+  int charge; // for the incoming damage -> lives feature
   Array<string> levels_cleared;
   ::IndestructableForce force;
 
@@ -75,6 +76,21 @@ class ::PlayerInfo : Object play {
   // Called when a boss is killed.
   void AddBossKillLives() {
     AdjustLives(indestructable_lives_per_boss, true);
+  }
+
+  void AddDamageCharge(uint damage) {
+    if (!indestructable_damage_per_bonus_life) return;
+    DEBUG("Charging: %d + %d / %d",
+      damage, charge, indestructable_damage_per_bonus_life);
+
+    uint bonus = 0;
+    charge += damage;
+    while (charge >= indestructable_damage_per_bonus_life) {
+      charge -= indestructable_damage_per_bonus_life;
+      ++bonus;
+      DEBUG("Generating lives: %d -> %d", charge, bonus);
+    }
+    if (bonus) AdjustLives(bonus, true);
   }
 
   // Master function for adjusting the number of stored lives. Adjusts the lives

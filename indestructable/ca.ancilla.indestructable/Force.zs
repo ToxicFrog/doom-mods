@@ -95,6 +95,8 @@ class ::IndestructableForce : Inventory {
     if (damage >= owner.health) {
       newdamage = owner.health - 1;
       ActivateIndestructability();
+    } else {
+      info.AddDamageCharge(damage);
     }
   }
 
