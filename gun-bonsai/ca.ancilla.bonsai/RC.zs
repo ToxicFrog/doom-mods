@@ -87,7 +87,7 @@ class ::RC::Node : Object play {
       if (!wepcls) continue;
       string nm = wepcls.GetClassName();
       nm = nm.MakeLower();
-      if (nm.IndexOf(prefix) == 0) {
+      if (nm.length() > prefix.length() && nm.IndexOf(prefix) == 0) {
         DEBUG("Add class %s from wildcard %s", nm, wildcard);
         real.push(wepcls.GetClassName());
         ++nrof;
@@ -480,8 +480,6 @@ class ::RCParser : Object play {
     array<string> classes;
     if (!PatternList(classes, ":")) return false;
     if (classes.size() == 0) return Error("list of classes or class prefixes for type");
-    // TODO: allow setting multiple types on the same weapon? E.g. a rifle with underslung
-    // grenade launcher might be HITSCAN PROJECTILE.
     ::WeaponType type = 0;
     bool auto_type = false;
     while (!peek(";")) {

@@ -14,6 +14,9 @@
   - AutoAutoSave integration is now properly documented in the README.
   - Samsara Reincarnation compatibility settings (automatically applied via `BONSAIRC`),
     thanks to cubebert.
+  - `BONSAIRC` prefixes now match `*` against one or more characters, as they were
+    always meant to, rather than zero or more. If you want to match "all classes
+    starting with Foo, including `Foo` itself", use `Foo Foo*`.
 
 # 0.10.4
 
