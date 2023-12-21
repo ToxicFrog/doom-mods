@@ -136,15 +136,12 @@ I may someday split the Legendoom integration into its own (somewhat more featur
 
 ### Known issues with specific mods
 
-Some of these are minor bugs in the mods themselves that aren't visible in normal play; others are issues with Gun Bonsai that are brought to light by the way these mods work.
+Some of these are minor bugs in the mods themselves that aren't visible in normal play; others are issues with Gun Bonsai that are brought to light by the way these mods work. In addition to the settings documented here, Gun Bonsai automatically disables upgrades that are known to be incompatible with other loaded mods; for example, if you have Hellrider loaded, the Juggler upgrade (which does not work with Hellrider's smooth weapon switching animations) will be disabled.
 
-- **Ashes series**: all sawn-off shotguns are flagged as melee weapons and thus get melee upgrades
-- **Ashes Afterglow**: upgrading a weapon resets it to level 0
 - **Angelic Aviary**: some decorations are flagged as monsters and thus grant XP for attacking them
 - **DoomRL Arsenal**: building an assembly resets it to level 0
 - **Final Doomer +**: HE rounds don't detonate properly
-- **Hellrider**: Juggler has no effect
-- **Hideous Destructor**: none of the Scavenge upgrades work (in addition to various minor issues)
+- **Hideous Destructor**: too many small issues to document here
 - **Slomo Bullet Time**: interacts oddly with Swiftness and may cause you to get stuck in place until both effects wear off
 - **XRPG**: melee weapons are not flagged correctly and thus get ranged weapon upgrades instead
 
