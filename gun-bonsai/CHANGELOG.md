@@ -12,6 +12,8 @@
   - Softlock when `Swiftness` upgrade and Indestructable trigger at the same
     time should no longer occur.
   - AutoAutoSave integration is now properly documented in the README.
+  - Samsara Reincarnation compatibility settings (automatically applied via `BONSAIRC`),
+    thanks to cubebert.
 
 # 0.10.4
 
