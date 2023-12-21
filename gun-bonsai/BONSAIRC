@@ -8,7 +8,8 @@
 #
 # unregister <upgrades> ;
 # Remove the listed upgrades from the registry. Use this to disable upgrades that
-# aren't compatible with some mods.
+# aren't compatible with some mods. This always takes precedence over register if
+# the same upgrade appears in both places, no matter what order it appears in.
 #
 # merge <classes> ;
 # Consider all of the listed classes to the same weapon type. This is primarily
@@ -22,11 +23,13 @@
 # Type is one of: MELEE HITSCAN PROJECTILE IGNORE AUTO
 # IGNORE will force Bonsai to ignore that weapon entirely and not assign XP to it.
 # AUTO will force it to autodetect; this is the default, but can be specified
-# explicitly to override a prior non-AUTO type directive.
+# explicitly to override a prior non-AUTO type directive. If multiple type
+# directives apply to the same weapon, the last one loaded takes precedence.
 #
 # A <classes> list is just one or more class names separated by whitespace. It
-# can also be a class prefix by appending *, e.g. Endi* will match all weapon
-# classes starting with "Endie". Class names are not case sensitive.
+# can also be a class prefix by appending *, e.g. Endie* will match all weapon
+# classes starting with "Endie" (but not "Endie" on its own).
+# Class names are not case sensitive.
 #
 # An <upgrades> list is the same but for upgrade names. Wildcards are not
 # supported; exact class names must be used.

@@ -17,6 +17,10 @@
   - `BONSAIRC` prefixes now match `*` against one or more characters, as they were
     always meant to, rather than zero or more. If you want to match "all classes
     starting with Foo, including `Foo` itself", use `Foo Foo*`.
+  - `BONSAIRC` `unregister` directives now always take precedence over `register`
+    directives, regardless of order. In particular, this means that a mod can now
+    include a `BONSAIRC` that unregisters incompatible upgrades and this will
+    work regardless of load order.
 
 # 0.10.4
 

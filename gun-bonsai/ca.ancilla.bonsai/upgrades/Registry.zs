@@ -3,6 +3,7 @@
 
 class ::Registry : Object play {
   array<string> upgrade_names;
+  array<string> unregistered;
   array<::BaseUpgrade> upgrades;
 
   static ::Registry GetRegistry() {
@@ -11,22 +12,40 @@ class ::Registry : Object play {
     return reg.UPGRADE_REGISTRY;
   }
 
-  void Register(string upgrade) {
+  int FindRegistration(string upgrade) {
+    let idx = upgrade_names.find(upgrade);
+    if (idx == upgrade_names.size()) return -1;
+    return idx;
+  }
+
+  bool IsUnregistered(string upgrade) {
+    return unregistered.find(upgrade) != unregistered.size();
+  }
+
+  bool Register(string upgrade) {
     DEBUG("Register: %s", upgrade);
-    if (upgrade_names.find(upgrade) != upgrade_names.size()) {
-      // Assume that this is because a mod has tried to double-register an upgrade,
-      // and permit it as a no-op.
-      //ThrowAbortException("Duplicate upgrades named %s", upgrade);
-      return;
+    if (IsUnregistered(upgrade)) {
+      // Disabled by BONSAIRC.
+      return false;
+    }
+    if (FindRegistration(upgrade) >= 0) {
+      // Double-registrations are a no-op to make BONSAIRC more forgiving, and
+      // are reported as successful.
+      return true;
     }
     upgrade_names.push(upgrade);
     upgrades.push(::BaseUpgrade(new(upgrade)));
+    return true;
   }
 
   void Unregister(string upgrade) {
     DEBUG("Unregister: %s", upgrade);
-    let idx = upgrade_names.find(upgrade);
-    if (idx == upgrade_names.size()) return;
+
+    if (IsUnregistered(upgrade)) return;
+    unregistered.push(upgrade);
+
+    let idx = FindRegistration(upgrade);
+    if (idx < 0) return;
     upgrade_names.delete(idx);
     upgrades.delete(idx);
   }

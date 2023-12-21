@@ -167,8 +167,11 @@ class ::RC::Register : ::RC::Node {
     for (uint i = 0; i < upgrades.size(); ++i) {
       let cls = (Class<::Upgrade::BaseUpgrade>)(upgrades[i]);
       if (cls) {
-        console.printf("[BONSAIRC] Registering %s", upgrades[i]);
-        handler.UPGRADE_REGISTRY.Register(upgrades[i]);
+        if (handler.UPGRADE_REGISTRY.Register(upgrades[i])) {
+          console.printf("[BONSAIRC] Registered %s", upgrades[i]);
+        } else {
+          console.printf("\c[DARKGRAY][BONSAIRC] Upgrade %s is disabled", upgrades[i]);
+        }
       }
       else console.printf(
         "\c[YELLOW][BONSAIRC] Class '%s' is not defined or is not a subclass of BaseUpgrade",
