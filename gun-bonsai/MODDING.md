@@ -30,7 +30,7 @@ You can use netevents to add upgrades and XP using the console:
 
 `levels` defaults to 1 if unspecified. The `upgrade name` must be the class name, e.g. `TFLV_Upgrade_HomingShots`; as a convenience, it understands `::` as a shorthand for the leading `TFLV_Upgrade_`, e.g. `netevent bonsai-debug,w-up,::HomingShots 5`.
 
-The class names do not always exactly correspond to the human-readable names. Consult `LANGUAGE.en` to find out the class names.
+The class names do not always exactly correspond to the human-readable names. Consult `LANGUAGE.en-upgrades` to find out the class names.
 
 ### Resetting your upgrades
 
@@ -56,7 +56,6 @@ This will add upgrades that don't make sense for your current weapon type, mutua
 
 - `bonsai-level-up` is emitted whenever the player or their weapon gains a level. The first argument is 0 for player levels and 1 for weapon levels. The second argument is the level number.
 - `bonsai-choose-level-up-option` is emitted when the player actually picks an upgrade. The first argument is -1 if they rejected the level-up and some number >= 0 if they chose an upgrade.
-- `bonsai_choose_level_up_option` is emitted at the same time as `bonsai-choose-level-up-option` for backwards compatibility with AutoAutoSave. This event will be removed in 0.10.0.
 - Other events emitted starting with `bonsai-` or `bonsai_` are internal details not to be relied on, and are used for communication between GB's menus and the playsim.
 
 
