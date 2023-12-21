@@ -183,5 +183,7 @@ ifdef PB_Shotgun {
   unregister TFLV_Upgrade_Juggler;
 }
 
-# Trailblazer and Dehacked Defence
-ifdef Macheterang DehackedWeaponGiver { unregister TFLV_Upgrade_Bandoliers; }
+# Trailblazer, Dehacked Defence, and DRLA
+ifdef Macheterang DehackedWeaponGiver DoomRLPlayer {
+  unregister TFLV_Upgrade_Bandoliers;
+}

@@ -1,9 +1,11 @@
 # 0.10.5
 
-- Changed:
+- Change:
   - `Indestructable` integration updated to support Indestructable 0.3.x. If you
     use the integration, you must update both mods for it to function properly.
   - Deprecated `bonsai_choose_level_up_option` netevent finally removed.
+  - `Bandoliers` is now disabled when DRLA is loaded, as it conflicts with the
+    DRLA backpacks.
 - Fix:
   - Multiplayer games with more than 8 players are now (theoretically) supported,
     if the underlying engine supports that.
