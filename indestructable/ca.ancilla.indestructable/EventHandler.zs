@@ -68,9 +68,12 @@ class ::IndestructableEventHandler : StaticEventHandler {
   }
 
   override void WorldUnloaded(WorldEvent evt) {
-    // Don't do anything if we're unloading this to load a savegame or quit.
     if (indestructable_gun_bonsai_mode) return;
-    if (evt.isSaveGame || !evt.nextMap) return;
+    // This skips it if we are unloading to load a save or quit the game, but
+    // nextMap isn't supported by lzDoom, and doing this unnecessarily shouldn't
+    // break anything because the whole game is about to be thrown away anyways.
+    // TODO: if we ever drop lzDoom and Hedon support, reinstate this.
+    // if (evt.isSaveGame || !evt.nextMap) return;
 
     for (uint i = 0; i < 8; ++i) {
       if (!playeringame[i]) continue;

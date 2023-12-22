@@ -21,6 +21,7 @@
     directives, regardless of order. In particular, this means that a mod can now
     include a `BONSAIRC` that unregisters incompatible upgrades and this will
     work regardless of load order.
+  - Compatibility restored with lzDoom and Hedon Bloodrite (broken since 0.10.0)
 
 # 0.10.4
 

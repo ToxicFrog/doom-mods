@@ -355,7 +355,7 @@ class ::Revivification::Aux : Actor {
     tracer.SetFriendPlayer(self.target.player);
     tracer.A_SetRenderStyle(1.0, STYLE_SHADED);
     tracer.SetShade("8080FF");
-    tracer.bDONTFOLLOWPLAYERS = false;
+    // tracer.bDONTFOLLOWPLAYERS = false; // Not supported by lzDoom or Hedon
     tracer.bSOLID = false;
     tracer.bDONTHARMCLASS = false;
     tracer.bDONTHARMSPECIES = false;
