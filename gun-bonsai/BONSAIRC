@@ -204,3 +204,10 @@ ifdef IsSamsaraClass {
   type DescentWeapon: PROJECTILE; # Override the blanket ban on Descent*
   type Duke3D_MightyStomp: IGNORE;
 }
+
+# Hedon
+ifdef Zan {
+  type Axe BearzerkAxe: MELEE;
+  # Hedon enemies don't have Raise states.
+  unregister TFLV_Upgrade_Revivification;
+}
