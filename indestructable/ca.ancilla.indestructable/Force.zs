@@ -24,7 +24,7 @@ class ::IndestructableForce : Inventory {
       // take damage, big hits like standing in a room of exploding barrels can
       // still drop them down below the intended restore target.
       TNT1 A 0 RestorePlayerHealth();
-      GOTO Idle;
+      // Fallthrough
     DisplayLivesCount:
       // Used to display the "you have X extra lives" message at the start of a
       // level, after gaining/losing lives, etc.
@@ -115,7 +115,6 @@ class ::IndestructableForce : Inventory {
 
   void ActivateIndestructability() {
     Message("$TFIS_MSG_ACTIVATED");
-    self.SetStateLabel("RestoreHealth");
 
     let cv = CVar.FindCVar("indestructable_screen_effect");
     GiveScreenEffect(cv ? cv.GetInt() : -1);
@@ -129,6 +128,9 @@ class ::IndestructableForce : Inventory {
     if (info.lives > 0) {
       info.AdjustLives(-1, false);
     }
+    // Do this after AdjustLives or it will set us to DisplayLivesCount and
+    // override the health restoration.
+    self.SetStateLabel("RestoreHealth");
   }
 
   void GiveScreenEffect(uint effect) {
