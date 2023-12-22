@@ -173,7 +173,6 @@ class ::EventHandler : StaticEventHandler {
       }
     } else if (evt.name == "bonsai-choose-level-up-option") {
       ChooseLevelUpOption(evt.player, evt.args[0]);
-      // Backwards compatibility with AAS.
     } else if (evt.name == "bonsai-toggle-upgrade") {
       // args[0] holds the bag index, args[1] the index of the upgrade within that bag.
       // In the future this might be extended to allow viewing and toggling of upgrades
