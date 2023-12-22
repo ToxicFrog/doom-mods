@@ -75,6 +75,7 @@ class ::Swiftness::Power : PowerTimeFreezer {
 
   override void EndEffect() {
     level.SetFrozen(false);
+    S_ResumeSound(false); // unpause music and SFX
   }
 
   override bool CanPickup(Actor other) { return true; }

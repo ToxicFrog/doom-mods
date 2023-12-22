@@ -42,6 +42,7 @@
     award level-clear lives multiple times in games like Hexen.
   - Tooltips now display on the left side of the screen rather than the bottom,
     so that they no longer cover the last few options.
+  - Time stop effect could permanently make sounds stop playing
 
 # 0.2.8
 

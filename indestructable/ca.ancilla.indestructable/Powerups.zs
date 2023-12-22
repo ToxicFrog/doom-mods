@@ -46,6 +46,7 @@ class ::IndestructableDamage : Powerup {
 
 class ::IndestructableSlomo : PowerTimeFreezer {
   mixin ::IndestructableStopWhenFrozen;
+
   bool ShouldFreeze() {
     return indestructable_slomo == 1 || (level.maptime/2) % indestructable_slomo;
   }
@@ -67,6 +68,7 @@ class ::IndestructableSlomo : PowerTimeFreezer {
 
   override void EndEffect() {
     level.setFrozen(false);
+    S_ResumeSound(false); // unpause music and SFX
   }
 
   override bool CanPickup(Actor other) { return true; }
