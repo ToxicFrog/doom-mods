@@ -44,13 +44,13 @@ class ::Submunitions::Spawner : Actor {
 
   void SpawnMunition() {
     let aux = ::Submunitions::Grenade(A_SpawnProjectile(
-      "::Submunitions::Grenade", 32, 0, random(0,360),
+      "::Submunitions::Grenade", 32, 0, random[::RNG_GrenadeAngle](0,360),
       CMF_AIMDIRECTION|CMF_ABSOLUTEANGLE));
     aux.weaponspecial = weaponspecial;
     aux.target = target;
     aux.damage = damage;
     aux.blast_radius = blast_radius;
-    aux.ReactionTime = ttl*5 + random(0,5); // bomblets tick 5 times a second, so multiply by 5
+    aux.ReactionTime = ttl*5 + random[::RNG_GrenadeTimer](0,5); // bomblets tick 5 times a second, so multiply by 5
     DEBUG("Created submunition: level=%d power=%d",
       aux.level, aux.damage);
   }

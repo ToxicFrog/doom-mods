@@ -176,13 +176,13 @@ class ::ElementalSynthesis::AoE : Actor {
     for (uint i = 0; i < 16; ++i) {
       A_SpawnParticle(
         parent.GetColour(0), SPF_FULLBRIGHT|SPF_RELVEL|SPF_RELACCEL,
-        35, 10, random(0,360), // lifetime, size, angle
+        35, 10, random[::RNG_RingAngle](0,360), // lifetime, size, angle
         0, 0, 0, // position
         range/35.0, 0, 0, // v
         0, 0, 0); // a
       A_SpawnParticle(
         parent.GetColour(1), SPF_FULLBRIGHT|SPF_RELVEL|SPF_RELACCEL,
-        35, 10, random(0,360), // lifetime, size, angle
+        35, 10, random[::RNG_RingAngle](0,360), // lifetime, size, angle
         0, 0, 0, // position
         range/35.0, 0, 0, // v
         0, 0, 0); // a

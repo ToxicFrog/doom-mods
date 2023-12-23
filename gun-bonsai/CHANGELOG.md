@@ -27,6 +27,8 @@
     playing (in Hedon and possibly some other wads)
   - Setting the level-up flash to white (255,255,255) would result in a black
     flash instead of a white one.
+  - All randomness sinks moved from the global RNG to individual RNGs in a
+    desperate and probably futile attempt to stop desyncs in co-op.
 
 # 0.10.4
 

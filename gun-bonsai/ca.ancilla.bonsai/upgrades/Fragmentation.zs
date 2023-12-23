@@ -67,7 +67,7 @@ class ::FragmentationShots::Boom : Actor {
           trail ? "::FragmentationShots::Fragment" : "::FragmentationShots::NoTrailFragment",
           0, 0, angle,
           CMF_AIMDIRECTION|CMF_TRACKOWNER,
-          random(-1.0,1.0)));
+          random[::RNG_FragAngle](-1.0,1.0)));
       aux.target = self.target;
       aux.tracer = self.tracer;
       aux.customdamage = self.damage;

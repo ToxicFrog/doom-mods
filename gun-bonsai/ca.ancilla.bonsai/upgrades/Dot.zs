@@ -96,7 +96,7 @@ class ::Dot : Inventory {
       } else if (stylin == 0) {
         // Last tic, turn off flashy flashy
         owner.RestoreRenderStyle();
-      } else if (random(0, -stylin) > 5) {
+      } else if (random[::RNG_DotFlash](0, -stylin) > 5) {
         // Not currently flashing? chance to start based on how long it's been.
         stylin = 1+ceil(stacks**0.5);
       }
@@ -112,7 +112,9 @@ class ::Dot : Inventory {
       colour, SPF_FULLBRIGHT,
       30, 10, 0, // lifetime, size, angle
       // position
-      random(-owner.radius, owner.radius), random(-owner.radius, owner.radius), random(0, owner.height),
+      random[::RNG_DotParticle](-owner.radius, owner.radius),
+      random[::RNG_DotParticle](-owner.radius, owner.radius),
+      random[::RNG_DotParticle](0, owner.height),
       0, 0, zv, // v
       0, 0, zv); // a
   }

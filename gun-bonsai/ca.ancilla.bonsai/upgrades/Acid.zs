@@ -154,7 +154,7 @@ class ::AcidDot : ::Dot {
 
   override string GetParticleColour() {
     static const string colours[] = { "purple", "purple1", "blue1" };
-    return colours[random(0,2)];
+    return colours[random[::RNG_AcidColour](0,2)];
   }
 
   override double GetParticleZV() {

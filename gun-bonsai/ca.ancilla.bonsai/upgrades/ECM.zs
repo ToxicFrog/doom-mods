@@ -43,9 +43,9 @@ class ::ECM : ::BaseUpgrade {
       }
       if (monsters.size()) {
         // If we found a nearby monster to judo it into, do so.
-        shot.tracer = monsters[random(0, monsters.size()-1)];
+        shot.tracer = monsters[random[::RNG_ECMTarget](0, monsters.size()-1)];
         shot.target = owner;
-      } else if (frandom(0.0, 1.0) >= UnhackableChance(self.level)) {
+      } else if (frandom[::RNG_ECMHack](0.0, 1.0) >= UnhackableChance(self.level)) {
         // Else we have a chance to reprogram it to hunt its creator.
         shot.tracer = shot.target;
         shot.target = owner;

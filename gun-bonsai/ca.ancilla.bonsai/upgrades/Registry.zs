@@ -60,7 +60,7 @@ class ::Registry : Object play {
   void PickN(Array<::BaseUpgrade> dst, Array<::BaseUpgrade> src, uint n) {
     uint max = src.size();
     while (max > 0 && dst.size() < n) {
-      uint i = random(0, max-1);
+      uint i = random[::RNG_UpgradePicker](0, max-1);
       dst.push(src[i]);
       src[i] = src[--max];
     }

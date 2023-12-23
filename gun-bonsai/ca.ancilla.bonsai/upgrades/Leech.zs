@@ -7,9 +7,9 @@
 class ::LeechUtil {
   clearscope static Vector3 WigglePos(Actor act) {
     return (
-      act.pos.x + random(-act.radius/1.4, act.radius/1.4),
-      act.pos.y + random(-act.radius/1.4, act.radius/1.4),
-      act.pos.z + random(act.height/4, act.height)
+      act.pos.x + random[::RNG_LeechWiggler](-act.radius/1.4, act.radius/1.4),
+      act.pos.y + random[::RNG_LeechWiggler](-act.radius/1.4, act.radius/1.4),
+      act.pos.z + random[::RNG_LeechWiggler](act.height/4, act.height)
     );
   }
 }
@@ -173,7 +173,7 @@ class ::AmmoLeech : ::BaseUpgrade {
     }
     if (candidates.size() == 0) return;
     for (uint i = 0; i < level; ++i) {
-      let chosen = candidates[random(0, candidates.size()-1)];
+      let chosen = candidates[random[::RNG_LeechAmmo](0, candidates.size()-1)];
       DEBUG("Spawning %s", chosen);
       let ammo = target.Spawn(chosen, ::LeechUtil.WigglePos(target), ALLOW_REPLACE);
       ammo.bCOUNTITEM = false;
@@ -187,7 +187,7 @@ class ::AmmoLeech : ::BaseUpgrade {
         float amount = ammoitem.amount * AmmoFactor(target);
         ammoitem.amount = floor(amount);
         float partial = amount % 1.0;
-        if (partial > 0.0 && frandom(0.0, 1.0) <= partial) ammoitem.amount += 1;
+        if (partial > 0.0 && frandom[::RNG_LeechAmmo](0.0, 1.0) <= partial) ammoitem.amount += 1;
         DEBUG("AmmoFactor=%f, remainder=%f, amount=%f", AmmoFactor(target), partial, amount);
         if (ammoitem.amount == 0) ammo.Destroy();
       }

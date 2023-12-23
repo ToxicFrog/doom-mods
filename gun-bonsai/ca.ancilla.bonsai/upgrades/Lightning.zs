@@ -204,7 +204,7 @@ class ::ShockDot : ::Dot {
   // outward "zaps".
   override string GetParticleColour() {
     static const string colours[] = { "azure", "deepskyblue", "lightskyblue", "ghostwhite" };
-    return colours[random(0,3)];
+    return colours[random[::RNG_LightningColour](0,3)];
   }
 
   override double GetParticleZV() {
@@ -643,7 +643,7 @@ class ::ChainLightning::Aux : Actor {
 
   string GetParticleColour() {
     static const string colours[] = { "azure", "deepskyblue", "lightskyblue", "ghostwhite" };
-    return colours[random(0,3)];
+    return colours[random[::RNG_LightningColour](0,3)];
   }
 }
 

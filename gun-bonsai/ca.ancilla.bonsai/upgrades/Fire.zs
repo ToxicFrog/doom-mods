@@ -158,9 +158,9 @@ class ::FireDot : ::Dot {
     static const string hot[] = { "red", "orangered", "orange", "yellow", "lightyellow" };
     static const string cold[] = { "red4", "orangered4", "orange4", "orangered4", "red4" };
     if (burning)
-      return hot[random(0,4)];
+      return hot[random[::RNG_FireColour](0,4)];
     else
-      return cold[random(0,4)];
+      return cold[random[::RNG_FireColour](0,4)];
   }
 
   override double GetParticleZV() {
@@ -200,7 +200,7 @@ class ::FireDot : ::Dot {
         DEBUG("Making %s frightened", TAG(owner));
         owner.bFRIGHTENED = true;
       }
-    } else if (owner.bFRIGHTENED && frandom(0.0, 1.0) > 0.95) {
+    } else if (owner.bFRIGHTENED && frandom[::RNG_FireTerror](0.0, 1.0) > 0.95) {
       DEBUG("Making %s unfrightened", TAG(owner));
       owner.bFRIGHTENED = false;
     }
