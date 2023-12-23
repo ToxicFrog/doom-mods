@@ -25,6 +25,8 @@
   - Hedon Axe and Bearzerker Axe are now properly flagged as MELEE
   - Swiftness upgrade or opening the menu could permanently make sounds stop
     playing (in Hedon and possibly some other wads)
+  - Setting the level-up flash to white (255,255,255) would result in a black
+    flash instead of a white one.
 
 # 0.10.4
 

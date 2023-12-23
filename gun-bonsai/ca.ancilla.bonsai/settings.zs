@@ -69,7 +69,9 @@ class TFLV_Settings : Object {
 
   static uint levelup_flash() {
     if (GetBool("bonsai_levelup_flash")) {
-      return GetInt("bonsai_levelup_flash_rgb") | 0xFF000000;
+      // Bug in gzDoom: if this ends up at #FFFFFFFF, we get a black flash instead
+      // of a white one, so set alpha to FE instead.
+      return GetInt("bonsai_levelup_flash_rgb") | 0xFE000000;
     } else {
       return 0;
     }
