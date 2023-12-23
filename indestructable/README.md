@@ -24,33 +24,29 @@ Turning on the `gun bonsai integration` option will replace the mod's normal ope
 
 ## Mod integration
 
-Integration with other mods is done via netevents.
+Integration with other mods is done via a [ZScript `Service`](https://zdoom.org/wiki/Service) named `TFIS_IndestructableService`. See the [implementation file](./ca.ancilla.indestructable/Service.zs) for a complete list of supported RPCs, and the `OnRegister()` and `NetworkProcess()` functions in the [EventHandler](./ca.ancilla.indestructable/EventHandler.zs) for examples of simple usage.
 
-### `indestructable-adjust-lives <delta> <respect_maximum>`
+### The `indestructable-report-lives` netevent
+
+If you need to automatically react to changes in the player's lifecount, you can do so via the `indestructable-report-lives` netevent, which is emitted at the same time the console message is displayed to the user, 15 tics after the number of lives changes. The first netevent argument is the absolute number of lives the player has, and the second is the delta since the last time this netevent was sent.
+
+## Console Commands
+
+These should not be used for mod integration (prefer the service documented above) but are available for manual debugging and cheats.
+
+### `netevent indestructable-adjust-lives <delta> <respect_maximum>`
 
 Used to change the number of extra lives the player has. `delta`, which can be negative, will be added to their current stock. If `respect_maximum` is nonzero, it will not add lives beyond the configured maximum (but will not take away lives the player already has).
 
 If the player has unlimited lives, this has no effect.
 
-The `indestructable-report-lives` event emitted afterwards will contain the actual delta between previous and current lives, which may be less than the `delta` if limits were hit.
+### `netevent indestructable-clamp-lives <min> <max>`
 
-### `indestructable-clamp-lives <min> <max>`
-
-If the player has fewer than `min` lives, sets them to `min`; if more than `max` lives, sets them to `max`. In combination with `indestructable-adjust-lives` this can be used to replicate the old behaviour.
-
-Passing -1 as either value will cause it to be ignored.
+If the player has fewer than `min` lives, sets them to `min`; if more than `max` lives, sets them to `max`. Passing -1 as either value will cause it to be ignored.
 
 ### `indestructable-set-lives <val>`
 
 Sets the player's lives to `val`, ignoring all configured limits. Use `-1` to give the player unlimited lives.
-
-The `indestructable-report-lives` event emitted afterwards will contain the delta between the current and previous lives count.
-
-### `indestructable-report-lives <lives> <delta> 0`
-
-This is emitted every time the player gains or loses lives (whether through normal gameplay or due to an `indestructable_adjust_lives` netevent). It can be listened for by other mods to keep track of how many extra lives the player has. `delta` is the change in amount and will always be non-zero. The third argument is currently unused. Note that negative values of `lives` signify an unlimited supply.
-
-If it is reporting a change from unlimited to limited lives, `delta` will be -9999; if a change from limited to unlimited lives, 9999.
 
 ## License
 

@@ -3,6 +3,13 @@
 
 class ::IndestructableEventHandler : StaticEventHandler {
   ::PlayerInfo info[MAXPLAYERS];
+  ::IndestructableService service;
+
+  override void OnRegister() {
+    let service = ::IndestructableService(ServiceIterator.Find("::IndestructableService").Next());
+    service.Init(self);
+    self.service = service;
+  }
 
   // Behaviour here is largely copied from Gun Bonsai.
   // This is called on every player in the game whenever a level is loaded.
@@ -98,18 +105,15 @@ class ::IndestructableEventHandler : StaticEventHandler {
     if (evt.player != consoleplayer) {
       return;
     } else if (evt.name == "indestructable-adjust-lives") {
-      info[evt.player].AdjustLives(evt.args[0], evt.args[1] != 0);
+      service.GetInt("adjust-lives", evt.args[1] != 0 ? "respect_max" : "", evt.player, evt.args[0]);
     } else if (evt.name == "indestructable-clamp-lives") {
       let min_lives = evt.args[0];
       let max_lives = evt.args[1];
-      let pinfo = info[evt.player];
 
-      if (min_lives >= 0) pinfo.lives = max(min_lives, pinfo.lives);
-      if (max_lives >= 0) pinfo.lives = min(max_lives, pinfo.lives);
-      info[evt.player].AdjustLives(0, false);
+      if (min_lives >= 0) service.GetInt("apply-min", "", evt.player, min_lives);
+      if (max_lives >= 0) service.GetInt("apply-max", "", evt.player, max_lives);
     } else if (evt.name == "indestructable-set-lives") {
-      info[evt.player].lives = evt.args[0] < 0 ? -1 : evt.args[0];
-      info[evt.player].AdjustLives(0, false);
+      service.GetInt("set-lives", "", evt.player, evt.args[0]);
     }
   }
 }

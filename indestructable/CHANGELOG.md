@@ -14,6 +14,9 @@
   - Gun Bonsai integration is now explicitly turned on with a configuration option
     rather than implicitly turned on based on your other settings. See the
     `Compatibility` section.
+  - A `Service` is now included to make it easier to write integrations with
+    other mods. It supports RPCs for adjusting and querying the player's lifecount.
+    See the "Mod Integration" chapter in the README for details.
 - Changed:
   - `Min lives on boss kill` setting removed
   - `Max lives on boss kill` and `max lives on level clear` settings combined
