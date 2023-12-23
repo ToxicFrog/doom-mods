@@ -102,9 +102,7 @@ class ::IndestructableEventHandler : StaticEventHandler {
   }
 
   override void NetworkProcess(ConsoleEvent evt) {
-    if (evt.player != consoleplayer) {
-      return;
-    } else if (evt.name == "indestructable-adjust-lives") {
+    if (evt.name == "indestructable-adjust-lives") {
       service.GetInt("adjust-lives", evt.args[1] != 0 ? "respect_max" : "", evt.player, evt.args[0]);
     } else if (evt.name == "indestructable-clamp-lives") {
       let min_lives = evt.args[0];

@@ -46,6 +46,7 @@
   - Tooltips now display on the left side of the screen rather than the bottom,
     so that they no longer cover the last few options.
   - Time stop effect could permanently make sounds stop playing
+  - Potential desync when handling netevents
 
 # 0.2.8
 

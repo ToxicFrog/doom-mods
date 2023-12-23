@@ -1,4 +1,4 @@
-// Intermod service interface for Indestructable.
+// RPC service for Indestructable.
 // The first string argument to a service call is always the name of the function
 // to invoke, and the int argument is the index of the player to affect. Other
 // arguments depend on the invoked function. The float argument is often used as
