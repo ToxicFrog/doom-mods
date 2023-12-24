@@ -1,25 +1,29 @@
 #namespace TFLV;
 
 class ::Debug : Object play {
-  static void DebugCommand(Actor pawn, string cmd, uint arg) {
+  static void DebugCommand(::GunBonsaiService service, int player, string cmd, uint arg) {
     Array<string> argv;
     cmd.split(argv, ",");
     // 0: bonsai-debug, 1: <command>, 2: args...
     if (argv[1] == "info") {
-      ShowInfoConsole(pawn);
+      ShowInfoConsole(players[player].mo);
     } else if (argv[1] == "w-up" && argv.size() >= 3) {
-      AddWeaponUpgrade(pawn, argv[2], arg);
+      let upgrade = argv[2];
+      if (upgrade.IndexOf(":"..":") == 0) upgrade = "TFLV_Upgrade_" .. upgrade.Mid(2);
+      service.GetInt("add-w-upgrade", upgrade, player, arg, null);
     } else if (argv[1] == "p-up" && argv.size() >= 3) {
-      AddPlayerUpgrade(pawn, argv[2], arg);
+      let upgrade = argv[2];
+      if (upgrade.IndexOf(":"..":") == 0) upgrade = "TFLV_Upgrade_" .. upgrade.Mid(2);
+      service.GetInt("add-p-upgrade", upgrade, player, arg);
     } else if (argv[1] == "w-xp") {
-      AddWeaponXP(pawn, arg);
+      service.GetDouble("add-w-xp", "", player, arg, null);
     } else if (argv[1] == "p-xp") {
-      AddPlayerXP(pawn, arg);
+      service.GetDouble("add-p-xp", "", player, arg);
     } else if (argv[1] == "allupgrades") {
-      AddAllUpgrades(pawn);
+      AddAllUpgrades(service, player);
     } else if (argv[1] == "reset") {
       console.printf("Fully resetting all weapon info.");
-      let stats = ::PerPlayerStats.GetStatsFor(pawn);
+      let stats = ::PerPlayerStats.GetStatsFor(players[player].mo);
       stats.weapons.clear();
       stats.weaponinfo_dirty = true;
       stats.XP = 0;
@@ -47,48 +51,11 @@ class ::Debug : Object play {
     stats.winfo.DumpTypeInfo();
   }
 
-  static void AddWeaponUpgrade(Actor pawn, string upgrade, uint n) {
-    if (n <= 0) n = 1;
-    if (upgrade.IndexOf(":"..":") == 0) upgrade = "TFLV_Upgrade_" .. upgrade.Mid(2);
-    class<::Upgrade::BaseUpgrade> cls = upgrade;
-    if (!cls) {
-      console.printf("%s either doesn't exist or isn't a subclass of BaseUpgrade", upgrade);
-      return;
-    }
-    console.printf("Adding %d levels of %s to current weapon.", n, upgrade);
-    let stats = ::PerPlayerStats.GetStatsFor(pawn);
-    let info = stats.GetInfoForCurrentWeapon();
-    info.upgrades.Add(upgrade, n).OnActivate(stats, info);
-  }
-
-  static void AddPlayerUpgrade(Actor pawn, string upgrade, uint n) {
-    if (n <= 0) n = 1;
-    if (upgrade.IndexOf(":"..":") == 0) upgrade = "TFLV_Upgrade_" .. upgrade.Mid(2);
-    class<::Upgrade::BaseUpgrade> cls = upgrade;
-    if (!cls) {
-      console.printf("%s either doesn't exist or isn't a subclass of BaseUpgrade", upgrade);
-      return;
-    }
-    console.printf("Adding %d levels of %s to player.", n, upgrade);
-    let stats = ::PerPlayerStats.GetStatsFor(pawn);
-    stats.upgrades.Add(upgrade, n).OnActivate(stats, null);
-  }
-
-  static void AddWeaponXP(Actor pawn, uint xp) {
-    console.printf("Add %d XP to current weapon.", xp);
-    ::PerPlayerStats.GetStatsFor(pawn).AddXP(xp);
-  }
-
-  static void AddPlayerXP(Actor pawn, uint xp) {
-    console.printf("Add %d XP to player.", xp);
-    ::PerPlayerStats.GetStatsFor(pawn).XP += xp;
-  }
-
-  static void AddAllUpgrades(Actor pawn) {
+  static void AddAllUpgrades(::GunBonsaiService service, int player) {
     let registry = ::Upgrade::Registry.GetRegistry();
     for (uint i = 0; i < registry.upgrades.size(); ++i) {
-      AddWeaponUpgrade(pawn, registry.upgrades[i].GetClassName(), 1);
-      AddPlayerUpgrade(pawn, registry.upgrades[i].GetClassName(), 1);
+      service.GetInt("add-w-upgrade", registry.upgrades[i].GetClassName(), player, 1, null);
+      service.GetInt("add-p-upgrade", registry.upgrades[i].GetClassName(), player, 1);
     }
   }
 }

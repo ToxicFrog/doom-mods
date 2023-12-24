@@ -18,6 +18,7 @@
 #include "./PerPlayerStats.zsc"
 #include "./PerPlayerStatsProxy.zsc"
 #include "./PlayerUpgradeGiver.zsc"
+#include "./Service.zsc"
 #include "./UpgradeGiver.zsc"
 #include "./WeaponUpgradeGiver.zsc"
 #include "./WeaponInfo.zsc"

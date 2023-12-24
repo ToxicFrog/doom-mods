@@ -17,6 +17,11 @@ Gun Bonsai, on startup, loads and parses all BONSAIRC lumps available. These can
 For an example, see Gun Bonsai's built in BONSAIRC, which applies compatibility settings for a number of mods. Mod authors who want to automatically "play nice" with Gun Bonsai can include this lump to apply mod- and weapon-specific tweaks in a non-intrusive way.
 
 
+## RPC service
+
+Integration with other mods is done via a [ZScript `Service`](https://zdoom.org/wiki/Service) named `TFLV_GunBonsaiService`. See the [implementation file](./ca.ancilla.bonsai/Service.zs) for a complete list of supported RPCs, and the `OnRegister()`, `NetworkProcess()`, and `DebugCommand()` functions in the [EventHandler](./ca.ancilla.bonsai/EventHandler.zs) and [debug library](./ca.ancilla.bonsai/debug.zs) for examples of simple usage.
+
+
 ## Debug commands
 
 ### Adding XP and levels

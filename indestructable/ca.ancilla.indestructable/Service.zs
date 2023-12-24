@@ -39,7 +39,7 @@ class ::IndestructableService : Service play {
     self.handler = handler;
   }
 
-  override int GetInt(String fn, String str_arg, int p, double limit, Object _ = null) {
+  override int GetInt(String fn, String str_arg, int p, double limit, Object _obj) {
     if (fn == "get-lives") {
       return GetLives(p);
     } else if (fn == "set-lives") {

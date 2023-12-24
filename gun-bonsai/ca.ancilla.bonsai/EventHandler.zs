@@ -8,6 +8,7 @@ class ::EventHandler : StaticEventHandler {
   ::PerPlayerStats playerstats[MAXPLAYERS];
   ::Upgrade::Registry UPGRADE_REGISTRY;
   ::RC rc;
+  ::GunBonsaiService service;
   ui ::HUD hud;
 
   override void OnRegister() {
@@ -22,6 +23,10 @@ class ::EventHandler : StaticEventHandler {
 
     rc = ::RC.LoadAll("BONSAIRC");
     rc.Finalize(self);
+
+    let service = ::GunBonsaiService(ServiceIterator.Find("::GunBonsaiService").Next());
+    service.Init(self);
+    self.service = service;
   }
 
   override void WorldLoaded(WorldEvent evt) {
@@ -189,7 +194,7 @@ class ::EventHandler : StaticEventHandler {
         stats.GetInfoForCurrentWeapon().ToggleUpgrade(evt.args[1]);
       }
     } else if (evt.name.IndexOf("bonsai-debug") == 0) {
-      ::Debug.DebugCommand(players[evt.player].mo, evt.name, evt.args[0]);
+      ::Debug.DebugCommand(service, evt.player, evt.name, evt.args[0]);
     }
   }
 

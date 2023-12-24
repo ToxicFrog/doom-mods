@@ -1,5 +1,9 @@
 # 0.10.5
 
+- New:
+  - A `Service` is now included to make it easier to write integrations with
+    other mods. It supports RPCs for adding XP or upgrades to players and weapons.
+    See `MODDING.md` for details.
 - Change:
   - `Indestructable` integration updated to support Indestructable 0.3.x. If you
     use the integration, you must update both mods for it to function properly.
