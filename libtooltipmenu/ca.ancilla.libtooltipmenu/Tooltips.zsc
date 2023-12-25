@@ -114,14 +114,14 @@ mixin class TF_TooltipMenu {
     return null;
   }
 
-  void AddTooltip(uint first, uint last, string tooltip) {
+  TF_Tooltip AddTooltip(uint first, uint last, string tooltip) {
     if (first < 0) ThrowAbortException("Tooltip must have at least one menu item preceding it!");
     let localtooltip = Stringtable.localize(tooltip);
     let tt = AppendableTooltip(first, last);
     if (tt) {
       // Existing tooltip that we're just appending to.
       tt.text = tt.text .. "\n" .. localtooltip;
-      return;
+      return tt;
     }
     // No existing tooltip for these menu entries, create a new one.
     tt = new("TF_Tooltip");
@@ -130,6 +130,7 @@ mixin class TF_TooltipMenu {
     tt.last = last;
     tt.text = localtooltip;
     tooltips.push(tt);
+    return tt;
   }
 
   TF_Tooltip FindTooltipFor(int item) {
@@ -153,10 +154,13 @@ mixin class TF_TooltipMenu {
   }
 
   // Dynamic tooltip API.
-  void PushTooltip(String tooltip, uint n=1) {
-    if (!tooltip) return;
+  // TODO: properly think about how the mutable tooltip API should work, including
+  // access via the descriptor using the static methods, and release it as a
+  // proper update.
+  TF_Tooltip PushTooltip(String tooltip, uint n=1) {
+    if (!tooltip) return null;
     if (n<1) ThrowAbortException("Tooltip must apply to at least one menu item!");
-    AddTooltip(mDesc.mItems.size()-n, mDesc.mItems.size()-1, tooltip);
+    return AddTooltip(mDesc.mItems.size()-n, mDesc.mItems.size()-1, tooltip);
   }
 
   // ZScript doesn't have reify, so we just duplicate the CopyTo logic below here.
