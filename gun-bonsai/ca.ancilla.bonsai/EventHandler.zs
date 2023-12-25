@@ -183,18 +183,37 @@ class ::EventHandler : StaticEventHandler {
       // In the future this might be extended to allow viewing and toggling of upgrades
       // on weapons not presently equipped, but for now [0] is always either 0 (player
       // upgrades) or 1 (currently equipped weapon upgrades).
-      let stats = playerstats[evt.player];
-      DEBUG("toggle: %d %d", evt.args[0], evt.args[1]);
-      ::Upgrade::BaseUpgrade upgrade;
-      if (evt.args[0] == 0) {
-        DEBUG("player has upgrades: %d", stats.upgrades != null);
-        stats.ToggleUpgrade(evt.args[1]);
-      } else {
-        DEBUG("weapon has upgrades: %d", stats.GetInfoForCurrentWeapon().upgrades != null);
-        stats.GetInfoForCurrentWeapon().ToggleUpgrade(evt.args[1]);
-      }
+      ToggleUpgrade(evt.player, evt.args[0] != 0, evt.args[1]);
+    } else if (evt.name == "bonsai-tune-upgrade") {
+      // Same as above, except that args[2] holds the amount to tune by, which
+      // may be negative.
+      TuneUpgrade(evt.player, evt.args[0] != 0, evt.args[1], evt.args[2]);
     } else if (evt.name.IndexOf("bonsai-debug") == 0) {
       ::Debug.DebugCommand(service, evt.player, evt.name, evt.args[0]);
+    }
+  }
+
+  void ToggleUpgrade(int player, bool on_weapon, int index) {
+    let stats = playerstats[player];
+    DEBUG("toggle: %d %d", on_weapon, index);
+    // ::Upgrade::BaseUpgrade upgrade;
+    if (on_weapon) {
+      DEBUG("weapon has upgrades: %d", stats.GetInfoForCurrentWeapon().upgrades != null);
+      stats.GetInfoForCurrentWeapon().ToggleUpgrade(index);
+    } else {
+      DEBUG("player has upgrades: %d", stats.upgrades != null);
+      stats.ToggleUpgrade(index);
+    }
+  }
+
+  void TuneUpgrade(int player, bool on_weapon, int index, int amount) {
+    let stats = playerstats[player];
+    DEBUG("tune: %d %d %d", on_weapon, index, amount);
+    // ::Upgrade::BaseUpgrade upgrade;
+    if (on_weapon) {
+      stats.GetInfoForCurrentWeapon().TuneUpgrade(index, amount);
+    } else {
+      stats.TuneUpgrade(index, amount);
     }
   }
 

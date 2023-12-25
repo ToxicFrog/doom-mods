@@ -60,6 +60,17 @@ class ::WeaponInfo : Object play {
     }
   }
 
+  void TuneUpgrade(uint index, int amount) {
+    let upgrade = upgrades.upgrades[index];
+    if (!upgrade.enabled) return;
+    let old_level = upgrade.level;
+    upgrade.level = clamp(upgrade.level + amount, 1, upgrade.max_level);
+    if (old_level != upgrade.level) {
+      upgrade.OnDeactivate(stats, self);
+      upgrade.OnActivate(stats, self);
+    }
+  }
+
   void OnActivate() {
     self.upgrades.OnActivate(stats, self);
   }

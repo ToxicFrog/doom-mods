@@ -57,6 +57,7 @@ You can add every registered upgrade to your player and current weapon with:
 
 This will add upgrades that don't make sense for your current weapon type, mutually exclusive upgrades, character upgrades on your weapon and vice versa, etc, so no guarantees are made about the playability of the result; but doing this, tagging a nearby monster, and then saving your game is a convenient way to create a save containing every upgrade object and most elemental effects, which is convenient for checking cross-version save compatibility.
 
+
 ## Netevents emitted by bonsai
 
 - `bonsai-level-up` is emitted whenever the player or their weapon gains a level. The first argument is 0 for player levels and 1 for weapon levels. The second argument is the level number.
