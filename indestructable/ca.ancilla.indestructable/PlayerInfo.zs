@@ -19,9 +19,14 @@ class ::PlayerInfo : Object play {
 
   static ::PlayerInfo Create() {
     ::PlayerInfo info = new("::PlayerInfo");
-    info.lives = indestructable_gun_bonsai_mode ? 0 : indestructable_starting_lives;
-    info.lives_reported = 0;
+    info.GiveStartingLives();
     return info;
+  }
+
+  void GiveStartingLives() {
+    lives = indestructable_gun_bonsai_mode ? 0 : indestructable_starting_lives;
+    lives_reported = 0;
+    ReportLivesCount();
   }
 
   void Message(string msg) {

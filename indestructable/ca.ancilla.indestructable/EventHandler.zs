@@ -74,6 +74,11 @@ class ::IndestructableEventHandler : StaticEventHandler {
     }
   }
 
+  override void PlayerRespawned(PlayerEvent evt) {
+    InitPlayer(evt.PlayerNumber);
+    info[evt.PlayerNumber].GiveStartingLives();
+  }
+
   override void WorldUnloaded(WorldEvent evt) {
     if (indestructable_gun_bonsai_mode) return;
     // This skips it if we are unloading to load a save or quit the game, but

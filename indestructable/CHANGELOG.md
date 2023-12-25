@@ -22,11 +22,12 @@
   - `Max lives on boss kill` and `max lives on level clear` settings combined
     into one `max lives` setting
   - `Lives on new game` and `min lives on entering level` settings ignore `max lives`
-  - Mod interoperability changes:
-    - `indestructable_report_lives` netevent renamed `indestructable-report-lives`
-    - `indestructable_adjust_lives` netevent renamed `indestructable-adjust-lives`,
-    and the API changed
-    - New `indestructable-set-lives` netevent
+  - `indestructable_report_lives` netevent renamed `indestructable-report-lives`
+  - New `indestructable-clamp-lives` and `indestructable-set-lives` netevents,
+    for debugging (use the RPC service instead for mod interop)
+  - Dying (for real) and respawning in a co-op game now starts you with the
+    starting life count rather than however many you had (typically 0) when you
+    died
 - Fix:
   - Indestructable buff timer no longer counts down when the player has the
     `TOTALLYFROZEN` flag set. In particular, this means that it won't expire
