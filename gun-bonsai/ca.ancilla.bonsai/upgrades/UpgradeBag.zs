@@ -18,11 +18,14 @@ class ::UpgradeBag : Object play {
     let classname = upgrade.GetClassName();
     for (uint i = 0; i < upgrades.Size(); ++i) {
       if (upgrades[i].GetClassName() == classname) {
+        if (upgrades[i].level == upgrades[i].max_level)
+          upgrades[i].max_level += level;
         upgrades[i].level += level;
         return upgrades[i];
       }
     }
     upgrade.level = level;
+    upgrade.max_level = level;
     upgrade.enabled = true;
     upgrades.Push(upgrade);
     return upgrade;

@@ -43,7 +43,8 @@ enum ::UpgradePriority {
 }
 
 class ::BaseUpgrade : Object play {
-  uint level;
+  uint level; // Upgrade's current effective level
+  uint max_level; // Max level the upgrade can be set to
   bool enabled;
 
   // VIRTUAL FUNCTIONS //
