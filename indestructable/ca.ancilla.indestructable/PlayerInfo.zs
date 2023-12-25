@@ -26,7 +26,6 @@ class ::PlayerInfo : Object play {
   void GiveStartingLives() {
     lives = indestructable_gun_bonsai_mode ? 0 : indestructable_starting_lives;
     lives_reported = 0;
-    ReportLivesCount();
   }
 
   void Message(string msg) {

@@ -46,6 +46,7 @@ class ::IndestructableEventHandler : StaticEventHandler {
       force = ::IndestructableForce(pawn.GiveInventoryType("::IndestructableForce"));
       force.Initialize(info[p]);
     }
+    info[p].ReportLivesCount();
   }
 
   // Called when a player "enters the game", after their corresponding Actor is
