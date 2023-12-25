@@ -1,5 +1,5 @@
 NAME=Indestructable
-VERSION=0.2.9
+VERSION=0.3.0
 LUMPS=CVARINFO MAPINFO MENUDEF zscript.txt LANGUAGE.*
 LUMPS+=*.md textures
 ZSDIR=ca.ancilla.indestructable
