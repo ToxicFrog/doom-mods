@@ -33,6 +33,7 @@
     flash instead of a white one.
   - All randomness sinks moved from the global RNG to individual RNGs in a
     desperate and probably futile attempt to stop desyncs in co-op.
+  - Typo in the description for Aggressive Defence.
 
 # 0.10.4
 
