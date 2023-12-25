@@ -4,6 +4,12 @@
   - A `Service` is now included to make it easier to write integrations with
     other mods. It supports RPCs for adding XP or upgrades to players and weapons.
     See `MODDING.md` for details.
+  - You can now change the effective level of an upgrade by pressing left and
+    right on the status screen, to any level between 1 and its max level. (You
+    cannot set an upgrade to level 0; to turn it off, press enter). The tooltip
+    will update to show the current effects of the upgrade. The level change may
+    not take effect immediately for all upgrades, e.g. new elemental debuffs you
+    inflict will use the new level but existing ones will use the old level.
 - Change:
   - `Indestructable` integration updated to support Indestructable 0.3.x. If you
     use the integration, you must update both mods for it to function properly.

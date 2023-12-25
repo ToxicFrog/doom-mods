@@ -31,6 +31,9 @@ class ::StatusDisplay : ::GenericMenu {
       string.format(StringTable.Localize("$TFLV_MENU_LEVEL"), stats.wlvl),
       string.format(StringTable.Localize("$TFLV_MENU_XP"), stats.wxp, stats.wmax));
     stats.wupgrades.DumpInteractableToMenu(self, 1);
+    PushText(" ", Font.CR_RED);
+    PushText("―――――", Font.CR_WHITE);
+    PushText("$TFLV_MENU_UPGRADE_CONTROLS_HELP", Font.CR_WHITE);
 
     mDesc.mSelectedItem = -1;
     let ld_info = stats.winfo.ld_info;

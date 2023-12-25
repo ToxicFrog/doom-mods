@@ -24,8 +24,9 @@ class ::GenericMenu : TFLV::TooltipOptionMenu {
   }
 
   void PushUpgradeToggle(TFLV::Upgrade::BaseUpgrade upgrade, uint bag_index, uint index) {
-    mDesc.mItems.Push(new("::UpgradeToggle").Init(upgrade, bag_index, index));
-    PushTooltip(upgrade.GetTooltip(upgrade.level));
+    let toggle = new("::UpgradeToggle").Init(upgrade, bag_index, index);
+    mDesc.mItems.Push(toggle);
+    toggle.tt = PushTooltip(upgrade.GetTooltip(upgrade.level));
   }
 
   override bool MenuEvent(int key, bool fromController) {
@@ -84,6 +85,7 @@ class ::UpgradeToggle : ::KeyValueText {
   TFLV::Upgrade::BaseUpgrade upgrade;
   uint bag_index;
   uint index;
+  TFLV::Tooltip tt;
 
   ::UpgradeToggle Init(TFLV::Upgrade::BaseUpgrade upgrade, uint bag_index, uint index) {
     self.upgrade = upgrade;
@@ -96,26 +98,47 @@ class ::UpgradeToggle : ::KeyValueText {
     return self;
   }
 
+  string GetLabel() {
+    if (upgrade.level == upgrade.max_level) {
+      return string.format("%s (%d)", upgrade.GetName(), upgrade.level);
+    } else {
+      return string.format("%s \c[DARKGREY](%d/%d)\c-",
+          upgrade.GetName(), upgrade.level, upgrade.max_level);
+    }
+  }
+
   override bool Selectable() { return true; }
 
   override int Draw(OptionMenuDescriptor d, int y, int indent, bool selected) {
-    if (upgrade.enabled) {
-      drawLabel(indent, y, font.CR_DARKRED);
-      drawValue(indent, y, selected ? font.CR_RED : font.CR_DARKRED, self.value);
-    } else {
+    // Update the tooltip, since it's going to change if the user has wiggled
+    // the effective upgrade level.
+    tt.text = upgrade.GetTooltip(upgrade.level);
+    self.mLabel = GetLabel();
+
+    if (!upgrade.enabled) {
       drawLabel(indent, y, font.CR_DARKRED);
       drawValue(indent, y, selected ? font.CR_DARKGRAY : font.CR_BLACK,
         string.format("\c[BLACK][OFF]\c- %s", self.value));
+    } else {
+      drawLabel(indent, y, font.CR_DARKRED);
+      drawValue(indent, y, selected ? font.CR_RED : font.CR_DARKRED, self.value);
     }
     return indent;
   }
 
   override bool MenuEvent(int key, bool fromController) {
-    if (key != Menu.MKey_Enter)
+    if (key == Menu.MKey_Left) {
+      Menu.MenuSound("menu/change");
+      EventHandler.SendNetworkEvent("bonsai-tune-upgrade", bag_index, index, -1);
+    } else if (key == Menu.MKey_Right) {
+      Menu.MenuSound("menu/change");
+      EventHandler.SendNetworkEvent("bonsai-tune-upgrade", bag_index, index, 1);
+    } else if (key == Menu.MKey_Enter) {
+      Menu.MenuSound("menu/choose");
+      EventHandler.SendNetworkEvent("bonsai-toggle-upgrade", bag_index, index);
+    } else {
       return super.MenuEvent(key, fromController);
-
-    Menu.MenuSound("menu/choose");
-    EventHandler.SendNetworkEvent("bonsai-toggle-upgrade", bag_index, index);
+    }
     return true;
   }
 }
