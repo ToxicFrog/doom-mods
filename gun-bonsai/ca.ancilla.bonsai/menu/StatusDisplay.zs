@@ -10,19 +10,19 @@ class ::StatusDisplay : ::GenericMenu {
 
     TFLV_CurrentStats stats;
     if (!pps.GetCurrentStats(stats)) {
-      PushText("", Font.CR_RED);
+      PushText(" ", Font.CR_RED);
       PushText("$TFLV_MENU_NO_STATS_FOUND", Font.CR_RED);
       return;
     }
 
-    PushText("", Font.CR_GOLD);
+    PushText(" ", Font.CR_GOLD);
     PushText("$TFLV_MENU_HEADER_PLAYER_STATUS", Font.CR_GOLD);
     PushKeyValueText(
       string.format(StringTable.Localize("$TFLV_MENU_LEVEL"), stats.plvl),
       string.format(StringTable.Localize("$TFLV_MENU_XP"), stats.pxp, stats.pmax));
     stats.pupgrades.DumpInteractableToMenu(self, 0);
 
-    PushText("", Font.CR_GOLD);
+    PushText(" ", Font.CR_GOLD);
     PushText("$TFLV_MENU_HEADER_WEAPON_STATUS", Font.CR_GOLD);
     PushKeyValueText("$TFLV_MENU_TYPE",
       string.format("%s (%s)",
