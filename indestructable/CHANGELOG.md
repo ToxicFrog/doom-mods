@@ -3,49 +3,28 @@
 ⚠ This update breaks save, setting, and netevent compatibility! ⚠
 
 - New:
-  - Menu strings and in-game messages are now stored in a `LANGUAGE` lump and
-    can be translated.
-  - Optional compatibility with death exits and pistol start mods (see the
-    `Compatibility` section in the options menu).
-  - Awarding of extra lives on level clear can now be made contingent on 100%
-    kills, 100% secrets, either, or both.
-  - Optional granting of bonus lives based on damage survived, similar to how
-    the Gun Bonsai upgrade `Indestructable` works.
-  - Gun Bonsai integration is now explicitly turned on with a configuration option
-    rather than implicitly turned on based on your other settings. See the
-    `Compatibility` section.
-  - A `Service` is now included to make it easier to write integrations with
-    other mods. It supports RPCs for adjusting and querying the player's lifecount.
-    See the "Mod Integration" chapter in the README for details.
+  - Menu strings and in-game messages are now stored in a `LANGUAGE` lump and can be translated.
+  - Optional compatibility with death exits and pistol start mods (see the `Compatibility` section in the options menu).
+  - Awarding of extra lives on level clear can now be made contingent on 100% kills, 100% secrets, either, or both.
+  - Optional granting of bonus lives based on damage survived, similar to how the Gun Bonsai upgrade `Indestructable` works.
+  - Gun Bonsai integration is now explicitly turned on with a configuration option rather than implicitly turned on based on your other settings. See the `Compatibility` section.
+  - A `Service` is now included to make it easier to write integrations with other mods. It supports RPCs for adjusting and querying the player's lifecount. See the "Mod Integration" chapter in the README for details.
 - Changed:
   - `Min lives on boss kill` setting removed
-  - `Max lives on boss kill` and `max lives on level clear` settings combined
-    into one `max lives` setting
+  - `Max lives on boss kill` and `max lives on level clear` settings combined into one `max lives` setting
   - `Lives on new game` and `min lives on entering level` settings ignore `max lives`
   - `indestructable_report_lives` netevent renamed `indestructable-report-lives`
-  - New `indestructable-clamp-lives` and `indestructable-set-lives` netevents,
-    for debugging (use the RPC service instead for mod interop)
-  - Dying (for real) and respawning in a co-op game now starts you with the
-    starting life count rather than however many you had (typically 0) when you
-    died
+  - New `indestructable-clamp-lives` and `indestructable-set-lives` netevents, for debugging (use the RPC service instead for mod interop)
+  - Dying (for real) and respawning in a co-op game now starts you with the starting life count rather than however many you had (typically 0) when you died
 - Fix:
-  - Indestructable buff timer no longer counts down when the player has the
-    `TOTALLYFROZEN` flag set. In particular, this means that it won't expire
-    while the player is frozen by mods like Gearbox.
-  - Extra lives are not consumed if the player is using god mode or has the
-    buddha-nature, even if it looks like they are about to die.
-  - Softlocks should no longer happen when Indestructable triggers at the same
-    time as Gun Bonsai's `Swiftness` upgrade.
-  - Multiplayer games with more than 8 players are now (theoretically) supported,
-    if the underlying engine supports that.
-  - Players joining a multiplayer game partway through a level should get some
-    extra lives as if they had started a new game.
-  - Lives for clearing a level are now assigned as you exit the cleared level,
-    not as you enter the new one, fixing some weird edge cases.
-  - Improved detection for return visits to the same level, so that it doesn't
-    award level-clear lives multiple times in games like Hexen.
-  - Tooltips now display on the left side of the screen rather than the bottom,
-    so that they no longer cover the last few options.
+  - Indestructable buff timer no longer counts down when the player has the `TOTALLYFROZEN` flag set. In particular, this means that it won't expire while the player is frozen by mods like Gearbox.
+  - Extra lives are not consumed if the player is using god mode or has the buddha-nature, even if it looks like they are about to die.
+  - Softlocks should no longer happen when Indestructable triggers at the same time as Gun Bonsai's `Swiftness` upgrade.
+  - Multiplayer games with more than 8 players are now (theoretically) supported, if the underlying engine supports that.
+  - Players joining a multiplayer game partway through a level should get some extra lives as if they had started a new game.
+  - Lives for clearing a level are now assigned as you exit the cleared level, not as you enter the new one, fixing some weird edge cases.
+  - Improved detection for return visits to the same level, so that it doesn't award level-clear lives multiple times in games like Hexen.
+  - Tooltips now display on the left side of the screen rather than the bottom, so that they no longer cover the last few options.
   - Time stop effect could permanently make sounds stop playing
   - Potential desync when handling netevents
 

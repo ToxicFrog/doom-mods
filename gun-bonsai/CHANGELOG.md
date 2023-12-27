@@ -1,44 +1,24 @@
 # 0.10.5
 
 - New:
-  - A `Service` is now included to make it easier to write integrations with
-    other mods. It supports RPCs for adding XP or upgrades to players and weapons.
-    See `MODDING.md` for details.
-  - You can now change the effective level of an upgrade by pressing left and
-    right on the status screen, to any level between 1 and its max level. (You
-    cannot set an upgrade to level 0; to turn it off, press enter). The tooltip
-    will update to show the current effects of the upgrade. The level change may
-    not take effect immediately for all upgrades, e.g. new elemental debuffs you
-    inflict will use the new level but existing ones will use the old level.
+  - A `Service` is now included to make it easier to write integrations with other mods. It supports RPCs for adding XP or upgrades to players and weapons. See `MODDING.md` for details.
+  - You can now change the effective level of an upgrade by pressing left and right on the status screen, to any level between 1 and its max level. (You cannot set an upgrade to level 0; to turn it off, press enter). The tooltip will update to show the current effects of the upgrade. The level change may not take effect immediately for all upgrades, e.g. new elemental debuffs you inflict will use the new level but existing ones will use the old level.
 - Change:
-  - `Indestructable` integration updated to support Indestructable 0.3.x. If you
-    use the integration, you must update both mods for it to function properly.
+  - `Indestructable` integration updated to support Indestructable 0.3.x. If you use the integration, you must update both mods for it to function properly.
   - Deprecated `bonsai_choose_level_up_option` netevent finally removed.
-  - `Bandoliers` is now disabled when DRLA is loaded, as it conflicts with the
-    DRLA backpacks.
+  - `Bandoliers` is now disabled when DRLA is loaded, as it conflicts with the DRLA backpacks.
 - Fix:
-  - Multiplayer games with more than 8 players are now (theoretically) supported,
-    if the underlying engine supports that.
-  - Softlock when `Swiftness` upgrade and Indestructable trigger at the same
-    time should no longer occur.
+  - Multiplayer games with more than 8 players are now (theoretically) supported, if the underlying engine supports that.
+  - Softlock when `Swiftness` upgrade and Indestructable trigger at the same time should no longer occur.
   - AutoAutoSave integration is now properly documented in the README.
-  - Samsara Reincarnation compatibility settings (automatically applied via `BONSAIRC`),
-    thanks to cubebert.
-  - `BONSAIRC` prefixes now match `*` against one or more characters, as they were
-    always meant to, rather than zero or more. If you want to match "all classes
-    starting with Foo, including `Foo` itself", use `Foo Foo*`.
-  - `BONSAIRC` `unregister` directives now always take precedence over `register`
-    directives, regardless of order. In particular, this means that a mod can now
-    include a `BONSAIRC` that unregisters incompatible upgrades and this will
-    work regardless of load order.
+  - Samsara Reincarnation compatibility settings (automatically applied via `BONSAIRC`), thanks to cubebert.
+  - `BONSAIRC` prefixes now match `*` against one or more characters, as they were always meant to, rather than zero or more. If you want to match "all classes starting with Foo, including `Foo` itself", use `Foo Foo*`.
+  - `BONSAIRC` `unregister` directives now always take precedence over `register` directives, regardless of order. In particular, this means that a mod can now include a `BONSAIRC` that unregisters incompatible upgrades and this will work regardless of load order.
   - Compatibility restored with lzDoom and Hedon Bloodrite (broken since 0.10.0)
   - Hedon Axe and Bearzerker Axe are now properly flagged as MELEE
-  - Swiftness upgrade or opening the menu could permanently make sounds stop
-    playing (in Hedon and possibly some other wads)
-  - Setting the level-up flash to white (255,255,255) would result in a black
-    flash instead of a white one.
-  - All randomness sinks moved from the global RNG to individual RNGs in a
-    desperate and probably futile attempt to stop desyncs in co-op.
+  - Swiftness upgrade or opening the menu could permanently make sounds stop playing (in Hedon and possibly some other wads)
+  - Setting the level-up flash to white (255,255,255) would result in a black flash instead of a white one.
+  - All randomness sinks moved from the global RNG to individual RNGs in a desperate and probably futile attempt to stop desyncs in co-op.
   - Typo in the description for Aggressive Defence.
 
 # 0.10.4
