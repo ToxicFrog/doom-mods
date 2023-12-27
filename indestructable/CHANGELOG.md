@@ -1,3 +1,8 @@
+# 0.3.1
+
+- Fix:
+  - Current lifecount is now properly reported after respawning in co-op
+
 # 0.3.0
 
 ⚠ This update breaks save, setting, and netevent compatibility! ⚠

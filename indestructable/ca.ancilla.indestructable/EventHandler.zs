@@ -46,7 +46,6 @@ class ::IndestructableEventHandler : StaticEventHandler {
       force = ::IndestructableForce(pawn.GiveInventoryType("::IndestructableForce"));
       force.Initialize(info[p]);
     }
-    info[p].ReportLivesCount();
   }
 
   // Called when a player "enters the game", after their corresponding Actor is
@@ -78,6 +77,7 @@ class ::IndestructableEventHandler : StaticEventHandler {
   override void PlayerRespawned(PlayerEvent evt) {
     InitPlayer(evt.PlayerNumber);
     info[evt.PlayerNumber].GiveStartingLives();
+    info[evt.PlayerNumber].ReportLivesCount();
   }
 
   override void WorldUnloaded(WorldEvent evt) {
