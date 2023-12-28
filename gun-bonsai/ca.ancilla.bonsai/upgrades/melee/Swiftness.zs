@@ -55,6 +55,8 @@ class ::Swiftness::Aux : PowerupGiver {
 // it's in slowdown, they get the "kill made while swiftness active" bonus, which
 // is good for projectile weapons, especially in mods like HDest and Pandemonia
 // where even bullets and lasers are very fast projectiles.
+// TODO: I'd like to rework this so that it has longer duration but only slows down
+// time, rather than stopping it, with more stacks slowing time down more.
 class ::Swiftness::Power : PowerTimeFreezer {
   override void InitEffect() {
     EffectTics = 128 + ::Swiftness.GetCap(strength, amount);
@@ -64,18 +66,31 @@ class ::Swiftness::Power : PowerTimeFreezer {
   }
 
   override void Tick() {
-    if (!owner || !owner.player || owner.player.IsTotallyFrozen()) return;
+    if (owner && owner.player && owner.player.IsTotallyFrozen()) return;
     super.Tick();
   }
 
-  override void DoEffect() {
-    super.DoEffect();
-    if (EffectTics <= 128 && EffectTics > 64) EffectTics = 64;
+  // If the player has multiple timestop effects, and another one expires, it
+  // will clear the player's timefreezer fields, causing the player as well to
+  // freeze.
+  // This function attempts to reinstate the timefreezer flag so that the player
+  // is not frozen by their own timestop.
+  // Code adapted from PowerTimeFreezer::InitEffect().
+  void FixPlayerFlags() {
+    if (!owner || !owner.player || !owner.player.timefreezer) return;
+    uint freezemask = 1 << owner.PlayerNumber();
+    owner.player.timefreezer |= freezemask;
+    for (int i = 0; i < MAXPLAYERS; i++) {
+      if (playeringame[i] && players[i].mo && players[i].mo.IsTeammate(Owner)) {
+        players[i].timefreezer |= freezemask;
+      }
+    }
   }
 
-  override void EndEffect() {
-    level.SetFrozen(false);
-    S_ResumeSound(false); // unpause music and SFX
+  override void DoEffect() {
+    FixPlayerFlags();
+    super.DoEffect();
+    if (EffectTics <= 128 && EffectTics > 64) EffectTics = 64;
   }
 
   override bool CanPickup(Actor other) { return true; }

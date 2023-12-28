@@ -28,16 +28,6 @@ class ::GenericMenu : TFLV::TooltipOptionMenu {
     mDesc.mItems.Push(toggle);
     toggle.tt = PushTooltip(upgrade.GetTooltip(upgrade.level));
   }
-
-  override bool MenuEvent(int key, bool fromController) {
-    if (key == Menu.MKey_Back) {
-      // Workaround for a weird bug in Hedon where opening the menu causes weapon
-      // sounds to stop playing forever.
-      S_ResumeSound(false);
-    }
-
-    return super.MenuEvent(key, fromController);
-  }
 }
 
 class ::GenericLevelUpMenu : ::GenericMenu {

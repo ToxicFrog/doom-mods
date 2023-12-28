@@ -44,31 +44,51 @@ class ::IndestructableDamage : Powerup {
   }
 }
 
+// Some notes on Tick handling.
+// Ticks happen in the order of entries in the thinker table, so it's undefined
+// whether a powerup tick happens before or after the tick of the enclosing actor.
+// DoEffect(), meanwhile, happens on the enclosing actor's Tick, iff the actor
+// is not a player or is a non-predicting player.
+// EffectTics, meanwhile, counts down in Tick(), not in DoEffect().
+// So, any corrections we need to make have to happen in DoEffect().
 class ::IndestructableSlomo : PowerTimeFreezer {
+  // Don't tick down the timer while TotallyFrozen().
   mixin ::IndestructableStopWhenFrozen;
+
+  // If the player has multiple timestop effects, and another one expires, it
+  // will clear the player's timefreezer fields, causing the player as well to
+  // freeze.
+  // This function attempts to reinstate the timefreezer flag so that the player
+  // is not frozen by their own timestop.
+  // Code adapted from PowerTimeFreezer::InitEffect().
+  void FixPlayerFlags() {
+    if (!owner || !owner.player || !owner.player.timefreezer) return;
+    uint freezemask = 1 << owner.PlayerNumber();
+    owner.player.timefreezer |= freezemask;
+    for (int i = 0; i < MAXPLAYERS; i++) {
+      if (playeringame[i] && players[i].mo && players[i].mo.IsTeammate(Owner)) {
+        players[i].timefreezer |= freezemask;
+      }
+    }
+  }
 
   bool ShouldFreeze() {
     return indestructable_slomo == 1 || (level.maptime/2) % indestructable_slomo;
   }
 
   override void DoEffect() {
-    // Check based on PowerTimeFreezer::DoEffect
-    // We need to check IsTotallyFrozen() here too, because DoEffect() is called
-    // whether or not Tick() is, and that means that even if the player is frozen
-    // we'll keep toggling freeze on and off in slow-mo mode, which can interfere
-    // with other mods like Gearbox.
+    FixPlayerFlags();
+    // Check based on PowerTimeFreezer::DoEffect. We don't need to check for
+    // CF_PREDICTING here because the caller, AActor::Tick(), already does that.
+    // We do however need to check IsTotallyFrozen(), as otherwise we'll end up
+    // toggling freeze on and off even if the player is frozen by something like
+    // Gearbox, with tragic results.
     if (Level.maptime & 1
-        || (Owner && Owner.player
-            && (Owner.player.cheats & CF_PREDICTING || Owner.player.IsTotallyFrozen()))) {
+        || (Owner && Owner.player && Owner.player.IsTotallyFrozen())) {
       return;
     }
     DEBUG("maptime=%d effectTics=%d shouldFreeze=%d", effectTics, level.maptime, shouldfreeze());
     Level.setFrozen(effectTics > 0 && ShouldFreeze());
-  }
-
-  override void EndEffect() {
-    level.setFrozen(false);
-    S_ResumeSound(false); // unpause music and SFX
   }
 
   override bool CanPickup(Actor other) { return true; }
