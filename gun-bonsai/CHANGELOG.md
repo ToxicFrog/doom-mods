@@ -7,6 +7,7 @@ This is a bugfix release.
 - Fix:
   - Swiftness should no longer cause sound to break after it triggers.
   - Swiftness compatibility with other timestop effects should be improved.
+  - Crash in menu code after learning Juggler, Intuition, or other upgrades without tooltips
 
 # 0.10.5
 

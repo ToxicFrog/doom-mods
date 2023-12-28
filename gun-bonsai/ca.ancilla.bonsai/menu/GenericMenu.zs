@@ -102,7 +102,7 @@ class ::UpgradeToggle : ::KeyValueText {
   override int Draw(OptionMenuDescriptor d, int y, int indent, bool selected) {
     // Update the tooltip, since it's going to change if the user has wiggled
     // the effective upgrade level.
-    tt.text = upgrade.GetTooltip(upgrade.level);
+    if (tt) tt.text = upgrade.GetTooltip(upgrade.level);
     self.mLabel = GetLabel();
 
     if (!upgrade.enabled) {
