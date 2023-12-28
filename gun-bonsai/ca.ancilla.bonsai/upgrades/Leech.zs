@@ -57,7 +57,7 @@ class ::LifeLeech::Bonus : HealthBonus {
   Default {
     -COUNTITEM;
     Scale 0.07;
-    RenderStyle "Add";
+    RenderStyle "Translucent";
     Radius 32;
     Inventory.PickupMessage "";
     Inventory.Amount 1;
@@ -65,9 +65,9 @@ class ::LifeLeech::Bonus : HealthBonus {
   }
   States {
     Spawn:
-      LHP1 A 3 Light("SCAVBLOODLIGHT");
-      LHP1 BCDEFGHIJKLMNOPQRSTUVWXYZ 2 Light("SCAVBLOODLIGHT");
-      LHP2 ABCDEFGH 2 Light("SCAVBLOODLIGHT");
+      LHP1 A 3 BRIGHT;
+      LHP1 BCDEFGHIJKLMNOPQRSTUVWXYZ 2 BRIGHT;
+      LHP2 ABCDEFGH 2 BRIGHT;
       LOOP;
   }
 }
@@ -124,7 +124,7 @@ class ::ArmourLeech::Bonus : BasicArmorBonus {
   Default {
     -COUNTITEM;
     Scale 0.07;
-    RenderStyle "Add";
+    RenderStyle "Translucent";
     Radius 32;
     Inventory.PickupMessage "";
     Armor.SaveAmount 2;
@@ -132,9 +132,9 @@ class ::ArmourLeech::Bonus : BasicArmorBonus {
   }
   States {
     Spawn:
-      LAP1 A 3 Light("SCAVSTEELLIGHT");
-      LAP1 BCDEFGHIJKLMNOPQRSTUVWXYZ 2 Light("SCAVSTEELLIGHT");
-      LAP2 ABCDEFGH 2 Light("SCAVSTEELLIGHT");
+      LAP1 A 3 BRIGHT;
+      LAP1 BCDEFGHIJKLMNOPQRSTUVWXYZ 2 BRIGHT;
+      LAP2 ABCDEFGH 2 BRIGHT;
       LOOP;
   }
 }

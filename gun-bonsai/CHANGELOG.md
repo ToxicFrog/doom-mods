@@ -1,4 +1,13 @@
+# 0.10.6
+
+This is a bugfix release.
+
+- Change:
+  - Scavenge Steel and Scavenge Blood drops are now fullbrights rather than dynamic light sources.
+
 # 0.10.5
+
+This is a bugfix release.
 
 - New:
   - A `Service` is now included to make it easier to write integrations with other mods. It supports RPCs for adding XP or upgrades to players and weapons. See `MODDING.md` for details.
