@@ -116,7 +116,7 @@ class ::IndestructableForce : Inventory {
   void ActivateIndestructability() {
     Message("$TFIS_MSG_ACTIVATED");
 
-    let cv = CVar.FindCVar("indestructable_screen_effect");
+    let cv = CVar.GetCVar("indestructable_screen_effect", owner.player);
     GiveScreenEffect(cv ? cv.GetInt() : -1);
     if (indestructable_invincibility)
       GivePowerup("::IndestructableInvincibility");

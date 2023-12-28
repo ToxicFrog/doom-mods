@@ -4,6 +4,7 @@ This is a bugfix release.
 
 - Change:
   - Scavenge Steel and Scavenge Blood drops are now fullbrights rather than dynamic light sources.
+  - Screenflash when gaining extra lives via Indestructable is now configured in that mod.
 - Fix:
   - Swiftness should no longer cause sound to break after it triggers.
   - Swiftness compatibility with other timestop effects should be improved.

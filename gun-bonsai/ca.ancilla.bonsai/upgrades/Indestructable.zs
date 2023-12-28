@@ -8,7 +8,6 @@ class ::Indestructable : ::BaseUpgrade {
     let maxCharge = GetMaxCharge(level);
     if (charge >= maxCharge) {
       charge -= maxCharge;
-      pawn.A_SetBlend("FF FF 00", 0.8, 40);
       EventHandler.SendNetworkEvent("indestructable-adjust-lives", 1, 0);
       EventHandler.SendNetworkEvent("indestructable-clamp-lives", 0, 2**level);
     }

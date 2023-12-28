@@ -137,6 +137,12 @@ class ::PlayerInfo : Object play {
     } else if (delta < 0) {
       Message(string.format(StringTable.Localize("$TFIS_MSG_REDUCED_LIVES"), lives));
     } else if (delta > 0) {
+      let cv = CVar.GetCVar("indestructable_lifegain_flash_rgb", force.owner.player);
+      uint colour = cv ? cv.GetInt() : 0;
+      if (colour) {
+        colour |= 0xFE000000;
+        force.owner.A_SetBlend(colour, 0.8, 40);
+      }
       Message(string.format(StringTable.Localize("$TFIS_MSG_INCREASED_LIVES"), lives));
     } else {
       Message(string.format(StringTable.Localize("$TFIS_MSG_UNCHANGED_LIVES"), lives));

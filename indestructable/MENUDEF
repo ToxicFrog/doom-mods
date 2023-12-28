@@ -22,6 +22,8 @@ OptionMenu "IndestructableOptions"
   StaticText "$TFIS_HEADER_APPEARANCE", GOLD
   Option "$TFIS_OPT_SCREEN_EFFECT", "indestructable_screen_effect", "IndestructableScreenEffect"
   TFIS_Tooltip "$TFIS_TT_SCREEN_EFFECT"
+  ColorPicker "$TFIS_OPT_LIFEGAIN_FLASH", "indestructable_lifegain_flash_rgb"
+  TFIS_Tooltip "$TFIS_TT_LIFEGAIN_FLASH"
 
   StaticText ""
   StaticText "$TFIS_HEADER_BUFF_CONFIG", GOLD

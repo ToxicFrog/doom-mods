@@ -1,5 +1,7 @@
 # 0.3.1
 
+- New:
+  - Screenflash when lives are gained, configurable in settings.
 - Fix:
   - Current lifecount is now properly reported after respawning in co-op
   - Timestop should no longer cause sound to break after it triggers.
