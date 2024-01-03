@@ -5,7 +5,7 @@
 - Fix:
   - Current lifecount is now properly reported after respawning in co-op
   - Timestop should no longer cause sound to break after it triggers.
-  - Compatibility with other timestop effects should be improved.
+  - Compatibility with other timestop effects should be improved, especially Gearbox.
 
 # 0.3.0
 
