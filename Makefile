@@ -3,6 +3,11 @@ MODS=libtooltipmenu gun-bonsai indestructable
 all: ${MODS}
 	$(MAKE) -C compat TOPDIR=..
 
+stage:
+	$(MAKE) -C gun-bonsai TOPDIR=.. stage
+	$(MAKE) -C indestructable TOPDIR=.. stage
+	$(MAKE) -C compat TOPDIR=.. stage
+
 clean: clean.libtooltipmenu clean.gun-bonsai clean.indestructable clean.compat
 
 clean.%:
