@@ -1,3 +1,10 @@
+# 0.10.7
+
+This is a bugfix release.
+
+- Fix:
+  - Leveling up an upgrade that was at less than its max level would not increase the max level.
+
 # 0.10.6
 
 This is a bugfix release.

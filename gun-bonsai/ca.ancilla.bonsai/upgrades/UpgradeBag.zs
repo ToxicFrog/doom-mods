@@ -19,8 +19,8 @@ class ::UpgradeBag : Object play {
     for (uint i = 0; i < upgrades.Size(); ++i) {
       if (upgrades[i].GetClassName() == classname) {
         if (upgrades[i].level == upgrades[i].max_level)
-          upgrades[i].max_level += level;
-        upgrades[i].level += level;
+          upgrades[i].level += level;
+        upgrades[i].max_level += level;
         return upgrades[i];
       }
     }
