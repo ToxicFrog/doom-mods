@@ -1,4 +1,24 @@
-## Roadmap
+# Known Issues
+
+In co-op, co-op partners can't pick up Scavenge Steel upgrades (probably not Scavenge Blood either).
+When selecting multiple upgrades in one go, the newly selected ones are missing tooltips(??!)
+
+min_lives_per_level doesn't work if you don't get any bonus lives at all, due to the line:
+  if (!bonus_count) return;
+
+# Roadmap
+
+## Indes
+
+## Bonsai
+
+### Indes integration
+Make stuff like "Extra lives on boss kill" available as extra upgrades or as effects
+on level up when using the integration.
+
+### commission from ranger
+GB: on level end, select between scavenge upgrades or nothing
+GB: scavenge upgrades are probabilistic, chance scaling with level, enemy hp, +BOSS
 
 ### Ideas for Laevis split-off
 
@@ -19,7 +39,12 @@ Three possible operating modes:
 - Bonsai level integration; respond to bonsai level-up messages by giving new upgrades
 - Bonsai upgrade integration; add a set of bonsai upgrades corresponding to different LD upgrades? don't quite remember
 
-### next
+### 0.11.x?
+
+Bandolier rewrite idea: instead of directly affecting ammo capacity, siphon off ammo
+when it's nearly full and restore it when it gets low.
+
+### Soon
 
 - feature: automatic respec on level up, clearing all upgrades and resetting level to 0
 - feature: automatic level up on map clear
@@ -43,10 +68,7 @@ Three possible operating modes:
 - Balance: dark harvest and leech health/armour should probably only increase the cap when leveled and increase the amount much more rarely
 - Minelayer upgrade? Dead enemies turn into mines, or you drop mines sometimes. Upgrade for Explosive Death maybe? Appears only if you have ExD and Minelayer?
 - submunitions are still completely OP
-
-### 0.11.x?
-
-### Soon
+- Explosive Death launches you into the ceiling
 
 - Juggler should work with fancy weapon switch animations (Hellrider, Project Brutality, etc)
 - Balance: thunderbolt is probably still too powerful
@@ -56,6 +78,12 @@ Three possible operating modes:
 - Singularity on-kill upgrade, spawns a black hole that sucks enemies (but not the player) towards it
 
 ### Ideas
+
+### rhythmcorvid
+
+piercing shot is too weak -- make it do full damage but only hit once per enemy? can this be made performant?
+bouncy shots should explode on each bounce
+upgrades should all limit themselves to stop upgrading once the increased levels no longer do anything meaningful
 
 ### doomthing445
 
@@ -82,23 +110,12 @@ Argent Steroids: On the first hit, a target is given an extra 35% health, and be
 
 ### ideas from ferretmanjcdenton
 
-X Making a bullet remote controlled (doom storm ,unreal and russian overkill use weapons like this ).
-X A wall piercing bullet .
-X An upgrade transforming the whole weapon in something else entirely maybe ? Or changing the ammunition from ballistic to energy ? No idea if that's possible .
-X Upgrades like Red dot / holo sights maybe ? Sights in general ?
 X Making a gun shoot turrets.
 
 A bullet which lands on an enemies and exploded in 4 grenade like thingies which itself fly upwards only to. Come crashing down resulting in 4 more big explosions .
 
-The resurrection bullet was mentioned twice .
-
 The fragmentation shot could be upgraded in so many ways .
 If there is a way to choose multiple upgrades for an upgrade would open even more possibilities . imagine an fragmentation shot with the homing ability applied to the fragmented bullets and that one can be upgraded to home in on heads ..
-
-Making positiv and negative effects would be fun too .
-
-For the main level upgrades . The whole skill tree from RPG lite or Ultimate custom doom could help there .
-Skills like :Faster walking ,higher jumping ,better environmental resistance,looking through walls ,getting a radar ..and so on ..
 
 ### ideas from xubs
 
@@ -106,8 +123,6 @@ Trauma Kit: Player upgrade. Healing is now 25% more effective from all sources (
     ​
 Center of Mass: Weapon upgrade. Standing still builds stacks of Focus. Firing or moving expends all stacks of Focus. Focus increases damage, with more stacks increasing damage further. Level increases the maximum amount of Focus stacks the player may obtain. [Basically just a sniper-style upgrade, benefiting weapons which do a lot of damage all at once.]
 ​
-Resurrecting Inscription: This ability will resurrect the first enemy killed with a weapon that has it applied. The enemy will fight for the player until they die or until 8 seconds have passed (+2 seconds per level), in which case they are automatically killed. Enemies with more than 600 health, or who have the +FRIENDLY tag already applied, are exempt. Taking this on multiple weapons allows additional enemies to be resurrected, without having to switch to other weapons that have it applied. [The idea here is to provide a sort of 'summoner build' to be possible. The timer restriction is there to prevent a cascading windfall of summons, while the >600 health restriction is mainly just there to prevent anything as strong as or stronger than an Arch-Vile from being resurrected. Taking multiple copies of the inscription is there to encourage people to really build into it by sacrificing other inscription slots if they want summons to really be a major part of their playstyle, instead of handing players it for free.]
-    ​
 Crossfire: Weapons with this ability will do 30% extra damage for 3 seconds after it is switched to. Afterwards, it will do -15% damage. Mutually exclusive with the Damage upgrade. [To benefit the chronic weapon switchers out there, or especially weapon mods which contain reloading weapons.]
 
 ### ideas from retronutcase
@@ -128,10 +143,6 @@ On another note, maybe to spice things up, offer upgrades that come with upsides
 
 Also, I feel like we could use some more common type upgrades to balance out the really strong ones like Submunitions and Fragmentation. I admit, I dunno how feasible these would be for a universal system
 
--Reduced Spread: Reduces spread of hitscan weapons by 10% per level. Caps at level 5.
-
--Increased Fire Rate: Increase weapon rate of fire by 10% per level. I admit I dunno how easy this to implement with the universal upgrade style you're aiming for.
-
 -Critical Hit: 10% chance to increase weapon damage by 50% when firing. Unlocks Critical Damage and Critical Chance upgrades which further improve these. Critical chance is +5% chance per level, caps at level 8. Critical Damage increases the damage bonus by 5% per level and caps at level 10.
 
 -Critical Gamble: Reduces non critical damage by by 50%, but boosts Critical Chance by 5% per level, and Critical Damage by 10% per level. Caps at Level 5.
@@ -149,10 +160,6 @@ There's definitely potential for more variety in character upgrades too, I think
 -Stronger Armor: Adds +5% to green armor protection value and +10% blue armor protection value per level. rare upgrade.
 
 -Sneak Attack: Adds 50% damage when striking an unaware enemy. Damage increases by 12.5% per level, caps at level 4. Rare upgrade.
-
-Also, is there any way one could add overrides to the upgrade list for specific weapons? In case a certain weapon just ends up being TOO good with certain upgrades? (Looking at the MetaDoom EKG pistol, which is way too easy to make overpowered for a basic pistol, give this thing some piercing, fragmentation, and submunitions and becomes way too beastly for a low end gun)
-
-Anyway, regardless of if these ideas have any merit and end up being something you can use, I'm looking forward to seeing where this mod goes! :)
 
 ### Someday
 
