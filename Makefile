@@ -1,4 +1,4 @@
-MODS=libtooltipmenu gun-bonsai indestructable
+MODS=libtooltipmenu gun-bonsai indestructable gzap
 
 all: ${MODS}
 	$(MAKE) -C compat TOPDIR=..
@@ -7,8 +7,9 @@ stage:
 	$(MAKE) -C gun-bonsai TOPDIR=.. stage
 	$(MAKE) -C indestructable TOPDIR=.. stage
 	$(MAKE) -C compat TOPDIR=.. stage
+	$(MAKE) -C gzap TOPDIR=.. stage
 
-clean: clean.libtooltipmenu clean.gun-bonsai clean.indestructable clean.compat
+clean: clean.libtooltipmenu clean.gun-bonsai clean.indestructable clean.gzap clean.compat
 
 clean.%:
 	make -C $* TOPDIR=.. clean
