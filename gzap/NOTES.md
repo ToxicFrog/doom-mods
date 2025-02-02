@@ -100,6 +100,10 @@ Everything in north will be considered open, and everything in west will be cons
 blue-locked, which is fine. But everything in east will be consider BY-locked,
 and the exit BYR-locked, which is overly pessimistic.
 
+! each difficulty level needs a different JSON since actor spawns depend on
+difficulty level! We need to bake this into the JSON and assert if there's a
+mismatch at startup
+
 ## Generation Mode
 
 We can re-use the "upload ROM" feature here by letting the player specify a
@@ -108,6 +112,50 @@ any settings we expose to the user at generation time have to be megawad-agnosti
 
 The output is then a PK3 that includes the necessary support scripts and the
 generation data.
+
+Initial design -- very quick and dirty. Each level is a single Region; each major
+item¹ in the level is a single Location. "Starting levels" are always considered
+in logic and the player starts with the access code for them and all keys contained
+therein.
+
+¹ major items are: keys, weapons, upgrades, powerups, tools, and maps. We may
+want to exclude a few things from randomization that levels are often planned
+around: ArtiFly, ArtiTorch, EnvironmentalSuit, Infrared, and RadSuit. Alternately,
+add them to the INVBAR and to the logic requirements (and remove inventory limits on them).
+
+For everything else, the region is not considered "in logic" until the player
+has the access code, all keys, AND all non-secret weapons in the level.
+
+Once region construction is complete, we then fill the item pool thusly:
+- access codes for all non-starting levels;
+- one of each weapon except the pistol and fists, which the player start with;
+- one of each key;
+- one of each computer map (marked USEFUL), unless the player opted to start with all maps;
+- all upgrades (marked USEFUL);
+- powerups, tools, big-health, big-ammo, and big-armour, scaled in proportion to
+  their original quantities to fill all remaining Locations.
+
+All the locations these things are taken from are considered "in logic".
+
+Probably want to rethink the scanner output to be item-first, rather than location-first,
+since that lets me make decisions about e.g. which items and locations are considered
+secrets more easily.
+
+So, as we process item/monster entries, our behaviour looks something like this:
+- if it's a new map, create a region for it
+- if it's something flagged don't-randomize, skip it
+- if it's randomize-in-level, add the item and location to a per-level *internal* pool,
+  to be emitted in the final pk3. Probably separate pools for items/monsters, or
+  maybe even subdivide pools more finely (small items vs. big, small/medium/big monsters).
+- if it's randomize-in-game, as above, except the pool isn't per-level. It's still
+  emitted into the final pk3.
+- otherwise (randomize across worlds), add the item to the item pool and the
+  location to the corresponding region.
+
+For maximum generality, possibly what we actually want to do is always emit per-map pools.
+Then at runtime we ask the server for our shuffle settings, and stuff marked don't-shuffle
+we delete from the pools at startup, and stuff marked shuffle-gamewide we promote to a global
+pool.
 
 ## Play Mode
 
@@ -174,4 +222,54 @@ I was planning to write the client in clojure, but since AP has a python connect
 client built in (CommonClient) and clients for many games are built into AP itself,
 so maybe it makes more sense to do that.
 
+For big item randomization, we use CheckReplacement() to replace each big item
+with an Archipelago location placeholder; once the placeholder initializes it
+knows where it is and thus what its ID is, and can issue a scout request.
 
+For small item randomization, we probably just bake the small item proportions
+into the pk3 and swap them out in CheckReplacement().
+
+More CheckReplacement thoughts.
+
+At runtime, we know which actor categories are leave-alone, shuffle-level, shuffle-game,
+and shuffle-multiworld. Assuming we can identify this entirely by class and not by
+instance -- which should be possible -- we can then implement everything in
+CheckReplacement().
+
+Stuff that's leave-alone we just return.
+
+Stuff that's shuf-multi, we replace with a MultiworldItemSpawner. On init it uses
+its position to look up its locid in the position-to-Location table burned into
+the pk3, then scouts that locid via the AP API to figure which icon to display
+(minor, major, progression).
+
+Stuff that's shuf-level or shuf-game, we replace with a RandomItemSpawner. It does
+the same thing except instead of looking up the locid it looks up the replacement
+pool for the given location category and draws something from the pool to replace
+it. It then needs to remember what it drew, even across save/load, so that it can
+produce the same results.
+
+Problem: the CheckReplacement will fire for e.g. items dropped when enemies are
+killed as well, and we need to do not do anything when that happens -- maybe
+we can disable CheckReplacement one tic after level load?
+
+Alternately, we do nothing in CheckReplacement, and in OnLevelLoad we instead
+walk all thinkers and replace them. That's less efficient but might actually
+work better.
+
+If we continue to output scan messages during play, we can actually refine the
+connectivity graph! We append the output to the earlier scan, and when processing
+the event log, every CHECK event that is missing a key results in the location
+definition being updated to exclude the keys that it's missing. This does struggle
+a bit with or-effects, but maybe it's something like:
+- if we check it with no keys, it doesn't need keys
+- if we check it with keys and there is a minimal subset of keys, those are the keys
+- if there are multiple distinct sets of keys none of which is a subset of the other,
+  it's any of those subsets
+the algorithm for this is actually pretty straightforward
+let Km be the set of the keys in the map
+initialize the key requirements Kl for each location to Kl={Km}
+when the location is checked:
+- if the player has no keys, Kl={}
+- otherwise, add the set of player keys Kp to Kl, then remove from Kl all keysets k
+  such that k is a proper superset of Kp
