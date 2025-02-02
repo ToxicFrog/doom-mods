@@ -45,6 +45,7 @@ class ::EventHandler : StaticEventHandler {
         queue.pop();
       }
     }
+    console.printf("AP-SCAN-DONE {}");
     console.printf("[Archipelago] No more maps to scan.");
   }
 
@@ -71,30 +72,33 @@ class ::EventHandler : StaticEventHandler {
     return b ? "true" : "false";
   }
 
-  void ScanOutput(string payload) {
-    console.printf("AP SCAN { :map \"%s\" %s }", level.MapName, payload);
+  void ScanOutput(string type, string payload) {
+    console.printf("AP-%s { \"map\": \"%s\", %s }", type, level.MapName, payload);
   }
 
-  void ScanOutputLocation(Actor thing, string payload) {
-    ScanOutput(string.format(
-      ":location { :x %f :y %f :z %f :angle %f :secret %s %s }",
-      thing.pos.x, thing.pos.y, thing.pos.z, thing.angle, bool2str(IsSecret(thing)), payload
-    ));
+  string ScanOutputPosition(Actor thing) {
+    return string.format(
+      "\"position\": { \"x\": %f, \"y\": %f, \"z\": %f, \"angle\": %f, \"secret\": %s }",
+      thing.pos.x, thing.pos.y, thing.pos.z, thing.angle, bool2str(IsSecret(thing))
+    );
   }
 
   void ScanOutputMonster(Actor thing) {
     if (thing.bCORPSE) return;
+    // Not currently implemented
+    return;
 
-    ScanOutputLocation(thing, string.format(
-      ":monster { :class \"%s\" :hp %d :boss %s }",
-      thing.GetClassName(), thing.health, bool2str(thing.bBOSS)
+    ScanOutput("MONSTER", string.format(
+      "\"typename\": \"%s\", \"tag\": \"%s\", \"hp\": %d, \"boss\": %s, %s }",
+      thing.GetClassName(), thing.GetTag(), thing.health,
+      bool2str(thing.bBOSS), ScanOutputPosition(thing)
     ));
   }
 
   void ScanOutputItem(Actor thing) {
-    ScanOutputLocation(thing, string.format(
-      ":item { :category %s :class \"%s\" :tag \"%s\" }",
-      ItemCategory(thing), thing.GetClassName(), thing.GetTag()
+    ScanOutput("ITEM", string.format(
+      "\"category\": \"%s\", \"typename\": \"%s\", \"tag\": \"%s\", %s",
+      ItemCategory(thing), thing.GetClassName(), thing.GetTag(), ScanOutputPosition(thing)
     ));
   }
 
@@ -108,9 +112,10 @@ class ::EventHandler : StaticEventHandler {
     }
 
     console.printf("[Archipelago] Beginning scan of %s", level.MapName);
-    ScanOutput(string.format(
-      ":info { :title \"%s\" :secret %s }",
-      level.LevelName, bool2str(IsSecretLevel(level.MapName))
+    ScanOutput("MAPINFO", string.format(
+      "\"title\": \"%s\", \"secret\": %s, \"skill\": %d",
+      level.LevelName, bool2str(IsSecretLevel(level.MapName)),
+      G_SkillPropertyInt(SKILLP_ACSReturn)
     ));
 
     int monster_count = 0; int monster_hp = 0;
@@ -146,29 +151,40 @@ class ::EventHandler : StaticEventHandler {
     return cls.left(4) == "Arti";
   }
 
+  // TODO: we can use inventory flags for this better than class hierarchy in many cases.
+  // INVENTORY.AUTOACTIVATE - item activates when picked up
+  // .INVBAR - item goes to the inventory screen and can be used later
+  // .BIGPOWERUP - item is particularly powerful
+  // .ISHEALTH, .ISARMOR - as it says
+  // .HUBPOWER, .PERSISTENTPOWER, and .InterHubAmount allow carrying between levels
+  // there's also sv_unlimited_pickup to remove all limits on ammo capacity(!)
+  // We might want to remove AUTOACTIVATE and add INVBAR to some stuff in the
+  // future so the player can keep it until particularly useful.
   string ItemCategory(Actor thing) {
     if (thing is "Key" || thing is "PuzzleItem") {
-      return ":key";
+      return "key";
     } else if (thing is "Weapon" || thing is "WeaponPiece") {
-      return ":weapon";
+      return "weapon";
     } else if (thing is "BackpackItem") {
-      return ":upgrade";
+      return "upgrade";
     } else if (thing is "MapRevealer") {
-      return ":map";
-    } else if (thing is "PowerupGiver") {
-      return ":powerup";
-    } else if (thing is "BasicArmorPickup") {
-      return ":big-armor";
+      return "map";
+    } else if (thing is "PowerupGiver" || thing is "Berserk") {
+      return "powerup";
+    } else if (thing is "BasicArmorPickup" || thing is "Megasphere") {
+      return "big-armor";
     } else if (thing is "BasicArmorBonus") {
-      return ":small-armor";
+      return "small-armor";
     } else if (thing is "Health") {
       let h = Health(thing);
-      return h.Amount < 20 ? ":small-health" : ":big-health";
+      return h.Amount < 50 ? "small-health" : "big-health";
     } else if (thing is "Ammo") {
       let a = Ammo(thing);
-      return a.Amount < a.MaxAmount/10 ? ":small-ammo" : ":big-ammo";
+      return a.Amount < a.MaxAmount/10 ? "small-ammo" : "big-ammo";
+    } else if (thing is "Mana3") {
+      return "big-ammo";
     } else if (thing is "HealthPickup" || IsArtifact(thing)) {
-      return ":tool";
+      return "tool";
     }
 
     return "";

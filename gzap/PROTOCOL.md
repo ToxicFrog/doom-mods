@@ -11,42 +11,71 @@ This file documents the three protocols used to communicate with the game:
 These messages are put on the console and thus read by attaching a program to
 the game's logfile or stdout.
 
-All messages begin with the text `AP SCAN ` followed by an EDN map, with some
-subset of the following keys:
+All messages being with `AP-MSG`, where `MSG` is a string specific to the
+message type.
 
-### `:map`
+### Position structures
 
-The lump name of the map (e.g. `"MAP01"`) as a string.
+Some messages include a `position` field. This is always an object of the form:
 
-### `:info { :title :secret }`
+    position { x, y, z, angle, secret }
 
-Information about the map: its human-readable title (e.g. `"Entryway"`) and whether
-it is a secret map or not.
+The coordinates are taken directly from the `pos` field in-game. `angle`,
+likewise, is taken from the source actor. `secret` is taken from the enclosing
+sector and may, someday, be used to exclude secrets from the critical path (or,
+perhaps, require them) when randomizing.
 
-### `:location { :x :y :z :angle :secret :item :monster }`
+### `AP-MAPINFO { map, title, secret, skill }`
 
-Information about an actor location. `:x :y :z :angle` contain positioning information
-that (in most maps) will uniquely identify the location. `:secret` is true if the
-location falls within a secret sector.
+Emitted when scanning of a map begins. `map` is the lump name (e.g. "MAP01"),
+`title` is the user-facing title (e.g. "Entryway"). `secret` is true if the
+scanner reached this level via a secret exit; if a level is accessible via both
+secret and non-secret paths, it's undefined what value this has. `skill` is the
+difficulty level the scan is being performed on, and is used for cross-checking
+during play.
 
-Exactly one of `:item` or `:monster` will be provided.
+### `AP-ITEM { map, category, typename, tag, position }`
 
-TODO: in exemplar mode, we need to include additional information about what keys
-the player had when they touched the location.
+Emitted when an item is scanned. `map` is as above. `typename` is the gzdoom
+class name (as returned by `GetClassName()`) and `tag` is the tag (as returned
+by `GetTag()`).
 
-#### `:item { :category :class :tag }`
+`category` is an internal category used for item classification, and is finer-
+grained than the (progression, useful, filler, trap) categories used by AP. The
+full set of item categories is:
 
-Information about an item. `:category` is the scanner's best guess about the
-item's category. It is more fine-grained than Archipelago's classification;
-possible values are `:key`, `:weapon`, `:big-armor`, `:small-armor`, `:big-ammo`,
-`:small-ammo`, `:big-health`, `:small-health`, `:powerup`, `:tool`, `:upgrade`,
-or `:map`.
+    key           keycards and puzzle items
+    weapon        weapons and Hexen weapon pieces
+    upgrade       backpacks
+    map           automaps
+    powerup       temporary powerups like blurspheres and berserk packs
+    tool          items you can pick up and use later (including usable medkits)
+    big-armor     armour suits and the megasphere
+    small-armor   armour shards
+    big-health    health that restores >50%
+    small-health  other health
+    big-ammo      ammo that restores more than 10% of max
+    small-ammo    other ammo
 
-Most of these are self-explanatory. PuzzleItems count as keys. Tools are items
-you can pick up and carry around for later use like health packs or Hexen artifacts.
-Upgrades are non-progression items that give permanent upgrades like the backpack.
+### `AP-SCAN-DONE {}`
 
-#### `:monster { :class :tag :boss :hp }`
+Emitted when all levels are done being scanned, so that the generator can do any
+necessary preprocessing.
 
-Information about a monster. `:boss` is true if it's boss-flagged. `:hp` is just
-its raw HP value and is used for very coarse difficulty estimation.
+
+## Outbound Event Protocol
+
+TBW, but early prototypes will probably be as above, just with different event
+types -- at minimum we'll need `AP-CHECK`, but `AP-CHAT` and `AP-SCOUT` would be
+nice too.
+
+The production version will connect using the multiplayer protocol, send events
+using EventHandler.SendNetworkCommand and EventHandler.NetworkCommandProcess.
+The actual event names and payloads should be the same, though.
+
+
+## Inbound Event Protocol
+
+Also TBW. Early prototypes will use a file on-disk and rely on the fact that
+ReadLump() re-reads the file contents from disk each time it's called. Production
+version uses network commands as above. At minimum we need `AP-GETITEM`.
