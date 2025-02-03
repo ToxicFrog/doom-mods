@@ -1,13 +1,14 @@
 #namespace GZAP;
 #debug on;
 
-class ::EventHandler : StaticEventHandler {
+class ::ScanEventHandler : StaticEventHandler {
   Array<string> queue;
   Array<string> done;
   Array<string> secret_levels;
+  bool scan_enabled;
 
   override void OnRegister() {
-    console.printf("Starting up GZAP Event Handler");
+    self.scan_enabled = false;
   }
 
   // Called when world loading is complete, just before the first tic runs. This
@@ -15,19 +16,18 @@ class ::EventHandler : StaticEventHandler {
   // Unlike PlayerEntered, this is called when loading a savegame, so we try to
   // initialize everyone here to handle the savegame case.
   override void WorldLoaded(WorldEvent evt) {
-    console.printf("WorldLoaded");
+    if (!scan_enabled) return;
     // As soon as we load into a new map, queue up a scan.
     // We can't do it immediately by calling ScanLevel() or things break?
     EventHandler.SendNetworkEvent("ap-scan", 0, 0, 0);
   }
 
   override void NetworkProcess(ConsoleEvent evt) {
-    // console.printf("[Archipelago] netevent: %s", evt.name);
     if (evt.name == "ap-scan") {
-      // console.printf("[Archipelago] Scan requested.");
+      console.printf("[Archipelago] Beginning scan of all levels.");
+      self.scan_enabled = true;
       ScanLevel();
     } else if (evt.name == "ap-next") {
-      // console.printf("[Archipelago] Nextmap requested.");
       ScanNext();
     }
   }
@@ -47,6 +47,7 @@ class ::EventHandler : StaticEventHandler {
     }
     console.printf("AP-SCAN-DONE {}");
     console.printf("[Archipelago] No more maps to scan.");
+    self.scan_enabled = false;
   }
 
   void EnqueueLevel(string map) {

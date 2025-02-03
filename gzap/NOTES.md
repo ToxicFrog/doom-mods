@@ -1,108 +1,35 @@
 # Archipelago gzDoom connector
 
-Three phases: scan, generation, play.
+Four phases: scan, generation, play, refinement.
 
-In scan mode, we need to build the info the generator needs - the set of regions,
-locations, and items. And we need to output this as something the generator can
-load.
+Scan walks all the maps in the wad and emits information about their contained
+items (and perhaps someday monsters, etc). We need to run this once per difficulty
+level we want to support.
 
-In generation mode, this is all implemented in python in the APWorld. It'll load
-the output from the scanner and emit something that play mode can load.
+Generation is the province of the apworld. Input is the result of the scan (and,
+if available, refinement) phases, output is a pk3 containing the results.
 
-The user interface probably looks like a scanner pk3, the connector program, and two
-shell scripts, apgzd-scan and apgzd-play. Scan loads up the selected megaWAD
-along with the scanner pk3, which causes zscript to run that loads and scans
-all of the levels and emits the findings as log messages, which the script captures.
+Play is where you actually play through the game. Items in the rando pool are
+replaced with AP placeholder items. Picking one up generates a CHECK event which
+is then sent to the client running alongside.
 
-play takes as input the megawad, the pk3 emitted by randomizer generation, and
-login information, and sets up the requisite connections and launches the game.
+Refinement is an output of play -- the CHECK events are aware of what keys you
+had and that info is appended to the output of the scan. Subsequent generation
+runs can use the updated scanlist to be more accurate about what you need to
+reach each location.
 
 ## Scan Mode
 
-This is the spicy part. We need to generate a reachability graph for the loaded
-megawad, ideally without any user intervention.
+This is made to be very simple -- it just emits some map metadata + a list of
+all items. The generator is where all the brains live, and handles combining this
+with the refinement list (if any), associating locations with the keys of their
+enclosing level, etc.
 
-I've thought of a few possible algorithms:
+It's in the pk3 as a StaticEventHandler and is triggered by sending an "ap-scan"
+netevent to the game after you enter the first level.
 
-- pessimistic. assume that nothing is reachable until you have the level unlock
-  *and* all keys in the level. This means that initially only levels with no keys
-  will be playable, which is fine for D1/2 but breaks on e.g. Going Down, resulting
-  in a game that's unplayable in singleplayer and starts you out in BK until someone
-  else finds keys in multiplayer.
-  Probably we want to define a set of "starting levels" and start the player off
-  not just with access to those levels, but all the keys for them as well (or
-  mandate that the keys in those levels do not get shuffled).
-- exemplar. require the player to play through the game and record what they do.
-  finding an item assumes that any keys the player holds are required to get that
-  item. items the player doesn't find at all are marked "hard to get" and disallowed
-  from holding progression items. guarantees real-world reachability but requires
-  a full playthrough to generate.
-- smart. try to traverse the sector graph and figure out what is reachable with
-  and without keys automatically. this requires handling a shitload of edge cases,
-  such as:
-  - height differences > stepheight mean you can go down but not up
-  - unlocked doors are traversable
-  - unlocked *elevators* are traversable with implications for height difference calculation
-  - locked doors are traversable with the key
-  - doors controlled by remote linedefs need to be matched up with them, which
-    also requires parsing the action special and keyflags on the line, stored
-    in .special, the ML_REPEAT_SPECIAL flag, and .locknum.
-- smart-ish. like smart but only handle the simple cases: sector edges within
-  stepheight, unlocked doors, maaaybe elevators. Then consider everything else
-  unreachable without all the keys. This should give better results than pessimistic
-  for most levels.
-
-Oh shit, smart and smart-ish immediately fail for stuff like Underhalls:
-- the red key requires a *jump* to reach, by leaving a high sector and hurtling
-  over a low sector to land on a medium sector;
-- the switch you need the red key to access is behind a set of bars, which means
-  that the sector is adjacent to the switch and counts it as "reachable" even
-  before you have the red key without a *lot* of postprocessing;
-- the switch is recessed, so adjacency/reachability calculations for it will be
-  harder than otherwise
-We also can't assume all levels follow a blue-yellow-red order.
-
-I wonder if a "progressive keys" option would help at all -- picking up a key
-gives you an indeterminate key, and the first time you use it on a door that
-requires a specific key it turns into that key. Prooobably not?
-
-Possible mitigations:
-- don't shuffle keys at all, they always appear in their intended places
-- don't shuffle keys in starting levels, assume all items are reachable in those
-  levels, use pessimistic mode for other levels
-
-super cursed half-formed idea around not actually putting items in specific locations,
-but just deciding in advance what order the player will find them in and whatever
-item you find next is the next item in the list
-
-probably we only want to support pessimistic and exemplar for now.
-
-output is probably going to be a mapping of
-  [level] -> {
-    [item] -> { name, type, coordinates, is_progression, keys_needed }
-    mapname, title, difficulty info metrics
-  }
-which the generator can then use to synthesize region definitions and whatnot.
-
-TODO: AP supports an item tier between "filler" and "progression" called "useful".
-Maybe we put stuff like armor and health here?
-
-It also, I think, lets you say "this should be shuffled but only within the same game".
-So maybe we do that for "small" items.
-
-Problem with exemplar mode -- say we have a level with a hub structure, like
-Tricks & Traps, where:
-- north is open and contains the blue key
-- west is blue locked and contains the yellow key
-- east is yellow locked and contains the red key
-- south is red locked and contains the exit
-Everything in north will be considered open, and everything in west will be considered
-blue-locked, which is fine. But everything in east will be consider BY-locked,
-and the exit BYR-locked, which is overly pessimistic.
-
-! each difficulty level needs a different JSON since actor spawns depend on
-difficulty level! We need to bake this into the JSON and assert if there's a
-mismatch at startup
+Since there are no stable location IDs or anything, locations are identified by
+their coordinates + angle. :(
 
 ## Generation Mode
 
@@ -158,6 +85,44 @@ we delete from the pools at startup, and stuff marked shuffle-gamewide we promot
 pool.
 
 ## Play Mode
+
+Static information baked into the pk3:
+- mapping from integer APItem IDs to gzDoom class names for items
+  + for level access tokens, we need to know what level it is
+  + for keys, likewise
+- mapping from coordinates to integer APLocation IDs
+  + information about whether the location holds a progression, useful, or filler item
+    we can get this from location.item.classification bitfield
+- mapping from level names to integer APLocation IDs for the exits
+- what items we start with
+- how many locations each level contains
+
+Information that needs to persist across levels at runtime:
+- which keys we have (store it in a ::Keyring item in the player inventory?)
+- which access/clear tokens we have (these can just go in inventory also)
+- which locations we've checked (global, but since this matters per-level we may want to store it that way)
+
+So, at startup, we do whatever data structure initialization we need, and then
+do first-time startup: give the player an empty keyring, initialize the token/location
+tracker to empty, then give the player their starting inventory.
+
+Whenever the player gets a key (via AP), this should be added to the *keyring*,
+which then optionally inserts it into the player's inventory.
+
+On level entry (need an EventHandler for this), the keyring is told to update,
+which it does by clearing all keys from the player's inventory, then checking if
+it remembers any keys for the current level and inserting them.
+
+Access tokens can be individual items, but it probably makes more sense to store
+them, too, in the keyring. So now our keyring is taking shape:
+  Map<mapname,Ring>
+    Ring
+      Array<Inventory> keys;
+      Array<int> checked;
+      bool access;
+      bool cleared;
+
+
 
 Conceptually, this is straightforward. Load the seed info at startup. When
 entering a level, replace items in it based on the seed info. When collecting
