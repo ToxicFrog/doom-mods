@@ -3,8 +3,11 @@
 //
 // This means:
 // - what keys the player has
-// - what levels the player has access or, and has completed
+// - what levels the player has access to, has maps for, and has completed
 // - what locations the player has checked
+//
+// These are divided up by level so that for the expensive cases that run on
+// level load, only the current level needs to be checked.
 
 #namespace GZAP;
 #debug on;
@@ -14,6 +17,7 @@ class ::Subring play {
   Map<int,bool> checked;
   Array<string> keys;
   bool access;
+  bool automap;
   bool cleared;
 
   // Add a key to the ring. Returns true if the key was new, false if it was a
@@ -44,6 +48,10 @@ class ::Keyring : Inventory {
   Map<string, ::Subring> map_to_keys;
   Map<string, bool> known_keys;
 
+  static ::Keyring Get(uint player) {
+    return ::Keyring(players[player].mo.FindInventory("::Keyring"));
+  }
+
   ::Subring GetRing(string map) {
     let ring = map_to_keys.Get(map);
     if (!ring) {
@@ -57,14 +65,19 @@ class ::Keyring : Inventory {
     known_keys.Insert(key, true);
     let ring = GetRing(map);
     if (ring.AddKey(key) && map == level.MapName) {
-      UpdateKeys();
+      UpdateInventory();
     }
   }
 
   // Remove any keys that the player shouldn't have from their inventory, and
-  // add any keys that they're missing.
-  void UpdateKeys() {
+  // add any keys that they're missing. Also give them the automap if they
+  // should have it.
+  void UpdateInventory() {
     let ring = GetRing(level.MapName);
+
+    if (ring.automap) {
+      owner.GiveInventoryType("MapRevealer");
+    }
 
     foreach (key, val : known_keys) {
       if (ring.HasKey(key)) {
@@ -79,7 +92,31 @@ class ::Keyring : Inventory {
     GetRing(map).access = true;
   }
 
-  void MarkClear(string map) {
+  bool IsAccessible(string map) {
+    return GetRing(map).access;
+  }
+
+  void MarkMapped(string map) {
+    GetRing(map).automap = true;
+  }
+
+  bool IsMapped(string map) {
+    return GetRing(map).automap;
+  }
+
+  void MarkCleared(string map) {
     GetRing(map).cleared = true;
+  }
+
+  bool IsCleared(string map) {
+    return GetRing(map).cleared;
+  }
+
+  void MarkChecked(string map, uint apid) {
+    GetRing(map).checked.Insert(apid, true);
+  }
+
+  bool IsChecked(string map, uint apid) {
+    return GetRing(map).checked.CheckKey(apid);
   }
 }
