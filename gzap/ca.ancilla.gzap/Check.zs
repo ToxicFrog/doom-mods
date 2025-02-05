@@ -7,9 +7,45 @@
 
 #namespace GZAP;
 
-class ::CheckGeneric : ScoreItem {
+mixin class ::ArchipelagoIcon {
+  bool progression;
+
+  States {
+    NotProgression:
+      APIT A -1 BRIGHT;
+      STOP;
+    Progression:
+      APIT B -1 BRIGHT;
+      STOP;
+  }
+
+  void SetProgressionState() {
+    if (self.progression) {
+      SetStateLabel("Progression");
+    } else {
+      SetStateLabel("NotProgression");
+    }
+  }
+}
+
+class ::CheckMapMarker : MapMarker {
+  mixin ::ArchipelagoIcon;
+
+  Default {
+    Scale 0.25;
+  }
+
+  override void PostBeginPlay() {
+    SetProgressionState();
+  }
+}
+
+class ::CheckPickup : ScoreItem {
+  mixin ::ArchipelagoIcon;
+
   int apid;
   string name;
+  ::CheckMapMarker marker;
 
   Default {
     +NOGRAVITY;
@@ -18,23 +54,18 @@ class ::CheckGeneric : ScoreItem {
     Radius 32;
   }
 
-  States {
-    Spawn:
-      APIT A -1 BRIGHT;
-      STOP;
+  override void PostBeginPlay() {
+    SetProgressionState();
+    // TODO: only show the map markers if the player has the automap for this
+    // level in their keyring.
+    marker = ::CheckMapMarker(Spawn("::CheckMapMarker", self.pos));
+    marker.progression = self.progression;
   }
 
   override bool TryPickup (in out Actor toucher) {
     console.printf("AP-CHECK { \"id\": %d, \"name\": \"%s\" }",
       self.apid, self.name);
+    self.marker.Destroy();
     return super.TryPickup(toucher);
-  }
-}
-
-class ::CheckProgression : ::CheckGeneric {
-  States {
-    Spawn:
-      APIT B -1 BRIGHT;
-      STOP;
   }
 }
