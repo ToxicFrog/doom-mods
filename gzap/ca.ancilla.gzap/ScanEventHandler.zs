@@ -26,6 +26,8 @@ class ::ScanEventHandler : StaticEventHandler {
     if (evt.name == "ap-scan") {
       console.printf("[Archipelago] Beginning scan of all levels.");
       self.scan_enabled = true;
+      // TODO: dump MAPINFO contents so we can generate a version with all
+      // entertext and exittext removed
       ScanLevel();
     } else if (evt.name == "ap-next") {
       ScanNext();

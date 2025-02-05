@@ -15,6 +15,10 @@
 // A "sub-keyring" for an individual level.
 class ::Subring play {
   Map<int,bool> checked;
+  // TODO: this should probably be a map, and it should be populated when the
+  // data package is initialized with all false values, so that we know not just
+  // what keys the player has but what keys they could potentially have.
+  // This also lets us populate and sort known_keys at startup.
   Array<string> keys;
   bool access;
   bool automap;
@@ -48,12 +52,16 @@ class ::Keyring : Inventory {
   Map<string, ::Subring> map_to_keys;
   Map<string, bool> known_keys;
 
-  static ::Keyring Get(uint player) {
+  static clearscope ::Keyring Get(uint player) {
     return ::Keyring(players[player].mo.FindInventory("::Keyring"));
   }
 
+  ::Subring GetRingIfExists(string map) const {
+    return map_to_keys.Get(map);
+  }
+
   ::Subring GetRing(string map) {
-    let ring = map_to_keys.Get(map);
+    let ring = GetRingIfExists(map);
     if (!ring) {
       ring = new("::Subring");
       map_to_keys.Insert(map, ring);

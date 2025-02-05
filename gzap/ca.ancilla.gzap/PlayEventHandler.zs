@@ -12,17 +12,29 @@
 #include "./Keyring.zsc"
 
 class ::PlayEventHandler : StaticEventHandler {
+  int skill;
   ::Keyring keyrings[MAXPLAYERS];
+  // TODO: probably replace this with something that combines:
+  // - the checklist from the data package
+  // - the subring from the player's keyring, and
+  // - the LevelInfo
+  // since we often need all of them in the same place
   Map<string, ::CheckList> map_to_checks;
 
-  override void OnRegister() {
-    // TEST CODE DO NOT EAT
-    AddCheck("MAP01", 1, "MAP01 - GreenArmor", false, (592.0, 2624.0, 48.0), 270.0);
-    AddCheck("MAP01", 2, "MAP01 - RocketLauncher", false, (832.0, 1600.0, 56.0), 270.0);
-    AddCheck("MAP01", 3, "MAP01 - Shotgun", true, (320.0, 368.0, -32.0), 0.0);
+  void RegisterSkill(int skill) {
+    self.skill = skill;
   }
 
-  void AddCheck(string map, uint apid, string name, bool progression, Vector3 pos, float angle) {
+  void RegisterMap(string map) {
+    ::Keyring.Get(consoleplayer).GetRing(map);
+    return;
+  }
+
+  void RegisterKey(string map, string key) {
+    return;
+  }
+
+  void RegisterCheck(string map, uint apid, string name, bool progression, Vector3 pos, float angle) {
     let checklist = map_to_checks.Get(map);
     if (!checklist) {
       checklist = new("::CheckList");
@@ -37,6 +49,12 @@ class ::PlayEventHandler : StaticEventHandler {
     return checklist.FindCheck(thing.pos, thing.angle);
   }
 
+  int CountChecks(string map) const {
+    let checklist = map_to_checks.Get(map);
+    if (!checklist) return 0;
+    return checklist.checks.Size();
+  }
+
   // Used by the generated data package to get a handle to the event handler
   // so it can install the location lists.
   static clearscope ::PlayEventHandler Get() {
@@ -46,8 +64,6 @@ class ::PlayEventHandler : StaticEventHandler {
   override void WorldLoaded(WorldEvent evt) {
     for (uint p = 0; p < MAXPLAYERS; ++p) {
       if (!playeringame[p]) continue;
-
-      console.printf("init player %d", p);
 
       // This has the effect that if we reload a game, we end up with the version
       // of the keyring in the player's inventory, even if they reloaded to an
@@ -89,22 +105,33 @@ class ::PlayEventHandler : StaticEventHandler {
   override void WorldUnloaded(WorldEvent evt) {
     if (evt.isSaveGame) return;
 
-    // Hopefully, we're unloading this level because we just completed it.
-    // FIXME: don't count the level as complete if we're leaving it because
-    // we just selected a different level from the level select!
     for (uint p = 0; p < MAXPLAYERS; ++p) {
       if (!playeringame[p]) continue;
       keyrings[p].MarkCleared(level.MapName);
+      Menu.SetMenu("ArchipelagoLevelSelectMenu");
+      // FIXME: this lets us select a level, but since we're in the intermission
+      // screen by the time it happens, it then proceeds to the next level anyways
+      // Probably what we want to actually do is introduce a tiny one-room level
+      // into the runtime pk3, and then since we're regenerating the mapinfo anyways,
+      // make that the nextlevel of every individual level, so completing a level
+      // brings you back there -- and then in WorldLoaded if we're in that level
+      // we open the menu.
+      // This also means that on entering a level, we can set a flag bit; on
+      // returning to the hub from the menu, we can clear it; and on entering
+      // the hub, we check if it's set and if so, mark that level as complete.
     }
   }
 
   override void NetworkProcess(ConsoleEvent evt) {
-    if (evt.name == "ap-give-blue") {
-      keyrings[consoleplayer].AddKey(level.MapName, "BlueCard");
-    } else if (evt.name == "ap-give-yellow") {
-      keyrings[consoleplayer].AddKey(level.MapName, "YellowCard");
-    } else if (evt.name == "ap-give-red") {
-      keyrings[consoleplayer].AddKey(level.MapName, "RedCard");
+    if (evt.name == "ap-level-select") {
+      let idx = evt.args[0];
+      let info = LevelInfo.FindLevelByNum(idx);
+      if (!info) {
+        // oh no, no level of that number, not allowed
+        console.printf("No level with number %d found.", idx);
+        return;
+      }
+      level.ChangeLevel(info.MapName, 0, CHANGELEVEL_NOINTERMISSION, skill);
     }
   }
 }
