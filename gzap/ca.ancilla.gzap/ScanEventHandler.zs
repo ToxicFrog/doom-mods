@@ -126,7 +126,7 @@ class ::ScanEventHandler : StaticEventHandler {
     ThinkerIterator it = ThinkerIterator.Create("Actor", Thinker.STAT_DEFAULT);
     Actor thing;
 
-    while (thing = Actor(it.next())) {
+    foreach (Actor thing : ThinkerIterator.Create("Actor", Thinker.STAT_DEFAULT)) {
       if (thing.bISMONSTER && !thing.bCORPSE) {
         ScanOutputMonster(thing);
       } else if (ItemCategory(thing) != "") {
