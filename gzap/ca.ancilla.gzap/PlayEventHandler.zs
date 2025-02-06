@@ -8,51 +8,73 @@
 #namespace GZAP;
 #debug on;
 
-#include "./Checklist.zsc"
-#include "./Keyring.zsc"
+#include "./PerMapInfo.zsc"
 
 class ::PlayEventHandler : StaticEventHandler {
   int skill;
-  ::Keyring keyrings[MAXPLAYERS];
-  // TODO: probably replace this with something that combines:
-  // - the checklist from the data package
-  // - the subring from the player's keyring, and
-  // - the LevelInfo
-  // since we often need all of them in the same place
-  Map<string, ::CheckList> map_to_checks;
+  bool early_exit;
+  Map<string, ::PerMapInfo> maps;
+  // Maps AP item IDs to gzDoom type names like RocketLauncher
+  Map<int, string> item_apids;
+  // Maps AP item IDs to internal updates to the map structure.
+  // Fields set in this are copied to the canonical ::PerMapInfo for that map.
+  Map<int, ::PerMapInfo> map_apids;
+
+  override void OnRegister() {
+    console.printf("PlayEventHandler starting up");
+  }
 
   void RegisterSkill(int skill) {
     self.skill = skill;
   }
 
-  void RegisterMap(string map) {
-    ::Keyring.Get(consoleplayer).GetRing(map);
-    return;
+  void RegisterMap(string map, uint access_apid, uint map_apid, uint clear_apid) {
+    console.printf("Registering map: %s", map);
+    maps.Insert(map, ::PerMapInfo(new("::PerMapInfo")));
+    // We need to bind these to the map name somehow, oops.
+    if (access_apid) map_apids.Insert(access_apid, ::PerMapInfo.Create("", true, false, false));
+    if (map_apid) map_apids.Insert(map_apid, ::PerMapInfo.Create("", false, true, false));
+    if (clear_apid) map_apids.Insert(clear_apid, ::PerMapInfo.Create("", false, false, true));
   }
 
-  void RegisterKey(string map, string key) {
-    return;
+  void RegisterKey(string map, string key, uint apid) {
+    maps.Get(map).RegisterKey(key);
+    map_apids.Insert(apid, ::PerMapInfo.Create(key, false, false, false));
+  }
+
+  void RegisterItem(string typename, uint apid) {
+    item_apids.Insert(apid, typename);
   }
 
   void RegisterCheck(string map, uint apid, string name, bool progression, Vector3 pos, float angle) {
-    let checklist = map_to_checks.Get(map);
-    if (!checklist) {
-      checklist = new("::CheckList");
-      map_to_checks.Insert(map, checklist);
-    }
-    checklist.AddCheck(apid, name, progression, pos, angle);
+    maps.Get(map).RegisterCheck(apid, name, progression, pos, angle);
   }
+
+  // void GrantItem(uint apid) {
+  //   if (item_apids.CheckKey(apid)) {
+  //     // plop the item into the player's inventory
+  //     // only valid once in game, so this can't be part of the data package!
+  //   } else if (map_apids.CheckKey(apid)) {
+  //     let new_info = map_apids.Get(apid);
+  //     let info = maps.Get() //....we need to get the map name from map_apids...
+
+  //     foreach (k,v : new_info.keys) {
+  //       // also need to print a nice message for the player
+  //       // maybe we need something other than PerMapInfo so we can store the item name?
+  //       info.AddKey(k);
+  //     }
+  //     info.access = info.access || new_info.access;
+  //     info.
+  //   }
+  //   let info,has_info = map_apids.GetI
+  // }
 
   ::CheckInfo FindCheck(Actor thing) {
-    let checklist = map_to_checks.Get(level.MapName);
-    if (!checklist) return null;
-    return checklist.FindCheck(thing.pos, thing.angle);
+    return GetCurrentMapInfo().FindCheck(thing.pos, thing.angle);
   }
 
-  int CountChecks(string map) const {
-    let checklist = map_to_checks.Get(map);
-    if (!checklist) return 0;
-    return checklist.checks.Size();
+  ::PerMapInfo GetCurrentMapInfo() {
+    return maps.Get(level.MapName);
   }
 
   // Used by the generated data package to get a handle to the event handler
@@ -61,34 +83,24 @@ class ::PlayEventHandler : StaticEventHandler {
     return ::PlayEventHandler(Find("::PlayEventHandler"));
   }
 
+  static clearscope ::PerMapInfo GetMapInfo(string map) {
+    return ::PlayEventHandler.Get().maps.GetIfExists(map);
+  }
+
   override void WorldLoaded(WorldEvent evt) {
-    for (uint p = 0; p < MAXPLAYERS; ++p) {
-      if (!playeringame[p]) continue;
-
-      // This has the effect that if we reload a game, we end up with the version
-      // of the keyring in the player's inventory, even if they reloaded to an
-      // earlier state.
-      // That's ok, because as soon as we sync again with Archipelago, it'll get
-      // updated to match the latest state.
-      let pawn = players[p].mo;
-      let keyring = ::Keyring(pawn.FindInventory("::Keyring"));
-      if (!keyring) {
-        keyrings[p] = ::Keyring(pawn.GiveInventoryType("::Keyring"));
-      } else {
-        keyrings[p] = keyring;
-      }
-      // TEST CODE DO NOT EAT
-      keyrings[p].MarkMapped("MAP02");
-      keyrings[p].MarkChecked("MAP01", 2);
-      // END TEST CODE
-
-      keyrings[p].UpdateInventory();
+    if (level.MapName == "GZAPHUB") {
+      // TODO: if the player tries to close this in the hub, immediately reopen it
+      Menu.SetMenu("ArchipelagoLevelSelectMenu");
+      return;
     }
 
+    early_exit = false;
     foreach (Actor thing : ThinkerIterator.Create("Actor", Thinker.STAT_DEFAULT)) {
       let info = FindCheck(thing);
-      if (info && !IsChecked(info)) {
-        thing.Destroy();
+      if (!info) continue;  // No check corresponds to this actor.
+
+      thing.Destroy();
+      if (!info.checked) {
         ::CheckPickup check = ::CheckPickup(Actor.Spawn("::CheckPickup", info.pos));
         check.apid = info.apid;
         check.name = info.name;
@@ -97,40 +109,25 @@ class ::PlayEventHandler : StaticEventHandler {
     }
   }
 
-  // FIXME: not multiplayer safe
-  bool IsChecked(::CheckInfo info) {
-    return ::Keyring.Get(consoleplayer).IsChecked(level.MapName, info.apid);
-  }
-
   override void WorldUnloaded(WorldEvent evt) {
     if (evt.isSaveGame) return;
+    if (self.early_exit) return;
+    if (level.LevelNum == 0) return;
 
-    for (uint p = 0; p < MAXPLAYERS; ++p) {
-      if (!playeringame[p]) continue;
-      keyrings[p].MarkCleared(level.MapName);
-      Menu.SetMenu("ArchipelagoLevelSelectMenu");
-      // FIXME: this lets us select a level, but since we're in the intermission
-      // screen by the time it happens, it then proceeds to the next level anyways
-      // Probably what we want to actually do is introduce a tiny one-room level
-      // into the runtime pk3, and then since we're regenerating the mapinfo anyways,
-      // make that the nextlevel of every individual level, so completing a level
-      // brings you back there -- and then in WorldLoaded if we're in that level
-      // we open the menu.
-      // This also means that on entering a level, we can set a flag bit; on
-      // returning to the hub from the menu, we can clear it; and on entering
-      // the hub, we check if it's set and if so, mark that level as complete.
-    }
+    GetCurrentMapInfo().cleared = true;
   }
 
   override void NetworkProcess(ConsoleEvent evt) {
     if (evt.name == "ap-level-select") {
+      console.printf("%s %d", evt.name, evt.args[0]);
       let idx = evt.args[0];
-      let info = LevelInfo.FindLevelByNum(idx);
+      let info = LevelInfo.GetLevelInfo(idx);
       if (!info) {
         // oh no, no level of that number, not allowed
         console.printf("No level with number %d found.", idx);
         return;
       }
+      self.early_exit = true;
       level.ChangeLevel(info.MapName, 0, CHANGELEVEL_NOINTERMISSION, skill);
     }
   }

@@ -5,3 +5,8 @@ OptionMenu "ArchipelagoLevelSelectMenu"
   linespacing 10 */
   /* Title "$GZAP_LEVEL_SELECT_MENU_TITLE" */
 }
+
+AddListMenu "MainMenu" before "PlayerclassMenu"
+{
+  ArchipelagoItem "Archipelago", "a", "PlayerclassMenu"
+}

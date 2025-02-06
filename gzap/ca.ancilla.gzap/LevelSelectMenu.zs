@@ -5,9 +5,20 @@
 
 #namespace GZAP;
 
-#include "./Keyring.zsc"
+// Shim between the main menu and the level select menu.
+// If activated before game initialization, just forwards to the normal new-game
+// menu. Otherwise, opens the AP level select menu.
+class ListMenuItemArchipelagoItem : ListMenuItemTextItem {
+  override bool Activate() {
+    if (level.MapName == "") {
+      return super.Activate();
+    } else {
+      Menu.SetMenu("ArchipelagoLevelSelectMenu");
+      return true;
+    }
+  }
+}
 
-// Ok I really need to use TooltipOptionMenu for this instead, ListMenu is a hot mess
 class ::LevelSelectMenu : ::TooltipOptionMenu {
   // override int GetIndent() {
   //   return super.GetIndent() - 200 * CleanXFac_1;
@@ -15,21 +26,33 @@ class ::LevelSelectMenu : ::TooltipOptionMenu {
 
   override void Init(Menu parent, OptionMenuDescriptor desc) {
     super.InitDynamic(parent, desc);
-    TooltipGeometry(0.5, 1.0, 0.75, 1.0, 0.5);
+    TooltipGeometry(0.0, 0.5, 0.2, 1.0, 0.5);
     TooltipAppearance("", "", "tfttbg");
 
     PushText("\nLevel Select\n", Font.CR_WHITE);
-    PushKeyValueText("map", "clear? checks am keys");
+    PushKeyValueOption("Return to Hub", "", "ap-level-select", HubIndex());
+    PushText("\n");
 
-    // TODO: should we use FindLevelByNum() here instead? That's guaranteed to
-    // return levels in "proper" order, but if they're discontiguous we have a
-    // problem.
-    // TODO: Only return levels that are in the data package.
     for (int i = 0; i < LevelInfo.GetLevelInfoCount(); ++i) {
       let info = LevelInfo.GetLevelInfo(i);
+      // Sometimes we get MAPINFO entries that don't actually exist.
       if (!info || !LevelInfo.MapExists(info.MapName)) continue;
-      PushLevelSelector(info);
+
+      let apinfo = ::PlayEventHandler.GetMapInfo(info.MapName);
+      // Skip any levels not listed in the data package and initialized with
+      // RegisterMap().
+      if (!apinfo) continue;
+
+      PushLevelSelector(i, info, apinfo);
     }
+  }
+
+  int HubIndex() {
+    for (int i = 0; i < LevelInfo.GetLevelInfoCount(); ++i) {
+      let info = LevelInfo.GetLevelInfo(i);
+      if (info && info.MapName == "GZAPHUB") return i;
+    }
+    return 0;
   }
 
   void PushText(string text, uint colour = Font.CR_WHITE) {
@@ -50,41 +73,17 @@ class ::LevelSelectMenu : ::TooltipOptionMenu {
     mDesc.mItems.Push(new("::KeyValueOption").Init(key, value, command, index, idle, hot));
   }
 
-  void PushLevelSelector(LevelInfo info) {
-    let ring = ::Keyring.Get(consoleplayer).GetRingIfExists(info.MapName);
-    PushKeyValueOption(
-      FormatLevelKey(info),
-      FormatLevelValue(info, ring),
-      "ap-level-select",
-      info.LevelNum
-    );
-    // PushTooltip(...level tooltip info goes here...)
-  }
-
-  // Display level as:
-  // *  N/M  MAP  BkYkRk  BsYsRs  MAP01 | Entryway
-  // TODO: is there a way we can scavenge code from ListMenuItemPatchItem to
-  // display icons for level clear, have automap, and which keys we have?
-  // TODO: we need to know (from the data package?) which keys the level could
-  // potentially have, so that we know which ones to display as greyed out
-  string FormatLevelKey(LevelInfo info) {
-    return string.format("%s (%s)", info.LookupLevelName(), info.MapName);
-  }
-
-  string FormatLevelValue(LevelInfo info, ::Subring ring) {
-    if (!ring) return "NO KEYRING";
-    return string.format(
-      "%5s  %3d/%-3d  %3s  %d",
-      ring.cleared ? "CLEAR" : "",
-      ring.checked.CountUsed(), ::PlayEventHandler.Get().CountChecks(info.MapName),
-      ring.automap ? "\c[GREEN]MAP" : "\c[DARKGREY]MAP",
-      ring.keys.Size()
-    );
+  void PushLevelSelector(int idx, LevelInfo info, ::PerMapInfo apinfo) {
+    mDesc.mItems.Push(new("::LevelSelector").Init(idx, info, apinfo));
   }
 
   override bool MenuEvent(int key, bool fromController) {
     if (key == Menu.MKey_Back) {
       // TODO: What happens if they exit out of the level select?
+      // We should probably permit this, *but* if they try to enter normal gameplay
+      // in the hub, we kick them back to the menu.
+      // Not sure how to do that without an EventHandler that just opens the menu
+      // OnTick, which is kind of gross.
     }
 
     return super.MenuEvent(key, fromController);
@@ -119,7 +118,9 @@ class ::KeyValueOption : ::KeyValueText {
   uint idle_colour;
   uint hot_colour;
 
-  ::KeyValueOption Init(string key, string value, string command_, int index_, uint idle, uint hot) {
+  ::KeyValueOption Init(
+      string key, string value, string command_,
+      int index_, uint idle = Font.CR_DARKRED, uint hot = Font.CR_RED) {
     super.Init(key, value, idle);
     command = command_;
     index = index_;
@@ -143,5 +144,52 @@ class ::KeyValueOption : ::KeyValueText {
     EventHandler.SendNetworkEvent(command, index);
     Menu.GetCurrentMenu().Close();
     return true;
+  }
+}
+
+class ::LevelSelector : ::KeyValueOption {
+  bool accessible;
+
+  ::LevelSelector Init(int idx, LevelInfo info, ::PerMapInfo apinfo) {
+    accessible = apinfo.access;
+    super.Init(
+      FormatLevelKey(info, apinfo),
+      FormatLevelValue(info, apinfo),
+      "ap-level-select", idx);
+    return self;
+  }
+
+  override bool Selectable() {
+    return accessible;
+  }
+
+  string FormatLevelKey(LevelInfo info, ::PerMapInfo apinfo) {
+    if (!Selectable()) {
+      return string.format("\c[BLACK]%s (%s)", info.LookupLevelName(), info.MapName);
+    }
+    return string.format("%s%s (%s)",
+      apinfo.cleared ? "\c[GOLD]" : "",
+      info.LookupLevelName(),
+      info.MapName);
+  }
+
+  string FormatLevelValue(LevelInfo info, ::PerMapInfo apinfo) {
+    if (!Selectable()) {
+      return string.format(
+        "\c[BLACK][%3d/%-3d checks]  [%d/%d keys]  [%s]  [locked]",
+        apinfo.ChecksFound(), apinfo.ChecksTotal(),
+        apinfo.KeysFound(), apinfo.KeysTotal(),
+        apinfo.automap ? "map" : "   "
+      );
+    }
+    return string.format(
+      "%s[%3d/%-3d checks]  %s[%d/%d keys]  %s  %s",
+      apinfo.ChecksFound() == apinfo.ChecksTotal() ? "\c[GOLD]" : "\c-",
+      apinfo.ChecksFound(), apinfo.ChecksTotal(),
+      apinfo.KeysFound() == apinfo.KeysTotal() ? "\c[GOLD]" : "\c-",
+      apinfo.KeysFound(), apinfo.KeysTotal(),
+      apinfo.automap ? "\c[GREEN][map]" : "\c[BLACK][   ]",
+      apinfo.cleared ? "\c[GOLD][done]" : "\c[GREEN][open]"
+    );
   }
 }

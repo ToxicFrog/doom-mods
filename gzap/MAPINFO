@@ -1,6 +1,21 @@
 GameInfo {
-  AddEventHandlers = "GZAP_ScanEventHandler", "GZAP_PlayEventHandler"
+  AddEventHandlers = "GZAP_ScanEventHandler", "GZAP_PlayEventHandler", "GZAP_DataPackageEventHandler"
 }
+
+map gzaphub "Archipelago Hub"
+{
+	next = "GZAPHUB"
+	secretnext = "GZAPHUB"
+	sky1 = "SKY1"
+	music = "$MUSIC_RUNNIN"
+}
+
+clearepisodes
+episode gzaphub
+{
+  name = "Archipelago Hub"
+}
+
 
 // TODO: figure out some way to dynamically put all maps into the same cluster.
 // This is hard because the contents of a MAPINFO *completely override* any

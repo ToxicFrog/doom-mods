@@ -1,7 +1,7 @@
 NAME=GZAP
 VERSION=0.0.0
-LUMPS=MAPINFO MENUDEF zscript.txt *.md UMAPINFO
-LUMPS=sprites textures
+LUMPS=MAPINFO MENUDEF zscript.txt *.md
+LUMPS+=sprites textures maps
 ZSDIR=ca.ancilla.gzap
 LIBTTM=${TOPDIR}/libtooltipmenu/ca.ancilla.libtooltipmenu
 LIBTTM_PREFIX=GZAP
