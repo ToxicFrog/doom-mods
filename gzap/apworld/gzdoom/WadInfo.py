@@ -2,7 +2,7 @@ import settings
 import Utils
 import json
 import os
-from typing import Any, Dict, List, NamedTuple, Set
+from typing import Any, Dict, List, NamedTuple, Optional, Set
 from BaseClasses import ItemClassification
 
 # A Doom position -- 3d coordinates + yaw.
@@ -26,12 +26,13 @@ class WadItem:
     level they're found in, like keycards; those get a different WadItem for
     each level they appear in.
     """
-    id: int        # AP item ID, assigned by the caller
+    id: Optional[int] = None        # AP item ID, assigned by the caller
     category: str  # Randomization category (e.g. key, weapon)
     typename: str  # gzDoom class name
     tag: str       # User-visible name *in gzDoom*
     name: str      # User-visible name *in Archipelago*
     count: int     # How many are in the item pool
+    map: Optional[str]
 
     def __init__(self, map, category, typename, tag):
         self.category = category
@@ -39,6 +40,7 @@ class WadItem:
         self.tag = tag
         self.count = 1
         if category == "key" or category == "map" or category == "token":
+            self.map = map
             self.name = f"{tag} ({map})"
         else:
             # Potential problem here -- what if we have multiple classes with
@@ -71,6 +73,10 @@ class WadItem:
             or self.category == "tool"
         )
 
+    def should_include(self) -> bool:
+        """True if this item should be included in the pool."""
+        return self.can_replace() and self.category != "map"
+
 
 class WadLocation:
     """
@@ -85,7 +91,7 @@ class WadLocation:
     map based on bounding box, then disambiguates based on compass direction and distance relative to
     center.
     """
-    id: int
+    id: Optional[int] = None
     name: str
     category: str
     map: str
@@ -125,6 +131,11 @@ class WadMap(NamedTuple):
     skill: int
     keyset: Set[WadItem]
     locations: List[WadLocation]
+    # Item IDs for the various tokens that unlock or mark the level as finished
+    access_id: int
+    automap_id: int
+    clear_id: int
+    exit_id: int
 
     # TODO: we should also take weapons into account here, with harder levels
     # expecting the player to have more/bigger guns, or perhaps basing it on
@@ -140,7 +151,8 @@ class WadMap(NamedTuple):
 
 
 class WadInfo:
-    last_id = 0
+    last_id: int = 0
+    skill: int
     maps: Dict[str,WadMap] = {}
     items_by_name: Dict[str,WadItem] = {}
     locations_by_name: Dict[str,WadLocation] = {}
@@ -151,17 +163,29 @@ class WadInfo:
         self.last_id += 1
         return self.last_id
 
+    def all_maps(self) -> List[WadMap]:
+        return self.maps.values()
+
+    def all_locations(self) -> List[WadLocation]:
+        return self.locations_by_name.values()
+
+    def all_items(self) -> List[WadItem]:
+        return self.items_by_name.values()
+
     def starting_items(self) -> List[WadItem]:
         return [
             self.items_by_name[self.first_map.access_token_name()]
         ] + list(self.first_map.keyset)
 
     def new_mapinfo(self, json: Dict[str,str]) -> None:
-        # TODO: in refinement mode, we need to check that the skill level being
-        # played is the same as what was originally scanned.
+        self.skill = json["skill"]
         map = json["map"]
         if map not in self.maps:
-            self.maps[map] = WadMap(keyset=set(), locations=[], **json)
+            self.maps[map] = WadMap(
+                keyset=set(), locations=[],
+                access_id=self.get_id(), automap_id=self.get_id(),
+                clear_id=self.get_id(), exit_id=self.get_id(),
+                **json)
         else:
             self.maps[map].title = json["title"]
             self.maps[map].secret = json["secret"]
@@ -191,7 +215,8 @@ class WadInfo:
         if not item.can_replace():
             return
 
-        self.add_item(map, item)
+        if item.should_include():
+            self.add_item(map, item)
         self.new_location(map, item, position)
 
     def add_item(self, map: str, item: WadItem) -> None:
@@ -199,7 +224,7 @@ class WadInfo:
         # it in the lookup table, otherwise update the count for the existing
         # WadItem.
         if item.name not in self.items_by_name:
-            item.id = self.get_id()
+            item.id = item.id or self.get_id()
             self.items_by_name[item.name] = item
         else:
             item = self.items_by_name[item.name]
@@ -207,7 +232,6 @@ class WadInfo:
 
         if item.category == "key":
             self.maps[map].keyset.add(item)
-
 
     def new_location(self, map: str, item: WadItem, json: Dict[str, str]) -> None:
         """
@@ -228,7 +252,7 @@ class WadInfo:
 
     def add_location(self, location: WadLocation) -> None:
         # Caller has already done position duplicate checking
-        location.id = self.get_id()
+        location.id = location.id or self.get_id()
         if location.name in self.locations_by_name:
             location.name = f"{location.name} <{location.id}>"
 
@@ -244,17 +268,26 @@ class WadInfo:
         At the moment this means creating the synthetic level-exit and level-cleared locations and items,
         then pessimistically initializing the keyset for each location to match the keys of the enclosing map.
         """
-        for map in self.maps:
-            map_access = WadItem(map=map, category="token", typename="GZAP_LevelAccessToken", tag="Level Access")
-            map_clear = WadItem(map=map, category="token", typename="GZAP_LevelClearToken", tag="Level Clear")
-            map_exit = WadLocation(map, map_clear, None)
-            map_exit.item = map_clear
-            map_exit.name = f"{map} - Exit"
-            self.add_item(map, map_access)
-            self.add_item(map, map_clear)
+        for map in self.all_maps():
+            access_token = WadItem(map=map.map, category="token", typename="", tag="Level Access")
+            access_token.id = map.access_id
+            self.add_item(map.map, access_token)
+
+            map_token = WadItem(map=map.map, category="map", typename="", tag="Automap")
+            map_token.id = map.automap_id
+            self.add_item(map.map, map_token)
+
+            clear_token = WadItem(map=map.map, category="token", typename="", tag="Level Clear")
+            clear_token.id = map.clear_id
+            self.add_item(map.map, clear_token)
+
+            map_exit = WadLocation(map.map, clear_token, None)
+            map_exit.id = map.exit_id
+            map_exit.item = clear_token
+            map_exit.name = f"{map.map} - Exit"
             self.add_location(map_exit)
 
-        for loc in self.locations_by_name.values():
+        for loc in self.all_locations():
             loc.keyset = self.maps[loc.map].keyset.copy()
 
 
@@ -265,12 +298,6 @@ class WadInfo:
         This computes the region-to-location map for each level based on the final keysets.
         """
         pass
-        # for loc in self.locations_by_name.values():
-        #     map = self.maps[loc.map]
-        #     map.locations.append(loc)
-            # if loc.keyset not in map.regions:
-            #     map.regions[loc.keyset] = set()
-            # map.regions[loc.keyset].add(loc)
 
 
 def get_wadinfo_path(file_name: str = "") -> str:

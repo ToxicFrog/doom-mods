@@ -1,0 +1,39 @@
+version "4.10.0"
+
+class GZAP_DataPackageEventHandler : StaticEventHandler {
+  override void OnRegister() {
+    console.printf("Initializing Archipelago data package.");
+    console.printf("This was generated from seed %s for %s.", "{{seed}}", "{{player}}");
+    let peh = GZAP_PlayEventHandler.Get();
+
+    peh.RegisterSkill({{skill}});
+
+    {% for map in maps %}
+      console.printf("Registering map: %s", "{{map.map}}");
+      peh.RegisterMap("{{map.map}}", {{map.access_id}}, {{map.automap_id}}, {{map.clear_id}}, {{map.exit_id}});
+      {% for check in map.locations %}
+        {% if check.pos %}
+        peh.RegisterCheck("{{map.map}}", {{check.id}}, "{{check.name}}", {{progression(check.id)}}, ({{check.pos.x}},{{check.pos.y}},{{check.pos.z}}), {{check.pos.angle}});
+        {% endif %}
+      {% endfor %}
+    {% endfor %}
+
+    console.printf("Registering all items, keys, and tokens.");
+    {% for item in items %}
+      {% if item.map and item.typename %}
+      peh.RegisterKey("{{item.map}}", "{{item.typename}}", {{item.id}});
+      {% elif item.typename %}
+      peh.RegisterItem("{{item.typename}}", {{item.id}});
+      {% endif %}
+    {% endfor %}
+    // Access codes, automaps, and clear tokens are handled specially and thus
+    // not registered here.
+
+    console.printf("Granting starting inventory.");
+    {% for id in starting_items %}
+      peh.GrantItem({{id}});
+    {% endfor %}
+
+    console.printf("Archipelago data package initialized.");
+  }
+}

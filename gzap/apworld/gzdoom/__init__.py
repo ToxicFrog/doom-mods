@@ -4,6 +4,7 @@ import typing
 from typing import Any, Dict, List
 
 import settings
+import jinja2
 from BaseClasses import CollectionState, Item, ItemClassification, Location, MultiWorld, Region, Tutorial
 from worlds.AutoWorld import WebWorld, World
 # from . import Items, Locations, Maps, Regions, Rules
@@ -15,16 +16,20 @@ logger = logging.getLogger("gzDoom")
 
 class GZDoomLocation(Location):
     game: str = "gzDoom"
+    wadlocation: WadLocation
 
     def __init__(self, player: int, loc: WadLocation, region: Region) -> None:
         super().__init__(player=player, name=loc.name, address=loc.id, parent=region)
         self.access_rule = loc.access_rule(player)
+        self.wadlocation = loc
 
 class GZDoomItem(Item):
     game: str = "gzDoom"
+    waditem: WadItem
 
     def __init__(self, item: WadItem, player: int) -> None:
         super().__init__(name=item.name, classification=item.classification(), code=item.id, player=player)
+        self.waditem = item
 
 
 class GZDoomWeb(WebWorld):
@@ -77,8 +82,9 @@ class GZDoomWorld(World):
     location_count: int = 0
 
     # Used by the caller
-    item_name_to_id = {}
-    location_name_to_id = {}
+    item_name_to_id: Dict[str, int] = {}
+    location_name_to_id: Dict[str, int] = {}
+    location_id_to_name: Dict[int, str]
 
     def __init__(self, multiworld: MultiWorld, player: int):
         self.included_episodes = [1, 1, 1, 0]
@@ -104,6 +110,10 @@ class GZDoomWorld(World):
         }
         self.location_name_to_id = {
             loc.name: loc.id
+            for loc in self.wadinfo.locations_by_name.values()
+        }
+        self.location_id_to_name = {
+            loc.id: loc.name
             for loc in self.wadinfo.locations_by_name.values()
         }
 
@@ -179,7 +189,7 @@ class GZDoomWorld(World):
         # overall victory condition here.
         self.multiworld.completion_condition[self.player] = lambda state: self.mission_complete(state)
 
-    def generate_output(self, path):
+    def generate_output_old(self, path):
         print("# GZAP output generation", path)
         print("## Metadata")
         print("seed:", self.multiworld.seed_name)
@@ -193,3 +203,49 @@ class GZDoomWorld(World):
             aploc = self.multiworld.get_location(loc.name, self.player)
             if aploc.item:
                 print("  ->  ", aploc.item.code, aploc.item.name)
+
+    def generate_output(self, path):
+        self.generate_output_old(path)
+        def progression(id):
+            # get location from ID
+            name = self.location_id_to_name[id]
+            loc = self.multiworld.get_location(name, self.player)
+            if loc.item and (loc.item.classification & ItemClassification.progression != 0):
+                return "true"
+            else:
+                return "false"
+
+        # TODO: install MAPINFO lump
+        data = {
+            "seed": self.multiworld.seed_name,
+            "player": self.multiworld.player_name[self.player],
+            "skill": self.wadinfo.skill,
+            "maps": [
+              map for map in self.wadinfo.maps.values()
+            ],
+            "items": [
+              item for item in self.wadinfo.items_by_name.values()
+            ],
+            "starting_items": [
+              item.code for item in self.multiworld.precollected_items[self.player]
+            ],
+            "progression": progression
+        }
+
+        env = jinja2.Environment(
+            loader=jinja2.PackageLoader("worlds.gzdoom"),
+            trim_blocks=True,
+            lstrip_blocks=True)
+        template = env.get_template("zscript.jinja")
+        zscript = template.render(**data)
+        print(zscript)
+        with open(os.path.join(path, "zscript.txt"), "w") as lump:
+            lump.write(zscript)
+
+        with open(os.path.join(path, "MAPINFO"), "w") as lump:
+            lump.write(
+                """
+                  GameInfo {
+                    AddEventHandlers = "GZAP_DataPackageEventHandler"
+                  }
+                """)
