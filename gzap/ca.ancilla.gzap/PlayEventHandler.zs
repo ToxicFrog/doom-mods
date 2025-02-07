@@ -28,21 +28,22 @@ class ::PlayEventHandler : StaticEventHandler {
     self.skill = skill;
   }
 
-  void RegisterMap(string map, uint access_apid, uint map_apid, uint clear_apid) {
+  void RegisterMap(string map, uint access_apid, uint map_apid, uint clear_apid, uint exit_apid) {
     console.printf("Registering map: %s", map);
-    maps.Insert(map, ::PerMapInfo(new("::PerMapInfo")));
+    maps.Insert(map, ::PerMapInfo.Create(map, exit_apid));
     // We need to bind these to the map name somehow, oops.
-    if (access_apid) map_apids.Insert(access_apid, ::PerMapInfo.Create("", true, false, false));
-    if (map_apid) map_apids.Insert(map_apid, ::PerMapInfo.Create("", false, true, false));
-    if (clear_apid) map_apids.Insert(clear_apid, ::PerMapInfo.Create("", false, false, true));
+    if (access_apid) map_apids.Insert(access_apid, ::PerMapInfo.CreatePartial(map, "", true, false, false));
+    if (map_apid) map_apids.Insert(map_apid, ::PerMapInfo.CreatePartial(map, "", false, true, false));
+    if (clear_apid) map_apids.Insert(clear_apid, ::PerMapInfo.CreatePartial(map, "", false, false, true));
   }
 
   void RegisterKey(string map, string key, uint apid) {
     maps.Get(map).RegisterKey(key);
-    map_apids.Insert(apid, ::PerMapInfo.Create(key, false, false, false));
+    map_apids.Insert(apid, ::PerMapInfo.CreatePartial(map, key, false, false, false));
   }
 
   void RegisterItem(string typename, uint apid) {
+    console.printf("RegisterItem: %s %d", typename, apid);
     item_apids.Insert(apid, typename);
   }
 
@@ -50,26 +51,41 @@ class ::PlayEventHandler : StaticEventHandler {
     maps.Get(map).RegisterCheck(apid, name, progression, pos, angle);
   }
 
-  // void GrantItem(uint apid) {
-  //   if (item_apids.CheckKey(apid)) {
-  //     // plop the item into the player's inventory
-  //     // only valid once in game, so this can't be part of the data package!
-  //   } else if (map_apids.CheckKey(apid)) {
-  //     let new_info = map_apids.Get(apid);
-  //     let info = maps.Get() //....we need to get the map name from map_apids...
+  void GrantItem(uint apid) {
+    if (item_apids.CheckKey(apid)) {
+      // plop the item into the player's inventory
+      // only valid once in game, so this can't be part of the data package!
+      console.printf("Attempt to grant item %d (%s) which is only available when in-game!",
+          apid, item_apids.Get(apid));
+    } else if (map_apids.CheckKey(apid)) {
+      let new_info = map_apids.Get(apid);
+      let info = maps.Get(new_info.map);
 
-  //     foreach (k,v : new_info.keys) {
-  //       // also need to print a nice message for the player
-  //       // maybe we need something other than PerMapInfo so we can store the item name?
-  //       info.AddKey(k);
-  //     }
-  //     info.access = info.access || new_info.access;
-  //     info.
-  //   }
-  //   let info,has_info = map_apids.GetI
-  // }
+      foreach (k,v : new_info.keys) {
+        console.printf("Gained %s (%s)", k, new_info.map);
+        info.AddKey(k);
+      }
+      if (new_info.access) {
+        console.printf("Gained Level Access (%s)", new_info.map);
+        info.access = true;
+      }
+      if (new_info.automap) {
+        console.printf("Gained Automap (%s)", new_info.map);
+        info.automap = true;
+      }
+      if (new_info.cleared) {
+        console.printf("Level Clear: %s!", new_info.map);
+        info.cleared = true;
+      }
+      // FIXME: not multiplayer safe
+      info.UpdateInventory(players[consoleplayer].mo);
+    }
+  }
 
   ::CheckInfo FindCheck(Actor thing) {
+    // Never replace a check with another check, that's a fast trip to
+    // infinite loop town.
+    if (thing is "::CheckPickup") return null;
     return GetCurrentMapInfo().FindCheck(thing.pos, thing.angle);
   }
 
@@ -97,7 +113,10 @@ class ::PlayEventHandler : StaticEventHandler {
     early_exit = false;
     foreach (Actor thing : ThinkerIterator.Create("Actor", Thinker.STAT_DEFAULT)) {
       let info = FindCheck(thing);
-      if (!info) continue;  // No check corresponds to this actor.
+      if (!info) {
+        console.printf("No check for %s @ (%d,%d,%d)", thing.GetTag(), thing.pos.x, thing.pos.y, thing.pos.z);
+        continue;  // No check corresponds to this actor.
+      }
 
       thing.Destroy();
       if (!info.checked) {
@@ -114,7 +133,14 @@ class ::PlayEventHandler : StaticEventHandler {
     if (self.early_exit) return;
     if (level.LevelNum == 0) return;
 
-    GetCurrentMapInfo().cleared = true;
+    CheckLocation(GetCurrentMapInfo().exit_id, string.format("%s - Exit", level.MapName));
+    // GetCurrentMapInfo().cleared = true;
+  }
+
+  void CheckLocation(int apid, string name) {
+    console.printf("AP-CHECK { \"id\": %d, \"name\": \"%s\" }",
+      apid, name);
+    GetCurrentMapInfo().ClearCheck(apid);
   }
 
   override void NetworkProcess(ConsoleEvent evt) {

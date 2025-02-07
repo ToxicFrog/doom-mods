@@ -63,8 +63,7 @@ class ::CheckPickup : ScoreItem {
   }
 
   override bool TryPickup (in out Actor toucher) {
-    console.printf("AP-CHECK { \"id\": %d, \"name\": \"%s\" }",
-      self.apid, self.name);
+    ::PlayEventHandler.Get().CheckLocation(self.apid, self.name);
     self.marker.Destroy();
     return super.TryPickup(toucher);
   }

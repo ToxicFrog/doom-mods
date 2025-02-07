@@ -27,14 +27,24 @@ class ::CheckInfo {
 // can insert keys into the player's inventory.
 // TODO: should we hoist that into the PlayEventHandler and keep this data-scoped?
 class ::PerMapInfo play {
+  string map;
   Array<::CheckInfo> checks;
   Map<string, bool> keys;
   bool access;
   bool automap;
   bool cleared;
+  uint exit_id;
 
-  static ::PerMapInfo Create(string key, bool access, bool automap, bool cleared) {
+  static ::PerMapInfo Create(string map, uint exit_id) {
     let info = ::PerMapInfo(new("::PerMapInfo"));
+    info.map = map;
+    info.exit_id = exit_id;
+    return info;
+  }
+
+  static ::PerMapInfo CreatePartial(string map, string key, bool access, bool automap, bool cleared) {
+    let info = ::PerMapInfo(new("::PerMapInfo"));
+    info.map = map;
     if (key != "") info.keys.Insert(key, true);
     info.access = access;
     info.automap = automap;
@@ -54,9 +64,21 @@ class ::PerMapInfo play {
 
   ::CheckInfo FindCheck(Vector3 pos, float angle) {
     foreach (info : checks) {
+      // console.printf("Check.Eq? (%d, %d, %d, %d) == (%d, %d, %d, %d)",
+      //   pos.x, pos.y, pos.z, angle,
+      //   info.pos.x, info.pos.y, info.pos.z, info.angle);
       if (info.Eq(pos, angle)) return info;
     }
     return null;
+  }
+
+  void ClearCheck(uint apid) {
+    foreach (info: checks) {
+      if (info.apid == apid) {
+        info.checked = true;
+        return;
+      }
+    }
   }
 
   uint ChecksFound() const {
