@@ -99,6 +99,11 @@ class ::PlayEventHandler : StaticEventHandler {
         players[p].mo.A_SpawnItemEX(item_apids.Get(apid));
       }
     }
+
+    UpdatePlayerInventory();
+  }
+
+  void UpdatePlayerInventory() {
     for (int p = 0; p < MAXPLAYERS; ++p) {
       if (!playeringame[p]) continue;
       if (!players[p].mo) continue;
@@ -146,7 +151,7 @@ class ::PlayEventHandler : StaticEventHandler {
     foreach (Actor thing : ThinkerIterator.Create("Actor", Thinker.STAT_DEFAULT)) {
       let info = FindCheck(thing);
       if (!info) {
-        console.printf("No check for %s @ (%d,%d,%d)", thing.GetTag(), thing.pos.x, thing.pos.y, thing.pos.z);
+        // console.printf("No check for %s @ (%d,%d,%d)", thing.GetTag(), thing.pos.x, thing.pos.y, thing.pos.z);
         continue;  // No check corresponds to this actor.
       }
 
@@ -158,6 +163,8 @@ class ::PlayEventHandler : StaticEventHandler {
         check.progression = info.progression;
       }
     }
+
+    UpdatePlayerInventory();
   }
 
   override void WorldUnloaded(WorldEvent evt) {
