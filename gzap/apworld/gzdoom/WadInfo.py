@@ -165,7 +165,6 @@ class WadMap(NamedTuple):
     map: str
     title: str
     secret: bool
-    skill: int
     keyset: Set[WadItem]
     gunset: Set[WadItem]
     locations: List[WadLocation]
@@ -216,7 +215,6 @@ class WadInfo:
         ] + list(self.first_map.keyset)
 
     def new_mapinfo(self, json: Dict[str,str]) -> None:
-        self.skill = json["skill"]
         map = json["map"]
         if map not in self.maps:
             self.maps[map] = WadMap(
@@ -301,13 +299,15 @@ class WadInfo:
         if location.pos:
             self.locations_by_pos[location.pos] = location
 
-    def finalize_scan(self) -> None:
+    def finalize_scan(self, json) -> None:
         """
         Do postprocessing after the initial scan is completed but before play-guided refinement, if any.
 
         At the moment this means creating the synthetic level-exit and level-cleared locations and items,
         then pessimistically initializing the keyset for each location to match the keys of the enclosing map.
         """
+        self.skill = json["skill"]
+
         for map in self.all_maps():
             access_token = WadItem(map=map.map, category="token", typename="", tag="Level Access")
             access_token.id = map.access_id
@@ -364,7 +364,7 @@ def get_wadinfo(file_name: str = "") -> WadInfo:
             elif evt == "AP-ITEM":
                 info.new_item(payload)
             elif evt == "AP-SCAN-DONE":
-                info.finalize_scan()
+                info.finalize_scan(payload)
             else:
                 # Unsupported event type
                 raise

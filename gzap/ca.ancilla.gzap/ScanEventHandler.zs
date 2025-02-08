@@ -47,7 +47,8 @@ class ::ScanEventHandler : StaticEventHandler {
         queue.pop();
       }
     }
-    console.printf("AP-SCAN-DONE {}");
+    console.printf("AP-SCAN-DONE { \"skill\": %d }",
+      G_SkillPropertyInt(SKILLP_ACSReturn));
     console.printf("[Archipelago] No more maps to scan.");
     self.scan_enabled = false;
   }
@@ -116,9 +117,8 @@ class ::ScanEventHandler : StaticEventHandler {
 
     console.printf("[Archipelago] Beginning scan of %s", level.MapName);
     ScanOutput("MAPINFO", string.format(
-      "\"title\": \"%s\", \"secret\": %s, \"skill\": %d",
-      level.LevelName, bool2str(IsSecretLevel(level.MapName)),
-      G_SkillPropertyInt(SKILLP_ACSReturn)
+      "\"title\": \"%s\", \"secret\": %s",
+      level.LevelName, bool2str(IsSecretLevel(level.MapName))
     ));
 
     int monster_count = 0; int monster_hp = 0;
