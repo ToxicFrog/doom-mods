@@ -110,6 +110,13 @@ class ::PlayEventHandler : StaticEventHandler {
       return;
     }
 
+    // No mapinfo -- hopefully this just means it's a TITLEMAP added by a mod or
+    // something, and not that we're missing the data package or the player has
+    // been changemapping into places they shouldn't be.
+    if (!GetMapInfo(level.MapName)) return;
+
+    // TODO: if the player dies and reloads from start of level, checks that they
+    // have already collected respawn.
     early_exit = false;
     foreach (Actor thing : ThinkerIterator.Create("Actor", Thinker.STAT_DEFAULT)) {
       let info = FindCheck(thing);
