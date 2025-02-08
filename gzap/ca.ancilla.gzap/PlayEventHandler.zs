@@ -140,6 +140,7 @@ class ::PlayEventHandler : StaticEventHandler {
   void CheckLocation(int apid, string name) {
     console.printf("AP-CHECK { \"id\": %d, \"name\": \"%s\" }",
       apid, name);
+    EventHandler.SendNetworkEvent("ap-check", apid);
     GetCurrentMapInfo().ClearCheck(apid);
   }
 
