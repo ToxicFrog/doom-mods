@@ -138,7 +138,7 @@ class WadLocation:
 
             # Do we have enough guns?
             if len(player_guns) < len(map.gunset)//2:
-                print(f"Access denied: {self.name}: want {len(map.gunset)//2} of { {g.name for g in map.gunset} }, have {player_guns}")
+                # print(f"Access denied: {self.name}: want {len(map.gunset)//2} of { {g.name for g in map.gunset} }, have {player_guns}")
                 return False
 
             # Are we missing any keys?
@@ -147,13 +147,13 @@ class WadLocation:
                 # - the map only has one key, and
                 # - this is the location where that key would normally be found
                 if {self.orig_item} == map_keys:
-                    print(f"Access granted: {self.name} (single key location)")
+                    # print(f"Access granted: {self.name} (single key location)")
                     return True
                 else:
-                    print(f"Access denied: {self.name}: want { {k.name for k in self.keyset} }, have {player_keys}")
+                    # print(f"Access denied: {self.name}: want { {k.name for k in self.keyset} }, have {player_keys}")
                     return False
 
-            print(f"Access granted: {self.name}")
+            # print(f"Access granted: {self.name}")
             return True
 
         return rule

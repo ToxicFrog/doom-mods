@@ -1,3 +1,15 @@
+# TODO: add/implement options for:
+# - in-level/across-level monster shuffle
+# - in-level/across-level minor item shuffle
+# - automaps (at start, in pool, vanilla, none)
+# - behaviour on death
+# - levels to exclude from the randomizer
+# - levels to start with
+# - weapon logic
+# - win logic: all levels/N levels/all bosses/N bosses
+# - are bosses checks
+# - are exits checks (in addition to giving you a clear token)
+
 import typing
 
 from Options import PerGameCommonOptions, Choice, Toggle, DeathLink, StartInventoryPool, FreeText
