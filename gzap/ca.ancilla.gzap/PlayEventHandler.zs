@@ -88,6 +88,9 @@ class ::PlayEventHandler : StaticEventHandler {
       // TODO: try marking all inventory items as +INVBAR so the player can use
       // them when and as needed, or implementing our own inventory so that we
       // don't have to try to backpatch other mods' items.
+      // TODO: if we're granted a piece of equipment like a rocket launcher,
+      // and then die, the check is gone but so is the RL. We need a way to
+      // keep inventory on death somehow.
       console.printf("GrantItem %d (%s)", apid, item_apids.Get(apid));
       for (int p = 0; p < MAXPLAYERS; ++p) {
         if (!playeringame[p]) continue;
@@ -95,7 +98,6 @@ class ::PlayEventHandler : StaticEventHandler {
 
         players[p].mo.A_SpawnItemEX(item_apids.Get(apid));
       }
-
     }
     for (int p = 0; p < MAXPLAYERS; ++p) {
       if (!playeringame[p]) continue;
@@ -162,6 +164,7 @@ class ::PlayEventHandler : StaticEventHandler {
     if (evt.isSaveGame) return;
     if (self.early_exit) return;
     if (level.LevelNum == 0) return;
+    if (!GetMapInfo(level.MapName)) return;
 
     CheckLocation(GetCurrentMapInfo().exit_id, string.format("%s - Exit", level.MapName));
     // GetCurrentMapInfo().cleared = true;
