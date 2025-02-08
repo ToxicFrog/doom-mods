@@ -48,10 +48,13 @@ class ::CheckPickup : ScoreItem {
   ::CheckMapMarker marker;
 
   Default {
+    Inventory.PickupMessage "";
     +NOGRAVITY;
+    +RELATIVETOFLOOR;
     +COUNTITEM;
     +BRIGHT;
-    Radius 32;
+    +MOVEWITHSECTOR;
+    Height 10;
   }
 
   override void PostBeginPlay() {
