@@ -33,56 +33,18 @@ their coordinates + angle. :(
 
 ## Generation Mode
 
-We can re-use the "upload ROM" feature here by letting the player specify a
-reachability file output by the scan phase when generating. However, this means
-any settings we expose to the user at generation time have to be megawad-agnostic.
+Need to handle the MAPINFO here.
 
-The output is then a PK3 that includes the necessary support scripts and the
-generation data.
+Clustering for level persistence turns out to have some problems since there is
+no way (in zscript) to reset just one level in a cluster, so let's leave that
+alone for now.
 
-Initial design -- very quick and dirty. Each level is a single Region; each major
-item¹ in the level is a single Location. "Starting levels" are always considered
-in logic and the player starts with the access code for them and all keys contained
-therein.
-
-¹ major items are: keys, weapons, upgrades, powerups, tools, and maps. We may
-want to exclude a few things from randomization that levels are often planned
-around: ArtiFly, ArtiTorch, EnvironmentalSuit, Infrared, and RadSuit. Alternately,
-add them to the INVBAR and to the logic requirements (and remove inventory limits on them).
-
-For everything else, the region is not considered "in logic" until the player
-has the access code, all keys, AND all non-secret weapons in the level.
-
-Once region construction is complete, we then fill the item pool thusly:
-- access codes for all non-starting levels;
-- one of each weapon except the pistol and fists, which the player start with;
-- one of each key;
-- one of each computer map (marked USEFUL), unless the player opted to start with all maps;
-- all upgrades (marked USEFUL);
-- powerups, tools, big-health, big-ammo, and big-armour, scaled in proportion to
-  their original quantities to fill all remaining Locations.
-
-All the locations these things are taken from are considered "in logic".
-
-Probably want to rethink the scanner output to be item-first, rather than location-first,
-since that lets me make decisions about e.g. which items and locations are considered
-secrets more easily.
-
-So, as we process item/monster entries, our behaviour looks something like this:
-- if it's a new map, create a region for it
-- if it's something flagged don't-randomize, skip it
-- if it's randomize-in-level, add the item and location to a per-level *internal* pool,
-  to be emitted in the final pk3. Probably separate pools for items/monsters, or
-  maybe even subdivide pools more finely (small items vs. big, small/medium/big monsters).
-- if it's randomize-in-game, as above, except the pool isn't per-level. It's still
-  emitted into the final pk3.
-- otherwise (randomize across worlds), add the item to the item pool and the
-  location to the corresponding region.
-
-For maximum generality, possibly what we actually want to do is always emit per-map pools.
-Then at runtime we ask the server for our shuffle settings, and stuff marked don't-shuffle
-we delete from the pools at startup, and stuff marked shuffle-gamewide we promote to a global
-pool.
+Foreach map, we need to:
+- remove `needclustertext`
+- remove `entertext = ...` and `exittext = ...`
+- remove `intro { ... }` and `outro = { ... }`
+- add `allowrespawn`
+- add `noclustertext`
 
 ## Play Mode
 
