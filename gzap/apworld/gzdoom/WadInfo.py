@@ -99,12 +99,16 @@ class WadLocation:
     pos: WadPosition | None = None
     keyset: Set[WadItem]
     item: WadItem | None = None  # Used for place_locked_item
+    parent = None
+    orig_item = None
 
-    def __init__(self, map: str, item: WadItem, json: str | None):
+    def __init__(self, parent, map: str, item: WadItem, json: str | None):
         self.name = f"{map} - {item.tag}"  # Caller will deduplicate if needed
         self.category = item.category
         self.map = map
         self.keyset = set()
+        self.parent = parent
+        self.orig_item = item.name
         if json:
             self.secret = json["secret"]
             del json["secret"]
@@ -116,10 +120,43 @@ class WadLocation:
     __repr__ = __str__
 
     def access_rule(self, player):
-        return lambda state: [
-            state.has(k.name, player)
-            for k in self.keyset
-        ].count(False) == 0
+        # TODO: in a really gross hack here, we assume that checks in the first
+        # map are always accessible no matter what guns/keys you have, because
+        # the former (hopefully) doesn't matter for the first map and the latter
+        # are granted to you as starting inventory.
+        if self.parent.maps[self.map] == self.parent.first_map:
+            return lambda _: True
+        # Otherwise, it's accessible if:
+        # - you have all the keys for the map
+        #     OR the map only has one key, and this is it
+        # - AND you have at least half of the non-secret guns from this map.
+        def rule(state):
+            map = self.parent.maps[self.map]
+            map_keys = { item.name for item in self.keyset }
+            player_keys = { item for item in map_keys if state.has(item, player) }
+            player_guns = { item.name for item in map.gunset if state.has(item.name, player) }
+
+            # Do we have enough guns?
+            if len(player_guns) < len(map.gunset)//2:
+                print(f"Access denied: {self.name}: want {len(map.gunset)//2} of { {g.name for g in map.gunset} }, have {player_guns}")
+                return False
+
+            # Are we missing any keys?
+            if player_keys < self.keyset:
+                # If so, we might still be able to reach the location, if
+                # - the map only has one key, and
+                # - this is the location where that key would normally be found
+                if {self.orig_item} == map_keys:
+                    print(f"Access granted: {self.name} (single key location)")
+                    return True
+                else:
+                    print(f"Access denied: {self.name}: want { {k.name for k in self.keyset} }, have {player_keys}")
+                    return False
+
+            print(f"Access granted: {self.name}")
+            return True
+
+        return rule
 
 
 # Map metadata. Lump name, user-facing title, secrecy bit, and which keys, if
@@ -130,6 +167,7 @@ class WadMap(NamedTuple):
     secret: bool
     skill: int
     keyset: Set[WadItem]
+    gunset: Set[WadItem]
     locations: List[WadLocation]
     # Item IDs for the various tokens that unlock or mark the level as finished
     access_id: int
@@ -182,7 +220,7 @@ class WadInfo:
         map = json["map"]
         if map not in self.maps:
             self.maps[map] = WadMap(
-                keyset=set(), locations=[],
+                keyset=set(), gunset=set(), locations=[],
                 access_id=self.get_id(), automap_id=self.get_id(),
                 clear_id=self.get_id(), exit_id=self.get_id(),
                 **json)
@@ -216,10 +254,10 @@ class WadInfo:
             return
 
         if item.should_include():
-            self.add_item(map, item)
+            self.add_item(map, item, position["secret"])
         self.new_location(map, item, position)
 
-    def add_item(self, map: str, item: WadItem) -> None:
+    def add_item(self, map: str, item: WadItem, secret: bool) -> None:
         # If we haven't seen this kind of item before, give it an ID and put
         # it in the lookup table, otherwise update the count for the existing
         # WadItem.
@@ -232,6 +270,8 @@ class WadInfo:
 
         if item.category == "key":
             self.maps[map].keyset.add(item)
+        if item.category == "weapon" and not secret:
+            self.maps[map].gunset.add(item)
 
     def new_location(self, map: str, item: WadItem, json: Dict[str, str]) -> None:
         """
@@ -242,7 +282,7 @@ class WadInfo:
         all of their items are added to the pool but it's undefined which one the location is named
         after and inherits the item category from.
         """
-        location = WadLocation(map, item, json)
+        location = WadLocation(self, map, item, json)
 
         if location.pos in self.locations_by_pos:
             # Duplicate location; ignore it
@@ -271,17 +311,17 @@ class WadInfo:
         for map in self.all_maps():
             access_token = WadItem(map=map.map, category="token", typename="", tag="Level Access")
             access_token.id = map.access_id
-            self.add_item(map.map, access_token)
+            self.add_item(map.map, access_token, False)
 
             map_token = WadItem(map=map.map, category="map", typename="", tag="Automap")
             map_token.id = map.automap_id
-            self.add_item(map.map, map_token)
+            self.add_item(map.map, map_token, False)
 
             clear_token = WadItem(map=map.map, category="token", typename="", tag="Level Clear")
             clear_token.id = map.clear_id
-            self.add_item(map.map, clear_token)
+            self.add_item(map.map, clear_token, False)
 
-            map_exit = WadLocation(map.map, clear_token, None)
+            map_exit = WadLocation(self, map.map, clear_token, None)
             map_exit.id = map.exit_id
             map_exit.item = clear_token
             map_exit.name = f"{map.map} - Exit"
