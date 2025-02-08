@@ -51,34 +51,57 @@ class ::PlayEventHandler : StaticEventHandler {
     maps.Get(map).RegisterCheck(apid, name, progression, pos, angle);
   }
 
+  void Message(string message) {
+    for (int p = 0; p < MAXPLAYERS; ++p) {
+      if (!playeringame[p]) continue;
+      if (!players[p].mo) continue;
+      players[p].mo.A_PrintBold(message);
+    }
+  }
+
   void GrantItem(uint apid) {
-    if (item_apids.CheckKey(apid)) {
-      // plop the item into the player's inventory
-      // only valid once in game, so this can't be part of the data package!
-      console.printf("Attempt to grant item %d (%s) which is only available when in-game!",
-          apid, item_apids.Get(apid));
-    } else if (map_apids.CheckKey(apid)) {
+    if (map_apids.CheckKey(apid)) {
       let new_info = map_apids.Get(apid);
       let info = maps.Get(new_info.map);
 
+      // TODO: this is kind of gross
       foreach (k,v : new_info.keys) {
-        console.printf("Gained %s (%s)", k, new_info.map);
+        Message(string.format("Received %s (%s)", k, new_info.map));
         info.AddKey(k);
       }
       if (new_info.access) {
-        console.printf("Gained Level Access (%s)", new_info.map);
+        Message(string.format("Received %s (%s)", "Level Access", new_info.map));
         info.access = true;
       }
       if (new_info.automap) {
-        console.printf("Gained Automap (%s)", new_info.map);
+        Message(string.format("Received %s (%s)", "Automap", new_info.map));
         info.automap = true;
       }
       if (new_info.cleared) {
-        console.printf("Level Clear: %s!", new_info.map);
+        Message(string.format("\c[GOLD]%s: Level Clear!", new_info.map));
         info.cleared = true;
       }
-      // FIXME: not multiplayer safe
-      info.UpdateInventory(players[consoleplayer].mo);
+    } else if (item_apids.CheckKey(apid)) {
+      // TODO: if in-game, give this to the player
+      // If not in-game, or if in the hubmap, enqueue it and give it to the player
+      // when they enter a proper level.
+      // TODO: try marking all inventory items as +INVBAR so the player can use
+      // them when and as needed, or implementing our own inventory so that we
+      // don't have to try to backpatch other mods' items.
+      console.printf("GrantItem %d (%s)", apid, item_apids.Get(apid));
+      for (int p = 0; p < MAXPLAYERS; ++p) {
+        if (!playeringame[p]) continue;
+        if (!players[p].mo) continue;
+
+        players[p].mo.A_SpawnItemEX(item_apids.Get(apid));
+      }
+
+    }
+    for (int p = 0; p < MAXPLAYERS; ++p) {
+      if (!playeringame[p]) continue;
+      if (!players[p].mo) continue;
+
+      GetCurrentMapInfo().UpdateInventory(players[p].mo);
     }
   }
 
