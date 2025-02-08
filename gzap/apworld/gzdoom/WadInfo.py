@@ -214,7 +214,7 @@ class WadInfo:
             self.items_by_name[self.first_map.access_token_name()]
         ] + list(self.first_map.keyset)
 
-    def new_mapinfo(self, json: Dict[str,str]) -> None:
+    def new_map(self, json: Dict[str,str]) -> None:
         map = json["map"]
         if map not in self.maps:
             self.maps[map] = WadMap(
@@ -359,8 +359,8 @@ def get_wadinfo(file_name: str = "") -> WadInfo:
             [evt, payload] = line.split(" ", 1)
             payload = json.loads(payload)
             print(evt, payload)
-            if evt == "AP-MAPINFO":
-                info.new_mapinfo(payload)
+            if evt == "AP-MAP":
+                info.new_map(payload)
             elif evt == "AP-ITEM":
                 info.new_item(payload)
             elif evt == "AP-SCAN-DONE":

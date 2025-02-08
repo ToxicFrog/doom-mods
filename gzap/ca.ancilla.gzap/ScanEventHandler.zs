@@ -116,7 +116,7 @@ class ::ScanEventHandler : StaticEventHandler {
     }
 
     console.printf("[Archipelago] Beginning scan of %s", level.MapName);
-    ScanOutput("MAPINFO", string.format(
+    ScanOutput("MAP", string.format(
       "\"title\": \"%s\", \"secret\": %s",
       level.LevelName, bool2str(IsSecretLevel(level.MapName))
     ));
@@ -164,6 +164,14 @@ class ::ScanEventHandler : StaticEventHandler {
   // We might want to remove AUTOACTIVATE and add INVBAR to some stuff in the
   // future so the player can keep it until particularly useful.
   string ItemCategory(Actor thing) {
+    if (thing is "DehackedPickup") {
+      // TODO: Ideally, we'd call DetermineType() on it here to figure out what
+      // the underlying type of the DEH item is. However, DetermineType() is
+      // private, so the only way we can figure that out is by creating an
+      // actor to touch it and then calling CallTryPickup() on it, which will
+      // cause the real item to CallTryPickup on the actor -- which can probably
+      // be made to work, but I'm not doing it right now.
+    }
     if (thing is "Key" || thing is "PuzzleItem") {
       return "key";
     } else if (thing is "Weapon" || thing is "WeaponPiece") {
