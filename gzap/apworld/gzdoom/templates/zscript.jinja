@@ -1,11 +1,15 @@
 version "4.10.0"
 
 class GZAP_DataPackageEventHandler : StaticEventHandler {
+  bool singleplayer;
+  Map<int, int> locations_to_items;
+
   override void OnRegister() {
     console.printf("Initializing Archipelago data package.");
     console.printf("This was generated from seed %s for %s.", "{{seed}}", "{{player}}");
     let peh = GZAP_PlayEventHandler.Get();
 
+    self.singleplayer = {{singleplayer}};
     peh.RegisterSkill({{skill}});
 
     {% for map in maps %}
@@ -29,11 +33,29 @@ class GZAP_DataPackageEventHandler : StaticEventHandler {
     // Access codes, automaps, and clear tokens are handled specially and thus
     // not registered here.
 
+    {% if singleplayer %}
+    console.printf("Populating singleplayer item table.");
+      {% for locid, itemid in singleplayer_items.items() %}
+      locations_to_items.Insert({{locid}}, {{itemid}});
+      {% endfor %}
+    {% endif %}
+
+
     console.printf("Granting starting inventory.");
     {% for id in starting_items %}
       peh.GrantItem({{id}});
     {% endfor %}
 
     console.printf("Archipelago data package initialized.");
+  }
+
+  override void NetworkProcess(ConsoleEvent evt) {
+    if (!self.singleplayer) return;
+    if (evt.name == "ap-check") {
+      let apid = locations_to_items.Get(evt.args[0]);
+      if (apid) {
+        GZAP_PlayEventHandler.Get().GrantItem(apid);
+      }
+    }
   }
 }

@@ -206,6 +206,7 @@ class GZDoomWorld(World):
 
     def generate_output(self, path):
         self.generate_output_old(path)
+
         def progression(id):
             # get location from ID
             name = self.location_id_to_name[id]
@@ -217,6 +218,7 @@ class GZDoomWorld(World):
 
         # TODO: install MAPINFO lump
         data = {
+            "singleplayer": self.multiworld.players == 1,
             "seed": self.multiworld.seed_name,
             "player": self.multiworld.player_name[self.player],
             "skill": self.wadinfo.skill,
@@ -229,6 +231,11 @@ class GZDoomWorld(World):
             "starting_items": [
               item.code for item in self.multiworld.precollected_items[self.player]
             ],
+            "singleplayer_items": {
+                loc.address: loc.item.code
+                for loc in self.multiworld.get_locations(self.player)
+                if loc.item
+            },
             "progression": progression
         }
 
