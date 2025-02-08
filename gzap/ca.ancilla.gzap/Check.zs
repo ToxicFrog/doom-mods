@@ -49,8 +49,6 @@ class ::CheckPickup : ScoreItem {
 
   Default {
     Inventory.PickupMessage "";
-    +NOGRAVITY;
-    +RELATIVETOFLOOR;
     +COUNTITEM;
     +BRIGHT;
     +MOVEWITHSECTOR;
