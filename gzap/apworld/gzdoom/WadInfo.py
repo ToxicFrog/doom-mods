@@ -135,12 +135,6 @@ class WadLocation:
             map = self.parent.maps[self.map]
             map_keys = { item.name for item in self.keyset }
             player_keys = { item for item in map_keys if state.has(item, player) }
-            player_guns = { item.name for item in map.gunset if state.has(item.name, player) }
-
-            # Do we have enough guns?
-            if len(player_guns) < len(map.gunset)//2:
-                # print(f"Access denied: {self.name}: want {len(map.gunset)//2} of { {g.name for g in map.gunset} }, have {player_guns}")
-                return False
 
             # Are we missing any keys?
             if player_keys < self.keyset:
@@ -199,7 +193,19 @@ class WadMap:
         self.mapinfo = Mapinfo(**info)
 
     def access_rule(self, player):
-        return lambda state: state.has(self.access_token_name(), player)
+        def rule(state):
+            if not state.has(self.access_token_name(), player):
+                return False
+
+            # We need at least half of the non-secret guns in the level,
+            # rounded down, to give the player a fighting chance.
+            player_guns = { item.name for item in self.gunset if state.has(item.name, player) }
+            if len(player_guns) < len(self.gunset)//2:
+                return False
+
+            return True
+
+        return rule
 
     def access_token_name(self):
         return f"Level Access ({self.map})"
