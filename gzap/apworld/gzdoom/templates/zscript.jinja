@@ -12,7 +12,7 @@ class GZAP_DataPackageEventHandler : StaticEventHandler {
     self.singleplayer = {{singleplayer}};
     peh.RegisterSkill({{skill}});
 
-    console.printf("Registering %d maps.", {{len(maps)}});
+    console.printf("Registering %d maps.", {{maps|count}});
     {% for map in maps %}
       peh.RegisterMap("{{map.map}}", {{map.access_id}}, {{map.automap_id}}, {{map.clear_id}}, {{map.exit_id}});
       {% for check in map.locations %}
@@ -22,7 +22,7 @@ class GZAP_DataPackageEventHandler : StaticEventHandler {
       {% endfor %}
     {% endfor %}
 
-    console.printf("Registering %d items.", {{len(items)}});
+    console.printf("Registering %d items.", {{items|count}});
     {% for item in items %}
       {% if item.map and item.typename %}
       peh.RegisterKey("{{item.map}}", "{{item.typename}}", {{item.id}});
