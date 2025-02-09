@@ -24,10 +24,10 @@ class ::ScanEventHandler : StaticEventHandler {
 
   override void NetworkProcess(ConsoleEvent evt) {
     if (evt.name == "ap-scan") {
-      console.printf("[Archipelago] Beginning scan of all levels.");
-      self.scan_enabled = true;
-      // TODO: dump MAPINFO contents so we can generate a version with all
-      // entertext and exittext removed
+      if (!self.scan_enabled) {
+        console.printf("[Archipelago] Beginning scan of all levels.");
+        self.scan_enabled = true;
+      }
       ScanLevel();
     } else if (evt.name == "ap-next") {
       ScanNext();
