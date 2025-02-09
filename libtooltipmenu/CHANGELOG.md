@@ -1,3 +1,8 @@
+# 0.2.5
+
+- Fix:
+  - Signed/Unsigned comparison warnings due to using uints to iterate int-sized collections.
+
 # 0.2.4
 
 - Fix:

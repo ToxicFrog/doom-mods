@@ -54,7 +54,7 @@ class TF_TooltipListMenu : ListMenu {
     // Whether we're building a run of tooltips or processing non-tooltip menu
     // items.
     bool tooltip_mode = true;
-    for (uint i = 0; i < items.size(); ++i) {
+    for (int i = 0; i < items.size(); ++i) {
       if (items[i] is "ListMenuItemTooltip") {
         let tt = ListMenuItemTooltip(items[i]);
         if (tt.tooltip == "" && !tooltip_mode) {
@@ -84,7 +84,7 @@ class TF_TooltipListMenu : ListMenu {
 
     // Restore the originally selected item at its new index.
     if (selected) {
-      for (uint i = 0; i < desc.mItems.size(); ++i) {
+      for (int i = 0; i < desc.mItems.size(); ++i) {
         if (desc.mItems[i] == selected) { desc.mSelectedItem = i; break; }
       }
     }
