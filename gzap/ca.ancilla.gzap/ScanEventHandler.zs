@@ -117,8 +117,9 @@ class ::ScanEventHandler : StaticEventHandler {
 
     console.printf("[Archipelago] Beginning scan of %s", level.MapName);
     ScanOutput("MAP", string.format(
-      "\"title\": \"%s\", \"secret\": %s",
-      level.LevelName, bool2str(IsSecretLevel(level.MapName))
+      "\"secret\": %s, \"info\": %s",
+      bool2str(IsSecretLevel(level.MapName)),
+      GetMapinfoJSON()
     ));
 
     int monster_count = 0; int monster_hp = 0;
@@ -147,6 +148,29 @@ class ::ScanEventHandler : StaticEventHandler {
         level.NextSecretMap, level.NextMap);
     }
     ScanNext();
+  }
+
+  string GetMapinfoJSON() {
+    let info = level.info;
+    let buf = string.format(
+        "{ "
+        "\"levelnum\": %d, \"title\": \"%s\", \"is_lookup\": %s, "
+        "\"sky1\": \"%s\", \"sky1speed\": \"%f\", "
+        "\"sky2\": \"%s\", \"sky2speed\": \"%f\", "
+        "\"music\": \"%s\", \"music_track\": \"%d\", "
+        "\"cluster\": %d, \"flags\": [\"allowrespawn\"",
+        info.LevelNum, info.LevelName,
+        bool2str(info.flags & LEVEL_LOOKUPLEVELNAME),
+        info.SkyPic1, info.SkySpeed1,
+        info.SkyPic2, info.SkySpeed2,
+        info.Music, info.MusicOrder,
+        info.Cluster);
+
+    buf = buf .. (info.flags & LEVEL_MAP07SPECIAL ? ", \"map07special\"" : "");
+    buf = buf .. (info.flags & LEVEL_DOUBLESKY ? ", \"doublesky\"" : "");
+    buf = buf .. (info.flags2 & LEVEL2_INFINITE_FLIGHT ? ", \"infiniteflightpowerup\"" : "");
+
+    return buf .. "]}";
   }
 
   bool IsArtifact(Actor thing) {

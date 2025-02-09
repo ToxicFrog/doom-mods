@@ -243,16 +243,12 @@ class GZDoomWorld(World):
             loader=jinja2.PackageLoader("worlds.gzdoom"),
             trim_blocks=True,
             lstrip_blocks=True)
-        template = env.get_template("zscript.jinja")
-        zscript = template.render(**data)
-        print(zscript)
         with open(os.path.join(path, "zscript.txt"), "w") as lump:
-            lump.write(zscript)
+            template = env.get_template("zscript.jinja")
+            lump.write(template.render(**data))
+            print(template.render(**data))
 
         with open(os.path.join(path, "MAPINFO"), "w") as lump:
-            lump.write(
-                """
-                  GameInfo {
-                    AddEventHandlers = "GZAP_DataPackageEventHandler"
-                  }
-                """)
+            template = env.get_template("mapinfo.jinja")
+            lump.write(template.render(**data))
+            print(template.render(**data))

@@ -2,6 +2,7 @@ import settings
 import Utils
 import json
 import os
+from dataclasses import dataclass, field, InitVar
 from typing import Any, Dict, List, NamedTuple, Optional, Set
 from BaseClasses import ItemClassification
 
@@ -159,20 +160,43 @@ class WadLocation:
         return rule
 
 
+class Mapinfo(NamedTuple):
+    """Information about a map used to generate the MAPINFO lump."""
+    levelnum: int
+    cluster: int
+    title: str
+    is_lookup: bool
+    music: str
+    music_track: int
+    sky1: str
+    sky1speed: float
+    sky2: str
+    sky2speed: float
+    flags: List[str]
+
 # Map metadata. Lump name, user-facing title, secrecy bit, and which keys, if
 # any, the map contains.
-class WadMap(NamedTuple):
+@dataclass
+class WadMap:
     map: str
-    title: str
     secret: bool
-    keyset: Set[WadItem]
-    gunset: Set[WadItem]
-    locations: List[WadLocation]
     # Item IDs for the various tokens that unlock or mark the level as finished
     access_id: int
     automap_id: int
     clear_id: int
     exit_id: int
+    # JSON initializer for the mapinfo
+    info: InitVar[Dict]
+    # Data for the MAPINFO lump
+    mapinfo: Optional[Mapinfo] = None
+    # Key and weapon information for computing access rules
+    keyset: Set[WadItem] = field(default_factory=set)
+    gunset: Set[WadItem] = field(default_factory=set)
+    # All locations contained in this map
+    locations: List[WadLocation] = field(default_factory=list)
+
+    def __post_init__(self, info):
+        self.mapinfo = Mapinfo(**info)
 
     # TODO: we should also take weapons into account here, with harder levels
     # expecting the player to have more/bigger guns, or perhaps basing it on
@@ -186,6 +210,9 @@ class WadMap(NamedTuple):
     def clear_token_name(self):
         return f"Level Clear ({self.map})"
 
+
+class DuplicateMapError(RuntimeError):
+    pass
 
 class WadInfo:
     last_id: int = 0
@@ -216,15 +243,14 @@ class WadInfo:
 
     def new_map(self, json: Dict[str,str]) -> None:
         map = json["map"]
+        print(json)
         if map not in self.maps:
             self.maps[map] = WadMap(
-                keyset=set(), gunset=set(), locations=[],
                 access_id=self.get_id(), automap_id=self.get_id(),
                 clear_id=self.get_id(), exit_id=self.get_id(),
                 **json)
         else:
-            self.maps[map].title = json["title"]
-            self.maps[map].secret = json["secret"]
+            raise DuplicateMapError(map)
 
         if self.first_map is None:
             self.first_map = self.maps[map]
@@ -349,6 +375,9 @@ def get_wadinfo_path(file_name: str = "") -> str:
     return file_name
 
 
+class UnsupportedScanEventError(NotImplementedError):
+    pass
+
 def get_wadinfo(file_name: str = "") -> WadInfo:
     info: WadInfo = WadInfo()
     with open(get_wadinfo_path(file_name), "r") as fd:
@@ -361,13 +390,15 @@ def get_wadinfo(file_name: str = "") -> WadInfo:
             print(evt, payload)
             if evt == "AP-MAP":
                 info.new_map(payload)
+            # elif evt == "AP-MAPINFO-START":
+            #     # everything from here to AP-MAPINFO-END is the MAPINFO lumps
             elif evt == "AP-ITEM":
                 info.new_item(payload)
             elif evt == "AP-SCAN-DONE":
                 info.finalize_scan(payload)
             else:
                 # Unsupported event type
-                raise
+                raise UnsupportedScanEventError(evt)
 
     info.finalize_all()
     return info

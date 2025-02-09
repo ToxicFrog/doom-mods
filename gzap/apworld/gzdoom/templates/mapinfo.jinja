@@ -1,0 +1,41 @@
+// Generated MAPINFO lump for gzArchipelago.
+
+GameInfo {
+  AddEventHandlers = "GZAP_DataPackageEventHandler"
+}
+
+defaultmap
+{
+  next = "GZAPHUB"
+  secretnext = "GZAPHUB"
+  allowrespawn
+  noclustertext
+  nointermission
+}
+
+// TODO: additional fields we might need to support for some maps to work right:
+  // functional:
+    // gravity, nogravity, aircontrol, airsupply
+    // specialaction, specialaction_*, *special
+    // strictmonsteractivation, laxmonsteractivation
+    // *fallingdamage
+    // *jump, *crouch, *infighting, *switchrange
+    // maybe a few others
+
+{% for map in maps %}
+{% set info = map.mapinfo %}
+map {{map.map}} {% if info.is_lookup %}lookup{% endif %} "{{info.title}}"
+{
+  levelnum = "{{info.levelnum}}"
+  sky1 = "{{info.sky1}}", {{info.sky1speed}}
+  sky2 = "{{info.sky2}}", {{info.sky2speed}}
+  music = "{{info.music}}", {{info.music_track}}
+  {% if info.cluster %}
+  cluster = {{info.cluster}}
+  {% endif %}
+  {% for flag in info.flags %}
+  {{flag}}
+  {% endfor %}
+}
+{% endfor %}
+
