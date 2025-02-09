@@ -190,6 +190,7 @@ class ::PlayEventHandler : StaticEventHandler {
         console.printf("Check %s has already been collected.", check.name);
       }
       ClearPending(check);
+      evt.thing.A_ChangeCountFlags(0, 0, 0);
       evt.thing.Destroy();
     }
   }
