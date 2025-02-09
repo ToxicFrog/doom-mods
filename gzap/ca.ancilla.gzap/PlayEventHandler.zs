@@ -104,6 +104,7 @@ class ::PlayEventHandler : StaticEventHandler {
   }
 
   void UpdatePlayerInventory() {
+    if (!GetCurrentMapInfo()) return;
     for (int p = 0; p < MAXPLAYERS; ++p) {
       if (!playeringame[p]) continue;
       if (!players[p].mo) continue;
