@@ -57,8 +57,10 @@ class ::CheckPickup : ScoreItem {
 
   override void PostBeginPlay() {
     SetProgressionState();
+    ChangeTID(level.FindUniqueTID());
     marker = ::CheckMapMarker(Spawn("::CheckMapMarker", self.pos));
     marker.progression = self.progression;
+    marker.A_SetSpecial(0, self.tid);
   }
 
   override bool TryPickup (in out Actor toucher) {
