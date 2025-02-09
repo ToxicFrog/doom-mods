@@ -9,6 +9,7 @@
 #debug on;
 
 #include "./actors/AlarmClock.zsc"
+#include "./actors/Check.zsc"
 #include "./PerMapInfo.zsc"
 
 class ::PlayEventHandler : StaticEventHandler {

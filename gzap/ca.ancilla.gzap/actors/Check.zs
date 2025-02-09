@@ -1,16 +1,19 @@
 // Classes representing an Archipelago check placeholder.
-//
-// These are all basically the same thing: a floating Archipelago logo that
-// knows what location ID it corresponds to and emits an AP-CHECK event when
-// touched. They differ only in what icon they display; progress icons are
-// visually different from filler.
 
 #namespace GZAP;
 
+// Mixin for the icon itself which is displayed by both the in-world actor and
+// the map icon. The progression bit determines which version of the icon is
+// displayed.
 mixin class ::ArchipelagoIcon {
   bool progression;
 
   States {
+    Spawn:
+      // We need one dead frame so that it doesn't SetProgressionState() before
+      // the creator can set the progression bit.
+      TNT1 A 1 NODELAY;
+      TNT1 A 0 NODELAY SetProgressionState();
     NotProgression:
       APIT A -1 BRIGHT;
       STOP;
@@ -28,18 +31,19 @@ mixin class ::ArchipelagoIcon {
   }
 }
 
+// An automap marker that follows the corresponding CheckPickup around.
 class ::CheckMapMarker : MapMarker {
   mixin ::ArchipelagoIcon;
 
   Default {
     Scale 0.25;
   }
-
-  override void PostBeginPlay() {
-    SetProgressionState();
-  }
 }
 
+// The actual in-world item the player can pick up.
+// Knows about its backing CheckInfo, and thus its name, ID, etc.
+// Automatically creates a map marker on spawn, and deletes it on despawn.
+// When picked up, emits an AP-CHECK event.
 class ::CheckPickup : ScoreItem {
   mixin ::ArchipelagoIcon;
 
@@ -62,7 +66,7 @@ class ::CheckPickup : ScoreItem {
   }
 
   override void PostBeginPlay() {
-    SetProgressionState();
+    SetTag(self.info.name);
     ChangeTID(level.FindUniqueTID());
     marker = ::CheckMapMarker(Spawn("::CheckMapMarker", self.pos));
     marker.progression = self.progression;
