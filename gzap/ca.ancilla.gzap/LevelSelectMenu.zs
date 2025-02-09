@@ -148,10 +148,12 @@ class ::KeyValueOption : ::KeyValueText {
 }
 
 class ::LevelSelector : ::KeyValueOption {
-  bool accessible;
+  LevelInfo info;
+  ::PerMapInfo apinfo;
 
   ::LevelSelector Init(int idx, LevelInfo info, ::PerMapInfo apinfo) {
-    accessible = apinfo.access;
+    self.info = info;
+    self.apinfo = apinfo;
     super.Init(
       FormatLevelKey(info, apinfo),
       FormatLevelValue(info, apinfo),
@@ -159,8 +161,13 @@ class ::LevelSelector : ::KeyValueOption {
     return self;
   }
 
+  override void Ticker() {
+    self.key = FormatLevelKey(info, apinfo);
+    self.value = FormatLevelValue(info, apinfo);
+  }
+
   override bool Selectable() {
-    return accessible;
+    return apinfo.access;
   }
 
   string FormatLevelKey(LevelInfo info, ::PerMapInfo apinfo) {
