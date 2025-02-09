@@ -8,6 +8,7 @@
 #namespace GZAP;
 #debug on;
 
+#include "./actors/AlarmClock.zsc"
 #include "./PerMapInfo.zsc"
 
 class ::PlayEventHandler : StaticEventHandler {
@@ -110,13 +111,6 @@ class ::PlayEventHandler : StaticEventHandler {
     }
   }
 
-  ::CheckInfo FindCheck(Actor thing) {
-    // Never replace a check with another check, that's a fast trip to
-    // infinite loop town.
-    if (thing is "::CheckPickup") return null;
-    return GetCurrentMapInfo().FindCheck(thing.pos, thing.angle);
-  }
-
   ::PerMapInfo GetCurrentMapInfo() {
     return maps.Get(level.MapName);
   }
@@ -131,6 +125,23 @@ class ::PlayEventHandler : StaticEventHandler {
     return ::PlayEventHandler.Get().maps.GetIfExists(map);
   }
 
+  Array<::CheckInfo> pending_checks;
+
+  void Alarm() {
+    foreach (check : pending_checks) {
+      console.printf(
+        "Warning: couldn't find matching actor for check '%s', spawning it on player instead.",
+        check.name);
+      ::CheckPickup.Create(check, players[0].mo.pos);
+    }
+    UpdatePlayerInventory();
+  }
+
+  void ClearPending(::CheckInfo check) {
+    let idx = pending_checks.Find(check);
+    if (idx != pending_checks.Size()) pending_checks.Delete(idx);
+  }
+
   override void WorldLoaded(WorldEvent evt) {
     if (level.MapName == "GZAPHUB") {
       Menu.SetMenu("ArchipelagoLevelSelectMenu");
@@ -140,28 +151,84 @@ class ::PlayEventHandler : StaticEventHandler {
     // No mapinfo -- hopefully this just means it's a TITLEMAP added by a mod or
     // something, and not that we're missing the data package or the player has
     // been changemapping into places they shouldn't be.
-    if (!GetMapInfo(level.MapName)) return;
+    let info = GetMapInfo(level.MapName);
+    if (!info) return;
 
-    // TODO: if the player dies and reloads from start of level, checks that they
-    // have already collected respawn.
+    Actor.Spawn("::AlarmClock");
+    pending_checks.Copy(info.checks);
+
     early_exit = false;
-    foreach (Actor thing : ThinkerIterator.Create("Actor", Thinker.STAT_DEFAULT)) {
-      let info = FindCheck(thing);
-      if (!info) {
-        // console.printf("No check for %s @ (%d,%d,%d)", thing.GetTag(), thing.pos.x, thing.pos.y, thing.pos.z);
-        continue;  // No check corresponds to this actor.
-      }
+  }
 
-      thing.Destroy();
-      if (!info.checked) {
-        ::CheckPickup check = ::CheckPickup(Actor.Spawn("::CheckPickup", info.pos));
-        check.apid = info.apid;
-        check.name = info.name;
-        check.progression = info.progression;
+  override void WorldThingSpawned(WorldEvent evt) {
+    let thing = evt.thing;
+
+    if (!thing) return;
+    if (thing.bNOBLOCKMAP || thing.bNOSECTOR || thing.bNOINTERACTION || thing.bISMONSTER) return;
+    if (!(thing is "Inventory")) return;
+
+    if (thing is "::CheckPickup") {
+      // Check has already been spawned, original item has already been deleted,
+      // see if this check has already been found by the player and should be
+      // despawned before they notice it.
+      let thing = ::CheckPickup(thing);
+      ClearPending(thing.info);
+      if (thing.info.checked) {
+        console.printf("Clearing already-collected check: %s", thing.info.name);
+        thing.Destroy();
       }
+      return;
     }
 
-    UpdatePlayerInventory();
+    let [check, distance] = FindCheckForActor(thing);
+    if (check) {
+      if (!check.checked) {
+        console.printf("Replacing %s with %s", thing.GetTag(), check.name);
+        ::CheckPickup.Create(check, thing.pos);
+      } else {
+        console.printf("Check %s has already been collected.", check.name);
+      }
+      ClearPending(check);
+      evt.thing.Destroy();
+    }
+  }
+
+  // We consider two positions "close enough" to each other iff:
+  // - d is less than MAX_DISTANCE, and
+  // - only one of the coordinates differs.
+  // This usually means an item placed on a conveyor or elevator configured to
+  // start moving as soon as the level loads.
+  bool IsCloseEnough(Vector3 p, Vector3 q, float d) {
+    float MAX_DISTANCE = 2.0;
+    return d <= MAX_DISTANCE
+      && ((p.x == q.x && p.y == q.y)
+          || (p.x == q.x && p.z == q.z)
+          || (p.y == q.y && p.z == q.z));
+  }
+
+  ::CheckInfo, float FindCheckForActor(Actor thing) {
+    ::CheckInfo closest;
+    float min_distance = 1e10;
+    if (pending_checks.Size() == 0) return null, 0.0;
+    foreach (check : pending_checks) {
+      float distance = (thing.pos - check.pos).Length();
+      if (distance == 0.0) {
+        // Perfect, we found the exact check this corresponds to.
+        return check, 0.0;
+      } else if (distance < min_distance) {
+        min_distance = distance;
+        closest = check;
+      }
+    }
+    // We found something, but it's not as close as we want it to be.
+    if (IsCloseEnough(closest.pos, thing.pos, min_distance)) {
+      console.printf("WARN: Closest to %s @ (%f, %f, %f) was %s @ (%f, %f, %f)",
+        thing.GetTag(), thing.pos.x, thing.pos.y, thing.pos.z,
+        closest.name, closest.pos.x, closest.pos.y, closest.pos.z);
+      return closest, min_distance;
+    }
+    // Not feeling great about this.
+    return null, min_distance;
   }
 
   override void WorldUnloaded(WorldEvent evt) {

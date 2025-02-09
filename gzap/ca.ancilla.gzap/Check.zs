@@ -43,8 +43,7 @@ class ::CheckMapMarker : MapMarker {
 class ::CheckPickup : ScoreItem {
   mixin ::ArchipelagoIcon;
 
-  int apid;
-  string name;
+  ::CheckInfo info;
   ::CheckMapMarker marker;
 
   Default {
@@ -53,6 +52,13 @@ class ::CheckPickup : ScoreItem {
     +BRIGHT;
     +MOVEWITHSECTOR;
     Height 10;
+  }
+
+  static ::CheckPickup Create(::CheckInfo info, Vector3 pos) {
+    let thing = ::CheckPickup(Actor.Spawn("::CheckPickup", pos));
+    thing.info = info;
+    thing.progression = info.progression;
+    return thing;
   }
 
   override void PostBeginPlay() {
@@ -64,8 +70,11 @@ class ::CheckPickup : ScoreItem {
   }
 
   override bool TryPickup (in out Actor toucher) {
-    ::PlayEventHandler.Get().CheckLocation(self.apid, self.name);
-    self.marker.Destroy();
+    ::PlayEventHandler.Get().CheckLocation(self.info.apid, self.info.name);
     return super.TryPickup(toucher);
+  }
+
+  override void OnDestroy() {
+    if (self.marker) self.marker.Destroy();
   }
 }
