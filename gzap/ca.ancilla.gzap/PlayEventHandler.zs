@@ -10,17 +10,17 @@
 
 #include "./actors/AlarmClock.zsc"
 #include "./actors/Check.zsc"
-#include "./PerMapInfo.zsc"
+#include "./archipelago/Region.zsc"
 
 class ::PlayEventHandler : StaticEventHandler {
   int skill;
   bool early_exit;
-  Map<string, ::PerMapInfo> maps;
+  Map<string, ::Region> regions;
   // Maps AP item IDs to gzDoom type names like RocketLauncher
   Map<int, string> item_apids;
   // Maps AP item IDs to internal updates to the map structure.
-  // Fields set in this are copied to the canonical ::PerMapInfo for that map.
-  Map<int, ::PerMapInfo> map_apids;
+  // Fields set in this are copied to the canonical ::Region for that map.
+  Map<int, ::Region> map_apids;
 
   override void OnRegister() {
     console.printf("PlayEventHandler starting up");
@@ -32,16 +32,16 @@ class ::PlayEventHandler : StaticEventHandler {
 
   void RegisterMap(string map, uint access_apid, uint map_apid, uint clear_apid, uint exit_apid) {
     console.printf("Registering map: %s", map);
-    maps.Insert(map, ::PerMapInfo.Create(map, exit_apid));
+    regions.Insert(map, ::Region.Create(map, exit_apid));
     // We need to bind these to the map name somehow, oops.
-    if (access_apid) map_apids.Insert(access_apid, ::PerMapInfo.CreatePartial(map, "", true, false, false));
-    if (map_apid) map_apids.Insert(map_apid, ::PerMapInfo.CreatePartial(map, "", false, true, false));
-    if (clear_apid) map_apids.Insert(clear_apid, ::PerMapInfo.CreatePartial(map, "", false, false, true));
+    if (access_apid) map_apids.Insert(access_apid, ::Region.CreatePartial(map, "", true, false, false));
+    if (map_apid) map_apids.Insert(map_apid, ::Region.CreatePartial(map, "", false, true, false));
+    if (clear_apid) map_apids.Insert(clear_apid, ::Region.CreatePartial(map, "", false, false, true));
   }
 
   void RegisterKey(string map, string key, uint apid) {
-    maps.Get(map).RegisterKey(key);
-    map_apids.Insert(apid, ::PerMapInfo.CreatePartial(map, key, false, false, false));
+    regions.Get(map).RegisterKey(key);
+    map_apids.Insert(apid, ::Region.CreatePartial(map, key, false, false, false));
   }
 
   void RegisterItem(string typename, uint apid) {
@@ -50,7 +50,7 @@ class ::PlayEventHandler : StaticEventHandler {
   }
 
   void RegisterCheck(string map, uint apid, string name, bool progression, Vector3 pos, float angle) {
-    maps.Get(map).RegisterCheck(apid, name, progression, pos, angle);
+    regions.Get(map).RegisterCheck(apid, name, progression, pos, angle);
   }
 
   void Message(string message) {
@@ -64,7 +64,7 @@ class ::PlayEventHandler : StaticEventHandler {
   void GrantItem(uint apid) {
     if (map_apids.CheckKey(apid)) {
       let new_info = map_apids.Get(apid);
-      let info = maps.Get(new_info.map);
+      let info = regions.Get(new_info.map);
 
       // TODO: this is kind of gross
       foreach (k,v : new_info.keys) {
@@ -112,8 +112,8 @@ class ::PlayEventHandler : StaticEventHandler {
     }
   }
 
-  ::PerMapInfo GetCurrentMapInfo() {
-    return maps.Get(level.MapName);
+  ::Region GetCurrentMapInfo() {
+    return regions.Get(level.MapName);
   }
 
   // Used by the generated data package to get a handle to the event handler
@@ -122,25 +122,25 @@ class ::PlayEventHandler : StaticEventHandler {
     return ::PlayEventHandler(Find("::PlayEventHandler"));
   }
 
-  static clearscope ::PerMapInfo GetMapInfo(string map) {
-    return ::PlayEventHandler.Get().maps.GetIfExists(map);
+  static clearscope ::Region GetMapInfo(string map) {
+    return ::PlayEventHandler.Get().regions.GetIfExists(map);
   }
 
-  Array<::CheckInfo> pending_checks;
+  Array<::Location> pending_locations;
 
   void Alarm() {
-    foreach (check : pending_checks) {
+    foreach (loc : pending_locations) {
       console.printf(
         "Warning: couldn't find matching actor for check '%s', spawning it on player instead.",
-        check.name);
-      ::CheckPickup.Create(check, players[0].mo.pos);
+        loc.name);
+      ::CheckPickup.Create(loc, players[0].mo.pos);
     }
     UpdatePlayerInventory();
   }
 
-  void ClearPending(::CheckInfo check) {
-    let idx = pending_checks.Find(check);
-    if (idx != pending_checks.Size()) pending_checks.Delete(idx);
+  void ClearPending(::Location loc) {
+    let idx = pending_locations.Find(loc);
+    if (idx != pending_locations.Size()) pending_locations.Delete(idx);
   }
 
   override void WorldLoaded(WorldEvent evt) {
@@ -156,7 +156,7 @@ class ::PlayEventHandler : StaticEventHandler {
     if (!info) return;
 
     Actor.Spawn("::AlarmClock");
-    pending_checks.Copy(info.checks);
+    pending_locations.Copy(info.checks);
 
     early_exit = false;
   }
@@ -173,9 +173,9 @@ class ::PlayEventHandler : StaticEventHandler {
       // see if this check has already been found by the player and should be
       // despawned before they notice it.
       let thing = ::CheckPickup(thing);
-      ClearPending(thing.info);
-      if (thing.info.checked) {
-        console.printf("Clearing already-collected check: %s", thing.info.name);
+      ClearPending(thing.location);
+      if (thing.location.checked) {
+        console.printf("Clearing already-collected check: %s", thing.GetTag());
         thing.Destroy();
       }
       return;
@@ -208,11 +208,11 @@ class ::PlayEventHandler : StaticEventHandler {
           || (p.y == q.y && p.z == q.z));
   }
 
-  ::CheckInfo, float FindCheckForActor(Actor thing) {
-    ::CheckInfo closest;
+  ::Location, float FindCheckForActor(Actor thing) {
+    ::Location closest;
     float min_distance = 1e10;
-    if (pending_checks.Size() == 0) return null, 0.0;
-    foreach (check : pending_checks) {
+    if (pending_locations.Size() == 0) return null, 0.0;
+    foreach (check : pending_locations) {
       float distance = (thing.pos - check.pos).Length();
       if (distance == 0.0) {
         // Perfect, we found the exact check this corresponds to.

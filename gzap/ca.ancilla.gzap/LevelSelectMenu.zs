@@ -5,6 +5,8 @@
 
 #namespace GZAP;
 
+#include "./archipelago/Location.zsc"
+
 // Shim between the main menu and the level select menu.
 // If activated before game initialization, just forwards to the normal new-game
 // menu. Otherwise, opens the AP level select menu.
@@ -73,8 +75,8 @@ class ::LevelSelectMenu : ::TooltipOptionMenu {
     mDesc.mItems.Push(new("::KeyValueOption").Init(key, value, command, index, idle, hot));
   }
 
-  void PushLevelSelector(int idx, LevelInfo info, ::PerMapInfo apinfo) {
-    mDesc.mItems.Push(new("::LevelSelector").Init(idx, info, apinfo));
+  void PushLevelSelector(int idx, LevelInfo info, ::Region region) {
+    mDesc.mItems.Push(new("::LevelSelector").Init(idx, info, region));
   }
 
   override bool MenuEvent(int key, bool fromController) {
@@ -149,54 +151,54 @@ class ::KeyValueOption : ::KeyValueText {
 
 class ::LevelSelector : ::KeyValueOption {
   LevelInfo info;
-  ::PerMapInfo apinfo;
+  ::Region region;
 
-  ::LevelSelector Init(int idx, LevelInfo info, ::PerMapInfo apinfo) {
+  ::LevelSelector Init(int idx, LevelInfo info, ::Region region) {
     self.info = info;
-    self.apinfo = apinfo;
+    self.region = region;
     super.Init(
-      FormatLevelKey(info, apinfo),
-      FormatLevelValue(info, apinfo),
+      FormatLevelKey(info, region),
+      FormatLevelValue(info, region),
       "ap-level-select", idx);
     return self;
   }
 
   override void Ticker() {
-    self.key = FormatLevelKey(info, apinfo);
-    self.value = FormatLevelValue(info, apinfo);
+    self.key = FormatLevelKey(info, region);
+    self.value = FormatLevelValue(info, region);
   }
 
   override bool Selectable() {
-    return apinfo.access;
+    return region.access;
   }
 
-  string FormatLevelKey(LevelInfo info, ::PerMapInfo apinfo) {
+  string FormatLevelKey(LevelInfo info, ::Region region) {
     if (!Selectable()) {
       return string.format("\c[BLACK]%s (%s)", info.LookupLevelName(), info.MapName);
     }
     return string.format("%s%s (%s)",
-      apinfo.cleared ? "\c[GOLD]" : "",
+      region.cleared ? "\c[GOLD]" : "",
       info.LookupLevelName(),
       info.MapName);
   }
 
-  string FormatLevelValue(LevelInfo info, ::PerMapInfo apinfo) {
+  string FormatLevelValue(LevelInfo info, ::Region region) {
     if (!Selectable()) {
       return string.format(
         "\c[BLACK][%3d/%-3d checks]  [%d/%d keys]  [%s]  [locked]",
-        apinfo.ChecksFound(), apinfo.ChecksTotal(),
-        apinfo.KeysFound(), apinfo.KeysTotal(),
-        apinfo.automap ? "map" : "   "
+        region.ChecksFound(), region.ChecksTotal(),
+        region.KeysFound(), region.KeysTotal(),
+        region.automap ? "map" : "   "
       );
     }
     return string.format(
       "%s[%3d/%-3d checks]  %s[%d/%d keys]  %s  %s",
-      apinfo.ChecksFound() == apinfo.ChecksTotal() ? "\c[GOLD]" : "\c-",
-      apinfo.ChecksFound(), apinfo.ChecksTotal(),
-      apinfo.KeysFound() == apinfo.KeysTotal() ? "\c[GOLD]" : "\c-",
-      apinfo.KeysFound(), apinfo.KeysTotal(),
-      apinfo.automap ? "\c[GREEN][map]" : "\c[BLACK][   ]",
-      apinfo.cleared ? "\c[GOLD][done]" : "\c[GREEN][open]"
+      region.ChecksFound() == region.ChecksTotal() ? "\c[GOLD]" : "\c-",
+      region.ChecksFound(), region.ChecksTotal(),
+      region.KeysFound() == region.KeysTotal() ? "\c[GOLD]" : "\c-",
+      region.KeysFound(), region.KeysTotal(),
+      region.automap ? "\c[GREEN][map]" : "\c[BLACK][   ]",
+      region.cleared ? "\c[GOLD][done]" : "\c[GREEN][open]"
     );
   }
 }

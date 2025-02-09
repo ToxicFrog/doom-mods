@@ -1,49 +1,34 @@
-// Archipelago state about a single map.
+// Information about an entire map, modeled in AP as a Region.
 //
-// From the data package, we get knowledge of the map itself, which keys it
-// needs, and which checks it contains.
+// This contains not just the set of Locations in the region, but also per-level
+// flags like whether the player has access to it at all and what keys they have
+// for it.
 //
-// From the journal, we get information about whether the player has access to
-// the level at all, whether they have the automap, whether they've completed
-// the level, which keys they have, and which checks they've emptied.
-
+// It's responsible for synchronizing the player's inventory when they enter the
+// level, and contains some utility functions for managing the Locations inside
+// it.
 #namespace GZAP;
-#debug on;
 
-// Information about a single check.
-class ::CheckInfo {
-  uint apid;
-  string name;
-  bool progression;
-  bool checked;
-  Vector3 pos; float angle;
+#include "./Location.zsc"
 
-  bool Eq(Vector3 pos, float angle) {
-    return self.pos == pos && self.angle == angle;
-  }
-}
-
-// Information about the map as a whole. Needs to be playsim scoped so that we
-// can insert keys into the player's inventory.
-// TODO: should we hoist that into the PlayEventHandler and keep this data-scoped?
-class ::PerMapInfo play {
+class ::Region play {
   string map;
-  Array<::CheckInfo> checks;
+  Array<::Location> checks;
   Map<string, bool> keys;
   bool access;
   bool automap;
   bool cleared;
   uint exit_id;
 
-  static ::PerMapInfo Create(string map, uint exit_id) {
-    let info = ::PerMapInfo(new("::PerMapInfo"));
+  static ::Region Create(string map, uint exit_id) {
+    let info = ::Region(new("::Region"));
     info.map = map;
     info.exit_id = exit_id;
     return info;
   }
 
-  static ::PerMapInfo CreatePartial(string map, string key, bool access, bool automap, bool cleared) {
-    let info = ::PerMapInfo(new("::PerMapInfo"));
+  static ::Region CreatePartial(string map, string key, bool access, bool automap, bool cleared) {
+    let info = ::Region(new("::Region"));
     info.map = map;
     if (key != "") info.keys.Insert(key, true);
     info.access = access;
@@ -53,7 +38,7 @@ class ::PerMapInfo play {
   }
 
   void RegisterCheck(uint apid, string name, bool progression, Vector3 pos, float angle) {
-    let info = ::CheckInfo(new("::CheckInfo"));
+    let info = ::Location(new("::Location"));
     info.apid = apid;
     info.name = name;
     info.progression = progression;
@@ -62,7 +47,7 @@ class ::PerMapInfo play {
     checks.push(info);
   }
 
-  ::CheckInfo FindCheck(Vector3 pos, float angle) {
+  ::Location FindCheck(Vector3 pos, float angle) {
     foreach (info : checks) {
       // console.printf("Check.Eq? (%d, %d, %d, %d) == (%d, %d, %d, %d)",
       //   pos.x, pos.y, pos.z, angle,
