@@ -137,6 +137,8 @@ class ::ScanEventHandler : StaticEventHandler {
       }
     }
 
+    // TODO: check redirect and cvar_redirect fields as well, which override
+    // nextmap based on player inventory or cvar
     done.push(level.MapName);
     EnqueueLevel(level.NextMap);
     if (level.NextMap == level.NextSecretMap) {

@@ -198,9 +198,6 @@ class WadMap:
     def __post_init__(self, info):
         self.mapinfo = Mapinfo(**info)
 
-    # TODO: we should also take weapons into account here, with harder levels
-    # expecting the player to have more/bigger guns, or perhaps basing it on
-    # what items would normally be found in non-secret places in the level.
     def access_rule(self, player):
         return lambda state: state.has(self.access_token_name(), player)
 

@@ -88,9 +88,6 @@ class ::PlayEventHandler : StaticEventHandler {
       // TODO: try marking all inventory items as +INVBAR so the player can use
       // them when and as needed, or implementing our own inventory so that we
       // don't have to try to backpatch other mods' items.
-      // TODO: if we're granted a piece of equipment like a rocket launcher,
-      // and then die, the check is gone but so is the RL. We need a way to
-      // keep inventory on death somehow.
       console.printf("GrantItem %d (%s)", apid, item_apids.Get(apid));
       for (int p = 0; p < MAXPLAYERS; ++p) {
         if (!playeringame[p]) continue;
@@ -136,7 +133,6 @@ class ::PlayEventHandler : StaticEventHandler {
 
   override void WorldLoaded(WorldEvent evt) {
     if (level.MapName == "GZAPHUB") {
-      // TODO: if the player tries to close this in the hub, immediately reopen it
       Menu.SetMenu("ArchipelagoLevelSelectMenu");
       return;
     }
@@ -185,6 +181,13 @@ class ::PlayEventHandler : StaticEventHandler {
     GetCurrentMapInfo().ClearCheck(apid);
   }
 
+  // TODO: we need an "ap-uncollectable" command for dealing with uncollectable
+  // checks, like the flush key in GDT MAP12.
+  // This sets a flag, and then:
+  // - if a check is collected, that check is marked as uncollectable and the
+  //   flag is cleared; or
+  // - if the level is exited, all remaining checks in the level are collected
+  //   and marked as uncollectable.
   override void NetworkProcess(ConsoleEvent evt) {
     if (evt.name == "ap-level-select") {
       console.printf("%s %d", evt.name, evt.args[0]);

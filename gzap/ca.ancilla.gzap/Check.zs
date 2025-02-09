@@ -57,8 +57,6 @@ class ::CheckPickup : ScoreItem {
 
   override void PostBeginPlay() {
     SetProgressionState();
-    // TODO: only show the map markers if the player has the automap for this
-    // level in their keyring.
     marker = ::CheckMapMarker(Spawn("::CheckMapMarker", self.pos));
     marker.progression = self.progression;
   }

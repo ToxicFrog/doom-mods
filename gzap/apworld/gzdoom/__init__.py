@@ -216,7 +216,6 @@ class GZDoomWorld(World):
             else:
                 return "false"
 
-        # TODO: install MAPINFO lump
         data = {
             "singleplayer": self.multiworld.players == 1,
             "seed": self.multiworld.seed_name,
