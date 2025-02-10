@@ -94,15 +94,15 @@ class ::LevelSelector : ::KeyValueNetevent {
     if (!Selectable()) {
       return string.format(
         "\c[BLACK][%3d/%-3d checks]  [%d/%d keys]  [%s]  [locked]",
-        region.ChecksFound(), region.ChecksTotal(),
+        region.LocationsChecked(), region.LocationsTotal(),
         region.KeysFound(), region.KeysTotal(),
         region.automap ? "map" : "   "
       );
     }
     return string.format(
       "%s[%3d/%-3d checks]  %s[%d/%d keys]  %s  %s",
-      region.ChecksFound() == region.ChecksTotal() ? "\c[GOLD]" : "\c-",
-      region.ChecksFound(), region.ChecksTotal(),
+      region.LocationsChecked() == region.LocationsTotal() ? "\c[GOLD]" : "\c-",
+      region.LocationsChecked(), region.LocationsTotal(),
       region.KeysFound() == region.KeysTotal() ? "\c[GOLD]" : "\c-",
       region.KeysFound(), region.KeysTotal(),
       region.automap ? "\c[GREEN][map]" : "\c[BLACK][   ]",

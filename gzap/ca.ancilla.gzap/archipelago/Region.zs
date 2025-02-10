@@ -13,7 +13,7 @@
 
 class ::Region play {
   string map;
-  Array<::Location> checks;
+  Array<::Location> locations;
   Map<string, bool> keys;
   bool access;
   bool automap;
@@ -21,61 +21,51 @@ class ::Region play {
   uint exit_id;
 
   static ::Region Create(string map, uint exit_id) {
-    let info = ::Region(new("::Region"));
-    info.map = map;
-    info.exit_id = exit_id;
-    return info;
+    let region = ::Region(new("::Region"));
+    region.map = map;
+    region.exit_id = exit_id;
+    return region;
   }
 
   static ::Region CreatePartial(string map, string key, bool access, bool automap, bool cleared) {
-    let info = ::Region(new("::Region"));
-    info.map = map;
-    if (key != "") info.keys.Insert(key, true);
-    info.access = access;
-    info.automap = automap;
-    info.cleared = cleared;
-    return info;
+    let region = ::Region(new("::Region"));
+    region.map = map;
+    if (key != "") region.keys.Insert(key, true);
+    region.access = access;
+    region.automap = automap;
+    region.cleared = cleared;
+    return region;
   }
 
   void RegisterCheck(uint apid, string name, bool progression, Vector3 pos, float angle) {
-    let info = ::Location(new("::Location"));
-    info.apid = apid;
-    info.name = name;
-    info.progression = progression;
-    info.checked = false;
-    info.pos = pos; info.angle = angle;
-    checks.push(info);
+    let loc = ::Location(new("::Location"));
+    loc.apid = apid;
+    loc.name = name;
+    loc.progression = progression;
+    loc.checked = false;
+    loc.pos = pos; loc.angle = angle;
+    locations.push(loc);
   }
 
-  ::Location FindCheck(Vector3 pos, float angle) {
-    foreach (info : checks) {
-      // console.printf("Check.Eq? (%d, %d, %d, %d) == (%d, %d, %d, %d)",
-      //   pos.x, pos.y, pos.z, angle,
-      //   info.pos.x, info.pos.y, info.pos.z, info.angle);
-      if (info.Eq(pos, angle)) return info;
-    }
-    return null;
-  }
-
-  void ClearCheck(uint apid) {
-    foreach (info: checks) {
-      if (info.apid == apid) {
-        info.checked = true;
+  void ClearLocation(uint apid) {
+    foreach (loc : locations) {
+      if (loc.apid == apid) {
+        loc.checked = true;
         return;
       }
     }
   }
 
-  uint ChecksFound() const {
+  uint LocationsChecked() const {
     uint found = 0;
-    foreach (check : checks) {
-      if (check.checked) ++found;
+    foreach (loc : locations) {
+      if (loc.checked) ++found;
     }
     return found;
   }
 
-  uint ChecksTotal() const {
-    return checks.Size();
+  uint LocationsTotal() const {
+    return locations.Size();
   }
 
   void RegisterKey(string key) {
@@ -84,10 +74,6 @@ class ::Region play {
 
   void AddKey(string key) {
     keys.Insert(key, true);
-  }
-
-  bool HasKey(string key) const {
-    return keys.GetIfExists(key);
   }
 
   uint KeysFound() const {

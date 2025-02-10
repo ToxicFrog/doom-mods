@@ -103,16 +103,16 @@ class ::PlayEventHandler : StaticEventHandler {
   }
 
   void UpdatePlayerInventory() {
-    if (!GetCurrentMapInfo()) return;
+    if (!GetCurrentRegion()) return;
     for (int p = 0; p < MAXPLAYERS; ++p) {
       if (!playeringame[p]) continue;
       if (!players[p].mo) continue;
 
-      GetCurrentMapInfo().UpdateInventory(players[p].mo);
+      GetCurrentRegion().UpdateInventory(players[p].mo);
     }
   }
 
-  ::Region GetCurrentMapInfo() {
+  ::Region GetCurrentRegion() {
     return regions.Get(level.MapName);
   }
 
@@ -122,7 +122,7 @@ class ::PlayEventHandler : StaticEventHandler {
     return ::PlayEventHandler(Find("::PlayEventHandler"));
   }
 
-  static clearscope ::Region GetMapInfo(string map) {
+  static clearscope ::Region GetRegion(string map) {
     return ::PlayEventHandler.Get().regions.GetIfExists(map);
   }
 
@@ -174,10 +174,10 @@ class ::PlayEventHandler : StaticEventHandler {
     // No mapinfo -- hopefully this just means it's a TITLEMAP added by a mod or
     // something, and not that we're missing the data package or the player has
     // been changemapping into places they shouldn't be.
-    let info = GetMapInfo(level.MapName);
-    if (!info) return;
+    let region = GetRegion(level.MapName);
+    if (!region) return;
 
-    foreach (location : info.checks) {
+    foreach (location : region.locations) {
       pending_locations.Insert(location.apid, location);
     }
 
@@ -270,17 +270,17 @@ class ::PlayEventHandler : StaticEventHandler {
     if (evt.isSaveGame) return;
     if (self.early_exit) return;
     if (level.LevelNum == 0) return;
-    if (!GetMapInfo(level.MapName)) return;
+    if (!GetRegion(level.MapName)) return;
 
-    CheckLocation(GetCurrentMapInfo().exit_id, string.format("%s - Exit", level.MapName));
-    // GetCurrentMapInfo().cleared = true;
+    CheckLocation(GetCurrentRegion().exit_id, string.format("%s - Exit", level.MapName));
+    // GetCurrentRegion().cleared = true;
   }
 
   void CheckLocation(int apid, string name) {
     console.printf("AP-CHECK { \"id\": %d, \"name\": \"%s\" }",
       apid, name);
     EventHandler.SendNetworkEvent("ap-check", apid);
-    GetCurrentMapInfo().ClearCheck(apid);
+    GetCurrentRegion().ClearLocation(apid);
   }
 
   // TODO: we need an "ap-uncollectable" command for dealing with uncollectable

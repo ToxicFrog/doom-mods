@@ -36,12 +36,12 @@ class ::LevelSelectMenu : ::TooltipOptionMenu {
       // Sometimes we get MAPINFO entries that don't actually exist.
       if (!info || !LevelInfo.MapExists(info.MapName)) continue;
 
-      let apinfo = ::PlayEventHandler.GetMapInfo(info.MapName);
+      let region = ::PlayEventHandler.GetRegion(info.MapName);
       // Skip any levels not listed in the data package and initialized with
       // RegisterMap().
-      if (!apinfo) continue;
+      if (!region) continue;
 
-      PushLevelSelector(i, info, apinfo);
+      PushLevelSelector(i, info, region);
     }
 
     PushText(" ");
