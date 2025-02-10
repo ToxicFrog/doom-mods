@@ -31,7 +31,7 @@ class ::PlayEventHandler : StaticEventHandler {
   }
 
   void RegisterMap(string map, uint access_apid, uint map_apid, uint clear_apid, uint exit_apid) {
-    console.printf("Registering map: %s", map);
+    // console.printf("Registering map: %s", map);
     regions.Insert(map, ::Region.Create(map, exit_apid));
     // We need to bind these to the map name somehow, oops.
     if (access_apid) map_apids.Insert(access_apid, ::Region.CreatePartial(map, "", true, false, false));
@@ -45,7 +45,7 @@ class ::PlayEventHandler : StaticEventHandler {
   }
 
   void RegisterItem(string typename, uint apid) {
-    console.printf("RegisterItem: %s %d", typename, apid);
+    // console.printf("RegisterItem: %s %d", typename, apid);
     item_apids.Insert(apid, typename);
   }
 
@@ -90,7 +90,7 @@ class ::PlayEventHandler : StaticEventHandler {
       // TODO: try marking all inventory items as +INVBAR so the player can use
       // them when and as needed, or implementing our own inventory so that we
       // don't have to try to backpatch other mods' items.
-      console.printf("GrantItem %d (%s)", apid, item_apids.Get(apid));
+      // console.printf("GrantItem %d (%s)", apid, item_apids.Get(apid));
       for (int p = 0; p < MAXPLAYERS; ++p) {
         if (!playeringame[p]) continue;
         if (!players[p].mo) continue;
@@ -207,7 +207,7 @@ class ::PlayEventHandler : StaticEventHandler {
       let thing = ::CheckPickup(thing);
       ClearPending(thing.location);
       if (thing.location.checked) {
-        console.printf("Clearing already-collected check: %s", thing.GetTag());
+        // console.printf("Clearing already-collected check: %s", thing.GetTag());
         thing.ClearCounters();
         thing.Destroy();
       }
@@ -217,10 +217,10 @@ class ::PlayEventHandler : StaticEventHandler {
     let [check, distance] = FindCheckForActor(thing);
     if (check) {
       if (!check.checked) {
-        console.printf("Replacing %s with %s", thing.GetTag(), check.name);
+        // console.printf("Replacing %s with %s", thing.GetTag(), check.name);
         ::CheckPickup.Create(check, thing.pos);
       } else {
-        console.printf("Check %s has already been collected.", check.name);
+        // console.printf("Check %s has already been collected.", check.name);
       }
       ClearPending(check);
       thing.ClearCounters();
@@ -257,9 +257,9 @@ class ::PlayEventHandler : StaticEventHandler {
     }
     // We found something, but it's not as close as we want it to be.
     if (IsCloseEnough(closest.pos, thing.pos, min_distance)) {
-      console.printf("WARN: Closest to %s @ (%f, %f, %f) was %s @ (%f, %f, %f)",
-        thing.GetTag(), thing.pos.x, thing.pos.y, thing.pos.z,
-        closest.name, closest.pos.x, closest.pos.y, closest.pos.z);
+      // console.printf("WARN: Closest to %s @ (%f, %f, %f) was %s @ (%f, %f, %f)",
+      //   thing.GetTag(), thing.pos.x, thing.pos.y, thing.pos.z,
+      //   closest.name, closest.pos.x, closest.pos.y, closest.pos.z);
       return closest, min_distance;
     }
     // Not feeling great about this.
@@ -292,7 +292,7 @@ class ::PlayEventHandler : StaticEventHandler {
   //   and marked as uncollectable.
   override void NetworkProcess(ConsoleEvent evt) {
     if (evt.name == "ap-level-select") {
-      console.printf("%s %d", evt.name, evt.args[0]);
+      // console.printf("%s %d", evt.name, evt.args[0]);
       let idx = evt.args[0];
       let info = LevelInfo.GetLevelInfo(idx);
       if (!info) {
