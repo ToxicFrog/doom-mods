@@ -12,6 +12,10 @@
 #include "./actors/Check.zsc"
 #include "./archipelago/Region.zsc"
 
+// TODO: for singleplayer rando, it should be possible to persist the state to
+// the save file. We'd need to pull all the state out into a separate object
+// and store it in the PlayerPawn. In OnWorldLoaded, if we have an empty state
+// and the PlayerPawn doesn't, we overwrite our own state with its state.
 class ::PlayEventHandler : StaticEventHandler {
   int skill;
   bool early_exit;
@@ -277,8 +281,14 @@ class ::PlayEventHandler : StaticEventHandler {
   }
 
   void CheckLocation(int apid, string name) {
-    console.printf("AP-CHECK { \"id\": %d, \"name\": \"%s\" }",
-      apid, name);
+    // TODO: we need some way of marking checks unreachable.
+    // We can't just check if the player has +NOCLIP because if they do, they
+    // can't interact with the check in the first place. So probably we want
+    // an 'ap-unreachable' netevent; if set, the next check touched is marked
+    // as unreachable, or if the level is exited, all checks in it are marked
+    // unreachable.
+    console.printf("AP-CHECK { \"id\": %d, \"name\": \"%s\", \"keys\": [%s] }",
+      apid, name, GetCurrentRegion().KeyString());
     EventHandler.SendNetworkEvent("ap-check", apid);
     GetCurrentRegion().ClearLocation(apid);
   }

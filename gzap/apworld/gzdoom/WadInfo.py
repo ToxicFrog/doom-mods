@@ -55,6 +55,9 @@ class WadItem:
 
     def classification(self) -> ItemClassification:
         if self.category == "key" or self.category == "token" or self.category == "weapon":
+            # TODO: we only need one of each weapon for progression. So we should
+            # treat them the same as, say, power bombs in SM: the first one is
+            # progression, all the rest are filler.
             return ItemClassification.progression
         elif self.category == "map" or self.category == "upgrade":
             return ItemClassification.useful
@@ -119,6 +122,11 @@ class WadLocation:
         return f"WadLocation#{self.id}({self.name} @ {self.pos} % {self.keyset})"
 
     __repr__ = __str__
+
+    def tune_keys(self, keys):
+        if keys < self.keyset:
+            print(f"Keyset: {self.name} {self.keyset} -> {keys}")
+            self.keyset = keys
 
     def access_rule(self, player):
         # TODO: in a really gross hack here, we assume that checks in the first
@@ -328,6 +336,22 @@ class WadInfo:
         if location.pos:
             self.locations_by_pos[location.pos] = location
 
+    def tune_location(self, id, name, keys) -> None:
+        """
+        Adjust the reachability rules for a location.
+
+        This is emitted by the game when the player checks a location, and records
+        what keys they had when this happened. This can be used to minimize the keyset
+        for a given location.
+
+        This needs to run after AP-SCAN-DONE so that the keysets are initialized,
+        which shouldn't be a problem in practice unless people are assembling play
+        logs out of order.
+        """
+        loc = self.locations_by_name[name]
+        keys = { self.items_by_name[f"{key} ({loc.map})"] for key in keys }
+        self.locations_by_name[name].tune_keys(keys)
+
     def finalize_scan(self, json) -> None:
         """
         Do postprocessing after the initial scan is completed but before play-guided refinement, if any.
@@ -399,6 +423,8 @@ def get_wadinfo(file_name: str = "") -> WadInfo:
                 info.new_item(payload)
             elif evt == "AP-SCAN-DONE":
                 info.finalize_scan(payload)
+            elif evt == "AP-CHECK":
+                info.tune_location(**payload)
             else:
                 # Unsupported event type
                 raise UnsupportedScanEventError(evt)

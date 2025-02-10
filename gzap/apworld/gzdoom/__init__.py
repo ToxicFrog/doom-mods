@@ -205,8 +205,6 @@ class GZDoomWorld(World):
                 print("  ->  ", aploc.item.code, aploc.item.name)
 
     def generate_output(self, path):
-        self.generate_output_old(path)
-
         def progression(id):
             # get location from ID
             name = self.location_id_to_name[id]

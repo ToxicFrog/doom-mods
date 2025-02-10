@@ -88,6 +88,16 @@ class ::Region play {
     return keys.CountUsed();
   }
 
+  // Get the list of keys as comma-separated JSON strings.
+  string KeyString() {
+    string buf = "";
+    foreach (k, v : keys) {
+      if (!v) continue;
+      buf.AppendFormat("%s\"%s\"", buf.Length() > 0 ? ", " : "", k);
+    }
+    return buf;
+  }
+
   void UpdateInventory(PlayerPawn mo) {
     if (automap) {
       mo.GiveInventoryType("MapRevealer");

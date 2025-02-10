@@ -34,6 +34,13 @@ Objects that are part of the playsim but do not exist in the world. The
 The position of an object in the Doom world space, as an (X,Y,Z) coordinate triple.
 Sometimes paired with an angle.
 
+## Refinement
+
+A process of automatically improving the randomizer logic for a given WAD by
+analyzing playthrough records. When you first import a WAD the logic is fairly
+rough because it can't tell what keys you need to reach which items; by observing
+actual play, it can improve the logic and produce more varied randomizations.
+
 ## Region
 
 A collection of related *Locations*. In GZAP there is a one-to-one mapping between

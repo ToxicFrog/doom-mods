@@ -2,6 +2,8 @@
 // TODO: A lot of this is a stripped-down copy of the upgrade-select menu from
 // Gun Bonsai, which I should probably factor out into some generic menu utils
 // and put in libtooltipmenu.
+// TODO: if this menu is activated without a data package loaded, it should
+// instead open a menu with "scan" and "refine" options for WAD importation.
 
 #namespace GZAP;
 
