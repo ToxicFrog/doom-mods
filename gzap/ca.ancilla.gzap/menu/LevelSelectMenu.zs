@@ -13,6 +13,9 @@
 // Shim between the main menu and the level select menu.
 // If activated before game initialization, just forwards to the normal new-game
 // menu. Otherwise, opens the AP level select menu.
+// TODO: if we don't have a datapack, this should instead open a scan menu, with
+// options to scan the wad, play through vanilla to refine the process, or mark
+// certain levels as excluded from the final pack.
 class ListMenuItemArchipelagoItem : ListMenuItemTextItem {
   override bool Activate() {
     if (level.MapName == "") {
@@ -30,8 +33,10 @@ class ::LevelSelectMenu : ::TooltipOptionMenu {
     TooltipGeometry(0.0, 0.5, 0.2, 1.0, 0.5);
     TooltipAppearance("", "", "tfttbg");
 
-    PushText("\nLevel Select", Font.CR_WHITE);
     PushText(" ");
+    PushText("$GZAP_MENU_LEVEL_SELECT_TITLE", Font.CR_WHITE);
+    PushText(" ");
+
 
     for (int i = 0; i < LevelInfo.GetLevelInfoCount(); ++i) {
       let info = LevelInfo.GetLevelInfo(i);
@@ -47,7 +52,7 @@ class ::LevelSelectMenu : ::TooltipOptionMenu {
     }
 
     PushText(" ");
-    PushKeyValueNetevent("Return to Hub", "", "ap-level-select", HubIndex());
+    PushKeyValueNetevent("$GZAP_MENU_LEVEL_SELECT_RETURN", "", "ap-level-select", HubIndex());
   }
 
   int HubIndex() {
