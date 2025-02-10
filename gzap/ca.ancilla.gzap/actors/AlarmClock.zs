@@ -6,7 +6,7 @@
 class ::AlarmClock : Actor {
   States {
     Spawn:
-      TNT1 A 10;
+      TNT1 A 10 NODELAY;
       TNT1 A 0 Ring();
       STOP;
   }

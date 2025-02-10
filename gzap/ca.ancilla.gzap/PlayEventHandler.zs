@@ -126,7 +126,7 @@ class ::PlayEventHandler : StaticEventHandler {
     return ::PlayEventHandler.Get().regions.GetIfExists(map);
   }
 
-  Array<::Location> pending_locations;
+  Map<int, ::Location> pending_locations;
 
   void Alarm() {
     foreach (loc : pending_locations) {
@@ -139,8 +139,30 @@ class ::PlayEventHandler : StaticEventHandler {
   }
 
   void ClearPending(::Location loc) {
-    let idx = pending_locations.Find(loc);
-    if (idx != pending_locations.Size()) pending_locations.Delete(idx);
+    pending_locations.Remove(loc.apid);
+  }
+
+  void CleanupReopenedLevel() {
+    foreach (::AlarmClock thing : ThinkerIterator.Create("::AlarmClock", Thinker.STAT_DEFAULT)) {
+      thing.Destroy();
+    }
+    foreach (::CheckPickup thing : ThinkerIterator.Create("::CheckPickup", Thinker.STAT_DEFAULT)) {
+      // At this point we have a divergence; the location referenced by the actor
+      // and thus stored in the save game is not the same as the location stored
+      // in the event handler.
+      // So, we replace the saved one with the real one before evaluating whether
+      // it's been checked.
+      // TODO: we should probably just store the apid in the check and look up
+      // the location that way by asking the eventhandler, rather than baking
+      // the entire location into it, so that this workaround becomes unnecessary
+      // -- it seems like a footgun waiting to happen.
+      thing.location = pending_locations.Get(thing.location.apid);
+      ClearPending(thing.location);
+      if (thing.location.checked) {
+        thing.ClearCounters();
+        thing.Destroy();
+      }
+    }
   }
 
   override void WorldLoaded(WorldEvent evt) {
@@ -155,8 +177,18 @@ class ::PlayEventHandler : StaticEventHandler {
     let info = GetMapInfo(level.MapName);
     if (!info) return;
 
-    Actor.Spawn("::AlarmClock");
-    pending_locations.Copy(info.checks);
+    foreach (location : info.checks) {
+      pending_locations.Insert(location.apid, location);
+    }
+
+    // If we're restoring a saved level state, we need to do additional cleanup
+    // to get rid of pending alarm clocks, avoid double-spawning checks, and
+    // despawn checks that have been collected.
+    if (evt.IsSaveGame || evt.IsReopen) {
+      CleanupReopenedLevel();
+    } else {
+      Actor.Spawn("::AlarmClock");
+    }
 
     early_exit = false;
   }
@@ -176,6 +208,7 @@ class ::PlayEventHandler : StaticEventHandler {
       ClearPending(thing.location);
       if (thing.location.checked) {
         console.printf("Clearing already-collected check: %s", thing.GetTag());
+        thing.ClearCounters();
         thing.Destroy();
       }
       return;
@@ -190,8 +223,8 @@ class ::PlayEventHandler : StaticEventHandler {
         console.printf("Check %s has already been collected.", check.name);
       }
       ClearPending(check);
-      evt.thing.A_ChangeCountFlags(0, 0, 0);
-      evt.thing.Destroy();
+      thing.ClearCounters();
+      thing.Destroy();
     }
   }
 
@@ -211,8 +244,8 @@ class ::PlayEventHandler : StaticEventHandler {
   ::Location, float FindCheckForActor(Actor thing) {
     ::Location closest;
     float min_distance = 1e10;
-    if (pending_locations.Size() == 0) return null, 0.0;
-    foreach (check : pending_locations) {
+    if (pending_locations.CountUsed() == 0) return null, 0.0;
+    foreach (_, check : pending_locations) {
       float distance = (thing.pos - check.pos).Length();
       if (distance == 0.0) {
         // Perfect, we found the exact check this corresponds to.
