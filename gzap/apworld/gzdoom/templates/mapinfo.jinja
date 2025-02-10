@@ -4,6 +4,20 @@ GameInfo {
   AddEventHandlers = "GZAP_DataPackageEventHandler"
 }
 
+map gzaphub "Archipelago Hub"
+{
+	next = "GZAPHUB"
+	secretnext = "GZAPHUB"
+	sky1 = "SKY1"
+	music = "$MUSIC_RUNNIN"
+}
+
+clearepisodes
+episode gzaphub
+{
+  name = "Archipelago Hub"
+}
+
 defaultmap
 {
   next = "GZAPHUB"
