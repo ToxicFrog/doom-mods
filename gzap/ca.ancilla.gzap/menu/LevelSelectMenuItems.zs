@@ -87,6 +87,8 @@ class ::LevelSelector : ::KeyValueNetevent {
     return string.format("%s%s (%s)",
       // TODO: menu updates when the level is cleared, but this gold colour doesn't
       // take effect until the menu is closed and reopened for some reason.
+      // TODO: might want to make this silver when level cleared, gold when level
+      // cleared + all locations checked.
       region.cleared ? "\c[GOLD]" : "",
       info.LookupLevelName(),
       info.MapName);
@@ -97,36 +99,6 @@ class ::LevelSelector : ::KeyValueNetevent {
     let total = region.LocationsTotal();
     return string.format("%s%3d/%-3d",
       found == total ? "\c[GOLD]" : "\c-", found, total);
-  }
-
-  // Given a key, produce an icon for it in the level select menu.
-  // Use squares for keycards, circles for skulls, and diamonds for everything else.
-  // Try to colour it appropriately based on its name, too.
-  string FormatKey(string key, bool value) {
-    let key = key.MakeLower();
-    static const string[] keytypes = { "card", "skull", "" };
-    static const string[] keyicons = { "□", "■", "○", "●", "◇", "◆" };
-    static const string[] keycolors = { "red", "orange", "yellow", "green", "blue", "purple" };
-
-    string icon; uint i;
-    foreach (keytype : keytypes) {
-      if (key.IndexOf(keytype) != -1) {
-        icon = keyicons[i + (value ? 1 : 0)];
-        break;
-      }
-      i += 2;
-    }
-
-    string clr = "white";
-    for (i=0; i < keycolors.Size(); ++i) {
-      if (key.IndexOf(keycolors[i]) != -1) {
-        clr = keycolors[i];
-        break;
-      }
-    }
-
-    string buf = "\c[" .. clr .."]" .. icon;
-    return buf.filter();
   }
 
   string FormatKeyCounter(::Region region, bool color = true) {
@@ -140,7 +112,7 @@ class ::LevelSelector : ::KeyValueNetevent {
 
     let buf = "";
     foreach (k, v : region.keys) {
-      buf = buf .. FormatKey(k, v);
+      buf = buf .. ::LevelSelectMenu.FormatKey(k, v);
     }
     for (int i = region.KeysTotal(); i < 7; ++i) buf = buf.." ";
     return buf;
