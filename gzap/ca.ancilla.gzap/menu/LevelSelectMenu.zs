@@ -37,6 +37,13 @@ class ::LevelSelectMenu : ::TooltipOptionMenu {
     PushText("$GZAP_MENU_LEVEL_SELECT_TITLE", Font.CR_WHITE);
     PushText(" ");
 
+    PushKeyValueText(
+      "$GZAP_MENU_HEADER_LEVEL",
+      string.format("%7s  %7s  %3s  %5s",
+          StringTable.Localize("$GZAP_MENU_HEADER_ITEMS"),
+          StringTable.Localize("$GZAP_MENU_HEADER_KEYS"),
+          StringTable.Localize("$GZAP_MENU_HEADER_AM"),
+          StringTable.Localize("$GZAP_MENU_HEADER_STATUS")));
 
     for (int i = 0; i < LevelInfo.GetLevelInfoCount(); ++i) {
       let info = LevelInfo.GetLevelInfo(i);

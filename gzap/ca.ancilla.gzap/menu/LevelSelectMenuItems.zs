@@ -85,28 +85,85 @@ class ::LevelSelector : ::KeyValueNetevent {
       return string.format("\c[BLACK]%s (%s)", info.LookupLevelName(), info.MapName);
     }
     return string.format("%s%s (%s)",
+      // TODO: menu updates when the level is cleared, but this gold colour doesn't
+      // take effect until the menu is closed and reopened for some reason.
       region.cleared ? "\c[GOLD]" : "",
       info.LookupLevelName(),
       info.MapName);
   }
 
+  string FormatItemCounter(::Region region) {
+    let found = region.LocationsChecked();
+    let total = region.LocationsTotal();
+    return string.format("%s%3d/%-3d",
+      found == total ? "\c[GOLD]" : "\c-", found, total);
+  }
+
+  // Given a key, produce an icon for it in the level select menu.
+  // Use squares for keycards, circles for skulls, and diamonds for everything else.
+  // Try to colour it appropriately based on its name, too.
+  string FormatKey(string key, bool value) {
+    let key = key.MakeLower();
+    static const string[] keytypes = { "card", "skull", "" };
+    static const string[] keyicons = { "□", "■", "○", "●", "◇", "◆" };
+    static const string[] keycolors = { "red", "orange", "yellow", "green", "blue", "purple" };
+
+    string icon; uint i;
+    foreach (keytype : keytypes) {
+      if (key.IndexOf(keytype) != -1) {
+        icon = keyicons[i + (value ? 1 : 0)];
+        break;
+      }
+      i += 2;
+    }
+
+    string clr = "white";
+    for (i=0; i < keycolors.Size(); ++i) {
+      if (key.IndexOf(keycolors[i]) != -1) {
+        clr = keycolors[i];
+        break;
+      }
+    }
+
+    string buf = "\c[" .. clr .."]" .. icon;
+    return buf.filter();
+  }
+
+  string FormatKeyCounter(::Region region, bool color = true) {
+    let found = region.KeysFound();
+    let total = region.KeysTotal();
+
+    if (total > 7) {
+      return string.format("%s%3d/%-3d",
+        (found == total && color) ? "\c[GOLD]" : "", found, total);
+    }
+
+    let buf = "";
+    foreach (k, v : region.keys) {
+      buf = buf .. FormatKey(k, v);
+    }
+    for (int i = region.KeysTotal(); i < 7; ++i) buf = buf.." ";
+    return buf;
+  }
+
   string FormatLevelValue(LevelInfo info, ::Region region) {
     if (!Selectable()) {
       return string.format(
-        "\c[BLACK][%3d/%-3d checks]  [%d/%d keys]  [%s]  [locked]",
+        "\c[BLACK]%3d/%-3d  %s  \c[BLACK]%s  %s",
         region.LocationsChecked(), region.LocationsTotal(),
-        region.KeysFound(), region.KeysTotal(),
-        region.automap ? "map" : "   "
+        FormatKeyCounter(region, false),
+        region.automap ? " √ " : "   ",
+        region.cleared ? "  √  " : "     "
       );
     }
     return string.format(
-      "%s[%3d/%-3d checks]  %s[%d/%d keys]  %s  %s",
-      region.LocationsChecked() == region.LocationsTotal() ? "\c[GOLD]" : "\c-",
-      region.LocationsChecked(), region.LocationsTotal(),
-      region.KeysFound() == region.KeysTotal() ? "\c[GOLD]" : "\c-",
-      region.KeysFound(), region.KeysTotal(),
-      region.automap ? "\c[GREEN][map]" : "\c[BLACK][   ]",
-      region.cleared ? "\c[GOLD][done]" : "\c[GREEN][open]"
+      "%s  %s  %s  %s",
+      FormatItemCounter(region),
+      FormatKeyCounter(region),
+      region.automap ? "\c[GOLD] √ " : "   ",
+      region.cleared ? "\c[GOLD]  √  " : "     "
     );
   }
 }
+
+// use □■ for keycards, ●○ for skulls, √ for generic checks, ◆◇ for unknown keys
