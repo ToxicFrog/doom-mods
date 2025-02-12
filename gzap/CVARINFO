@@ -1,8 +1,28 @@
 // TODO: config settings for gzap.
 
-// Check icons on automap: always, only if you have the computer map, never
-// Secret lines highlighted: always, only if you have the computer map, never
-  // this is an existing setting we might need to take control over
-// On death: reset level, respawn at entrance, return to level select
-  // you keep your checks regardless, keeping inventory requires work
-// Pick-up-and-carry-with-you powerups: yes/no
+//// Map options
+// Check icons - display always, or only with automap?
+// Alternate automap behaviour ideas:
+// progressive per level -- need one to display icons, two to display world geometry
+// progressive across levels -- each one gives you the map for the open level with
+// the most checks remaining; if you have no open levels with checks it saves it
+// until you enter the next one
+// alternately, let the player hold automaps in her inventory
+// am_map_secrets - 1 hilights secrets once discovered, 2 always
+// am_showtriggerlines - 1 hilights switches, 2 also hilights doors
+
+//// Powerup options
+// Can you take it with you?
+  // this has technical difficulties
+// Item buffering
+  // With this, it stores a list of items that you've received and gives them to
+  // you automatically.
+  // It can do this based on the item category:
+  // - weapons, tools, and upgrades are vended immediately
+  // - health is vended if you are <50% health
+  // - armour if you are <25% armour
+  // - ammo is vended if you're at <50% ammo for the corresponding ammo type,
+  //   or if it can't find the corresponding type, <50% for any ammo.
+
+//// Death options
+// Reset level on death?

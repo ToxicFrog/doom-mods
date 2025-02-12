@@ -18,6 +18,17 @@ had and that info is appended to the output of the scan. Subsequent generation
 runs can use the updated scanlist to be more accurate about what you need to
 reach each location.
 
+## Compatibility issues
+
+GDT MAP12 -- there are two red keys, one gets flushed when you enter the map,
+the other appears later. They're meant to look like the same key, ofc. But it
+means you can't ever collect the first one.
+
+There's also a check (originally a shotgun) in a blueroom to the west; it's
+not clear to me that there's any way to get this to spawn into the level.
+
+We need some way of marking checks as uncollectable during refinement.
+
 ## Scan Mode
 
 This is made to be very simple -- it just emits some map metadata + a list of
@@ -110,16 +121,6 @@ The *right* way to do this is to have the connector talk to gzdoom directly usin
 the networking protocol, and manifest itself as a do-nothing player (probably
 using the NEVERTARGET flag or immediately self-destructing or both to minimize
 interference). But that's a bigger project.
-
-We also need to make sure that all levels are marked persistent (i.e. part of
-the same nonzero "cluster"), either by generating a new ZMAPINFO or by setting
-this at runtime using zscript, if possible, so that the player can leave a level
-partway through and return to it later in the same state. (TODO: check if this
-breaks things like the elevator door behaviour in GD. Maybe rig it so that you
-return to your previous position rather than the level start?)
-(Ok, it works with the GD elevators but maybe I still want "return to previous
-position" by default, and perhaps a menu option for "return to level start" and
-even, if I can manage it, "completely reset level".)
 
 For maps, we can look at the Intuition power in GB to see how it works. There's
 also the am_ family of cvars which let us display secrets, keys, etc if we want.
