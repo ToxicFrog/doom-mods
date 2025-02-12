@@ -190,7 +190,7 @@ class ::ScanEventHandler : StaticEventHandler {
     } else if (thing is "Weapon" || thing is "WeaponPiece") {
       return "weapon";
     } else if (thing is "BackpackItem") {
-      return "upgrade";
+      return "big-ammo";
     } else if (thing is "MapRevealer") {
       return "map";
     } else if (thing is "PowerupGiver" || thing is "Berserk") {
@@ -204,7 +204,7 @@ class ::ScanEventHandler : StaticEventHandler {
       return h.Amount < 50 ? "small-health" : "big-health";
     } else if (thing is "Ammo") {
       let a = Ammo(thing);
-      return a.Amount < a.MaxAmount/10 ? "small-ammo" : "big-ammo";
+      return a.Amount < a.MaxAmount/5 ? "small-ammo" : "medium-ammo";
     } else if (thing is "Mana3") {
       return "big-ammo";
     } else if (thing is "HealthPickup" || IsArtifact(thing)) {
