@@ -4,7 +4,6 @@
 class ::ScanEventHandler : StaticEventHandler {
   Array<string> queue;
   Array<string> done;
-  Array<string> secret_levels;
   bool scan_enabled;
 
   override void OnRegister() {
@@ -63,10 +62,6 @@ class ::ScanEventHandler : StaticEventHandler {
     return done.find(map) != done.size();
   }
 
-  bool IsSecretLevel(string map) {
-    return secret_levels.find(map) != secret_levels.size();
-  }
-
   bool IsSecret(Actor thing) {
     return (thing.cursector.IsSecret() || thing.cursector.WasSecret());
   }
@@ -115,11 +110,7 @@ class ::ScanEventHandler : StaticEventHandler {
     }
 
     console.printf("[Archipelago] Beginning scan of %s", level.MapName);
-    ScanOutput("MAP", string.format(
-      "\"secret\": %s, \"info\": %s",
-      bool2str(IsSecretLevel(level.MapName)),
-      GetMapinfoJSON()
-    ));
+    ScanOutput("MAP", string.format("\"info\": %s", GetMapinfoJSON()));
 
     int monster_count = 0; int monster_hp = 0;
     int boss_count = 0; int boss_hp = 0;

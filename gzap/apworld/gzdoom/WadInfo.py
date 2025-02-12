@@ -181,7 +181,6 @@ class Mapinfo(NamedTuple):
 @dataclass
 class WadMap:
     map: str
-    secret: bool
     # Item IDs for the various tokens that unlock or mark the level as finished
     access_id: int
     automap_id: int
