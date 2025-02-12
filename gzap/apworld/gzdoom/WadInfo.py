@@ -387,9 +387,14 @@ class WadInfo:
         """
         Do postprocessing after all events have been ingested.
 
-        This computes the region-to-location map for each level based on the final keysets.
+        Caps guns at 1 per gun per episode (ish), and keys at 1 per type per map.
         """
-        pass
+        max_guns = len(self.maps)//8
+        for item in self.all_items():
+            if item.category == "weapon":
+                item.count = min(item.count, max_guns)
+            elif item.category == "key":
+                item.count = 1
 
 
 def get_wadinfo_path(file_name: str = "") -> str:
