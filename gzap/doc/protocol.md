@@ -104,6 +104,12 @@ can emit `[]` to undo all exclusions.
 
 Send a chat message to the rest of the Archipelago players.
 
+#### `AP-XON { lump, size }`
+
+Tells the client that it is ready to receive messages. `lump` is the name of the
+lump it's using as the IPC connector, and `size` is the maximum message buffer
+size that can be written to it.
+
 #### `AP-ACK { id }`
 
 Tells the client that we have read messages it sent up to the given `id`, and
@@ -113,9 +119,10 @@ it can overwrite them with new messages if needed.
 ## Incoming Protocol
 
 The incoming protocol makes use of the fact that gzDoom's `wad.ReadLump()` can
-be used to read individual files on disk (by passing them to `-file` on the
-command line), and will return whatever the contents of the file are at the time
-it's called.
+be used to re-read files on disk. For this to work, the *directory the file is in*
+must be passed via the `-file` command line flag, and then the individual file
+read using `wad.FindLump()` and `wad.ReadLump()`; passing the file directly will
+cause it to be copied into memory on startup and thus will not work.
 
 It does, however, have one caveat: it will not return anything larger than the
 size of the file at program startup. So we need to use a fixed size buffer,
@@ -131,6 +138,9 @@ type (as a string); subsequent fields depend on the message type.
 
 ### Receiver behaviour
 
+On startup, gzDoom reads and discards the file contents to determine the size,
+then sends an `AP-XON` message to indicate readiness.
+
 Periodically, gzDoom reads the complete contents of the file, and splits on ETB.
 The last split is discarded; if the final message was complete, it ends with ETB
 and thus the last split is "", and if it was incomplete, this discards the incomplete
@@ -145,8 +155,22 @@ reporting the highest processed message ID.
 
 ### Sender behaviour
 
+On startup, the sender should wait until it sees an `AP-XON` message from the
+receiver, indicating that it has loaded the IPC lump and is ready for messages.
+
 The sender assigns a monotonically increasing ID to each message and writes them
 to the file in ascending order until it has no room for more messages (or until
 it has no more messages to write; in the former case it must buffer further
 messages internally). It then listens for an outgoing `AP-ACK` message that matches
 the ID of the most recently written message, at which point it truncates the file.
+
+### Message types
+
+#### `CHAT` `user` `message`
+
+Displays a chat message from the named user.
+
+#### `ITEM` `id`
+
+Gives the player the item with the given `id`. The actual item-to-id mapping is
+dependent on the wad logic used for randomization.

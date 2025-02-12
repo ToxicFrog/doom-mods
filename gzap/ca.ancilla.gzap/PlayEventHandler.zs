@@ -26,9 +26,13 @@ class ::PlayEventHandler : StaticEventHandler {
   // Maps AP item IDs to internal updates to the map structure.
   // Fields set in this are copied to the canonical ::Region for that map.
   Map<int, ::Region> map_apids;
+  // IPC stub for communication with Archipelago.
+  ::IPC apclient;
 
   override void OnRegister() {
     console.printf("PlayEventHandler starting up");
+    apclient = ::IPC(new("::IPC"));
+    apclient.Init();
   }
 
   void RegisterSkill(int skill) {
@@ -314,6 +318,23 @@ class ::PlayEventHandler : StaticEventHandler {
       }
       self.early_exit = true;
       level.ChangeLevel(info.MapName, 0, CHANGELEVEL_NOINTERMISSION, skill);
+    }
+  }
+
+  override void WorldTick() {
+    if (level.totalTime % 35 != 0) return;
+    apclient.ReceiveAll();
+  }
+
+  override void NetworkCommandProcess(NetworkCommand cmd) {
+    // console.printf(">> %s", cmd.command);
+    if (cmd.command == "ap-ipc:chat") {
+      string nick = cmd.ReadString();
+      string message = cmd.ReadString();
+      console.printfEX(PRINT_TEAMCHAT, "<%s> %s", nick, message);
+    } else if (cmd.command == "ap-ipc:item") {
+      int apid = cmd.ReadInt();
+      GrantItem(apid);
     }
   }
 }
