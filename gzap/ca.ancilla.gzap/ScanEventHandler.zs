@@ -1,6 +1,8 @@
 #namespace GZAP;
 #debug on;
 
+#include "./Util.zsc"
+
 class ::ScanEventHandler : StaticEventHandler {
   Array<string> queue;
   Array<string> done;
@@ -24,7 +26,7 @@ class ::ScanEventHandler : StaticEventHandler {
   override void NetworkProcess(ConsoleEvent evt) {
     if (evt.name == "ap-scan") {
       if (!self.scan_enabled) {
-        console.printf("[Archipelago] Beginning scan of all levels.");
+        ::Util.printf("$GZAP_SCAN_STARTING");
         self.scan_enabled = true;
       }
       ScanLevel();
@@ -46,14 +48,14 @@ class ::ScanEventHandler : StaticEventHandler {
     }
     console.printf("AP-SCAN-DONE { \"skill\": %d }",
       G_SkillPropertyInt(SKILLP_ACSReturn));
-    console.printf("[Archipelago] No more maps to scan.");
+    ::Util.printf("$GZAP_SCAN_DONE");
     self.scan_enabled = false;
   }
 
   void EnqueueLevel(string map) {
     string map = map.MakeUpper();
     if (!LevelScanned(map) && LevelInfo.MapExists(map)) {
-      console.printf("[Archipelago] Enqueing %s", map);
+      ::Util.printf("$GZAP_SCAN_MAP_ENQUEUED", map);
       queue.push(map);
     }
   }
@@ -109,7 +111,7 @@ class ::ScanEventHandler : StaticEventHandler {
       return;
     }
 
-    console.printf("[Archipelago] Beginning scan of %s", level.MapName);
+    ::Util.printf("$GZAP_SCAN_MAP_STARTED", level.MapName);
     ScanOutput("MAP", string.format("\"info\": %s", GetMapinfoJSON()));
 
     int monster_count = 0; int monster_hp = 0;
@@ -132,7 +134,7 @@ class ::ScanEventHandler : StaticEventHandler {
     done.push(level.MapName);
     EnqueueLevel(level.NextMap);
     EnqueueLevel(level.NextSecretMap);
-    console.printf("[Archipelago] Scan of %s completed.", level.MapName);
+    ::Util.printf("$GZAP_SCAN_MAP_DONE", level.MapName);
     ScanNext();
   }
 
