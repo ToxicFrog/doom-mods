@@ -12,7 +12,8 @@ actual randomizer state stored *out-of-world*.
 
 ## GZAP
 
-Short for gzArchipelago, i.e. Archipelago for gzDoom.
+Short for gzArchipelago, i.e. Archipelago for gzDoom. `GZAP_` is used as the
+prefix for all gzArchipelago classes to avoid collisions with other mods.
 
 ## In-World
 
@@ -34,7 +35,7 @@ Objects that are part of the playsim but do not exist in the world. The
 The position of an object in the Doom world space, as an (X,Y,Z) coordinate triple.
 Sometimes paired with an angle.
 
-## Refinement
+## Tuning
 
 A process of automatically improving the randomizer logic for a given WAD by
 analyzing playthrough records. When you first import a WAD the logic is fairly
@@ -47,3 +48,9 @@ A collection of related *Locations*. In GZAP there is a one-to-one mapping betwe
 Regions and maps. Internally, a Region contains all of the Locations within it,
 along with map-wide flags: whether it's accessible, whether it's completed, and
 what map-specific items (keys, automap) the player has for it.
+
+## zspp
+
+A simple zscript preprocessor that handles namespacing and some transformation of
+debug directives. `.zs` files in the repo are inputs; `.zsc` files are what
+actually gets loaded by gzDoom.
