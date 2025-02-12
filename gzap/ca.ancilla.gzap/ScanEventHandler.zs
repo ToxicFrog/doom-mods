@@ -37,14 +37,12 @@ class ::ScanEventHandler : StaticEventHandler {
   void ScanNext() {
     string nextmap;
     while (queue.size() > 0) {
-      nextmap = queue[queue.size()-1];
+      nextmap = queue[0];
       if (!LevelScanned(nextmap)) {
-        // console.printf("[Archipelago] Changing to %s", nextmap);
         level.ChangeLevel(nextmap, 0, CHANGELEVEL_NOINTERMISSION);
         return;
       } else {
-        // console.printf("[Archipelago] Skipping %s as it's already been scanned", nextmap);
-        queue.pop();
+        queue.Delete(0);
       }
     }
     console.printf("AP-SCAN-DONE { \"skill\": %d }",
@@ -54,6 +52,7 @@ class ::ScanEventHandler : StaticEventHandler {
   }
 
   void EnqueueLevel(string map) {
+    string map = map.MakeUpper();
     if (!LevelScanned(map) && LevelInfo.MapExists(map)) {
       console.printf("[Archipelago] Enqueing %s", map);
       queue.push(map);
@@ -141,14 +140,8 @@ class ::ScanEventHandler : StaticEventHandler {
     // nextmap based on player inventory or cvar
     done.push(level.MapName);
     EnqueueLevel(level.NextMap);
-    if (level.NextMap == level.NextSecretMap) {
-      console.printf("[Archipelago] Scan completed. Next map: %s", level.NextMap);
-    } else {
-      EnqueueLevel(level.NextSecretMap);
-      self.secret_levels.push(level.NextSecretMap);
-      console.printf("[Archipelago] Scan completed. Next maps: %s, %s",
-        level.NextSecretMap, level.NextMap);
-    }
+    EnqueueLevel(level.NextSecretMap);
+    console.printf("[Archipelago] Scan of %s completed.", level.MapName);
     ScanNext();
   }
 
@@ -186,6 +179,7 @@ class ::ScanEventHandler : StaticEventHandler {
   // .BIGPOWERUP - item is particularly powerful
   // .ISHEALTH, .ISARMOR - as it says
   // .HUBPOWER, .PERSISTENTPOWER, and .InterHubAmount allow carrying between levels
+  // .COUNTITEM - counts towards the % items collected stat
   // there's also sv_unlimited_pickup to remove all limits on ammo capacity(!)
   // We might want to remove AUTOACTIVATE and add INVBAR to some stuff in the
   // future so the player can keep it until particularly useful.
@@ -199,7 +193,7 @@ class ::ScanEventHandler : StaticEventHandler {
       // be made to work, but I'm not doing it right now.
     }
     if (thing is "Key" || thing is "PuzzleItem") {
-      return "key";
+      return "key"; // TODO: allow duplicate PuzzleItems but not Keys
     } else if (thing is "Weapon" || thing is "WeaponPiece") {
       return "weapon";
     } else if (thing is "BackpackItem") {
