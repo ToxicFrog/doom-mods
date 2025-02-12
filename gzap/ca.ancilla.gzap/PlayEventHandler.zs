@@ -11,6 +11,7 @@
 #include "./actors/AlarmClock.zsc"
 #include "./actors/Check.zsc"
 #include "./archipelago/Region.zsc"
+#include "./IPC.zsc"
 
 // TODO: for singleplayer rando, it should be possible to persist the state to
 // the save file. We'd need to pull all the state out into a separate object
@@ -287,8 +288,9 @@ class ::PlayEventHandler : StaticEventHandler {
     // an 'ap-unreachable' netevent; if set, the next check touched is marked
     // as unreachable, or if the level is exited, all checks in it are marked
     // unreachable.
-    console.printf("AP-CHECK { \"id\": %d, \"name\": \"%s\", \"keys\": [%s] }",
-      apid, name, GetCurrentRegion().KeyString());
+    ::IPC.Send("CHECK",
+      string.format("{ \"id\": %d, \"name\": \"%s\", \"keys\": [%s] }",
+        apid, name, GetCurrentRegion().KeyString()));
     EventHandler.SendNetworkEvent("ap-check", apid);
     GetCurrentRegion().ClearLocation(apid);
   }

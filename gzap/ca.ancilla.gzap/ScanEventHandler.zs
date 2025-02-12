@@ -1,6 +1,7 @@
 #namespace GZAP;
 #debug on;
 
+#include "./IPC.zsc"
 #include "./Util.zsc"
 
 class ::ScanEventHandler : StaticEventHandler {
@@ -46,8 +47,7 @@ class ::ScanEventHandler : StaticEventHandler {
         queue.Delete(0);
       }
     }
-    console.printf("AP-SCAN-DONE { \"skill\": %d }",
-      G_SkillPropertyInt(SKILLP_ACSReturn));
+    ::IPC.Send("SCAN-DONE", string.format("{ \"skill\": %d }", G_SkillPropertyInt(SKILLP_ACSReturn)));
     ::Util.printf("$GZAP_SCAN_DONE");
     self.scan_enabled = false;
   }
@@ -73,7 +73,7 @@ class ::ScanEventHandler : StaticEventHandler {
   }
 
   void ScanOutput(string type, string payload) {
-    console.printf("AP-%s { \"map\": \"%s\", %s }", type, level.MapName, payload);
+    ::IPC.Send(type, string.format("{ \"map\": \"%s\", %s }", level.MapName, payload));
   }
 
   string ScanOutputPosition(Actor thing) {
