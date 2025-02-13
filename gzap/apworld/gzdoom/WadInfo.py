@@ -6,97 +6,7 @@ from dataclasses import dataclass, field, InitVar
 from typing import Dict, List, NamedTuple, Optional, Set
 
 from .model.DoomItem import DoomItem
-
-# A Doom position -- 3d coordinates + yaw.
-# Pitch and roll are also used in gzDoom but are almost never useful to us, so
-# we don't store them.
-# This is used at generation time to detect duplicate Locations, and at runtime
-# to match up Locations with Actors.
-class WadPosition(NamedTuple):
-    x: float
-    y: float
-    z: float
-    angle: float
-
-
-class WadLocation:
-    """
-    A location we can perhaps randomize items into.
-
-    A WAD location is defined primarily by its position; you cannot have multiple locations with the
-    same position. They are *named*, however, based on their enclosing map and the item they originally
-    contained, e.g. "MAP02 - BlueCard" or "MAP03 - Blursphere".
-
-    If multiple copies of the same item appear in a map, the later copies are disambiguated by internal
-    ID. This isn't great; ideally, we'd have an end-of-map-loading pass that computes the center of the
-    map based on bounding box, then disambiguates based on compass direction and distance relative to
-    center.
-    """
-    id: Optional[int] = None
-    name: str
-    category: str
-    map: str
-    secret: bool = False
-    pos: WadPosition | None = None
-    keyset: Set[DoomItem]
-    item: DoomItem | None = None  # Used for place_locked_item
-    parent = None
-    orig_item = None
-
-    def __init__(self, parent, map: str, item: DoomItem, json: str | None):
-        self.name = f"{map} - {item.tag}"  # Caller will deduplicate if needed
-        self.category = item.category
-        self.map = map
-        self.keyset = set()
-        self.parent = parent
-        self.orig_item = item.name
-        if json:
-            self.secret = json["secret"]
-            del json["secret"]
-            self.pos = WadPosition(**json)
-
-    def __str__(self) -> str:
-        return f"WadLocation#{self.id}({self.name} @ {self.pos} % {self.keyset})"
-
-    __repr__ = __str__
-
-    def tune_keys(self, keys):
-        if keys < self.keyset:
-            print(f"Keyset: {self.name} {self.keyset} -> {keys}")
-            self.keyset = keys
-
-    def access_rule(self, player):
-        # TODO: in a really gross hack here, we assume that checks in the first
-        # map are always accessible no matter what guns/keys you have, because
-        # the former (hopefully) doesn't matter for the first map and the latter
-        # are granted to you as starting inventory.
-        if self.parent.maps[self.map] == self.parent.first_map:
-            return lambda _: True
-        # Otherwise, it's accessible if:
-        # - you have all the keys for the map
-        #     OR the map only has one key, and this is it
-        # - AND you have at least half of the non-secret guns from this map.
-        def rule(state):
-            map = self.parent.maps[self.map]
-            map_keys = { item.name for item in self.keyset }
-            player_keys = { item for item in map_keys if state.has(item, player) }
-
-            # Are we missing any keys?
-            if player_keys < self.keyset:
-                # If so, we might still be able to reach the location, if
-                # - the map only has one key, and
-                # - this is the location where that key would normally be found
-                if {self.orig_item} == map_keys:
-                    # print(f"Access granted: {self.name} (single key location)")
-                    return True
-                else:
-                    # print(f"Access denied: {self.name}: want { {k.name for k in self.keyset} }, have {player_keys}")
-                    return False
-
-            # print(f"Access granted: {self.name}")
-            return True
-
-        return rule
+from .model.DoomLocation import DoomLocation, DoomPosition
 
 
 class Mapinfo(NamedTuple):
@@ -131,7 +41,7 @@ class WadMap:
     keyset: Set[DoomItem] = field(default_factory=set)
     gunset: Set[DoomItem] = field(default_factory=set)
     # All locations contained in this map
-    locations: List[WadLocation] = field(default_factory=list)
+    locations: List[DoomLocation] = field(default_factory=list)
 
     def __post_init__(self, info):
         self.mapinfo = Mapinfo(**info)
@@ -166,8 +76,8 @@ class WadInfo:
     skill: int
     maps: Dict[str,WadMap] = {}
     items_by_name: Dict[str,DoomItem] = {}
-    locations_by_name: Dict[str,WadLocation] = {}
-    locations_by_pos: Dict[WadPosition,WadLocation] = {}
+    locations_by_name: Dict[str,DoomLocation] = {}
+    locations_by_pos: Dict[DoomPosition,DoomLocation] = {}
     first_map: WadMap | None = None
 
     def get_id(self) -> int:
@@ -177,7 +87,7 @@ class WadInfo:
     def all_maps(self) -> List[WadMap]:
         return self.maps.values()
 
-    def all_locations(self) -> List[WadLocation]:
+    def all_locations(self) -> List[DoomLocation]:
         return self.locations_by_name.values()
 
     def all_items(self) -> List[DoomItem]:
@@ -256,7 +166,7 @@ class WadInfo:
         all of their items are added to the pool but it's undefined which one the location is named
         after and inherits the item category from.
         """
-        location = WadLocation(self, map, item, json)
+        location = DoomLocation(self, map, item, json)
 
         if location.pos in self.locations_by_pos:
             # Duplicate location; ignore it
@@ -264,7 +174,7 @@ class WadInfo:
 
         self.add_location(location)
 
-    def add_location(self, location: WadLocation) -> None:
+    def add_location(self, location: DoomLocation) -> None:
         # Caller has already done position duplicate checking
         location.id = location.id or self.get_id()
         if location.name in self.locations_by_name:
@@ -313,7 +223,7 @@ class WadInfo:
             clear_token.id = map.clear_id
             self.add_item(map.map, clear_token, False)
 
-            map_exit = WadLocation(self, map.map, clear_token, None)
+            map_exit = DoomLocation(self, map.map, clear_token, None)
             map_exit.id = map.exit_id
             map_exit.item = clear_token
             map_exit.name = f"{map.map} - Exit"

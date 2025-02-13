@@ -9,8 +9,8 @@ from BaseClasses import CollectionState, Item, ItemClassification, Location, Mul
 from worlds.AutoWorld import WebWorld, World
 # from . import Items, Locations, Maps, Regions, Rules
 from .Options import GZDoomOptions
-from .model.DoomItem import DoomItem
-from .WadInfo import WadInfo, WadLocation, get_wadinfo, get_wadinfo_path
+from .model import DoomItem, DoomLocation
+from .WadInfo import WadInfo, get_wadinfo, get_wadinfo_path
 
 logger = logging.getLogger("gzDoom")
 
@@ -18,7 +18,7 @@ logger = logging.getLogger("gzDoom")
 class GZDoomLocation(Location):
     game: str = "gzDoom"
 
-    def __init__(self, player: int, loc: WadLocation, region: Region) -> None:
+    def __init__(self, player: int, loc: DoomLocation, region: Region) -> None:
         super().__init__(player=player, name=loc.name, address=loc.id, parent=region)
         self.access_rule = loc.access_rule(player)
 
