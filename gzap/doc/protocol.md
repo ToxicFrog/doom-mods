@@ -118,16 +118,18 @@ it can overwrite them with new messages if needed.
 
 ## Incoming Protocol
 
-The incoming protocol makes use of the fact that gzDoom's `wad.ReadLump()` can
-be used to re-read files on disk. For this to work, the *directory the file is in*
-must be passed via the `-file` command line flag, and then the individual file
-read using `wad.FindLump()` and `wad.ReadLump()`; passing the file directly will
-cause it to be copied into memory on startup and thus will not work.
+The incoming protocol works by repeatedly rewriting a file on disk, the contents
+of which are read by gzDoom using `wad.ReadLump()`.
 
-It does, however, have one caveat: it will not return anything larger than the
-size of the file at program startup. So we need to use a fixed size buffer,
-preallocate it before gzDoom starts, and use a protocol that lets us periodically
-rewrite it from the start.
+This has two caveats. The first is that the file must be inside a directory which
+is in turn passed to gzDoom using the `-file` flag. Passing the file directly will
+cause it to be copied into memory at startup, and subsequent changes on disk will
+be ignored.
+
+The second is that the max size is fixed on startup. If the file is subsequently
+extended past that size, the extra bytes will be ignored. So it needs to be
+preallocated to some useful size *before* gzDoom starts up, and must not exceed
+that size during play.
 
 ### On-the-wire format
 
