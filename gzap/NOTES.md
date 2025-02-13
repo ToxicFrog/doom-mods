@@ -1,22 +1,99 @@
 # Archipelago gzDoom connector
 
-Four phases: scan, generation, play, refinement.
+## Item/location management for multiwad impl
 
-Scan walks all the maps in the wad and emits information about their contained
-items (and perhaps someday monsters, etc). We need to run this once per difficulty
-level we want to support.
+Top-level DoomLogic holds the master item/location tables. These are map from name
+to DoomItem/DoomLocation, I think.
 
-Generation is the province of the apworld. Input is the result of the scan (and,
-if available, refinement) phases, output is a pk3 containing the results.
+When a wad is being populated, it unpacks the json into a DI/DL and then passes
+it to the DoomLogic, which returns an ID, and then it maintains an internal map
+of ID to count.
 
-Play is where you actually play through the game. Items in the rando pool are
-replaced with AP placeholder items. Picking one up generates a CHECK event which
-is then sent to the client running alongside.
+The DoomLogic does this by seeing if it already has a duplicate. If it doesn't,
+this is easy, it generates a name, allocates a new id for it, stores it by name
+and returns the id.
 
-Refinement is an output of play -- the CHECK events are aware of what keys you
-had and that info is appended to the output of the scan. Subsequent generation
-runs can use the updated scanlist to be more accurate about what you need to
-reach each location.
+If it does have a duplicate -- well, what it is a duplicate?
+- unscoped items are duplicates if they have the same typename and tag
+- scoped items are duplicates if they have the same typename, tag, and mapname
+
+Setting aside locations for the moment because they're more complicated.
+
+So, when we get a new item we generate a canonical name for it based on the tag
+(+map if scoped) and then see if we have an existing item with the same name. If
+we do, but it's not a duplicate -- which in practice means same tag, same map,
+different type -- we mark both the old and new items as need_disambiguation, append the ID
+to the name of this one, and insert it into the index.
+
+Once we're done processing *all* imports of *all* logic records, we build the
+real name to info map. For most things this is just existing name to existing info,
+but for stuff with need_disambiguation, we instead render it is:
+
+    "${tag} [${type}]" - unscoped
+    "${tag} [${type}] (${map})" - scoped
+
+E.g. "Red Keycard [RedKeycard] (MAP01)" vs. "Red Keycard [CustomModdedKeycard] (MAP01)"
+
+So much for items. How do we handle locations?
+
+This is more complicated because as far as AP is concerned, if two things have the
+same name they're the same location. So "MAP01 - Shotgun" is the same location
+whether it's referring to the one in Doom 2 or the one in Greytall. And it doesn't
+care if, when generating the output mod, we map each one to a different set of coordinates
+depending on what wad the player is generating for.
+
+But it does mean we need to keep track of the different coordinates (for output generation)
+and different keysets (for reachability modeling) of different versions of the same
+location.
+
+I could see a use case for doing this in wads as well -- we don't need separate
+versions of RedKeycard and CustomModdedKeycard in the item table if there is no wad
+that uses both, after all. (But, that complicates item handling considerably, so maybe
+let's not.)
+
+So maybe what we actually want to do is, the DoomLocation structures are stored
+in the DoomWad itself, and the DoomLogic just stores a map of name to {id, needs_disambig}?
+Then at generation time we just ask the selected wad for its locations.
+
+And location names need be disambiguated only if the same location appears multiple
+times in the same wad. Hmm.
+
+So: we see a new location. If there's another location in the same wad with the same
+coordinates, this is the same location and we just re-use it.
+
+If there's another location in the same wad with the same name and different coordinates,
+we get a new ID for it and mark both as needing disambiguation.
+
+BUT, this means we can end up in a situation where:
+- wad A has one shotty in the first level, "MAP01 - Shotgun"
+- wad B has two! "MAP01 - Shotgun" is registered first and has the same ID
+- then we see the second one and disambiguate, so we have
+  "MAP01 - Shotgun [NW]" and "MAP01 - Shotgun [S]"
+- but that means the second one's name has changed, so we need to break its association
+  with the "MAP01 - Shotgun", a name we still want to keep for wad A
+- then wad C comes along, registers two more shotguns and disambiguates them into
+  "MAP01 - Shotgun [S]" and "MAP01 - Shotgun [N]" -- the former should reuse the
+  same ID as the wad B version!
+
+So let's try this again.
+
+Top level just maintains a name-to-id map.
+
+Individual wads maintain an id-to-location map and a position-to-location map.
+
+When adding a location, if it shares a position with another loc in the same wad,
+it's the same loc and we drop the duplicate.
+
+If it shares a name with a loc in the top level, we re-use that loc's ID (but
+enter our own definition for it).
+
+If it shares a name with a loc in this wad, we mark both as needing disambiguation.
+
+Then, during the disambiguation pass, foreach location being disambiguated:
+- generate the new canonical name
+- if it's already in the index, re-use that ID since it means another wad
+  has already disambiguated and gotten the same name
+- if it's not, generate a new ID for it and enter the new name and ID into the index
 
 ## Compatibility issues
 
@@ -122,7 +199,7 @@ the networking protocol, and manifest itself as a do-nothing player (probably
 using the NEVERTARGET flag or immediately self-destructing or both to minimize
 interference). But that's a bigger project.
 
-For maps, we can look at the Intuition power in GB to see how it works. There's
+or maps, we can look at the Intuition power in GB to see how it works. There's
 also the am_ family of cvars which let us display secrets, keys, etc if we want.
 
 Monitor program is probably going to be written in Clojure, using the Java

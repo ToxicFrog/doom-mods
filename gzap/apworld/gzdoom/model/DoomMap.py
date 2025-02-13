@@ -1,3 +1,11 @@
+"""
+Data model for a single map.
+
+A map is *mostly* just a list of locations, but it also needs to know what the IDs
+are for the items that grant map-specific items (access codes, the automap, etc);
+for the purpose of reachability information, it also needs to know what keys and
+weapons it contains.
+"""
 from dataclasses import dataclass, field, InitVar
 from typing import Dict, List, NamedTuple, Optional, Set
 

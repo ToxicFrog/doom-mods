@@ -1,3 +1,4 @@
+import importlib.resources as resources
 import logging
 import os
 import typing
@@ -9,7 +10,7 @@ from BaseClasses import CollectionState, Item, ItemClassification, Location, Mul
 from worlds.AutoWorld import WebWorld, World
 
 from .Options import GZDoomOptions
-from .model import DoomItem, DoomLocation, DoomLogic, get_logic_file_path, load_logic
+from .model import DoomItem, DoomLocation, DoomWad, get_wad
 
 logger = logging.getLogger("gzDoom")
 
@@ -51,15 +52,20 @@ class GZDoomSettings(settings.Group):
     wad_info_file: DoomLogicFile = DoomLogicFile(DoomLogicFile.copy_to)
 
 
-# TODO: based on discussion on the discord, the _name_to_id tables need to be
-# initialized *by the time the class definition is done parsing* in order for
-# datapack generation for multiplayer games to function correctly.
-# This means we need to read in the logic file somewhere in the file top-level
-# so that we can populate those tables before GZDoomWorld is defined.
-#
-# This would also let us populate the top-level item_name_groups, which is a
-# map from item group name to list of item names, so we could have, e.g.,
-# key, access, clear, automap, and weapon groups.
+# Load all logic files included in the apworld.
+# Sort them so we get a consistent order, and thus consistent ID assignment,
+# across runs.
+for logic_file in sorted(resources.files(__package__).joinpath("logic").iterdir(), key=lambda p: p.name):
+    with model.add_wad(logic_file.name) as wad:
+        print(f"Loading builtin WAD logic from {logic_file.name}")
+        wad.load_logic(logic_file.read_text())
+
+if "GZAP_LOGIC_FILES" in os.environ:
+    for logic_file in os.environ["GZAP_LOGIC_FILES"].split(":"):
+        with model.add_wad(logic_file.name) as wad:
+            print(f"Loading external WAD logic from {logic_file.name}")
+            wad.load_logic(logic_file.read_text())
+
 class GZDoomWorld(World):
     """
     gzDoom is an open-source enhanced port of the Doom engine, supporting Doom 1/2, Hexen, Heretic, and Strife, along
@@ -77,13 +83,18 @@ class GZDoomWorld(World):
     required_client_version = (0, 3, 9)
 
     # Info fetched from gzDoom; contains item/location ID mappings etc.
-    wadinfo: DoomLogic
+    wad_logic: DoomWad
     location_count: int = 0
 
     # Used by the caller
-    item_name_to_id: Dict[str, int] = {}
-    location_name_to_id: Dict[str, int] = {}
-    location_id_to_name: Dict[int, str]
+    item_name_to_id: Dict[str, int] = {
+        item.name: item.id
+        for item in get_wad("Going Down Turbo (HNTR).logic").all_items()
+    }
+    location_name_to_id: Dict[str, int] = {
+        loc.name: loc.id
+        for loc in get_wad("Going Down Turbo (HNTR).logic").all_locations()
+    }
 
     def __init__(self, multiworld: MultiWorld, player: int):
         self.included_episodes = [1, 1, 1, 0]
@@ -91,30 +102,21 @@ class GZDoomWorld(World):
 
         super().__init__(multiworld, player)
 
-    @classmethod
-    def stage_assert_generate(cls, multiworld: MultiWorld):
-        logic_path = get_logic_file_path()
-        if not os.path.exists(logic_path):
-            raise FileNotFoundError(logic_path)
+    # TODO: ensure that the WAD the player has selected is in the supported list,
+    # or that they have provided a custom logic file
+    # @classmethod
+    # def stage_assert_generate(cls, multiworld: MultiWorld):
+    #     logic_path = get_logic_file_path()
+    #     if not os.path.exists(logic_path):
+    #         raise FileNotFoundError(logic_path)
 
     def create_item(self, name: str) -> GZDoomItem:
         item = self.wad_logic.items_by_name[name]
         return GZDoomItem(item, self.player)
 
+    # TODO: fetch wad logic by name based on yaml rather than just hardcoding it here
     def generate_early(self) -> None:
-        self.wad_logic = load_logic()
-        self.item_name_to_id = {
-            item.name: item.id
-            for item in self.wad_logic.items_by_name.values()
-        }
-        self.location_name_to_id = {
-            loc.name: loc.id
-            for loc in self.wad_logic.locations_by_name.values()
-        }
-        self.location_id_to_name = {
-            loc.id: loc.name
-            for loc in self.wad_logic.locations_by_name.values()
-        }
+        self.wad_logic = get_wad("Going Down Turbo (HNTR).logic")
 
     def create_regions(self) -> None:
         menu_region = Region("Menu", self.player, self.multiworld)
@@ -236,7 +238,7 @@ class GZDoomWorld(World):
         }
 
         env = jinja2.Environment(
-            loader=jinja2.PackageLoader("worlds.gzdoom"),
+            loader=jinja2.PackageLoader(__package__),
             trim_blocks=True,
             lstrip_blocks=True)
         with open(os.path.join(path, "zscript.txt"), "w") as lump:
