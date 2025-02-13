@@ -51,13 +51,15 @@ class GZDoomSettings(settings.Group):
     wad_info_file: DoomLogicFile = DoomLogicFile(DoomLogicFile.copy_to)
 
 
-
-    # Items can be grouped using their names to allow easy checking if any item
-    # from that group has been collected. Group names can also be used for !hint
-    item_name_groups = {
-        "weapons": {"sword", "lance"},
-    }
-
+# TODO: based on discussion on the discord, the _name_to_id tables need to be
+# initialized *by the time the class definition is done parsing* in order for
+# datapack generation for multiplayer games to function correctly.
+# This means we need to read in the logic file somewhere in the file top-level
+# so that we can populate those tables before GZDoomWorld is defined.
+#
+# This would also let us populate the top-level item_name_groups, which is a
+# map from item group name to list of item names, so we could have, e.g.,
+# key, access, clear, automap, and weapon groups.
 class GZDoomWorld(World):
     """
     gzDoom is an open-source enhanced port of the Doom engine, supporting Doom 1/2, Hexen, Heretic, and Strife, along
