@@ -62,34 +62,28 @@ class ::PlayEventHandler : StaticEventHandler {
     regions.Get(map).RegisterCheck(apid, name, progression, pos, angle);
   }
 
-  void Message(string message) {
-    for (int p = 0; p < MAXPLAYERS; ++p) {
-      if (!playeringame[p]) continue;
-      if (!players[p].mo) continue;
-      players[p].mo.A_PrintBold(message);
-    }
-  }
-
   void GrantItem(uint apid) {
+    // console.printf("GrantItem: %d", apid);
     if (map_apids.CheckKey(apid)) {
       let new_info = map_apids.Get(apid);
       let info = regions.Get(new_info.map);
+      let maptitle = LevelInfo.FindLevelInfo(new_info.map).LookupLevelName();
 
       // TODO: this is kind of gross
       foreach (k,v : new_info.keys) {
-        Message(string.format("Received %s (%s)", k, new_info.map));
+        ::Util.announce("$GZAP_GOT_KEY", k, maptitle, new_info.map);
         info.AddKey(k);
       }
       if (new_info.access) {
-        Message(string.format("Received %s (%s)", "Level Access", new_info.map));
+        ::Util.announce("$GZAP_GOT_ACCESS", maptitle, new_info.map);
         info.access = true;
       }
       if (new_info.automap) {
-        Message(string.format("Received %s (%s)", "Automap", new_info.map));
+        ::Util.announce("$GZAP_GOT_AUTOMAP", maptitle, new_info.map);
         info.automap = true;
       }
       if (new_info.cleared) {
-        Message(string.format("\c[GOLD]%s: Level Clear!", new_info.map));
+        ::Util.announce("$GZAP_LEVEL_DONE", new_info.map);
         info.cleared = true;
       }
     } else if (item_apids.CheckKey(apid)) {
@@ -100,12 +94,17 @@ class ::PlayEventHandler : StaticEventHandler {
       // them when and as needed, or implementing our own inventory so that we
       // don't have to try to backpatch other mods' items.
       // console.printf("GrantItem %d (%s)", apid, item_apids.Get(apid));
+      // TODO: this should use the item tag rather than typename, and also tell
+      // you what player sent you the item, if it was remote.
+      ::Util.announce("$GZAP_GOT_ITEM", item_apids.Get(apid));
       for (int p = 0; p < MAXPLAYERS; ++p) {
         if (!playeringame[p]) continue;
         if (!players[p].mo) continue;
 
         players[p].mo.A_SpawnItemEX(item_apids.Get(apid));
       }
+    } else {
+      console.printf("Unknown item ID from Archipelago: %d", apid);
     }
 
     UpdatePlayerInventory();
@@ -140,8 +139,7 @@ class ::PlayEventHandler : StaticEventHandler {
   void Alarm() {
     foreach (loc : pending_locations) {
       console.printf(
-        "Warning: couldn't find matching actor for check '%s', spawning it on player instead.",
-        loc.name);
+        StringTable.Localize("$GZAP_MISSING_LOCATION"), loc.name);
       ::CheckPickup.Create(loc, players[0].mo.pos);
     }
     UpdatePlayerInventory();

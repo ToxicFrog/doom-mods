@@ -18,3 +18,9 @@ Unchecked Locations:,GZAP_MENU_TT_CHECKS,Unchecked locations tooltip header.
 [ap-scan] Added to queue: %s,GZAP_SCAN_MAP_ENQUEUED,"Field is level lump name, e.g. MAP02."
 [ap-scan] Scanning: %s,GZAP_SCAN_MAP_STARTED,
 [ap-scan] Done scanning: %s,GZAP_SCAN_MAP_DONE,
+Error placing check for '%s'. Giving it to the player directly.,GZAP_MISSING_LOCATION,Displayed when it can't find the actor that a check is meant to replace.
+Received access codes for %s (%s),GZAP_GOT_ACCESS,Displayed when you receive access to a new level. Fields are level title + lump name.
+Received automap for %s (%s),GZAP_GOT_AUTOMAP,"As above, but when you get the automap."
+Received %s for %s (%s),GZAP_GOT_KEY,"As above, but when you get a key. Fields are key, title, lump."
+Received %s!,GZAP_GOT_ITEM,
+%s: Level Clear!,GZAP_LEVEL_DONE,Message displayed when you reach the level exit.
