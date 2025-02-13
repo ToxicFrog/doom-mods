@@ -1,3 +1,7 @@
+"""
+Data model for items (or rather, item types) in Doom.
+"""
+
 from typing import Optional
 from BaseClasses import ItemClassification
 
@@ -15,6 +19,9 @@ class DoomItem:
 
     The item name -- which must be unique within the apworld -- is currently
     derived from the item tag, as well as the map for per-map items.
+
+    At generation time, each AP Item is derived from a DoomItem in a many-to-one
+    relationship.
     """
     id: Optional[int] = None        # AP item ID, assigned by the caller
     category: str  # Randomization category (e.g. key, weapon)

@@ -1,12 +1,11 @@
+"""
+Data model for the locations items are found at in the WAD.
+"""
+
 from typing import NamedTuple, Optional, Set
 
 from . import DoomItem
 
-# A Doom position -- 3d coordinates + yaw.
-# Pitch and roll are also used in gzDoom but are almost never useful to us, so
-# we don't store them.
-# This is used at generation time to detect duplicate Locations, and at runtime
-# to match up Locations with Actors.
 class DoomPosition(NamedTuple):
     """
     A Doom playsim position.
@@ -39,6 +38,8 @@ class DoomLocation:
     in larger levels -- later copies are disambiguated by appending the internal ID.
     TODO: do something more useful, like appending a compass direction relative to the
     center of the map or relative to the nearest entirely-unique item.
+
+    At generation time, each DoomLocation results in exactly one AP Location.
     """
     id: Optional[int] = None
     name: str

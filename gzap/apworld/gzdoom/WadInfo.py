@@ -7,84 +7,27 @@ from typing import Dict, List, NamedTuple, Optional, Set
 
 from .model.DoomItem import DoomItem
 from .model.DoomLocation import DoomLocation, DoomPosition
-
-
-class Mapinfo(NamedTuple):
-    """Information about a map used to generate the MAPINFO lump."""
-    levelnum: int
-    cluster: int
-    title: str
-    is_lookup: bool
-    music: str
-    music_track: int
-    sky1: str
-    sky1speed: float
-    sky2: str
-    sky2speed: float
-    flags: List[str]
-
-# Map metadata. Lump name, user-facing title, secrecy bit, and which keys, if
-# any, the map contains.
-@dataclass
-class WadMap:
-    map: str
-    # Item IDs for the various tokens that unlock or mark the level as finished
-    access_id: int
-    automap_id: int
-    clear_id: int
-    exit_id: int
-    # JSON initializer for the mapinfo
-    info: InitVar[Dict]
-    # Data for the MAPINFO lump
-    mapinfo: Optional[Mapinfo] = None
-    # Key and weapon information for computing access rules
-    keyset: Set[DoomItem] = field(default_factory=set)
-    gunset: Set[DoomItem] = field(default_factory=set)
-    # All locations contained in this map
-    locations: List[DoomLocation] = field(default_factory=list)
-
-    def __post_init__(self, info):
-        self.mapinfo = Mapinfo(**info)
-
-    def access_rule(self, player):
-        def rule(state):
-            if not state.has(self.access_token_name(), player):
-                return False
-
-            # We need at least half of the non-secret guns in the level,
-            # rounded down, to give the player a fighting chance.
-            player_guns = { item.name for item in self.gunset if state.has(item.name, player) }
-            if len(player_guns) < len(self.gunset)//2:
-                return False
-
-            return True
-
-        return rule
-
-    def access_token_name(self):
-        return f"Level Access ({self.map})"
-
-    def clear_token_name(self):
-        return f"Level Clear ({self.map})"
+from .model import DoomItem, DoomLocation, DoomPosition, DoomMap
 
 
 class DuplicateMapError(RuntimeError):
     pass
 
+
 class WadInfo:
     last_id: int = 0
     skill: int
-    maps: Dict[str,WadMap] = {}
+    maps: Dict[str,DoomMap] = {}
     items_by_name: Dict[str,DoomItem] = {}
     locations_by_name: Dict[str,DoomLocation] = {}
     locations_by_pos: Dict[DoomPosition,DoomLocation] = {}
-    first_map: WadMap | None = None
+    first_map: DoomMap | None = None
 
     def get_id(self) -> int:
         self.last_id += 1
         return self.last_id
 
-    def all_maps(self) -> List[WadMap]:
+    def all_maps(self) -> List[DoomMap]:
         return self.maps.values()
 
     def all_locations(self) -> List[DoomLocation]:
@@ -102,7 +45,7 @@ class WadInfo:
         map = json["map"]
         print(json)
         if map not in self.maps:
-            self.maps[map] = WadMap(
+            self.maps[map] = DoomMap(
                 access_id=self.get_id(), automap_id=self.get_id(),
                 clear_id=self.get_id(), exit_id=self.get_id(),
                 **json)
