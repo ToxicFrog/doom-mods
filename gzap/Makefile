@@ -12,7 +12,7 @@ apworld: ${TOPDIR}/release/gzdoom.apworld
 
 include ${TOPDIR}/rules.make
 
-${TOPDIR}/release/gzdoom.apworld: apworld/gzdoom/* apworld/gzdoom/templates/*
+${TOPDIR}/release/gzdoom.apworld: apworld/gzdoom/* apworld/gzdoom/templates/* apworld/gzdoom/model/*
 	cd apworld && zip -r gzdoom.apworld gzdoom
 	cp apworld/gzdoom.apworld ~/Archipelago/worlds/
 	mv apworld/gzdoom.apworld $@

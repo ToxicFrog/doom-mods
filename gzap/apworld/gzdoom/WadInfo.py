@@ -3,8 +3,9 @@ import Utils
 import json
 import os
 from dataclasses import dataclass, field, InitVar
-from typing import Any, Dict, List, NamedTuple, Optional, Set
-from BaseClasses import ItemClassification
+from typing import Dict, List, NamedTuple, Optional, Set
+
+from .model.DoomItem import DoomItem
 
 # A Doom position -- 3d coordinates + yaw.
 # Pitch and roll are also used in gzDoom but are almost never useful to us, so
@@ -16,74 +17,6 @@ class WadPosition(NamedTuple):
     y: float
     z: float
     angle: float
-
-
-class WadItem:
-    """
-    A (potentially randomizeable) item in the WAD.
-
-    Most items only get one of these -- i.e. all GreenArmors are represented by
-    a single WadItem with >1 count. Exceptions are items that are scoped to the
-    level they're found in, like keycards; those get a different WadItem for
-    each level they appear in.
-    """
-    id: Optional[int] = None        # AP item ID, assigned by the caller
-    category: str  # Randomization category (e.g. key, weapon)
-    typename: str  # gzDoom class name
-    tag: str       # User-visible name *in gzDoom*
-    name: str      # User-visible name *in Archipelago*
-    count: int     # How many are in the item pool
-    map: Optional[str]
-
-    def __init__(self, map, category, typename, tag):
-        self.category = category
-        self.typename = typename
-        self.tag = tag
-        self.count = 1
-        if category == "key" or category == "map" or category == "token":
-            self.map = map
-            self.name = f"{tag} ({map})"
-        else:
-            # Potential problem here -- what if we have multiple classes with
-            # the same tag?
-            self.name = tag
-
-    def __str__(self) -> str:
-        return f"WadItem#{self.id}({self.typename} as {self.name})"
-
-    __repr__ = __str__
-
-    def classification(self) -> ItemClassification:
-        if self.category == "key" or self.category == "token" or self.category == "weapon":
-            # TODO: we only need one of each weapon for progression. So we should
-            # treat them the same as, say, power bombs in SM: the first one is
-            # progression, all the rest are filler.
-            return ItemClassification.progression
-        elif self.category == "map" or self.category == "upgrade":
-            return ItemClassification.useful
-        else:
-            return ItemClassification.filler
-
-    def can_replace(self) -> bool:
-        """True if locations holding items of this type should be eligible as randomization destinations."""
-        return (
-            self.category == "key"
-            or self.category == "weapon"
-            or self.category == "map"
-            or self.category == "upgrade"
-            or self.category == "powerup"
-            or self.category == "big-armor"
-            or self.category == "big-health"
-            or self.category == "big-ammo"
-            or self.category == "tool"
-        )
-
-    # TODO: consider how this interacts with ammo more. Possibly we want to keep
-    # big-ammo in the world where it falls, but add some big and medium ammo to
-    # the item pool as filler?
-    def should_include(self) -> bool:
-        """True if this item should be included in the pool."""
-        return self.can_replace() and self.category != "map"
 
 
 class WadLocation:
@@ -105,12 +38,12 @@ class WadLocation:
     map: str
     secret: bool = False
     pos: WadPosition | None = None
-    keyset: Set[WadItem]
-    item: WadItem | None = None  # Used for place_locked_item
+    keyset: Set[DoomItem]
+    item: DoomItem | None = None  # Used for place_locked_item
     parent = None
     orig_item = None
 
-    def __init__(self, parent, map: str, item: WadItem, json: str | None):
+    def __init__(self, parent, map: str, item: DoomItem, json: str | None):
         self.name = f"{map} - {item.tag}"  # Caller will deduplicate if needed
         self.category = item.category
         self.map = map
@@ -195,8 +128,8 @@ class WadMap:
     # Data for the MAPINFO lump
     mapinfo: Optional[Mapinfo] = None
     # Key and weapon information for computing access rules
-    keyset: Set[WadItem] = field(default_factory=set)
-    gunset: Set[WadItem] = field(default_factory=set)
+    keyset: Set[DoomItem] = field(default_factory=set)
+    gunset: Set[DoomItem] = field(default_factory=set)
     # All locations contained in this map
     locations: List[WadLocation] = field(default_factory=list)
 
@@ -232,7 +165,7 @@ class WadInfo:
     last_id: int = 0
     skill: int
     maps: Dict[str,WadMap] = {}
-    items_by_name: Dict[str,WadItem] = {}
+    items_by_name: Dict[str,DoomItem] = {}
     locations_by_name: Dict[str,WadLocation] = {}
     locations_by_pos: Dict[WadPosition,WadLocation] = {}
     first_map: WadMap | None = None
@@ -247,10 +180,10 @@ class WadInfo:
     def all_locations(self) -> List[WadLocation]:
         return self.locations_by_name.values()
 
-    def all_items(self) -> List[WadItem]:
+    def all_items(self) -> List[DoomItem]:
         return self.items_by_name.values()
 
-    def starting_items(self) -> List[WadItem]:
+    def starting_items(self) -> List[DoomItem]:
         return [
             self.items_by_name[self.first_map.access_token_name()]
         ] + list(self.first_map.keyset)
@@ -264,6 +197,9 @@ class WadInfo:
                 clear_id=self.get_id(), exit_id=self.get_id(),
                 **json)
         else:
+            # TODO: support multiple copies of the same map as long as they
+            # have different difficulty levels, so we can have a single logic
+            # file for all difficulties of a given wad.
             raise DuplicateMapError(map)
 
         if self.first_map is None:
@@ -284,8 +220,8 @@ class WadInfo:
         position = json["position"]
         del json["position"]
 
-        # Provisionally create a WadItem.
-        item = WadItem(**json)
+        # Provisionally create a DoomItem.
+        item = DoomItem(**json)
         # Do we actually care about these? If not, don't generate an ID for this item or add it to the pool,
         # and don't consider its location as a valid randomization destination.
         if not item.can_replace():
@@ -295,10 +231,10 @@ class WadInfo:
             self.add_item(map, item, position["secret"])
         self.new_location(map, item, position)
 
-    def add_item(self, map: str, item: WadItem, secret: bool) -> None:
+    def add_item(self, map: str, item: DoomItem, secret: bool) -> None:
         # If we haven't seen this kind of item before, give it an ID and put
         # it in the lookup table, otherwise update the count for the existing
-        # WadItem.
+        # DoomItem.
         if item.name not in self.items_by_name:
             item.id = item.id or self.get_id()
             self.items_by_name[item.name] = item
@@ -311,7 +247,7 @@ class WadInfo:
         if item.category == "weapon" and not secret:
             self.maps[map].gunset.add(item)
 
-    def new_location(self, map: str, item: WadItem, json: Dict[str, str]) -> None:
+    def new_location(self, map: str, item: DoomItem, json: Dict[str, str]) -> None:
         """
         Add a new location to the location pool.
 
@@ -365,15 +301,15 @@ class WadInfo:
         self.skill = json["skill"]
 
         for map in self.all_maps():
-            access_token = WadItem(map=map.map, category="token", typename="", tag="Level Access")
+            access_token = DoomItem(map=map.map, category="token", typename="", tag="Level Access")
             access_token.id = map.access_id
             self.add_item(map.map, access_token, False)
 
-            map_token = WadItem(map=map.map, category="map", typename="", tag="Automap")
+            map_token = DoomItem(map=map.map, category="map", typename="", tag="Automap")
             map_token.id = map.automap_id
             self.add_item(map.map, map_token, False)
 
-            clear_token = WadItem(map=map.map, category="token", typename="", tag="Level Clear")
+            clear_token = DoomItem(map=map.map, category="token", typename="", tag="Level Clear")
             clear_token.id = map.clear_id
             self.add_item(map.map, clear_token, False)
 
