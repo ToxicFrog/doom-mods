@@ -1,20 +1,23 @@
-import settings
-import Utils
-import json
-import os
-from dataclasses import dataclass, field, InitVar
-from typing import Dict, List, NamedTuple, Optional, Set
+"""
+Top-level class for holding the actual game logic.
 
-from .model.DoomItem import DoomItem
-from .model.DoomLocation import DoomLocation, DoomPosition
-from .model import DoomItem, DoomLocation, DoomPosition, DoomMap
+This is primarily a collection of maps, locations, and items, along with some
+lookup tables and information about how they relate, and some utility functions.
+
+It also holds some game-general information like the difficulty level and what
+map to start on.
+"""
+
+from typing import Dict, List
+
+from . import DoomItem, DoomLocation, DoomMap, DoomPosition
 
 
 class DuplicateMapError(RuntimeError):
     pass
 
 
-class WadInfo:
+class DoomLogic:
     last_id: int = 0
     skill: int
     maps: Dict[str,DoomMap] = {}
@@ -43,7 +46,6 @@ class WadInfo:
 
     def new_map(self, json: Dict[str,str]) -> None:
         map = json["map"]
-        print(json)
         if map not in self.maps:
             self.maps[map] = DoomMap(
                 access_id=self.get_id(), automap_id=self.get_id(),
@@ -188,47 +190,3 @@ class WadInfo:
                 item.count = min(item.count, max_guns)
             elif item.category == "key":
                 item.count = 1
-
-
-def get_wadinfo_path(file_name: str = "") -> str:
-    options = settings.get_settings()
-    if not file_name:
-        file_name = options["gzdoom_options"]["wad_info_file"]
-    if not os.path.exists(file_name):
-        file_name = Utils.user_path(file_name)
-    return file_name
-
-
-class UnsupportedScanEventError(NotImplementedError):
-    pass
-
-def get_wadinfo(file_name: str = "") -> WadInfo:
-    info: WadInfo = WadInfo()
-    print("Loading logic from", get_wadinfo_path(file_name))
-    with open(get_wadinfo_path(file_name), "r") as fd:
-        for line in fd:
-            if not line.startswith("AP-"):
-                continue
-
-            [evt, payload] = line.split(" ", 1)
-            payload = json.loads(payload)
-            print(evt, payload)
-            if evt == "AP-MAP":
-                info.new_map(payload)
-            # elif evt == "AP-MAPINFO-START":
-            #     # everything from here to AP-MAPINFO-END is the MAPINFO lumps
-            elif evt == "AP-ITEM":
-                info.new_item(payload)
-            elif evt == "AP-SCAN-DONE":
-                info.finalize_scan(payload)
-            elif evt == "AP-CHECK":
-                info.tune_location(**payload)
-            elif evt in {"AP-XON", "AP-ACK"}:
-                # used only for multiplayer
-                pass
-            else:
-                # Unsupported event type
-                raise UnsupportedScanEventError(evt)
-
-    info.finalize_all()
-    return info

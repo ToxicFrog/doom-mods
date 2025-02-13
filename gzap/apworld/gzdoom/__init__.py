@@ -7,10 +7,9 @@ import settings
 import jinja2
 from BaseClasses import CollectionState, Item, ItemClassification, Location, MultiWorld, Region, Tutorial
 from worlds.AutoWorld import WebWorld, World
-# from . import Items, Locations, Maps, Regions, Rules
+
 from .Options import GZDoomOptions
-from .model import DoomItem, DoomLocation
-from .WadInfo import WadInfo, get_wadinfo, get_wadinfo_path
+from .model import DoomItem, DoomLocation, DoomLogic, get_logic_file_path, load_logic
 
 logger = logging.getLogger("gzDoom")
 
@@ -43,13 +42,13 @@ class GZDoomWeb(WebWorld):
 
 
 class GZDoomSettings(settings.Group):
-    class WadInfoFile(settings.UserFilePath):
+    class DoomLogicFile(settings.UserFilePath):
         """File name of the WAD info dump produced by gzap.pk3's scan command"""
         # TODO: figure out what the hell copy_to actually does
         copy_to = "wadinfo.txt"
         description = "WADInfo file"
 
-    wad_info_file: WadInfoFile = WadInfoFile(WadInfoFile.copy_to)
+    wad_info_file: DoomLogicFile = DoomLogicFile(DoomLogicFile.copy_to)
 
 
 
@@ -76,7 +75,7 @@ class GZDoomWorld(World):
     required_client_version = (0, 3, 9)
 
     # Info fetched from gzDoom; contains item/location ID mappings etc.
-    wadinfo: WadInfo
+    wadinfo: DoomLogic
     location_count: int = 0
 
     # Used by the caller
@@ -92,34 +91,34 @@ class GZDoomWorld(World):
 
     @classmethod
     def stage_assert_generate(cls, multiworld: MultiWorld):
-        wadinfo_path = get_wadinfo_path()
-        if not os.path.exists(wadinfo_path):
-            raise FileNotFoundError(wadinfo_path)
+        logic_path = get_logic_file_path()
+        if not os.path.exists(logic_path):
+            raise FileNotFoundError(logic_path)
 
     def create_item(self, name: str) -> GZDoomItem:
-        item = self.wadinfo.items_by_name[name]
+        item = self.wad_logic.items_by_name[name]
         return GZDoomItem(item, self.player)
 
     def generate_early(self) -> None:
-        self.wadinfo = get_wadinfo()
+        self.wad_logic = load_logic()
         self.item_name_to_id = {
             item.name: item.id
-            for item in self.wadinfo.items_by_name.values()
+            for item in self.wad_logic.items_by_name.values()
         }
         self.location_name_to_id = {
             loc.name: loc.id
-            for loc in self.wadinfo.locations_by_name.values()
+            for loc in self.wad_logic.locations_by_name.values()
         }
         self.location_id_to_name = {
             loc.id: loc.name
-            for loc in self.wadinfo.locations_by_name.values()
+            for loc in self.wad_logic.locations_by_name.values()
         }
 
     def create_regions(self) -> None:
         menu_region = Region("Menu", self.player, self.multiworld)
         self.multiworld.regions.append(menu_region)
 
-        for map in self.wadinfo.maps.values():
+        for map in self.wad_logic.maps.values():
             region = Region(map.map, self.player, self.multiworld)
             self.multiworld.regions.append(region)
             menu_region.connect(
@@ -137,13 +136,13 @@ class GZDoomWorld(World):
 
 
     def create_items(self) -> None:
-        for item in self.wadinfo.starting_items():
+        for item in self.wad_logic.starting_items():
           self.multiworld.push_precollected(GZDoomItem(item, self.player))
           item.count -= 1
 
         slots_left = self.location_count
         main_items = set([
-            i for i in self.wadinfo.items_by_name.values()
+            i for i in self.wad_logic.items_by_name.values()
             if i.classification() != ItemClassification.filler
         ])
 
@@ -155,7 +154,7 @@ class GZDoomWorld(World):
         # compare slots_left to total count of filler_items, then scale filler_items
         # based on the difference.
         filler_items = set([
-            i for i in self.wadinfo.items_by_name.values()
+            i for i in self.wad_logic.items_by_name.values()
             if i.classification() == ItemClassification.filler
         ])
         filler_count = 0
@@ -177,7 +176,7 @@ class GZDoomWorld(World):
             slots_left -= 1
 
     def mission_complete(self, state: CollectionState) -> bool:
-        for map in self.wadinfo.maps.values():
+        for map in self.wad_logic.maps.values():
             if not state.has(map.clear_token_name(), self.player):
                 return False
         return True
@@ -193,10 +192,10 @@ class GZDoomWorld(World):
         print("seed:", self.multiworld.seed_name)
         print("player:", self.player, self.multiworld.player_name[self.player])
         print("## Item table")
-        for item in self.wadinfo.items_by_name.values():
+        for item in self.wad_logic.items_by_name.values():
             print("item:", item.id, item.typename, item.name, item.category)
         print("## Location table")
-        for loc in self.wadinfo.locations_by_name.values():
+        for loc in self.wad_logic.locations_by_name.values():
             print("location", loc.id, loc.name, loc.keyset, loc.pos)
             aploc = self.multiworld.get_location(loc.name, self.player)
             if aploc.item:
@@ -216,12 +215,12 @@ class GZDoomWorld(World):
             "singleplayer": self.multiworld.players == 1,
             "seed": self.multiworld.seed_name,
             "player": self.multiworld.player_name[self.player],
-            "skill": self.wadinfo.skill,
+            "skill": self.wad_logic.skill,
             "maps": [
-              map for map in self.wadinfo.maps.values()
+              map for map in self.wad_logic.maps.values()
             ],
             "items": [
-              item for item in self.wadinfo.items_by_name.values()
+              item for item in self.wad_logic.items_by_name.values()
             ],
             "starting_items": [
               item.code for item in self.multiworld.precollected_items[self.player]
@@ -241,9 +240,9 @@ class GZDoomWorld(World):
         with open(os.path.join(path, "zscript.txt"), "w") as lump:
             template = env.get_template("zscript.jinja")
             lump.write(template.render(**data))
-            print(template.render(**data))
+            # print(template.render(**data))
 
         with open(os.path.join(path, "MAPINFO"), "w") as lump:
             template = env.get_template("mapinfo.jinja")
             lump.write(template.render(**data))
-            print(template.render(**data))
+            # print(template.render(**data))
