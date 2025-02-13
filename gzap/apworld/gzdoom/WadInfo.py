@@ -415,6 +415,7 @@ class UnsupportedScanEventError(NotImplementedError):
 
 def get_wadinfo(file_name: str = "") -> WadInfo:
     info: WadInfo = WadInfo()
+    print("Loading logic from", get_wadinfo_path(file_name))
     with open(get_wadinfo_path(file_name), "r") as fd:
         for line in fd:
             if not line.startswith("AP-"):
@@ -433,6 +434,9 @@ def get_wadinfo(file_name: str = "") -> WadInfo:
                 info.finalize_scan(payload)
             elif evt == "AP-CHECK":
                 info.tune_location(**payload)
+            elif evt in {"AP-XON", "AP-ACK"}:
+                # used only for multiplayer
+                pass
             else:
                 # Unsupported event type
                 raise UnsupportedScanEventError(evt)
