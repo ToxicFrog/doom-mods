@@ -58,7 +58,7 @@ class ::PlayEventHandler : StaticEventHandler {
     item_apids.Insert(apid, typename);
   }
 
-  void RegisterCheck(string map, uint apid, string name, bool progression, Vector3 pos, float angle) {
+  void RegisterCheck(string map, uint apid, string name, bool progression, Vector3 pos, float angle = 0.0) {
     regions.Get(map).RegisterCheck(apid, name, progression, pos, angle);
   }
 

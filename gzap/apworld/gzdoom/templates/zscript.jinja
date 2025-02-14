@@ -14,10 +14,10 @@ class GZAP_DataPackageEventHandler : StaticEventHandler {
 
     console.printf("Registering %d maps.", {{maps|count}});
     {% for map in maps %}
-      peh.RegisterMap("{{map.map}}", {{map.access_id}}, {{map.automap_id}}, {{map.clear_id}}, {{map.exit_id}});
+      peh.RegisterMap("{{map.map}}", {{id(map.access_token_name())}}, {{id(map.automap_name())}}, {{id(map.clear_token_name())}}, {{id(map.exit_location_name())}});
       {% for check in map.locations %}
-        {% if check.pos %}
-        peh.RegisterCheck("{{map.map}}", {{check.id}}, "{{check.name}}", {{progression(check.id)}}, ({{check.pos.x}},{{check.pos.y}},{{check.pos.z}}), {{check.pos.angle}});
+        {% if not check.pos.virtual %}
+        peh.RegisterCheck("{{map.map}}", {{check.id}}, "{{check.name()}}", {{progression(check.id)}}, ({{check.pos.x}},{{check.pos.y}},{{check.pos.z}}));
         {% endif %}
       {% endfor %}
     {% endfor %}

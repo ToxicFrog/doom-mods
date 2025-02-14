@@ -14,16 +14,7 @@ from .DoomItem import *
 from .DoomLocation import *
 from .DoomMap import *
 from .DoomWad import *
-
-
-class DoomLogic:
-    wads: Dict[str,DoomWad]
-
-    def __init__(self):
-        self.wads = {}
-
-    def add_wad(self, name: str, wad: DoomWad):
-        self.wads[name] = wad
+from .DoomLogic import *
 
 
 _DOOM_LOGIC: DoomLogic = DoomLogic()
@@ -41,7 +32,7 @@ class WadLogicLoader:
     def __init__(self, logic: DoomLogic, name: str):
         self.logic = logic
         self.name = name
-        self.wad = DoomWad()
+        self.wad = DoomWad(self.name, self.logic)
 
     def __enter__(self):
         return self

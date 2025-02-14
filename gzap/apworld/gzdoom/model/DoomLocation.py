@@ -10,15 +10,15 @@ class DoomPosition(NamedTuple):
     """
     A Doom playsim position.
 
-    This is a direct copy of the `pos` field of an Actor, plus the yaw angle (named
-    `angle` to match gzDoom). Pitch and roll are almost never used so we don't bother
-    with them here.
+    This is a direct copy of the `pos` field of an Actor, plus the name of the
+    containing map (so we don't consider two locations with the same coordinates
+    but in different maps to actually be identical).
     """
+    map: str
+    virtual: bool  # True if this doesn't actually exist in the world and coords are meaningless
     x: float
     y: float
     z: float
-    # TODO: is angle even useful? We don't use it for anything right now.
-    angle: float
 
 
 class DoomLocation:
@@ -42,32 +42,41 @@ class DoomLocation:
     At generation time, each DoomLocation results in exactly one AP Location.
     """
     id: Optional[int] = None
-    name: str
+    item_name: str # name of original item, used to name this location
     category: str
-    map: str
     secret: bool = False
     pos: DoomPosition | None = None
     keyset: Set[DoomItem]
     item: DoomItem | None = None  # Used for place_locked_item
     parent = None
     orig_item = None
+    disambiguate: bool = False
 
     def __init__(self, parent, map: str, item: DoomItem, json: str | None):
-        self.name = f"{map} - {item.tag}"  # Caller will deduplicate if needed
         self.category = item.category
-        self.map = map
         self.keyset = set()
         self.parent = parent
-        self.orig_item = item.name
+        self.orig_item = item
+        self.item_name = item.tag
         if json:
             self.secret = json["secret"]
             del json["secret"]
-            self.pos = DoomPosition(**json)
+            self.pos = DoomPosition(map=map, virtual=False, **json)
+        else:
+            self.pos = DoomPosition(map=map, virtual=True, x=0, y=0, z=0)
 
     def __str__(self) -> str:
-        return f"WadLocation#{self.id}({self.name} @ {self.pos} % {self.keyset})"
+        return f"DoomLocation#{self.id}({self.name()} @ {self.pos} % {self.keyset})"
 
     __repr__ = __str__
+
+    def name(self) -> str:
+        name = f"{self.pos.map} - {self.item_name}"
+        if self.disambiguate:
+            # TODO: we should figure out the bounding box of the map or nearby
+            # unique items like keys and then give a compass direction instead
+            name += f" [{int(self.pos.x)},{int(self.pos.y)}]"
+        return name
 
     def tune_keys(self, keys):
         if keys < self.keyset:
@@ -79,23 +88,21 @@ class DoomLocation:
         # map are always accessible no matter what guns/keys you have, because
         # the former (hopefully) doesn't matter for the first map and the latter
         # are granted to you as starting inventory.
-        if self.parent.maps[self.map] == self.parent.first_map:
+        if self.parent.maps[self.pos.map] == self.parent.first_map:
             return lambda _: True
         # Otherwise, it's accessible if:
         # - you have all the keys for the map
         #     OR the map only has one key, and this is it
         # - AND you have at least half of the non-secret guns from this map.
         def rule(state):
-            map = self.parent.maps[self.map]
-            map_keys = { item.name for item in self.keyset }
-            player_keys = { item for item in map_keys if state.has(item, player) }
+            player_keys = { item for item in self.keyset if state.has(item, player) }
 
             # Are we missing any keys?
             if player_keys < self.keyset:
                 # If so, we might still be able to reach the location, if
                 # - the map only has one key, and
                 # - this is the location where that key would normally be found
-                if {self.orig_item} == map_keys:
+                if {self.orig_item.name()} == self.keyset:
                     # print(f"Access granted: {self.name} (single key location)")
                     return True
                 else:

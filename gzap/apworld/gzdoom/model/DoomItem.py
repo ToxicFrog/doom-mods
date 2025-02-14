@@ -27,27 +27,38 @@ class DoomItem:
     category: str  # Randomization category (e.g. key, weapon)
     typename: str  # gzDoom class name
     tag: str       # User-visible name *in gzDoom*
-    name: str      # User-visible name *in Archipelago*
     count: int     # How many are in the item pool
-    map: Optional[str]
+    map: Optional[str] = None
+    disambiguate: bool = False
 
     def __init__(self, map, category, typename, tag):
         self.category = category
         self.typename = typename
         self.tag = tag
         self.count = 1
+        # TODO: caller should specify this
         if category == "key" or category == "map" or category == "token":
             self.map = map
-            self.name = f"{tag} ({map})"
-        else:
-            # Potential problem here -- what if we have multiple classes with
-            # the same tag?
-            self.name = tag
 
     def __str__(self) -> str:
-        return f"WadItem#{self.id}({self.typename} as {self.name})"
+        if self.count > 1:
+            return f"DoomItem#{self.id}({self.name()})×{self.count}"
+        else:
+            return f"DoomItem#{self.id}({self.name()})"
 
     __repr__ = __str__
+
+    def __eq__(self, other) -> bool:
+        return self.tag == other.tag and self.map == other.map
+
+    def name(self) -> str:
+        """Returns the user-facing Archipelago name for this item."""
+        name = self.tag
+        if self.disambiguate:
+            name += f" [{self.typename}]"
+        if self.map:
+            name += f" ({self.map})"
+        return name
 
     def classification(self) -> ItemClassification:
         if self.category == "key" or self.category == "token" or self.category == "weapon":
@@ -59,6 +70,15 @@ class DoomItem:
             return ItemClassification.useful
         else:
             return ItemClassification.filler
+
+    def is_progression(self) -> bool:
+        return self.classification() == ItemClassification.progression
+
+    def is_useful(self) -> bool:
+        return self.classification() == ItemClassification.useful
+
+    def is_filler(self) -> bool:
+        return not (self.is_progression() or self.is_useful())
 
     def can_replace(self) -> bool:
         """True if locations holding items of this type should be eligible as randomization destinations."""

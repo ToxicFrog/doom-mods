@@ -4,7 +4,6 @@ import os
 import typing
 from typing import Any, Dict, List
 
-import settings
 import jinja2
 from BaseClasses import CollectionState, Item, ItemClassification, Location, MultiWorld, Region, Tutorial
 from worlds.AutoWorld import WebWorld, World
@@ -19,7 +18,7 @@ class GZDoomLocation(Location):
     game: str = "gzDoom"
 
     def __init__(self, player: int, loc: DoomLocation, region: Region) -> None:
-        super().__init__(player=player, name=loc.name, address=loc.id, parent=region)
+        super().__init__(player=player, name=loc.name(), address=loc.id, parent=region)
         self.access_rule = loc.access_rule(player)
 
 
@@ -27,7 +26,7 @@ class GZDoomItem(Item):
     game: str = "gzDoom"
 
     def __init__(self, item: DoomItem, player: int) -> None:
-        super().__init__(name=item.name, classification=item.classification(), code=item.id, player=player)
+        super().__init__(name=item.name(), classification=item.classification(), code=item.id, player=player)
 
 
 class GZDoomWeb(WebWorld):
@@ -40,16 +39,6 @@ class GZDoomWeb(WebWorld):
         ["ToxicFrog"]
     )]
     theme = "dirt"
-
-
-class GZDoomSettings(settings.Group):
-    class DoomLogicFile(settings.UserFilePath):
-        """File name of the WAD info dump produced by gzap.pk3's scan command"""
-        # TODO: figure out what the hell copy_to actually does
-        copy_to = "wadinfo.txt"
-        description = "WADInfo file"
-
-    wad_info_file: DoomLogicFile = DoomLogicFile(DoomLogicFile.copy_to)
 
 
 # Load all logic files included in the apworld.
@@ -77,7 +66,6 @@ class GZDoomWorld(World):
     game = "gzDoom"
     options_dataclass = GZDoomOptions
     options: GZDoomOptions
-    settings: typing.ClassVar[GZDoomSettings]
     topology_present = True
     web = GZDoomWeb()
     required_client_version = (0, 3, 9)
@@ -88,18 +76,16 @@ class GZDoomWorld(World):
 
     # Used by the caller
     item_name_to_id: Dict[str, int] = {
-        item.name: item.id
-        for item in get_wad("Going Down Turbo (HNTR).logic").all_items()
+        item.name(): item.id
+        for item in get_wad("Going Down Turbo (HNTR).logic").items()
     }
     location_name_to_id: Dict[str, int] = {
-        loc.name: loc.id
-        for loc in get_wad("Going Down Turbo (HNTR).logic").all_locations()
+        loc.name(): loc.id
+        for loc in get_wad("Going Down Turbo (HNTR).logic").locations()
     }
 
     def __init__(self, multiworld: MultiWorld, player: int):
-        self.included_episodes = [1, 1, 1, 0]
         self.location_count = 0
-
         super().__init__(multiworld, player)
 
     # TODO: ensure that the WAD the player has selected is in the supported list,
@@ -122,6 +108,8 @@ class GZDoomWorld(World):
         menu_region = Region("Menu", self.player, self.multiworld)
         self.multiworld.regions.append(menu_region)
 
+        placed = set()
+
         for map in self.wad_logic.maps.values():
             region = Region(map.map, self.player, self.multiworld)
             self.multiworld.regions.append(region)
@@ -130,6 +118,8 @@ class GZDoomWorld(World):
                 name=f"{map.map}",
                 rule=map.access_rule(self.player))
             for loc in map.locations:
+                assert loc.name() not in placed
+                placed.add(loc.name())
                 location = GZDoomLocation(self.player, loc, region)
                 region.locations.append(location)
                 if loc.item:
@@ -145,10 +135,8 @@ class GZDoomWorld(World):
           item.count -= 1
 
         slots_left = self.location_count
-        main_items = set([
-            i for i in self.wad_logic.items_by_name.values()
-            if i.classification() != ItemClassification.filler
-        ])
+        main_items = self.wad_logic.progression_items() + self.wad_logic.useful_items()
+        filler_items = self.wad_logic.filler_items()
 
         for item in main_items:
             for _ in range(item.count):
@@ -157,10 +145,6 @@ class GZDoomWorld(World):
 
         # compare slots_left to total count of filler_items, then scale filler_items
         # based on the difference.
-        filler_items = set([
-            i for i in self.wad_logic.items_by_name.values()
-            if i.classification() == ItemClassification.filler
-        ])
         filler_count = 0
         for item in filler_items:
             filler_count += item.count
@@ -206,7 +190,7 @@ class GZDoomWorld(World):
                 print("  ->  ", aploc.item.code, aploc.item.name)
 
     def generate_output(self, path):
-        def progression(id):
+        def progression(id: int) -> bool:
             # get location from ID
             name = self.location_id_to_name[id]
             loc = self.multiworld.get_location(name, self.player)
@@ -214,6 +198,15 @@ class GZDoomWorld(World):
                 return "true"
             else:
                 return "false"
+
+        # The nice thing about drawing item and location IDs from the same pool
+        # is that we know each ID can only ever be one or the other, so this is
+        # safe.
+        def id(name: str) -> int:
+            if name in self.location_name_to_id:
+                return self.location_name_to_id[name]
+            else:
+                return self.item_name_to_id[name]
 
         data = {
             "singleplayer": self.multiworld.players == 1,
@@ -224,7 +217,7 @@ class GZDoomWorld(World):
               map for map in self.wad_logic.maps.values()
             ],
             "items": [
-              item for item in self.wad_logic.items_by_name.values()
+              item for item in self.wad_logic.items()
             ],
             "starting_items": [
               item.code for item in self.multiworld.precollected_items[self.player]
@@ -234,7 +227,8 @@ class GZDoomWorld(World):
                 for loc in self.multiworld.get_locations(self.player)
                 if loc.item
             },
-            "progression": progression
+            "progression": progression,
+            "id": id
         }
 
         env = jinja2.Environment(
@@ -244,7 +238,7 @@ class GZDoomWorld(World):
         with open(os.path.join(path, "zscript.txt"), "w") as lump:
             template = env.get_template("zscript.jinja")
             lump.write(template.render(**data))
-            # print(template.render(**data))
+            print(template.render(**data))
 
         with open(os.path.join(path, "MAPINFO"), "w") as lump:
             template = env.get_template("mapinfo.jinja")

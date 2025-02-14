@@ -1,192 +1,67 @@
 """
 Top-level class for holding the actual game logic.
 
-This is primarily a collection of maps, locations, and items, along with some
-lookup tables and information about how they relate, and some utility functions.
+In order for datapack generation in multiworld games to work right, we need to
+incorporate the information for *all wads that we know about*. So this class
+holds per-wad information association locations with maps and grouping the maps
+together into wads, as well as cross-wad information about all the items and
+locations we are aware of across all supported wads, used for populating the
+datapack.
 
-It also holds some game-general information like the difficulty level and what
-map to start on.
+(We can't selectively load this based on randomizer configuration because, at
+present, the datapack is generated as soon as the apworld is loaded, before the
+World subclass is even instantiated; well before we have access to the yaml.)
 """
 
+from dataclasses import dataclass, field
 from typing import Dict, List
 
-from . import DoomItem, DoomLocation, DoomMap, DoomPosition
+from . import DoomItem, DoomLocation, DoomMap, DoomPosition, DoomWad
 
 
-class DuplicateMapError(RuntimeError):
-    pass
-
-
+@dataclass
 class DoomLogic:
     last_id: int = 0
-    skill: int
-    maps: Dict[str,DoomMap] = {}
-    items_by_name: Dict[str,DoomItem] = {}
-    locations_by_name: Dict[str,DoomLocation] = {}
-    locations_by_pos: Dict[DoomPosition,DoomLocation] = {}
-    first_map: DoomMap | None = None
+    wads: Dict[str,DoomWad] = field(default_factory=dict)
+    item_names_to_ids: Dict[str,int] = field(default_factory=dict)
+    location_names_to_ids: Dict[str,int] = field(default_factory=dict)
 
-    def get_id(self) -> int:
+    def next_id(self) -> int:
         self.last_id += 1
         return self.last_id
 
-    def all_maps(self) -> List[DoomMap]:
-        return self.maps.values()
+    # def items(self) -> List[DoomItem]:
+    #     return self.items.values()
 
-    def all_locations(self) -> List[DoomLocation]:
-        return self.locations_by_name.values()
+    # def locations(self) -> List[DoomLocation]:
+    #     return self.locations.values()
 
-    def all_items(self) -> List[DoomItem]:
-        return self.items_by_name.values()
+    def add_wad(self, name: str, wad: DoomWad):
+        self.wads[name] = wad
 
-    def starting_items(self) -> List[DoomItem]:
-        return [
-            self.items_by_name[self.first_map.access_token_name()]
-        ] + list(self.first_map.keyset)
+    def wad(self, name: str) -> DoomWad:
+        return self.wads[name]
 
-    def new_map(self, json: Dict[str,str]) -> None:
-        map = json["map"]
-        if map not in self.maps:
-            self.maps[map] = DoomMap(
-                access_id=self.get_id(), automap_id=self.get_id(),
-                clear_id=self.get_id(), exit_id=self.get_id(),
-                **json)
-        else:
-            # TODO: support multiple copies of the same map as long as they
-            # have different difficulty levels, so we can have a single logic
-            # file for all difficulties of a given wad.
-            raise DuplicateMapError(map)
-
-        if self.first_map is None:
-            self.first_map = self.maps[map]
-
-    def new_item(self, json: Dict[str,str]) -> None:
+    def register_item(self, item: DoomItem) -> int:
         """
-        Add a new item to the item pool, and its position to the location pool.
+        Register and item and return its assigned ID.
 
-        If it's a new kind of item, we allocate an ID for it and create an entry in the item table. Otherwise
-        we just increment the count on the existing entry. The item's location is added to the location pool
-        using the item's name as a disambiguator.
+        If there's an existing item with that name, returns the already-allocated
+        ID. If not, allocates and returns a new one.
 
-        This is also where the keyset for the enclosing map gets updated.
+        Note that item names don't have to have the same backing WadItem across
+        different wads, so it is the job of individual DoomWads to deal with name
+        collisions for different items.
         """
-        # Extract the position information for addition to the location table.
-        map = json["map"]
-        position = json["position"]
-        del json["position"]
+        name: str = item.name()
+        if name not in self.item_names_to_ids:
+            self.item_names_to_ids[name] = self.next_id()
+        item.id = self.item_names_to_ids[name]
+        return item.id
 
-        # Provisionally create a DoomItem.
-        item = DoomItem(**json)
-        # Do we actually care about these? If not, don't generate an ID for this item or add it to the pool,
-        # and don't consider its location as a valid randomization destination.
-        if not item.can_replace():
-            return
-
-        if item.should_include():
-            self.add_item(map, item, position["secret"])
-        self.new_location(map, item, position)
-
-    def add_item(self, map: str, item: DoomItem, secret: bool) -> None:
-        # If we haven't seen this kind of item before, give it an ID and put
-        # it in the lookup table, otherwise update the count for the existing
-        # DoomItem.
-        if item.name not in self.items_by_name:
-            item.id = item.id or self.get_id()
-            self.items_by_name[item.name] = item
-        else:
-            item = self.items_by_name[item.name]
-            item.count += 1
-
-        if item.category == "key":
-            self.maps[map].keyset.add(item)
-        if item.category == "weapon" and not secret:
-            self.maps[map].gunset.add(item)
-
-    def new_location(self, map: str, item: DoomItem, json: Dict[str, str]) -> None:
-        """
-        Add a new location to the location pool.
-
-        If it is identical (same position) as an existing location, it is silently dropped. This is,
-        fortunately, rare. If multiple locations share the same position but have different items,
-        all of their items are added to the pool but it's undefined which one the location is named
-        after and inherits the item category from.
-        """
-        location = DoomLocation(self, map, item, json)
-
-        if location.pos in self.locations_by_pos:
-            # Duplicate location; ignore it
-            return
-
-        self.add_location(location)
-
-    def add_location(self, location: DoomLocation) -> None:
-        # Caller has already done position duplicate checking
-        location.id = location.id or self.get_id()
-        if location.name in self.locations_by_name:
-            location.name = f"{location.name} <{location.id}>"
-
-        self.maps[location.map].locations.append(location)
-        self.locations_by_name[location.name] = location
-        if location.pos:
-            self.locations_by_pos[location.pos] = location
-
-    def tune_location(self, id, name, keys) -> None:
-        """
-        Adjust the reachability rules for a location.
-
-        This is emitted by the game when the player checks a location, and records
-        what keys they had when this happened. This can be used to minimize the keyset
-        for a given location.
-
-        This needs to run after AP-SCAN-DONE so that the keysets are initialized,
-        which shouldn't be a problem in practice unless people are assembling play
-        logs out of order.
-        """
-        loc = self.locations_by_name[name]
-        keys = { self.items_by_name[f"{key} ({loc.map})"] for key in keys }
-        self.locations_by_name[name].tune_keys(keys)
-
-    def finalize_scan(self, json) -> None:
-        """
-        Do postprocessing after the initial scan is completed but before play-guided refinement, if any.
-
-        At the moment this means creating the synthetic level-exit and level-cleared locations and items,
-        then pessimistically initializing the keyset for each location to match the keys of the enclosing map.
-        """
-        self.skill = json["skill"]
-
-        for map in self.all_maps():
-            access_token = DoomItem(map=map.map, category="token", typename="", tag="Level Access")
-            access_token.id = map.access_id
-            self.add_item(map.map, access_token, False)
-
-            map_token = DoomItem(map=map.map, category="map", typename="", tag="Automap")
-            map_token.id = map.automap_id
-            self.add_item(map.map, map_token, False)
-
-            clear_token = DoomItem(map=map.map, category="token", typename="", tag="Level Clear")
-            clear_token.id = map.clear_id
-            self.add_item(map.map, clear_token, False)
-
-            map_exit = DoomLocation(self, map.map, clear_token, None)
-            map_exit.id = map.exit_id
-            map_exit.item = clear_token
-            map_exit.name = f"{map.map} - Exit"
-            self.add_location(map_exit)
-
-        for loc in self.all_locations():
-            loc.keyset = self.maps[loc.map].keyset.copy()
-
-
-    def finalize_all(self) -> None:
-        """
-        Do postprocessing after all events have been ingested.
-
-        Caps guns at 1 per gun per episode (ish), and keys at 1 per type per map.
-        """
-        max_guns = len(self.maps)//8
-        for item in self.all_items():
-            if item.category == "weapon":
-                item.count = min(item.count, max_guns)
-            elif item.category == "key":
-                item.count = 1
+    def register_location(self, loc: DoomLocation):
+        name: str = loc.name()
+        if name not in self.location_names_to_ids:
+            self.location_names_to_ids[name] = self.next_id()
+        loc.id = self.location_names_to_ids[name]
+        return loc.id

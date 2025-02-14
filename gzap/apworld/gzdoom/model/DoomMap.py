@@ -47,18 +47,13 @@ class DoomMap:
     the Region, while "do you have enough keys" lives on the Locations.
     """
     map: str
-    # Item IDs for the various tokens that unlock or mark the level as finished
-    access_id: int
-    automap_id: int
-    clear_id: int
-    exit_id: int
     # JSON initializer for the mapinfo
     info: InitVar[Dict]
     # Data for the MAPINFO lump
     mapinfo: Optional[MAPINFO] = None
     # Key and weapon information for computing access rules
-    keyset: Set[DoomItem] = field(default_factory=set)
-    gunset: Set[DoomItem] = field(default_factory=set)
+    keyset: Set[str] = field(default_factory=set)
+    gunset: Set[str] = field(default_factory=set)
     # All locations contained in this map
     locations: List[DoomLocation] = field(default_factory=list)
 
@@ -72,7 +67,7 @@ class DoomMap:
 
             # We need at least half of the non-secret guns in the level,
             # rounded down, to give the player a fighting chance.
-            player_guns = { item.name for item in self.gunset if state.has(item.name, player) }
+            player_guns = { gun for gun in self.gunset if state.has(gun, player) }
             if len(player_guns) < len(self.gunset)//2:
                 return False
 
@@ -83,5 +78,15 @@ class DoomMap:
     def access_token_name(self):
         return f"Level Access ({self.map})"
 
+    def automap_name(self):
+        return f"Automap ({self.map})"
+
     def clear_token_name(self):
         return f"Level Clear ({self.map})"
+
+    def exit_location_name(self):
+        return f"{self.map} - Exit"
+
+    def register_location(self, loc: DoomLocation) -> None:
+        if loc not in self.locations:
+            self.locations.append(loc)
