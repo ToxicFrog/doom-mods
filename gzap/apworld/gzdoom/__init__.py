@@ -77,11 +77,11 @@ class GZDoomWorld(World):
     # Used by the caller
     item_name_to_id: Dict[str, int] = {
         item.name(): item.id
-        for item in get_wad("Going Down Turbo (HNTR).logic").items()
+        for item in get_wad("Doom 2 (HNTR)").items()
     }
     location_name_to_id: Dict[str, int] = {
         loc.name(): loc.id
-        for loc in get_wad("Going Down Turbo (HNTR).logic").locations()
+        for loc in get_wad("Doom 2 (HNTR)").locations()
     }
 
     def __init__(self, multiworld: MultiWorld, player: int):
@@ -102,7 +102,7 @@ class GZDoomWorld(World):
 
     # TODO: fetch wad logic by name based on yaml rather than just hardcoding it here
     def generate_early(self) -> None:
-        self.wad_logic = get_wad("Going Down Turbo (HNTR).logic")
+        self.wad_logic = get_wad("Doom 2 (HNTR)")
 
     def create_regions(self) -> None:
         menu_region = Region("Menu", self.player, self.multiworld)

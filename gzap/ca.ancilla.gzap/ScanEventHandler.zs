@@ -78,9 +78,8 @@ class ::ScanEventHandler : StaticEventHandler {
 
   string ScanOutputPosition(Actor thing) {
     return string.format(
-      "\"position\": { \"x\": %f, \"y\": %f, \"z\": %f, \"angle\": %f, \"secret\": %s }",
-      thing.pos.x, thing.pos.y, thing.pos.z, thing.angle, bool2str(IsSecret(thing))
-    );
+      "\"position\": { \"x\": %f, \"y\": %f, \"z\": %f }",
+      thing.pos.x, thing.pos.y, thing.pos.z);
   }
 
   void ScanOutputMonster(Actor thing) {
@@ -97,8 +96,9 @@ class ::ScanEventHandler : StaticEventHandler {
 
   void ScanOutputItem(Actor thing) {
     ScanOutput("ITEM", string.format(
-      "\"category\": \"%s\", \"typename\": \"%s\", \"tag\": \"%s\", %s",
-      ItemCategory(thing), thing.GetClassName(), thing.GetTag(), ScanOutputPosition(thing)
+      "\"category\": \"%s\", \"typename\": \"%s\", \"tag\": \"%s\", \"secret\": %s, %s",
+      ItemCategory(thing), thing.GetClassName(), thing.GetTag(),
+      bool2str(IsSecret(thing)), ScanOutputPosition(thing)
     ));
   }
 

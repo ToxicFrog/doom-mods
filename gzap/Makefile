@@ -6,15 +6,16 @@ ZSDIR=ca.ancilla.gzap
 LIBTTM=${TOPDIR}/libtooltipmenu/ca.ancilla.libtooltipmenu
 LIBTTM_PREFIX=GZAP
 
-all: ${PK3} apworld
-
-apworld: ${TOPDIR}/release/gzdoom.apworld
+all: ${PK3} apworld ipc
 
 include ${TOPDIR}/rules.make
 
-${TOPDIR}/release/gzdoom.apworld: apworld/gzdoom/* apworld/gzdoom/templates/* apworld/gzdoom/model/* apworld/gzdoom/logic/*
+apworld:
 	cd apworld && zip -r gzdoom.apworld gzdoom
 	cp apworld/gzdoom.apworld ~/Archipelago/worlds/
-	mv apworld/gzdoom.apworld $@
+	mv apworld/gzdoom.apworld ${TOPDIR}/release/
 
-.PHONY: apworld
+ipc:
+	dd if=${TOPDIR}/README.md of=${TOPDIR}/testdata/GZAPIPC bs=1K count=1
+
+.PHONY: apworld ipc

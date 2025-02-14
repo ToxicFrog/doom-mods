@@ -44,7 +44,6 @@ class DoomLocation:
     id: Optional[int] = None
     item_name: str # name of original item, used to name this location
     category: str
-    secret: bool = False
     pos: DoomPosition | None = None
     keyset: Set[DoomItem]
     item: DoomItem | None = None  # Used for place_locked_item
@@ -59,8 +58,6 @@ class DoomLocation:
         self.orig_item = item
         self.item_name = item.tag
         if json:
-            self.secret = json["secret"]
-            del json["secret"]
             self.pos = DoomPosition(map=map, virtual=False, **json)
         else:
             self.pos = DoomPosition(map=map, virtual=True, x=0, y=0, z=0)

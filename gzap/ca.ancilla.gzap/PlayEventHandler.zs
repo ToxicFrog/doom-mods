@@ -35,6 +35,7 @@ class ::PlayEventHandler : StaticEventHandler {
     apclient.Init();
   }
 
+  // N.b. this uses the CVAR skill value, where 0 is ITYTD and 4 is Nightmare.
   void RegisterSkill(int skill) {
     self.skill = skill;
   }
@@ -58,8 +59,8 @@ class ::PlayEventHandler : StaticEventHandler {
     item_apids.Insert(apid, typename);
   }
 
-  void RegisterCheck(string map, uint apid, string name, bool progression, Vector3 pos, float angle = 0.0) {
-    regions.Get(map).RegisterCheck(apid, name, progression, pos, angle);
+  void RegisterCheck(string map, uint apid, string name, bool progression, Vector3 pos) {
+    regions.Get(map).RegisterCheck(apid, name, progression, pos);
   }
 
   void GrantItem(uint apid) {

@@ -99,9 +99,9 @@ class DoomWad:
         # Extract the position information for addition to the location table.
         map = json["map"]
         position = json["position"]
-        secret = position["secret"] # TODO: move this to top level
+        secret = json["secret"]
         del json["position"]
-        del position["angle"] # FIXME: remove from input
+        del json["secret"]
 
         # Provisionally create a DoomItem.
         item = DoomItem(**json)

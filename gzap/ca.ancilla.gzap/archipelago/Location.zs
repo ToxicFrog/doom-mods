@@ -13,9 +13,5 @@ class ::Location {
   string name;
   bool progression;   // Does it hold a progression item?
   bool checked;       // Has the player already checked it?
-  Vector3 pos; float angle;
-
-  bool Eq(Vector3 pos, float angle) {
-    return self.pos == pos && self.angle == angle;
-  }
+  Vector3 pos;
 }

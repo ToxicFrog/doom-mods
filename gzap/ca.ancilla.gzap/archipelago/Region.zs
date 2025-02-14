@@ -37,13 +37,13 @@ class ::Region play {
     return region;
   }
 
-  void RegisterCheck(uint apid, string name, bool progression, Vector3 pos, float angle) {
+  void RegisterCheck(uint apid, string name, bool progression, Vector3 pos) {
     let loc = ::Location(new("::Location"));
     loc.apid = apid;
     loc.name = name;
     loc.progression = progression;
     loc.checked = false;
-    loc.pos = pos; loc.angle = angle;
+    loc.pos = pos;
     locations.push(loc);
   }
 
