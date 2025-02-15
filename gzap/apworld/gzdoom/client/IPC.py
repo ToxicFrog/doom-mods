@@ -181,11 +181,9 @@ class IPC:
 
   def _enqueue(self, *args) -> None:
     msg = IPCMessage(self._get_id(), *args)
-    print("enqueue", msg)
     self.ipc_queue.append(msg)
 
   def _flush(self) -> None:
-    print("flushing messages:", len(self.ipc_queue))
     if not self.ipc_queue:
       # No pending messages? Truncate the IPC buffer file so gzdoom doesn't
       # waste cycles reading and parsing it.
@@ -209,6 +207,6 @@ class IPC:
     if buf == self.ipc_buf:
       return
     with open(self.ipc_path, "w") as fd:
-      print("sending:", buf)
+      # print("sending:", buf)
       fd.write(buf)
     self.ipc_buf = buf
