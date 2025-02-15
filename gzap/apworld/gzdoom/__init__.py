@@ -11,6 +11,8 @@ import worlds.LauncherComponents as LauncherComponents
 from .Options import GZDoomOptions
 from .model import DoomItem, DoomLocation, DoomWad, init_wads, get_wad
 
+# TODO: is there a way we can tell when we're being loaded to run the client,
+# and skip initializing the WAD logic, which is relatively expensive?
 logger = logging.getLogger("gzDoom")
 init_wads(__package__)
 
@@ -89,6 +91,10 @@ class GZDoomWorld(World):
 
     # TODO: fetch wad logic by name based on yaml rather than just hardcoding it here
     def generate_early(self) -> None:
+        # for k in self.item_name_to_id:
+        #     print(self.item_name_to_id[k], k)
+        # for k in self.location_name_to_id:
+        #     print(self.location_name_to_id[k], k)
         self.wad_logic = get_wad("Doom 2 (HNTR)")
 
     def create_regions(self) -> None:
@@ -98,6 +104,7 @@ class GZDoomWorld(World):
         placed = set()
 
         for map in self.wad_logic.maps.values():
+            # print("Region:", map.map)
             if map.map not in self.options.included_levels:
                 continue
 
@@ -119,6 +126,7 @@ class GZDoomWorld(World):
                 name=f"{map.map}",
                 rule=map.access_rule(self.player))
             for loc in map.locations:
+                # print("  Location:", loc.name(), loc)
                 assert loc.name() not in placed
                 placed.add(loc.name())
                 location = GZDoomLocation(self.player, loc, region)
@@ -138,6 +146,7 @@ class GZDoomWorld(World):
         for item in main_items:
             if item.map not in self.options.included_levels:
                 continue
+            print("  Item:", item)
             for _ in range(max(item.count, 0)):
                 self.multiworld.itempool.append(GZDoomItem(item, self.player))
                 slots_left -= 1

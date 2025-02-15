@@ -1,6 +1,7 @@
 import asyncio
 import copy
-import time
+import os
+import os.path
 
 import Utils
 from CommonClient import CommonContext, ClientCommandProcessor, get_base_parser
@@ -16,25 +17,21 @@ class GZDoomContext(CommonContext):
     items_handling = 0b111  # fully remote
     want_slot_data = False
 
-    def __init__(self, server_address, password, log_path, ipc_path):
-        print("Initializing gzdoom client")
+    def __init__(self, server_address: str, password: str, ipc_dir: str):
         super().__init__(server_address, password)
-        self.ipc = IPC(self, ipc_path)
-        self.log_path = log_path
-        self.ipc_path = ipc_path
+        self.ipc = IPC(self, ipc_dir)
+        self.log_path = os.path.join(ipc_dir, "gzdoom.log")
 
     async def server_auth(self, password):
         self.auth = "ToxicFrog"  # FIXME: hardcoded for testing
-        self.password = None
+        # self.password = None
         await self.send_connect()
 
     async def start_tasks(self) -> None:
         self.ipc.start_log_reader(self.log_path)
         self.items_task = asyncio.create_task(self._item_loop())
-        print("Waiting for XON from gzDoom.")
 
     async def send_check(self, id: int):
-        print("sending check", id)
         await self.send_msgs([
             {"cmd": 'LocationChecks', "locations": [id]}
             ])
@@ -54,17 +51,18 @@ class GZDoomContext(CommonContext):
 
     def on_print_json(self, args: dict):
         super().on_print_json(args)
+        # TODO: this inserts terminal colour escapes which gzdoom does not cope
+        # with well. Translate to gzdoom colour codes.
         text = self.jsontotextparser(copy.deepcopy(args["data"]))
+        # TODO: filter for relevance.
         self.ipc.send_chat("Archipelago", text)
 
     async def _item_loop(self):
-        print("Starting delivery loop.")
         last_items = set()
         while not self.exit_event.is_set():
             await self.watcher_event.wait()
             self.watcher_event.clear()
             items = set(self.items_received)
-            print("running item loop", items, last_items)
             if items == last_items:
                 continue
 
@@ -77,24 +75,42 @@ class GZDoomContext(CommonContext):
 def main(*args):
     Utils.init_logging("GZDoomClient")
 
-    # options = Utils.get_options()
+    # Initialize the gzDoom IPC structures on disk
+    # TODO: do we want to support multiple running instances as the same user?
+    ipc_dir = os.path.join(Utils.home_path(), ".gzdoom-ipc")
+    os.makedirs(ipc_dir, exist_ok=True)
+
+    # Preallocate input lump
+    ipc_lump = os.path.join(ipc_dir, 'GZAPIPC')
+    with open(ipc_lump, 'w') as fd:
+        fd.write('.' * 1024)
+
+    # Truncate output log
+    ipc_log = os.path.join(ipc_dir, 'gzdoom.log')
+    with open(ipc_log, 'w'):
+        pass
+
+    # TODO: automatically create a different tuning file for each wad, and don't truncate
+    # os.truncate(os.path.join(ipc_dir, "tuning.logic"), 0)
 
     async def actual_main(args):
-        ctx = GZDoomContext(args.connect, args.password, args.gzd_log_pipe, args.gzd_ipc_dir)
+        ctx = GZDoomContext(args.connect, args.password, ipc_dir)
         await ctx.start_tasks()
-        print("done start tasks")
         await ctx.connect()
-        print("done setup")
+        print("┏" + "━"*78 + "╾")
+        print("┃ Client started. Please start gzDoom with the additional arguments:")
+        # TODO: can we give the actual zip name here?
+        print(f"┃     -file AP_whatever.zip -file '{ipc_dir}' +'logfile \"{ipc_log}\"'")
+        print("┃ after any other arguments (e.g. for wad/pk3 loading).")
+        print("┗" + "━"*78 + "╾")
         await ctx.exit_event.wait()
+        print("Shutting down...")
         ctx.ipc.should_exit = True
         await ctx.shutdown()
-        print("Exiting...")
 
     import colorama
 
     parser = get_base_parser()
-    parser.add_argument('--gzd-log-pipe', default=None, help='Path to the fifo gzDoom is writing its logs to.')
-    parser.add_argument('--gzd-ipc-dir', default=None, help='Path to the directory containing the GZAPIPC lump.')
 
     colorama.init()
     args = parser.parse_args(args)
