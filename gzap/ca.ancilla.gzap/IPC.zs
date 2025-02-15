@@ -19,7 +19,11 @@ class ::IPC {
     last_seen = 0;
     lumpid = wads.FindLump(lumpname);
     let buf = wads.ReadLump(lumpid);
-    Send("XON", string.format("{ \"lump\": \"%s\", \"size\": %d }", lumpname, buf.Length()));
+    Send("XON", string.format(
+      "{ \"lump\": \"%s\", \"size\": %d, \"nick\": \"%s\" }",
+      lumpname,
+      buf.Length(),
+      cvar.FindCVar("name").GetString()));
   }
 
   // Receive all pending messages, dispatch them internally, and ack them.
