@@ -10,7 +10,9 @@ class ::Util play {
       StringTable.Localize(arg3));
   }
 
+  // TODO: this is noisy and largely unnecessary in multiplayer games...
   static void announce(string msg, string arg1 = "", string arg2 = "", string arg3 = "") {
+    return;
     let text = string.format(
       StringTable.Localize(msg),
       StringTable.Localize(arg1),
