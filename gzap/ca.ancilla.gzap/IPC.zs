@@ -66,11 +66,11 @@ class ::IPC {
   }
 
   bool ReceiveOne(string type, Array<string> fields) {
-    if (type == "CHAT") {
-      if (fields.Size() != 4) return false;
-      EventHandler.SendNetworkCommand("ap-ipc:chat",
-        NET_STRING, fields[2],  // user
-        NET_STRING, fields[3]); // message
+    // console.printf("ReceiveOne sending netevent: %s", type);
+    if (type == "TEXT") {
+      if (fields.Size() != 3) return false;
+      EventHandler.SendNetworkCommand("ap-ipc:text",
+        NET_STRING, fields[2]);
       return true;
     } else if (type == "ITEM") {
       if (fields.Size() != 3) return false;

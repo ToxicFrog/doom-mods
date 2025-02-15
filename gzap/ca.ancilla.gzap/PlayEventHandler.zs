@@ -334,10 +334,9 @@ class ::PlayEventHandler : StaticEventHandler {
 
   override void NetworkCommandProcess(NetworkCommand cmd) {
     // console.printf(">> %s", cmd.command);
-    if (cmd.command == "ap-ipc:chat") {
-      string nick = cmd.ReadString();
+    if (cmd.command == "ap-ipc:text") {
       string message = cmd.ReadString();
-      console.printfEX(PRINT_TEAMCHAT, "<%s> %s", nick, message);
+      console.printfEX(PRINT_TEAMCHAT, "%s", message);
     } else if (cmd.command == "ap-ipc:item") {
       int apid = cmd.ReadInt();
       GrantItem(apid);

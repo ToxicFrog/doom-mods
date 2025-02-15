@@ -55,7 +55,7 @@ class GZDoomContext(CommonContext):
         # with well. Translate to gzdoom colour codes.
         text = self.jsontotextparser(copy.deepcopy(args["data"]))
         # TODO: filter for relevance.
-        self.ipc.send_chat("Archipelago", text)
+        self.ipc.send_text(text)
 
     async def _item_loop(self):
         last_items = set()

@@ -163,9 +163,9 @@ class IPC:
     self._enqueue("ITEM", id)
     self._flush()
 
-  def send_chat(self, nick: str, message: str) -> None:
-    """Display the given chat message to the player."""
-    self._enqueue("CHAT", nick, message)
+  def send_text(self, message: str) -> None:
+    """Display the given message to the player."""
+    self._enqueue("TEXT", ansi_to_gzdoom(message))
     self._flush()
 
 
