@@ -168,9 +168,11 @@ the ID of the most recently written message, at which point it truncates the fil
 
 ### Message types
 
-#### `CHAT` `user` `message`
+#### `TEXT` `message`
 
-Displays a chat message from the named user.
+Displays a message from Archipelago. If it contains colour information it is the
+responsibility of the *sender* to encode that; the colour escape character
+represented as "\c" gzDoom string literals is "\x1C" (FILE SEPARATOR).
 
 #### `ITEM` `id`
 
