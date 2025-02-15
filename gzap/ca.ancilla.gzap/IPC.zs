@@ -28,6 +28,10 @@ class ::IPC {
 
   // Receive all pending messages, dispatch them internally, and ack them.
   void ReceiveAll() {
+    // Not initialized yet. That's fine, it means the menu loop has started up
+    // but the game loop hasn't yet.
+    if (!lumpid) return;
+
     let buf = wads.ReadLump(lumpid);
     // console.printf("Read %d bytes from IPC buffer.", buf.Length());
 

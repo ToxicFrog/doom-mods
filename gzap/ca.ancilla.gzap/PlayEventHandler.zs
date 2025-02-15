@@ -32,7 +32,6 @@ class ::PlayEventHandler : StaticEventHandler {
   override void OnRegister() {
     console.printf("PlayEventHandler starting up");
     apclient = ::IPC(new("::IPC"));
-    apclient.Init();
   }
 
   // N.b. this uses the CVAR skill value, where 0 is ITYTD and 4 is Nightmare.
@@ -173,7 +172,15 @@ class ::PlayEventHandler : StaticEventHandler {
     }
   }
 
+  bool initialized;
   override void WorldLoaded(WorldEvent evt) {
+    // Don't initialize IPC until after we're in-game; otherwise NetworkCommandProcess
+    // doesn't get called and we end up missing events.
+    if (!initialized) {
+      initialized = true;
+      apclient.Init();
+    }
+
     if (level.MapName == "GZAPHUB") {
       Menu.SetMenu("ArchipelagoLevelSelectMenu");
       return;
@@ -320,8 +327,8 @@ class ::PlayEventHandler : StaticEventHandler {
     }
   }
 
-  override void WorldTick() {
-    if (level.totalTime % 35 != 0) return;
+  override void UITick() {
+    if (gametic % 35 != 0) return;
     apclient.ReceiveAll();
   }
 
