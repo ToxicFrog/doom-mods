@@ -11,8 +11,8 @@ class ::IPC {
     console.printfEX(PRINT_LOG, "AP-%s %s", type, payload);
   }
 
-  uint last_seen;
-  uint lumpid;
+  int last_seen;
+  int lumpid;
 
   // Initialize the IPC receiver using the given lump name.
   void Init(string lumpname = "GZAPIPC") {
