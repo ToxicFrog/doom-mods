@@ -27,16 +27,6 @@ class ::Region play {
     return region;
   }
 
-  static ::Region CreatePartial(string map, string key, bool access, bool automap, bool cleared) {
-    let region = ::Region(new("::Region"));
-    region.map = map;
-    if (key != "") region.keys.Insert(key, true);
-    region.access = access;
-    region.automap = automap;
-    region.cleared = cleared;
-    return region;
-  }
-
   void RegisterCheck(uint apid, string name, bool progression, Vector3 pos) {
     let loc = ::Location(new("::Location"));
     loc.apid = apid;

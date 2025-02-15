@@ -11,6 +11,7 @@
 #include "./actors/AlarmClock.zsc"
 #include "./actors/Check.zsc"
 #include "./archipelago/Region.zsc"
+#include "./archipelago/RegionDiff.zsc"
 #include "./IPC.zsc"
 
 // TODO: for singleplayer rando, it should be possible to persist the state to
@@ -25,7 +26,7 @@ class ::PlayEventHandler : StaticEventHandler {
   Map<int, string> item_apids;
   // Maps AP item IDs to internal updates to the map structure.
   // Fields set in this are copied to the canonical ::Region for that map.
-  Map<int, ::Region> map_apids;
+  Map<int, ::RegionDiff> map_apids;
   // IPC stub for communication with Archipelago.
   ::IPC apclient;
 
@@ -42,15 +43,16 @@ class ::PlayEventHandler : StaticEventHandler {
   void RegisterMap(string map, uint access_apid, uint map_apid, uint clear_apid, uint exit_apid) {
     // console.printf("Registering map: %s", map);
     regions.Insert(map, ::Region.Create(map, exit_apid));
+
     // We need to bind these to the map name somehow, oops.
-    if (access_apid) map_apids.Insert(access_apid, ::Region.CreatePartial(map, "", true, false, false));
-    if (map_apid) map_apids.Insert(map_apid, ::Region.CreatePartial(map, "", false, true, false));
-    if (clear_apid) map_apids.Insert(clear_apid, ::Region.CreatePartial(map, "", false, false, true));
+    if (access_apid) map_apids.Insert(access_apid, ::RegionDiff.CreateFlags(map, true, false, false));
+    if (map_apid) map_apids.Insert(map_apid, ::RegionDiff.CreateFlags(map, false, true, false));
+    if (clear_apid) map_apids.Insert(clear_apid, ::RegionDiff.CreateFlags(map, false, false, true));
   }
 
   void RegisterKey(string map, string key, uint apid) {
     regions.Get(map).RegisterKey(key);
-    map_apids.Insert(apid, ::Region.CreatePartial(map, key, false, false, false));
+    map_apids.Insert(apid, ::RegionDiff.CreateKey(map, key));
   }
 
   void RegisterItem(string typename, uint apid) {
@@ -65,27 +67,9 @@ class ::PlayEventHandler : StaticEventHandler {
   void GrantItem(uint apid) {
     // console.printf("GrantItem: %d", apid);
     if (map_apids.CheckKey(apid)) {
-      let new_info = map_apids.Get(apid);
-      let info = regions.Get(new_info.map);
-      let maptitle = LevelInfo.FindLevelInfo(new_info.map).LookupLevelName();
-
-      // TODO: this is kind of gross
-      foreach (k,v : new_info.keys) {
-        ::Util.announce("$GZAP_GOT_KEY", k, maptitle, new_info.map);
-        info.AddKey(k);
-      }
-      if (new_info.access) {
-        ::Util.announce("$GZAP_GOT_ACCESS", maptitle, new_info.map);
-        info.access = true;
-      }
-      if (new_info.automap) {
-        ::Util.announce("$GZAP_GOT_AUTOMAP", maptitle, new_info.map);
-        info.automap = true;
-      }
-      if (new_info.cleared) {
-        ::Util.announce("$GZAP_LEVEL_DONE", new_info.map);
-        info.cleared = true;
-      }
+      let diff = map_apids.Get(apid);
+      let region = regions.Get(diff.map);
+      diff.Apply(region);
     } else if (item_apids.CheckKey(apid)) {
       // TODO: if in-game, give this to the player
       // If not in-game, or if in the hubmap, enqueue it and give it to the player
@@ -94,8 +78,7 @@ class ::PlayEventHandler : StaticEventHandler {
       // them when and as needed, or implementing our own inventory so that we
       // don't have to try to backpatch other mods' items.
       // console.printf("GrantItem %d (%s)", apid, item_apids.Get(apid));
-      // TODO: this should use the item tag rather than typename, and also tell
-      // you what player sent you the item, if it was remote.
+      // TODO: this should use the item tag rather than typename.
       ::Util.announce("$GZAP_GOT_ITEM", item_apids.Get(apid));
       for (int p = 0; p < MAXPLAYERS; ++p) {
         if (!playeringame[p]) continue;
@@ -333,7 +316,7 @@ class ::PlayEventHandler : StaticEventHandler {
   }
 
   override void NetworkCommandProcess(NetworkCommand cmd) {
-    // console.printf(">> %s", cmd.command);
+    // console.printf("NetworkCommandProcess %s", cmd.command);
     if (cmd.command == "ap-ipc:text") {
       string message = cmd.ReadString();
       console.printfEX(PRINT_TEAMCHAT, "%s", message);
