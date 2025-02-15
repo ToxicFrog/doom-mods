@@ -1,6 +1,7 @@
 import importlib.resources as resources
 import logging
 import os
+import random
 from typing import Dict
 
 import jinja2
@@ -89,13 +90,15 @@ class GZDoomWorld(World):
         item = self.wad_logic.items_by_name[name]
         return GZDoomItem(item, self.player)
 
-    # TODO: fetch wad logic by name based on yaml rather than just hardcoding it here
     def generate_early(self) -> None:
         # for k in self.item_name_to_id:
         #     print(self.item_name_to_id[k], k)
         # for k in self.location_name_to_id:
         #     print(self.location_name_to_id[k], k)
-        self.wad_logic = get_wad("Doom 2 (HNTR)")
+        wadlist = list(self.options.selected_wad.value)
+        print(f"Permitted WADs: {wadlist}")
+        self.wad_logic = model.get_wad(random.choice(wadlist))
+        print(f"Selected WAD: {self.wad_logic.name}")
 
     def create_regions(self) -> None:
         menu_region = Region("Menu", self.player, self.multiworld)
