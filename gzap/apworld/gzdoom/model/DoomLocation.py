@@ -81,24 +81,19 @@ class DoomLocation:
             self.keyset = keys
 
     def access_rule(self, player):
-        # TODO: in a really gross hack here, we assume that checks in the first
-        # map are always accessible no matter what guns/keys you have, because
-        # the former (hopefully) doesn't matter for the first map and the latter
-        # are granted to you as starting inventory.
-        if self.parent.maps[self.pos.map] == self.parent.first_map:
-            return lambda _: True
-        # Otherwise, it's accessible if:
-        # - you have all the keys for the map
-        #     OR the map only has one key, and this is it
-        # - AND you have at least half of the non-secret guns from this map.
+        # A location is accessible if:
+        # - you have access to the map (already checked at the region level)
+        # - AND
+        #   - either you have all the keys for the map
+        #   - OR the map only has one key, and this is it
         def rule(state):
             player_keys = { item for item in self.keyset if state.has(item, player) }
 
             # Are we missing any keys?
             if player_keys < self.keyset:
-                # If so, we might still be able to reach the location, if
-                # - the map only has one key, and
-                # - this is the location where that key would normally be found
+                # If so, we might still be able to reach the location, if this
+                # location is the map's only key (and thus must be accessible to
+                # a player entering the map without keys).
                 if {self.orig_item.name()} == self.keyset:
                     # print(f"Access granted: {self.name} (single key location)")
                     return True

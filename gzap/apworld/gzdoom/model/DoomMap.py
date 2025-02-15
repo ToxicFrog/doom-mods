@@ -60,10 +60,13 @@ class DoomMap:
     def __post_init__(self, info):
         self.mapinfo = MAPINFO(**info)
 
-    def access_rule(self, player):
+    def access_rule(self, player, require_weapons = True):
         def rule(state):
             if not state.has(self.access_token_name(), player):
                 return False
+
+            if not require_weapons:
+                return True
 
             # We need at least half of the non-secret guns in the level,
             # rounded down, to give the player a fighting chance.

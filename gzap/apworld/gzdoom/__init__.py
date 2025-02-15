@@ -127,7 +127,7 @@ class GZDoomWorld(World):
             menu_region.connect(
                 connecting_region=region,
                 name=f"{map.map}",
-                rule=map.access_rule(self.player))
+                rule=map.access_rule(self.player, require_weapons=(map.map not in self.options.starting_levels)))
             for loc in map.locations:
                 # print("  Location:", loc.name(), loc)
                 assert loc.name() not in placed
