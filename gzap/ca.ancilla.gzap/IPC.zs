@@ -32,6 +32,7 @@ class ::IPC {
     // Last entry is either an incomplete message or an empty string.
     messages.Pop();
 
+    bool send_ack = false;
     Array<string> fields;
     foreach (message : messages) {
       fields.Clear();
@@ -51,8 +52,9 @@ class ::IPC {
       }
 
       last_seen = id;
+      send_ack = true;
     }
-    Send("ACK", string.format("{ \"id\": %d }", last_seen));
+    if (send_ack) Send("ACK", string.format("{ \"id\": %d }", last_seen));
   }
 
   bool ReceiveOne(string type, Array<string> fields) {
