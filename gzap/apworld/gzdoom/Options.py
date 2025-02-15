@@ -12,35 +12,10 @@
 
 import typing
 
-from Options import PerGameCommonOptions, Choice, Toggle, DeathLink, StartInventoryPool, FreeText
+from Options import PerGameCommonOptions, Toggle, DeathLink, StartInventoryPool, FreeText, OptionSet, NamedRange
 from dataclasses import dataclass
 
-
-class RandomMonsters(Choice):
-    """
-    Choose how monsters are randomized.
-    vanilla: use original map placement
-    shuffle: monsters are randomly shuffled within each level
-    """
-    # TODO: implement this
-    display_name = "Random Monsters"
-    option_vanilla = 0
-    option_shuffle = 1
-    default = 1
-
-
-class RandomItems(Choice):
-    """
-    Choose how "minor" items not included in the main pool are randomized.
-    vanilla: use original map placement
-    shuffle: items are shuffled within the level
-    """
-    # TODO: implement this
-    display_name = "Random Pickups"
-    option_vanilla = 0
-    option_shuffle = 1
-    default = 1
-
+from . import model
 
 class StartWithAutomaps(Toggle):
     """
@@ -48,64 +23,80 @@ class StartWithAutomaps(Toggle):
     Otherwise, they'll be in the pool as useful, but not required, items.
     """
     # TODO: implement this
-    display_name = "Start With All Maps"
+    display_name = "Start with Automaps"
 
 
-class ResetLevels(Choice):
+model.init_wads(__package__)
+class SelectedWad(OptionSet):
     """
-    Choose when levels reset. (You can always manually reset a level from the menu.)
-    never: only when you explicitly request a reset
-    on death: when you die, the level resets and you restart from the beginning
-    on exit: when you exit to the hub, the level resets and you restart next time you enter it
-    both: on death + on exit
+    Which WAD to generate for.
+
+    This list is populated from the logic files built in to the apworld. If you want
+    to generate something else, generate locally and set theGZAP_CUSTOM_LOGIC_FILE
+    environment variable.
+
+    If you select more than one WAD from this list, it will pick one for you at random.
     """
-    # TODO: implement this
-    display_name = "Reset Levels"
-    option_never = 0
-    option_on_death = 1
-    option_on_exit = 2
-    option_both = 3
-    default = 0
+    display_name = "WAD to play"
+    default = set([wad.name for wad in model.wads()])
+    valid_keys = [wad.name for wad in model.wads()]
 
 
-class StartingLevels(FreeText):
+class StartingLevels(OptionSet):
     """
-    Whitespace-separated list of levels to begin with access to. Levels not present in the WAD
-    are safely ignored. If you don't list any levels (or if none of the ones you list exist), the
-    randomizer will pick the first level it sees.
+    Set of levels to begin with access to. If you select levels that aren't in the
+    WAD you choose (e.g. E1M1 when you're generating for Doom 2) they will be safely
+    ignored. If you don't select any levels in your chosen WAD, it will force you
+    to start with access to the first level.
 
-    You will begin with the access code and all keys for these levels.
+    You will begin with the access code and all keys for these levels in your inventory.
     """
-    # TODO: implement this
     display_name = "Starting Levels"
-    default = "E1M1 MAP01 TN_MAP01 PL_MAP01"
+    # default = ["E1M1", "MAP01", "LEVEL01", "PL_MAP01", "TN_MAP01"]
+    default = ["MAP01"]
+    valid_keys = model.all_map_names()
 
 
-class IncludedLevels(FreeText):
+class IncludedLevels(OptionSet):
     """
-    Whitespace-separated list of levels to include in randomization. Levels not listed here
-    will not have checks placed in them and will be hidden from the level select.
+    Set of levels to include in randomization.
 
-    You can use * for simple wildcards, so "E1M* MAP0* MAP10" will include all of Episode 1
-    from Doom 1, and the first ten maps from Doom 2.
+    It is safe to select levels not in the target WAD; they will be ignored. Selecting
+    no levels is equivalent to selecting all levels.
 
-    If left blank, every available level will be randomized.
-
-    The win condition (at present) is always "complete all levels", so including more levels
-    will always result in a longer game.
+    The win condition (at present) is always "complete all levels", so including more
+    levels will generally result in a longer game.
     """
-    # TODO: implement this
     display_name = "Included Levels"
-    default = "E* MAP* TN_MAP* PL_MAP*"
+    default = sorted(model.all_map_names())
+
+
+# TODO: this isn't useful until we have multi-difficulty logic files, or a way
+# of loading a different logic file per difficulty
+class Skill(NamedRange):
+    """
+    Difficulty level. Equivalent to the `skill` console command (so the range is
+    from 0 to 4, not 1 to 5).
+    """
+    display_name = "Difficulty"
+    range_start = 0
+    range_end = 4
+    default = 2
+    special_range_names = {
+        "itytd": 0,
+        "hntr": 1,
+        "hmp": 2,
+        "uv": 3,
+        "nm": 4
+    }
 
 
 @dataclass
 class GZDoomOptions(PerGameCommonOptions):
     start_inventory_from_pool: StartInventoryPool
-    random_monsters: RandomMonsters
-    random_items: RandomItems
-    start_with_computer_area_maps: StartWithAutomaps
+    start_with_all_maps: StartWithAutomaps
     death_link: DeathLink
-    reset_levels: ResetLevels
-    starting_levels = StartingLevels
-    included_levels = IncludedLevels
+    starting_levels: StartingLevels
+    included_levels: IncludedLevels
+    selected_wad: SelectedWad
+    # skill: Skill

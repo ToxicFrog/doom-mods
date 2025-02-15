@@ -7,6 +7,8 @@ with, what keys are needed to access what locations, etc.
 """
 
 import json
+from importlib import resources
+import itertools
 import os
 from typing import Dict
 
@@ -70,8 +72,52 @@ class WadLogicLoader:
             raise UnsupportedScanEventError(evt)
 
 
+_init_done: bool = False
+
 def add_wad(name: str):
     return WadLogicLoader(_DOOM_LOGIC, name)
 
 def get_wad(name: str) -> DoomWad:
+    assert _init_done
     return _DOOM_LOGIC.wads[name]
+
+def init_wads(package):
+  global _init_done
+  if _init_done:
+      return
+  _init_done = True
+
+  # Debug/test mode: load the specifed file and nothing else.
+  if "GZAP_LOGIC_FILE" in os.environ:
+      path = os.environ["GZAP_LOGIC__FILE"]
+      print(f"Loading external WAD logic from {path}")
+      with open(path) as fd:
+          buf = fd.read()
+      with add_wad(os.path.basename(path)) as wad:
+          wad.load_logic(buf)
+      return
+
+  # Load all logic files included in the apworld.
+  # Sort them so we get a consistent order, and thus consistent ID assignment,
+  # across runs.
+  # TODO: maybe separate logic and tuning directories or similar?
+  print("Looking for builtin logic files in", __spec__)
+  for logic_file in sorted(resources.files(package).joinpath("logic").iterdir(), key=lambda p: p.name):
+      with add_wad(logic_file.name) as wad:
+          print(f"Loading builtin WAD logic from {logic_file.name}")
+          wad.load_logic(logic_file.read_text())
+
+def wads() -> List[DoomWad]:
+    return sorted(_DOOM_LOGIC.wads.values(), key=lambda w: w.name)
+
+def all_map_names() -> Set[str]:
+    names = set()
+    for wad in wads():
+        names.update([map.map for map in wad.all_maps()])
+    return names
+
+def unified_item_map():
+    return _DOOM_LOGIC.item_names_to_ids.copy()
+
+def unified_location_map():
+    return _DOOM_LOGIC.location_names_to_ids.copy()

@@ -1,15 +1,14 @@
 import importlib.resources as resources
 import logging
 import os
-import typing
-from typing import Any, Dict, List
+from typing import Dict
 
 import jinja2
 from BaseClasses import CollectionState, Item, ItemClassification, Location, MultiWorld, Region, Tutorial
 from worlds.AutoWorld import WebWorld, World
 
 from .Options import GZDoomOptions
-from .model import DoomItem, DoomLocation, DoomWad, get_wad
+from .model import DoomItem, DoomLocation, DoomWad, init_wads, get_wad
 
 logger = logging.getLogger("gzDoom")
 
@@ -41,60 +40,31 @@ class GZDoomWeb(WebWorld):
     theme = "dirt"
 
 
-# Load all logic files included in the apworld.
-# Sort them so we get a consistent order, and thus consistent ID assignment,
-# across runs.
-for logic_file in sorted(resources.files(__package__).joinpath("logic").iterdir(), key=lambda p: p.name):
-    with model.add_wad(logic_file.name) as wad:
-        print(f"Loading builtin WAD logic from {logic_file.name}")
-        wad.load_logic(logic_file.read_text())
-
-if "GZAP_LOGIC_FILES" in os.environ:
-    for logic_file in os.environ["GZAP_LOGIC_FILES"].split(":"):
-        with model.add_wad(logic_file.name) as wad:
-            print(f"Loading external WAD logic from {logic_file.name}")
-            wad.load_logic(logic_file.read_text())
-
 class GZDoomWorld(World):
     """
     gzDoom is an open-source enhanced port of the Doom engine, supporting Doom 1/2, Hexen, Heretic, and Strife, along
     with thousands of fan-made maps and mission packs and even a few commercial games like Hedon Bloodrite and Selaco.
 
-    This randomizer attempts to support all vanilla-compatible or limit-removing Doom 1/2 megaWADs. It may also work
-    with non-Doom-based games like Heretic and Bloodrite.
+    This randomizer comes with an automated WAD scanner that makes it easy to add support for new WADs.
     """
     game = "gzDoom"
     options_dataclass = GZDoomOptions
     options: GZDoomOptions
     topology_present = True
     web = GZDoomWeb()
-    required_client_version = (0, 3, 9)
+    required_client_version = (0, 5, 1)
 
     # Info fetched from gzDoom; contains item/location ID mappings etc.
     wad_logic: DoomWad
     location_count: int = 0
 
     # Used by the caller
-    item_name_to_id: Dict[str, int] = {
-        item.name(): item.id
-        for item in get_wad("Doom 2 (HNTR)").items()
-    }
-    location_name_to_id: Dict[str, int] = {
-        loc.name(): loc.id
-        for loc in get_wad("Doom 2 (HNTR)").locations()
-    }
+    item_name_to_id: Dict[str, int] = model.unified_item_map()
+    location_name_to_id: Dict[str, int] = model.unified_location_map()
 
     def __init__(self, multiworld: MultiWorld, player: int):
         self.location_count = 0
         super().__init__(multiworld, player)
-
-    # TODO: ensure that the WAD the player has selected is in the supported list,
-    # or that they have provided a custom logic file
-    # @classmethod
-    # def stage_assert_generate(cls, multiworld: MultiWorld):
-    #     logic_path = get_logic_file_path()
-    #     if not os.path.exists(logic_path):
-    #         raise FileNotFoundError(logic_path)
 
     def create_item(self, name: str) -> GZDoomItem:
         item = self.wad_logic.items_by_name[name]
@@ -111,6 +81,20 @@ class GZDoomWorld(World):
         placed = set()
 
         for map in self.wad_logic.maps.values():
+            if map.map not in self.options.included_levels:
+                continue
+
+            if self.options.start_with_all_maps:
+                item = self.wad_logic.item(map.automap_name())
+                self.multiworld.push_precollected(GZDoomItem(item, self.player))
+                item.count -= 1
+
+            if map.map in self.options.starting_levels:
+                for name in map.starting_items():
+                    item = self.wad_logic.item(name)
+                    self.multiworld.push_precollected(GZDoomItem(item, self.player))
+                    item.count -= 1
+
             region = Region(map.map, self.player, self.multiworld)
             self.multiworld.regions.append(region)
             menu_region.connect(
@@ -130,16 +114,14 @@ class GZDoomWorld(World):
 
 
     def create_items(self) -> None:
-        for item in self.wad_logic.starting_items():
-          self.multiworld.push_precollected(GZDoomItem(item, self.player))
-          item.count -= 1
-
         slots_left = self.location_count
         main_items = self.wad_logic.progression_items() + self.wad_logic.useful_items()
         filler_items = self.wad_logic.filler_items()
 
         for item in main_items:
-            for _ in range(item.count):
+            if item.map not in self.options.included_levels:
+                continue
+            for _ in range(max(item.count, 0)):
                 self.multiworld.itempool.append(GZDoomItem(item, self.player))
                 slots_left -= 1
 
@@ -165,6 +147,8 @@ class GZDoomWorld(World):
 
     def mission_complete(self, state: CollectionState) -> bool:
         for map in self.wad_logic.maps.values():
+            if map.map not in self.options.included_levels:
+                continue
             if not state.has(map.clear_token_name(), self.player):
                 return False
         return True
@@ -173,21 +157,6 @@ class GZDoomWorld(World):
         # All region and location access rules were defined in create_regions, so we just need the
         # overall victory condition here.
         self.multiworld.completion_condition[self.player] = lambda state: self.mission_complete(state)
-
-    def generate_output_old(self, path):
-        print("# GZAP output generation", path)
-        print("## Metadata")
-        print("seed:", self.multiworld.seed_name)
-        print("player:", self.player, self.multiworld.player_name[self.player])
-        print("## Item table")
-        for item in self.wad_logic.items_by_name.values():
-            print("item:", item.id, item.typename, item.name, item.category)
-        print("## Location table")
-        for loc in self.wad_logic.locations_by_name.values():
-            print("location", loc.id, loc.name, loc.keyset, loc.pos)
-            aploc = self.multiworld.get_location(loc.name, self.player)
-            if aploc.item:
-                print("  ->  ", aploc.item.code, aploc.item.name)
 
     def generate_output(self, path):
         def progression(id: int) -> bool:
@@ -214,7 +183,8 @@ class GZDoomWorld(World):
             "player": self.multiworld.player_name[self.player],
             "skill": self.wad_logic.skill,
             "maps": [
-              map for map in self.wad_logic.maps.values()
+                map for map in self.wad_logic.maps.values()
+                if map.map in self.options.included_levels
             ],
             "items": [
               item for item in self.wad_logic.items()

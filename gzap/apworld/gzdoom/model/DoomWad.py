@@ -42,13 +42,8 @@ class DoomWad:
     def items(self) -> List[DoomItem]:
         return [item for item in self.items_by_name.values() if item]
 
-    def starting_items(self) -> List[DoomItem]:
-        return [
-            self.items_by_name[self.first_map.access_token_name()]
-        ] + [
-            self.items_by_name[key]
-            for key in self.first_map.keyset
-        ]
+    def item(self, name: str) -> DoomItem:
+        return self.items_by_name[name]
 
     def progression_items(self) -> List[DoomItem]:
         return [item for item in self.items() if item.is_progression()]
@@ -58,6 +53,10 @@ class DoomWad:
 
     def filler_items(self) -> List[DoomItem]:
         return [item for item in self.items() if item.is_filler()]
+
+    def all_maps(self) -> List[DoomMap]:
+        return self.maps.values()
+
 
     def new_map(self, json: Dict[str,str]) -> None:
         map = json["map"]
@@ -80,10 +79,11 @@ class DoomWad:
             DoomItem(map=map.map, category="map", typename="", tag="Automap"))
         clear_token = self.register_item(None,
             DoomItem(map=map.map, category="token", typename="", tag="Level Clear"))
-        map_exit = self.register_location(
-            DoomLocation(self, map.map, clear_token, None))
+        map_exit = DoomLocation(self, map.map, clear_token, None)
+        # TODO: there should be a better way of overriding location names
         map_exit.item_name = "Exit"
         map_exit.item = clear_token
+        self.register_location(map_exit)
 
 
     def new_item(self, json: Dict[str,str]) -> None:
