@@ -2,6 +2,7 @@ import asyncio
 import copy
 import os
 import os.path
+from typing import Any, Dict
 
 import Utils
 from CommonClient import CommonContext, ClientCommandProcessor, get_base_parser
@@ -41,18 +42,26 @@ class GZDoomContext(CommonContext):
             {"cmd": "Say", "text": message}
             ])
 
-    def on_package(self, cmd, args):
-        print("RECV", cmd, args)
+    # def on_package(self, cmd, args):
+    #     print("RECV", cmd, args)
 
-    async def send_msgs(self, msgs):
-        for msg in msgs:
-            print("SEND", msg)
-        await super().send_msgs(msgs)
+    # async def send_msgs(self, msgs):
+    #     for msg in msgs:
+    #         print("SEND", msg)
+    #     await super().send_msgs(msgs)
 
-    def on_print_json(self, args: dict):
+    def _is_relevant(self, type, item = None, receiving = None, **kwargs) -> bool:
+      if type in {"Chat", "ServerChat", "Goal", "Countdown"}:
+          return True
+      if type in {"Hint", "ItemSend"}:
+          return self.slot_concerns_self(receiving) or self.slot_concerns_self(item.player)
+      return False
+
+    def on_print_json(self, args: Dict[Any, Any]) -> None:
         super().on_print_json(args)
+        if not self._is_relevant(**args):
+            return
         text = self.jsontotextparser(copy.deepcopy(args["data"]))
-        # TODO: filter for relevance.
         self.ipc.send_text(text)
 
     async def _item_loop(self):

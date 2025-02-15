@@ -9,9 +9,6 @@
   - this is ctx.checked_locations after initialization
   - it does properly remember keys, maps, clears across runs!
     - although we get all of our powerups/consumables whenever we start the game
-- messages sent to the game have tty escape codes in them
-- should only send immediately relevant messages
-- should work with logfiles, not just fifos
 - needs to be launchable from the GUI with name and optionally password and gzdoom configuration
 
 ## Item/location management for multiwad impl
@@ -27,7 +24,7 @@ The DoomLogic does this by seeing if it already has a duplicate. If it doesn't,
 this is easy, it generates a name, allocates a new id for it, stores it by name
 and returns the id.
 
-If it does have a duplicate -- well, what it is a duplicate?
+If it does have a duplicate -- well, what is a duplicate?
 - unscoped items are duplicates if they have the same typename and tag
 - scoped items are duplicates if they have the same typename, tag, and mapname
 
