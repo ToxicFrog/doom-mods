@@ -6,11 +6,28 @@ from typing import Dict
 import jinja2
 from BaseClasses import CollectionState, Item, ItemClassification, Location, MultiWorld, Region, Tutorial
 from worlds.AutoWorld import WebWorld, World
+import worlds.LauncherComponents as LauncherComponents
 
 from .Options import GZDoomOptions
 from .model import DoomItem, DoomLocation, DoomWad, init_wads, get_wad
 
 logger = logging.getLogger("gzDoom")
+init_wads(__package__)
+
+
+def launch_client(*args) -> None:
+    from .client.GZDoomClient import main
+    # TODO: use launch() here once it's in main
+    LauncherComponents.launch_subprocess(main, name="GZDoomClient", args=args)
+
+
+LauncherComponents.components.append(
+    LauncherComponents.Component(
+        "GZDoom Client",
+        func=launch_client,
+        component_type=LauncherComponents.Type.CLIENT
+    )
+)
 
 
 class GZDoomLocation(Location):

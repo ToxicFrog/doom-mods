@@ -1,5 +1,19 @@
 # Archipelago gzDoom connector
 
+## client issues discovered in testing
+
+- game really needs to buffer items for later deployment rather than granting immediately
+- client leaves a background thread running on exit that continues to cause problems
+  - may be an issue with how it's launched via multiprocessing rather than an issue with the client itself
+- need to properly sync checked locations to the game and not spawn them, rather than spawning empty items
+  - this is ctx.checked_locations after initialization
+  - it does properly remember keys, maps, clears across runs!
+    - although we get all of our powerups/consumables whenever we start the game
+- messages sent to the game have tty escape codes in them
+- should only send immediately relevant messages
+- should work with logfiles, not just fifos
+- needs to be launchable from the GUI with name and optionally password and gzdoom configuration
+
 ## Item/location management for multiwad impl
 
 Top-level DoomLogic holds the master item/location tables. These are map from name
