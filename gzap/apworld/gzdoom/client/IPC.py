@@ -13,9 +13,8 @@ import time
 from threading import Thread
 from typing import Any, Dict, List
 
-
 from CommonClient import CommonContext
-
+from .util import ansi_to_gzdoom
 
 class IPCMessage:
   id: int = -1

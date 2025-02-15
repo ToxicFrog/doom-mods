@@ -51,8 +51,6 @@ class GZDoomContext(CommonContext):
 
     def on_print_json(self, args: dict):
         super().on_print_json(args)
-        # TODO: this inserts terminal colour escapes which gzdoom does not cope
-        # with well. Translate to gzdoom colour codes.
         text = self.jsontotextparser(copy.deepcopy(args["data"]))
         # TODO: filter for relevance.
         self.ipc.send_text(text)
