@@ -1,10 +1,7 @@
 # TODO: add/implement options for:
 # - in-level/across-level monster shuffle
 # - in-level/across-level minor item shuffle
-# - automaps (at start, in pool, vanilla, none)
 # - behaviour on death
-# - levels to exclude from the randomizer
-# - levels to start with
 # - weapon logic
 # - win logic: all levels/N levels/all bosses/N bosses
 # - are bosses checks
@@ -22,7 +19,6 @@ class StartWithAutomaps(Toggle):
     Give the player automaps for all levels from the start.
     Otherwise, they'll be in the pool as useful, but not required, items.
     """
-    # TODO: implement this
     display_name = "Start with Automaps"
 
 

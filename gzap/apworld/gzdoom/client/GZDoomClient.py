@@ -74,7 +74,6 @@ class GZDoomContext(CommonContext):
                 continue
 
             for item in items - last_items:
-                # TODO: also send the player so we know who sent it to us!
                 self.ipc.send_item(item.item)
             last_items = items
 
