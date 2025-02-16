@@ -13,10 +13,6 @@
 #include "./archipelago/Region.zsc"
 #include "./IPC.zsc"
 
-// TODO: for singleplayer rando, it should be possible to persist the state to
-// the save file. We'd need to pull all the state out into a separate object
-// and store it in the PlayerPawn. In OnWorldLoaded, if we have an empty state
-// and the PlayerPawn doesn't, we overwrite our own state with its state.
 class ::PlayEventHandler : StaticEventHandler {
   int skill;
   bool singleplayer;

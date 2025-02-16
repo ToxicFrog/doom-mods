@@ -12,9 +12,12 @@ import worlds.LauncherComponents as LauncherComponents
 from .Options import GZDoomOptions
 from .model import DoomItem, DoomLocation, DoomWad, init_wads, get_wad
 
-# TODO: is there a way we can tell when we're being loaded to run the client,
-# and skip initializing the WAD logic, which is relatively expensive?
 logger = logging.getLogger("gzDoom")
+
+# Unfortunately this has to be done at load time, and there is no way to tell
+# up front whether we're being loaded for something that needs the logic structures
+# or something that doesn't. So we load them unconditionally and hope it doesn't
+# slow things down too much as more wads are added.
 init_wads(__package__)
 
 

@@ -9,11 +9,7 @@ means you can't ever collect the first one.
 There's also a check (originally a shotgun) in a blueroom to the west; it's
 not clear to me that there's any way to get this to spawn into the level.
 
-We need some way of marking checks as uncollectable during refinement.
-
-Demonfear MAP27 -- there's a check that's uncollectable because it's sitting in
-a little trench and isn't tall enough. We should probably make checks at least
-as tall as a Megasphere or a Backpack. Idea: copy the geometry from the parent actor?
+We need some way of marking checks as uncollectable during tuning.
 
 ## client issues discovered in testing
 
