@@ -109,7 +109,7 @@ Send a chat message to the rest of the Archipelago players. Unfortunately there
 is no code that currently emits this due to difficulty hooking the `say` console
 command in-game.
 
-#### `AP-XON { lump, size, nick }`
+#### `AP-XON { lump, size, nick, slot, seed }`
 
 Tells the client that it is ready to receive messages. `lump` is the name of the
 lump it's using as the IPC connector, and `size` is the maximum message buffer
@@ -117,6 +117,10 @@ size that can be written to it.
 
 `nick` is the player's in-game name, used to extract chat messages from the log
 (as a workaround for the difficulty in knowing when to emit `AP-CHAT` messages).
+
+`slot` and `seed` are information about the generated game: the player's slot name
+and the world seed string. The client uses these when establishing the connection
+to the server.
 
 #### `AP-ACK { id }`
 

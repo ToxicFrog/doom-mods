@@ -15,15 +15,15 @@ class ::IPC {
   int lumpid;
 
   // Initialize the IPC receiver using the given lump name.
-  void Init(string lumpname = "GZAPIPC") {
+  void Init(string slot_name, string seed, string lumpname = "GZAPIPC") {
     last_seen = 0;
     lumpid = wads.FindLump(lumpname);
     let buf = wads.ReadLump(lumpid);
     Send("XON", string.format(
-      "{ \"lump\": \"%s\", \"size\": %d, \"nick\": \"%s\" }",
-      lumpname,
-      buf.Length(),
-      cvar.FindCVar("name").GetString()));
+      "{ \"lump\": \"%s\", \"size\": %d, \"nick\": \"%s\", \"slot\": \"%s\", \"seed\": \"%s\" }",
+      lumpname, buf.Length(),
+      cvar.FindCVar("name").GetString(),
+      slot_name, seed));
   }
 
   // Receive all pending messages, dispatch them internally, and ack them.

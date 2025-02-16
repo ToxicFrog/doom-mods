@@ -112,18 +112,19 @@ class IPC:
 
   #### Handlers for events coming from gzdoom. ####
 
-  async def recv_xon(self, lump: str, size: int, nick: str) -> None:
+  async def recv_xon(self, lump: str, size: int, nick: str, slot: str, seed: str) -> None:
     """
     Called when an AP-XON message is received from gzdoom.
 
     This indicates that gzdoom is ready to receive messages, so this starts the
     message sending task. Until that point all messages are queued.
     """
-    print("XON received, starting to send messages to gzDoom.")
+    print("XON received. Opening channels to gzdoom and to AP host.")
     self.ipc_path = os.path.join(self.ipc_dir, lump)
     self.ipc_size = size
     self.nick = nick
     self._flush()
+    await self.ctx.on_xon(slot, seed)
 
   async def recv_ack(self, id: int) -> None:
     """

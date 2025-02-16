@@ -23,11 +23,6 @@ class GZDoomContext(CommonContext):
         self.ipc = IPC(self, ipc_dir)
         self.log_path = os.path.join(ipc_dir, "gzdoom.log")
 
-    async def server_auth(self, password):
-        self.auth = "ToxicFrog"  # FIXME: hardcoded for testing
-        # self.password = None
-        await self.send_connect()
-
     async def start_tasks(self) -> None:
         self.ipc.start_log_reader(self.log_path)
         self.items_task = asyncio.create_task(self._item_loop())
@@ -41,6 +36,20 @@ class GZDoomContext(CommonContext):
         await self.send_msgs([
             {"cmd": "Say", "text": message}
             ])
+
+    async def server_auth(self, *args):
+        """Called automatically when the server connection is established."""
+        await super().server_auth(*args)
+        await self.get_username()
+        await self.send_connect()
+
+    async def on_xon(self, slot: str, seed: str):
+        self.username = slot
+        self.seed_name = seed
+        # TODO: devs on the discord suggest starting the server loop manually
+        # rather than calling connect(), which will allow the user to specify
+        # a server address...later?
+        await self.connect()
 
     # def on_package(self, cmd, args):
     #     print("RECV", cmd, args)
@@ -103,7 +112,6 @@ def main(*args):
     async def actual_main(args):
         ctx = GZDoomContext(args.connect, args.password, ipc_dir)
         await ctx.start_tasks()
-        await ctx.connect()
         print("┏" + "━"*78 + "╾")
         print("┃ Client started. Please start gzDoom with the additional arguments:")
         # TODO: can we give the actual zip name here?

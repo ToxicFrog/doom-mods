@@ -6,11 +6,11 @@ class GZAP_DataPackageEventHandler : StaticEventHandler {
 
   override void OnRegister() {
     console.printf("Initializing Archipelago data package.");
-    console.printf("This was generated from seed %s for %s.", "{{seed}}", "{{player}}");
     peh = GZAP_PlayEventHandler.Get();
     let apstate = GZAP_PlayEventHandler.GetState();
 
-    peh.RegisterSkill({{skill}}, {{singleplayer}});
+    console.printf("This was generated from seed %s for %s.", "{{seed}}", "{{player}}");
+    peh.RegisterGameInfo("{{player}}", "{{seed}}", {{skill}}, {{singleplayer}});
 
     console.printf("Registering %d maps.", {{maps|count}});
     {% for map in maps %}
