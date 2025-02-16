@@ -6,7 +6,7 @@
 //   the current level
 
 #namespace GZAP;
-#debug on;
+#debug off;
 
 #include "./actors/Check.zsc"
 #include "./archipelago/RandoState.zsc"
@@ -26,7 +26,6 @@ class ::PlayEventHandler : StaticEventHandler {
   ::RandoState apstate;
 
   override void OnRegister() {
-    console.printf("PlayEventHandler starting up");
     apclient = ::IPC(new("::IPC"));
     apstate = ::RandoState(new("::RandoState"));
   }
@@ -89,8 +88,8 @@ class ::PlayEventHandler : StaticEventHandler {
   // - if the level is exited, all remaining checks in the level are collected
   //   and marked as uncollectable.
   override void NetworkProcess(ConsoleEvent evt) {
+    DEBUG("NetworkProcess: %s %d", evt.name, evt.args[0]);
     if (evt.name == "ap-level-select") {
-      // console.printf("%s %d", evt.name, evt.args[0]);
       let idx = evt.args[0];
       let info = LevelInfo.GetLevelInfo(idx);
       if (!info) {
@@ -109,7 +108,7 @@ class ::PlayEventHandler : StaticEventHandler {
   }
 
   override void NetworkCommandProcess(NetworkCommand cmd) {
-    // console.printf("NetworkCommandProcess %s", cmd.command);
+    DEBUG("NetworkCommandProcess: %s", cmd.command);
     if (cmd.command == "ap-ipc:text") {
       string message = cmd.ReadString();
       console.printfEX(PRINT_TEAMCHAT, "%s", message);

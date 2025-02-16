@@ -4,6 +4,7 @@
 // and permits us to persist randomizer state across play sessions.
 
 #namespace GZAP;
+#debug off;
 
 class ::PerLevelHandler : EventHandler {
   // Archipelago state manager.
@@ -21,8 +22,7 @@ class ::PerLevelHandler : EventHandler {
   }
 
   override void OnRegister() {
-    // console.printf("OnRegister: tic=%d alarm=%d", level.MapTime, alarm);
-    // alarm = 0;
+    DEBUG("OnRegister: tic=%d alarm=%d", level.MapTime, alarm);
     InitRandoState();
   }
 
@@ -41,14 +41,14 @@ class ::PerLevelHandler : EventHandler {
     // If we get this far, we probably just loaded a savegame, we have a saved
     // apstate, and we disagree with the StaticEventHandler on the contents.
     // Treat whichever one has the highest transaction count as the canonical one.
-    console.printf("APState conflict resolution: txn[d]=%d txn[p]=%d",
+    DEBUG("APState conflict resolution: txn[d]=%d txn[p]=%d",
       ::PlayEventHandler.GetState().txn, apstate.txn);
 
     if (self.apstate.txn > datastate.txn) {
-      console.printf("Using state from playscope.");
+      DEBUG("Using state from playscope.");
       ::PlayEventHandler.Get().apstate = self.apstate;
     } else {
-      console.printf("Using state from datascope.");
+      DEBUG("Using state from datascope.");
       self.apstate = datastate;
     }
   }
@@ -63,7 +63,7 @@ class ::PerLevelHandler : EventHandler {
   // load and is swapped in a few tics later (e.g. Spawner trickery by mods).
 
   override void WorldLoaded(WorldEvent evt) {
-    console.printf("PLH WorldLoaded");
+    DEBUG("PLH WorldLoaded");
 
     if (level.MapName == "GZAPHUB") {
       Menu.SetMenu("ArchipelagoLevelSelectMenu");
@@ -82,7 +82,7 @@ class ::PerLevelHandler : EventHandler {
     if (!region) return;
 
     foreach (location : region.locations) {
-      console.printf("Enqueing location: %s", location.name);
+      DEBUG("Enqueing location: %s", location.name);
       pending_locations.Insert(location.apid, location);
     }
     alarm = 10;
@@ -96,7 +96,7 @@ class ::PerLevelHandler : EventHandler {
     // not actually a problem: this code will get rid of any obsolete already-
     // spawned checks, and WorldThingSpawned will prune newly spawning ones if
     // needed.
-    console.printf("PLH Cleanup");
+    DEBUG("PLH Cleanup");
     let region = apstate.GetRegion(level.MapName);
     foreach (::CheckPickup thing : ThinkerIterator.Create("::CheckPickup", Thinker.STAT_DEFAULT)) {
       // At this point, we may have a divergence, depending on whether the apstate
@@ -110,7 +110,7 @@ class ::PerLevelHandler : EventHandler {
       // the location that way by asking the eventhandler, rather than baking
       // the entire location into it, so that this workaround becomes unnecessary
       // -- it seems like a footgun waiting to happen.
-      console.printf("CleanupReopened: id %d, matched %d",
+      DEBUG("CleanupReopened: id %d, matched %d",
           thing.location.apid, thing.location == region.GetLocation(thing.location.apid));
       thing.location = region.GetLocation(thing.location.apid);
       if (thing.location.checked) {
@@ -124,7 +124,7 @@ class ::PerLevelHandler : EventHandler {
     if (!alarm) return;
     --alarm;
     if (alarm) return;
-    console.printf("PLH AlarmClockFired");
+    DEBUG("PLH AlarmClockFired");
     foreach (loc : pending_locations) {
       console.printf(
         StringTable.Localize("$GZAP_MISSING_LOCATION"), loc.name);
@@ -156,25 +156,25 @@ class ::PerLevelHandler : EventHandler {
       // see if this check has already been found by the player and should be
       // despawned before they notice it.
       let thing = ::CheckPickup(thing);
-      console.printf("WorldThingSpawned(check) = %s", thing.location.name);
+      DEBUG("WorldThingSpawned(check) = %s", thing.location.name);
       ClearPending(thing.location);
       if (thing.location.checked) {
-        // console.printf("Clearing already-collected check: %s", thing.GetTag());
+        DEBUG("Clearing already-collected check: %s", thing.GetTag());
         thing.ClearCounters();
         thing.Destroy();
       }
       return;
     }
 
-    console.printf("WorldThingSpawned(%s)", thing.GetTag());
+    DEBUG("WorldThingSpawned(%s)", thing.GetTag());
 
     let [check, distance] = FindCheckForActor(thing);
     if (check) {
       if (!check.checked) {
-        // console.printf("Replacing %s with %s", thing.GetTag(), check.name);
+        DEBUG("Replacing %s with %s", thing.GetTag(), check.name);
         ::CheckPickup.Create(check, thing.pos);
       } else {
-        // console.printf("Check %s has already been collected.", check.name);
+        DEBUG("Check %s has already been collected.", check.name);
       }
       ClearPending(check);
       thing.ClearCounters();
@@ -198,9 +198,9 @@ class ::PerLevelHandler : EventHandler {
     }
     // We found something, but it's not as close as we want it to be.
     if (IsCloseEnough(closest.pos, thing.pos, min_distance)) {
-      // console.printf("WARN: Closest to %s @ (%f, %f, %f) was %s @ (%f, %f, %f)",
-      //   thing.GetTag(), thing.pos.x, thing.pos.y, thing.pos.z,
-      //   closest.name, closest.pos.x, closest.pos.y, closest.pos.z);
+      DEBUG("WARN: Closest to %s @ (%f, %f, %f) was %s @ (%f, %f, %f)",
+        thing.GetTag(), thing.pos.x, thing.pos.y, thing.pos.z,
+        closest.name, closest.pos.x, closest.pos.y, closest.pos.z);
       return closest, min_distance;
     }
     // Not feeling great about this.
@@ -226,7 +226,7 @@ class ::PerLevelHandler : EventHandler {
   // In the former case, we give them credit for clearing the level.
 
   override void WorldUnloaded(WorldEvent evt) {
-    console.printf("PLH WorldUnloaded");
+    DEBUG("PLH WorldUnloaded");
     if (evt.isSaveGame) return;
     if (self.early_exit) return;
     if (level.LevelNum == 0) return;
