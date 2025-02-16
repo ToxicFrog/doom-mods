@@ -1,8 +1,22 @@
 # Archipelago gzDoom connector
 
+## Compatibility issues
+
+GDT MAP12 -- there are two red keys, one gets flushed when you enter the map,
+the other appears later. They're meant to look like the same key, ofc. But it
+means you can't ever collect the first one.
+
+There's also a check (originally a shotgun) in a blueroom to the west; it's
+not clear to me that there's any way to get this to spawn into the level.
+
+We need some way of marking checks as uncollectable during refinement.
+
+Demonfear MAP27 -- there's a check that's uncollectable because it's sitting in
+a little trench and isn't tall enough. We should probably make checks at least
+as tall as a Megasphere or a Backpack. Idea: copy the geometry from the parent actor?
+
 ## client issues discovered in testing
 
-- game really needs to buffer items for later deployment rather than granting immediately
 - client leaves a background thread running on exit that continues to cause problems
   - may be an issue with how it's launched via multiprocessing rather than an issue with the client itself
 - need to properly sync checked locations to the game and not spawn them, rather than spawning empty items
@@ -105,17 +119,6 @@ Then, during the disambiguation pass, foreach location being disambiguated:
 - if it's already in the index, re-use that ID since it means another wad
   has already disambiguated and gotten the same name
 - if it's not, generate a new ID for it and enter the new name and ID into the index
-
-## Compatibility issues
-
-GDT MAP12 -- there are two red keys, one gets flushed when you enter the map,
-the other appears later. They're meant to look like the same key, ofc. But it
-means you can't ever collect the first one.
-
-There's also a check (originally a shotgun) in a blueroom to the west; it's
-not clear to me that there's any way to get this to spawn into the level.
-
-We need some way of marking checks as uncollectable during refinement.
 
 ## Scan Mode
 

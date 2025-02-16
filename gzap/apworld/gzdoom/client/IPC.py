@@ -157,9 +157,9 @@ class IPC:
 
   #### Handlers for events coming from Archipelago. ####
 
-  def send_item(self, id: int) -> None:
+  def send_item(self, id: int, count: int) -> None:
     """Send the item with the given ID to the player."""
-    self._enqueue("ITEM", id)
+    self._enqueue("ITEM", id, count)
     self._flush()
 
   def send_text(self, message: str) -> None:
@@ -179,6 +179,7 @@ class IPC:
       self.ipc_queue.pop(0)
 
   def _enqueue(self, *args) -> None:
+    print("Enqueue:", *args)
     msg = IPCMessage(self._get_id(), *args)
     self.ipc_queue.append(msg)
 
@@ -206,6 +207,6 @@ class IPC:
     if buf == self.ipc_buf:
       return
     with open(self.ipc_path, "w") as fd:
-      # print("sending:", buf)
+      print("sending:", buf)
       fd.write(buf)
     self.ipc_buf = buf

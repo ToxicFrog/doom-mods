@@ -117,7 +117,8 @@ class ::PlayEventHandler : StaticEventHandler {
       console.printfEX(PRINT_TEAMCHAT, "%s", message);
     } else if (cmd.command == "ap-ipc:item") {
       int apid = cmd.ReadInt();
-      apstate.GrantItem(apid);
+      int count = cmd.ReadInt();
+      apstate.GrantItem(apid, count);
     }
   }
 }

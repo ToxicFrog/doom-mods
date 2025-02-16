@@ -73,9 +73,9 @@ class ::IPC {
         NET_STRING, fields[2]);
       return true;
     } else if (type == "ITEM") {
-      if (fields.Size() != 3) return false;
+      if (fields.Size() != 4) return false;
       EventHandler.SendNetworkCommand("ap-ipc:item",
-        NET_INT, fields[2].ToInt(10));
+        NET_INT, fields[2].ToInt(10), NET_INT, fields[3].ToInt(10));
       return true;
     }
     return false;

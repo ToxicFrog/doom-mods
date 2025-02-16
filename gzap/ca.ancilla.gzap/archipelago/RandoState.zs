@@ -109,10 +109,14 @@ class ::RandoState play {
     return -1, null;
   }
 
-  void GrantItem(uint apid) {
+  // Grant the player the item with the given ID.
+  // If count is nonzero, the total item count is SET TO that value.
+  // Otherwise, the current count is increased by one.
+  void GrantItem(uint apid, uint count = 0) {
     ++txn;
     DEBUG("GrantItem: %d", apid);
     if (map_apids.CheckKey(apid)) {
+      // Count doesn't matter, you either have it or you don't.
       let diff = map_apids.Get(apid);
       let region = regions.Get(diff.map);
       diff.Apply(region);
@@ -123,8 +127,14 @@ class ::RandoState play {
         item = ::RandoItem.Create(typename);
         idx = self.items.Push(item);
       }
-      ::Util.announce("$GZAP_GOT_ITEM", item.tag);
-      item.Inc();
+      if (count) {
+        // ITEM message from client, force local count to match server.
+        item.SetTotal(count);
+      } else {
+        // Singleplayer mode, just give them one.
+        ::Util.announce("$GZAP_GOT_ITEM", item.tag);
+        item.Inc();
+      }
     } else {
       console.printf("Unknown item ID from Archipelago: %d", apid);
     }

@@ -203,7 +203,13 @@ Displays a message from Archipelago. If it contains colour information it is the
 responsibility of the *sender* to encode that; the colour escape character
 represented as "\c" gzDoom string literals is "\x1C" (FILE SEPARATOR).
 
-#### `ITEM` `id`
+#### `ITEM` `id` `count`
 
-Gives the player the item with the given `id`. The actual item-to-id mapping is
-dependent on the wad logic used for randomization.
+Tells the game that they should have a total of `count` copies of item `id`,
+before taking into account any used by the player.
+
+If they already have that many, this is a no-op. If count is more than they have,
+the game should update the total count, and increase the held amount to match.
+
+The mapping from `id` to internal item type is determined by the randomizer and
+baked into the generated mod.

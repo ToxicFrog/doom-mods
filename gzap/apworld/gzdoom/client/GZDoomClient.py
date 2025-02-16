@@ -65,17 +65,18 @@ class GZDoomContext(CommonContext):
         self.ipc.send_text(text)
 
     async def _item_loop(self):
-        last_items = set()
+        last_items = {}
         while not self.exit_event.is_set():
             await self.watcher_event.wait()
             self.watcher_event.clear()
-            items = set(self.items_received)
-            if items == last_items:
-                continue
-
-            for item in items - last_items:
-                self.ipc.send_item(item.item)
-            last_items = items
+            new_items = {}
+            for item in self.items_received:
+                new_items[item.item] = new_items.get(item.item, 0) + 1
+            print("Item loop running:", new_items)
+            for id,count in new_items.items():
+                if count != last_items.get(id, 0):
+                    self.ipc.send_item(id, count)
+            last_items = new_items
 
 
 def main(*args):
