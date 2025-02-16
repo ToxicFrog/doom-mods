@@ -20,6 +20,7 @@
 // and the PlayerPawn doesn't, we overwrite our own state with its state.
 class ::PlayEventHandler : StaticEventHandler {
   int skill;
+  bool singleplayer;
   bool early_exit;
   Map<string, ::Region> regions;
   // Maps AP item IDs to gzDoom type names like RocketLauncher
@@ -36,8 +37,9 @@ class ::PlayEventHandler : StaticEventHandler {
   }
 
   // N.b. this uses the CVAR skill value, where 0 is ITYTD and 4 is Nightmare.
-  void RegisterSkill(int skill) {
+  void RegisterSkill(int skill, bool singleplayer) {
     self.skill = skill;
+    self.singleplayer = singleplayer;
   }
 
   void RegisterMap(string map, uint access_apid, uint map_apid, uint clear_apid, uint exit_apid) {

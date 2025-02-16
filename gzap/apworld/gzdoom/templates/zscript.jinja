@@ -1,7 +1,6 @@
 version "4.10.0"
 
 class GZAP_DataPackageEventHandler : StaticEventHandler {
-  bool singleplayer;
   Map<int, int> locations_to_items;
 
   override void OnRegister() {
@@ -9,8 +8,7 @@ class GZAP_DataPackageEventHandler : StaticEventHandler {
     console.printf("This was generated from seed %s for %s.", "{{seed}}", "{{player}}");
     let peh = GZAP_PlayEventHandler.Get();
 
-    self.singleplayer = {{singleplayer}};
-    peh.RegisterSkill({{skill}});
+    peh.RegisterSkill({{skill}}, {{singleplayer}});
 
     console.printf("Registering %d maps.", {{maps|count}});
     {% for map in maps %}
@@ -49,7 +47,9 @@ class GZAP_DataPackageEventHandler : StaticEventHandler {
   }
 
   override void NetworkProcess(ConsoleEvent evt) {
-    if (!self.singleplayer) return;
+    // In multiplayer games checks will be processed and items granted by the host,
+    // so only do this in singleplayer mode.
+    if (!peh.IsSingleplayer()) return;
     if (evt.name == "ap-check") {
       let apid = locations_to_items.Get(evt.args[0]);
       if (apid) {
