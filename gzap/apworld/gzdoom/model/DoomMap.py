@@ -97,3 +97,10 @@ class DoomMap:
     def register_location(self, loc: DoomLocation) -> None:
         if loc not in self.locations:
             self.locations.append(loc)
+
+    def update_access_tracking(self, item: DoomItem) -> None:
+        """Update the keyset or gunset based on the knowledge that this item exists in the level."""
+        if item.category == "key":
+            self.keyset.add(item.name())
+        if item.category == "weapon":
+            self.gunset.add(item.name())

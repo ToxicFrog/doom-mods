@@ -147,9 +147,9 @@ class GZDoomWorld(World):
         filler_items = self.wad_logic.filler_items()
 
         for item in main_items:
-            if item.map not in self.options.included_levels:
+            if item.map and item.map not in self.options.included_levels:
                 continue
-            # print("  Item:", item)
+            # print("  Item:", item, item.count)
             for _ in range(max(item.count, 0)):
                 self.multiworld.itempool.append(GZDoomItem(item, self.player))
                 slots_left -= 1

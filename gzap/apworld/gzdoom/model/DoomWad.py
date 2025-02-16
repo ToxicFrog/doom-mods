@@ -122,21 +122,18 @@ class DoomWad:
         if item.name() in self.items_by_name:
             return self.register_duplicate_item(map, item, secret)
 
+        if map is not None:
+            self.maps[map].update_access_tracking(item)
+
         self.logic.register_item(item)
         self.items_by_name[item.name()] = item
-
-        # FIXME, this isn't going to work if we have to rename them, but at the
-        # same time, we can't put a DoomItem in a set (because ???)
-        if map is not None and item.category == "key":
-            self.maps[map].keyset.add(item.name())
-        if map is not None and item.category == "weapon" and not secret:
-            self.maps[map].gunset.add(item.name())
-
         return item
 
     def register_duplicate_item(self, map: str, item: DoomItem, secret: bool = False) -> DoomItem:
         other: DoomItem = self.items_by_name[item.name()]
         if other == item:
+            if map is not None:
+                self.maps[map].update_access_tracking(item)
             other.count += 1
             return other
 
