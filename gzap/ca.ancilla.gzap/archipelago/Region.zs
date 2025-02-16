@@ -46,6 +46,15 @@ class ::Region play {
     }
   }
 
+  ::Location GetLocation(uint apid) {
+    foreach (loc : locations) {
+      if (loc.apid == apid) {
+        return loc;
+      }
+    }
+    return null;
+  }
+
   uint LocationsChecked() const {
     uint found = 0;
     foreach (loc : locations) {

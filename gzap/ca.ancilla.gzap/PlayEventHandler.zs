@@ -8,7 +8,6 @@
 #namespace GZAP;
 #debug on;
 
-#include "./actors/AlarmClock.zsc"
 #include "./actors/Check.zsc"
 #include "./archipelago/RandoState.zsc"
 #include "./archipelago/Region.zsc"
@@ -21,7 +20,6 @@
 class ::PlayEventHandler : StaticEventHandler {
   int skill;
   bool singleplayer;
-  bool early_exit;
   // IPC stub for communication with Archipelago.
   ::IPC apclient;
   // Archipelago state manager.
@@ -53,44 +51,6 @@ class ::PlayEventHandler : StaticEventHandler {
     return ::PlayEventHandler.Get().apstate;
   }
 
-  Map<int, ::Location> pending_locations;
-
-  void Alarm() {
-    foreach (loc : pending_locations) {
-      console.printf(
-        StringTable.Localize("$GZAP_MISSING_LOCATION"), loc.name);
-      ::CheckPickup.Create(loc, players[0].mo.pos);
-    }
-    apstate.UpdatePlayerInventory();
-  }
-
-  void ClearPending(::Location loc) {
-    pending_locations.Remove(loc.apid);
-  }
-
-  void CleanupReopenedLevel() {
-    foreach (::AlarmClock thing : ThinkerIterator.Create("::AlarmClock", Thinker.STAT_DEFAULT)) {
-      thing.Destroy();
-    }
-    foreach (::CheckPickup thing : ThinkerIterator.Create("::CheckPickup", Thinker.STAT_DEFAULT)) {
-      // At this point we have a divergence; the location referenced by the actor
-      // and thus stored in the save game is not the same as the location stored
-      // in the event handler.
-      // So, we replace the saved one with the real one before evaluating whether
-      // it's been checked.
-      // TODO: we should probably just store the apid in the check and look up
-      // the location that way by asking the eventhandler, rather than baking
-      // the entire location into it, so that this workaround becomes unnecessary
-      // -- it seems like a footgun waiting to happen.
-      thing.location = pending_locations.Get(thing.location.apid);
-      ClearPending(thing.location);
-      if (thing.location.checked) {
-        thing.ClearCounters();
-        thing.Destroy();
-      }
-    }
-  }
-
   bool initialized;
   override void WorldLoaded(WorldEvent evt) {
     // Don't initialize IPC until after we're in-game; otherwise NetworkCommandProcess
@@ -100,114 +60,11 @@ class ::PlayEventHandler : StaticEventHandler {
       apclient.Init();
     }
 
-    if (level.MapName == "GZAPHUB") {
-      Menu.SetMenu("ArchipelagoLevelSelectMenu");
-      return;
-    }
-
-    // No mapinfo -- hopefully this just means it's a TITLEMAP added by a mod or
-    // something, and not that we're missing the data package or the player has
-    // been changemapping into places they shouldn't be.
-    let region = apstate.GetRegion(level.MapName);
-    if (!region) return;
-
-    foreach (location : region.locations) {
-      pending_locations.Insert(location.apid, location);
-    }
-
-    // If we're restoring a saved level state, we need to do additional cleanup
-    // to get rid of pending alarm clocks, avoid double-spawning checks, and
-    // despawn checks that have been collected.
-    if (evt.IsSaveGame || evt.IsReopen) {
-      CleanupReopenedLevel();
+    if (evt.IsSaveGame) {
+      ::PerLevelHandler.Get().OnLoadGame();
     } else {
-      Actor.Spawn("::AlarmClock");
+      ::PerLevelHandler.Get().OnNewMap();
     }
-
-    early_exit = false;
-  }
-
-  override void WorldThingSpawned(WorldEvent evt) {
-    let thing = evt.thing;
-
-    if (!thing) return;
-    if (thing.bNOBLOCKMAP || thing.bNOSECTOR || thing.bNOINTERACTION || thing.bISMONSTER) return;
-    if (!(thing is "Inventory")) return;
-
-    if (thing is "::CheckPickup") {
-      // Check has already been spawned, original item has already been deleted,
-      // see if this check has already been found by the player and should be
-      // despawned before they notice it.
-      let thing = ::CheckPickup(thing);
-      ClearPending(thing.location);
-      if (thing.location.checked) {
-        // console.printf("Clearing already-collected check: %s", thing.GetTag());
-        thing.ClearCounters();
-        thing.Destroy();
-      }
-      return;
-    }
-
-    let [check, distance] = FindCheckForActor(thing);
-    if (check) {
-      if (!check.checked) {
-        // console.printf("Replacing %s with %s", thing.GetTag(), check.name);
-        ::CheckPickup.Create(check, thing.pos);
-      } else {
-        // console.printf("Check %s has already been collected.", check.name);
-      }
-      ClearPending(check);
-      thing.ClearCounters();
-      thing.Destroy();
-    }
-  }
-
-  // We consider two positions "close enough" to each other iff:
-  // - d is less than MAX_DISTANCE, and
-  // - only one of the coordinates differs.
-  // This usually means an item placed on a conveyor or elevator configured to
-  // start moving as soon as the level loads.
-  bool IsCloseEnough(Vector3 p, Vector3 q, float d) {
-    float MAX_DISTANCE = 2.0;
-    return d <= MAX_DISTANCE
-      && ((p.x == q.x && p.y == q.y)
-          || (p.x == q.x && p.z == q.z)
-          || (p.y == q.y && p.z == q.z));
-  }
-
-  ::Location, float FindCheckForActor(Actor thing) {
-    ::Location closest;
-    float min_distance = 1e10;
-    if (pending_locations.CountUsed() == 0) return null, 0.0;
-    foreach (_, check : pending_locations) {
-      float distance = (thing.pos - check.pos).Length();
-      if (distance == 0.0) {
-        // Perfect, we found the exact check this corresponds to.
-        return check, 0.0;
-      } else if (distance < min_distance) {
-        min_distance = distance;
-        closest = check;
-      }
-    }
-    // We found something, but it's not as close as we want it to be.
-    if (IsCloseEnough(closest.pos, thing.pos, min_distance)) {
-      // console.printf("WARN: Closest to %s @ (%f, %f, %f) was %s @ (%f, %f, %f)",
-      //   thing.GetTag(), thing.pos.x, thing.pos.y, thing.pos.z,
-      //   closest.name, closest.pos.x, closest.pos.y, closest.pos.z);
-      return closest, min_distance;
-    }
-    // Not feeling great about this.
-    return null, min_distance;
-  }
-
-  override void WorldUnloaded(WorldEvent evt) {
-    if (evt.isSaveGame) return;
-    if (self.early_exit) return;
-    if (level.LevelNum == 0) return;
-    if (!apstate.GetRegion(level.MapName)) return;
-
-    CheckLocation(apstate.GetCurrentRegion().exit_id, string.format("%s - Exit", level.MapName));
-    // GetCurrentRegion().cleared = true;
   }
 
   void CheckLocation(int apid, string name) {
@@ -241,7 +98,7 @@ class ::PlayEventHandler : StaticEventHandler {
         console.printf("No level with number %d found.", idx);
         return;
       }
-      self.early_exit = true;
+      ::PerLevelHandler.Get().early_exit = true;
       level.ChangeLevel(info.MapName, 0, CHANGELEVEL_NOINTERMISSION, skill);
     }
   }
