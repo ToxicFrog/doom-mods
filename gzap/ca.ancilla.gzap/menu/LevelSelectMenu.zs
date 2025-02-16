@@ -9,6 +9,7 @@
 
 #include "../archipelago/Location.zsc"
 #include "./LevelSelectMenuItems.zsc"
+#include "./CommonMenu.zsc"
 
 // Shim between the main menu and the level select menu.
 // If activated before game initialization, just forwards to the normal new-game
@@ -27,7 +28,7 @@ class ListMenuItemArchipelagoItem : ListMenuItemTextItem {
   }
 }
 
-class ::LevelSelectMenu : ::TooltipOptionMenu {
+class ::LevelSelectMenu : ::CommonMenu {
   override void Init(Menu parent, OptionMenuDescriptor desc) {
     super.InitDynamic(parent, desc);
     TooltipGeometry(0.0, 0.5, 0.2, 1.0, 0.5);
@@ -69,24 +70,6 @@ class ::LevelSelectMenu : ::TooltipOptionMenu {
       if (info && info.MapName == "GZAPHUB") return i;
     }
     return 0;
-  }
-
-  void PushText(string text, uint colour = Font.CR_WHITE) {
-    Array<string> lines;
-    StringTable.Localize(text).Split(lines, "\n");
-    for (int i = 0; i < lines.size(); ++i) {
-      mDesc.mItems.Push(new("OptionMenuItemStaticText").InitDirect(lines[i], colour));
-    }
-  }
-
-  void PushKeyValueNetevent(
-    string key, string value, string command, int index,
-    uint idle = Font.CR_DARKRED, uint hot = Font.CR_RED) {
-    mDesc.mItems.Push(new("::KeyValueNetevent").Init(key, value, command, index, idle, hot));
-  }
-
-  void PushKeyValueText(string key, string value, uint colour = Font.CR_DARKRED) {
-    mDesc.mItems.Push(new("::KeyValueText").Init(key, value, colour));
   }
 
   void PushLevelSelector(int idx, LevelInfo info, ::Region region) {
