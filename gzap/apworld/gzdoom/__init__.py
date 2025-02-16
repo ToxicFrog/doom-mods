@@ -149,7 +149,7 @@ class GZDoomWorld(World):
         for item in main_items:
             if item.map not in self.options.included_levels:
                 continue
-            print("  Item:", item)
+            # print("  Item:", item)
             for _ in range(max(item.count, 0)):
                 self.multiworld.itempool.append(GZDoomItem(item, self.player))
                 slots_left -= 1
@@ -237,7 +237,7 @@ class GZDoomWorld(World):
         with open(os.path.join(path, "zscript.txt"), "w") as lump:
             template = env.get_template("zscript.jinja")
             lump.write(template.render(**data))
-            print(template.render(**data))
+            # print(template.render(**data))
 
         with open(os.path.join(path, "MAPINFO"), "w") as lump:
             template = env.get_template("mapinfo.jinja")

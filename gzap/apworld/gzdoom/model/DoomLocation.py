@@ -76,7 +76,7 @@ class DoomLocation:
 
     def tune_keys(self, keys):
         if keys < self.keyset:
-            print(f"Keyset: {self.name} {self.keyset} -> {keys}")
+            # print(f"Keyset: {self.name} {self.keyset} -> {keys}")
             self.keyset = keys
 
     def access_rule(self, player):
