@@ -2,20 +2,22 @@ version "4.10.0"
 
 class GZAP_DataPackageEventHandler : StaticEventHandler {
   Map<int, int> locations_to_items;
+  GZAP_PlayEventHandler peh;
 
   override void OnRegister() {
     console.printf("Initializing Archipelago data package.");
     console.printf("This was generated from seed %s for %s.", "{{seed}}", "{{player}}");
-    let peh = GZAP_PlayEventHandler.Get();
+    peh = GZAP_PlayEventHandler.Get();
+    let apstate = GZAP_PlayEventHandler.GetState();
 
     peh.RegisterSkill({{skill}}, {{singleplayer}});
 
     console.printf("Registering %d maps.", {{maps|count}});
     {% for map in maps %}
-      peh.RegisterMap("{{map.map}}", {{id(map.access_token_name())}}, {{id(map.automap_name())}}, {{id(map.clear_token_name())}}, {{id(map.exit_location_name())}});
+      apstate.RegisterMap("{{map.map}}", {{id(map.access_token_name())}}, {{id(map.automap_name())}}, {{id(map.clear_token_name())}}, {{id(map.exit_location_name())}});
       {% for check in map.locations %}
         {% if not check.pos.virtual %}
-        peh.RegisterCheck("{{map.map}}", {{check.id}}, "{{check.name()}}", {{progression(check.id)}}, ({{check.pos.x}},{{check.pos.y}},{{check.pos.z}}));
+        apstate.RegisterCheck("{{map.map}}", {{check.id}}, "{{check.name()}}", {{progression(check.id)}}, ({{check.pos.x}},{{check.pos.y}},{{check.pos.z}}));
         {% endif %}
       {% endfor %}
     {% endfor %}
@@ -23,13 +25,13 @@ class GZAP_DataPackageEventHandler : StaticEventHandler {
     console.printf("Registering %d items.", {{items|count}});
     {% for item in items %}
       {% if item.map and item.typename %}
-      peh.RegisterKey("{{item.map}}", "{{item.typename}}", {{item.id}});
+      apstate.RegisterKey("{{item.map}}", "{{item.typename}}", {{item.id}});
       {% elif item.typename %}
-      peh.RegisterItem("{{item.typename}}", {{item.id}});
+      apstate.RegisterItem("{{item.typename}}", {{item.id}});
       {% endif %}
     {% endfor %}
-    // Access codes, automaps, and clear tokens are handled specially and thus
-    // not registered here.
+    // Access codes, automaps, and clear tokens are registered via the extra IDs
+    // passed to RegisterMap(), so they aren't listed here.
 
     {% if singleplayer %}
     console.printf("Populating singleplayer item table.");
@@ -40,7 +42,7 @@ class GZAP_DataPackageEventHandler : StaticEventHandler {
 
     console.printf("Granting starting inventory.");
     {% for id in starting_items %}
-      peh.GrantItem({{id}});
+      apstate.GrantItem({{id}});
     {% endfor %}
 
     console.printf("Archipelago data package initialized.");
@@ -53,7 +55,7 @@ class GZAP_DataPackageEventHandler : StaticEventHandler {
     if (evt.name == "ap-check") {
       let apid = locations_to_items.Get(evt.args[0]);
       if (apid) {
-        GZAP_PlayEventHandler.Get().GrantItem(apid);
+        GZAP_PlayEventHandler.GetState().GrantItem(apid);
       }
     }
   }
