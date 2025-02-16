@@ -87,9 +87,18 @@ def init_wads(package):
       return
   _init_done = True
 
+  # Load all logic files included in the apworld.
+  # Sort them so we get a consistent order, and thus consistent ID assignment,
+  # across runs.
+  # TODO: maybe separate logic and tuning directories or similar?
+  for logic_file in sorted(resources.files(package).joinpath("logic").iterdir(), key=lambda p: p.name):
+      with add_wad(logic_file.name) as wad:
+          print(f"Loading builtin WAD logic: {logic_file.name}")
+          wad.load_logic(logic_file.read_text())
+
   # Debug/test mode: load the specifed file and nothing else.
-  if "GZAP_LOGIC_FILE" in os.environ:
-      path = os.environ["GZAP_LOGIC__FILE"]
+  if "GZAP_EXTRA_LOGIC" in os.environ:
+      path = os.environ["GZAP_EXTRA_LOGIC"]
       print(f"Loading external WAD logic from {path}")
       with open(path) as fd:
           buf = fd.read()
@@ -97,15 +106,7 @@ def init_wads(package):
           wad.load_logic(buf)
       return
 
-  # Load all logic files included in the apworld.
-  # Sort them so we get a consistent order, and thus consistent ID assignment,
-  # across runs.
-  # TODO: maybe separate logic and tuning directories or similar?
-  print("Looking for builtin logic files in", __spec__)
-  for logic_file in sorted(resources.files(package).joinpath("logic").iterdir(), key=lambda p: p.name):
-      with add_wad(logic_file.name) as wad:
-          print(f"Loading builtin WAD logic from {logic_file.name}")
-          wad.load_logic(logic_file.read_text())
+
 
 def wads() -> List[DoomWad]:
     return sorted(_DOOM_LOGIC.wads.values(), key=lambda w: w.name)
