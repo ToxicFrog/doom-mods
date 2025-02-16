@@ -67,6 +67,9 @@ class IncludedLevels(OptionSet):
     default = sorted(model.all_map_names())
 
 
+# TODO: add excluded levels. TITLEMAP should be excluded by default. Possibly also EPILOGUE.
+# Alternate idea: autoexclude maps that contain no checks?
+
 # TODO: this isn't useful until we have multi-difficulty logic files, or a way
 # of loading a different logic file per difficulty
 class Skill(NamedRange):
