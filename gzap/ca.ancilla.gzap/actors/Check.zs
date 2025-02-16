@@ -60,10 +60,11 @@ class ::CheckPickup : ScoreItem {
     Height 10;
   }
 
-  static ::CheckPickup Create(::Location location, Vector3 pos) {
-    let thing = ::CheckPickup(Actor.Spawn("::CheckPickup", pos));
+  static ::CheckPickup Create(::Location location, Actor original) {
+    let thing = ::CheckPickup(Actor.Spawn("::CheckPickup", original.pos));
     thing.location = location;
     thing.progression = location.progression;
+    thing.A_SetSize(original.radius, original.height);
     return thing;
   }
 

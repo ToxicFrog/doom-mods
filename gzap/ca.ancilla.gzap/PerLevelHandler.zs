@@ -128,7 +128,7 @@ class ::PerLevelHandler : EventHandler {
     foreach (loc : pending_locations) {
       console.printf(
         StringTable.Localize("$GZAP_MISSING_LOCATION"), loc.name);
-      ::CheckPickup.Create(loc, players[0].mo.pos);
+      ::CheckPickup.Create(loc, players[0].mo);
     }
     apstate.UpdatePlayerInventory();
   }
@@ -172,7 +172,9 @@ class ::PerLevelHandler : EventHandler {
     if (check) {
       if (!check.checked) {
         DEBUG("Replacing %s with %s", thing.GetTag(), check.name);
-        ::CheckPickup.Create(check, thing.pos);
+        let pickup = ::CheckPickup.Create(check, thing);
+        DEBUG("Original has height=%d radius=%d, new height=%d r=%d",
+            thing.height, thing.radius, pickup.height, pickup.radius);
       } else {
         DEBUG("Check %s has already been collected.", check.name);
       }
