@@ -35,9 +35,8 @@ class DoomLocation:
     the enclosing map, plus the name of the item that originally occupied that location.
 
     If multiple locations in a map had the same item -- which is not uncommon, especially
-    in larger levels -- later copies are disambiguated by appending the internal ID.
-    TODO: do something more useful, like appending a compass direction relative to the
-    center of the map or relative to the nearest entirely-unique item.
+    in larger levels -- all the locations with name collisions are disambiguated
+    using their X,Y coordinates.
 
     At generation time, each DoomLocation results in exactly one AP Location.
     """
@@ -45,7 +44,7 @@ class DoomLocation:
     item_name: str # name of original item, used to name this location
     category: str
     pos: DoomPosition | None = None
-    keyset: Set[DoomItem]
+    keyset: Set[str]
     item: DoomItem | None = None  # Used for place_locked_item
     parent = None
     orig_item = None

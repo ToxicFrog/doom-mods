@@ -225,10 +225,7 @@ class DoomWad:
         which shouldn't be a problem in practice unless people are assembling play
         logs out of order.
         """
-        loc = self.locations_by_name[name]
-        # TODO: implement map.key_for_map() or something here
-        keys = { self.items_by_name[f"{key} ({loc.map})"] for key in keys }
-        self.locations_by_name[name].tune_keys(keys)
+        self.locations_by_name[name].tune_keys(set(keys))
 
 
     def finalize_scan(self, json) -> None:
