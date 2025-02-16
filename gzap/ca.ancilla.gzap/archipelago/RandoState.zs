@@ -7,10 +7,57 @@
 // event processing in the PlayEventHandler.)
 
 #namespace GZAP;
-#debug on;
+#debug off;
 
 #include "./Region.zsc"
 #include "./RegionDiff.zsc"
+
+class ::RandoItem play {
+  // Class to instantiate
+  string typename;
+  // User-facing name
+  string tag;
+  // Number left to dispense
+  int held;
+  // Number received from randomizer
+  int total;
+
+  static ::RandoItem Create(string typename) {
+    Class<Actor> itype = typename;
+    if (!itype) {
+      console.printf("Invalid item type: '%s'", typename);
+      return null;
+    }
+    let item = ::RandoItem(new("::RandoItem"));
+    item.typename = typename;
+    item.tag = GetDefaultByType(itype).GetTag();
+    item.held = 0;
+    item.total = 0;
+    return item;
+  }
+
+  void SetTotal(int total) {
+    if (total == self.total) return;
+    self.held += total - self.total;
+    self.total = total;
+  }
+
+  void Inc() {
+    self.total += 1;
+    self.held += 1;
+  }
+
+  // Thank you for choosing Value-Rep™!
+  void Replicate() {
+    self.held -= 1;
+    for (int p = 0; p < MAXPLAYERS; ++p) {
+      if (!playeringame[p]) continue;
+      if (!players[p].mo) continue;
+
+      players[p].mo.A_SpawnItemEX(self.typename);
+    }
+  }
+}
 
 class ::RandoState play {
   // Transaction number. Used to resolve disagreements between datascope and playscope
@@ -22,9 +69,15 @@ class ::RandoState play {
   Map<int, string> item_apids;
   // AP item ID to map token
   Map<int, ::RegionDiff> map_apids;
+  // Player inventory granted by the rando. Lives outside the normal in-game
+  // inventory so it can hold things not normally part of +INVBAR.
+  // An array so that (a) we can sort it, and (b) we can refer to entries by
+  // index in a netevent.
+  // TODO: actually sort it
+  Array<::RandoItem> items;
 
   void RegisterMap(string map, uint access_apid, uint map_apid, uint clear_apid, uint exit_apid) {
-    // console.printf("Registering map: %s", map);
+    DEBUG("Registering map: %s", map);
     regions.Insert(map, ::Region.Create(map, exit_apid));
 
     // We need to bind these to the map name somehow, oops.
@@ -39,7 +92,7 @@ class ::RandoState play {
   }
 
   void RegisterItem(string typename, uint apid) {
-    // console.printf("RegisterItem: %s %d", typename, apid);
+    DEBUG("RegisterItem: %s %d", typename, apid);
     item_apids.Insert(apid, typename);
   }
 
@@ -47,34 +100,40 @@ class ::RandoState play {
     regions.Get(map).RegisterCheck(apid, name, progression, pos);
   }
 
+  int, ::RandoItem FindItem(string typename) {
+    for (int n = 0; n < self.items.Size(); ++n) {
+      if (self.items[n].typename == typename) {
+        return n, items[n];
+      }
+    }
+    return -1, null;
+  }
+
   void GrantItem(uint apid) {
     ++txn;
-    // console.printf("GrantItem: %d", apid);
+    DEBUG("GrantItem: %d", apid);
     if (map_apids.CheckKey(apid)) {
       let diff = map_apids.Get(apid);
       let region = regions.Get(diff.map);
       diff.Apply(region);
     } else if (item_apids.CheckKey(apid)) {
-      // TODO: if in-game, give this to the player
-      // If not in-game, or if in the hubmap, enqueue it and give it to the player
-      // when they enter a proper level.
-      // TODO: try marking all inventory items as +INVBAR so the player can use
-      // them when and as needed, or implementing our own inventory so that we
-      // don't have to try to backpatch other mods' items.
-      // console.printf("GrantItem %d (%s)", apid, item_apids.Get(apid));
-      // TODO: this should use the item tag rather than typename.
-      ::Util.announce("$GZAP_GOT_ITEM", item_apids.Get(apid));
-      for (int p = 0; p < MAXPLAYERS; ++p) {
-        if (!playeringame[p]) continue;
-        if (!players[p].mo) continue;
-
-        players[p].mo.A_SpawnItemEX(item_apids.Get(apid));
+      let typename = item_apids.Get(apid);
+      let [idx, item] = FindItem(typename);
+      if (idx < 0) {
+        item = ::RandoItem.Create(typename);
+        idx = self.items.Push(item);
       }
+      ::Util.announce("$GZAP_GOT_ITEM", item.tag);
+      item.Inc();
     } else {
       console.printf("Unknown item ID from Archipelago: %d", apid);
     }
 
     UpdatePlayerInventory();
+  }
+
+  void UseItem(uint idx) {
+    items[idx].Replicate();
   }
 
   void UpdatePlayerInventory() {

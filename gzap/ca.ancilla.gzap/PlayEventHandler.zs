@@ -99,6 +99,9 @@ class ::PlayEventHandler : StaticEventHandler {
       }
       ::PerLevelHandler.Get().early_exit = true;
       level.ChangeLevel(info.MapName, 0, CHANGELEVEL_NOINTERMISSION, skill);
+    } else if (evt.name == "ap-use-item") {
+      let idx = evt.args[0];
+      apstate.UseItem(idx);
     }
   }
 
