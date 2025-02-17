@@ -140,10 +140,13 @@ class ::RandoState play {
     }
 
     UpdatePlayerInventory();
+    ::PlayEventHandler.Get().CheckVictory();
   }
 
   void UseItem(uint idx) {
+    ++txn;
     items[idx].Replicate();
+    ::PlayEventHandler.Get().CheckVictory();
   }
 
   void UpdatePlayerInventory() {
@@ -170,6 +173,7 @@ class ::RandoState play {
     foreach (_, region : self.regions) {
       region.ClearLocation(apid);
     }
+    ::PlayEventHandler.Get().CheckVictory();
   }
 
   bool Victorious() {
