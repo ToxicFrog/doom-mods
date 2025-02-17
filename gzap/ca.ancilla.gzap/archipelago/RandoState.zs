@@ -176,7 +176,7 @@ class ::RandoState play {
     ::PlayEventHandler.Get().CheckVictory();
   }
 
-  bool Victorious() {
+  bool Victorious() const {
     foreach (_, region : self.regions) {
       if (!region.cleared) return false;
     }

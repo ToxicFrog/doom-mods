@@ -36,6 +36,9 @@ class ::LevelSelectMenu : ::CommonMenu {
 
     PushText(" ");
     PushText("$GZAP_MENU_LEVEL_SELECT_TITLE", Font.CR_WHITE);
+    if (::PlayEventHandler.GetState().Victorious()) {
+      PushText("$GZAP_MENU_VICTORIOUS", Font.CR_SAPPHIRE);
+    }
     PushText(" ");
 
     PushKeyValueText(
