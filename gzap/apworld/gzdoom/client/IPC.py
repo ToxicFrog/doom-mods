@@ -9,6 +9,7 @@ file. See doc/protocol.md for the full details.
 import asyncio
 import json
 import os.path
+import sys
 import time
 from threading import Thread
 from typing import Any, Dict, List
@@ -55,13 +56,25 @@ class IPC:
 
   def _log_reading_thread(self, logfile: str, loop) -> None:
     print("Starting gzDoom event loop.")
+    try:
+      self._log_reading_loop(logfile, loop)
+    except Exception as e:
+      # HACK HACK HACK
+      # Without this it just stays running in the background forever and I don't
+      # even get to see the error until I kill it. :(
+      # TODO: fix this
+      print(e)
+      sys.exit(1)
+
+  def _log_reading_loop(self, logfile: str, loop):
     with open(logfile, "r") as fd:
        while True:
           line = self._blocking_readline(fd).strip()
           if line is None:
+             # should_exit set, wind down the thread
              return
 
-          print("readline:", line)
+          # print("readline:", line)
           # if the line has the format "<username>: <line of text>", this is a chat message
           # this needs special handling because there is no OnSayEvent or similar in gzdoom
           if line.startswith(self.nick + ": "):
@@ -180,11 +193,16 @@ class IPC:
       self.ipc_queue.pop(0)
 
   def _enqueue(self, *args) -> None:
-    print("Enqueue:", *args)
-    msg = IPCMessage(self._get_id(), *args)
+    id = self._get_id()
+    # print("Enqueue:", id, *args)
+    msg = IPCMessage(id, *args)
     self.ipc_queue.append(msg)
 
   def _flush(self) -> None:
+    if self.ipc_size == 0:
+      # Not connected to gzDoom. Hold messages in the buffer until it (re)connects.
+      return
+
     if not self.ipc_queue:
       # No pending messages? Truncate the IPC buffer file so gzdoom doesn't
       # waste cycles reading and parsing it.
