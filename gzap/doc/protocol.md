@@ -11,6 +11,14 @@ The outgoing (GZ->AP) and incoming (AP->GZ) sides use entirely different formats
 so they are documented separately.
 
 
+## Overview
+
+Communication takes place over two channels, *outgoing* (from gzdoom to AP) and
+*incoming* (from AP to gzdoom). When doing the initial map scan, only the outgoing
+channel is used, and is written to a file for later loading. In play, both channels
+are used.
+
+
 ## Outgoing Protocol (gzDoom -> AP)
 
 Outgoing messages are written to the game's log file. Each message is a single
@@ -188,7 +196,12 @@ receiver, indicating that it has loaded the IPC lump and is ready for messages.
 The sender assigns a monotonically increasing ID to each message and writes them
 to the file in ascending order until it has no room for more messages (or until
 it has no more messages to write; in the former case it must buffer further
-messages internally).
+messages internally). IDs should be monotonically increasing *across process
+executions* to be tolerant of client restarts; the reference implementation
+uses `clock.monotonic()` for this purpose. The on-wire representation of the
+ID can be any printable string as long as it later IDs sort after earlier ones.
+(Why a string? Because then we don't need to worry about sending IDs that are
+too large to fit into a zscript integer.)
 
 On receiving an `AP-ACK`, the receiver should rewrite the file to discard any
 messages with ID numbers <= the acked ID, and append any new messages it hadn't
