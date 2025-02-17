@@ -89,23 +89,25 @@ class IPC:
           future = asyncio.run_coroutine_threadsafe(self._dispatch(evt, payload), loop)
           future.result()
 
-  # TODO: we should detect if gzdoom has exited, and if so, recover gracefully:
-  # - truncate the log file to 0 and restart the log reading thread
-  # - reinitialize the IPC lump and return to our pre-XON state
-  # possibly we need some sort of heartbeat for this, and if we go too long without
-  # any messages from gzdoom emit a synthetic XOFF that has this effect.
   def _blocking_readline(self, fd) -> str:
     line = ""
     while True:
       buf = fd.readline()
-      if not buf:
-        if self.should_exit:
-          return None
-        time.sleep(0.1)
-        continue
-      line = line + buf
-      if line.endswith("\n"):
-        return line
+
+      if self.should_exit:
+        return None
+
+      if buf:
+        line = line + buf
+        if line.endswith("\n"):
+          return line
+        else:
+          continue
+
+      # Log got truncated because gzdoom restarted.
+      if fd.tell() > os.stat(fd.fileno()).st_size:
+        fd.seek(0)
+      time.sleep(0.1)
 
   async def _dispatch(self, evt: str, payload: Dict[Any, Any]):
     print(">>", evt, payload)
@@ -204,12 +206,11 @@ class IPC:
       return
 
     if not self.ipc_queue:
-      # No pending messages? Truncate the IPC buffer file so gzdoom doesn't
-      # waste cycles reading and parsing it.
-      # TODO: maybe reset it to original size so if gzdoom restarts IPC isn't
-      # suddenly broken?
+      # No pending messages? Zero-fill the buffer.
+      # We do this, instead of truncating, so that if gzdoom restarts it doesn't
+      # get a zero-length IPC buffer.
       with open(self.ipc_path, "w") as fd:
-        fd.write("")
+        fd.truncate(self.ipc_size)
       return
 
     # Pack as many messages as we can.
@@ -225,7 +226,9 @@ class IPC:
     # Is this actually different from the last thing we wrote?
     if buf == self.ipc_buf:
       return
+    # print("sending:", buf)
     with open(self.ipc_path, "w") as fd:
-      print("sending:", buf)
       fd.write(buf)
+      # Use the full size, same rational as above.
+      fd.truncate(self.ipc_size)
     self.ipc_buf = buf

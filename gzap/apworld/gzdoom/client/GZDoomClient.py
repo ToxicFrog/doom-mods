@@ -46,6 +46,7 @@ class GZDoomContext(CommonContext):
     async def on_xon(self, slot: str, seed: str):
         self.username = slot
         self.seed_name = seed
+        self.last_items = {}  # force a re-send of all items
         # TODO: devs on the discord suggest starting the server loop manually
         # rather than calling connect(), which will allow the user to specify
         # a server address...later?
@@ -74,7 +75,7 @@ class GZDoomContext(CommonContext):
         self.ipc.send_text(text)
 
     async def _item_loop(self):
-        last_items = {}
+        self.last_items = {}
         while not self.exit_event.is_set():
             await self.watcher_event.wait()
             self.watcher_event.clear()
@@ -83,9 +84,9 @@ class GZDoomContext(CommonContext):
                 new_items[item.item] = new_items.get(item.item, 0) + 1
             print("Item loop running:", new_items)
             for id,count in new_items.items():
-                if count != last_items.get(id, 0):
+                if count != self.last_items.get(id, 0):
                     self.ipc.send_item(id, count)
-            last_items = new_items
+            self.last_items = new_items
 
 
 def main(*args):
@@ -97,14 +98,10 @@ def main(*args):
     os.makedirs(ipc_dir, exist_ok=True)
 
     # Preallocate input lump
+    ipc_log = os.path.join(ipc_dir, 'gzdoom.log')
     ipc_lump = os.path.join(ipc_dir, 'GZAPIPC')
     with open(ipc_lump, 'w') as fd:
         fd.write('.' * 1024)
-
-    # Truncate output log
-    ipc_log = os.path.join(ipc_dir, 'gzdoom.log')
-    with open(ipc_log, 'w'):
-        pass
 
     # TODO: automatically create a different tuning file for each wad, and don't truncate
     # os.truncate(os.path.join(ipc_dir, "tuning.logic"), 0)
