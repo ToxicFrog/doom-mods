@@ -77,9 +77,14 @@ class IncludedLevels(OptionSet):
     display_name = "Included Levels"
     default = sorted(model.all_map_names())
 
+class ExcludedLevels(OptionSet):
+    """
+    Set of levels to exclude from randomization.
 
-# TODO: add excluded levels. TITLEMAP should be excluded by default. Possibly also EPILOGUE.
-# Alternate idea: autoexclude maps that contain no checks?
+    This takes precedence over included_levels, if a map appears in both.
+    """
+    display_name = "Included Levels"
+    default = ['TITLEMAP']
 
 # TODO: this isn't useful until we have multi-difficulty logic files, or a way
 # of loading a different logic file per difficulty
@@ -108,5 +113,6 @@ class GZDoomOptions(PerGameCommonOptions):
     death_link: DeathLink
     starting_levels: StartingLevels
     included_levels: IncludedLevels
+    excluded_levels: ExcludedLevels
     selected_wad: SelectedWad
     # skill: Skill
