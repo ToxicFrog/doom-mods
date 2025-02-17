@@ -5,7 +5,7 @@ import os.path
 from typing import Any, Dict
 
 import Utils
-from CommonClient import CommonContext, ClientCommandProcessor, get_base_parser
+from CommonClient import CommonContext, ClientCommandProcessor, get_base_parser, gui_enabled
 from .IPC import IPC
 
 class GZDoomCommandProcessor(ClientCommandProcessor):
@@ -115,6 +115,9 @@ def main(*args):
         print(f"┃     -file AP_whatever.zip -file '{ipc_dir}' +'logfile \"{ipc_log}\"'")
         print("┃ after any other arguments (e.g. for wad/pk3 loading).")
         print("┗" + "━"*78 + "╾")
+        if gui_enabled:
+            ctx.run_gui()
+        ctx.run_cli()
         await ctx.exit_event.wait()
         print("Shutting down...")
         ctx.ipc.should_exit = True
