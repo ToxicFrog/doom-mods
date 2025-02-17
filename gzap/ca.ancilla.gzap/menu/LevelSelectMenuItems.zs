@@ -17,7 +17,19 @@ class ::LevelSelector : ::KeyValueNetevent {
   }
 
   override void Ticker() {
-    self.key = FormatLevelKey(info, region);
+    // I can see that FormatLevelKey is returning the right colour, it's just
+    // not updating the display.
+    // self.key = FormatLevelKey(info, region);
+    if (region.cleared) {
+      self.idle_colour = Font.CR_GOLD;
+      self.hot_colour = Font.CR_WHITE;
+    } else if (region.access) {
+      self.idle_colour = Font.CR_DARKRED;
+      self.hot_colour = Font.CR_FIRE;
+    } else {
+      self.idle_colour = Font.CR_BLACK;
+      self.hot_colour = Font.CR_BLACK;
+    }
     self.value = FormatLevelValue(info, region);
   }
 
@@ -26,17 +38,7 @@ class ::LevelSelector : ::KeyValueNetevent {
   }
 
   string FormatLevelKey(LevelInfo info, ::Region region) {
-    if (!Selectable()) {
-      return string.format("\c[BLACK]%s (%s)", info.LookupLevelName(), info.MapName);
-    }
-    return string.format("%s%s (%s)",
-      // TODO: menu updates when the level is cleared, but this gold colour doesn't
-      // take effect until the menu is closed and reopened for some reason.
-      // TODO: might want to make this silver when level cleared, gold when level
-      // cleared + all locations checked.
-      region.cleared ? "\c[GOLD]" : "",
-      info.LookupLevelName(),
-      info.MapName);
+    return string.format("%s (%s)", info.LookupLevelName(), info.MapName);
   }
 
   string FormatItemCounter(::Region region) {
@@ -64,7 +66,7 @@ class ::LevelSelector : ::KeyValueNetevent {
   }
 
   string FormatLevelValue(LevelInfo info, ::Region region) {
-    if (!Selectable()) {
+    if (!region.access) {
       return string.format(
         "\c[BLACK]%3d/%-3d  %s  \c[BLACK]%s  %s",
         region.LocationsChecked(), region.LocationsTotal(),
