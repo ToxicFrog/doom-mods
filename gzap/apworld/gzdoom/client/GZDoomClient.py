@@ -108,10 +108,14 @@ def main(*args):
     os.makedirs(ipc_dir, exist_ok=True)
 
     # Preallocate input lump
-    ipc_log = os.path.join(ipc_dir, 'gzdoom.log')
     ipc_lump = os.path.join(ipc_dir, 'GZAPIPC')
     with open(ipc_lump, 'w') as fd:
         fd.write('.' * 1024)
+
+    # Create empty logfile if it doesn't exist
+    ipc_log = os.path.join(ipc_dir, 'gzdoom.log')
+    with open(ipc_log, "a"):
+        pass
 
     # TODO: automatically create a different tuning file for each wad, and don't truncate
     # os.truncate(os.path.join(ipc_dir, "tuning.logic"), 0)
