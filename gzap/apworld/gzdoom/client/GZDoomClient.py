@@ -98,7 +98,7 @@ class GZDoomContext(CommonContext):
             new_items = {}
             for item in self.items_received:
                 new_items[item.item] = new_items.get(item.item, 0) + 1
-            print("Item loop running:", new_items)
+            # print("Item loop running:", new_items)
             for id,count in new_items.items():
                 if count != self.last_items.get(id, 0):
                     self.ipc.send_item(id, count)

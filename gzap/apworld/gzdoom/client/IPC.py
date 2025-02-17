@@ -80,7 +80,7 @@ class IPC:
              # should_exit set, wind down the thread
              return
 
-          # print("readline:", line)
+          # print("[gzdoom]", line)
           # if the line has the format "<username>: <line of text>", this is a chat message
           # this needs special handling because there is no OnSayEvent or similar in gzdoom
           if line.startswith(self.nick + ": "):
@@ -238,6 +238,8 @@ class IPC:
       return
 
     # Pack as many messages as we can.
+    last_id = 0
+    first_id = 0
     size_left = self.ipc_size
     buf = []
     for msg in self.ipc_queue:
@@ -245,12 +247,15 @@ class IPC:
         break
       buf.append(msg.data)
       size_left -= len(msg)
+      if not first_id:
+        first_id = msg.id
+      last_id = msg.id
     buf = "".join(buf)
 
     # Is this actually different from the last thing we wrote?
     if buf == self.ipc_buf:
       return
-    # print("sending:", buf)
+    # print(f"Sending {len(buf)} bytes with ids {first_id}..{last_id}")
     with open(self.ipc_path, "w") as fd:
       fd.write(buf)
       # Use the full size, same rational as above.
