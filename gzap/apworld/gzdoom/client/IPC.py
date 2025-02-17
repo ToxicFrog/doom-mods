@@ -189,7 +189,12 @@ class IPC:
 
   def send_text(self, message: str) -> None:
     """Display the given message to the player."""
-    self._enqueue("TEXT", ansi_to_gzdoom(message))
+    # Prefix here avoids an infinite loop when the client uses the same name in
+    # AP and in their gzdoom config. AP uses the same chat message format as gzd,
+    # so what happens is, the chat message goes to gzd, gets displayed, appears
+    # in the log, the client sees it as a new chat message, sends it to the server,
+    # which echoes it, etc.
+    self._enqueue("TEXT", "[AP]"+ansi_to_gzdoom(message))
     self._flush()
 
 
