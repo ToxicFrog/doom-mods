@@ -6,6 +6,17 @@
 # - win logic: all levels/N levels/all bosses/N bosses
 # - are bosses checks
 # - are exits checks (in addition to giving you a clear token)
+#   we do this by registering multiple checks per level, adding a new API to the
+#   generated zscript to register them all, and checking all of them on exit
+# - progressive automap -- automaps bind to the first unmapped level you have,
+#   and/or you need multiple automaps to display everything for a level (say,
+#   one gets you checks, one gets you geometry, one gets you progression hilights)
+# - progressive keys -- this will be tricky to implement, I think, but the idea
+#   is that keys start out unformed, and the first door you use when having an
+#   unformed key specializes it for that door. Alternately, have a menu that
+#   lets you intentionally form keys. Adds more choice about what you unlock when.
+#   DEFINITELY needs support in the generator; should look at how e.g. dungeon
+#   keys are handled in Zelda for this.
 
 import typing
 
