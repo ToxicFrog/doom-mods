@@ -107,6 +107,7 @@ class ::PlayEventHandler : StaticEventHandler {
       let idx = evt.args[0];
       apstate.UseItem(idx);
     }
+    CheckVictory();
   }
 
   override void UITick() {
@@ -123,6 +124,16 @@ class ::PlayEventHandler : StaticEventHandler {
       int apid = cmd.ReadInt();
       int count = cmd.ReadInt();
       apstate.GrantItem(apid, count);
+    }
+    CheckVictory();
+  }
+
+  void CheckVictory() {
+    // Might want to expand this later to list levels cleared, items collected,
+    // etc, for the use of external trackers, but for now it's just a simple
+    // "are we winning?"
+    if (apstate.Victorious()) {
+      ::IPC.Send("STATUS", "{ \"victory\": true }");
     }
   }
 }

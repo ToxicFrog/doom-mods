@@ -5,7 +5,7 @@ import os.path
 from typing import Any, Dict
 
 import Utils
-from CommonClient import CommonContext, ClientCommandProcessor, get_base_parser, gui_enabled
+from CommonClient import CommonContext, ClientCommandProcessor, ClientStatus, get_base_parser, gui_enabled
 from .IPC import IPC
 
 class GZDoomCommandProcessor(ClientCommandProcessor):
@@ -61,6 +61,12 @@ class GZDoomContext(CommonContext):
         # a server address...later?
         self.found_gzdoom.set()
         await self.connect()
+
+    async def on_victory(self):
+        self.finished_game = True
+        await self.send_msgs([
+            {"cmd": "StatusUpdate", "status": ClientStatus.CLIENT_GOAL }
+            ])
 
     # def on_package(self, cmd, args):
     #     print("RECV", cmd, args)

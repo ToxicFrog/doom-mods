@@ -82,21 +82,6 @@ the numeric skill value, 0-indexed (i.e. 0 is ITYTD, 2 is HMP, and 4 is NM).
 <!-- TODO: support multiskill scanning, annotating each map with the current skill
      and scanning each map once per skill level -->
 
-
-### Play/Tuning Messages
-
-These messages are emitted during gameplay. They are expected to be read in real
-time by the client, but can also be saved in a log and later appended to an existing
-logic file to improve the logic.
-
-#### `AP-CHECK { id, name, keys }`
-
-Emitted when the player checks a location. `id` is the AP location ID, and `name`
-is the name assigned to that location by the randomizer. `keys` is a list of keys
-held by the player and is used only for logic tuning.
-
-<!-- TODO: add 'unreachable' field for better logic tuning. -->
-
 #### `AP-EXCLUDE-MAPS { maps: [...] }`
 
 <!-- TODO: implement map exclusion UI and map tuning UI -->
@@ -111,11 +96,12 @@ rather than normal gameplay.
 Note that only the most recent `AP-EXCLUDE-MAPS` message has any effect, so you
 can emit `[]` to undo all exclusions.
 
-#### `AP-CHAT { msg }`
 
-Send a chat message to the rest of the Archipelago players. Unfortunately there
-is no code that currently emits this due to difficulty hooking the `say` console
-command in-game.
+### Play/Tuning Messages
+
+These messages are emitted during gameplay. They are expected to be read in real
+time by the client, but can also be saved in a log and later appended to an existing
+logic file to improve the logic.
 
 #### `AP-XON { lump, size, nick, slot, seed }`
 
@@ -134,6 +120,26 @@ to the server.
 
 Tells the client that we have read messages it sent up to the given `id`, and
 it can overwrite them with new messages if needed.
+
+#### `AP-CHECK { id, name, keys }`
+
+Emitted when the player checks a location. `id` is the AP location ID, and `name`
+is the name assigned to that location by the randomizer. `keys` is a list of keys
+held by the player and is used only for logic tuning.
+
+<!-- TODO: add 'unreachable' field for better logic tuning. -->
+
+#### `AP-CHAT { msg }`
+
+Send a chat message to the rest of the Archipelago players. Unfortunately there
+is no code that currently emits this due to difficulty hooking the `say` console
+command in-game.
+
+#### `AP-STATUS { victory }`
+
+Informs the client that the player is victorious (by setting `victory` to `true`).
+This may be expanded with other uses in the future but for now it's just a way of
+telling the client when the game is won.
 
 
 ## Incoming Protocol

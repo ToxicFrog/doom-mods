@@ -157,10 +157,17 @@ class ::RandoState play {
   }
 
   ::Region GetCurrentRegion() {
-    return regions.Get(level.MapName);
+    return regions.GetIfExists(level.MapName);
   }
 
   ::Region GetRegion(string map) const {
     return regions.GetIfExists(map);
+  }
+
+  bool Victorious() {
+    foreach (_, region : self.regions) {
+      if (!region.cleared) return false;
+    }
+    return true;
   }
 }

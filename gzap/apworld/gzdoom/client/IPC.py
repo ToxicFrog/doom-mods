@@ -57,12 +57,9 @@ class IPC:
 
   # TODO: if there's an existing log file, we (re)process all events from it
   # on startup. This can be annoying if some of them are chat messages or the
-  # like. We may in fact need a little dance on connect where it goes something
-  # like:
-  # - we see XON
-  # - we reply with STX
-  # - we wait for the ACK
-  # and only after that do we process more messages
+  # like. We may in fact need a little dance on connect where we generate a
+  # message ID, and until we see our first ACK >= that ID, the only message
+  # we process is XON.
   def _log_reading_thread(self, logfile: str, loop) -> None:
     print("Starting gzDoom event loop.")
     try:
@@ -129,6 +126,8 @@ class IPC:
         await self.recv_check(payload["id"])
     elif evt == "AP-CHAT":
         await self.recv_chat(payload["msg"])
+    elif evt == "AP-STATUS":
+        await self.recv_status(**payload)
     else:
         pass
     self.ctx.watcher_event.set()
@@ -178,6 +177,10 @@ class IPC:
     Forwards it to the context manager to deliver to the server.
     """
     await self.ctx.send_chat(message)
+
+  async def recv_status(self, victory: bool) -> None:
+    if victory:
+      await self.ctx.on_victory()
 
 
   #### Handlers for events coming from Archipelago. ####
