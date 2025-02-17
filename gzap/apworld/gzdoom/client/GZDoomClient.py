@@ -28,6 +28,7 @@ class GZDoomContext(CommonContext):
     async def start_tasks(self) -> None:
         self.ipc.start_log_reader(self.log_path)
         self.items_task = asyncio.create_task(self._item_loop())
+        self.locations_task = asyncio.create_task(self._location_loop())
 
     async def send_check(self, id: int):
         await self.send_msgs([
@@ -56,6 +57,7 @@ class GZDoomContext(CommonContext):
         self.slot_name = slot
         self.seed_name = seed
         self.last_items = {}  # force a re-send of all items
+        self.last_locations = set()
         # TODO: devs on the discord suggest starting the server loop manually
         # rather than calling connect(), which will allow the user to specify
         # a server address...later?
@@ -103,6 +105,17 @@ class GZDoomContext(CommonContext):
                 if count != self.last_items.get(id, 0):
                     self.ipc.send_item(id, count)
             self.last_items = new_items
+
+    async def _location_loop(self):
+        self.last_locations = set()
+        while not self.exit_event.is_set():
+            await self.watcher_event.wait()
+            self.watcher_event.clear()
+            new_locations = self.checked_locations - self.last_locations
+            print("Location loop running", new_locations, self.checked_locations)
+            for id in new_locations:
+                self.ipc.send_checked(id)
+            self.last_locations = self.checked_locations
 
 
 def main(*args):

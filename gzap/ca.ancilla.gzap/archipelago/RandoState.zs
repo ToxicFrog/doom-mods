@@ -164,6 +164,14 @@ class ::RandoState play {
     return regions.GetIfExists(map);
   }
 
+  void MarkLocationChecked(int apid) {
+    ++txn;
+    // It's safe to call ClearLocation() on a region that doesn't contain the location.
+    foreach (_, region : self.regions) {
+      region.ClearLocation(apid);
+    }
+  }
+
   bool Victorious() {
     foreach (_, region : self.regions) {
       if (!region.cleared) return false;

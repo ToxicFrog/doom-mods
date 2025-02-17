@@ -81,6 +81,11 @@ class ::IPC {
       EventHandler.SendNetworkCommand("ap-ipc:item",
         NET_INT, fields[2].ToInt(10), NET_INT, fields[3].ToInt(10));
       return true;
+    } else if (type == "CHECKED") {
+      if (fields.Size() != 3) return false;
+      EventHandler.SendNetworkCommand("ap-ipc:checked",
+        NET_INT, fields[2].ToInt(10));
+      return true;
     }
     return false;
   }

@@ -190,6 +190,11 @@ class IPC:
     self._enqueue("ITEM", id, count)
     self._flush()
 
+  def send_checked(self, id: int) -> None:
+    """Mark the given location as having been checked."""
+    self._enqueue("CHECKED", id)
+    self._flush()
+
   def send_text(self, message: str) -> None:
     """Display the given message to the player."""
     # Prefix here avoids an infinite loop when the client uses the same name in
@@ -212,7 +217,12 @@ class IPC:
     # the buffer once per second).
     # TODO: we can maybe get away with lowering the resolution further, and/or
     # sleeping briefly after an enqueue. But should we?
-    return "%012X" % (time.monotonic_ns() // 256 // 256,)
+    id = time.monotonic_ns() // 256 // 256
+    if id <= self.ipc_id:
+      # Sending messages too fast to get more IDs; manually increment
+      id = self.ipc_id + 1
+    self.ipc_id = id
+    return "%012X" % id
 
   def _ack(self, id: int) -> None:
     while self.ipc_queue and self.ipc_queue[0].id <= id:

@@ -236,3 +236,10 @@ the game should update the total count, and increase the held amount to match.
 
 The mapping from `id` to internal item type is determined by the randomizer and
 baked into the generated mod.
+
+#### `CHECKED` `id`
+
+Tells the game that the location with the given ID has already been checked. The
+game should remove it from the list of pending checks and (TODO) despawn it from
+the world if it's currently spawned. It's safe for the player to re-collect it
+but doing so won't do anything.

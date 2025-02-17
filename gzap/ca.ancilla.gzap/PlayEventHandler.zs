@@ -107,7 +107,6 @@ class ::PlayEventHandler : StaticEventHandler {
       let idx = evt.args[0];
       apstate.UseItem(idx);
     }
-    CheckVictory();
   }
 
   override void UITick() {
@@ -124,8 +123,10 @@ class ::PlayEventHandler : StaticEventHandler {
       int apid = cmd.ReadInt();
       int count = cmd.ReadInt();
       apstate.GrantItem(apid, count);
+    } else if (cmd.command == "ap-ipc:checked") {
+      int apid = cmd.ReadInt();
+      apstate.MarkLocationChecked(apid);
     }
-    CheckVictory();
   }
 
   void CheckVictory() {
