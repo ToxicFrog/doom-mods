@@ -60,7 +60,13 @@ class ::ScanEventHandler : StaticEventHandler {
     }
   }
 
+  void MarkDone(string map) {
+    string map = map.MakeUpper();
+    done.push(map);
+  }
+
   bool LevelScanned(string map) {
+    string map = map.MakeUpper();
     return done.find(map) != done.size();
   }
 
@@ -73,7 +79,8 @@ class ::ScanEventHandler : StaticEventHandler {
   }
 
   void ScanOutput(string type, string payload) {
-    ::IPC.Send(type, string.format("{ \"map\": \"%s\", %s }", level.MapName, payload));
+    let map = level.MapName.MakeUpper();
+    ::IPC.Send(type, string.format("{ \"map\": \"%s\", %s }", map, payload));
   }
 
   string ScanOutputPosition(Actor thing) {
@@ -131,7 +138,7 @@ class ::ScanEventHandler : StaticEventHandler {
 
     // TODO: check redirect and cvar_redirect fields as well, which override
     // nextmap based on player inventory or cvar
-    done.push(level.MapName);
+    MarkDone(level.MapName);
     EnqueueLevel(level.NextMap);
     EnqueueLevel(level.NextSecretMap);
     ::Util.printf("$GZAP_SCAN_MAP_DONE", level.MapName);
