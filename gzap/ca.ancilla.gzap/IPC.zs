@@ -12,12 +12,12 @@ class ::IPC {
     console.printfEX(PRINT_LOG, "AP-%s %s", type, payload);
   }
 
-  int last_seen;
+  string last_seen;
   int lumpid;
 
   // Initialize the IPC receiver using the given lump name.
   void Init(string slot_name, string seed, string lumpname = "GZAPIPC") {
-    last_seen = 0;
+    last_seen = "";
     lumpid = wads.FindLump(lumpname);
     let buf = wads.ReadLump(lumpid);
     Send("XON", string.format(
@@ -51,10 +51,10 @@ class ::IPC {
         continue;
       }
 
-      let id = fields[0].ToInt(10);
+      let id = fields[0];
       let msgtype = fields[1];
       if (id <= last_seen) {
-        DEBUG("Skipping %s message (%d <= %d)", msgtype, id, last_seen);
+        DEBUG("Skipping %s message (%s <= %s)", msgtype, id, last_seen);
         continue;
       }
 
@@ -63,11 +63,11 @@ class ::IPC {
         continue;
       }
 
-      DEBUG("Successfully processed message %d (%s)", id, msgtype);
+      DEBUG("Successfully processed message %s (%s)", id, msgtype);
       last_seen = id;
       send_ack = true;
     }
-    if (send_ack) Send("ACK", string.format("{ \"id\": %d }", last_seen));
+    if (send_ack) Send("ACK", string.format("{ \"id\": \"%s\" }", last_seen));
   }
 
   bool ReceiveOne(string type, Array<string> fields) {

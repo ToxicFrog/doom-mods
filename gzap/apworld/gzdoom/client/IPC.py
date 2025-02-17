@@ -7,6 +7,7 @@ file. See doc/protocol.md for the full details.
 """
 
 import asyncio
+import time
 import json
 import os.path
 import sys
@@ -54,6 +55,14 @@ class IPC:
     self.thread = asyncio.create_task(asyncio.to_thread(self._log_reading_thread, log_path, loop))
     print("Log reader started. Waiting for XON from gzDoom.")
 
+  # TODO: if there's an existing log file, we (re)process all events from it
+  # on startup. This can be annoying if some of them are chat messages or the
+  # like. We may in fact need a little dance on connect where it goes something
+  # like:
+  # - we see XON
+  # - we reply with STX
+  # - we wait for the ACK
+  # and only after that do we process more messages
   def _log_reading_thread(self, logfile: str, loop) -> None:
     print("Starting gzDoom event loop.")
     try:
@@ -187,8 +196,15 @@ class IPC:
   #### Low-level outgoing IPC. ####
 
   def _get_id(self) -> int:
-    self.ipc_id += 1
-    return self.ipc_id
+    # Use monotonic clock to get a value that increases even across client
+    # executions, so client restarts don't reset the sequence counter and confuse
+    # the game. We drop the bottom two bytes to make it more manageable, which
+    # reduces the resolution to about 15k messages/second, which is still way
+    # more than we need (or gzdoom is willing to ingest, since it only processes
+    # the buffer once per second).
+    # TODO: we can maybe get away with lowering the resolution further, and/or
+    # sleeping briefly after an enqueue. But should we?
+    return "%012X" % (time.monotonic_ns() // 256 // 256,)
 
   def _ack(self, id: int) -> None:
     while self.ipc_queue and self.ipc_queue[0].id <= id:
