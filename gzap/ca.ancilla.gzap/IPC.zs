@@ -3,6 +3,7 @@
 // See doc/protocol.md for details on how this contraption works.
 
 #namespace GZAP;
+#debug off;
 
 class ::IPC {
   // Send a message. "Type" is a message type (without the AP- prefix). "Payload"
@@ -51,14 +52,18 @@ class ::IPC {
       }
 
       let id = fields[0].ToInt(10);
-      if (id <= last_seen) continue;
-
       let msgtype = fields[1];
+      if (id <= last_seen) {
+        DEBUG("Skipping %s message (%d <= %d)", msgtype, id, last_seen);
+        continue;
+      }
+
       if (!ReceiveOne(msgtype, fields)) {
         console.printf("Error processing message: %s (ReceiveOne() failed)", message);
         continue;
       }
 
+      DEBUG("Successfully processed message %d (%s)", id, msgtype);
       last_seen = id;
       send_ack = true;
     }
@@ -66,7 +71,6 @@ class ::IPC {
   }
 
   bool ReceiveOne(string type, Array<string> fields) {
-    // console.printf("ReceiveOne sending netevent: %s", type);
     if (type == "TEXT") {
       if (fields.Size() != 3) return false;
       EventHandler.SendNetworkCommand("ap-ipc:text",
