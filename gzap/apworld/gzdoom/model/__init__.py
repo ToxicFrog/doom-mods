@@ -81,6 +81,16 @@ def get_wad(name: str) -> DoomWad:
     assert _init_done
     return _DOOM_LOGIC.wads[name]
 
+def wadstats(wad: DoomWad) -> str:
+    progression = len(wad.progression_items())
+    useful = len(wad.useful_items())
+    filler = len(wad.filler_items())
+    return (
+        f"{len(wad.all_maps())} maps, "
+        f"{progression + useful + filler} checks "
+        f"(P:{progression} + U:{useful} + F:{filler})"
+    )
+
 def init_wads(package):
   global _init_done
   if _init_done:
@@ -91,19 +101,23 @@ def init_wads(package):
   # Sort them so we get a consistent order, and thus consistent ID assignment,
   # across runs.
   # TODO: maybe separate logic and tuning directories or similar?
+  print("Loading builtin logic...")
   for logic_file in sorted(resources.files(package).joinpath("logic").iterdir(), key=lambda p: p.name):
-      with add_wad(logic_file.name) as wad:
-          print(f"Loading builtin WAD logic: {logic_file.name}")
-          wad.load_logic(logic_file.read_text())
+      with add_wad(logic_file.name) as wadloader:
+          wadloader.load_logic(logic_file.read_text())
+          print(f"  {wadloader.name}: {wadstats(wadloader.wad)}")
 
-  # Debug/test mode: load the specifed file and nothing else.
+  # Debug/test mode: load the specifed file after the builtins.
+  # Might overwrite a builtin if it has the same name -- should we permit
+  # concatenation? Might be handy for testing tuning files.
   if "GZAP_EXTRA_LOGIC" in os.environ:
       path = os.environ["GZAP_EXTRA_LOGIC"]
       print(f"Loading external WAD logic from {path}")
       with open(path) as fd:
           buf = fd.read()
-      with add_wad(os.path.basename(path)) as wad:
-          wad.load_logic(buf)
+      with add_wad(os.path.basename(path)) as wadloader:
+          wadloader.load_logic(buf)
+          print(f"  {wadloader.name}: {wadstats(wadloader.wad)}")
       return
 
 
