@@ -87,7 +87,8 @@ def wadstats(wad: DoomWad) -> str:
     filler = len(wad.filler_items())
     return (
         f"{len(wad.all_maps())} maps, "
-        f"{progression + useful + filler} checks "
+        f"{len(wad.locations())} locations, "
+        f"{progression + useful + filler} items "
         f"(P:{progression} + U:{useful} + F:{filler})"
     )
 
