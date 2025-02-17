@@ -111,7 +111,7 @@ class GZDoomWorld(World):
 
         for map in self.wad_logic.maps.values():
             # print("Region:", map.map)
-            if map.map not in self.options.included_levels:
+            if not self.should_include_map(map.map):
                 continue
 
             if self.options.start_with_all_maps:
@@ -150,7 +150,7 @@ class GZDoomWorld(World):
         filler_items = self.wad_logic.filler_items()
 
         for item in main_items:
-            if item.map and item.map not in self.options.included_levels:
+            if item.map and not self.should_include_map(item.map):
                 continue
             # print("  Item:", item, item.count)
             for _ in range(max(item.count, 0)):
@@ -179,7 +179,7 @@ class GZDoomWorld(World):
 
     def mission_complete(self, state: CollectionState) -> bool:
         for map in self.wad_logic.maps.values():
-            if map.map not in self.options.included_levels:
+            if not self.should_include_map(map.map):
                 continue
             if not state.has(map.clear_token_name(), self.player):
                 return False
@@ -189,6 +189,13 @@ class GZDoomWorld(World):
         # All region and location access rules were defined in create_regions, so we just need the
         # overall victory condition here.
         self.multiworld.completion_condition[self.player] = lambda state: self.mission_complete(state)
+
+    def should_include_map(self, map: str) -> bool:
+        if map in self.options.excluded_levels:
+            return False
+        if self.options.included_levels.value and map not in self.options.included_levels:
+            return False
+        return True
 
     def generate_output(self, path):
         def progression(id: int) -> bool:
@@ -216,7 +223,7 @@ class GZDoomWorld(World):
             "skill": self.wad_logic.skill,
             "maps": [
                 map for map in self.wad_logic.maps.values()
-                if map.map in self.options.included_levels
+                if self.should_include_map(map.map)
             ],
             "items": [
               item for item in self.wad_logic.items()
