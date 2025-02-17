@@ -17,8 +17,10 @@ class GZDoomContext(CommonContext):
     game = "gzDoom"
     items_handling = 0b111  # fully remote
     want_slot_data = False
+    slot_name = None
 
     def __init__(self, server_address: str, password: str, ipc_dir: str):
+        self.found_gzdoom = asyncio.Event()
         super().__init__(server_address, password)
         self.ipc = IPC(self, ipc_dir)
         self.log_path = os.path.join(ipc_dir, "gzdoom.log")
@@ -37,6 +39,13 @@ class GZDoomContext(CommonContext):
             {"cmd": "Say", "text": message}
             ])
 
+    async def get_username(self):
+        if not self.auth:
+            print("Getting slot name from gzdoom:", self.auth, self.username)
+            await self.found_gzdoom.wait()
+            self.username = self.slot_name
+            self.auth = self.username
+
     async def server_auth(self, *args):
         """Called automatically when the server connection is established."""
         await super().server_auth(*args)
@@ -44,12 +53,13 @@ class GZDoomContext(CommonContext):
         await self.send_connect()
 
     async def on_xon(self, slot: str, seed: str):
-        self.username = slot
+        self.slot_name = slot
         self.seed_name = seed
         self.last_items = {}  # force a re-send of all items
         # TODO: devs on the discord suggest starting the server loop manually
         # rather than calling connect(), which will allow the user to specify
         # a server address...later?
+        self.found_gzdoom.set()
         await self.connect()
 
     # def on_package(self, cmd, args):
