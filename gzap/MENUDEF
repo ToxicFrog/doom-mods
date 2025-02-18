@@ -12,3 +12,14 @@ AddListMenu "MainMenu" before "PlayerclassMenu"
 {
   ArchipelagoItem "Archipelago", "a", "PlayerclassMenu"
 }
+
+/*
+TODO: Menu rework
+
+Main Menu -> Archipelago
+  [if no datapack loaded] -> opens combined scanner/exclusion UI
+  [if not in game] -> tells you to start the game
+  Level Select [opens level select/tracker]
+  Inventory [opens rando inventory]
+  Tuning [opens level exclusion/check exclusion UI]
+ */

@@ -1,5 +1,24 @@
 # Archipelago gzDoom connector
 
+## Scanner UI notes
+
+Scanner menu is a list of all maps. Scanned maps show count of locations (+ excluded),
+items, monsters, and bits for "include in output" and "include in rando". Unscanned
+maps just show information about what wad they're from.
+
+Selecting a map gives you more detailed information, and options to:
+- go to this map and scan it
+- go to this map and scan it and all later maps
+- mark map exclude-from-rando
+- mark map exclude-from-output
+- start a tuning run on this map
+- discard tuning data
+- enqueue map for scan! you should be able to enqueue a bunch of maps and then
+  scan them all at once.
+
+Bottom of list includes a total and an "output logic file" command. The latter
+checks if you have a logfile set and aborts if not.
+
 ## Compatibility issues
 
 GDT MAP12 -- there are two red keys, one gets flushed when you enter the map,
@@ -15,11 +34,6 @@ We need some way of marking checks as uncollectable during tuning.
 
 - client leaves a background thread running on exit that continues to cause problems
   - may be an issue with how it's launched via multiprocessing rather than an issue with the client itself
-- need to properly sync checked locations to the game and not spawn them, rather than spawning empty items
-  - this is ctx.checked_locations after initialization
-  - it does properly remember keys, maps, clears across runs!
-    - although we get all of our powerups/consumables whenever we start the game
-- needs to be launchable from the GUI with name and optionally password and gzdoom configuration
 
 ## Item/location management for multiwad impl
 
