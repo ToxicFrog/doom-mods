@@ -101,6 +101,7 @@ class ::ScanEventHandler : StaticEventHandler {
     ));
   }
 
+  // TODO: make "secret" field optional and emit it only on secret items
   void ScanOutputItem(Actor thing) {
     ScanOutput("ITEM", string.format(
       "\"category\": \"%s\", \"typename\": \"%s\", \"tag\": \"%s\", \"secret\": %s, %s",
@@ -147,25 +148,54 @@ class ::ScanEventHandler : StaticEventHandler {
 
   string GetMapinfoJSON() {
     let info = level.info;
-    let buf = string.format(
+    let flags = GetFlagsForMapinfo(info);
+    return string.format(
         "{ "
         "\"levelnum\": %d, \"title\": \"%s\", \"is_lookup\": %s, "
         "\"sky1\": \"%s\", \"sky1speed\": \"%f\", "
         "\"sky2\": \"%s\", \"sky2speed\": \"%f\", "
         "\"music\": \"%s\", \"music_track\": \"%d\", "
-        "\"cluster\": %d, \"flags\": [\"allowrespawn\"",
+        "\"cluster\": %d, \"flags\": [%s] }",
         info.LevelNum, info.LevelName,
         bool2str(info.flags & LEVEL_LOOKUPLEVELNAME),
         info.SkyPic1, info.SkySpeed1,
         info.SkyPic2, info.SkySpeed2,
         info.Music, info.MusicOrder,
-        info.Cluster);
+        info.Cluster, flags);
+  }
 
-    buf = buf .. (info.flags & LEVEL_MAP07SPECIAL ? ", \"map07special\"" : "");
-    buf = buf .. (info.flags & LEVEL_DOUBLESKY ? ", \"doublesky\"" : "");
-    buf = buf .. (info.flags2 & LEVEL2_INFINITE_FLIGHT ? ", \"infiniteflightpowerup\"" : "");
+  string GetFlagsForMapinfo(LevelInfo info) {
+    string flags = "";
+    flags = AddFlag(flags, info.flags, LEVEL_DOUBLESKY, "doublesky");
+    flags = AddFlag(flags, info.flags2, LEVEL2_INFINITE_FLIGHT, "infiniteflightpowerup");
+    // Special action effects
+    // specialaction_exitlevel just clears the other special flags, so we don't
+    // need it; we get it just by not writing a specialaction_ flag.
+    flags = AddFlag(flags, info.flags, LEVEL_SPECKILLMONSTERS, "specialaction_killmonsters");
+    flags = AddFlag(flags, info.flags, LEVEL_SPECLOWERFLOOR, "specialaction_lowerfloor");
+    flags = AddFlag(flags, info.flags, LEVEL_SPECLOWERFLOORTOHIGHEST, "specialaction_lowerfloortohighest");
+    flags = AddFlag(flags, info.flags, LEVEL_SPECOPENDOOR, "specialaction_opendoor");
+    // Special action triggers
+    flags = AddFlag(flags, info.flags, LEVEL_MAP07SPECIAL, "map07special");
+    flags = AddFlag(flags, info.flags, LEVEL_BRUISERSPECIAL, "baronspecial");
+    flags = AddFlag(flags, info.flags, LEVEL_CYBORGSPECIAL, "cyberdemonspecial");
+    flags = AddFlag(flags, info.flags, LEVEL_SPIDERSPECIAL, "spidermastermindspecial");
+    flags = AddFlag(flags, info.flags, LEVEL_HEADSPECIAL, "ironlichspecial");
+    flags = AddFlag(flags, info.flags, LEVEL_MINOTAURSPECIAL, "minotaurspecial");
+    flags = AddFlag(flags, info.flags, LEVEL_SORCERER2SPECIAL, "dsparilspecial");
+    flags = AddFlag(flags, info.flags3, LEVEL3_E1M8SPECIAL, "e1m8special");
+    flags = AddFlag(flags, info.flags3, LEVEL3_E2M8SPECIAL, "e2m8special");
+    flags = AddFlag(flags, info.flags3, LEVEL3_E3M8SPECIAL, "e3m8special");
+    flags = AddFlag(flags, info.flags3, LEVEL3_E4M8SPECIAL, "e4m8special");
+    flags = AddFlag(flags, info.flags3, LEVEL3_E4M6SPECIAL, "e4m6special");
+    return flags;
+  }
 
-    return buf .. "]}";
+  string AddFlag(string buf, uint flags, uint flag, string flagname) {
+    if ((flags & flag) == flag) {
+      return string.format("%s%s\"%s\"", buf, buf == "" ? "" : ", ", flagname);
+    }
+    return buf;
   }
 
   bool IsArtifact(Actor thing) {
@@ -226,3 +256,18 @@ class ::ScanEventHandler : StaticEventHandler {
 // - powerups, ammo, health, and armor are filler
 // - level maps are filler
 // - each level has a synthetic "access granted", "level complete", and "computer map" item generated for it
+
+// TODO: multi-difficulty scanning
+// We can do this in one pass by repeatedly entering the level at difficulty 1, 2, and 3
+// First pass, we record some basic map info + a list of all actors we care about,
+// storing only the data we need to send out to the rando
+// Second and third pass, foreach actor, we try to match it up with an existing actor
+// in the list and update its difficulty bits; we record a new actor iff we can't match
+// it to an existing one.
+// Then we dump all actors; ones that only occur on some difficulties will have a
+// "difficulty": [1,2,3] field. We omit the field entirely on actors that occur on
+// all difficulty levels.
+// Then, rather than having a separate wad definition per difficulty, we just tell
+// the wad what difficulty we want items/locations for it and it returns only the ones
+// with the appropriate tags.
+
