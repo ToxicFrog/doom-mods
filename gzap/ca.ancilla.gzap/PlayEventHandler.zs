@@ -63,6 +63,8 @@ class ::PlayEventHandler : StaticEventHandler {
       apclient.Init(self.slot_name, self.seed);
     }
 
+    if (level.LevelName == "TITLEMAP") return;
+
     if (evt.IsSaveGame) {
       ::PerLevelHandler.Get().OnLoadGame();
     } else {
