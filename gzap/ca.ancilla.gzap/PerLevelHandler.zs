@@ -228,10 +228,9 @@ class ::PerLevelHandler : EventHandler {
   // In the former case, we give them credit for clearing the level.
 
   override void WorldUnloaded(WorldEvent evt) {
-    DEBUG("PLH WorldUnloaded");
+    DEBUG("PLH WorldUnloaded: save=%d warp=%d lnum=%d", evt.isSaveGame, self.early_exit, level.LevelNum);
     if (evt.isSaveGame) return;
     if (self.early_exit) return;
-    if (level.LevelNum == 0) return;
     if (!apstate.GetRegion(level.MapName)) return;
 
     ::PlayEventHandler.Get().CheckLocation(
