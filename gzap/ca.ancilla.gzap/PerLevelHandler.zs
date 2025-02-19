@@ -57,10 +57,6 @@ class ::PerLevelHandler : EventHandler {
   // For loading save games, WorldThingSpawned doesn't get called, so we just
   // call CleanupReopenedLevel() to deal with checks that were collected after
   // the game was saved and need to remain collected even across loads.
-  // For new level entries, we use an AlarmClock to give ourselves a brief period
-  // after level loading in which we track spawning actors and try to match them
-  // up to locations, so that we can deal with stuff that doesn't exist on level
-  // load and is swapped in a few tics later (e.g. Spawner trickery by mods).
 
   override void WorldLoaded(WorldEvent evt) {
     DEBUG("PLH WorldLoaded");
@@ -85,6 +81,8 @@ class ::PerLevelHandler : EventHandler {
       DEBUG("Enqueing location: %s", location.name);
       pending_locations.Insert(location.apid, location);
     }
+    // Set the timer for how long we'll watch for new things spawning in (from
+    // Spawners, scripts, etc) and try to match them to checks.
     alarm = 10;
 
     early_exit = false;
@@ -149,6 +147,9 @@ class ::PerLevelHandler : EventHandler {
 
     if (!thing) return;
     if (thing.bNOBLOCKMAP || thing.bNOSECTOR || thing.bNOINTERACTION || thing.bISMONSTER) return;
+    // It is possible that some mods might replace inventory items with things that
+    // have custom on-touch behaviour and aren't technically Inventory, or something.
+    // For now, though, this works with vanilla and every mod I've tested.
     if (!(thing is "Inventory")) return;
 
     if (thing is "::CheckPickup") {
