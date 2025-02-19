@@ -83,7 +83,7 @@ class ExcludedLevels(OptionSet):
 
     This takes precedence over included_levels, if a map appears in both.
     """
-    display_name = "Included Levels"
+    display_name = "Excluded Levels"
     default = ['TITLEMAP']
 
 # TODO: this isn't useful until we have multi-difficulty logic files, or a way
