@@ -14,13 +14,11 @@ class ::LevelSelector : ::KeyValueNetevent {
       FormatLevelKey(info, region),
       FormatLevelValue(info, region),
       "ap-level-select", idx);
+    SetColours();
     return self;
   }
 
-  override void Ticker() {
-    // I can see that FormatLevelKey is returning the right colour, it's just
-    // not updating the display.
-    // self.key = FormatLevelKey(info, region);
+  void SetColours() {
     if (region.cleared) {
       self.idle_colour = Font.CR_GOLD;
       self.hot_colour = Font.CR_WHITE;
@@ -31,6 +29,10 @@ class ::LevelSelector : ::KeyValueNetevent {
       self.idle_colour = Font.CR_BLACK;
       self.hot_colour = Font.CR_BLACK;
     }
+  }
+
+  override void Ticker() {
+    SetColours();
     let value = FormatLevelValue(info, region);
     if (value != self.value) {
       self.value = value;
