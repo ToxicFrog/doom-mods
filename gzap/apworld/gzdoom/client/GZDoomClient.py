@@ -23,10 +23,9 @@ class GZDoomContext(CommonContext):
         self.found_gzdoom = asyncio.Event()
         super().__init__(server_address, password)
         self.ipc = IPC(self, ipc_dir)
-        self.log_path = os.path.join(ipc_dir, "gzdoom.log")
 
     async def start_tasks(self) -> None:
-        self.ipc.start_log_reader(self.log_path)
+        self.ipc.start_log_reader()
         self.items_task = asyncio.create_task(self._item_loop())
         self.locations_task = asyncio.create_task(self._location_loop())
 
@@ -112,7 +111,7 @@ class GZDoomContext(CommonContext):
             await self.watcher_event.wait()
             self.watcher_event.clear()
             new_locations = self.checked_locations - self.last_locations
-            print("Location loop running", new_locations, self.checked_locations)
+            # print("Location loop running", new_locations, self.checked_locations)
             for id in new_locations:
                 self.ipc.send_checked(id)
             self.last_locations = self.checked_locations
@@ -135,9 +134,6 @@ def main(*args):
     ipc_log = os.path.join(ipc_dir, 'gzdoom.log')
     with open(ipc_log, "a"):
         pass
-
-    # TODO: automatically create a different tuning file for each wad, and don't truncate
-    # os.truncate(os.path.join(ipc_dir, "tuning.logic"), 0)
 
     async def actual_main(args):
         ctx = GZDoomContext(args.connect, args.password, ipc_dir)

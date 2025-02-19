@@ -48,11 +48,11 @@ class IPC:
     self.ipc_dir = ipc_dir
     self.ipc_queue = []
 
-  def start_log_reader(self, log_path: str) -> None:
+  def start_log_reader(self) -> None:
     loop = asyncio.get_running_loop()
     # We never await this, since we don't care about its return value, but we do need
     # to hang on to the thread handle for it to actually run.
-    self.thread = asyncio.create_task(asyncio.to_thread(self._log_reading_thread, log_path, loop))
+    self.thread = asyncio.create_task(asyncio.to_thread(self._log_reading_thread, self.ipc_dir, loop))
     print("Log reader started. Waiting for XON from gzDoom.")
 
   # TODO: if there's an existing log file, we (re)process all events from it
@@ -60,10 +60,12 @@ class IPC:
   # like. We may in fact need a little dance on connect where we generate a
   # message ID, and until we see our first ACK >= that ID, the only message
   # we process is XON.
-  def _log_reading_thread(self, logfile: str, loop) -> None:
+  def _log_reading_thread(self, ipc_dir: str, loop) -> None:
     print("Starting gzDoom event loop.")
     try:
-      self._log_reading_loop(logfile, loop)
+      log_path = os.path.join(ipc_dir, "gzdoom.log")
+      tune_path = os.path.join(ipc_dir, "gzdoom.tuning")
+      self._log_reading_loop(log_path, tune_path, loop)
     except Exception as e:
       # HACK HACK HACK
       # Without this it just stays running in the background forever and I don't
@@ -72,10 +74,10 @@ class IPC:
       print(e)
       sys.exit(1)
 
-  def _log_reading_loop(self, logfile: str, loop):
-    with open(logfile, "r") as fd:
+  def _log_reading_loop(self, log_path: str, tune_path: str, loop):
+    with open(log_path, "r") as log, open(tune_path, "a") as tune:
        while True:
-          line = self._blocking_readline(fd).strip()
+          line = self._blocking_readline(log).strip()
           if line is None:
              # should_exit set, wind down the thread
              return
@@ -91,6 +93,13 @@ class IPC:
             payload = json.loads(payload)
           else:
             continue
+
+          # TODO: ideally we'd bake the WAD name into the generated mod and send
+          # it in XON, so that we can choose an appropriate tuning file and write
+          # different wads to different files. This at least keeps me from accidentally
+          # overwriting my tuning sessions, though.
+          if evt == "AP-CHECK":
+            tune.write(line+"\n")
 
           future = asyncio.run_coroutine_threadsafe(self._dispatch(evt, payload), loop)
           future.result()
@@ -122,7 +131,6 @@ class IPC:
     elif evt == "AP-ACK":
         await self.recv_ack(**payload)
     elif evt == "AP-CHECK":
-        # TODO: write to tuning file
         await self.recv_check(payload["id"])
     elif evt == "AP-CHAT":
         await self.recv_chat(payload["msg"])
