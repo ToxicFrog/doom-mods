@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+
+set -e
+
+make
+archipelago Generate </dev/null
+cp /home/bex/Archipelago/output/$(command ls --sort=time /home/bex/Archipelago/output/ | head -n1) testdata/ap_latest.zip
+(cd testdata && rm -f latest.pk3 && unzip ap_latest.zip '*.pk3' && mv AP_*.pk3 latest.pk3)

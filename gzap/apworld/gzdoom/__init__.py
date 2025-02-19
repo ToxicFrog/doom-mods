@@ -1,10 +1,10 @@
-import importlib.resources as resources
+import jinja2
 import logging
 import os
 import random
 from typing import Dict
+import zipfile
 
-import jinja2
 from BaseClasses import CollectionState, Item, ItemClassification, Location, MultiWorld, Region, Tutorial
 from worlds.AutoWorld import WebWorld, World
 import worlds.LauncherComponents as LauncherComponents
@@ -244,12 +244,9 @@ class GZDoomWorld(World):
             loader=jinja2.PackageLoader(__package__),
             trim_blocks=True,
             lstrip_blocks=True)
-        with open(os.path.join(path, "zscript.txt"), "w") as lump:
-            template = env.get_template("zscript.jinja")
-            lump.write(template.render(**data))
-            # print(template.render(**data))
 
-        with open(os.path.join(path, "MAPINFO"), "w") as lump:
-            template = env.get_template("mapinfo.jinja")
-            lump.write(template.render(**data))
-            # print(template.render(**data))
+        pk3_path = os.path.join(path, f"{self.multiworld.get_out_file_name_base(self.player)}.pk3")
+
+        with zipfile.ZipFile(pk3_path, mode="w", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as zip:
+            zip.writestr("ZSCRIPT", env.get_template("zscript.jinja").render(**data))
+            zip.writestr("MAPINFO", env.get_template("mapinfo.jinja").render(**data))

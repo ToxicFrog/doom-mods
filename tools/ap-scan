@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+set -e
+
+SKILL="${SKILL:-2}"  # HNTR
+IWAD="${IWAD:-doom2.wad}"
+
+name="$1"; shift
+
+make
+gzdoom \
+  -iwad /ancilla/installs/games/PC/DOOM/IWAD/${IWAD} \
+  -file release/GZAP-latest.pk3 \
+  "$@" \
+  -warp 1 \
+  -skill $SKILL \
+  +"logfile \"gzap/apworld/gzdoom/logic/${name}\"; wait 1; noclip; netevent ap-scan"

@@ -10,18 +10,28 @@ min_lives_per_level doesn't work if you don't get any bonus lives at all, due to
 
 ## gzArchipelago
 
-- automatically save tuning logs in client
-- support for more flags in MAPINFO generator
-- generate correct zip output
+### client
+
+- don't reprocess old events except XON
+  this has complications! if the client restarts while the game is still running,
+  we *want* to reprocess old events so we don't miss CHECKs! let's leave this
+  for now.
+
+### generator
+
+- "require % previous levels beaten" to consider later levels in logic
+
+### scanner
+
 - multi-difficulty scan
 - scanner UI
-  - can we call `logfile from zscript?
-  - it's UNSAFE_CCMD so probably not
 - map exclusion UI
 - "mark unreachable" command
 - non-rando tuning mode
+
+### gameplay
+
 - check visibility settings
-- "require % previous levels beaten" to consider later levels in logic
 
 ## Indes
 
