@@ -56,25 +56,31 @@ class DoomMap:
     gunset: Set[str] = field(default_factory=set)
     # All locations contained in this map
     locations: List[DoomLocation] = field(default_factory=list)
+    # "Clear Token" names for all maps preceding this one in the scanned level
+    # order
+    prior_clears: Set[str] = field(default_factory=set)
 
     def __post_init__(self, info):
         self.mapinfo = MAPINFO(**info)
 
-    def access_rule(self, player, require_weapons = True):
+    def access_rule(self, player, need_priors = 0.0, require_weapons = True):
         def rule(state):
             if not state.has(self.access_token_name(), player):
                 return False
 
-            if not require_weapons:
-                return True
-
             # We need at least half of the non-secret guns in the level,
             # rounded down, to give the player a fighting chance.
             player_guns = { gun for gun in self.gunset if state.has(gun, player) }
-            if len(player_guns) < len(self.gunset)//2:
+            if require_weapons and len(player_guns) < len(self.gunset)//2:
                 return False
 
-            return True
+            # We also need to have cleared at least need_priors proportion of
+            # preceding levels, rounded down.
+            levels_cleared = {
+                token for token in self.prior_clears
+                if state.has(token, player)
+            }
+            return len(levels_cleared) >= int(len(self.prior_clears) * need_priors)
 
         return rule
 

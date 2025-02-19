@@ -66,7 +66,8 @@ class DoomWad:
             # file for all difficulties of a given wad.
             raise DuplicateMapError(map)
 
-        self.maps[map] = DoomMap(**json)
+        prior_clears = set([map.clear_token_name() for map in self.maps.values()])
+        self.maps[map] = DoomMap(prior_clears=prior_clears, **json)
         self.register_map_tokens(self.maps[map])
 
         if self.first_map is None:

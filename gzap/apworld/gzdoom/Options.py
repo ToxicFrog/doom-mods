@@ -15,12 +15,12 @@
 #   is that keys start out unformed, and the first door you use when having an
 #   unformed key specializes it for that door. Alternately, have a menu that
 #   lets you intentionally form keys. Adds more choice about what you unlock when.
-#   DEFINITELY needs support in the generator; should look at how e.g. dungeon
-#   keys are handled in Zelda for this.
+#   From talking to people on the discord, this (a) has no particular support in
+#   AP, you need to implement it yourself and (b) is very hard to get right in
+#   ways that are both fun and reliably avoid softlocks. Probably going to avoid
+#   this for now.
 
-import typing
-
-from Options import PerGameCommonOptions, Toggle, DeathLink, StartInventoryPool, FreeText, OptionSet, NamedRange
+from Options import PerGameCommonOptions, Toggle, DeathLink, StartInventoryPool, OptionSet, NamedRange, Range
 from dataclasses import dataclass
 
 from . import model
@@ -105,6 +105,24 @@ class Skill(NamedRange):
         "nm": 4
     }
 
+class LevelOrderBias(Range):
+    """
+    How closely the randomizer tries to follow the original level order of the
+    WAD. Internally, this is the % of earlier levels you need to be able to beat
+    before it will consider later levels in logic. This is primarily useful for
+    enforcing at least a bit of difficulty progression rather than being dumped
+    straight from MAP01 to MAP30.
+
+    The default setting of 25%, for example, means it won't expect you to fight
+    the Cyberdemon in Doom 1 level 18¹ until you've cleared at least four earlier
+    levels, or the Spider Mastermind until you've cleared six.
+
+    ¹ Counting secret levels
+    """
+    display_name = "Level Order Bias"
+    range_start = 0
+    range_end = 100
+    default = 25
 
 @dataclass
 class GZDoomOptions(PerGameCommonOptions):
@@ -115,4 +133,5 @@ class GZDoomOptions(PerGameCommonOptions):
     included_levels: IncludedLevels
     excluded_levels: ExcludedLevels
     selected_wad: SelectedWad
+    level_order_bias: LevelOrderBias
     # skill: Skill
