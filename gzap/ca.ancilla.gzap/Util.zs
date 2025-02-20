@@ -17,4 +17,8 @@ class ::Util play {
 
     ::Util.printf(msg, arg1, arg2, arg3);
   }
+
+  static string bool2str(bool b) {
+    return b ? "true" : "false";
+  }
 }
