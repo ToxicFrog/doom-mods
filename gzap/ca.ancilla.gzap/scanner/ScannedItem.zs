@@ -22,10 +22,14 @@ class ::ScannedItem : ::ScannedLocation {
 
   // TODO: make "secret" field optional and emit it only on secret items
   override void Output(string mapname) {
-    ::Scanner.Output("ITEM", mapname,
-      string.format(
-        "\"category\": \"%s\", \"typename\": \"%s\", \"tag\": \"%s\", \"secret\": %s, %s",
-        category, typename, tag, ::Util.bool2str(secret), OutputPosition()));
+    string secret_str = "";
+    if (secret) {
+      secret_str = string.format("\"secret\": %s,", ::Util.bool2str(secret));
+    }
+
+    ::Scanner.Output("ITEM", mapname, string.format(
+        "\"category\": \"%s\", \"typename\": \"%s\", \"tag\": \"%s\", %s%s",
+        category, typename, tag, secret_str, OutputPosition()));
   }
 
   static bool IsSecret(Actor thing) {
