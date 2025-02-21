@@ -1,10 +1,18 @@
-// TODO: config settings for gzap.
+//// Automap/display configuration.
 
-//// Display
-// Check icons on map -- always, with automap, never
-// Hilight progression items -- on map, on map with AM, in person only, never
-// am_map_secrets - 1 hilights secrets once discovered, 2 always
-// am_showtriggerlines - 1 hilights switches, 2 also hilights doors
+// When to show checks on the map.
+// 0: never
+// 1: only once you have the level map
+// 2: always
+server int ap_show_checks_on_map = 2;
+// When to hilight progression checks with a different icon.
+// 0: never, all checks look like filler until picked up
+// 1: in person, all checks look like filler on the map
+// 2: in person, and on map if you have the level map
+// 3: always
+server int ap_show_progression = 2;
+
+
 
 //// Inventory options
 // Attempt to auto-use health, armour, ammo, etc when low?
@@ -12,3 +20,4 @@
 
 //// Death options
 // Reset level on death?
+

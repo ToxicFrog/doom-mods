@@ -15,6 +15,25 @@ Automap: \c[GOLD]yes,GZAP_MENU_TT_AM_YES,
 Missing Keys:,GZAP_MENU_TT_KEYS,Missing keys tooltip header.
 Unchecked Locations:,GZAP_MENU_TT_CHECKS,Unchecked locations tooltip header.
 Inventory,GZAP_MENU_INVENTORY_TITLE,
+gzArchipelago Options,GZAP_OPT_TITLE,
+Gameplay,GZAP_OPT_HEADER_GAMEPLAY,
+Show checks on automap,GZAP_OPT_NAME_MAP_CHECKS,
+"Select whether you want checks to show up on the automap. ""After collecting map"" will have them appear only after you collect the full map for that level. Since the map may not even be reachable until after you finish this level, it's recommended to set this to ""always"" when still learning the maps.
+
+Does not take effect until you enter a new level.",GZAP_OPT_TT_MAP_CHECKS,
+Hilight progression items,GZAP_OPT_NAME_SHOW_PROGRESSION,
+"Displays a different icon for progression items than for useful/filler/trap items.
+
+""In person only"" matches the behaviour of apdoom. ""After map"" and ""always"" can make the game much easier by letting you check from the automap whether there are any progression items left on the level (and where they are).",GZAP_OPT_TT_SHOW_PROGRESSION,
+Controls,GZAP_OPT_HEADER_CONTROLS,
+AP level select/tracker,GZAP_OPT_NAME_LEVELSELECT,
+"Opens the level select menu. This also serves as your item, key, and progress tracker.
+
+It opens automatically between levels, but since the randomizer may require you to partially complete a level, then leave it and come back later, you need to have this bound to something.",GZAP_OPT_TT_LEVELSELECT,
+AP inventory,GZAP_OPT_NAME_INVENTORY,
+"Open the Archipelago inventory menu.
+
+Most items and weapons you receive from the randomizer will be stored here rather than given to you immediately. This means that you can use radsuits, megaspheres, etc when you really need them, but also means you need to have this bound to something if you want to use them at all!",GZAP_OPT_TT_INVENTORY,
 [ap-scan] Starting scan of all levels.,GZAP_SCAN_STARTING,
 [ap-scan] No more levels to scan.,GZAP_SCAN_DONE,
 [ap-scan] Added to queue: %s,GZAP_SCAN_MAP_ENQUEUED,"Field is level lump name, e.g. MAP02."

@@ -13,6 +13,51 @@ AddListMenu "MainMenu" before "PlayerclassMenu"
   ArchipelagoItem "Archipelago", "a", "PlayerclassMenu"
 }
 
+AddOptionMenu "OptionsMenu"
+{
+  Submenu "$GZAP_OPT_TITLE", "ArchipelagoOptions"
+}
+
+OptionMenu "ArchipelagoOptions"
+{
+  class GZAP_TooltipOptionMenu
+  Title "$GZAP_OPT_TITLE"
+  DefaultSelection 4
+
+  GZAP_TooltipGeometry 0.0, 0.5, 0.25, 1.0, 0.5
+  GZAP_TooltipAppearance "", "", "tfttbg"
+
+  StaticText ""
+  StaticText "$GZAP_OPT_HEADER_GAMEPLAY", CYAN
+  Option "$GZAP_OPT_NAME_MAP_CHECKS", "ap_show_checks_on_map", "ApChecksOnMapMode"
+  GZAP_Tooltip "$GZAP_OPT_TT_MAP_CHECKS"
+
+  Option "$GZAP_OPT_NAME_SHOW_PROGRESSION", "ap_show_progression", "ApShowProgressionMode"
+  GZAP_Tooltip "$GZAP_OPT_TT_SHOW_PROGRESSION"
+
+
+  StaticText ""
+  StaticText "$GZAP_OPT_HEADER_CONTROLS", CYAN
+
+  Control "$GZAP_OPT_NAME_LEVELSELECT", "openmenu ArchipelagoLevelSelectMenu"
+  GZAP_Tooltip "$GZAP_OPT_TT_LEVELSELECT"
+  Control "$GZAP_OPT_NAME_INVENTORY", "openmenu ArchipelagoInventoryMenu"
+  GZAP_Tooltip "$GZAP_OPT_TT_INVENTORY"
+}
+
+OptionValue "ApChecksOnMapMode" {
+  0, "$GZAP_OPT_MAP_CHECKS_0"
+  1, "$GZAP_OPT_MAP_CHECKS_1"
+  2, "$GZAP_OPT_MAP_CHECKS_2"
+}
+
+OptionValue "ApShowProgressionMode" {
+  0, "$GZAP_OPT_SHOW_PROGRESSION_0"
+  1, "$GZAP_OPT_SHOW_PROGRESSION_1"
+  2, "$GZAP_OPT_SHOW_PROGRESSION_2"
+  3, "$GZAP_OPT_SHOW_PROGRESSION_3"
+}
+
 /*
 TODO: Menu rework
 

@@ -1,6 +1,6 @@
 NAME=GZAP
 VERSION=0.0.0
-LUMPS=MAPINFO MENUDEF zscript.txt *.md LANGUAGE.csv
+LUMPS=MAPINFO MENUDEF zscript.txt *.md LANGUAGE.csv CVARINFO
 LUMPS+=sprites textures maps
 ZSDIR=ca.ancilla.gzap
 LIBTTM=${TOPDIR}/libtooltipmenu/ca.ancilla.libtooltipmenu
