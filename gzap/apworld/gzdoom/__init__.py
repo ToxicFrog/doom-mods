@@ -81,6 +81,12 @@ class GZDoomWorld(World):
     wad_logic: DoomWad
     location_count: int = 0
 
+    # How many of each item we have left; stored outside the item so that we
+    # don't have to mutate the DoomItem to keep track of it, which would have
+    # bad side effects if multipler players are using this apworld in the same
+    # generation pass.
+    item_counts: Dict[str, int]
+
     # Used by the caller
     item_name_to_id: Dict[str, int] = model.unified_item_map()
     location_name_to_id: Dict[str, int] = model.unified_location_map()
@@ -102,6 +108,11 @@ class GZDoomWorld(World):
         print(f"Permitted WADs: {wadlist}")
         self.wad_logic = model.get_wad(random.choice(wadlist))
         print(f"Selected WAD: {self.wad_logic.name}")
+        print(f"Selected skill: {self.options.skill.value}")
+        self.item_counts = {
+            item.name(): item.count[self.options.skill.value]
+            for item in self.wad_logic.items(self.options.skill.value)
+        }
 
     def create_regions(self) -> None:
         menu_region = Region("Menu", self.player, self.multiworld)
@@ -117,13 +128,13 @@ class GZDoomWorld(World):
             if self.options.start_with_all_maps:
                 item = self.wad_logic.item(map.automap_name())
                 self.multiworld.push_precollected(GZDoomItem(item, self.player))
-                item.count -= 1
+                self.item_counts[item.name()] -= 1
 
             if map.map in self.options.starting_levels:
                 for name in map.starting_items():
                     item = self.wad_logic.item(name)
                     self.multiworld.push_precollected(GZDoomItem(item, self.player))
-                    item.count -= 1
+                    self.item_counts[item.name()] -= 1
 
             region = Region(map.map, self.player, self.multiworld)
             self.multiworld.regions.append(region)
@@ -134,7 +145,7 @@ class GZDoomWorld(World):
                     self.player,
                     need_priors=self.options.level_order_bias.value / 100,
                     require_weapons=(map.map not in self.options.starting_levels)))
-            for loc in map.locations:
+            for loc in map.all_locations(self.options.skill.value):
                 # print("  Location:", loc.name(), loc)
                 assert loc.name() not in placed
                 placed.add(loc.name())
@@ -142,21 +153,22 @@ class GZDoomWorld(World):
                 region.locations.append(location)
                 if loc.item:
                     location.place_locked_item(GZDoomItem(loc.item, self.player))
-                    loc.item.count -= 1
+                    self.item_counts[loc.item.name()] -= 1
                 else:
                     self.location_count += 1
 
 
     def create_items(self) -> None:
         slots_left = self.location_count
-        main_items = self.wad_logic.progression_items() + self.wad_logic.useful_items()
-        filler_items = self.wad_logic.filler_items()
+        main_items = (self.wad_logic.progression_items(self.options.skill.value)
+                      + self.wad_logic.useful_items(self.options.skill.value))
+        filler_items = self.wad_logic.filler_items(self.options.skill.value)
 
         for item in main_items:
             if item.map and not self.should_include_map(item.map):
                 continue
             # print("  Item:", item, item.count)
-            for _ in range(max(item.count, 0)):
+            for _ in range(max(self.item_counts[item.name()], 0)):
                 self.multiworld.itempool.append(GZDoomItem(item, self.player))
                 slots_left -= 1
 
@@ -164,11 +176,11 @@ class GZDoomWorld(World):
         # based on the difference.
         filler_count = 0
         for item in filler_items:
-            filler_count += item.count
+            filler_count += self.item_counts[item.name()]
         scale = slots_left/filler_count
 
         for item in filler_items:
-            for _ in range(round(item.count * scale)):
+            for _ in range(round(self.item_counts[item.name()] * scale)):
                 if slots_left <= 0:
                     break
                 self.multiworld.itempool.append(GZDoomItem(item, self.player))
@@ -204,6 +216,7 @@ class GZDoomWorld(World):
         def progression(id: int) -> bool:
             # get location from ID
             name = self.location_id_to_name[id]
+            # print("is_progression?", id, name)
             loc = self.multiworld.get_location(name, self.player)
             if loc.item and (loc.item.classification & ItemClassification.progression != 0):
                 return "true"
@@ -223,13 +236,13 @@ class GZDoomWorld(World):
             "singleplayer": self.multiworld.players == 1,
             "seed": self.multiworld.seed_name,
             "player": self.multiworld.player_name[self.player],
-            "skill": self.wad_logic.skill,
+            "skill": self.options.skill.value,
             "maps": [
                 map for map in self.wad_logic.maps.values()
                 if self.should_include_map(map.map)
             ],
             "items": [
-              item for item in self.wad_logic.items()
+              item for item in self.wad_logic.items(self.options.skill.value)
             ],
             "starting_items": [
               item.code for item in self.multiworld.precollected_items[self.player]
@@ -240,7 +253,7 @@ class GZDoomWorld(World):
                 if loc.item
             },
             "progression": progression,
-            "id": id
+            "id": id,
         }
 
         env = jinja2.Environment(

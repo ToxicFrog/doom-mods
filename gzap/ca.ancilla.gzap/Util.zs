@@ -21,4 +21,8 @@ class ::Util play {
   static string bool2str(bool b) {
     return b ? "true" : "false";
   }
+
+  static int GetSkill() {
+    return G_SkillPropertyInt(SKILLP_ACSReturn);
+  }
 }

@@ -134,4 +134,4 @@ class GZDoomOptions(PerGameCommonOptions):
     excluded_levels: ExcludedLevels
     selected_wad: SelectedWad
     level_order_bias: LevelOrderBias
-    # skill: Skill
+    skill: Skill

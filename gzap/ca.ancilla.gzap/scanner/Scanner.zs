@@ -53,7 +53,7 @@ class ::Scanner play {
       }
       // Otherwise, we need to change to it and let the ScanEventHandler kick off
       // the scan.
-      level.ChangeLevel(nextmap.name, 0, CHANGELEVEL_NOINTERMISSION);
+      level.ChangeLevel(nextmap.name, 0, CHANGELEVEL_NOINTERMISSION, nextmap.NextSkill());
       return true;
     }
     // Queue is empty! We're done scanning for now.

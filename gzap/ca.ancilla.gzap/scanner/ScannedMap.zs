@@ -10,6 +10,11 @@ class ::ScannedMap play {
   string name;
   LevelInfo info;
   Array<::ScannedLocation> locations;
+  // Highest skill we've completed a scan on.
+  // We don't track 0 (ITYTD) or 4 (NM) because they have the same actor placement
+  // as 1 and 3, so 0 means we have scanned nothing and 3 means we've scanned
+  // all the skill levels we care about.
+  int max_skill;
   bool done;
 
   static ::ScannedMap Create(string mapname) {
@@ -17,30 +22,49 @@ class ::ScannedMap play {
     sm.name = mapname;
     sm.info = LevelInfo.FindLevelInfo(mapname);
     sm.done = false;
+    sm.max_skill = 0;
     return sm;
   }
 
   void Output() {
     ::Scanner.Output("MAP", name, string.format("\"info\": %s", GetMapinfoJSON()));
     foreach (loc : locations) {
-      loc.Output(name); // FIXME need to thread the map through to the location!
+      loc.Output(name);
     }
   }
 
   void MarkDone() {
-    self.done = true;
+    self.max_skill = ::Util.GetSkill();
   }
 
   bool IsScanned() {
-    return self.done;
+    return self.max_skill == 3;
   }
 
   bool IsCurrentLevel() {
-    return name == level.mapname.MakeUpper();
+    return name == level.mapname.MakeUpper() && self.max_skill+1 == ::Util.GetSkill();
   }
 
-  void AddLocation(::ScannedLocation loc) {
-    locations.Push(loc);
+  int NextSkill() {
+    return self.max_skill+1;
+  }
+
+  // Add a location to the map associated with the current difficulty.
+  // If the same location was already recorded on a different difficulty, this
+  // just adds the current difficulty to it.
+  void AddLocation(::ScannedLocation newloc) {
+    // See if there's an existing location we should merge this one with.
+    // A location qualifies for merge if it has the same position and typename,
+    // but does not have the current difficulty bit set.
+    foreach (loc : locations) {
+      if (loc.pos != newloc.pos) continue;
+      if (loc.typename != newloc.typename) continue;
+      if (loc.HasSkill(::Util.GetSkill())) continue;
+      loc.AddSkill(::Util.GetSkill());
+      return;
+    }
+    newloc.AddSkill(::Util.GetSkill());
+    locations.Push(newloc);
   }
 
   string GetMapinfoJSON() {

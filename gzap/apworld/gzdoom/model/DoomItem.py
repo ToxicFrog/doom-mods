@@ -2,7 +2,7 @@
 Data model for items (or rather, item types) in Doom.
 """
 
-from typing import Optional
+from typing import Optional, Set, Dict
 from BaseClasses import ItemClassification
 
 
@@ -24,18 +24,18 @@ class DoomItem:
     relationship.
     """
     id: Optional[int] = None        # AP item ID, assigned by the caller
-    category: str  # Randomization category (e.g. key, weapon)
-    typename: str  # gzDoom class name
-    tag: str       # User-visible name *in gzDoom*
-    count: int     # How many are in the item pool
+    category: str           # Randomization category (e.g. key, weapon)
+    typename: str           # gzDoom class name
+    tag: str                # User-visible name *in gzDoom*
+    count: Dict[int,int]    # How many are in the item pool on each skill
     map: Optional[str] = None
     disambiguate: bool = False
 
-    def __init__(self, map, category, typename, tag):
+    def __init__(self, map, category, typename, tag, skill=[]):
         self.category = category
         self.typename = typename
         self.tag = tag
-        self.count = 1
+        self.count = { sk: 1 for sk in skill }
         # TODO: caller should specify this
         if category == "key" or category == "map" or category == "token":
             self.map = map
@@ -50,6 +50,14 @@ class DoomItem:
 
     def __eq__(self, other) -> bool:
         return self.tag == other.tag and self.map == other.map
+
+    def update_skill_from(self, other) -> None:
+        for sk,count in other.count.items():
+            self.count[sk] = self.count.get(sk, 0) + count
+
+    def set_max_count(self, count: int):
+        for sk,n in self.count.items():
+            self.count[sk] = min(n, count)
 
     def name(self) -> str:
         """Returns the user-facing Archipelago name for this item."""

@@ -63,6 +63,10 @@ class DoomMap:
     def __post_init__(self, info):
         self.mapinfo = MAPINFO(**info)
 
+    def all_locations(self, skill: int) -> List[DoomLocation]:
+        skill = min(3, max(1, skill)) # clamp ITYTD->HNTR and N!->UV
+        return [loc for loc in self.locations if skill in loc.skill]
+
     def access_rule(self, player, need_priors = 0.0, require_weapons = True):
         def rule(state):
             if not state.has(self.access_token_name(), player):

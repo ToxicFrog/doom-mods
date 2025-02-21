@@ -6,7 +6,6 @@
 
 class ::ScannedItem : ::ScannedLocation {
   string category;
-  string typename;
   string tag;
   bool secret;
 
@@ -28,8 +27,8 @@ class ::ScannedItem : ::ScannedLocation {
     }
 
     ::Scanner.Output("ITEM", mapname, string.format(
-        "\"category\": \"%s\", \"typename\": \"%s\", \"tag\": \"%s\", %s%s",
-        category, typename, tag, secret_str, OutputPosition()));
+        "\"category\": \"%s\", \"typename\": \"%s\", \"tag\": \"%s\", %s%s%s",
+        category, typename, tag, secret_str, OutputSkill(), OutputPosition()));
   }
 
   static bool IsSecret(Actor thing) {

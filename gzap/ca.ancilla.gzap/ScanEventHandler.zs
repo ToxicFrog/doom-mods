@@ -31,14 +31,14 @@ class ::ScanEventHandler : StaticEventHandler {
       }
       self.scan_enabled = scanner.ScanLevel(true);
       if (!self.scan_enabled) {
-        ::IPC.Send("SCAN-DONE", string.format("{ \"skill\": %d }", G_SkillPropertyInt(SKILLP_ACSReturn)));
+        ::IPC.Send("SCAN-DONE", "{}"); // TODO: include information about WAD name etc
         ::Util.printf("$GZAP_SCAN_DONE");
       }
     } else if (evt.name == "ap-next") {
       // not currently used
       self.scan_enabled = scanner.ScanNext();
       if (!self.scan_enabled) {
-        ::IPC.Send("SCAN-DONE", string.format("{ \"skill\": %d }", G_SkillPropertyInt(SKILLP_ACSReturn)));
+        ::IPC.Send("SCAN-DONE", "{}"); // TODO: include information about WAD name etc
         ::Util.printf("$GZAP_SCAN_DONE");
       }
     }

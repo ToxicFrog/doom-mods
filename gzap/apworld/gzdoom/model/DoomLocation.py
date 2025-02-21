@@ -49,6 +49,7 @@ class DoomLocation:
     parent = None
     orig_item = None
     disambiguate: bool = False
+    skill: Set[int]
 
     def __init__(self, parent, map: str, item: DoomItem, json: str | None):
         self.category = item.category
@@ -56,6 +57,7 @@ class DoomLocation:
         self.parent = parent
         self.orig_item = item
         self.item_name = item.tag
+        self.skill = set()
         if json:
             self.pos = DoomPosition(map=map, virtual=False, **json)
         else:

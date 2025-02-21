@@ -81,16 +81,23 @@ def get_wad(name: str) -> DoomWad:
     assert _init_done
     return _DOOM_LOGIC.wads[name]
 
-def wadstats(wad: DoomWad) -> str:
-    progression = len(wad.progression_items())
-    useful = len(wad.useful_items())
-    filler = len(wad.filler_items())
-    return (
-        f"{len(wad.all_maps())} maps, "
-        f"{len(wad.locations())} locations, "
-        f"{progression + useful + filler} items "
-        f"(P:{progression} + U:{useful} + F:{filler})"
-    )
+def count_items(sk, items) -> int:
+    n = 0
+    for item in items:
+        n = n + item.count.get(sk, 0)
+    return n
+
+def print_wad_stats(name: str, wad: DoomWad) -> None:
+    print("%32s: %d maps" % (name, len(wad.all_maps())))
+    for sknum, skname in [(1, "HNTR"), (2, "HMP"), (3, "UV")]:
+      num_p = count_items(sknum, wad.progression_items(sknum))
+      num_u = count_items(sknum, wad.useful_items(sknum))
+      num_f = count_items(sknum, wad.filler_items(sknum))
+      print("%32s  %4d locs, %4d items (P:%-4d + U:%-4d + F:%-4d)" % (
+          skname, len(wad.locations(sknum)),
+          num_p + num_u + num_f, num_p, num_u, num_f
+      ))
+
 
 def init_wads(package):
   global _init_done
@@ -106,7 +113,7 @@ def init_wads(package):
   for logic_file in sorted(resources.files(package).joinpath("logic").iterdir(), key=lambda p: p.name):
       with add_wad(logic_file.name) as wadloader:
           wadloader.load_logic(logic_file.read_text())
-          print(f"  {wadloader.name}: {wadstats(wadloader.wad)}")
+          print_wad_stats(wadloader.name, wadloader.wad)
 
   # Debug/test mode: load the specifed file after the builtins.
   # Might overwrite a builtin if it has the same name -- should we permit

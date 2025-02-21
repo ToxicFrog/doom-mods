@@ -44,7 +44,7 @@ class DoomLogic:
 
     def register_item(self, item: DoomItem) -> int:
         """
-        Register and item and return its assigned ID.
+        Register an item and return its assigned ID.
 
         If there's an existing item with that name, returns the already-allocated
         ID. If not, allocates and returns a new one.
