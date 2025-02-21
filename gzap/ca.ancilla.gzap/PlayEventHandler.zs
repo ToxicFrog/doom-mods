@@ -42,6 +42,10 @@ class ::PlayEventHandler : StaticEventHandler {
     self.singleplayer = singleplayer;
   }
 
+  bool IsRandomized() {
+    return self.slot_name != "";
+  }
+
   bool IsSingleplayer() const {
     return self.singleplayer;
   }
