@@ -38,6 +38,15 @@ OptionMenu "ArchipelagoOptions"
   GZAP_Tooltip "$GZAP_OPT_TT_LEVELSELECT"
   Control "$GZAP_OPT_NAME_INVENTORY", "openmenu ArchipelagoInventoryMenu"
   GZAP_Tooltip "$GZAP_OPT_TT_INVENTORY"
+
+  StaticText ""
+  StaticText "$GZAP_OPT_HEADER_WAD_SCANNER", CYAN
+  TextField "$GZAP_OPT_NAME_SCAN_LEVELS", "ap_scan_levels"
+  GZAP_Tooltip "$GZAP_OPT_TT_SCAN_LEVELS"
+  Option "$GZAP_OPT_NAME_SCAN_RECURSE", "ap_scan_recurse", "OnOff"
+  GZAP_Tooltip "$GZAP_OPT_TT_SCAN_RECURSE"
+  Command "$GZAP_OPT_NAME_SCAN_BEGIN", "closemenu; map GZAPHUB; wait 1; netevent ap-scan:start"
+  GZAP_Tooltip "$GZAP_OPT_TT_SCAN_BEGIN"
 }
 
 OptionValue "ApChecksOnMapMode" {

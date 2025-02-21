@@ -34,10 +34,33 @@ AP inventory,GZAP_OPT_NAME_INVENTORY,
 "Open the Archipelago inventory menu.
 
 Most items and weapons you receive from the randomizer will be stored here rather than given to you immediately. This means that you can use radsuits, megaspheres, etc when you really need them, but also means you need to have this bound to something if you want to use them at all!",GZAP_OPT_TT_INVENTORY,
+WAD Import Scanner,GZAP_OPT_HEADER_WAD_SCANNER,
+Initial levels to scan,GZAP_OPT_NAME_SCAN_LEVELS,
+"Levels to scan, space-separated (e.g. ""E1M1 E2M1 E3M1"").
+
+For most Doom 2 style wads, you can just set this to MAP01 and make sure recursion is on and it will scan the entire WAD. For games separated into episodes, like Doom 1 or Heretic, you probably need to list every episode start here. For games that use map teleport specials rather than MAPINFO, like Faithless, you'll need to list all the maps you want to scan here.",GZAP_OPT_TT_SCAN_LEVELS,
+Recursive scanning,GZAP_OPT_NAME_SCAN_RECURSE,
+"If on, after scanning a level, it will also scan the NextMap/NextSecretMap listed for that level in MAPINFO.
+
+In most wads, you can use this to scan entire episodes or the entire wad at a time. In some cases it may end up scanning levels it shouldn't, e.g. if a level has a NextSecretMap but no actual exit to the secret level, it will scan the secret level anyways. But usually you want to try with this on first.",GZAP_OPT_TT_SCAN_RECURSE,
+Begin scanning,GZAP_OPT_NAME_SCAN_BEGIN,
+"This will begin a scan of the WAD. It will automatically skip through levels until it has no more to scan. You will be responsible for exiting out of cutscenes, if any.
+
+Before you do this, \c[RED]you must ensure gzdoom is saving a log file\c- or the results of the scan will be discarded. This is not something I can do automatically; you need to either use the +logfile command line option, or the 'logfile' console command.
+
+Once the scan is complete, the results will be in the log file, which can be used as-is as a randomizer logic file.",GZAP_OPT_TT_SCAN_BEGIN,
+Never,GZAP_OPT_MAP_CHECKS_0,
+After collecting map,GZAP_OPT_MAP_CHECKS_1,
+Always,GZAP_OPT_MAP_CHECKS_2,
+Never,GZAP_OPT_SHOW_PROGRESSION_0,
+In person only,GZAP_OPT_SHOW_PROGRESSION_1,
+In person + after collecting map,GZAP_OPT_SHOW_PROGRESSION_2,
+Always,GZAP_OPT_SHOW_PROGRESSION_3,
 [ap-scan] Starting scan of all levels.,GZAP_SCAN_STARTING,
+[ap-scan] No levels to scan. Set the ap_scan_levels cvar before starting.,GZAP_SCAN_EMPTY,
 [ap-scan] No more levels to scan.,GZAP_SCAN_DONE,
 [ap-scan] Added to queue: %s,GZAP_SCAN_MAP_ENQUEUED,"Field is level lump name, e.g. MAP02."
-[ap-scan] Scanning: %s,GZAP_SCAN_MAP_STARTED,
+[ap-scan] Scanning: %s @ %s,GZAP_SCAN_MAP_STARTED,Fields are lump name + skill name
 [ap-scan] Done scanning: %s,GZAP_SCAN_MAP_DONE,
 Error placing check for '%s'. Giving it to the player directly.,GZAP_MISSING_LOCATION,Displayed when it can't find the actor that a check is meant to replace.
 Received access codes for %s (%s),GZAP_GOT_ACCESS,Displayed when you receive access to a new level. Fields are level title + lump name.

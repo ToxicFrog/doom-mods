@@ -4,6 +4,7 @@ set -e
 
 SKILL="${SKILL:-2}"  # HNTR
 IWAD="${IWAD:-doom2.wad}"
+MAPS="${MAPS:-MAP01}"
 
 name="$1"; shift
 
@@ -14,4 +15,7 @@ gzdoom \
   "$@" \
   -warp 1 \
   -skill $SKILL \
-  +"logfile \"gzap/apworld/gzdoom/logic/${name}\"; wait 1; noclip; netevent ap-scan"
+  +"logfile \"gzap/apworld/gzdoom/logic/${name}.tmp\"; disableautosave 1; wipetype 0; wait 1; noclip; ap_scan_levels \"${MAPS}\"; netevent ap-scan:start"
+
+sed -E -i -n '/^AP-/ p;' "gzap/apworld/gzdoom/logic/${name}.tmp"
+mv "gzap/apworld/gzdoom/logic/${name}.tmp" "gzap/apworld/gzdoom/logic/${name}"

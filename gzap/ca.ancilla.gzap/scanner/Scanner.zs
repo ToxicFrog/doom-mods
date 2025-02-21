@@ -15,6 +15,10 @@ class ::Scanner play {
     ::IPC.Send(type, string.format("{ \"map\": \"%s\", %s }", map, payload));
   }
 
+  int QueueSize() {
+    return self.queued.Size();
+  }
+
   void EnqueueCurrent() {
     EnqueueLevel(level.MapName.MakeUpper());
   }
@@ -48,6 +52,7 @@ class ::Scanner play {
       if (nextmap.IsScanned()) {
         scanned.Push(nextmap);
         queued.Delete(0);
+        ::Util.printf("$GZAP_SCAN_MAP_DONE", level.MapName);
         nextmap.Output();
         continue;
       }
@@ -70,29 +75,25 @@ class ::Scanner play {
 
     let nextmap = queued[0];
     if (nextmap.IsScanned() || !nextmap.IsCurrentLevel()) {
-      // EventHandler.SendNetworkEvent("ap-next", 0, 0, 0);
-      // TODO: can we get away with this, or do we need to send the netevent?
       return ScanNext();
     }
 
-    ::Util.printf("$GZAP_SCAN_MAP_STARTED", level.MapName);
-
-    // ThinkerIterator it = ThinkerIterator.Create("Actor", Thinker.STAT_DEFAULT);
-    // Actor thing;
+    ::Util.printf("$GZAP_SCAN_MAP_STARTED", level.MapName, ::Util.GetSkillName());
 
     foreach (Actor thing : ThinkerIterator.Create("Actor", Thinker.STAT_DEFAULT)) {
       if (thing.bISMONSTER && !thing.bCORPSE) {
-        // nextmap.AddLocation(::ScannedMonster.Create(thing));
         // Not currently implemented
+        // nextmap.AddLocation(::ScannedMonster.Create(thing));
       } else if (::ScannedItem.ItemCategory(thing) != "") {
         nextmap.AddLocation(::ScannedItem.Create(thing));
       }
     }
 
     nextmap.MarkDone();
-    EnqueueLevel(level.NextMap);
-    EnqueueLevel(level.NextSecretMap);
-    ::Util.printf("$GZAP_SCAN_MAP_DONE", level.MapName);
+    if (recurse) {
+      EnqueueLevel(level.NextMap);
+      EnqueueLevel(level.NextSecretMap);
+    }
     return ScanNext();
   }
 }

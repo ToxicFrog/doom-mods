@@ -12,6 +12,35 @@ server int ap_show_checks_on_map = 2;
 // 3: always
 server int ap_show_progression = 2;
 
+//// Scanner configuration.
+// These are not written to the save file or config file, since they're more
+// like commands than settings.
+// For most wads, you can just do something like:
+// ] ap_scan_levels "MAP01"
+// ] netevent ap-scan:start
+// and it'll scan the entire wad. If it's broken into episodes, like Doom 1, you
+// might instead need something like:
+// ] ap_scan_levels "E1M1 E2M1 E3M1 E4M1"
+// ] netevent ap-scan:start
+// If this is one of those wads where, e.g., there are five levels but they
+// continue on into the Doom 2 levels after the last one, you probably want to
+// turn off recursion:
+// ] ap_scan_recurse false
+// ] ap_scan_levels "MAP01 MAP02 MAP03 MAP04 MAP05"
+// ] netevent ap-scan:start
+
+// List of levels to scan. If ap_scan_recurse is set, these levels and all
+// levels reachable from them will be scanned. Otherwise, only these levels
+// exactly will be. Space-separated.
+nosave noarchive string ap_scan_levels = "";
+// If false, only levels listed in ap_scan_levels will be scanned. If true, any
+// level reachable by exits from those levels will be as well, recursively.
+// Caveats:
+// - level transitions using zscript or intermap teleport specials are not
+//   currently detected, only NextMap/NextSecretMap MAPINFO entries
+// - levels listed in NextSecretMap are considered reachable even if there is
+//   no secret exit in the level itself
+nosave noarchive bool ap_scan_recurse = true;
 
 
 //// Inventory options
