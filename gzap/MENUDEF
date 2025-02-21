@@ -8,11 +8,6 @@ OptionMenu "ArchipelagoInventoryMenu"
   class GZAP_InventoryMenu
 }
 
-AddListMenu "MainMenu" before "PlayerclassMenu"
-{
-  ArchipelagoItem "Archipelago", "a", "PlayerclassMenu"
-}
-
 AddOptionMenu "OptionsMenu"
 {
   Submenu "$GZAP_OPT_TITLE", "ArchipelagoOptions"
