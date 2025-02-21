@@ -22,15 +22,27 @@ mixin class ::ArchipelagoIcon {
     Progression:
       APIT B -1 BRIGHT;
       STOP;
+    Hidden:
+      TNT1 A -1;
+      STOP;
   }
 
   void SetProgressionState() {
-    if (self.progression) {
+    if (!ShouldDisplay()) {
+      SetStateLabel("Hidden");
+    } else if (self.progression && ShouldHilight()) {
       SetStateLabel("Progression");
     } else {
       SetStateLabel("NotProgression");
     }
   }
+
+  // Implementing classes should define this to control whether the icon is
+  // displayed at all.
+  // abstract bool ShouldDisplay();
+  // Implementing classes should define this to control whether progression
+  // items are displayed differently or not.
+  // abstract bool ShouldHilight() { return true; }
 }
 
 // An automap marker that follows the corresponding CheckPickup around.
@@ -39,6 +51,20 @@ class ::CheckMapMarker : MapMarker {
 
   Default {
     Scale 0.25;
+  }
+
+  bool ShouldDisplay() {
+    if (ap_show_checks_on_map <= 0) return false;
+    if (ap_show_checks_on_map >= 2) return true;
+    return ::PlayEventHandler.GetState().GetCurrentRegion().automap;
+  }
+
+  bool ShouldHilight() {
+    if (ap_show_progression <= 1) return false; // "never" or "only in person"
+    if (ap_show_progression == 2) {
+      return ::PlayEventHandler.GetState().GetCurrentRegion().automap;
+    }
+    return true;
   }
 }
 
@@ -65,7 +91,13 @@ class ::CheckPickup : ScoreItem {
     thing.location = location;
     thing.progression = location.progression;
     thing.A_SetSize(original.radius, original.height);
+    // TODO: copy flags like gravity from the original?
     return thing;
+  }
+
+  bool ShouldDisplay() { return true; }
+  bool ShouldHilight() {
+    return ap_show_progression > 0;
   }
 
   override void PostBeginPlay() {
