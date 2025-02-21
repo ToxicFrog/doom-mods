@@ -63,9 +63,7 @@ class IPC:
   def _log_reading_thread(self, ipc_dir: str, loop) -> None:
     print("Starting gzDoom event loop.")
     try:
-      log_path = os.path.join(ipc_dir, "gzdoom.log")
-      tune_path = os.path.join(ipc_dir, "gzdoom.tuning")
-      self._log_reading_loop(log_path, tune_path, loop)
+      self._log_reading_loop(ipc_dir, loop)
     except Exception as e:
       # HACK HACK HACK
       # Without this it just stays running in the background forever and I don't
@@ -74,8 +72,10 @@ class IPC:
       print(e)
       sys.exit(1)
 
-  def _log_reading_loop(self, log_path: str, tune_path: str, loop):
-    with open(log_path, "r") as log, open(tune_path, "a") as tune:
+  def _log_reading_loop(self, ipc_dir: str, loop):
+    log_path = os.path.join(ipc_dir, "gzdoom.log")
+    tune = None
+    with open(log_path, "r") as log:
        while True:
           line = self._blocking_readline(log).strip()
           if line is None:
@@ -94,12 +94,12 @@ class IPC:
           else:
             continue
 
-          # TODO: ideally we'd bake the WAD name into the generated mod and send
-          # it in XON, so that we can choose an appropriate tuning file and write
-          # different wads to different files. This at least keeps me from accidentally
-          # overwriting my tuning sessions, though.
-          if evt == "AP-CHECK":
+          if evt == "AP-XON":
+            tune = open(os.path.join(ipc_dir, payload["wad"] + ".tuning"), "a")
+
+          if evt == "AP-CHECK" and tune:
             tune.write(line+"\n")
+            tune.flush()
 
           future = asyncio.run_coroutine_threadsafe(self._dispatch(evt, payload), loop)
           future.result()
@@ -143,7 +143,7 @@ class IPC:
 
   #### Handlers for events coming from gzdoom. ####
 
-  async def recv_xon(self, lump: str, size: int, nick: str, slot: str, seed: str) -> None:
+  async def recv_xon(self, lump: str, size: int, nick: str, slot: str, seed: str, wad: str) -> None:
     """
     Called when an AP-XON message is received from gzdoom.
 

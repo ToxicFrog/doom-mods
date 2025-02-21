@@ -25,9 +25,12 @@ class GZDoomContext(CommonContext):
         self.ipc = IPC(self, ipc_dir)
 
     async def start_tasks(self) -> None:
+        print("Starting log reader")
         self.ipc.start_log_reader()
+        print("Starting item/location sync")
         self.items_task = asyncio.create_task(self._item_loop())
         self.locations_task = asyncio.create_task(self._location_loop())
+        print("All tasks started.")
 
     async def send_check(self, id: int):
         await self.send_msgs([

@@ -237,6 +237,7 @@ class GZDoomWorld(World):
             "seed": self.multiworld.seed_name,
             "player": self.multiworld.player_name[self.player],
             "skill": self.options.skill.value,
+            "wad": self.wad_logic.name,
             "maps": [
                 map for map in self.wad_logic.maps.values()
                 if self.should_include_map(map.map)

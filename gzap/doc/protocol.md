@@ -103,7 +103,7 @@ These messages are emitted during gameplay. They are expected to be read in real
 time by the client, but can also be saved in a log and later appended to an existing
 logic file to improve the logic.
 
-#### `AP-XON { lump, size, nick, slot, seed }`
+#### `AP-XON { lump, size, nick, slot, seed, wad }`
 
 Tells the client that it is ready to receive messages. `lump` is the name of the
 lump it's using as the IPC connector, and `size` is the maximum message buffer
@@ -115,6 +115,9 @@ size that can be written to it.
 `slot` and `seed` are information about the generated game: the player's slot name
 and the world seed string. The client uses these when establishing the connection
 to the server.
+
+`wad` is the name of the WAD as originally provided to the apworld (not whatever
+gzDoom loaded from disk). This is used to name the generated tuning file.
 
 #### `AP-ACK { id }`
 

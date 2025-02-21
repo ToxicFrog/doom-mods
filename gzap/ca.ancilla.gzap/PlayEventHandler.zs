@@ -16,6 +16,7 @@
 class ::PlayEventHandler : StaticEventHandler {
   string slot_name; // Name of player in AP
   string seed;
+  string wadname;
   int skill;
   bool singleplayer;
   // IPC stub for communication with Archipelago.
@@ -29,13 +30,14 @@ class ::PlayEventHandler : StaticEventHandler {
   }
 
   // N.b. this uses the CVAR skill value, where 0 is ITYTD and 4 is Nightmare.
-  void RegisterGameInfo(string slot_name, string seed, int skill, bool singleplayer) {
-    console.printf("Archipelago game generated from seed %s for %s.", seed, slot_name);
+  void RegisterGameInfo(string slot_name, string seed, string wadname, int skill, bool singleplayer) {
+    console.printf("Archipelago game generated from seed %s for %s playing %s.", seed, slot_name, wadname);
     console.printf("Skill level: %d. Singleplayer: %s.", skill, singleplayer ? "yes" : "no");
     // Save this information because we need all of it later. Some is sent in
     // XON so the client can get configuration info, some is used in gameplay.
     self.slot_name = slot_name;
     self.seed = seed;
+    self.wadname = wadname;
     self.skill = skill;
     self.singleplayer = singleplayer;
   }
@@ -60,7 +62,7 @@ class ::PlayEventHandler : StaticEventHandler {
     // doesn't get called and we end up missing events.
     if (!initialized) {
       initialized = true;
-      apclient.Init(self.slot_name, self.seed);
+      apclient.Init(self.slot_name, self.seed, self.wadname);
     }
 
     if (level.LevelName == "TITLEMAP") return;

@@ -10,7 +10,7 @@ class GZAP_DataPackageEventHandler : StaticEventHandler {
     let apstate = GZAP_PlayEventHandler.GetState();
 
     console.printf("This was generated from seed %s for %s.", "{{seed}}", "{{player}}");
-    peh.RegisterGameInfo("{{player}}", "{{seed}}", {{skill}}, {{singleplayer}});
+    peh.RegisterGameInfo("{{player}}", "{{seed}}", "{{wad}}", {{skill}}, {{singleplayer}});
 
     console.printf("Registering %d maps.", {{maps|count}});
     {% for map in maps %}
