@@ -23,16 +23,16 @@ class ::Scanner play {
     EnqueueLevel(level.MapName.MakeUpper());
   }
 
-  void EnqueueLevel(string mapname) {
+  bool EnqueueLevel(string mapname) {
     string mapname = mapname.MakeUpper();
+
+    if (!LevelInfo.MapExists(mapname)) {
+      return false;
+    }
 
     if (maps_by_name.CheckKey(mapname)) {
       // Already enqueued or scanned, do nothing.
-      return;
-    }
-
-    if (!LevelInfo.MapExists(mapname)) {
-      return;
+      return false;
     }
 
     let sm = ::ScannedMap.Create(mapname);
@@ -40,6 +40,23 @@ class ::Scanner play {
     maps_by_name.Insert(mapname, sm);
     queued.Push(sm);
     ::Util.printf("$GZAP_SCAN_MAP_ENQUEUED", sm.name);
+    return true;
+  }
+
+  // Like EnqueueLevel, but places it at the head of the queue, immediately behind
+  // the current level, rather than at the end.
+  void EnqueueNext(string mapname) {
+    if (!EnqueueLevel(mapname)) return;
+    if (queued.Size() <= 2) return;
+    // Grab the new map from the end of the queue
+    let sm = queued[queued.Size()-1];
+    // Move all entries except the first down one element (overwriting the one we
+    // just grabbed)
+    for (int i = queued.Size()-1; i > 1; --i) {
+      queued[i] = queued[i-1];
+    }
+    // Schloop!
+    queued[1] = sm;
   }
 
   // Initiate a scan of the next map in the queue.
@@ -91,8 +108,8 @@ class ::Scanner play {
 
     nextmap.MarkDone();
     if (recurse) {
-      EnqueueLevel(level.NextMap);
-      EnqueueLevel(level.NextSecretMap);
+      EnqueueNext(level.NextSecretMap);
+      EnqueueNext(level.NextMap);
     }
     return ScanNext();
   }
