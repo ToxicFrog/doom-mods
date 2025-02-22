@@ -12,6 +12,15 @@ server int ap_show_checks_on_map = 2;
 // 3: always
 server int ap_show_progression = 2;
 
+//// Inventory configuration.
+// TODO: an option to immediately dispense:
+// - weapons;
+// - armour;
+// - health;
+// - ammo;
+// - powerups;
+// either unconditionally or above a certain limit.
+
 //// Scanner configuration.
 // These are not written to the save file or config file, since they're more
 // like commands than settings.
