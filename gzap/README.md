@@ -1,26 +1,27 @@
 # gzArchipelago
 
-This is a mod and set of tools implementing [Archipelago](https://archipelago.gg/)
-multiworld randomizer support for gzDoom.
+This is an implementation of
+[Archipelago Multiworld Randomizer](https://archipelago.gg/)
+support for gzDoom.
 
 Features include:
-- works with vanilla gzDoom using a mod and separate client program
-- supports single-world play without using the client
-- autoscan feature for easily importing new wads
-- autorefine feature for easily improving existing wad support
-- compatible with most cosmetic and some gameplay mods
+- uses zScript and a separate client program to work without modifying gzDoom itself
+- supports single-player, multiplayer synchronous, and multiplayer async play
+- autoscan feature for quickly importing new wads
+- autotune feature for automatically improving wad support based on play
+- broad compatibility with both cosmetic and gameplay mods
 
-Most of the documentation is split up into separate files, covering different
-topics. If you just want to play the game, you probably want the
-[setup and play documentation](./doc/gameplay.md). You might also want to look
-at the [compatibility notes](./doc/compatibility.md) if you plan to play a
-non-vanilla WAD or use gameplay mods. If you have more questions about features,
-or what the point of this project is in general, consider the [FAQ](./doc/faq.md).
+The documentation is split into multiple files.
 
-If you want to play a WAD that isn't already supported, or you want to improve
-existing support for a WAD, see [importing new WADs](./doc/new-wads.md).
+If you just want to **play a supported wad**:
+- [Setup and Play](./doc/gameplay.md)
+- [Supported WAD List](./doc/support-table.md)
 
-Finally, if you plan to look at the internals of gzArchipelago, I recommend
-consulting the [glossary](./doc/glossary.md),
-[randomizer logic description](./doc/logic.md), and
-[IPC protocol documentation](./doc/protocol.md).
+If you want to **import a new wad**, or **improve support for an existing one**:
+- [Importing and Tuning Wads](./doc/new-wads.md)
+- [General Compatibility Notes](./doc/compatibility.md)
+
+If you want to **study or modify this mod**:
+- [Glossary of Terms](./doc/glossary.md)
+- [Randomizer Logic Description](./doc/logic.md)
+- [IPC Protocol Documentation](./doc/protocol.md)

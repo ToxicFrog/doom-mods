@@ -14,6 +14,7 @@ Based only on the initial scan, the randomizer uses the following logic:
 
 - A level is in logic if:
   - You have the access code for it, **and**
+  - You have beaten (level order bias %) of the preceding levels, rounded down, **and**
   - You have at least half of the non-secret weapons, rounded down, that would
     normally be found in that level.
 - A check *within* a level is in logic if:

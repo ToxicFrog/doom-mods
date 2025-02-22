@@ -41,7 +41,7 @@ needed to (re)construct the `MAPINFO` entry. It's not documented here as I expec
 it to change rapidly in use as I encounter more edge cases; the canonical form
 of it is the [`MAPINFO` class](../apworld/gzdoom/model/DoomMap.py) in the apworld.
 
-#### `AP-ITEM { map, category, typename, tag, secret, position: { x, y, z } }`
+#### `AP-ITEM { map, category, typename, tag, secret, skill, position: { x, y, z } }`
 
 Emitted for each item the scanner finds. Note that this is *everything*; the randomizer
 makes decisions about which items to randomize and which not to.
@@ -52,6 +52,7 @@ Fields:
 - `typename`: the gzDoom class name
 - `tag`: the gzDoom human-facing name (if none, duplicates `typename`)
 - `secret`: whether the item is located in a secret sector or not
+- `skill`: a list of skill values (1-3) the item appears on; if omitted, it is available on all skills
 - `position`: the (x,y,z) position of the item
 
 `category` is an internal category used for item classification, and is finer-
@@ -74,27 +75,10 @@ full set of item categories is:
 Currently only some of these are actually used by the generator, but they are all
 emitted for potential future use.
 
-#### `AP-SCAN-DONE { skill }`
+#### `AP-SCAN-DONE {}`
 
-Emitted at the end of the scan, when all levels have been processed. `skill` is
-the numeric skill value, 0-indexed (i.e. 0 is ITYTD, 2 is HMP, and 4 is NM).
-
-<!-- TODO: support multiskill scanning, annotating each map with the current skill
-     and scanning each map once per skill level -->
-
-#### `AP-EXCLUDE-MAPS { maps: [...] }`
-
-<!-- TODO: implement map exclusion UI and map tuning UI -->
-
-Not yet implemented.
-
-Marks the given maps as excluded from randomization. This is primarily useful for
-WADs where the scanner incorrectly picks up some IWAD levels in addition to the
-PWAD levels, or where some levels are used for cutscenes or level select hubs
-rather than normal gameplay.
-
-Note that only the most recent `AP-EXCLUDE-MAPS` message has any effect, so you
-can emit `[]` to undo all exclusions.
+Emitted at the end of the scan, when all levels have been processed. Signals to
+the importer that it can do any postprocessing needed.
 
 
 ### Play/Tuning Messages

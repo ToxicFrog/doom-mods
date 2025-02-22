@@ -26,15 +26,41 @@ until you take a step.
 
 ### I can't open the level select or inventory menu!
 
-<!-- TODO: make these accessible via the menu...somewhere -->
-These aren't accessible through the main menu, so you need key bindings for them.
-I use M for level select and I for inventory:
+Did you remember to [bind those controls](./gameplay.md)?
 
-    bind M "openmenu ArchipelagoLevelSelectMenu"
-    bind I "openmenu ArchipelagoInventoryMenu"
 
-The level select menu also opens automatically whenever you finish a level, but
-you may be required to open it mid-level on some seeds.
+## Compatibility
+
+### Can I play this singleplayer?
+
+Yes! Generate the game as normal, then load the `.zip` that Archipelago generates
+as your last mod in gzdoom. All checks will be resolved locally without needing
+a separate game host.
+
+### Can I play this single-world with netplay?
+
+Maybe. I've tried to make the code netplay-friendly but it's completely untested.
+If it does work, check state and randomizer inventory will be
+**fully shared between players**, and using the level select will gate all players
+to the selected level -- if you want to play separate levels you actually want
+multiworld without netplay.
+
+### Can I play multiworld?
+
+Yes. Once the APWorld is installed, the client will show up in the Archipelago
+launcher. Start the client *first* and it will tell you what extra arguments
+to launch gzdoom with.
+
+### What megawads does this have builtin support for?
+### What maps/mods is this compatible with?
+### Will this work with...?
+
+See the [table of supported wads](./support-table.md) and the
+[compatibility notes](./compatibility.md).
+
+### How do I add support for a new WAD?
+
+See [adding new WADs](./new-wads.md).
 
 
 ## Project Rationale
@@ -64,32 +90,3 @@ with gzDoom mods, and make it easy to integrate new WADs via a scanner built int
 the mod itself.
 
 
-## Compatibility
-
-### Can I play this singleplayer?
-
-Yes! Generate the game as normal, then load the `.zip` that Archipelago generates
-as your last mod in gzdoom. All checks will be resolved locally without needing
-a separate game host.
-
-### Can I play this single-world with netplay?
-
-Maybe. I've tried to make the code netplay-friendly but it's completely untested.
-If it does work, check state and randomizer inventory will be
-**fully shared between players**, and using the level select will gate all players
-to the selected level -- if you want to play separate levels you actually want
-multiworld without netplay.
-
-### Can I play multiworld?
-
-Yes, but the client is still very experimental and not suitable for general use.
-
-### What megawads does this have builtin support for?
-### What maps/mods is this compatible with?
-### Will this work with...?
-
-See [the compatibility documentation](./compatibility.md).
-
-### How do I add support for a new WAD?
-
-See [adding new WADs](./new-wads.md).

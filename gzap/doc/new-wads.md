@@ -3,7 +3,7 @@
 Internally, gzArchipelago works by loading a *logic file* for each supported wad.
 This file contains a record of all levels and actors in the wad; optionally, it
 also contains a *tuning journal*, information recorded from actual play that it
-uses to refine the randomizer logic.
+uses to improve the randomizer logic.
 
 This file documents how to produce and update these files. It will use Demonfear
 (DMONFEAR.WAD) as an example.
@@ -11,45 +11,53 @@ This file documents how to produce and update these files. It will use Demonfear
 
 ## Generating a new logic file
 
-### Creating the file
+The easy way to do it, if you are comfortable in the shell, is to use the
+`tools/ap-scan` script in this repo. If you're not, though, you can do it in
+gzdoom.
 
-Generating a new logic file is straightforward; it's just a matter of loading the
-mod and running some console commands. In most cases you can do all of this on
-the command line:
+First, start up gzdoom with your wad (and, ideally, no other mods except GZAP)
+loaded:
 
-    $ gzdoom -iwad doom2.wad -file DMONFEAR.WAD \
-        -skill 3 -warp 1 +'logfile Demonfear.log; wait 1; netevent ap-scan'
+    gzdoom -iwad doom2.wad -file DMONFEAR.WAD -file GZAP-latest.pk3
 
-This will start up the game, immediately warp you to the first level, and then
-start the scanner. The `logfile` command tells it where to write the logic to
-and is **mandatory**; otherwise nothing will be written. You may need to skip
-through the intermission screens, but otherwise it should be fully automated.
+Then you need to create a logfile. Unfortunately the mod **cannot do this for you**,
+you have to do it yourself. Open the console and:
 
-If this doesn't scan all the levels properly -- for example, if the wad is divided
-into multiple episodes and exits back to the titlemap between them -- just use the
-`map` command in the console to switch to the next map and then restart the scan
-with `netevent ap-scan`.
+    logfile Demonfear
 
-Once you're done, quit the game and you have your logic file.
+While you're here, you might want to change some settings that will make the scan
+go a lot faster. (Don't forget to change them back later!)
 
-Note that logic files are (currently) difficulty-specific: if you want to play on
-multiple difficulties, you need a separate logic file for each difficulty.
-<!-- TODO: support multi-difficulty logic files -->
+    disableautosave 1
+    wipetype 0
 
-### Using the file
+From here, you can go into the mod options and use the controls there to start
+a scan, or you can do it, too, from the console:
 
-For testing purposes, you can set the environment variable `GZAP_EXTRA_LOGIC` to
-the path to a logic file, and Archipelago will load it after loading all of its
-built in logic. This is fine when verifying the file or playing in singleplayer.
+    ap_scan_levels MAP01
+    ap_scan_recurse 1
+    netevent ap-scan:start
 
-If you are doing a multiplayer game and need to send the apworld to the host,
-you can add the file by opening the apworld with your favourite zip program and
-adding the logic file to the `gzdoom/logic/` directory. Once you do that it will
-be detected and loaded automatically by Archipelago.
+In either case, it will start the scan. If it encounters any cutscenes, you may
+need to fast forward through them for it. When it finishes, quit and the scan
+results will be in the `Demonfear` file (or whatever filename you passed to
+the `logfile` command).
 
+## Adding the logic file to the apworld
+
+- Open gzdoom.apworld in a zip viewer
+- Add the logic file to the `gzdoom/logic/` directory
+- Save and quit
+
+That's it! It'll be automatically loaded next time you start Archipelago.
 
 ## Tuning a logic file
 
-TODO: more detailed docs here; but basically, randomize the game, then play it
-normally and append the log file full of AP-CHECK lines to the original logic
-file. Next time you generate it'll use the tuned version.
+When you play a multiworld game, a tuning file will be automatically created
+in the `gzdoom-ipc` directory in your Archipelago directory, named `<wad name>.tuning`.
+
+When you play single-world, you can accomplish the same thing with the `logfile`
+console command.
+
+In either case, just appending the contents of the file to the existing logic
+file will act as tuning data for it.

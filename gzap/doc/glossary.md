@@ -28,12 +28,11 @@ in the world, and how to report its collection to Archipelago.
 ## Out-Of-World
 
 Objects that are part of the playsim but do not exist in the world. The
-`StaticEventHandler`s used to manage the rando state, for example.
+`EventHandler`s used to manage the rando state, for example.
 
 ## Position
 
 The position of an object in the Doom world space, as an (X,Y,Z) coordinate triple.
-Sometimes paired with an angle.
 
 ## Tuning
 
