@@ -127,7 +127,7 @@ def main(*args):
 
     # Initialize the gzDoom IPC structures on disk
     # TODO: do we want to support multiple running instances as the same user?
-    ipc_dir = os.path.join(Utils.home_path(), ".gzdoom-ipc")
+    ipc_dir = os.path.join(Utils.home_path(), "gzdoom-ipc")
     os.makedirs(ipc_dir, exist_ok=True)
 
     # Preallocate input lump
