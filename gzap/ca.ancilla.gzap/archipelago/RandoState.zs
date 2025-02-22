@@ -183,10 +183,19 @@ class ::RandoState play {
     ::PlayEventHandler.Get().CheckVictory();
   }
 
-  bool Victorious() const {
+  uint LevelsClear() const {
+    uint n = 0;
     foreach (_, region : self.regions) {
-      if (!region.cleared) return false;
+      if (region.cleared) ++n;
     }
-    return true;
+    return n;
+  }
+
+  uint LevelsTotal() const {
+    return self.regions.CountUsed();
+  }
+
+  bool Victorious() const {
+    return self.LevelsClear() == self.LevelsTotal();
   }
 }

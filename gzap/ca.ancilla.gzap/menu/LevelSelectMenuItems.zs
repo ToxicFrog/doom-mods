@@ -2,6 +2,33 @@
 
 #include "./CommonMenu.zsc"
 
+class ::ProgressIndicator : OptionMenuItemStaticText {
+  int victory_time;
+
+  override void Ticker() {
+    let victory = ::PlayEventHandler.GetState().Victorious();
+    if (victory) self.mColor = Font.CR_SAPPHIRE;
+    self.mLabel = string.format(
+      "MAPS: %2d/%-2d   %8s   TIME: %s",
+      ::PlayEventHandler.GetState().LevelsClear(),
+      ::PlayEventHandler.GetState().LevelsTotal(),
+      victory ? "VICTORY!" : "",
+      GetTime());
+  }
+
+  string GetTime() {
+    float t = level.TotalTime + menu.MenuTime();
+    if (::PlayEventHandler.GetState().Victorious()) {
+      if (!victory_time) victory_time = t;
+      t = victory_time;
+    }
+    float s = t/TICRATE;
+    float m = s/60;
+    float h = m/60;
+    return string.format("%02d:%02d:%02d", h, m % 60, s % 60);
+  }
+}
+
 class ::LevelSelector : ::KeyValueNetevent {
   LevelInfo info;
   ::Region region;
