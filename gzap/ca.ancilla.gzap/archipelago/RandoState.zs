@@ -76,8 +76,15 @@ class ::RandoState play {
   // TODO: actually sort it
   Array<::RandoItem> items;
 
-  void RegisterMap(string map, uint access_apid, uint map_apid, uint clear_apid, uint exit_apid) {
+  void RegisterMap(string map, string checksum, uint access_apid, uint map_apid, uint clear_apid, uint exit_apid) {
     DEBUG("Registering map: %s", map);
+    if (checksum != LevelInfo.MapChecksum(map)) {
+      console.printfEX(PRINT_HIGH, "\c[RED]ERROR:\c- Map %s has checksum \c[RED]%s\c-, but the randomizer expected \c[CYAN]%s\c-.",
+        map, LevelInfo.MapChecksum(map), checksum);
+      // Continue -- maybe this is just a different version of the WAD with no substantive changes.
+      // If the user gets a bunch of these messages and proceeds regardless, upon their own head be it.
+    }
+
     regions.Insert(map, ::Region.Create(map, exit_apid));
 
     // We need to bind these to the map name somehow, oops.

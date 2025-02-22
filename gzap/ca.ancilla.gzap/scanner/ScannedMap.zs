@@ -27,7 +27,8 @@ class ::ScannedMap play {
   }
 
   void Output() {
-    ::Scanner.Output("MAP", name, string.format("\"info\": %s", GetMapinfoJSON()));
+    ::Scanner.Output("MAP", name, string.format("\"checksum\": \"%s\", \"info\": %s",
+      LevelInfo.MapChecksum(name), GetMapinfoJSON()));
     foreach (loc : locations) {
       loc.Output(name);
     }

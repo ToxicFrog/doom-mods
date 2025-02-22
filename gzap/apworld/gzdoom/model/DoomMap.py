@@ -47,6 +47,7 @@ class DoomMap:
     the Region, while "do you have enough keys" lives on the Locations.
     """
     map: str
+    checksum: str
     # JSON initializer for the mapinfo
     info: InitVar[Dict]
     # Data for the MAPINFO lump
