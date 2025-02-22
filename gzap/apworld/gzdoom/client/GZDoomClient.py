@@ -5,7 +5,7 @@ import os.path
 from typing import Any, Dict
 
 import Utils
-from CommonClient import CommonContext, ClientCommandProcessor, ClientStatus, get_base_parser, gui_enabled
+from CommonClient import CommonContext, ClientCommandProcessor, ClientStatus, get_base_parser, gui_enabled, server_loop, logger
 from .IPC import IPC
 
 class GZDoomCommandProcessor(ClientCommandProcessor):
@@ -30,6 +30,8 @@ class GZDoomContext(CommonContext):
         print("Starting item/location sync")
         self.items_task = asyncio.create_task(self._item_loop())
         self.locations_task = asyncio.create_task(self._location_loop())
+        print("Starting server loop")
+        self.server_task = asyncio.create_task(server_loop(self), name="ServerLoop")
         print("All tasks started.")
 
     async def send_check(self, id: int):
@@ -60,11 +62,11 @@ class GZDoomContext(CommonContext):
         self.seed_name = seed
         self.last_items = {}  # force a re-send of all items
         self.last_locations = set()
+        self.found_gzdoom.set()
         # TODO: devs on the discord suggest starting the server loop manually
         # rather than calling connect(), which will allow the user to specify
         # a server address...later?
-        self.found_gzdoom.set()
-        await self.connect()
+        # await self.connect()
 
     async def on_victory(self):
         self.finished_game = True
