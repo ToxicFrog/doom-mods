@@ -143,15 +143,19 @@ def main(*args):
     async def actual_main(args):
         ctx = GZDoomContext(args.connect, args.password, ipc_dir)
         await ctx.start_tasks()
-        print("┏" + "━"*78 + "╾")
-        print("┃ Client started. Please start gzDoom with the additional arguments:")
-        # TODO: can we give the actual zip name here?
-        print(f"┃     -file AP_whatever.zip -file '{ipc_dir}' +'logfile \"{ipc_log}\"'")
-        print("┃ after any other arguments (e.g. for wad/pk3 loading).")
-        print("┗" + "━"*78 + "╾")
         if gui_enabled:
             ctx.run_gui()
         ctx.run_cli()
+
+        await asyncio.sleep(1)
+
+        logger.info("┏" + "━"*78 + "╾")
+        logger.info("┃ Client started. Please start gzDoom with the additional flags:")
+        # TODO: can we give the actual zip name here?
+        logger.info(f"┃     -file '{ipc_dir}' +'logfile \"{ipc_log}\"'")
+        logger.info("┃ *after* any other arguments (e.g. for wad/pk3 loading).")
+        logger.info("┗" + "━"*78 + "╾")
+
         await ctx.exit_event.wait()
         print("Shutting down...")
         ctx.ipc.should_exit = True
