@@ -52,7 +52,7 @@ class ::LevelSelector : ::KeyValueNetevent {
     let found = region.LocationsChecked();
     let total = region.LocationsTotal();
     return string.format("%s%3d/%-3d",
-      found == total ? "\c[GOLD]" : "\c-", found, total);
+      found == total ? "\c[GOLD]" : "\c[GRAY]", found, total);
   }
 
   string FormatKeyCounter(::Region region, bool color = true) {
