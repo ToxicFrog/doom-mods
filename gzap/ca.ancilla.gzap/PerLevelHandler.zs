@@ -230,9 +230,17 @@ class ::PerLevelHandler : EventHandler {
 
   override void WorldUnloaded(WorldEvent evt) {
     DEBUG("PLH WorldUnloaded: save=%d warp=%d lnum=%d", evt.isSaveGame, self.early_exit, level.LevelNum);
-    if (evt.isSaveGame) return;
-    if (self.early_exit) return;
-    if (!apstate.GetRegion(level.MapName)) return;
+    if (evt.isSaveGame || self.early_exit || !apstate.GetRegion(level.MapName)) {
+      cvar.FindCvar("ap_scan_unreachable").SetInt(0);
+      return;
+    }
+
+    if (ap_scan_unreachable >= 2) {
+      foreach (::CheckPickup thing : ThinkerIterator.Create("::CheckPickup", Thinker.STAT_DEFAULT)) {
+        ::PlayEventHandler.Get().CheckLocation(thing.location.apid, thing.location.name);
+      }
+    }
+    cvar.FindCvar("ap_scan_unreachable").SetInt(0);
 
     ::PlayEventHandler.Get().CheckLocation(
       apstate.GetCurrentRegion().exit_id, string.format("%s - Exit", level.MapName));

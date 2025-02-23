@@ -211,7 +211,7 @@ class DoomWad:
             # self.locations_by_name[location.name()] = location
 
 
-    def tune_location(self, id, name, keys) -> None:
+    def tune_location(self, id, name, keys, unreachable = False) -> None:
         """
         Adjust the reachability rules for a location.
 
@@ -225,7 +225,13 @@ class DoomWad:
         """
         # Index by name rather than ID because the ID may change as more WADs
         # are added, but the name should not.
-        self.locations_by_name[name].tune_keys(set(keys))
+        loc = self.locations_by_name.get(name, None)
+        if loc is None:
+            return
+        if unreachable:
+            loc.unreachable = True
+        else:
+          loc.tune_keys(set(keys))
 
 
     def finalize_scan(self, json) -> None:

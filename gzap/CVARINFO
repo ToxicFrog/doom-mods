@@ -50,6 +50,13 @@ nosave noarchive string ap_scan_levels = "";
 // - levels listed in NextSecretMap are considered reachable even if there is
 //   no secret exit in the level itself
 nosave noarchive bool ap_scan_recurse = true;
+// Mark one or more checks unreachable.
+// If set to 1, the next check you collect will be flagged.
+// If set to 2, all checks you collect until the level exit will be flagged,
+// and additionally, exiting the level will collect all remaining checks in it.
+// In either case the cvar will subsequently be reset to 0.
+nosave noarchive int ap_scan_unreachable = 0;
+
 
 
 //// Inventory options

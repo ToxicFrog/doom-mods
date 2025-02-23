@@ -151,7 +151,14 @@ class GZDoomWorld(World):
                 placed.add(loc.name())
                 location = GZDoomLocation(self.player, loc, region)
                 region.locations.append(location)
-                if loc.item:
+                if loc.unreachable:
+                    # TODO: put a BasicHealthBonus here or something
+                    # We want SOMETHING here so that if the player manages to
+                    # reach it after all, we emit a check message for it clearing
+                    # the unreachable bit.
+                    location.place_locked_item(GZDoomItem(
+                        self.wad_logic.item("Backpack"), self.player))
+                elif loc.item:
                     location.place_locked_item(GZDoomItem(loc.item, self.player))
                     self.item_counts[loc.item.name()] -= 1
                 else:

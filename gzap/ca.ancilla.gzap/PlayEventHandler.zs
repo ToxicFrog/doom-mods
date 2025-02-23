@@ -85,9 +85,16 @@ class ::PlayEventHandler : StaticEventHandler {
     // an 'ap-unreachable' netevent; if set, the next check touched is marked
     // as unreachable, or if the level is exited, all checks in it are marked
     // unreachable.
+    string unreachable = "";
+    if (ap_scan_unreachable) {
+      unreachable = "\"unreachable\": true, ";
+      if (ap_scan_unreachable == 1) {
+        cvar.FindCvar("ap_scan_unreachable").SetInt(0);
+      }
+    }
     ::IPC.Send("CHECK",
-      string.format("{ \"id\": %d, \"name\": \"%s\", \"keys\": [%s] }",
-        apid, name, apstate.GetCurrentRegion().KeyString()));
+      string.format("{ \"id\": %d, \"name\": \"%s\", %s\"keys\": [%s] }",
+        apid, name, unreachable, apstate.GetCurrentRegion().KeyString()));
     EventHandler.SendNetworkEvent("ap-check", apid);
     apstate.GetCurrentRegion().ClearLocation(apid);
   }

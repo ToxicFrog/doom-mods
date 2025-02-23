@@ -61,3 +61,27 @@ console command.
 
 In either case, just appending the contents of the file to the existing logic
 file will act as tuning data for it.
+
+### Unreachable checks
+
+You may encounter checks that are unreachable in normal play. For example, Going
+Down Turbo MAP12 has a red key that exists purely for visual effect and cannot
+be collected by the player.
+
+If you encounter one of these, you can mark it unreachable using the `ap_scan_unreachable`
+cvar. You can mark the next check you touch unreachable (and then use `noclip` to
+actually reach it):
+
+    ap_scan_unreachable 1
+
+Alternately, you can mark every check you touch for the rest of the level:
+
+    ap_scan_unreachable 2
+
+In the latter case, it will mark all remaining checks when you exit the level, so
+you don't need to run around noclipping to all of them -- just set it to 2 and
+touch the exit.
+
+On future runs, unreachable checks will still be present in the world, but will
+be hard-coded to contain Doom filler items; they will never contain progression
+items or items from someone else's game.

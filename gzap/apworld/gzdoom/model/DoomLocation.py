@@ -50,6 +50,7 @@ class DoomLocation:
     orig_item = None
     disambiguate: bool = False
     skill: Set[int]
+    unreachable: bool = False
 
     def __init__(self, parent, map: str, item: DoomItem, json: str | None):
         self.category = item.category
@@ -77,6 +78,9 @@ class DoomLocation:
         return name
 
     def tune_keys(self, keys):
+        # If this location was previously incorrectly marked unreachable,
+        # correct it.
+        self.unreachable = False
         if keys < self.keyset:
             # print(f"Keyset: {self.name} {self.keyset} -> {keys}")
             self.keyset = keys
