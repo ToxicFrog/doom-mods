@@ -168,6 +168,8 @@ class ::PerLevelHandler : EventHandler {
     }
 
     DEBUG("WorldThingSpawned(%s)", thing.GetTag());
+    // Only checks count towards the item tally, not other items.
+    thing.ClearCounters();
 
     let [check, distance] = FindCheckForActor(thing);
     if (check) {
