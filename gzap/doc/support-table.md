@@ -15,30 +15,30 @@ This file summarizes the state of support for various wads. Support is classifie
 
 | WAD | Status | Notes |
 | --- | ------ | ----- |
-| Doom | basic | --- |
-| Doom 2 | basic | --- |
-| TNT | basic | --- |
-| Plutonia | basic | --- |
-| WadSmoosh | missing | --- |
-| Heretic | basic | --- |
+| Doom | basic | |
+| Doom 2 | basic | |
+| TNT | basic | |
+| Plutonia | basic | |
+| WadSmoosh | missing | |
+| Heretic | basic | |
 | Hexen | missing | Same concerns as Strife, plus I don't like it. |
 | Strife | missing | Hub maps and complicated level scripting mean this may need changes to the generator. |
-| FreeDoom | basic | --- |
-| FreeDoom 2 | basic | --- |
+| FreeDoom | basic | |
+| FreeDoom 2 | basic | |
 
 ### PWADs
 
 | WAD | Status | Notes |
 | --- | ------ | ----- |
-| Demonfear | full | --- |
-| Going Down Turbo | problems | Some levels have intentionally-unreachable items in them, which need to be excluded from randomization |
-| MAYhem 2048 | partial | Would be full, but I accidentally overwrote half the tuning data |
+| Demonfear | full | |
+| Going Down Turbo | problems | Some levels have intentionally-unreachable items in them, which need to be excluded from randomization. |
+| MAYhem 2048 | partial | Would be full, but I accidentally overwrote half the tuning data. |
 
 ### Standalone Games
 
 | Game | Status | Notes |
 | ---- | ------ | ----- |
-| Ashes 2063 | missing | --- |
-| Ashes: Afterglow | missing | Uses hub maps |
-| Ashes: Hard Reset | missing | Still need to play it |
-| Hedon Bloodrite | missing | This is going to be a project but I think it would be pretty cool |
+| Ashes 2063 | missing | |
+| Ashes: Afterglow | missing | Uses hub maps. |
+| Ashes: Hard Reset | missing | Still need to play it. |
+| Hedon Bloodrite | missing | This is going to be a project but I think it would be pretty cool. |
