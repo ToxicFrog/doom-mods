@@ -70,6 +70,7 @@ class GZDoomContext(CommonContext):
         self.last_items = {}  # force a re-send of all items
         self.last_locations = set()
         self.found_gzdoom.set()
+        self.ipc.send_text("Archipelago<->GZDoom connection established.")
         # TODO: devs on the discord suggest starting the server loop manually
         # rather than calling connect(), which will allow the user to specify
         # a server address...later?
