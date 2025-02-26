@@ -6,7 +6,7 @@ ZSDIR=ca.ancilla.gzap
 LIBTTM=${TOPDIR}/libtooltipmenu/ca.ancilla.libtooltipmenu
 LIBTTM_PREFIX=GZAP
 
-all: ${PK3} apworld ipc
+all: ${PK3} apworld
 
 include ${TOPDIR}/rules.make
 
@@ -15,7 +15,4 @@ apworld:
 	cp apworld/gzdoom.apworld ~/Archipelago/worlds/
 	mv apworld/gzdoom.apworld ${TOPDIR}/release/
 
-ipc:
-	dd if=${TOPDIR}/README.md of=${TOPDIR}/testdata/GZAPIPC bs=1K count=1
-
-.PHONY: apworld ipc
+.PHONY: apworld
