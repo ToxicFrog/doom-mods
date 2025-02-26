@@ -2,6 +2,8 @@
 
 This is a bugfix release.
 
+- Change:
+  - AP client is now called "GZDoom Client" rather than "Text Client"
 - Fix:
   - Crash on game startup in certain rando configurations that exclude levels
 

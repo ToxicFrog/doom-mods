@@ -24,6 +24,13 @@ class GZDoomContext(CommonContext):
         super().__init__(server_address, password)
         self.ipc = IPC(self, ipc_dir)
 
+    def make_gui(self):
+        from kvui import GameManager
+        class TextManager(GameManager):
+            base_title = "gzDoom Client"
+
+        return TextManager
+
     async def start_tasks(self) -> None:
         print("Starting log reader")
         self.ipc.start_log_reader()
