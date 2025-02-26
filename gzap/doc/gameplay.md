@@ -7,8 +7,8 @@ who just want to play one of the [supported wads](./support-table.md).
 
 Download the [apworld](../../release/gzdoom.apworld) and add it to Archipelago.
 
-Download the [latest version of the mod](../../release/GZAP-latest.pk3) and add
-it to your gzdoom load order (it doesn't much matter where).
+Download the [latest version of the mod](../../release/gzArchipelago-latest.pk3)
+and add it to your gzdoom load order (it doesn't much matter where).
 
 Start up gzdoom, go into the mod settings, and configure it to your taste. Make
 sure to bind controls for Level Select and Inventory.
