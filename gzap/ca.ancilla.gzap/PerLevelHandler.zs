@@ -78,6 +78,7 @@ class ::PerLevelHandler : EventHandler {
     if (!region) return;
 
     foreach (location : region.locations) {
+      if (location.checked) continue;
       DEBUG("Enqueing location: %s", location.name);
       pending_locations.Insert(location.apid, location);
     }
@@ -124,6 +125,7 @@ class ::PerLevelHandler : EventHandler {
     if (alarm) return;
     DEBUG("PLH AlarmClockFired");
     foreach (loc : pending_locations) {
+      if (loc.checked) continue;
       console.printf(
         StringTable.Localize("$GZAP_MISSING_LOCATION"), loc.name);
       ::CheckPickup.Create(loc, players[0].mo);

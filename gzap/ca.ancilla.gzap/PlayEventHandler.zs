@@ -79,6 +79,7 @@ class ::PlayEventHandler : StaticEventHandler {
   }
 
   void CheckLocation(int apid, string name) {
+    DEBUG("CheckLocation: %d %s", apid, name);
     // TODO: we need some way of marking checks unreachable.
     // We can't just check if the player has +NOCLIP because if they do, they
     // can't interact with the check in the first place. So probably we want
