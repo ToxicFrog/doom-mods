@@ -251,6 +251,7 @@ class GZDoomWorld(World):
             ],
             "items": [
               item for item in self.wad_logic.items(self.options.skill.value)
+              if (not item.map or self.should_include_map(item.map))
             ],
             "starting_items": [
               item.code for item in self.multiworld.precollected_items[self.player]
