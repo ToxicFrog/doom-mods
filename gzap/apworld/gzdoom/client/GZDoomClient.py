@@ -157,12 +157,14 @@ def main(*args):
 
         await asyncio.sleep(1)
 
-        logger.info("┏" + "━"*78 + "╾")
-        logger.info("┃ Client started. Please start gzDoom with the additional flags:")
+        logger.info("*" * 80)
+        logger.info("Client started. Please start gzDoom with the additional flags:")
         # TODO: can we give the actual zip name here?
-        logger.info(f"┃     -file '{ipc_dir}' +'logfile \"{ipc_log}\"'")
-        logger.info("┃ *after* any other arguments (e.g. for wad/pk3 loading).")
-        logger.info("┗" + "━"*78 + "╾")
+        # Not until we know the seed, looks like, which we don't get until we
+        # connect to gzdoom...
+        logger.info(f"    -file '{ipc_dir}' +'logfile \"{ipc_log}\"'")
+        logger.info("*after* any other arguments (e.g. for wad/pk3 loading).")
+        logger.info("*" * 80)
 
         await ctx.exit_event.wait()
         print("Shutting down...")

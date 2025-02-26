@@ -7,6 +7,8 @@ This is a bugfix release.
   - A message displays in gzDoom when the connection to AP is established
 - Fix:
   - Crash on game startup in certain rando configurations that exclude levels
+  - gzdoom launch arguments emitted by client are now copy-pasteable even in
+    the GUI
 
 # 0.1.0
 
