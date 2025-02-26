@@ -88,6 +88,8 @@ def count_items(sk, items) -> int:
     return n
 
 def print_wad_stats(name: str, wad: DoomWad) -> None:
+    if "GZAP_DEBUG" not in os.environ:
+        return
     print("%32s: %d maps" % (name, len(wad.all_maps())))
     for sknum, skname in [(1, "HNTR"), (2, "HMP"), (3, "UV")]:
       num_p = count_items(sknum, wad.progression_items(sknum))
