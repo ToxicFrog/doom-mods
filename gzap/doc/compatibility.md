@@ -41,6 +41,18 @@ Mods that delete or move things around, or replace inventory/weapons with things
 that aren't those, will tend to cause problems, since gzAP relies on actor position
 to match up randomizer locations with in-game objects.
 
+#### Pandemonia
+
+Pandemonia uses custom skill settings where ITYTD is removed entirely, skill=0 is
+HNTR, skill=1 is HMP, and so forth. You'll need to use the `ap_force_skill` cvar
+to work around this; if you generated for HNTR (skill=1), use `ap_force_skill 0`
+to tell AP that HNTR is now skill 0, and so forth.
+
+#### DoomRL Arsenal
+
+Sometimes spawning a soulsphere from your inventory just doesn't give you anything,
+presumably because it confuses the DRLA randomization machinery.
+
 ### Total conversions
 
 TCs like Ashes 2063 or Hedon Bloodrite probably will not work out of the box,

@@ -118,7 +118,8 @@ class ::PlayEventHandler : StaticEventHandler {
         return;
       }
       ::PerLevelHandler.Get().early_exit = true;
-      level.ChangeLevel(info.MapName, 0, CHANGELEVEL_NOINTERMISSION, skill);
+      level.ChangeLevel(info.MapName, 0, CHANGELEVEL_NOINTERMISSION,
+        ap_force_skill >= 0 ? ap_force_skill : self.skill);
     } else if (evt.name == "ap-use-item") {
       let idx = evt.args[0];
       apstate.UseItem(idx);

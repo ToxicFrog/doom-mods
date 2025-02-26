@@ -12,6 +12,15 @@ server int ap_show_checks_on_map = 2;
 // 3: always
 server int ap_show_progression = 2;
 
+//// Gameplay configuration
+
+// This is a workaround for mods like Pandemonia that replace the stock skill
+// map with their own. In Pandemonia, for example, skill=0 is actually HNTR,
+// and skill=1 is HMP. So if you generate a game for HNTR, it will try to use
+// skill=1 and end up dropping you into HMP, which is both harder than you
+// signed up for and has the wrong spawns...
+noarchive server int ap_force_skill = -1;
+
 //// Inventory configuration.
 // TODO: an option to immediately dispense:
 // - weapons;
