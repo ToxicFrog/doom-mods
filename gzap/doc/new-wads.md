@@ -59,8 +59,10 @@ in the `gzdoom-ipc` directory in your Archipelago directory, named `<wad name>.t
 When you play single-world, you can accomplish the same thing with the `logfile`
 console command.
 
-In either case, just appending the contents of the file to the existing logic
-file will act as tuning data for it.
+In either case, you can add this tuning data to the apworld by removing the `.tuning`
+extension and putting it in the `gzdoom/tuning` directory. If a file already exists
+there for this WAD, simply append the new tuning data to it. Zip the apworld back up
+and the tuning data will be taken into account next time it generates a game.
 
 ### Unreachable checks
 

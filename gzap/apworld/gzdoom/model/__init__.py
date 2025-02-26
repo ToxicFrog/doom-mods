@@ -109,10 +109,13 @@ def init_wads(package):
   # Sort them so we get a consistent order, and thus consistent ID assignment,
   # across runs.
   # TODO: maybe separate logic and tuning directories or similar?
-  print("Loading builtin logic...")
   for logic_file in sorted(resources.files(package).joinpath("logic").iterdir(), key=lambda p: p.name):
+      buf = logic_file.read_text()
+      tuning_file = resources.files(package).joinpath("tuning").joinpath(logic_file.name)
+      if tuning_file.is_file():
+          buf = buf + "\n" + tuning_file.read_text()
       with add_wad(logic_file.name) as wadloader:
-          wadloader.load_logic(logic_file.read_text())
+          wadloader.load_logic(buf)
           print_wad_stats(wadloader.name, wadloader.wad)
 
   # Debug/test mode: load the specifed file after the builtins.
