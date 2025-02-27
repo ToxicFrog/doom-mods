@@ -23,11 +23,7 @@ by Sergeants are not checks and are not considered to be in logic.
 
 ### DeHackEd
 
-This depends on what DEH is used for. In particular, using it to patch items
-may cause them not to be detected as checks; a DeHacked weapon pickup will be
-left where it sits and not considered in logic. For example, the Dehacked chainguns
-in Going Down Turbo are not considered checks. Everything else should work fine,
-but a wad that makes heavy use of DEH items may end up with few/no checks.
+Pickups modified by DEHACKED should still be detected as checks.
 
 ### gzDoom mods
 

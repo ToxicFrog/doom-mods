@@ -3,7 +3,9 @@
 // on netevents and level entry events.
 
 #namespace GZAP;
+#debug off;
 
+#include "../actors/DehackedPickupProber.zsc"
 #include "./ScannedMap.zsc"
 
 class ::Scanner play {
@@ -82,6 +84,18 @@ class ::Scanner play {
     return false;
   }
 
+  void ScanDehacked(::ScannedMap nextmap, DehackedPickup thing) {
+    DEBUG("DEH probe routine: %s [%s]", thing.GetTag(), thing.GetClassName());
+    let prober = ::DehackedPickupProber(thing.Spawn("::DehackedPickupProber", thing.pos, NO_REPLACE));
+    thing.CallTryPickup(prober);
+    if (!prober.real_item) {
+      prober.Destroy();
+      return;
+    }
+    nextmap.AddLocation(prober.real_item);
+    prober.Destroy();
+  }
+
   // Scan the current level.
   // This is called automatically by ScanEventHandler when we enter a level or
   // initiate a scan. In the former case, it doesn't actually know what's in the
@@ -101,6 +115,8 @@ class ::Scanner play {
       if (thing.bISMONSTER && !thing.bCORPSE) {
         // Not currently implemented
         // nextmap.AddLocation(::ScannedMonster.Create(thing));
+      } else if (thing is "DehackedPickup") {
+        ScanDehacked(nextmap, DehackedPickup(thing));
       } else if (::ScannedItem.ItemCategory(thing) != "") {
         nextmap.AddLocation(::ScannedItem.Create(thing));
       }
