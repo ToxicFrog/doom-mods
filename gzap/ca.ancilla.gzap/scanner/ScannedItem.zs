@@ -35,7 +35,7 @@ class ::ScannedItem : ::ScannedLocation {
     return (thing.cursector.IsSecret() || thing.cursector.WasSecret());
   }
 
-  static bool IsArtifact(Actor thing) {
+  static bool IsArtifact(readonly<Actor> thing) {
     string cls = thing.GetClassName();
     return cls.left(4) == "Arti";
   }
@@ -50,7 +50,7 @@ class ::ScannedItem : ::ScannedLocation {
   // there's also sv_unlimited_pickup to remove all limits on ammo capacity(!)
   // We might want to remove AUTOACTIVATE and add INVBAR to some stuff in the
   // future so the player can keep it until particularly useful.
-  static string ItemCategory(Actor thing) {
+  static string ItemCategory(readonly<Actor> thing) {
     if (thing is "DehackedPickup") {
       // TODO: Ideally, we'd call DetermineType() on it here to figure out what
       // the underlying type of the DEH item is. However, DetermineType() is

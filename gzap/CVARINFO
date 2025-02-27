@@ -22,13 +22,17 @@ server int ap_show_progression = 2;
 noarchive server int ap_force_skill = -1;
 
 //// Inventory configuration.
-// TODO: an option to immediately dispense:
-// - weapons;
-// - armour;
-// - health;
-// - ammo;
-// - powerups;
-// either unconditionally or above a certain limit.
+// How many of each thing the randomizer will bank. If you're at the limit and
+// you receive more, they will be vended to you immediately.
+// 0 means bank none, dispense immediately.
+// -1 means no limit, save until requested.
+server int ap_bank_weapons = 0;
+server int ap_bank_ammo = 0;
+server int ap_bank_armour = -1;
+server int ap_bank_health = -1;
+server int ap_bank_powerups = -1;
+server int ap_bank_other = -1;
+
 
 //// Scanner configuration.
 // These are not written to the save file or config file, since they're more

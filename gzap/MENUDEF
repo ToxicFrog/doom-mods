@@ -30,6 +30,13 @@ OptionMenu "ArchipelagoOptions"
   Option "$GZAP_OPT_NAME_SHOW_PROGRESSION", "ap_show_progression", "ApShowProgressionMode"
   GZAP_Tooltip "$GZAP_OPT_TT_SHOW_PROGRESSION"
 
+  ScaleSlider "$GZAP_OPT_NAME_BANK_WEAPONS", "ap_bank_weapons", -1, 32, 1, "0", "$GZAP_OPT_SLIDER_UNLIMITED"
+  ScaleSlider "$GZAP_OPT_NAME_BANK_AMMO", "ap_bank_ammo", -1, 32, 1, "0", "$GZAP_OPT_SLIDER_UNLIMITED"
+  ScaleSlider "$GZAP_OPT_NAME_BANK_ARMOUR", "ap_bank_armour", -1, 32, 1, "0", "$GZAP_OPT_SLIDER_UNLIMITED"
+  ScaleSlider "$GZAP_OPT_NAME_BANK_HEALTH", "ap_bank_health", -1, 32, 1, "0", "$GZAP_OPT_SLIDER_UNLIMITED"
+  ScaleSlider "$GZAP_OPT_NAME_BANK_POWERUPS", "ap_bank_powerups", -1, 32, 1, "0", "$GZAP_OPT_SLIDER_UNLIMITED"
+  ScaleSlider "$GZAP_OPT_NAME_BANK_OTHER", "ap_bank_other", -1, 32, 1, "0", "$GZAP_OPT_SLIDER_UNLIMITED"
+  GZAP_Tooltip "$GZAP_OPT_TT_BANK_LIMITS"
 
   StaticText ""
   StaticText "$GZAP_OPT_HEADER_CONTROLS", CYAN
