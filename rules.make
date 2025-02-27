@@ -43,11 +43,11 @@ clean: clean.super
 ${PK3}: ${LUMPS} ${ZSCRIPT} ${ZSCRIPT_AUTO}
 	rm -f $@
 	zip -qr $@ $^ --exclude @.pk3ignore
-	ln -sf $@ "${PK3LN}"
+	cp $@ "${PK3LN}"
 
 stage: ${PK3}
 	git rm --cached --ignore-unmatch '${TOPDIR}/release/${NAME}-*'
-	git add -f ${PK3}
+	git add -f ${PK3LN}
 
 %.zsc: %.zs
 	MOD_VERSION=${MOD_VERSION} ${TOPDIR}/zspp $< $@

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -e
+set -e -x
 
 SKILL="${SKILL:-2}"  # HNTR
 IWAD="${IWAD:-doom2.wad}"
@@ -11,7 +11,7 @@ name="$1"; shift
 make
 gzdoom \
   -iwad /ancilla/installs/games/PC/DOOM/IWAD/${IWAD} \
-  -file release/GZAP-latest.pk3 \
+  -file release/gzArchipelago-latest.pk3 \
   "$@" \
   -warp 1 \
   -skill $SKILL \

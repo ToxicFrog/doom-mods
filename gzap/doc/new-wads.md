@@ -18,7 +18,7 @@ gzdoom.
 First, start up gzdoom with your wad (and, ideally, no other mods except GZAP)
 loaded:
 
-    gzdoom -iwad doom2.wad -file DMONFEAR.WAD -file GZAP-latest.pk3
+    gzdoom -iwad doom2.wad -file DMONFEAR.WAD -file gzArchipelago-latest.pk3
 
 Then you need to create a logfile. Unfortunately the mod **cannot do this for you**,
 you have to do it yourself. Open the console and:
