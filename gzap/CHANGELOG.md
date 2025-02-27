@@ -14,6 +14,7 @@ This is a bugfix release.
     the GUI
   - Command line flags reported by the client should hopefully work on Windows
   - Crash when loading tuning files that contained certain messages
+  - Collected checks could respawn as their original items when revisiting a level
 
 # 0.1.0
 
