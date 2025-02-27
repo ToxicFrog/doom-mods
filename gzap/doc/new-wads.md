@@ -43,6 +43,19 @@ need to fast forward through them for it. When it finishes, quit and the scan
 results will be in the `Demonfear` file (or whatever filename you passed to
 the `logfile` command).
 
+### Multiple episodes and standalone maps
+
+Some WADs are divided into episodes or have maps that aren't reachable from the
+normal set of levels. For these, you can specify multiple starting levels. For
+example, to scan Doom 1:
+
+    ap_scan_levels "E1M1 E2M1 E3M1 E4M1"
+    ap_scan_recurse 1
+    netevent ap-scan:start
+
+Note that the quotes around the map names are mandatory in the console, and should
+be omitted if scanning from the GUI.
+
 ## Adding the logic file to the apworld
 
 - Open gzdoom.apworld in a zip viewer
