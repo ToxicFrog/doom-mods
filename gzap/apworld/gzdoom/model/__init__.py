@@ -22,10 +22,6 @@ from .DoomLogic import *
 _DOOM_LOGIC: DoomLogic = DoomLogic()
 
 
-class UnsupportedScanEventError(NotImplementedError):
-    pass
-
-
 class WadLogicLoader:
     logic: DoomLogic
     name: str
@@ -64,12 +60,9 @@ class WadLogicLoader:
             self.wad.finalize_scan(payload)
         elif evt == "AP-CHECK":
             self.wad.tune_location(**payload)
-        elif evt in {"AP-XON", "AP-ACK"}:
-            # used only for multiplayer
-            pass
         else:
-            # Unsupported event type
-            raise UnsupportedScanEventError(evt)
+            # AP-XON, AP-ACK, AP-STATUS, AP-CHAT, and other multiplayer-only messages
+            pass
 
 
 _init_done: bool = False
