@@ -104,6 +104,7 @@ class ::ScannedMap play {
     flags = AddFlag(flags, info.flags, LEVEL_HEADSPECIAL, "ironlichspecial");
     flags = AddFlag(flags, info.flags, LEVEL_MINOTAURSPECIAL, "minotaurspecial");
     flags = AddFlag(flags, info.flags, LEVEL_SORCERER2SPECIAL, "dsparilspecial");
+    flags = AddFlag(flags, info.flags, LEVEL_USEPLAYERSTARTZ, "useplayerstartz");
     flags = AddFlag(flags, info.flags3, LEVEL3_E1M8SPECIAL, "e1m8special");
     flags = AddFlag(flags, info.flags3, LEVEL3_E2M8SPECIAL, "e2m8special");
     flags = AddFlag(flags, info.flags3, LEVEL3_E3M8SPECIAL, "e3m8special");

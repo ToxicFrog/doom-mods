@@ -1,4 +1,4 @@
-# 0.1.1
+# Unreleased
 
 This is a bugfix release.
 
@@ -16,6 +16,7 @@ This is a bugfix release.
   - Command line flags reported by the client should hopefully work on Windows
   - Crash when loading tuning files that contained certain messages
   - Collected checks could respawn as their original items when revisiting a level
+  - `useplayerstartz` flag support in `MAPINFO` (fixes Alfonzone, among others)
 
 # 0.1.0
 
