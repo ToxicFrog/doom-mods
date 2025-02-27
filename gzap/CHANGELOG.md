@@ -4,6 +4,7 @@ This is a bugfix release.
 
 - New:
   - Support for scanning DEHACKED-modified pickups.
+  - Logic for Chex Quest 3
 - Change:
   - AP client is now called "GZDoom Client" rather than "Text Client"
   - A message displays in gzDoom when the connection to AP is established

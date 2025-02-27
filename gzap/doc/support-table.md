@@ -25,6 +25,7 @@ This file summarizes the state of support for various wads. Support is classifie
 | Strife | missing | Hub maps and complicated level scripting mean this may need changes to the generator. |
 | FreeDoom | basic | |
 | FreeDoom 2 | basic | |
+| Chex Quest 3 | full | |
 
 ### PWADs
 
