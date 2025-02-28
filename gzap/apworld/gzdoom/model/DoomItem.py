@@ -66,10 +66,8 @@ class DoomItem:
         if self.category == "weapon":
             if options.max_weapon_copies.value > 0:
                 count = min(count, options.max_weapon_copies.value)
-                print(f"limiting {self.name()} to {count} (weapon copies)")
             if options.levels_per_weapon.value > 0:
                 count = min(count, max(1, len(maps) // options.levels_per_weapon.value))
-                print(f"limiting {self.name()} to {count} (per level weapons)")
 
         return count
 
