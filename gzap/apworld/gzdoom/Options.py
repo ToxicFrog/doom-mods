@@ -33,6 +33,47 @@ class StartWithAutomaps(Toggle):
     display_name = "Start with Automaps"
 
 
+class MaxWeaponCopies(Range):
+    """
+    Applies a hard limit to the number of copies of each weapon in the item pool.
+
+    Lower values mean you may have to wait longer before finding a given weapon,
+    but also means more checks will contain health, powerups, etc. rather than
+    duplicates of weapons you already have.
+
+    Setting to 0 disables the limit entirely.
+
+    How many copies of each weapon end up in the pool is limited by both this and
+    'Levels per weapon copy'; whichever is lower takes precedence. This is an
+    upper bound: it will not add more weapons than actually exist in the WAD.
+    """
+    display_name = "Max weapon copies"
+    range_start = 0
+    range_end = 32
+    default = 4
+
+
+class LevelsPerWeapon(Range):
+    """
+    Applies a scaling limit to the number of copies of each weapon in the item pool
+    based on how many levels are being played.
+
+    The default (8) means that a "standard" 32-level megawad will be limited to
+    at most 4 copies of each weapon. Lower values will increase the limit, higher
+    levels will decrease it.
+
+    Setting to 0 disables the limit entirely.
+
+    How many copies of each weapon end up in the pool is limited by both this and
+    'Max weapon copies'; whichever is lower takes precedence. This is an
+    upper bound: it will not add more weapons than actually exist in the WAD.
+    """
+    display_name = "Levels per weapon copy"
+    range_start = 0
+    range_end = 32
+    default = 8
+
+
 model.init_wads(__package__)
 class SelectedWad(OptionSet):
     """
@@ -126,12 +167,17 @@ class LevelOrderBias(Range):
 
 @dataclass
 class GZDoomOptions(PerGameCommonOptions):
-    start_inventory_from_pool: StartInventoryPool
-    start_with_all_maps: StartWithAutomaps
-    death_link: DeathLink
+    # Skill level, WAD, and level selection
+    skill: Skill
+    selected_wad: SelectedWad
     starting_levels: StartingLevels
     included_levels: IncludedLevels
     excluded_levels: ExcludedLevels
-    selected_wad: SelectedWad
     level_order_bias: LevelOrderBias
-    skill: Skill
+    # Item pool control
+    start_with_all_maps: StartWithAutomaps
+    max_weapon_copies: MaxWeaponCopies
+    levels_per_weapon: LevelsPerWeapon
+    # Stock settings
+    death_link: DeathLink
+    start_inventory_from_pool: StartInventoryPool

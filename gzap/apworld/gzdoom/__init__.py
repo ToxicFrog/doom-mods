@@ -109,8 +109,12 @@ class GZDoomWorld(World):
         self.wad_logic = model.get_wad(random.choice(wadlist))
         print(f"Selected WAD: {self.wad_logic.name}")
         print(f"Selected skill: {self.options.skill.value}")
+        self.maps = [
+            map for map in self.wad_logic.maps.values()
+            if self.should_include_map(map.map)
+        ]
         self.item_counts = {
-            item.name(): item.count[self.options.skill.value]
+            item.name(): item.get_count(self.options, self.maps)
             for item in self.wad_logic.items(self.options.skill.value)
         }
 
@@ -200,9 +204,7 @@ class GZDoomWorld(World):
             slots_left -= 1
 
     def mission_complete(self, state: CollectionState) -> bool:
-        for map in self.wad_logic.maps.values():
-            if not self.should_include_map(map.map):
-                continue
+        for map in self.maps:
             if not state.has(map.clear_token_name(), self.player):
                 return False
         return True
@@ -245,10 +247,7 @@ class GZDoomWorld(World):
             "player": self.multiworld.player_name[self.player],
             "skill": self.options.skill.value,
             "wad": self.wad_logic.name,
-            "maps": [
-                map for map in self.wad_logic.maps.values()
-                if self.should_include_map(map.map)
-            ],
+            "maps": self.maps,
             "items": [
               item for item in self.wad_logic.items(self.options.skill.value)
               if (not item.map or self.should_include_map(item.map))

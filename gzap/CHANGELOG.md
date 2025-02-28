@@ -7,6 +7,7 @@ This is a bugfix release.
   - Logic for Chex Quest 3 [by @frozenLake]
   - Tuning for Doom 1 E1 [by @ChrisCJ]
   - Configurable limits for the item bank
+  - Configurable limits for how many copies of each weapon go into the item pool
 - Change:
   - AP client is now called "GZDoom Client" rather than "Text Client"
   - A message displays in gzDoom when the connection to AP is established
@@ -18,6 +19,7 @@ This is a bugfix release.
   - Crash when loading tuning files that contained certain messages
   - Collected checks could respawn as their original items when revisiting a level
   - `useplayerstartz` flag support in `MAPINFO` (fixes Alfonzone, among others)
+  - potential wrongness when generating games on ITYTD or NM! difficulty
 
 # 0.1.0
 

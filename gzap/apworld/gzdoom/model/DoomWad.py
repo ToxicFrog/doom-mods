@@ -263,11 +263,8 @@ class DoomWad:
         """
         Do postprocessing after all events have been ingested.
 
-        Caps guns at 1 per gun per episode (ish), and keys at 1 per type per map.
+        Caps keys at 1 of each colour per map.
         """
-        max_guns = len(self.maps)//8
         for item in self.items_by_name.values():
-            if item.category == "weapon":
-                item.set_max_count(max_guns)
-            elif item.category == "key":
+            if item.category == "key":
                 item.set_max_count(1)
