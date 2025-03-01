@@ -78,7 +78,6 @@ class ::PerLevelHandler : EventHandler {
     if (!region) return;
 
     foreach (location : region.locations) {
-      if (location.checked) continue;
       DEBUG("Enqueing location: %s", location.name);
       pending_locations.Insert(location.apid, location);
     }

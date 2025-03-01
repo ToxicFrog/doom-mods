@@ -25,6 +25,16 @@ Hilight progression items,GZAP_OPT_NAME_SHOW_PROGRESSION,
 "Displays a different icon for progression items than for useful/filler/trap items.
 
 ""In person only"" matches the behaviour of apdoom. ""After map"" and ""always"" can make the game much easier by letting you check from the automap whether there are any progression items left on the level (and where they are).",GZAP_OPT_TT_SHOW_PROGRESSION,
+Weapon bank limit,GZAP_OPT_NAME_BANK_WEAPONS,
+Ammo bank limit,GZAP_OPT_NAME_BANK_AMMO,
+Armour bank limit,GZAP_OPT_NAME_BANK_ARMOUR,
+Health bank limit,GZAP_OPT_NAME_BANK_HEALTH,
+Powerup bank limit,GZAP_OPT_NAME_BANK_POWERUPS,
+Other bank limit,GZAP_OPT_NAME_BANK_OTHER,
+"Limits for how much of each item type the randomizer will let you ""bank"" and reclaim later.
+
+If you receive an item and you're already at the limit, it will be given to you immediately, even if it's not useful to do so (e.g. a soulsphere when you're at 200% health). A limit of 0 means that all items of that type will be immediately dispensed.",GZAP_OPT_TT_BANK_LIMITS,
+Unlimited,GZAP_OPT_SLIDER_UNLIMITED,
 Controls,GZAP_OPT_HEADER_CONTROLS,
 AP level select/tracker,GZAP_OPT_NAME_LEVELSELECT,
 "Opens the level select menu. This also serves as your item, key, and progress tracker.

@@ -10,6 +10,40 @@ min_lives_per_level doesn't work if you don't get any bonus lives at all, due to
 
 ## gzArchipelago
 
+### scanner
+
+- map exclusion UI
+- non-rando tuning mode
+- add "scan the whole thing" button
+- include secrets as checks in themselves?
+  we can build the secret list by scanning the sector array on level entry and
+  recording all sectors for which IsSecret() return true. We can associate this
+  with the sector Index(). For naming, we have a few options; there's the Index,
+  which is guaranteed unique but not useful to the player; there's also the `thinglist`
+  which is a linked list of Actors contained in that sector, which would let us
+  match it up to any check(s) inside it, and the `centerspot` which is the XY center
+  of the sector (but not guaranteed to be unique since sectors can be concave).
+  Probably quick-and-easy approach is "MAPXX - Secret {index} [{x},{y}]".
+  To detect secret collection, we watch level.total_secrets and level.found_secrets
+  in OnTick(); when the former increases, we walk the secret sectors to find out
+  which one(s) have been collected.
+
+### ingame
+
+- fix the timer (and preserve it across save/load if possible)
+- request hints from level select screen
+  - first hint is access, subsequent hints are keys
+- display hints in tooltips
+  - access/key hints at top
+  - location peeks under individual locations
+
+### generator
+
+- option to not place progression items in secrets
+- option to treat secrets as checks, once above scanner changes are made
+- option to treat bosses as checks -- also needs scanner changes, highly vulnerable
+  to enemy-replacement mods
+
 ### client
 
 - don't reprocess old events except XON
@@ -17,18 +51,31 @@ min_lives_per_level doesn't work if you don't get any bonus lives at all, due to
   we *want* to reprocess old events so we don't miss CHECKs! let's leave this
   for now.
 
-### scanner
+### Adventures of Square
 
-- map exclusion UI
-- non-rando tuning mode
+This has some extra complications around powerups that are actually key items,
+and the like; additionally, the weapons as placed in the maps aren't real weapons,
+they're CustomInventory items that, when picked up, turn into weapons. To address
+this we probably need an option to load an external lump containing a class name
+to category mapping so that we can, for example, list the AOS weapon customs in it
+and map them to `weapon`.
 
-### ingame
+Support for other TCs will probably benefit from work done on AOS.
 
-- request hints from level select screen
-  - first hint is access, subsequent hints are keys
-- display hints in tooltips
-  - access/key hints at top
-  - location peeks under individual locations
+### Faithless
+
+This handles much more like a unified game than a collection of isolated levels.
+Each episode is an entire hubcluster and there's a lot of cross-map interaction,
+e.g. there's a whole area in E1M1 (including an exit to another map) that's only
+accessible after flipping a switch in E1M3 *and* picking up a key in E1M5.
+
+Also, keys are per-cluster in this, not per-map. So the whole key handling subsystem
+needs to be taught to handle that.
+
+This will probably require some redesign to allow treating it as a single unified
+game, with *every* map, from every episode, in the same cluster so that they don't
+reset ever during the rando session. But we still need to remember which cluster
+they came from so that, e.g., we treat the E1 and E2 green keys differently.
 
 ## Indes
 
@@ -37,10 +84,6 @@ min_lives_per_level doesn't work if you don't get any bonus lives at all, due to
 ### Indes integration
 Make stuff like "Extra lives on boss kill" available as extra upgrades or as effects
 on level up when using the integration.
-
-### commission from ranger
-GB: on level end, select between scavenge upgrades or nothing
-GB: scavenge upgrades are probabilistic, chance scaling with level, enemy hp, +BOSS
 
 ### Ideas for Laevis split-off
 
@@ -100,6 +143,11 @@ when it's nearly full and restore it when it gets low.
 - Singularity on-kill upgrade, spawns a black hole that sucks enemies (but not the player) towards it
 
 ### Ideas
+
+### ranger
+
+GB: on level end, select between scavenge upgrades or nothing
+GB: scavenge upgrades are probabilistic, chance scaling with level, enemy hp, +BOSS
 
 ### rhythmcorvid
 

@@ -2,6 +2,18 @@
 
 ## Help!
 
+### World generation says "no more spots to place items"!
+
+This means the generator got into a state where it couldn't figure out where to
+place progression items in a way that keeps the game winnable. This is most likely
+to happen with newly generated logic files or ones with "basic" support, and can
+usually be resolved by retrying a few times.
+
+Setting the `level order bias` option too high can also cause this.
+
+If it's happening on a tuned ("full" or "complete" support) logic file, or if
+happens *every* time, please report it.
+
 ### I got partway through a level and now I'm stuck!
 
 Try a different level -- the randomizer may require you to visit one level to get

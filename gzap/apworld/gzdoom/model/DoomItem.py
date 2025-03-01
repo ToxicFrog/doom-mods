@@ -41,10 +41,7 @@ class DoomItem:
             self.map = map
 
     def __str__(self) -> str:
-        if self.count > 1:
-            return f"DoomItem#{self.id}({self.name()})×{self.count}"
-        else:
-            return f"DoomItem#{self.id}({self.name()})"
+        return f"DoomItem#{self.id}({self.name()})×{self.count}"
 
     __repr__ = __str__
 
@@ -58,6 +55,22 @@ class DoomItem:
     def set_max_count(self, count: int):
         for sk,n in self.count.items():
             self.count[sk] = min(n, count)
+
+    def get_count(self, options, maps):
+        skill = min(3, max(1, options.skill.value))
+        count = self.count.get(skill, 0)
+
+        if self.category == "key":
+            return min(count, 1)
+
+        if self.category == "weapon":
+            if options.max_weapon_copies.value > 0:
+                count = min(count, options.max_weapon_copies.value)
+            if options.levels_per_weapon.value > 0:
+                count = min(count, max(1, len(maps) // options.levels_per_weapon.value))
+
+        return count
+
 
     def name(self) -> str:
         """Returns the user-facing Archipelago name for this item."""

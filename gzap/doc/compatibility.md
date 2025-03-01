@@ -8,6 +8,14 @@ These should generally work. If you encounter one that doesn't, please report it
 as a bug (and include a link to the wad and, if you have one, a copy of the logic
 file).
 
+### Special `MAPINFO` settings
+
+In order for some feature to function correctly, gzAP needs to generate its own
+`MAPINFO` lump. Wads that use `MAPINFO` to modify map flags may not function
+correctly, depending on the flags. Unfortunately there is no good, general-purpose
+way to do this, so I am somewhat playing whack-a-mole with `MAPINFO` features that
+break maps if not supported.
+
 ### Single maps
 
 Not currently supported.

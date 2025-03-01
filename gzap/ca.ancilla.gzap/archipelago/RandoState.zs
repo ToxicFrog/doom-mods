@@ -17,6 +17,8 @@ class ::RandoItem play {
   string typename;
   // User-facing name
   string tag;
+  // Internal category name
+  string category;
   // Number left to dispense
   int held;
   // Number received from randomizer
@@ -31,6 +33,7 @@ class ::RandoItem play {
     let item = ::RandoItem(new("::RandoItem"));
     item.typename = typename;
     item.tag = GetDefaultByType(itype).GetTag();
+    item.category = ::ScannedItem.ItemCategory(GetDefaultByType(itype));
     item.held = 0;
     item.total = 0;
     return item;
@@ -40,11 +43,37 @@ class ::RandoItem play {
     if (total == self.total) return;
     self.held += total - self.total;
     self.total = total;
+    EnforceLimit();
   }
 
   void Inc() {
     self.total += 1;
     self.held += 1;
+    EnforceLimit();
+  }
+
+  void EnforceLimit() {
+    int limit = GetLimit();
+    if (limit < 0) return;
+    while (self.held > limit) {
+      Replicate();
+    }
+  }
+
+  int GetLimit() {
+    if (self.category == "weapon") {
+      return ap_bank_weapons;
+    } else if (self.category.IndexOf("-ammo") > -1) {
+      return ap_bank_ammo;
+    } else if (self.category.IndexOf("-armor") > -1) {
+      return ap_bank_armour;
+    } else if (self.category.IndexOf("-health") > -1) {
+      return ap_bank_health;
+    } else if (self.category == "powerup") {
+      return ap_bank_powerups;
+    } else{
+      return ap_bank_other;
+    }
   }
 
   // Thank you for choosing Value-Rep™!
