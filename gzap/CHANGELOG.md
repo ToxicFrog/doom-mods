@@ -10,6 +10,8 @@ This is a bugfix release.
   - Configurable limits for how many copies of each weapon go into the item pool
   - Partial tuning of the first few Doom 2 levels should mean it's less eager to
     send you to Dead Simple all the time
+  - Support for levelport specials in the scanner, as used in e.g. Faithless
+    and Hexen. EXPERIMENTAL, and does not imply support for those wads.
 - Change:
   - AP client is now called "GZDoom Client" rather than "Text Client"
   - A message displays in gzDoom when the connection to AP is established

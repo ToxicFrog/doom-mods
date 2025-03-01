@@ -39,7 +39,9 @@ This file summarizes the state of support for various wads. Support is classifie
 
 | Game | Status | Notes |
 | ---- | ------ | ----- |
+| Adventures of Square | missing | Requires scanner improvements to handle AOS weapons. |
 | Ashes 2063 | missing | |
 | Ashes: Afterglow | missing | Uses hub maps. |
 | Ashes: Hard Reset | missing | Still need to play it. |
+| Faithless Trilogy | missing | Requires manual work to handle ACS-defined portals. |
 | Hedon Bloodrite | missing | This is going to be a project but I think it would be pretty cool. |

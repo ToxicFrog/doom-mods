@@ -120,9 +120,20 @@ class ::Scanner play {
 
     nextmap.MarkDone();
     if (recurse) {
+      EnqueueLevelports(nextmap.rank + 1);
       EnqueueNext(level.NextSecretMap, nextmap.rank + 1);
       EnqueueNext(level.NextMap, nextmap.rank + 1);
     }
     return ScanNext();
+  }
+
+  void EnqueueLevelports(uint rank) {
+    foreach (line : level.lines) {
+      if (line.special != 74) continue; // check for Teleport_NewMap
+      let info = LevelInfo.FindLevelByNum(line.args[0]);
+      if (!info) continue; // teleport is not hooked up, do not attempt
+      console.printf("LEVELPORT: %d (%d - %s)", line.args[0], info.LevelNum, info.MapName);
+      EnqueueNext(info.MapName, rank);
+    }
   }
 }

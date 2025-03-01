@@ -22,7 +22,6 @@ min_lives_per_level doesn't work if you don't get any bonus lives at all, due to
 - map exclusion UI
 - non-rando tuning mode
 - add "scan the whole thing" button
-- support for levelport specials, e.g. Faithless
 - include secrets as checks in themselves?
 
 ### ingame
@@ -44,6 +43,21 @@ to category mapping so that we can, for example, list the AOS weapon customs in 
 and map them to `weapon`.
 
 Support for other TCs will probably benefit from work done on AOS.
+
+### Faithless
+
+This handles much more like a unified game than a collection of isolated levels.
+Each episode is an entire hubcluster and there's a lot of cross-map interaction,
+e.g. there's a whole area in E1M1 (including an exit to another map) that's only
+accessible after flipping a switch in E1M3 *and* picking up a key in E1M5.
+
+Also, keys are per-cluster in this, not per-map. So the whole key handling subsystem
+needs to be taught to handle that.
+
+This will probably require some redesign to allow treating it as a single unified
+game, with *every* map, from every episode, in the same cluster so that they don't
+reset ever during the rando session. But we still need to remember which cluster
+they came from so that, e.g., we treat the E1 and E2 green keys differently.
 
 ## Indes
 
