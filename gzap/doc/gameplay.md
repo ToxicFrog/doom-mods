@@ -37,17 +37,18 @@ select menu. This lists:
 - whether you've beaten the level.
 
 From here you can jump to any unlocked level, which will put you at the start of
-the level with everything you've collected so far.
+the level with everything you've collected so far. The `items` counter is repurposed
+to show the number of checks remaining in the level.
 
 The win condition is to beat (reach the exit of) every level; you don't need to
 collect every item.
 
-As you collect items, keys, level accesses, and maps are added to your inventory
-immediately. Armour, weapons, powerups, etc go into a separate "randomizer
-inventory". You can open this and spawn any of the items in it at any time. If
-you find yourself lacking firepower or running out of health or armour, check
-your inventory and see if maybe you picked up a megasphere or plasma rifle that
-you forgot about.
+As you check locations, any keys, level accesses, or maps you find are added to
+your inventory immediately. Armour, weapons, powerups, etc go into a separate
+"randomizer inventory". You can open this and spawn any of the items in it at any
+time. If you find yourself lacking firepower or running out of health or armour,
+check your inventory and see if maybe you picked up a megasphere or plasma rifle
+that you forgot about.
 
 ## Multi-world
 
