@@ -1,10 +1,12 @@
 # Unreleased
 
-This is a bugfix release.
+This is a feature release.
+
+⚠️ The logic file format has changed. v0.1 logic files are not compatible.
 
 - New:
   - Support for scanning DEHACKED-modified pickups.
-  - Logic for Chex Quest 3 [by @frozenLake]
+  - Logic and tuning for Chex Quest 3 [by @frozenLake]
   - Tuning for Doom 1 E1 [by @ChrisCJ]
   - Configurable limits for the item bank
   - Configurable limits for how many copies of each weapon go into the item pool
@@ -12,6 +14,7 @@ This is a bugfix release.
     send you to Dead Simple all the time
   - Support for levelport specials in the scanner, as used in e.g. Faithless
     and Hexen. EXPERIMENTAL, and does not imply support for those wads.
+  - Logic and partial tuning for Scythe
 - Change:
   - AP client is now called "GZDoom Client" rather than "Text Client"
   - A message displays in gzDoom when the connection to AP is established
