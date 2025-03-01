@@ -1,4 +1,4 @@
-# Unreleased
+# 0.2.0
 
 This is a feature release.
 

@@ -10,19 +10,23 @@ min_lives_per_level doesn't work if you don't get any bonus lives at all, due to
 
 ## gzArchipelago
 
-### client
-
-- don't reprocess old events except XON
-  this has complications! if the client restarts while the game is still running,
-  we *want* to reprocess old events so we don't miss CHECKs! let's leave this
-  for now.
-
 ### scanner
 
 - map exclusion UI
 - non-rando tuning mode
 - add "scan the whole thing" button
 - include secrets as checks in themselves?
+  we can build the secret list by scanning the sector array on level entry and
+  recording all sectors for which IsSecret() return true. We can associate this
+  with the sector Index(). For naming, we have a few options; there's the Index,
+  which is guaranteed unique but not useful to the player; there's also the `thinglist`
+  which is a linked list of Actors contained in that sector, which would let us
+  match it up to any check(s) inside it, and the `centerspot` which is the XY center
+  of the sector (but not guaranteed to be unique since sectors can be concave).
+  Probably quick-and-easy approach is "MAPXX - Secret {index} [{x},{y}]".
+  To detect secret collection, we watch level.total_secrets and level.found_secrets
+  in OnTick(); when the former increases, we walk the secret sectors to find out
+  which one(s) have been collected.
 
 ### ingame
 
@@ -32,6 +36,20 @@ min_lives_per_level doesn't work if you don't get any bonus lives at all, due to
 - display hints in tooltips
   - access/key hints at top
   - location peeks under individual locations
+
+### generator
+
+- option to not place progression items in secrets
+- option to treat secrets as checks, once above scanner changes are made
+- option to treat bosses as checks -- also needs scanner changes, highly vulnerable
+  to enemy-replacement mods
+
+### client
+
+- don't reprocess old events except XON
+  this has complications! if the client restarts while the game is still running,
+  we *want* to reprocess old events so we don't miss CHECKs! let's leave this
+  for now.
 
 ### Adventures of Square
 
