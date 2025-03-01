@@ -51,6 +51,7 @@ class DoomMap:
     # JSON initializer for the mapinfo
     info: InitVar[Dict]
     # Data for the MAPINFO lump
+    rank: int = 0
     mapinfo: Optional[MAPINFO] = None
     # Key and weapon information for computing access rules
     keyset: Set[str] = field(default_factory=set)
@@ -69,6 +70,7 @@ class DoomMap:
         return [loc for loc in self.locations if skill in loc.skill]
 
     def access_rule(self, player, need_priors = 0.0, require_weapons = True):
+        # print(f"access_rule({self.map}) = {need_priors}% of {self.prior_clears}")
         def rule(state):
             if not state.has(self.access_token_name(), player):
                 return False

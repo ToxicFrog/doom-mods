@@ -21,11 +21,7 @@ class ::Scanner play {
     return self.queued.Size();
   }
 
-  void EnqueueCurrent() {
-    EnqueueLevel(level.MapName.MakeUpper());
-  }
-
-  bool EnqueueLevel(string mapname) {
+  bool EnqueueLevel(string mapname, uint rank) {
     string mapname = mapname.MakeUpper();
 
     if (!LevelInfo.MapExists(mapname)) {
@@ -37,7 +33,7 @@ class ::Scanner play {
       return false;
     }
 
-    let sm = ::ScannedMap.Create(mapname);
+    let sm = ::ScannedMap.Create(mapname, rank);
 
     maps_by_name.Insert(mapname, sm);
     queued.Push(sm);
@@ -47,8 +43,8 @@ class ::Scanner play {
 
   // Like EnqueueLevel, but places it at the head of the queue, immediately behind
   // the current level, rather than at the end.
-  void EnqueueNext(string mapname) {
-    if (!EnqueueLevel(mapname)) return;
+  void EnqueueNext(string mapname, uint rank) {
+    if (!EnqueueLevel(mapname, rank)) return;
     if (queued.Size() <= 2) return;
     // Grab the new map from the end of the queue
     let sm = queued[queued.Size()-1];
@@ -124,8 +120,8 @@ class ::Scanner play {
 
     nextmap.MarkDone();
     if (recurse) {
-      EnqueueNext(level.NextSecretMap);
-      EnqueueNext(level.NextMap);
+      EnqueueNext(level.NextSecretMap, nextmap.rank + 1);
+      EnqueueNext(level.NextMap, nextmap.rank + 1);
     }
     return ScanNext();
   }

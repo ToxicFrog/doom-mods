@@ -23,6 +23,9 @@ This is a bugfix release.
   - `useplayerstartz` flag support in `MAPINFO` (fixes Alfonzone, among others)
   - Potential wrongness when generating games on ITYTD or NM! difficulty
   - Unreachable item in MAP07 now properly marked as such
+  - Level difficulty is now inferred from how far away that level is from any
+    starting map, rather than its index in the WAD. In particular this means
+    that episode starts are now correctly guessed as easier than episode bosses.
 
 # 0.1.0
 

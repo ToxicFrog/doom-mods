@@ -10,10 +10,6 @@ min_lives_per_level doesn't work if you don't get any bonus lives at all, due to
 
 ## gzArchipelago
 
-- add "scan the whole thing" button
-- fix the timer (and preserve it across save/load if possible)
-- improved difficulty heuristics based on monster count and/or walking the level reachability graph
-
 ### client
 
 - don't reprocess old events except XON
@@ -25,14 +21,29 @@ min_lives_per_level doesn't work if you don't get any bonus lives at all, due to
 
 - map exclusion UI
 - non-rando tuning mode
+- add "scan the whole thing" button
+- support for levelport specials, e.g. Faithless
+- include secrets as checks in themselves?
 
 ### ingame
 
+- fix the timer (and preserve it across save/load if possible)
 - request hints from level select screen
   - first hint is access, subsequent hints are keys
 - display hints in tooltips
   - access/key hints at top
   - location peeks under individual locations
+
+### Adventures of Square
+
+This has some extra complications around powerups that are actually key items,
+and the like; additionally, the weapons as placed in the maps aren't real weapons,
+they're CustomInventory items that, when picked up, turn into weapons. To address
+this we probably need an option to load an external lump containing a class name
+to category mapping so that we can, for example, list the AOS weapon customs in it
+and map them to `weapon`.
+
+Support for other TCs will probably benefit from work done on AOS.
 
 ## Indes
 
@@ -41,10 +52,6 @@ min_lives_per_level doesn't work if you don't get any bonus lives at all, due to
 ### Indes integration
 Make stuff like "Extra lives on boss kill" available as extra upgrades or as effects
 on level up when using the integration.
-
-### commission from ranger
-GB: on level end, select between scavenge upgrades or nothing
-GB: scavenge upgrades are probabilistic, chance scaling with level, enemy hp, +BOSS
 
 ### Ideas for Laevis split-off
 
@@ -104,6 +111,11 @@ when it's nearly full and restore it when it gets low.
 - Singularity on-kill upgrade, spawns a black hole that sucks enemies (but not the player) towards it
 
 ### Ideas
+
+### ranger
+
+GB: on level end, select between scavenge upgrades or nothing
+GB: scavenge upgrades are probabilistic, chance scaling with level, enemy hp, +BOSS
 
 ### rhythmcorvid
 

@@ -9,6 +9,11 @@
 class ::ScannedMap play {
   string name;
   LevelInfo info;
+  // Computed rank/sphere of level based on "distance" from initial mapset.
+  // TODO: ideally, we'd like to have both "rank" (how far into the game the level is)
+  // and "difficulty" (based on enemy heuristics, probably) so that both can be
+  // used for balancing.
+  uint rank;
   Array<::ScannedLocation> locations;
   // Highest skill we've completed a scan on.
   // We don't track 0 (ITYTD) or 4 (NM) because they have the same actor placement
@@ -17,18 +22,20 @@ class ::ScannedMap play {
   int max_skill;
   bool done;
 
-  static ::ScannedMap Create(string mapname) {
+  static ::ScannedMap Create(string mapname, uint rank) {
     let sm = ::ScannedMap(new("::ScannedMap"));
     sm.name = mapname;
     sm.info = LevelInfo.FindLevelInfo(mapname);
     sm.done = false;
     sm.max_skill = 0;
+    sm.rank = rank;
     return sm;
   }
 
   void Output() {
-    ::Scanner.Output("MAP", name, string.format("\"checksum\": \"%s\", \"info\": %s",
-      LevelInfo.MapChecksum(name), GetMapinfoJSON()));
+    ::Scanner.Output("MAP", name, string.format(
+      "\"checksum\": \"%s\", \"rank\": %d, \"info\": %s",
+      LevelInfo.MapChecksum(name), self.rank, GetMapinfoJSON()));
     foreach (loc : locations) {
       loc.Output(name);
     }

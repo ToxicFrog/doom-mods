@@ -28,7 +28,7 @@ class ::ScanEventHandler : StaticEventHandler {
         Array<string> levels;
         ap_scan_levels.Split(levels, " ", TOK_SKIPEMPTY);
         foreach (levelname : levels) {
-          scanner.EnqueueLevel(levelname);
+          scanner.EnqueueLevel(levelname, 0);
         }
         if (scanner.QueueSize() < 1) {
           ::Util.printf("$GZAP_SCAN_EMPTY");

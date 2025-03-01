@@ -75,8 +75,7 @@ class DoomWad:
         if map in self.maps:
             raise DuplicateMapError(map)
 
-        prior_clears = set([map.clear_token_name() for map in self.maps.values()])
-        self.maps[map] = DoomMap(prior_clears=prior_clears, **json)
+        self.maps[map] = DoomMap(**json)
         self.register_map_tokens(self.maps[map])
 
         if self.first_map is None:
@@ -268,3 +267,10 @@ class DoomWad:
         for item in self.items_by_name.values():
             if item.category == "key":
                 item.set_max_count(1)
+
+        for map in self.all_maps():
+            map.prior_clears = set([
+                prior_map.clear_token_name()
+                for prior_map in self.all_maps()
+                if prior_map.rank < map.rank
+            ])
