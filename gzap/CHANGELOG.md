@@ -1,3 +1,8 @@
+# Unreleased
+
+- New:
+  - Animated icons for progression and unreachable checks
+
 # 0.2.0
 
 This is a feature release.

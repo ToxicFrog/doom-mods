@@ -132,8 +132,8 @@ class ::RandoState play {
     item_apids.Insert(apid, typename);
   }
 
-  void RegisterCheck(string map, uint apid, string name, bool progression, Vector3 pos) {
-    regions.Get(map).RegisterCheck(apid, name, progression, pos);
+  void RegisterCheck(string map, uint apid, string name, bool progression, Vector3 pos, bool unreachable = false) {
+    regions.Get(map).RegisterCheck(apid, name, progression, pos, unreachable);
   }
 
   int, ::RandoItem FindItem(string typename) {

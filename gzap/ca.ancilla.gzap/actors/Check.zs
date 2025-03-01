@@ -1,6 +1,7 @@
 // Classes representing an Archipelago check placeholder.
 
 #namespace GZAP;
+#debug off;
 
 #include "../archipelago/Location.zsc"
 
@@ -9,6 +10,7 @@
 // displayed.
 mixin class ::ArchipelagoIcon {
   bool progression;
+  bool unreachable;
 
   States {
     Spawn:
@@ -20,8 +22,11 @@ mixin class ::ArchipelagoIcon {
       APIT A -1 BRIGHT;
       STOP;
     Progression:
-      APIT B -1 BRIGHT;
-      STOP;
+      APIT ABCDEFGHIJIHGFEDCB 2 BRIGHT;
+      LOOP;
+    Unreachable:
+      APUR ABCDEFGHIJIHGFEDCB 2 BRIGHT;
+      LOOP;
     Hidden:
       TNT1 A -1;
       STOP;
@@ -30,6 +35,8 @@ mixin class ::ArchipelagoIcon {
   void SetProgressionState() {
     if (!ShouldDisplay()) {
       SetStateLabel("Hidden");
+    } else if (self.unreachable) {
+      SetStateLabel("Unreachable");
     } else if (self.progression && ShouldHilight()) {
       SetStateLabel("Progression");
     } else {
@@ -90,7 +97,9 @@ class ::CheckPickup : ScoreItem {
     let thing = ::CheckPickup(Actor.Spawn("::CheckPickup", original.pos));
     thing.location = location;
     thing.progression = location.progression;
+    thing.unreachable = location.unreachable;
     thing.A_SetSize(original.radius, original.height);
+    DEBUG("Check initialize: name=%s, pr=%d, ur=%d", location.name, thing.progression, thing.unreachable);
     // TODO: copy flags like gravity from the original?
     return thing;
   }
@@ -105,6 +114,7 @@ class ::CheckPickup : ScoreItem {
     ChangeTID(level.FindUniqueTID());
     marker = ::CheckMapMarker(Spawn("::CheckMapMarker", self.pos));
     marker.progression = self.progression;
+    marker.unreachable = self.unreachable;
     marker.A_SetSpecial(0, self.tid);
   }
 

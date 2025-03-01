@@ -27,11 +27,12 @@ class ::Region play {
     return region;
   }
 
-  void RegisterCheck(uint apid, string name, bool progression, Vector3 pos) {
+  void RegisterCheck(uint apid, string name, bool progression, Vector3 pos, bool unreachable) {
     let loc = ::Location(new("::Location"));
     loc.apid = apid;
     loc.name = name;
     loc.progression = progression;
+    loc.unreachable = unreachable;
     loc.checked = false;
     loc.pos = pos;
     locations.push(loc);
