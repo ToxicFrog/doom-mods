@@ -31,6 +31,7 @@ class StartWithAutomaps(Toggle):
     Otherwise, they'll be in the pool as useful, but not required, items.
     """
     display_name = "Start with Automaps"
+    default = False
 
 
 class MaxWeaponCopies(Range):
@@ -100,8 +101,7 @@ class StartingLevels(OptionSet):
     You will begin with the access code and all keys for these levels in your inventory.
     """
     display_name = "Starting Levels"
-    # default = ["E1M1", "MAP01", "LEVEL01", "PL_MAP01", "TN_MAP01"]
-    default = ["MAP01"]
+    default = ["E1M1", "MAP01"]
     valid_keys = model.all_map_names()
 
 
