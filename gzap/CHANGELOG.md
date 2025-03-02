@@ -3,6 +3,7 @@
 - New:
   - Animated icons for progression and unreachable checks
   - "No secret progression items" option
+  - Request hints from the level select screen with →
 - Change:
   - Improvements to Scythe logic
 

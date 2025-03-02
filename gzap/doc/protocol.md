@@ -108,19 +108,22 @@ gzDoom loaded from disk). This is used to name the generated tuning file.
 Tells the client that we have read messages it sent up to the given `id`, and
 it can overwrite them with new messages if needed.
 
-#### `AP-CHECK { id, name, keys }`
+#### `AP-CHECK { id, name, keys, unreachable }`
 
 Emitted when the player checks a location. `id` is the AP location ID, and `name`
 is the name assigned to that location by the randomizer. `keys` is a list of keys
 held by the player and is used only for logic tuning.
 
-<!-- TODO: add 'unreachable' field for better logic tuning. -->
+`unreachable` means that the check is not reachable in normal play and the player
+used cheats, forbidden techniques, or the `ap_scan_unreachable` command to collect
+it; including that in the tuning file will prevent it from being used for progression
+items in future games.
 
 #### `AP-CHAT { msg }`
 
-Send a chat message to the rest of the Archipelago players. Unfortunately there
-is no code that currently emits this due to difficulty hooking the `say` console
-command in-game.
+Send a chat message to the rest of the Archipelago players. Normally chat messages
+are picked up directly from the log file, without involving this; however, some
+mod features, like hinting, may generate chat messages in this manner.
 
 #### `AP-STATUS { victory }`
 

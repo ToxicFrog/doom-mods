@@ -68,7 +68,27 @@ class ::LevelSelector : ::KeyValueNetevent {
   }
 
   override bool Selectable() {
-    return region.access;
+    // return region.access;
+    return true;
+  }
+
+  override bool MenuEvent(int key, bool fromController) {
+    if (key == Menu.MKey_Enter && !region.access) {
+      Menu.MenuSound("menu/invalid");
+      return true;
+    }
+
+    if (key != Menu.MKey_Right) {
+      return super.MenuEvent(key, fromController);
+    }
+
+    let hint = self.region.NextHint();
+    if (hint != "") {
+      Menu.MenuSound("menu/change");
+      EventHandler.SendNetworkCommand("ap-hint", NET_STRING, hint);
+    }
+
+    return true;
   }
 
   string FormatLevelKey(LevelInfo info, ::Region region) {
@@ -120,11 +140,12 @@ class ::LevelSelector : ::KeyValueNetevent {
 
   string FormatTooltip() {
     return string.format(
-      "%s\n%s%s%s",
+      "%s\n%s%s%s%s",
       FormatLevelStatusTT(region),
       FormatAutomapStatusTT(region),
       FormatMissingKeysTT(region),
-      FormatMissingChecksTT(region));
+      FormatMissingChecksTT(region),
+      FormatHintReminderTT(region));
   }
 
   string FormatLevelStatusTT(::Region region) {
@@ -205,6 +226,14 @@ class ::LevelSelector : ::KeyValueNetevent {
 
     string buf = "\c[" .. clr .."]" .. icon;
     return buf.filter();
+  }
+
+  string FormatHintReminderTT(::Region region) {
+    let hint = region.NextHint();
+    if (hint == "") {
+      return "";
+    }
+    return string.format("\n\c-%s\c[DARKGRAY]\n  %s", StringTable.Localize("$GZAP_MENU_TT_HINT"), hint);
   }
 }
 

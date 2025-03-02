@@ -68,6 +68,25 @@ class ::Region play {
     return locations.Size();
   }
 
+  // Return the name of the next item to hint for that's useful for this level.
+  // If you don't have the level access, hints for that.
+  // Otherwise, hints for the first key you don't have.
+  // If you have access and keys, returns "".
+  // TODO: remember the hints and display them in the tooltip.
+  string NextHint() const {
+    if (!self.access) {
+      return string.format("Level Access (%s)", self.map);
+    }
+
+    foreach (k, v : self.keys) {
+      if (!v) {
+        return string.format("%s (%s)", k, self.map);
+      }
+    }
+
+    return "";
+  }
+
   void RegisterKey(string key) {
     keys.Insert(key, false);
   }

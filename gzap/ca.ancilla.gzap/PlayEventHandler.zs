@@ -143,6 +143,9 @@ class ::PlayEventHandler : StaticEventHandler {
     } else if (cmd.command == "ap-ipc:checked") {
       int apid = cmd.ReadInt();
       apstate.MarkLocationChecked(apid);
+    } else if (cmd.command == "ap-hint") {
+      string item = cmd.ReadString();
+      ::IPC.Send("CHAT", string.format("{ \"msg\": \"!hint %s\" }", item));
     }
   }
 
