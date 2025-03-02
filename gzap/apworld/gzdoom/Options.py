@@ -100,7 +100,7 @@ class StartingLevels(OptionSet):
 
     You will begin with the access code and all keys for these levels in your inventory.
     """
-    display_name = "Starting Levels"
+    display_name = "Starting levels"
     default = ["E1M1", "MAP01"]
     valid_keys = model.all_map_names()
 
@@ -115,7 +115,7 @@ class IncludedLevels(OptionSet):
     The win condition (at present) is always "complete all levels", so including more
     levels will generally result in a longer game.
     """
-    display_name = "Included Levels"
+    display_name = "Included levels"
     default = sorted(model.all_map_names())
 
 class ExcludedLevels(OptionSet):
@@ -124,7 +124,7 @@ class ExcludedLevels(OptionSet):
 
     This takes precedence over included_levels, if a map appears in both.
     """
-    display_name = "Excluded Levels"
+    display_name = "Excluded levels"
     default = ['TITLEMAP']
 
 # TODO: this isn't useful until we have multi-difficulty logic files, or a way
@@ -160,7 +160,7 @@ class LevelOrderBias(Range):
 
     ¹ Counting secret levels
     """
-    display_name = "Level Order Bias"
+    display_name = "Level order bias"
     range_start = 0
     range_end = 100
     default = 25
