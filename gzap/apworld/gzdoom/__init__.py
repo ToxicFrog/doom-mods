@@ -5,7 +5,7 @@ import random
 from typing import Dict
 import zipfile
 
-from BaseClasses import CollectionState, Item, ItemClassification, Location, MultiWorld, Region, Tutorial
+from BaseClasses import CollectionState, Item, ItemClassification, Location, MultiWorld, Region, Tutorial, LocationProgressType
 from worlds.AutoWorld import WebWorld, World
 import worlds.LauncherComponents as LauncherComponents
 
@@ -39,9 +39,13 @@ LauncherComponents.components.append(
 class GZDoomLocation(Location):
     game: str = "gzDoom"
 
-    def __init__(self, player: int, loc: DoomLocation, region: Region) -> None:
+    def __init__(self, options, player: int, loc: DoomLocation, region: Region) -> None:
         super().__init__(player=player, name=loc.name(), address=loc.id, parent=region)
         self.access_rule = loc.access_rule(player)
+        if loc.secret and not options.allow_secret_progress.value:
+            self.progress_type = LocationProgressType.EXCLUDED
+        else:
+            self.progress_type = LocationProgressType.DEFAULT
 
 
 class GZDoomItem(Item):
@@ -153,7 +157,7 @@ class GZDoomWorld(World):
                 # print("  Location:", loc.name(), loc)
                 assert loc.name() not in placed
                 placed.add(loc.name())
-                location = GZDoomLocation(self.player, loc, region)
+                location = GZDoomLocation(self.options, self.player, loc, region)
                 region.locations.append(location)
                 if loc.unreachable:
                     # TODO: put a BasicHealthBonus here or something

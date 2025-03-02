@@ -88,7 +88,7 @@ class DoomWad:
             DoomItem(map=map.map, category="map", typename="", tag="Automap", skill=set([1,2,3])))
         clear_token = self.register_item(None,
             DoomItem(map=map.map, category="token", typename="", tag="Level Clear", skill=set([1,2,3])))
-        map_exit = DoomLocation(self, map.map, clear_token, None)
+        map_exit = DoomLocation(self, map=map.map, item=clear_token, secret=False, json=None)
         # TODO: there should be a better way of overriding location names
         map_exit.item_name = "Exit"
         map_exit.item = clear_token
@@ -109,9 +109,6 @@ class DoomWad:
         map = json["map"]
         position = json.pop("position")
         skill = set(json.pop("skill", [1,2,3]))
-        # TODO: secret is not actually used for anything right now. We should
-        # annotate the location with it, not the item, and we should have an option
-        # to avoid placing progression items in secret locations.
         secret = json.pop("secret", False)
 
         # Provisionally create a DoomItem.
@@ -123,15 +120,15 @@ class DoomWad:
             return
 
         # We know we care about the location, so register it.
-        self.new_location(map, item, position, skill)
+        self.new_location(map, item, secret, skill, position)
 
         # Register the item as well, if it's eligible to be included in the item pool.
         if item.should_include():
-            self.register_item(map, item, secret)
+            self.register_item(map, item)
 
-    def register_item(self, map: str, item: DoomItem, secret: bool = False) -> DoomItem:
+    def register_item(self, map: str, item: DoomItem) -> DoomItem:
         if item.name() in self.items_by_name:
-            return self.register_duplicate_item(map, item, secret)
+            return self.register_duplicate_item(map, item)
 
         if map is not None:
             self.maps[map].update_access_tracking(item)
@@ -140,7 +137,7 @@ class DoomWad:
         self.items_by_name[item.name()] = item
         return item
 
-    def register_duplicate_item(self, map: str, item: DoomItem, secret: bool = False) -> DoomItem:
+    def register_duplicate_item(self, map: str, item: DoomItem) -> DoomItem:
         other: DoomItem = self.items_by_name[item.name()]
         if other == item:
             if map is not None:
@@ -157,7 +154,7 @@ class DoomWad:
             # and retry.
             assert not item.disambiguate
             item.disambiguate = True
-            return self.register_item(map, item, secret)
+            return self.register_item(map, item)
 
         # Name collision with existing, different item. We need to rename
         # them both.
@@ -171,10 +168,10 @@ class DoomWad:
         other.disambiguate = True
         item.disambiguate = True
         self.register_item(None, other)
-        return self.register_item(map, item, secret)
+        return self.register_item(map, item)
 
 
-    def new_location(self, map: str, item: DoomItem, json: Dict[str, str], skill: Set[int]) -> None:
+    def new_location(self, map: str, item: DoomItem, secret: bool, skill: Set[int], json: Dict[str, str]) -> None:
         """
         Add a new location to the location pool.
 
@@ -183,7 +180,7 @@ class DoomWad:
         all of their items are added to the pool but it's undefined which one the location is named
         after and inherits the item category from.
         """
-        location = DoomLocation(self, map, item, json)
+        location = DoomLocation(self, map, item, secret, json)
         self.register_location(location, skill)
 
     def register_location(self, location: DoomLocation, skill: Set[int]) -> None:

@@ -2,6 +2,7 @@
 
 - New:
   - Animated icons for progression and unreachable checks
+  - "No secret progression items" option
 
 # 0.2.0
 

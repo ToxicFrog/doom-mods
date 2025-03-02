@@ -88,8 +88,9 @@ def print_wad_stats(name: str, wad: DoomWad) -> None:
       num_p = count_items(sknum, wad.progression_items(sknum))
       num_u = count_items(sknum, wad.useful_items(sknum))
       num_f = count_items(sknum, wad.filler_items(sknum))
-      print("%32s  %4d locs, %4d items (P:%-4d + U:%-4d + F:%-4d)" % (
-          skname, len(wad.locations(sknum)),
+      locs = wad.locations(sknum)
+      print("%32s  %4d locs (%3d secret), %4d items (P:%-4d + U:%-4d + F:%-4d)" % (
+          skname, len(locs), len([loc for loc in locs if loc.secret]),
           num_p + num_u + num_f, num_p, num_u, num_f
       ))
 

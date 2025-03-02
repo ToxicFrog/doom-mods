@@ -51,14 +51,16 @@ class DoomLocation:
     disambiguate: bool = False
     skill: Set[int]
     unreachable: bool = False
+    secret: bool = False
 
-    def __init__(self, parent, map: str, item: DoomItem, json: str | None):
+    def __init__(self, parent, map: str, item: DoomItem, secret: bool, json: str | None):
         self.category = item.category
         self.keyset = set()
         self.parent = parent
         self.orig_item = item
         self.item_name = item.tag
         self.skill = set()
+        self.secret = secret
         if json:
             self.pos = DoomPosition(map=map, virtual=False, **json)
         else:

@@ -165,6 +165,25 @@ class LevelOrderBias(Range):
     range_end = 100
     default = 25
 
+class AllowSecretProgress(Toggle):
+    """
+    Whether the randomizer will place progression items in locations flagged as
+    secret. If disabled, secrets will still be randomized but only filler items
+    will be placed there.
+
+    NOTE: How well this works is extremely wad-dependent. Many wads contain
+    well-hidden items that are not formally marked as secrets and will not be
+    excluded by this setting. Others mark items that are out in the open or even
+    mandatory to collect as secrets, which can excessively restrict item placement.
+
+    NOTE: In wads where most of the items in the first level are secret -- including
+    Doom 1 and 2 -- turning this off is likely to cause generation failures unless
+    you also add more starting levels.
+    """
+    display_name = "Allow secret progression items"
+    default = True
+
+
 @dataclass
 class GZDoomOptions(PerGameCommonOptions):
     # Skill level, WAD, and level selection
@@ -174,6 +193,8 @@ class GZDoomOptions(PerGameCommonOptions):
     included_levels: IncludedLevels
     excluded_levels: ExcludedLevels
     level_order_bias: LevelOrderBias
+    # Location pool control
+    allow_secret_progress: AllowSecretProgress
     # Item pool control
     start_with_all_maps: StartWithAutomaps
     max_weapon_copies: MaxWeaponCopies
