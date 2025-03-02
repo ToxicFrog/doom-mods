@@ -3,6 +3,8 @@
 - New:
   - Animated icons for progression and unreachable checks
   - "No secret progression items" option
+- Change:
+  - Improvements to Scythe logic
 
 # 0.2.0
 
