@@ -32,14 +32,19 @@ min_lives_per_level doesn't work if you don't get any bonus lives at all, due to
 
 - fix the timer (and preserve it across save/load if possible)
 - display hints in tooltips
-  - access/key hints at top
+  - PEEK message for hints about other people's items in our world
   - location peeks under individual locations
+- "tracker mode" that propagates key requirements into the generated pk3 and
+  displays what it thinks you can reach from the level selector
 
 ### generator
 
+- don't force keys for starting levels that have been tuned
 - option to treat secrets as checks, once above scanner changes are made
 - option to treat bosses as checks -- also needs scanner changes, highly vulnerable
   to enemy-replacement mods
+- option to force reload on death rather than respawning
+- option to place all maps in the same hubcluster
 
 ### client
 

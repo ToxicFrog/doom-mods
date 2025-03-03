@@ -7,6 +7,9 @@
   - Received hints for your items are displayed on the level select screen
 - Change:
   - Improvements to Scythe logic
+- Fix:
+  - If an item bank limit was exceeded while you were between levels, the excess
+    items would vanish. You will now receive them when you next enter a level.
 
 # 0.2.0
 
