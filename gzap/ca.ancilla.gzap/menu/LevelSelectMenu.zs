@@ -31,7 +31,7 @@ class ListMenuItemArchipelagoItem : ListMenuItemTextItem {
 class ::LevelSelectMenu : ::CommonMenu {
   override void Init(Menu parent, OptionMenuDescriptor desc) {
     super.InitDynamic(parent, desc);
-    TooltipGeometry(0.0, 0.5, 0.2, 1.0, 0.5);
+    TooltipGeometry(0.0, 0.5, 0.25, 1.0, 0.5);
     TooltipAppearance("", "", "tfttbg");
 
     PushText(" ");

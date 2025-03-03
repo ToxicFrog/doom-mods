@@ -11,10 +11,16 @@
 
 #include "./Location.zsc"
 
+class ::Hint play {
+  string player;
+  string location;
+}
+
 class ::Region play {
   string map;
   Array<::Location> locations;
   Map<string, bool> keys;
+  Map<string, ::Hint> hints;
   bool access;
   bool automap;
   bool cleared;
@@ -74,17 +80,28 @@ class ::Region play {
   // If you have access and keys, returns "".
   // TODO: remember the hints and display them in the tooltip.
   string NextHint() const {
-    if (!self.access) {
+    if (!self.access && !self.GetHint("Level Access")) {
       return string.format("Level Access (%s)", self.map);
     }
 
     foreach (k, v : self.keys) {
-      if (!v) {
+      if (!v && !self.GetHint(k)) {
         return string.format("%s (%s)", k, self.map);
       }
     }
 
     return "";
+  }
+
+  void RegisterHint(string item, string player, string location) {
+    let hint = ::Hint(new("::Hint"));
+    hint.player = player;
+    hint.location = location;
+    self.hints.Insert(item, hint);
+  }
+
+  ::Hint GetHint(string item) const {
+    return self.hints.GetIfExists(item);
   }
 
   void RegisterKey(string key) {

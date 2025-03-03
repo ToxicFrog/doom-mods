@@ -4,6 +4,7 @@
   - Animated icons for progression and unreachable checks
   - "No secret progression items" option
   - Request hints from the level select screen with →
+  - Received hints for your items are displayed on the level select screen
 - Change:
   - Improvements to Scythe logic
 

@@ -233,3 +233,18 @@ Tells the game that the location with the given ID has already been checked. The
 game should remove it from the list of pending checks and (TODO) despawn it from
 the world if it's currently spawned. It's safe for the player to re-collect it
 but doing so won't do anything.
+
+#### `HINT` `map` `item` `player` `location`
+
+Tells the game that we have received a hint for the location of one of our items.
+`map` is the map the item is scoped to (or the empty string if it's not a scoped
+item). `item` is the item name without map qualification. `player` and `location`
+are the name of the player who has it and the location in their world where it
+can be found, potentially including colour codes.
+
+For example, `HINT⋅MAP02⋅BlueCard⋅Link⋅Kokiri Shop` tells us that our
+`BlueCard (MAP02)` can be found at the Kokiri Shop in Link's world, while
+`HINT⋅⋅Shotgun⋅Link⋅Frog Concert` tells us that our `Shotgun` is at Link's
+Frog Concert.
+
+In-game, this is used to display the hints on the level select screen.

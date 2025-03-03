@@ -7,6 +7,8 @@ from typing import Any, Dict
 import Utils
 from CommonClient import CommonContext, ClientCommandProcessor, ClientStatus, get_base_parser, gui_enabled, server_loop, logger
 from .IPC import IPC
+from .Hint import GZDoomHint
+
 
 class GZDoomCommandProcessor(ClientCommandProcessor):
     pass
@@ -37,6 +39,7 @@ class GZDoomContext(CommonContext):
         print("Starting item/location sync")
         self.items_task = asyncio.create_task(self._item_loop())
         self.locations_task = asyncio.create_task(self._location_loop())
+        self.hints_task = asyncio.create_task(self._hint_loop())
         print("Starting server loop")
         self.server_task = asyncio.create_task(server_loop(self), name="ServerLoop")
         print("All tasks started.")
@@ -69,12 +72,9 @@ class GZDoomContext(CommonContext):
         self.seed_name = seed
         self.last_items = {}  # force a re-send of all items
         self.last_locations = set()
+        self.last_hints = {}
         self.found_gzdoom.set()
         self.ipc.send_text("Archipelago<->GZDoom connection established.")
-        # TODO: devs on the discord suggest starting the server loop manually
-        # rather than calling connect(), which will allow the user to specify
-        # a server address...later?
-        # await self.connect()
 
     async def on_victory(self):
         self.finished_game = True
@@ -82,13 +82,25 @@ class GZDoomContext(CommonContext):
             {"cmd": "StatusUpdate", "status": ClientStatus.CLIENT_GOAL }
             ])
 
-    # def on_package(self, cmd, args):
-    #     print("RECV", cmd, args)
+    def on_package(self, cmd, args):
+        super().on_package(cmd, args)
+        if args.get("type", None) in {"Hint", "ItemSend"}:
+            self.awaken()
 
     # async def send_msgs(self, msgs):
     #     for msg in msgs:
     #         print("SEND", msg)
     #     await super().send_msgs(msgs)
+
+    def awaken(self):
+        # Annoyingly, uncaught exceptions in coroutines, by default, DO NOTHING,
+        # the coroutine just silently dies and you never know why.
+        # So whenever we awaken, we first check to see if any of the coros died,
+        # and propagate the error if so.
+        for task in [self.items_task, self.locations_task, self.hints_task]:
+            if task.done():
+                task.result()  # raises if the task errored out
+        self.watcher_event.set()
 
     def _is_relevant(self, type, item = None, receiving = None, **kwargs) -> bool:
       if type in {"Chat", "ServerChat", "Goal", "Countdown"}:
@@ -103,6 +115,13 @@ class GZDoomContext(CommonContext):
             return
         text = self.jsontotextparser(copy.deepcopy(args["data"]))
         self.ipc.send_text(text)
+
+    def pending_hints(self):
+        return {
+            hint["item"]: GZDoomHint(**hint)
+            for hint in self.stored_data.get(f"_read_hints_{self.team}_{self.slot}", [])
+            if not hint["found"] and self.slot_concerns_self(hint["receiving_player"])
+        }
 
     async def _item_loop(self):
         self.last_items = {}
@@ -128,6 +147,21 @@ class GZDoomContext(CommonContext):
             for id in new_locations:
                 self.ipc.send_checked(id)
             self.last_locations = self.checked_locations
+
+    async def _hint_loop(self):
+        print("Hint loop starting...")
+        self.last_hints = {}
+        while not self.exit_event.is_set():
+            await self.watcher_event.wait()
+            self.watcher_event.clear()
+            hints = self.pending_hints()
+            new_hint_ids = set(hints.keys()) - set(self.last_hints.keys())
+            print(f"in hint loop, old={self.last_hints.keys()}, cur={hints.keys()}, new={new_hint_ids}")
+            for id in new_hint_ids:
+                hint = hints[id]
+                print("sending hint:", hint.hint_info(self))
+                self.ipc.send_hint(*hint.hint_info(self))
+            self.last_hints = hints
 
 
 def main(*args):

@@ -13,7 +13,7 @@ import os.path
 import sys
 import time
 from threading import Thread
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Optional
 
 from CommonClient import CommonContext
 from .util import ansi_to_gzdoom
@@ -138,7 +138,7 @@ class IPC:
         await self.recv_status(**payload)
     else:
         pass
-    self.ctx.watcher_event.set()
+    self.ctx.awaken()
 
 
   #### Handlers for events coming from gzdoom. ####
@@ -213,6 +213,9 @@ class IPC:
     self._enqueue("TEXT", "[AP]"+ansi_to_gzdoom(message))
     self._flush()
 
+  def send_hint(self, map: Optional[str], item: str, player: str, location: str) -> None:
+    """Send a hint to the game. map is only set if it's a scoped item being hinted."""
+    self._enqueue("HINT", map or "", item, ansi_to_gzdoom(player), ansi_to_gzdoom(location))
 
   #### Low-level outgoing IPC. ####
 

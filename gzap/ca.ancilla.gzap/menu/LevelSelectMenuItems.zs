@@ -61,8 +61,10 @@ class ::LevelSelector : ::KeyValueNetevent {
   override void Ticker() {
     SetColours();
     let value = FormatLevelValue(info, region);
-    if (value != self.value) {
+    let tt = FormatTooltip();
+    if (value != self.value || tt != self.tt.text) {
       self.value = value;
+      // TODO: only change tt for the currently focused item
       self.tt.text = self.FormatTooltip();
     }
   }
@@ -150,7 +152,12 @@ class ::LevelSelector : ::KeyValueNetevent {
 
   string FormatLevelStatusTT(::Region region) {
     if (!region.access) {
-      return StringTable.Localize("$GZAP_MENU_TT_MAP_LOCKED");
+      string buf = StringTable.Localize("$GZAP_MENU_TT_MAP_LOCKED");
+      let hint = region.GetHint("Level Access");
+      if (hint) {
+        buf = buf .. string.format("\n\c-ⓘ %s @ %s", hint.player, hint.location);
+      }
+      return buf;
     } else if (!region.cleared) {
       return StringTable.Localize("$GZAP_MENU_TT_MAP_OPEN");
     } else {
@@ -171,6 +178,10 @@ class ::LevelSelector : ::KeyValueNetevent {
     foreach (k, v : region.keys) {
       if (!v) {
         buf = buf .. string.format("\n  %s %s", FormatKey(k, v), k);
+        let hint = region.GetHint(k);
+        if (hint) {
+          buf = buf .. string.format("\n  \c-ⓘ %s @ %s", hint.player, hint.location);
+        }
       }
     }
     if (buf != "") {
@@ -189,6 +200,7 @@ class ::LevelSelector : ::KeyValueNetevent {
         string shortname = loc.name;
         shortname.replace(region.map .. " - ", "");
         buf = buf .. string.format("\n  %s", shortname);
+        // TODO: support hints for other player's items at our locations
       }
     }
     if (buf != "") {
