@@ -46,3 +46,16 @@ This file summarizes the state of support for various wads. Support is classifie
 | Ashes: Hard Reset | missing | Still need to play it. |
 | Faithless Trilogy | missing | Requires manual work to handle ACS-defined portals. |
 | Hedon Bloodrite | missing | This is going to be a project but I think it would be pretty cool. |
+
+### Fan-Games for Other IPs
+
+TL;DR: might work, but will never be officially supported or included in the
+apworld.
+
+The Archipelago project has an official policy of staying as far away as possible
+from anything that even vaguely resembles trademark of copyright infringement,
+and that includes randomizers that officially support fan-games.
+
+People are free to create their own logic and tuning files for these games, but
+they will not be included in the apworld, nor linked from this repo; please don't
+submit patches containing them.
