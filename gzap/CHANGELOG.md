@@ -6,6 +6,7 @@
   - Request hints from the level select screen with →
   - Received hints for your items are displayed on the level select screen
   - Received hints for the contents of your locations likewise
+  - Tuning for FreeDoom 2 [by @frozenLake]
 - Change:
   - Improvements to Scythe logic
 - Fix:
