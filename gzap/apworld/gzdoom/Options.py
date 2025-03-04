@@ -195,6 +195,16 @@ class AllowRespawn(Toggle):
     display_name = "Allow Respawn"
     default = True
 
+class FullPersistence(Toggle):
+    """
+    If enabled, all levels will be fully persistent, in the same manner as Hexen
+    hubclusters. Levels can be reset from the level select menu, but this is all
+    or nothing: there is no way to reset individual levels.
+
+    EXPERIMENTAL FEATURE - HANDLE WITH CARE
+    """
+    display_name = "Persistent Levels"
+    default = False
 
 @dataclass
 class GZDoomOptions(PerGameCommonOptions):
@@ -213,6 +223,7 @@ class GZDoomOptions(PerGameCommonOptions):
     levels_per_weapon: LevelsPerWeapon
     # Other settings
     allow_respawn: AllowRespawn
+    full_persistence: FullPersistence
     # Stock settings
     death_link: DeathLink
     start_inventory_from_pool: StartInventoryPool

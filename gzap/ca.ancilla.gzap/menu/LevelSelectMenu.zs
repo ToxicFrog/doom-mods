@@ -61,6 +61,13 @@ class ::LevelSelectMenu : ::CommonMenu {
     }
 
     PushText(" ");
+
+    // Does the hub belong to the special Archipelago persistence cluster?
+    if (LevelInfo.FindLevelInfo("GZAPHUB").cluster == 38281) {
+      PushKeyValueNetevent("$GZAP_MENU_LEVEL_SELECT_RESET", "", "ap-level-select", ResetIndex());
+      PushTooltip("$GZAP_MENU_TT_RESET");
+    }
+
     PushKeyValueNetevent("$GZAP_MENU_LEVEL_SELECT_RETURN", "", "ap-level-select", HubIndex());
   }
 
@@ -68,6 +75,14 @@ class ::LevelSelectMenu : ::CommonMenu {
     for (int i = 0; i < LevelInfo.GetLevelInfoCount(); ++i) {
       let info = LevelInfo.GetLevelInfo(i);
       if (info && info.MapName == "GZAPHUB") return i;
+    }
+    return 0;
+  }
+
+  int ResetIndex() {
+    for (int i = 0; i < LevelInfo.GetLevelInfoCount(); ++i) {
+      let info = LevelInfo.GetLevelInfo(i);
+      if (info && info.MapName == "GZAPRST") return i;
     }
     return 0;
   }
