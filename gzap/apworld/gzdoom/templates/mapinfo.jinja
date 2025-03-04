@@ -4,14 +4,6 @@ GameInfo {
   AddEventHandlers = "GZAP_DataPackageEventHandler"
 }
 
-map gzaphub "Archipelago Hub"
-{
-	next = "GZAPHUB"
-	secretnext = "GZAPHUB"
-	sky1 = "SKY1"
-	music = "$MUSIC_RUNNIN"
-}
-
 clearepisodes
 episode gzaphub
 {
@@ -22,9 +14,17 @@ defaultmap
 {
   next = "GZAPHUB"
   secretnext = "GZAPHUB"
+  {% if respawn %}
   allowrespawn
+  {% endif %}
   noclustertext
   nointermission
+
+// TODO: make the hub prettier
+map gzaphub "Archipelago Hub"
+{
+	sky1 = "SKY1"
+	music = "$MUSIC_RUNNIN"
 }
 
 // TODO: additional fields we might need to support for some maps to work right:

@@ -250,6 +250,7 @@ class GZDoomWorld(World):
             "seed": self.multiworld.seed_name,
             "player": self.multiworld.player_name[self.player],
             "skill": self.options.skill.value,
+            "respawn": self.options.allow_respawn.value,
             "wad": self.wad_logic.name,
             "maps": self.maps,
             "items": [

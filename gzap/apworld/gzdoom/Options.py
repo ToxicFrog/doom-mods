@@ -80,9 +80,9 @@ class SelectedWad(OptionSet):
     """
     Which WAD to generate for.
 
-    This list is populated from the logic files built in to the apworld. If you want
-    to generate something else, generate locally and set theGZAP_CUSTOM_LOGIC_FILE
-    environment variable.
+    This list is populated from the logic files built in to the apworld. If you
+    want to generate a game for something else, see the 'new-wads.md' documentation
+    file.
 
     If you select more than one WAD from this list, it will pick one for you at random.
     """
@@ -183,6 +183,18 @@ class AllowSecretProgress(Toggle):
     display_name = "Allow secret progression items"
     default = True
 
+class AllowRespawn(Toggle):
+    """
+    If enabled, the player will respawn at the start of the level on death. If
+    disabled they must restore from an earlier save.
+
+    NOTE: restoring from a save will restore the state of the world, but NOT the
+    state of the randomizer -- checks already collected will remain collected and
+    items used from the randomizer inventory will remain used.
+    """
+    display_name = "Allow Respawn"
+    default = True
+
 
 @dataclass
 class GZDoomOptions(PerGameCommonOptions):
@@ -199,6 +211,8 @@ class GZDoomOptions(PerGameCommonOptions):
     start_with_all_maps: StartWithAutomaps
     max_weapon_copies: MaxWeaponCopies
     levels_per_weapon: LevelsPerWeapon
+    # Other settings
+    allow_respawn: AllowRespawn
     # Stock settings
     death_link: DeathLink
     start_inventory_from_pool: StartInventoryPool
