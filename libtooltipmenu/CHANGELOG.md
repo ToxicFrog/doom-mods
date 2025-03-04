@@ -1,7 +1,9 @@
-# 0.2.5
+# Unreleased
 
 - Fix:
   - Signed/Unsigned comparison warnings due to using uints to iterate int-sized collections.
+  - Tooltips that are wider/taller than the screen will stick to the left or top edges
+    rather than failing to render entirely.
 
 # 0.2.4
 
