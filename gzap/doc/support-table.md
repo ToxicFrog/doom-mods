@@ -34,7 +34,7 @@ This file summarizes the state of support for various wads. Support is classifie
 | Demonfear | full | |
 | Going Down Turbo | problems | Some levels have intentionally-unreachable items in them, which need to be excluded from randomization. |
 | MAYhem 2048 | partial | Would be full, but I accidentally overwrote half the tuning data. |
-| Scythe | partial | |
+| Scythe | full | |
 
 ### Standalone Games
 
