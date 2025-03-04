@@ -1,5 +1,8 @@
 # Unreleased
 
+⚠️ The IPC structure has changed. Double check the `gzdoom` command line options
+that Archipelago tells you and update your launcher config or shell scripts.
+
 - New:
   - Animated icons for progression and unreachable checks
   - "No secret progression items" option
@@ -9,6 +12,11 @@
   - Tuning for FreeDoom 2 [by @frozenLake]
 - Change:
   - Improvements to Scythe logic
+  - GZD<->AP interact files are now stored in `$AP/gzdoom`, which has multiple
+    subdirectories
+  - `$GZAP_EXTRA_LOGIC` envar removed
+  - External logic files can now be placed in `$AP/gzdoom/logic` and
+    `$AP/gzdoom/tuning` and will be loaded automatically
 - Fix:
   - If an item bank limit was exceeded while you were between levels, the excess
     items would vanish. You will now receive them when you next enter a level.

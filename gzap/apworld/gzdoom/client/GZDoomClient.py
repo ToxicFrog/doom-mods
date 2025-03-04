@@ -21,10 +21,10 @@ class GZDoomContext(CommonContext):
     want_slot_data = False
     slot_name = None
 
-    def __init__(self, server_address: str, password: str, ipc_dir: str):
+    def __init__(self, server_address: str, password: str, gzd_dir: str):
         self.found_gzdoom = asyncio.Event()
         super().__init__(server_address, password)
-        self.ipc = IPC(self, ipc_dir)
+        self.ipc = IPC(self, gzd_dir)
 
     def make_gui(self):
         from kvui import GameManager
@@ -173,21 +173,24 @@ def main(*args):
 
     # Initialize the gzDoom IPC structures on disk
     # TODO: do we want to support multiple running instances as the same user?
-    ipc_dir = os.path.join(Utils.home_path(), "gzdoom-ipc")
-    os.makedirs(ipc_dir, exist_ok=True)
+    gzd_dir = os.path.join(Utils.home_path(), "gzdoom")
+    ipc_dir = os.path.join(gzd_dir, "ipc")
+    os.makedirs(ipc_dir, exist_ok=True) # communication with gzdoom
+    os.makedirs(os.path.join(gzd_dir, "logic"), exist_ok=True) # in-dev logic files
+    os.makedirs(os.path.join(gzd_dir, "tuning"), exist_ok=True) # in-dev tuning files
 
     # Preallocate input lump
     ipc_lump = os.path.join(ipc_dir, 'GZAPIPC')
     with open(ipc_lump, 'w') as fd:
-        fd.write('.' * 1024)
+        fd.write('.' * 4096)
 
     # Create empty logfile if it doesn't exist
-    ipc_log = os.path.join(ipc_dir, 'gzdoom.log')
+    ipc_log = os.path.join(gzd_dir, 'gzdoom.log')
     with open(ipc_log, "a"):
         pass
 
     async def actual_main(args):
-        ctx = GZDoomContext(args.connect, args.password, ipc_dir)
+        ctx = GZDoomContext(args.connect, args.password, gzd_dir)
         await ctx.start_tasks()
         if gui_enabled:
             ctx.run_gui()

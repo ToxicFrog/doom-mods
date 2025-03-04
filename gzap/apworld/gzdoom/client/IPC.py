@@ -34,6 +34,7 @@ class IPC:
   # Client context manager
   ctx: CommonContext = None
   # Internal details of outgoing IPC
+  gzd_dir: str = ""
   ipc_id: int = 0
   ipc_size: int = 0
   ipc_path: str = ""
@@ -43,16 +44,17 @@ class IPC:
   should_exit: bool = False
   nick: str = ""  # user's name in gzDoom, used for chat message parsing
 
-  def __init__(self, ctx: CommonContext, ipc_dir: str) -> None:
+  def __init__(self, ctx: CommonContext, gzd_dir: str) -> None:
     self.ctx = ctx
-    self.ipc_dir = ipc_dir
+    self.gzd_dir = gzd_dir
+    self.ipc_dir = os.path.join(gzd_dir, "ipc")
     self.ipc_queue = []
 
   def start_log_reader(self) -> None:
     loop = asyncio.get_running_loop()
     # We never await this, since we don't care about its return value, but we do need
     # to hang on to the thread handle for it to actually run.
-    self.thread = asyncio.create_task(asyncio.to_thread(self._log_reading_thread, self.ipc_dir, loop))
+    self.thread = asyncio.create_task(asyncio.to_thread(self._log_reading_thread, self.gzd_dir, loop))
     print("Log reader started. Waiting for XON from gzDoom.")
 
   # TODO: if there's an existing log file, we (re)process all events from it
@@ -74,6 +76,7 @@ class IPC:
 
   def _log_reading_loop(self, ipc_dir: str, loop):
     log_path = os.path.join(ipc_dir, "gzdoom.log")
+    print("lod_reading_path", log_path)
     tune = None
     with open(log_path, "r") as log:
        while True:
@@ -95,7 +98,7 @@ class IPC:
             continue
 
           if evt == "AP-XON":
-            tune = open(os.path.join(ipc_dir, payload["wad"] + ".tuning"), "a")
+            tune = open(os.path.join(ipc_dir, payload["wad"]), "a")
 
           if evt == "AP-CHECK" and tune:
             tune.write(line+"\n")

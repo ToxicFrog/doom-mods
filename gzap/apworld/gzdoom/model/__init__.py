@@ -11,6 +11,9 @@ from importlib import resources
 import itertools
 import os
 from typing import Dict
+from pathlib import Path
+
+import Utils
 
 from .DoomItem import *
 from .DoomLocation import *
@@ -94,6 +97,33 @@ def print_wad_stats(name: str, wad: DoomWad) -> None:
           num_p + num_u + num_f, num_p, num_u, num_f
       ))
 
+def logic_files(package):
+    """
+    Return a list of all logic files. This is all files in the apworld's logic/
+    directory, plus all files (if any) in the Archipelago/gzdoom/logic/ directory.
+
+    If a file with the same name exists in both places, only the latter is loaded.
+    """
+    logic = {}
+    for logic_file in resources.files(package).joinpath("logic").iterdir():
+        logic[logic_file.name] = logic_file
+    for logic_file in (Path(Utils.home_path()) / "gzdoom" / "logic").iterdir():
+        if logic_file.is_file():
+            logic[logic_file.name] = logic_file
+
+    return sorted(logic.values(), key=lambda p: p.name)
+
+
+def tuning_files(package, wad):
+    """
+    Return a list of all tuning files for a given wad.
+    """
+    internal = resources.files(package).joinpath("tuning").joinpath(wad)
+    external = Path(Utils.home_path()) / "gzdoom" / "tuning" / wad
+    return [
+        p for p in [internal, external]
+        if p.is_file()
+    ]
 
 def init_wads(package):
   global _init_done
@@ -101,32 +131,23 @@ def init_wads(package):
       return
   _init_done = True
 
+  gzd_dir = os.path.join(Utils.home_path(), "gzdoom")
+  os.makedirs(os.path.join(gzd_dir, "logic"), exist_ok=True) # in-dev logic files
+  os.makedirs(os.path.join(gzd_dir, "tuning"), exist_ok=True) # in-dev tuning files
+
   # Load all logic files included in the apworld.
   # Sort them so we get a consistent order, and thus consistent ID assignment,
   # across runs.
   # TODO: maybe separate logic and tuning directories or similar?
-  for logic_file in sorted(resources.files(package).joinpath("logic").iterdir(), key=lambda p: p.name):
+  for logic_file in logic_files(package):
+    #   print("Loading logic:", logic_file.name)
       buf = logic_file.read_text()
-      tuning_file = resources.files(package).joinpath("tuning").joinpath(logic_file.name)
-      if tuning_file.is_file():
+      for tuning_file in tuning_files(package, logic_file.name):
+        #   print("Loading tuning:", tuning_file)
           buf = buf + "\n" + tuning_file.read_text()
       with add_wad(logic_file.name) as wadloader:
           wadloader.load_logic(buf)
           print_wad_stats(wadloader.name, wadloader.wad)
-
-  # Debug/test mode: load the specifed file after the builtins.
-  # Might overwrite a builtin if it has the same name -- should we permit
-  # concatenation? Might be handy for testing tuning files.
-  if "GZAP_EXTRA_LOGIC" in os.environ:
-      path = os.environ["GZAP_EXTRA_LOGIC"]
-      print(f"Loading external WAD logic from {path}")
-      with open(path) as fd:
-          buf = fd.read()
-      with add_wad(os.path.basename(path)) as wadloader:
-          wadloader.load_logic(buf)
-          print(f"  {wadloader.name}: {wadstats(wadloader.wad)}")
-      return
-
 
 
 def wads() -> List[DoomWad]:

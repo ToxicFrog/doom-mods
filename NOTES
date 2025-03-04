@@ -48,20 +48,6 @@ We need an actor typename to category mapping file. Faithless might not need thi
 but Hedon and Ashes probably do and Square definitely does. And it needs to be
 available at scan time, so a new lump, e.g. APTYPES.
 
-Also, just as a general UX thing, we should move from GZAP_EXTRA_LOGIC to just
-autoloading external logic/tuning from the gzdoom-ipc directory. So we end up
-with:
-
-    $ARCHIPELAGO/
-      gzdoom/
-        logic/
-          <external logic files>
-        tuning/
-          <external tuning files>
-        ipc/
-          gzdoom.log
-          GZAPIPC
-
 ### scanner
 
 - map exclusion UI
@@ -83,9 +69,6 @@ with:
 ### ingame
 
 - fix the timer (and preserve it across save/load if possible)
-- display hints in tooltips
-  - PEEK message for hints about other people's items in our world
-  - location peeks under individual locations
 - "tracker mode" that propagates key requirements into the generated pk3 and
   displays what it thinks you can reach from the level selector
 
