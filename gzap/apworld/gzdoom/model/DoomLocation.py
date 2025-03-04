@@ -2,7 +2,7 @@
 Data model for the locations items are found at in the WAD.
 """
 
-from typing import NamedTuple, Optional, Set
+from typing import NamedTuple, Optional, Set, List, FrozenSet, Collection
 
 from . import DoomItem
 
@@ -41,12 +41,12 @@ class DoomLocation:
     At generation time, each DoomLocation results in exactly one AP Location.
     """
     id: Optional[int] = None
-    item_name: str # name of original item, used to name this location
+    item_name: str  # name of original item, used to name this location
     category: str
     pos: DoomPosition | None = None
-    keyset: Set[str]
+    keys: FrozenSet[FrozenSet[str]]  # What the player needs to reach this location
     item: DoomItem | None = None  # Used for place_locked_item
-    parent = None
+    parent = None  # The enclosing DoomWad
     orig_item = None
     disambiguate: bool = False
     skill: Set[int]
@@ -55,7 +55,7 @@ class DoomLocation:
 
     def __init__(self, parent, map: str, item: DoomItem, secret: bool, json: str | None):
         self.category = item.category
-        self.keyset = set()
+        self.keys = frozenset()
         self.parent = parent
         self.orig_item = item
         self.item_name = item.tag
@@ -67,7 +67,7 @@ class DoomLocation:
             self.pos = DoomPosition(map=map, virtual=True, x=0, y=0, z=0)
 
     def __str__(self) -> str:
-        return f"DoomLocation#{self.id}({self.name()} @ {self.pos} % {self.keyset})"
+        return f"DoomLocation#{self.id}({self.name()} @ {self.pos} % {self.keys})"
 
     __repr__ = __str__
 
@@ -79,13 +79,27 @@ class DoomLocation:
             name += f" [{int(self.pos.x)},{int(self.pos.y)}]"
         return name
 
-    def tune_keys(self, keys):
+    def fqin(self, item: str) -> str:
+        """Return the fully qualified item name for an item scoped to this location's map."""
+        return f"{item} ({self.pos.map})"
+
+    def tune_keys(self, new_keyset: FrozenSet[str]):
         # If this location was previously incorrectly marked unreachable,
         # correct it.
         self.unreachable = False
-        if keys < self.keyset:
-            # print(f"Keyset: {self.name} {self.keyset} -> {keys}")
-            self.keyset = keys
+        # If the new keyset is empty this is trivially reachable.
+        if not new_keyset:
+            self.keys = frozenset()
+        # If our existing keyset is empty, it cannot be further tuned.
+        if not self.keys:
+            return
+        # Update the keysets by removing any keysets that this one is a proper
+        # subset of.
+        new_keys = frozenset(
+            [ks for ks in self.keys if not new_keyset < ks] + [new_keyset])
+        if new_keys != self.keys:
+            # print(f"Tuning keys: old={self.keys} tune={new_keyset} new={new_keys}")
+            self.keys = new_keys
 
     def access_rule(self, player):
         # A location is accessible if:
@@ -93,22 +107,29 @@ class DoomLocation:
         # - AND
         #   - either you have all the keys for the map
         #   - OR the map only has one key, and this is it
+        def player_has_keys(state, keyset):
+            player_keys = { item for item in keyset if state.has(item, player) }
+            # print(f"player_has_keys? {player_keys} >= {keyset}")
+            return player_keys >= keyset
+
         def rule(state):
-            player_keys = { item for item in self.keyset if state.has(item, player) }
+            # If this location requires no keys, trivially succeed.
+            if not self.keys:
+                return True
 
-            # Are we missing any keys?
-            if player_keys < self.keyset:
-                # If so, we might still be able to reach the location, if this
-                # location is the map's only key (and thus must be accessible to
-                # a player entering the map without keys).
-                if {self.orig_item.name()} == self.keyset:
-                    # print(f"Access granted: {self.name} (single key location)")
+            # Does the player have any of the sets of keys that grant access
+            # to this location?
+            for keyset in self.keys:
+                if player_has_keys(state, keyset):
                     return True
-                else:
-                    # print(f"Access denied: {self.name}: want { {k.name for k in self.keyset} }, have {player_keys}")
-                    return False
 
-            # print(f"Access granted: {self.name}")
-            return True
+            # If not, they might still be able to reach the location, if this
+            # location is the map's only key (and thus must be accessible to
+            # a player entering the map without keys).
+            # print(f"Single key? {self.orig_item.name()} == {self.parent.get_map(self.pos.map).keyset}")
+            if {self.orig_item.name()} == self.parent.get_map(self.pos.map).keyset:
+                return True
+
+            return False
 
         return rule

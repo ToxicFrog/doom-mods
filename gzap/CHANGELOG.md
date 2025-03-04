@@ -10,6 +10,8 @@ that Archipelago tells you and update your launcher config or shell scripts.
   - Received hints for your items are displayed on the level select screen
   - Received hints for the contents of your locations likewise
   - Tuning for FreeDoom 2 [by @frozenLake]
+  - Tuning now understands any-of access requirements, so it is possible to
+    express things like "this check requires either the red key or the blue key"
 - Change:
   - Improvements to Scythe logic
   - GZD<->AP interact files are now stored in `$AP/gzdoom`, which has multiple
@@ -20,6 +22,8 @@ that Archipelago tells you and update your launcher config or shell scripts.
 - Fix:
   - If an item bank limit was exceeded while you were between levels, the excess
     items would vanish. You will now receive them when you next enter a level.
+  - Tuning was not properly modeling locations reachable with some, but not all,
+    keys, resulting in them being considered completely inaccessible.
 
 # 0.2.0
 

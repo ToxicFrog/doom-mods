@@ -69,6 +69,8 @@ class DoomWad:
     def all_maps(self) -> List[DoomMap]:
         return self.maps.values()
 
+    def get_map(self, name: str) -> DoomMap:
+        return self.maps[name]
 
     def new_map(self, json: Dict[str,str]) -> None:
         map = json["map"]
@@ -227,7 +229,12 @@ class DoomWad:
         if unreachable:
             loc.unreachable = True
         else:
-          loc.tune_keys(set(keys))
+          # Before passing the keys to tune_keys, we need to annotate them with
+          # the map name so that they match the names that Archipelago expects.
+          # TODO: When we support keys with greater-than-one-map scope, this
+          # gets more complicated. Probably we have some information supplied
+          # earlier in the tuning file we use to do the conversion.
+          loc.tune_keys(frozenset([loc.fqin(key) for key in keys]))
 
 
     def finalize_scan(self, json) -> None:
@@ -252,7 +259,7 @@ class DoomWad:
               self.locations_by_name[loc.name()] = loc
               # While we're here, initialize all location keysets based on the keyset
               # of their containing map. Tuning may adjust these later.
-              loc.keyset = self.maps[loc.pos.map].keyset.copy()
+              loc.keys = frozenset([frozenset(self.maps[loc.pos.map].keyset.copy())])
 
 
     def finalize_all(self) -> None:
