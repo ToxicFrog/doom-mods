@@ -8,13 +8,29 @@
 // level, and contains some utility functions for managing the Locations inside
 // it.
 #namespace GZAP;
+#debug off;
 
 #include "./Location.zsc"
+
+class ::Hint play {
+  string player;
+  string location;
+}
+
+class ::Peek play {
+  string player;
+  string item;
+}
 
 class ::Region play {
   string map;
   Array<::Location> locations;
   Map<string, bool> keys;
+  // Hints and peeks are indexed by their name without map qualification.
+  // So "RedCard" rather than "RedCard (MAP02)", and "Chainsaw" rather than
+  // "MAP01 - Chainsaw".
+  Map<string, ::Hint> hints;
+  Map<string, ::Peek> peeks;
   bool access;
   bool automap;
   bool cleared;
@@ -27,11 +43,12 @@ class ::Region play {
     return region;
   }
 
-  void RegisterCheck(uint apid, string name, bool progression, Vector3 pos) {
+  void RegisterCheck(uint apid, string name, bool progression, Vector3 pos, bool unreachable) {
     let loc = ::Location(new("::Location"));
     loc.apid = apid;
     loc.name = name;
     loc.progression = progression;
+    loc.unreachable = unreachable;
     loc.checked = false;
     loc.pos = pos;
     locations.push(loc);
@@ -65,6 +82,49 @@ class ::Region play {
 
   uint LocationsTotal() const {
     return locations.Size();
+  }
+
+  // Return the name of the next item to hint for that's useful for this level.
+  // If you don't have the level access, hints for that.
+  // Otherwise, hints for the first key you don't have.
+  // If you have access and keys, returns "".
+  // TODO: remember the hints and display them in the tooltip.
+  string NextHint() const {
+    if (!self.access && !self.GetHint("Level Access")) {
+      return string.format("Level Access (%s)", self.map);
+    }
+
+    foreach (k, v : self.keys) {
+      if (!v && !self.GetHint(k)) {
+        return string.format("%s (%s)", k, self.map);
+      }
+    }
+
+    return "";
+  }
+
+  void RegisterHint(string item, string player, string location) {
+    let hint = ::Hint(new("::Hint"));
+    hint.player = player;
+    hint.location = location;
+    self.hints.Insert(item, hint);
+  }
+
+  ::Hint GetHint(string item) const {
+    return self.hints.GetIfExists(item);
+  }
+
+  void RegisterPeek(string location, string player, string item) {
+    let peek = ::Peek(new("::Peek"));
+    peek.player = player;
+    peek.item = item;
+    self.peeks.Insert(location, peek);
+    DEBUG("RegisterPeek(%s): %s for %s", location, item, player);
+  }
+
+  ::Peek GetPeek(string location) const {
+    DEBUG("GetPeek(%s)", location);
+    return self.peeks.GetIfExists(location);
   }
 
   void RegisterKey(string key) {

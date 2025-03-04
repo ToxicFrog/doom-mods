@@ -12,6 +12,7 @@ class ::Location {
   uint apid;
   string name;
   bool progression;   // Does it hold a progression item?
+  bool unreachable;   // Do we think this is unreachable?
   bool checked;       // Has the player already checked it?
   Vector3 pos;
 }

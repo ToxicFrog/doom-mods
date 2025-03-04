@@ -61,14 +61,36 @@ class ::LevelSelector : ::KeyValueNetevent {
   override void Ticker() {
     SetColours();
     let value = FormatLevelValue(info, region);
-    if (value != self.value) {
+    let tt = FormatTooltip();
+    if (value != self.value || tt != self.tt.text) {
       self.value = value;
+      // TODO: only change tt for the currently focused item
       self.tt.text = self.FormatTooltip();
     }
   }
 
   override bool Selectable() {
-    return region.access;
+    // return region.access;
+    return true;
+  }
+
+  override bool MenuEvent(int key, bool fromController) {
+    if (key == Menu.MKey_Enter && !region.access) {
+      Menu.MenuSound("menu/invalid");
+      return true;
+    }
+
+    if (key != Menu.MKey_Right) {
+      return super.MenuEvent(key, fromController);
+    }
+
+    let hint = self.region.NextHint();
+    if (hint != "") {
+      Menu.MenuSound("menu/change");
+      EventHandler.SendNetworkCommand("ap-hint", NET_STRING, hint);
+    }
+
+    return true;
   }
 
   string FormatLevelKey(LevelInfo info, ::Region region) {
@@ -120,16 +142,22 @@ class ::LevelSelector : ::KeyValueNetevent {
 
   string FormatTooltip() {
     return string.format(
-      "%s\n%s%s%s",
+      "%s\n%s%s%s%s",
       FormatLevelStatusTT(region),
       FormatAutomapStatusTT(region),
       FormatMissingKeysTT(region),
-      FormatMissingChecksTT(region));
+      FormatMissingChecksTT(region),
+      FormatHintReminderTT(region));
   }
 
   string FormatLevelStatusTT(::Region region) {
     if (!region.access) {
-      return StringTable.Localize("$GZAP_MENU_TT_MAP_LOCKED");
+      string buf = StringTable.Localize("$GZAP_MENU_TT_MAP_LOCKED");
+      let hint = region.GetHint("Level Access");
+      if (hint) {
+        buf = buf .. string.format("\n\c-ⓘ %s @ %s", hint.player, hint.location);
+      }
+      return buf;
     } else if (!region.cleared) {
       return StringTable.Localize("$GZAP_MENU_TT_MAP_OPEN");
     } else {
@@ -150,6 +178,10 @@ class ::LevelSelector : ::KeyValueNetevent {
     foreach (k, v : region.keys) {
       if (!v) {
         buf = buf .. string.format("\n  %s %s", FormatKey(k, v), k);
+        let hint = region.GetHint(k);
+        if (hint) {
+          buf = buf .. string.format("\n  \c-ⓘ %s @ %s", hint.player, hint.location);
+        }
       }
     }
     if (buf != "") {
@@ -167,11 +199,16 @@ class ::LevelSelector : ::KeyValueNetevent {
         // from the check name.
         string shortname = loc.name;
         shortname.replace(region.map .. " - ", "");
-        buf = buf .. string.format("\n  %s", shortname);
+        buf = buf .. string.format("\n  \c[DARKGRAY]%s", shortname);
+
+        let peek = region.GetPeek(shortname);
+        if (peek) {
+          buf = buf .. string.format("\n  \c-ⓘ %s for %s", peek.item, peek.player);
+        }
       }
     }
     if (buf != "") {
-      return string.format("\n\c-%s\c[DARKGRAY]%s", StringTable.Localize("$GZAP_MENU_TT_CHECKS"), buf);
+      return string.format("\n\c-%s%s", StringTable.Localize("$GZAP_MENU_TT_CHECKS"), buf);
     } else {
       return buf;
     }
@@ -205,6 +242,14 @@ class ::LevelSelector : ::KeyValueNetevent {
 
     string buf = "\c[" .. clr .."]" .. icon;
     return buf.filter();
+  }
+
+  string FormatHintReminderTT(::Region region) {
+    let hint = region.NextHint();
+    if (hint == "") {
+      return "";
+    }
+    return string.format("\n\c-%s\c[DARKGRAY]\n  %s", StringTable.Localize("$GZAP_MENU_TT_HINT"), hint);
   }
 }
 

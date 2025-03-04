@@ -21,11 +21,13 @@ class TF_Tooltip : Object ui {
   }
 
   int GetX(uint screen_width, uint width) {
+    if (width > screen_width) return 0;
     return (screen_width - width) * self.x;
   }
 
-  int GetY(uint screen_width, uint height) {
-    return (screen_width - height) * self.y;
+  int GetY(uint screen_height, uint height) {
+    if (height > screen_height) return 0;
+    return (screen_height - height) * self.y;
   }
 
   void Draw() {

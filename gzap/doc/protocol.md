@@ -108,19 +108,22 @@ gzDoom loaded from disk). This is used to name the generated tuning file.
 Tells the client that we have read messages it sent up to the given `id`, and
 it can overwrite them with new messages if needed.
 
-#### `AP-CHECK { id, name, keys }`
+#### `AP-CHECK { id, name, keys, unreachable }`
 
 Emitted when the player checks a location. `id` is the AP location ID, and `name`
 is the name assigned to that location by the randomizer. `keys` is a list of keys
 held by the player and is used only for logic tuning.
 
-<!-- TODO: add 'unreachable' field for better logic tuning. -->
+`unreachable` means that the check is not reachable in normal play and the player
+used cheats, forbidden techniques, or the `ap_scan_unreachable` command to collect
+it; including that in the tuning file will prevent it from being used for progression
+items in future games.
 
 #### `AP-CHAT { msg }`
 
-Send a chat message to the rest of the Archipelago players. Unfortunately there
-is no code that currently emits this due to difficulty hooking the `say` console
-command in-game.
+Send a chat message to the rest of the Archipelago players. Normally chat messages
+are picked up directly from the log file, without involving this; however, some
+mod features, like hinting, may generate chat messages in this manner.
 
 #### `AP-STATUS { victory }`
 
@@ -230,3 +233,29 @@ Tells the game that the location with the given ID has already been checked. The
 game should remove it from the list of pending checks and (TODO) despawn it from
 the world if it's currently spawned. It's safe for the player to re-collect it
 but doing so won't do anything.
+
+#### `HINT` `map` `item` `player` `location`
+
+Tells the game that we have received a hint for the location of one of our items.
+`map` is the map the item is scoped to (or the empty string if it's not a scoped
+item). `item` is the item name without map qualification. `player` and `location`
+are the name of the player who has it and the location in their world where it
+can be found, potentially including colour codes.
+
+For example, `HINT⋅MAP02⋅BlueCard⋅Link⋅Kokiri Shop` tells us that our
+`BlueCard (MAP02)` can be found at the Kokiri Shop in Link's world, while
+`HINT⋅⋅Shotgun⋅Link⋅Frog Concert` tells us that our `Shotgun` is at Link's
+Frog Concert.
+
+In-game, this is used to display the hints on the level select screen.
+
+#### `PEEK` `map` `location` `player` `item`
+
+Tells the game that we have received a hint for the contents of one of our locations.
+`map` and `location` identify the location, `player` is the player whose item it
+is (which may be us!) and `item` is the item name. Unlike `HINT`, none of these
+fields can be empty. These are used by the level select screen to display information
+about what's located where.
+
+`PEEK⋅MAP01⋅Chainsaw⋅Link⋅Hookshot`, for example, indicates that the chainsaw on
+"Entryway" contains Link's hookshot.

@@ -64,18 +64,32 @@ be omitted if scanning from the GUI.
 
 That's it! It'll be automatically loaded next time you start Archipelago.
 
+### Loading files without adding them to the apworld
+
+When still developing, it's convenient to be able to load your logic and tuning
+files without needing to re-pack the apworld each time.
+
+On startup, the apworld will have created a `gzdoom` directory inside your
+Archipelago directory, used to communicate with gzdoom while playing. This
+directory also contains `logic` and `tuning` directories; any logic or tuning
+files placed in them will be loaded automatically (and, in the case of logic
+files, will override the builtin logic if they have the same name), allowing you
+to rapidly change and test your work without repacking the apworld.
+
 ## Tuning a logic file
 
 When you play a multiworld game, a tuning file will be automatically created
-in the `gzdoom-ipc` directory in your Archipelago directory, named `<wad name>.tuning`.
+in the `gzdoom/tuning` directory in your Archipelago directory, with the same
+name as the wad you're playing.
 
 When you play single-world, you can accomplish the same thing with the `logfile`
 console command.
 
-In either case, you can add this tuning data to the apworld by removing the `.tuning`
-extension and putting it in the `gzdoom/tuning` directory. If a file already exists
-there for this WAD, simply append the new tuning data to it. Zip the apworld back up
-and the tuning data will be taken into account next time it generates a game.
+The file in `<AP dir>/gzdoom/tuning/` will be loaded automatically; to "bake it in"
+to the apworld, use the same procedure as adding a logic file, but put the file
+in the `gzdoom/tuning/` directory inside the apworld, rather than `gzdoom/logic/`.
+If a file already exists there for this WAD, simply append the new tuning data
+to it.
 
 ### Unreachable checks
 

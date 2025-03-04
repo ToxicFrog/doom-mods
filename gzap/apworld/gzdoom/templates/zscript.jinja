@@ -17,7 +17,7 @@ class GZAP_DataPackageEventHandler : StaticEventHandler {
       apstate.RegisterMap("{{map.map}}", "{{map.checksum}}", {{id(map.access_token_name())}}, {{id(map.automap_name())}}, {{id(map.clear_token_name())}}, {{id(map.exit_location_name())}});
       {% for check in map.all_locations(skill) %}
         {% if not check.pos.virtual %}
-        apstate.RegisterCheck("{{map.map}}", {{check.id}}, "{{check.name()}}", {{progression(check.id)}}, ({{check.pos.x}},{{check.pos.y}},{{check.pos.z}}));
+        apstate.RegisterCheck("{{map.map}}", {{check.id}}, "{{check.name()}}", {{progression(check.id)}}, ({{check.pos.x}},{{check.pos.y}},{{check.pos.z}}){% if check.unreachable %}, true{% endif %});
         {% endif %}
       {% endfor %}
     {% endfor %}

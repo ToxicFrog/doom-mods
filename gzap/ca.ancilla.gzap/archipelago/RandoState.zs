@@ -43,17 +43,16 @@ class ::RandoItem play {
     if (total == self.total) return;
     self.held += total - self.total;
     self.total = total;
-    EnforceLimit();
   }
 
   void Inc() {
     self.total += 1;
     self.held += 1;
-    EnforceLimit();
   }
 
   void EnforceLimit() {
     int limit = GetLimit();
+    DEBUG("Enforcing limits on %s: %d/%d limit %d", self.typename, self.held, self.total, limit);
     if (limit < 0) return;
     while (self.held > limit) {
       Replicate();
@@ -78,6 +77,7 @@ class ::RandoItem play {
 
   // Thank you for choosing Value-Rep™!
   void Replicate() {
+    DEBUG("Replicating %s", self.typename);
     self.held -= 1;
     for (int p = 0; p < MAXPLAYERS; ++p) {
       if (!playeringame[p]) continue;
@@ -132,8 +132,8 @@ class ::RandoState play {
     item_apids.Insert(apid, typename);
   }
 
-  void RegisterCheck(string map, uint apid, string name, bool progression, Vector3 pos) {
-    regions.Get(map).RegisterCheck(apid, name, progression, pos);
+  void RegisterCheck(string map, uint apid, string name, bool progression, Vector3 pos, bool unreachable = false) {
+    regions.Get(map).RegisterCheck(apid, name, progression, pos, unreachable);
   }
 
   int, ::RandoItem FindItem(string typename) {
@@ -192,6 +192,9 @@ class ::RandoState play {
       if (!players[p].mo) continue;
 
       GetCurrentRegion().UpdateInventory(players[p].mo);
+    }
+    foreach (item : self.items) {
+      item.EnforceLimit();
     }
   }
 

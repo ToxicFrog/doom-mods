@@ -1,5 +1,5 @@
 NAME=gzArchipelago
-VERSION=0.2.0
+VERSION=0.2.0+unstable
 LUMPS=MAPINFO MENUDEF zscript.txt *.md LANGUAGE.csv CVARINFO
 LUMPS+=sprites textures maps
 ZSDIR=ca.ancilla.gzap
@@ -10,9 +10,12 @@ all: ${PK3} apworld
 
 include ${TOPDIR}/rules.make
 
-apworld:
+apworld: ${TOPDIR}/release/gzdoom-${VERSION}.apworld
+
+${TOPDIR}/release/gzdoom-${VERSION}.apworld: apworld/gzdoom/* apworld/gzdoom/*/*
 	cd apworld && zip -r gzdoom.apworld gzdoom
 	cp apworld/gzdoom.apworld ~/Archipelago/worlds/
-	mv apworld/gzdoom.apworld ${TOPDIR}/release/
+	cp apworld/gzdoom.apworld ${TOPDIR}/release/
+	mv apworld/gzdoom.apworld ${TOPDIR}/release/gzdoom-${VERSION}.apworld
 
 .PHONY: apworld

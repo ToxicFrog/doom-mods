@@ -7,6 +7,8 @@ from typing import Any, Dict
 import Utils
 from CommonClient import CommonContext, ClientCommandProcessor, ClientStatus, get_base_parser, gui_enabled, server_loop, logger
 from .IPC import IPC
+from .Hint import GZDoomHint
+
 
 class GZDoomCommandProcessor(ClientCommandProcessor):
     pass
@@ -19,10 +21,10 @@ class GZDoomContext(CommonContext):
     want_slot_data = False
     slot_name = None
 
-    def __init__(self, server_address: str, password: str, ipc_dir: str):
+    def __init__(self, server_address: str, password: str, gzd_dir: str):
         self.found_gzdoom = asyncio.Event()
         super().__init__(server_address, password)
-        self.ipc = IPC(self, ipc_dir)
+        self.ipc = IPC(self, gzd_dir)
 
     def make_gui(self):
         from kvui import GameManager
@@ -37,6 +39,7 @@ class GZDoomContext(CommonContext):
         print("Starting item/location sync")
         self.items_task = asyncio.create_task(self._item_loop())
         self.locations_task = asyncio.create_task(self._location_loop())
+        self.hints_task = asyncio.create_task(self._hint_loop())
         print("Starting server loop")
         self.server_task = asyncio.create_task(server_loop(self), name="ServerLoop")
         print("All tasks started.")
@@ -69,12 +72,9 @@ class GZDoomContext(CommonContext):
         self.seed_name = seed
         self.last_items = {}  # force a re-send of all items
         self.last_locations = set()
+        self.last_hints = {}
         self.found_gzdoom.set()
         self.ipc.send_text("Archipelago<->GZDoom connection established.")
-        # TODO: devs on the discord suggest starting the server loop manually
-        # rather than calling connect(), which will allow the user to specify
-        # a server address...later?
-        # await self.connect()
 
     async def on_victory(self):
         self.finished_game = True
@@ -82,13 +82,25 @@ class GZDoomContext(CommonContext):
             {"cmd": "StatusUpdate", "status": ClientStatus.CLIENT_GOAL }
             ])
 
-    # def on_package(self, cmd, args):
-    #     print("RECV", cmd, args)
+    def on_package(self, cmd, args):
+        super().on_package(cmd, args)
+        if args.get("type", None) in {"Hint", "ItemSend"}:
+            self.awaken()
 
     # async def send_msgs(self, msgs):
     #     for msg in msgs:
     #         print("SEND", msg)
     #     await super().send_msgs(msgs)
+
+    def awaken(self):
+        # Annoyingly, uncaught exceptions in coroutines, by default, DO NOTHING,
+        # the coroutine just silently dies and you never know why.
+        # So whenever we awaken, we first check to see if any of the coros died,
+        # and propagate the error if so.
+        for task in [self.items_task, self.locations_task, self.hints_task]:
+            if task.done():
+                task.result()  # raises if the task errored out
+        self.watcher_event.set()
 
     def _is_relevant(self, type, item = None, receiving = None, **kwargs) -> bool:
       if type in {"Chat", "ServerChat", "Goal", "Countdown"}:
@@ -103,6 +115,13 @@ class GZDoomContext(CommonContext):
             return
         text = self.jsontotextparser(copy.deepcopy(args["data"]))
         self.ipc.send_text(text)
+
+    def pending_hints(self):
+        return {
+            hint["item"]: GZDoomHint(**hint)
+            for hint in self.stored_data.get(f"_read_hints_{self.team}_{self.slot}", [])
+            if not hint["found"] and GZDoomHint(**hint).is_relevant(self)
+        }
 
     async def _item_loop(self):
         self.last_items = {}
@@ -129,27 +148,49 @@ class GZDoomContext(CommonContext):
                 self.ipc.send_checked(id)
             self.last_locations = self.checked_locations
 
+    async def _hint_loop(self):
+        print("Hint loop starting...")
+        self.last_hints = {}
+        while not self.exit_event.is_set():
+            await self.watcher_event.wait()
+            self.watcher_event.clear()
+            hints = self.pending_hints()
+            new_hint_ids = set(hints.keys()) - set(self.last_hints.keys())
+            print(f"in hint loop, old={self.last_hints.keys()}, cur={hints.keys()}, new={new_hint_ids}")
+            for id in new_hint_ids:
+                hint = hints[id]
+                if hint.is_hint(self):
+                    print("sending hint:", hint.hint_info(self))
+                    self.ipc.send_hint(*hint.hint_info(self))
+                if hint.is_peek(self):
+                    print("sending peek:", hint.peek_info(self))
+                    self.ipc.send_peek(*hint.peek_info(self))
+            self.last_hints = hints
+
 
 def main(*args):
     Utils.init_logging("GZDoomClient")
 
     # Initialize the gzDoom IPC structures on disk
     # TODO: do we want to support multiple running instances as the same user?
-    ipc_dir = os.path.join(Utils.home_path(), "gzdoom-ipc")
-    os.makedirs(ipc_dir, exist_ok=True)
+    gzd_dir = os.path.join(Utils.home_path(), "gzdoom")
+    ipc_dir = os.path.join(gzd_dir, "ipc")
+    os.makedirs(ipc_dir, exist_ok=True) # communication with gzdoom
+    os.makedirs(os.path.join(gzd_dir, "logic"), exist_ok=True) # in-dev logic files
+    os.makedirs(os.path.join(gzd_dir, "tuning"), exist_ok=True) # in-dev tuning files
 
     # Preallocate input lump
     ipc_lump = os.path.join(ipc_dir, 'GZAPIPC')
     with open(ipc_lump, 'w') as fd:
-        fd.write('.' * 1024)
+        fd.write('.' * 4096)
 
     # Create empty logfile if it doesn't exist
-    ipc_log = os.path.join(ipc_dir, 'gzdoom.log')
+    ipc_log = os.path.join(gzd_dir, 'gzdoom.log')
     with open(ipc_log, "a"):
         pass
 
     async def actual_main(args):
-        ctx = GZDoomContext(args.connect, args.password, ipc_dir)
+        ctx = GZDoomContext(args.connect, args.password, gzd_dir)
         await ctx.start_tasks()
         if gui_enabled:
             ctx.run_gui()
