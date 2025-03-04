@@ -199,12 +199,16 @@ class ::LevelSelector : ::KeyValueNetevent {
         // from the check name.
         string shortname = loc.name;
         shortname.replace(region.map .. " - ", "");
-        buf = buf .. string.format("\n  %s", shortname);
-        // TODO: support hints for other player's items at our locations
+        buf = buf .. string.format("\n  \c[DARKGRAY]%s", shortname);
+
+        let peek = region.GetPeek(shortname);
+        if (peek) {
+          buf = buf .. string.format("\n  \c-ⓘ %s for %s", peek.item, peek.player);
+        }
       }
     }
     if (buf != "") {
-      return string.format("\n\c-%s\c[DARKGRAY]%s", StringTable.Localize("$GZAP_MENU_TT_CHECKS"), buf);
+      return string.format("\n\c-%s%s", StringTable.Localize("$GZAP_MENU_TT_CHECKS"), buf);
     } else {
       return buf;
     }

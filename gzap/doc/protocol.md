@@ -248,3 +248,14 @@ For example, `HINT⋅MAP02⋅BlueCard⋅Link⋅Kokiri Shop` tells us that our
 Frog Concert.
 
 In-game, this is used to display the hints on the level select screen.
+
+#### `PEEK` `map` `location` `player` `item`
+
+Tells the game that we have received a hint for the contents of one of our locations.
+`map` and `location` identify the location, `player` is the player whose item it
+is (which may be us!) and `item` is the item name. Unlike `HINT`, none of these
+fields can be empty. These are used by the level select screen to display information
+about what's located where.
+
+`PEEK⋅MAP01⋅Chainsaw⋅Link⋅Hookshot`, for example, indicates that the chainsaw on
+"Entryway" contains Link's hookshot.

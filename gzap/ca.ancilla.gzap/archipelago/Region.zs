@@ -8,6 +8,7 @@
 // level, and contains some utility functions for managing the Locations inside
 // it.
 #namespace GZAP;
+#debug off;
 
 #include "./Location.zsc"
 
@@ -16,11 +17,20 @@ class ::Hint play {
   string location;
 }
 
+class ::Peek play {
+  string player;
+  string item;
+}
+
 class ::Region play {
   string map;
   Array<::Location> locations;
   Map<string, bool> keys;
+  // Hints and peeks are indexed by their name without map qualification.
+  // So "RedCard" rather than "RedCard (MAP02)", and "Chainsaw" rather than
+  // "MAP01 - Chainsaw".
   Map<string, ::Hint> hints;
+  Map<string, ::Peek> peeks;
   bool access;
   bool automap;
   bool cleared;
@@ -102,6 +112,19 @@ class ::Region play {
 
   ::Hint GetHint(string item) const {
     return self.hints.GetIfExists(item);
+  }
+
+  void RegisterPeek(string location, string player, string item) {
+    let peek = ::Peek(new("::Peek"));
+    peek.player = player;
+    peek.item = item;
+    self.peeks.Insert(location, peek);
+    DEBUG("RegisterPeek(%s): %s for %s", location, item, player);
+  }
+
+  ::Peek GetPeek(string location) const {
+    DEBUG("GetPeek(%s)", location);
+    return self.peeks.GetIfExists(location);
   }
 
   void RegisterKey(string key) {

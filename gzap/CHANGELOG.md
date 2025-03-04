@@ -5,6 +5,7 @@
   - "No secret progression items" option
   - Request hints from the level select screen with →
   - Received hints for your items are displayed on the level select screen
+  - Received hints for the contents of your locations likewise
 - Change:
   - Improvements to Scythe logic
 - Fix:

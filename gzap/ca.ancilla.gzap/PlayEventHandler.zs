@@ -153,6 +153,15 @@ class ::PlayEventHandler : StaticEventHandler {
       let region = apstate.GetRegion(mapname);
       if (!region) return; // AP sent us a map name that doesn't exist??
       region.RegisterHint(item, player, location);
+    } else if (cmd.command == "ap-ipc:peek") {
+      string mapname = cmd.ReadString();
+      string location = cmd.ReadString();
+      string player = cmd.ReadString();
+      string item = cmd.ReadString();
+      DEBUG("PEEK: %s - %s: %s for %s", mapname, location, item, player);
+      let region = apstate.GetRegion(mapname);
+      if (!region) return; // AP sent us a map name that doesn't exist??
+      region.RegisterPeek(location, player, item);
     } else if (cmd.command == "ap-hint") {
       // Player requested a hint from the level select menu.
       string item = cmd.ReadString();

@@ -120,7 +120,7 @@ class GZDoomContext(CommonContext):
         return {
             hint["item"]: GZDoomHint(**hint)
             for hint in self.stored_data.get(f"_read_hints_{self.team}_{self.slot}", [])
-            if not hint["found"] and self.slot_concerns_self(hint["receiving_player"])
+            if not hint["found"] and GZDoomHint(**hint).is_relevant(self)
         }
 
     async def _item_loop(self):
@@ -159,8 +159,12 @@ class GZDoomContext(CommonContext):
             print(f"in hint loop, old={self.last_hints.keys()}, cur={hints.keys()}, new={new_hint_ids}")
             for id in new_hint_ids:
                 hint = hints[id]
-                print("sending hint:", hint.hint_info(self))
-                self.ipc.send_hint(*hint.hint_info(self))
+                if hint.is_hint(self):
+                    print("sending hint:", hint.hint_info(self))
+                    self.ipc.send_hint(*hint.hint_info(self))
+                if hint.is_peek(self):
+                    print("sending peek:", hint.peek_info(self))
+                    self.ipc.send_peek(*hint.peek_info(self))
             self.last_hints = hints
 
 

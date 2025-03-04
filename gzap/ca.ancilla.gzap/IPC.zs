@@ -92,6 +92,12 @@ class ::IPC {
         // fields are map name, item name, finding player name, item location in their world
         NET_STRING, fields[2], NET_STRING, fields[3], NET_STRING, fields[4], NET_STRING, fields[5]);
       return true;
+    } else if (type == "PEEK") {
+      if (fields.Size() != 6) return false;
+      EventHandler.SendNetworkCommand("ap-ipc:peek",
+        // fields are map name, location name, destination player name, item name
+        NET_STRING, fields[2], NET_STRING, fields[3], NET_STRING, fields[4], NET_STRING, fields[5]);
+      return true;
     }
     return false;
   }
