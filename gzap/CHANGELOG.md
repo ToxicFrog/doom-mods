@@ -21,6 +21,7 @@ that Archipelago tells you and update your launcher config or shell scripts.
   - `$GZAP_EXTRA_LOGIC` envar removed
   - External logic files can now be placed in `$AP/gzdoom/logic` and
     `$AP/gzdoom/tuning` and will be loaded automatically
+  - The event handlers needed for gameplay are not loaded when only scanning
 - Fix:
   - If an item bank limit was exceeded while you were between levels, the excess
     items would vanish. You will now receive them when you next enter a level.
