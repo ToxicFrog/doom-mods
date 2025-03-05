@@ -150,20 +150,20 @@ class ::RandoState play {
   bool HasWeapon(string typename) {
     let [count, item] = FindItem(typename);
     DEBUG("HasWeapon? %s = %d", typename, count);
-    return count >= 0;
+    // We make the optimistic assumption that, since Replicate() spawns the
+    // item for all players, we just need to check player 0 (here and below).
+    return count >= 0 || players[0].mo.FindInventory(typename);
   }
 
   bool HasWeaponSlot(int query_slot) {
     let slots = players[0].weapons;
-    DEBUG("HasWeaponSlot? %d", query_slot);
-    for (int n = 0; n < self.items.Size(); ++n) {
-      Class<Weapon> cls = self.items[n].typename;
-      if (cls) {
-        let [assigned,slot,idx] = slots.LocateWeapon(cls);
-        DEBUG("Checking %s (slot: %d)", self.items[n].typename, slot);
-        if (slot == query_slot) return true;
-      }
+    let pawn = players[0].mo;
+    for (int n = 0; n < slots.SlotSize(query_slot); ++n) {
+      let cls = slots.GetWeapon(query_slot, n);
+      DEBUG("HasWeaponSlot? %d: checking %s", cls.GetClassName());
+      if (pawn.FindInventory(cls)) return true;
     }
+    DEBUG("HasWeaponSlot? %d - giving up");
     return false;
   }
 
