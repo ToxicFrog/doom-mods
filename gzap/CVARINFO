@@ -33,6 +33,12 @@ server int ap_bank_health = -1;
 server int ap_bank_powerups = -1;
 server int ap_bank_other = -1;
 
+// Whether or not weapons can drop outside of the normal AP progression.
+// 0 means no blocking of weapons
+// 1 blocks weapons unless you already have a weapon in that slot
+// 2 blocks weapons unless you already have a copy of that weapon
+// 3 blocks weapons unconditionally
+server int ap_suppress_weapon_drops = 0;
 
 //// Scanner configuration.
 // These are not written to the save file or config file, since they're more

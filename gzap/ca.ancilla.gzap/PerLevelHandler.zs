@@ -143,7 +143,6 @@ class ::PerLevelHandler : EventHandler {
   // the player via WorldTick() above.
 
   override void WorldThingSpawned(WorldEvent evt) {
-    if (!alarm) return;
     let thing = evt.thing;
 
     if (!thing) return;
@@ -153,6 +152,21 @@ class ::PerLevelHandler : EventHandler {
     // For now, though, this works with vanilla and every mod I've tested.
     if (!(thing is "Inventory")) return;
 
+    if (alarm) {
+      // Start-of-level countdown is still running, see if we need to replace this
+      // with an AP check token.
+      if (MaybeReplaceWithCheck(thing)) return;
+    }
+
+    // It's not a check, and it's not something we need to replace with a check.
+    // But, if it's a weapon, we might need to suppress its existence anways.
+    if (!ShouldAllow(Weapon(thing))) {
+      thing.ClearCounters();
+      thing.Destroy();
+    }
+  }
+
+  bool MaybeReplaceWithCheck(Actor thing) {
     if (thing is "::CheckPickup") {
       // Check has already been spawned, original item has already been deleted,
       // see if this check has already been found by the player and should be
@@ -165,7 +179,7 @@ class ::PerLevelHandler : EventHandler {
         thing.ClearCounters();
         thing.Destroy();
       }
-      return;
+      return true;
     }
 
     DEBUG("WorldThingSpawned(%s)", thing.GetTag());
@@ -185,7 +199,37 @@ class ::PerLevelHandler : EventHandler {
       ClearPending(check);
       thing.ClearCounters();
       thing.Destroy();
+      return true;
     }
+    return false;
+  }
+
+  bool allow_all_drops;
+  void AllowAllDrops(bool val) { allow_all_drops = val; }
+
+  bool ShouldAllow(Weapon thing) {
+    if (!thing) return true;
+    DEBUG("Checking spawn of %s", thing.GetTag());
+    if (self.allow_all_drops) return true;
+    if (ap_suppress_weapon_drops == 0) return true;
+
+    // Allow only if same slot in inventory
+    if (ap_suppress_weapon_drops == 1) {
+      // Make the simplifying assumption that all players have the same slots.
+      let [assigned,slot,idx] = players[0].weapons.LocateWeapon(thing.GetClass());
+      DEBUG("Checking based on slot: assigned=%d slot=%d", assigned, slot);
+      if (!assigned) return true; // I guess???
+      return apstate.HasWeaponSlot(slot);
+    }
+
+    // Allow only if same weapon in inventory
+    if (ap_suppress_weapon_drops == 2) {
+      DEBUG("Checking based on class: %s", thing.GetClassName());
+      return apstate.HasWeapon(thing.GetClassName());
+    }
+
+    DEBUG("Unconditionally blocking spawn.");
+    return false;
   }
 
   ::Location, float FindCheckForActor(Actor thing) {

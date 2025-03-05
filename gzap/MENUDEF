@@ -30,6 +30,7 @@ OptionMenu "ArchipelagoOptions"
   Option "$GZAP_OPT_NAME_SHOW_PROGRESSION", "ap_show_progression", "ApShowProgressionMode"
   GZAP_Tooltip "$GZAP_OPT_TT_SHOW_PROGRESSION"
 
+  StaticText ""
   ScaleSlider "$GZAP_OPT_NAME_BANK_WEAPONS", "ap_bank_weapons", -1, 32, 1, "0", "$GZAP_OPT_SLIDER_UNLIMITED"
   ScaleSlider "$GZAP_OPT_NAME_BANK_AMMO", "ap_bank_ammo", -1, 32, 1, "0", "$GZAP_OPT_SLIDER_UNLIMITED"
   ScaleSlider "$GZAP_OPT_NAME_BANK_ARMOUR", "ap_bank_armour", -1, 32, 1, "0", "$GZAP_OPT_SLIDER_UNLIMITED"
@@ -37,6 +38,10 @@ OptionMenu "ArchipelagoOptions"
   ScaleSlider "$GZAP_OPT_NAME_BANK_POWERUPS", "ap_bank_powerups", -1, 32, 1, "0", "$GZAP_OPT_SLIDER_UNLIMITED"
   ScaleSlider "$GZAP_OPT_NAME_BANK_OTHER", "ap_bank_other", -1, 32, 1, "0", "$GZAP_OPT_SLIDER_UNLIMITED"
   GZAP_Tooltip "$GZAP_OPT_TT_BANK_LIMITS"
+
+  StaticText ""
+  Option "$GZAP_OPT_NAME_ALLOW_DROPS", "ap_suppress_weapon_drops", "ApWeaponDropMode"
+  GZAP_Tooltip "$GZAP_OPT_TT_ALLOW_DROPS"
 
   StaticText ""
   StaticText "$GZAP_OPT_HEADER_CONTROLS", CYAN
@@ -67,6 +72,13 @@ OptionValue "ApShowProgressionMode" {
   1, "$GZAP_OPT_SHOW_PROGRESSION_1"
   2, "$GZAP_OPT_SHOW_PROGRESSION_2"
   3, "$GZAP_OPT_SHOW_PROGRESSION_3"
+}
+
+OptionValue "ApWeaponDropMode" {
+  0, "$GZAP_OPT_DROPS_0"
+  1, "$GZAP_OPT_DROPS_1"
+  2, "$GZAP_OPT_DROPS_2"
+  3, "$GZAP_OPT_DROPS_3"
 }
 
 /*
