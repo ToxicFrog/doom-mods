@@ -79,12 +79,14 @@ class ::RandoItem play {
   void Replicate() {
     DEBUG("Replicating %s", self.typename);
     self.held -= 1;
+    ::PerLevelHandler.Get().AllowAllDrops(true);
     for (int p = 0; p < MAXPLAYERS; ++p) {
       if (!playeringame[p]) continue;
       if (!players[p].mo) continue;
 
       players[p].mo.A_SpawnItemEX(self.typename);
     }
+    ::PerLevelHandler.Get().AllowAllDrops(false);
   }
 }
 
@@ -143,6 +145,26 @@ class ::RandoState play {
       }
     }
     return -1, null;
+  }
+
+  bool HasWeapon(string typename) {
+    let [count, item] = FindItem(typename);
+    DEBUG("HasWeapon? %s = %d", typename, count);
+    return count >= 0;
+  }
+
+  bool HasWeaponSlot(int query_slot) {
+    let slots = players[0].weapons;
+    DEBUG("HasWeaponSlot? %d", query_slot);
+    for (int n = 0; n < self.items.Size(); ++n) {
+      Class<Weapon> cls = self.items[n].typename;
+      if (cls) {
+        let [assigned,slot,idx] = slots.LocateWeapon(cls);
+        DEBUG("Checking %s (slot: %d)", self.items[n].typename, slot);
+        if (slot == query_slot) return true;
+      }
+    }
+    return false;
   }
 
   // Grant the player the item with the given ID.

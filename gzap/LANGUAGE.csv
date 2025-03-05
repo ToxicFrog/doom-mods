@@ -37,6 +37,14 @@ Other bank limit,GZAP_OPT_NAME_BANK_OTHER,
 "Limits for how much of each item type the randomizer will let you ""bank"" and reclaim later.
 
 If you receive an item and you're already at the limit, it will be given to you immediately, even if it's not useful to do so (e.g. a soulsphere when you're at 200% health). A limit of 0 means that all items of that type will be immediately dispensed.",GZAP_OPT_TT_BANK_LIMITS,
+Weapon drops from enemies,GZAP_OPT_NAME_ALLOW_DROPS,
+"Whether to allow enemies to drop weapons (in addition to getting weapons through AP), such as zombie shotgunners dropping shotguns.
+
+""If already-filled slot"" allows weapons to drop if you already have a weapon with the same slot number, e.g. having the SSG will allow both SSGs and normal shotguns to drop.
+
+""If already-held weapon"" allows weapons to drop only if you are already holding a copy of that weapon.
+
+Note that, due to the way weapon slot assignment works in gzdoom, mods that replace weapons will probably treat all settings except ""Enabled"" as if they were ""Disabled"".",GZAP_OPT_TT_ALLOW_DROPS,
 Unlimited,GZAP_OPT_SLIDER_UNLIMITED,
 Controls,GZAP_OPT_HEADER_CONTROLS,
 AP level select/tracker,GZAP_OPT_NAME_LEVELSELECT,
@@ -69,6 +77,10 @@ Never,GZAP_OPT_SHOW_PROGRESSION_0,
 In person only,GZAP_OPT_SHOW_PROGRESSION_1,
 In person + after collecting map,GZAP_OPT_SHOW_PROGRESSION_2,
 Always,GZAP_OPT_SHOW_PROGRESSION_3,
+Enabled,GZAP_OPT_DROPS_0,
+If already-filled slot,GZAP_OPT_DROPS_1,
+If already-held weapon,GZAP_OPT_DROPS_2,
+Disabled,GZAP_OPT_DROPS_3,
 [ap-scan] Starting scan of all levels.,GZAP_SCAN_STARTING,
 [ap-scan] No levels to scan. Set the ap_scan_levels cvar before starting.,GZAP_SCAN_EMPTY,
 [ap-scan] No more levels to scan.,GZAP_SCAN_DONE,
