@@ -29,6 +29,10 @@ be necessary for the map to be playable at all.
 Things dropped by enemies are not considered checks, so e.g. shotguns dropped
 by Sergeants are not checks and are not considered to be in logic.
 
+If this annoys you, there's a configuration setting to turn off enemy weapon drops
+entirely, or to restrict them to only weapons you've already found by other means,
+or only weapons that share a slot number with a weapon you already have.
+
 ### DeHackEd
 
 Pickups modified by DEHACKED should still be detected as checks.
@@ -45,12 +49,13 @@ Mods that delete or move things around, or replace inventory/weapons with things
 that aren't those, will tend to cause problems, since gzAP relies on actor position
 to match up randomizer locations with in-game objects.
 
-#### Pandemonia
+#### Mods with custom difficulty settings
 
-Pandemonia uses custom skill settings where ITYTD is removed entirely, skill=0 is
-HNTR, skill=1 is HMP, and so forth. You'll need to use the `ap_force_skill` cvar
-to work around this; if you generated for HNTR (skill=1), use `ap_force_skill 0`
-to tell AP that HNTR is now skill 0, and so forth.
+This includes Pandemonia and Rust & Bones, among others.
+
+These should work fine, as long as you set the `spawn_filter` in the yaml to match
+the spawn filter of the difficulty selection you're using -- e.g. if you're playing
+R&B on Normal, you want "easy", not "medium", unlike stock Doom.
 
 #### DoomRL Arsenal
 

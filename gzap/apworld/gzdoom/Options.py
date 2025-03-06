@@ -127,23 +127,28 @@ class ExcludedLevels(OptionSet):
     display_name = "Excluded levels"
     default = ['TITLEMAP']
 
-# TODO: this isn't useful until we have multi-difficulty logic files, or a way
-# of loading a different logic file per difficulty
-class Skill(NamedRange):
+class SpawnFilter(NamedRange):
     """
-    Difficulty level. Equivalent to the `skill` console command (so the range is
-    from 0 to 4, not 1 to 5).
+    Tell the generator which spawn filter (information about what items and enemies
+    spawn in each map) the game will use.
+
+    You need to pick a setting here that matches the difficulty you will be playing
+    on. In stock Doom, ITYTD and HNTR use "easy" spawns, HMP uses "medium", and
+    UV and NM use "hard".
+
+    If you are playing with a mod that changes this, make sure that you choose the
+    filter appropriate to the difficulty level you are selecting. Many gameplay mods
+    have custom difficulty settings that are not just simple reskins of the Doom
+    ones.
     """
-    display_name = "Difficulty"
-    range_start = 0
-    range_end = 4
+    display_name = "Spawn Filter"
+    range_start = 1
+    range_end = 3
     default = 2
     special_range_names = {
-        "itytd": 0,
-        "hntr": 1,
-        "hmp": 2,
-        "uv": 3,
-        "nm": 4
+        "easy": 1,
+        "medium": 2,
+        "hard": 3
     }
 
 class LevelOrderBias(Range):
@@ -209,8 +214,8 @@ class FullPersistence(Toggle):
 @dataclass
 class GZDoomOptions(PerGameCommonOptions):
     # Skill level, WAD, and level selection
-    skill: Skill
     selected_wad: SelectedWad
+    spawn_filter: SpawnFilter
     starting_levels: StartingLevels
     included_levels: IncludedLevels
     excluded_levels: ExcludedLevels

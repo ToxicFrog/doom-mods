@@ -110,16 +110,19 @@ class GZDoomWorld(World):
         #     print(self.location_name_to_id[k], k)
         wadlist = list(self.options.selected_wad.value)
         print(f"Permitted WADs: {wadlist}")
+
         self.wad_logic = model.get_wad(random.choice(wadlist))
         print(f"Selected WAD: {self.wad_logic.name}")
-        print(f"Selected skill: {self.options.skill.value}")
+        print(f"Selected spawns: {self.options.spawn_filter.value}")
+        self.spawn_filter = self.options.spawn_filter.value
+
         self.maps = [
             map for map in self.wad_logic.maps.values()
             if self.should_include_map(map.map)
         ]
         self.item_counts = {
             item.name(): item.get_count(self.options, self.maps)
-            for item in self.wad_logic.items(self.options.skill.value)
+            for item in self.wad_logic.items(self.spawn_filter)
         }
 
     def create_regions(self) -> None:
@@ -153,7 +156,7 @@ class GZDoomWorld(World):
                     self.player,
                     need_priors=self.options.level_order_bias.value / 100,
                     require_weapons=(map.map not in self.options.starting_levels)))
-            for loc in map.all_locations(self.options.skill.value):
+            for loc in map.all_locations(self.spawn_filter):
                 # print("  Location:", loc.name(), loc)
                 assert loc.name() not in placed
                 placed.add(loc.name())
@@ -175,9 +178,9 @@ class GZDoomWorld(World):
 
     def create_items(self) -> None:
         slots_left = self.location_count
-        main_items = (self.wad_logic.progression_items(self.options.skill.value)
-                      + self.wad_logic.useful_items(self.options.skill.value))
-        filler_items = self.wad_logic.filler_items(self.options.skill.value)
+        main_items = (self.wad_logic.progression_items(self.spawn_filter)
+                      + self.wad_logic.useful_items(self.spawn_filter))
+        filler_items = self.wad_logic.filler_items(self.spawn_filter)
 
         for item in main_items:
             if item.map and not self.should_include_map(item.map):
@@ -249,13 +252,13 @@ class GZDoomWorld(World):
             "singleplayer": self.multiworld.players == 1,
             "seed": self.multiworld.seed_name,
             "player": self.multiworld.player_name[self.player],
-            "skill": self.options.skill.value,
+            "spawn_filter": self.spawn_filter,
             "persistence": self.options.full_persistence.value,
             "respawn": self.options.allow_respawn.value,
             "wad": self.wad_logic.name,
             "maps": self.maps,
             "items": [
-              item for item in self.wad_logic.items(self.options.skill.value)
+              item for item in self.wad_logic.items(self.spawn_filter)
               if (not item.map or self.should_include_map(item.map))
             ],
             "starting_items": [

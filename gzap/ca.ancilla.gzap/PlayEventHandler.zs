@@ -17,7 +17,6 @@ class ::PlayEventHandler : StaticEventHandler {
   string slot_name; // Name of player in AP
   string seed;
   string wadname;
-  int skill;
   bool singleplayer;
   // IPC stub for communication with Archipelago.
   ::IPC apclient;
@@ -29,16 +28,14 @@ class ::PlayEventHandler : StaticEventHandler {
     apstate = ::RandoState(new("::RandoState"));
   }
 
-  // N.b. this uses the CVAR skill value, where 0 is ITYTD and 4 is Nightmare.
-  void RegisterGameInfo(string slot_name, string seed, string wadname, int skill, bool singleplayer) {
-    console.printf("Archipelago game generated from seed %s for %s playing %s.", seed, slot_name, wadname);
-    console.printf("Skill level: %d. Singleplayer: %s.", skill, singleplayer ? "yes" : "no");
+  void RegisterGameInfo(string slot_name, string seed, string wadname, bool singleplayer) {
+    console.printf("Archipelago game generated from seed %s for %s playing %s (%s).",
+      seed, slot_name, wadname, singleplayer ? "singleplayer" : "multiplayer");
     // Save this information because we need all of it later. Some is sent in
     // XON so the client can get configuration info, some is used in gameplay.
     self.slot_name = slot_name;
     self.seed = seed;
     self.wadname = wadname;
-    self.skill = skill;
     self.singleplayer = singleplayer;
   }
 
@@ -118,8 +115,7 @@ class ::PlayEventHandler : StaticEventHandler {
         return;
       }
       ::PerLevelHandler.Get().early_exit = true;
-      level.ChangeLevel(info.MapName, 0, CHANGELEVEL_NOINTERMISSION,
-        ap_force_skill >= 0 ? ap_force_skill : self.skill);
+      level.ChangeLevel(info.MapName, 0, CHANGELEVEL_NOINTERMISSION, -1);
     } else if (evt.name == "ap-use-item") {
       let idx = evt.args[0];
       apstate.UseItem(idx);

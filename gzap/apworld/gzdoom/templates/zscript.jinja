@@ -10,12 +10,12 @@ class GZAP_DataPackageEventHandler : StaticEventHandler {
     let apstate = GZAP_PlayEventHandler.GetState();
 
     console.printf("This was generated from seed %s for %s.", "{{seed}}", "{{player}}");
-    peh.RegisterGameInfo("{{player}}", "{{seed}}", "{{wad}}", {{skill}}, {{singleplayer}});
+    peh.RegisterGameInfo("{{player}}", "{{seed}}", "{{wad}}", {{singleplayer}});
 
     console.printf("Registering %d maps.", {{maps|count}});
     {% for map in maps %}
       apstate.RegisterMap("{{map.map}}", "{{map.checksum}}", {{id(map.access_token_name())}}, {{id(map.automap_name())}}, {{id(map.clear_token_name())}}, {{id(map.exit_location_name())}});
-      {% for check in map.all_locations(skill) %}
+      {% for check in map.all_locations(spawn_filter) %}
         {% if not check.pos.virtual %}
         apstate.RegisterCheck("{{map.map}}", {{check.id}}, "{{check.name()}}", {{progression(check.id)}}, ({{check.pos.x}},{{check.pos.y}},{{check.pos.z}}){% if check.unreachable %}, true{% endif %});
         {% endif %}
