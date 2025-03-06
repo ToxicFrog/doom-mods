@@ -14,7 +14,8 @@ that Archipelago tells you and update your launcher config or shell scripts.
     express things like "this check requires either the red key or the blue key"
   - YAML option to disable respawning on death, and require resuming from a savegame
   - YAML option to make all levels persistent
-  - In-game option to suppress weapon drops from enemies
+  - In-game option to suppress weapon drops from enemies. Suppressed weapons will
+    be replaced with the same quantity of ammo you would have gotten from them.
 - Change:
   - Improvements to Scythe logic
   - GZD<->AP interact files are now stored in `$AP/gzdoom`, which has multiple

@@ -161,6 +161,7 @@ class ::PerLevelHandler : EventHandler {
     // It's not a check, and it's not something we need to replace with a check.
     // But, if it's a weapon, we might need to suppress its existence anways.
     if (!ShouldAllow(Weapon(thing))) {
+      ReplaceWithAmmo(Weapon(thing));
       thing.ClearCounters();
       thing.Destroy();
     }
@@ -230,6 +231,23 @@ class ::PerLevelHandler : EventHandler {
 
     DEBUG("Unconditionally blocking spawn.");
     return false;
+  }
+
+  void ReplaceWithAmmo(Weapon thing) {
+    if (!thing) return;
+    DEBUG("ReplaceWithAmmo: %s", thing.GetTag());
+    SpawnAmmo(thing, thing.AmmoType1, thing.AmmoGive1);
+    SpawnAmmo(thing, thing.AmmoType2, thing.AmmoGive2);
+  }
+
+  void SpawnAmmo(Weapon thing, Class<Ammo> cls, int amount) {
+    if (!cls || !amount) return;
+    DEBUG("SpawnAmmo: %d of %s", amount, cls.GetClassName());
+    let ammo = Inventory(thing.Spawn(cls, thing.pos, ALLOW_REPLACE));
+    if (!ammo) return;
+    DEBUG("Spawned: %s", ammo.GetTag());
+    ammo.ClearCounters();
+    ammo.amount = amount;
   }
 
   ::Location, float FindCheckForActor(Actor thing) {
