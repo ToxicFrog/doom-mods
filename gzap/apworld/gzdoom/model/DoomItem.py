@@ -57,8 +57,7 @@ class DoomItem:
             self.count[sk] = min(n, count)
 
     def get_count(self, options, maps):
-        skill = min(3, max(1, options.skill.value))
-        count = self.count.get(skill, 0)
+        count = self.count.get(options.spawn_filter.value, 0)
 
         if self.category == "key":
             return min(count, 1)

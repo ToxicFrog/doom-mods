@@ -15,12 +15,6 @@ min_lives_per_level doesn't work if you don't get any bonus lives at all, due to
 This is mostly based on what needs to change to support Faithless, but it'll help
 a bunch of other games as well.
 
-We need a way to mark the entire game persistent, and reset it on player command.
-Easy.
-
-We need to support AnyOf dependencies in the logic. Also already planned to support
-vanilla maps like The Citadel.
-
 We need to support logic dependencies on things other than keys. This is trickier.
 At the moment the keyset implicitly means "these keys scoped to the enclosing level".
 We probably need to promote scoped keys to their fully qualified names when generating
@@ -47,6 +41,22 @@ AP-CHECK logic.
 We need an actor typename to category mapping file. Faithless might not need this,
 but Hedon and Ashes probably do and Square definitely does. And it needs to be
 available at scan time, so a new lump, e.g. APTYPES.
+
+The logic format needs a redesign. First draft thoughts -- separate items and
+locations. So we have:
+AP-MAP { information about the map as a whole }
+AP-ITEMS { map of item name to item count for a map }
+AP-MONSTERS { map of monster name to monster count for a map }
+- maybe AP-ITEM and AP-MONSTER, each one holding a single count?
+AP-LOCATION { information about a location, including whether it's secret or not }
+
+For secrets-as-checks, not sure if this should be a flag on AP-LOCATION or, since
+it doesn't have a single, clearly defined point in space, a separate message type,
+AP-SECRET.
+
+We may also want to define key scoping here, somehow -- e.g. an AP-KEY message
+something like:
+AP-KEY { typename: "GreenKey", scopename: "E1", scope: ["E1M1", "E1M2", ...] }
 
 ### scanner
 

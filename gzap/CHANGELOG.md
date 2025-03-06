@@ -23,6 +23,8 @@ that Archipelago tells you and update your launcher config or shell scripts.
   - External logic files can now be placed in `$AP/gzdoom/logic` and
     `$AP/gzdoom/tuning` and will be loaded automatically
   - The event handlers needed for gameplay are not loaded when only scanning
+  - `skill` yaml setting replaced with `spawn_filter`. The difficulty selection
+    in-game now actually functions again.
 - Fix:
   - If an item bank limit was exceeded while you were between levels, the excess
     items would vanish. You will now receive them when you next enter a level.
