@@ -68,7 +68,7 @@ class ::PlayEventHandler : StaticEventHandler {
 
     if (level.LevelName == "TITLEMAP") return;
 
-    if (evt.IsSaveGame) {
+    if (evt.IsSaveGame || evt.IsReopen) {
       ::PerLevelHandler.Get().OnLoadGame();
     } else {
       ::PerLevelHandler.Get().OnNewMap();
