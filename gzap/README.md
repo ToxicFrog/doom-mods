@@ -11,6 +11,11 @@ Features include:
 - autotune feature for automatically improving wad support based on play
 - broad compatibility with both cosmetic and gameplay mods
 
+You can download the latest stable release from the
+[releases page](https://github.com/toxicfrog/doom-mods/releases), or try the
+development versions of the [mod](../releases/gzArchipelago-latest.pk3) and
+[apworld](../releases/gzdoom.apworld).
+
 The documentation is split into multiple files.
 
 If you just want to **play a supported wad**:
