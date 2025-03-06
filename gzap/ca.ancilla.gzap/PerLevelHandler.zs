@@ -54,9 +54,8 @@ class ::PerLevelHandler : EventHandler {
   }
 
   //// Handling for loading into the world. ////
-  // For loading save games, WorldThingSpawned doesn't get called, so we just
-  // call CleanupReopenedLevel() to deal with checks that were collected after
-  // the game was saved and need to remain collected even across loads.
+  // For loading save games, WorldThingSpawned doesn't get called, so the PEH
+  // will call OnLoadGame() for us.
 
   override void WorldLoaded(WorldEvent evt) {
     DEBUG("PLH WorldLoaded");
