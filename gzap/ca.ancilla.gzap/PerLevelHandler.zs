@@ -60,7 +60,8 @@ class ::PerLevelHandler : EventHandler {
   override void WorldLoaded(WorldEvent evt) {
     DEBUG("PLH WorldLoaded");
 
-    if (level.MapName == "GZAPHUB" && ::PlayEventHandler.Get().IsRandomized()) {
+    if ((level.MapName == "GZAPHUB" || level.MapName == "GZAPRST")
+         && ::PlayEventHandler.Get().IsRandomized()) {
       Menu.SetMenu("ArchipelagoLevelSelectMenu");
       return;
     }
