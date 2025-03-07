@@ -44,10 +44,11 @@ class IPC:
   should_exit: bool = False
   nick: str = ""  # user's name in gzDoom, used for chat message parsing
 
-  def __init__(self, ctx: CommonContext, gzd_dir: str) -> None:
+  def __init__(self, ctx: CommonContext, gzd_dir: str, size: int) -> None:
     self.ctx = ctx
     self.gzd_dir = gzd_dir
     self.ipc_dir = os.path.join(gzd_dir, "ipc")
+    self.ipc_size = size
     self.ipc_queue = []
 
   def start_log_reader(self) -> None:
@@ -76,9 +77,9 @@ class IPC:
 
   def _log_reading_loop(self, ipc_dir: str, loop):
     log_path = os.path.join(ipc_dir, "gzdoom.log")
-    print("lod_reading_path", log_path)
     tune = None
     with open(log_path, "r") as log:
+       self._wait_for_live_log(log)
        while True:
           line = self._blocking_readline(log).strip()
           if line is None:
@@ -88,7 +89,7 @@ class IPC:
           # print("[gzdoom]", line)
           # if the line has the format "<username>: <line of text>", this is a chat message
           # this needs special handling because there is no OnSayEvent or similar in gzdoom
-          if line.startswith(self.nick + ": "):
+          if self.nick and line.startswith(self.nick + ": "):
             evt = "AP-CHAT"
             payload = { "msg": line.removeprefix(self.nick + ": ").strip() }
           elif line.startswith("AP-"):
@@ -98,6 +99,8 @@ class IPC:
             continue
 
           if evt == "AP-XON":
+            if tune:
+              tune.close()
             tune = open(os.path.join(ipc_dir, payload["wad"]), "a")
 
           if evt == "AP-CHECK" and tune:
@@ -106,6 +109,22 @@ class IPC:
 
           future = asyncio.run_coroutine_threadsafe(self._dispatch(evt, payload), loop)
           future.result()
+
+  def _wait_for_live_log(self, fd) -> None:
+    """
+    Wait for the log to be "live", i.e. being written by a running gzdoom process
+    rather than something left over from an earlier run.
+
+    We use a blunt hammer for this: read the logfile contents, and if they don't
+    have an XOFF in them we're good to go, and if they do, wait for it to get
+    truncated by a new gzdoom process.
+    """
+    if fd.read().find("\nAP-XOFF") >= 0:
+      # Dead log, wait for it to be truncated
+      print("Logfile is from a previous run of gzdoom. Waiting for a new one.")
+      while fd.tell() <= os.stat(fd.fileno()).st_size:
+        time.sleep(1)
+    fd.seek(0)
 
   def _blocking_readline(self, fd) -> str:
     line = ""
@@ -139,6 +158,8 @@ class IPC:
         await self.recv_chat(payload["msg"])
     elif evt == "AP-STATUS":
         await self.recv_status(**payload)
+    elif evt == "AP-XOFF":
+        await self.recv_xoff()
     else:
         pass
     self.ctx.awaken()
@@ -155,7 +176,7 @@ class IPC:
     """
     print("XON received. Opening channels to gzdoom and to AP host.")
     self.ipc_path = os.path.join(self.ipc_dir, lump)
-    self.ipc_size = size
+    assert size == self.ipc_size, "IPC size mismatch between gzdoom and AP -- please exit both, start then client, then gzdoom"
     self.nick = nick
     self._flush()
     await self.ctx.on_xon(slot, seed)
@@ -192,6 +213,11 @@ class IPC:
   async def recv_status(self, victory: bool) -> None:
     if victory:
       await self.ctx.on_victory()
+
+  async def recv_xoff(self) -> None:
+    # Stop sending things to the client.
+    self.nick = None
+    self._flush()
 
 
   #### Handlers for events coming from Archipelago. ####
@@ -253,14 +279,15 @@ class IPC:
     self.ipc_queue.append(msg)
 
   def _flush(self) -> None:
-    if self.ipc_size == 0:
-      # Not connected to gzDoom. Hold messages in the buffer until it (re)connects.
+    if not self.ipc_path:
+      # Not connected to gzdoom yet
       return
 
-    if not self.ipc_queue:
-      # No pending messages? Zero-fill the buffer.
-      # We do this, instead of truncating, so that if gzdoom restarts it doesn't
-      # get a zero-length IPC buffer.
+    if not self.nick or not self.ipc_queue:
+      # Either gzdoom has disconnected (after being previously connected) or we
+      # have no messages for it.
+      # In either case we clear the on-disk buffer so that gzdoom doesn't end
+      # up receiving messages before XON next time it connects.
       with open(self.ipc_path, "w") as fd:
         fd.truncate(self.ipc_size)
       return

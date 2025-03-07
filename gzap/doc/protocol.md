@@ -131,6 +131,14 @@ Informs the client that the player is victorious (by setting `victory` to `true`
 This may be expanded with other uses in the future but for now it's just a way of
 telling the client when the game is won.
 
+#### `AP-XOFF {}`
+
+Sent when Doom is shutting down to indicate that the connection is closing and
+no more messages will be processed. A client starting up can look for the presence
+of this in the log to determine if it's a log from a game in progress or an earlier
+play session -- since gzdoom truncates the log file when starting up, it will
+only contain one of these at most.
+
 
 ## Incoming Protocol
 

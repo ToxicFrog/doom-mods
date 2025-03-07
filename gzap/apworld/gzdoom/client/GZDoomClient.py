@@ -9,6 +9,7 @@ from CommonClient import CommonContext, ClientCommandProcessor, ClientStatus, ge
 from .IPC import IPC
 from .Hint import GZDoomHint
 
+_IPC_SIZE = 4096
 
 class GZDoomCommandProcessor(ClientCommandProcessor):
     pass
@@ -24,7 +25,7 @@ class GZDoomContext(CommonContext):
     def __init__(self, server_address: str, password: str, gzd_dir: str):
         self.found_gzdoom = asyncio.Event()
         super().__init__(server_address, password)
-        self.ipc = IPC(self, gzd_dir)
+        self.ipc = IPC(self, gzd_dir, _IPC_SIZE)
 
     def make_gui(self):
         from kvui import GameManager
@@ -149,21 +150,20 @@ class GZDoomContext(CommonContext):
             self.last_locations = self.checked_locations
 
     async def _hint_loop(self):
-        print("Hint loop starting...")
         self.last_hints = {}
         while not self.exit_event.is_set():
             await self.watcher_event.wait()
             self.watcher_event.clear()
             hints = self.pending_hints()
             new_hint_ids = set(hints.keys()) - set(self.last_hints.keys())
-            print(f"in hint loop, old={self.last_hints.keys()}, cur={hints.keys()}, new={new_hint_ids}")
+            # print(f"in hint loop, old={self.last_hints.keys()}, cur={hints.keys()}, new={new_hint_ids}")
             for id in new_hint_ids:
                 hint = hints[id]
                 if hint.is_hint(self):
-                    print("sending hint:", hint.hint_info(self))
+                    # print("sending hint:", hint.hint_info(self))
                     self.ipc.send_hint(*hint.hint_info(self))
                 if hint.is_peek(self):
-                    print("sending peek:", hint.peek_info(self))
+                    # print("sending peek:", hint.peek_info(self))
                     self.ipc.send_peek(*hint.peek_info(self))
             self.last_hints = hints
 
@@ -182,7 +182,7 @@ def main(*args):
     # Preallocate input lump
     ipc_lump = os.path.join(ipc_dir, 'GZAPIPC')
     with open(ipc_lump, 'w') as fd:
-        fd.write('.' * 4096)
+        fd.write('.' * _IPC_SIZE)
 
     # Create empty logfile if it doesn't exist
     ipc_log = os.path.join(gzd_dir, 'gzdoom.log')
@@ -219,7 +219,6 @@ def main(*args):
     colorama.init()
     args = parser.parse_args(args)
     asyncio.run(actual_main(args), debug=True)
-    print("asyncio.run done")
     colorama.deinit()
 
 
