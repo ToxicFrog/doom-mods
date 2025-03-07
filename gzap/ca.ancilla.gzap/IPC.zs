@@ -27,6 +27,10 @@ class ::IPC {
       slot_name, seed, wadname));
   }
 
+  void Shutdown() {
+    Send("XOFF", "{}");
+  }
+
   // Receive all pending messages, dispatch them internally, and ack them.
   void ReceiveAll() {
     // Not initialized yet. That's fine, it means the menu loop has started up

@@ -34,6 +34,8 @@ that Archipelago tells you and update your launcher config or shell scripts.
   - `ap_scan_unreachable 2` was not triggering when you exited the level via the
     level select menu.
   - With persistence on, levels were sometimes not properly registered as complete.
+  - The AP client could end up processing leftover messages from a previous game
+    when first started.
 
 # 0.2.0
 

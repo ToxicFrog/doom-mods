@@ -28,6 +28,10 @@ class ::PlayEventHandler : StaticEventHandler {
     apstate = ::RandoState(new("::RandoState"));
   }
 
+  override void OnUnregister() {
+    apclient.Shutdown();
+  }
+
   void RegisterGameInfo(string slot_name, string seed, string wadname, bool singleplayer) {
     console.printf("Archipelago game generated from seed %s for %s playing %s (%s).",
       seed, slot_name, wadname, singleplayer ? "singleplayer" : "multiplayer");
