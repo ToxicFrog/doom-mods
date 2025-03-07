@@ -71,6 +71,7 @@ class ::PerLevelHandler : EventHandler {
   // called from the StaticEventHandler, since it's the only one that can tell
   // the difference.
   void OnNewMap() {
+    early_exit = false;
     // No mapinfo -- hopefully this just means it's a TITLEMAP added by a mod or
     // something, and not that we're missing the data package or the player has
     // been changemapping into places they shouldn't be.
@@ -84,11 +85,10 @@ class ::PerLevelHandler : EventHandler {
     // Set the timer for how long we'll watch for new things spawning in (from
     // Spawners, scripts, etc) and try to match them to checks.
     alarm = 10;
-
-    early_exit = false;
   }
 
   void OnLoadGame() {
+    early_exit = false;
     // There's a fun edge case here where we load a save game made at the start
     // of the level while the alarm is still counting down. Fortunately this is
     // not actually a problem: this code will get rid of any obsolete already-
@@ -295,17 +295,20 @@ class ::PerLevelHandler : EventHandler {
 
   override void WorldUnloaded(WorldEvent evt) {
     DEBUG("PLH WorldUnloaded: save=%d warp=%d lnum=%d", evt.isSaveGame, self.early_exit, level.LevelNum);
-    if (evt.isSaveGame || self.early_exit || !apstate.GetRegion(level.MapName)) {
+    if (evt.isSaveGame || !apstate.GetRegion(level.MapName)) {
       cvar.FindCvar("ap_scan_unreachable").SetInt(0);
       return;
     }
 
     if (ap_scan_unreachable >= 2) {
       foreach (::CheckPickup thing : ThinkerIterator.Create("::CheckPickup", Thinker.STAT_DEFAULT)) {
+        DEBUG("Marking %s as unreachable.", thing.location.name);
         ::PlayEventHandler.Get().CheckLocation(thing.location.apid, thing.location.name);
       }
     }
     cvar.FindCvar("ap_scan_unreachable").SetInt(0);
+
+    if (self.early_exit) return;
 
     ::PlayEventHandler.Get().CheckLocation(
       apstate.GetCurrentRegion().exit_id, string.format("%s - Exit", level.MapName));

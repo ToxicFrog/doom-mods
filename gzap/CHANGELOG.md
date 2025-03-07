@@ -31,6 +31,9 @@ that Archipelago tells you and update your launcher config or shell scripts.
     items would vanish. You will now receive them when you next enter a level.
   - Tuning was not properly modeling locations reachable with some, but not all,
     keys, resulting in them being considered completely inaccessible.
+  - `ap_scan_unreachable 2` was not triggering when you exited the level via the
+    level select menu.
+  - With persistence on, levels were sometimes not properly registered as complete.
 
 # 0.2.0
 
