@@ -11,23 +11,6 @@
 #include "./LevelSelectMenuItems.zsc"
 #include "./CommonMenu.zsc"
 
-// Shim between the main menu and the level select menu.
-// If activated before game initialization, just forwards to the normal new-game
-// menu. Otherwise, opens the AP level select menu.
-// TODO: if we don't have a datapack, this should instead open a scan menu, with
-// options to scan the wad, play through vanilla to refine the process, or mark
-// certain levels as excluded from the final pack.
-class ListMenuItemArchipelagoItem : ListMenuItemTextItem {
-  override bool Activate() {
-    if (level.MapName == "") {
-      return super.Activate();
-    } else {
-      Menu.SetMenu("ArchipelagoLevelSelectMenu");
-      return true;
-    }
-  }
-}
-
 class ::LevelSelectMenu : ::CommonMenu {
   override void Init(Menu parent, OptionMenuDescriptor desc) {
     super.InitDynamic(parent, desc);
@@ -91,5 +74,39 @@ class ::LevelSelectMenu : ::CommonMenu {
     let item = new("::LevelSelector").Init(idx, info, region);
     mDesc.mItems.Push(item);
     item.tt = PushTooltip(item.FormatTooltip());
+  }
+
+  override void Ticker() {
+    super.Ticker();
+    let state = ::PlayEventHandler.GetState();
+    if (!state.ShouldWarn()) return;
+
+    EventHandler.SendNetworkEvent("ap-did-warning");
+    DisplayWarning(::PlayEventHandler.GetState());
+  }
+
+  void DisplayWarning(::RandoState state) {
+    Menu.StartMessage(
+      string.format(
+        StringTable.Localize("$GZAP_MENU_WARNING"),
+        GetMapWarning(state),
+        GetFilterWarning(state)),
+      1);
+  }
+
+  string GetMapWarning(::RandoState state) {
+    if (state.checksum_errors == 0) return "";
+    return string.format(
+      StringTable.Localize("$GZAP_MENU_WARNING_MAPS"),
+      state.checksum_errors,
+      state.regions.CountUsed());
+  }
+
+  string GetFilterWarning(::RandoState state) {
+    if (state.filter == ::Util.GetCurrentFilter()) return "";
+    return string.format(
+      StringTable.Localize("$GZAP_MENU_WARNING_SPAWNS"),
+      ::Util.GetFilterName(state.filter),
+      ::Util.GetFilterName(::Util.GetCurrentFilter()));
   }
 }

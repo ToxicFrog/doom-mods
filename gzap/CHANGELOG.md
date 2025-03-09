@@ -16,6 +16,8 @@ that Archipelago tells you and update your launcher config or shell scripts.
   - YAML option to make all levels persistent
   - In-game option to suppress weapon drops from enemies. Suppressed weapons will
     be replaced with the same quantity of ammo you would have gotten from them.
+  - Warning displayed on game entry if the WAD or difficulty don't match the
+    YAML settings.
 - Change:
   - Improvements to Scythe logic
   - GZD<->AP interact files are now stored in `$AP/gzdoom`, which has multiple

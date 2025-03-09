@@ -37,4 +37,27 @@ class ::Util play {
       default: return "???";
     }
   }
+
+  static clearscope int GetCurrentFilter() {
+    return G_SkillPropertyInt(SKILLP_SpawnFilter);
+  }
+
+  static clearscope string GetFilterName(int filter) {
+    switch (filter) {
+      // Internally, gzdoom distinguishes all five difficulty levels. However,
+      // in practice, almost no WADs make use of ITYTD or NM for thing placement,
+      // so (at least for now) we make the simplifying assumption that ITYTD==HNTR
+      // and UV==NM.
+      case 1:
+      case 2:
+        return "easy";
+      case 4:
+        return "medium";
+      case 8:
+      case 16:
+        return "hard";
+      default:
+        return string.format("unknown (0x%02X)", filter);
+    }
+  }
 }

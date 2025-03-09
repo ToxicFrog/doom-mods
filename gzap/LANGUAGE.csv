@@ -18,6 +18,15 @@ Missing Keys:,GZAP_MENU_TT_KEYS,Missing keys tooltip header.
 Unchecked Locations:,GZAP_MENU_TT_CHECKS,Unchecked locations tooltip header.
 Next Hint [press →]:,GZAP_MENU_TT_HINT,Header for what the next hint you can auto-request is.
 Inventory,GZAP_MENU_INVENTORY_TITLE,
+"WARNING: game/randomizer mismatch
+
+%s%sYou can continue playing if you want to, but it might break.",GZAP_MENU_WARNING,"Warning message when the randomizer settings don't match the game. First %s is replaced with the map mismatch message, second with the difficulty mismatch."
+"%d maps (out of %d) don't match the maps this randomizer logic was originally built for.
+
+",GZAP_MENU_WARNING_MAPS,
+"The YAML for this game used '%s' spawn_filter, but your chosen difficulty uses '%s'.
+
+",GZAP_MENU_WARNING_SPAWNS,
 gzArchipelago Options,GZAP_OPT_TITLE,
 Gameplay,GZAP_OPT_HEADER_GAMEPLAY,
 Show checks on automap,GZAP_OPT_NAME_MAP_CHECKS,

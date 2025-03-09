@@ -94,6 +94,8 @@ class ::RandoState play {
   // Transaction number. Used to resolve disagreements between datascope and playscope
   // instances of the state when a savegame is loaded.
   int txn;
+  int checksum_errors;
+  int filter;
   // Lump name to Region
   Map<string, ::Region> regions;
   // AP item ID to gzdoom typename
@@ -112,8 +114,8 @@ class ::RandoState play {
     if (checksum != LevelInfo.MapChecksum(map)) {
       console.printfEX(PRINT_HIGH, "\c[RED]ERROR:\c- Map %s has checksum \c[RED]%s\c-, but the randomizer expected \c[CYAN]%s\c-.",
         map, LevelInfo.MapChecksum(map), checksum);
-      // Continue -- maybe this is just a different version of the WAD with no substantive changes.
-      // If the user gets a bunch of these messages and proceeds regardless, upon their own head be it.
+      ++checksum_errors;
+      // The user will get a popup when they first enter the game, if any errors were recorded.
     }
 
     regions.Insert(map, ::Region.Create(map, exit_apid));
@@ -122,6 +124,15 @@ class ::RandoState play {
     if (access_apid) map_apids.Insert(access_apid, ::RegionDiff.CreateFlags(map, true, false, false));
     if (map_apid) map_apids.Insert(map_apid, ::RegionDiff.CreateFlags(map, false, true, false));
     if (clear_apid) map_apids.Insert(clear_apid, ::RegionDiff.CreateFlags(map, false, false, true));
+  }
+
+  bool did_warning;
+  bool ShouldWarn() const {
+    if (did_warning) return false;
+    // Kind of a gross hack to handle the fact that ITYTD/NM have different filter
+    // IDs even if they result in the same actor placement.
+    return (checksum_errors > 0)
+      || (::Util.GetFilterName(::Util.GetCurrentFilter()) != ::Util.GetFilterName(filter));
   }
 
   void RegisterKey(string map, string key, uint apid) {
