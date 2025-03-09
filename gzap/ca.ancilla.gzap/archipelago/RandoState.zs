@@ -79,14 +79,13 @@ class ::RandoItem play {
   void Replicate() {
     DEBUG("Replicating %s", self.typename);
     self.held -= 1;
-    ::PerLevelHandler.Get().AllowAllDrops(true);
+    ::PerLevelHandler.Get().AllowDropsBriefly(1);
     for (int p = 0; p < MAXPLAYERS; ++p) {
       if (!playeringame[p]) continue;
       if (!players[p].mo) continue;
 
       players[p].mo.A_SpawnItemEX(self.typename);
     }
-    ::PerLevelHandler.Get().AllowAllDrops(false);
   }
 }
 
@@ -171,10 +170,10 @@ class ::RandoState play {
     let pawn = players[0].mo;
     for (int n = 0; n < slots.SlotSize(query_slot); ++n) {
       let cls = slots.GetWeapon(query_slot, n);
-      DEBUG("HasWeaponSlot? %d: checking %s", cls.GetClassName());
+      DEBUG("HasWeaponSlot? %d: checking %s", query_slot, cls.GetClassName());
       if (pawn.FindInventory(cls)) return true;
     }
-    DEBUG("HasWeaponSlot? %d - giving up");
+    DEBUG("HasWeaponSlot? %d - giving up", query_slot);
     return false;
   }
 

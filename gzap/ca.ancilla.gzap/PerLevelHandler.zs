@@ -119,6 +119,7 @@ class ::PerLevelHandler : EventHandler {
   }
 
   override void WorldTick() {
+    if (allow_drops > 0) --allow_drops;
     if (!alarm) return;
     --alarm;
     if (alarm) return;
@@ -161,7 +162,7 @@ class ::PerLevelHandler : EventHandler {
     // It's not a check, and it's not something we need to replace with a check.
     // But, if it's a weapon, we might need to suppress its existence anways.
     if (!ShouldAllow(Weapon(thing))) {
-      ReplaceWithAmmo(Weapon(thing));
+      ReplaceWithAmmo(thing, Weapon(thing));
       thing.ClearCounters();
       thing.Destroy();
     }
@@ -205,19 +206,35 @@ class ::PerLevelHandler : EventHandler {
     return false;
   }
 
-  bool allow_all_drops;
-  void AllowAllDrops(bool val) { allow_all_drops = val; }
+  // How many tics to allow drops for.
+  // We set this to a nonzero value when replicating items so that they don't
+  // get culled.
+  // This does mean that enemy drops that happen at the same time as replication
+  // may get through, but I have yet to come up with a better solution.
+  // We could in principle replicate and then hand the spawned item to the handler
+  // to say "allow this item, specifically", but that breaks for chains like
+  // Shotgun replaced with Spawner which produces ModdedShotgun -- we end up
+  // allowing the Spawner but not the ModdedShotgun.
+  int allow_drops;
+  void AllowDropsBriefly(int tics) { allow_drops = tics; }
 
   bool ShouldAllow(Weapon thing) {
     if (!thing) return true;
     DEBUG("Checking spawn of %s", thing.GetTag());
-    if (self.allow_all_drops) return true;
+    if (self.allow_drops) return true;
     if (ap_suppress_weapon_drops == 0) return true;
+
+    let cls = thing.GetClass();
+    if (cls is "WeaponGiver") {
+      // WeaponGivers are required to have exactly one DropItem
+      cls = thing.GetDropItems().Name;
+      if (!cls) return true;
+    }
 
     // Allow only if same slot in inventory
     if (ap_suppress_weapon_drops == 1) {
       // Make the simplifying assumption that all players have the same slots.
-      let [assigned,slot,idx] = players[0].weapons.LocateWeapon(thing.GetClass());
+      let [assigned,slot,idx] = players[0].weapons.LocateWeapon(cls);
       DEBUG("Checking based on slot: assigned=%d slot=%d", assigned, slot);
       if (!assigned) return true; // I guess???
       return apstate.HasWeaponSlot(slot);
@@ -225,22 +242,31 @@ class ::PerLevelHandler : EventHandler {
 
     // Allow only if same weapon in inventory
     if (ap_suppress_weapon_drops == 2) {
-      DEBUG("Checking based on class: %s", thing.GetClassName());
-      return apstate.HasWeapon(thing.GetClassName());
+      DEBUG("Checking based on class: %s", cls.GetClassName());
+      return apstate.HasWeapon(cls.GetClassName());
     }
 
     DEBUG("Unconditionally blocking spawn.");
     return false;
   }
 
-  void ReplaceWithAmmo(Weapon thing) {
-    if (!thing) return;
+  void ReplaceWithAmmo(readonly<Actor> spawner, readonly<Weapon> thing) {
+    if (!spawner || !thing) return;
+
+    if (thing is "WeaponGiver") {
+      string name = thing.GetDropItems().Name;
+      Class<Weapon> cls = name;
+      if (!cls) return;
+      ReplaceWithAmmo(thing, GetDefaultByType(cls));
+      return;
+    }
+
     DEBUG("ReplaceWithAmmo: %s", thing.GetTag());
-    SpawnAmmo(thing, thing.AmmoType1, thing.AmmoGive1);
-    SpawnAmmo(thing, thing.AmmoType2, thing.AmmoGive2);
+    SpawnAmmo(spawner, thing.AmmoType1, thing.AmmoGive1);
+    SpawnAmmo(spawner, thing.AmmoType2, thing.AmmoGive2);
   }
 
-  void SpawnAmmo(Weapon thing, Class<Ammo> cls, int amount) {
+  void SpawnAmmo(readonly<Actor> thing, Class<Ammo> cls, int amount) {
     if (!cls || !amount) return;
     DEBUG("SpawnAmmo: %d of %s", amount, cls.GetClassName());
     let ammo = Inventory(thing.Spawn(cls, thing.pos, ALLOW_REPLACE));
