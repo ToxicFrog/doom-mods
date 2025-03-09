@@ -32,15 +32,17 @@ class ::PlayEventHandler : StaticEventHandler {
     apclient.Shutdown();
   }
 
-  void RegisterGameInfo(string slot_name, string seed, string wadname, bool singleplayer) {
-    console.printf("Archipelago game generated from seed %s for %s playing %s (%s).",
-      seed, slot_name, wadname, singleplayer ? "singleplayer" : "multiplayer");
+  void RegisterGameInfo(string slot_name, string seed, string wadname, int filter, bool singleplayer) {
+    let filter = 1 << filter;
+    console.printf("Archipelago game generated from seed %s for %s playing %s.", seed, slot_name, wadname);
+    console.printf("Item/enemy layout: %s. Singleplayer: %s.", ::Util.GetFilterName(filter), singleplayer ? "yes" : "no");
     // Save this information because we need all of it later. Some is sent in
     // XON so the client can get configuration info, some is used in gameplay.
     self.slot_name = slot_name;
     self.seed = seed;
     self.wadname = wadname;
     self.singleplayer = singleplayer;
+    self.apstate.filter = filter;
   }
 
   bool IsRandomized() {
@@ -124,6 +126,8 @@ class ::PlayEventHandler : StaticEventHandler {
     } else if (evt.name == "ap-use-item") {
       let idx = evt.args[0];
       apstate.UseItem(idx);
+    } else if (evt.name == "ap-did-warning") {
+      apstate.did_warning = true;
     }
   }
 
