@@ -119,7 +119,10 @@ class ::PerLevelHandler : EventHandler {
   }
 
   override void WorldTick() {
-    if (allow_drops > 0) --allow_drops;
+    if (allow_drops > 0) {
+      DEBUG("allow_drops: %d", allow_drops);
+      --allow_drops;
+    }
     if (!alarm) return;
     --alarm;
     if (alarm) return;
