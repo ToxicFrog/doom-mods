@@ -1,26 +1,28 @@
-# Unreleased
+# 0.3.0
 
 ⚠️ The IPC structure has changed. Double check the `gzdoom` command line options
 that Archipelago tells you and update your launcher config or shell scripts.
 
 - New:
   - Animated icons for progression and unreachable checks
-  - "No secret progression items" option
-  - Request hints from the level select screen with →
-  - Received hints for your items are displayed on the level select screen
-  - Received hints for the contents of your locations likewise
+  - Integrated hint support (multiplayer only):
+    - Request hints from the level select screen with →
+    - Received hints for your items are displayed on the level select screen
+    - Received hints for the contents of your locations likewise
+  - YAML options:
+    - Don't place progression items in secrets
+    - Disable respawn on death, require resuming from save instead
+    - Make all levels persistent as if they were connected to a hub
+  - In-game option to suppress weapon drops from enemies. Suppressed weapons will
+    be replaced with the same quantity of ammo you would have gotten from them.
   - Tuning for FreeDoom 2 [by @frozenLake]
   - Tuning now understands any-of access requirements, so it is possible to
     express things like "this check requires either the red key or the blue key"
-  - YAML option to disable respawning on death, and require resuming from a savegame
-  - YAML option to make all levels persistent
-  - In-game option to suppress weapon drops from enemies. Suppressed weapons will
-    be replaced with the same quantity of ammo you would have gotten from them.
   - Warning displayed on game entry if the WAD or difficulty don't match the
     YAML settings.
 - Change:
   - Improvements to Scythe logic
-  - GZD<->AP interact files are now stored in `$AP/gzdoom`, which has multiple
+  - GZD<->AP interface files are now stored in `$AP/gzdoom`, which has multiple
     subdirectories
   - `$GZAP_EXTRA_LOGIC` envar removed
   - External logic files can now be placed in `$AP/gzdoom/logic` and
@@ -31,8 +33,8 @@ that Archipelago tells you and update your launcher config or shell scripts.
 - Fix:
   - If an item bank limit was exceeded while you were between levels, the excess
     items would vanish. You will now receive them when you next enter a level.
-  - Tuning was not properly modeling locations reachable with some, but not all,
-    keys, resulting in them being considered completely inaccessible.
+  - The code for loading tuning files did not properly handle locations accessible
+    with some, but not all, keys. (The files themselves are fine.)
   - `ap_scan_unreachable 2` was not triggering when you exited the level via the
     level select menu.
   - With persistence on, levels were sometimes not properly registered as complete.
