@@ -79,7 +79,7 @@ class ::RandoItem play {
   void Replicate() {
     DEBUG("Replicating %s", self.typename);
     self.held -= 1;
-    ::PerLevelHandler.Get().AllowDropsBriefly(1);
+    ::PerLevelHandler.Get().AllowDropsBriefly(2);
     for (int p = 0; p < MAXPLAYERS; ++p) {
       if (!playeringame[p]) continue;
       if (!players[p].mo) continue;
