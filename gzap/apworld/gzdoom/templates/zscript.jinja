@@ -53,9 +53,11 @@ class GZAP_DataPackageEventHandler : StaticEventHandler {
     // so only do this in singleplayer mode.
     if (!peh.IsSingleplayer()) return;
     if (evt.name == "ap-check") {
-      let apid = locations_to_items.Get(evt.args[0]);
-      if (apid) {
-        GZAP_PlayEventHandler.GetState().GrantItem(apid);
+      let locid = evt.args[0];
+      GZAP_PlayEventHandler.GetState().MarkLocationChecked(locid);
+      let itemid = locations_to_items.Get(locid);
+      if (itemid) {
+        GZAP_PlayEventHandler.GetState().GrantItem(itemid);
       }
     }
   }

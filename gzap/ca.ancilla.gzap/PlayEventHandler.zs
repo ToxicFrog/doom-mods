@@ -97,8 +97,9 @@ class ::PlayEventHandler : StaticEventHandler {
     ::IPC.Send("CHECK",
       string.format("{ \"id\": %d, \"name\": \"%s\", %s\"keys\": [%s] }",
         apid, name, unreachable, apstate.GetCurrentRegion().KeyString()));
+    // In singleplayer, the netevent handler will clear the check for us.
+    // In MP, we don't clear it until we get a reply from the server.
     EventHandler.SendNetworkEvent("ap-check", apid);
-    apstate.GetCurrentRegion().ClearLocation(apid);
   }
 
   // TODO: we need an "ap-uncollectable" command for dealing with uncollectable

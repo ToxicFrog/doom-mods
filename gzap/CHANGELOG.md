@@ -36,6 +36,8 @@ that Archipelago tells you and update your launcher config or shell scripts.
   - With persistence on, levels were sometimes not properly registered as complete.
   - The AP client could end up processing leftover messages from a previous game
     when first started.
+  - Collecting a check in multiplayer while disconnected from the server could
+    result in it getting lost forever.
 
 # 0.2.0
 
