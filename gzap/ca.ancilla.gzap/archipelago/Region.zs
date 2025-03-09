@@ -162,12 +162,19 @@ class ::Region play {
       mo.GiveInventoryType("MapRevealer");
     }
 
-    foreach (key, val : keys) {
-      if (val) {
-        mo.GiveInventoryType(key);
-      } else {
-        mo.TakeInventory(key, 999);
-      }
+    Array<string> keys_held;
+    readonly<Inventory> item = mo.inv;
+    while(item) {
+      if (item is "Key") keys_held.Push(item.GetClassName());
+      item = item.inv;
+    }
+
+    foreach (key : keys_held) {
+      mo.TakeInventory(key, 999);
+    }
+
+    foreach (key, val : self.keys) {
+      if (val) mo.GiveInventoryType(key);
     }
   }
 }

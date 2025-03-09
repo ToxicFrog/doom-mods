@@ -5,6 +5,9 @@
     to gzdoom from AP.
   - Weapon drop suppression did not properly handle `WeaponGiver`s.
   - Receiving weapons from AP did not always work.
+  - Moving from a level where you have a key to one where you don't need that key
+    could leave the key in your inventory (which didn't affect anything but did
+    look untidy).
 
 # 0.3.0
 
