@@ -12,9 +12,9 @@ Features include:
 - broad compatibility with both cosmetic and gameplay mods
 
 You can download the latest stable release from the
-[releases page](https://github.com/toxicfrog/doom-mods/releases), or try the
-development versions of the [mod](../releases/gzArchipelago-latest.pk3) and
-[apworld](../releases/gzdoom.apworld).
+[release page](https://github.com/ToxicFrog/doom-mods/releases/tag/gzap-0.3.1),
+or try the development versions of the [mod](../releases/gzArchipelago-latest.pk3)
+and [apworld](../releases/gzdoom.apworld).
 
 The documentation is split into multiple files.
 

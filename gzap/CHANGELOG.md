@@ -1,4 +1,6 @@
-# Unreleased
+# 0.3.1
+
+This is a bugfix release.
 
 - Fix:
   - Records of which locations have been checked were not always properly sent

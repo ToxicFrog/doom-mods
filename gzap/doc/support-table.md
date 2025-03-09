@@ -53,8 +53,10 @@ TL;DR: might work, but will never be officially supported or included in the
 apworld.
 
 The Archipelago project has an official policy of staying as far away as possible
-from anything that even vaguely resembles trademark of copyright infringement,
-and that includes randomizers that officially support fan-games.
+from anything that even vaguely resembles trademark or copyright infringement,
+and that includes randomizers that officially support fan-games. This includes
+(but is not limited to) Legend of Doom, Simon's Destiny, Hocus Pocus Doom,
+WolfenDoom, any of the DOSworld remakes, etc.
 
 People are free to create their own logic and tuning files for these games, but
 they will not be included in the apworld, nor linked from this repo; please don't
