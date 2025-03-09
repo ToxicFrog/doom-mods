@@ -85,8 +85,7 @@ class GZDoomContext(CommonContext):
 
     def on_package(self, cmd, args):
         super().on_package(cmd, args)
-        if args.get("type", None) in {"Hint", "ItemSend"}:
-            self.awaken()
+        self.awaken()
 
     # async def send_msgs(self, msgs):
     #     for msg in msgs:
@@ -147,7 +146,7 @@ class GZDoomContext(CommonContext):
             # print("Location loop running", new_locations, self.checked_locations)
             for id in new_locations:
                 self.ipc.send_checked(id)
-            self.last_locations = self.checked_locations
+            self.last_locations |= new_locations
 
     async def _hint_loop(self):
         self.last_hints = {}
