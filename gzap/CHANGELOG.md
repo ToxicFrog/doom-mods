@@ -3,6 +3,8 @@
 - Fix:
   - Records of which locations have been checked were not always properly sent
     to gzdoom from AP.
+  - Weapon drop suppression did not properly handle `WeaponGiver`s.
+  - Receiving weapons from AP did not always work.
 
 # 0.3.0
 
