@@ -1,3 +1,9 @@
+# Unreleased
+
+- Fix:
+  - Records of which locations have been checked were not always properly sent
+    to gzdoom from AP.
+
 # 0.3.0
 
 ⚠️ The IPC structure has changed. Double check the `gzdoom` command line options
