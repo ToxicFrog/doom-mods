@@ -1,4 +1,3 @@
-AP-XON { "lump": "GZAPIPC", "size": 0, "nick": "ToxicFrog", "slot": "", "seed": "", "wad": "" }
 AP-MAP { "map": "MAP01", "checksum": "8391b0eb996c55b5ed4343d18b8ad2c8", "rank": 0, "info": { "levelnum": 1, "title": "THUSTR_1", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "$MUSIC_RUNNIN", "music_track": "0", "cluster": 5, "flags": [] } }
 AP-ITEM { "map": "MAP01", "category": "big-armor", "typename": "GreenArmor", "tag": "GreenArmor", "position": { "x": 160.000000, "y": 456.000000, "z": 66.000000 } }
 AP-ITEM { "map": "MAP01", "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "position": { "x": 96.000000, "y": 360.000000, "z": 0.000000 } }
@@ -2703,7 +2702,7 @@ AP-ITEM { "map": "MAP29", "category": "medium-ammo", "typename": "ClipBox", "tag
 AP-ITEM { "map": "MAP29", "category": "small-health", "typename": "Medikit", "tag": "Medikit", "position": { "x": -1113.000000, "y": 2909.000000, "z": -240.000000 } }
 AP-ITEM { "map": "MAP29", "category": "small-health", "typename": "Medikit", "tag": "Medikit", "position": { "x": 853.000000, "y": 619.000000, "z": 0.000000 } }
 AP-ITEM { "map": "MAP29", "category": "small-health", "typename": "Medikit", "tag": "Medikit", "position": { "x": 907.000000, "y": 631.000000, "z": 0.000000 } }
-AP-MAP { "map": "MAP30", "checksum": "42b68b84ff8e55f264c31e6f4cfea82d", "rank": 29, "info": { "levelnum": 30, "title": "THUSTR_30", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "$MUSIC_OPENIN", "music_track": "0", "cluster": 8, "flags": [] } }
+AP-MAP { "map": "MAP30", "checksum": "42b68b84ff8e55f264c31e6f4cfea82d", "rank": 29, "info": { "levelnum": 30, "title": "THUSTR_30", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "$MUSIC_OPENIN", "music_track": "0", "cluster": 8, "flags": ["allowmonstertelefrags"] } }
 AP-ITEM { "map": "MAP30", "category": "weapon", "typename": "RocketLauncher", "tag": "Rocket Launcher", "position": { "x": 3056.000000, "y": 48.000000, "z": 32.000000 } }
 AP-ITEM { "map": "MAP30", "category": "medium-ammo", "typename": "ShellBox", "tag": "Shotgun Shells", "secret": true,"position": { "x": 3520.000000, "y": -864.000000, "z": 0.000000 } }
 AP-ITEM { "map": "MAP30", "category": "small-ammo", "typename": "RocketBox", "tag": "Rockets", "secret": true,"position": { "x": 2592.000000, "y": -864.000000, "z": 0.000000 } }

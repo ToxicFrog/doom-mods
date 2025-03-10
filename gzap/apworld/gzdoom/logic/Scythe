@@ -1,4 +1,3 @@
-AP-XON { "lump": "GZAPIPC", "size": 0, "nick": "ToxicFrog", "slot": "", "seed": "", "wad": "" }
 AP-MAP { "map": "MAP01", "checksum": "51db0ffb25bf59dba4f4f3af06d54415", "rank": 0, "info": { "levelnum": 1, "title": "HUSTR_1", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "$MUSIC_RUNNIN", "music_track": "0", "cluster": 5, "flags": [] } }
 AP-ITEM { "map": "MAP01", "category": "key", "typename": "RedCard", "tag": "RedCard", "position": { "x": -256.000000, "y": 144.000000, "z": 140.000000 } }
 AP-ITEM { "map": "MAP01", "category": "weapon", "typename": "Chainsaw", "tag": "Chainsaw", "secret": true,"position": { "x": 352.000000, "y": 352.000000, "z": 8.000000 } }
@@ -1240,7 +1239,7 @@ AP-ITEM { "map": "MAP29", "category": "medium-ammo", "typename": "CellPack", "ta
 AP-ITEM { "map": "MAP29", "category": "medium-ammo", "typename": "ShellBox", "tag": "Shotgun Shells", "position": { "x": 2336.000000, "y": 64.000000, "z": 80.000000 } }
 AP-ITEM { "map": "MAP29", "category": "small-health", "typename": "Medikit", "tag": "Medikit", "position": { "x": 2272.000000, "y": -96.000000, "z": 80.000000 } }
 AP-ITEM { "map": "MAP29", "category": "medium-ammo", "typename": "CellPack", "tag": "Energy Cells", "position": { "x": 896.000000, "y": -512.000000, "z": 48.000000 } }
-AP-MAP { "map": "MAP30", "checksum": "fcb39d9c3dd5182d467e9e84ea6cc69f", "rank": 29, "info": { "levelnum": 30, "title": "HUSTR_30", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "$MUSIC_OPENIN", "music_track": "0", "cluster": 8, "flags": [] } }
+AP-MAP { "map": "MAP30", "checksum": "fcb39d9c3dd5182d467e9e84ea6cc69f", "rank": 29, "info": { "levelnum": 30, "title": "HUSTR_30", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "$MUSIC_OPENIN", "music_track": "0", "cluster": 8, "flags": ["allowmonstertelefrags"] } }
 AP-ITEM { "map": "MAP30", "category": "key", "typename": "YellowSkull", "tag": "YellowSkull", "position": { "x": -256.000000, "y": 624.000000, "z": 152.000000 } }
 AP-ITEM { "map": "MAP30", "category": "big-ammo", "typename": "Backpack", "tag": "Backpack", "position": { "x": -1696.000000, "y": -3104.000000, "z": 168.000000 } }
 AP-ITEM { "map": "MAP30", "category": "medium-ammo", "typename": "CellPack", "tag": "Energy Cells", "position": { "x": -1376.000000, "y": -768.000000, "z": 0.000000 } }
