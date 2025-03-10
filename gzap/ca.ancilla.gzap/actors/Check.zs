@@ -90,6 +90,7 @@ class ::CheckPickup : ScoreItem {
     +COUNTITEM;
     +BRIGHT;
     +MOVEWITHSECTOR;
+    +DONTGIB;
     Height 10;
   }
 
