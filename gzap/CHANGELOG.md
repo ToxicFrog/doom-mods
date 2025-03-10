@@ -6,6 +6,8 @@ This release changes the map scanner. Existing logic files don't need to be
 regenerated, but if the WAD they were generated from uses compatibility flags,
 it is recommended that you do so.
 
+- New:
+  - Some alternate Firemace spawn locations added to Heretic logic.
 - Fix:
   - Checks are no longer destroyable by crushers.
   - Support for many more MAPINFO flags, most of them `compat_` flags used to
