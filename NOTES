@@ -90,13 +90,6 @@ AP-KEY { typename: "GreenKey", scopename: "E1", scope: ["E1M1", "E1M2", ...] }
   to enemy-replacement mods
 - option to add ammo to the item pool
 
-### client
-
-- don't reprocess old events except XON
-  this has complications! if the client restarts while the game is still running,
-  we *want* to reprocess old events so we don't miss CHECKs! let's leave this
-  for now.
-
 ### Adventures of Square
 
 This has some extra complications around powerups that are actually key items,

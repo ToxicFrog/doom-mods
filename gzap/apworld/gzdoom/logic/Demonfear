@@ -1,4 +1,3 @@
-AP-XON { "lump": "GZAPIPC", "size": 0, "nick": "ToxicFrog", "slot": "", "seed": "", "wad": "" }
 AP-MAP { "map": "MAP01", "checksum": "9a861427b47a70527419d4119505a47e", "rank": 0, "info": { "levelnum": 1, "title": "HUSTR_1", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "$MUSIC_RUNNIN", "music_track": "0", "cluster": 5, "flags": [] } }
 AP-ITEM { "map": "MAP01", "category": "key", "typename": "YellowCard", "tag": "YellowCard", "position": { "x": 512.000000, "y": -224.000000, "z": 20.000000 } }
 AP-ITEM { "map": "MAP01", "category": "weapon", "typename": "Shotgun", "tag": "Shotgun", "secret": true,"position": { "x": 544.000000, "y": -80.000000, "z": 0.000000 } }
@@ -2122,7 +2121,7 @@ AP-ITEM { "map": "MAP29", "category": "small-ammo", "typename": "Clip", "tag": "
 AP-ITEM { "map": "MAP29", "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "skill": [2, 3], "position": { "x": 3168.000000, "y": -1952.000000, "z": 0.000000 } }
 AP-ITEM { "map": "MAP29", "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "skill": [2, 3], "position": { "x": 3232.000000, "y": -1952.000000, "z": 0.000000 } }
 AP-ITEM { "map": "MAP29", "category": "big-armor", "typename": "GreenArmor", "tag": "GreenArmor", "skill": [2, 3], "position": { "x": 1920.000000, "y": -1664.000000, "z": 0.000000 } }
-AP-MAP { "map": "MAP30", "checksum": "82988262723c2db51beaaac37f4eec51", "rank": 29, "info": { "levelnum": 30, "title": "HUSTR_30", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "$MUSIC_OPENIN", "music_track": "0", "cluster": 8, "flags": [] } }
+AP-MAP { "map": "MAP30", "checksum": "82988262723c2db51beaaac37f4eec51", "rank": 29, "info": { "levelnum": 30, "title": "HUSTR_30", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "$MUSIC_OPENIN", "music_track": "0", "cluster": 8, "flags": ["allowmonstertelefrags"] } }
 AP-ITEM { "map": "MAP30", "category": "powerup", "typename": "RadSuit", "tag": "RadSuit", "position": { "x": 288.000000, "y": 448.000000, "z": 0.000000 } }
 AP-ITEM { "map": "MAP30", "category": "powerup", "typename": "RadSuit", "tag": "RadSuit", "position": { "x": 128.000000, "y": 288.000000, "z": 0.000000 } }
 AP-ITEM { "map": "MAP30", "category": "powerup", "typename": "RadSuit", "tag": "RadSuit", "position": { "x": 288.000000, "y": 128.000000, "z": 0.000000 } }

@@ -95,6 +95,10 @@ class ::ScannedMap play {
   string GetFlagsForMapinfo(LevelInfo info) {
     string flags = "";
     flags = AddFlag(flags, info.flags, LEVEL_DOUBLESKY, "doublesky");
+    flags = AddFlag(flags, info.flags, LEVEL_USEPLAYERSTARTZ, "useplayerstartz");
+    // TODO: if a level has infiniteflightpowerup, we should require wings of wrath
+    // in the logic, and make sure the player always has one when entering the level
+    // if they've found it.
     flags = AddFlag(flags, info.flags2, LEVEL2_INFINITE_FLIGHT, "infiniteflightpowerup");
     // Special action effects
     // specialaction_exitlevel just clears the other special flags, so we don't
@@ -103,20 +107,41 @@ class ::ScannedMap play {
     flags = AddFlag(flags, info.flags, LEVEL_SPECLOWERFLOOR, "specialaction_lowerfloor");
     flags = AddFlag(flags, info.flags, LEVEL_SPECLOWERFLOORTOHIGHEST, "specialaction_lowerfloortohighest");
     flags = AddFlag(flags, info.flags, LEVEL_SPECOPENDOOR, "specialaction_opendoor");
+    flags = AddFlag(flags, info.flags, LEVEL_MONSTERSTELEFRAG, "allowmonstertelefrags");
     // Special action triggers
-    flags = AddFlag(flags, info.flags, LEVEL_MAP07SPECIAL, "map07special");
     flags = AddFlag(flags, info.flags, LEVEL_BRUISERSPECIAL, "baronspecial");
     flags = AddFlag(flags, info.flags, LEVEL_CYBORGSPECIAL, "cyberdemonspecial");
-    flags = AddFlag(flags, info.flags, LEVEL_SPIDERSPECIAL, "spidermastermindspecial");
     flags = AddFlag(flags, info.flags, LEVEL_HEADSPECIAL, "ironlichspecial");
+    flags = AddFlag(flags, info.flags, LEVEL_MAP07SPECIAL, "map07special");
     flags = AddFlag(flags, info.flags, LEVEL_MINOTAURSPECIAL, "minotaurspecial");
     flags = AddFlag(flags, info.flags, LEVEL_SORCERER2SPECIAL, "dsparilspecial");
-    flags = AddFlag(flags, info.flags, LEVEL_USEPLAYERSTARTZ, "useplayerstartz");
+    flags = AddFlag(flags, info.flags, LEVEL_SPIDERSPECIAL, "spidermastermindspecial");
     flags = AddFlag(flags, info.flags3, LEVEL3_E1M8SPECIAL, "e1m8special");
     flags = AddFlag(flags, info.flags3, LEVEL3_E2M8SPECIAL, "e2m8special");
     flags = AddFlag(flags, info.flags3, LEVEL3_E3M8SPECIAL, "e3m8special");
     flags = AddFlag(flags, info.flags3, LEVEL3_E4M8SPECIAL, "e4m8special");
     flags = AddFlag(flags, info.flags3, LEVEL3_E4M6SPECIAL, "e4m6special");
+    // Compatibility flags
+    // Note that compat flags are stored in two places: LevelInfo and LevelLocals.
+    // The former stores the flags as specified in MAPINFO. The latter stores the
+    // flags as actually applied, which combines the MAPINFO flags with ones
+    // hardcoded into gzdoom and settings from IWADINFO.
+    // The latter two are applied at runtime regardless, so we only care about
+    // the MAPINFO flags here.
+    flags = AddFlag(flags, info.compatflags, COMPATF_ANYBOSSDEATH, "compat_anybossdeath");
+    flags = AddFlag(flags, info.compatflags, COMPATF_BOOMSCROLL, "compat_boomscroll");
+    flags = AddFlag(flags, info.compatflags, COMPATF_LIGHT, "compat_lightlevel");
+    flags = AddFlag(flags, info.compatflags, COMPATF_LIMITPAIN, "compat_limitpain");
+    flags = AddFlag(flags, info.compatflags, COMPATF_RAVENSCROLL, "compat_ravenscroll");
+    flags = AddFlag(flags, info.compatflags, COMPATF_SECTORSOUNDS, "compat_sectorsounds");
+    flags = AddFlag(flags, info.compatflags, COMPATF_SOUNDTARGET, "compat_soundtarget");
+    flags = AddFlag(flags, info.compatflags, COMPATF_STAIRINDEX, "compat_stairs");
+    flags = AddFlag(flags, info.compatflags, COMPATF_USEBLOCKING, "compat_useblocking");
+    flags = AddFlag(flags, info.compatflags2, COMPATF2_CHECKSWITCHRANGE, "compat_checkswitchrange");
+    flags = AddFlag(flags, info.compatflags2, COMPATF2_FLOORMOVE, "compat_floormove");
+    flags = AddFlag(flags, info.compatflags2, COMPATF2_NOMBF21, "compat_nombf21");
+    flags = AddFlag(flags, info.compatflags2, COMPATF2_PUSHWINDOW, "compat_disablepushwindowcheck");
+    flags = AddFlag(flags, info.compatflags2, COMPATF2_TELEPORT, "compat_teleport");
     return flags;
   }
 

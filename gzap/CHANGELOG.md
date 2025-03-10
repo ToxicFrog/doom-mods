@@ -8,6 +8,10 @@ it is recommended that you do so.
 
 - Fix:
   - Checks are no longer destroyable by crushers.
+  - Support for many more MAPINFO flags, most of them `compat_` flags used to
+    re-enable various bugs that some maps require. GZD automatically enables
+    these flags as needed for the original IWADs, but this fixes issues with
+    some PWADs as well as Wadfusion.
 
 # 0.3.1
 
