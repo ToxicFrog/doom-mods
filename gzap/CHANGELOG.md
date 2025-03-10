@@ -1,3 +1,14 @@
+# Unreleased
+
+This is a bugfix release.
+
+This release changes the map scanner. Existing logic files don't need to be
+regenerated, but if the WAD they were generated from uses compatibility flags,
+it is recommended that you do so.
+
+- Fix:
+  - Checks are no longer destroyable by crushers.
+
 # 0.3.1
 
 This is a bugfix release.
