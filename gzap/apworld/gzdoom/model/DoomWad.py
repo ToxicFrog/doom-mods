@@ -265,13 +265,19 @@ class DoomWad:
     def finalize_all(self) -> None:
         """
         Do postprocessing after all events have been ingested.
-
-        Caps keys at 1 of each colour per map.
         """
+        # A key always has one copy in the item pool regardless of spawn filter.
+        # TODO: this is a workaround for the fact that, if a key only exists on
+        # some difficulties, the initial scan considers the level to never be
+        # in logic on difficulties where it doesn't exist (because you can
+        # never find all the keys). The real fix for this is to implement non-
+        # randomized tuning and tune the affected level(s) first.
         for item in self.items_by_name.values():
             if item.category == "key":
-                item.set_max_count(1)
+                item.set_count(1)
 
+        # Compute which maps precede which other maps, so that the map ordering
+        # system can function.
         for map in self.all_maps():
             map.prior_clears = set([
                 prior_map.clear_token_name()

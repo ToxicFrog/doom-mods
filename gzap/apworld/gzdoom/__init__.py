@@ -121,7 +121,7 @@ class GZDoomWorld(World):
             if self.should_include_map(map.map)
         ]
         self.item_counts = {
-            item.name(): item.get_count(self.options, self.maps)
+            item.name(): item.get_count(self.options, len(self.maps))
             for item in self.wad_logic.items(self.spawn_filter)
         }
 

@@ -52,21 +52,24 @@ class DoomItem:
         for sk,count in other.count.items():
             self.count[sk] = self.count.get(sk, 0) + count
 
-    def set_max_count(self, count: int):
-        for sk,n in self.count.items():
-            self.count[sk] = min(n, count)
+    def set_count(self, count: int, skill: frozenset = frozenset({1,2,3})):
+        """
+        Set the count of the item on the given skill levels to the given value.
 
-    def get_count(self, options, maps):
+        This is currently used to make sure keys exist exactly once on all skills
+        if they exist on any of them.
+        """
+        for sk in skill:
+            self.count[sk] = count
+
+    def get_count(self, options, nrof_maps):
         count = self.count.get(options.spawn_filter.value, 0)
-
-        if self.category == "key":
-            return min(count, 1)
 
         if self.category == "weapon":
             if options.max_weapon_copies.value > 0:
                 count = min(count, options.max_weapon_copies.value)
             if options.levels_per_weapon.value > 0:
-                count = min(count, max(1, len(maps) // options.levels_per_weapon.value))
+                count = min(count, max(1, nrof_maps // options.levels_per_weapon.value))
 
         return count
 

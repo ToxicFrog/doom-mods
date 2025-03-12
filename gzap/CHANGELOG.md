@@ -14,6 +14,10 @@ it is recommended that you do so.
     re-enable various bugs that some maps require. GZD automatically enables
     these flags as needed for the original IWADs, but this fixes issues with
     some PWADs as well as Wadfusion.
+  - Fix for generation failures in wads where certain keys only exist on some
+    difficulties, first reported on DIY.WAD. As a workaround, the keys will
+    appear on all difficulties rather than just the ones they were originally
+    specified for.
 
 # 0.3.1
 
