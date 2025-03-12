@@ -11,30 +11,34 @@ This file summarizes the state of support for various wads. Support is classifie
 - **problems**: testing has revealed that changes to the scanner, randomizer, or tuner are needed to support this properly
 - **missing**: not yet supported, but I either want to add support or know people are going to ask about it.
 
+The number of checks and levels is given as a rough guide to the size of the wad
+for the purposes of rando planning with others. Check count is for UV; other
+difficulty levels might have slightly more or less.
+
 ### IWADs
 
-| WAD | Status | Notes |
-| --- | ------ | ----- |
-| Doom | basic | |
-| Doom 2 | basic | |
-| TNT | basic | |
-| Plutonia | basic | |
-| WadSmoosh | missing | |
-| Heretic | basic | |
-| Hexen | missing | Same concerns as Strife, plus I don't like it. |
-| Strife | missing | Hub maps and complicated level scripting mean this may need changes to the generator. |
-| FreeDoom | basic | |
-| FreeDoom 2 | basic | |
-| Chex Quest 3 | complete | |
+| WAD | Maps | Checks | Status | Notes |
+| --- | ---- | ------ | ------ | ----- |
+| Doom | 36 | 509 | basic | |
+| Doom 2 | 32 | 501 | basic | |
+| TNT | 32 | 515 | basic | |
+| Plutonia | 32 | 427 | basic | |
+| WadFusion | varies | varies | missing | |
+| Heretic | 45 | 1501 | basic | Large check variance: HMP is 1688 and HNTR is 1910. |
+| Hexen | | | missing | Same concerns as Strife, plus I don't like it. |
+| Strife | | | missing | Hub maps and complicated level scripting mean this may need changes to the generator. |
+| FreeDoom | 36 | 532 | basic | |
+| FreeDoom 2 | 32 | 495 | basic | |
+| Chex Quest 3 | 15 | 196 | complete | |
 
 ### PWADs
 
-| WAD | Status | Notes |
-| --- | ------ | ----- |
-| Demonfear | full | |
-| Going Down Turbo | problems | Some levels have intentionally-unreachable items in them, which need to be excluded from randomization. |
-| MAYhem 2048 | partial | Would be full, but I accidentally overwrote half the tuning data. |
-| Scythe | full | |
+| WAD | Maps | Checks | Status | Notes |
+| --- | ---- | ------ | ------ | ----- |
+| Demonfear | 32 | 289 | full | |
+| Going Down Turbo | 32 | 450 | problems | Some levels have intentionally-unreachable items in them, which need to be excluded from randomization. Known issues with persistent mode. |
+| MAYhem 2048 | 34 | 384 | partial | Would be full, but I accidentally overwrote half the tuning data. |
+| Scythe | 32 | 405 | full | MAP26-MAP30 are much larger than the rest of the wad; consider excluding them in short sync games. |
 
 ### Standalone Games
 
