@@ -24,9 +24,11 @@ AP-CHECK { "id": 1034, "name": "E1M8 - Chaingun", "keys": [] }
 AP-CHECK { "id": 1035, "name": "E1M8 - BlurSphere", "keys": [] }
 AP-CHECK { "id": 1036, "name": "E1M8 - Allmap", "keys": [] }
 AP-CHECK { "id": 1038, "name": "E1M9 - YellowCard", "keys": [] }
+AP-CHECK { "id": 1039, "name": "E1M9 - RedCard", "keys": ["RedCard", "YellowCard", "BlueCard"] }
 AP-CHECK { "id": 1040, "name": "E1M9 - Chaingun", "keys": [] }
 AP-CHECK { "id": 1041, "name": "E1M9 - GreenArmor", "keys": [] }
 AP-CHECK { "id": 1042, "name": "E1M9 - Rocket Launcher", "keys": [] }
+AP-CHECK { "id": 1043, "name": "E1M9 - BlueCard", "keys": ["RedCard", "BlueCard"] }
 AP-CHECK { "id": 1047, "name": "E2M1 - Plasma Rifle", "keys": ["BlueCard", "RedCard"] }
 AP-CHECK { "id": 1048, "name": "E2M1 - BlueCard", "keys": ["BlueCard", "RedCard"] }
 AP-CHECK { "id": 1049, "name": "E2M1 - GreenArmor", "keys": ["BlueCard", "RedCard"] }
@@ -36,19 +38,33 @@ AP-CHECK { "id": 1051, "name": "E2M1 - Allmap", "keys": ["BlueCard", "RedCard"] 
 AP-CHECK { "id": 1052, "name": "E2M1 - BlueArmor", "keys": ["BlueCard", "RedCard"] }
 AP-CHECK { "id": 1054, "name": "E2M1 - Shotgun [2016,-480]", "keys": ["BlueCard", "RedCard"] }
 AP-CHECK { "id": 1056, "name": "E2M2 - GreenArmor [1744,3216]", "keys": ["RedCard"] }
+AP-CHECK { "id": 1056, "name": "E2M2 - GreenArmor [1744,3216]", "keys": [] }
 AP-CHECK { "id": 1057, "name": "E2M2 - GreenArmor [352,4384]", "keys": ["RedCard"] }
+AP-CHECK { "id": 1057, "name": "E2M2 - GreenArmor [352,4384]", "keys": [] }
 AP-CHECK { "id": 1058, "name": "E2M2 - GreenArmor [496,0]", "keys": ["RedCard"] }
+AP-CHECK { "id": 1058, "name": "E2M2 - GreenArmor [496,0]", "keys": [] }
 AP-CHECK { "id": 1059, "name": "E2M2 - GreenArmor [2288,2400]", "keys": ["RedCard"] }
+AP-CHECK { "id": 1059, "name": "E2M2 - GreenArmor [2288,2400]", "keys": [] }
 AP-CHECK { "id": 1060, "name": "E2M2 - Backpack [352,1824]", "keys": ["RedCard"] }
+AP-CHECK { "id": 1060, "name": "E2M2 - Backpack [352,1824]", "keys": [] }
 AP-CHECK { "id": 1062, "name": "E2M2 - Soulsphere", "keys": ["RedCard"] }
+AP-CHECK { "id": 1062, "name": "E2M2 - Soulsphere", "keys": [] }
 AP-CHECK { "id": 1063, "name": "E2M2 - Chainsaw", "keys": ["RedCard"] }
+AP-CHECK { "id": 1063, "name": "E2M2 - Chainsaw", "keys": [] }
 AP-CHECK { "id": 1064, "name": "E2M2 - Allmap", "keys": ["RedCard"] }
+AP-CHECK { "id": 1064, "name": "E2M2 - Allmap", "keys": [] }
 AP-CHECK { "id": 1065, "name": "E2M2 - BlueArmor", "keys": ["RedCard"] }
+AP-CHECK { "id": 1065, "name": "E2M2 - BlueArmor", "keys": [] }
 AP-CHECK { "id": 1066, "name": "E2M2 - Plasma Rifle", "keys": ["RedCard"] }
+AP-CHECK { "id": 1066, "name": "E2M2 - Plasma Rifle", "keys": [] }
 AP-CHECK { "id": 1068, "name": "E2M2 - BlueCard", "keys": ["RedCard"] }
+AP-CHECK { "id": 1068, "name": "E2M2 - BlueCard", "keys": [] }
 AP-CHECK { "id": 1069, "name": "E2M2 - YellowCard", "keys": ["RedCard"] }
+AP-CHECK { "id": 1069, "name": "E2M2 - YellowCard", "keys": [] }
 AP-CHECK { "id": 1072, "name": "E2M2 - Shotgun [480,4192]", "keys": ["RedCard"] }
+AP-CHECK { "id": 1072, "name": "E2M2 - Shotgun [480,4192]", "keys": [] }
 AP-CHECK { "id": 1076, "name": "E2M2 - Berserk", "keys": ["RedCard"] }
+AP-CHECK { "id": 1076, "name": "E2M2 - Berserk", "keys": [] }
 AP-CHECK { "id": 1077, "name": "E2M3 - Plasma Rifle", "keys": [] }
 AP-CHECK { "id": 1078, "name": "E2M3 - RadSuit [1424,736]", "keys": ["BlueCard"] }
 AP-CHECK { "id": 1079, "name": "E2M3 - RadSuit [288,1824]", "keys": [] }
@@ -114,6 +130,20 @@ AP-CHECK { "id": 1161, "name": "E2M8 - Rocket Launcher", "keys": [] }
 AP-CHECK { "id": 1162, "name": "E2M8 - Soulsphere [-96,-1216]", "keys": [] }
 AP-CHECK { "id": 1163, "name": "E2M8 - Soulsphere [-512,-800]", "keys": [] }
 AP-CHECK { "id": 1164, "name": "E2M8 - BlueArmor", "keys": [] }
+AP-CHECK { "id": 1165, "name": "E2M9 - Exit", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 1165, "name": "E2M9 - Exit", "keys": ["YellowSkull", "BlueSkull"] }
+AP-CHECK { "id": 1166, "name": "E2M9 - Soulsphere", "keys": ["YellowSkull", "BlueSkull"] }
+AP-CHECK { "id": 1167, "name": "E2M9 - BlueSkull", "keys": ["YellowSkull", "BlueSkull"] }
+AP-CHECK { "id": 1168, "name": "E2M9 - RedSkull", "keys": ["YellowSkull", "BlueSkull"] }
+AP-CHECK { "id": 1169, "name": "E2M9 - YellowSkull", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 1170, "name": "E2M9 - Backpack", "keys": ["YellowSkull", "BlueSkull"] }
+AP-CHECK { "id": 1171, "name": "E2M9 - Chaingun", "keys": ["YellowSkull", "BlueSkull"] }
+AP-CHECK { "id": 1172, "name": "E2M9 - Plasma Rifle", "keys": ["YellowSkull", "BlueSkull"] }
+AP-CHECK { "id": 1173, "name": "E2M9 - Rocket Launcher", "keys": ["YellowSkull", "BlueSkull"] }
+AP-CHECK { "id": 1174, "name": "E2M9 - Shotgun", "keys": ["YellowSkull", "BlueSkull"] }
+AP-CHECK { "id": 1175, "name": "E2M9 - Chainsaw", "keys": ["YellowSkull", "BlueSkull"] }
+AP-CHECK { "id": 1176, "name": "E2M9 - Allmap", "keys": ["YellowSkull", "BlueSkull"] }
+AP-CHECK { "id": 1177, "name": "E2M9 - BlueArmor", "keys": ["YellowSkull", "BlueSkull"] }
 AP-CHECK { "id": 1178, "name": "E3M1 - Shotgun", "keys": [] }
 AP-CHECK { "id": 1179, "name": "E3M1 - Rocket Launcher", "keys": [] }
 AP-CHECK { "id": 1180, "name": "E3M2 - Chaingun", "keys": [] }
@@ -171,6 +201,7 @@ AP-CHECK { "id": 1256, "name": "E3M6 - Soulsphere [-544,2560]", "keys": [] }
 AP-CHECK { "id": 1258, "name": "E3M6 - BlueSkull [-208,160]", "keys": [] }
 AP-CHECK { "id": 1259, "name": "E3M6 - Allmap", "keys": [] }
 AP-CHECK { "id": 1260, "name": "E3M6 - Chainsaw", "keys": [] }
+AP-CHECK { "id": 1261, "name": "E3M7 - Exit", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
 AP-CHECK { "id": 1263, "name": "E3M7 - RadSuit [848,1008]", "keys": ["BlueSkull"] }
 AP-CHECK { "id": 1263, "name": "E3M7 - RadSuit [848,1008]", "keys": [] }
 AP-CHECK { "id": 1264, "name": "E3M7 - RadSuit [640,1728]", "keys": ["BlueSkull"] }
@@ -179,6 +210,7 @@ AP-CHECK { "id": 1266, "name": "E3M7 - RadSuit [1344,2048]", "keys": ["BlueSkull
 AP-CHECK { "id": 1267, "name": "E3M7 - RadSuit [1536,1856]", "keys": ["BlueSkull"] }
 AP-CHECK { "id": 1268, "name": "E3M7 - RadSuit [-400,1712]", "keys": ["BlueSkull"] }
 AP-CHECK { "id": 1269, "name": "E3M7 - RadSuit [1536,2048]", "keys": ["BlueSkull"] }
+AP-CHECK { "id": 127, "name": "E1M3 - Exit", "keys": ["BlueCard"] }
 AP-CHECK { "id": 1270, "name": "E3M7 - RadSuit [1328,1856]", "keys": ["BlueSkull"] }
 AP-CHECK { "id": 1271, "name": "E3M7 - RadSuit [752,1744]", "keys": ["BlueSkull"] }
 AP-CHECK { "id": 1272, "name": "E3M7 - RadSuit [640,1856]", "keys": ["BlueSkull"] }
@@ -191,12 +223,15 @@ AP-CHECK { "id": 1275, "name": "E3M7 - Rocket Launcher", "keys": [] }
 AP-CHECK { "id": 1276, "name": "E3M7 - RedSkull", "keys": ["BlueSkull"] }
 AP-CHECK { "id": 1277, "name": "E3M7 - Backpack", "keys": ["BlueSkull"] }
 AP-CHECK { "id": 1277, "name": "E3M7 - Backpack", "keys": [] }
+AP-CHECK { "id": 1278, "name": "E3M7 - Plasma Rifle", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 1281, "name": "E3M7 - YellowSkull", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
 AP-CHECK { "id": 1282, "name": "E3M7 - BlueArmor", "keys": ["BlueSkull"] }
 AP-CHECK { "id": 1282, "name": "E3M7 - BlueArmor", "keys": [] }
 AP-CHECK { "id": 1283, "name": "E3M7 - BFG 9000", "keys": ["BlueSkull"] }
 AP-CHECK { "id": 1285, "name": "E3M8 - Rocket Launcher", "keys": [] }
 AP-CHECK { "id": 1286, "name": "E3M8 - Plasma Rifle", "keys": [] }
 AP-CHECK { "id": 1287, "name": "E3M8 - BlueArmor", "keys": [] }
+AP-CHECK { "id": 1288, "name": "E3M9 - Exit", "keys": ["BlueSkull", "RedSkull"] }
 AP-CHECK { "id": 1289, "name": "E3M9 - Shotgun", "keys": [] }
 AP-CHECK { "id": 1291, "name": "E3M9 - Rocket Launcher [-640,3584]", "keys": [] }
 AP-CHECK { "id": 1292, "name": "E3M9 - Soulsphere [-896,2752]", "keys": [] }
@@ -216,9 +251,19 @@ AP-CHECK { "id": 1305, "name": "E3M9 - BFG 9000", "keys": [] }
 AP-CHECK { "id": 1306, "name": "E3M9 - RedSkull", "keys": [] }
 AP-CHECK { "id": 1308, "name": "E4M1 - RedSkull", "keys": [] }
 AP-CHECK { "id": 1309, "name": "E4M1 - Rocket Launcher", "keys": [] }
+AP-CHECK { "id": 1310, "name": "E4M1 - BlueSkull", "keys": ["RedSkull"] }
 AP-CHECK { "id": 1311, "name": "E4M1 - Shotgun", "keys": [] }
 AP-CHECK { "id": 1312, "name": "E4M1 - GreenArmor", "keys": [] }
 AP-CHECK { "id": 1313, "name": "E4M1 - Chaingun", "keys": [] }
+AP-CHECK { "id": 1314, "name": "E4M2 - Exit", "keys": ["BlueSkull"] }
+AP-CHECK { "id": 1318, "name": "E4M2 - RadSuit [352,1600]", "keys": ["BlueSkull"] }
+AP-CHECK { "id": 1319, "name": "E4M2 - RadSuit [-32,1600]", "keys": ["BlueSkull"] }
+AP-CHECK { "id": 1324, "name": "E4M2 - YellowSkull", "keys": ["BlueSkull", "YellowSkull"] }
+AP-CHECK { "id": 1326, "name": "E4M2 - GreenArmor [864,1440]", "keys": ["BlueSkull", "YellowSkull"] }
+AP-CHECK { "id": 1327, "name": "E4M2 - Rocket Launcher", "keys": ["BlueSkull", "YellowSkull"] }
+AP-CHECK { "id": 1328, "name": "E4M2 - Chainsaw", "keys": ["BlueSkull", "YellowSkull"] }
+AP-CHECK { "id": 1329, "name": "E4M2 - BlueSkull", "keys": ["BlueSkull", "YellowSkull"] }
+AP-CHECK { "id": 1330, "name": "E4M2 - BFG 9000", "keys": ["BlueSkull"] }
 AP-CHECK { "id": 1332, "name": "E4M3 - InvulnerabilitySphere", "keys": [] }
 AP-CHECK { "id": 1333, "name": "E4M3 - RadSuit", "keys": [] }
 AP-CHECK { "id": 1334, "name": "E4M3 - Berserk", "keys": [] }
@@ -238,38 +283,60 @@ AP-CHECK { "id": 1347, "name": "E4M3 - Rocket Launcher", "keys": [] }
 AP-CHECK { "id": 1372, "name": "E4M6 - Plasma Rifle", "keys": ["YellowSkull", "RedSkull"] }
 AP-CHECK { "id": 1373, "name": "E4M6 - RadSuit [720,720]", "keys": ["YellowSkull", "RedSkull"] }
 AP-CHECK { "id": 1374, "name": "E4M6 - RadSuit [1776,1360]", "keys": ["YellowSkull", "RedSkull"] }
+AP-CHECK { "id": 1376, "name": "E4M6 - RadSuit [2928,288]", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
 AP-CHECK { "id": 1377, "name": "E4M6 - RadSuit [1904,416]", "keys": ["YellowSkull", "RedSkull"] }
+AP-CHECK { "id": 1380, "name": "E4M6 - BlueSkull", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
 AP-CHECK { "id": 1380, "name": "E4M6 - BlueSkull", "keys": ["YellowSkull", "RedSkull"] }
 AP-CHECK { "id": 1383, "name": "E4M6 - Rocket Launcher", "keys": ["YellowSkull", "RedSkull"] }
+AP-CHECK { "id": 1384, "name": "E4M6 - Chaingun", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
 AP-CHECK { "id": 1384, "name": "E4M6 - Chaingun", "keys": ["YellowSkull", "RedSkull"] }
+AP-CHECK { "id": 1387, "name": "E4M6 - InvulnerabilitySphere [1328,-464]", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 1389, "name": "E4M6 - BFG 9000", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 1390, "name": "E4M6 - Backpack", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 1391, "name": "E4M6 - Berserk", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 1395, "name": "E4M7 - Exit", "keys": ["RedSkull"] }
 AP-CHECK { "id": 1395, "name": "E4M7 - Exit", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
 AP-CHECK { "id": 1396, "name": "E4M7 - Shotgun", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
 AP-CHECK { "id": 1397, "name": "E4M7 - Chaingun", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
 AP-CHECK { "id": 1398, "name": "E4M7 - Rocket Launcher [-672,-288]", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 1399, "name": "E4M7 - Rocket Launcher [-656,1216]", "keys": ["RedSkull"] }
 AP-CHECK { "id": 1399, "name": "E4M7 - Rocket Launcher [-656,1216]", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
 AP-CHECK { "id": 140, "name": "E1M4 - Exit", "keys": ["YellowCard", "BlueCard"] }
 AP-CHECK { "id": 1400, "name": "E4M7 - Rocket Launcher [0,-1512]", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 1400, "name": "E4M7 - Rocket Launcher [0,-1512]", "keys": ["YellowSkull", "RedSkull"] }
+AP-CHECK { "id": 1401, "name": "E4M7 - Plasma Rifle", "keys": ["RedSkull"] }
 AP-CHECK { "id": 1401, "name": "E4M7 - Plasma Rifle", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
 AP-CHECK { "id": 1402, "name": "E4M7 - Backpack", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
 AP-CHECK { "id": 1403, "name": "E4M7 - Soulsphere [736,-32]", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
 AP-CHECK { "id": 1404, "name": "E4M7 - Soulsphere [-40,-1512]", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 1404, "name": "E4M7 - Soulsphere [-40,-1512]", "keys": ["YellowSkull", "RedSkull"] }
 AP-CHECK { "id": 1405, "name": "E4M7 - BlueSkull", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
 AP-CHECK { "id": 1406, "name": "E4M7 - BlueArmor [896,320]", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
 AP-CHECK { "id": 1407, "name": "E4M7 - BlueArmor [448,-1104]", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 1407, "name": "E4M7 - BlueArmor [448,-1104]", "keys": ["YellowSkull", "RedSkull"] }
+AP-CHECK { "id": 1408, "name": "E4M7 - RadSuit [-160,1600]", "keys": ["RedSkull"] }
 AP-CHECK { "id": 1408, "name": "E4M7 - RadSuit [-160,1600]", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 1409, "name": "E4M7 - RadSuit [160,1600]", "keys": ["RedSkull"] }
 AP-CHECK { "id": 1409, "name": "E4M7 - RadSuit [160,1600]", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 1410, "name": "E4M7 - RadSuit [1520,1648]", "keys": ["RedSkull"] }
 AP-CHECK { "id": 1410, "name": "E4M7 - RadSuit [1520,1648]", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 1411, "name": "E4M7 - RadSuit [-1392,1600]", "keys": ["RedSkull"] }
 AP-CHECK { "id": 1411, "name": "E4M7 - RadSuit [-1392,1600]", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
 AP-CHECK { "id": 1412, "name": "E4M7 - GreenArmor", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
 AP-CHECK { "id": 1413, "name": "E4M7 - Allmap", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
 AP-CHECK { "id": 1414, "name": "E4M7 - Berserk", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 1415, "name": "E4M7 - YellowSkull", "keys": ["BlueSkull", "RedSkull"] }
 AP-CHECK { "id": 1415, "name": "E4M7 - YellowSkull", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 1415, "name": "E4M7 - YellowSkull", "keys": ["YellowSkull", "RedSkull"] }
 AP-CHECK { "id": 1416, "name": "E4M7 - RedSkull", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
 AP-CHECK { "id": 1417, "name": "E4M7 - Chainsaw", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
 AP-CHECK { "id": 1418, "name": "E4M7 - InvulnerabilitySphere [88,-1472]", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 1418, "name": "E4M7 - InvulnerabilitySphere [88,-1472]", "keys": ["YellowSkull", "RedSkull"] }
 AP-CHECK { "id": 1419, "name": "E4M7 - InvulnerabilitySphere [40,-1512]", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 1419, "name": "E4M7 - InvulnerabilitySphere [40,-1512]", "keys": ["YellowSkull", "RedSkull"] }
 AP-CHECK { "id": 1420, "name": "E4M7 - BlurSphere", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
 AP-CHECK { "id": 1421, "name": "E4M7 - BFG 9000", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 1421, "name": "E4M7 - BFG 9000", "keys": ["YellowSkull", "RedSkull"] }
 AP-CHECK { "id": 1422, "name": "E4M8 - Exit", "keys": ["RedSkull", "YellowSkull"] }
 AP-CHECK { "id": 1423, "name": "E4M8 - Shotgun", "keys": ["RedSkull", "YellowSkull"] }
 AP-CHECK { "id": 1424, "name": "E4M8 - Soulsphere [-1312,-1312]", "keys": ["RedSkull", "YellowSkull"] }
@@ -291,6 +358,8 @@ AP-CHECK { "id": 1439, "name": "E4M8 - BlurSphere", "keys": ["RedSkull", "Yellow
 AP-CHECK { "id": 1440, "name": "E4M8 - Backpack", "keys": ["RedSkull", "YellowSkull"] }
 AP-CHECK { "id": 1441, "name": "E4M8 - RadSuit [-704,224]", "keys": ["RedSkull", "YellowSkull"] }
 AP-CHECK { "id": 1442, "name": "E4M8 - RadSuit [-1280,-128]", "keys": ["RedSkull", "YellowSkull"] }
+AP-CHECK { "id": 1443, "name": "E4M9 - Exit", "keys": ["YellowSkull"] }
+AP-CHECK { "id": 1449, "name": "E4M9 - Backpack", "keys": ["YellowSkull"] }
 AP-CHECK { "id": 1491, "name": "MAP01 - GreenArmor", "keys": [] }
 AP-CHECK { "id": 1492, "name": "MAP01 - Chainsaw", "keys": [] }
 AP-CHECK { "id": 1493, "name": "MAP02 - BlueCard", "keys": ["RedCard", "BlueCard"] }
@@ -349,6 +418,27 @@ AP-CHECK { "id": 1576, "name": "MAP10 - Infrared [864,-1696]", "keys": [] }
 AP-CHECK { "id": 1577, "name": "MAP10 - BlueArmor", "keys": [] }
 AP-CHECK { "id": 1580, "name": "MAP10 - BlurSphere", "keys": [] }
 AP-CHECK { "id": 1581, "name": "MAP10 - YellowCard", "keys": [] }
+AP-CHECK { "id": 1583, "name": "MAP11 - Soulsphere [1504,1200]", "keys": ["RedCard", "BlueCard"] }
+AP-CHECK { "id": 1584, "name": "MAP11 - Soulsphere [1072,2032]", "keys": ["RedCard", "BlueCard"] }
+AP-CHECK { "id": 1585, "name": "MAP11 - Plasma Rifle", "keys": ["RedCard", "BlueCard"] }
+AP-CHECK { "id": 1586, "name": "MAP11 - BlueCard", "keys": ["RedCard", "BlueCard"] }
+AP-CHECK { "id": 1587, "name": "MAP11 - GreenArmor", "keys": ["RedCard", "BlueCard"] }
+AP-CHECK { "id": 1588, "name": "MAP11 - Shotgun", "keys": ["RedCard", "BlueCard"] }
+AP-CHECK { "id": 1589, "name": "MAP11 - BlueArmor", "keys": ["RedCard", "BlueCard"] }
+AP-CHECK { "id": 1590, "name": "MAP11 - BlurSphere", "keys": ["RedCard", "BlueCard"] }
+AP-CHECK { "id": 1591, "name": "MAP11 - RadSuit [-208,1104]", "keys": ["RedCard", "BlueCard"] }
+AP-CHECK { "id": 1592, "name": "MAP11 - RadSuit [224,2432]", "keys": ["RedCard", "BlueCard"] }
+AP-CHECK { "id": 1593, "name": "MAP11 - InvulnerabilitySphere", "keys": ["RedCard", "BlueCard"] }
+AP-CHECK { "id": 1594, "name": "MAP11 - Backpack", "keys": ["RedCard", "BlueCard"] }
+AP-CHECK { "id": 1595, "name": "MAP11 - BFG 9000", "keys": ["RedCard", "BlueCard"] }
+AP-CHECK { "id": 1596, "name": "MAP12 - Shotgun", "keys": [] }
+AP-CHECK { "id": 1597, "name": "MAP12 - Berserk [-480,-928]", "keys": [] }
+AP-CHECK { "id": 1598, "name": "MAP12 - Berserk [608,928]", "keys": [] }
+AP-CHECK { "id": 1599, "name": "MAP12 - Berserk [224,1984]", "keys": [] }
+AP-CHECK { "id": 1601, "name": "MAP12 - Soulsphere [-32,352]", "keys": [] }
+AP-CHECK { "id": 1602, "name": "MAP12 - BlueCard", "keys": [] }
+AP-CHECK { "id": 1604, "name": "MAP12 - GreenArmor [832,2624]", "keys": [] }
+AP-CHECK { "id": 1606, "name": "MAP12 - BlurSphere", "keys": [] }
 AP-CHECK { "id": 1628, "name": "MAP14 - BlueArmor", "keys": [] }
 AP-CHECK { "id": 1630, "name": "MAP14 - RedSkull", "keys": [] }
 AP-CHECK { "id": 1631, "name": "MAP14 - Rocket Launcher", "keys": [] }
@@ -372,6 +462,20 @@ AP-CHECK { "id": 1652, "name": "MAP15 - Allmap", "keys": ["YellowCard"] }
 AP-CHECK { "id": 1653, "name": "MAP15 - RedCard", "keys": ["YellowCard"] }
 AP-CHECK { "id": 1654, "name": "MAP15 - Chainsaw", "keys": ["YellowCard"] }
 AP-CHECK { "id": 1655, "name": "MAP15 - BlueCard", "keys": ["YellowCard"] }
+AP-CHECK { "id": 1656, "name": "MAP16 - Megasphere", "keys": ["BlueSkull"] }
+AP-CHECK { "id": 1657, "name": "MAP16 - Backpack", "keys": ["BlueSkull"] }
+AP-CHECK { "id": 1658, "name": "MAP16 - Rocket Launcher", "keys": ["BlueSkull"] }
+AP-CHECK { "id": 1659, "name": "MAP16 - Plasma Rifle [1184,-736]", "keys": ["BlueSkull"] }
+AP-CHECK { "id": 1660, "name": "MAP16 - Plasma Rifle [1312,-736]", "keys": ["BlueSkull"] }
+AP-CHECK { "id": 1661, "name": "MAP16 - Plasma Rifle [1312,-864]", "keys": ["BlueSkull"] }
+AP-CHECK { "id": 1662, "name": "MAP16 - Plasma Rifle [1184,-864]", "keys": ["BlueSkull"] }
+AP-CHECK { "id": 1663, "name": "MAP16 - RadSuit", "keys": ["BlueSkull"] }
+AP-CHECK { "id": 1664, "name": "MAP16 - BFG 9000", "keys": ["BlueSkull"] }
+AP-CHECK { "id": 1665, "name": "MAP16 - Soulsphere", "keys": ["BlueSkull"] }
+AP-CHECK { "id": 1666, "name": "MAP16 - BlueSkull", "keys": ["BlueSkull"] }
+AP-CHECK { "id": 1667, "name": "MAP16 - InvulnerabilitySphere", "keys": ["BlueSkull"] }
+AP-CHECK { "id": 1668, "name": "MAP16 - BlurSphere", "keys": ["BlueSkull"] }
+AP-CHECK { "id": 1669, "name": "MAP16 - RedSkull", "keys": ["BlueSkull"] }
 AP-CHECK { "id": 1670, "name": "MAP31 - Rocket Launcher", "keys": [] }
 AP-CHECK { "id": 1671, "name": "MAP31 - Berserk", "keys": [] }
 AP-CHECK { "id": 1672, "name": "MAP31 - Soulsphere", "keys": [] }
@@ -383,8 +487,15 @@ AP-CHECK { "id": 1677, "name": "MAP31 - Backpack [2688,-1664]", "keys": [] }
 AP-CHECK { "id": 1678, "name": "MAP31 - BFG 9000", "keys": [] }
 AP-CHECK { "id": 1679, "name": "MAP31 - Plasma Rifle", "keys": [] }
 AP-CHECK { "id": 168, "name": "E2M1 - Exit", "keys": ["BlueCard", "RedCard"] }
+AP-CHECK { "id": 1680, "name": "MAP17 - GreenArmor [-2016,-2752]", "keys": ["RedCard"] }
+AP-CHECK { "id": 1681, "name": "MAP17 - GreenArmor [-1760,-2208]", "keys": ["RedCard"] }
 AP-CHECK { "id": 1684, "name": "MAP17 - Shotgun", "keys": ["BlueCard"] }
+AP-CHECK { "id": 1684, "name": "MAP17 - Shotgun", "keys": ["RedCard"] }
 AP-CHECK { "id": 1685, "name": "MAP17 - RedCard", "keys": ["BlueCard"] }
+AP-CHECK { "id": 1685, "name": "MAP17 - RedCard", "keys": ["RedCard"] }
+AP-CHECK { "id": 1686, "name": "MAP17 - BlueCard", "keys": ["RedCard"] }
+AP-CHECK { "id": 1692, "name": "MAP17 - BlueArmor", "keys": ["RedCard"] }
+AP-CHECK { "id": 1693, "name": "MAP17 - Berserk", "keys": ["RedCard"] }
 AP-CHECK { "id": 1695, "name": "MAP32 - Plasma Rifle", "keys": [] }
 AP-CHECK { "id": 1696, "name": "MAP32 - Rocket Launcher", "keys": [] }
 AP-CHECK { "id": 1697, "name": "MAP32 - InvulnerabilitySphere", "keys": [] }
@@ -434,7 +545,10 @@ AP-CHECK { "id": 1736, "name": "MAP20 - GreenArmor [2064,-4368]", "keys": [] }
 AP-CHECK { "id": 1737, "name": "MAP20 - Megasphere", "keys": [] }
 AP-CHECK { "id": 1738, "name": "MAP20 - RadSuit [2096,-4528]", "keys": [] }
 AP-CHECK { "id": 1739, "name": "MAP20 - RadSuit [2144,-1376]", "keys": [] }
+AP-CHECK { "id": 1751, "name": "MAP22 - BlueSkull", "keys": ["RedSkull"] }
 AP-CHECK { "id": 1752, "name": "MAP22 - Shotgun", "keys": ["RedSkull"] }
+AP-CHECK { "id": 1753, "name": "MAP22 - Berserk", "keys": ["RedSkull"] }
+AP-CHECK { "id": 1754, "name": "MAP22 - RadSuit [-96,416]", "keys": ["RedSkull"] }
 AP-CHECK { "id": 1755, "name": "MAP22 - RadSuit [-96,80]", "keys": ["RedSkull"] }
 AP-CHECK { "id": 1756, "name": "MAP22 - Plasma Rifle", "keys": ["RedSkull"] }
 AP-CHECK { "id": 1759, "name": "MAP23 - Berserk", "keys": [] }
@@ -444,6 +558,21 @@ AP-CHECK { "id": 1762, "name": "MAP23 - Allmap", "keys": [] }
 AP-CHECK { "id": 1763, "name": "MAP23 - GreenArmor", "keys": [] }
 AP-CHECK { "id": 1764, "name": "MAP23 - Megasphere", "keys": [] }
 AP-CHECK { "id": 1765, "name": "MAP23 - YellowSkull", "keys": [] }
+AP-CHECK { "id": 1766, "name": "MAP23 - BFG 9000", "keys": [] }
+AP-CHECK { "id": 1784, "name": "MAP25 - BlurSphere", "keys": ["BlueSkull"] }
+AP-CHECK { "id": 1785, "name": "MAP25 - Megasphere", "keys": ["BlueSkull"] }
+AP-CHECK { "id": 1786, "name": "MAP25 - BlueSkull", "keys": ["BlueSkull"] }
+AP-CHECK { "id": 1787, "name": "MAP26 - BlueCard", "keys": ["BlueCard", "RedCard"] }
+AP-CHECK { "id": 1788, "name": "MAP26 - Super Shotgun", "keys": ["BlueCard", "RedCard"] }
+AP-CHECK { "id": 1789, "name": "MAP26 - Rocket Launcher", "keys": ["BlueCard", "RedCard"] }
+AP-CHECK { "id": 1790, "name": "MAP26 - BlueArmor", "keys": ["BlueCard", "RedCard"] }
+AP-CHECK { "id": 1792, "name": "MAP26 - RadSuit [1360,-736]", "keys": ["BlueCard", "RedCard"] }
+AP-CHECK { "id": 1793, "name": "MAP26 - Plasma Rifle", "keys": ["BlueCard", "RedCard"] }
+AP-CHECK { "id": 1794, "name": "MAP26 - Soulsphere", "keys": ["BlueCard", "RedCard"] }
+AP-CHECK { "id": 1795, "name": "MAP26 - BlurSphere", "keys": ["BlueCard", "RedCard"] }
+AP-CHECK { "id": 1796, "name": "MAP26 - RedCard", "keys": ["BlueCard", "RedCard"] }
+AP-CHECK { "id": 1797, "name": "MAP26 - YellowCard", "keys": ["BlueCard", "RedCard"] }
+AP-CHECK { "id": 1798, "name": "MAP26 - Backpack", "keys": ["BlueCard", "RedCard"] }
 AP-CHECK { "id": 181, "name": "E2M2 - Exit", "keys": ["RedCard"] }
 AP-CHECK { "id": 1826, "name": "MAP28 - GreenArmor", "keys": [] }
 AP-CHECK { "id": 1827, "name": "MAP28 - InvulnerabilitySphere [208,-3680]", "keys": [] }
@@ -461,6 +590,7 @@ AP-CHECK { "id": 1838, "name": "MAP28 - Berserk", "keys": [] }
 AP-CHECK { "id": 1839, "name": "MAP28 - BFG 9000", "keys": [] }
 AP-CHECK { "id": 1840, "name": "MAP28 - Megasphere [-1504,-2464]", "keys": [] }
 AP-CHECK { "id": 1841, "name": "MAP28 - Megasphere [1440,-3616]", "keys": [] }
+AP-CHECK { "id": 1842, "name": "MAP28 - RedSkull", "keys": ["RedSkull", "YellowSkull"] }
 AP-CHECK { "id": 1854, "name": "MAP30 - Soulsphere [1888,32]", "keys": [] }
 AP-CHECK { "id": 1855, "name": "MAP30 - Soulsphere [3744,96]", "keys": [] }
 AP-CHECK { "id": 1856, "name": "MAP30 - Soulsphere [2720,-224]", "keys": [] }
@@ -469,11 +599,14 @@ AP-CHECK { "id": 1862, "name": "MAP30 - Chaingun", "keys": [] }
 AP-CHECK { "id": 1863, "name": "MAP30 - Plasma Rifle", "keys": [] }
 AP-CHECK { "id": 1864, "name": "MAP30 - Shotgun", "keys": [] }
 AP-CHECK { "id": 1865, "name": "MAP30 - Megasphere [2848,-736]", "keys": [] }
+AP-CHECK { "id": 1866, "name": "MAP30 - Megasphere [2688,1376]", "keys": [] }
+AP-CHECK { "id": 1867, "name": "MAP30 - RadSuit [2656,1248]", "keys": [] }
 AP-CHECK { "id": 1868, "name": "MAP30 - RadSuit [3104,1248]", "keys": [] }
 AP-CHECK { "id": 1869, "name": "MAP30 - Berserk", "keys": [] }
 AP-CHECK { "id": 191, "name": "E2M3 - Exit", "keys": ["BlueCard"] }
 AP-CHECK { "id": 222, "name": "E2M5 - Exit", "keys": [] }
 AP-CHECK { "id": 238, "name": "E3M1 - Exit", "keys": [] }
+AP-CHECK { "id": 261, "name": "E3M3 - Exit", "keys": ["BlueSkull"] }
 AP-CHECK { "id": 284, "name": "E3M5 - Exit", "keys": ["BlueSkull"] }
 AP-CHECK { "id": 453, "name": "MAP01 - Exit", "keys": [] }
 AP-CHECK { "id": 455, "name": "MAP01 - Shotgun", "keys": [] }
@@ -484,7 +617,16 @@ AP-CHECK { "id": 463, "name": "MAP02 - Super Shotgun", "keys": ["RedCard", "Blue
 AP-CHECK { "id": 471, "name": "MAP03 - BlueCard", "keys": [] }
 AP-CHECK { "id": 475, "name": "MAP03 - Chaingun", "keys": [] }
 AP-CHECK { "id": 478, "name": "MAP03 - Rocket Launcher", "keys": [] }
+AP-CHECK { "id": 4791, "name": "E5M2 - Exit", "keys": ["RedSkull"] }
+AP-CHECK { "id": 481, "name": "MAP04 - Exit", "keys": ["BlueCard", "YellowCard", "RedCard"] }
+AP-CHECK { "id": 482, "name": "MAP04 - YellowCard", "keys": ["BlueCard", "YellowCard", "RedCard"] }
+AP-CHECK { "id": 483, "name": "MAP04 - RedCard", "keys": ["BlueCard", "YellowCard", "RedCard"] }
+AP-CHECK { "id": 484, "name": "MAP04 - BlueCard", "keys": ["BlueCard", "YellowCard", "RedCard"] }
+AP-CHECK { "id": 486, "name": "MAP04 - Super Shotgun", "keys": ["BlueCard", "YellowCard", "RedCard"] }
+AP-CHECK { "id": 4891, "name": "E5M4 - Exit", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 4998, "name": "E5M6 - Exit", "keys": ["RedSkull"] }
 AP-CHECK { "id": 5056, "name": "E5M7 - Exit", "keys": ["RedSkull", "YellowSkull"] }
+AP-CHECK { "id": 5106, "name": "E5M8 - Exit", "keys": ["RedSkull"] }
 AP-CHECK { "id": 517, "name": "MAP07 - Exit", "keys": [] }
 AP-CHECK { "id": 520, "name": "MAP07 - Chaingun", "keys": [] }
 AP-CHECK { "id": 527, "name": "MAP07 - Super Shotgun", "keys": [] }
@@ -495,12 +637,26 @@ AP-CHECK { "id": 552, "name": "MAP10 - Exit", "keys": ["BlueCard", "YellowCard"]
 AP-CHECK { "id": 553, "name": "MAP10 - BlueCard", "keys": [] }
 AP-CHECK { "id": 554, "name": "MAP10 - Rocket Launcher", "keys": [] }
 AP-CHECK { "id": 560, "name": "MAP10 - Chainsaw", "keys": ["BlueCard", "YellowCard"] }
+AP-CHECK { "id": 561, "name": "MAP11 - Exit", "keys": ["RedCard", "BlueCard"] }
+AP-CHECK { "id": 562, "name": "MAP11 - RedCard", "keys": ["RedCard", "BlueCard"] }
+AP-CHECK { "id": 565, "name": "MAP11 - Chaingun", "keys": ["RedCard", "BlueCard"] }
+AP-CHECK { "id": 569, "name": "MAP11 - Rocket Launcher", "keys": ["RedCard", "BlueCard"] }
+AP-CHECK { "id": 570, "name": "MAP12 - Exit", "keys": ["YellowCard"] }
+AP-CHECK { "id": 573, "name": "MAP12 - YellowCard", "keys": [] }
+AP-CHECK { "id": 581, "name": "MAP12 - Chaingun", "keys": [] }
+AP-CHECK { "id": 583, "name": "MAP12 - Super Shotgun", "keys": [] }
 AP-CHECK { "id": 603, "name": "MAP14 - Shotgun", "keys": [] }
 AP-CHECK { "id": 604, "name": "MAP14 - Chaingun", "keys": [] }
+AP-CHECK { "id": 609, "name": "MAP15 - Exit", "keys": ["YellowCard", "BlueCard"] }
 AP-CHECK { "id": 610, "name": "MAP15 - Rocket Launcher", "keys": ["YellowCard"] }
 AP-CHECK { "id": 613, "name": "MAP15 - InvulnerabilitySphere", "keys": ["YellowCard"] }
 AP-CHECK { "id": 619, "name": "MAP15 - Megasphere", "keys": ["YellowCard"] }
 AP-CHECK { "id": 620, "name": "MAP15 - Soulsphere", "keys": ["YellowCard"] }
+AP-CHECK { "id": 621, "name": "MAP16 - Exit", "keys": ["BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 622, "name": "MAP16 - Shotgun", "keys": ["BlueSkull"] }
+AP-CHECK { "id": 628, "name": "MAP16 - Berserk", "keys": ["BlueSkull"] }
+AP-CHECK { "id": 629, "name": "MAP16 - Super Shotgun", "keys": ["BlueSkull"] }
+AP-CHECK { "id": 630, "name": "MAP16 - Chaingun", "keys": ["BlueSkull"] }
 AP-CHECK { "id": 632, "name": "MAP31 - Exit", "keys": [] }
 AP-CHECK { "id": 633, "name": "MAP31 - Megasphere", "keys": [] }
 AP-CHECK { "id": 634, "name": "MAP31 - Chaingun", "keys": [] }
@@ -519,34 +675,71 @@ AP-CHECK { "id": 6572, "name": "E5M5 - Soulsphere [-1184,8]", "keys": [] }
 AP-CHECK { "id": 6573, "name": "E5M5 - Soulsphere [-2096,80]", "keys": [] }
 AP-CHECK { "id": 6575, "name": "E5M5 - Rocket Launcher [-1184,-160]", "keys": [] }
 AP-CHECK { "id": 6576, "name": "E5M5 - Rocket Launcher [-48,-216]", "keys": [] }
+AP-CHECK { "id": 6577, "name": "E5M2 - Berserk", "keys": ["RedSkull"] }
 AP-CHECK { "id": 6577, "name": "E5M5 - GreenArmor [736,-32]", "keys": [] }
+AP-CHECK { "id": 6579, "name": "E5M2 - Soulsphere [352,-480]", "keys": ["RedSkull"] }
 AP-CHECK { "id": 6579, "name": "E5M5 - BlueArmor", "keys": [] }
+AP-CHECK { "id": 6580, "name": "E5M2 - Soulsphere [160,-608]", "keys": ["RedSkull"] }
 AP-CHECK { "id": 6580, "name": "E5M5 - Shotgun", "keys": [] }
+AP-CHECK { "id": 6581, "name": "E5M2 - Chaingun", "keys": ["RedSkull"] }
+AP-CHECK { "id": 6582, "name": "E5M2 - RedSkull", "keys": ["RedSkull"] }
 AP-CHECK { "id": 6582, "name": "E5M5 - Chaingun [-704,288]", "keys": [] }
+AP-CHECK { "id": 6583, "name": "E5M2 - BlueArmor", "keys": ["RedSkull"] }
 AP-CHECK { "id": 6584, "name": "E5M5 - Berserk", "keys": [] }
+AP-CHECK { "id": 6585, "name": "E5M2 - Shotgun", "keys": ["RedSkull"] }
 AP-CHECK { "id": 6586, "name": "E5M6 - RedSkull", "keys": [] }
 AP-CHECK { "id": 6594, "name": "E5M6 - GreenArmor [-1600,-1112]", "keys": [] }
 AP-CHECK { "id": 6595, "name": "E5M6 - RadSuit", "keys": [] }
 AP-CHECK { "id": 6596, "name": "E5M6 - BFG 9000", "keys": [] }
 AP-CHECK { "id": 6597, "name": "E5M6 - Shotgun", "keys": [] }
 AP-CHECK { "id": 6598, "name": "E5M6 - Plasma Rifle", "keys": [] }
+AP-CHECK { "id": 6599, "name": "E5M4 - BlueArmor [416,-2944]", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 6600, "name": "E5M4 - YellowSkull", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
 AP-CHECK { "id": 6600, "name": "E5M6 - Chaingun", "keys": [] }
+AP-CHECK { "id": 6601, "name": "E5M4 - Soulsphere [824,-848]", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 6602, "name": "E5M4 - Soulsphere [-672,-2184]", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
 AP-CHECK { "id": 6602, "name": "E5M7 - GreenArmor [1184,352]", "keys": ["RedSkull"] }
 AP-CHECK { "id": 6603, "name": "E5M7 - GreenArmor [512,-32]", "keys": ["RedSkull"] }
 AP-CHECK { "id": 6604, "name": "E5M7 - GreenArmor [912,1392]", "keys": ["RedSkull"] }
+AP-CHECK { "id": 6605, "name": "E5M4 - InvulnerabilitySphere", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
 AP-CHECK { "id": 6605, "name": "E5M7 - Rocket Launcher", "keys": ["RedSkull"] }
+AP-CHECK { "id": 6606, "name": "E5M4 - Chaingun", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
 AP-CHECK { "id": 6606, "name": "E5M7 - BlueArmor [1680,136]", "keys": ["RedSkull"] }
+AP-CHECK { "id": 6607, "name": "E5M4 - Chainsaw", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 6608, "name": "E5M4 - RadSuit", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
 AP-CHECK { "id": 6608, "name": "E5M7 - RedSkull", "keys": ["RedSkull"] }
 AP-CHECK { "id": 6609, "name": "E5M7 - BFG 9000", "keys": ["RedSkull"] }
 AP-CHECK { "id": 661, "name": "MAP32 - Berserk", "keys": [] }
+AP-CHECK { "id": 6610, "name": "E5M4 - BlueSkull", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 6611, "name": "E5M4 - RedSkull", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 6612, "name": "E5M4 - Shotgun", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
 AP-CHECK { "id": 6612, "name": "E5M7 - Soulsphere [-160,-576]", "keys": ["RedSkull"] }
+AP-CHECK { "id": 6613, "name": "E5M4 - GreenArmor [928,-4000]", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 6614, "name": "E5M4 - GreenArmor [-128,-2672]", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
 AP-CHECK { "id": 6614, "name": "E5M7 - Shotgun", "keys": ["RedSkull"] }
+AP-CHECK { "id": 6615, "name": "E5M5 - BlueSkull", "keys": [] }
 AP-CHECK { "id": 6615, "name": "E5M7 - InvulnerabilitySphere", "keys": ["RedSkull"] }
+AP-CHECK { "id": 6616, "name": "E5M5 - Soulsphere [-1184,8]", "keys": [] }
 AP-CHECK { "id": 6616, "name": "E5M7 - Allmap", "keys": ["RedSkull"] }
+AP-CHECK { "id": 6617, "name": "E5M5 - Soulsphere [-2096,80]", "keys": [] }
 AP-CHECK { "id": 6617, "name": "E5M7 - Chaingun", "keys": ["RedSkull"] }
+AP-CHECK { "id": 6619, "name": "E5M5 - Rocket Launcher [-1184,-160]", "keys": [] }
+AP-CHECK { "id": 6620, "name": "E5M5 - Rocket Launcher [-48,-216]", "keys": [] }
+AP-CHECK { "id": 6621, "name": "E5M5 - GreenArmor [736,-32]", "keys": [] }
+AP-CHECK { "id": 6623, "name": "E5M5 - BlueArmor", "keys": [] }
+AP-CHECK { "id": 6624, "name": "E5M5 - Shotgun", "keys": [] }
+AP-CHECK { "id": 6626, "name": "E5M5 - Chaingun [-704,288]", "keys": [] }
+AP-CHECK { "id": 6628, "name": "E5M5 - Berserk", "keys": [] }
 AP-CHECK { "id": 6630, "name": "E5M6 - RedSkull", "keys": [] }
+AP-CHECK { "id": 6631, "name": "E5M6 - Berserk [632,-128]", "keys": ["RedSkull"] }
+AP-CHECK { "id": 6632, "name": "E5M6 - Berserk [1756,-752]", "keys": ["RedSkull"] }
+AP-CHECK { "id": 6633, "name": "E5M6 - InvulnerabilitySphere", "keys": ["RedSkull"] }
+AP-CHECK { "id": 6634, "name": "E5M6 - Chainsaw [-1992,-2272]", "keys": ["RedSkull"] }
+AP-CHECK { "id": 6636, "name": "E5M6 - Soulsphere", "keys": ["RedSkull"] }
+AP-CHECK { "id": 6637, "name": "E5M6 - GreenArmor [1852,-668]", "keys": ["RedSkull"] }
 AP-CHECK { "id": 6638, "name": "E5M6 - GreenArmor [-1600,-1112]", "keys": [] }
 AP-CHECK { "id": 6639, "name": "E5M6 - RadSuit", "keys": [] }
+AP-CHECK { "id": 6640, "name": "E5M6 - BFG 9000", "keys": ["RedSkull"] }
 AP-CHECK { "id": 6641, "name": "E5M6 - Shotgun", "keys": [] }
 AP-CHECK { "id": 6642, "name": "E5M6 - Plasma Rifle", "keys": [] }
 AP-CHECK { "id": 6644, "name": "E5M6 - Chaingun", "keys": [] }
@@ -572,10 +765,16 @@ AP-CHECK { "id": 6665, "name": "E5M8 - RedSkull", "keys": [] }
 AP-CHECK { "id": 6665, "name": "E6M3 - Chaingun", "keys": [] }
 AP-CHECK { "id": 6666, "name": "E5M8 - Chaingun", "keys": [] }
 AP-CHECK { "id": 6666, "name": "E6M3 - Shotgun", "keys": [] }
+AP-CHECK { "id": 6667, "name": "E5M8 - Plasma Rifle", "keys": ["RedSkull"] }
+AP-CHECK { "id": 6668, "name": "E5M8 - Backpack", "keys": ["RedSkull"] }
 AP-CHECK { "id": 6668, "name": "E6M3 - Backpack", "keys": [] }
+AP-CHECK { "id": 6669, "name": "E5M8 - Rocket Launcher", "keys": ["RedSkull"] }
 AP-CHECK { "id": 667, "name": "MAP18 - Soulsphere", "keys": [] }
+AP-CHECK { "id": 6670, "name": "E5M8 - GreenArmor", "keys": ["RedSkull"] }
+AP-CHECK { "id": 6671, "name": "E5M8 - Soulsphere", "keys": ["RedSkull"] }
 AP-CHECK { "id": 6671, "name": "E6M3 - GreenArmor [880,792]", "keys": [] }
 AP-CHECK { "id": 6672, "name": "E6M3 - GreenArmor [-1156,-300]", "keys": [] }
+AP-CHECK { "id": 6673, "name": "E5M8 - Berserk", "keys": ["RedSkull"] }
 AP-CHECK { "id": 6673, "name": "E6M3 - Chainsaw", "keys": [] }
 AP-CHECK { "id": 6674, "name": "E6M3 - Rocket Launcher", "keys": [] }
 AP-CHECK { "id": 6675, "name": "E6M3 - BFG 9000", "keys": [] }
@@ -613,24 +812,66 @@ AP-CHECK { "id": 6756, "name": "E6M5 - RedCard", "keys": [] }
 AP-CHECK { "id": 6757, "name": "E6M5 - Chaingun", "keys": [] }
 AP-CHECK { "id": 6759, "name": "E6M5 - GreenArmor", "keys": [] }
 AP-CHECK { "id": 676, "name": "MAP19 - YellowSkull", "keys": [] }
+AP-CHECK { "id": 6764, "name": "E6M6 - Soulsphere [-696,1568]", "keys": ["YellowSkull"] }
+AP-CHECK { "id": 6767, "name": "E6M6 - Soulsphere [-912,224]", "keys": ["YellowSkull"] }
+AP-CHECK { "id": 6768, "name": "E6M6 - InvulnerabilitySphere", "keys": ["YellowSkull"] }
+AP-CHECK { "id": 6769, "name": "E6M6 - Berserk [-1512,928]", "keys": ["YellowSkull"] }
+AP-CHECK { "id": 6773, "name": "E6M6 - RedSkull", "keys": ["YellowSkull"] }
+AP-CHECK { "id": 6774, "name": "E6M6 - GreenArmor", "keys": ["YellowSkull"] }
+AP-CHECK { "id": 6775, "name": "E6M6 - BlueArmor", "keys": ["YellowSkull"] }
+AP-CHECK { "id": 6776, "name": "E6M6 - BlueSkull", "keys": ["YellowSkull"] }
+AP-CHECK { "id": 6777, "name": "E6M6 - YellowSkull", "keys": ["YellowSkull"] }
+AP-CHECK { "id": 6779, "name": "E6M6 - Plasma Rifle [1172,1036]", "keys": ["YellowSkull"] }
+AP-CHECK { "id": 6780, "name": "E6M6 - Shotgun", "keys": ["YellowSkull"] }
+AP-CHECK { "id": 6781, "name": "E6M6 - Chaingun", "keys": ["YellowSkull"] }
+AP-CHECK { "id": 6782, "name": "E6M6 - Backpack", "keys": ["YellowSkull"] }
+AP-CHECK { "id": 6783, "name": "E6M6 - BFG 9000", "keys": ["YellowSkull"] }
+AP-CHECK { "id": 6784, "name": "E6M6 - RadSuit", "keys": ["YellowSkull"] }
+AP-CHECK { "id": 6785, "name": "E6M6 - Rocket Launcher", "keys": ["YellowSkull"] }
+AP-CHECK { "id": 6786, "name": "E6M6 - Chainsaw", "keys": ["YellowSkull"] }
+AP-CHECK { "id": 6787, "name": "E6M7 - Exit", "keys": ["RedCard", "YellowSkull", "BlueSkull"] }
 AP-CHECK { "id": 6787, "name": "E6M9 - Exit", "keys": ["RedCard", "YellowCard"] }
+AP-CHECK { "id": 6788, "name": "E6M7 - GreenArmor [-1792,-896]", "keys": ["RedCard", "YellowSkull", "BlueSkull"] }
 AP-CHECK { "id": 6788, "name": "E6M9 - RedCard", "keys": [] }
+AP-CHECK { "id": 6789, "name": "E6M7 - GreenArmor [-1504,1300]", "keys": ["RedCard", "YellowSkull", "BlueSkull"] }
 AP-CHECK { "id": 679, "name": "MAP19 - Super Shotgun", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
 AP-CHECK { "id": 679, "name": "MAP19 - Super Shotgun", "keys": [] }
+AP-CHECK { "id": 6790, "name": "E6M7 - GreenArmor [808,-80]", "keys": ["RedCard", "YellowSkull", "BlueSkull"] }
 AP-CHECK { "id": 6790, "name": "E6M9 - Soulsphere [752,-144]", "keys": [] }
+AP-CHECK { "id": 6791, "name": "E6M7 - GreenArmor [-2880,256]", "keys": ["RedCard", "YellowSkull", "BlueSkull"] }
 AP-CHECK { "id": 6791, "name": "E6M9 - Soulsphere [-1688,812]", "keys": ["RedCard", "YellowCard"] }
+AP-CHECK { "id": 6792, "name": "E6M7 - BlueSkull", "keys": ["RedCard", "YellowSkull", "BlueSkull"] }
+AP-CHECK { "id": 6793, "name": "E6M7 - Soulsphere [-2000,-288]", "keys": ["RedCard", "YellowSkull", "BlueSkull"] }
 AP-CHECK { "id": 6793, "name": "E6M9 - GreenArmor [576,384]", "keys": [] }
+AP-CHECK { "id": 6794, "name": "E6M7 - Soulsphere [1208,768]", "keys": ["RedCard", "YellowSkull", "BlueSkull"] }
+AP-CHECK { "id": 6795, "name": "E6M7 - Soulsphere [-2336,900]", "keys": ["RedCard", "YellowSkull", "BlueSkull"] }
 AP-CHECK { "id": 6795, "name": "E6M9 - BlurSphere", "keys": ["RedCard", "YellowCard"] }
+AP-CHECK { "id": 6796, "name": "E6M7 - YellowSkull", "keys": ["RedCard", "YellowSkull", "BlueSkull"] }
 AP-CHECK { "id": 6796, "name": "E6M9 - BlueArmor", "keys": ["RedCard", "YellowCard"] }
+AP-CHECK { "id": 6797, "name": "E6M7 - Berserk [288,672]", "keys": ["RedCard", "YellowSkull", "BlueSkull"] }
 AP-CHECK { "id": 6797, "name": "E6M9 - YellowCard", "keys": ["RedCard", "YellowCard"] }
+AP-CHECK { "id": 6798, "name": "E6M7 - Berserk [-2752,256]", "keys": ["RedCard", "YellowSkull", "BlueSkull"] }
 AP-CHECK { "id": 6798, "name": "E6M9 - Chaingun", "keys": [] }
+AP-CHECK { "id": 6799, "name": "E6M7 - Berserk [-1416,1376]", "keys": ["RedCard", "YellowSkull", "BlueSkull"] }
+AP-CHECK { "id": 6800, "name": "E6M7 - Berserk [-2376,-952]", "keys": ["RedCard", "YellowSkull", "BlueSkull"] }
+AP-CHECK { "id": 6801, "name": "E6M7 - Berserk [768,-320]", "keys": ["RedCard", "YellowSkull", "BlueSkull"] }
 AP-CHECK { "id": 6801, "name": "E6M9 - Plasma Rifle", "keys": [] }
+AP-CHECK { "id": 6802, "name": "E6M7 - Berserk [2112,-760]", "keys": ["RedCard", "YellowSkull", "BlueSkull"] }
 AP-CHECK { "id": 6802, "name": "E6M9 - Infrared", "keys": ["RedCard", "YellowCard"] }
+AP-CHECK { "id": 6803, "name": "E6M7 - Backpack [96,744]", "keys": ["RedCard", "YellowSkull", "BlueSkull"] }
 AP-CHECK { "id": 6803, "name": "E6M9 - Chainsaw", "keys": ["RedCard", "YellowCard"] }
 AP-CHECK { "id": 6804, "name": "E6M9 - Rocket Launcher", "keys": ["RedCard", "YellowCard"] }
+AP-CHECK { "id": 6805, "name": "E6M7 - BFG 9000", "keys": ["RedCard", "YellowSkull", "BlueSkull"] }
 AP-CHECK { "id": 6806, "name": "MAP33 - RedCard", "keys": [] }
 AP-CHECK { "id": 6808, "name": "MAP33 - Super Shotgun [1760,2688]", "keys": [] }
+AP-CHECK { "id": 6809, "name": "E6M7 - RedCard", "keys": ["RedCard", "YellowSkull", "BlueSkull"] }
 AP-CHECK { "id": 681, "name": "MAP20 - Exit", "keys": [] }
+AP-CHECK { "id": 6810, "name": "E6M7 - RadSuit", "keys": ["RedCard", "YellowSkull", "BlueSkull"] }
+AP-CHECK { "id": 6811, "name": "E6M7 - InvulnerabilitySphere", "keys": ["RedCard", "YellowSkull", "BlueSkull"] }
+AP-CHECK { "id": 6812, "name": "E6M7 - Chaingun", "keys": ["RedCard", "YellowSkull", "BlueSkull"] }
+AP-CHECK { "id": 6813, "name": "E6M7 - Rocket Launcher", "keys": ["RedCard", "YellowSkull", "BlueSkull"] }
+AP-CHECK { "id": 6814, "name": "E6M7 - Plasma Rifle", "keys": ["RedCard", "YellowSkull", "BlueSkull"] }
+AP-CHECK { "id": 6815, "name": "E6M7 - Allmap", "keys": ["RedCard", "YellowSkull", "BlueSkull"] }
 AP-CHECK { "id": 6816, "name": "MAP33 - BlueArmor", "keys": [] }
 AP-CHECK { "id": 6817, "name": "MAP33 - BFG 9000", "keys": [] }
 AP-CHECK { "id": 6818, "name": "MAP33 - Megasphere", "keys": [] }
@@ -642,7 +883,12 @@ AP-CHECK { "id": 6827, "name": "LR_MAP01 - Berserk", "keys": [] }
 AP-CHECK { "id": 6828, "name": "LR_MAP01 - Shotgun", "keys": [] }
 AP-CHECK { "id": 6829, "name": "LR_MAP01 - Chainsaw", "keys": [] }
 AP-CHECK { "id": 6830, "name": "LR_MAP01 - RedCard", "keys": [] }
+AP-CHECK { "id": 6831, "name": "E6M9 - Exit", "keys": ["RedCard", "YellowCard"] }
 AP-CHECK { "id": 6831, "name": "LR_MAP01 - Chaingun", "keys": ["RedCard"] }
+AP-CHECK { "id": 6835, "name": "E6M9 - Soulsphere [-1688,812]", "keys": ["RedCard", "YellowCard"] }
+AP-CHECK { "id": 6840, "name": "E6M9 - BlueArmor", "keys": ["RedCard", "YellowCard"] }
+AP-CHECK { "id": 6841, "name": "E6M9 - YellowCard", "keys": ["RedCard", "YellowCard"] }
+AP-CHECK { "id": 6848, "name": "E6M9 - Rocket Launcher", "keys": ["RedCard", "YellowCard"] }
 AP-CHECK { "id": 685, "name": "MAP20 - Super Shotgun", "keys": [] }
 AP-CHECK { "id": 6850, "name": "MAP33 - RedCard", "keys": [] }
 AP-CHECK { "id": 6852, "name": "MAP33 - Super Shotgun [1760,2688]", "keys": [] }
@@ -654,11 +900,29 @@ AP-CHECK { "id": 6862, "name": "LR_MAP03 - Shotgun", "keys": [] }
 AP-CHECK { "id": 6865, "name": "LR_MAP03 - Super Shotgun", "keys": [] }
 AP-CHECK { "id": 6866, "name": "LR_MAP03 - YellowCard", "keys": [] }
 AP-CHECK { "id": 687, "name": "MAP20 - Rocket Launcher", "keys": [] }
+AP-CHECK { "id": 6877, "name": "LR_MAP02 - Exit", "keys": [] }
+AP-CHECK { "id": 6878, "name": "LR_MAP02 - Soulsphere [1944,392]", "keys": [] }
 AP-CHECK { "id": 688, "name": "MAP20 - Plasma Rifle", "keys": [] }
+AP-CHECK { "id": 6880, "name": "LR_MAP02 - Soulsphere [2624,464]", "keys": [] }
+AP-CHECK { "id": 6882, "name": "LR_MAP02 - Berserk [1296,-1272]", "keys": [] }
+AP-CHECK { "id": 6883, "name": "LR_MAP02 - Shotgun [-2912,-4960]", "keys": [] }
+AP-CHECK { "id": 6884, "name": "LR_MAP02 - Shotgun [1464,-2632]", "keys": [] }
+AP-CHECK { "id": 6885, "name": "LR_MAP02 - Shotgun [1536,-624]", "keys": [] }
+AP-CHECK { "id": 6886, "name": "LR_MAP02 - GreenArmor [-3512,-3568]", "keys": [] }
+AP-CHECK { "id": 6887, "name": "LR_MAP02 - GreenArmor [-1664,-2144]", "keys": [] }
+AP-CHECK { "id": 6888, "name": "LR_MAP02 - Rocket Launcher [56,-1008]", "keys": [] }
+AP-CHECK { "id": 6889, "name": "LR_MAP02 - Rocket Launcher [2240,696]", "keys": [] }
+AP-CHECK { "id": 6890, "name": "LR_MAP02 - Chaingun", "keys": [] }
+AP-CHECK { "id": 6892, "name": "LR_MAP02 - RedCard", "keys": [] }
+AP-CHECK { "id": 6893, "name": "LR_MAP02 - BlurSphere [-2904,-1848]", "keys": [] }
+AP-CHECK { "id": 6894, "name": "LR_MAP02 - BlurSphere [1640,-272]", "keys": [] }
+AP-CHECK { "id": 6896, "name": "LR_MAP02 - Backpack", "keys": [] }
+AP-CHECK { "id": 6897, "name": "LR_MAP02 - Allmap", "keys": [] }
 AP-CHECK { "id": 6904, "name": "LR_MAP03 - GreenArmor [3064,-3224]", "keys": [] }
 AP-CHECK { "id": 6906, "name": "LR_MAP03 - Shotgun", "keys": [] }
 AP-CHECK { "id": 6909, "name": "LR_MAP03 - Super Shotgun", "keys": [] }
 AP-CHECK { "id": 6910, "name": "LR_MAP03 - YellowCard", "keys": [] }
+AP-CHECK { "id": 6916, "name": "LR_MAP04 - Exit", "keys": ["RedCard", "YellowCard", "BlueCard"] }
 AP-CHECK { "id": 6917, "name": "LR_MAP04 - RedCard", "keys": ["RedCard"] }
 AP-CHECK { "id": 6919, "name": "LR_MAP04 - GreenArmor [-192,-544]", "keys": ["RedCard"] }
 AP-CHECK { "id": 6921, "name": "LR_MAP04 - Rocket Launcher", "keys": ["RedCard"] }
@@ -668,8 +932,13 @@ AP-CHECK { "id": 6924, "name": "LR_MAP04 - Super Shotgun", "keys": ["RedCard"] }
 AP-CHECK { "id": 6925, "name": "LR_MAP04 - Chaingun", "keys": ["RedCard"] }
 AP-CHECK { "id": 6926, "name": "LR_MAP04 - Chainsaw", "keys": ["RedCard"] }
 AP-CHECK { "id": 6927, "name": "LR_MAP04 - Shotgun", "keys": ["RedCard"] }
+AP-CHECK { "id": 6928, "name": "LR_MAP04 - RadSuit [984,-1176]", "keys": ["RedCard", "YellowCard", "BlueCard"] }
+AP-CHECK { "id": 6929, "name": "LR_MAP04 - RadSuit [984,-1512]", "keys": ["RedCard", "YellowCard", "BlueCard"] }
 AP-CHECK { "id": 6930, "name": "LR_MAP04 - RadSuit [-1920,-1168]", "keys": ["RedCard"] }
+AP-CHECK { "id": 6931, "name": "LR_MAP04 - RadSuit [296,-2232]", "keys": ["RedCard", "YellowCard", "BlueCard"] }
+AP-CHECK { "id": 6932, "name": "LR_MAP04 - YellowCard", "keys": ["RedCard", "YellowCard", "BlueCard"] }
 AP-CHECK { "id": 6933, "name": "LR_MAP04 - Berserk", "keys": ["RedCard"] }
+AP-CHECK { "id": 6934, "name": "LR_MAP04 - Incinerator", "keys": ["RedCard", "YellowCard", "BlueCard"] }
 AP-CHECK { "id": 6936, "name": "LR_MAP05 - Shotgun", "keys": [] }
 AP-CHECK { "id": 6937, "name": "LR_MAP05 - Chaingun", "keys": [] }
 AP-CHECK { "id": 6938, "name": "LR_MAP05 - RadSuit [-3040,-608]", "keys": [] }
@@ -683,10 +952,21 @@ AP-CHECK { "id": 6948, "name": "LR_MAP05 - Super Shotgun", "keys": [] }
 AP-CHECK { "id": 6949, "name": "LR_MAP05 - Incinerator", "keys": [] }
 AP-CHECK { "id": 6952, "name": "LR_MAP05 - Berserk [-1888,-287]", "keys": [] }
 AP-CHECK { "id": 6993, "name": "ML_MAP02 - RedCard", "keys": [] }
+AP-CHECK { "id": 6994, "name": "LR_MAP07 - Rocket Launcher [-480,160]", "keys": [] }
+AP-CHECK { "id": 6996, "name": "LR_MAP07 - Super Shotgun [-416,160]", "keys": [] }
 AP-CHECK { "id": 6996, "name": "ML_MAP02 - Super Shotgun [1011,2331]", "keys": [] }
+AP-CHECK { "id": 6998, "name": "LR_MAP07 - Incinerator [-480,96]", "keys": [] }
 AP-CHECK { "id": 6998, "name": "ML_MAP02 - Super Shotgun [2394,3833]", "keys": [] }
+AP-CHECK { "id": 7000, "name": "LR_MAP07 - BlueArmor", "keys": [] }
+AP-CHECK { "id": 7001, "name": "LR_MAP07 - RedSkull", "keys": [] }
 AP-CHECK { "id": 7001, "name": "ML_MAP02 - BlueArmor", "keys": [] }
+AP-CHECK { "id": 7003, "name": "LR_MAP07 - Shotgun [-608,288]", "keys": [] }
 AP-CHECK { "id": 7003, "name": "ML_MAP02 - Backpack", "keys": ["YellowCard"] }
+AP-CHECK { "id": 7005, "name": "LR_MAP07 - Calamity Blade", "keys": [] }
+AP-CHECK { "id": 7006, "name": "LR_MAP07 - Soulsphere [-256,848]", "keys": [] }
+AP-CHECK { "id": 7008, "name": "LR_MAP07 - InvulnerabilitySphere [-1440,-1104]", "keys": [] }
+AP-CHECK { "id": 7010, "name": "LR_MAP07 - Megasphere [160,-480]", "keys": [] }
+AP-CHECK { "id": 7012, "name": "LR_MAP07 - BlurSphere [640,-288]", "keys": [] }
 AP-CHECK { "id": 702, "name": "MAP22 - Exit", "keys": ["RedSkull"] }
 AP-CHECK { "id": 7026, "name": "LR_MAP08 - Exit", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
 AP-CHECK { "id": 7028, "name": "LR_MAP08 - GreenArmor", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
@@ -696,12 +976,31 @@ AP-CHECK { "id": 7031, "name": "LR_MAP08 - Shotgun", "keys": ["YellowSkull", "Re
 AP-CHECK { "id": 7032, "name": "LR_MAP08 - RadSuit", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
 AP-CHECK { "id": 7035, "name": "LR_MAP08 - YellowSkull", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
 AP-CHECK { "id": 7041, "name": "LR_MAP08 - Super Shotgun [-2672,-480]", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 705, "name": "MAP22 - Rocket Launcher", "keys": ["RedSkull"] }
+AP-CHECK { "id": 7065, "name": "LR_MAP10 - Exit", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7066, "name": "LR_MAP10 - RedSkull", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7067, "name": "LR_MAP10 - Chaingun [-944,1216]", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7070, "name": "LR_MAP10 - Shotgun [-96,-672]", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7071, "name": "LR_MAP10 - Shotgun [-832,640]", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7072, "name": "LR_MAP10 - Shotgun [-2592,1504]", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7073, "name": "LR_MAP10 - Soulsphere [464,288]", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7074, "name": "LR_MAP10 - Soulsphere [-184,2488]", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7075, "name": "LR_MAP10 - Soulsphere [96,1888]", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7076, "name": "LR_MAP10 - BlueSkull", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7077, "name": "LR_MAP10 - RadSuit [-1136,160]", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7082, "name": "LR_MAP10 - YellowSkull", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
 AP-CHECK { "id": 7085, "name": "ML_MAP08 - Shotgun [0,-344]", "keys": [] }
+AP-CHECK { "id": 7086, "name": "LR_MAP10 - Incinerator", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
 AP-CHECK { "id": 7086, "name": "ML_MAP08 - Shotgun [104,-56]", "keys": [] }
+AP-CHECK { "id": 7087, "name": "LR_MAP10 - Allmap", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
 AP-CHECK { "id": 7087, "name": "ML_MAP08 - Shotgun [120,224]", "keys": [] }
+AP-CHECK { "id": 7088, "name": "LR_MAP10 - BlueArmor [-1816,2080]", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
 AP-CHECK { "id": 7088, "name": "ML_MAP08 - Shotgun [-112,32]", "keys": [] }
+AP-CHECK { "id": 7089, "name": "LR_MAP10 - BlueArmor [800,1056]", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
 AP-CHECK { "id": 7089, "name": "ML_MAP08 - RedSkull", "keys": [] }
 AP-CHECK { "id": 7090, "name": "ML_MAP08 - Soulsphere [1088,640]", "keys": [] }
+AP-CHECK { "id": 7091, "name": "LR_MAP10 - Super Shotgun [192,1280]", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7092, "name": "LR_MAP10 - Berserk", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
 AP-CHECK { "id": 7093, "name": "LR_MAP11 - Exit", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
 AP-CHECK { "id": 7094, "name": "LR_MAP11 - GreenArmor", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
 AP-CHECK { "id": 7095, "name": "LR_MAP11 - Chaingun", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
@@ -722,8 +1021,32 @@ AP-CHECK { "id": 7112, "name": "LR_MAP12 - Super Shotgun", "keys": ["YellowSkull
 AP-CHECK { "id": 7113, "name": "LR_MAP12 - Rocket Launcher", "keys": ["YellowSkull", "BlueSkull"] }
 AP-CHECK { "id": 7115, "name": "LR_MAP12 - Megasphere", "keys": ["YellowSkull", "BlueSkull"] }
 AP-CHECK { "id": 7116, "name": "LR_MAP12 - GreenArmor [-2368,2212]", "keys": ["YellowSkull", "BlueSkull"] }
+AP-CHECK { "id": 7127, "name": "LR_MAP13 - Exit", "keys": ["BlueCard", "YellowCard", "RedCard"] }
+AP-CHECK { "id": 7128, "name": "LR_MAP13 - BlueCard", "keys": ["BlueCard", "YellowCard", "RedCard"] }
+AP-CHECK { "id": 7129, "name": "LR_MAP13 - Calamity Blade [-5632,-2128]", "keys": ["BlueCard", "YellowCard", "RedCard"] }
 AP-CHECK { "id": 713, "name": "MAP23 - Soulsphere", "keys": [] }
+AP-CHECK { "id": 7130, "name": "LR_MAP13 - Calamity Blade [2402,-2176]", "keys": ["BlueCard", "YellowCard", "RedCard"] }
+AP-CHECK { "id": 7131, "name": "LR_MAP13 - Incinerator [1664,-2176]", "keys": ["BlueCard", "YellowCard", "RedCard"] }
+AP-CHECK { "id": 7132, "name": "LR_MAP13 - Incinerator [-6624,-1664]", "keys": ["BlueCard", "YellowCard", "RedCard"] }
+AP-CHECK { "id": 7133, "name": "LR_MAP13 - Incinerator [-4640,-1664]", "keys": ["BlueCard", "YellowCard", "RedCard"] }
+AP-CHECK { "id": 7134, "name": "LR_MAP13 - RedCard", "keys": ["BlueCard", "YellowCard"] }
+AP-CHECK { "id": 7135, "name": "LR_MAP13 - Chaingun", "keys": ["BlueCard", "YellowCard"] }
+AP-CHECK { "id": 7136, "name": "LR_MAP13 - Rocket Launcher", "keys": ["BlueCard", "YellowCard", "RedCard"] }
+AP-CHECK { "id": 7138, "name": "LR_MAP13 - YellowCard [-5632,-1024]", "keys": ["BlueCard", "YellowCard", "RedCard"] }
+AP-CHECK { "id": 7139, "name": "LR_MAP13 - Super Shotgun", "keys": ["BlueCard", "YellowCard", "RedCard"] }
+AP-CHECK { "id": 7140, "name": "LR_MAP13 - InvulnerabilitySphere [0,0]", "keys": ["BlueCard", "YellowCard", "RedCard"] }
+AP-CHECK { "id": 7145, "name": "LR_MAP13 - Shotgun", "keys": ["BlueCard", "YellowCard"] }
+AP-CHECK { "id": 7147, "name": "LR_MAP13 - BlueArmor [832,1408]", "keys": ["BlueCard", "YellowCard", "RedCard"] }
+AP-CHECK { "id": 7148, "name": "LR_MAP13 - BlueArmor [-4352,-1664]", "keys": ["BlueCard", "YellowCard", "RedCard"] }
+AP-CHECK { "id": 7149, "name": "LR_MAP13 - Soulsphere [1920,2336]", "keys": ["BlueCard", "YellowCard", "RedCard"] }
 AP-CHECK { "id": 715, "name": "MAP23 - Shotgun", "keys": [] }
+AP-CHECK { "id": 7150, "name": "LR_MAP13 - Soulsphere [1664,-960]", "keys": ["BlueCard", "YellowCard", "RedCard"] }
+AP-CHECK { "id": 7151, "name": "LR_MAP13 - Soulsphere [-6912,-1664]", "keys": ["BlueCard", "YellowCard", "RedCard"] }
+AP-CHECK { "id": 7155, "name": "LR_MAP13 - Megasphere [1664,-8512]", "keys": ["BlueCard", "YellowCard", "RedCard"] }
+AP-CHECK { "id": 7159, "name": "LR_MAP13 - GreenArmor [1664,384]", "keys": ["BlueCard", "YellowCard", "RedCard"] }
+AP-CHECK { "id": 7160, "name": "LR_MAP13 - GreenArmor [0,-3968]", "keys": ["BlueCard", "YellowCard", "RedCard"] }
+AP-CHECK { "id": 7161, "name": "LR_MAP13 - GreenArmor [1664,-640]", "keys": ["BlueCard", "YellowCard", "RedCard"] }
+AP-CHECK { "id": 7162, "name": "LR_MAP13 - GreenArmor [2688,-1216]", "keys": ["BlueCard", "YellowCard"] }
 AP-CHECK { "id": 718, "name": "MAP23 - Rocket Launcher", "keys": [] }
 AP-CHECK { "id": 7182, "name": "LR_MAP16 - Megasphere [-32,-1184]", "keys": [] }
 AP-CHECK { "id": 7190, "name": "ML_MAP12 - Shotgun", "keys": [] }
@@ -753,24 +1076,45 @@ AP-CHECK { "id": 7221, "name": "ML_MAP13 - Backpack", "keys": [] }
 AP-CHECK { "id": 7222, "name": "ML_MAP02 - GreenArmor", "keys": ["RedCard"] }
 AP-CHECK { "id": 7222, "name": "ML_MAP13 - BlurSphere", "keys": [] }
 AP-CHECK { "id": 7223, "name": "ML_MAP13 - BlueArmor [-352,1248]", "keys": [] }
+AP-CHECK { "id": 7224, "name": "ML_MAP03 - Exit", "keys": ["RedSkull", "YellowSkull"] }
 AP-CHECK { "id": 7224, "name": "ML_MAP13 - BlueArmor [1136,-80]", "keys": [] }
+AP-CHECK { "id": 7225, "name": "ML_MAP03 - Shotgun", "keys": ["RedSkull", "YellowSkull"] }
 AP-CHECK { "id": 7225, "name": "ML_MAP13 - GreenArmor", "keys": [] }
+AP-CHECK { "id": 7226, "name": "ML_MAP03 - YellowSkull", "keys": ["RedSkull", "YellowSkull"] }
 AP-CHECK { "id": 7226, "name": "ML_MAP13 - Chainsaw", "keys": [] }
+AP-CHECK { "id": 7227, "name": "ML_MAP03 - RedSkull", "keys": ["RedSkull", "YellowSkull"] }
+AP-CHECK { "id": 7228, "name": "ML_MAP03 - Plasma Rifle", "keys": ["RedSkull", "YellowSkull"] }
+AP-CHECK { "id": 7229, "name": "ML_MAP03 - Soulsphere", "keys": ["RedSkull", "YellowSkull"] }
 AP-CHECK { "id": 7229, "name": "ML_MAP13 - Berserk", "keys": [] }
+AP-CHECK { "id": 7230, "name": "ML_MAP03 - Megasphere [-720,2016]", "keys": ["RedSkull", "YellowSkull"] }
 AP-CHECK { "id": 7230, "name": "ML_MAP13 - BFG 9000", "keys": [] }
+AP-CHECK { "id": 7231, "name": "ML_MAP03 - Megasphere [-992,672]", "keys": ["RedSkull", "YellowSkull"] }
 AP-CHECK { "id": 7231, "name": "ML_MAP13 - Allmap", "keys": [] }
+AP-CHECK { "id": 7232, "name": "ML_MAP03 - BFG 9000", "keys": ["RedSkull", "YellowSkull"] }
 AP-CHECK { "id": 7232, "name": "ML_MAP13 - Megasphere", "keys": [] }
+AP-CHECK { "id": 7233, "name": "ML_MAP03 - Berserk", "keys": ["RedSkull", "YellowSkull"] }
+AP-CHECK { "id": 7234, "name": "ML_MAP03 - Rocket Launcher [-1152,1936]", "keys": ["RedSkull", "YellowSkull"] }
 AP-CHECK { "id": 7234, "name": "ML_MAP14 - Backpack", "keys": [] }
+AP-CHECK { "id": 7235, "name": "ML_MAP03 - Rocket Launcher [-1248,1936]", "keys": ["RedSkull", "YellowSkull"] }
 AP-CHECK { "id": 7235, "name": "ML_MAP14 - Soulsphere", "keys": [] }
+AP-CHECK { "id": 7236, "name": "ML_MAP03 - Rocket Launcher [-1056,1936]", "keys": ["RedSkull", "YellowSkull"] }
 AP-CHECK { "id": 7236, "name": "ML_MAP14 - GreenArmor", "keys": [] }
+AP-CHECK { "id": 7237, "name": "ML_MAP03 - Rocket Launcher [-960,1936]", "keys": ["RedSkull", "YellowSkull"] }
 AP-CHECK { "id": 7237, "name": "ML_MAP14 - Chaingun", "keys": [] }
+AP-CHECK { "id": 7238, "name": "ML_MAP03 - Rocket Launcher [-1280,1472]", "keys": ["RedSkull", "YellowSkull"] }
 AP-CHECK { "id": 7238, "name": "ML_MAP14 - Shotgun [-2928,-6736]", "keys": [] }
+AP-CHECK { "id": 7239, "name": "ML_MAP03 - Chaingun", "keys": ["RedSkull", "YellowSkull"] }
 AP-CHECK { "id": 7239, "name": "ML_MAP14 - Shotgun [-1216,-7616]", "keys": [] }
+AP-CHECK { "id": 7240, "name": "ML_MAP03 - Super Shotgun", "keys": ["RedSkull", "YellowSkull"] }
 AP-CHECK { "id": 7240, "name": "ML_MAP14 - Chainsaw", "keys": [] }
+AP-CHECK { "id": 7241, "name": "ML_MAP03 - GreenArmor", "keys": ["RedSkull", "YellowSkull"] }
 AP-CHECK { "id": 7241, "name": "ML_MAP14 - BlueArmor", "keys": [] }
+AP-CHECK { "id": 7242, "name": "ML_MAP03 - Backpack", "keys": ["RedSkull", "YellowSkull"] }
 AP-CHECK { "id": 7248, "name": "ML_MAP14 - Super Shotgun [-512,-6624]", "keys": [] }
 AP-CHECK { "id": 7250, "name": "ML_MAP14 - Allmap", "keys": [] }
 AP-CHECK { "id": 7254, "name": "ML_MAP14 - BFG 9000", "keys": [] }
+AP-CHECK { "id": 7267, "name": "ML_MAP06 - RedSkull", "keys": ["YellowSkull"] }
+AP-CHECK { "id": 729, "name": "MAP25 - Exit", "keys": ["BlueSkull"] }
 AP-CHECK { "id": 7297, "name": "ML_MAP08 - Exit", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
 AP-CHECK { "id": 7298, "name": "ML_MAP08 - Shotgun [0,-344]", "keys": ["RedSkull", "BlueSkull"] }
 AP-CHECK { "id": 7299, "name": "ML_MAP08 - Shotgun [104,-56]", "keys": ["RedSkull", "BlueSkull"] }
@@ -785,32 +1129,178 @@ AP-CHECK { "id": 7308, "name": "ML_MAP08 - BlueArmor", "keys": ["RedSkull", "Blu
 AP-CHECK { "id": 7310, "name": "ML_MAP08 - Rocket Launcher", "keys": ["RedSkull", "BlueSkull"] }
 AP-CHECK { "id": 7311, "name": "ML_MAP08 - Plasma Rifle", "keys": ["RedSkull", "BlueSkull"] }
 AP-CHECK { "id": 7312, "name": "ML_MAP08 - InvulnerabilitySphere", "keys": ["RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 733, "name": "MAP25 - Super Shotgun", "keys": ["BlueSkull"] }
+AP-CHECK { "id": 7334, "name": "ML_MAP10 - Soulsphere [-1136,256]", "keys": ["RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7335, "name": "ML_MAP10 - Soulsphere [3792,112]", "keys": ["RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7339, "name": "ML_MAP10 - Backpack [592,-80]", "keys": ["RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 734, "name": "MAP25 - Rocket Launcher", "keys": ["BlueSkull"] }
+AP-CHECK { "id": 7340, "name": "ML_MAP10 - Backpack [2064,1712]", "keys": ["RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7345, "name": "ML_MAP10 - GreenArmor [2384,432]", "keys": ["RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7346, "name": "ML_MAP10 - GreenArmor [-3872,784]", "keys": ["RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7347, "name": "ML_MAP10 - GreenArmor [3376,336]", "keys": ["RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7349, "name": "ML_MAP10 - GreenArmor [-960,2160]", "keys": ["RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 735, "name": "MAP25 - Chaingun", "keys": ["BlueSkull"] }
+AP-CHECK { "id": 7352, "name": "ML_MAP10 - YellowSkull", "keys": ["RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7354, "name": "ML_MAP10 - Super Shotgun [-2832,1088]", "keys": ["RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7358, "name": "ML_MAP10 - Rocket Launcher", "keys": ["RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 736, "name": "MAP25 - Plasma Rifle", "keys": ["BlueSkull"] }
+AP-CHECK { "id": 7360, "name": "ML_MAP10 - Shotgun [-944,632]", "keys": ["RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7361, "name": "ML_MAP10 - Shotgun [-1512,64]", "keys": ["RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7362, "name": "ML_MAP10 - Shotgun [-376,64]", "keys": ["RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7364, "name": "ML_MAP10 - Shotgun [2056,-112]", "keys": ["RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7365, "name": "ML_MAP10 - Shotgun [2056,112]", "keys": ["RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7367, "name": "ML_MAP10 - BFG 9000", "keys": ["RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7368, "name": "ML_MAP10 - Chainsaw", "keys": ["RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7369, "name": "ML_MAP10 - Plasma Rifle [2208,1744]", "keys": ["RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 737, "name": "MAP25 - GreenArmor", "keys": ["BlueSkull"] }
+AP-CHECK { "id": 7370, "name": "ML_MAP10 - Plasma Rifle [2320,-392]", "keys": ["RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7375, "name": "ML_MAP10 - BlueArmor [2096,544]", "keys": ["RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7377, "name": "ML_MAP10 - Berserk [704,2432]", "keys": ["RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7380, "name": "ML_MAP10 - Infrared", "keys": ["RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7385, "name": "ML_MAP11 - Shotgun", "keys": ["BlueSkull"] }
+AP-CHECK { "id": 7386, "name": "ML_MAP11 - Soulsphere", "keys": ["BlueSkull"] }
+AP-CHECK { "id": 7388, "name": "ML_MAP11 - Super Shotgun", "keys": ["BlueSkull"] }
+AP-CHECK { "id": 7389, "name": "ML_MAP11 - Backpack", "keys": ["BlueSkull"] }
+AP-CHECK { "id": 7391, "name": "ML_MAP11 - BlueArmor", "keys": ["BlueSkull"] }
+AP-CHECK { "id": 7392, "name": "ML_MAP11 - GreenArmor [-320,32]", "keys": ["BlueSkull"] }
+AP-CHECK { "id": 7394, "name": "ML_MAP11 - Rocket Launcher", "keys": ["BlueSkull"] }
+AP-CHECK { "id": 7395, "name": "ML_MAP11 - YellowSkull", "keys": ["BlueSkull"] }
+AP-CHECK { "id": 742, "name": "MAP26 - Exit", "keys": ["BlueCard", "YellowCard", "RedCard"] }
 AP-CHECK { "id": 7428, "name": "ML_MAP13 - Exit", "keys": [] }
 AP-CHECK { "id": 7429, "name": "ML_MAP13 - Shotgun", "keys": [] }
+AP-CHECK { "id": 743, "name": "MAP26 - Chaingun", "keys": ["BlueCard", "RedCard"] }
 AP-CHECK { "id": 7430, "name": "ML_MAP13 - Plasma Rifle", "keys": [] }
 AP-CHECK { "id": 7431, "name": "ML_MAP13 - Rocket Launcher", "keys": [] }
 AP-CHECK { "id": 7432, "name": "ML_MAP13 - Chaingun", "keys": [] }
 AP-CHECK { "id": 7433, "name": "ML_MAP13 - Super Shotgun", "keys": [] }
 AP-CHECK { "id": 7434, "name": "ML_MAP13 - Backpack", "keys": [] }
+AP-CHECK { "id": 7435, "name": "ML_MAP13 - BlurSphere", "keys": [] }
 AP-CHECK { "id": 7436, "name": "ML_MAP13 - BlueArmor [-352,1248]", "keys": [] }
 AP-CHECK { "id": 7437, "name": "ML_MAP13 - BlueArmor [1136,-80]", "keys": [] }
 AP-CHECK { "id": 7438, "name": "ML_MAP13 - GreenArmor", "keys": [] }
 AP-CHECK { "id": 7439, "name": "ML_MAP13 - Chainsaw", "keys": [] }
+AP-CHECK { "id": 7442, "name": "ML_MAP13 - Berserk", "keys": [] }
+AP-CHECK { "id": 7443, "name": "ML_MAP13 - BFG 9000", "keys": [] }
 AP-CHECK { "id": 7444, "name": "ML_MAP13 - Allmap", "keys": [] }
 AP-CHECK { "id": 7445, "name": "ML_MAP13 - Megasphere", "keys": [] }
+AP-CHECK { "id": 7446, "name": "ML_MAP14 - Exit", "keys": ["BlueCard"] }
+AP-CHECK { "id": 7447, "name": "ML_MAP14 - Backpack", "keys": ["BlueCard"] }
+AP-CHECK { "id": 7448, "name": "ML_MAP14 - Soulsphere", "keys": ["BlueCard"] }
+AP-CHECK { "id": 7449, "name": "ML_MAP14 - GreenArmor", "keys": ["BlueCard"] }
+AP-CHECK { "id": 7450, "name": "ML_MAP14 - Chaingun", "keys": ["BlueCard"] }
+AP-CHECK { "id": 7451, "name": "ML_MAP14 - Shotgun [-2928,-6736]", "keys": ["BlueCard"] }
+AP-CHECK { "id": 7452, "name": "ML_MAP14 - Shotgun [-1216,-7616]", "keys": ["BlueCard"] }
+AP-CHECK { "id": 7453, "name": "ML_MAP14 - Chainsaw", "keys": ["BlueCard"] }
+AP-CHECK { "id": 7454, "name": "ML_MAP14 - BlueArmor", "keys": ["BlueCard"] }
+AP-CHECK { "id": 7455, "name": "ML_MAP14 - BlurSphere", "keys": ["BlueCard"] }
+AP-CHECK { "id": 7456, "name": "ML_MAP14 - BlueCard", "keys": ["BlueCard"] }
+AP-CHECK { "id": 7457, "name": "ML_MAP14 - Rocket Launcher [384,-4064]", "keys": ["BlueCard"] }
+AP-CHECK { "id": 7458, "name": "ML_MAP14 - Rocket Launcher [-1696,-5472]", "keys": ["BlueCard"] }
+AP-CHECK { "id": 7459, "name": "ML_MAP14 - Plasma Rifle [912,-3808]", "keys": ["BlueCard"] }
+AP-CHECK { "id": 746, "name": "MAP26 - GreenArmor", "keys": ["BlueCard", "RedCard"] }
+AP-CHECK { "id": 7460, "name": "ML_MAP14 - Plasma Rifle [-1376,-5472]", "keys": ["BlueCard"] }
+AP-CHECK { "id": 7461, "name": "ML_MAP14 - Super Shotgun [-512,-6624]", "keys": ["BlueCard"] }
+AP-CHECK { "id": 7462, "name": "ML_MAP14 - Super Shotgun [2392,-3792]", "keys": ["BlueCard"] }
+AP-CHECK { "id": 7463, "name": "ML_MAP14 - Allmap", "keys": ["BlueCard"] }
+AP-CHECK { "id": 7464, "name": "ML_MAP14 - Megasphere [-1536,-2464]", "keys": ["BlueCard"] }
+AP-CHECK { "id": 7465, "name": "ML_MAP14 - Megasphere [2400,-4096]", "keys": ["BlueCard"] }
+AP-CHECK { "id": 7467, "name": "ML_MAP14 - BFG 9000", "keys": ["BlueCard"] }
+AP-CHECK { "id": 7468, "name": "ML_MAP14 - Berserk", "keys": ["BlueCard"] }
+AP-CHECK { "id": 7470, "name": "ML_MAP15 - Shotgun", "keys": [] }
+AP-CHECK { "id": 7471, "name": "ML_MAP15 - GreenArmor", "keys": [] }
+AP-CHECK { "id": 7472, "name": "ML_MAP15 - Soulsphere [288,160]", "keys": [] }
+AP-CHECK { "id": 7473, "name": "ML_MAP15 - Soulsphere [1600,824]", "keys": [] }
+AP-CHECK { "id": 7474, "name": "ML_MAP15 - BlurSphere [160,-288]", "keys": [] }
+AP-CHECK { "id": 7476, "name": "ML_MAP15 - Backpack", "keys": [] }
+AP-CHECK { "id": 7477, "name": "ML_MAP15 - Rocket Launcher [-1632,160]", "keys": [] }
+AP-CHECK { "id": 7479, "name": "ML_MAP15 - Super Shotgun [-1280,160]", "keys": [] }
+AP-CHECK { "id": 7480, "name": "ML_MAP15 - Super Shotgun [1584,1536]", "keys": [] }
+AP-CHECK { "id": 7481, "name": "ML_MAP15 - Chaingun", "keys": [] }
+AP-CHECK { "id": 7483, "name": "ML_MAP15 - RadSuit", "keys": [] }
+AP-CHECK { "id": 7485, "name": "ML_MAP15 - Plasma Rifle", "keys": [] }
+AP-CHECK { "id": 7488, "name": "ML_MAP15 - Chainsaw", "keys": [] }
+AP-CHECK { "id": 7490, "name": "ML_MAP15 - Allmap", "keys": [] }
+AP-CHECK { "id": 7492, "name": "ML_MAP15 - Berserk [-1760,416]", "keys": [] }
+AP-CHECK { "id": 7517, "name": "ML_MAP17 - Exit", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7518, "name": "ML_MAP17 - Shotgun", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7519, "name": "ML_MAP17 - GreenArmor [-1727,-2284]", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7520, "name": "ML_MAP17 - GreenArmor [-2270,-2734]", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7521, "name": "ML_MAP17 - GreenArmor [-1719,-552]", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7522, "name": "ML_MAP17 - Megasphere [-2526,-1194]", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7523, "name": "ML_MAP17 - Megasphere [-4207,-2250]", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7524, "name": "ML_MAP17 - Megasphere [-985,-3109]", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7525, "name": "ML_MAP17 - Megasphere [-2440,7]", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7526, "name": "ML_MAP17 - Rocket Launcher", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7527, "name": "ML_MAP17 - RedSkull", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7528, "name": "ML_MAP17 - BlueSkull", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7529, "name": "ML_MAP17 - Chainsaw", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7530, "name": "ML_MAP17 - Berserk [-1924,-46]", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7531, "name": "ML_MAP17 - Berserk [-2240,-2714]", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7532, "name": "ML_MAP17 - Berserk [-1119,-1715]", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7533, "name": "ML_MAP17 - Berserk [-2978,-3905]", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7534, "name": "ML_MAP17 - Berserk [-1528,-2601]", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7535, "name": "ML_MAP17 - Super Shotgun [-2715,-849]", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7536, "name": "ML_MAP17 - Super Shotgun [-816,-1824]", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7537, "name": "ML_MAP17 - Backpack [-2314,-1497]", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7538, "name": "ML_MAP17 - Backpack [224,-2081]", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7539, "name": "ML_MAP17 - Plasma Rifle", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7540, "name": "ML_MAP17 - Soulsphere [-3130,-3082]", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7541, "name": "ML_MAP17 - Soulsphere [290,-2102]", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7542, "name": "ML_MAP17 - BlueArmor [-2674,-3794]", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7543, "name": "ML_MAP17 - BlueArmor [528,-2625]", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7544, "name": "ML_MAP17 - BlueArmor [-443,-614]", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7545, "name": "ML_MAP17 - YellowSkull", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7546, "name": "ML_MAP17 - BlurSphere [-288,-2625]", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7547, "name": "ML_MAP17 - BlurSphere [-1923,-1036]", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7548, "name": "ML_MAP17 - Allmap", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7549, "name": "ML_MAP17 - Infrared", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 757, "name": "MAP28 - Exit", "keys": ["RedSkull", "YellowSkull"] }
+AP-CHECK { "id": 7573, "name": "ML_MAP19 - Exit", "keys": ["YellowSkull", "BlueSkull"] }
+AP-CHECK { "id": 7574, "name": "ML_MAP19 - InvulnerabilitySphere", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
 AP-CHECK { "id": 7575, "name": "ML_MAP19 - RedSkull", "keys": [] }
 AP-CHECK { "id": 7576, "name": "ML_MAP19 - YellowSkull", "keys": [] }
+AP-CHECK { "id": 7577, "name": "ML_MAP19 - BlueSkull", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
 AP-CHECK { "id": 7578, "name": "ML_MAP19 - Chainsaw", "keys": [] }
 AP-CHECK { "id": 7579, "name": "ML_MAP19 - RadSuit", "keys": [] }
 AP-CHECK { "id": 7580, "name": "ML_MAP19 - Rocket Launcher", "keys": [] }
 AP-CHECK { "id": 7581, "name": "ML_MAP19 - GreenArmor", "keys": [] }
 AP-CHECK { "id": 7583, "name": "ML_MAP19 - Shotgun [-28,-2660]", "keys": [] }
+AP-CHECK { "id": 7584, "name": "ML_MAP19 - Berserk [864,-976]", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7586, "name": "ML_MAP19 - Super Shotgun", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
 AP-CHECK { "id": 7587, "name": "ML_MAP19 - BlueArmor", "keys": [] }
+AP-CHECK { "id": 7588, "name": "ML_MAP19 - Chaingun", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7589, "name": "ML_MAP19 - Soulsphere", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
 AP-CHECK { "id": 759, "name": "MAP28 - Chainsaw", "keys": [] }
+AP-CHECK { "id": 7591, "name": "ML_MAP20 - Rocket Launcher", "keys": ["RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7592, "name": "ML_MAP20 - Super Shotgun", "keys": ["RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7593, "name": "ML_MAP20 - Chaingun [96,-784]", "keys": ["RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7595, "name": "ML_MAP20 - Plasma Rifle", "keys": ["RedSkull", "BlueSkull"] }
 AP-CHECK { "id": 760, "name": "MAP28 - Rocket Launcher", "keys": [] }
+AP-CHECK { "id": 7600, "name": "ML_MAP20 - Backpack [-416,-288]", "keys": ["RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7601, "name": "ML_MAP20 - Backpack [-96,-608]", "keys": ["RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7602, "name": "ML_MAP20 - Backpack [416,-288]", "keys": ["RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7603, "name": "ML_MAP20 - Backpack [96,-608]", "keys": ["RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7604, "name": "ML_MAP20 - Backpack [416,-96]", "keys": ["RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7605, "name": "ML_MAP20 - Backpack [96,224]", "keys": ["RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7606, "name": "ML_MAP20 - Backpack [-96,224]", "keys": ["RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7607, "name": "ML_MAP20 - Backpack [-416,-96]", "keys": ["RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 7609, "name": "ML_MAP20 - GreenArmor", "keys": ["RedSkull", "BlueSkull"] }
 AP-CHECK { "id": 761, "name": "MAP28 - Super Shotgun", "keys": [] }
 AP-CHECK { "id": 762, "name": "MAP28 - Plasma Rifle", "keys": [] }
 AP-CHECK { "id": 764, "name": "MAP28 - Chaingun", "keys": [] }
+AP-CHECK { "id": 7646, "name": "ML_MAP23 - BlueArmor [1184,352]", "keys": ["RedSkull"] }
+AP-CHECK { "id": 7648, "name": "ML_MAP23 - Super Shotgun", "keys": ["RedSkull"] }
+AP-CHECK { "id": 7649, "name": "ML_MAP23 - Soulsphere [1248,96]", "keys": ["RedSkull"] }
+AP-CHECK { "id": 7651, "name": "ML_MAP23 - InvulnerabilitySphere", "keys": ["RedSkull"] }
+AP-CHECK { "id": 7652, "name": "ML_MAP23 - YellowSkull", "keys": ["RedSkull"] }
+AP-CHECK { "id": 7656, "name": "ML_MAP23 - RadSuit [672,384]", "keys": ["RedSkull"] }
+AP-CHECK { "id": 7660, "name": "ML_MAP23 - Rocket Launcher", "keys": ["RedSkull"] }
+AP-CHECK { "id": 7661, "name": "ML_MAP23 - Shotgun", "keys": ["RedSkull"] }
+AP-CHECK { "id": 7665, "name": "ML_MAP23 - Chaingun", "keys": ["RedSkull"] }
+AP-CHECK { "id": 7669, "name": "ML_MAP24 - BlueSkull", "keys": ["YellowSkull"] }
+AP-CHECK { "id": 7673, "name": "ML_MAP24 - Super Shotgun", "keys": ["YellowSkull"] }
+AP-CHECK { "id": 7674, "name": "ML_MAP24 - Chaingun", "keys": ["YellowSkull"] }
+AP-CHECK { "id": 7675, "name": "ML_MAP24 - Rocket Launcher", "keys": ["YellowSkull"] }
 AP-CHECK { "id": 7675, "name": "ML_MAP33 - BlueArmor [-224,800]", "keys": [] }
 AP-CHECK { "id": 7677, "name": "ML_MAP33 - Shotgun [-96,32]", "keys": [] }
 AP-CHECK { "id": 7678, "name": "ML_MAP33 - Shotgun [-1845,-214]", "keys": [] }
@@ -831,31 +1321,76 @@ AP-CHECK { "id": 7695, "name": "ML_MAP33 - YellowSkull [864,-3304]", "keys": [] 
 AP-CHECK { "id": 7696, "name": "ML_MAP33 - RadSuit [-1983,-837]", "keys": [] }
 AP-CHECK { "id": 7698, "name": "ML_MAP26 - BlueSkull", "keys": [] }
 AP-CHECK { "id": 7698, "name": "ML_MAP33 - Backpack [-2438,40]", "keys": [] }
+AP-CHECK { "id": 7699, "name": "ML_MAP26 - RedSkull", "keys": ["BlueSkull"] }
+AP-CHECK { "id": 7700, "name": "ML_MAP26 - Megasphere [-1904,-380]", "keys": ["BlueSkull"] }
 AP-CHECK { "id": 7701, "name": "ML_MAP33 - Backpack [448,-2720]", "keys": [] }
 AP-CHECK { "id": 7703, "name": "ML_MAP33 - Rocket Launcher [1056,-1872]", "keys": [] }
 AP-CHECK { "id": 7704, "name": "ML_MAP26 - Backpack", "keys": [] }
+AP-CHECK { "id": 7705, "name": "ML_MAP26 - Super Shotgun", "keys": ["BlueSkull"] }
 AP-CHECK { "id": 7705, "name": "ML_MAP33 - Chaingun [-576,-1184]", "keys": [] }
 AP-CHECK { "id": 7706, "name": "ML_MAP33 - Chaingun [352,448]", "keys": [] }
 AP-CHECK { "id": 7708, "name": "ML_MAP26 - Plasma Rifle", "keys": [] }
 AP-CHECK { "id": 7708, "name": "ML_MAP33 - Berserk [-1256,-712]", "keys": [] }
+AP-CHECK { "id": 7709, "name": "ML_MAP26 - Chaingun", "keys": ["BlueSkull"] }
 AP-CHECK { "id": 7709, "name": "ML_MAP33 - Megasphere", "keys": [] }
+AP-CHECK { "id": 7710, "name": "ML_MAP26 - Berserk", "keys": ["BlueSkull"] }
 AP-CHECK { "id": 7710, "name": "ML_MAP33 - InvulnerabilitySphere", "keys": [] }
+AP-CHECK { "id": 7711, "name": "ML_MAP27 - Exit", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 7712, "name": "ML_MAP27 - BlueSkull", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 7713, "name": "ML_MAP27 - RedSkull", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 7714, "name": "ML_MAP27 - YellowSkull", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 7715, "name": "ML_MAP27 - Soulsphere [616,-128]", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 7716, "name": "ML_MAP27 - Soulsphere [1584,768]", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 7717, "name": "ML_MAP27 - BlueArmor [1000,1768]", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 7718, "name": "ML_MAP27 - BlueArmor [0,0]", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 7719, "name": "ML_MAP27 - Allmap", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 7720, "name": "ML_MAP27 - Shotgun", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 7721, "name": "ML_MAP27 - Chaingun", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 7722, "name": "ML_MAP27 - Rocket Launcher", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 7723, "name": "ML_MAP27 - BlurSphere", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 7725, "name": "ML_MAP27 - Plasma Rifle", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 7726, "name": "ML_MAP27 - InvulnerabilitySphere", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 7728, "name": "ML_MAP27 - Megasphere", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 7729, "name": "ML_MAP27 - Backpack", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
 AP-CHECK { "id": 7745, "name": "ML_MAP29 - Soulsphere [-1151,233]", "keys": [] }
+AP-CHECK { "id": 7747, "name": "ML_MAP29 - Soulsphere [1956,-2884]", "keys": ["YellowSkull", "RedSkull"] }
+AP-CHECK { "id": 7749, "name": "ML_MAP29 - Soulsphere [5385,-3209]", "keys": ["YellowSkull", "RedSkull"] }
 AP-CHECK { "id": 7751, "name": "ML_MAP29 - Infrared [-32,-1346]", "keys": [] }
 AP-CHECK { "id": 7752, "name": "ML_MAP29 - Infrared [352,-2368]", "keys": [] }
+AP-CHECK { "id": 7753, "name": "ML_MAP29 - Infrared [3339,-3379]", "keys": ["YellowSkull", "RedSkull"] }
+AP-CHECK { "id": 7755, "name": "ML_MAP29 - Megasphere [3808,-2016]", "keys": ["YellowSkull", "RedSkull"] }
+AP-CHECK { "id": 7756, "name": "ML_MAP29 - Megasphere [3863,-1250]", "keys": ["YellowSkull", "RedSkull"] }
 AP-CHECK { "id": 7757, "name": "ML_MAP29 - Megasphere [1578,1059]", "keys": [] }
 AP-CHECK { "id": 7758, "name": "ML_MAP29 - Super Shotgun [1398,-1631]", "keys": [] }
 AP-CHECK { "id": 7759, "name": "ML_MAP29 - Super Shotgun [-1220,337]", "keys": [] }
 AP-CHECK { "id": 7760, "name": "ML_MAP29 - BlueArmor [3364,-2781]", "keys": [] }
 AP-CHECK { "id": 7761, "name": "ML_MAP29 - BlueArmor [-3549,-516]", "keys": [] }
+AP-CHECK { "id": 7762, "name": "ML_MAP29 - BlueArmor [4781,-3171]", "keys": ["YellowSkull", "RedSkull"] }
+AP-CHECK { "id": 7765, "name": "ML_MAP29 - Berserk [989,-4887]", "keys": ["YellowSkull", "RedSkull"] }
 AP-CHECK { "id": 7767, "name": "ML_MAP29 - Berserk [-3251,312]", "keys": [] }
 AP-CHECK { "id": 7769, "name": "ML_MAP29 - Berserk [2440,-1235]", "keys": [] }
+AP-CHECK { "id": 7770, "name": "ML_MAP29 - Berserk [5406,-3664]", "keys": ["YellowSkull", "RedSkull"] }
+AP-CHECK { "id": 7771, "name": "ML_MAP29 - BlueSkull", "keys": ["YellowSkull", "RedSkull"] }
 AP-CHECK { "id": 7772, "name": "ML_MAP29 - Rocket Launcher [1477,782]", "keys": [] }
+AP-CHECK { "id": 7773, "name": "ML_MAP29 - Rocket Launcher [-482,3684]", "keys": ["YellowSkull", "RedSkull"] }
 AP-CHECK { "id": 7776, "name": "ML_MAP29 - BlurSphere [-320,342]", "keys": [] }
+AP-CHECK { "id": 7777, "name": "ML_MAP29 - BlurSphere [3756,-1347]", "keys": ["YellowSkull", "RedSkull"] }
 AP-CHECK { "id": 7778, "name": "ML_MAP29 - BlurSphere [1701,-767]", "keys": [] }
 AP-CHECK { "id": 7779, "name": "ML_MAP29 - Chainsaw", "keys": [] }
+AP-CHECK { "id": 7781, "name": "ML_MAP29 - RadSuit [844,-4371]", "keys": ["YellowSkull", "RedSkull"] }
+AP-CHECK { "id": 7783, "name": "ML_MAP29 - Plasma Rifle", "keys": ["YellowSkull", "RedSkull"] }
 AP-CHECK { "id": 7784, "name": "ML_MAP29 - GreenArmor [1483,2214]", "keys": [] }
 AP-CHECK { "id": 7786, "name": "ML_MAP29 - Shotgun [305,-624]", "keys": [] }
+AP-CHECK { "id": 7791, "name": "ML_MAP30 - Super Shotgun", "keys": ["RedSkull"] }
+AP-CHECK { "id": 7792, "name": "ML_MAP30 - Berserk [-442,1428]", "keys": ["RedSkull"] }
+AP-CHECK { "id": 7794, "name": "ML_MAP30 - Berserk [3733,199]", "keys": ["RedSkull"] }
+AP-CHECK { "id": 7799, "name": "ML_MAP30 - Shotgun", "keys": ["RedSkull"] }
+AP-CHECK { "id": 7802, "name": "ML_MAP30 - RedSkull", "keys": ["RedSkull"] }
+AP-CHECK { "id": 7803, "name": "ML_MAP30 - Backpack", "keys": ["RedSkull"] }
+AP-CHECK { "id": 7804, "name": "ML_MAP30 - YellowSkull", "keys": ["RedSkull"] }
+AP-CHECK { "id": 7805, "name": "ML_MAP30 - GreenArmor", "keys": ["RedSkull"] }
+AP-CHECK { "id": 7806, "name": "ML_MAP30 - Chainsaw", "keys": ["RedSkull"] }
+AP-CHECK { "id": 7808, "name": "ML_MAP30 - Soulsphere [3701,-371]", "keys": ["RedSkull"] }
 AP-CHECK { "id": 782, "name": "MAP30 - Exit", "keys": [] }
 AP-CHECK { "id": 7837, "name": "ML_MAP40 - Rocket Launcher [-2384,-736]", "keys": ["YellowCard", "RedCard"] }
 AP-CHECK { "id": 7838, "name": "ML_MAP40 - Rocket Launcher [-2016,416]", "keys": ["YellowCard", "RedCard"] }
@@ -865,6 +1400,7 @@ AP-CHECK { "id": 7841, "name": "ML_MAP40 - GreenArmor [2464,-192]", "keys": ["Ye
 AP-CHECK { "id": 7843, "name": "ML_MAP32 - Shotgun", "keys": ["YellowSkull", "RedSkull"] }
 AP-CHECK { "id": 7843, "name": "ML_MAP40 - GreenArmor [1560,-1672]", "keys": ["YellowCard", "RedCard"] }
 AP-CHECK { "id": 7844, "name": "ML_MAP32 - RedSkull", "keys": ["YellowSkull", "RedSkull"] }
+AP-CHECK { "id": 7845, "name": "ML_MAP32 - Soulsphere [-2580,-906]", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
 AP-CHECK { "id": 7845, "name": "ML_MAP40 - Shotgun [-2960,-1104]", "keys": ["YellowCard", "RedCard"] }
 AP-CHECK { "id": 7846, "name": "ML_MAP32 - Soulsphere [-2212,-2]", "keys": ["YellowSkull", "RedSkull"] }
 AP-CHECK { "id": 7846, "name": "ML_MAP40 - Shotgun [-1344,336]", "keys": ["YellowCard", "RedCard"] }
@@ -901,6 +1437,7 @@ AP-CHECK { "id": 7869, "name": "ML_MAP40 - RadSuit [2264,512]", "keys": ["Yellow
 AP-CHECK { "id": 7870, "name": "ML_MAP32 - Allmap", "keys": ["YellowSkull", "RedSkull"] }
 AP-CHECK { "id": 7872, "name": "ML_MAP40 - Berserk", "keys": ["YellowCard", "RedCard"] }
 AP-CHECK { "id": 7873, "name": "ML_MAP32 - Megasphere [-1376,-2896]", "keys": ["YellowSkull", "RedSkull"] }
+AP-CHECK { "id": 7874, "name": "ML_MAP32 - Megasphere [-3214,2060]", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
 AP-CHECK { "id": 7875, "name": "ML_MAP32 - GreenArmor [-2910,-1602]", "keys": ["RedSkull"] }
 AP-CHECK { "id": 7879, "name": "ML_MAP32 - BlurSphere [-3940,-562]", "keys": ["YellowSkull", "RedSkull"] }
 AP-CHECK { "id": 7880, "name": "ML_MAP32 - BlurSphere [-2583,118]", "keys": ["YellowSkull", "RedSkull"] }
@@ -908,18 +1445,30 @@ AP-CHECK { "id": 7881, "name": "ML_MAP32 - BlurSphere [-3721,468]", "keys": ["Ye
 AP-CHECK { "id": 7882, "name": "ML_MAP32 - RadSuit", "keys": ["YellowSkull", "RedSkull"] }
 AP-CHECK { "id": 7885, "name": "ML_MAP32 - InvulnerabilitySphere [-1708,-3352]", "keys": ["YellowSkull", "RedSkull"] }
 AP-CHECK { "id": 7886, "name": "ML_MAP32 - Infrared", "keys": ["YellowSkull", "RedSkull"] }
+AP-CHECK { "id": 7889, "name": "ML_MAP33 - BlueArmor [-2588,62]", "keys": ["BlueSkull", "YellowSkull"] }
+AP-CHECK { "id": 7899, "name": "ML_MAP33 - Plasma Rifle [1184,-1824]", "keys": ["BlueSkull", "YellowSkull"] }
+AP-CHECK { "id": 7908, "name": "ML_MAP33 - YellowSkull [864,-3304]", "keys": ["BlueSkull", "YellowSkull"] }
+AP-CHECK { "id": 7912, "name": "ML_MAP33 - Backpack [-928,-1184]", "keys": ["BlueSkull", "YellowSkull"] }
+AP-CHECK { "id": 7914, "name": "ML_MAP33 - Backpack [448,-2720]", "keys": ["BlueSkull", "YellowSkull"] }
+AP-CHECK { "id": 7922, "name": "ML_MAP33 - Megasphere", "keys": ["BlueSkull", "YellowSkull"] }
+AP-CHECK { "id": 7924, "name": "ML_MAP34 - Exit", "keys": ["RedSkull", "YellowSkull"] }
 AP-CHECK { "id": 7925, "name": "ML_MAP34 - Super Shotgun [64,-816]", "keys": [] }
 AP-CHECK { "id": 7926, "name": "ML_MAP34 - Super Shotgun [-1056,1024]", "keys": [] }
 AP-CHECK { "id": 7927, "name": "ML_MAP34 - GreenArmor", "keys": [] }
+AP-CHECK { "id": 7928, "name": "ML_MAP34 - YellowSkull", "keys": ["RedSkull", "YellowSkull"] }
 AP-CHECK { "id": 7929, "name": "ML_MAP34 - Chaingun", "keys": [] }
 AP-CHECK { "id": 7930, "name": "ML_MAP34 - BlueArmor [-544,1424]", "keys": [] }
 AP-CHECK { "id": 7931, "name": "ML_MAP34 - BlueArmor [736,1760]", "keys": [] }
 AP-CHECK { "id": 7933, "name": "ML_MAP34 - Soulsphere [-480,2240]", "keys": [] }
 AP-CHECK { "id": 7934, "name": "ML_MAP34 - Plasma Rifle", "keys": [] }
 AP-CHECK { "id": 7935, "name": "ML_MAP34 - Backpack [160,-1344]", "keys": [] }
+AP-CHECK { "id": 7937, "name": "ML_MAP34 - Rocket Launcher [96,1856]", "keys": ["RedSkull", "YellowSkull"] }
 AP-CHECK { "id": 7938, "name": "ML_MAP34 - Rocket Launcher [-1344,2816]", "keys": [] }
+AP-CHECK { "id": 7939, "name": "ML_MAP34 - BlurSphere [-1920,0]", "keys": ["RedSkull", "YellowSkull"] }
+AP-CHECK { "id": 7940, "name": "ML_MAP34 - BlurSphere [-1761,3067]", "keys": ["RedSkull", "YellowSkull"] }
 AP-CHECK { "id": 7941, "name": "ML_MAP34 - BlurSphere [1112,2336]", "keys": [] }
 AP-CHECK { "id": 7942, "name": "ML_MAP34 - BlurSphere [-2200,1416]", "keys": [] }
+AP-CHECK { "id": 7943, "name": "ML_MAP34 - Chainsaw", "keys": ["RedSkull", "YellowSkull"] }
 AP-CHECK { "id": 7944, "name": "ML_MAP34 - Allmap", "keys": [] }
 AP-CHECK { "id": 7945, "name": "ML_MAP34 - RadSuit [-1664,1440]", "keys": [] }
 AP-CHECK { "id": 7946, "name": "ML_MAP34 - RadSuit [-2144,1408]", "keys": [] }
@@ -954,12 +1503,37 @@ AP-CHECK { "id": 7989, "name": "TN_MAP02 - Chainsaw", "keys": [] }
 AP-CHECK { "id": 799, "name": "MAP30 - Rocket Launcher", "keys": [] }
 AP-CHECK { "id": 7991, "name": "TN_MAP02 - Chaingun [644,2368]", "keys": ["RedCard"] }
 AP-CHECK { "id": 7994, "name": "TN_MAP02 - GreenArmor [649,2262]", "keys": ["RedCard"] }
+AP-CHECK { "id": 8021, "name": "ML_MAP38 - Exit", "keys": ["BlueCard", "RedCard"] }
+AP-CHECK { "id": 8022, "name": "ML_MAP38 - Rocket Launcher", "keys": ["BlueCard"] }
+AP-CHECK { "id": 8023, "name": "ML_MAP38 - Soulsphere", "keys": ["BlueCard"] }
+AP-CHECK { "id": 8024, "name": "ML_MAP38 - Super Shotgun", "keys": ["BlueCard"] }
+AP-CHECK { "id": 8025, "name": "ML_MAP38 - GreenArmor", "keys": ["BlueCard"] }
+AP-CHECK { "id": 8026, "name": "ML_MAP38 - BlueArmor", "keys": ["BlueCard"] }
+AP-CHECK { "id": 8027, "name": "ML_MAP38 - BlueCard", "keys": ["BlueCard"] }
+AP-CHECK { "id": 8028, "name": "ML_MAP38 - RedCard", "keys": ["BlueCard"] }
+AP-CHECK { "id": 8029, "name": "ML_MAP38 - BlurSphere", "keys": ["BlueCard"] }
+AP-CHECK { "id": 8030, "name": "ML_MAP38 - Plasma Rifle", "keys": ["BlueCard"] }
+AP-CHECK { "id": 8039, "name": "ML_MAP39 - RedCard", "keys": ["BlueCard"] }
+AP-CHECK { "id": 8045, "name": "ML_MAP39 - Backpack [192,592]", "keys": ["BlueCard"] }
+AP-CHECK { "id": 8046, "name": "ML_MAP39 - RadSuit", "keys": ["BlueCard"] }
+AP-CHECK { "id": 8049, "name": "ML_MAP40 - Exit", "keys": ["BlueCard", "YellowCard", "RedCard"] }
+AP-CHECK { "id": 8070, "name": "ML_MAP40 - BlueArmor [1824,864]", "keys": ["BlueCard", "YellowCard", "RedCard"] }
+AP-CHECK { "id": 8073, "name": "ML_MAP40 - Soulsphere [2352,424]", "keys": ["BlueCard", "YellowCard", "RedCard"] }
+AP-CHECK { "id": 8079, "name": "ML_MAP40 - Backpack [1632,928]", "keys": ["BlueCard", "YellowCard", "RedCard"] }
+AP-CHECK { "id": 8080, "name": "ML_MAP40 - RadSuit [1616,720]", "keys": ["BlueCard", "YellowCard", "RedCard"] }
+AP-CHECK { "id": 8082, "name": "ML_MAP40 - RadSuit [2264,512]", "keys": ["BlueCard", "YellowCard", "RedCard"] }
 AP-CHECK { "id": 8092, "name": "ML_MAP41 - Rocket Launcher", "keys": [] }
 AP-CHECK { "id": 8093, "name": "ML_MAP41 - Chaingun", "keys": [] }
 AP-CHECK { "id": 8094, "name": "ML_MAP41 - Shotgun", "keys": [] }
 AP-CHECK { "id": 8095, "name": "ML_MAP41 - Chainsaw", "keys": [] }
 AP-CHECK { "id": 8096, "name": "ML_MAP41 - Berserk", "keys": [] }
+AP-CHECK { "id": 8097, "name": "ML_MAP41 - Soulsphere [1721,-193]", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 8100, "name": "ML_MAP41 - BlueSkull", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 8101, "name": "ML_MAP41 - RedSkull", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 8103, "name": "ML_MAP41 - GreenArmor", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 8105, "name": "ML_MAP41 - InvulnerabilitySphere", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
 AP-CHECK { "id": 8106, "name": "ML_MAP41 - BlurSphere", "keys": [] }
+AP-CHECK { "id": 8107, "name": "ML_MAP41 - Allmap", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
 AP-CHECK { "id": 8143, "name": "TN_MAP13 - YellowCard", "keys": [] }
 AP-CHECK { "id": 8144, "name": "TN_MAP13 - Chaingun", "keys": [] }
 AP-CHECK { "id": 8145, "name": "TN_MAP13 - GreenArmor [176,2016]", "keys": [] }
@@ -976,25 +1550,82 @@ AP-CHECK { "id": 8188, "name": "TN_MAP15 - Chaingun [3448,3960]", "keys": [] }
 AP-CHECK { "id": 8189, "name": "TN_MAP15 - Chaingun [2002,137]", "keys": [] }
 AP-CHECK { "id": 8190, "name": "TN_MAP15 - Plasma Rifle", "keys": [] }
 AP-CHECK { "id": 8192, "name": "TN_MAP15 - Backpack", "keys": [] }
+AP-CHECK { "id": 8195, "name": "TN_MAP02 - RedCard", "keys": ["RedCard", "BlueCard"] }
 AP-CHECK { "id": 8195, "name": "TN_MAP15 - BlurSphere [1608,2140]", "keys": [] }
+AP-CHECK { "id": 8196, "name": "TN_MAP02 - YellowCard", "keys": ["RedCard", "BlueCard"] }
 AP-CHECK { "id": 8196, "name": "TN_MAP15 - BlurSphere [3232,2824]", "keys": [] }
+AP-CHECK { "id": 8197, "name": "TN_MAP02 - Allmap", "keys": ["RedCard", "BlueCard"] }
 AP-CHECK { "id": 8197, "name": "TN_MAP15 - InvulnerabilitySphere", "keys": [] }
+AP-CHECK { "id": 8198, "name": "TN_MAP02 - BlueCard", "keys": ["RedCard", "BlueCard"] }
+AP-CHECK { "id": 8201, "name": "TN_MAP02 - Backpack", "keys": ["RedCard", "BlueCard"] }
+AP-CHECK { "id": 8202, "name": "TN_MAP02 - Chainsaw", "keys": ["RedCard", "BlueCard"] }
+AP-CHECK { "id": 8204, "name": "TN_MAP02 - Chaingun [644,2368]", "keys": ["RedCard", "BlueCard"] }
+AP-CHECK { "id": 8207, "name": "TN_MAP02 - GreenArmor [649,2262]", "keys": ["RedCard", "BlueCard"] }
+AP-CHECK { "id": 8210, "name": "TN_MAP03 - RedCard", "keys": ["RedCard"] }
+AP-CHECK { "id": 8211, "name": "TN_MAP03 - YellowCard", "keys": ["RedCard"] }
+AP-CHECK { "id": 8214, "name": "TN_MAP03 - BlurSphere [957,1980]", "keys": ["RedCard"] }
+AP-CHECK { "id": 8215, "name": "TN_MAP03 - Super Shotgun", "keys": ["RedCard"] }
+AP-CHECK { "id": 8216, "name": "TN_MAP03 - GreenArmor [64,-768]", "keys": ["RedCard"] }
+AP-CHECK { "id": 8217, "name": "TN_MAP03 - GreenArmor [-293,-3]", "keys": ["RedCard"] }
+AP-CHECK { "id": 8218, "name": "TN_MAP03 - GreenArmor [-1257,-1013]", "keys": ["RedCard"] }
+AP-CHECK { "id": 8220, "name": "TN_MAP03 - Rocket Launcher", "keys": ["RedCard"] }
 AP-CHECK { "id": 8220, "name": "TN_MAP17 - Super Shotgun", "keys": ["YellowCard"] }
+AP-CHECK { "id": 8221, "name": "TN_MAP03 - Chainsaw", "keys": ["RedCard"] }
 AP-CHECK { "id": 8222, "name": "TN_MAP17 - BlueCard", "keys": ["YellowCard"] }
+AP-CHECK { "id": 8223, "name": "TN_MAP03 - Backpack", "keys": ["RedCard"] }
 AP-CHECK { "id": 8223, "name": "TN_MAP17 - YellowCard", "keys": [] }
+AP-CHECK { "id": 8224, "name": "TN_MAP03 - Chaingun", "keys": ["RedCard"] }
+AP-CHECK { "id": 8225, "name": "TN_MAP03 - Berserk", "keys": ["RedCard"] }
 AP-CHECK { "id": 8225, "name": "TN_MAP17 - RadSuit", "keys": ["YellowCard"] }
 AP-CHECK { "id": 8227, "name": "TN_MAP17 - Backpack [713,8]", "keys": [] }
 AP-CHECK { "id": 8228, "name": "TN_MAP17 - Backpack [897,184]", "keys": [] }
 AP-CHECK { "id": 8235, "name": "TN_MAP17 - BlurSphere [-623,-1105]", "keys": [] }
 AP-CHECK { "id": 8236, "name": "TN_MAP17 - BlurSphere [806,96]", "keys": [] }
 AP-CHECK { "id": 8238, "name": "TN_MAP17 - Soulsphere", "keys": [] }
+AP-CHECK { "id": 8239, "name": "TN_MAP05 - GreenArmor", "keys": ["YellowCard"] }
+AP-CHECK { "id": 8240, "name": "TN_MAP05 - Chaingun", "keys": ["YellowCard"] }
+AP-CHECK { "id": 8242, "name": "TN_MAP05 - BlueCard", "keys": ["YellowCard"] }
+AP-CHECK { "id": 8244, "name": "TN_MAP05 - Rocket Launcher", "keys": ["YellowCard"] }
+AP-CHECK { "id": 8245, "name": "TN_MAP05 - Super Shotgun", "keys": ["YellowCard"] }
+AP-CHECK { "id": 8246, "name": "TN_MAP05 - Backpack", "keys": ["YellowCard"] }
+AP-CHECK { "id": 8247, "name": "TN_MAP05 - RedCard", "keys": ["YellowCard"] }
+AP-CHECK { "id": 8248, "name": "TN_MAP05 - BlueArmor", "keys": ["YellowCard"] }
+AP-CHECK { "id": 8249, "name": "TN_MAP05 - BlurSphere", "keys": ["YellowCard"] }
+AP-CHECK { "id": 8250, "name": "TN_MAP05 - Soulsphere", "keys": ["YellowCard"] }
 AP-CHECK { "id": 8251, "name": "TN_MAP06 - Exit", "keys": ["RedCard"] }
+AP-CHECK { "id": 8252, "name": "TN_MAP06 - RadSuit [1024,448]", "keys": ["BlueCard", "RedCard"] }
+AP-CHECK { "id": 8253, "name": "TN_MAP06 - RadSuit [832,832]", "keys": ["BlueCard", "RedCard"] }
 AP-CHECK { "id": 8254, "name": "TN_MAP06 - BlueCard", "keys": ["RedCard"] }
+AP-CHECK { "id": 8257, "name": "TN_MAP06 - YellowCard", "keys": ["BlueCard", "RedCard"] }
 AP-CHECK { "id": 8258, "name": "TN_MAP06 - BlueArmor", "keys": ["RedCard"] }
 AP-CHECK { "id": 8259, "name": "TN_MAP06 - Shotgun", "keys": ["RedCard"] }
 AP-CHECK { "id": 8260, "name": "TN_MAP06 - Chainsaw", "keys": ["RedCard"] }
 AP-CHECK { "id": 8261, "name": "TN_MAP06 - Rocket Launcher", "keys": ["RedCard"] }
 AP-CHECK { "id": 8262, "name": "TN_MAP06 - Super Shotgun", "keys": ["RedCard"] }
+AP-CHECK { "id": 8263, "name": "TN_MAP07 - Exit", "keys": ["RedCard"] }
+AP-CHECK { "id": 8268, "name": "TN_MAP07 - BlueArmor", "keys": ["RedCard"] }
+AP-CHECK { "id": 8269, "name": "TN_MAP07 - Shotgun [99,-2532]", "keys": ["RedCard"] }
+AP-CHECK { "id": 8272, "name": "TN_MAP07 - Shotgun [16,-2781]", "keys": ["RedCard"] }
+AP-CHECK { "id": 8273, "name": "TN_MAP07 - Super Shotgun", "keys": ["RedCard"] }
+AP-CHECK { "id": 8276, "name": "TN_MAP07 - RedCard", "keys": ["RedCard"] }
+AP-CHECK { "id": 8278, "name": "TN_MAP07 - RadSuit [258,-1207]", "keys": ["RedCard"] }
+AP-CHECK { "id": 8281, "name": "TN_MAP07 - RadSuit [2209,-580]", "keys": ["RedCard"] }
+AP-CHECK { "id": 8282, "name": "TN_MAP07 - RadSuit [1703,32]", "keys": ["RedCard"] }
+AP-CHECK { "id": 8284, "name": "TN_MAP07 - Plasma Rifle", "keys": ["RedCard"] }
+AP-CHECK { "id": 8286, "name": "TN_MAP07 - Backpack", "keys": ["RedCard"] }
+AP-CHECK { "id": 8298, "name": "TN_MAP09 - GreenArmor", "keys": ["RedCard"] }
+AP-CHECK { "id": 8299, "name": "TN_MAP09 - RedCard", "keys": ["RedCard"] }
+AP-CHECK { "id": 8300, "name": "TN_MAP09 - Shotgun", "keys": ["RedCard"] }
+AP-CHECK { "id": 8301, "name": "TN_MAP09 - Super Shotgun", "keys": ["RedCard"] }
+AP-CHECK { "id": 8302, "name": "TN_MAP09 - Berserk [240,-368]", "keys": ["RedCard"] }
+AP-CHECK { "id": 8303, "name": "TN_MAP09 - Berserk [608,-704]", "keys": ["RedCard"] }
+AP-CHECK { "id": 8305, "name": "TN_MAP09 - BlueCard", "keys": ["RedCard"] }
+AP-CHECK { "id": 8306, "name": "TN_MAP09 - Allmap", "keys": ["RedCard"] }
+AP-CHECK { "id": 8307, "name": "TN_MAP09 - BlurSphere", "keys": ["RedCard"] }
+AP-CHECK { "id": 8308, "name": "TN_MAP09 - Backpack", "keys": ["RedCard"] }
+AP-CHECK { "id": 8309, "name": "TN_MAP10 - Exit", "keys": ["RedCard", "YellowCard"] }
+AP-CHECK { "id": 8315, "name": "TN_MAP10 - RedCard", "keys": ["RedCard", "YellowCard"] }
+AP-CHECK { "id": 8318, "name": "TN_MAP10 - Shotgun", "keys": ["RedCard", "YellowCard"] }
 AP-CHECK { "id": 8397, "name": "TN_MAP15 - Exit", "keys": [] }
 AP-CHECK { "id": 8399, "name": "TN_MAP15 - Super Shotgun [2592,1242]", "keys": [] }
 AP-CHECK { "id": 8400, "name": "TN_MAP15 - Super Shotgun [2948,2088]", "keys": [] }
@@ -1002,10 +1633,21 @@ AP-CHECK { "id": 8401, "name": "TN_MAP15 - Chaingun [3448,3960]", "keys": [] }
 AP-CHECK { "id": 8402, "name": "TN_MAP15 - Chaingun [2002,137]", "keys": [] }
 AP-CHECK { "id": 8403, "name": "TN_MAP15 - Plasma Rifle", "keys": [] }
 AP-CHECK { "id": 8405, "name": "TN_MAP15 - Backpack", "keys": [] }
+AP-CHECK { "id": 8454, "name": "TN_MAP18 - Super Shotgun", "keys": [] }
+AP-CHECK { "id": 8455, "name": "TN_MAP18 - Rocket Launcher", "keys": [] }
+AP-CHECK { "id": 8456, "name": "TN_MAP18 - BlueCard", "keys": [] }
+AP-CHECK { "id": 8460, "name": "TN_MAP18 - GreenArmor [-2118,-17]", "keys": [] }
+AP-CHECK { "id": 8462, "name": "TN_MAP18 - Shotgun", "keys": [] }
+AP-CHECK { "id": 8463, "name": "TN_MAP18 - Chaingun", "keys": [] }
+AP-CHECK { "id": 8464, "name": "TN_MAP18 - RedCard", "keys": [] }
+AP-CHECK { "id": 8465, "name": "TN_MAP18 - Backpack [576,-480]", "keys": [] }
+AP-CHECK { "id": 8467, "name": "TN_MAP18 - Allmap", "keys": [] }
+AP-CHECK { "id": 8476, "name": "TN_MAP19 - Exit", "keys": ["BlueCard", "YellowCard", "RedCard"] }
 AP-CHECK { "id": 8478, "name": "TN_MAP19 - Soulsphere", "keys": [] }
 AP-CHECK { "id": 8479, "name": "TN_MAP30 - Rocket Launcher [-4352,-1920]", "keys": [] }
 AP-CHECK { "id": 8480, "name": "TN_MAP19 - YellowCard", "keys": [] }
 AP-CHECK { "id": 8481, "name": "TN_MAP19 - Backpack", "keys": [] }
+AP-CHECK { "id": 8482, "name": "TN_MAP19 - BlueCard", "keys": ["BlueCard", "YellowCard", "RedCard"] }
 AP-CHECK { "id": 8482, "name": "TN_MAP30 - Shotgun [-4160,-1920]", "keys": [] }
 AP-CHECK { "id": 8483, "name": "TN_MAP19 - Super Shotgun", "keys": [] }
 AP-CHECK { "id": 8483, "name": "TN_MAP30 - Backpack", "keys": [] }
@@ -1014,9 +1656,29 @@ AP-CHECK { "id": 8485, "name": "TN_MAP19 - Shotgun", "keys": [] }
 AP-CHECK { "id": 8485, "name": "TN_MAP30 - Chaingun", "keys": [] }
 AP-CHECK { "id": 8486, "name": "TN_MAP30 - Plasma Rifle", "keys": [] }
 AP-CHECK { "id": 8487, "name": "TN_MAP30 - BFG 9000", "keys": [] }
+AP-CHECK { "id": 8488, "name": "TN_MAP20 - RedSkull", "keys": ["YellowSkull"] }
 AP-CHECK { "id": 8488, "name": "TN_MAP30 - Chainsaw", "keys": [] }
+AP-CHECK { "id": 8489, "name": "TN_MAP20 - Super Shotgun", "keys": ["YellowSkull"] }
 AP-CHECK { "id": 8490, "name": "TN_MAP30 - Soulsphere [-1104,1392]", "keys": [] }
 AP-CHECK { "id": 8492, "name": "TN_MAP30 - BlueArmor [-1232,1392]", "keys": [] }
+AP-CHECK { "id": 8497, "name": "TN_MAP20 - Berserk", "keys": ["YellowSkull"] }
+AP-CHECK { "id": 8503, "name": "TN_MAP20 - Chainsaw", "keys": ["YellowSkull"] }
+AP-CHECK { "id": 8504, "name": "TN_MAP20 - Plasma Rifle", "keys": ["YellowSkull"] }
+AP-CHECK { "id": 8505, "name": "TN_MAP20 - Backpack", "keys": ["YellowSkull"] }
+AP-CHECK { "id": 8514, "name": "TN_MAP21 - Rocket Launcher", "keys": ["YellowSkull", "RedSkull"] }
+AP-CHECK { "id": 8515, "name": "TN_MAP21 - RedSkull", "keys": ["YellowSkull", "RedSkull"] }
+AP-CHECK { "id": 8516, "name": "TN_MAP21 - Backpack", "keys": ["YellowSkull", "RedSkull"] }
+AP-CHECK { "id": 8517, "name": "TN_MAP21 - YellowSkull", "keys": ["YellowSkull", "RedSkull"] }
+AP-CHECK { "id": 8520, "name": "TN_MAP21 - BlueSkull", "keys": ["YellowSkull", "RedSkull"] }
+AP-CHECK { "id": 8524, "name": "TN_MAP21 - Allmap", "keys": ["YellowSkull", "RedSkull"] }
+AP-CHECK { "id": 8525, "name": "TN_MAP21 - RadSuit", "keys": ["YellowSkull", "RedSkull"] }
+AP-CHECK { "id": 8526, "name": "TN_MAP21 - Chainsaw", "keys": ["YellowSkull", "RedSkull"] }
+AP-CHECK { "id": 8527, "name": "TN_MAP21 - Berserk [-488,-56]", "keys": ["YellowSkull", "RedSkull"] }
+AP-CHECK { "id": 8528, "name": "TN_MAP21 - Berserk [-2950,-1327]", "keys": ["YellowSkull", "RedSkull"] }
+AP-CHECK { "id": 8529, "name": "TN_MAP21 - Super Shotgun", "keys": ["YellowSkull", "RedSkull"] }
+AP-CHECK { "id": 8531, "name": "TN_MAP21 - BlueArmor [-1540,-716]", "keys": ["YellowSkull", "RedSkull"] }
+AP-CHECK { "id": 8537, "name": "TN_MAP21 - GreenArmor [-1657,-937]", "keys": ["YellowSkull", "RedSkull"] }
+AP-CHECK { "id": 8539, "name": "TN_MAP22 - Exit", "keys": ["BlueCard", "YellowCard", "RedSkull"] }
 AP-CHECK { "id": 8540, "name": "TN_MAP22 - BlueCard", "keys": [] }
 AP-CHECK { "id": 8541, "name": "TN_MAP22 - Plasma Rifle", "keys": [] }
 AP-CHECK { "id": 8542, "name": "TN_MAP22 - Super Shotgun", "keys": [] }
@@ -1024,8 +1686,26 @@ AP-CHECK { "id": 8543, "name": "TN_MAP22 - Soulsphere", "keys": [] }
 AP-CHECK { "id": 8544, "name": "TN_MAP22 - Shotgun", "keys": [] }
 AP-CHECK { "id": 8545, "name": "TN_MAP22 - BFG 9000", "keys": [] }
 AP-CHECK { "id": 8546, "name": "TN_MAP22 - Rocket Launcher [960,-720]", "keys": [] }
+AP-CHECK { "id": 8547, "name": "TN_MAP22 - Rocket Launcher [-3856,320]", "keys": ["BlueCard", "YellowCard", "RedSkull"] }
 AP-CHECK { "id": 8548, "name": "TN_MAP22 - Chainsaw", "keys": [] }
+AP-CHECK { "id": 8549, "name": "TN_MAP22 - InvulnerabilitySphere", "keys": ["BlueCard", "YellowCard", "RedSkull"] }
+AP-CHECK { "id": 8550, "name": "TN_MAP22 - Berserk", "keys": ["BlueCard", "YellowCard", "RedSkull"] }
+AP-CHECK { "id": 8551, "name": "TN_MAP22 - GreenArmor [-3760,-2000]", "keys": ["BlueCard", "YellowCard", "RedSkull"] }
 AP-CHECK { "id": 8552, "name": "TN_MAP22 - GreenArmor [-3584,-2000]", "keys": [] }
+AP-CHECK { "id": 8553, "name": "TN_MAP22 - YellowCard", "keys": ["BlueCard", "YellowCard", "RedSkull"] }
+AP-CHECK { "id": 8579, "name": "TN_MAP24 - Exit", "keys": ["BlueCard"] }
+AP-CHECK { "id": 8580, "name": "TN_MAP24 - Rocket Launcher [576,0]", "keys": ["BlueCard"] }
+AP-CHECK { "id": 8581, "name": "TN_MAP24 - Rocket Launcher [-464,-32]", "keys": ["BlueCard"] }
+AP-CHECK { "id": 8584, "name": "TN_MAP24 - GreenArmor [-192,1488]", "keys": ["BlueCard"] }
+AP-CHECK { "id": 8585, "name": "TN_MAP24 - BlueCard", "keys": ["BlueCard"] }
+AP-CHECK { "id": 8586, "name": "TN_MAP24 - Plasma Rifle", "keys": ["BlueCard"] }
+AP-CHECK { "id": 8587, "name": "TN_MAP24 - Shotgun [64,-608]", "keys": ["BlueCard"] }
+AP-CHECK { "id": 8588, "name": "TN_MAP24 - Shotgun [96,432]", "keys": ["BlueCard"] }
+AP-CHECK { "id": 8589, "name": "TN_MAP24 - Shotgun [1576,1608]", "keys": ["BlueCard"] }
+AP-CHECK { "id": 8590, "name": "TN_MAP24 - BlurSphere", "keys": ["BlueCard"] }
+AP-CHECK { "id": 8591, "name": "TN_MAP24 - RadSuit", "keys": ["BlueCard"] }
+AP-CHECK { "id": 8592, "name": "TN_MAP24 - Chainsaw", "keys": ["BlueCard"] }
+AP-CHECK { "id": 8593, "name": "TN_MAP24 - InvulnerabilitySphere", "keys": ["BlueCard"] }
 AP-CHECK { "id": 8594, "name": "PL_MAP08 - Berserk", "keys": [] }
 AP-CHECK { "id": 8595, "name": "PL_MAP08 - BlueSkull", "keys": [] }
 AP-CHECK { "id": 8596, "name": "PL_MAP08 - Rocket Launcher", "keys": [] }
@@ -1043,16 +1723,26 @@ AP-CHECK { "id": 8688, "name": "PL_MAP16 - Shotgun", "keys": [] }
 AP-CHECK { "id": 8689, "name": "PL_MAP16 - Rocket Launcher", "keys": [] }
 AP-CHECK { "id": 8690, "name": "PL_MAP16 - BFG 9000", "keys": [] }
 AP-CHECK { "id": 8691, "name": "PL_MAP16 - Plasma Rifle", "keys": [] }
+AP-CHECK { "id": 8702, "name": "TN_MAP30 - RedSkull", "keys": [] }
 AP-CHECK { "id": 8709, "name": "TN_MAP31 - Super Shotgun", "keys": [] }
 AP-CHECK { "id": 8710, "name": "TN_MAP31 - Chaingun", "keys": [] }
 AP-CHECK { "id": 8711, "name": "TN_MAP31 - Rocket Launcher", "keys": [] }
 AP-CHECK { "id": 8712, "name": "TN_MAP31 - Plasma Rifle", "keys": [] }
 AP-CHECK { "id": 8713, "name": "TN_MAP31 - Backpack", "keys": [] }
 AP-CHECK { "id": 8714, "name": "TN_MAP31 - GreenArmor", "keys": [] }
+AP-CHECK { "id": 8715, "name": "TN_MAP31 - BlueCard", "keys": ["BlueCard", "YellowCard"] }
+AP-CHECK { "id": 8716, "name": "TN_MAP31 - BlueArmor [-1536,-1056]", "keys": ["BlueCard", "YellowCard"] }
+AP-CHECK { "id": 8717, "name": "TN_MAP31 - BlueArmor [280,1848]", "keys": ["BlueCard", "YellowCard"] }
+AP-CHECK { "id": 8718, "name": "TN_MAP31 - BlueArmor [3008,256]", "keys": ["BlueCard", "YellowCard"] }
+AP-CHECK { "id": 8719, "name": "TN_MAP31 - Soulsphere", "keys": ["BlueCard", "YellowCard"] }
+AP-CHECK { "id": 8720, "name": "TN_MAP31 - RedCard", "keys": ["BlueCard", "YellowCard"] }
 AP-CHECK { "id": 8722, "name": "TN_MAP31 - YellowCard", "keys": [] }
+AP-CHECK { "id": 8744, "name": "PL_MAP01 - Exit", "keys": ["BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 8745, "name": "PL_MAP01 - Super Shotgun", "keys": ["BlueSkull", "RedSkull"] }
 AP-CHECK { "id": 8746, "name": "PL_MAP01 - BlueArmor", "keys": [] }
 AP-CHECK { "id": 8747, "name": "PL_MAP01 - Backpack", "keys": [] }
 AP-CHECK { "id": 8748, "name": "PL_MAP01 - Rocket Launcher", "keys": [] }
+AP-CHECK { "id": 8749, "name": "PL_MAP01 - BlueSkull", "keys": ["BlueSkull", "RedSkull"] }
 AP-CHECK { "id": 8750, "name": "PL_MAP01 - GreenArmor", "keys": [] }
 AP-CHECK { "id": 8751, "name": "PL_MAP01 - RedSkull", "keys": [] }
 AP-CHECK { "id": 8798, "name": "PL_MAP07 - Exit", "keys": ["YellowSkull"] }
@@ -1070,55 +1760,158 @@ AP-CHECK { "id": 8823, "name": "PL_MAP26 - Rocket Launcher", "keys": [] }
 AP-CHECK { "id": 8824, "name": "PL_MAP26 - Backpack", "keys": [] }
 AP-CHECK { "id": 8825, "name": "PL_MAP26 - Plasma Rifle", "keys": [] }
 AP-CHECK { "id": 8826, "name": "PL_MAP26 - Super Shotgun", "keys": [] }
+AP-CHECK { "id": 8827, "name": "PL_MAP10 - Exit", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 8828, "name": "PL_MAP10 - Plasma Rifle", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 8829, "name": "PL_MAP10 - Backpack", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 8830, "name": "PL_MAP10 - RedSkull", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 8831, "name": "PL_MAP10 - BlueSkull", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 8832, "name": "PL_MAP10 - BlurSphere [-1392,32]", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 8833, "name": "PL_MAP10 - BlurSphere [-162,1105]", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 8834, "name": "PL_MAP10 - YellowSkull", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 8835, "name": "PL_MAP10 - BlueArmor", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 8836, "name": "PL_MAP10 - Rocket Launcher", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 8837, "name": "PL_MAP10 - Super Shotgun", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
 AP-CHECK { "id": 8839, "name": "PL_MAP11 - Super Shotgun", "keys": [] }
 AP-CHECK { "id": 8840, "name": "PL_MAP11 - YellowSkull", "keys": [] }
 AP-CHECK { "id": 8841, "name": "PL_MAP11 - Backpack", "keys": [] }
 AP-CHECK { "id": 8842, "name": "PL_MAP11 - RedSkull", "keys": [] }
+AP-CHECK { "id": 8845, "name": "PL_MAP12 - Exit", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 8846, "name": "PL_MAP12 - Shotgun", "keys": ["YellowSkull", "BlueSkull"] }
+AP-CHECK { "id": 8847, "name": "PL_MAP12 - Soulsphere", "keys": ["YellowSkull", "BlueSkull"] }
+AP-CHECK { "id": 8848, "name": "PL_MAP12 - BlueArmor", "keys": ["YellowSkull", "BlueSkull"] }
+AP-CHECK { "id": 8849, "name": "PL_MAP12 - RedSkull", "keys": ["YellowSkull", "BlueSkull"] }
+AP-CHECK { "id": 8850, "name": "PL_MAP12 - BlueSkull", "keys": ["YellowSkull", "BlueSkull"] }
 AP-CHECK { "id": 8850, "name": "PL_MAP28 - Super Shotgun [-68,-582]", "keys": [] }
+AP-CHECK { "id": 8851, "name": "PL_MAP12 - YellowSkull", "keys": ["YellowSkull", "BlueSkull"] }
 AP-CHECK { "id": 8851, "name": "PL_MAP28 - Super Shotgun [-376,-3152]", "keys": [] }
+AP-CHECK { "id": 8852, "name": "PL_MAP12 - GreenArmor", "keys": ["YellowSkull", "BlueSkull"] }
 AP-CHECK { "id": 8852, "name": "PL_MAP28 - Super Shotgun [-376,-3200]", "keys": [] }
+AP-CHECK { "id": 8853, "name": "PL_MAP12 - BFG 9000", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
 AP-CHECK { "id": 8853, "name": "PL_MAP28 - Super Shotgun [-376,-3248]", "keys": [] }
+AP-CHECK { "id": 8854, "name": "PL_MAP12 - Super Shotgun", "keys": ["YellowSkull", "BlueSkull"] }
 AP-CHECK { "id": 8854, "name": "PL_MAP28 - Super Shotgun [-328,-3152]", "keys": [] }
+AP-CHECK { "id": 8855, "name": "PL_MAP12 - Rocket Launcher", "keys": ["YellowSkull", "BlueSkull"] }
 AP-CHECK { "id": 8855, "name": "PL_MAP28 - Super Shotgun [-328,-3200]", "keys": [] }
+AP-CHECK { "id": 8856, "name": "PL_MAP12 - Plasma Rifle", "keys": ["YellowSkull", "BlueSkull"] }
 AP-CHECK { "id": 8856, "name": "PL_MAP28 - Super Shotgun [-328,-3248]", "keys": [] }
+AP-CHECK { "id": 8857, "name": "PL_MAP12 - Chaingun", "keys": ["YellowSkull", "BlueSkull"] }
 AP-CHECK { "id": 8857, "name": "PL_MAP28 - BlueArmor [1176,192]", "keys": [] }
 AP-CHECK { "id": 8858, "name": "PL_MAP28 - BlueArmor [432,-3640]", "keys": [] }
 AP-CHECK { "id": 8859, "name": "PL_MAP28 - BlueArmor [-1056,-3360]", "keys": [] }
 AP-CHECK { "id": 8864, "name": "PL_MAP28 - Rocket Launcher", "keys": [] }
 AP-CHECK { "id": 8865, "name": "PL_MAP28 - RadSuit [352,-2848]", "keys": [] }
 AP-CHECK { "id": 8866, "name": "PL_MAP28 - RadSuit [480,-2720]", "keys": [] }
+AP-CHECK { "id": 8877, "name": "PL_MAP15 - Exit", "keys": ["YellowSkull"] }
 AP-CHECK { "id": 8877, "name": "PL_MAP28 - Plasma Rifle [-248,-3152]", "keys": [] }
+AP-CHECK { "id": 8878, "name": "PL_MAP15 - Super Shotgun", "keys": ["YellowSkull"] }
 AP-CHECK { "id": 8878, "name": "PL_MAP28 - Plasma Rifle [-248,-3200]", "keys": [] }
+AP-CHECK { "id": 8879, "name": "PL_MAP15 - Megasphere [512,-640]", "keys": ["YellowSkull"] }
 AP-CHECK { "id": 8879, "name": "PL_MAP28 - Plasma Rifle [-248,-3248]", "keys": [] }
+AP-CHECK { "id": 8880, "name": "PL_MAP15 - Megasphere [64,1696]", "keys": ["YellowSkull"] }
 AP-CHECK { "id": 8880, "name": "PL_MAP28 - Plasma Rifle [-200,-3248]", "keys": [] }
+AP-CHECK { "id": 8881, "name": "PL_MAP15 - Shotgun", "keys": ["YellowSkull"] }
 AP-CHECK { "id": 8881, "name": "PL_MAP28 - Plasma Rifle [-200,-3200]", "keys": [] }
+AP-CHECK { "id": 8882, "name": "PL_MAP15 - BlueArmor", "keys": ["YellowSkull"] }
 AP-CHECK { "id": 8882, "name": "PL_MAP28 - Plasma Rifle [-200,-3152]", "keys": [] }
+AP-CHECK { "id": 8883, "name": "PL_MAP15 - YellowSkull", "keys": ["YellowSkull"] }
+AP-CHECK { "id": 8884, "name": "PL_MAP15 - Soulsphere [544,672]", "keys": ["YellowSkull"] }
 AP-CHECK { "id": 8884, "name": "PL_MAP28 - YellowCard", "keys": [] }
+AP-CHECK { "id": 8885, "name": "PL_MAP15 - Soulsphere [-832,1408]", "keys": ["YellowSkull"] }
 AP-CHECK { "id": 8885, "name": "PL_MAP28 - Backpack [-736,-2848]", "keys": [] }
+AP-CHECK { "id": 8886, "name": "PL_MAP15 - Plasma Rifle", "keys": ["YellowSkull"] }
 AP-CHECK { "id": 8886, "name": "PL_MAP28 - Backpack [-1056,-3456]", "keys": [] }
+AP-CHECK { "id": 8887, "name": "PL_MAP15 - Backpack", "keys": ["YellowSkull"] }
+AP-CHECK { "id": 8888, "name": "PL_MAP15 - BFG 9000", "keys": ["YellowSkull"] }
 AP-CHECK { "id": 8888, "name": "PL_MAP28 - Chainsaw", "keys": [] }
+AP-CHECK { "id": 8889, "name": "PL_MAP15 - GreenArmor", "keys": ["YellowSkull"] }
 AP-CHECK { "id": 8889, "name": "PL_MAP28 - Chaingun", "keys": [] }
+AP-CHECK { "id": 8890, "name": "PL_MAP15 - InvulnerabilitySphere", "keys": ["YellowSkull"] }
 AP-CHECK { "id": 8890, "name": "PL_MAP28 - RedCard", "keys": [] }
+AP-CHECK { "id": 8891, "name": "PL_MAP15 - BlurSphere", "keys": ["YellowSkull"] }
 AP-CHECK { "id": 8891, "name": "PL_MAP28 - BFG 9000 [-672,-3440]", "unreachable": true, "keys": [] }
+AP-CHECK { "id": 8892, "name": "PL_MAP15 - RadSuit", "keys": ["YellowSkull"] }
 AP-CHECK { "id": 8892, "name": "PL_MAP28 - BFG 9000 [-800,-3440]", "keys": [] }
+AP-CHECK { "id": 8893, "name": "PL_MAP15 - Rocket Launcher", "keys": ["YellowSkull"] }
 AP-CHECK { "id": 8893, "name": "PL_MAP28 - BFG 9000 [-800,-3632]", "keys": [] }
+AP-CHECK { "id": 8894, "name": "PL_MAP16 - Exit", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
 AP-CHECK { "id": 8894, "name": "PL_MAP28 - BFG 9000 [-672,-3632]", "keys": [] }
 AP-CHECK { "id": 8897, "name": "PL_MAP28 - Allmap [168,-992]", "keys": [] }
 AP-CHECK { "id": 8898, "name": "PL_MAP28 - Allmap [-40,-992]", "keys": [] }
+AP-CHECK { "id": 8899, "name": "PL_MAP16 - YellowSkull", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 8905, "name": "PL_MAP16 - BlueArmor", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 8925, "name": "PL_MAP19 - Exit", "keys": ["YellowSkull"] }
+AP-CHECK { "id": 8926, "name": "PL_MAP19 - BFG 9000", "keys": ["YellowSkull"] }
+AP-CHECK { "id": 8927, "name": "PL_MAP19 - YellowSkull", "keys": ["YellowSkull"] }
+AP-CHECK { "id": 8928, "name": "PL_MAP19 - BlurSphere", "keys": ["YellowSkull"] }
+AP-CHECK { "id": 8929, "name": "PL_MAP19 - Soulsphere", "keys": ["YellowSkull"] }
+AP-CHECK { "id": 8930, "name": "PL_MAP19 - BlueArmor", "keys": ["YellowSkull"] }
+AP-CHECK { "id": 8931, "name": "PL_MAP19 - Backpack", "keys": ["YellowSkull"] }
+AP-CHECK { "id": 8932, "name": "PL_MAP19 - GreenArmor [-1216,128]", "keys": ["YellowSkull"] }
+AP-CHECK { "id": 8933, "name": "PL_MAP19 - GreenArmor [-304,224]", "keys": ["YellowSkull"] }
+AP-CHECK { "id": 8934, "name": "PL_MAP19 - Plasma Rifle", "keys": ["YellowSkull"] }
+AP-CHECK { "id": 8935, "name": "PL_MAP19 - Shotgun", "keys": ["YellowSkull"] }
+AP-CHECK { "id": 8936, "name": "PL_MAP19 - Rocket Launcher", "keys": ["YellowSkull"] }
+AP-CHECK { "id": 8976, "name": "PL_MAP23 - Exit", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 8977, "name": "PL_MAP23 - Super Shotgun", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 8978, "name": "PL_MAP23 - BlueSkull", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 8979, "name": "PL_MAP23 - BlurSphere", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 8980, "name": "PL_MAP23 - Plasma Rifle", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 8981, "name": "PL_MAP23 - Soulsphere [-1120,1888]", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 8982, "name": "PL_MAP23 - Soulsphere [960,-1568]", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 8983, "name": "PL_MAP23 - BlueArmor [-1248,800]", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 8984, "name": "PL_MAP23 - BlueArmor [-224,-1632]", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 8985, "name": "PL_MAP23 - RedSkull", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 8986, "name": "PL_MAP23 - Rocket Launcher", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 8987, "name": "PL_MAP23 - YellowSkull", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 8988, "name": "PL_MAP23 - GreenArmor", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 8989, "name": "PL_MAP23 - Megasphere", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 8990, "name": "PL_MAP23 - BFG 9000", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 8991, "name": "PL_MAP23 - Backpack", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 8992, "name": "PL_MAP24 - Exit", "keys": ["BlueCard"] }
+AP-CHECK { "id": 8995, "name": "PL_MAP24 - Shotgun", "keys": ["BlueCard"] }
+AP-CHECK { "id": 8996, "name": "PL_MAP24 - BlurSphere", "keys": ["BlueCard"] }
+AP-CHECK { "id": 8997, "name": "PL_MAP24 - Soulsphere [-1088,-976]", "keys": ["BlueCard"] }
+AP-CHECK { "id": 8998, "name": "PL_MAP24 - Soulsphere [-1584,-2512]", "keys": ["BlueCard"] }
+AP-CHECK { "id": 8999, "name": "PL_MAP24 - Soulsphere [-3267,-1603]", "keys": ["BlueCard"] }
+AP-CHECK { "id": 9001, "name": "PL_MAP24 - InvulnerabilitySphere", "keys": ["BlueCard"] }
+AP-CHECK { "id": 9002, "name": "PL_MAP24 - Plasma Rifle", "keys": ["BlueCard"] }
+AP-CHECK { "id": 9003, "name": "PL_MAP24 - Backpack [-1440,-800]", "keys": ["BlueCard"] }
+AP-CHECK { "id": 9007, "name": "PL_MAP24 - RadSuit [-1626,-2856]", "keys": ["BlueCard"] }
+AP-CHECK { "id": 9008, "name": "PL_MAP24 - RadSuit [-3552,-3093]", "keys": ["BlueCard"] }
+AP-CHECK { "id": 9009, "name": "PL_MAP24 - RadSuit [-1301,-1065]", "keys": ["BlueCard"] }
+AP-CHECK { "id": 9010, "name": "PL_MAP24 - RadSuit [-1698,-2271]", "keys": ["BlueCard"] }
+AP-CHECK { "id": 9012, "name": "PL_MAP24 - Rocket Launcher", "keys": ["BlueCard"] }
+AP-CHECK { "id": 9013, "name": "PL_MAP24 - BlueCard", "keys": ["BlueCard"] }
+AP-CHECK { "id": 9014, "name": "PL_MAP24 - Super Shotgun", "keys": ["BlueCard"] }
+AP-CHECK { "id": 9015, "name": "PL_MAP24 - GreenArmor", "keys": ["BlueCard"] }
+AP-CHECK { "id": 9017, "name": "PL_MAP25 - Rocket Launcher", "keys": ["YellowCard"] }
+AP-CHECK { "id": 9018, "name": "PL_MAP25 - Super Shotgun", "keys": ["YellowCard"] }
+AP-CHECK { "id": 9019, "name": "PL_MAP25 - Chaingun", "keys": ["YellowCard"] }
 AP-CHECK { "id": 9020, "name": "NV_MAP05 - GreenArmor", "keys": [] }
+AP-CHECK { "id": 9020, "name": "PL_MAP25 - Backpack", "keys": ["YellowCard"] }
 AP-CHECK { "id": 9021, "name": "NV_MAP05 - YellowSkull", "keys": [] }
+AP-CHECK { "id": 9021, "name": "PL_MAP25 - Megasphere", "keys": ["YellowCard"] }
 AP-CHECK { "id": 9023, "name": "NV_MAP05 - Shotgun [-56,672]", "keys": [] }
+AP-CHECK { "id": 9023, "name": "PL_MAP25 - BlueArmor", "keys": ["YellowCard"] }
+AP-CHECK { "id": 9024, "name": "PL_MAP25 - RadSuit", "keys": ["YellowCard"] }
 AP-CHECK { "id": 9025, "name": "NV_MAP05 - Soulsphere", "keys": [] }
+AP-CHECK { "id": 9025, "name": "PL_MAP25 - YellowCard", "keys": ["YellowCard"] }
 AP-CHECK { "id": 9026, "name": "NV_MAP05 - Chaingun", "keys": [] }
+AP-CHECK { "id": 9026, "name": "PL_MAP25 - Berserk", "keys": ["YellowCard"] }
+AP-CHECK { "id": 9027, "name": "PL_MAP25 - Plasma Rifle", "keys": ["YellowCard"] }
+AP-CHECK { "id": 9028, "name": "PL_MAP25 - BlueCard", "keys": ["YellowCard"] }
 AP-CHECK { "id": 9029, "name": "NV_MAP05 - Rocket Launcher", "keys": [] }
+AP-CHECK { "id": 9029, "name": "PL_MAP26 - Exit", "keys": ["RedCard"] }
 AP-CHECK { "id": 9030, "name": "PL_MAP26 - BlueArmor [-2392,891]", "keys": [] }
 AP-CHECK { "id": 9032, "name": "NV_MAP05 - Berserk", "keys": [] }
 AP-CHECK { "id": 9032, "name": "PL_MAP26 - BlueCard", "keys": [] }
 AP-CHECK { "id": 9034, "name": "PL_MAP26 - RedCard", "keys": [] }
 AP-CHECK { "id": 9035, "name": "PL_MAP26 - GreenArmor", "keys": [] }
+AP-CHECK { "id": 9036, "name": "PL_MAP26 - Rocket Launcher", "keys": ["RedCard"] }
 AP-CHECK { "id": 9037, "name": "PL_MAP26 - Backpack", "keys": [] }
 AP-CHECK { "id": 9038, "name": "PL_MAP26 - Plasma Rifle", "keys": [] }
 AP-CHECK { "id": 9039, "name": "PL_MAP26 - Super Shotgun", "keys": [] }
+AP-CHECK { "id": 9040, "name": "PL_MAP27 - Exit", "keys": ["BlueSkull", "YellowSkull"] }
 AP-CHECK { "id": 9041, "name": "PL_MAP27 - Soulsphere [-384,-2240]", "keys": ["YellowSkull"] }
 AP-CHECK { "id": 9043, "name": "PL_MAP27 - Plasma Rifle", "keys": ["YellowSkull"] }
 AP-CHECK { "id": 9044, "name": "PL_MAP27 - Rocket Launcher", "keys": ["YellowSkull"] }
@@ -1130,13 +1923,28 @@ AP-CHECK { "id": 9051, "name": "PL_MAP27 - Backpack [-384,-1952]", "keys": ["Yel
 AP-CHECK { "id": 9053, "name": "PL_MAP27 - BlueArmor [864,-1728]", "keys": ["YellowSkull"] }
 AP-CHECK { "id": 9055, "name": "PL_MAP27 - RadSuit", "keys": ["YellowSkull"] }
 AP-CHECK { "id": 9056, "name": "PL_MAP27 - BlueSkull", "keys": ["YellowSkull"] }
+AP-CHECK { "id": 9058, "name": "PL_MAP27 - Berserk [2272,1184]", "keys": ["BlueSkull", "YellowSkull"] }
 AP-CHECK { "id": 9059, "name": "PL_MAP27 - Berserk [-288,-608]", "keys": ["YellowSkull"] }
 AP-CHECK { "id": 9061, "name": "PL_MAP27 - Super Shotgun", "keys": ["YellowSkull"] }
+AP-CHECK { "id": 9063, "name": "PL_MAP28 - Super Shotgun [-68,-582]", "keys": [] }
+AP-CHECK { "id": 9064, "name": "PL_MAP28 - Super Shotgun [-376,-3152]", "keys": [] }
+AP-CHECK { "id": 9065, "name": "PL_MAP28 - Super Shotgun [-376,-3200]", "keys": [] }
+AP-CHECK { "id": 9066, "name": "PL_MAP28 - Super Shotgun [-376,-3248]", "keys": [] }
+AP-CHECK { "id": 9067, "name": "PL_MAP28 - Super Shotgun [-328,-3152]", "keys": [] }
+AP-CHECK { "id": 9068, "name": "PL_MAP28 - Super Shotgun [-328,-3200]", "keys": [] }
+AP-CHECK { "id": 9069, "name": "PL_MAP28 - Super Shotgun [-328,-3248]", "keys": [] }
+AP-CHECK { "id": 9070, "name": "PL_MAP28 - BlueArmor [1176,192]", "keys": [] }
+AP-CHECK { "id": 9071, "name": "PL_MAP28 - BlueArmor [432,-3640]", "keys": [] }
+AP-CHECK { "id": 9072, "name": "PL_MAP28 - BlueArmor [-1056,-3360]", "keys": [] }
 AP-CHECK { "id": 9073, "name": "NV_MAP08 - Exit", "keys": [] }
 AP-CHECK { "id": 9074, "name": "NV_MAP08 - Rocket Launcher", "keys": [] }
 AP-CHECK { "id": 9075, "name": "NV_MAP08 - BlueArmor", "keys": [] }
+AP-CHECK { "id": 9075, "name": "PL_MAP28 - Soulsphere [352,-1312]", "keys": ["YellowCard"] }
 AP-CHECK { "id": 9077, "name": "NV_MAP08 - Plasma Rifle [-240,1424]", "keys": [] }
+AP-CHECK { "id": 9077, "name": "PL_MAP28 - Rocket Launcher", "keys": [] }
+AP-CHECK { "id": 9078, "name": "PL_MAP28 - RadSuit [352,-2848]", "keys": [] }
 AP-CHECK { "id": 9079, "name": "NV_MAP08 - Super Shotgun", "keys": [] }
+AP-CHECK { "id": 9079, "name": "PL_MAP28 - RadSuit [480,-2720]", "keys": [] }
 AP-CHECK { "id": 9080, "name": "NV_MAP08 - Chaingun", "keys": [] }
 AP-CHECK { "id": 9081, "name": "NV_MAP08 - Allmap", "keys": [] }
 AP-CHECK { "id": 9082, "name": "NV_MAP08 - GreenArmor", "keys": [] }
@@ -1147,12 +1955,38 @@ AP-CHECK { "id": 9087, "name": "NV_MAP09 - GreenArmor [448,-16]", "keys": [] }
 AP-CHECK { "id": 9088, "name": "NV_MAP09 - GreenArmor [-1472,2592]", "keys": [] }
 AP-CHECK { "id": 9089, "name": "NV_MAP09 - Chaingun", "keys": [] }
 AP-CHECK { "id": 9090, "name": "NV_MAP09 - Berserk", "keys": [] }
+AP-CHECK { "id": 9090, "name": "PL_MAP28 - Plasma Rifle [-248,-3152]", "keys": [] }
 AP-CHECK { "id": 9091, "name": "NV_MAP09 - Super Shotgun", "keys": [] }
+AP-CHECK { "id": 9091, "name": "PL_MAP28 - Plasma Rifle [-248,-3200]", "keys": [] }
 AP-CHECK { "id": 9092, "name": "NV_MAP09 - Chainsaw", "keys": [] }
+AP-CHECK { "id": 9092, "name": "PL_MAP28 - Plasma Rifle [-248,-3248]", "keys": [] }
 AP-CHECK { "id": 9093, "name": "NV_MAP09 - Allmap", "keys": [] }
+AP-CHECK { "id": 9093, "name": "PL_MAP28 - Plasma Rifle [-200,-3248]", "keys": [] }
 AP-CHECK { "id": 9094, "name": "NV_MAP09 - Plasma Rifle", "keys": [] }
+AP-CHECK { "id": 9094, "name": "PL_MAP28 - Plasma Rifle [-200,-3200]", "keys": [] }
 AP-CHECK { "id": 9095, "name": "NV_MAP09 - Megasphere", "keys": [] }
+AP-CHECK { "id": 9095, "name": "PL_MAP28 - Plasma Rifle [-200,-3152]", "keys": [] }
 AP-CHECK { "id": 9096, "name": "NV_MAP09 - Rocket Launcher", "keys": [] }
+AP-CHECK { "id": 9097, "name": "PL_MAP28 - YellowCard", "keys": [] }
+AP-CHECK { "id": 9098, "name": "PL_MAP28 - Backpack [-736,-2848]", "keys": [] }
+AP-CHECK { "id": 9099, "name": "PL_MAP28 - Backpack [-1056,-3456]", "keys": [] }
+AP-CHECK { "id": 9101, "name": "PL_MAP28 - Chainsaw", "keys": [] }
+AP-CHECK { "id": 9102, "name": "PL_MAP28 - Chaingun", "keys": [] }
+AP-CHECK { "id": 9103, "name": "PL_MAP28 - RedCard", "keys": [] }
+AP-CHECK { "id": 9104, "name": "PL_MAP28 - BFG 9000 [-672,-3440]", "keys": ["YellowCard"] }
+AP-CHECK { "id": 9110, "name": "PL_MAP28 - Allmap [168,-992]", "keys": [] }
+AP-CHECK { "id": 9111, "name": "PL_MAP28 - Allmap [-40,-992]", "keys": [] }
+AP-CHECK { "id": 9145, "name": "PL_MAP31 - Exit", "keys": ["YellowCard"] }
+AP-CHECK { "id": 9146, "name": "PL_MAP31 - YellowCard", "keys": ["YellowCard"] }
+AP-CHECK { "id": 9147, "name": "PL_MAP31 - Berserk", "keys": ["YellowCard"] }
+AP-CHECK { "id": 9148, "name": "PL_MAP31 - BlueArmor", "keys": ["YellowCard"] }
+AP-CHECK { "id": 9149, "name": "PL_MAP31 - BFG 9000", "keys": ["YellowCard"] }
+AP-CHECK { "id": 9150, "name": "PL_MAP31 - GreenArmor", "keys": ["YellowCard"] }
+AP-CHECK { "id": 9151, "name": "PL_MAP31 - Super Shotgun", "keys": ["YellowCard"] }
+AP-CHECK { "id": 9152, "name": "PL_MAP31 - Rocket Launcher", "keys": ["YellowCard"] }
+AP-CHECK { "id": 9153, "name": "PL_MAP31 - Plasma Rifle", "keys": ["YellowCard"] }
+AP-CHECK { "id": 9154, "name": "PL_MAP31 - Chaingun", "keys": ["YellowCard"] }
+AP-CHECK { "id": 9155, "name": "PL_MAP31 - Chainsaw", "keys": ["YellowCard"] }
 AP-CHECK { "id": 9157, "name": "PL_MAP32 - Shotgun", "keys": [] }
 AP-CHECK { "id": 9158, "name": "PL_MAP32 - Chaingun", "keys": [] }
 AP-CHECK { "id": 9159, "name": "PL_MAP32 - Plasma Rifle", "keys": [] }
@@ -1166,6 +2000,50 @@ AP-CHECK { "id": 9166, "name": "PL_MAP32 - Megasphere [608,1600]", "keys": [] }
 AP-CHECK { "id": 9170, "name": "PL_MAP32 - Backpack", "keys": [] }
 AP-CHECK { "id": 9171, "name": "PL_MAP32 - BFG 9000", "keys": [] }
 AP-CHECK { "id": 9172, "name": "PL_MAP32 - YellowCard", "keys": [] }
+AP-CHECK { "id": 9188, "name": "NV_MAP02 - Exit", "keys": ["YellowCard", "BlueCard"] }
+AP-CHECK { "id": 9189, "name": "NV_MAP02 - Shotgun", "keys": ["YellowCard", "BlueCard"] }
+AP-CHECK { "id": 9191, "name": "NV_MAP02 - RedCard", "keys": ["YellowCard", "BlueCard"] }
+AP-CHECK { "id": 9194, "name": "NV_MAP02 - Chaingun", "keys": ["YellowCard", "BlueCard"] }
+AP-CHECK { "id": 9196, "name": "NV_MAP02 - BlueArmor", "keys": ["YellowCard", "BlueCard"] }
+AP-CHECK { "id": 9197, "name": "NV_MAP02 - Berserk", "keys": ["YellowCard", "BlueCard"] }
+AP-CHECK { "id": 9198, "name": "NV_MAP02 - BlurSphere", "keys": ["YellowCard", "BlueCard"] }
+AP-CHECK { "id": 9199, "name": "NV_MAP02 - YellowCard", "keys": ["YellowCard", "BlueCard"] }
+AP-CHECK { "id": 9200, "name": "NV_MAP02 - Allmap", "keys": ["YellowCard", "BlueCard"] }
+AP-CHECK { "id": 9201, "name": "NV_MAP02 - Super Shotgun", "keys": ["YellowCard", "BlueCard"] }
+AP-CHECK { "id": 9210, "name": "NV_MAP03 - Shotgun", "keys": ["YellowSkull"] }
+AP-CHECK { "id": 9211, "name": "NV_MAP03 - Chaingun", "keys": ["YellowSkull"] }
+AP-CHECK { "id": 9212, "name": "NV_MAP03 - BlueCard", "keys": ["YellowSkull"] }
+AP-CHECK { "id": 9213, "name": "NV_MAP03 - GreenArmor [-2912,1776]", "keys": ["YellowSkull"] }
+AP-CHECK { "id": 9231, "name": "NV_MAP05 - Exit", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 9232, "name": "NV_MAP05 - RedSkull", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 9233, "name": "NV_MAP05 - GreenArmor", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 9234, "name": "NV_MAP05 - YellowSkull", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 9235, "name": "NV_MAP05 - BlueSkull", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 9236, "name": "NV_MAP05 - Shotgun [-56,672]", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 9237, "name": "NV_MAP05 - Shotgun [16,232]", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 9238, "name": "NV_MAP05 - Soulsphere", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 9239, "name": "NV_MAP05 - Chaingun", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 9240, "name": "NV_MAP05 - Chainsaw", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 9241, "name": "NV_MAP05 - Super Shotgun", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 9242, "name": "NV_MAP05 - Rocket Launcher", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 9243, "name": "NV_MAP05 - BlueArmor", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 9244, "name": "NV_MAP05 - Allmap", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 9245, "name": "NV_MAP05 - Berserk", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 9266, "name": "NV_MAP07 - Exit", "keys": ["BlueSkull", "YellowSkull"] }
+AP-CHECK { "id": 9267, "name": "NV_MAP07 - BlueSkull", "keys": ["YellowSkull"] }
+AP-CHECK { "id": 9269, "name": "NV_MAP07 - RadSuit [-656,-1808]", "keys": ["YellowSkull"] }
+AP-CHECK { "id": 9271, "name": "NV_MAP07 - GreenArmor", "keys": ["YellowSkull"] }
+AP-CHECK { "id": 9272, "name": "NV_MAP07 - Chainsaw", "keys": ["YellowSkull"] }
+AP-CHECK { "id": 9273, "name": "NV_MAP07 - Allmap", "keys": ["YellowSkull"] }
+AP-CHECK { "id": 9274, "name": "NV_MAP07 - Plasma Rifle", "keys": ["YellowSkull"] }
+AP-CHECK { "id": 9276, "name": "NV_MAP07 - Rocket Launcher [-1120,160]", "keys": ["YellowSkull"] }
+AP-CHECK { "id": 9277, "name": "NV_MAP07 - Rocket Launcher [224,-1696]", "keys": ["YellowSkull"] }
+AP-CHECK { "id": 9278, "name": "NV_MAP07 - Shotgun [-272,-448]", "keys": ["YellowSkull"] }
+AP-CHECK { "id": 9279, "name": "NV_MAP07 - Shotgun [-960,240]", "keys": ["YellowSkull"] }
+AP-CHECK { "id": 9280, "name": "NV_MAP07 - Super Shotgun [736,-288]", "keys": ["BlueSkull", "YellowSkull"] }
+AP-CHECK { "id": 9281, "name": "NV_MAP07 - Super Shotgun [-576,-2560]", "keys": ["YellowSkull"] }
+AP-CHECK { "id": 9284, "name": "NV_MAP07 - Chaingun", "keys": ["YellowSkull"] }
+AP-CHECK { "id": 9285, "name": "NV_MAP07 - BlueArmor", "keys": ["YellowSkull"] }
 AP-CHECK { "id": 9286, "name": "NV_MAP08 - Exit", "keys": [] }
 AP-CHECK { "id": 9287, "name": "NV_MAP08 - Rocket Launcher", "keys": [] }
 AP-CHECK { "id": 9288, "name": "NV_MAP08 - BlueArmor", "keys": [] }
@@ -1203,6 +2081,20 @@ AP-CHECK { "id": 939, "name": "E1M2 - Chaingun", "keys": ["RedCard"] }
 AP-CHECK { "id": 940, "name": "E1M2 - RedCard", "keys": ["RedCard"] }
 AP-CHECK { "id": 942, "name": "E1M2 - Backpack [128,512]", "keys": ["RedCard"] }
 AP-CHECK { "id": 943, "name": "E1M2 - Backpack [688,-896]", "keys": ["RedCard"] }
+AP-CHECK { "id": 944, "name": "E1M3 - GreenArmor [-3024,-1120]", "keys": ["BlueCard"] }
+AP-CHECK { "id": 945, "name": "E1M3 - GreenArmor [-2144,-1760]", "keys": ["BlueCard"] }
+AP-CHECK { "id": 946, "name": "E1M3 - GreenArmor [-1312,-2160]", "keys": ["BlueCard"] }
+AP-CHECK { "id": 947, "name": "E1M3 - Soulsphere [-2336,-2464]", "keys": ["BlueCard"] }
+AP-CHECK { "id": 948, "name": "E1M3 - Soulsphere [320,-2688]", "keys": ["YellowCard", "BlueCard"] }
+AP-CHECK { "id": 949, "name": "E1M3 - YellowCard", "keys": ["BlueCard"] }
+AP-CHECK { "id": 950, "name": "E1M3 - BlueCard", "keys": ["BlueCard"] }
+AP-CHECK { "id": 952, "name": "E1M3 - Shotgun [-2048,-1536]", "keys": ["BlueCard"] }
+AP-CHECK { "id": 953, "name": "E1M3 - Rocket Launcher", "keys": ["BlueCard"] }
+AP-CHECK { "id": 954, "name": "E1M3 - Chaingun", "keys": ["BlueCard"] }
+AP-CHECK { "id": 955, "name": "E1M3 - Backpack", "keys": ["BlueCard"] }
+AP-CHECK { "id": 956, "name": "E1M3 - BlurSphere", "keys": ["YellowCard", "BlueCard"] }
+AP-CHECK { "id": 957, "name": "E1M3 - Chainsaw", "keys": ["BlueCard"] }
+AP-CHECK { "id": 958, "name": "E1M3 - BlueArmor", "keys": ["YellowCard", "BlueCard"] }
 AP-CHECK { "id": 959, "name": "E1M4 - Chaingun", "keys": ["YellowCard", "BlueCard"] }
 AP-CHECK { "id": 960, "name": "E1M4 - GreenArmor", "keys": ["YellowCard", "BlueCard"] }
 AP-CHECK { "id": 961, "name": "E1M4 - YellowCard", "keys": ["YellowCard", "BlueCard"] }
@@ -1211,3 +2103,18 @@ AP-CHECK { "id": 963, "name": "E1M4 - Soulsphere", "keys": ["YellowCard", "BlueC
 AP-CHECK { "id": 964, "name": "E1M4 - Rocket Launcher", "keys": ["YellowCard", "BlueCard"] }
 AP-CHECK { "id": 967, "name": "E1M4 - BlueArmor", "keys": ["YellowCard", "BlueCard"] }
 AP-CHECK { "id": 968, "name": "E1M4 - Backpack", "keys": ["YellowCard", "BlueCard"] }
+AP-CHECK { "id": 970, "name": "E1M5 - BlueCard", "keys": ["YellowCard"] }
+AP-CHECK { "id": 971, "name": "E1M5 - YellowCard", "keys": ["YellowCard"] }
+AP-CHECK { "id": 972, "name": "E1M5 - BlueArmor [1296,96]", "keys": ["YellowCard"] }
+AP-CHECK { "id": 973, "name": "E1M5 - BlueArmor [-1248,1104]", "keys": ["YellowCard"] }
+AP-CHECK { "id": 975, "name": "E1M5 - RadSuit", "keys": ["YellowCard"] }
+AP-CHECK { "id": 976, "name": "E1M5 - Rocket Launcher", "keys": ["YellowCard"] }
+AP-CHECK { "id": 977, "name": "E1M5 - Shotgun [288,352]", "keys": ["YellowCard"] }
+AP-CHECK { "id": 980, "name": "E1M5 - Chainsaw", "keys": ["YellowCard"] }
+AP-CHECK { "id": 981, "name": "E1M5 - Soulsphere", "keys": ["YellowCard"] }
+AP-CHECK { "id": 982, "name": "E1M5 - Chaingun", "keys": ["YellowCard"] }
+AP-CHECK { "id": 983, "name": "E1M5 - Backpack", "keys": ["YellowCard"] }
+AP-CHECK { "id": 984, "name": "E1M5 - Allmap", "keys": ["YellowCard"] }
+AP-CHECK { "id": 985, "name": "E1M5 - GreenArmor [-416,-160]", "keys": ["YellowCard"] }
+AP-CHECK { "id": 986, "name": "E1M5 - GreenArmor [96,928]", "keys": ["YellowCard"] }
+AP-CHECK { "id": 987, "name": "E1M5 - BlurSphere", "keys": ["YellowCard"] }
