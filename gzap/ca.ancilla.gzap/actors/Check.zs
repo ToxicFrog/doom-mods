@@ -11,6 +11,7 @@
 mixin class ::ArchipelagoIcon {
   bool progression;
   bool unreachable;
+  bool checked;
 
   States {
     Spawn:
@@ -33,6 +34,10 @@ mixin class ::ArchipelagoIcon {
   }
 
   void SetProgressionState() {
+    if (self.checked) {
+      A_SetRenderStyle(0.3, STYLE_Translucent);
+    }
+
     if (!ShouldDisplay()) {
       SetStateLabel("Hidden");
     } else if (self.unreachable) {
@@ -99,8 +104,9 @@ class ::CheckPickup : ScoreItem {
     thing.location = location;
     thing.progression = location.progression;
     thing.unreachable = location.unreachable;
+    thing.checked = location.checked;
     thing.A_SetSize(original.radius, original.height);
-    DEBUG("Check initialize: name=%s, pr=%d, ur=%d", location.name, thing.progression, thing.unreachable);
+    DEBUG("Check initialize: name=%s, pr=%d, ur=%d, ck=%d", location.name, thing.progression, thing.unreachable, thing.checked);
     // TODO: copy flags like gravity from the original?
     return thing;
   }
@@ -111,20 +117,47 @@ class ::CheckPickup : ScoreItem {
   }
 
   override void PostBeginPlay() {
+    if (self.checked) return;
+    DEBUG("Creating map marker for check %s", self.location.name);
     SetTag(self.location.name);
     ChangeTID(level.FindUniqueTID());
     marker = ::CheckMapMarker(Spawn("::CheckMapMarker", self.pos));
     marker.progression = self.progression;
     marker.unreachable = self.unreachable;
+    marker.checked = self.checked;
     marker.A_SetSpecial(0, self.tid);
   }
 
-  override bool TryPickup (in out Actor toucher) {
-    ::PlayEventHandler.Get().CheckLocation(self.location.apid, self.location.name);
-    return super.TryPickup(toucher);
+  override bool CanPickup(Actor toucher) {
+    DEBUG("CanPickup? %s %s %d", self.location.name, toucher.GetTag(), !self.checked);
+    return !self.checked;
   }
 
+  void UpdateStatus() {
+    self.checked = self.location.checked;
+    SetProgressionState();
+    if (self.checked) self.ClearCounters();
+  }
+
+  override bool TryPickup (in out Actor toucher) {
+    // I should probably check checked here, destroy the marker, flag this checked,
+    // etc rather than spreading it across OnDestroy etc
+    DEBUG("TryPickup: %s", self.location.name);
+    ::PlayEventHandler.Get().CheckLocation(self.location.apid, self.location.name);
+    // It might take the server a moment to respond and set location.checked, so
+    // instead of calling UpdateStatus() here, we just force checked locally.
+    // It'll get re-checked next time the level loads, so the player will have
+    // a chance to re-collect it if the server didn't register it.
+    self.checked = true;
+    self.SetProgressionState();
+    if (self.marker) self.marker.Destroy();
+    return true;
+  }
+
+  override bool ShouldStay() { return true; }
+
   override void OnDestroy() {
+    DEBUG("Destroying marker %s", self.location.name);
     if (self.marker) self.marker.Destroy();
   }
 }

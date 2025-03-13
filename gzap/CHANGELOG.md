@@ -8,6 +8,8 @@ it is recommended that you do so.
 
 - New:
   - Some alternate Firemace spawn locations added to Heretic logic.
+  - Collected checks will ghost out in the world rather than disappearing. (They
+    will still vanish from the automap, for now.)
 - Fix:
   - Checks are no longer destroyable by crushers.
   - Support for many more MAPINFO flags, most of them `compat_` flags used to

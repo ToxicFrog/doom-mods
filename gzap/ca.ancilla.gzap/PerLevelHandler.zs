@@ -111,10 +111,7 @@ class ::PerLevelHandler : EventHandler {
       DEBUG("CleanupReopened: id %d, matched %d",
           thing.location.apid, thing.location == region.GetLocation(thing.location.apid));
       thing.location = region.GetLocation(thing.location.apid);
-      if (thing.location.checked) {
-        thing.ClearCounters();
-        thing.Destroy();
-      }
+      thing.UpdateStatus();
     }
   }
 
@@ -173,17 +170,11 @@ class ::PerLevelHandler : EventHandler {
 
   bool MaybeReplaceWithCheck(Actor thing) {
     if (thing is "::CheckPickup") {
-      // Check has already been spawned, original item has already been deleted,
-      // see if this check has already been found by the player and should be
-      // despawned before they notice it.
+      // Check has already been spawned, original item has already been deleted.
       let thing = ::CheckPickup(thing);
       DEBUG("WorldThingSpawned(check) = %s", thing.location.name);
       ClearPending(thing.location);
-      if (thing.location.checked) {
-        DEBUG("Clearing already-collected check: %s", thing.GetTag());
-        thing.ClearCounters();
-        thing.Destroy();
-      }
+      thing.UpdateStatus();
       return true;
     }
 
@@ -193,14 +184,10 @@ class ::PerLevelHandler : EventHandler {
 
     let [check, distance] = FindCheckForActor(thing);
     if (check) {
-      if (!check.checked) {
-        DEBUG("Replacing %s with %s", thing.GetTag(), check.name);
-        let pickup = ::CheckPickup.Create(check, thing);
-        DEBUG("Original has height=%d radius=%d, new height=%d r=%d",
-            thing.height, thing.radius, pickup.height, pickup.radius);
-      } else {
-        DEBUG("Check %s has already been collected.", check.name);
-      }
+      DEBUG("Replacing %s with %s", thing.GetTag(), check.name);
+      let pickup = ::CheckPickup.Create(check, thing);
+      DEBUG("Original has height=%d radius=%d, new height=%d r=%d",
+          thing.height, thing.radius, pickup.height, pickup.radius);
       ClearPending(check);
       thing.ClearCounters();
       thing.Destroy();

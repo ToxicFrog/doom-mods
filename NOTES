@@ -79,6 +79,8 @@ AP-KEY { typename: "GreenKey", scopename: "E1", scope: ["E1M1", "E1M2", ...] }
 ### ingame
 
 * fix the timer (and preserve it across save/load if possible)
+* weapon suppression should let the weapon drop normally and apply the suppression
+  when it's picked up
 - "tracker mode" that propagates key requirements into the generated pk3 and
   displays what it thinks you can reach from the level selector
 
