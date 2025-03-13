@@ -18,6 +18,8 @@ it is recommended that you do so.
     difficulties, first reported on DIY.WAD. As a workaround, the keys will
     appear on all difficulties rather than just the ones they were originally
     specified for.
+  - The logic/tuning parser will now report the line number and offending line
+    when it fails to parse a line.
 
 # 0.3.1
 

@@ -61,7 +61,7 @@ AP-KEY { typename: "GreenKey", scopename: "E1", scope: ["E1M1", "E1M2", ...] }
 ### scanner
 
 - map exclusion UI
-- non-rando tuning mode
+* non-rando tuning mode
 - add "scan the whole thing" button
 - include secrets as checks in themselves?
   we can build the secret list by scanning the sector array on level entry and
@@ -78,7 +78,7 @@ AP-KEY { typename: "GreenKey", scopename: "E1", scope: ["E1M1", "E1M2", ...] }
 
 ### ingame
 
-- fix the timer (and preserve it across save/load if possible)
+* fix the timer (and preserve it across save/load if possible)
 - "tracker mode" that propagates key requirements into the generated pk3 and
   displays what it thinks you can reach from the level selector
 

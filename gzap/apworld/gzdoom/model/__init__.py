@@ -46,26 +46,29 @@ class WadLogicLoader:
         self.logic.add_wad(self.name, self.wad)
         return True
 
-    def load_logic(self, buf: str):
-      for line in buf.splitlines():
+    def load_logic(self, name: str, buf: str):
+      for idx,line in enumerate(buf.splitlines()):
         if not line.startswith("AP-"):
             continue
 
-        [evt, payload] = line.split(" ", 1)
-        payload = json.loads(payload)
-        # print(evt, payload)
+        try:
+            [evt, payload] = line.split(" ", 1)
+            payload = json.loads(payload)
 
-        if evt == "AP-MAP":
-            self.wad.new_map(payload)
-        elif evt == "AP-ITEM":
-            self.wad.new_item(payload)
-        elif evt == "AP-SCAN-DONE":
-            self.wad.finalize_scan(payload)
-        elif evt == "AP-CHECK":
-            self.wad.tune_location(**payload)
-        else:
-            # AP-XON, AP-ACK, AP-STATUS, AP-CHAT, and other multiplayer-only messages
-            pass
+            if evt == "AP-MAP":
+                self.wad.new_map(payload)
+            elif evt == "AP-ITEM":
+                self.wad.new_item(payload)
+            elif evt == "AP-SCAN-DONE":
+                self.wad.finalize_scan(payload)
+            elif evt == "AP-CHECK":
+                self.wad.tune_location(**payload)
+            else:
+                # AP-XON, AP-ACK, AP-STATUS, AP-CHAT, and other multiplayer-only messages
+                pass
+
+        except Exception as e:
+            raise ValueError(f"Error loading logic/tuning for {name} on line {idx}:\n{line}") from e
 
 
 _init_done: bool = False
@@ -146,7 +149,7 @@ def init_wads(package):
         #   print("Loading tuning:", tuning_file)
           buf = buf + "\n" + tuning_file.read_text()
       with add_wad(logic_file.name) as wadloader:
-          wadloader.load_logic(buf)
+          wadloader.load_logic(logic_file.name, buf)
           print_wad_stats(wadloader.name, wadloader.wad)
 
 
