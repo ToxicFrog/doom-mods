@@ -22,6 +22,9 @@ it is recommended that you do so.
     specified for.
   - The logic/tuning parser will now report the line number and offending line
     when it fails to parse a line.
+  - The logic scanner now forces a newline before emitting a map block, as a
+    workaround for some IPK3s that emit garbage into the log without trailing
+    newlines.
 
 # 0.3.1
 

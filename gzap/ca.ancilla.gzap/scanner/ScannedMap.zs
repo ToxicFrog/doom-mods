@@ -33,6 +33,12 @@ class ::ScannedMap play {
   }
 
   void Output() {
+    // In Wolf3d TC, failing to do this will result in garbage at the start of
+    // the AP-MAP line. This only happens when scanning, but also only happens
+    // when wolf3d.ipk3 is loaded for some reason. We include this to put the
+    // garbage on a previous line and hopefully work around this in other (i)wads
+    // that may have similar issues.
+    console.printfEX(PRINT_LOG, "");
     ::Scanner.Output("MAP", name, string.format(
       "\"checksum\": \"%s\", \"rank\": %d, \"info\": %s",
       LevelInfo.MapChecksum(name), self.rank, GetMapinfoJSON()));
