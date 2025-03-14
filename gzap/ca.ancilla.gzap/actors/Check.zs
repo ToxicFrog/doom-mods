@@ -107,6 +107,7 @@ class ::CheckPickup : ScoreItem {
     thing.checked = location.checked;
     thing.A_SetSize(original.radius, original.height);
     DEBUG("Check initialize: name=%s, pr=%d, ur=%d, ck=%d", location.name, thing.progression, thing.unreachable, thing.checked);
+    if (thing.checked) level.found_items++;
     // TODO: copy flags like gravity from the original?
     return thing;
   }
@@ -136,7 +137,6 @@ class ::CheckPickup : ScoreItem {
   void UpdateStatus() {
     self.checked = self.location.checked;
     SetProgressionState();
-    if (self.checked) self.ClearCounters();
   }
 
   override bool TryPickup (in out Actor toucher) {

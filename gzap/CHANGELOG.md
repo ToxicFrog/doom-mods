@@ -6,6 +6,9 @@ This is a bugfix release.
   - In-game timer now counts only time spent in gameplay, not time in menus.
   - In-game timer should no longer double-count gameplay time.
   - APWorld has better error reporting for certain classes of generation errors.
+  - Returning to a level where you've previously found some checks will report
+    them as collected items, rather than reducing the total item count for that
+    level.
 
 # 0.3.2
 
