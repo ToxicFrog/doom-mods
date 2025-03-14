@@ -157,8 +157,7 @@ class GZDoomWorld(World):
                     need_priors=self.options.level_order_bias.value / 100,
                     require_weapons=(map.map not in self.options.starting_levels)))
             for loc in map.all_locations(self.spawn_filter):
-                # print("  Location:", loc.name(), loc)
-                assert loc.name() not in placed
+                assert loc.name() not in placed, f"Location {loc.name()} was already placed but we tried to place it again!"
                 placed.add(loc.name())
                 location = GZDoomLocation(self.options, self.player, loc, region)
                 region.locations.append(location)
@@ -195,6 +194,9 @@ class GZDoomWorld(World):
         filler_count = 0
         for item in filler_items:
             filler_count += self.item_counts[item.name()]
+        if filler_count == 0:
+            print("Warning: no filler items in pool!")
+            return
         scale = slots_left/filler_count
 
         for item in filler_items:

@@ -5,6 +5,7 @@ This is a bugfix release.
 - Fix:
   - In-game timer now counts only time spent in gameplay, not time in menus.
   - In-game timer should no longer double-count gameplay time.
+  - APWorld has better error reporting for certain classes of generation errors.
 
 # 0.3.2
 
