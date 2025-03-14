@@ -1,3 +1,11 @@
+# Unreleased
+
+This is a bugfix release.
+
+- Fix:
+  - In-game timer now counts only time spent in gameplay, not time in menus.
+  - In-game timer should no longer double-count gameplay time.
+
 # 0.3.2
 
 This is a bugfix release.

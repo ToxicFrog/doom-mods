@@ -17,7 +17,10 @@ class ::ProgressIndicator : OptionMenuItemStaticText {
   }
 
   string GetTime() {
-    float t = level.TotalTime + menu.MenuTime();
+    // MenuTime() keeps ticking even when we aren't in a menu!
+    // We might be able to use it as a global timer, but for now, let's just
+    // count in-game time.
+    float t = level.TotalTime; // + menu.MenuTime();
     if (::PlayEventHandler.GetState().Victorious()) {
       if (!victory_time) victory_time = t;
       t = victory_time;
