@@ -2,6 +2,9 @@
 
 This is a bugfix release.
 
+- New:
+  - `pretuning_mode` option for doing a tuning run without randomizing item
+    placements or giving the player any starting keys.
 - Fix:
   - In-game timer now counts only time spent in gameplay, not time in menus.
   - In-game timer should no longer double-count gameplay time.

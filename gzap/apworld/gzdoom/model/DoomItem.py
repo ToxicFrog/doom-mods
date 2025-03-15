@@ -73,10 +73,11 @@ class DoomItem:
 
         return count
 
-
     def name(self) -> str:
         """Returns the user-facing Archipelago name for this item."""
         name = self.tag
+        if self.category == "map":
+            name = "Automap"
         if self.disambiguate:
             name += f" [{self.typename}]"
         if self.map:

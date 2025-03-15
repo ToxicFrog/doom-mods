@@ -103,11 +103,26 @@ class GZDoomWorld(World):
         item = self.wad_logic.items_by_name[name]
         return GZDoomItem(item, self.player)
 
+    def should_include_map(self, map: str) -> bool:
+        if self.options.pretuning_mode:
+            return True
+        if map in self.options.excluded_levels:
+            return False
+        if self.options.included_levels.value and map not in self.options.included_levels:
+            return False
+        return True
+
+    def setup_pretuning_mode(self):
+        print("PRETUNING ENABLED - overriding most settings")
+        self.options.start_with_all_maps.value = True
+        self.options.included_levels.value = set()
+        self.options.excluded_levels.value = set()
+        self.options.level_order_bias.value = 0
+        self.options.starting_levels.value = [map.map for map in self.maps]
+        self.options.full_persistence.value = False
+        self.options.allow_respawn.value = True
+
     def generate_early(self) -> None:
-        # for k in self.item_name_to_id:
-        #     print(self.item_name_to_id[k], k)
-        # for k in self.location_name_to_id:
-        #     print(self.location_name_to_id[k], k)
         wadlist = list(self.options.selected_wad.value)
         print(f"Permitted WADs: {wadlist}")
 
@@ -125,43 +140,52 @@ class GZDoomWorld(World):
             for item in self.wad_logic.items(self.spawn_filter)
         }
 
+        if self.options.pretuning_mode:
+            self.setup_pretuning_mode()
+
+
     def create_regions(self) -> None:
         menu_region = Region("Menu", self.player, self.multiworld)
         self.multiworld.regions.append(menu_region)
 
         placed = set()
 
-        for map in self.wad_logic.maps.values():
-            # print("Region:", map.map)
-            if not self.should_include_map(map.map):
-                continue
-
+        for map in self.maps:
             if self.options.start_with_all_maps:
                 item = self.wad_logic.item(map.automap_name())
-                self.multiworld.push_precollected(GZDoomItem(item, self.player))
+                self.multiworld.push_precollected(self.create_item(map.automap_name()))
                 self.item_counts[item.name()] -= 1
 
             if map.map in self.options.starting_levels:
-                for name in map.starting_items():
-                    item = self.wad_logic.item(name)
-                    self.multiworld.push_precollected(GZDoomItem(item, self.player))
-                    self.item_counts[item.name()] -= 1
+                if self.options.pretuning_mode:
+                    self.multiworld.push_precollected(self.create_item(map.access_token_name()))
+                else:
+                    for name in map.starting_items():
+                        item = self.wad_logic.item(name)
+                        self.multiworld.push_precollected(GZDoomItem(item, self.player))
+                        self.item_counts[item.name()] -= 1
 
             region = Region(map.map, self.player, self.multiworld)
             self.multiworld.regions.append(region)
+            if self.options.pretuning_mode:
+                rule = lambda state: True
+            else:
+                rule = map.access_rule(
+                    self.player,
+                    need_priors=self.options.level_order_bias.value / 100,
+                    require_weapons=(map.map not in self.options.starting_levels))
             menu_region.connect(
                 connecting_region=region,
                 name=f"{map.map}",
-                rule=map.access_rule(
-                    self.player,
-                    need_priors=self.options.level_order_bias.value / 100,
-                    require_weapons=(map.map not in self.options.starting_levels)))
+                rule=rule)
             for loc in map.all_locations(self.spawn_filter):
                 assert loc.name() not in placed, f"Location {loc.name()} was already placed but we tried to place it again!"
                 placed.add(loc.name())
                 location = GZDoomLocation(self.options, self.player, loc, region)
-                region.locations.append(location)
-                if loc.unreachable:
+                if self.options.pretuning_mode:
+                    location.access_rule = lambda state: True
+                    location.place_locked_item(self.create_item(loc.orig_item.name()))
+                elif loc.unreachable:
                     # TODO: put a BasicHealthBonus here or something
                     # We want SOMETHING here so that if the player manages to
                     # reach it after all, we emit a check message for it clearing
@@ -173,9 +197,15 @@ class GZDoomWorld(World):
                     self.item_counts[loc.item.name()] -= 1
                 else:
                     self.location_count += 1
+                region.locations.append(location)
 
 
     def create_items(self) -> None:
+        if self.options.pretuning_mode:
+            # All locations have locked items in them, so there's no need to add
+            # anything to the item pool.
+            return
+
         slots_left = self.location_count
         main_items = (self.wad_logic.progression_items(self.spawn_filter)
                       + self.wad_logic.useful_items(self.spawn_filter))
@@ -222,13 +252,6 @@ class GZDoomWorld(World):
         # All region and location access rules were defined in create_regions, so we just need the
         # overall victory condition here.
         self.multiworld.completion_condition[self.player] = lambda state: self.mission_complete(state)
-
-    def should_include_map(self, map: str) -> bool:
-        if map in self.options.excluded_levels:
-            return False
-        if self.options.included_levels.value and map not in self.options.included_levels:
-            return False
-        return True
 
     def generate_output(self, path):
         def progression(id: int) -> bool:

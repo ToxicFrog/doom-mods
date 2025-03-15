@@ -211,6 +211,20 @@ class FullPersistence(Toggle):
     display_name = "Persistent Levels"
     default = False
 
+class PreTuningMode(Toggle):
+    """
+    This setting is for logic developers. If enabled, most other options are
+    overridden; only selected_wad and spawn_filter remain functional. All checks
+    contain their original items (i.e. there is no randomization) and you start
+    with access to all levels, all automaps, and no keys.
+
+    The intent of this mode is to let you play through the game, or specific
+    levels, "normally", to generate a tuning file, even in cases where the
+    initial scan is so conservative as to cause generation failures.
+    """
+    display_name = "Pretuning Mode"
+    default = False
+
 @dataclass
 class GZDoomOptions(PerGameCommonOptions):
     # Skill level, WAD, and level selection
@@ -229,6 +243,7 @@ class GZDoomOptions(PerGameCommonOptions):
     # Other settings
     allow_respawn: AllowRespawn
     full_persistence: FullPersistence
+    pretuning_mode: PreTuningMode
     # Stock settings
     death_link: DeathLink
     start_inventory_from_pool: StartInventoryPool

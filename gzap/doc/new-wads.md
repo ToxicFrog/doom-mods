@@ -91,6 +91,14 @@ in the `gzdoom/tuning/` directory inside the apworld, rather than `gzdoom/logic/
 If a file already exists there for this WAD, simply append the new tuning data
 to it.
 
+### Tuning without randomizing
+
+The randomizer supports a "pretuning mode" which can be used to perform tuning
+using the original item locations from the wad. To enable this, just set
+`pretuning_mode` to `true` in your YAML. This will override most other settings,
+and give you a game with the original item placements, all levels unlocked and
+mapped from the start, and no starting keys.
+
 ### Unreachable checks
 
 You may encounter checks that are unreachable in normal play. For example, Going
