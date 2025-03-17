@@ -14,6 +14,8 @@ This is a bugfix release.
     level.
   - Keys were not always properly added or removed when returning to earlier
     levels with persistence enabled.
+  - Command line arguments emitted by the client for launching gzdoom with now
+    always use forward slashes, to avoid escaping issues on windows.
 
 # 0.3.2
 
