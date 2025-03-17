@@ -170,10 +170,12 @@ class ::Region play {
     }
 
     foreach (key : keys_held) {
+      DEBUG("Removing key: %s", key);
       mo.TakeInventory(key, 999);
     }
 
     foreach (key, val : self.keys) {
+      DEBUG("Add key? %s %d", key, val);
       if (val) mo.GiveInventoryType(key);
     }
   }

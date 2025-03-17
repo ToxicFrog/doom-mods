@@ -51,6 +51,7 @@ class ::PerLevelHandler : EventHandler {
       DEBUG("Using state from datascope.");
       self.apstate = datastate;
     }
+    apstate.UpdatePlayerInventory();
   }
 
   //// Handling for loading into the world. ////
@@ -95,6 +96,7 @@ class ::PerLevelHandler : EventHandler {
     // spawned checks, and WorldThingSpawned will prune newly spawning ones if
     // needed.
     DEBUG("PLH Cleanup");
+    apstate.UpdatePlayerInventory();
     let region = apstate.GetRegion(level.MapName);
     foreach (::CheckPickup thing : ThinkerIterator.Create("::CheckPickup", Thinker.STAT_DEFAULT)) {
       // At this point, we may have a divergence, depending on whether the apstate

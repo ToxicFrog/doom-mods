@@ -12,6 +12,8 @@ This is a bugfix release.
   - Returning to a level where you've previously found some checks will report
     them as collected items, rather than reducing the total item count for that
     level.
+  - Keys were not always properly added or removed when returning to earlier
+    levels with persistence enabled.
 
 # 0.3.2
 
