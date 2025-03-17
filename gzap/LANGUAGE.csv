@@ -28,6 +28,7 @@ Inventory,GZAP_MENU_INVENTORY_TITLE,
 
 ",GZAP_MENU_WARNING_SPAWNS,
 gzArchipelago Options,GZAP_OPT_TITLE,
+Visuals,GZAP_OPT_HEADER_VISUALS,
 Gameplay,GZAP_OPT_HEADER_GAMEPLAY,
 Show checks on automap,GZAP_OPT_NAME_MAP_CHECKS,
 "Select whether you want checks to show up on the automap. ""After collecting map"" will have them appear only after you collect the full map for that level. Since the map may not even be reachable until after you finish this level, it's recommended to set this to ""always"" when still learning the maps.
@@ -37,6 +38,8 @@ Hilight progression items,GZAP_OPT_NAME_SHOW_PROGRESSION,
 "Displays a different icon for progression items than for useful/filler/trap items.
 
 ""In person only"" matches the behaviour of apdoom. ""After map"" and ""always"" can make the game much easier by letting you check from the automap whether there are any progression items left on the level (and where they are).",GZAP_OPT_TT_SHOW_PROGRESSION,
+Collected check opacity,GZAP_OPT_NAME_COLLECTED_CHECK_ALPHA,
+A setting of 0 makes collected checks vanish entirely. Values around 0.1-0.4 will result in them turning translucent. Higher values make them extremely difficult to distinguish from uncollected checks and are not recommended.,GZAP_OPT_TT_COLLECTED_CHECK_ALPHA,
 Weapon bank limit,GZAP_OPT_NAME_BANK_WEAPONS,
 Ammo bank limit,GZAP_OPT_NAME_BANK_AMMO,
 Armour bank limit,GZAP_OPT_NAME_BANK_ARMOUR,

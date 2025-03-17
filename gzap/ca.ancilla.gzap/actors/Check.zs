@@ -35,7 +35,7 @@ mixin class ::ArchipelagoIcon {
 
   void SetProgressionState() {
     if (self.checked) {
-      A_SetRenderStyle(0.3, STYLE_Translucent);
+      A_SetRenderStyle(CVar.FindCVar("ap_collected_alpha").GetFloat(), STYLE_Translucent);
     }
 
     if (!ShouldDisplay()) {
