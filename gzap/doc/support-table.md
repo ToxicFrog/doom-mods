@@ -24,7 +24,7 @@ difficulty levels might have slightly more or less.
 | TNT | 32 | 515 | basic | |
 | Plutonia | 32 | 427 | basic | |
 | WadFusion | varies | varies | missing | |
-| Heretic | 45 | 1501 | basic | Large check variance: HMP is 1688 and HNTR is 1910. |
+| Heretic | 45 | 1141 | basic | |
 | Hexen | | | missing | Same concerns as Strife, plus I don't like it. |
 | Strife | | | missing | Hub maps and complicated level scripting mean this may need changes to the generator. |
 | FreeDoom | 36 | 532 | basic | |

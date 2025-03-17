@@ -19,6 +19,9 @@ This is a bugfix release.
     levels with persistence enabled.
   - Command line arguments emitted by the client for launching gzdoom with now
     always use forward slashes, to avoid escaping issues on windows.
+  - HealthPickups are now properly scanned as health, not tools. In particular
+    this means that Quartz Flasks no longer flood the item pool in Heretic.
+    (Mystic Urns are still included in the pool.)
 
 # 0.3.2
 

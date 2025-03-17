@@ -76,12 +76,15 @@ class ::ScannedItem : ::ScannedLocation {
     } else if (thing is "Health") {
       let h = Health(thing);
       return h.Amount < 50 ? "small-health" : "big-health";
+    } else if (thing is "HealthPickup") {
+      let h = HealthPickup(thing);
+      return h.Health < 50 ? "small-health" : "big-health";
     } else if (thing is "Ammo") {
       let a = Ammo(thing);
       return a.Amount < a.MaxAmount/5 ? "small-ammo" : "medium-ammo";
     } else if (thing is "Mana3") {
       return "big-ammo";
-    } else if (thing is "HealthPickup" || IsArtifact(thing)) {
+    } else if (IsArtifact(thing)) {
       return "tool";
     }
 
