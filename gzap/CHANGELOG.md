@@ -7,6 +7,7 @@ This is a bugfix release.
     placements or giving the player any starting keys.
   - Collected check translucency is adjustable via the `ap_collected_alpha`
     cvar. Setting takes effect on level entry.
+  - Logic and tuning for 1000 Lines.
 - Fix:
   - In-game timer now counts only time spent in gameplay, not time in menus.
   - In-game timer should no longer double-count gameplay time.

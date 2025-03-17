@@ -35,6 +35,7 @@ difficulty levels might have slightly more or less.
 
 | WAD | Maps | Checks | Status | Notes |
 | --- | ---- | ------ | ------ | ----- |
+| 1000 Lines | 32 | 397 | full | Does not include the two bonus levels. |
 | Demonfear | 32 | 289 | full | |
 | Going Down Turbo | 32 | 450 | problems | Some levels have intentionally-unreachable items in them, which need to be excluded from randomization. Known issues with persistent mode. |
 | MAYhem 2048 | 34 | 384 | partial | Would be full, but I accidentally overwrote half the tuning data. |
