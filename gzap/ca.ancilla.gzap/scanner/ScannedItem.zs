@@ -35,9 +35,9 @@ class ::ScannedItem : ::ScannedLocation {
     return (thing.cursector.IsSecret() || thing.cursector.WasSecret());
   }
 
-  static bool IsArtifact(readonly<Actor> thing) {
-    string cls = thing.GetClassName();
-    return cls.left(4) == "Arti";
+  static bool IsTool(readonly<Inventory> thing) {
+    if (!thing) return false;
+    return thing.bINVBAR;
   }
 
   // TODO: we can use inventory flags for this better than class hierarchy in many cases.
@@ -48,17 +48,7 @@ class ::ScannedItem : ::ScannedLocation {
   // .HUBPOWER, .PERSISTENTPOWER, and .InterHubAmount allow carrying between levels
   // .COUNTITEM - counts towards the % items collected stat
   // there's also sv_unlimited_pickup to remove all limits on ammo capacity(!)
-  // We might want to remove AUTOACTIVATE and add INVBAR to some stuff in the
-  // future so the player can keep it until particularly useful.
   static string ItemCategory(readonly<Actor> thing) {
-    if (thing is "DehackedPickup") {
-      // TODO: Ideally, we'd call DetermineType() on it here to figure out what
-      // the underlying type of the DEH item is. However, DetermineType() is
-      // private, so the only way we can figure that out is by creating an
-      // actor to touch it and then calling CallTryPickup() on it, which will
-      // cause the real item to CallTryPickup on the actor -- which can probably
-      // be made to work, but I'm not doing it right now.
-    }
     if (thing is "Key" || thing is "PuzzleItem") {
       return "key"; // TODO: allow duplicate PuzzleItems but not Keys
     } else if (thing is "Weapon" || thing is "WeaponPiece") {
@@ -84,7 +74,7 @@ class ::ScannedItem : ::ScannedLocation {
       return a.Amount < a.MaxAmount/5 ? "small-ammo" : "medium-ammo";
     } else if (thing is "Mana3") {
       return "big-ammo";
-    } else if (IsArtifact(thing)) {
+    } else if (IsTool(Inventory(thing))) {
       return "tool";
     }
 

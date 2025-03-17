@@ -22,6 +22,9 @@ This is a bugfix release.
   - HealthPickups are now properly scanned as health, not tools. In particular
     this means that Quartz Flasks no longer flood the item pool in Heretic.
     (Mystic Urns are still included in the pool.)
+  - +INVBAR items that don't fall into any other category are now properly
+    scanned as tools. This has no effect at present but will be important for
+    some TCs later.
 
 # 0.3.2
 
