@@ -162,6 +162,9 @@ def all_map_names() -> Set[str]:
         names.update([map.map for map in wad.all_maps()])
     return names
 
+def all_item_categories() -> FrozenSet[str]:
+    return frozenset(_DOOM_LOGIC.item_categories)
+
 def unified_item_map():
     return _DOOM_LOGIC.item_names_to_ids.copy()
 

@@ -131,6 +131,9 @@ class GZDoomWorld(World):
         print(f"Selected spawns: {self.options.spawn_filter.value}")
         self.spawn_filter = self.options.spawn_filter.value
 
+        included_item_categories = (
+            self.options.included_item_categories.value | {"key", "weapon", "token"})
+
         self.maps = [
             map for map in self.wad_logic.maps.values()
             if self.should_include_map(map.map)
@@ -138,6 +141,9 @@ class GZDoomWorld(World):
         self.item_counts = {
             item.name(): item.get_count(self.options, len(self.maps))
             for item in self.wad_logic.items(self.spawn_filter)
+            # TODO: rework can_replace and should_include to respect this, which
+            # also means not using them at logic import time
+            if item.category in included_item_categories
         }
 
         if self.options.pretuning_mode:
@@ -223,14 +229,14 @@ class GZDoomWorld(World):
         # based on the difference.
         filler_count = 0
         for item in filler_items:
-            filler_count += self.item_counts[item.name()]
+            filler_count += self.item_counts.get(item.name(), 0)
         if filler_count == 0:
             print("Warning: no filler items in pool!")
             return
         scale = slots_left/filler_count
 
         for item in filler_items:
-            for _ in range(round(self.item_counts[item.name()] * scale)):
+            for _ in range(round(self.item_counts.get(item.name(), 0) * scale)):
                 if slots_left <= 0:
                     break
                 self.multiworld.itempool.append(GZDoomItem(item, self.player))

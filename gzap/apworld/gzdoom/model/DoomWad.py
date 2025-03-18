@@ -253,6 +253,9 @@ class DoomWad:
         for locs in name_to_loc.values():
             if len(locs) > 1:
                 for loc in locs:
+                    # TODO: handle the case where merely setting disambiguate
+                    # is not enough because there are two checks with identical
+                    # XY coordinates but different Z.
                     loc.disambiguate = True
             for loc in locs:
               self.logic.register_location(loc)

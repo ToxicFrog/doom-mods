@@ -24,7 +24,7 @@ difficulty levels might have slightly more or less.
 | TNT | 32 | 515 | basic | |
 | Plutonia | 32 | 427 | basic | |
 | WadFusion | varies | varies | missing | |
-| Heretic | 45 | 1141 | basic | |
+| Heretic | 45 | 1208 | basic | |
 | Hexen | | | missing | Same concerns as Strife, plus I don't like it. |
 | Strife | | | missing | Hub maps and complicated level scripting mean this may need changes to the generator. |
 | FreeDoom | 36 | 532 | basic | |

@@ -14,7 +14,7 @@ World subclass is even instantiated; well before we have access to the yaml.)
 """
 
 from dataclasses import dataclass, field
-from typing import Dict, List
+from typing import Dict, List, Set
 
 from . import DoomItem, DoomLocation, DoomMap, DoomPosition, DoomWad
 
@@ -25,6 +25,7 @@ class DoomLogic:
     wads: Dict[str,DoomWad] = field(default_factory=dict)
     item_names_to_ids: Dict[str,int] = field(default_factory=dict)
     location_names_to_ids: Dict[str,int] = field(default_factory=dict)
+    item_categories: Set[str] = field(default_factory=set)
 
     def next_id(self) -> int:
         self.last_id += 1
@@ -57,6 +58,7 @@ class DoomLogic:
         if name not in self.item_names_to_ids:
             self.item_names_to_ids[name] = self.next_id()
         item.id = self.item_names_to_ids[name]
+        self.item_categories.add(item.category)
         return item.id
 
     def register_location(self, loc: DoomLocation):
@@ -65,3 +67,4 @@ class DoomLogic:
             self.location_names_to_ids[name] = self.next_id()
         loc.id = self.location_names_to_ids[name]
         return loc.id
+

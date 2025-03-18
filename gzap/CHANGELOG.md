@@ -13,6 +13,9 @@ based on Heretic.
   - Logic and tuning for 1000 Lines.
   - Support for a `GZAPRC` lump for per-wad scanner configuration. See the
     [Adding New WADs](doc/new-wads.md) documentation for details.
+  - `included_item_category` option to control which items are included in the
+    rando. This is work in progress and is planned to be expanded later, but
+    what is there should work.
 - Fix:
   - In-game timer now counts only time spent in gameplay, not time in menus.
   - In-game timer should no longer double-count gameplay time.

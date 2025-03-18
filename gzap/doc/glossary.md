@@ -19,6 +19,26 @@ prefix for all gzArchipelago classes to avoid collisions with other mods.
 
 Objects that exist in the level somewhere, such as the player and *Check* actors.
 
+## Item Category
+
+An internal category assigned by the scanner and used by the randomizer to make
+decisions about which items are replaced with checks and which ones are progression,
+useful, or filler.
+
+The current list of categories is:
+- `key`: keycards, skulls, etc; specific to a single level
+- `weapon`: any sort of weapon
+- `map`: automaps
+- `big-health`: health that restores at least 50%
+- `small-health`: health that restores less than 50%
+- `big-armor`: megaspheres and armour suits
+- `small-armor`: armour shards
+- `big-ammo`: backpacks and combined mana pickups
+- `medium-ammo`: ammo that restores at least 20% of max
+- `small-ammo`: all other ammo
+- `powerup`: time-limited powerups like radsuits and blurspheres
+- `tool`: items you can carry with you and use later (excluding health/armour), like the tome of power
+
 ## Location
 
 The *out-of-world* data about a location where a randomized item can be placed.

@@ -151,6 +151,25 @@ class SpawnFilter(NamedRange):
         "hard": 3
     }
 
+class IncludedItemCategories(OptionSet):
+    """
+    Which item categories to include in randomization. This controls both which
+    items are replaced with checks, and what the item pool contains.
+
+    Keys and weapons are always included and cannot be disabled.
+
+    The "tool" category is things you can pick up and carry with you to use later
+    that don't fall into any other category. In the Id IWADs this mostly applies
+    to Heretic, where it covers the egg, teleporter, and time bomb, which between
+    them account for about 25% of checks in the game.
+    """
+    display_name = "Included Item Categories"
+    default = {"map", "big-armor", "big-health", "big-ammo", "powerup", "tool"}
+    value_keys = {"map", "big-armor", "big-health", "big-ammo", "powerup", "tool"}
+    # TODO: once should_include/can_replace are updated in DoomItem, we can get
+    # really weird and make every single health bonus/armour shard a check.
+    # valid_keys = model.all_item_categories()
+
 class LevelOrderBias(Range):
     """
     How closely the randomizer tries to follow the original level order of the
@@ -240,6 +259,7 @@ class GZDoomOptions(PerGameCommonOptions):
     start_with_all_maps: StartWithAutomaps
     max_weapon_copies: MaxWeaponCopies
     levels_per_weapon: LevelsPerWeapon
+    included_item_categories: IncludedItemCategories
     # Other settings
     allow_respawn: AllowRespawn
     full_persistence: FullPersistence
