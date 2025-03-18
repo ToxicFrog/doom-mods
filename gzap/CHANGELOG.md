@@ -1,9 +1,11 @@
-# Unreleased
+# 0.3.3
 
 This is a bugfix release.
 
 This release changes the map scanner. It is recommended that you rescan anything
-based on Heretic.
+based on Heretic, although old logic files will continue to work.
+
+This release changes the APWorld options. Please regenerate the template YAML.
 
 - New:
   - `pretuning_mode` option for doing a tuning run without randomizing item
