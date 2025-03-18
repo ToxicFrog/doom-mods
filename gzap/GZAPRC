@@ -27,3 +27,23 @@
 # than whatever was actually scanned, and the given type, not the original item,
 # will be added to the item pool.
 
+
+#### Heretic configuration ####
+# In Heretic, the Firemace is actually placed on the map as a MaceSpawner. When
+# playing, there is a random chance for the Firemace to appear at each spawner.
+# For rando purposes, we want to replace each spawner with a check, whether or
+# not it got replaced when the scanner saw it.
+# TODO: we might want to make this conditional in the same way BONSAIRC blocks
+# are, so that the builtin RC can have different settings for different TCs?
+
+# When scanning, consider MaceSpawners to be weapons rather than skipping them.
+category weapon: MaceSpawner;
+# When adding them to the pool, add Mace rather than MaceSpawner, and name the
+# check based on Mace's tag rather than MaceSpawner's tag. This ensures that
+# when the player finds one, they get an actual Firemace, rather than a spawner
+# that might just do nothing when given to them.
+typename Mace: MaceSpawner;
+
+# Ignore any Maces that spawn entirely. They will neither be converted to checks
+# nor added to the item pool.
+category none: Mace;

@@ -68,6 +68,9 @@ reclassifying something from "tool" to "powerup"), exclude items from randomizat
 and include items that would not normally be included. It can also be used to add
 a different item to the item pool than what the scanner finds.
 
+This repo contains a [commented example](../GZAPRC) containing a configuration
+for Heretic and The Adventures of Square.
+
 ## Adding the logic file to the apworld
 
 - Open gzdoom.apworld in a zip viewer

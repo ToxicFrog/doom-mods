@@ -2,6 +2,9 @@
 
 This is a bugfix release.
 
+This release changes the map scanner. It is recommended that you rescan anything
+based on Heretic.
+
 - New:
   - `pretuning_mode` option for doing a tuning run without randomizing item
     placements or giving the player any starting keys.
