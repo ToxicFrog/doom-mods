@@ -145,15 +145,23 @@ class ::PerLevelHandler : EventHandler {
   // checks and do so. Any leftover checks will give automatically dispensed to
   // the player via WorldTick() above.
 
+  bool IsReplaceable(Actor thing) {
+    if (!thing) return false;
+    // This also checks the GZAPRC, so if this returns a nonempty category name,
+    // it's always eligible even if it would normally be ignored for being non-
+    // physical or not an Inventory or what have you.
+    let category = ::ScannedItem.ItemCategory(thing);
+    if (category != "") return true;
+
+    if (thing.bNOBLOCKMAP || thing.bNOSECTOR || thing.bNOINTERACTION || thing.bISMONSTER) return false;
+    if (!(thing is "Inventory")) return false;
+
+    return true;
+  }
+
   override void WorldThingSpawned(WorldEvent evt) {
     let thing = evt.thing;
-
-    if (!thing) return;
-    if (thing.bNOBLOCKMAP || thing.bNOSECTOR || thing.bNOINTERACTION || thing.bISMONSTER) return;
-    // It is possible that some mods might replace inventory items with things that
-    // have custom on-touch behaviour and aren't technically Inventory, or something.
-    // For now, though, this works with vanilla and every mod I've tested.
-    if (!(thing is "Inventory")) return;
+    if (!IsReplaceable(thing)) return;
 
     if (alarm) {
       // Start-of-level countdown is still running, see if we need to replace this

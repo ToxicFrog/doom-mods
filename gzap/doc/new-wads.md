@@ -56,6 +56,18 @@ example, to scan Doom 1:
 Note that the quotes around the map names are mandatory in the console, and should
 be omitted if scanning from the GUI.
 
+### Overriding scanner behaviour
+
+Some wads contain items that gzArchipelago's automatic item classifier does not
+properly handle. For these, you can write a `GZAPRC` file defining how to handle
+them. All `GZAPRC` files, in any `pk3`, `wad`, or directory passed to gzdoom using
+`-file`, will be loaded.
+
+It can be used to override how items are classified for randomization (for example,
+reclassifying something from "tool" to "powerup"), exclude items from randomization,
+and include items that would not normally be included. It can also be used to add
+a different item to the item pool than what the scanner finds.
+
 ## Adding the logic file to the apworld
 
 - Open gzdoom.apworld in a zip viewer

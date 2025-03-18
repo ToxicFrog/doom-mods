@@ -16,6 +16,14 @@ class ::ScannedItem : ::ScannedLocation {
     loc.tag = thing.GetTag();
     loc.secret = IsSecret(thing);
     loc.pos = thing.pos;
+
+    let [newtype, ok] = ::RC.Get().GetTypename(loc.typename);
+    if (ok) {
+      class<Actor> cls = newtype;
+      loc.typename = newtype;
+      loc.tag = GetDefaultByType(cls).GetTag();
+    }
+
     return loc;
   }
 
@@ -49,6 +57,9 @@ class ::ScannedItem : ::ScannedLocation {
   // .COUNTITEM - counts towards the % items collected stat
   // there's also sv_unlimited_pickup to remove all limits on ammo capacity(!)
   static string ItemCategory(readonly<Actor> thing) {
+    let [category, ok] = ::RC.Get().GetCategory(thing.GetClassName());
+    if (ok) return category;
+
     if (thing is "Key" || thing is "PuzzleItem") {
       return "key"; // TODO: allow duplicate PuzzleItems but not Keys
     } else if (thing is "Weapon" || thing is "WeaponPiece") {

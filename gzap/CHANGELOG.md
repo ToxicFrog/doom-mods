@@ -8,6 +8,8 @@ This is a bugfix release.
   - Collected check translucency is adjustable via the `ap_collected_alpha`
     cvar. Setting takes effect on level entry.
   - Logic and tuning for 1000 Lines.
+  - Support for a `GZAPRC` lump for per-wad scanner configuration. See the
+    [Adding New WADs](doc/new-wads.md) documentation for details.
 - Fix:
   - In-game timer now counts only time spent in gameplay, not time in menus.
   - In-game timer should no longer double-count gameplay time.

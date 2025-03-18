@@ -2,16 +2,19 @@
 #debug off;
 
 #include "./IPC.zsc"
+#include "./RC.zsc"
 #include "./Util.zsc"
 #include "./scanner/Scanner.zsc"
 
 class ::ScanEventHandler : StaticEventHandler {
   bool scan_enabled;
   ::Scanner scanner;
+  ::RC rc;
 
   override void OnRegister() {
     self.scan_enabled = false;
     self.scanner = ::Scanner(new("::Scanner"));
+    self.rc = ::RC.LoadAll("GZAPRC");
   }
 
   override void WorldLoaded(WorldEvent evt) {

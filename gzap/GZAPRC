@@ -1,0 +1,29 @@
+# gzArchipelago run control file.
+# This overrides the behaviour of the scanner and check-placer based on actor
+# types.
+#
+# Available directives are:
+#
+#     category <cat> : <list of classes> ;
+# Assign the listed classes to the given category. Any category can be specified,
+# including ones not otherwise known to the scanner -- they will be passed through
+# to the apworld as is. This can be used to add objects to the scan that would
+# normally be skilled, or change the category of objects.
+#
+# "key", "map", and "weapon" have special handling in the generator:
+# - keys are used in reachability calculations and are limited to the level on
+#   which they are picked up
+# - weapons are used for combat balancing and also affect reachability, albeit
+#   in different ways
+# - maps are converted into checks, but not placed in the item pool; instead the
+#   pool is populated (or not) with maps based on other settings
+#
+# A category of "none" will exclude something from the scan entirely, even if it
+# would normally have been included.
+#
+#     typename <type> : <list of classes> ;
+# When scanning anything in the list, report it as being <type> rather than
+# whatever its actual type is. The check will be named after that type rather
+# than whatever was actually scanned, and the given type, not the original item,
+# will be added to the item pool.
+
