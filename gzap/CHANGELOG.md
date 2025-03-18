@@ -22,6 +22,8 @@ This release changes the APWorld options. Please regenerate the template YAML.
   - default `included_levels` value is now `[]` rather than a list of every level
     in every supported wad; the behaviour is the same, but it was getting a bit
     unwieldy.
+  - generated PK3 file now includes the selected wad name in the filename, e.g.
+    `AP_1234_P1_ToxicFrog.Doom_2.pk3`.
 - Fix:
   - In-game timer now counts only time spent in gameplay, not time in menus.
   - In-game timer should no longer double-count gameplay time.

@@ -309,7 +309,9 @@ class GZDoomWorld(World):
             trim_blocks=True,
             lstrip_blocks=True)
 
-        pk3_path = os.path.join(path, f"{self.multiworld.get_out_file_name_base(self.player)}.pk3")
+        pk3_path = os.path.join(
+            path,
+            f"{self.multiworld.get_out_file_name_base(self.player)}.{self.wad_logic.name.replace(' ', '_')}.pk3")
 
         with zipfile.ZipFile(pk3_path, mode="w", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as zip:
             zip.writestr("ZSCRIPT", env.get_template("zscript.jinja").render(**data))
