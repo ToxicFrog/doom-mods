@@ -16,6 +16,10 @@ based on Heretic.
   - `included_item_category` option to control which items are included in the
     rando. This is work in progress and is planned to be expanded later, but
     what is there should work.
+- Change:
+  - default `included_levels` value is now `[]` rather than a list of every level
+    in every supported wad; the behaviour is the same, but it was getting a bit
+    unwieldy.
 - Fix:
   - In-game timer now counts only time spent in gameplay, not time in menus.
   - In-game timer should no longer double-count gameplay time.

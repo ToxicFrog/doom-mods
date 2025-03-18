@@ -116,7 +116,7 @@ class IncludedLevels(OptionSet):
     levels will generally result in a longer game.
     """
     display_name = "Included levels"
-    default = sorted(model.all_map_names())
+    default = [] # sorted(model.all_map_names())
 
 class ExcludedLevels(OptionSet):
     """
