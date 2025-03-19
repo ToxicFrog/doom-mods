@@ -47,3 +47,18 @@ typename Mace: MaceSpawner;
 # Ignore any Maces that spawn entirely. They will neither be converted to checks
 # nor added to the item pool.
 category none: Mace;
+
+
+#### Adventures of Square configuration ####
+# AOS uses CustomInventory objects to implement the weapon pickups, which when
+# picked up place both the weapon and a "voiceover" object into the player's
+# inventory.
+# The "FooVO" is the object actually placed in the world; it turns into a
+# "Foo" and a "SquareVOWeaponsFoo".
+category weapon:
+  DefibrillatorVO PaintGunVO PaintGunsVO OoziVO OozisVO ShotbowVO
+  QuadcannonVO PaintCannonVO HellShellLauncherVO GoonadesVO SceptreVO;
+
+# Fishtank spawners are needed for progression in some levels and shouldn't be
+# replaced.
+category none: FishTankSpawner;

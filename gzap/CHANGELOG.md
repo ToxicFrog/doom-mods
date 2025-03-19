@@ -18,6 +18,7 @@ This release changes the APWorld options. Please regenerate the template YAML.
   - `included_item_category` option to control which items are included in the
     rando. This is work in progress and is planned to be expanded later, but
     what is there should work.
+  - Logic and tuning for Adventures of Square [by @frozenLake]
 - Change:
   - default `included_levels` value is now `[]` rather than a list of every level
     in every supported wad; the behaviour is the same, but it was getting a bit
