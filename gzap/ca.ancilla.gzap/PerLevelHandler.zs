@@ -291,7 +291,7 @@ class ::PerLevelHandler : EventHandler {
       }
     }
     // We found something, but it's not as close as we want it to be.
-    if (IsCloseEnough(closest.pos, thing.pos, min_distance)) {
+    if (::Location.IsCloseEnough(closest.pos, thing.pos)) {
       DEBUG("WARN: Closest to %s @ (%f, %f, %f) was %s @ (%f, %f, %f)",
         thing.GetTag(), thing.pos.x, thing.pos.y, thing.pos.z,
         closest.name, closest.pos.x, closest.pos.y, closest.pos.z);
@@ -300,20 +300,6 @@ class ::PerLevelHandler : EventHandler {
     // Not feeling great about this.
     return null, min_distance;
   }
-
-  // We consider two positions "close enough" to each other iff:
-  // - d is less than MAX_DISTANCE, and
-  // - only one of the coordinates differs.
-  // This usually means an item placed on a conveyor or elevator configured to
-  // start moving as soon as the level loads.
-  bool IsCloseEnough(Vector3 p, Vector3 q, float d) {
-    float MAX_DISTANCE = 2.0;
-    return d <= MAX_DISTANCE
-      && ((p.x == q.x && p.y == q.y)
-          || (p.x == q.x && p.z == q.z)
-          || (p.y == q.y && p.z == q.z));
-  }
-
 
   //// Handling for level exit. ////
   // We try to guess if the player reached the exit or left in some other way.

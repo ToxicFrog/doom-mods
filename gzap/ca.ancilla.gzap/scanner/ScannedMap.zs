@@ -71,7 +71,7 @@ class ::ScannedMap play {
     // A location qualifies for merge if it has the same position and typename,
     // but does not have the current difficulty bit set.
     foreach (loc : locations) {
-      if (loc.pos != newloc.pos) continue;
+      if (!::Location.IsCloseEnough(loc.pos, newloc.pos)) continue;
       if (loc.typename != newloc.typename) continue;
       if (loc.HasSkill(::Util.GetSkill())) continue;
       loc.AddSkill(::Util.GetSkill());

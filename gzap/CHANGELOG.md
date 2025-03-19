@@ -2,8 +2,8 @@
 
 This is a bugfix release.
 
-This release changes the map scanner. It is recommended that you rescan anything
-based on Heretic, although old logic files will continue to work.
+This release changes the map scanner. It is recommended that you rescan your wads,
+although old logic files will continue to work.
 
 This release changes the APWorld options. Please regenerate the template YAML.
 
@@ -41,6 +41,9 @@ This release changes the APWorld options. Please regenerate the template YAML.
   - +INVBAR items that don't fall into any other category are now properly
     scanned as tools. This has no effect at present but will be important for
     some TCs later.
+  - Scanner now uses the same logic to merge nearby locations as the check
+    replacer does, which should improve scanning of levels where items are placed
+    on conveyor belts or elevators.
 
 # 0.3.2
 
