@@ -102,7 +102,7 @@ class GZDoomContext(CommonContext):
                 task.result()  # raises if the task errored out
         self.watcher_event.set()
 
-    def _is_relevant(self, type, item = None, receiving = None, **kwargs) -> bool:
+    def _is_relevant(self, type = None, item = None, receiving = None, **kwargs) -> bool:
       if type in {"Chat", "ServerChat", "Goal", "Countdown"}:
           return True
       if type in {"Hint", "ItemSend"}:

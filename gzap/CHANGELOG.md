@@ -1,3 +1,10 @@
+# Unreleased
+
+This is a bugfix release.
+
+- Fix:
+  - Crash in client when receiving a message from the server with no `type` field.
+
 # 0.3.3
 
 This is a bugfix release.
