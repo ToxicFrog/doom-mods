@@ -29,7 +29,7 @@ difficulty levels might have slightly more or less.
 | Strife | | | missing | Hub maps and complicated level scripting mean this may need changes to the generator. |
 | FreeDoom | 36 | 532 | basic | |
 | FreeDoom 2 | 32 | 495 | basic | |
-| Chex Quest 3 | 15 | 196 | complete | |
+| Chex Quest 3 | 15 | 196 | complete | Version 1.4 supported, check archived versions on the [Chex Quest 3 website](https://www.chexquest3.com/downloads/). |
 
 ### PWADs
 
