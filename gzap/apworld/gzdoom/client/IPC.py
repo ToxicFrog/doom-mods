@@ -101,7 +101,7 @@ class IPC:
           if evt == "AP-XON":
             if tune:
               tune.close()
-            tune = open(os.path.join(ipc_dir, payload["wad"]), "a")
+            tune = open(os.path.join(ipc_dir, 'tuning', payload["wad"]), "a")
 
           if evt == "AP-CHECK" and tune:
             tune.write(line+"\n")
