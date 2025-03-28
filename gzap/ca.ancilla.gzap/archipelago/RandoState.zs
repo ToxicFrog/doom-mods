@@ -87,6 +87,13 @@ class ::RandoItem play {
       players[p].mo.A_SpawnItemEX(self.typename);
     }
   }
+
+  // Used for sorting. Returns true if this item should be sorted before the
+  // other item. At present we sort exclusively by name, disregarding count;
+  // the menu code will skip over 0-count items.
+  bool Order(::RandoItem other) {
+    return self.tag < other.tag;
+  }
 }
 
 class ::RandoState play {
@@ -148,6 +155,19 @@ class ::RandoState play {
     regions.Get(map).RegisterCheck(apid, name, progression, pos, unreachable);
   }
 
+  void SortItems() {
+    // It's small, we just bubble sort.
+    for (int i = 0; i < self.items.Size()-1; ++i) {
+      for (int j = i; j < self.items.Size()-1; ++j) {
+        if (!self.items[j].Order(self.items[j+1])) {
+          let tmp = self.items[j];
+          self.items[j] = self.items[j+1];
+          self.items[j+1] = tmp;
+        }
+      }
+    }
+  }
+
   int, ::RandoItem FindItem(string typename) {
     for (int n = 0; n < self.items.Size(); ++n) {
       if (self.items[n].typename == typename) {
@@ -193,7 +213,8 @@ class ::RandoState play {
       let [idx, item] = FindItem(typename);
       if (idx < 0) {
         item = ::RandoItem.Create(typename);
-        idx = self.items.Push(item);
+        self.items.Push(item);
+        self.SortItems();
       }
       if (count) {
         // ITEM message from client, force local count to match server.

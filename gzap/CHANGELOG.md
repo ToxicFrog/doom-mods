@@ -2,6 +2,8 @@
 
 This is a bugfix release.
 
+- Change:
+  - Inventory is now sorted alphabetically.
 - Fix:
   - Crash in client when receiving a message from the server with no `type` field.
 
