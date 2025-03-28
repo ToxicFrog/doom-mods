@@ -78,6 +78,7 @@ class ::RandoItem play {
   // Thank you for choosing Value-Rep™!
   void Replicate() {
     DEBUG("Replicating %s", self.typename);
+    if (!self.held) return;
     self.held -= 1;
     ::PerLevelHandler.Get().AllowDropsBriefly(2);
     for (int p = 0; p < MAXPLAYERS; ++p) {
