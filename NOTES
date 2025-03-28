@@ -58,11 +58,14 @@ We may also want to define key scoping here, somehow -- e.g. an AP-KEY message
 something like:
 AP-KEY { typename: "GreenKey", scopename: "E1", scope: ["E1M1", "E1M2", ...] }
 
+Adventures of Square would benefit from being able to model weapons that are also
+keys; frozen notes that the Hellshell Launcher can be used to break certain walls
+that normally require TNT box manipulation. This also ties in with the need to
+be able to represent logic requirements that aren't just keys.
+
 ### scanner
 
 - map exclusion UI
-* non-rando tuning mode
-- add "scan the whole thing" button
 - include secrets as checks in themselves?
   we can build the secret list by scanning the sector array on level entry and
   recording all sectors for which IsSecret() return true. We can associate this
@@ -78,11 +81,11 @@ AP-KEY { typename: "GreenKey", scopename: "E1", scope: ["E1M1", "E1M2", ...] }
 
 ### ingame
 
-* fix the timer (and preserve it across save/load if possible)
 * weapon suppression should let the weapon drop normally and apply the suppression
   when it's picked up
 - "tracker mode" that propagates key requirements into the generated pk3 and
   displays what it thinks you can reach from the level selector
+- level select shouldn't list or count unreachable locations
 
 ### generator
 
@@ -91,6 +94,10 @@ AP-KEY { typename: "GreenKey", scopename: "E1", scope: ["E1M1", "E1M2", ...] }
 - option to treat bosses as checks -- also needs scanner changes, highly vulnerable
   to enemy-replacement mods
 - option to add ammo to the item pool
+- fixes for included_item_categories
+  - small items should work
+  - disabling maps shouldn't break generation
+- included_levels should support globbing
 - alternate win conditions:
   - clear [specific levels]
   - clear any N levels

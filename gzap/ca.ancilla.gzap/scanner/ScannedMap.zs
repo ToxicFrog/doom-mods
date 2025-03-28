@@ -83,6 +83,11 @@ class ::ScannedMap play {
 
   string GetMapinfoJSON() {
     let flags = GetFlagsForMapinfo(info);
+    // Apparently it is legal to have a level title with embedded newlines.
+    // While we're here, let's handle embedded quotes as well.
+    let title = info.LevelName;
+    title.Replace("\n", "\\n");
+    title.Replace("\"", "\\\"");
     return string.format(
         "{ "
         "\"levelnum\": %d, \"title\": \"%s\", \"is_lookup\": %s, "
@@ -90,7 +95,7 @@ class ::ScannedMap play {
         "\"sky2\": \"%s\", \"sky2speed\": \"%f\", "
         "\"music\": \"%s\", \"music_track\": \"%d\", "
         "\"cluster\": %d, \"flags\": [%s] }",
-        info.LevelNum, info.LevelName,
+        info.LevelNum, title,
         ::Util.bool2str(info.flags & LEVEL_LOOKUPLEVELNAME),
         info.SkyPic1, info.SkySpeed1,
         info.SkyPic2, info.SkySpeed2,
