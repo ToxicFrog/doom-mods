@@ -118,6 +118,7 @@ class ::CheckPickup : ScoreItem {
   }
 
   override void PostBeginPlay() {
+    if (self.unreachable) self.ClearCounters();
     if (self.checked) return;
     DEBUG("Creating map marker for check %s", self.location.name);
     SetTag(self.location.name);

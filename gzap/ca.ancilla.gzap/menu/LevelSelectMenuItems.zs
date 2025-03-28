@@ -197,7 +197,7 @@ class ::LevelSelector : ::KeyValueNetevent {
   string FormatMissingChecksTT(::Region region) {
     string buf = "";
     foreach (loc : region.locations) {
-      if (!loc.checked) {
+      if (!loc.checked && !loc.unreachable) {
         // TODO: this is a gross hack to strip the redundant "MAPNN - " prefix
         // from the check name.
         string shortname = loc.name;

@@ -75,13 +75,17 @@ class ::Region play {
   uint LocationsChecked() const {
     uint found = 0;
     foreach (loc : locations) {
-      if (loc.checked) ++found;
+      if (loc.checked && !loc.unreachable) ++found;
     }
     return found;
   }
 
   uint LocationsTotal() const {
-    return locations.Size();
+    uint total = 0;
+    foreach (loc : locations) {
+      if (!loc.unreachable) ++total;
+    }
+    return total;
   }
 
   // Return the name of the next item to hint for that's useful for this level.

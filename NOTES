@@ -85,7 +85,10 @@ be able to represent logic requirements that aren't just keys.
   when it's picked up
 - "tracker mode" that propagates key requirements into the generated pk3 and
   displays what it thinks you can reach from the level selector
-- level select shouldn't list or count unreachable locations
+- when placing checks, it probably makes more sense to place the check first, then
+  delete any categorizeable items around it, rather than looking for something to
+  replace. This requires knowing what type of thing we *hoped* to replace so we
+  can copy physics info from it, so we don't get stuff in walls or anything.
 
 ### generator
 
