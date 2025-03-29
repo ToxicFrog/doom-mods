@@ -102,7 +102,7 @@ class StartingLevels(OptionSet):
     This option supports globbing expressions.
     """
     display_name = "Starting levels"
-    default = ["E1M1", "MAP01"]
+    default = ["E?M1", "MAP01"]
     # valid_keys = model.all_map_names()
 
 class StartWithKeys(Toggle):
