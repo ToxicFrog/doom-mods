@@ -205,12 +205,8 @@ class GZDoomWorld(World):
                     location.access_rule = lambda state: True
                     location.place_locked_item(self.create_item(loc.orig_item.name()))
                 elif loc.unreachable:
-                    # TODO: put a BasicHealthBonus here or something
-                    # We want SOMETHING here so that if the player manages to
-                    # reach it after all, we emit a check message for it clearing
-                    # the unreachable bit.
                     location.place_locked_item(GZDoomItem(
-                        self.wad_logic.item("Backpack"), self.player))
+                        self.wad_logic.item("HealthBonus"), self.player))
                 elif loc.item:
                     location.place_locked_item(GZDoomItem(loc.item, self.player))
                     self.item_counts[loc.item.name()] -= 1
