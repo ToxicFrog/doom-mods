@@ -39,6 +39,11 @@ class DoomItem:
         # TODO: caller should specify this
         if category == "key" or category == "map" or category == "token":
             self.map = map
+        if category == "map":
+            # Hack hack hack -- this makes it alway compare equal to the synthetic
+            # automaps we add to the pool later.
+            self.tag = "Automap"
+            self.typename = ""
 
     def __str__(self) -> str:
         return f"DoomItem#{self.id}({self.name()})×{self.count}"

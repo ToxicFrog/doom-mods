@@ -116,9 +116,8 @@ class DoomWad:
         # We add everything in the logic file to the pool. Not everything will
         # necessarily be used in randomization, but we need to do this at load
         # time, before we know what item categories the user has requested.
-        item = DoomItem(skill=skill, **json)
+        item = self.register_item(map, DoomItem(skill=skill, **json))
         self.new_location(map, item, secret, skill, position)
-        self.register_item(map, item)
 
     def register_item(self, map: str, item: DoomItem) -> DoomItem:
         if item.name() in self.items_by_name:
@@ -273,7 +272,7 @@ class DoomWad:
             if value
         }
         for item in self.items_by_name.values():
-            if item.category == "key":
+            if item.category == "key" or item.category == "map":
                 item.set_count(1)
 
         # Compute which maps precede which other maps, so that the map ordering
