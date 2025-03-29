@@ -2,6 +2,9 @@
 
 This is a bugfix release.
 
+- New:
+  - Globbing expressions are now supported in `included_levels`, `excluded_levels`,
+    and `starting_levels`.
 - Change:
   - Inventory is now sorted alphabetically.
   - `included_item_categories` option now supports all recognized item categories.

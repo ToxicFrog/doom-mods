@@ -1,8 +1,9 @@
+import fnmatch
 import jinja2
 import logging
 import os
 import random
-from typing import Dict, FrozenSet
+from typing import Dict, FrozenSet, Set
 import zipfile
 
 from BaseClasses import CollectionState, Item, ItemClassification, Location, MultiWorld, Region, Tutorial, LocationProgressType
@@ -107,14 +108,21 @@ class GZDoomWorld(World):
         item = self.wad_logic.items_by_name[name]
         return GZDoomItem(item, self.player)
 
+    def any_glob_matches(self, globs: Set[str], name: str) -> bool:
+        for glob in globs:
+            if fnmatch.fnmatch(name, glob):
+                return True
+        return False
+
     def should_include_map(self, map: str) -> bool:
         if self.options.pretuning_mode:
             return True
-        if map in self.options.excluded_levels:
+        if self.any_glob_matches(self.options.excluded_levels.value, map):
             return False
-        if self.options.included_levels.value and map not in self.options.included_levels:
-            return False
-        return True
+        return self.any_glob_matches(self.options.included_levels.value or {"*"}, map)
+
+    def is_starting_map(self, map: str) -> bool:
+        return self.any_glob_matches(self.options.starting_levels.value, map)
 
     def setup_pretuning_mode(self):
         print("PRETUNING ENABLED - overriding most settings")
@@ -150,6 +158,12 @@ class GZDoomWorld(World):
         if self.options.pretuning_mode:
             self.setup_pretuning_mode()
 
+        if "GZAP_DEBUG" in os.environ:
+            print("Selected maps:", sorted([map.map for map in self.maps]))
+            print("Starting maps:", sorted([
+                map.map for map in self.maps
+                if self.is_starting_map(map.map)]))
+
 
     def create_regions(self) -> None:
         menu_region = Region("Menu", self.player, self.multiworld)
@@ -163,7 +177,7 @@ class GZDoomWorld(World):
                 self.multiworld.push_precollected(self.create_item(map.automap_name()))
                 self.item_counts[item.name()] -= 1
 
-            if map.map in self.options.starting_levels:
+            if self.is_starting_map(map.map):
                 if self.options.pretuning_mode:
                     self.multiworld.push_precollected(self.create_item(map.access_token_name()))
                 else:
@@ -180,7 +194,7 @@ class GZDoomWorld(World):
                 rule = map.access_rule(
                     self.player,
                     need_priors=self.options.level_order_bias.value / 100,
-                    require_weapons=(map.map not in self.options.starting_levels))
+                    require_weapons=(not self.is_starting_map(map.map)))
             menu_region.connect(
                 connecting_region=region,
                 name=f"{map.map}",

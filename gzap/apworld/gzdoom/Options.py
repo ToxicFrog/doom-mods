@@ -98,10 +98,12 @@ class StartingLevels(OptionSet):
     to start with access to the first level.
 
     You will begin with the access code and all keys for these levels in your inventory.
+
+    This option supports globbing expressions.
     """
     display_name = "Starting levels"
     default = ["E1M1", "MAP01"]
-    valid_keys = model.all_map_names()
+    # valid_keys = model.all_map_names()
 
 class IncludedLevels(OptionSet):
     """
@@ -112,6 +114,8 @@ class IncludedLevels(OptionSet):
 
     The win condition (at present) is always "complete all levels", so including more
     levels will generally result in a longer game.
+
+    This option supports globbing expressions.
     """
     display_name = "Included levels"
     default = [] # sorted(model.all_map_names())
@@ -121,6 +125,8 @@ class ExcludedLevels(OptionSet):
     Set of levels to exclude from randomization.
 
     This takes precedence over included_levels, if a map appears in both.
+
+    This option supports globbing expressions.
     """
     display_name = "Excluded levels"
     default = ['TITLEMAP']
