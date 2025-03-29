@@ -105,6 +105,20 @@ class StartingLevels(OptionSet):
     default = ["E1M1", "MAP01"]
     # valid_keys = model.all_map_names()
 
+class StartWithKeys(Toggle):
+    """
+    If enabled, you will start with all the keys for any starting level that has
+    keys.
+
+    This is on by default because turning it off will cause generation failures
+    for newly-scanned wads, or wads where the default starting levels have very
+    restrictive item access. For properly tuned wads where at least some checks
+    are known to be reachable without keys, turning this off will allow the
+    randomizer more freedom in item placement.
+    """
+    display_name = "Start with keys"
+    default = True
+
 class IncludedLevels(OptionSet):
     """
     Set of levels to include in randomization.
@@ -145,7 +159,7 @@ class SpawnFilter(NamedRange):
     have custom difficulty settings that are not just simple reskins of the Doom
     ones.
     """
-    display_name = "Spawn Filter"
+    display_name = "Spawn filter"
     range_start = 1
     range_end = 3
     default = 2
@@ -271,6 +285,7 @@ class GZDoomOptions(PerGameCommonOptions):
     allow_secret_progress: AllowSecretProgress
     # Item pool control
     start_with_all_maps: StartWithAutomaps
+    start_with_keys: StartWithKeys
     max_weapon_copies: MaxWeaponCopies
     levels_per_weapon: LevelsPerWeapon
     included_item_categories: IncludedItemCategories

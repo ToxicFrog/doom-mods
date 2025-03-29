@@ -131,6 +131,7 @@ class GZDoomWorld(World):
         self.options.excluded_levels.value = set()
         self.options.level_order_bias.value = 0
         self.options.starting_levels.value = [map.map for map in self.maps]
+        self.options.start_with_keys.value = False
         self.options.full_persistence.value = False
         self.options.allow_respawn.value = True
 
@@ -178,13 +179,10 @@ class GZDoomWorld(World):
                 self.item_counts[item.name()] -= 1
 
             if self.is_starting_map(map.map):
-                if self.options.pretuning_mode:
-                    self.multiworld.push_precollected(self.create_item(map.access_token_name()))
-                else:
-                    for name in map.starting_items():
-                        item = self.wad_logic.item(name)
-                        self.multiworld.push_precollected(GZDoomItem(item, self.player))
-                        self.item_counts[item.name()] -= 1
+                for name in map.starting_items(self.options):
+                    item = self.wad_logic.item(name)
+                    self.multiworld.push_precollected(GZDoomItem(item, self.player))
+                    self.item_counts[item.name()] -= 1
 
             region = Region(map.map, self.player, self.multiworld)
             self.multiworld.regions.append(region)

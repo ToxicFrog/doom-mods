@@ -106,9 +106,12 @@ class DoomMap:
     def exit_location_name(self):
         return f"{self.map} - Exit"
 
-    def starting_items(self):
+    def starting_items(self, options):
         """Return all items needed if this is a starting level for the player."""
-        return self.keyset | {self.access_token_name()}
+        if options.start_with_keys:
+            return self.keyset | {self.access_token_name()}
+        else:
+            return {self.access_token_name()}
 
     def register_location(self, loc: DoomLocation) -> None:
         if loc not in self.locations:
