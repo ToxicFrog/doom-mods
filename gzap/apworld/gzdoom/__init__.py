@@ -2,7 +2,7 @@ import jinja2
 import logging
 import os
 import random
-from typing import Dict
+from typing import Dict, FrozenSet
 import zipfile
 
 from BaseClasses import CollectionState, Item, ItemClassification, Location, MultiWorld, Region, Tutorial, LocationProgressType
@@ -80,6 +80,7 @@ class GZDoomWorld(World):
     topology_present = True
     web = GZDoomWeb()
     required_client_version = (0, 5, 1)
+    included_item_categories = {}
 
     # Info fetched from gzDoom; contains item/location ID mappings etc.
     wad_logic: DoomWad
@@ -93,7 +94,10 @@ class GZDoomWorld(World):
 
     # Used by the caller
     item_name_to_id: Dict[str, int] = model.unified_item_map()
+    item_name_groups: Dict[str,FrozenSet[str]] = model.unified_item_groups()
     location_name_to_id: Dict[str, int] = model.unified_location_map()
+    location_name_groups: Dict[str,FrozenSet[str]] = model.unified_location_groups()
+
 
     def __init__(self, multiworld: MultiWorld, player: int):
         self.location_count = 0
@@ -131,7 +135,7 @@ class GZDoomWorld(World):
         print(f"Selected spawns: {self.options.spawn_filter.value}")
         self.spawn_filter = self.options.spawn_filter.value
 
-        included_item_categories = (
+        self.included_item_categories = (
             self.options.included_item_categories.value | {"key", "weapon", "token"})
 
         self.maps = [
@@ -141,9 +145,6 @@ class GZDoomWorld(World):
         self.item_counts = {
             item.name(): item.get_count(self.options, len(self.maps))
             for item in self.wad_logic.items(self.spawn_filter)
-            # TODO: rework can_replace and should_include to respect this, which
-            # also means not using them at logic import time
-            if item.category in included_item_categories
         }
 
         if self.options.pretuning_mode:
@@ -184,7 +185,7 @@ class GZDoomWorld(World):
                 connecting_region=region,
                 name=f"{map.map}",
                 rule=rule)
-            for loc in map.all_locations(self.spawn_filter):
+            for loc in map.all_locations(self.spawn_filter, self.included_item_categories):
                 assert loc.name() not in placed, f"Location {loc.name()} was already placed but we tried to place it again!"
                 placed.add(loc.name())
                 location = GZDoomLocation(self.options, self.player, loc, region)
@@ -219,6 +220,8 @@ class GZDoomWorld(World):
 
         for item in main_items:
             if item.map and not self.should_include_map(item.map):
+                continue
+            if item.category not in self.included_item_categories:
                 continue
             # print("  Item:", item, item.count)
             for _ in range(max(self.item_counts[item.name()], 0)):
@@ -279,6 +282,9 @@ class GZDoomWorld(World):
             else:
                 return self.item_name_to_id[name]
 
+        def locations(map):
+            return map.all_locations(self.spawn_filter, self.included_item_categories)
+
         data = {
             "singleplayer": self.multiworld.players == 1,
             "seed": self.multiworld.seed_name,
@@ -301,6 +307,7 @@ class GZDoomWorld(World):
                 if loc.item
             },
             "progression": progression,
+            "locations": locations,
             "id": id,
         }
 

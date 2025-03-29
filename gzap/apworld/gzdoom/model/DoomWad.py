@@ -12,7 +12,7 @@ to keep track of:
 """
 
 from dataclasses import dataclass, field, InitVar
-from typing import Any, Dict, List, Set
+from typing import Any, Dict, List, Set, FrozenSet
 
 from . import DoomItem, DoomLocation, DoomMap, DoomPosition
 
@@ -113,20 +113,12 @@ class DoomWad:
         skill = set(json.pop("skill", [1,2,3]))
         secret = json.pop("secret", False)
 
-        # Provisionally create a DoomItem.
+        # We add everything in the logic file to the pool. Not everything will
+        # necessarily be used in randomization, but we need to do this at load
+        # time, before we know what item categories the user has requested.
         item = DoomItem(skill=skill, **json)
-
-        # Do we actually care about these? If not, don't generate an ID for this item or add it to the pool,
-        # and don't consider its location as a valid randomization destination.
-        if not item.can_replace():
-            return
-
-        # We know we care about the location, so register it.
         self.new_location(map, item, secret, skill, position)
-
-        # Register the item as well, if it's eligible to be included in the item pool.
-        if item.should_include():
-            self.register_item(map, item)
+        self.register_item(map, item)
 
     def register_item(self, map: str, item: DoomItem) -> DoomItem:
         if item.name() in self.items_by_name:
@@ -141,6 +133,13 @@ class DoomWad:
 
     def register_duplicate_item(self, map: str, item: DoomItem) -> DoomItem:
         other: DoomItem = self.items_by_name[item.name()]
+        if other is False:
+            # Known to require disambiguation. Set the disambiguation bit
+            # and retry.
+            assert not item.disambiguate
+            item.disambiguate = True
+            return self.register_item(map, item)
+
         if other == item:
             if map is not None:
                 # Record this key/gun as something the player should have before
@@ -150,13 +149,6 @@ class DoomWad:
                 self.maps[map].update_access_tracking(item)
             other.update_skill_from(item)
             return other
-
-        if other is False:
-            # Known to require disambiguation. Set the disambiguation bit
-            # and retry.
-            assert not item.disambiguate
-            item.disambiguate = True
-            return self.register_item(map, item)
 
         # Name collision with existing, different item. We need to rename
         # them both.
@@ -275,6 +267,11 @@ class DoomWad:
         # in logic on difficulties where it doesn't exist (because you can
         # never find all the keys). The real fix for this is to implement non-
         # randomized tuning and tune the affected level(s) first.
+        self.items_by_name = {
+            key: value
+            for key,value in self.items_by_name.items()
+            if value
+        }
         for item in self.items_by_name.values():
             if item.category == "key":
                 item.set_count(1)

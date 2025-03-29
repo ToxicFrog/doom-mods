@@ -24,8 +24,9 @@ class DoomLogic:
     last_id: int = 0
     wads: Dict[str,DoomWad] = field(default_factory=dict)
     item_names_to_ids: Dict[str,int] = field(default_factory=dict)
+    item_categories_to_names: Dict[str, Set[str]] = field(default_factory=dict)
     location_names_to_ids: Dict[str,int] = field(default_factory=dict)
-    item_categories: Set[str] = field(default_factory=set)
+    location_categories_to_names: Dict[str, Set[str]] = field(default_factory=dict)
 
     def next_id(self) -> int:
         self.last_id += 1
@@ -58,7 +59,7 @@ class DoomLogic:
         if name not in self.item_names_to_ids:
             self.item_names_to_ids[name] = self.next_id()
         item.id = self.item_names_to_ids[name]
-        self.item_categories.add(item.category)
+        self.item_categories_to_names.setdefault(item.category, set()).add(name)
         return item.id
 
     def register_location(self, loc: DoomLocation):
@@ -66,5 +67,6 @@ class DoomLogic:
         if name not in self.location_names_to_ids:
             self.location_names_to_ids[name] = self.next_id()
         loc.id = self.location_names_to_ids[name]
+        self.location_categories_to_names.setdefault(loc.category, set()).add(name)
         return loc.id
 

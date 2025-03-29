@@ -104,24 +104,5 @@ class DoomItem:
     def is_filler(self) -> bool:
         return not (self.is_progression() or self.is_useful())
 
-    def can_replace(self) -> bool:
-        """True if locations holding items of this type should be eligible as randomization destinations."""
-        return (
-            self.category == "key"
-            or self.category == "weapon"
-            or self.category == "map"
-            or self.category == "upgrade"
-            or self.category == "powerup"
-            or self.category == "big-armor"
-            or self.category == "big-health"
-            or self.category == "big-ammo"
-            or self.category == "tool"
-        )
-
-    # TODO: consider how this interacts with ammo more. Possibly we want to keep
-    # big-ammo in the world where it falls, but add some big and medium ammo to
-    # the item pool as filler?
-    def should_include(self) -> bool:
-        """True if this item should be included in the pool."""
-        return self.can_replace() and self.category != "map"
-
+    def is_default_enabled(self) -> bool:
+        return self.category in {"map", "weapon", "key", "token", "powerup", "big-health", "big-ammo", "big-armor"}

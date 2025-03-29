@@ -24,6 +24,7 @@ from Options import PerGameCommonOptions, Toggle, DeathLink, StartInventoryPool,
 from dataclasses import dataclass
 
 from . import model
+model.init_wads(__package__)
 
 class StartWithAutomaps(Toggle):
     """
@@ -75,7 +76,6 @@ class LevelsPerWeapon(Range):
     default = 8
 
 
-model.init_wads(__package__)
 class SelectedWad(OptionSet):
     """
     Which WAD to generate for.
@@ -90,7 +90,6 @@ class SelectedWad(OptionSet):
     default = set([wad.name for wad in model.wads()])
     valid_keys = [wad.name for wad in model.wads()]
 
-
 class StartingLevels(OptionSet):
     """
     Set of levels to begin with access to. If you select levels that aren't in the
@@ -103,7 +102,6 @@ class StartingLevels(OptionSet):
     display_name = "Starting levels"
     default = ["E1M1", "MAP01"]
     valid_keys = model.all_map_names()
-
 
 class IncludedLevels(OptionSet):
     """
@@ -162,13 +160,23 @@ class IncludedItemCategories(OptionSet):
     that don't fall into any other category. In the Id IWADs this mostly applies
     to Heretic, where it covers the egg, teleporter, and time bomb, which between
     them account for about 25% of checks in the game.
+
+    Enabling "medium-ammo" will typically about double the number of checks.
+
+    Adding any of the "small" categories will explode the number of checks,
+    typically a 5x-10x increase, adding thousands of checks even in small wads,
+    most of which will contain only tiny amounts of health/armour/ammo. This
+    should be treated like Grass Rando or Potsanity in other games (only worse)
+    and handled with care.
+
+    Officially supported categories are:
+        map powerup big-ammo big-health big-armor
+        medium-ammo tool
+        small-ammo small-health small-armor
     """
     display_name = "Included Item Categories"
-    default = {"map", "big-armor", "big-health", "big-ammo", "powerup", "tool"}
-    value_keys = {"map", "big-armor", "big-health", "big-ammo", "powerup", "tool"}
-    # TODO: once should_include/can_replace are updated in DoomItem, we can get
-    # really weird and make every single health bonus/armour shard a check.
-    # valid_keys = model.all_item_categories()
+    default = {"map", "powerup", "big-ammo", "big-health", "big-armor"}
+    valid_keys = model.all_item_categories() - {"token", "key", "weapon"}
 
 class LevelOrderBias(Range):
     """

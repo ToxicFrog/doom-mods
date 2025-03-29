@@ -12,8 +12,10 @@ This file summarizes the state of support for various wads. Support is classifie
 - **missing**: not yet supported, but I either want to add support or know people are going to ask about it.
 
 The number of checks and levels is given as a rough guide to the size of the wad
-for the purposes of rando planning with others. Check count is for UV; other
-difficulty levels might have slightly more or less.
+for the purposes of rando planning with others. The check count assumes you are
+playing on UV and using the default settings; there is usually a small amount of
+check variation across difficulties, and turning on more item categories in the
+yaml can dramatically increase the number of checks depending on what you choose.
 
 ### IWADs
 
