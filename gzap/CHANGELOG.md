@@ -16,6 +16,8 @@ This is a bugfix release.
   - Known-unreachable locations are no longer listed in the "unchecked locations"
     tooltip, nor counted towards the level item total.
   - Turning off maps in `included_item_categories` no longer breaks everything.
+  - Auto-vending of items will only occur if the player is in a state that will
+    cause them to be picked up immediately.
 
 # 0.3.3
 

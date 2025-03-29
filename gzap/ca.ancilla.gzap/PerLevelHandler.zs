@@ -118,6 +118,7 @@ class ::PerLevelHandler : EventHandler {
   }
 
   override void WorldTick() {
+    apstate.OnTick();
     if (allow_drops > 0) {
       DEBUG("allow_drops: %d", allow_drops);
       --allow_drops;

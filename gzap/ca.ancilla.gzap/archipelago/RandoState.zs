@@ -239,6 +239,7 @@ class ::RandoState play {
     ::PlayEventHandler.Get().CheckVictory();
   }
 
+  bool dirty;
   void UpdatePlayerInventory() {
     if (!GetCurrentRegion()) return;
     for (int p = 0; p < MAXPLAYERS; ++p) {
@@ -247,9 +248,20 @@ class ::RandoState play {
 
       GetCurrentRegion().UpdateInventory(players[p].mo);
     }
+    dirty = true;
+  }
+
+  void OnTick() {
+    if (!dirty) return;
+    if (!GetCurrentRegion()) return;
+    // TODO: per-player inventory will let us make this check per-player, for now
+    // we just watch player[0].
+    if (players[0].mo.vel.Length() == 0) return;
+    DEBUG("Flushing pending item grants...");
     foreach (item : self.items) {
       item.EnforceLimit();
     }
+    dirty = false;
   }
 
   ::Region GetCurrentRegion() {
