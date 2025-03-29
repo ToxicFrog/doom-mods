@@ -51,6 +51,7 @@ class ::PerLevelHandler : EventHandler {
       DEBUG("Using state from datascope.");
       self.apstate = datastate;
     }
+    apstate.UpdatePlayerInventory();
   }
 
   //// Handling for loading into the world. ////
@@ -95,6 +96,7 @@ class ::PerLevelHandler : EventHandler {
     // spawned checks, and WorldThingSpawned will prune newly spawning ones if
     // needed.
     DEBUG("PLH Cleanup");
+    apstate.UpdatePlayerInventory();
     let region = apstate.GetRegion(level.MapName);
     foreach (::CheckPickup thing : ThinkerIterator.Create("::CheckPickup", Thinker.STAT_DEFAULT)) {
       // At this point, we may have a divergence, depending on whether the apstate
@@ -111,10 +113,7 @@ class ::PerLevelHandler : EventHandler {
       DEBUG("CleanupReopened: id %d, matched %d",
           thing.location.apid, thing.location == region.GetLocation(thing.location.apid));
       thing.location = region.GetLocation(thing.location.apid);
-      if (thing.location.checked) {
-        thing.ClearCounters();
-        thing.Destroy();
-      }
+      thing.UpdateStatus();
     }
   }
 
@@ -146,15 +145,23 @@ class ::PerLevelHandler : EventHandler {
   // checks and do so. Any leftover checks will give automatically dispensed to
   // the player via WorldTick() above.
 
+  bool IsReplaceable(Actor thing) {
+    if (!thing) return false;
+    // This also checks the GZAPRC, so if this returns a nonempty category name,
+    // it's always eligible even if it would normally be ignored for being non-
+    // physical or not an Inventory or what have you.
+    let category = ::ScannedItem.ItemCategory(thing);
+    if (category != "") return true;
+
+    if (thing.bNOBLOCKMAP || thing.bNOSECTOR || thing.bNOINTERACTION || thing.bISMONSTER) return false;
+    if (!(thing is "Inventory")) return false;
+
+    return true;
+  }
+
   override void WorldThingSpawned(WorldEvent evt) {
     let thing = evt.thing;
-
-    if (!thing) return;
-    if (thing.bNOBLOCKMAP || thing.bNOSECTOR || thing.bNOINTERACTION || thing.bISMONSTER) return;
-    // It is possible that some mods might replace inventory items with things that
-    // have custom on-touch behaviour and aren't technically Inventory, or something.
-    // For now, though, this works with vanilla and every mod I've tested.
-    if (!(thing is "Inventory")) return;
+    if (!IsReplaceable(thing)) return;
 
     if (alarm) {
       // Start-of-level countdown is still running, see if we need to replace this
@@ -173,17 +180,11 @@ class ::PerLevelHandler : EventHandler {
 
   bool MaybeReplaceWithCheck(Actor thing) {
     if (thing is "::CheckPickup") {
-      // Check has already been spawned, original item has already been deleted,
-      // see if this check has already been found by the player and should be
-      // despawned before they notice it.
+      // Check has already been spawned, original item has already been deleted.
       let thing = ::CheckPickup(thing);
       DEBUG("WorldThingSpawned(check) = %s", thing.location.name);
       ClearPending(thing.location);
-      if (thing.location.checked) {
-        DEBUG("Clearing already-collected check: %s", thing.GetTag());
-        thing.ClearCounters();
-        thing.Destroy();
-      }
+      thing.UpdateStatus();
       return true;
     }
 
@@ -193,14 +194,10 @@ class ::PerLevelHandler : EventHandler {
 
     let [check, distance] = FindCheckForActor(thing);
     if (check) {
-      if (!check.checked) {
-        DEBUG("Replacing %s with %s", thing.GetTag(), check.name);
-        let pickup = ::CheckPickup.Create(check, thing);
-        DEBUG("Original has height=%d radius=%d, new height=%d r=%d",
-            thing.height, thing.radius, pickup.height, pickup.radius);
-      } else {
-        DEBUG("Check %s has already been collected.", check.name);
-      }
+      DEBUG("Replacing %s with %s", thing.GetTag(), check.name);
+      let pickup = ::CheckPickup.Create(check, thing);
+      DEBUG("Original has height=%d radius=%d, new height=%d r=%d",
+          thing.height, thing.radius, pickup.height, pickup.radius);
       ClearPending(check);
       thing.ClearCounters();
       thing.Destroy();
@@ -294,7 +291,7 @@ class ::PerLevelHandler : EventHandler {
       }
     }
     // We found something, but it's not as close as we want it to be.
-    if (IsCloseEnough(closest.pos, thing.pos, min_distance)) {
+    if (::Location.IsCloseEnough(closest.pos, thing.pos)) {
       DEBUG("WARN: Closest to %s @ (%f, %f, %f) was %s @ (%f, %f, %f)",
         thing.GetTag(), thing.pos.x, thing.pos.y, thing.pos.z,
         closest.name, closest.pos.x, closest.pos.y, closest.pos.z);
@@ -303,20 +300,6 @@ class ::PerLevelHandler : EventHandler {
     // Not feeling great about this.
     return null, min_distance;
   }
-
-  // We consider two positions "close enough" to each other iff:
-  // - d is less than MAX_DISTANCE, and
-  // - only one of the coordinates differs.
-  // This usually means an item placed on a conveyor or elevator configured to
-  // start moving as soon as the level loads.
-  bool IsCloseEnough(Vector3 p, Vector3 q, float d) {
-    float MAX_DISTANCE = 2.0;
-    return d <= MAX_DISTANCE
-      && ((p.x == q.x && p.y == q.y)
-          || (p.x == q.x && p.z == q.z)
-          || (p.y == q.y && p.z == q.z));
-  }
-
 
   //// Handling for level exit. ////
   // We try to guess if the player reached the exit or left in some other way.

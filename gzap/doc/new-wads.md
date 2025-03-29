@@ -56,6 +56,21 @@ example, to scan Doom 1:
 Note that the quotes around the map names are mandatory in the console, and should
 be omitted if scanning from the GUI.
 
+### Overriding scanner behaviour
+
+Some wads contain items that gzArchipelago's automatic item classifier does not
+properly handle. For these, you can write a `GZAPRC` file defining how to handle
+them. All `GZAPRC` files, in any `pk3`, `wad`, or directory passed to gzdoom using
+`-file`, will be loaded.
+
+It can be used to override how items are classified for randomization (for example,
+reclassifying something from "tool" to "powerup"), exclude items from randomization,
+and include items that would not normally be included. It can also be used to add
+a different item to the item pool than what the scanner finds.
+
+This repo contains a [commented example](../GZAPRC) containing a configuration
+for Heretic and The Adventures of Square.
+
 ## Adding the logic file to the apworld
 
 - Open gzdoom.apworld in a zip viewer
@@ -90,6 +105,14 @@ to the apworld, use the same procedure as adding a logic file, but put the file
 in the `gzdoom/tuning/` directory inside the apworld, rather than `gzdoom/logic/`.
 If a file already exists there for this WAD, simply append the new tuning data
 to it.
+
+### Tuning without randomizing
+
+The randomizer supports a "pretuning mode" which can be used to perform tuning
+using the original item locations from the wad. To enable this, just set
+`pretuning_mode` to `true` in your YAML. This will override most other settings,
+and give you a game with the original item placements, all levels unlocked and
+mapped from the start, and no starting keys.
 
 ### Unreachable checks
 

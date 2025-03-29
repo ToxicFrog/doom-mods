@@ -46,26 +46,29 @@ class WadLogicLoader:
         self.logic.add_wad(self.name, self.wad)
         return True
 
-    def load_logic(self, buf: str):
-      for line in buf.splitlines():
+    def load_logic(self, name: str, buf: str):
+      for idx,line in enumerate(buf.splitlines()):
         if not line.startswith("AP-"):
             continue
 
-        [evt, payload] = line.split(" ", 1)
-        payload = json.loads(payload)
-        # print(evt, payload)
+        try:
+            [evt, payload] = line.split(" ", 1)
+            payload = json.loads(payload)
 
-        if evt == "AP-MAP":
-            self.wad.new_map(payload)
-        elif evt == "AP-ITEM":
-            self.wad.new_item(payload)
-        elif evt == "AP-SCAN-DONE":
-            self.wad.finalize_scan(payload)
-        elif evt == "AP-CHECK":
-            self.wad.tune_location(**payload)
-        else:
-            # AP-XON, AP-ACK, AP-STATUS, AP-CHAT, and other multiplayer-only messages
-            pass
+            if evt == "AP-MAP":
+                self.wad.new_map(payload)
+            elif evt == "AP-ITEM":
+                self.wad.new_item(payload)
+            elif evt == "AP-SCAN-DONE":
+                self.wad.finalize_scan(payload)
+            elif evt == "AP-CHECK":
+                self.wad.tune_location(**payload)
+            else:
+                # AP-XON, AP-ACK, AP-STATUS, AP-CHAT, and other multiplayer-only messages
+                pass
+
+        except Exception as e:
+            raise ValueError(f"Error loading logic/tuning for {name} on line {idx}:\n{line}") from e
 
 
 _init_done: bool = False
@@ -80,7 +83,8 @@ def get_wad(name: str) -> DoomWad:
 def count_items(sk, items) -> int:
     n = 0
     for item in items:
-        n = n + item.count.get(sk, 0)
+        if item.is_default_enabled():
+            n = n + item.count.get(sk, 0)
     return n
 
 def print_wad_stats(name: str, wad: DoomWad) -> None:
@@ -91,7 +95,7 @@ def print_wad_stats(name: str, wad: DoomWad) -> None:
       num_p = count_items(sknum, wad.progression_items(sknum))
       num_u = count_items(sknum, wad.useful_items(sknum))
       num_f = count_items(sknum, wad.filler_items(sknum))
-      locs = wad.locations(sknum)
+      locs = [loc for loc in wad.locations(sknum) if loc.orig_item.is_default_enabled()]
       print("%32s  %4d locs (%3d secret), %4d items (P:%-4d + U:%-4d + F:%-4d)" % (
           skname, len(locs), len([loc for loc in locs if loc.secret]),
           num_p + num_u + num_f, num_p, num_u, num_f
@@ -146,7 +150,7 @@ def init_wads(package):
         #   print("Loading tuning:", tuning_file)
           buf = buf + "\n" + tuning_file.read_text()
       with add_wad(logic_file.name) as wadloader:
-          wadloader.load_logic(buf)
+          wadloader.load_logic(logic_file.name, buf)
           print_wad_stats(wadloader.name, wadloader.wad)
 
 
@@ -159,8 +163,17 @@ def all_map_names() -> Set[str]:
         names.update([map.map for map in wad.all_maps()])
     return names
 
+def all_item_categories() -> FrozenSet[str]:
+    return frozenset(unified_item_groups().keys())
+
 def unified_item_map():
     return _DOOM_LOGIC.item_names_to_ids.copy()
 
+def unified_item_groups():
+    return _DOOM_LOGIC.item_categories_to_names.copy()
+
 def unified_location_map():
     return _DOOM_LOGIC.location_names_to_ids.copy()
+
+def unified_location_groups():
+    return _DOOM_LOGIC.location_categories_to_names.copy()

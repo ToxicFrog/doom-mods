@@ -75,13 +75,17 @@ class ::Region play {
   uint LocationsChecked() const {
     uint found = 0;
     foreach (loc : locations) {
-      if (loc.checked) ++found;
+      if (loc.checked && !loc.unreachable) ++found;
     }
     return found;
   }
 
   uint LocationsTotal() const {
-    return locations.Size();
+    uint total = 0;
+    foreach (loc : locations) {
+      if (!loc.unreachable) ++total;
+    }
+    return total;
   }
 
   // Return the name of the next item to hint for that's useful for this level.
@@ -170,10 +174,12 @@ class ::Region play {
     }
 
     foreach (key : keys_held) {
+      DEBUG("Removing key: %s", key);
       mo.TakeInventory(key, 999);
     }
 
     foreach (key, val : self.keys) {
+      DEBUG("Add key? %s %d", key, val);
       if (val) mo.GiveInventoryType(key);
     }
   }

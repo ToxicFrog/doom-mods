@@ -17,7 +17,10 @@ class ::ProgressIndicator : OptionMenuItemStaticText {
   }
 
   string GetTime() {
-    float t = level.TotalTime + menu.MenuTime();
+    // MenuTime() keeps ticking even when we aren't in a menu!
+    // We might be able to use it as a global timer, but for now, let's just
+    // count in-game time.
+    float t = level.TotalTime; // + menu.MenuTime();
     if (::PlayEventHandler.GetState().Victorious()) {
       if (!victory_time) victory_time = t;
       t = victory_time;
@@ -194,7 +197,7 @@ class ::LevelSelector : ::KeyValueNetevent {
   string FormatMissingChecksTT(::Region region) {
     string buf = "";
     foreach (loc : region.locations) {
-      if (!loc.checked) {
+      if (!loc.checked && !loc.unreachable) {
         // TODO: this is a gross hack to strip the redundant "MAPNN - " prefix
         // from the check name.
         string shortname = loc.name;

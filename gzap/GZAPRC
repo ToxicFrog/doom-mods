@@ -1,0 +1,64 @@
+# gzArchipelago run control file.
+# This overrides the behaviour of the scanner and check-placer based on actor
+# types.
+#
+# Available directives are:
+#
+#     category <cat> : <list of classes> ;
+# Assign the listed classes to the given category. Any category can be specified,
+# including ones not otherwise known to the scanner -- they will be passed through
+# to the apworld as is. This can be used to add objects to the scan that would
+# normally be skilled, or change the category of objects.
+#
+# "key", "map", and "weapon" have special handling in the generator:
+# - keys are used in reachability calculations and are limited to the level on
+#   which they are picked up
+# - weapons are used for combat balancing and also affect reachability, albeit
+#   in different ways
+# - maps are converted into checks, but not placed in the item pool; instead the
+#   pool is populated (or not) with maps based on other settings
+#
+# A category of "none" will exclude something from the scan entirely, even if it
+# would normally have been included.
+#
+#     typename <type> : <list of classes> ;
+# When scanning anything in the list, report it as being <type> rather than
+# whatever its actual type is. The check will be named after that type rather
+# than whatever was actually scanned, and the given type, not the original item,
+# will be added to the item pool.
+
+
+#### Heretic configuration ####
+# In Heretic, the Firemace is actually placed on the map as a MaceSpawner. When
+# playing, there is a random chance for the Firemace to appear at each spawner.
+# For rando purposes, we want to replace each spawner with a check, whether or
+# not it got replaced when the scanner saw it.
+# TODO: we might want to make this conditional in the same way BONSAIRC blocks
+# are, so that the builtin RC can have different settings for different TCs?
+
+# When scanning, consider MaceSpawners to be weapons rather than skipping them.
+category weapon: MaceSpawner;
+# When adding them to the pool, add Mace rather than MaceSpawner, and name the
+# check based on Mace's tag rather than MaceSpawner's tag. This ensures that
+# when the player finds one, they get an actual Firemace, rather than a spawner
+# that might just do nothing when given to them.
+typename Mace: MaceSpawner;
+
+# Ignore any Maces that spawn entirely. They will neither be converted to checks
+# nor added to the item pool.
+category none: Mace;
+
+
+#### Adventures of Square configuration ####
+# AOS uses CustomInventory objects to implement the weapon pickups, which when
+# picked up place both the weapon and a "voiceover" object into the player's
+# inventory.
+# The "FooVO" is the object actually placed in the world; it turns into a
+# "Foo" and a "SquareVOWeaponsFoo".
+category weapon:
+  DefibrillatorVO PaintGunVO PaintGunsVO OoziVO OozisVO ShotbowVO
+  QuadcannonVO PaintCannonVO HellShellLauncherVO GoonadesVO SceptreVO;
+
+# Fishtank spawners are needed for progression in some levels and shouldn't be
+# replaced.
+category none: FishTankSpawner;

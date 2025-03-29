@@ -33,6 +33,12 @@ class ::ScannedMap play {
   }
 
   void Output() {
+    // In Wolf3d TC, failing to do this will result in garbage at the start of
+    // the AP-MAP line. This only happens when scanning, but also only happens
+    // when wolf3d.ipk3 is loaded for some reason. We include this to put the
+    // garbage on a previous line and hopefully work around this in other (i)wads
+    // that may have similar issues.
+    console.printfEX(PRINT_LOG, "");
     ::Scanner.Output("MAP", name, string.format(
       "\"checksum\": \"%s\", \"rank\": %d, \"info\": %s",
       LevelInfo.MapChecksum(name), self.rank, GetMapinfoJSON()));
@@ -65,7 +71,7 @@ class ::ScannedMap play {
     // A location qualifies for merge if it has the same position and typename,
     // but does not have the current difficulty bit set.
     foreach (loc : locations) {
-      if (loc.pos != newloc.pos) continue;
+      if (!::Location.IsCloseEnough(loc.pos, newloc.pos)) continue;
       if (loc.typename != newloc.typename) continue;
       if (loc.HasSkill(::Util.GetSkill())) continue;
       loc.AddSkill(::Util.GetSkill());
@@ -77,6 +83,11 @@ class ::ScannedMap play {
 
   string GetMapinfoJSON() {
     let flags = GetFlagsForMapinfo(info);
+    // Apparently it is legal to have a level title with embedded newlines.
+    // While we're here, let's handle embedded quotes as well.
+    let title = info.LevelName;
+    title.Replace("\n", "\\n");
+    title.Replace("\"", "\\\"");
     return string.format(
         "{ "
         "\"levelnum\": %d, \"title\": \"%s\", \"is_lookup\": %s, "
@@ -84,7 +95,7 @@ class ::ScannedMap play {
         "\"sky2\": \"%s\", \"sky2speed\": \"%f\", "
         "\"music\": \"%s\", \"music_track\": \"%d\", "
         "\"cluster\": %d, \"flags\": [%s] }",
-        info.LevelNum, info.LevelName,
+        info.LevelNum, title,
         ::Util.bool2str(info.flags & LEVEL_LOOKUPLEVELNAME),
         info.SkyPic1, info.SkySpeed1,
         info.SkyPic2, info.SkySpeed2,

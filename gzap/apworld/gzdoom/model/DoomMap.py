@@ -65,9 +65,12 @@ class DoomMap:
     def __post_init__(self, info):
         self.mapinfo = MAPINFO(**info)
 
-    def all_locations(self, skill: int) -> List[DoomLocation]:
+    def all_locations(self, skill: int, categories: Set[str]) -> List[DoomLocation]:
         skill = min(3, max(1, skill)) # clamp ITYTD->HNTR and N!->UV
-        return [loc for loc in self.locations if skill in loc.skill]
+        return [
+            loc for loc in self.locations
+            if skill in loc.skill and loc.category in categories
+        ]
 
     def access_rule(self, player, need_priors = 0.0, require_weapons = True):
         # print(f"access_rule({self.map}) = {need_priors}% of {self.prior_clears}")

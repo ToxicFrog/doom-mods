@@ -52,28 +52,32 @@ class DoomItem:
         for sk,count in other.count.items():
             self.count[sk] = self.count.get(sk, 0) + count
 
-    def set_max_count(self, count: int):
-        for sk,n in self.count.items():
-            self.count[sk] = min(n, count)
+    def set_count(self, count: int, skill: frozenset = frozenset({1,2,3})):
+        """
+        Set the count of the item on the given skill levels to the given value.
 
-    def get_count(self, options, maps):
+        This is currently used to make sure keys exist exactly once on all skills
+        if they exist on any of them.
+        """
+        for sk in skill:
+            self.count[sk] = count
+
+    def get_count(self, options, nrof_maps):
         count = self.count.get(options.spawn_filter.value, 0)
-
-        if self.category == "key":
-            return min(count, 1)
 
         if self.category == "weapon":
             if options.max_weapon_copies.value > 0:
                 count = min(count, options.max_weapon_copies.value)
             if options.levels_per_weapon.value > 0:
-                count = min(count, max(1, len(maps) // options.levels_per_weapon.value))
+                count = min(count, max(1, nrof_maps // options.levels_per_weapon.value))
 
         return count
-
 
     def name(self) -> str:
         """Returns the user-facing Archipelago name for this item."""
         name = self.tag
+        if self.category == "map":
+            name = "Automap"
         if self.disambiguate:
             name += f" [{self.typename}]"
         if self.map:
@@ -100,24 +104,5 @@ class DoomItem:
     def is_filler(self) -> bool:
         return not (self.is_progression() or self.is_useful())
 
-    def can_replace(self) -> bool:
-        """True if locations holding items of this type should be eligible as randomization destinations."""
-        return (
-            self.category == "key"
-            or self.category == "weapon"
-            or self.category == "map"
-            or self.category == "upgrade"
-            or self.category == "powerup"
-            or self.category == "big-armor"
-            or self.category == "big-health"
-            or self.category == "big-ammo"
-            or self.category == "tool"
-        )
-
-    # TODO: consider how this interacts with ammo more. Possibly we want to keep
-    # big-ammo in the world where it falls, but add some big and medium ammo to
-    # the item pool as filler?
-    def should_include(self) -> bool:
-        """True if this item should be included in the pool."""
-        return self.can_replace() and self.category != "map"
-
+    def is_default_enabled(self) -> bool:
+        return self.category in {"map", "weapon", "key", "token", "powerup", "big-health", "big-ammo", "big-armor"}

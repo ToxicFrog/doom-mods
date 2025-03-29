@@ -24,6 +24,7 @@ from Options import PerGameCommonOptions, Toggle, DeathLink, StartInventoryPool,
 from dataclasses import dataclass
 
 from . import model
+model.init_wads(__package__)
 
 class StartWithAutomaps(Toggle):
     """
@@ -75,7 +76,6 @@ class LevelsPerWeapon(Range):
     default = 8
 
 
-model.init_wads(__package__)
 class SelectedWad(OptionSet):
     """
     Which WAD to generate for.
@@ -90,7 +90,6 @@ class SelectedWad(OptionSet):
     default = set([wad.name for wad in model.wads()])
     valid_keys = [wad.name for wad in model.wads()]
 
-
 class StartingLevels(OptionSet):
     """
     Set of levels to begin with access to. If you select levels that aren't in the
@@ -99,11 +98,12 @@ class StartingLevels(OptionSet):
     to start with access to the first level.
 
     You will begin with the access code and all keys for these levels in your inventory.
+
+    This option supports globbing expressions.
     """
     display_name = "Starting levels"
     default = ["E1M1", "MAP01"]
-    valid_keys = model.all_map_names()
-
+    # valid_keys = model.all_map_names()
 
 class IncludedLevels(OptionSet):
     """
@@ -114,15 +114,19 @@ class IncludedLevels(OptionSet):
 
     The win condition (at present) is always "complete all levels", so including more
     levels will generally result in a longer game.
+
+    This option supports globbing expressions.
     """
     display_name = "Included levels"
-    default = sorted(model.all_map_names())
+    default = [] # sorted(model.all_map_names())
 
 class ExcludedLevels(OptionSet):
     """
     Set of levels to exclude from randomization.
 
     This takes precedence over included_levels, if a map appears in both.
+
+    This option supports globbing expressions.
     """
     display_name = "Excluded levels"
     default = ['TITLEMAP']
@@ -150,6 +154,35 @@ class SpawnFilter(NamedRange):
         "medium": 2,
         "hard": 3
     }
+
+class IncludedItemCategories(OptionSet):
+    """
+    Which item categories to include in randomization. This controls both which
+    items are replaced with checks, and what the item pool contains.
+
+    Keys and weapons are always included and cannot be disabled.
+
+    The "tool" category is things you can pick up and carry with you to use later
+    that don't fall into any other category. In the Id IWADs this mostly applies
+    to Heretic, where it covers the egg, teleporter, and time bomb, which between
+    them account for about 25% of checks in the game.
+
+    Enabling "medium-ammo" will typically about double the number of checks.
+
+    Adding any of the "small" categories will explode the number of checks,
+    typically a 5x-10x increase, adding thousands of checks even in small wads,
+    most of which will contain only tiny amounts of health/armour/ammo. This
+    should be treated like Grass Rando or Potsanity in other games (only worse)
+    and handled with care.
+
+    Officially supported categories are:
+        map powerup big-ammo big-health big-armor
+        medium-ammo tool
+        small-ammo small-health small-armor
+    """
+    display_name = "Included Item Categories"
+    default = {"map", "powerup", "big-ammo", "big-health", "big-armor"}
+    valid_keys = model.all_item_categories() - {"token", "key", "weapon"}
 
 class LevelOrderBias(Range):
     """
@@ -211,6 +244,20 @@ class FullPersistence(Toggle):
     display_name = "Persistent Levels"
     default = False
 
+class PreTuningMode(Toggle):
+    """
+    This setting is for logic developers. If enabled, most other options are
+    overridden; only selected_wad and spawn_filter remain functional. All checks
+    contain their original items (i.e. there is no randomization) and you start
+    with access to all levels, all automaps, and no keys.
+
+    The intent of this mode is to let you play through the game, or specific
+    levels, "normally", to generate a tuning file, even in cases where the
+    initial scan is so conservative as to cause generation failures.
+    """
+    display_name = "Pretuning Mode"
+    default = False
+
 @dataclass
 class GZDoomOptions(PerGameCommonOptions):
     # Skill level, WAD, and level selection
@@ -226,9 +273,11 @@ class GZDoomOptions(PerGameCommonOptions):
     start_with_all_maps: StartWithAutomaps
     max_weapon_copies: MaxWeaponCopies
     levels_per_weapon: LevelsPerWeapon
+    included_item_categories: IncludedItemCategories
     # Other settings
     allow_respawn: AllowRespawn
     full_persistence: FullPersistence
+    pretuning_mode: PreTuningMode
     # Stock settings
     death_link: DeathLink
     start_inventory_from_pool: StartInventoryPool

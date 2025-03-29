@@ -102,7 +102,7 @@ class GZDoomContext(CommonContext):
                 task.result()  # raises if the task errored out
         self.watcher_event.set()
 
-    def _is_relevant(self, type, item = None, receiving = None, **kwargs) -> bool:
+    def _is_relevant(self, type = None, item = None, receiving = None, **kwargs) -> bool:
       if type in {"Chat", "ServerChat", "Goal", "Countdown"}:
           return True
       if type in {"Hint", "ItemSend"}:
@@ -202,7 +202,7 @@ def main(*args):
         # TODO: can we give the actual zip name here?
         # Not until we know the seed, looks like, which we don't get until we
         # connect to gzdoom...
-        logger.info(f"    -file \"{ipc_dir}\" +logfile \"{ipc_log}\"")
+        logger.info(f"    -file \"{ipc_dir.replace("\\", "/")}\" +logfile \"{ipc_log.replace("\\", "/")}\"")
         logger.info("*after* any other arguments (e.g. for wad/pk3 loading).")
         logger.info("*" * 80)
 

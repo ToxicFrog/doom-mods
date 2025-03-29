@@ -8,6 +8,7 @@ Downloadable versions can be found on the [releases page](https://github.com/Tox
 
 - [Gun Bonsai](gun-bonsai/), a mod of growing your guns from small shrubs into beautiful murder trees. Earn XP for your weapons by killing hellspawn and customize them with randomized upgrades. Compatible with almost every IWAD and mod. It won a [Cacoward](https://www.doomworld.com/cacowards/2022/gameplay/) in 2022!
 - [Indestructable](indestructable/), a minimod that gives you a second chance on death, inspired by [War of Attrition's](https://fissile.duke4.net/fissile_attrition.html) "Death Rage" mechanic.
+- [gzArchipelago](gzap/), gzDoom support for [Archipelago Randomizer](https://archipelago.gg), including a built in map scanner for playing community megawads.
 - [libtooltipmenu](libtooltipmenu/), a library adding support for tooltips in the option menu. This is built into the other mods in this repo and doesn't need to be downloaded separately; the source code here is primarily of interest to mod authors.
 
 ## Discussion/Feedback
