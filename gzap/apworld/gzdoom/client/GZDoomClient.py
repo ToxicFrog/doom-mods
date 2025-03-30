@@ -188,7 +188,7 @@ def main(*args):
     with open(ipc_log, "a"):
         pass
 
-    async def actual_main(args):
+    async def actual_main(args, ipc_dir, ipc_log):
         ctx = GZDoomContext(args.connect, args.password, gzd_dir)
         await ctx.start_tasks()
         if gui_enabled:
@@ -199,10 +199,10 @@ def main(*args):
 
         logger.info("*" * 80)
         logger.info("Client started. Please start gzDoom with the additional flags:")
-        # TODO: can we give the actual zip name here?
-        # Not until we know the seed, looks like, which we don't get until we
-        # connect to gzdoom...
-        logger.info(f"    -file \"{ipc_dir.replace("\\", "/")}\" +logfile \"{ipc_log.replace("\\", "/")}\"")
+        # Use forward slashes unconditionally here; windows will accept either,
+        # but preferentially generates backslashes, which then are treated as
+        # escapes when invoking gzdoom.
+        logger.info(f"    -file \"{ipc_dir}\" +logfile \"{ipc_log}\"")
         logger.info("*after* any other arguments (e.g. for wad/pk3 loading).")
         logger.info("*" * 80)
 
@@ -217,7 +217,9 @@ def main(*args):
 
     colorama.init()
     args = parser.parse_args(args)
-    asyncio.run(actual_main(args), debug=True)
+    asyncio.run(
+        actual_main(args, ipc_dir.replace("\\", "/"), ipc_log.replace("\\", "/")),
+        debug=True)
     colorama.deinit()
 
 

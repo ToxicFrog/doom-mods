@@ -8,6 +8,7 @@ This is a bugfix release.
   - The filler item pool is no longer incorrectly populated with every filler item
     the randomizer knows about (including ones that aren't being randomized) and
     thus no longer consists almost entirely of 1-point health/armour bonuses.
+  - Crash in AP client on startup.
 
 # 0.3.4
 
