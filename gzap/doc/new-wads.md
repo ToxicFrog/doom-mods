@@ -116,9 +116,9 @@ mapped from the start, and no starting keys.
 
 ### Unreachable checks
 
-You may encounter checks that are unreachable in normal play. For example, Going
-Down Turbo MAP12 has a red key that exists purely for visual effect and cannot
-be collected by the player.
+You may encounter checks that are unreachable in normal play. For example, Doom
+2 MAP07 ("Dead Simple") contains a BFG in a hidden room that can only be opened
+in multiplayer.
 
 If you encounter one of these, you can mark it unreachable using the `ap_scan_unreachable`
 cvar. You can mark the next check you touch unreachable (and then use `noclip` to

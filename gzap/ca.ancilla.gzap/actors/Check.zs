@@ -26,8 +26,8 @@ mixin class ::ArchipelagoIcon {
       APIT ABCDEFGHIJIHGFEDCB 2 BRIGHT;
       LOOP;
     Unreachable:
-      APUR ABCDEFGHIJIHGFEDCB 2 BRIGHT;
-      LOOP;
+      APUR A -1 BRIGHT;
+      STOP;
     Hidden:
       TNT1 A -1;
       STOP;
