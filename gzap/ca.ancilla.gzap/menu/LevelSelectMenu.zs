@@ -17,6 +17,11 @@ class ::LevelSelectMenu : ::CommonMenu {
     TooltipGeometry(0.0, 0.5, 0.25, 1.0, 0.5);
     TooltipAppearance("", "", "tfttbg");
 
+    if (!::PlayEventHandler.GetState()) {
+      console.printf("%s", StringTable.Localize("$GZAP_MENU_ERROR_NOT_IN_GAME"));
+      return;
+    }
+
     PushText(" ");
     PushText("$GZAP_MENU_LEVEL_SELECT_TITLE", Font.CR_WHITE);
     mDesc.mItems.Push(new("::ProgressIndicator").InitDirect("", Font.CR_CYAN));
@@ -77,8 +82,13 @@ class ::LevelSelectMenu : ::CommonMenu {
   }
 
   override void Ticker() {
-    super.Ticker();
     let state = ::PlayEventHandler.GetState();
+    if (!state) {
+      Close();
+      return;
+    }
+
+    super.Ticker();
     if (!state.ShouldWarn()) return;
 
     EventHandler.SendNetworkEvent("ap-did-warning");

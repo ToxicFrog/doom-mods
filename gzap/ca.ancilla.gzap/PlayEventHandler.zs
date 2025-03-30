@@ -60,7 +60,9 @@ class ::PlayEventHandler : StaticEventHandler {
   }
 
   static clearscope ::RandoState GetState() {
-    return ::PlayEventHandler.Get().apstate;
+    let peh = ::PlayEventHandler.Get();
+    if (!peh) return null;
+    return peh.apstate;
   }
 
   bool initialized;

@@ -1,3 +1,11 @@
+# 0.3.5
+
+This is a bugfix release.
+
+- Fix:
+  - Opening the level select menu when no AP-generated pk3 was loaded would crash
+    the game. It now displays an error message and refuses to open.
+
 # 0.3.4
 
 This is a bugfix release.
