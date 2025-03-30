@@ -151,6 +151,9 @@ class ::CheckPickup : ScoreItem {
     // a chance to re-collect it if the server didn't register it.
     self.checked = true;
     self.SetProgressionState();
+    if (CVar.FindCVar("ap_show_check_names").GetBool()) {
+      toucher.A_Print(string.format("Checked %s", self.location.name));
+    }
     if (self.marker) self.marker.Destroy();
     return true;
   }

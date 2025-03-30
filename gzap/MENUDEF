@@ -28,6 +28,8 @@ OptionMenu "ArchipelagoOptions"
   GZAP_Tooltip "$GZAP_OPT_TT_MAP_CHECKS"
   Option "$GZAP_OPT_NAME_SHOW_PROGRESSION", "ap_show_progression", "ApShowProgressionMode"
   GZAP_Tooltip "$GZAP_OPT_TT_SHOW_PROGRESSION"
+  Option "$GZAP_OPT_NAME_SHOW_CHECK_NAMES", "ap_show_check_names", "OnOff"
+  GZAP_Tooltip "$GZAP_OPT_TT_SHOW_CHECK_NAMES"
   Slider "$GZAP_OPT_NAME_COLLECTED_CHECK_ALPHA", "ap_collected_alpha", 0.0, 1.0, 0.1, 1
   GZAP_Tooltip "$GZAP_OPT_TT_COLLECTED_CHECK_ALPHA"
 

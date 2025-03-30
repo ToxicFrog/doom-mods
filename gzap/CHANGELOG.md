@@ -9,6 +9,8 @@ This is a bugfix release.
     the `starting_levels`.
   - `ap_auto_vend` ingame setting can force specific items or item categories to
     behave as if they had a limit of 0, useful for small-items games.
+  - `ap_show_check_names` option to display the name of each check as you collect
+    it.
 - Change:
   - Inventory is now sorted alphabetically.
   - `included_item_categories` option now supports all recognized item categories.
