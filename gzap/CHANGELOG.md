@@ -11,6 +11,8 @@ This is a bugfix release.
     behave as if they had a limit of 0, useful for small-items games.
   - `ap_show_check_names` option to display the name of each check as you collect
     it.
+  - `ap-use-item:<name>` netevent to allow binding hotkeys to the AP inventory.
+    See [the FAQ](doc/faq.md) for more information.
 - Change:
   - Inventory is now sorted alphabetically.
   - `included_item_categories` option now supports all recognized item categories.

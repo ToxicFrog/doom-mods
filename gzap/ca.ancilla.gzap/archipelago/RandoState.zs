@@ -252,6 +252,12 @@ class ::RandoState play {
     ::PlayEventHandler.Get().CheckVictory();
   }
 
+  void UseItemByName(string name) {
+    let [idx,item] = FindItem(name);
+    DEBUG("UseItemByName: %s -> %d", name, idx);
+    if (idx >= 0) UseItem(idx);
+  }
+
   bool dirty;
   void UpdatePlayerInventory() {
     if (!GetCurrentRegion()) return;

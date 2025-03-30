@@ -9,7 +9,11 @@ place progression items in a way that keeps the game winnable. This is most like
 to happen with newly generated logic files or ones with "basic" support, and can
 usually be resolved by retrying a few times.
 
-Setting the `level order bias` option too high can also cause this.
+Setting the `level_order_bias` option too high can also cause this, as can turning
+off `start_with_keys`.
+
+Adding more levels to `starting_levels` or turning down `level_order_bias` will
+likely fix it.
 
 If it's happening on a tuned ("full" or "complete" support) logic file, or if
 happens *every* time, please report it.
@@ -39,6 +43,24 @@ until you take a step.
 ### I can't open the level select or inventory menu!
 
 Did you remember to [bind those controls](./gameplay.md)?
+
+
+## Customization
+
+gzArchipelago has a lot of customization options, most of which are accessible
+via the Archipelago YAML (and documented in the comments there) or via the in-game
+settings (and documented in tooltips). This section is for "hidden" settings that
+aren't.
+
+### Binding hotkeys for inventory items
+
+Inventory items can be dispensed using the `ap-use-item:<item-name>` netevent,
+which lets you bind hotkeys for them. The following console commands will bind
+`b`, `h`, and `m` to dispense backpacks, soulspheres, and megaspheres:
+
+    bind b "netevent ap-use-item:Backpack"
+    bind h "netevent ap-use-item:Soulsphere"
+    bind m "netevent ap-use-item:Megasphere"
 
 
 ## Compatibility

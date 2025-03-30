@@ -126,6 +126,9 @@ class ::PlayEventHandler : StaticEventHandler {
     } else if (evt.name == "ap-use-item") {
       let idx = evt.args[0];
       apstate.UseItem(idx);
+    } else if (evt.name.IndexOf("ap-use-item:") == 0) {
+      let typename = evt.name.Mid(12);
+      apstate.UseItemByName(typename);
     } else if (evt.name == "ap-did-warning") {
       apstate.did_warning = true;
     }
