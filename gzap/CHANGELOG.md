@@ -7,6 +7,8 @@ This is a bugfix release.
     and `starting_levels`.
   - `start_with_keys` option can be used to turn off starting with all keys for
     the `starting_levels`.
+  - `ap_auto_vend` ingame setting can force specific items or item categories to
+    behave as if they had a limit of 0, useful for small-items games.
 - Change:
   - Inventory is now sorted alphabetically.
   - `included_item_categories` option now supports all recognized item categories.

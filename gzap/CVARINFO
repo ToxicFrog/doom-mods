@@ -29,6 +29,9 @@ server int ap_bank_armour = -1;
 server int ap_bank_health = -1;
 server int ap_bank_powerups = -1;
 server int ap_bank_other = -1;
+// Items to auto-vend when you get them.
+// Space separated list of category or typename substrings.
+server string ap_auto_vend = "small-";
 
 // Whether or not weapons can drop outside of the normal AP progression.
 // 0 means no blocking of weapons

@@ -49,6 +49,12 @@ Other bank limit,GZAP_OPT_NAME_BANK_OTHER,
 "Limits for how much of each item type the randomizer will let you ""bank"" and reclaim later.
 
 If you receive an item and you're already at the limit, it will be given to you immediately, even if it's not useful to do so (e.g. a soulsphere when you're at 200% health). A limit of 0 means that all items of that type will be immediately dispensed.",GZAP_OPT_TT_BANK_LIMITS,
+Auto-vend patterns,GZAP_OPT_NAME_AUTO_VEND,
+"Items to immediately dispense when received regardless of the category limit set above.
+
+This is a space-separated list of item names and/or categories; you can also use prefixes (like ""small-"") or suffixes (like ""-health""). Anything that matches one of the entries will behave as if it had a limit of 0.
+
+Leaving ""small-"" enabled is strongly recommended so as not to clutter your inventory with thousands of tiny health/armour pickups.",GZAP_OPT_TT_AUTO_VEND,
 Weapon drops from enemies,GZAP_OPT_NAME_ALLOW_DROPS,
 "Whether to allow enemies to drop weapons (in addition to getting weapons through AP), such as zombie shotgunners dropping shotguns.
 

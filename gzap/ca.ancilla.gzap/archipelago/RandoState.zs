@@ -59,7 +59,20 @@ class ::RandoItem play {
     }
   }
 
+  bool ShouldAutoVend() {
+    Array<string> patterns;
+    ap_auto_vend.Split(patterns, " ", TOK_SKIPEMPTY);
+    foreach (pattern : patterns) {
+      if (self.category.IndexOf(pattern) >= 0 || self.typename.IndexOf(pattern) >= 0) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   int GetLimit() {
+    if (self.ShouldAutoVend()) return 0;
+
     if (self.category == "weapon") {
       return ap_bank_weapons;
     } else if (self.category.IndexOf("-ammo") > -1) {

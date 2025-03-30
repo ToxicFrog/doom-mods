@@ -78,6 +78,7 @@ be able to represent logic requirements that aren't just keys.
   To detect secret collection, we watch level.total_secrets and level.found_secrets
   in OnTick(); when the former increases, we walk the secret sectors to find out
   which one(s) have been collected.
+- split small/medium health -- medkits are "medium", small bonuses are "small"
 
 ### ingame
 
