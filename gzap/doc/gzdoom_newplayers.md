@@ -62,5 +62,6 @@ Click Launch to start the game.
 
 Once in game, open the `Options` Menu -> `Full options menu`, and verify that
 `gzArchipelago Options` appears at the bottom -- if so, you are set up and
-ready to generate and play a game.
+ready to generate and play a game. For instructions on how to do that, see
+[the gameplay docs](./gameplay.md).
 

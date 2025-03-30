@@ -25,8 +25,8 @@ otherwise it will select one at random from all the wads it supports.
 
 The zip file emitted by the generator will contain, in addition to the AP data
 package and the spoiler log, a `pk3` file with your name on it. Add this to your
-load order *at the end*, or at least, after GZAP.pk3 and after whatever wad you're
-playing.
+load order *at the end*, or at least, after gzArchipelago.pk3 and after whatever
+wad you're playing.
 
 ## Single-world
 
