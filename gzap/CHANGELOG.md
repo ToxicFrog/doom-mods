@@ -5,6 +5,9 @@ This is a bugfix release.
 - Fix:
   - Opening the level select menu when no AP-generated pk3 was loaded would crash
     the game. It now displays an error message and refuses to open.
+  - The filler item pool is no longer incorrectly populated with every filler item
+    the randomizer knows about (including ones that aren't being randomized) and
+    thus no longer consists almost entirely of 1-point health/armour bonuses.
 
 # 0.3.4
 

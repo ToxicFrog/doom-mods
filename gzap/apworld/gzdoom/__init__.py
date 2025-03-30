@@ -240,6 +240,8 @@ class GZDoomWorld(World):
         # based on the difference.
         filler_count = 0
         for item in filler_items:
+            if item.category not in self.included_item_categories:
+                continue
             filler_count += self.item_counts.get(item.name(), 0)
         if filler_count == 0:
             print("Warning: no filler items in pool!")
