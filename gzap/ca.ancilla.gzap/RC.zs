@@ -3,7 +3,7 @@
 // This is the file that controls per-wad settings for gzArchipelago. At present
 // this just means the scanner.
 #namespace GZAP;
-#debug on;
+#debug off;
 
 class ::RC : Object play {
   static ::RC Get() {

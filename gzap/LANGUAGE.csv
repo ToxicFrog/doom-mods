@@ -41,6 +41,18 @@ Hilight progression items,GZAP_OPT_NAME_SHOW_PROGRESSION,
 ""In person only"" matches the behaviour of apdoom. ""After map"" and ""always"" can make the game much easier by letting you check from the automap whether there are any progression items left on the level (and where they are).",GZAP_OPT_TT_SHOW_PROGRESSION,
 Show check names,GZAP_OPT_NAME_SHOW_CHECK_NAMES,
 "When collecting a check, briefly displays the check name on-screen. This is useful when still learning the maps and what each check is called.",GZAP_OPT_TT_SHOW_CHECK_NAMES,
+Show check name icons,GZAP_OPT_NAME_SHOW_CHECK_ORIGINAL,
+"Display a floating image over each check indicating what item would have been there in the vanilla game.
+
+This is primarily useful when tuning or when still learning the map; it lets you tell, at a glance, which check is ""MAP01 - RocketLauncher"" and which one is ""MAP01 - Shotgun"".
+
+These icons are displayed only in person, not on the automap. Changes to this setting don't take effect until you reset the map.",GZAP_OPT_TT_SHOW_CHECK_ORIGINAL,
+Show check content icons,GZAP_OPT_NAME_SHOW_CHECK_CONTENTS,
+"Display an image overlaid on each check indicating what is stored in it.
+
+Only items Doom has graphics for are displayed, so don't expect to see Triforce pieces or anything.
+
+These icons are displayed only in person, not on the automap. Changes to this setting don't take effect until you reset the map.",GZAP_OPT_TT_SHOW_CHECK_CONTENTS,
 Collected check opacity,GZAP_OPT_NAME_COLLECTED_CHECK_ALPHA,
 A setting of 0 makes collected checks vanish entirely. Values around 0.1-0.4 will result in them turning translucent. Higher values make them extremely difficult to distinguish from uncollected checks and are not recommended.,GZAP_OPT_TT_COLLECTED_CHECK_ALPHA,
 Weapon bank limit,GZAP_OPT_NAME_BANK_WEAPONS,

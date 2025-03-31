@@ -89,6 +89,26 @@ class ::CheckMapMarker : MapMarker {
   }
 }
 
+// Used to display the floating item label above the check, if the player has
+// turned those on.
+class ::CheckLabel : Actor {
+  ::CheckPickup parent;
+  int zoffs;
+
+  Default {
+    +BRIGHT;
+    +NOGRAVITY;
+    +DONTGIB;
+    +NOBLOCKMAP;
+    +NOINTERACTION;
+    Scale 0.5;
+  }
+
+  override void Tick() {
+    self.SetOrigin(parent.pos + (0, 0, zoffs), false);
+  }
+}
+
 // The actual in-world item the player can pick up.
 // Knows about its backing Location, and thus its name, ID, etc.
 // Automatically creates a map marker on spawn, and deletes it on despawn.
@@ -98,6 +118,8 @@ class ::CheckPickup : ScoreItem {
 
   ::Location location;
   ::CheckMapMarker marker;
+  ::CheckLabel label;
+  ::CheckLabel orig_label;
 
   // We keep a local "checked" bit so we can set it immediately when the player
   // picks it up, and not fire a huge number of pickup events.
@@ -147,6 +169,46 @@ class ::CheckPickup : ScoreItem {
     marker = ::CheckMapMarker(Spawn("::CheckMapMarker", self.pos));
     marker.parent = self;
     marker.A_SetSpecial(0, self.tid);
+
+    // Spawn the labels for the original + actual item.
+    DEBUG("Spawn label: %s -> %s [%s]", self.location.orig_typename, self.location.ap_typename, self.location.ap_name);
+    if (ap_show_check_contents) self.label = CreateLabel(self.location.ap_typename);
+    if (ap_show_check_original) self.orig_label = CreateLabel(self.location.orig_typename, 32);
+  }
+
+  // Create a sprite label attached to this CheckPickup for the given type.
+  // If zoffs is unspecified, it will try to center it in the Check sprite.
+  // The label will be half the height of the original or 12px high, whichever
+  // is smaller. (For reference, the Check sprite is 32x32).
+  ::CheckLabel CreateLabel(string typename, int zoffs = -1) {
+    // Start with some basic checks. We can't create a label if we don't know
+    // the corresponding class, if it has no SpawnState sprite, or if the
+    // sprite is 0-height.
+    Class<Actor> cls = typename;
+    if (!cls) return null;
+
+    let prototype = GetDefaultByType(cls);
+    let sprid = prototype.SpawnState.sprite;
+    if (!sprid) return null;
+
+    let texid = prototype.SpawnState.GetSpriteTexture(0);
+    let [w,h] = TexMan.GetSize(texid);
+    let rh = TexMan.CheckRealHeight(texid);
+    if (!rh) return null;
+
+    // Scale is computed to make the sprite at most 12px high and will not
+    // exceed 0.5 under any circumstances.
+    float scale = min(0.5, 12.0/rh);
+    // Center it in the AP sprite.
+    if (zoffs < 0) zoffs = floor(16 - (rh*scale)/2.0 - scale*max(0, h - rh));
+
+    DEBUG("Sprite: %d [tx %d, %dx%d (x%d)], scale=%f, z=%d", sprid, texid, w, h, rh, scale, zoffs);
+    let label = ::CheckLabel(Spawn("::CheckLabel", (pos.x, pos.y, pos.z+zoffs)));
+    label.sprite = sprid;
+    label.parent = self;
+    label.zoffs = zoffs;
+    label.A_SetScale(scale);
+    return label;
   }
 
   override bool CanPickup(Actor toucher) {
@@ -165,6 +227,8 @@ class ::CheckPickup : ScoreItem {
       toucher.A_Print(string.format("Checked %s", self.location.name));
     }
     if (self.marker) self.marker.Destroy();
+    if (self.label) self.label.Destroy();
+    if (self.orig_label) self.orig_label.Destroy();
     return true;
   }
 
@@ -173,5 +237,7 @@ class ::CheckPickup : ScoreItem {
   override void OnDestroy() {
     DEBUG("Destroying marker %s", self.location.name);
     if (self.marker) self.marker.Destroy();
+    if (self.label) self.label.Destroy();
+    if (self.orig_label) self.orig_label.Destroy();
   }
 }

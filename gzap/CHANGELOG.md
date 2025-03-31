@@ -10,6 +10,10 @@ the 0.3.x mod.
   - gzArchipelago now has additional data about what items were originally stored
     at check locations, and what items are stored there now, which will be used
     for future user-facing features.
+  - `ap_show_check_contents` setting displays the contents of each check (if it's
+    a Doom item).
+  - `ap_show_check_original` setting displays what was originally that location,
+    useful when learning the maps.
 - Fix:
   - Map markers were not properly displaying filler/progression status if you
     picked up the automap after entering the map when persistent mode was on.

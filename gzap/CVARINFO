@@ -19,6 +19,13 @@ user float ap_collected_alpha = 0.2;
 // Whether to display the name of each check when you find it.
 user bool ap_show_check_names = false;
 
+// Whether to display icons for what's in each check.
+// "original" shows you what used to be there, floating above the check.
+// "contents" shows you what's in the check itself, if Doom has a sprite for it.
+// You can safely turn on both at once.
+server bool ap_show_check_original = false;
+server bool ap_show_check_contents = false;
+
 //// Gameplay configuration
 
 //// Inventory configuration.
