@@ -249,6 +249,8 @@ class GZDoomWorld(World):
         scale = slots_left/filler_count
 
         for item in filler_items:
+            if item.category not in self.included_item_categories:
+                continue
             for _ in range(round(self.item_counts.get(item.name(), 0) * scale)):
                 if slots_left <= 0:
                     break
