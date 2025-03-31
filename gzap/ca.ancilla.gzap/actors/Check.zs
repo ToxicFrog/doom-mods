@@ -34,9 +34,9 @@ mixin class ::ArchipelagoIcon {
 
   void SetProgressionState() {
     DEBUG("SetProgressionState(%s) checked=%d display=%d unreachable=%d progression=%d hilight=%d",
-      GetLocation().name,
-      GetLocation().checked, ShouldDisplay(), GetLocation().unreachable, GetLocation().progression, ShouldHilight());
-    if (GetLocation().checked) {
+      GetLocation().name, IsChecked(),
+      ShouldDisplay(), GetLocation().unreachable, GetLocation().progression, ShouldHilight());
+    if (IsChecked()) {
       A_SetRenderStyle(CVar.FindCVar("ap_collected_alpha").GetFloat(), STYLE_Translucent);
     }
 
@@ -51,12 +51,15 @@ mixin class ::ArchipelagoIcon {
     }
   }
 
-  // Implementing classes should define this to control whether the icon is
-  // displayed at all.
-  // abstract bool ShouldDisplay();
-  // Implementing classes should define this to control whether progression
-  // items are displayed differently or not.
-  // abstract bool ShouldHilight() { return true; }
+  // Implementing classes should define the following methods:
+  //    abstract bool ShouldDisplay();
+  // To determine whether to render at all;
+  //    abstract bool ShouldHilight() { return true; }
+  // To determine whether progression items should glow;
+  //    abstract ::Location GetLocation()
+  // To return the backing ::Location object;
+  //    abstract bool IsChecked()
+  // To return if the location is checked or not.
 }
 
 // An automap marker that follows the corresponding CheckPickup around.
@@ -69,6 +72,7 @@ class ::CheckMapMarker : MapMarker {
   }
 
   ::Location GetLocation() { return parent.GetLocation(); }
+  bool IsChecked() { return GetLocation().checked; }
 
   bool ShouldDisplay() {
     if (ap_show_checks_on_map <= 0) return false;
@@ -124,6 +128,7 @@ class ::CheckPickup : ScoreItem {
   }
 
   ::Location GetLocation() { return self.location; }
+  bool IsChecked() { return self.checked; }
   bool ShouldDisplay() { return true; }
   bool ShouldHilight() {
     return ap_show_progression > 0;

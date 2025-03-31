@@ -13,6 +13,9 @@ the 0.3.x mod.
 - Fix:
   - Map markers were not properly displaying filler/progression status if you
     picked up the automap after entering the map when persistent mode was on.
+  - Checks now vanish immediately when picked up, rather than waiting for
+    confirmation from the server. (If the server never confirms they will still
+    respawn when your reset the level.)
 
 # 0.3.5
 
