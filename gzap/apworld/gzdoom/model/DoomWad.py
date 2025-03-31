@@ -85,11 +85,11 @@ class DoomWad:
 
     def register_map_tokens(self, map: DoomMap):
         self.register_item(None,
-            DoomItem(map=map.map, category="token", typename="", tag="Level Access", skill=set([1,2,3])))
+            DoomItem(map=map.map, category="token", typename="GZAP_LevelAccess", tag="Level Access", skill=set([1,2,3]), virtual=True))
         self.register_item(None,
-            DoomItem(map=map.map, category="map", typename="", tag="Automap", skill=set([1,2,3])))
+            DoomItem(map=map.map, category="map", typename="GZAP_Automap", tag="Automap", skill=set([1,2,3]), virtual=True))
         clear_token = self.register_item(None,
-            DoomItem(map=map.map, category="token", typename="", tag="Level Clear", skill=set([1,2,3])))
+            DoomItem(map=map.map, category="token", typename="", tag="Level Clear", skill=set([1,2,3]), virtual=True))
         map_exit = DoomLocation(self, map=map.map, item=clear_token, secret=False, json=None)
         # TODO: there should be a better way of overriding location names
         map_exit.item_name = "Exit"
@@ -118,6 +118,11 @@ class DoomWad:
         # time, before we know what item categories the user has requested.
         item = self.register_item(map, DoomItem(skill=skill, **json))
         self.new_location(map, item, secret, skill, position)
+
+        # Special case -- don't add maps to the pool; we will either add one map
+        # per level or zero maps depending on yaml settings.
+        if item.category == "map":
+            item.set_count(0)
 
     def register_item(self, map: str, item: DoomItem) -> DoomItem:
         if item.name() in self.items_by_name:
@@ -272,7 +277,7 @@ class DoomWad:
             if value
         }
         for item in self.items_by_name.values():
-            if item.category == "key" or item.category == "map":
+            if item.category == "key":
                 item.set_count(1)
 
         # Compute which maps precede which other maps, so that the map ordering

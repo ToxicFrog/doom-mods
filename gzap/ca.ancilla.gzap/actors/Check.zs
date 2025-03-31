@@ -4,6 +4,7 @@
 #debug off;
 
 #include "../archipelago/Location.zsc"
+#include "./Labels.zsc"
 
 // Mixin for the icon itself which is displayed by both the in-world actor and
 // the map icon. The progression bit determines which version of the icon is

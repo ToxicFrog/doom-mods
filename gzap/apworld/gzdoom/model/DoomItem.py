@@ -30,20 +30,17 @@ class DoomItem:
     count: Dict[int,int]    # How many are in the item pool on each skill
     map: Optional[str] = None
     disambiguate: bool = False
+    virtual: bool = True    # Does't exist in-game, only in AP's internal state
 
-    def __init__(self, map, category, typename, tag, skill=[]):
+    def __init__(self, map, category, typename, tag, skill=[], virtual=False):
         self.category = category
         self.typename = typename
         self.tag = tag
         self.count = { sk: 1 for sk in skill }
+        self.virtual = virtual
         # TODO: caller should specify this
         if category == "key" or category == "map" or category == "token":
             self.map = map
-        if category == "map":
-            # Hack hack hack -- this makes it alway compare equal to the synthetic
-            # automaps we add to the pool later.
-            self.tag = "Automap"
-            self.typename = ""
 
     def __str__(self) -> str:
         return f"DoomItem#{self.id}({self.name()})×{self.count}"
@@ -81,8 +78,6 @@ class DoomItem:
     def name(self) -> str:
         """Returns the user-facing Archipelago name for this item."""
         name = self.tag
-        if self.category == "map":
-            name = "Automap"
         if self.disambiguate:
             name += f" [{self.typename}]"
         if self.map:

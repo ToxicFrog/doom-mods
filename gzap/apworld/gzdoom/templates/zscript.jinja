@@ -26,9 +26,9 @@ class GZAP_DataPackageEventHandler : StaticEventHandler {
 
     console.printf("Registering %d items.", {{items|count}});
     {% for item in items %}
-      {% if item.map and item.typename %}
+      {% if item.map and item.typename and not item.virtual %}
       apstate.RegisterKey("{{item.map}}", "{{item.typename}}", {{item.id}});
-      {% elif item.typename %}
+      {% elif item.typename and not item.virtual %}
       apstate.RegisterItem("{{item.typename}}", {{item.id}});
       {% endif %}
     {% endfor %}

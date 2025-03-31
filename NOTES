@@ -63,6 +63,14 @@ keys; frozen notes that the Hellshell Launcher can be used to break certain wall
 that normally require TNT box manipulation. This also ties in with the need to
 be able to represent logic requirements that aren't just keys.
 
+### 0.4 roadmap
+
+- recategorize small/medium health/ammo
+- icons for level access and allmap checks
+- option to collect all checks on level clear
+- clear N levels win condition
+- secret scanning?
+
 ### scanner
 
 - map exclusion UI
@@ -78,7 +86,6 @@ be able to represent logic requirements that aren't just keys.
   To detect secret collection, we watch level.total_secrets and level.found_secrets
   in OnTick(); when the former increases, we walk the secret sectors to find out
   which one(s) have been collected.
-- split small/medium health -- medkits are "medium", small bonuses are "small"
 
 ### ingame
 
