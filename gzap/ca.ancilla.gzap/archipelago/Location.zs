@@ -11,6 +11,9 @@
 class ::Location {
   uint apid;
   string name;
+  string orig_typename;  // Typename of item this location originally held
+  string ap_typename;    // Typename name of item randomized into this location
+  string ap_name;        // User-facing name of same
   bool progression;   // Does it hold a progression item?
   bool unreachable;   // Do we think this is unreachable?
   bool checked;       // Has the player already checked it?

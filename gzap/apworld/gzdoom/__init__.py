@@ -275,9 +275,7 @@ class GZDoomWorld(World):
         self.multiworld.completion_condition[self.player] = lambda state: self.mission_complete(state)
 
     def generate_output(self, path):
-        def progression(id: int) -> bool:
-            # get location from ID
-            name = self.location_id_to_name[id]
+        def progression(name: str) -> bool:
             # print("is_progression?", id, name)
             loc = self.multiworld.get_location(name, self.player)
             if loc.item and (loc.item.classification & ItemClassification.progression != 0):
@@ -293,6 +291,18 @@ class GZDoomWorld(World):
                 return self.location_name_to_id[name]
             else:
                 return self.item_name_to_id[name]
+
+        def item_at(name: str) -> str:
+            loc = self.get_location(name)
+            if loc.item and loc.item.name in self.wad_logic.items_by_name:
+                return self.wad_logic.items_by_name[loc.item.name].typename
+            return ""
+
+        def item_name_at(name: str) -> str:
+            loc = self.get_location(name)
+            if loc.item:
+                return loc.item.name
+            return ""
 
         def locations(map):
             return map.all_locations(self.spawn_filter, self.included_item_categories)
@@ -320,7 +330,7 @@ class GZDoomWorld(World):
             },
             "progression": progression,
             "locations": locations,
-            "id": id,
+            "id": id, "item_at": item_at, "item_name_at": item_name_at,
         }
 
         env = jinja2.Environment(

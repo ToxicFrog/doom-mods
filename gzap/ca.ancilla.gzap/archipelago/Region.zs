@@ -43,10 +43,16 @@ class ::Region play {
     return region;
   }
 
-  void RegisterCheck(uint apid, string name, bool progression, Vector3 pos, bool unreachable) {
+  void RegisterCheck(
+      uint apid, string name,
+      string orig_typename, string ap_typename, string ap_name,
+      bool progression, Vector3 pos, bool unreachable = false) {
     let loc = ::Location(new("::Location"));
     loc.apid = apid;
     loc.name = name;
+    loc.orig_typename = orig_typename;
+    loc.ap_typename = ap_typename;
+    loc.ap_name = ap_name;
     loc.progression = progression;
     loc.unreachable = unreachable;
     loc.checked = false;

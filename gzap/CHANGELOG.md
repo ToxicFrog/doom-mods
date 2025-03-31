@@ -1,7 +1,15 @@
 # Unreleased
 
-This is a bugfix release.
+This is a feature release.
 
+⚠️ The interface between GZDoom and Archipelago has changed. Games generated in
+0.3.x are not playable with 0.4.x, nor can you play 0.4.x-generated games with
+the 0.3.x mod.
+
+- New:
+  - gzArchipelago now has additional data about what items were originally stored
+    at check locations, and what items are stored there now, which will be used
+    for future user-facing features.
 - Fix:
   - Map markers were not properly displaying filler/progression status if you
     picked up the automap after entering the map when persistent mode was on.
