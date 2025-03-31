@@ -113,7 +113,7 @@ class ::PerLevelHandler : EventHandler {
       DEBUG("CleanupReopened: id %d, matched %d",
           thing.location.apid, thing.location == region.GetLocation(thing.location.apid));
       thing.location = region.GetLocation(thing.location.apid);
-      thing.UpdateStatus();
+      thing.UpdateFromLocation();
     }
   }
 
@@ -185,7 +185,6 @@ class ::PerLevelHandler : EventHandler {
       let thing = ::CheckPickup(thing);
       DEBUG("WorldThingSpawned(check) = %s", thing.location.name);
       ClearPending(thing.location);
-      thing.UpdateStatus();
       return true;
     }
 

@@ -1,3 +1,11 @@
+# Unreleased
+
+This is a bugfix release.
+
+- Fix:
+  - Map markers were not properly displaying filler/progression status if you
+    picked up the automap after entering the map when persistent mode was on.
+
 # 0.3.5
 
 This is a bugfix release.

@@ -9,40 +9,42 @@
 // the map icon. The progression bit determines which version of the icon is
 // displayed.
 mixin class ::ArchipelagoIcon {
-  bool progression;
-  bool unreachable;
-  bool checked;
-
   States {
     Spawn:
-      // We need one dead frame so that it doesn't SetProgressionState() before
-      // the creator can set the progression bit.
-      TNT1 A 1 NODELAY;
+      TNT1 A 0;
       TNT1 A 0 SetProgressionState();
-    NotProgression:
-      APIT A -1 BRIGHT;
       STOP;
+    NotProgression:
+      APIT A 35 BRIGHT;
+      TNT1 A 0 SetProgressionState();
+      LOOP;
     Progression:
       APIT ABCDEFGHIJIHGFEDCB 2 BRIGHT;
+      TNT1 A 0 SetProgressionState();
       LOOP;
     Unreachable:
-      APUR A -1 BRIGHT;
-      STOP;
+      APUR A 35 BRIGHT;
+      TNT1 A 0 SetProgressionState();
+      LOOP;
     Hidden:
-      TNT1 A -1;
-      STOP;
+      TNT1 A 35;
+      TNT1 A 0 SetProgressionState();
+      LOOP;
   }
 
   void SetProgressionState() {
-    if (self.checked) {
+    DEBUG("SetProgressionState(%s) checked=%d display=%d unreachable=%d progression=%d hilight=%d",
+      GetLocation().name,
+      GetLocation().checked, ShouldDisplay(), GetLocation().unreachable, GetLocation().progression, ShouldHilight());
+    if (GetLocation().checked) {
       A_SetRenderStyle(CVar.FindCVar("ap_collected_alpha").GetFloat(), STYLE_Translucent);
     }
 
     if (!ShouldDisplay()) {
       SetStateLabel("Hidden");
-    } else if (self.unreachable) {
+    } else if (GetLocation().unreachable) {
       SetStateLabel("Unreachable");
-    } else if (self.progression && ShouldHilight()) {
+    } else if (GetLocation().progression && ShouldHilight()) {
       SetStateLabel("Progression");
     } else {
       SetStateLabel("NotProgression");
@@ -60,10 +62,13 @@ mixin class ::ArchipelagoIcon {
 // An automap marker that follows the corresponding CheckPickup around.
 class ::CheckMapMarker : MapMarker {
   mixin ::ArchipelagoIcon;
+  ::CheckPickup parent;
 
   Default {
     Scale 0.25;
   }
+
+  ::Location GetLocation() { return parent.GetLocation(); }
 
   bool ShouldDisplay() {
     if (ap_show_checks_on_map <= 0) return false;
@@ -90,6 +95,13 @@ class ::CheckPickup : ScoreItem {
   ::Location location;
   ::CheckMapMarker marker;
 
+  // We keep a local "checked" bit so we can set it immediately when the player
+  // picks it up, and not fire a huge number of pickup events.
+  // This is updated from the location every time the level is entered (including
+  // in persistent mode), so if a message gets lost, re-entering the level will
+  // respawn the check.
+  bool checked;
+
   Default {
     Inventory.PickupMessage "";
     +COUNTITEM;
@@ -102,31 +114,33 @@ class ::CheckPickup : ScoreItem {
   static ::CheckPickup Create(::Location location, Actor original) {
     let thing = ::CheckPickup(Actor.Spawn("::CheckPickup", original.pos));
     thing.location = location;
-    thing.progression = location.progression;
-    thing.unreachable = location.unreachable;
-    thing.checked = location.checked;
+    thing.UpdateFromLocation();
     thing.A_SetSize(original.radius, original.height);
-    DEBUG("Check initialize: name=%s, pr=%d, ur=%d, ck=%d", location.name, thing.progression, thing.unreachable, thing.checked);
-    if (thing.checked) level.found_items++;
+    DEBUG("Check initialize: name=%s, pr=%d, ur=%d, ck=%d",
+      location.name, location.progression, location.unreachable, location.checked);
+    if (location.checked) level.found_items++;
     // TODO: copy flags like gravity from the original?
     return thing;
   }
 
+  ::Location GetLocation() { return self.location; }
   bool ShouldDisplay() { return true; }
   bool ShouldHilight() {
     return ap_show_progression > 0;
   }
 
+  void UpdateFromLocation() {
+    self.checked = self.location.checked;
+  }
+
   override void PostBeginPlay() {
-    if (self.unreachable) self.ClearCounters();
-    if (self.checked) return;
+    if (self.location.unreachable) self.ClearCounters();
+    if (self.location.checked) return;
     DEBUG("Creating map marker for check %s", self.location.name);
     SetTag(self.location.name);
     ChangeTID(level.FindUniqueTID());
     marker = ::CheckMapMarker(Spawn("::CheckMapMarker", self.pos));
-    marker.progression = self.progression;
-    marker.unreachable = self.unreachable;
-    marker.checked = self.checked;
+    marker.parent = self;
     marker.A_SetSpecial(0, self.tid);
   }
 
@@ -135,20 +149,11 @@ class ::CheckPickup : ScoreItem {
     return !self.checked;
   }
 
-  void UpdateStatus() {
-    self.checked = self.location.checked;
-    SetProgressionState();
-  }
-
   override bool TryPickup (in out Actor toucher) {
-    // I should probably check checked here, destroy the marker, flag this checked,
-    // etc rather than spreading it across OnDestroy etc
     DEBUG("TryPickup: %s", self.location.name);
     ::PlayEventHandler.Get().CheckLocation(self.location.apid, self.location.name);
     // It might take the server a moment to respond and set location.checked, so
-    // instead of calling UpdateStatus() here, we just force checked locally.
-    // It'll get re-checked next time the level loads, so the player will have
-    // a chance to re-collect it if the server didn't register it.
+    // we force the checked flag locally.
     self.checked = true;
     self.SetProgressionState();
     if (CVar.FindCVar("ap_show_check_names").GetBool()) {
