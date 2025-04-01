@@ -35,21 +35,29 @@ Objects that exist in the level somewhere, such as the player and *Check* actors
 
 An internal category assigned by the scanner and used by the randomizer to make
 decisions about which items are replaced with checks and which ones are progression,
-useful, or filler.
+useful, or filler. Some categories can be turned on and off in the YAML.
 
-The current list of categories is:
+A logic file can use any categories it wants and the apworld will automatically
+pick it up, but the current list of categories used by the scanner is:
+
 - `key`: keycards, skulls, etc; specific to a single level
 - `weapon`: any sort of weapon
 - `map`: automaps
-- `big-health`: health that restores at least 50%
-- `small-health`: health that restores less than 50%
-- `big-armor`: megaspheres and armour suits
-- `small-armor`: armour shards
-- `big-ammo`: backpacks and combined mana pickups
-- `medium-ammo`: ammo that restores at least 20% of max
-- `small-ammo`: all other ammo
-- `powerup`: time-limited powerups like radsuits and blurspheres
-- `tool`: items you can carry with you and use later (excluding health/armour), like the tome of power
+- `powerup`: time-limited powerups (e.g. radsuits)
+- Health and armor items:
+  - `big-health`/`big-armor`: at least 100 points
+  - `medium-health`/`medium-armor`: at least 25 points but less than 100
+  - `small-health`/`small-armor`: less than 25 points
+- Ammunition:
+  - `big-ammo`: backpacks and backpack-alikes
+  - `medium-ammo`: rocket boxes, cell packs, etc
+  - `small-ammo`: individual rockets, energy cells, etc
+- `tool`: inventory items that aren't in any other category (e.g. time bombs)
+
+The `Megasphere`, which restores both health and armour, is considered `big-armor`.
+
+Unrecognized ammo (e.g. from total conversions) is considered `medium` if it
+refills at least 20% of your carrying capacity, and `small` otherwise.
 
 ## Location
 

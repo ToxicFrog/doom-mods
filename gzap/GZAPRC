@@ -27,6 +27,30 @@
 # than whatever was actually scanned, and the given type, not the original item,
 # will be added to the item pool.
 
+#### General Doom/Heretic item categories ####
+# GZAP has built in heuristics for item categorization: health and armour is
+# considered "big" if it restores at least 100, "medium" if it restores at least
+# 25 points, and "small" otherwise.
+# Ammo is categorized similarly, except it's based on what % of your total ammo
+# capacity is refilled, with backpacks considered "big" and anything that restores
+# at least 20% of your capacity "medium".
+# Unfortunately, there's no way to set that cutoff that properly categorizes
+# everything in Doom or Heretic. So while the heuristics remain to support TCs,
+# we use manual categorization for the Id games.
+category small-ammo:
+  Cell Clip RocketAmmo Shell
+  BlasterAmmo CrossbowAmmo GoldWandAmmo MaceAmmo PhoenixRodAmmo SkullRodAmmo
+  LargeZorchRecharge MiniZorchRecharge PhasingZorch PropulsorZorch;
+
+category medium-ammo:
+  CellPack ClipBox RocketBox ShellBox
+  BlasterHefty CrossbowHefty GoldWandHefty MaceHefty PhoenixRodHefty SkullRodHefty
+  LargeZorchPack MiniZorchPack PhasingZorchPack PropulsorZorchPack;
+
+# These use CustomInventory to implement special handling and thus can't be
+# auto-categorized.
+category big-armor: Megasphere;
+category powerup: Berserk;
 
 #### Heretic configuration ####
 # In Heretic, the Firemace is actually placed on the map as a MaceSpawner. When

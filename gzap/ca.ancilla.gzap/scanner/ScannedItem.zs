@@ -48,6 +48,23 @@ class ::ScannedItem : ::ScannedLocation {
     return thing.bINVBAR;
   }
 
+  static string HealthCategory(int amount) {
+    if (amount >= 100) return "big-health";
+    if (amount >= 25) return "medium-health";
+    return "small-health";
+  }
+
+  static string ArmourCategory(int amount) {
+    if (amount >= 100) return "big-armor";
+    if (amount >= 25) return "medium-armor";
+    return "small-armor";
+  }
+
+  static string AmmoCategory(int amount, int maxamount) {
+    if (amount >= maxamount/5) return "medium-ammo";
+    return "small-ammo";
+  }
+
   // TODO: we can use inventory flags for this better than class hierarchy in many cases.
   // INVENTORY.AUTOACTIVATE - item activates when picked up
   // .INVBAR - item goes to the inventory screen and can be used later
@@ -68,23 +85,19 @@ class ::ScannedItem : ::ScannedLocation {
       return "big-ammo";
     } else if (thing is "MapRevealer") {
       return "map";
-    } else if (thing is "PowerupGiver" || thing is "Berserk") {
+    } else if (thing is "PowerupGiver") {
       return "powerup";
-    } else if (thing is "BasicArmorPickup" || thing is "Megasphere") {
-      return "big-armor";
+    } else if (thing is "BasicArmorPickup") {
+      return ArmourCategory(BasicArmorPickup(thing).SaveAmount);
     } else if (thing is "BasicArmorBonus") {
-      return "small-armor";
+      return ArmourCategory(BasicArmorBonus(thing).SaveAmount);
     } else if (thing is "Health") {
-      let h = Health(thing);
-      return h.Amount < 50 ? "small-health" : "big-health";
+      return HealthCategory(Health(thing).Amount);
     } else if (thing is "HealthPickup") {
-      let h = HealthPickup(thing);
-      return h.Health < 50 ? "small-health" : "big-health";
+      return HealthCategory(HealthPickup(thing).Health);
     } else if (thing is "Ammo") {
       let a = Ammo(thing);
-      return a.Amount < a.MaxAmount/5 ? "small-ammo" : "medium-ammo";
-    } else if (thing is "Mana3") {
-      return "big-ammo";
+      return AmmoCategory(a.Amount, a.MaxAmount);
     } else if (IsTool(Inventory(thing))) {
       return "tool";
     }

@@ -9,6 +9,9 @@ the 0.3.x mod.
 ⚠️ The YAML options have changed, and in particular, some options have had their
 types and/or meanings changed. You must regenerate your template YAML.
 
+⚠️ The scanner has changed. Old logic files remain compatible but it is recommended
+that you re-scan your megawads to take advantage of new features.
+
 - New:
   - gzArchipelago now has additional data about what items were originally stored
     at check locations, and what items are stored there now, which will be used
@@ -21,6 +24,8 @@ types and/or meanings changed. You must regenerate your template YAML.
   - The `included_item_categories` option now lets you specify how much of each
     category to include, e.g. you can tell it to randomize 50% of powerups or
     10% of small health pickups.
+  - `medium-health` and `medium-armor` categories have been added. The categorization
+    of health, armour, and ammo items has been improved.
 - Fix:
   - Map markers were not properly displaying filler/progression status if you
     picked up the automap after entering the map when persistent mode was on.
