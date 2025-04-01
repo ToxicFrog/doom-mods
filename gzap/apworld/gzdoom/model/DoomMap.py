@@ -7,6 +7,7 @@ for the purpose of reachability information, it also needs to know what keys and
 weapons it contains.
 """
 from dataclasses import dataclass, field, InitVar
+from math import ceil
 from typing import Dict, List, NamedTuple, Optional, Set
 
 from . import DoomItem, DoomLocation
@@ -58,6 +59,9 @@ class DoomMap:
     gunset: Set[str] = field(default_factory=set)
     # All locations contained in this map
     locations: List[DoomLocation] = field(default_factory=list)
+    # Items not contained in any particular location that should nonetheless
+    # be added to the pool if this map is included in play.
+    loose_items: Dict[str,int] = field(default_factory=dict)
     # "Clear Token" names for all maps preceding this one in the scanned level
     # order
     prior_clears: Set[str] = field(default_factory=set)
@@ -71,6 +75,15 @@ class DoomMap:
             loc for loc in self.locations
             if skill in loc.skill and loc.category in categories
         ]
+
+    def choose_locations(self, world):
+        skill = world.spawn_filter
+        chosen = []
+        for category,amount in world.included_item_categories.items():
+            buf = self.all_locations(skill, {category})
+            count = ceil(len(buf) * amount)
+            chosen.extend(world.random.sample(buf,count))
+        return chosen
 
     def access_rule(self, player, need_priors = 0.0, require_weapons = True):
         # print(f"access_rule({self.map}) = {need_priors}% of {self.prior_clears}")
@@ -105,6 +118,9 @@ class DoomMap:
 
     def exit_location_name(self):
         return f"{self.map} - Exit"
+
+    def add_loose_item(self, item, count=1):
+        self.loose_items[item] = self.loose_items.get(item, 0) + count
 
     def starting_items(self, options):
         """Return all items needed if this is a starting level for the player."""

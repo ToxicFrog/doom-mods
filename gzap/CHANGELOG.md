@@ -6,6 +6,9 @@ This is a feature release.
 0.3.x are not playable with 0.4.x, nor can you play 0.4.x-generated games with
 the 0.3.x mod.
 
+⚠️ The YAML options have changed, and in particular, some options have had their
+types and/or meanings changed. You must regenerate your template YAML.
+
 - New:
   - gzArchipelago now has additional data about what items were originally stored
     at check locations, and what items are stored there now, which will be used
@@ -15,6 +18,9 @@ the 0.3.x mod.
   - `ap_show_check_contents` setting displays the contents of each check (if it's
     a Doom item).
   - AP automaps and AP level accesses have custom icons based on FreeDoom sprites.
+  - The `included_item_categories` option now lets you specify how much of each
+    category to include, e.g. you can tell it to randomize 50% of powerups or
+    10% of small health pickups.
 - Fix:
   - Map markers were not properly displaying filler/progression status if you
     picked up the automap after entering the map when persistent mode was on.

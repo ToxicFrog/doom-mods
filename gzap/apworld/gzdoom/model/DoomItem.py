@@ -2,6 +2,7 @@
 Data model for items (or rather, item types) in Doom.
 """
 
+import sys
 from typing import Optional, Set, Dict
 from BaseClasses import ItemClassification
 
@@ -27,53 +28,27 @@ class DoomItem:
     category: str           # Randomization category (e.g. key, weapon)
     typename: str           # gzDoom class name
     tag: str                # User-visible name *in gzDoom*
-    count: Dict[int,int]    # How many are in the item pool on each skill
     map: Optional[str] = None
     disambiguate: bool = False
     virtual: bool = True    # Does't exist in-game, only in AP's internal state
 
-    def __init__(self, map, category, typename, tag, skill=[], virtual=False):
+    def __init__(self, map, category, typename, tag):
         self.category = category
         self.typename = typename
         self.tag = tag
-        self.count = { sk: 1 for sk in skill }
-        self.virtual = virtual
-        # TODO: caller should specify this
+        # TODO: We need a better way of handling scoped items, so that things
+        # other than these types can be marked as scoped, so that we can have
+        # non-scoped tokens, etc
         if category == "key" or category == "map" or category == "token":
             self.map = map
 
     def __str__(self) -> str:
-        return f"DoomItem#{self.id}({self.name()})×{self.count}"
+        return f"DoomItem#{self.id}({self.name()})"
 
     __repr__ = __str__
 
     def __eq__(self, other) -> bool:
         return self.tag == other.tag and self.map == other.map
-
-    def update_skill_from(self, other) -> None:
-        for sk,count in other.count.items():
-            self.count[sk] = self.count.get(sk, 0) + count
-
-    def set_count(self, count: int, skill: frozenset = frozenset({1,2,3})):
-        """
-        Set the count of the item on the given skill levels to the given value.
-
-        This is currently used to make sure keys exist exactly once on all skills
-        if they exist on any of them.
-        """
-        for sk in skill:
-            self.count[sk] = count
-
-    def get_count(self, options, nrof_maps):
-        count = self.count.get(options.spawn_filter.value, 0)
-
-        if self.category == "weapon":
-            if options.max_weapon_copies.value > 0:
-                count = min(count, options.max_weapon_copies.value)
-            if options.levels_per_weapon.value > 0:
-                count = min(count, max(1, nrof_maps // options.levels_per_weapon.value))
-
-        return count
 
     def name(self) -> str:
         """Returns the user-facing Archipelago name for this item."""
@@ -106,3 +81,30 @@ class DoomItem:
 
     def is_default_enabled(self) -> bool:
         return self.category in {"map", "weapon", "key", "token", "powerup", "big-health", "big-ammo", "big-armor"}
+
+    def pool_limits(self, options, nrof_maps):
+        """
+        Returns the lower and upper bounds for how many copies of this can be in the item pool.
+
+        In some cases this depends on YAML options and which maps are selected.
+        """
+        # Each key in this WAD must be included exactly once.
+        if self.category == "key":
+            return (1,1)
+
+        # Allmaps are excluded from the pool. The randomizer will add map tokens
+        # to the pool (or not) depending on settings.
+        if self.category == "map":
+            return (0,0)
+
+        # Weapons have an upper bound that depends on settings.
+        if self.category == "weapon":
+            count = sys.maxsize
+            if options.max_weapon_copies.value > 0:
+                count = min(count, options.max_weapon_copies.value)
+            if options.levels_per_weapon.value > 0:
+                count = min(count, max(1, nrof_maps // options.levels_per_weapon.value))
+            return (0, count)
+
+        # Anything else we just take as many as we find.
+        return (0, sys.maxsize)

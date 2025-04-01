@@ -127,7 +127,7 @@ class DoomLocation:
             # location is the map's only key (and thus must be accessible to
             # a player entering the map without keys).
             # print(f"Single key? {self.orig_item.name()} == {self.parent.get_map(self.pos.map).keyset}")
-            if {self.orig_item.name()} == self.parent.get_map(self.pos.map).keyset:
+            if self.orig_item and {self.orig_item.name()} == self.parent.get_map(self.pos.map).keyset:
                 return True
 
             return False

@@ -15,7 +15,7 @@ class GZAP_DataPackageEventHandler : StaticEventHandler {
     console.printf("Registering %d maps.", {{maps|count}});
     {% for map in maps %}
       apstate.RegisterMap("{{map.map}}", "{{map.checksum}}", {{id(map.access_token_name())}}, {{id(map.automap_name())}}, {{id(map.clear_token_name())}}, {{id(map.exit_location_name())}});
-      {% for check in locations(map) %}
+      {% for check in locations(map.map) %}
         {% if not check.pos.virtual %}
         apstate.RegisterCheck("{{map.map}}", {{check.id}}, "{{check.name()}}",
           "{{check.orig_item.typename}}", "{{item_at(check.name())}}", "{{item_name_at(check.name())}}",
@@ -26,9 +26,9 @@ class GZAP_DataPackageEventHandler : StaticEventHandler {
 
     console.printf("Registering %d items.", {{items|count}});
     {% for item in items %}
-      {% if item.map and item.typename and not item.virtual %}
+      {% if item.map and item.typename and item.category != "token" %}
       apstate.RegisterKey("{{item.map}}", "{{item.typename}}", {{item.id}});
-      {% elif item.typename and not item.virtual %}
+      {% elif item.typename and item.category != "token" %}
       apstate.RegisterItem("{{item.typename}}", {{item.id}});
       {% endif %}
     {% endfor %}

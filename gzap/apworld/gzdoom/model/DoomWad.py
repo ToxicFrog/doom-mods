@@ -14,13 +14,16 @@ to keep track of:
 from dataclasses import dataclass, field, InitVar
 from typing import Any, Dict, List, Set, FrozenSet
 
-from . import DoomItem, DoomLocation, DoomMap, DoomPosition
+from .DoomPool import DoomPool
+from .DoomItem import DoomItem
+from .DoomLocation import DoomLocation, DoomPosition
+from .DoomMap import DoomMap
 
 
 class DuplicateMapError(RuntimeError):
     """
-    Someday we'll want to support multiple copies of the same map at different
-    difficulty settings. Today is not that day.
+    A logic file needs to contain one entry per map. Multiple difficulty levels
+    are encoded into the individual locations.
     """
     pass
 
@@ -43,28 +46,39 @@ class DoomWad:
             3: {},
         }
 
-    def locations(self, skill: int) -> List[DoomLocation]:
-        skill = min(3, max(1, skill)) # clamp ITYTD->HNTR and N!->UV
-        return [loc for loc in self.locations_by_name.values() if skill in loc.skill]
-
-    def items(self, skill: int) -> List[DoomItem]:
+    def locations_for_stats(self, skill: int) -> List[DoomLocation]:
         skill = min(3, max(1, skill)) # clamp ITYTD->HNTR and N!->UV
         return [
-            item for item in self.items_by_name.values()
-            if item and item.count.get(skill, 0) > 0
+            loc for loc in self.locations_by_name.values()
+            if skill in loc.skill
+            and loc.orig_item and loc.orig_item.is_default_enabled()
         ]
+
+    def stats_pool(self, skill):
+        """Returns a DoomPool suitable for reporting stats about the wad."""
+        return DoomPool(self, self.locations_for_stats(skill), None)
+
+    def fill_pool(self, world):
+        """
+        Returns a DoomPool containing all of the locations and items to be used
+        for randomization.
+
+        The randomizer never inspects the contents of the WAD or its maps directly;
+        instead it uses fill_pool to produce a suitable subset of the WAD which
+        it can then inspect and manipulate.
+        """
+        locations = []
+        for map in world.maps:
+            # Just choose per map for now
+            locations += map.choose_locations(world)
+        pool = DoomPool(self, locations, world)
+        return pool
+
+    def items(self) -> List[DoomItem]:
+        return self.items_by_name.values()
 
     def item(self, name: str) -> DoomItem:
         return self.items_by_name[name]
-
-    def progression_items(self, skill: int) -> List[DoomItem]:
-        return [item for item in self.items(skill) if item.is_progression()]
-
-    def useful_items(self, skill: int) -> List[DoomItem]:
-        return [item for item in self.items(skill) if item.is_useful()]
-
-    def filler_items(self, skill: int) -> List[DoomItem]:
-        return [item for item in self.items(skill) if item.is_filler()]
 
     def all_maps(self) -> List[DoomMap]:
         return self.maps.values()
@@ -84,16 +98,21 @@ class DoomWad:
             self.first_map = self.maps[map]
 
     def register_map_tokens(self, map: DoomMap):
-        self.register_item(None,
-            DoomItem(map=map.map, category="token", typename="GZAP_LevelAccess", tag="Level Access", skill=set([1,2,3]), virtual=True))
-        self.register_item(None,
-            DoomItem(map=map.map, category="map", typename="GZAP_Automap", tag="Automap", skill=set([1,2,3]), virtual=True))
+        access_token = self.register_item(None,
+            DoomItem(map=map.map, category="token", typename="GZAP_LevelAccess", tag="Level Access"))
+        map.add_loose_item(access_token.name())
+
+        automap_token = self.register_item(None,
+            DoomItem(map=map.map, category="token", typename="GZAP_Automap", tag="Automap"))
+        map.add_loose_item(automap_token.name())
+
         clear_token = self.register_item(None,
-            DoomItem(map=map.map, category="token", typename="", tag="Level Clear", skill=set([1,2,3]), virtual=True))
+            DoomItem(map=map.map, category="token", typename="", tag="Level Clear"))
         map_exit = DoomLocation(self, map=map.map, item=clear_token, secret=False, json=None)
         # TODO: there should be a better way of overriding location names
         map_exit.item_name = "Exit"
         map_exit.item = clear_token
+        map_exit.orig_item = None
         self.register_location(map_exit, set([1, 2, 3]))
 
 
@@ -116,13 +135,8 @@ class DoomWad:
         # We add everything in the logic file to the pool. Not everything will
         # necessarily be used in randomization, but we need to do this at load
         # time, before we know what item categories the user has requested.
-        item = self.register_item(map, DoomItem(skill=skill, **json))
+        item = self.register_item(map, DoomItem(**json))
         self.new_location(map, item, secret, skill, position)
-
-        # Special case -- don't add maps to the pool; we will either add one map
-        # per level or zero maps depending on yaml settings.
-        if item.category == "map":
-            item.set_count(0)
 
     def register_item(self, map: str, item: DoomItem) -> DoomItem:
         if map is not None:
@@ -141,8 +155,6 @@ class DoomWad:
         for other in self.items_by_name[item.name()]:
             if other == item:
                 # An exact duplicate of this item is already known.
-                # Update the original's count-by-skill map and discard this duplicate.
-                other.update_skill_from(item)
                 return other
 
         self.items_by_name[item.name()].append(item)
@@ -255,21 +267,6 @@ class DoomWad:
         """
         Do postprocessing after all events have been ingested.
         """
-        # A key always has one copy in the item pool regardless of spawn filter.
-        # TODO: this is a workaround for the fact that, if a key only exists on
-        # some difficulties, the initial scan considers the level to never be
-        # in logic on difficulties where it doesn't exist (because you can
-        # never find all the keys). The real fix for this is to implement non-
-        # randomized tuning and tune the affected level(s) first.
-        self.items_by_name = {
-            key: value
-            for key,value in self.items_by_name.items()
-            if value
-        }
-        for item in self.items_by_name.values():
-            if item.category == "key":
-                item.set_count(1)
-
         # Compute which maps precede which other maps, so that the map ordering
         # system can function.
         for map in self.all_maps():

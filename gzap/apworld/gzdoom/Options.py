@@ -20,7 +20,7 @@
 #   ways that are both fun and reliably avoid softlocks. Probably going to avoid
 #   this for now.
 
-from Options import PerGameCommonOptions, Toggle, DeathLink, StartInventoryPool, OptionSet, NamedRange, Range
+from Options import PerGameCommonOptions, Toggle, DeathLink, StartInventoryPool, OptionSet, NamedRange, Range, OptionDict
 from dataclasses import dataclass
 
 from . import model
@@ -169,33 +169,31 @@ class SpawnFilter(NamedRange):
         "hard": 3
     }
 
-class IncludedItemCategories(OptionSet):
+class IncludedItemCategories(OptionDict):
     """
     Which item categories to include in randomization. This controls both which
     items are replaced with checks, and what the item pool contains.
 
-    Keys and weapons are always included and cannot be disabled.
+    Keys and weaponss are always included and cannot be controlled with this
+    option. You must enable at least one category here or generation is likely
+    to fail.
 
-    The "tool" category is things you can pick up and carry with you to use later
-    that don't fall into any other category. In the Id IWADs this mostly applies
-    to Heretic, where it covers the egg, teleporter, and time bomb, which between
-    them account for about 25% of checks in the game.
+    For each category, a setting of `1` enables full randomization, and a setting
+    of `0` disables randomization completely. Values in between will randomize the
+    given proportion, e.g. `"powerup": 0.5` will replace half of the powerups in
+    the game with AP checks (and add the original items to the item pool) and
+    leave the rest alone.
 
-    Enabling "medium-ammo" will typically about double the number of checks.
+    See `glossary.md` for a description of the different categories and which
+    items they cover.
 
-    Adding any of the "small" categories will explode the number of checks,
-    typically a 5x-10x increase, adding thousands of checks even in small wads,
-    most of which will contain only tiny amounts of health/armour/ammo. This
-    should be treated like Grass Rando or Potsanity in other games (only worse)
-    and handled with care.
-
-    Officially supported categories are:
-        map powerup big-ammo big-health big-armor
-        medium-ammo tool
-        small-ammo small-health small-armor
+    Enabling "medium" categories tends to more than double the number of checks.
+    Enabling all categories tends to increase it by about 10x. Make sure you (and
+    your co-op partners) are prepared for a game with thousands or tens of thousands
+    of checks in Doom if you turn these on.
     """
     display_name = "Included Item Categories"
-    default = {"map", "powerup", "big-ammo", "big-health", "big-armor"}
+    default = {"powerup": 1, "big-ammo": 1, "big-health": 1, "big-armor": 1}
     valid_keys = model.all_item_categories() - {"token", "key", "weapon"}
 
 class LevelOrderBias(Range):

@@ -80,11 +80,10 @@ def get_wad(name: str) -> DoomWad:
     assert _init_done
     return _DOOM_LOGIC.wads[name]
 
-def count_items(sk, items) -> int:
+def count_items(items) -> int:
     n = 0
-    for item in items:
-        if item.is_default_enabled():
-            n = n + item.count.get(sk, 0)
+    for count in items.values():
+        n += count
     return n
 
 def print_wad_stats(name: str, wad: DoomWad) -> None:
@@ -92,14 +91,13 @@ def print_wad_stats(name: str, wad: DoomWad) -> None:
         return
     print("%32s: %d maps" % (name, len(wad.all_maps())))
     for sknum, skname in [(1, "HNTR"), (2, "HMP"), (3, "UV")]:
-      num_p = count_items(sknum, wad.progression_items(sknum))
-      num_u = count_items(sknum, wad.useful_items(sknum))
-      num_f = count_items(sknum, wad.filler_items(sknum))
-      locs = [loc for loc in wad.locations(sknum) if loc.orig_item.is_default_enabled()]
-      print("%32s  %4d locs (%3d secret), %4d items (P:%-4d + U:%-4d + F:%-4d)" % (
-          skname, len(locs), len([loc for loc in locs if loc.secret]),
-          num_p + num_u + num_f, num_p, num_u, num_f
-      ))
+      pool = wad.stats_pool(sknum)
+      num_items = count_items(pool.item_counts)
+      num_p = count_items(pool.progression_items())
+      num_locs = len(pool.locations)
+      num_secrets = len([loc for loc in pool.locations if loc.secret])
+      print("%32s  %4d locs (%3d secret), %4d items (%-4d progression)" % (
+          skname, num_locs, num_secrets, num_items, num_p))
 
 def logic_files(package):
     """

@@ -129,6 +129,13 @@ class ::RandoState play {
   // TODO: actually sort it
   Array<::RandoItem> items;
 
+  // TODO: We can do better with key/token management here.
+  // In particular, if we reify all the tokens as in-game items, we no longer
+  // need to pass them as extra IDs to RegisterMap. Instead we define a new
+  // RegisterToken() that behaves similar to RegisterKey, except it spawns
+  // the corresponding token and sets the map field on it, and on pickup it
+  // sets the requisite flags in the RandoState. This removes a whole bunch of
+  // special cases.
   void RegisterMap(string map, string checksum, uint access_apid, uint map_apid, uint clear_apid, uint exit_apid) {
     DEBUG("Registering map: %s", map);
     if (checksum != LevelInfo.MapChecksum(map)) {
