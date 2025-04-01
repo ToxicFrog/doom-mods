@@ -125,49 +125,40 @@ class DoomWad:
             item.set_count(0)
 
     def register_item(self, map: str, item: DoomItem) -> DoomItem:
-        if item.name() in self.items_by_name:
-            return self.register_duplicate_item(map, item)
-
         if map is not None:
             self.maps[map].update_access_tracking(item)
 
+        if item.name() in self.items_by_name:
+            return self.register_duplicate_item(map, item)
+
         self.logic.register_item(item)
-        self.items_by_name[item.name()] = item
+        # Initially items are stored as lists to handle duplicates.
+        # During postprocessing, we disambiguate.
+        self.items_by_name[item.name()] = [item]
         return item
 
     def register_duplicate_item(self, map: str, item: DoomItem) -> DoomItem:
-        other: DoomItem = self.items_by_name[item.name()]
-        if other is False:
-            # Known to require disambiguation. Set the disambiguation bit
-            # and retry.
-            assert not item.disambiguate
-            item.disambiguate = True
-            return self.register_item(map, item)
+        for other in self.items_by_name[item.name()]:
+            if other == item:
+                # An exact duplicate of this item is already known.
+                # Update the original's count-by-skill map and discard this duplicate.
+                other.update_skill_from(item)
+                return other
 
-        if other == item:
-            if map is not None:
-                # Record this key/gun as something the player should have before
-                # this level is in logic.
-                # TODO: we may need to maintain different keysets/gunsets for
-                # different skills (but hopefully not).
-                self.maps[map].update_access_tracking(item)
-            other.update_skill_from(item)
-            return other
+        self.items_by_name[item.name()].append(item)
 
-        # Name collision with existing, different item. We need to rename
-        # them both.
-        assert not (item.disambiguate or other.disambiguate)
-        # Leave behind False as a sentinel value so future duplicates
-        # get disambiguated properly.
-        self.items_by_name[other.name()] = False
-        # We don't need to specify the map here because the map was already
-        # updated with this item, if necessary, the first time we saw it, and
-        # changing its canonical name doesn't affect that.
-        other.disambiguate = True
-        item.disambiguate = True
-        self.register_item(None, other)
-        return self.register_item(map, item)
-
+    def disambiguate_duplicate_items(self):
+        all_items = {}
+        for items in self.items_by_name.values():
+            dupes = len(items) > 1
+            for item in items:
+                if dupes:
+                    item.disambiguate = True
+                    # Claim a new registration ID for it, since its name has changed.
+                    self.logic.register_item(item)
+                assert item.name() not in all_items,f"Error resolving item name collisions, item f{item} collides with distinct item f{all_items[item.name()]} even after trying to disambiguate."
+                all_items[item.name()] = item
+        self.items_by_name = all_items
 
     def new_location(self, map: str, item: DoomItem, secret: bool, skill: Set[int], json: Dict[str, str]) -> None:
         """
@@ -201,8 +192,6 @@ class DoomWad:
             location.skill.add(sk)
             locs_by_pos[location.pos] = location
             self.maps[location.pos.map].register_location(location)
-            # self.logic.register_location(location)
-            # self.locations_by_name[location.name()] = location
 
 
     def tune_location(self, id, name, keys, unreachable = False) -> None:
@@ -237,6 +226,7 @@ class DoomWad:
         """
         Do postprocessing after the initial scan is completed but before tuning.
         """
+        self.disambiguate_duplicate_items()
         # Resolve name collisions among locations and register them with the logic.
         # We iterate the maps here, rather than locations_by_pos, because virtual
         # locations like exits don't appear in the position table but do appear
