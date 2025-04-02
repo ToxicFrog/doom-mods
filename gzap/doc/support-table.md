@@ -11,48 +11,53 @@ This file summarizes the state of support for various wads. Support is classifie
 - **problems**: testing has revealed that changes to the scanner, randomizer, or tuner are needed to support this properly
 - **missing**: not yet supported, but I either want to add support or know people are going to ask about it.
 
-The number of checks and levels is given as a rough guide to the size of the wad
-for the purposes of rando planning with others. The check count assumes you are
-playing on UV and using the default settings; there is usually a small amount of
-check variation across difficulties, and turning on more item categories in the
-yaml can dramatically increase the number of checks depending on what you choose.
+The number of levels, monsters-per-level, and checks is given as a rough guide
+to the size of the wad for the purposes of rando planning with others. The check
+and monster counts assumes you are playing on UV and using the default settings;
+there is usually a small amount of variation across difficulties.
+
+The counts are also given using the default settings. Turning on more check
+categories in the yaml (via `included_item_categories`) can increase this by up
+to 10x (or more in some wads).
 
 ### IWADs
 
-| WAD | Maps | Checks | Status | Notes |
-| --- | ---- | ------ | ------ | ----- |
-| Doom | 36 | 509 | basic | |
-| Doom 2 | 32 | 501 | basic | |
-| TNT | 32 | 515 | basic | |
-| Plutonia | 32 | 427 | basic | |
-| WadFusion | varies | varies | missing | |
-| Heretic | 45 | 1208 | basic | |
-| Hexen | | | missing | Same concerns as Strife, plus I don't like it. |
-| Strife | | | missing | Hub maps and complicated level scripting mean this may need changes to the generator. |
-| FreeDoom | 36 | 532 | basic | |
-| FreeDoom 2 | 32 | 495 | basic | |
-| Chex Quest 3 | 15 | 196 | complete | Version 1.4 supported, check archived versions on the [Chex Quest 3 website](https://www.chexquest3.com/downloads/). |
+| WAD          | Maps | Mon/Lvl | Checks | Status | Notes |
+| ------------ | ---- | ------- | ------ | ------ | ----- |
+| Doom         |   36 |  90 | 509 | partial | |
+| Doom 2       |   32 | 116 | 501 | basic | |
+| TNT          |   32 | 152 | 515 | basic | |
+| Plutonia     |   32 |  95 | 427 | basic | |
+| WadFusion    | varies | varies | varies | missing | See https://github.com/ToxicFrog/doom-mods/pull/38 |
+| Heretic      |   45 | 116 | 900 | basic | |
+| Hexen        | | | | missing | Same concerns as Strife, plus I don't like it. |
+| Strife       | | | | missing | Hub maps and complicated level scripting mean this may need changes to the generator. |
+| FreeDoom     |   36 | 176 | 532 | basic | |
+| FreeDoom 2   |   32 | 135 | 495 | basic | |
+| Chex Quest 3 |   15 |  83 | 196 | complete | Version 1.4 supported, check archived versions on the [Chex Quest 3 website](https://www.chexquest3.com/downloads/). |
 
 ### PWADs
 
-| WAD | Maps | Checks | Status | Notes |
-| --- | ---- | ------ | ------ | ----- |
-| 1000 Lines | 32 | 397 | full | Does not include the two bonus levels. |
-| Demonfear | 32 | 289 | full | |
-| Going Down Turbo | 32 | 450 | problems | Some levels have intentionally-unreachable items in them, which need to be excluded from randomization. Known issues with persistent mode. |
-| MAYhem 2048 | 34 | 384 | partial | Would be full, but I accidentally overwrote half the tuning data. |
-| Scythe | 32 | 405 | full | MAP26-MAP30 are much larger than the rest of the wad; consider excluding them in short sync games. |
+| WAD              | Maps | Mon/Lvl | Checks | Status | Notes |
+| ---------------- | ---- | ------- | ------ | ------ | ----- |
+| 1000 Lines       |   32 | 137 | 397 | full | Does not include the two bonus levels. |
+| Demonfear        |   32 |  39 | 289 | full | |
+| Going Down Turbo |   32 | 163 | 450 | problems | Some levels have intentionally-unreachable items in them, which need to be excluded from randomization. Known issues with persistent mode. |
+| MAYhem 2048      |   34 | 179 | 384 | partial | Would be full, but I accidentally overwrote half the tuning data. |
+| Scythe           |   32 | 106 | 405 | full | MAP26-MAP30 are much larger than the rest of the wad; consider excluding them in short sync games. |
 
 ### Standalone Games
 
-| Game | Status | Notes |
-| ---- | ------ | ----- |
-| Adventures of Square | missing | Requires scanner improvements to handle AOS weapons. |
-| Ashes 2063 | missing | |
-| Ashes: Afterglow | missing | Uses hub maps. |
-| Ashes: Hard Reset | missing | Still need to play it. |
-| Faithless Trilogy | missing | Requires manual work to handle ACS-defined portals. |
-| Hedon Bloodrite | missing | This is going to be a project but I think it would be pretty cool. |
+| Game                     | Maps | Mon/Lvl | Checks | Status | Notes |
+| ------------------------ | ---- | ------- | ------ | ------ | ----- |
+| The Adventures of Square | 25 | 226 | 610 | basic | |
+| Ashes 2063               | | | | missing | |
+| Ashes: Afterglow         | | | | missing | Uses hub maps. |
+| Ashes: Hard Reset        | | | | missing | Still need to play it. |
+| Faithless Trilogy        | | | | missing | Requires manual work to handle ACS-defined portals. |
+| Golden Souls Remastered  | | | | missing | |
+| Golden Souls 2           | | | | missing | |
+| Hedon Bloodrite          | | | | missing | This is going to be a project but I think it would be pretty cool. |
 
 ### Fan-Games for Other IPs
 

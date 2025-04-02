@@ -31,6 +31,8 @@ types and/or meanings changed. You must regenerate your template YAML.
     themselves into checks; you get the check as soon as you step into the secret
     sector. Note that these are not currently marked on the map the way item-based
     checks are!
+- Change:
+  - All logic files regenerated using the updated scanner.
 - Fix:
   - Map markers were not properly displaying filler/progression status if you
     picked up the automap after entering the map when persistent mode was on.
