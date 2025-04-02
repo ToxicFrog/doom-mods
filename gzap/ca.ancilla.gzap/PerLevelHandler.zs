@@ -134,6 +134,7 @@ class ::PerLevelHandler : EventHandler {
     DEBUG("PLH Cleanup");
     apstate.UpdatePlayerInventory();
     let region = apstate.GetRegion(level.MapName);
+    if (!region) return;
     SetupSecrets(region);
     foreach (::CheckPickup thing : ThinkerIterator.Create("::CheckPickup", Thinker.STAT_DEFAULT)) {
       // At this point, we may have a divergence, depending on whether the apstate
