@@ -63,6 +63,8 @@ class WadLogicLoader:
                 self.wad.finalize_scan(payload)
             elif evt == "AP-CHECK":
                 self.wad.tune_location(**payload)
+            elif evt == "AP-SECRET":
+                self.wad.new_secret(payload)
             else:
                 # AP-XON, AP-ACK, AP-STATUS, AP-CHAT, and other multiplayer-only messages
                 pass

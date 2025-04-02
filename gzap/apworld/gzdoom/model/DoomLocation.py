@@ -52,13 +52,17 @@ class DoomLocation:
     skill: Set[int]
     unreachable: bool = False
     secret: bool = False
+    sector: int = 0
 
     def __init__(self, parent, map: str, item: DoomItem, secret: bool, json: str | None):
-        self.category = item.category
         self.keys = frozenset()
         self.parent = parent
-        self.orig_item = item
-        self.item_name = item.tag
+        if item:
+            # If created without an item it is the caller's responsibility to fill
+            # in these fields post hoc.
+            self.category = item.category
+            self.orig_item = item
+            self.item_name = item.tag
         self.skill = set()
         self.secret = secret
         if json:

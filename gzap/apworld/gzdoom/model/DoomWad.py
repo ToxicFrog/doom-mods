@@ -113,7 +113,7 @@ class DoomWad:
         map_exit.item_name = "Exit"
         map_exit.item = clear_token
         map_exit.orig_item = None
-        self.register_location(map_exit, set([1, 2, 3]))
+        self.register_location(map_exit, {1,2,3})
 
 
     def new_item(self, json: Dict[str,str]) -> None:
@@ -205,6 +205,12 @@ class DoomWad:
             locs_by_pos[location.pos] = location
             self.maps[location.pos.map].register_location(location)
 
+    def new_secret(self, json: Dict[str, Any]) -> None:
+        location = DoomLocation(self, map=json['map'], item=None, secret=True, json=None)
+        location.item_name = f"Secret {json['sector']}"
+        location.category = "secret"
+        location.sector = json['sector']
+        self.register_location(location, {1,2,3})
 
     def tune_location(self, id, name, keys, unreachable = False) -> None:
         """
