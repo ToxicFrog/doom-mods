@@ -31,7 +31,7 @@ prefix for all gzArchipelago classes to avoid collisions with other mods.
 
 Objects that exist in the level somewhere, such as the player and *Check* actors.
 
-## Item Category
+## Item/Location Category
 
 An internal category assigned by the scanner and used by the randomizer to make
 decisions about which items are replaced with checks and which ones are progression,
@@ -44,6 +44,7 @@ pick it up, but the current list of categories used by the scanner is:
 - `weapon`: any sort of weapon
 - `map`: automaps
 - `powerup`: time-limited powerups (e.g. radsuits)
+- `secret-sector`: a secret (distinct from any items *in* that secret)
 - Health and armor items:
   - `big-health`/`big-armor`: at least 100 points
   - `medium-health`/`medium-armor`: at least 25 points but less than 100
@@ -58,6 +59,10 @@ The `Megasphere`, which restores both health and armour, is considered `big-armo
 
 Unrecognized ammo (e.g. from total conversions) is considered `medium` if it
 refills at least 20% of your carrying capacity, and `small` otherwise.
+
+There are no items tagged `secret-sector`, but turning it on in the YAML will
+cause secrets (in addition to the items inside them, where applicable) to be
+treated as checks.
 
 ## Location
 

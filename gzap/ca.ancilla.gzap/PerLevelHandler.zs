@@ -9,8 +9,11 @@
 class ::PerLevelHandler : EventHandler {
   // Archipelago state manager.
   ::RandoState apstate;
-  // Locations that we have yet to resolve when loading into the map.
+  // Locations that we have yet to resolve when loading into the map. Indexed by apid.
   Map<int, ::Location> pending_locations;
+  // Locations corresponding to secret sectors. Indexed by sector number.
+  // As we find each one we clear it from the map.
+  Map<int, ::Location> secret_locations;
   // If >0, number of ticks remaining to track spawning actors.
   int alarm;
   // If set, the player is leaving the level via the level select or similar
@@ -68,6 +71,36 @@ class ::PerLevelHandler : EventHandler {
     }
   }
 
+  void SetupSecrets(::Region region) {
+    self.secret_locations.Clear();
+
+    foreach (location : region.locations) {
+      if (location.secret_sector < 0) continue;
+      if (location.checked) continue;
+      DEBUG("Init secret location: %s", location.name);
+      let sector = level.sectors[location.secret_sector];
+      if (!sector.IsSecret()) {
+        // Location isn't marked checked but the corresponding sector has been
+        // discovered, so emit a check event for it.
+        ::PlayEventHandler.Get().CheckLocation(location.apid, location.name);
+      } else {
+        // Player hasn't found this yet.
+        self.secret_locations.Insert(location.secret_sector, location);
+      }
+    }
+  }
+
+  void UpdateSecrets() {
+    foreach (sector_id,location : self.secret_locations) {
+      if (!level.sectors[sector_id].IsSecret()) {
+        ::PlayEventHandler.Get().CheckLocation(location.apid, location.name);
+        // Only process one so we don't modify secret_locations while iterating it.
+        self.secret_locations.Remove(sector_id);
+        return;
+      }
+    }
+  }
+
   // Separate functions for handling "new map" and "game loaded" that are actually
   // called from the StaticEventHandler, since it's the only one that can tell
   // the difference.
@@ -79,7 +112,10 @@ class ::PerLevelHandler : EventHandler {
     let region = apstate.GetRegion(level.MapName);
     if (!region) return;
 
+    SetupSecrets(region);
     foreach (location : region.locations) {
+      // Secret-sector locations are handled by SetupSecrets().
+      if (location.secret_sector >= 0) continue;
       DEBUG("Enqueing location: %s", location.name);
       pending_locations.Insert(location.apid, location);
     }
@@ -98,6 +134,7 @@ class ::PerLevelHandler : EventHandler {
     DEBUG("PLH Cleanup");
     apstate.UpdatePlayerInventory();
     let region = apstate.GetRegion(level.MapName);
+    SetupSecrets(region);
     foreach (::CheckPickup thing : ThinkerIterator.Create("::CheckPickup", Thinker.STAT_DEFAULT)) {
       // At this point, we may have a divergence, depending on whether the apstate
       // contained here or in the StaticEventHandler was deemed canonical.
@@ -119,10 +156,16 @@ class ::PerLevelHandler : EventHandler {
 
   override void WorldTick() {
     apstate.OnTick();
+
     if (allow_drops > 0) {
       DEBUG("allow_drops: %d", allow_drops);
       --allow_drops;
     }
+
+    if (level.total_secrets - level.found_secrets != self.secret_locations.CountUsed()) {
+      UpdateSecrets();
+    }
+
     if (!alarm) return;
     --alarm;
     if (alarm) return;

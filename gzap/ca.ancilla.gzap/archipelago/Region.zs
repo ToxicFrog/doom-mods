@@ -57,6 +57,17 @@ class ::Region play {
     loc.unreachable = unreachable;
     loc.checked = false;
     loc.pos = pos;
+    loc.secret_sector = -1;
+    locations.push(loc);
+  }
+
+  void RegisterSecretCheck(uint apid, string name, int sector, bool unreachable = false) {
+    let loc = ::Location(new("::Location"));
+    loc.apid = apid;
+    loc.name = name;
+    loc.secret_sector = sector;
+    loc.unreachable = unreachable;
+    loc.checked = false;
     locations.push(loc);
   }
 

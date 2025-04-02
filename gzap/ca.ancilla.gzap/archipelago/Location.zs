@@ -18,6 +18,7 @@ class ::Location {
   bool unreachable;   // Do we think this is unreachable?
   bool checked;       // Has the player already checked it?
   Vector3 pos;
+  int secret_sector;
 
   // We consider two positions "close enough" to each other iff:
   // - d is less than MAX_DISTANCE, and

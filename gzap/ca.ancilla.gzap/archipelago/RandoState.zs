@@ -179,6 +179,10 @@ class ::RandoState play {
     regions.Get(map).RegisterCheck(apid, name, orig_typename, ap_typename, ap_name, progression, pos, unreachable);
   }
 
+  void RegisterSecretCheck(string map, uint apid, string name, int sector, bool unreachable = false) {
+    Regions.Get(map).RegisterSecretCheck(apid, name, sector, unreachable);
+  }
+
   void SortItems() {
     // It's small, we just bubble sort.
     for (int i = 0; i < self.items.Size()-1; ++i) {

@@ -50,10 +50,6 @@ AP-MONSTERS { map of monster name to monster count for a map }
 - maybe AP-ITEM and AP-MONSTER, each one holding a single count?
 AP-LOCATION { information about a location, including whether it's secret or not }
 
-For secrets-as-checks, not sure if this should be a flag on AP-LOCATION or, since
-it doesn't have a single, clearly defined point in space, a separate message type,
-AP-SECRET.
-
 We may also want to define key scoping here, somehow -- e.g. an AP-KEY message
 something like:
 AP-KEY { typename: "GreenKey", scopename: "E1", scope: ["E1M1", "E1M2", ...] }
@@ -67,7 +63,6 @@ be able to represent logic requirements that aren't just keys.
 
 - option to collect all checks on level clear
 - clear N levels win condition
-- secret scanning?
 
 ### scanner
 

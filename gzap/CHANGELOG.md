@@ -27,6 +27,10 @@ types and/or meanings changed. You must regenerate your template YAML.
     of health, armour, and ammo items has been improved.
   - Logic files now include information about total monster counts and a list of
     secret sectors.
+  - By adding `secret-sector` to included_item_categories, you can turn secrets
+    themselves into checks; you get the check as soon as you step into the secret
+    sector. Note that these are not currently marked on the map the way item-based
+    checks are!
 - Fix:
   - Map markers were not properly displaying filler/progression status if you
     picked up the automap after entering the map when persistent mode was on.

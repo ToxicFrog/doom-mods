@@ -208,7 +208,7 @@ class DoomWad:
     def new_secret(self, json: Dict[str, Any]) -> None:
         location = DoomLocation(self, map=json['map'], item=None, secret=True, json=None)
         location.item_name = f"Secret {json['sector']}"
-        location.category = "secret"
+        location.category = "secret-sector"
         location.sector = json['sector']
         self.register_location(location, {1,2,3})
 

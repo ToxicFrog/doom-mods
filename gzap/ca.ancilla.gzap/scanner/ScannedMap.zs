@@ -71,7 +71,7 @@ class ::ScannedMap play {
   void CopyFromLevelLocals(LevelLocals level) {
     foreach (sector : level.sectors) {
       if (sector.IsSecret()) {
-        self.secrets.Push(sector.sectornum);
+        self.secrets.Push(sector.Index());
       }
     }
     foreach (Actor thing : ThinkerIterator.Create("Actor", Thinker.STAT_DEFAULT)) {
