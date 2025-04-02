@@ -322,7 +322,7 @@ class GZDoomWorld(World):
             "respawn": self.options.allow_respawn.value,
             "wad": self.wad_logic.name,
             "maps": self.maps,
-            "items": [self.wad_logic.item(name) for name in sorted(self.all_placed_item_names())],
+            "items": self.wad_logic.items(),
             "starting_items": [
                 item.code for item in self.multiworld.precollected_items[self.player]
             ],
