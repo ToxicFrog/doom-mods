@@ -15,6 +15,8 @@ class ::ScannedMap play {
   // used for balancing.
   uint rank;
   Array<::ScannedLocation> locations;
+  Array<int> secrets;
+  int monster_count;
   // Highest skill we've completed a scan on.
   // We don't track 0 (ITYTD) or 4 (NM) because they have the same actor placement
   // as 1 and 3, so 0 means we have scanned nothing and 3 means we've scanned
@@ -40,10 +42,13 @@ class ::ScannedMap play {
     // that may have similar issues.
     console.printfEX(PRINT_LOG, "");
     ::Scanner.Output("MAP", name, string.format(
-      "\"checksum\": \"%s\", \"rank\": %d, \"info\": %s",
-      LevelInfo.MapChecksum(name), self.rank, GetMapinfoJSON()));
+      "\"checksum\": \"%s\", \"rank\": %d, \"monster_count\": %d, \"info\": %s",
+      LevelInfo.MapChecksum(name), self.rank, self.monster_count, GetMapinfoJSON()));
     foreach (loc : locations) {
       loc.Output(name);
+    }
+    foreach (sector : secrets) {
+      ::Scanner.Output("SECRET", name, string.format("\"sector\": %d", sector));
     }
   }
 
@@ -61,6 +66,19 @@ class ::ScannedMap play {
 
   int NextSkill() {
     return self.max_skill+1;
+  }
+
+  void CopyFromLevelLocals(LevelLocals level) {
+    foreach (sector : level.sectors) {
+      if (sector.IsSecret()) {
+        self.secrets.Push(sector.sectornum);
+      }
+    }
+    foreach (Actor thing : ThinkerIterator.Create("Actor", Thinker.STAT_DEFAULT)) {
+      if (thing.bISMONSTER && !thing.bCORPSE) {
+        self.monster_count++;
+      }
+    }
   }
 
   // Add a location to the map associated with the current difficulty.

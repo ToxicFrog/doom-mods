@@ -9,8 +9,7 @@ the 0.3.x mod.
 ⚠️ The YAML options have changed, and in particular, some options have had their
 types and/or meanings changed. You must regenerate your template YAML.
 
-⚠️ The scanner has changed. Old logic files remain compatible but it is recommended
-that you re-scan your megawads to take advantage of new features.
+⚠️ The scanner has changed. Logic files must be regenerated for the new version.
 
 - New:
   - gzArchipelago now has additional data about what items were originally stored
@@ -26,6 +25,8 @@ that you re-scan your megawads to take advantage of new features.
     10% of small health pickups.
   - `medium-health` and `medium-armor` categories have been added. The categorization
     of health, armour, and ammo items has been improved.
+  - Logic files now include information about total monster counts and a list of
+    secret sectors.
 - Fix:
   - Map markers were not properly displaying filler/progression status if you
     picked up the automap after entering the map when persistent mode was on.

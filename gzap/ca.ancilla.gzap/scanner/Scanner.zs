@@ -119,6 +119,8 @@ class ::Scanner play {
     }
 
     nextmap.MarkDone();
+    if (nextmap.IsScanned()) nextmap.CopyFromLevelLocals(level);
+
     if (recurse) {
       EnqueueLevelports(nextmap.rank + 1);
       EnqueueNext(level.NextSecretMap, nextmap.rank + 1);

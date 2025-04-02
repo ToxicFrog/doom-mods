@@ -80,23 +80,20 @@ def get_wad(name: str) -> DoomWad:
     assert _init_done
     return _DOOM_LOGIC.wads[name]
 
-def count_items(items) -> int:
-    n = 0
-    for count in items.values():
-        n += count
-    return n
-
 def print_wad_stats(name: str, wad: DoomWad) -> None:
     if "GZAP_DEBUG" not in os.environ:
         return
-    print("%32s: %d maps" % (name, len(wad.all_maps())))
-    for sknum, skname in [(1, "HNTR"), (2, "HMP"), (3, "UV")]:
+    nrof_maps = len(wad.all_maps())
+    nrof_monsters = sum(map.monster_count for map in wad.all_maps())
+    print("\x1B[1m%32s: %2d maps, %4d monsters; %4d monsters/map\x1B[0m" % (
+        name, nrof_maps, nrof_monsters, nrof_monsters//nrof_maps))
+    for sknum, skname in [(3, "UV")]: # [(1, "HNTR"), (2, "HMP"), (3, "UV")]:
       pool = wad.stats_pool(sknum)
-      num_items = count_items(pool.item_counts)
-      num_p = count_items(pool.progression_items())
+      num_items = sum(pool.item_counts.values())
+      num_p = sum(pool.progression_items().values())
       num_locs = len(pool.locations)
       num_secrets = len([loc for loc in pool.locations if loc.secret])
-      print("%32s  %4d locs (%3d secret), %4d items (%-4d progression)" % (
+      print("%32s  %4d locs (%3d secret), %4d items (%4d progression)" % (
           skname, num_locs, num_secrets, num_items, num_p))
 
 def logic_files(package):
@@ -161,8 +158,8 @@ def all_map_names() -> Set[str]:
         names.update([map.map for map in wad.all_maps()])
     return names
 
-def all_item_categories() -> FrozenSet[str]:
-    return frozenset(unified_item_groups().keys())
+def all_categories() -> FrozenSet[str]:
+    return frozenset(unified_item_groups().keys()) | frozenset(unified_location_groups().keys())
 
 def unified_item_map():
     return _DOOM_LOGIC.item_names_to_ids.copy()

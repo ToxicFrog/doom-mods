@@ -130,7 +130,7 @@ class GZDoomWorld(World):
         self.options.allow_respawn.value = True
         self.included_item_categories = {
             category: 1.0
-            for category in model.all_item_categories()
+            for category in model.all_categories()
         }
 
     def generate_early(self) -> None:
@@ -235,9 +235,7 @@ class GZDoomWorld(World):
 
         # compare slots_left to total count of filler_items, then scale filler_items
         # based on the difference.
-        filler_count = 0
-        for count in filler_items.values():
-            filler_count += count
+        filler_count = sum(filler_items.values())
         if filler_count == 0:
             print("Warning: no filler items in pool!")
             return

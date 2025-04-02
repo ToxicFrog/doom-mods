@@ -174,7 +174,7 @@ class IncludedItemCategories(OptionDict):
     Which item categories to include in randomization. This controls both which
     items are replaced with checks, and what the item pool contains.
 
-    Keys and weaponss are always included and cannot be controlled with this
+    Keys and weapons are always included and cannot be controlled with this
     option. You must enable at least one category here or generation is likely
     to fail.
 
@@ -194,7 +194,7 @@ class IncludedItemCategories(OptionDict):
     """
     display_name = "Included Item Categories"
     default = {"powerup": 1, "big-ammo": 1, "big-health": 1, "big-armor": 1}
-    valid_keys = model.all_item_categories() - {"token", "key", "weapon"}
+    valid_keys = model.all_categories() - {"token", "key", "weapon"}
 
 class LevelOrderBias(Range):
     """

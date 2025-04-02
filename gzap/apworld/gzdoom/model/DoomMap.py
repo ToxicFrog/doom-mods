@@ -51,6 +51,7 @@ class DoomMap:
     checksum: str
     # JSON initializer for the mapinfo
     info: InitVar[Dict]
+    monster_count: int = 0
     # Data for the MAPINFO lump
     rank: int = 0
     mapinfo: Optional[MAPINFO] = None
