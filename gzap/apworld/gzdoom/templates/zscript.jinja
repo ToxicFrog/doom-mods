@@ -1,7 +1,15 @@
-version "4.10.0"
+version "4.12.0"
+
+class GZAP_HintInfo {
+  string item_map;
+  string loc_map;
+  string loc_name;
+}
 
 class GZAP_DataPackageEventHandler : StaticEventHandler {
   Map<int, int> locations_to_items;
+  // Keyed by item name.
+  Map<string, GZAP_HintInfo> hints;
   GZAP_PlayEventHandler peh;
 
   override void OnRegister() {
@@ -12,6 +20,14 @@ class GZAP_DataPackageEventHandler : StaticEventHandler {
     // console.printf("This was generated from seed %s for %s.", "{{seed}}", "{{player}}");
     peh.RegisterGameInfo("{{player}}", "{{seed}}", "{{wad}}", {{spawn_filter}}, {{singleplayer}});
 
+    RegisterMaps(apstate);
+    RegisterItems(apstate);
+    GrantStartingItems(apstate);
+
+    console.printf("Archipelago data package initialized.");
+  }
+
+  void RegisterMaps(GZAP_RandoState apstate) {
     console.printf("Registering %d maps.", {{maps|count}});
     {% for map in maps %}
       apstate.RegisterMap("{{map.map}}", "{{map.checksum}}", {{id(map.access_token_name())}}, {{id(map.automap_name())}}, {{id(map.clear_token_name())}}, {{id(map.exit_location_name())}});
@@ -20,12 +36,14 @@ class GZAP_DataPackageEventHandler : StaticEventHandler {
         apstate.RegisterSecretCheck("{{map.map}}", {{check.id}}, "{{check.name()}}", {{check.sector}}{% if check.unreachable %}, true{% endif %});
         {% elif not check.pos.virtual %}
         apstate.RegisterCheck("{{map.map}}", {{check.id}}, "{{check.name()}}",
-          "{{check.orig_item.typename}}", "{{item_at(check.name())}}", "{{item_name_at(check.name())}}",
+          "{{check.orig_item.typename}}", "{{item_type_at(check.name())}}", "{{item_name_at(check.name())}}",
           {{progression(check.name())}}, ({{check.pos.x}},{{check.pos.y}},{{check.pos.z}}){% if check.unreachable %}, true{% endif %});
         {% endif %}
       {% endfor %}
     {% endfor %}
+  }
 
+  void RegisterItems(GZAP_RandoState apstate) {
     console.printf("Registering %d items.", {{items|count}});
     {% for item in items %}
       {% if item.map and item.typename and item.category != "token" %}
@@ -42,14 +60,28 @@ class GZAP_DataPackageEventHandler : StaticEventHandler {
       {% for locid, itemid in singleplayer_items.items() %}
       locations_to_items.Insert({{locid}}, {{itemid}});
       {% endfor %}
+    console.printf("Populating singleplayer hint table.");
+      {% for map in maps %}{% for loc in locations(map.map) %}
+      {% if item_at(loc.name()) and item_at(loc.name()).map %}
+      RegisterHint("{{item_name_at(loc.name())}}", "{{item_at(loc.name()).map}}", "{{loc.pos.map}}", "{{loc.name()}}");
+      {% endif %}
+      {% endfor %}{% endfor %}
     {% endif %}
+  }
 
+  void GrantStartingItems(GZAP_RandoState apstate) {
     console.printf("Granting starting inventory.");
     {% for id in starting_items %}
       apstate.GrantItem({{id}});
     {% endfor %}
+  }
 
-    console.printf("Archipelago data package initialized.");
+  void RegisterHint(string item_name, string item_map, string loc_map, string loc_name) {
+    let hint = GZAP_HintInfo(new("GZAP_HintInfo"));
+    hint.item_map = item_map;
+    hint.loc_map = loc_map;
+    hint.loc_name = loc_name;
+    hints.Insert(item_name, hint);
   }
 
   override void NetworkProcess(ConsoleEvent evt) {
@@ -63,6 +95,22 @@ class GZAP_DataPackageEventHandler : StaticEventHandler {
       if (itemid) {
         GZAP_PlayEventHandler.GetState().GrantItem(itemid);
       }
+    }
+  }
+
+  override void NetworkCommandProcess(NetworkCommand cmd) {
+    if (!peh.IsSingleplayer()) return;
+    if (cmd.command == "ap-hint") {
+      // Player requested a hint from the level select menu.
+      // In singleplayer mode, the client isn't connected, so we just issue
+      // the hint from here.
+      // This is going to be a fully qualified name, e.g. "BlueSkull (MAP02)"
+      string item = cmd.ReadString();
+      let hint = hints.GetIfExists(item);
+      if (!hint) return;
+      let nick = peh.GetState().slot_name;
+      peh.GetState().GetRegion(hint.item_map).RegisterHint(item, nick, hint.loc_name);
+      peh.GetState().GetRegion(hint.loc_map).RegisterPeek(hint.loc_name, nick, item);
     }
   }
 }

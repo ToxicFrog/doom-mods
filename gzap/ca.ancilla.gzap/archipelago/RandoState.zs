@@ -111,6 +111,7 @@ class ::RandoItem play {
 }
 
 class ::RandoState play {
+  string slot_name; // Name of player in AP
   // Transaction number. Used to resolve disagreements between datascope and playscope
   // instances of the state when a savegame is loaded.
   int txn;

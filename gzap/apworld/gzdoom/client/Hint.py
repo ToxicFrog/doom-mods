@@ -3,8 +3,8 @@ Tracking of hints and peeks in the client.
 
 AP itself doesn't really have this distinction -- it's all hints. We send them
 to gzDoom differently, so we use the same class for both but the methods draw
-a distinction between whether it's a hint (one of our items it someone else's
-world) a peek (someone else's item in our world). A Hint can actually be both --
+a distinction between whether it's a hint (one of our items in someone else's
+world) or a peek (someone else's item in our world). A Hint can actually be both --
 one of our items in our world -- in which case it's sent twice, once with HINT
 and once with PEEK.
 """
@@ -64,9 +64,9 @@ class GZDoomHint:
         Map name may be None if it's not a scoped item.
         """
         item_name = ctx.item_names.lookup_in_slot(self.item, ctx.slot)
-        match = re.match(r"^(.+) \((.*)\)$", item_name)
+        match = re.match(r"^.+ \((.*)\)$", item_name)
         if match:
-            return (match.group(2), match.group(1))
+            return (match.group(1), item_name)
         else:
             return (None, item_name)
 
@@ -75,7 +75,7 @@ class GZDoomHint:
         Returns the [map name, location name] for this hint.
         """
         loc_name = ctx.location_names.lookup_in_slot(self.location, ctx.slot)
-        return loc_name.split(" - ", 1)
+        return (loc_name.split(" - ", 1)[0], loc_name)
 
     def player_name(self, parser, id):
         return parser.handle_node({

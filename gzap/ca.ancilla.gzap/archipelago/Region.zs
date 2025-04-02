@@ -26,9 +26,10 @@ class ::Region play {
   string map;
   Array<::Location> locations;
   Map<string, bool> keys;
-  // Hints and peeks are indexed by their name without map qualification.
-  // So "RedCard" rather than "RedCard (MAP02)", and "Chainsaw" rather than
-  // "MAP01 - Chainsaw".
+  // Hints tell you where items relevant to this level are.
+  // Peeks tell you what items are contained in this level.
+  // Indexes are fully qualified Archipelago names, e.g. "RedCard (MAP01)" or
+  // "MAP01 - RocketLauncher".
   Map<string, ::Hint> hints;
   Map<string, ::Peek> peeks;
   bool access;
@@ -83,6 +84,7 @@ class ::Region play {
   ::Location GetLocation(uint apid) {
     foreach (loc : locations) {
       if (loc.apid == apid) {
+        DEBUG("GetLocation: found %d in %s", apid, map);
         return loc;
       }
     }
@@ -109,7 +111,6 @@ class ::Region play {
   // If you don't have the level access, hints for that.
   // Otherwise, hints for the first key you don't have.
   // If you have access and keys, returns "".
-  // TODO: remember the hints and display them in the tooltip.
   string NextHint() const {
     if (!self.access && !self.GetHint("Level Access")) {
       return string.format("Level Access (%s)", self.map);
@@ -129,10 +130,15 @@ class ::Region play {
     hint.player = player;
     hint.location = location;
     self.hints.Insert(item, hint);
+    DEBUG("RegisterHint(%s): %s's %s", item, player, location);
   }
 
+  // This takes the item name without the map qualifier, e.g. "RedCard", and
+  // automatically qualifies it before looking it up.
   ::Hint GetHint(string item) const {
-    return self.hints.GetIfExists(item);
+    let name = string.format("%s (%s)", item, self.map);
+    // DEBUG("%s: GetHint(%s)", self.map, name);
+    return self.hints.GetIfExists(name);
   }
 
   void RegisterPeek(string location, string player, string item) {
@@ -143,8 +149,9 @@ class ::Region play {
     DEBUG("RegisterPeek(%s): %s for %s", location, item, player);
   }
 
+  // Unlike GetHint this always takes the full location name.
   ::Peek GetPeek(string location) const {
-    DEBUG("GetPeek(%s)", location);
+    // DEBUG("GetPeek(%s)", location);
     return self.peeks.GetIfExists(location);
   }
 

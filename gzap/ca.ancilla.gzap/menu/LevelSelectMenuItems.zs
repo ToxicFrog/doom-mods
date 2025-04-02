@@ -204,7 +204,7 @@ class ::LevelSelector : ::KeyValueNetevent {
         shortname.replace(region.map .. " - ", "");
         buf = buf .. string.format("\n  \c[DARKGRAY]%s", shortname);
 
-        let peek = region.GetPeek(shortname);
+        let peek = region.GetPeek(loc.name);
         if (peek) {
           buf = buf .. string.format("\n  \c-ⓘ %s for %s", peek.item, peek.player);
         }

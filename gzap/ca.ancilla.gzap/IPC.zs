@@ -48,6 +48,7 @@ class ::IPC {
     bool send_ack = false;
     Array<string> fields;
     foreach (message : messages) {
+      DEBUG("RECV: %s", message);
       fields.Clear();
       message.split(fields, "\x1F");
       if (fields.Size() < 2) {

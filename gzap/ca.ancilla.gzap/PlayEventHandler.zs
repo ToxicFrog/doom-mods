@@ -14,7 +14,6 @@
 #include "./IPC.zsc"
 
 class ::PlayEventHandler : StaticEventHandler {
-  string slot_name; // Name of player in AP
   string seed;
   string wadname;
   bool singleplayer;
@@ -38,7 +37,7 @@ class ::PlayEventHandler : StaticEventHandler {
     console.printf("Item/enemy layout: %s. Singleplayer: %s.", ::Util.GetFilterName(filter), singleplayer ? "yes" : "no");
     // Save this information because we need all of it later. Some is sent in
     // XON so the client can get configuration info, some is used in gameplay.
-    self.slot_name = slot_name;
+    self.apstate.slot_name = slot_name;
     self.seed = seed;
     self.wadname = wadname;
     self.singleplayer = singleplayer;
@@ -46,7 +45,7 @@ class ::PlayEventHandler : StaticEventHandler {
   }
 
   bool IsRandomized() {
-    return self.slot_name != "";
+    return self.apstate.slot_name != "";
   }
 
   bool IsSingleplayer() const {
@@ -71,7 +70,7 @@ class ::PlayEventHandler : StaticEventHandler {
     // doesn't get called and we end up missing events.
     if (!initialized) {
       initialized = true;
-      apclient.Init(self.slot_name, self.seed, self.wadname);
+      apclient.Init(self.apstate.slot_name, self.seed, self.wadname);
     }
 
     if (level.LevelName == "TITLEMAP") return;

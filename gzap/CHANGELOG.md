@@ -34,6 +34,8 @@ types and/or meanings changed. You must regenerate your template YAML.
   - New option to release some or all checks in a level when you finish the level,
     for a faster-paced game that's less about check hunting and more about clearing
     maps as quickly as you can.
+  - Hints are now available in singleplayer games without needing an AP server
+    running! Hint limits are not enforced -- you're on the honour system.
 - Change:
   - All logic files regenerated using the updated scanner.
   - The inventory menu no longer lists items you don't have.

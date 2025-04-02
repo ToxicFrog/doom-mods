@@ -301,6 +301,12 @@ class GZDoomWorld(World):
         def item_at(name: str) -> str:
             loc = self.get_location(name)
             if loc.item and loc.item.name in self.wad_logic.items_by_name:
+                return self.wad_logic.items_by_name[loc.item.name]
+            return None
+
+        def item_type_at(name: str) -> str:
+            loc = self.get_location(name)
+            if loc.item and loc.item.name in self.wad_logic.items_by_name:
                 return self.wad_logic.items_by_name[loc.item.name].typename
             return ""
 
@@ -333,7 +339,10 @@ class GZDoomWorld(World):
             },
             "progression": progression,
             "locations": locations,
-            "id": id, "item_at": item_at, "item_name_at": item_name_at,
+            "id": id,
+            "item_at": item_at,
+            "item_type_at": item_type_at,
+            "item_name_at": item_name_at,
         }
 
         env = jinja2.Environment(
