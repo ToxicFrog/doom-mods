@@ -23,11 +23,13 @@ class ::InventoryMenu : ::CommonMenu {
     let state = ::PlayEventHandler.GetState();
     for (int n = 0; n < state.items.Size(); ++n) {
       let item = state.items[n];
-      if (item.held <= 0) {
-        PushKeyValueText(item.tag, "0");
-      } else {
+      if (item.held > 0) {
         PushKeyValueNetevent(item.tag, string.format("%d", item.held), "ap-use-item", n);
       }
+    }
+
+    if (mDesc.mSelectedItem >= mDesc.mItems.Size()) {
+      mDesc.mSelectedItem = -1;
     }
   }
 }

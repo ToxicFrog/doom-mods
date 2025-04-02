@@ -33,6 +33,7 @@ types and/or meanings changed. You must regenerate your template YAML.
     checks are!
 - Change:
   - All logic files regenerated using the updated scanner.
+  - The inventory menu no longer lists items you don't have.
 - Fix:
   - Map markers were not properly displaying filler/progression status if you
     picked up the automap after entering the map when persistent mode was on.
