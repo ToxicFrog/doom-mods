@@ -32,6 +32,8 @@ that you re-scan your megawads to take advantage of new features.
   - Checks now vanish immediately when picked up, rather than waiting for
     confirmation from the server. (If the server never confirms they will still
     respawn when your reset the level.)
+  - `ap_show_check_names` now behaves properly in netplay, and also supports
+    checks that don't exist in the world.
 
 # 0.3.5
 

@@ -224,9 +224,6 @@ class ::CheckPickup : ScoreItem {
     // we force the checked flag locally.
     self.checked = true;
     self.SetProgressionState();
-    if (CVar.FindCVar("ap_show_check_names").GetBool()) {
-      toucher.A_Print(string.format("Checked %s", self.location.name));
-    }
     if (self.marker) self.marker.Destroy();
     if (self.label) self.label.Destroy();
     if (self.orig_label) self.orig_label.Destroy();

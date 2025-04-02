@@ -85,12 +85,6 @@ class ::PlayEventHandler : StaticEventHandler {
 
   void CheckLocation(int apid, string name) {
     DEBUG("CheckLocation: %d %s", apid, name);
-    // TODO: we need some way of marking checks unreachable.
-    // We can't just check if the player has +NOCLIP because if they do, they
-    // can't interact with the check in the first place. So probably we want
-    // an 'ap-unreachable' netevent; if set, the next check touched is marked
-    // as unreachable, or if the level is exited, all checks in it are marked
-    // unreachable.
     string unreachable = "";
     if (ap_scan_unreachable) {
       unreachable = "\"unreachable\": true, ";
@@ -104,6 +98,12 @@ class ::PlayEventHandler : StaticEventHandler {
     // In singleplayer, the netevent handler will clear the check for us.
     // In MP, we don't clear it until we get a reply from the server.
     EventHandler.SendNetworkEvent("ap-check", apid);
+
+    foreach(player : players) {
+      let cv = CVar.GetCVar("ap_show_check_names", player);
+      if (!cv || !cv.GetBool()) continue;
+      player.mo.A_Print(string.format("Checked %s", name));
+    }
   }
 
   // TODO: we need an "ap-uncollectable" command for dealing with uncollectable
