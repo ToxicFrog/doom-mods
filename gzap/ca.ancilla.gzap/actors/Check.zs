@@ -159,6 +159,10 @@ class ::CheckPickup : ScoreItem {
 
   void UpdateFromLocation() {
     self.checked = self.location.checked;
+    if (self.checked) {
+      if (self.label) self.label.Destroy();
+      if (self.orig_label) self.orig_label.Destroy();
+    }
   }
 
   override void PostBeginPlay() {
