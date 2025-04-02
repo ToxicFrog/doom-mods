@@ -50,6 +50,14 @@ server string ap_auto_vend = "small-";
 // 3 blocks weapons unconditionally
 server int ap_suppress_weapon_drops = 0;
 
+// Whether to collect all checks when completing a level.
+// This is a bitmask:
+// 1 - collect all in-world checks
+// 2 - collect all secret-sector checks
+// 3 - collect all
+// In multiworld games this can emit a lot of check messages!
+server int ap_release_on_level_clear = 0;
+
 //// Scanner configuration.
 // These are not written to the save file or config file, since they're more
 // like commands than settings.

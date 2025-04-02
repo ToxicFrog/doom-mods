@@ -56,6 +56,10 @@ OptionMenu "ArchipelagoOptions"
   GZAP_Tooltip "$GZAP_OPT_TT_ALLOW_DROPS"
 
   StaticText ""
+  Option "$GZAP_OPT_NAME_RELEASE_ATEXIT", "ap_release_on_level_clear", "ApAtExitReleaseMode"
+  GZAP_Tooltip "$GZAP_OPT_TT_RELEASE_ATEXIT"
+
+  StaticText ""
   StaticText "$GZAP_OPT_HEADER_CONTROLS", CYAN
 
   Control "$GZAP_OPT_NAME_LEVELSELECT", "openmenu ArchipelagoLevelSelectMenu"
@@ -93,13 +97,9 @@ OptionValue "ApWeaponDropMode" {
   3, "$GZAP_OPT_DROPS_3"
 }
 
-/*
-TODO: Menu rework
-
-Main Menu -> Archipelago
-  [if no datapack loaded] -> opens combined scanner/exclusion UI
-  [if not in game] -> tells you to start the game
-  Level Select [opens level select/tracker]
-  Inventory [opens rando inventory]
-  Tuning [opens level exclusion/check exclusion UI]
- */
+OptionValue "ApAtExitReleaseMode" {
+  0, "$GZAP_OPT_RELEASE_0"
+  1, "$GZAP_OPT_RELEASE_1"
+  2, "$GZAP_OPT_RELEASE_2"
+  3, "$GZAP_OPT_RELEASE_3"
+}

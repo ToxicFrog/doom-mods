@@ -6,6 +6,9 @@
 #namespace GZAP;
 #debug off;
 
+const AP_RELEASE_IN_WORLD = 1;
+const AP_RELEASE_SECRETS = 2;
+
 class ::PerLevelHandler : EventHandler {
   // Archipelago state manager.
   ::RandoState apstate;
@@ -357,9 +360,11 @@ class ::PerLevelHandler : EventHandler {
     }
 
     if (ap_scan_unreachable >= 2) {
-      foreach (::CheckPickup thing : ThinkerIterator.Create("::CheckPickup", Thinker.STAT_DEFAULT)) {
-        DEBUG("Marking %s as unreachable.", thing.location.name);
-        ::PlayEventHandler.Get().CheckLocation(thing.location.apid, thing.location.name);
+      let region = apstate.GetRegion(level.MapName);
+      foreach (location : region.locations) {
+        if (location.checked) continue;
+        DEBUG("Marking %s as unreachable.", location.name);
+        ::PlayEventHandler.Get().CheckLocation(location.apid, location.name);
       }
     }
     cvar.FindCvar("ap_scan_unreachable").SetInt(0);
@@ -368,6 +373,20 @@ class ::PerLevelHandler : EventHandler {
 
     ::PlayEventHandler.Get().CheckLocation(
       apstate.GetCurrentRegion().exit_id, string.format("%s - Exit", level.MapName));
+
+    if (ap_release_on_level_clear) {
+      let region = apstate.GetRegion(level.MapName);
+      foreach (location : region.locations) {
+        if (location.checked) continue;
+        if (location.secret_sector < 0) {
+          if (ap_release_on_level_clear & AP_RELEASE_IN_WORLD == 0) continue;
+        } else {
+          if (ap_release_on_level_clear & AP_RELEASE_SECRETS == 0) continue;
+        }
+        DEBUG("Collecting %s on level exit.");
+        ::PlayEventHandler.Get().CheckLocation(location.apid, location.name);
+      }
+    }
   }
 }
 

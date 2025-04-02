@@ -31,6 +31,9 @@ types and/or meanings changed. You must regenerate your template YAML.
     themselves into checks; you get the check as soon as you step into the secret
     sector. Note that these are not currently marked on the map the way item-based
     checks are!
+  - New option to release some or all checks in a level when you finish the level,
+    for a faster-paced game that's less about check hunting and more about clearing
+    maps as quickly as you can.
 - Change:
   - All logic files regenerated using the updated scanner.
   - The inventory menu no longer lists items you don't have.

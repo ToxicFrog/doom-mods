@@ -76,6 +76,12 @@ Weapon drops from enemies,GZAP_OPT_NAME_ALLOW_DROPS,
 ""If already-filled slot"" allows weapons to drop if you already have a weapon with the same slot number, e.g. having the SSG will allow both SSGs and normal shotguns to drop.
 
 ""If already-held weapon"" allows weapons to drop only if you are already holding a copy of that weapon.",GZAP_OPT_TT_ALLOW_DROPS,
+Auto-release on level clear,GZAP_OPT_NAME_RELEASE_ATEXIT,
+"If enabled, will release some or all of the items in a level when you reach the exit.
+
+This makes the game more about figuring out when you are in ""go mode"" for each individual level and then just going for it, and less about clearing every check individually.
+
+In sync multiworld games this can produce large ""bursts"" of items which some players may find disruptive; check with your teammates before turning it on.",GZAP_OPT_TT_RELEASE_ATEXIT,
 Unlimited,GZAP_OPT_SLIDER_UNLIMITED,
 Controls,GZAP_OPT_HEADER_CONTROLS,
 AP level select/tracker,GZAP_OPT_NAME_LEVELSELECT,
@@ -112,6 +118,10 @@ Enabled,GZAP_OPT_DROPS_0,
 If already-filled slot,GZAP_OPT_DROPS_1,
 If already-held weapon,GZAP_OPT_DROPS_2,
 Disabled,GZAP_OPT_DROPS_3,
+Nothing,GZAP_OPT_RELEASE_0,
+All in-world checks,GZAP_OPT_RELEASE_1,
+All secret-sector checks,GZAP_OPT_RELEASE_2,
+Everything,GZAP_OPT_RELEASE_3,
 [ap-scan] Starting scan of all levels.,GZAP_SCAN_STARTING,
 [ap-scan] No levels to scan. Set the ap_scan_levels cvar before starting.,GZAP_SCAN_EMPTY,
 [ap-scan] No more levels to scan.,GZAP_SCAN_DONE,
