@@ -36,6 +36,8 @@ types and/or meanings changed. You must regenerate your template YAML.
     maps as quickly as you can.
   - Hints are now available in singleplayer games without needing an AP server
     running! Hint limits are not enforced -- you're on the honour system.
+  - The `win_conditions` option lets you specify how many levels you need to clear
+    to win the game.
 - Change:
   - All logic files regenerated using the updated scanner.
   - The inventory menu no longer lists items you don't have.
