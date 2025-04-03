@@ -53,6 +53,9 @@ class DoomPool:
             if loc.pos.map == map
         ]
 
+    def all_pool_items(self):
+        return [self.wad.item(name) for name in self.item_counts.keys()]
+
     def progression_items(self):
         return {
             name: count

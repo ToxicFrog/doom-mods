@@ -50,7 +50,7 @@ class GZAP_DataPackageEventHandler : StaticEventHandler {
   void RegisterItems(GZAP_RandoState apstate) {
     console.printf("Registering %d items.", {{items|count}});
     {% for item in items %}
-      {% if item.map and item.typename and item.category != "token" %}
+      {% if item.map and item.typename and item.category == "key" %}
       apstate.RegisterKey("{{item.map}}", "{{item.typename}}", {{item.id}});
       {% elif item.typename and item.category != "token" %}
       apstate.RegisterItem("{{item.typename}}", {{item.id}});

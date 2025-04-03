@@ -39,7 +39,7 @@ class DoomItem:
         # TODO: We need a better way of handling scoped items, so that things
         # other than these types can be marked as scoped, so that we can have
         # non-scoped tokens, etc
-        if category == "key" or category == "map" or category == "token":
+        if category == "key" or category == "token":
             self.map = map
 
     def __str__(self) -> str:

@@ -205,7 +205,14 @@ class GZDoomWorld(World):
                 location = GZDoomLocation(self.options, self.player, loc, region)
                 if self.options.pretuning_mode:
                     location.access_rule = lambda state: True
-                    location.place_locked_item(self.create_item(loc.orig_item.name()))
+                    if loc.orig_item:
+                        location.place_locked_item(self.create_item(loc.orig_item.name()))
+                    elif loc.item:
+                        location.place_locked_item(self.create_item(loc.item.name()))
+                    else:
+                        # Some synthetic locations, like secret sectors, don't have
+                        # any items associated with them.
+                        location.place_locked_item(self.create_item("HealthBonus"))
                 elif loc.unreachable:
                     location.place_locked_item(self.create_item("HealthBonus"))
                 elif loc.item:
@@ -322,7 +329,7 @@ class GZDoomWorld(World):
             "respawn": self.options.allow_respawn.value,
             "wad": self.wad_logic.name,
             "maps": self.maps,
-            "items": self.wad_logic.items(),
+            "items": self.pool.all_pool_items(),
             "starting_items": [
                 item.code for item in self.multiworld.precollected_items[self.player]
             ],
