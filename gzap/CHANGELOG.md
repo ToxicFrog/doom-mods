@@ -53,6 +53,9 @@ types and/or meanings changed. You must regenerate your template YAML.
     thus work with Chex Quest and other IWADs/IPK3s that don't define the latter.
   - Unreachable checks were visible on the minimap but not in play.
   - `ap_suppress_weapon_drops 3` no longer causes you to spawn without fists.
+  - In-game check objects now copy the TID, thing special, and special args from
+    the item they replaced, which should hopefully fix some levels that rely on
+    ACS scripting when certain things are picked up.
 
 # 0.3.5
 

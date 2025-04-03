@@ -142,7 +142,7 @@ class ::CheckPickup : ScoreItem {
     let thing = ::CheckPickup(Actor.Spawn("::CheckPickup", original.pos));
     thing.location = location;
     thing.UpdateFromLocation();
-    thing.A_SetSize(original.radius, original.height);
+    thing.UpdateFromOriginal(original);
     DEBUG("Check initialize: name=%s, pr=%d, ur=%d, ck=%d",
       location.name, location.progression, location.unreachable, location.checked);
     if (location.checked) level.found_items++;
@@ -163,6 +163,13 @@ class ::CheckPickup : ScoreItem {
       if (self.label) self.label.Destroy();
       if (self.orig_label) self.orig_label.Destroy();
     }
+  }
+
+  void UpdateFromOriginal(Actor original) {
+    if (!original) return;
+    A_SetSize(original.radius, original.height);
+    ChangeTID(original.TID);
+    A_SetSpecial(original.special, original.args[0], original.args[1], original.args[2], original.args[3], original.args[4]);
   }
 
   override void PostBeginPlay() {
