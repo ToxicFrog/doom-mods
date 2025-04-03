@@ -267,6 +267,10 @@ class ::PerLevelHandler : EventHandler {
 
   bool ShouldAllow(Weapon thing) {
     if (!thing) return true;
+    // What happens outside the randomizer stays outside the randomizer.
+    // This includes GZAPHUB and GZAPRST, so the player's starting inventory
+    // (including fists/pistol) won't get suppressed on game start.
+    if (!apstate.GetCurrentRegion()) return true;
     DEBUG("Checking spawn of %s", thing.GetTag());
     if (self.allow_drops) return true;
     if (ap_suppress_weapon_drops == 0) return true;

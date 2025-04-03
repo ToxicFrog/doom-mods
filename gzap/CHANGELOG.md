@@ -52,6 +52,7 @@ types and/or meanings changed. You must regenerate your template YAML.
   - Unreachable checks now contain `Health` instead of `HealthBonus` and should
     thus work with Chex Quest and other IWADs/IPK3s that don't define the latter.
   - Unreachable checks were visible on the minimap but not in play.
+  - `ap_suppress_weapon_drops 3` no longer causes you to spawn without fists.
 
 # 0.3.5
 
