@@ -227,7 +227,7 @@ class WinConditions(OptionDict):
     Require the player to finish this many levels. If "all", all levels included
     in randomization must be cleared. If set to an integer >= 1, that many levels
     must be cleared. If a fraction, that fraction of levels is required, e.g.
-    1/2 or 0.5 would require you to clear 16 of Doom 2's 32 levels.
+    0.5 would require you to clear 16 of Doom 2's 32 levels.
     """
     display_name = "Win conditions"
     default = {

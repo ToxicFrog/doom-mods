@@ -165,8 +165,13 @@ class ::RandoState play {
       || (::Util.GetFilterName(::Util.GetCurrentFilter()) != ::Util.GetFilterName(filter));
   }
 
+  // This gets called for all keys that exist in the wad, not just keys for
+  // maps we know about. So we only register it if we know the map.
   void RegisterKey(string map, string key, uint apid) {
-    regions.Get(map).RegisterKey(key);
+    DEBUG("RegisterKey %s for %s as %d", key, map, apid);
+    let region = GetRegion(map);
+    if (!region) return;
+    region.RegisterKey(key);
     map_apids.Insert(apid, ::RegionDiff.CreateKey(map, key));
   }
 
@@ -179,11 +184,11 @@ class ::RandoState play {
       string map, uint apid, string name,
       string orig_typename, string ap_typename, string ap_name,
       bool progression, Vector3 pos, bool unreachable = false) {
-    regions.Get(map).RegisterCheck(apid, name, orig_typename, ap_typename, ap_name, progression, pos, unreachable);
+    GetRegion(map).RegisterCheck(apid, name, orig_typename, ap_typename, ap_name, progression, pos, unreachable);
   }
 
   void RegisterSecretCheck(string map, uint apid, string name, int sector, bool unreachable = false) {
-    Regions.Get(map).RegisterSecretCheck(apid, name, sector, unreachable);
+    GetRegion(map).RegisterSecretCheck(apid, name, sector, unreachable);
   }
 
   void SortItems() {
@@ -237,8 +242,7 @@ class ::RandoState play {
     if (map_apids.CheckKey(apid)) {
       // Count doesn't matter, you either have it or you don't.
       let diff = map_apids.Get(apid);
-      let region = regions.Get(diff.map);
-      diff.Apply(region);
+      diff.Apply(GetRegion(diff.map));
     } else if (item_apids.CheckKey(apid)) {
       let typename = item_apids.Get(apid);
       let [idx, item] = FindItem(typename);
@@ -260,13 +264,13 @@ class ::RandoState play {
     }
 
     UpdatePlayerInventory();
-    ::PlayEventHandler.Get().CheckVictory();
+    UpdateStatus();
   }
 
   void UseItem(uint idx) {
     ++txn;
     items[idx].Replicate();
-    ::PlayEventHandler.Get().CheckVictory();
+    UpdateStatus();
   }
 
   void UseItemByName(string name) {
@@ -314,12 +318,12 @@ class ::RandoState play {
     foreach (_, region : self.regions) {
       region.ClearLocation(apid);
     }
-    ::PlayEventHandler.Get().CheckVictory();
+    UpdateStatus();
   }
 
   uint LevelsClear() const {
     uint n = 0;
-    foreach (_, region : self.regions) {
+    foreach (name, region : self.regions) {
       if (region.cleared) ++n;
     }
     return n;
@@ -339,5 +343,14 @@ class ::RandoState play {
 
   bool Victorious() const {
     return self.LevelsClear() >= self.LevelsRequired();
+  }
+
+  void UpdateStatus() {
+    // Might want to expand this later to list levels cleared, items collected,
+    // etc, for the use of external trackers, but for now it's just a simple
+    // "are we winning?"
+    if (Victorious()) {
+      ::IPC.Send("STATUS", "{ \"victory\": true }");
+    }
   }
 }

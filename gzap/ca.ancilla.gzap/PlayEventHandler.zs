@@ -177,13 +177,4 @@ class ::PlayEventHandler : StaticEventHandler {
       ::IPC.Send("CHAT", string.format("{ \"msg\": \"!hint %s\" }", item));
     }
   }
-
-  void CheckVictory() {
-    // Might want to expand this later to list levels cleared, items collected,
-    // etc, for the use of external trackers, but for now it's just a simple
-    // "are we winning?"
-    if (apstate.Victorious()) {
-      ::IPC.Send("STATUS", "{ \"victory\": true }");
-    }
-  }
 }
