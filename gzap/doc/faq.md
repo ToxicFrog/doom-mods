@@ -50,9 +50,25 @@ Did you remember to [bind those controls](./gameplay.md)?
 gzArchipelago has a lot of customization options, most of which are accessible
 via the Archipelago YAML (and documented in the comments there) or via the in-game
 settings (and documented in tooltips). This section is for "hidden" settings that
-aren't.
+aren't, and non-obvious information.
 
-### Binding hotkeys for inventory items
+### What gets randomized?
+
+By default, all keys, weapons, powerups, armour, and soulspheres/megaspheres.
+Additionally, an "access key" for each level is added to the item pool, which
+you must find before you can enter that level. Automap locations are added to
+the location pool; the randomizer will also either start you with all automaps
+or add one automap per level to the item pool, depending on settings.
+
+Settings in the YAML can be used to add or remove items from randomization, if
+you want more or less than the defaults.
+
+### What's the win condition?
+
+By default, to clear all levels included in the randomized game. You can set
+this to a lower level in the YAML.
+
+### Can I bind hotkeys for inventory items?
 
 Inventory items can be dispensed using the `ap-use-item:<item-name>` netevent,
 which lets you bind hotkeys for them. The following console commands will bind
