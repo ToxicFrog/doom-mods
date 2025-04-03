@@ -34,9 +34,9 @@ mixin class ::ArchipelagoIcon {
   }
 
   void SetProgressionState() {
-    DEBUG("SetProgressionState(%s) checked=%d display=%d unreachable=%d progression=%d hilight=%d",
-      GetLocation().name, IsChecked(),
-      ShouldDisplay(), GetLocation().unreachable, GetLocation().progression, ShouldHilight());
+    // DEBUG("SetProgressionState(%s) checked=%d display=%d unreachable=%d progression=%d hilight=%d",
+    //   GetLocation().name, IsChecked(),
+    //   ShouldDisplay(), GetLocation().unreachable, GetLocation().progression, ShouldHilight());
     if (IsChecked()) {
       A_SetRenderStyle(CVar.FindCVar("ap_collected_alpha").GetFloat(), STYLE_Translucent);
     }
@@ -178,7 +178,7 @@ class ::CheckPickup : ScoreItem {
     // Spawn the labels for the original + actual item.
     DEBUG("Spawn label: %s -> %s [%s]", self.location.orig_typename, self.location.ap_typename, self.location.ap_name);
     if (ap_show_check_contents) self.label = CreateLabel(self.location.ap_typename);
-    if (ap_show_check_original) self.orig_label = CreateLabel(self.location.orig_typename, 32);
+    if (ap_show_check_original) self.orig_label = CreateLabel(self.location.orig_typename, 34);
   }
 
   // Create a sprite label attached to this CheckPickup for the given type.
@@ -199,15 +199,26 @@ class ::CheckPickup : ScoreItem {
     let texid = prototype.SpawnState.GetSpriteTexture(0);
     let [w,h] = TexMan.GetSize(texid);
     let rh = TexMan.CheckRealHeight(texid);
+    let soffs = TexMan.GetScaledOffset(texid);
     if (!rh) return null;
 
     // Scale is computed to make the sprite at most 12px high and will not
     // exceed 0.5 under any circumstances.
     float scale = min(0.5, 12.0/rh);
     // Center it in the AP sprite.
-    if (zoffs < 0) zoffs = floor(16 - (rh*scale)/2.0 - scale*max(0, h - rh));
+    if (zoffs < 0) {
+      zoffs = ceil(16 // Half the height of the AP logo
+        - (rh*scale)/2.0 // Center vertically based on real height
+        - scale*max(0, h - rh) // adjust based on difference between real and nominal height
+        - scale*(soffs.y - h) // adjust based on sprite y-offset
+      );
+    } else {
+      // Just adjust based on y-offset
+      zoffs = ceil(zoffs - scale*(soffs.y - h));
+    }
 
     DEBUG("Sprite: %d [tx %d, %dx%d (x%d)], scale=%f, z=%d", sprid, texid, w, h, rh, scale, zoffs);
+
     let label = ::CheckLabel(Spawn("::CheckLabel", (pos.x, pos.y, pos.z+zoffs)));
     label.sprite = sprid;
     label.parent = self;
@@ -217,7 +228,7 @@ class ::CheckPickup : ScoreItem {
   }
 
   override bool CanPickup(Actor toucher) {
-    DEBUG("CanPickup? %s %s %d", self.location.name, toucher.GetTag(), !self.checked);
+    // DEBUG("CanPickup? %s %s %d", self.location.name, toucher.GetTag(), !self.checked);
     return !self.checked;
   }
 
