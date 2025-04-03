@@ -255,16 +255,10 @@ class GZDoomWorld(World):
             self.multiworld.itempool.append(self.create_item(item))
             slots_left -= 1
 
-    def mission_complete(self, state: CollectionState) -> bool:
-        for map in self.maps:
-            if not state.has(map.clear_token_name(), self.player):
-                return False
-        return True
-
     def set_rules(self):
         # All region and location access rules were defined in create_regions, so we just need the
         # overall victory condition here.
-        self.multiworld.completion_condition[self.player] = lambda state: self.mission_complete(state)
+        self.multiworld.completion_condition[self.player] = lambda state: self.options.win_conditions.check_win(self, state)
 
     def all_placed_item_names(self):
         """
@@ -343,6 +337,7 @@ class GZDoomWorld(World):
             "item_at": item_at,
             "item_type_at": item_type_at,
             "item_name_at": item_name_at,
+            "win_conditions": self.options.win_conditions.template_values(self),
         }
 
         env = jinja2.Environment(

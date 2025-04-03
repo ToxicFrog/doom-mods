@@ -20,6 +20,8 @@
 #   ways that are both fun and reliably avoid softlocks. Probably going to avoid
 #   this for now.
 
+from math import ceil,floor
+
 from Options import PerGameCommonOptions, Toggle, DeathLink, StartInventoryPool, OptionSet, NamedRange, Range, OptionDict
 from dataclasses import dataclass
 
@@ -126,8 +128,9 @@ class IncludedLevels(OptionSet):
     It is safe to select levels not in the target WAD; they will be ignored. Selecting
     no levels is equivalent to selecting all levels.
 
-    The win condition (at present) is always "complete all levels", so including more
-    levels will generally result in a longer game.
+    The default win condition is to complete all levels, so adding more levels will
+    result in a longer game. If you want to play lots of levels but only beat some
+    of them, you should also adjust the `win_conditions` option.
 
     This option supports globbing expressions.
     """
@@ -192,7 +195,7 @@ class IncludedItemCategories(OptionDict):
     your co-op partners) are prepared for a game with thousands or tens of thousands
     of checks in Doom if you turn these on.
     """
-    display_name = "Included Item Categories"
+    display_name = "Included item/location categories"
     default = {"powerup": 1, "big-ammo": 1, "big-health": 1, "big-armor": 1}
     valid_keys = model.all_categories() - {"token", "key", "weapon"}
 
@@ -214,6 +217,45 @@ class LevelOrderBias(Range):
     range_start = 0
     range_end = 100
     default = 25
+
+class WinConditions(OptionDict):
+    """
+    Win conditions for the randomized game. At present only one condition is
+    implemented, "levels-clear".
+
+        levels-clear: (int, fraction, or "all")
+    Require the player to finish this many levels. If "all", all levels included
+    in randomization must be cleared. If set to an integer >= 1, that many levels
+    must be cleared. If a fraction, that fraction of levels is required, e.g.
+    1/2 or 0.5 would require you to clear 16 of Doom 2's 32 levels.
+    """
+    display_name = "Win conditions"
+    default = {
+        "levels-clear": "all",
+    }
+    valid_keys = {"levels-clear"}
+    def get_levels_needed(self, world):
+        levels_needed = self.value.get("levels-clear", 0)
+        if levels_needed == "all":
+            return len(world.maps)
+        assert levels_needed >= 0,"levels-clear win condition must be 'all' or a fraction or an integer >= 0"
+        if levels_needed > 0 and levels_needed < 1:
+            return ceil(len(world.maps) * levels_needed)
+        return min(floor(levels_needed), len(world.maps))
+
+    def check_win(self, world, state):
+        won = False
+
+        levels_needed = self.get_levels_needed(world)
+        if levels_needed > 0:
+            won = won or levels_needed <= sum([
+                1 for map in world.maps
+                if state.has(map.clear_token_name(), world.player)
+            ])
+        return won
+
+    def template_values(self, world):
+        return { 'levels-clear': self.get_levels_needed(world) }
 
 class AllowSecretProgress(Toggle):
     """
@@ -279,14 +321,15 @@ class GZDoomOptions(PerGameCommonOptions):
     included_levels: IncludedLevels
     excluded_levels: ExcludedLevels
     level_order_bias: LevelOrderBias
+    win_conditions: WinConditions
     # Location pool control
+    included_item_categories: IncludedItemCategories
     allow_secret_progress: AllowSecretProgress
     # Item pool control
     start_with_all_maps: StartWithAutomaps
     start_with_keys: StartWithKeys
     max_weapon_copies: MaxWeaponCopies
     levels_per_weapon: LevelsPerWeapon
-    included_item_categories: IncludedItemCategories
     # Other settings
     allow_respawn: AllowRespawn
     full_persistence: FullPersistence

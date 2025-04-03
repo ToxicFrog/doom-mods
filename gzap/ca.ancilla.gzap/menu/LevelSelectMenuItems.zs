@@ -11,7 +11,7 @@ class ::ProgressIndicator : OptionMenuItemStaticText {
     self.mLabel = string.format(
       "MAPS: %2d/%-2d   %8s   TIME: %s",
       ::PlayEventHandler.GetState().LevelsClear(),
-      ::PlayEventHandler.GetState().LevelsTotal(),
+      ::PlayEventHandler.GetState().LevelsRequired(),
       victory ? "VICTORY!" : "",
       GetTime());
   }

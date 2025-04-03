@@ -127,8 +127,10 @@ class ::RandoState play {
   // inventory so it can hold things not normally part of +INVBAR.
   // An array so that (a) we can sort it, and (b) we can refer to entries by
   // index in a netevent.
-  // TODO: actually sort it
   Array<::RandoItem> items;
+  // Win conditions. Key is condition name, value is condition magnitude. Exact
+  // meaning of the latter depends on the condition.
+  Map<string, int> win_conditions;
 
   // TODO: We can do better with key/token management here.
   // In particular, if we reify all the tokens as in-game items, we no longer
@@ -327,7 +329,15 @@ class ::RandoState play {
     return self.regions.CountUsed();
   }
 
+  void RegisterWinCondition(string condition, int value) {
+    self.win_conditions.Insert(condition, value);
+  }
+
+  uint LevelsRequired() const {
+    return self.win_conditions.GetIfExists('levels-clear');
+  }
+
   bool Victorious() const {
-    return self.LevelsClear() == self.LevelsTotal();
+    return self.LevelsClear() >= self.LevelsRequired();
   }
 }

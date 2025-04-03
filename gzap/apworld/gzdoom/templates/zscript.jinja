@@ -20,6 +20,10 @@ class GZAP_DataPackageEventHandler : StaticEventHandler {
     // console.printf("This was generated from seed %s for %s.", "{{seed}}", "{{player}}");
     peh.RegisterGameInfo("{{player}}", "{{seed}}", "{{wad}}", {{spawn_filter}}, {{singleplayer}});
 
+    {% for condition, value in win_conditions.items() %}
+    apstate.RegisterWinCondition("{{condition}}", {{value}});
+    {% endfor %}
+
     RegisterMaps(apstate);
     RegisterItems(apstate);
     GrantStartingItems(apstate);
