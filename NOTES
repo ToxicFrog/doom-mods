@@ -62,18 +62,28 @@ be able to represent logic requirements that aren't just keys.
 ### scanner
 
 - map exclusion UI
-- include secrets as checks in themselves?
-  we can build the secret list by scanning the sector array on level entry and
-  recording all sectors for which IsSecret() return true. We can associate this
-  with the sector Index(). For naming, we have a few options; there's the Index,
-  which is guaranteed unique but not useful to the player; there's also the `thinglist`
-  which is a linked list of Actors contained in that sector, which would let us
-  match it up to any check(s) inside it, and the `centerspot` which is the XY center
-  of the sector (but not guaranteed to be unique since sectors can be concave).
-  Probably quick-and-easy approach is "MAPXX - Secret {index} [{x},{y}]".
-  To detect secret collection, we watch level.total_secrets and level.found_secrets
-  in OnTick(); when the former increases, we walk the secret sectors to find out
-  which one(s) have been collected.
+
+There is a problem here in that unreachable weapons (like the MAP07 BFG) end up
+in the level's gunset anyways. We probably want to populate the gunset in
+finalize_all after we know which checks are and aren't reachable.
+
+### generator
+
+- option to treat bosses as checks -- also needs scanner changes, highly vulnerable
+  to enemy-replacement mods
+- alternate win conditions:
+  - clear [specific levels]
+  - find N victory tokens
+  - find N secrets
+- option to choose the X% of an item category game-wide rather than per-map
+
+Difficulty tuning options thoughts.
+prior_clears should use round, and should take into account only levels included
+in randomization, not all levels in the wad.
+weapon tuning should have separate settings for:
+- based on guns in the level, with or without secrets;
+- based on guns in preceding levels, with or without secrets.
+And this should probably also use round, not floor.
 
 ### ingame
 
@@ -85,18 +95,6 @@ be able to represent logic requirements that aren't just keys.
   delete any categorizeable items around it, rather than looking for something to
   replace. This requires knowing what type of thing we *hoped* to replace so we
   can copy physics info from it, so we don't get stuff in walls or anything.
-
-### generator
-
-- option to treat secrets as checks, once above scanner changes are made
-- option to treat bosses as checks -- also needs scanner changes, highly vulnerable
-  to enemy-replacement mods
-- alternate win conditions:
-  - clear [specific levels]
-  - find N victory tokens
-  - find N secrets
-- option to randomize X% of an item category but include Y% of it in the pool
-- option to choose the X% game-wide rather than per-map
 
 ### Adventures of Square
 

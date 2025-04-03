@@ -31,11 +31,14 @@ prefix for all gzArchipelago classes to avoid collisions with other mods.
 
 Objects that exist in the level somewhere, such as the player and *Check* actors.
 
-## Item/Location Category
+## Item Category
 
 An internal category assigned by the scanner and used by the randomizer to make
 decisions about which items are replaced with checks and which ones are progression,
 useful, or filler. Some categories can be turned on and off in the YAML.
+
+Both items and locations have categories; a location's category is based on the
+item originally found there, or the nature of the location if it never had an item.
 
 A logic file can use any categories it wants and the apworld will automatically
 pick it up, but the current list of categories used by the scanner is:
@@ -54,6 +57,7 @@ pick it up, but the current list of categories used by the scanner is:
   - `medium-ammo`: rocket boxes, cell packs, etc
   - `small-ammo`: individual rockets, energy cells, etc
 - `tool`: inventory items that aren't in any other category (e.g. time bombs)
+- `token`: used internally by the apworld for things like access codes and level exits
 
 The `Megasphere`, which restores both health and armour, is considered `big-armor`.
 
@@ -64,11 +68,31 @@ There are no items tagged `secret-sector`, but turning it on in the YAML will
 cause secrets (in addition to the items inside them, where applicable) to be
 treated as checks.
 
+## Level Rank
+
+A measure of how far into the game a given level is. Any level you can reach from
+the New Game screen is rank 0; levels you can reach from those are rank 1, etc.
+The randomizer uses this for difficulty-based logic adjustments, based on the
+theory that levels later in the game are probably harder than earlier levels.
+
+For episode-based games like Doom 1 or Heretic, *every* start-of-episode level
+is rank 0, so (e.g.) E1M1, E2M1, and E3M1 are all rank 0 and are all considered
+"before" E1M2.
+
+Since rank is based on what order you can reach the levels in when playing,
+rather than what order they're listed in the WAD, the Doom 2 secret levels
+MAP31 and MAP32 have ranks 15 and 16, in keeping with their position roughly
+halfway through the game.
+
 ## Location
 
 The *out-of-world* data about a location where a randomized item can be placed.
 Contains information about how to display it, how to locate the actor to replace
 in the world, and how to report its collection to Archipelago.
+
+## Location Category
+
+See *Item Category*.
 
 ## Out-Of-World
 
@@ -78,6 +102,11 @@ Objects that are part of the playsim but do not exist in the world. The
 ## Position
 
 The position of an object in the Doom world space, as an (X,Y,Z) coordinate triple.
+Also contains information about what map it comes from.
+
+Some *Locations* are marked "virtual", meaning they exist for the purposes of the
+randomizer but don't have a fixed position in the world, and are "visited" by
+other means (such as finishing a level).
 
 ## Tuning
 
