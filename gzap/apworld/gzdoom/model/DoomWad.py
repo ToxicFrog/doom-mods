@@ -98,6 +98,11 @@ class DoomWad:
             self.first_map = self.maps[map]
 
     def register_map_tokens(self, map: DoomMap):
+        # Register 'Health' on all maps since it's used as a placeholder in
+        # pretuning mode. It's one of the gzDoom base classes so we know it'll
+        # always be available.
+        self.register_item(None,
+            DoomItem(map=None, category="small-health", typename="Health", tag="Health"))
         access_token = self.register_item(None,
             DoomItem(map=map.map, category="token", typename="GZAP_LevelAccess", tag="Level Access"))
         map.add_loose_item(access_token.name())

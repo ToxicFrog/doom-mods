@@ -212,9 +212,9 @@ class GZDoomWorld(World):
                     else:
                         # Some synthetic locations, like secret sectors, don't have
                         # any items associated with them.
-                        location.place_locked_item(self.create_item("HealthBonus"))
+                        location.place_locked_item(self.create_item("Health"))
                 elif loc.unreachable:
-                    location.place_locked_item(self.create_item("HealthBonus"))
+                    location.place_locked_item(self.create_item("Health"))
                 elif loc.item:
                     location.place_locked_item(self.create_item(loc.item.name()))
                     self.pool.adjust_item(loc.item.name(), -1)

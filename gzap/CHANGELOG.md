@@ -49,6 +49,8 @@ types and/or meanings changed. You must regenerate your template YAML.
     respawn when your reset the level.)
   - `ap_show_check_names` now behaves properly in netplay, and also supports
     checks that don't exist in the world.
+  - Unreachable checks now contain `Health` instead of `HealthBonus` and should
+    thus work with Chex Quest and other IWADs/IPK3s that don't define the latter.
 
 # 0.3.5
 
