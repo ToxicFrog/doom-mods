@@ -56,8 +56,12 @@ class DoomMap:
     rank: int = 0
     mapinfo: Optional[MAPINFO] = None
     # Key and weapon information for computing access rules
+    # Keys in the level
     keyset: Set[str] = field(default_factory=set)
-    gunset: Set[str] = field(default_factory=set)
+    # Non-secret guns in the level
+    local_gunset: Set[str] = field(default_factory=set)
+    # Non-secret guns in levels preceding this one
+    carryover_gunset: Set[str] = field(default_factory=set)
     # All locations contained in this map
     locations: List[DoomLocation] = field(default_factory=list)
     # Items not contained in any particular location that should nonetheless
@@ -86,7 +90,7 @@ class DoomMap:
             chosen.extend(world.random.sample(buf,count))
         return chosen
 
-    def access_rule(self, world): #player, need_priors = 0.0, require_weapons = True):
+    def access_rule(self, world):
         # print(f"access_rule({self.map}) = {need_priors}% of {self.prior_clears}")
         def rule(state):
             if not state.has(self.access_token_name(), world.player):
@@ -96,10 +100,18 @@ class DoomMap:
             if world.is_starting_map(self.map):
                 return True
 
-            # We need at least half of the non-secret guns in the level,
-            # rounded down, to give the player a fighting chance.
-            player_guns = { gun for gun in self.gunset if state.has(gun, world.player) }
-            if len(player_guns) < len(self.gunset)//2:
+            # Check requirement for guns the player would normally carryover
+            # from earlier levels.
+            player_guns = { gun for gun in self.carryover_gunset if state.has(gun, world.player) }
+            guns_needed = (world.options.carryover_weapon_bias.value / 100) * len(self.carryover_gunset)
+            if len(player_guns) < round(guns_needed):
+                return False
+
+            # Check requirement for guns the player would normally find in this
+            # level when pistol-starting.
+            player_guns = { gun for gun in self.local_gunset if state.has(gun, world.player) }
+            guns_needed = (world.options.local_weapon_bias.value / 100) * len(self.local_gunset)
+            if len(player_guns) < round(guns_needed):
                 return False
 
             # We also need to have cleared some number of preceding levels based
@@ -109,7 +121,10 @@ class DoomMap:
                 if state.has(token, world.player)
             }
             levels_needed = (world.options.level_order_bias.value / 100) * len(self.prior_clears)
-            return len(levels_cleared) >= round(levels_needed)
+            if len(levels_cleared) < round(levels_needed):
+                return False
+
+            return True
 
         return rule
 
@@ -140,8 +155,19 @@ class DoomMap:
             self.locations.append(loc)
 
     def update_access_tracking(self, item: DoomItem) -> None:
-        """Update the keyset or gunset based on the knowledge that this item exists in the level."""
+        """Update the keyset based on the knowledge that this item exists in the level."""
         if item.category == "key":
             self.keyset.add(item.name())
-        if item.category == "weapon":
-            self.gunset.add(item.name())
+
+    def build_priors(self, prior_maps: List['DoomMap']) -> None:
+        self.prior_clears = { map.clear_token_name() for map in prior_maps }
+        self.local_gunset = {
+            loc.orig_item.name()
+            for loc in self.locations
+            if not loc.secret and not loc.unreachable and loc.category == "weapon"
+        }
+        self.carryover_gunset = set()
+        for map in prior_maps:
+            self.carryover_gunset |= map.local_gunset
+
+        # print(self.map, [map.map for map in prior_maps], self.carryover_gunset, self.local_gunset)

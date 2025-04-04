@@ -38,6 +38,8 @@ types and/or meanings changed. You must regenerate your template YAML.
     running! Hint limits are not enforced -- you're on the honour system.
   - The `win_conditions` option lets you specify how many levels you need to clear
     to win the game.
+  - `local_weapon_bias` and `carryover_weapon_bias` options for controlling how
+    early the randomizer makes weapons available to you.
 - Change:
   - All logic files regenerated using the updated scanner.
   - The inventory menu no longer lists items you don't have.
@@ -58,6 +60,7 @@ types and/or meanings changed. You must regenerate your template YAML.
     ACS scripting when certain things are picked up.
   - `level_order_bias` now rounds to nearest rather than rounding down when
     calculating how many levels you need to beat.
+  - Weapon balancing no longer counts unreachable weapons.
 
 # 0.3.5
 

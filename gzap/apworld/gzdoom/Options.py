@@ -207,16 +207,56 @@ class LevelOrderBias(Range):
     enforcing at least a bit of difficulty progression rather than being dumped
     straight from MAP01 to MAP30.
 
-    The default setting of 25%, for example, means it won't expect you to fight
-    the Cyberdemon in Doom 1 level 18¹ until you've cleared at least four earlier
-    levels, or the Spider Mastermind until you've cleared six.
+    The default setting of 25% means it won't require you to go to (e.g.) MAP08
+    until after beating two of the preceding levels.
 
-    ¹ Counting secret levels
+    Starting levels are exempt from this check.
     """
     display_name = "Level order bias"
     range_start = 0
     range_end = 100
     default = 25
+
+class LocalWeaponBias(Range):
+    """
+    How much the randomizer cares about making sure you have access to the
+    weapons in a level before it considers that level to be in logic. Most Doom
+    levels are possible to beat from a pistol start by finding weapons in the
+    level itself, but in the randomizer there is no guarantee the level contains
+    any weapons at all; this setting makes the randomizer ensure that some of
+    the weapons you would normally find in the level are accessible before you
+    enter it.
+
+    The setting is a percentage; higher values mean the randomizer will try to
+    make more of the weapons accessible before you need to enter the level. At
+    100% it will not consider a level to be in logic until all of the weapons
+    normally found in it are accessible to you elsewhere.
+
+    Starting levels are exempt from this check.
+    """
+    display_name = "In-level weapon bias"
+    range_start = 0
+    range_end = 100
+    default = 0
+
+class GlobalWeaponBias(Range):
+    """
+    How much the randomizer cares about making sure you have access to the weapons
+    you'd start a level with when not pistol-starting (i.e. weapons you'd carry
+    over from earlier levels). This setting is somewhat conservative in that it
+    doesn't take into account death exits.
+
+    The setting is a percentage; higher values mean the randomizer will try to
+    make more of the weapons accessible before you need to enter the level. At
+    100% it will not consider a level to be in logic until all of the weapons
+    normally found before entering it are availalble to you elsewhere.
+
+    Starting levels are exempt from this check.
+    """
+    display_name = "Carryover weapon bias"
+    range_start = 0
+    range_end = 100
+    default = 50
 
 class WinConditions(OptionDict):
     """
@@ -320,7 +360,10 @@ class GZDoomOptions(PerGameCommonOptions):
     starting_levels: StartingLevels
     included_levels: IncludedLevels
     excluded_levels: ExcludedLevels
+    # Ordering and victory control
     level_order_bias: LevelOrderBias
+    local_weapon_bias: LocalWeaponBias
+    carryover_weapon_bias: GlobalWeaponBias
     win_conditions: WinConditions
     # Location pool control
     included_item_categories: IncludedItemCategories

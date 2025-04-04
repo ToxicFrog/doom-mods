@@ -279,10 +279,8 @@ class DoomWad:
         Do postprocessing after all events have been ingested.
         """
         # Compute which maps precede which other maps, so that the map ordering
-        # system can function.
-        for map in self.all_maps():
-            map.prior_clears = set([
-                prior_map.clear_token_name()
-                for prior_map in self.all_maps()
-                if prior_map.rank < map.rank
-            ])
+        # system can function. This also computes information related to weapon
+        # accessibility.
+        maps = sorted(self.all_maps(), key=lambda map: map.rank)
+        for map in maps:
+            map.build_priors([prior_map for prior_map in maps if prior_map.rank < map.rank])
