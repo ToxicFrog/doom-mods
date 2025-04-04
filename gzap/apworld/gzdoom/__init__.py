@@ -191,10 +191,7 @@ class GZDoomWorld(World):
             if self.options.pretuning_mode:
                 rule = lambda state: True
             else:
-                rule = map.access_rule(
-                    self.player,
-                    need_priors=self.options.level_order_bias.value / 100,
-                    require_weapons=(not self.is_starting_map(map.map)))
+                rule = map.access_rule(self)
             menu_region.connect(
                 connecting_region=region,
                 name=f"{map.map}",

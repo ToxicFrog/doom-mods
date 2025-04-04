@@ -86,25 +86,30 @@ class DoomMap:
             chosen.extend(world.random.sample(buf,count))
         return chosen
 
-    def access_rule(self, player, need_priors = 0.0, require_weapons = True):
+    def access_rule(self, world): #player, need_priors = 0.0, require_weapons = True):
         # print(f"access_rule({self.map}) = {need_priors}% of {self.prior_clears}")
         def rule(state):
-            if not state.has(self.access_token_name(), player):
+            if not state.has(self.access_token_name(), world.player):
                 return False
+
+            # Starting levels are exempt from all balancing checks.
+            if world.is_starting_map(self.map):
+                return True
 
             # We need at least half of the non-secret guns in the level,
             # rounded down, to give the player a fighting chance.
-            player_guns = { gun for gun in self.gunset if state.has(gun, player) }
-            if require_weapons and len(player_guns) < len(self.gunset)//2:
+            player_guns = { gun for gun in self.gunset if state.has(gun, world.player) }
+            if len(player_guns) < len(self.gunset)//2:
                 return False
 
-            # We also need to have cleared at least need_priors proportion of
-            # preceding levels, rounded down.
+            # We also need to have cleared some number of preceding levels based
+            # on the level_order_bias
             levels_cleared = {
                 token for token in self.prior_clears
-                if state.has(token, player)
+                if state.has(token, world.player)
             }
-            return len(levels_cleared) >= int(len(self.prior_clears) * need_priors)
+            levels_needed = (world.options.level_order_bias.value / 100) * len(self.prior_clears)
+            return len(levels_cleared) >= round(levels_needed)
 
         return rule
 

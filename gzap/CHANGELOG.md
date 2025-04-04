@@ -56,6 +56,8 @@ types and/or meanings changed. You must regenerate your template YAML.
   - In-game check objects now copy the TID, thing special, and special args from
     the item they replaced, which should hopefully fix some levels that rely on
     ACS scripting when certain things are picked up.
+  - `level_order_bias` now rounds to nearest rather than rounding down when
+    calculating how many levels you need to beat.
 
 # 0.3.5
 
