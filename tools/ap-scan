@@ -22,5 +22,5 @@ if [[ -f "gzap/apworld/gzdoom/logic/${name}" ]]; then
   # Update existing logic file
   mv "gzap/apworld/gzdoom/logic/${name}.tmp" "gzap/apworld/gzdoom/logic/${name}"
 else
-  mv "gzap/apworld/gzdoom/logic/${name}.tmp" ~/.local/share/Archipelago/gzdoom/logic/${name}
+  mv "gzap/apworld/gzdoom/logic/${name}.tmp" ~/.local/share/Archipelago/gzdoom/logic/"${name}"
 fi

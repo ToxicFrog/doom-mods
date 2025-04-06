@@ -14,7 +14,7 @@ apworld: ${TOPDIR}/release/gzdoom-${VERSION}.apworld
 
 ${TOPDIR}/release/gzdoom-${VERSION}.apworld: apworld/gzdoom/* apworld/gzdoom/*/*
 	cd apworld && zip -r gzdoom.apworld gzdoom
-	cp apworld/gzdoom.apworld ~/Archipelago/worlds/
+	cp apworld/gzdoom.apworld ~/.local/share/Archipelago/worlds/
 	cp apworld/gzdoom.apworld ${TOPDIR}/release/
 	mv apworld/gzdoom.apworld ${TOPDIR}/release/gzdoom-${VERSION}.apworld
 
