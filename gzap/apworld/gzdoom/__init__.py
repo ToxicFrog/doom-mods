@@ -124,9 +124,11 @@ class GZDoomWorld(World):
         self.options.included_levels.value = set()
         self.options.excluded_levels.value = set()
         self.options.level_order_bias.value = 0
+        self.options.local_weapon_bias.value = 0
+        self.options.carryover_weapon_bias.value = 0
         self.options.starting_levels.value = [map.map for map in self.maps]
         self.options.start_with_keys.value = False
-        self.options.full_persistence.value = False
+        # self.options.full_persistence.value = False
         self.options.allow_respawn.value = True
         self.included_item_categories = {
             category: 1.0
