@@ -63,10 +63,6 @@ be able to represent logic requirements that aren't just keys.
 
 - map exclusion UI
 
-There is a problem here in that unreachable weapons (like the MAP07 BFG) end up
-in the level's gunset anyways. We probably want to populate the gunset in
-finalize_all after we know which checks are and aren't reachable.
-
 ### generator
 
 - option to treat bosses as checks -- also needs scanner changes, highly vulnerable
@@ -76,14 +72,6 @@ finalize_all after we know which checks are and aren't reachable.
   - find N victory tokens
   - find N secrets
 - option to choose the X% of an item category game-wide rather than per-map
-
-Difficulty tuning options thoughts.
-prior_clears should use round, and should take into account only levels included
-in randomization, not all levels in the wad.
-weapon tuning should have separate settings for:
-- based on guns in the level, with or without secrets;
-- based on guns in preceding levels, with or without secrets.
-And this should probably also use round, not floor.
 
 ### ingame
 
@@ -95,6 +83,11 @@ And this should probably also use round, not floor.
   delete any categorizeable items around it, rather than looking for something to
   replace. This requires knowing what type of thing we *hoped* to replace so we
   can copy physics info from it, so we don't get stuff in walls or anything.
+- check placement uses WorldThingSpawned, which, it turns out, sees the nominal
+  map coordinates of each actor, even if those coordinates are illegal. This explains
+  some check placement errors, e.g. AOS E1A4 -- the check is placed inside the
+  floor, WorldThingSpawned sees the in-floor Z coordinate, the scanner saw it using
+  ThinkerIterator after it's been Z-corrected.
 
 ### Adventures of Square
 

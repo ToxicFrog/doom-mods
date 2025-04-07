@@ -71,6 +71,7 @@ compatible and automatic migration is planned for a later 0.4.x version.
   - Weapon balancing no longer counts unreachable weapons.
   - Locations with the same (X,Y) coordinates but different Z no longer cause
     generation failures.
+  - Adventures of Square logic fixes.
 
 # 0.3.5
 
