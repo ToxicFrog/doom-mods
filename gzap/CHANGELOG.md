@@ -9,7 +9,8 @@ the 0.3.x mod.
 ⚠️ The YAML options have changed, and in particular, some options have had their
 types and/or meanings changed. You must regenerate your template YAML.
 
-⚠️ The scanner has changed. Logic files must be regenerated for the new version.
+⚠️ The scanner has changed. Logic files should be regenerated for the new version.
+Old files will still work but some items may be mis-classified.
 
 ⚠️ The tuning file format has changed. Please remain calm. Old files remain
 compatible and automatic migration is planned for a later 0.4.x version.

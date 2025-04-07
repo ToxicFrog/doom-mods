@@ -60,12 +60,14 @@ class DoomItem:
         return name
 
     def classification(self) -> ItemClassification:
-        if self.category == "key" or self.category == "token" or self.category == "weapon":
-            # TODO: we only need one of each weapon for progression. So we should
-            # treat them the same as, say, power bombs in SM: the first one is
-            # progression, all the rest are filler.
+        # HACK HACK HACK -- we really need a way to attach multiple categories
+        # to an item, and/or reduce how much stuff is special-cased on the token
+        # category, to let us have a "map token" distinct from "win token" etc.
+        if self.typename == "GZAP_Automap" and self.category == "token":
+            return ItemClassification.useful
+        if self.category in {"key", "token", "weapon"}:
             return ItemClassification.progression
-        elif self.category == "map" or self.category == "upgrade":
+        elif self.category in {"map", "upgrade"}:
             return ItemClassification.useful
         else:
             return ItemClassification.filler
