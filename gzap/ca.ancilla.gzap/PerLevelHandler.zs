@@ -85,7 +85,7 @@ class ::PerLevelHandler : EventHandler {
       if (!sector.IsSecret()) {
         // Location isn't marked checked but the corresponding sector has been
         // discovered, so emit a check event for it.
-        ::PlayEventHandler.Get().CheckLocation(location.apid, location.name);
+        ::PlayEventHandler.Get().CheckLocation(location);
       } else {
         // Player hasn't found this yet.
         self.secret_locations.Insert(location.secret_sector, location);
@@ -96,7 +96,7 @@ class ::PerLevelHandler : EventHandler {
   void UpdateSecrets() {
     foreach (sector_id,location : self.secret_locations) {
       if (!level.sectors[sector_id].IsSecret()) {
-        ::PlayEventHandler.Get().CheckLocation(location.apid, location.name);
+        ::PlayEventHandler.Get().CheckLocation(location);
         // Only process one so we don't modify secret_locations while iterating it.
         self.secret_locations.Remove(sector_id);
         return;
@@ -368,15 +368,14 @@ class ::PerLevelHandler : EventHandler {
       foreach (location : region.locations) {
         if (location.checked) continue;
         DEBUG("Marking %s as unreachable.", location.name);
-        ::PlayEventHandler.Get().CheckLocation(location.apid, location.name);
+        ::PlayEventHandler.Get().CheckLocation(location);
       }
     }
     cvar.FindCvar("ap_scan_unreachable").SetInt(0);
 
     if (self.early_exit) return;
 
-    ::PlayEventHandler.Get().CheckLocation(
-      apstate.GetCurrentRegion().exit_id, string.format("%s - Exit", level.MapName));
+    ::PlayEventHandler.Get().CheckLocation(apstate.GetCurrentRegion().exit_location);
 
     if (ap_release_on_level_clear) {
       let region = apstate.GetRegion(level.MapName);
@@ -388,7 +387,7 @@ class ::PerLevelHandler : EventHandler {
           if (ap_release_on_level_clear & AP_RELEASE_SECRETS == 0) continue;
         }
         DEBUG("Collecting %s on level exit.");
-        ::PlayEventHandler.Get().CheckLocation(location.apid, location.name);
+        ::PlayEventHandler.Get().CheckLocation(location);
       }
     }
   }

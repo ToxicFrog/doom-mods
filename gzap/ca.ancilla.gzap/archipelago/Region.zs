@@ -35,12 +35,22 @@ class ::Region play {
   bool access;
   bool automap;
   bool cleared;
-  uint exit_id;
+  ::Location exit_location;
 
   static ::Region Create(string map, uint exit_id) {
     let region = ::Region(new("::Region"));
     region.map = map;
-    region.exit_id = exit_id;
+
+    let exit = ::Location(new("::Location"));
+    exit.apid = exit_id;
+    exit.mapname = map;
+    exit.name = string.format("%s - Exit", map);
+    exit.secret_sector = -1;
+    exit.unreachable = false;
+    exit.checked = false;
+    exit.is_virt = true;
+    region.exit_location = exit;
+
     return region;
   }
 
@@ -50,6 +60,7 @@ class ::Region play {
       bool progression, Vector3 pos, bool unreachable = false) {
     let loc = ::Location(new("::Location"));
     loc.apid = apid;
+    loc.mapname = self.map;
     loc.name = name;
     loc.orig_typename = orig_typename;
     loc.ap_typename = ap_typename;
@@ -58,6 +69,7 @@ class ::Region play {
     loc.unreachable = unreachable;
     loc.checked = false;
     loc.pos = pos;
+    loc.is_virt = false;
     loc.secret_sector = -1;
     locations.push(loc);
   }
@@ -65,8 +77,10 @@ class ::Region play {
   void RegisterSecretCheck(uint apid, string name, int sector, bool unreachable = false) {
     let loc = ::Location(new("::Location"));
     loc.apid = apid;
+    loc.mapname = self.map;
     loc.name = name;
     loc.secret_sector = sector;
+    loc.is_virt = true;
     loc.unreachable = unreachable;
     loc.checked = false;
     locations.push(loc);

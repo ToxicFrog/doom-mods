@@ -10,6 +10,7 @@
 // Information about a single check.
 class ::Location {
   uint apid;
+  string mapname;
   string name;
   string orig_typename;  // Typename of item this location originally held
   string ap_typename;    // Typename name of item randomized into this location
@@ -18,6 +19,7 @@ class ::Location {
   bool unreachable;   // Do we think this is unreachable?
   bool checked;       // Has the player already checked it?
   Vector3 pos;
+  bool is_virt;       // Virtual location with no physical position.
   int secret_sector;
 
   // We consider two positions "close enough" to each other iff:

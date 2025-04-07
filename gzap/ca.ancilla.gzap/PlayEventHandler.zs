@@ -82,8 +82,9 @@ class ::PlayEventHandler : StaticEventHandler {
     }
   }
 
-  void CheckLocation(int apid, string name) {
-    DEBUG("CheckLocation: %d %s", apid, name);
+  void CheckLocation(::Location loc) {
+    DEBUG("CheckLocation: %d %s", loc.apid, loc.name);
+
     string unreachable = "";
     if (ap_scan_unreachable) {
       unreachable = "\"unreachable\": true, ";
@@ -91,17 +92,25 @@ class ::PlayEventHandler : StaticEventHandler {
         cvar.FindCvar("ap_scan_unreachable").SetInt(0);
       }
     }
+
+    string pos = "";
+    if (!loc.is_virt) {
+      pos = string.format("\"pos\": [\"%s\",%.1f,%.1f,%.1f], ",
+        loc.mapname, loc.pos.x, loc.pos.y, loc.pos.z);
+    }
+
     ::IPC.Send("CHECK",
-      string.format("{ \"id\": %d, \"name\": \"%s\", %s\"keys\": [%s] }",
-        apid, name, unreachable, apstate.GetCurrentRegion().KeyString()));
+      string.format("{ \"id\": %d,%s \"name\": \"%s\", %s\"keys\": [%s] }",
+      loc.apid, pos, loc.name, unreachable, apstate.GetCurrentRegion().KeyString()));
+
     // In singleplayer, the netevent handler will clear the check for us.
     // In MP, we don't clear it until we get a reply from the server.
-    EventHandler.SendNetworkEvent("ap-check", apid);
+    EventHandler.SendNetworkEvent("ap-check", loc.apid);
 
     foreach(player : players) {
       let cv = CVar.GetCVar("ap_show_check_names", player);
       if (!cv || !cv.GetBool()) continue;
-      player.mo.A_Print(string.format("Checked %s", name));
+      player.mo.A_Print(string.format("Checked %s", loc.name));
     }
   }
 

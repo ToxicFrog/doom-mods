@@ -241,7 +241,7 @@ class ::CheckPickup : ScoreItem {
 
   override bool TryPickup (in out Actor toucher) {
     DEBUG("TryPickup: %s", self.location.name);
-    ::PlayEventHandler.Get().CheckLocation(self.location.apid, self.location.name);
+    ::PlayEventHandler.Get().CheckLocation(self.location);
     // It might take the server a moment to respond and set location.checked, so
     // we force the checked flag locally.
     self.checked = true;

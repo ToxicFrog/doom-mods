@@ -217,7 +217,7 @@ class DoomWad:
         location.sector = json['sector']
         self.register_location(location, {1,2,3})
 
-    def tune_location(self, id, name, keys, unreachable = False) -> None:
+    def tune_location(self, id, name, keys, pos=None, unreachable=False) -> None:
         """
         Adjust the reachability rules for a location.
 
