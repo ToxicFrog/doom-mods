@@ -22,19 +22,24 @@ to 10x (or more in some wads).
 
 ### IWADs
 
+Version numbers are given so you make sure you're using the right version. If
+need to identify a WAD, the [DoomWiki Resources category](https://doomwiki.org/wiki/Category:Resources)
+lists all of them, with hashes. Using a different version than the one supported
+here may result in glitches.
+
 | WAD          | Maps | Mon/Lvl | Checks | Status | Notes |
 | ------------ | ---- | ------- | ------ | ------ | ----- |
-| Doom         |   36 |  90 | 509 | partial | |
-| Doom 2       |   32 | 116 | 501 | basic | |
-| TNT          |   32 | 152 | 515 | basic | |
-| Plutonia     |   32 |  95 | 427 | basic | |
+| Doom         |   36 |  90 | 509 | partial | v1.9ud |
+| Doom 2       |   32 | 116 | 501 | basic | v1.9 |
+| TNT          |   32 | 152 | 515 | basic | v1.9 |
+| Plutonia     |   32 |  95 | 427 | basic | v1.9 |
 | WadFusion    | varies | varies | varies | missing | See https://github.com/ToxicFrog/doom-mods/pull/38 |
-| Heretic      |   45 | 116 | 900 | basic | |
+| Heretic      |   45 | 116 | 900 | basic | v1.3 |
 | Hexen        | | | | missing | Same concerns as Strife, plus I don't like it. |
 | Strife       | | | | missing | Hub maps and complicated level scripting mean this may need changes to the generator. |
-| FreeDoom     |   36 | 176 | 532 | basic | |
-| FreeDoom 2   |   32 | 135 | 495 | basic | |
-| Chex Quest 3 |   15 |  83 | 196 | complete | Version 1.4 supported, check archived versions on the [Chex Quest 3 website](https://www.chexquest3.com/downloads/). |
+| FreeDoom     |   36 | 176 | 532 | basic | [v0.13.0](https://freedoom.github.io/download.html) |
+| FreeDoom 2   |   32 | 135 | 495 | basic | [v0.13.0](https://freedoom.github.io/download.html) |
+| Chex Quest 3 |   15 |  83 | 196 | complete | [v1.4](https://www.chexquest3.com/downloads/); v2.0-prerelease is not yet supported. |
 
 ### PWADs
 
@@ -50,7 +55,7 @@ to 10x (or more in some wads).
 
 | Game                     | Maps | Mon/Lvl | Checks | Status | Notes |
 | ------------------------ | ---- | ------- | ------ | ------ | ----- |
-| The Adventures of Square | 25 | 226 | 610 | basic | |
+| The Adventures of Square | 25 | 226 | 610 | basic | Not compatible with persistent mode. |
 | Ashes 2063               | | | | missing | |
 | Ashes: Afterglow         | | | | missing | Uses hub maps. |
 | Ashes: Hard Reset        | | | | missing | Still need to play it. |
