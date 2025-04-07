@@ -48,7 +48,7 @@ class DoomLocation:
     item: DoomItem | None = None  # Used for place_locked_item
     parent = None  # The enclosing DoomWad
     orig_item = None
-    disambiguate: bool = False
+    disambiguation: str = None
     skill: Set[int]
     unreachable: bool = False
     secret: bool = False
@@ -77,9 +77,17 @@ class DoomLocation:
 
     def name(self) -> str:
         name = f"{self.pos.map} - {self.item_name}"
-        if self.disambiguate:
-            # TODO: we should figure out the bounding box of the map or nearby
-            # unique items like keys and then give a compass direction instead
+        if self.disambiguation:
+            name += f" [{self.disambiguation}]"
+        return name
+
+    def legacy_name(self) -> str:
+        """
+        Returns the name this location would have had in version 0.3.x and earlier.
+        Used to match up locations to entries in legacy tuning files.
+        """
+        name = f"{self.pos.map} - {self.item_name}"
+        if self.disambiguation:
             name += f" [{int(self.pos.x)},{int(self.pos.y)}]"
         return name
 
@@ -90,7 +98,7 @@ class DoomLocation:
     def tune_keys(self, new_keyset: FrozenSet[str]):
         # If this location was previously incorrectly marked unreachable,
         # correct it.
-        self.unreachable = False
+        # self.unreachable = False
         # If the new keyset is empty this is trivially reachable.
         if not new_keyset:
             self.keys = frozenset()

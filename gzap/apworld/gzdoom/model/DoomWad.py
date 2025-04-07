@@ -11,9 +11,12 @@ to keep track of:
 
 """
 
-from dataclasses import dataclass, field, InitVar
-from typing import Any, Dict, List, Set, FrozenSet
+import sys
 
+from dataclasses import dataclass, field, InitVar
+from typing import Any, Dict, List, Set, FrozenSet, Tuple
+
+from .BoundingBox import BoundingBox
 from .DoomPool import DoomPool
 from .DoomItem import DoomItem
 from .DoomLocation import DoomLocation, DoomPosition
@@ -36,7 +39,13 @@ class DoomWad:
     items_by_name: Dict[str,DoomItem] = field(default_factory=dict)
     # Map of skill -> position -> location used while importing locations.
     locations_by_pos: Dict[int,Dict[DoomPosition,DoomLocation]] = field(default_factory=dict)
-    locations_by_name: Dict[str,DoomLocation] = field(default_factory=dict)
+    # Location lookup by legacy name, now used only for processing legacy tuning
+    # files that don't include location coordinates + virtual locations that only
+    # have a name, not a position.
+    # Might contain multiple locations with the same name in rare cases where the
+    # same position contains items with different underlying type but same display
+    # name on different difficulties.
+    locations_by_name: Dict[str,List[DoomLocation]] = field(default_factory=dict)
     first_map: DoomMap | None = None
 
     def __post_init__(self):
@@ -49,9 +58,20 @@ class DoomWad:
     def locations_for_stats(self, skill: int) -> List[DoomLocation]:
         skill = min(3, max(1, skill)) # clamp ITYTD->HNTR and N!->UV
         return [
-            loc for loc in self.locations_by_name.values()
-            if skill in loc.skill
-            and loc.orig_item and loc.orig_item.is_default_enabled()
+            loc for map in self.maps.values() for loc in map.all_locations(skill, {})
+            if loc.orig_item and loc.orig_item.is_default_enabled()
+        ]
+
+    def locations_at_position(self, pos: DoomPosition) -> List[DoomLocation]:
+        """
+        Returns all locations at the specified position. This is [] if there are
+        no locations there; if there's a different item there on every difficulty,
+        it could be as many as three different locations.
+        """
+        return [
+            locs[pos]
+            for locs in self.locations_by_pos.values()
+            if pos in locs
         ]
 
     def stats_pool(self, skill):
@@ -229,20 +249,129 @@ class DoomWad:
         which shouldn't be a problem in practice unless people are assembling play
         logs out of order.
         """
+        if pos is None:
+            # Legacy tuning file, or location with no position (e.g. level exit
+            # or secret sector).
+            return self.tune_location_by_name(name, keys, unreachable)
+
+        (map,x,y,z) = pos
+        pos = DoomPosition(map=map, virtual=False, x=x, y=y, z=z)
+        for loc in self.locations_at_position(pos):
+            if unreachable:
+                # print(f"Marking {loc.name()} as unreachable. {id(loc)}")
+                loc.unreachable = True
+            else:
+                # TODO: we should skip this if atexit release is enabled.
+                loc.tune_keys(frozenset([loc.fqin(key) for key in keys]))
+
+    def tune_location_by_name(self, name, keys, unreachable) -> None:
         # Index by name rather than ID because the ID may change as more WADs
         # are added, but the name should not.
-        loc = self.locations_by_name.get(name, None)
-        if loc is None:
+        locs = self.locations_by_name.get(name, [])
+        if len(locs) == 0:
+            # print(f"Tuning file contains info for nonexistent check {name}")
             return
-        if unreachable:
-            loc.unreachable = True
-        else:
-          # Before passing the keys to tune_keys, we need to annotate them with
-          # the map name so that they match the names that Archipelago expects.
-          # TODO: When we support keys with greater-than-one-map scope, this
-          # gets more complicated. Probably we have some information supplied
-          # earlier in the tuning file we use to do the conversion.
-          loc.tune_keys(frozenset([loc.fqin(key) for key in keys]))
+        for loc in locs:
+            if unreachable:
+                # print(f"Marking {loc.name()} as unreachable. {id(loc)}")
+                loc.unreachable = True
+            else:
+                # Before passing the keys to tune_keys, we need to annotate them with
+                # the map name so that they match the names that Archipelago expects.
+                # TODO: When we support keys with greater-than-one-map scope, this
+                # gets more complicated. Probably we have some information supplied
+                # earlier in the tuning file we use to do the conversion.
+                loc.tune_keys(frozenset([loc.fqin(key) for key in keys]))
+
+    def disambiguate_duplicate_locations(self) -> None:
+        # Resolve name collisions among locations and register them with the logic.
+        # We iterate the maps here, rather than locations_by_pos, because virtual
+        # locations like exits don't appear in the position table but do appear
+        # in their corresponding maps.
+        for map in self.maps.values():
+            self.disambiguate_in_map(map)
+
+    def finalize_location(self, loc):
+        # print(f"Finalizing {loc.name()}")
+        loc.keys = frozenset() | { frozenset(self.maps[loc.pos.map].keyset) }
+        self.logic.register_location(loc)
+        self.locations_by_name.setdefault(loc.legacy_name(), []).append(loc)
+
+    def bin_locations_by(self, locs, f) -> Dict[str, List[DoomMap]]:
+        """
+        "Rebin" a collection of locations based on a binning function.
+        Any location that ends up in a unique bin is finalized and dropped from
+        the result.
+        Returns a dict keyed by bin name where each value is the (cardinality>1)
+        collection of locations in that bin.
+        """
+        bins = {}
+        for loc in locs:
+            bins.setdefault(f(loc), []).append(loc)
+        for bin in bins.values():
+            if len(bin) > 1:
+                return { name: locs for name,locs in bins.items() }
+        for bin in bins.values():
+            self.finalize_location(bin[0])
+        return {}
+
+    def disambiguate_in_map(self, map) -> None:
+        bb = BoundingBox()
+
+        for loc in map.locations:
+            bb.add_point(loc.pos)
+
+        bins = self.bin_locations_by(map.locations, lambda loc: loc.name())
+
+        # We do each bin separately, so that for a given name, we end up at the
+        # same fallback for every location of that name, rather than (say) a mix
+        # of coordinates for some soulspheres and compass directions for others.
+        for bin in bins.values():
+            if len(bin) == 1:
+                self.finalize_location(bin[0])
+            else:
+                self.disambiguate_bin(bb, bin)
+
+    def disambiguate_bin(self, bb, locs):
+        # Bins contains all locations that had name collisions. First, try binning
+        # by coarse direction and distance. In many maps this suffices for armour,
+        # powerups, etc.
+        def binner(loc):
+            dir,dist = bb.position_name(loc.pos.x, loc.pos.y)
+            oldname = loc.name()
+            if dist:
+                loc.disambiguation = f"{dir} {dist}"
+            else:
+                loc.disambiguation = dir
+            # print(f"Renaming {oldname} -> {loc.name()}")
+            return loc.name()
+
+        bins = self.bin_locations_by(locs, binner)
+        if len(bins) == 0:
+            return
+
+        # That didn't work, so try again with coordinates.
+        def binner(loc):
+            oldname = loc.name()
+            loc.disambiguation = f"{int(loc.pos.x)},{int(loc.pos.y)}"
+            # print(f"Renaming {oldname} -> {loc.name()}")
+            return loc.name()
+
+        bins = self.bin_locations_by([loc for bin in bins.values() for loc in bin], binner)
+        if len(bins) == 0:
+            return
+
+        # If we get here, the binner couldn't fully disambiguate things even
+        # with XY coordinates. At this point we commit anything that *could* be
+        # disambiguated with XY, and then add Z coordinate to what's left.
+        for bin in [bin for bin in bins.values() if len(bin) == 1]:
+            self.finalize_location(bin[0])
+
+        for loc in [loc for bin in bins.values() for loc in bin if len(bin) > 1]:
+            oldname = loc.name()
+            loc.disambiguation = f"{int(loc.pos.x)},{int(loc.pos.y)},{int(loc.pos.z)}"
+            # print(f"Renaming {oldname} -> {loc.name()}")
+            self.finalize_location(loc)
 
 
     def finalize_scan(self, json) -> None:
@@ -250,29 +379,7 @@ class DoomWad:
         Do postprocessing after the initial scan is completed but before tuning.
         """
         self.disambiguate_duplicate_items()
-        # Resolve name collisions among locations and register them with the logic.
-        # We iterate the maps here, rather than locations_by_pos, because virtual
-        # locations like exits don't appear in the position table but do appear
-        # in their corresponding maps.
-        name_to_loc = {}
-        for map in self.maps.values():
-            for location in map.locations:
-                name_to_loc.setdefault(location.name(), []).append(location)
-
-        for locs in name_to_loc.values():
-            if len(locs) > 1:
-                for loc in locs:
-                    # TODO: handle the case where merely setting disambiguate
-                    # is not enough because there are two checks with identical
-                    # XY coordinates but different Z.
-                    loc.disambiguate = True
-            for loc in locs:
-              self.logic.register_location(loc)
-              self.locations_by_name[loc.name()] = loc
-              # While we're here, initialize all location keysets based on the keyset
-              # of their containing map. Tuning may adjust these later.
-              loc.keys = frozenset([frozenset(self.maps[loc.pos.map].keyset.copy())])
-
+        self.disambiguate_duplicate_locations()
 
     def finalize_all(self) -> None:
         """

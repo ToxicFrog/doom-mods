@@ -11,6 +11,9 @@ types and/or meanings changed. You must regenerate your template YAML.
 
 ⚠️ The scanner has changed. Logic files must be regenerated for the new version.
 
+⚠️ The tuning file format has changed. Please remain calm. Old files remain
+compatible and automatic migration is planned for a later 0.4.x version.
+
 - New:
   - gzArchipelago now has additional data about what items were originally stored
     at check locations, and what items are stored there now, which will be used
@@ -43,6 +46,11 @@ types and/or meanings changed. You must regenerate your template YAML.
 - Change:
   - All logic files regenerated using the updated scanner.
   - The inventory menu no longer lists items you don't have.
+  - Tuning files now include coordinate data to more reliably match in-game checks
+    to locations in the logic file, even if location names change.
+  - Location names have changed; if there are only a few instances of an item in
+    a level, it will try to name it based on compass heading and approximate
+    distance from the level center before falling back to coordinates.
 - Fix:
   - Map markers were not properly displaying filler/progression status if you
     picked up the automap after entering the map when persistent mode was on.
@@ -61,6 +69,8 @@ types and/or meanings changed. You must regenerate your template YAML.
   - `level_order_bias` now rounds to nearest rather than rounding down when
     calculating how many levels you need to beat.
   - Weapon balancing no longer counts unreachable weapons.
+  - Locations with the same (X,Y) coordinates but different Z no longer cause
+    generation failures.
 
 # 0.3.5
 

@@ -78,7 +78,7 @@ class DoomMap:
         skill = min(3, max(1, skill)) # clamp ITYTD->HNTR and N!->UV
         return [
             loc for loc in self.locations
-            if skill in loc.skill and loc.category in categories
+            if skill in loc.skill and (not categories or loc.category in categories)
         ]
 
     def choose_locations(self, world):
