@@ -4,6 +4,7 @@
   - `pretuning_mode` only overrides the original `MAPINFO` if you also ask for
     `full_persistence`. Leaving it off means you can now do a pretuning run with
     the original WAD's intermission screens, episode divisions, etc.
+  - File extensions are now ignored when loading logic or tuning files.
 - Fix:
   - Encountering a tuning file with no maps now produces a useful error message
     rather than a division by zero crash.

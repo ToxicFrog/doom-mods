@@ -101,31 +101,41 @@ def print_wad_stats(name: str, wad: DoomWad) -> None:
 
 def logic_files(package):
     """
-    Return a list of all logic files. This is all files in the apworld's logic/
-    directory, plus all files (if any) in the Archipelago/gzdoom/logic/ directory.
+    Returns a list of (wad-name, logic-file) pairs. This is drawn from all files
+    in the apworld's logic/ directory, plus all files in the user's
+    Archipelago/gzdoom/logic directory, sorted by wad name.
 
-    If a file with the same name exists in both places, only the latter is loaded.
+    If a logic file exists in both places, only the external one is loaded.
+
+    File extensions, if present, are ignored; the wad name is everything in the
+    filename up to the first '.'.
     """
     logic = {}
     for logic_file in resources.files(package).joinpath("logic").iterdir():
-        logic[logic_file.name] = logic_file
+        logic[logic_file.name.split(".")[0]] = logic_file
     for logic_file in (Path(Utils.home_path()) / "gzdoom" / "logic").iterdir():
         if logic_file.is_file():
-            logic[logic_file.name] = logic_file
+            logic[logic_file.name.split(".")[0]] = logic_file
 
-    return sorted(logic.values(), key=lambda p: p.name)
+    return sorted(logic.items())
 
 
 def tuning_files(package, wad):
     """
     Return a list of all tuning files for a given wad.
+
+    Tuning files are returned in a defined order: sorted by filename, with all
+    internal files sorted before all external files.
     """
-    internal = resources.files(package).joinpath("tuning").joinpath(wad)
-    external = Path(Utils.home_path()) / "gzdoom" / "tuning" / wad
-    return [
-        p for p in [internal, external]
-        if p.is_file()
+    internal = [
+        p for p in resources.files(package).joinpath("tuning").iterdir()
+        if p.is_file() and (p.name == wad or p.name.startswith(f"{wad}."))
     ]
+    external = [
+        p for p in (Path(Utils.home_path()) / "gzdoom" / "tuning").iterdir()
+        if p.is_file() and (p.name == wad or p.name.startswith(f"{wad}."))
+    ]
+    return sorted(internal) + sorted(external)
 
 def init_wads(package):
   global _init_done
@@ -138,16 +148,13 @@ def init_wads(package):
   os.makedirs(os.path.join(gzd_dir, "tuning"), exist_ok=True) # in-dev tuning files
 
   # Load all logic files included in the apworld.
-  # Sort them so we get a consistent order, and thus consistent ID assignment,
-  # across runs.
-  # TODO: maybe separate logic and tuning directories or similar?
-  for logic_file in logic_files(package):
-    #   print("Loading logic:", logic_file.name)
+  for wadname,logic_file in logic_files(package):
+    #   print(f"Loading logic for {wadname} from {logic_file}")
       buf = logic_file.read_text()
-      for tuning_file in tuning_files(package, logic_file.name):
-        #   print("Loading tuning:", tuning_file)
+      for tuning_file in tuning_files(package, wadname):
+        #   print(f"  + tuning from {tuning_file}")
           buf = buf + "\n" + tuning_file.read_text()
-      with add_wad(logic_file.name) as wadloader:
+      with add_wad(wadname) as wadloader:
           wadloader.load_logic(logic_file.name, buf)
           print_wad_stats(wadloader.name, wadloader.wad)
 
