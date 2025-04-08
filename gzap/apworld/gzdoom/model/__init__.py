@@ -87,6 +87,7 @@ def print_wad_stats(name: str, wad: DoomWad) -> None:
         return
     nrof_maps = len(wad.all_maps())
     nrof_monsters = sum(map.monster_count for map in wad.all_maps())
+    assert nrof_maps > 0,f"The logic for WAD {name} defines no maps."
     print("\x1B[1m%32s: %2d maps, %4d monsters; %4d monsters/map\x1B[0m" % (
         name, nrof_maps, nrof_monsters, nrof_monsters//nrof_maps))
     for sknum, skname in [(3, "UV")]: # [(1, "HNTR"), (2, "HMP"), (3, "UV")]:
