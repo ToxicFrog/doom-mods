@@ -10,6 +10,7 @@
 - Fix:
   - Encountering a tuning file with no maps now produces a useful error message
     rather than a division by zero crash.
+  - Checks collected via release-at-exit are no longer used for tuning.
 
 # 0.4.0
 

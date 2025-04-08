@@ -82,12 +82,12 @@ class ::PlayEventHandler : StaticEventHandler {
     }
   }
 
-  void CheckLocation(::Location loc) {
+  void CheckLocation(::Location loc, bool atexit=false) {
     DEBUG("CheckLocation: %d %s", loc.apid, loc.name);
 
-    string unreachable = "";
+    bool unreachable = false;
     if (ap_scan_unreachable) {
-      unreachable = "\"unreachable\": true, ";
+      unreachable = true;
       if (ap_scan_unreachable == 1) {
         cvar.FindCvar("ap_scan_unreachable").SetInt(0);
       }
@@ -95,13 +95,28 @@ class ::PlayEventHandler : StaticEventHandler {
 
     string pos = "";
     if (!loc.is_virt) {
-      pos = string.format("\"pos\": [\"%s\",%.1f,%.1f,%.1f], ",
+      pos = string.format(", \"pos\": [\"%s\",%.1f,%.1f,%.1f]",
         loc.mapname, loc.pos.x, loc.pos.y, loc.pos.z);
     }
 
-    ::IPC.Send("CHECK",
-      string.format("{ \"id\": %d,%s \"name\": \"%s\", %s\"keys\": [%s] }",
-      loc.apid, pos, loc.name, unreachable, apstate.GetCurrentRegion().KeyString()));
+    if (unreachable) {
+      // Omit the key field and just mark it unreachable.
+      ::IPC.Send("CHECK",
+        string.format("{ \"id\": %d, \"name\": \"%s\"%s, \"unreachable\": true }",
+        loc.apid, loc.name, pos));
+    } else if (atexit) {
+      // Also omit the key field for atexit checks, since we can't make any
+      // assumptions about reachability if the check was gathered via "release
+      // on exit" rather than normal play.
+      ::IPC.Send("CHECK",
+        string.format("{ \"id\": %d, \"name\": \"%s\"%s }",
+        loc.apid, loc.name, pos));
+    } else {
+      // It's a normally reachable check.
+      ::IPC.Send("CHECK",
+        string.format("{ \"id\": %d, \"name\": \"%s\"%s, \"keys\": [%s] }",
+        loc.apid, loc.name, pos, apstate.GetCurrentRegion().KeyString()));
+    }
 
     // In singleplayer, the netevent handler will clear the check for us.
     // In MP, we don't clear it until we get a reply from the server.

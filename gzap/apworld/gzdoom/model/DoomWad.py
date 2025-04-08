@@ -237,7 +237,7 @@ class DoomWad:
         location.sector = json['sector']
         self.register_location(location, {1,2,3})
 
-    def tune_location(self, id, name, keys, pos=None, unreachable=False) -> None:
+    def tune_location(self, id, name, keys=frozenset(), pos=None, unreachable=False) -> None:
         """
         Adjust the reachability rules for a location.
 
@@ -260,11 +260,10 @@ class DoomWad:
             if unreachable:
                 # print(f"Marking {loc.name()} as unreachable. {id(loc)}")
                 loc.unreachable = True
-            else:
-                # TODO: we should skip this if atexit release is enabled.
+            elif keys:
                 loc.tune_keys(frozenset([loc.fqin(key) for key in keys]))
 
-    def tune_location_by_name(self, name, keys, unreachable) -> None:
+    def tune_location_by_name(self, name, keys=frozenset(), unreachable=False) -> None:
         # Index by name rather than ID because the ID may change as more WADs
         # are added, but the name should not.
         locs = self.locations_by_name.get(name, [])
@@ -275,7 +274,7 @@ class DoomWad:
             if unreachable:
                 # print(f"Marking {loc.name()} as unreachable. {id(loc)}")
                 loc.unreachable = True
-            else:
+            elif keys:
                 # Before passing the keys to tune_keys, we need to annotate them with
                 # the map name so that they match the names that Archipelago expects.
                 # TODO: When we support keys with greater-than-one-map scope, this

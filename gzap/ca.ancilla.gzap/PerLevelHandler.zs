@@ -387,7 +387,7 @@ class ::PerLevelHandler : EventHandler {
           if (ap_release_on_level_clear & AP_RELEASE_SECRETS == 0) continue;
         }
         DEBUG("Collecting %s on level exit.");
-        ::PlayEventHandler.Get().CheckLocation(location);
+        ::PlayEventHandler.Get().CheckLocation(location, true);
       }
     }
   }
