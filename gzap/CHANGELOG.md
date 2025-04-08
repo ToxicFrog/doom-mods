@@ -5,6 +5,8 @@
     `full_persistence`. Leaving it off means you can now do a pretuning run with
     the original WAD's intermission screens, episode divisions, etc.
   - File extensions are now ignored when loading logic or tuning files.
+  - The client now writes a separate tuning file for each game session, named
+    `{wad name}.{timestamp}.tuning`.
 - Fix:
   - Encountering a tuning file with no maps now produces a useful error message
     rather than a division by zero crash.

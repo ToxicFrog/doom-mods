@@ -75,6 +75,11 @@ class IPC:
       print(e)
       sys.exit(1)
 
+  def _tuning_file_path(self, ipc_dir: str, wadname: str) -> str:
+    return os.path.join(
+      ipc_dir, "tuning", f"{wadname}.{int(time.time())}.tuning"
+    )
+
   def _log_reading_loop(self, ipc_dir: str, loop):
     log_path = os.path.join(ipc_dir, "gzdoom.log")
     tune = None
@@ -101,7 +106,7 @@ class IPC:
           if evt == "AP-XON":
             if tune:
               tune.close()
-            tune = open(os.path.join(ipc_dir, 'tuning', payload["wad"]), "a")
+            tune = open(self._tuning_file_path(ipc_dir, payload["wad"]), "a")
 
           if evt == "AP-CHECK" and tune:
             tune.write(line+"\n")
@@ -197,8 +202,6 @@ class IPC:
 
     Informs the context manager that we have checked the listed location. It's up
     to it to tell the server.
-
-    We should also save it somewhere so it can be used for tuning later!
     """
     await self.ctx.send_check(id)
 

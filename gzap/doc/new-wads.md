@@ -95,16 +95,17 @@ to rapidly change and test your work without repacking the apworld.
 
 When you play a multiworld game, a tuning file will be automatically created
 in the `gzdoom/tuning` directory in your Archipelago directory, with the same
-name as the wad you're playing.
+name as the wad you're playing. If you play the same wad multiple times, it
+will create multiple, numbered tuning files, all of which will be loaded by the
+apworld.
 
 When you play single-world, you can accomplish the same thing with the `logfile`
 console command.
 
-The file in `<AP dir>/gzdoom/tuning/` will be loaded automatically; to "bake it in"
-to the apworld, use the same procedure as adding a logic file, but put the file
-in the `gzdoom/tuning/` directory inside the apworld, rather than `gzdoom/logic/`.
-If a file already exists there for this WAD, simply append the new tuning data
-to it.
+The files in `<AP dir>/gzdoom/tuning/` will be loaded automatically; to "bake it
+in" to the apworld, use the same procedure as adding a logic file, but put the
+files in the `gzdoom/tuning/` directory inside the apworld, rather than
+`gzdoom/logic/`.
 
 ### Tuning without randomizing
 
