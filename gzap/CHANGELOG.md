@@ -1,3 +1,10 @@
+# Unreleased
+
+- Change:
+  - `pretuning_mode` only overrides the original `MAPINFO` if you also ask for
+    `full_persistence`. Leaving it off means you can now do a pretuning run with
+    the original WAD's intermission screens, episode divisions, etc.
+
 # 0.4.0
 
 This is a feature release.

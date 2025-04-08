@@ -4,7 +4,10 @@ GameInfo {
   AddEventHandlers = "GZAP_PlayEventHandler", "GZAP_PerLevelHandler", "GZAP_DataPackageEventHandler"
 }
 
+{% if generate_mapinfo %}
 clearepisodes
+{% endif %}
+
 episode gzaphub
 {
   name = "Archipelago Hub"
@@ -46,13 +49,9 @@ map gzaprst "Archipelago Hub"
   cluster = 0
 }
 
-// TODO: additional fields we might need to support for some maps to work right:
-  // functional:
-    // gravity, nogravity, aircontrol, airsupply
-    // strictmonsteractivation, laxmonsteractivation
-    // *fallingdamage
-    // *jump, *crouch, *infighting, *switchrange
-    // maybe a few others
+{% if generate_mapinfo %}
+// Only include this part if generate_mapinfo is set, otherwise we just inherit
+// the mapinfo from the parent WAD.
 
 {% for map in maps %}
 {% set info = map.mapinfo %}
@@ -70,4 +69,4 @@ map {{map.map}} {% if info.is_lookup %}lookup{% endif %} "{{info.title}}"
   {% endfor %}
 }
 {% endfor %}
-
+{% endif %}

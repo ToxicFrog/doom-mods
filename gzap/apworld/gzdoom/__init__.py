@@ -344,6 +344,7 @@ class GZDoomWorld(World):
             "item_type_at": item_type_at,
             "item_name_at": item_name_at,
             "win_conditions": self.options.win_conditions.template_values(self),
+            "generate_mapinfo": (not self.options.pretuning_mode) or self.options.full_persistence,
         }
 
         env = jinja2.Environment(

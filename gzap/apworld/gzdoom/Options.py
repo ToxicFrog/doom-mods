@@ -348,6 +348,10 @@ class PreTuningMode(Toggle):
     The intent of this mode is to let you play through the game, or specific
     levels, "normally", to generate a tuning file, even in cases where the
     initial scan is so conservative as to cause generation failures.
+
+    If full_persistence is off, pretuning mode also disables automatic MAPINFO
+    generation, so the game will retain its original episode divisions,
+    intermission text, etc.
     """
     display_name = "Pretuning Mode"
     default = False
