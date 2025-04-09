@@ -145,7 +145,6 @@ class ::CheckPickup : ScoreItem {
   static ::CheckPickup Create(::Location location, Actor original) {
     let thing = ::CheckPickup(Actor.Spawn("::CheckPickup", original.pos));
     thing.location = location;
-    thing.UpdateFromLocation();
     thing.UpdateFromOriginal(original);
     DEBUG("Check initialize: name=%s, pr=%d, ur=%d, ck=%d",
       location.name, location.progression, location.unreachable, location.checked);
@@ -163,9 +162,11 @@ class ::CheckPickup : ScoreItem {
 
   void UpdateFromLocation() {
     self.checked = self.location.checked;
+    SetTag(self.location.name);
     if (self.checked) {
-      if (self.label) self.label.Destroy();
-      if (self.orig_label) self.orig_label.Destroy();
+      ClearMarkers();
+    } else {
+      CreateMarkers();
     }
   }
 
@@ -179,15 +180,7 @@ class ::CheckPickup : ScoreItem {
   override void PostBeginPlay() {
     if (self.location.unreachable) self.ClearCounters();
     if (self.location.checked) return;
-    DEBUG("Creating map marker for check %s", self.location.name);
-    SetTag(self.location.name);
-    marker = ::CheckMapMarker(Spawn("::CheckMapMarker", self.pos));
-    marker.parent = self;
-
-    // Spawn the labels for the original + actual item.
-    DEBUG("Spawn label: %s -> %s [%s]", self.location.orig_typename, self.location.ap_typename, self.location.ap_name);
-    if (ap_show_check_contents) self.label = CreateLabel(self.location.ap_typename);
-    if (ap_show_check_original) self.orig_label = CreateLabel(self.location.orig_typename, 34);
+    UpdateFromLocation();
   }
 
   // Create a sprite label attached to this CheckPickup for the given type.
@@ -236,6 +229,25 @@ class ::CheckPickup : ScoreItem {
     return label;
   }
 
+  void CreateMarkers() {
+    if (!self.marker) {
+      self.marker = ::CheckMapMarker(Spawn("::CheckMapMarker", self.pos));
+      self.marker.parent = self;
+    }
+    if (ap_show_check_contents && !self.label) {
+      self.label = CreateLabel(self.location.ap_typename);
+    }
+    if (ap_show_check_original && !self.orig_label) {
+      self.orig_label = CreateLabel(self.location.orig_typename, 34);
+    }
+  }
+
+  void ClearMarkers() {
+    if (self.marker) self.marker.Destroy();
+    if (self.label) self.label.Destroy();
+    if (self.orig_label) self.orig_label.Destroy();
+  }
+
   override bool CanPickup(Actor toucher) {
     // DEBUG("CanPickup? %s %s %d", self.location.name, toucher.GetTag(), !self.checked);
     return !self.checked;
@@ -248,18 +260,14 @@ class ::CheckPickup : ScoreItem {
     // we force the checked flag locally.
     self.checked = true;
     self.SetProgressionState();
-    if (self.marker) self.marker.Destroy();
-    if (self.label) self.label.Destroy();
-    if (self.orig_label) self.orig_label.Destroy();
+    ClearMarkers();
     return true;
   }
 
   override bool ShouldStay() { return true; }
 
   override void OnDestroy() {
-    DEBUG("Destroying marker %s", self.location.name);
-    if (self.marker) self.marker.Destroy();
-    if (self.label) self.label.Destroy();
-    if (self.orig_label) self.orig_label.Destroy();
+    ClearMarkers();
+  }
   }
 }
