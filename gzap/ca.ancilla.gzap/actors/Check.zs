@@ -149,7 +149,6 @@ class ::CheckPickup : ScoreItem {
     DEBUG("Check initialize: name=%s, pr=%d, ur=%d, ck=%d",
       location.name, location.progression, location.unreachable, location.checked);
     if (location.checked) level.found_items++;
-    // TODO: copy flags like gravity from the original?
     return thing;
   }
 
@@ -175,6 +174,7 @@ class ::CheckPickup : ScoreItem {
     A_SetSize(original.radius, original.height);
     ChangeTID(original.TID);
     A_SetSpecial(original.special, original.args[0], original.args[1], original.args[2], original.args[3], original.args[4]);
+    self.bNOGRAVITY = original.bNOGRAVITY;
   }
 
   override void PostBeginPlay() {
