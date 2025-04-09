@@ -15,6 +15,8 @@
   - Check placement algorithm rewritten. "Unable to find original item, placing
     check at player" errors eliminated; checks will now always spawn in the
     correct locations.
+  - "This game was generated on 'easy', but you are playing on 'easy'" error
+    should no longer occur when playing on ITYTD (nor the equivalent on NM!).
 
 # 0.4.0
 

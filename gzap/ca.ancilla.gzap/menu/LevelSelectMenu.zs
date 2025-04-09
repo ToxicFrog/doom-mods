@@ -113,10 +113,11 @@ class ::LevelSelectMenu : ::CommonMenu {
   }
 
   string GetFilterWarning(::RandoState state) {
-    if (state.filter == ::Util.GetCurrentFilter()) return "";
+    let ap_filter_name = ::Util.GetFilterName(state.filter);
+    let game_filter_name = ::Util.GetFilterName(::Util.GetCurrentFilter());
+    if (ap_filter_name == game_filter_name) return "";
     return string.format(
       StringTable.Localize("$GZAP_MENU_WARNING_SPAWNS"),
-      ::Util.GetFilterName(state.filter),
-      ::Util.GetFilterName(::Util.GetCurrentFilter()));
+      ap_filter_name, game_filter_name);
   }
 }
