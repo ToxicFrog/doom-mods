@@ -72,6 +72,10 @@ class ::CheckMapMarker : MapMarker {
     Scale 0.25;
   }
 
+  override void Tick() {
+    self.SetOrigin(self.parent.pos, false);
+  }
+
   ::Location GetLocation() { return parent.GetLocation(); }
   bool IsChecked() { return GetLocation().checked; }
 
@@ -177,10 +181,8 @@ class ::CheckPickup : ScoreItem {
     if (self.location.checked) return;
     DEBUG("Creating map marker for check %s", self.location.name);
     SetTag(self.location.name);
-    ChangeTID(level.FindUniqueTID());
     marker = ::CheckMapMarker(Spawn("::CheckMapMarker", self.pos));
     marker.parent = self;
-    marker.A_SetSpecial(0, self.tid);
 
     // Spawn the labels for the original + actual item.
     DEBUG("Spawn label: %s -> %s [%s]", self.location.orig_typename, self.location.ap_typename, self.location.ap_name);
