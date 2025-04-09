@@ -12,6 +12,9 @@
     rather than a division by zero crash.
   - Checks collected via release-at-exit are no longer used for tuning.
   - Map markers now properly follow checks again.
+  - Check placement algorithm rewritten. "Unable to find original item, placing
+    check at player" errors eliminated; checks will now always spawn in the
+    correct locations.
 
 # 0.4.0
 

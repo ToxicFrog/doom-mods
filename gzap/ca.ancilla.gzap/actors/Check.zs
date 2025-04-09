@@ -13,6 +13,7 @@ mixin class ::ArchipelagoIcon {
   States {
     Spawn:
       TNT1 A 0;
+    SetProgression:
       TNT1 A 0 SetProgressionState();
       STOP;
     NotProgression:
@@ -74,6 +75,7 @@ class ::CheckMapMarker : MapMarker {
 
   override void Tick() {
     self.SetOrigin(self.parent.pos, false);
+    super.Tick();
   }
 
   ::Location GetLocation() { return parent.GetLocation(); }
@@ -142,10 +144,20 @@ class ::CheckPickup : ScoreItem {
     Height 10;
   }
 
-  static ::CheckPickup Create(::Location location, Actor original) {
-    let thing = ::CheckPickup(Actor.Spawn("::CheckPickup", original.pos));
+  States {
+    Spawn:
+      // Try for the first several tics to find a matching item to absorb.
+      // If we can, Subsume() will jump us straight to SetProgression.
+      // Otherwise, NoOriginal will do some setup based on the defaults of the
+      // type, if possible.
+      APIT AAAAAAA 1 Subsume();
+      APIT A 1 NoOriginal();
+      GOTO SetProgression;
+  }
+
+  static ::CheckPickup Create(::Location location) {
+    let thing = ::CheckPickup(Actor.Spawn("::CheckPickup", location.pos));
     thing.location = location;
-    thing.UpdateFromOriginal(original);
     DEBUG("Check initialize: name=%s, pr=%d, ur=%d, ck=%d",
       location.name, location.progression, location.unreachable, location.checked);
     if (location.checked) level.found_items++;
@@ -159,17 +171,62 @@ class ::CheckPickup : ScoreItem {
     return ap_show_progression > 0;
   }
 
+  //// Initialization ////
+
+  override void PostBeginPlay() {
+    if (self.location.unreachable) self.ClearCounters();
+    if (self.location.checked) return;
+    UpdateFromLocation();
+  }
+
+  void Subsume() {
+    Actor closest;
+    let it = BlockThingsIterator.Create(self, 32);
+    while (it.Next()) {
+      Actor thing = it.thing;
+      if (thing is "::CheckPickup") continue;
+
+      if (::ScannedItem.ItemCategory(thing) == "") {
+        // If it's categorized, we skip these checks entirely -- a categorized
+        // object is always replaceable.
+        if (thing.bNOSECTOR || thing.bNOINTERACTION || thing.bISMONSTER) continue;
+        if (!(thing is "Inventory")) continue;
+      }
+      if (!closest) closest = thing;
+      if (Distance3D(thing) < Distance3D(closest)) closest = thing;
+    }
+
+    if (!closest) return;
+    DEBUG("Check[%s]: closest is %s (d=%f)", self.location.name, closest.GetTag(), Distance3D(closest));
+    if (Distance3D(closest) < 2.0) {
+      UpdateFromOriginal(closest);
+      closest.ClearCounters();
+      closest.Destroy();
+      SetStateLabel("SetProgression");
+    }
+  }
+
+  void NoOriginal() {
+    DEBUG("Check[%s] couldn't find its original, imagining one instead", self.location.name);
+    Class<Actor> cls = self.location.orig_typename;
+    let orig = GetDefaultByType(cls);
+    if (!orig) return;
+    UpdateFromOriginal(orig);
+  }
+
   void UpdateFromLocation() {
     self.checked = self.location.checked;
     SetTag(self.location.name);
     if (self.checked) {
+      DEBUG("Check[%s] clearing markers", self.location.name);
       ClearMarkers();
     } else {
+      DEBUG("Check[%s] creating markers", self.location.name);
       CreateMarkers();
     }
   }
 
-  void UpdateFromOriginal(Actor original) {
+  void UpdateFromOriginal(readonly<Actor> original) {
     if (!original) return;
     A_SetSize(original.radius, original.height);
     ChangeTID(original.TID);
@@ -177,11 +234,7 @@ class ::CheckPickup : ScoreItem {
     self.bNOGRAVITY = original.bNOGRAVITY;
   }
 
-  override void PostBeginPlay() {
-    if (self.location.unreachable) self.ClearCounters();
-    if (self.location.checked) return;
-    UpdateFromLocation();
-  }
+  //// Label/Marker handling ////
 
   // Create a sprite label attached to this CheckPickup for the given type.
   // If zoffs is unspecified, it will try to center it in the Check sprite.
@@ -231,6 +284,7 @@ class ::CheckPickup : ScoreItem {
 
   void CreateMarkers() {
     if (!self.marker) {
+      DEBUG("Check[%s] spawning map marker", self.location.name);
       self.marker = ::CheckMapMarker(Spawn("::CheckMapMarker", self.pos));
       self.marker.parent = self;
     }
@@ -247,6 +301,8 @@ class ::CheckPickup : ScoreItem {
     if (self.label) self.label.Destroy();
     if (self.orig_label) self.orig_label.Destroy();
   }
+
+  //// Pickup event handling ////
 
   override bool CanPickup(Actor toucher) {
     // DEBUG("CanPickup? %s %s %d", self.location.name, toucher.GetTag(), !self.checked);
@@ -268,6 +324,5 @@ class ::CheckPickup : ScoreItem {
 
   override void OnDestroy() {
     ClearMarkers();
-  }
   }
 }

@@ -12,13 +12,9 @@ const AP_RELEASE_SECRETS = 2;
 class ::PerLevelHandler : EventHandler {
   // Archipelago state manager.
   ::RandoState apstate;
-  // Locations that we have yet to resolve when loading into the map. Indexed by apid.
-  Map<int, ::Location> pending_locations;
   // Locations corresponding to secret sectors. Indexed by sector number.
   // As we find each one we clear it from the map.
   Map<int, ::Location> secret_locations;
-  // If >0, number of ticks remaining to track spawning actors.
-  int alarm;
   // If set, the player is leaving the level via the level select or similar
   // rather than by reaching the exit.
   bool early_exit;
@@ -28,7 +24,6 @@ class ::PerLevelHandler : EventHandler {
   }
 
   override void OnRegister() {
-    DEBUG("OnRegister: tic=%d alarm=%d", level.MapTime, alarm);
     InitRandoState();
   }
 
@@ -119,21 +114,14 @@ class ::PerLevelHandler : EventHandler {
     foreach (location : region.locations) {
       // Secret-sector locations are handled by SetupSecrets().
       if (location.secret_sector >= 0) continue;
-      DEBUG("Enqueing location: %s", location.name);
-      pending_locations.Insert(location.apid, location);
+      if (location.checked) continue;
+      ::CheckPickup.Create(location);
     }
-    // Set the timer for how long we'll watch for new things spawning in (from
-    // Spawners, scripts, etc) and try to match them to checks.
-    alarm = 10;
+    apstate.UpdatePlayerInventory();
   }
 
   void OnLoadGame() {
     early_exit = false;
-    // There's a fun edge case here where we load a save game made at the start
-    // of the level while the alarm is still counting down. Fortunately this is
-    // not actually a problem: this code will get rid of any obsolete already-
-    // spawned checks, and WorldThingSpawned will prune newly spawning ones if
-    // needed.
     DEBUG("PLH Cleanup");
     apstate.UpdatePlayerInventory();
     let region = apstate.GetRegion(level.MapName);
@@ -169,22 +157,6 @@ class ::PerLevelHandler : EventHandler {
     if (level.total_secrets - level.found_secrets != self.secret_locations.CountUsed()) {
       UpdateSecrets();
     }
-
-    if (!alarm) return;
-    --alarm;
-    if (alarm) return;
-    DEBUG("PLH AlarmClockFired");
-    foreach (loc : pending_locations) {
-      if (loc.checked) continue;
-      console.printf(
-        StringTable.Localize("$GZAP_MISSING_LOCATION"), loc.name);
-      ::CheckPickup.Create(loc, players[0].mo);
-    }
-    apstate.UpdatePlayerInventory();
-  }
-
-  void ClearPending(::Location loc) {
-    pending_locations.Remove(loc.apid);
   }
 
   //// Handling for individual actors spawning in. ////
@@ -193,64 +165,15 @@ class ::PerLevelHandler : EventHandler {
   // checks and do so. Any leftover checks will give automatically dispensed to
   // the player via WorldTick() above.
 
-  bool IsReplaceable(Actor thing) {
-    if (!thing) return false;
-    // This also checks the GZAPRC, so if this returns a nonempty category name,
-    // it's always eligible even if it would normally be ignored for being non-
-    // physical or not an Inventory or what have you.
-    let category = ::ScannedItem.ItemCategory(thing);
-    if (category != "") return true;
-
-    if (thing.bNOBLOCKMAP || thing.bNOSECTOR || thing.bNOINTERACTION || thing.bISMONSTER) return false;
-    if (!(thing is "Inventory")) return false;
-
-    return true;
-  }
-
   override void WorldThingSpawned(WorldEvent evt) {
     let thing = evt.thing;
-    if (!IsReplaceable(thing)) return;
 
-    if (alarm) {
-      // Start-of-level countdown is still running, see if we need to replace this
-      // with an AP check token.
-      if (MaybeReplaceWithCheck(thing)) return;
-    }
-
-    // It's not a check, and it's not something we need to replace with a check.
-    // But, if it's a weapon, we might need to suppress its existence anways.
+    // Handle weapon suppression, if enabled.
     if (!ShouldAllow(Weapon(thing))) {
       ReplaceWithAmmo(thing, Weapon(thing));
       thing.ClearCounters();
       thing.Destroy();
     }
-  }
-
-  bool MaybeReplaceWithCheck(Actor thing) {
-    if (thing is "::CheckPickup") {
-      // Check has already been spawned, original item has already been deleted.
-      let thing = ::CheckPickup(thing);
-      DEBUG("WorldThingSpawned(check) = %s", thing.location.name);
-      ClearPending(thing.location);
-      return true;
-    }
-
-    DEBUG("WorldThingSpawned(%s)", thing.GetTag());
-    // Only checks count towards the item tally, not other items.
-    thing.ClearCounters();
-
-    let [check, distance] = FindCheckForActor(thing);
-    if (check) {
-      DEBUG("Replacing %s with %s", thing.GetTag(), check.name);
-      let pickup = ::CheckPickup.Create(check, thing);
-      DEBUG("Original has height=%d radius=%d, new height=%d r=%d",
-          thing.height, thing.radius, pickup.height, pickup.radius);
-      ClearPending(check);
-      thing.ClearCounters();
-      thing.Destroy();
-      return true;
-    }
-    return false;
   }
 
   // How many tics to allow drops for.
@@ -325,31 +248,6 @@ class ::PerLevelHandler : EventHandler {
     DEBUG("Spawned: %s", ammo.GetTag());
     ammo.ClearCounters();
     ammo.amount = amount;
-  }
-
-  ::Location, float FindCheckForActor(Actor thing) {
-    ::Location closest;
-    float min_distance = 1e10;
-    if (pending_locations.CountUsed() == 0) return null, 0.0;
-    foreach (_, check : pending_locations) {
-      float distance = (thing.pos - check.pos).Length();
-      if (distance == 0.0) {
-        // Perfect, we found the exact check this corresponds to.
-        return check, 0.0;
-      } else if (distance < min_distance) {
-        min_distance = distance;
-        closest = check;
-      }
-    }
-    // We found something, but it's not as close as we want it to be.
-    if (::Location.IsCloseEnough(closest.pos, thing.pos)) {
-      DEBUG("WARN: Closest to %s @ (%f, %f, %f) was %s @ (%f, %f, %f)",
-        thing.GetTag(), thing.pos.x, thing.pos.y, thing.pos.z,
-        closest.name, closest.pos.x, closest.pos.y, closest.pos.z);
-      return closest, min_distance;
-    }
-    // Not feeling great about this.
-    return null, min_distance;
   }
 
   //// Handling for level exit. ////
