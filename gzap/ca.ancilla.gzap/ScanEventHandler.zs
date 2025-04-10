@@ -48,11 +48,19 @@ class ::ScanEventHandler : StaticEventHandler {
     DEBUG("SEH netevent: %s", evt.name);
     if (evt.name == "ap-scan:start") {
       if (!self.scan_enabled) {
+
         Array<string> levels;
         ap_scan_levels.Split(levels, " ", TOK_SKIPEMPTY);
         foreach (levelname : levels) {
           scanner.EnqueueLevel(levelname, 0);
         }
+
+        levels.Clear();
+        ap_scan_skip.Split(levels, " ", TOK_SKIPEMPTY);
+        foreach (levelname : levels) {
+          scanner.SkipLevel(levelname);
+        }
+
         if (scanner.QueueSize() < 1) {
           ::Util.printf("$GZAP_SCAN_EMPTY");
           return;

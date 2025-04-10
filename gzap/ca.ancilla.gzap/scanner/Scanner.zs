@@ -12,6 +12,7 @@ class ::Scanner play {
   Array<::ScannedMap> scanned;
   Array<::ScannedMap> queued;
   Map<string, ::ScannedMap> maps_by_name;
+  Map<string, bool> skip;
 
   static void Output(string type, string map, string payload) {
     ::IPC.Send(type, string.format("{ \"map\": \"%s\", %s }", map, payload));
@@ -21,6 +22,11 @@ class ::Scanner play {
     return self.queued.Size();
   }
 
+  void SkipLevel(string mapname) {
+    string mapname = mapname.MakeUpper();
+    skip.Insert(mapname, true);
+  }
+
   bool EnqueueLevel(string mapname, uint rank) {
     string mapname = mapname.MakeUpper();
 
@@ -28,7 +34,7 @@ class ::Scanner play {
       return false;
     }
 
-    if (maps_by_name.CheckKey(mapname)) {
+    if (maps_by_name.CheckKey(mapname) || skip.CheckKey(mapname)) {
       // Already enqueued or scanned, do nothing.
       return false;
     }

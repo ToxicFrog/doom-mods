@@ -19,7 +19,8 @@ tools/ap-scan "MAYhem 2048" "testdata/doom/maps/anthologies/2014 - MAYhem 2048.w
 tools/ap-scan "Going Down Turbo" "testdata/doom/maps/megawads/2024 - Going Down Turbo [RC1-7].wad"
 tools/ap-scan "1000 Lines" "testdata/doom/maps/anthologies/2019 - 1000 Lines.zip"
 tools/ap-scan "1000 Lines II" "testdata/doom/maps/anthologies/2020 - 1000 Lines II.zip"
-MAPS="E1A1 E1A1" tools/ap-scan "The Adventures of Square" "testdata/doom/maps/conversions/2018 - The Adventures of Square 1+2.pk3"
+MAPS="E1A1 E1A1" SKIP="E1END E2END E2END2" tools/ap-scan \
+  "The Adventures of Square" "testdata/doom/maps/conversions/2018 - The Adventures of Square 1+2.pk3"
 
 
 # Maybe later

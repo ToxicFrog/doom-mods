@@ -10,6 +10,9 @@ tuning data generated in v0.4.0 to be invalidated. This only affects certain
 UDMF-format maps, and this data will be safely skipped when the tuning file is
 loaded. It does not affect tuning data from v0.3.x or earlier.
 
+- New:
+  - the `ap_scan_skip` cvar can be used to skip some levels when scanning,
+    even if they are reachable from your starting levels.
 - Change:
   - `pretuning_mode` only overrides the original `MAPINFO` if you also ask for
     `full_persistence`. Leaving it off means you can now do a pretuning run with

@@ -81,6 +81,8 @@ server int ap_release_on_level_clear = 0;
 // levels reachable from them will be scanned. Otherwise, only these levels
 // exactly will be. Space-separated.
 nosave noarchive string ap_scan_levels = "";
+// List of levels to skip. As above, space-separated.
+nosave noarchive string ap_scan_skip = "";
 // If false, only levels listed in ap_scan_levels will be scanned. If true, any
 // level reachable by exits from those levels will be as well, recursively.
 // Caveats:
