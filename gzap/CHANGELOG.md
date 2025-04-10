@@ -13,6 +13,7 @@ loaded. It does not affect tuning data from v0.3.x or earlier.
 - New:
   - the `ap_scan_skip` cvar can be used to skip some levels when scanning,
     even if they are reachable from your starting levels.
+  - Locations in the level select tooltips are now sorted alphabetically.
 - Change:
   - `pretuning_mode` only overrides the original `MAPINFO` if you also ask for
     `full_persistence`. Leaving it off means you can now do a pretuning run with
@@ -27,7 +28,7 @@ loaded. It does not affect tuning data from v0.3.x or earlier.
     checks being placed up to 2 world units away from the items they replaced;
     this is unlikely to be noticeable.
 - Fix:
-  - Encountering a tuning file with no maps now produces a useful error message
+  - Encountering a logic file with no maps now produces a useful error message
     rather than a division by zero crash.
   - Checks collected via release-at-exit are no longer used for tuning.
   - Map markers now properly follow checks again.
@@ -38,6 +39,7 @@ loaded. It does not affect tuning data from v0.3.x or earlier.
     should no longer occur when playing on ITYTD (nor the equivalent on NM!).
   - Adventures of Square now classifies more powerup types properly.
   - Adventures of Square no longer includes cutscene maps in the logic.
+  - Items weren't sorted properly in the inventory screen.
 
 # 0.4.0
 

@@ -71,6 +71,7 @@ class ::PlayEventHandler : StaticEventHandler {
     if (!initialized) {
       initialized = true;
       apclient.Init(self.apstate.slot_name, self.seed, self.wadname);
+      apstate.SortLocations();
     }
 
     if (level.LevelName == "TITLEMAP") return;

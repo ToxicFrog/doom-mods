@@ -121,6 +121,20 @@ class ::Region play {
     return total;
   }
 
+  void SortLocations() {
+    // It's small, we just bubble sort.
+    for (int i = self.locations.Size()-1; i > 0; --i) {
+      for (int j = 0; j < i; ++j) {
+        if (self.locations[j].name > self.locations[j+1].name) {
+          let tmp = self.locations[j];
+          self.locations[j] = self.locations[j+1];
+          self.locations[j+1] = tmp;
+        }
+      }
+      console.printf("-  [%d] %s", i, self.locations[i].name);
+    }
+  }
+
   // Return the name of the next item to hint for that's useful for this level.
   // If you don't have the level access, hints for that.
   // Otherwise, hints for the first key you don't have.

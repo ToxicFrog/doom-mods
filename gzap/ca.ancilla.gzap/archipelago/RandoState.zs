@@ -193,14 +193,20 @@ class ::RandoState play {
 
   void SortItems() {
     // It's small, we just bubble sort.
-    for (int i = 0; i < self.items.Size()-1; ++i) {
-      for (int j = i; j < self.items.Size()-1; ++j) {
+    for (int i = self.items.Size()-1; i > 0; --i) {
+      for (int j = 0; j < i; ++j) {
         if (!self.items[j].Order(self.items[j+1])) {
           let tmp = self.items[j];
           self.items[j] = self.items[j+1];
           self.items[j+1] = tmp;
         }
       }
+    }
+  }
+
+  void SortLocations() {
+    foreach (region : self.regions) {
+      region.SortLocations();
     }
   }
 
