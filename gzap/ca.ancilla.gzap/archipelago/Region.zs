@@ -131,7 +131,6 @@ class ::Region play {
           self.locations[j+1] = tmp;
         }
       }
-      console.printf("-  [%d] %s", i, self.locations[i].name);
     }
   }
 
