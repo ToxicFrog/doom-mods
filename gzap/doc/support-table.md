@@ -46,6 +46,7 @@ here may result in glitches.
 | WAD              | Maps | Mon/Lvl | Checks | Status | Notes |
 | ---------------- | ---- | ------- | ------ | ------ | ----- |
 | 1000 Lines       |   32 | 137 | 397 | full | Does not include the two bonus levels. |
+| 1000 Lines II    |   32 | 116 | 469 | full | |
 | Demonfear        |   32 |  39 | 289 | full | |
 | Going Down Turbo |   32 | 163 | 450 | problems | Some levels have intentionally-unreachable items in them, which need to be excluded from randomization. Known issues with persistent mode. |
 | MAYhem 2048      |   34 | 179 | 384 | partial | Would be full, but I accidentally overwrote half the tuning data. |
