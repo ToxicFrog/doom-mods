@@ -23,6 +23,9 @@ class ::ScannedMap play {
   // all the skill levels we care about.
   int max_skill;
   bool done;
+  // Set if this map should be used for exit searching but not included in the
+  // logic file.
+  bool skip;
 
   static ::ScannedMap Create(string mapname, uint rank) {
     let sm = ::ScannedMap(new("::ScannedMap"));
@@ -35,6 +38,7 @@ class ::ScannedMap play {
   }
 
   void Output() {
+    if (self.skip) return;
     // In Wolf3d TC, failing to do this will result in garbage at the start of
     // the AP-MAP line. This only happens when scanning, but also only happens
     // when wolf3d.ipk3 is loaded for some reason. We include this to put the
@@ -57,6 +61,9 @@ class ::ScannedMap play {
   }
 
   bool IsScanned() {
+    // Skipped levels are considered "done" as soon as they've been scanned at
+    // least once and thus we know exit capture has occurred.
+    if (self.skip) return self.max_skill > 0;
     return self.max_skill == 3;
   }
 

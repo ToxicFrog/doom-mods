@@ -48,17 +48,19 @@ class ::ScanEventHandler : StaticEventHandler {
     DEBUG("SEH netevent: %s", evt.name);
     if (evt.name == "ap-scan:start") {
       if (!self.scan_enabled) {
-
+        // Do ap_scan_skip first, so that if levels appear in both they are
+        // properly flagged as "to skip" and will be used as search roots but
+        // not emitted into the logic file.
         Array<string> levels;
-        ap_scan_levels.Split(levels, " ", TOK_SKIPEMPTY);
-        foreach (levelname : levels) {
-          scanner.EnqueueLevel(levelname, 0);
-        }
-
-        levels.Clear();
         ap_scan_skip.Split(levels, " ", TOK_SKIPEMPTY);
         foreach (levelname : levels) {
           scanner.SkipLevel(levelname);
+        }
+
+        levels.Clear();
+        ap_scan_levels.Split(levels, " ", TOK_SKIPEMPTY);
+        foreach (levelname : levels) {
+          scanner.EnqueueLevel(levelname, 0);
         }
 
         if (scanner.QueueSize() < 1) {

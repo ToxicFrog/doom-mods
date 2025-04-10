@@ -34,12 +34,13 @@ class ::Scanner play {
       return false;
     }
 
-    if (maps_by_name.CheckKey(mapname) || skip.CheckKey(mapname)) {
+    if (maps_by_name.CheckKey(mapname)) {
       // Already enqueued or scanned, do nothing.
       return false;
     }
 
     let sm = ::ScannedMap.Create(mapname, rank);
+    sm.skip = self.skip.GetIfExists(mapname);
 
     maps_by_name.Insert(mapname, sm);
     queued.Push(sm);
@@ -119,17 +120,6 @@ class ::Scanner play {
     }
 
     ::Util.printf("$GZAP_SCAN_MAP_STARTED", level.MapName, ::Util.GetSkillName());
-
-    // foreach (Actor thing : ThinkerIterator.Create("Actor", Thinker.STAT_DEFAULT)) {
-    //   if (thing.bISMONSTER && !thing.bCORPSE) {
-    //     // Not currently implemented
-    //     // nextmap.AddLocation(::ScannedMonster.Create(thing));
-    //   } else if (thing is "DehackedPickup") {
-    //     ScanDehacked(nextmap, DehackedPickup(thing));
-    //   } else if (::ScannedItem.ItemCategory(thing) != "") {
-    //     nextmap.AddLocation(::ScannedItem.Create(thing));
-    //   }
-    // }
 
     nextmap.MarkDone();
     if (nextmap.IsScanned()) nextmap.CopyFromLevelLocals(level);
