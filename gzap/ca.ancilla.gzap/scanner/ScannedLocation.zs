@@ -15,8 +15,8 @@ class ::ScannedLocation abstract play {
 
   string OutputPosition() {
     return string.format(
-      "\"position\": { \"x\": %f, \"y\": %f, \"z\": %f }",
-      pos.x, pos.y, pos.z);
+      "\"position\": { \"x\": %d, \"y\": %d, \"z\": %d }",
+      round(pos.x), round(pos.y), round(pos.z));
   }
 
   string OutputSkill() {

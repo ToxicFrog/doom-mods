@@ -79,26 +79,6 @@ be able to represent logic requirements that aren't just keys.
   when it's picked up
 - "tracker mode" that propagates key requirements into the generated pk3 and
   displays what it thinks you can reach from the level selector
-- when placing checks, it probably makes more sense to place the check first, then
-  delete any categorizeable items around it, rather than looking for something to
-  replace. This requires knowing what type of thing we *hoped* to replace so we
-  can copy physics info from it, so we don't get stuff in walls or anything.
-- check placement uses WorldThingSpawned, which, it turns out, sees the nominal
-  map coordinates of each actor, even if those coordinates are illegal. This explains
-  some check placement errors, e.g. AOS E1A4 -- the check is placed inside the
-  floor, WorldThingSpawned sees the in-floor Z coordinate, the scanner saw it using
-  ThinkerIterator after it's been Z-corrected.
-
-### Adventures of Square
-
-This has some extra complications around powerups that are actually key items,
-and the like; additionally, the weapons as placed in the maps aren't real weapons,
-they're CustomInventory items that, when picked up, turn into weapons. To address
-this we probably need an option to load an external lump containing a class name
-to category mapping so that we can, for example, list the AOS weapon customs in it
-and map them to `weapon`.
-
-Support for other TCs will probably benefit from work done on AOS.
 
 ### Faithless
 
@@ -365,3 +345,18 @@ Upgrades inspired by DoomRL:
 - show secrets/monsters/items/etc on map
 - damage type modifications (e.g. shrapnel -> AP)
 - damage resistance while firing
+
+## Event ordering in StaticEventHandler
+
+When starting a new game:
+- PlayerSpawned
+- PlayerEntered
+- WorldLoaded
+- WorldTick (!)
+- WorldThingSpawned for every actor
+- more WorldTick
+
+When loading a game:
+- WorldLoaded
+- more WorldTick
+

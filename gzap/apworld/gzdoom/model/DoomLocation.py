@@ -16,9 +16,9 @@ class DoomPosition(NamedTuple):
     """
     map: str
     virtual: bool  # True if this doesn't actually exist in the world and coords are meaningless
-    x: float
-    y: float
-    z: float
+    x: int
+    y: int
+    z: int
 
 
 class DoomLocation:

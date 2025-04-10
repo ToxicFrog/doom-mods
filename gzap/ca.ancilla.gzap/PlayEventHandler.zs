@@ -95,7 +95,7 @@ class ::PlayEventHandler : StaticEventHandler {
 
     string pos = "";
     if (!loc.is_virt) {
-      pos = string.format(", \"pos\": [\"%s\",%.1f,%.1f,%.1f]",
+      pos = string.format(", \"pos\": [\"%s\",%d,%d,%d]",
         loc.mapname, loc.pos.x, loc.pos.y, loc.pos.z);
     }
 

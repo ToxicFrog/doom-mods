@@ -10,6 +10,7 @@ class ::ScanEventHandler : StaticEventHandler {
   bool scan_enabled;
   ::Scanner scanner;
   ::RC rc;
+  int timer;
 
   override void OnRegister() {
     self.scan_enabled = false;
@@ -21,7 +22,26 @@ class ::ScanEventHandler : StaticEventHandler {
     if (!scan_enabled) return;
     // As soon as we load into a new map, queue up a scan.
     // We can't do it immediately by calling ScanLevel() or things break?
-    EventHandler.SendNetworkEvent("ap-scan:continue", 0, 0, 0);
+    // EventHandler.SendNetworkEvent("ap-scan:continue", 0, 0, 0);
+  }
+
+  override void WorldThingSpawned(WorldEvent evt) {
+    if (!scan_enabled) return;
+    let thing = evt.thing;
+    if (!thing) return;
+    // DEBUG("WTS: %s", thing.GetTag());
+    if (scanner.ScanActor(thing)) timer = 0;
+  }
+
+  override void WorldTick() {
+    if (!scan_enabled) return;
+    timer++;
+    if (timer > 2) {
+      DEBUG("Timer expired, finalizing level");
+      timer = 0;
+      scan_enabled = scanner.FinalizeLevel(ap_scan_recurse);
+      if (!scan_enabled) scanner.FinalizeScan();
+    }
   }
 
   override void NetworkProcess(ConsoleEvent evt) {
@@ -38,14 +58,15 @@ class ::ScanEventHandler : StaticEventHandler {
           return;
         }
         ::Util.printf("$GZAP_SCAN_STARTING");
-        EventHandler.SendNetworkEvent("ap-scan:continue", 0, 0, 0);
+        scan_enabled = scanner.ScanNext();
+        // EventHandler.SendNetworkEvent("ap-scan:continue", 0, 0, 0);
       }
-    } else if (evt.name == "ap-scan:continue") {
-      self.scan_enabled = scanner.ScanLevel(ap_scan_recurse);
-      if (!self.scan_enabled) {
-        ::IPC.Send("SCAN-DONE", "{}");
-        ::Util.printf("$GZAP_SCAN_DONE");
-      }
+    // } else if (evt.name == "ap-scan:continue") {
+    //   self.scan_enabled = scanner.ScanLevel(ap_scan_recurse);
+    //   if (!self.scan_enabled) {
+    //     ::IPC.Send("SCAN-DONE", "{}");
+    //     ::Util.printf("$GZAP_SCAN_DONE");
+    //   }
     }
     // TODO: add a way to re-dump the scan results e.g. if someone forgot to turn
     // on logging. ap-scan:write perhaps.

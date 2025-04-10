@@ -8,6 +8,8 @@ uses to improve the randomizer logic.
 This file documents how to produce and update these files. It will use Demonfear
 (DMONFEAR.WAD) as an example.
 
+⚠️ In a few wads, this process produces rapid screen flashing.
+
 
 ## Generating a new logic file
 
@@ -100,7 +102,9 @@ will create multiple, numbered tuning files, all of which will be loaded by the
 apworld.
 
 When you play single-world, you can accomplish the same thing with the `logfile`
-console command.
+console command. (Or you can just leave the AP client running in the background
+-- it doesn't need to connect to the AP server to create the tuning file for
+you.)
 
 The files in `<AP dir>/gzdoom/tuning/` will be loaded automatically; to "bake it
 in" to the apworld, use the same procedure as adding a logic file, but put the
@@ -131,10 +135,11 @@ Alternately, you can mark every check you touch for the rest of the level:
 
     ap_scan_unreachable 2
 
-In the latter case, it will mark all remaining checks when you exit the level, so
-you don't need to run around noclipping to all of them -- just set it to 2 and
-touch the exit.
+In the latter case, it will mark all remaining checks when you exit the level,
+so you don't need to run around noclipping to all of them -- just set it to 2
+and touch the exit.
 
 On future runs, unreachable checks will still be present in the world, but will
-be hard-coded to contain Doom filler items; they will never contain progression
-items or items from someone else's game.
+be hard-coded to contain a 1-point health restore filler item; they will never
+contain progression items or items from someone else's game. They will also be
+displayed with a greyscale icon.

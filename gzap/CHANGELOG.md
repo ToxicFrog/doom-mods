@@ -1,5 +1,15 @@
 # Unreleased
 
+This release brings significant internal changes to the scanner. Rescanning wads
+is not required, but is recommended; the new logic files are smaller, and it
+brings better support for scanning items that are placed partly embedded in
+walls/floors or on elevators/conveyors.
+
+In a small minority of cases, rescanning a wad using 0.4.1 will cause some
+tuning data generated in v0.4.0 to be invalidated. This only affects certain
+UDMF-format maps, and this data will be safely skipped when the tuning file is
+loaded. It does not affect tuning data from v0.3.x or earlier.
+
 - Change:
   - `pretuning_mode` only overrides the original `MAPINFO` if you also ask for
     `full_persistence`. Leaving it off means you can now do a pretuning run with
@@ -7,6 +17,12 @@
   - File extensions are now ignored when loading logic or tuning files.
   - The client now writes a separate tuning file for each game session, named
     `{wad name}.{timestamp}.tuning`.
+  - Scanner now captures object locations at spawn time rather than 1-2 tics
+    after spawning.
+  - Scanner and tuner now use integer positions to identify locations. In rare
+    cases (on UDMF maps using fractional actor positions), this may result in
+    checks being placed up to 2 world units away from the items they replaced;
+    this is unlikely to be noticeable.
 - Fix:
   - Encountering a tuning file with no maps now produces a useful error message
     rather than a division by zero crash.
