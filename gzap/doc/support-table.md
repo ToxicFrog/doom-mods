@@ -56,7 +56,7 @@ here may result in glitches.
 
 | Game                     | Maps | Mon/Lvl | Checks | Status | Notes |
 | ------------------------ | ---- | ------- | ------ | ------ | ----- |
-| The Adventures of Square | 25 | 226 | 610 | basic | Not compatible with persistent mode. |
+| The Adventures of Square | 22 | 256 | 640 | basic | Not compatible with persistent mode. |
 | Ashes 2063               | | | | missing | |
 | Ashes: Afterglow         | | | | missing | Uses hub maps. |
 | Ashes: Hard Reset        | | | | missing | Still need to play it. |

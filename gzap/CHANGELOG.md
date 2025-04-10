@@ -36,6 +36,8 @@ loaded. It does not affect tuning data from v0.3.x or earlier.
     correct locations.
   - "This game was generated on 'easy', but you are playing on 'easy'" error
     should no longer occur when playing on ITYTD (nor the equivalent on NM!).
+  - Adventures of Square now classifies more powerup types properly.
+  - Adventures of Square no longer includes cutscene maps in the logic.
 
 # 0.4.0
 

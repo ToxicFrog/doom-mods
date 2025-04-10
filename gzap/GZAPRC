@@ -83,6 +83,12 @@ category weapon:
   DefibrillatorVO PaintGunVO PaintGunsVO OoziVO OozisVO ShotbowVO
   QuadcannonVO PaintCannonVO HellShellLauncherVO GoonadesVO SceptreVO;
 
+# SillySphere is basically the equivalent of Megasphere
+category big-armor: SillySphere;
+
+# Powerups that are implemented as CustomInventory
+category powerup: HolySphere HotSauce Locationator;
+
 # Fishtank spawners are needed for progression in some levels and shouldn't be
 # replaced. Same deal with EnviroSpawners.
 category none: FishTankSpawner EnviroSpawner;
