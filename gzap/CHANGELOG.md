@@ -1,4 +1,6 @@
-# Unreleased
+# 0.4.1
+
+This is a bugfix release.
 
 This release brings significant internal changes to the scanner. Rescanning wads
 is not required, but is recommended; the new logic files are smaller, and it
@@ -21,13 +23,13 @@ loaded. It does not affect tuning data from v0.3.x or earlier.
   - File extensions are now ignored when loading logic or tuning files.
   - The client now writes a separate tuning file for each game session, named
     `{wad name}.{timestamp}.tuning`.
-  - Scanner now captures object locations at spawn time rather than 1-2 tics
-    after spawning.
   - Scanner and tuner now use integer positions to identify locations. In rare
     cases (on UDMF maps using fractional actor positions), this may result in
     checks being placed up to 2 world units away from the items they replaced;
     this is unlikely to be noticeable.
 - Fix:
+  - Scanner now captures object locations at spawn time rather than 1-2 tics
+    after spawning.
   - Encountering a logic file with no maps now produces a useful error message
     rather than a division by zero crash.
   - Checks collected via release-at-exit are no longer used for tuning.

@@ -5,18 +5,22 @@
 ### World generation says "no more spots to place items"!
 
 This means the generator got into a state where it couldn't figure out where to
-place progression items in a way that keeps the game winnable. This is most likely
-to happen with newly generated logic files or ones with "basic" support, and can
-usually be resolved by retrying a few times.
+place progression items in a way that keeps the game winnable. This is most
+likely to happen with newly generated logic files or ones with "basic" support,
+and can usually be resolved by retrying a few times.
 
-Setting the `level_order_bias` option too high can also cause this, as can turning
-off `start_with_keys`.
+If it happens consistently, you have a few options for reducing constraints on
+the randomizer:
+- Adding more `starting_levels` will give it more places to put early items, as
+  will turning on `start_with_keys` and `allow_secret_progress`
+- Turning down `level_order_bias`, `local_weapon_bias`, and `carryover_weapon_bias`
+  will let it move more items to later spheres (but also make the game harder)
+- Adding more categories to `included_item_categories` will give it more locations
+  to put things at (but also add more filler to the item pool)
 
-Adding more levels to `starting_levels` or turning down `level_order_bias` will
-likely fix it.
-
-If it's happening on a tuned ("full" or "complete" support) logic file, or if
-happens *every* time, please report it.
+You can also turn on `pretuning_mode` and play through the first few levels to
+generate a partial logic file, which in most wads will give it enough information
+about early-game item placement to get it unstuck even without `start_with_keys`.
 
 ### I got partway through a level and now I'm stuck!
 
