@@ -58,6 +58,13 @@ example, to scan Doom 1:
 Note that the quotes around the map names are mandatory in the console, and should
 be omitted if scanning from the GUI.
 
+### Skipping levels
+
+You can use `ap_scan_skip` in the same way as `ap_scan_levels`; levels found
+this way will be used to find other levels but will not themselves be scanned.
+
+    ap_scan_skip "E1END E2END CREDITS"
+
 ### Overriding scanner behaviour
 
 Some wads contain items that gzArchipelago's automatic item classifier does not

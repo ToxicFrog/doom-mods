@@ -96,7 +96,9 @@ WAD Import Scanner,GZAP_OPT_HEADER_WAD_SCANNER,
 Initial levels to scan,GZAP_OPT_NAME_SCAN_LEVELS,
 "Levels to scan, space-separated (e.g. ""E1M1 E2M1 E3M1"").
 
-For most Doom 2 style wads, you can just set this to MAP01 and make sure recursion is on and it will scan the entire WAD. For games separated into episodes, like Doom 1 or Heretic, you probably need to list every episode start here. For games that use map teleport specials rather than MAPINFO, like Faithless, you'll need to list all the maps you want to scan here.",GZAP_OPT_TT_SCAN_LEVELS,
+For most Doom 2 style wads, you can just set this to MAP01 and make sure recursion is on and it will scan the entire WAD. For games separated into episodes, like Doom 1 or Heretic, you probably need to list every episode start here.",GZAP_OPT_TT_SCAN_LEVELS,
+Levels to ignore,GZAP_OPT_NAME_SCAN_SKIP,
+"A space-separated list of levels that the scanner will ignore if it finds them. Deathmatch maps, end-of-episode cutscenes, and credit maps are typical things to list here.",GZAP_OPT_TT_SCAN_SKIP,
 Recursive scanning,GZAP_OPT_NAME_SCAN_RECURSE,
 "If on, after scanning a level, it will also scan the NextMap/NextSecretMap listed for that level in MAPINFO.
 
