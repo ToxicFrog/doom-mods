@@ -1,3 +1,9 @@
+# Unreleased
+
+- Fix:
+  - Client now forces UTF-8 encoding for file IO, which fixes a client crash on
+    windows when processing messages that include non-ASCII characters.
+
 # 0.4.1
 
 This is a bugfix release.

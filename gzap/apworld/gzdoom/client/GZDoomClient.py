@@ -1,5 +1,6 @@
 import asyncio
 import copy
+import locale
 import os
 import os.path
 from typing import Any, Dict
@@ -57,10 +58,11 @@ class GZDoomContext(CommonContext):
 
     async def get_username(self):
         if not self.auth:
-            print("Getting slot name from gzdoom:", self.auth, self.username)
+            print("Getting slot name from gzdoom...")
             await self.found_gzdoom.wait()
             self.username = self.slot_name
             self.auth = self.username
+            print("Got slot info:", self.username)
 
     async def server_auth(self, *args):
         """Called automatically when the server connection is established."""
@@ -99,6 +101,7 @@ class GZDoomContext(CommonContext):
         # and propagate the error if so.
         for task in [self.items_task, self.locations_task, self.hints_task]:
             if task.done():
+                print(f"Task {task} has exited!")
                 task.result()  # raises if the task errored out
         self.watcher_event.set()
 
@@ -187,6 +190,8 @@ def main(*args):
     ipc_log = os.path.join(gzd_dir, 'gzdoom.log')
     with open(ipc_log, "a"):
         pass
+
+    print(f"GZDoom IPC files created. Host encoding: {locale.getencoding()}. IPC encoding: UTF-8.")
 
     async def actual_main(args, ipc_dir, ipc_log):
         ctx = GZDoomContext(args.connect, args.password, gzd_dir)

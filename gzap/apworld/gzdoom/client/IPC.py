@@ -83,7 +83,7 @@ class IPC:
   def _log_reading_loop(self, ipc_dir: str, loop):
     log_path = os.path.join(ipc_dir, "gzdoom.log")
     tune = None
-    with open(log_path, "r") as log:
+    with open(log_path, "r", encoding="utf-8") as log:
        self._wait_for_live_log(log)
        while True:
           line = self._blocking_readline(log).strip()
@@ -106,7 +106,7 @@ class IPC:
           if evt == "AP-XON":
             if tune:
               tune.close()
-            tune = open(self._tuning_file_path(ipc_dir, payload["wad"]), "a")
+            tune = open(self._tuning_file_path(ipc_dir, payload["wad"]), "a", encoding="utf-8")
 
           if evt == "AP-CHECK" and tune:
             tune.write(line+"\n")
@@ -314,8 +314,9 @@ class IPC:
     if buf == self.ipc_buf:
       return
     # print(f"Sending {len(buf)} bytes with ids {first_id}..{last_id}")
-    with open(self.ipc_path, "w") as fd:
+    with open(self.ipc_path, "w", encoding="utf-8") as fd:
       fd.write(buf)
-      # Use the full size, same rational as above.
+      # Use the full size, same rationale as above.
       fd.truncate(self.ipc_size)
     self.ipc_buf = buf
+    # print("Send complete.")
