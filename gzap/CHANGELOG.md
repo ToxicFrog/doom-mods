@@ -1,4 +1,10 @@
-# Unreleased
+# 0.4.2
+
+This is a bugfix release.
+
+The changes are small, but some of the bugs fixed are fairly large, including
+one that was causing tuning files to not work properly, so upgrading is
+recommended.
 
 - Fix:
   - Client now forces UTF-8 encoding for file IO, which fixes a client crash on
