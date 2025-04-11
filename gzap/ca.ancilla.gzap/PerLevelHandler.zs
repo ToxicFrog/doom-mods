@@ -74,9 +74,18 @@ class ::PerLevelHandler : EventHandler {
 
     foreach (location : region.locations) {
       if (location.secret_sector < 0) continue;
-      if (location.checked) continue;
+
       DEBUG("Init secret location: %s", location.name);
       let sector = level.sectors[location.secret_sector];
+      if (location.checked) {
+        // Location is checked but sector is still marked undiscovered -- level
+        // probably got reset.
+        DEBUG("Clearing secret flag on sector %d", location.secret_sector);
+        sector.ClearSecret();
+        level.found_secrets++;
+        continue;
+      }
+
       if (!sector.IsSecret()) {
         // Location isn't marked checked but the corresponding sector has been
         // discovered, so emit a check event for it.

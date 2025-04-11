@@ -5,6 +5,8 @@
     windows when processing messages that include non-ASCII characters.
   - Items originally placed with checks would respawn if the check was collected
     and then the level reset.
+  - Checked secret sectors were not counted towards "secrets found" in the level
+    stats if you left the level and then returned.
 
 # 0.4.1
 
