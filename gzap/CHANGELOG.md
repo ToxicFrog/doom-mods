@@ -3,6 +3,8 @@
 - Fix:
   - Client now forces UTF-8 encoding for file IO, which fixes a client crash on
     windows when processing messages that include non-ASCII characters.
+  - Items originally placed with checks would respawn if the check was collected
+    and then the level reset.
 
 # 0.4.1
 

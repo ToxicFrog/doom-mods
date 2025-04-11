@@ -114,7 +114,6 @@ class ::PerLevelHandler : EventHandler {
     foreach (location : region.locations) {
       // Secret-sector locations are handled by SetupSecrets().
       if (location.secret_sector >= 0) continue;
-      if (location.checked) continue;
       ::CheckPickup.Create(location);
     }
     apstate.UpdatePlayerInventory();

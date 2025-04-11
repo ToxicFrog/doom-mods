@@ -175,7 +175,6 @@ class ::CheckPickup : ScoreItem {
 
   override void PostBeginPlay() {
     if (self.location.unreachable) self.ClearCounters();
-    if (self.location.checked) return;
     UpdateFromLocation();
   }
 
