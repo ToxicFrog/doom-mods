@@ -7,6 +7,7 @@
     and then the level reset.
   - Checked secret sectors were not counted towards "secrets found" in the level
     stats if you left the level and then returned.
+  - Tuning file entries for trivially reachable locations were not being read.
 
 # 0.4.1
 

@@ -101,6 +101,7 @@ class DoomLocation:
         # self.unreachable = False
         # If the new keyset is empty this is trivially reachable.
         if not new_keyset:
+            # print(f"Tuning keys [{self.name()}]: old={self.keys} new=none")
             self.keys = frozenset()
         # If our existing keyset is empty, it cannot be further tuned.
         if not self.keys:
@@ -110,7 +111,7 @@ class DoomLocation:
         new_keys = frozenset(
             [ks for ks in self.keys if not new_keyset < ks] + [new_keyset])
         if new_keys != self.keys:
-            # print(f"Tuning keys: old={self.keys} tune={new_keyset} new={new_keys}")
+            # print(f"Tuning keys [{self.name()}]: old={self.keys} tune={new_keyset} new={new_keys}")
             self.keys = new_keys
 
     def access_rule(self, player):
