@@ -214,6 +214,7 @@ def main(*args):
         await ctx.exit_event.wait()
         print("Shutting down...")
         ctx.ipc.should_exit = True
+        ctx.awaken()
         await ctx.shutdown()
 
     import colorama

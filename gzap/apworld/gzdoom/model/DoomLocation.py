@@ -108,6 +108,8 @@ class DoomLocation:
             return
         # Update the keysets by removing any keysets that this one is a proper
         # subset of.
+        # TODO: if the new keyset is a superset of one of the existing ones,
+        # don't record it -- this doesn't affect logic either way but it's untidy.
         new_keys = frozenset(
             [ks for ks in self.keys if not new_keyset < ks] + [new_keyset])
         if new_keys != self.keys:

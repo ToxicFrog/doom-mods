@@ -1,3 +1,8 @@
+# Unreleased
+
+- Fix:
+  - Closing the GZDoom Client window now works even if gzdoom isn't running.
+
 # 0.4.2
 
 This is a bugfix release.

@@ -129,6 +129,8 @@ class IPC:
       print("Logfile is from a previous run of gzdoom. Waiting for a new one.")
       while fd.tell() <= os.stat(fd.fileno()).st_size:
         time.sleep(1)
+        if self.should_exit:
+          return
     fd.seek(0)
 
   def _blocking_readline(self, fd) -> str:
