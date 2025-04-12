@@ -26,6 +26,7 @@ class GZDoomContext(SuperContext):
     items_handling = 0b111  # fully remote
     want_slot_data = False
     slot_name = None
+    tags = {"AP"}
 
     def __init__(self, server_address: str, password: str, gzd_dir: str):
         self.found_gzdoom = asyncio.Event()
