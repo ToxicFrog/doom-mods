@@ -7,6 +7,8 @@
   - [Universal Tracker](https://github.com/FarisTheAncient/Archipelago/releases)
     support. If you have UT installed, the GZDoom client will now have a "tracker"
     tab.
+  - If UT is enabled, and the client is running, locations known to be in logic
+    will be displayed first and hilighted on the level select screen.
 - Fix:
   - Closing the GZDoom Client window now works even if gzdoom isn't running.
   - Certain `included_item_categories` configurations could break Universal

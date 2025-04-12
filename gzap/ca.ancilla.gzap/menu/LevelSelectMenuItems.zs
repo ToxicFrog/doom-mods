@@ -198,11 +198,7 @@ class ::LevelSelector : ::KeyValueNetevent {
     string buf = "";
     foreach (loc : region.locations) {
       if (!loc.checked && !loc.unreachable) {
-        // TODO: this is a gross hack to strip the redundant "MAPNN - " prefix
-        // from the check name.
-        string shortname = loc.name;
-        shortname.replace(region.map .. " - ", "");
-        buf = buf .. string.format("\n  \c[DARKGRAY]%s", shortname);
+        buf = buf .. string.format("\n  \c[%s]%s", loc.in_logic ? "ICE" : "BLACK", loc.name);
 
         let peek = region.GetPeek(loc.name);
         if (peek) {

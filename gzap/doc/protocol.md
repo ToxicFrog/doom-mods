@@ -260,6 +260,11 @@ game should remove it from the list of pending checks and (TODO) despawn it from
 the world if it's currently spawned. It's safe for the player to re-collect it
 but doing so won't do anything.
 
+#### `TRACK` `id`
+
+Tells the game that the tracker thinks the given location is in logic. If it has
+not yet been collected, the in-game location display will hilight it.
+
 #### `HINT` `map` `item` `player` `location`
 
 Tells the game that we have received a hint for the location of one of our items.
@@ -285,3 +290,4 @@ about what's located where.
 
 `PEEK⋅MAP01⋅Chainsaw⋅Link⋅Hookshot`, for example, indicates that the chainsaw on
 "Entryway" contains Link's hookshot.
+

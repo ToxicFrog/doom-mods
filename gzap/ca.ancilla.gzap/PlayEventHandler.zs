@@ -197,6 +197,9 @@ class ::PlayEventHandler : StaticEventHandler {
       let region = apstate.GetRegion(mapname);
       if (!region) return; // AP sent us a map name that doesn't exist??
       region.RegisterPeek(location, player, item);
+    } else if (cmd.command == "ap-ipc:track") {
+      int apid = cmd.ReadInt();
+      apstate.MarkLocationInLogic(apid);
     } else if (cmd.command == "ap-hint") {
       // Player requested a hint from the level select menu.
       string item = cmd.ReadString();

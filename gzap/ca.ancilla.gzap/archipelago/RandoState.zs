@@ -327,6 +327,18 @@ class ::RandoState play {
     UpdateStatus();
   }
 
+  void MarkLocationInLogic(int apid) {
+    ++txn;
+    foreach (_, region : self.regions) {
+      let loc = region.GetLocation(apid);
+      if (loc) {
+        loc.in_logic = true;
+        region.SortLocations();
+      }
+    }
+    UpdateStatus();
+  }
+
   uint LevelsClear() const {
     uint n = 0;
     foreach (name, region : self.regions) {

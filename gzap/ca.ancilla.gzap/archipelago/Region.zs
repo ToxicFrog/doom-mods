@@ -24,6 +24,8 @@ class ::Peek play {
 
 class ::Region play {
   string map;
+  // Kept as an array so we can sort it for display.
+  // Hopefully this doesn't become a performance issue.
   Array<::Location> locations;
   Map<string, bool> keys;
   // Hints tell you where items relevant to this level are.
@@ -125,7 +127,7 @@ class ::Region play {
     // It's small, we just bubble sort.
     for (int i = self.locations.Size()-1; i > 0; --i) {
       for (int j = 0; j < i; ++j) {
-        if (self.locations[j].name > self.locations[j+1].name) {
+        if (!self.locations[j].Order(self.locations[j+1])) {
           let tmp = self.locations[j];
           self.locations[j] = self.locations[j+1];
           self.locations[j+1] = tmp;

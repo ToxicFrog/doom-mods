@@ -45,6 +45,10 @@ class GZDoomContext(SuperContext):
         self.items_task = asyncio.create_task(self._item_loop())
         self.locations_task = asyncio.create_task(self._location_loop())
         self.hints_task = asyncio.create_task(self._hint_loop())
+        if tracker_loaded:
+            self.tracker_task = asyncio.create_task(self._tracker_loop())
+        else:
+            self.tracker_task = None
         print("Starting server loop")
         self.server_task = asyncio.create_task(server_loop(self), name="ServerLoop")
         print("All tasks started.")
@@ -78,6 +82,7 @@ class GZDoomContext(SuperContext):
         self.seed_name = seed
         self.last_items = {}  # force a re-send of all items
         self.last_locations = set()
+        self.last_tracked = set()
         self.last_hints = {}
         self.found_gzdoom.set()
         self.ipc.send_text("Archipelago<->GZDoom connection established.")
@@ -105,8 +110,8 @@ class GZDoomContext(SuperContext):
         # the coroutine just silently dies and you never know why.
         # So whenever we awaken, we first check to see if any of the coros died,
         # and propagate the error if so.
-        for task in [self.items_task, self.locations_task, self.hints_task]:
-            if task.done():
+        for task in [self.items_task, self.locations_task, self.hints_task, self.tracker_task]:
+            if task is not None and task.done():
                 print(f"Task {task} has exited!")
                 task.result()  # raises if the task errored out
         self.watcher_event.set()
@@ -158,6 +163,18 @@ class GZDoomContext(SuperContext):
                 self.ipc.send_checked(id)
             self.ipc.flush()
             self.last_locations |= new_locations
+
+    async def _tracker_loop(self):
+        self.last_tracked = set()
+        while not self.exit_event.is_set():
+            await self.watcher_event.wait()
+            self.watcher_event.clear()
+            new_tracked = set(self.locations_available) - self.last_tracked
+            # print("Location loop running", new_locations, self.checked_locations)
+            for id in new_tracked:
+                self.ipc.send_track(id)
+            self.ipc.flush()
+            self.last_tracked |= new_tracked
 
     async def _hint_loop(self):
         self.last_hints = {}

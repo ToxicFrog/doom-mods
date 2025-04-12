@@ -18,6 +18,7 @@ class ::Location {
   bool progression;   // Does it hold a progression item?
   bool unreachable;   // Do we think this is unreachable?
   bool checked;       // Has the player already checked it?
+  bool in_logic;      // Does the tracker thing we can reach it?
   Vector3 pos;
   bool is_virt;       // Virtual location with no physical position.
   int secret_sector;
@@ -34,5 +35,13 @@ class ::Location {
       && ((delta.x == 0 && delta.y == 0)
           || (delta.x == 0 && delta.z == 0)
           || (delta.y == 0 && delta.z == 0));
+  }
+
+  bool Order(::Location other) {
+    if (self.in_logic != other.in_logic) {
+      // in-logic locations always sort before out-of-logic ones
+      return self.in_logic;
+    }
+    return self.name < other.name;
   }
 }
