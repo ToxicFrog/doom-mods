@@ -13,11 +13,10 @@ class GZAP_DataPackageEventHandler : StaticEventHandler {
   GZAP_PlayEventHandler peh;
 
   override void OnRegister() {
-    console.printf("Initializing Archipelago data package.");
+    console.printf("Initializing Archipelago data package from apworld version %s", "{{mod_version}}");
     peh = GZAP_PlayEventHandler.Get();
     let apstate = GZAP_PlayEventHandler.GetState();
 
-    // console.printf("This was generated from seed %s for %s.", "{{seed}}", "{{player}}");
     peh.RegisterGameInfo("{{player}}", "{{seed}}", "{{wad}}", {{spawn_filter}}, {{singleplayer}});
 
     {% for condition, value in win_conditions.items() %}

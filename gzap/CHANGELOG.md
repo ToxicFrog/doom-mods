@@ -1,5 +1,9 @@
 # Unreleased
 
+- New:
+  - Runtime mod and generated mod now report the zscript version and apworld
+    version, respectively, on startup. This should make version mismatches
+    very obvious from the first few lines of the log.
 - Fix:
   - Closing the GZDoom Client window now works even if gzdoom isn't running.
 

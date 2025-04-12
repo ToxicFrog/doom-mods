@@ -1,6 +1,7 @@
 ### Values to be provided by the caller before this file is included. ###
 
 #NAME= name of the pk3
+#TAGS= glob to use when searching for git tags to generate version IDs
 #VERSION= pk3 version
 #LUMPS= list of top-level lump files and dirs
 #ZSDIR= list of directories holding zscript to compile
@@ -11,7 +12,7 @@
 
 PK3=${TOPDIR}/release/${NAME}-${VERSION}.pk3
 PK3LN=${TOPDIR}/release/${NAME}-latest.pk3
-MOD_VERSION=${VERSION}+$(shell git rev-parse --short=8 HEAD)
+MOD_VERSION=$(shell git describe --tags --match "${TAGS}")
 
 ifdef ZSDIR
 ZSCRIPT_AUTO=$(patsubst %.zs,%.zsc,$(shell find ${ZSDIR} -name "*.zs"))

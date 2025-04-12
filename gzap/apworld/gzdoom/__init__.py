@@ -1,4 +1,5 @@
 import fnmatch
+from importlib import resources
 import jinja2
 import logging
 import os
@@ -319,9 +320,12 @@ class GZDoomWorld(World):
         def locations(map):
             return self.pool.locations_in_map(map)
 
+        mod_version = resources.files(__package__).joinpath('VERSION').read_text().strip()
+
         data = {
             "singleplayer": self.multiworld.players == 1,
             "seed": self.multiworld.seed_name,
+            "mod_version": mod_version,
             "player": self.multiworld.player_name[self.player],
             "spawn_filter": self.spawn_filter,
             "persistence": self.options.full_persistence.value,
