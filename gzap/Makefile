@@ -11,12 +11,14 @@ all: ${PK3} apworld
 
 include ${TOPDIR}/rules.make
 
-apworld: ${TOPDIR}/release/gzdoom-${VERSION}.apworld
+apworld: version ${TOPDIR}/release/gzdoom-${VERSION}.apworld
 
-apworld/gzdoom/VERSION:
-	git describe --tags --match "${TAGS}" > $@
+version:
+	${TOPDIR}/tools/version-stamp "${TAGS}" apworld/gzdoom/VERSION
 
-${TOPDIR}/release/gzdoom-${VERSION}.apworld: apworld/gzdoom/VERSION apworld/gzdoom/* apworld/gzdoom/*/*
+ca.ancilla.gzap/PlayEventHandler.zsc: apworld/gzdoom/VERSION
+
+${TOPDIR}/release/gzdoom-${VERSION}.apworld: apworld/gzdoom/* apworld/gzdoom/*/*
 	cd apworld && zip -r gzdoom.apworld gzdoom
 	cp apworld/gzdoom.apworld ~/.local/share/Archipelago/worlds/
 	cp apworld/gzdoom.apworld ${TOPDIR}/release/

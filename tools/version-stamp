@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+tags="$1"
+out="$2"
+
+git describe --tags --match "${tags}" > "${out}.tmp"
+if [[ $(cat "${out}") != $(cat "${out}.tmp") ]]; then
+  mv "${out}.tmp" "${out}"
+else
+  rm "${out}.tmp"
+fi
