@@ -185,7 +185,7 @@ class IPC:
     self.ipc_path = os.path.join(self.ipc_dir, lump)
     assert size == self.ipc_size, "IPC size mismatch between gzdoom and AP -- please exit both, start then client, then gzdoom"
     self.nick = nick
-    self._flush()
+    self.flush()
     await self.ctx.on_xon(slot, seed)
 
   async def recv_ack(self, id: int) -> None:
@@ -196,7 +196,7 @@ class IPC:
     if there were any waiting for free space.
     """
     self._ack(id)
-    self._flush()
+    self.flush()
 
   async def recv_check(self, id: int) -> None:
     """
@@ -222,7 +222,7 @@ class IPC:
   async def recv_xoff(self) -> None:
     # Stop sending things to the client.
     self.nick = None
-    self._flush()
+    self.flush()
 
 
   #### Handlers for events coming from Archipelago. ####
@@ -230,12 +230,10 @@ class IPC:
   def send_item(self, id: int, count: int) -> None:
     """Send the item with the given ID to the player."""
     self._enqueue("ITEM", id, count)
-    self._flush()
 
   def send_checked(self, id: int) -> None:
     """Mark the given location as having been checked."""
     self._enqueue("CHECKED", id)
-    self._flush()
 
   def send_text(self, message: str) -> None:
     """Display the given message to the player."""
@@ -245,7 +243,6 @@ class IPC:
     # in the log, the client sees it as a new chat message, sends it to the server,
     # which echoes it, etc.
     self._enqueue("TEXT", "[AP]"+ansi_to_gzdoom(message))
-    self._flush()
 
   def send_hint(self, map: Optional[str], item: str, player: str, location: str) -> None:
     """Send a hint to the game. map is only set if it's a scoped item being hinted."""
@@ -283,7 +280,7 @@ class IPC:
     msg = IPCMessage(id, *args)
     self.ipc_queue.append(msg)
 
-  def _flush(self) -> None:
+  def flush(self) -> None:
     if not self.ipc_path:
       # Not connected to gzdoom yet
       return

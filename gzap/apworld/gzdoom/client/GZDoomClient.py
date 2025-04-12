@@ -144,6 +144,7 @@ class GZDoomContext(SuperContext):
             for id,count in new_items.items():
                 if count != self.last_items.get(id, 0):
                     self.ipc.send_item(id, count)
+            self.ipc.flush()
             self.last_items = new_items
 
     async def _location_loop(self):
@@ -155,6 +156,7 @@ class GZDoomContext(SuperContext):
             # print("Location loop running", new_locations, self.checked_locations)
             for id in new_locations:
                 self.ipc.send_checked(id)
+            self.ipc.flush()
             self.last_locations |= new_locations
 
     async def _hint_loop(self):
@@ -173,6 +175,7 @@ class GZDoomContext(SuperContext):
                 if hint.is_peek(self):
                     # print("sending peek:", hint.peek_info(self))
                     self.ipc.send_peek(*hint.peek_info(self))
+            self.ipc.flush()
             self.last_hints = hints
 
 
