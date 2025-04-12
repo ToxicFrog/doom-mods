@@ -6,18 +6,22 @@ import os.path
 from typing import Any, Dict
 
 import Utils
-from CommonClient import CommonContext, ClientCommandProcessor, ClientStatus, get_base_parser, gui_enabled, server_loop, logger
+from CommonClient import ClientCommandProcessor, ClientStatus, get_base_parser, gui_enabled, server_loop, logger
 from .IPC import IPC
 from .Hint import GZDoomHint
 
+tracker_loaded = False
+try:
+    from worlds.tracker.TrackerClient import TrackerGameContext as SuperContext
+    print("Universal Tracker detected, enabling tracker support.")
+    tracker_loaded = True
+except ModuleNotFoundError:
+    from CommonClient import CommonContext as SuperContext
+    print("No Universal Tracker detected, running without tracker support.")
+
 _IPC_SIZE = 4096
 
-class GZDoomCommandProcessor(ClientCommandProcessor):
-    pass
-
-
-class GZDoomContext(CommonContext):
-    command_processor = GZDoomCommandProcessor
+class GZDoomContext(SuperContext):
     game = "gzDoom"
     items_handling = 0b111  # fully remote
     want_slot_data = False
@@ -29,11 +33,9 @@ class GZDoomContext(CommonContext):
         self.ipc = IPC(self, gzd_dir, _IPC_SIZE)
 
     def make_gui(self):
-        from kvui import GameManager
-        class TextManager(GameManager):
-            base_title = "gzDoom Client"
-
-        return TextManager
+        ui = super().make_gui()
+        ui.base_title = "GZDoom Client"
+        return ui
 
     async def start_tasks(self) -> None:
         print("Starting log reader")
@@ -86,6 +88,9 @@ class GZDoomContext(CommonContext):
             ])
 
     def on_package(self, cmd, args):
+        # print("on_package", cmd, args)
+        if cmd == "Connected" and tracker_loaded:
+            args.setdefault("slot_data", dict())
         super().on_package(cmd, args)
         self.awaken()
 
@@ -196,6 +201,9 @@ def main(*args):
     async def actual_main(args, ipc_dir, ipc_log):
         ctx = GZDoomContext(args.connect, args.password, gzd_dir)
         await ctx.start_tasks()
+        if tracker_loaded:
+            logger.info("Initializing tracker...")
+            ctx.run_generator()
         if gui_enabled:
             ctx.run_gui()
         ctx.run_cli()

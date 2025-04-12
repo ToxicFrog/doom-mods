@@ -85,6 +85,15 @@ class DoomMap:
         skill = world.spawn_filter
         chosen = []
         for category,amount in world.included_item_categories.items():
+            if amount == 0:
+                continue
+
+            if hasattr(world.multiworld, "generation_is_fake"):
+                # Universal Tracker support. If UT is generating, include all
+                # locations that could potentially be in the pool, whether they
+                # were or not.
+                amount = 1.0
+
             buf = self.all_locations(skill, {category})
             count = ceil(len(buf) * amount)
             chosen.extend(world.random.sample(buf,count))

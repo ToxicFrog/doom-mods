@@ -4,8 +4,13 @@
   - Runtime mod and generated mod now report the zscript version and apworld
     version, respectively, on startup. This should make version mismatches
     very obvious from the first few lines of the log.
+  - [Universal Tracker](https://github.com/FarisTheAncient/Archipelago/releases)
+    support. If you have UT installed, the GZDoom client will now have a "tracker"
+    tab.
 - Fix:
   - Closing the GZDoom Client window now works even if gzdoom isn't running.
+  - Certain `included_item_categories` configurations could break Universal
+    Tracker.
 
 # 0.4.2
 
