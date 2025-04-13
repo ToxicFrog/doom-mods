@@ -140,7 +140,7 @@ class ::RandoState play {
   // sets the requisite flags in the RandoState. This removes a whole bunch of
   // special cases.
   void RegisterMap(string map, string checksum, uint access_apid, uint map_apid, uint clear_apid, uint exit_apid) {
-    DEBUG("Registering map: %s", map);
+    DEBUG("Registering map: %s (tokens: %d %d %d %d)", map, access_apid, map_apid, clear_apid, exit_apid);
     if (checksum != LevelInfo.MapChecksum(map)) {
       console.printfEX(PRINT_HIGH, "\c[RED]ERROR:\c- Map %s has checksum \c[RED]%s\c-, but the randomizer expected \c[CYAN]%s\c-.",
         map, LevelInfo.MapChecksum(map), checksum);

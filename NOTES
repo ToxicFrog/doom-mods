@@ -38,10 +38,6 @@ something that apdoom has an easier time representing because it has subregions
 for its levels. This also means that we need a way to refer to events from AP-ITEM/
 AP-CHECK logic.
 
-We need an actor typename to category mapping file. Faithless might not need this,
-but Hedon and Ashes probably do and Square definitely does. And it needs to be
-available at scan time, so a new lump, e.g. APTYPES.
-
 The logic format needs a redesign. First draft thoughts -- separate items and
 locations. So we have:
 AP-MAP { information about the map as a whole }
@@ -67,6 +63,8 @@ be able to represent logic requirements that aren't just keys.
 
 - option to treat bosses as checks -- also needs scanner changes, highly vulnerable
   to enemy-replacement mods
+  - could try placing the check in the boss's inventory, and on the ground where
+    the boss would be if we can't find it
 - alternate win conditions:
   - clear [specific levels]
   - find N victory tokens

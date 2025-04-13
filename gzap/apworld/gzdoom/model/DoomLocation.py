@@ -117,6 +117,7 @@ class DoomLocation:
             self.keys = new_keys
 
     def access_rule(self, player):
+        # print(f"access_rule({self.name()}): keys={self.keys}")
         # A location is accessible if:
         # - you have access to the map (already checked at the region level)
         # - AND

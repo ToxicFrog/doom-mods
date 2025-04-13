@@ -100,7 +100,7 @@ class DoomMap:
         return chosen
 
     def access_rule(self, world):
-        # print(f"access_rule({self.map}) = {need_priors}% of {self.prior_clears}")
+        # print(f"access_rule({self.map}) = start={world.is_starting_map(self.map)}, co-guns({world.options.carryover_weapon_bias.value})={self.carryover_gunset}, local-guns({world.options.local_weapon_bias.value})={self.local_gunset}, clears({world.options.level_order_bias.value})={self.prior_clears}")
         def rule(state):
             if not state.has(self.access_token_name(), world.player):
                 return False
