@@ -183,6 +183,7 @@ class DoomWad:
                 return other
 
         self.items_by_name[item.name()].append(item)
+        return item
 
     def disambiguate_duplicate_items(self):
         all_items = {}
@@ -302,9 +303,10 @@ class DoomWad:
     def bin_locations_by(self, locs, f) -> Dict[str, List[DoomMap]]:
         """
         "Rebin" a collection of locations based on a binning function.
-        Any location that ends up in a unique bin is finalized and dropped from
-        the result.
-        Returns a dict keyed by bin name where each value is the (cardinality>1)
+
+        If all locations end up in unique bins, finalizes them and returns {}.
+
+        Otherwise, returns a dict keyed by bin name where each value is the
         collection of locations in that bin.
         """
         bins = {}

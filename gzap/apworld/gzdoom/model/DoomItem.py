@@ -48,7 +48,7 @@ class DoomItem:
     __repr__ = __str__
 
     def __eq__(self, other) -> bool:
-        return self.tag == other.tag and self.map == other.map
+        return self.typename == other.typename and self.map == other.map
 
     def name(self) -> str:
         """Returns the user-facing Archipelago name for this item."""
