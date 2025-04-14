@@ -12,6 +12,10 @@
 - Change:
   - `ap_auto_vend` setting renamed `ap_bank_custom`, now lets you configure
     bank limits per-category or per-item-type.
+  - Logic loader redesigned. It now produces more useful error messages, and
+    loads all internal logic files before any external ones, which should reduce
+    the frequency of UT errors when joining a game while you have external logic
+    files that the host doesn't.
 - Fix:
   - Closing the GZDoom Client window now works even if gzdoom isn't running.
   - Certain `included_item_categories` configurations could break Universal
