@@ -25,6 +25,8 @@ class ::InventoryMenu : ::CommonMenu {
       let item = state.items[n];
       if (item.held > 0) {
         PushKeyValueNetevent(item.tag, string.format("%d", item.held), "ap-use-item", n);
+        PushTooltip(string.format("Name: %s\nType: %s\nCategory: %s\nHeld/Found: %d/%d",
+          item.tag, item.typename, item.category, item.held, item.total));
       }
     }
 

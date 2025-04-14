@@ -9,6 +9,8 @@
     tab.
   - If UT is enabled, and the client is running, locations known to be in logic
     will be displayed first and hilighted on the level select screen.
+  - AP inventory screen displays tooltips showing you more information about
+    each item.
 - Change:
   - `ap_auto_vend` setting renamed `ap_bank_custom`, now lets you configure
     bank limits per-category or per-item-type.
