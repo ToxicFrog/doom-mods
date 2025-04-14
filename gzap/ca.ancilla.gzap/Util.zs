@@ -60,4 +60,30 @@ class ::Util play {
         return string.format("unknown (0x%02X)", filter);
     }
   }
+
+  // Very simple glob matcher. Only supports exact matches, * at the front, *
+  // at the back, or * in both.
+  static clearscope bool GlobMatch(string glob, string buf) {
+    bool is_prefix, is_suffix;
+    if (glob.Left(1) == "*") {
+      is_suffix = true;
+      glob = glob.Mid(1).MakeLower();
+    }
+    if (glob.Mid(glob.Length()-1) == "*") {
+      is_prefix = true;
+      glob.DeleteLastCharacter();
+    }
+
+    if (glob.Length() > buf.Length()) return false;
+
+    if (is_prefix && is_suffix) {
+      return buf.MakeLower().IndexOf(glob) >= 0;
+    } else if (is_suffix) {
+      return buf.MakeLower().Mid(buf.Length() - glob.Length()) == glob;
+    } else if (is_prefix) {
+      return buf.Left(glob.Length()) == glob;
+    } else {
+      return buf == glob;
+    }
+  }
 }

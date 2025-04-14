@@ -52,26 +52,30 @@ class ::RandoItem play {
 
   void EnforceLimit() {
     int limit = GetLimit();
-    DEBUG("Enforcing limits on %s: %d/%d limit %d", self.typename, self.held, self.total, limit);
+    DEBUG("Enforcing limits on %s: %d/%d limit %d (%s)", self.typename, self.held, self.total, limit, self.category);
     if (limit < 0) return;
     while (self.held > limit) {
       Replicate();
     }
   }
 
-  bool ShouldAutoVend() {
+  bool, int GetCustomLimit() {
     Array<string> patterns;
-    ap_auto_vend.Split(patterns, " ", TOK_SKIPEMPTY);
+    ap_bank_custom.Split(patterns, " ", TOK_SKIPEMPTY);
     foreach (pattern : patterns) {
-      if (self.category.IndexOf(pattern) >= 0 || self.typename.IndexOf(pattern) >= 0) {
-        return true;
+      Array<string> pair;
+      pattern.Split(pair, ":", TOK_SKIPEMPTY);
+
+      if (::Util.GlobMatch(pair[0], self.category) || ::Util.GlobMatch(pair[0], self.typename)) {
+        return true, pair[1].ToInt();
       }
     }
-    return false;
+    return false, 0;
   }
 
   int GetLimit() {
-    if (self.ShouldAutoVend()) return 0;
+    let [custom, limit] = GetCustomLimit();
+    if (custom) return limit;
 
     if (self.category == "weapon") {
       return ap_bank_weapons;

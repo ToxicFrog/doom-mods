@@ -9,6 +9,9 @@
     tab.
   - If UT is enabled, and the client is running, locations known to be in logic
     will be displayed first and hilighted on the level select screen.
+- Change:
+  - `ap_auto_vend` setting renamed `ap_bank_custom`, now lets you configure
+    bank limits per-category or per-item-type.
 - Fix:
   - Closing the GZDoom Client window now works even if gzdoom isn't running.
   - Certain `included_item_categories` configurations could break Universal
