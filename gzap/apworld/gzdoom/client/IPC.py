@@ -222,6 +222,7 @@ class IPC:
   async def recv_xoff(self) -> None:
     # Stop sending things to the client.
     self.nick = None
+    await self.ctx.on_xoff()
     self.flush()
 
 

@@ -17,6 +17,8 @@
   - Certain `included_item_categories` configurations could break Universal
     Tracker.
   - Small performance improvements to AP<->GZDoom communication.
+  - Quitting gzdoom now causes the client to properly realize that gzdoom has
+    exited.
 
 # 0.4.2
 

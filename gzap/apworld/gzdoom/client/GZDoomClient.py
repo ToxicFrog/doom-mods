@@ -87,6 +87,13 @@ class GZDoomContext(SuperContext):
         self.found_gzdoom.set()
         self.ipc.send_text("Archipelago<->GZDoom connection established.")
 
+    async def on_xoff(self):
+        self.username = None
+        self.auth = None
+        self.slot_name = None
+        self.found_gzdoom.clear()
+        logger.info("Connection to GZDoom closed.")
+
     async def on_victory(self):
         self.finished_game = True
         await self.send_msgs([
