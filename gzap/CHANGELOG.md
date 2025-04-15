@@ -28,7 +28,7 @@
   - Items with different underlying types but the same user-visible name (e.g.
     Shells vs. ShellBox) were being incorrectly merged into the same item
     category.
-  - Items with different underlying typesbut the same user-visible name now have
+  - Items with different underlying types but the same user-visible name now have
     the type appended to their AP name so people can tell them apart.
   - Appending types to AP names no longer causes the apworld to stop loading
     entirely when logic files requiring this are present.

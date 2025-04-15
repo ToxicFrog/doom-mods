@@ -58,6 +58,7 @@ be able to represent logic requirements that aren't just keys.
 ### scanner
 
 - map exclusion UI
+- list maps to scan as ranges or globbing expressions?
 
 ### generator
 
@@ -75,8 +76,6 @@ be able to represent logic requirements that aren't just keys.
 
 - weapon suppression should let the weapon drop normally and apply the suppression
   when it's picked up
-- "tracker mode" that propagates key requirements into the generated pk3 and
-  displays what it thinks you can reach from the level selector
 
 ### Faithless
 
@@ -92,6 +91,40 @@ This will probably require some redesign to allow treating it as a single unifie
 game, with *every* map, from every episode, in the same cluster so that they don't
 reset ever during the rando session. But we still need to remember which cluster
 they came from so that, e.g., we treat the E1 and E2 green keys differently.
+
+### Golden Souls
+
+Basic structure is one central hub map from which all other maps branch off. Access
+to these maps is gated based on number of Golden Souls or Big Coins found, with
+only map accessible initially.
+
+Each map contains weapons, ammo, health, small coins, enemies (which drop small coins),
+and one or more Golden Souls and Big Coins. Some levels contain red coins and all
+red coins must be collected to reveal the GS.
+
+For this we probably want to abandon access tokens entirely, or model them as-well-as
+golden souls. This means we also need a way to say "the requirements for entering
+map X are Y". It already has full persistence and a hub, so we don't need the
+generated MAPINFO or even, probably, the level select screen.
+
+Internally, we have a bunch of inventory items:
+Star_Soul - golden soul
+Big_Coin_Total, Big_Coin - incremented when you find a BC
+BigCoinsInMap - you get one of these when in a map that has BCs
+Token_BigCoinCounter - map-specific, gain one for each big coin
+RedCoinsInMap, Token_RedCoinCounter - as above but for red coins
+
+Initially progress is completely linear, with one level == one soul, and the next
+level needing N+1 souls to access. As you find secret levels and big coins, though,
+you can get ahead of the soul curve; secret levels contain one soul and no big coins.
+
+There are three secret levels that must be found via exits in other maps, and three
+more that require 12, 24, or 36 big coins to reach.
+
+At 8 souls, you unlock 4 more levels all at once.
+
+To reach the final boss, you need 15 souls; since there are only 12 "normal" levels,
+you also need to do at least three of the (secret hidden + secret bigcoin) levels.
 
 ## Indes
 
