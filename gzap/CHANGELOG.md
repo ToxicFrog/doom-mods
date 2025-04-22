@@ -1,12 +1,25 @@
 # Unreleased
 
+- Fix:
+  - Incorrectly formatted `ap_bank_custom` entries will now be skipped instead
+    of crashing the game.
+
+# 0.4.3
+
+This is primarily a bugfix release, but also comes with [Universal Tracker](https://github.com/FarisTheAncient/Archipelago/releases)
+support; if you have UT installed, the GZDoom Client will have a "tracker" tab,
+and tracker information will be displayed in-game on the level select screen.
+
+If you have customized the `Auto-vend patterns` setting, or found it insufficiently
+useful, you should look in the options screen for the `Custom bank limits` setting
+that has replaced it.
+
 - New:
   - Runtime mod and generated mod now report the zscript version and apworld
     version, respectively, on startup. This should make version mismatches
     very obvious from the first few lines of the log.
-  - [Universal Tracker](https://github.com/FarisTheAncient/Archipelago/releases)
-    support. If you have UT installed, the GZDoom client will now have a "tracker"
-    tab.
+  - Universal Tracker support. If you have UT installed, the GZDoom client will
+    now have a "tracker" tab.
   - If UT is enabled, and the client is running, locations known to be in logic
     will be displayed first and hilighted on the level select screen.
   - AP inventory screen displays tooltips showing you more information about

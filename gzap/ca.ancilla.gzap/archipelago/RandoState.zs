@@ -65,6 +65,10 @@ class ::RandoItem play {
     foreach (pattern : patterns) {
       Array<string> pair;
       pattern.Split(pair, ":", TOK_SKIPEMPTY);
+      if (pair.Size() != 2) {
+        console.printf("Skipping incorrectly formatted ap_bank_custom entry: '%s'", pattern);
+        continue;
+      }
 
       if (::Util.GlobMatch(pair[0], self.category) || ::Util.GlobMatch(pair[0], self.typename)) {
         return true, pair[1].ToInt();
