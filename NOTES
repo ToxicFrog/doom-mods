@@ -55,6 +55,23 @@ keys; frozen notes that the Hellshell Launcher can be used to break certain wall
 that normally require TNT box manipulation. This also ties in with the need to
 be able to represent logic requirements that aren't just keys.
 
+More thoughts on key scope changes -- make the key list apstate-wide rather than
+per-region; a key consists of typename, scope name, and list of levels.
+
+RegisterKey then creates an entry where level list == [scope name]
+
+Finding a key in-game that doesn't exist in the keylist automatically creates an
+entry for it. Open question: is it scoped just to the map we found it in, or to
+the whole game? perhaps we do something like:
+- if it's not interhub, just that level;
+- if it is interhub, and we're not in persistent mode, use the cluster info;
+- if we're in persistent mode, maybe plumb the cluster info through? and then
+  generate based on that?
+- emit an AP-KEY message into the tuning?
+
+Maybe we can also autogen AP-KEY messages at scan time; if we see a key and it's
+marked interhub, generate the AP-KEY for it...
+
 ### scanner
 
 - map exclusion UI

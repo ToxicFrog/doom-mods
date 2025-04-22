@@ -132,6 +132,7 @@ class ::ScannedMap play {
     string flags = "";
     flags = AddFlag(flags, info.flags, LEVEL_DOUBLESKY, "doublesky");
     flags = AddFlag(flags, info.flags, LEVEL_USEPLAYERSTARTZ, "useplayerstartz");
+    flags = AddFlag(flags, info.flags, LEVEL_MONSTERSTELEFRAG, "allowmonstertelefrags");
     // TODO: if a level has infiniteflightpowerup, we should require wings of wrath
     // in the logic, and make sure the player always has one when entering the level
     // if they've found it.
@@ -139,11 +140,16 @@ class ::ScannedMap play {
     // Special action effects
     // specialaction_exitlevel just clears the other special flags, so we don't
     // need it; we get it just by not writing a specialaction_ flag.
+    // specialaction_lowerfloor, specialaction_opendoor, and specialaction_lowerfloortohighest
+    // get special handling -- the first two have separate bits, the last one is
+    // denoted by setting both bits at once. >.<
     flags = AddFlag(flags, info.flags, LEVEL_SPECKILLMONSTERS, "specialaction_killmonsters");
-    flags = AddFlag(flags, info.flags, LEVEL_SPECLOWERFLOOR, "specialaction_lowerfloor");
-    flags = AddFlag(flags, info.flags, LEVEL_SPECLOWERFLOORTOHIGHEST, "specialaction_lowerfloortohighest");
-    flags = AddFlag(flags, info.flags, LEVEL_SPECOPENDOOR, "specialaction_opendoor");
-    flags = AddFlag(flags, info.flags, LEVEL_MONSTERSTELEFRAG, "allowmonstertelefrags");
+    if (info.flags & LEVEL_SPECACTIONSMASK == LEVEL_SPECLOWERFLOORTOHIGHEST) {
+      flags = AddFlag(flags, info.flags, LEVEL_SPECLOWERFLOORTOHIGHEST, "specialaction_lowerfloortohighest");
+    } else {
+      flags = AddFlag(flags, info.flags, LEVEL_SPECLOWERFLOOR, "specialaction_lowerfloor");
+      flags = AddFlag(flags, info.flags, LEVEL_SPECOPENDOOR, "specialaction_opendoor");
+    }
     // Special action triggers
     flags = AddFlag(flags, info.flags, LEVEL_BRUISERSPECIAL, "baronspecial");
     flags = AddFlag(flags, info.flags, LEVEL_CYBORGSPECIAL, "cyberdemonspecial");
