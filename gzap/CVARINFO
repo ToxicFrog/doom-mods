@@ -13,8 +13,20 @@ server int ap_show_checks_on_map = 2;
 server int ap_show_progression = 2;
 
 // How translucent to make checks once collected. A setting of 0 makes them
-// disappear entirely. A setting of 1
-user float ap_collected_alpha = 0.2;
+// disappear entirely. A setting of 1 means you can't tell if they've been
+// collected or not. I find 0.2 to be a good value if you want to be able to
+// see where they used to be.
+user float ap_collected_alpha = 0;
+
+// Whether to display the name of each check when you find it.
+user bool ap_show_check_names = false;
+
+// Whether to display icons for what's in each check.
+// "original" shows you what used to be there, floating above the check.
+// "contents" shows you what's in the check itself, if Doom has a sprite for it.
+// You can safely turn on both at once.
+server bool ap_show_check_original = false;
+server bool ap_show_check_contents = false;
 
 //// Gameplay configuration
 
@@ -29,6 +41,9 @@ server int ap_bank_armour = -1;
 server int ap_bank_health = -1;
 server int ap_bank_powerups = -1;
 server int ap_bank_other = -1;
+// Items to auto-vend when you get them.
+// Space separated list of category or typename substrings.
+server string ap_bank_custom = "small-*:0";
 
 // Whether or not weapons can drop outside of the normal AP progression.
 // 0 means no blocking of weapons
@@ -36,6 +51,14 @@ server int ap_bank_other = -1;
 // 2 blocks weapons unless you already have a copy of that weapon
 // 3 blocks weapons unconditionally
 server int ap_suppress_weapon_drops = 0;
+
+// Whether to collect all checks when completing a level.
+// This is a bitmask:
+// 1 - collect all in-world checks
+// 2 - collect all secret-sector checks
+// 3 - collect all
+// In multiworld games this can emit a lot of check messages!
+server int ap_release_on_level_clear = 0;
 
 //// Scanner configuration.
 // These are not written to the save file or config file, since they're more
@@ -58,6 +81,8 @@ server int ap_suppress_weapon_drops = 0;
 // levels reachable from them will be scanned. Otherwise, only these levels
 // exactly will be. Space-separated.
 nosave noarchive string ap_scan_levels = "";
+// List of levels to skip. As above, space-separated.
+nosave noarchive string ap_scan_skip = "";
 // If false, only levels listed in ap_scan_levels will be scanned. If true, any
 // level reachable by exits from those levels will be as well, recursively.
 // Caveats:

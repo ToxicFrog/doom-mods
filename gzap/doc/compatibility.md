@@ -10,7 +10,7 @@ file).
 
 ### Special `MAPINFO` settings
 
-In order for some feature to function correctly, gzAP needs to generate its own
+In order for some features to function correctly, gzAP needs to generate its own
 `MAPINFO` lump. Wads that use `MAPINFO` to modify map flags may not function
 correctly, depending on the flags. Unfortunately there is no good, general-purpose
 way to do this, so I am somewhat playing whack-a-mole with `MAPINFO` features that

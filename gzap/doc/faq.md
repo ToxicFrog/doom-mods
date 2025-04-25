@@ -5,14 +5,22 @@
 ### World generation says "no more spots to place items"!
 
 This means the generator got into a state where it couldn't figure out where to
-place progression items in a way that keeps the game winnable. This is most likely
-to happen with newly generated logic files or ones with "basic" support, and can
-usually be resolved by retrying a few times.
+place progression items in a way that keeps the game winnable. This is most
+likely to happen with newly generated logic files or ones with "basic" support,
+and can usually be resolved by retrying a few times.
 
-Setting the `level order bias` option too high can also cause this.
+If it happens consistently, you have a few options for reducing constraints on
+the randomizer:
+- Adding more `starting_levels` will give it more places to put early items, as
+  will turning on `start_with_keys` and `allow_secret_progress`
+- Turning down `level_order_bias`, `local_weapon_bias`, and `carryover_weapon_bias`
+  will let it move more items to later spheres (but also make the game harder)
+- Adding more categories to `included_item_categories` will give it more locations
+  to put things at (but also add more filler to the item pool)
 
-If it's happening on a tuned ("full" or "complete" support) logic file, or if
-happens *every* time, please report it.
+You can also turn on `pretuning_mode` and play through the first few levels to
+generate a partial logic file, which in most wads will give it enough information
+about early-game item placement to get it unstuck even without `start_with_keys`.
 
 ### I got partway through a level and now I'm stuck!
 
@@ -39,6 +47,40 @@ until you take a step.
 ### I can't open the level select or inventory menu!
 
 Did you remember to [bind those controls](./gameplay.md)?
+
+
+## Customization
+
+gzArchipelago has a lot of customization options, most of which are accessible
+via the Archipelago YAML (and documented in the comments there) or via the in-game
+settings (and documented in tooltips). This section is for "hidden" settings that
+aren't, and non-obvious information.
+
+### What gets randomized?
+
+By default, all keys, weapons, powerups, armour, and soulspheres/megaspheres.
+Additionally, an "access key" for each level is added to the item pool, which
+you must find before you can enter that level. Automap locations are added to
+the location pool; the randomizer will also either start you with all automaps
+or add one automap per level to the item pool, depending on settings.
+
+Settings in the YAML can be used to add or remove items from randomization, if
+you want more or less than the defaults.
+
+### What's the win condition?
+
+By default, to clear all levels included in the randomized game. You can set
+this to a lower level in the YAML.
+
+### Can I bind hotkeys for inventory items?
+
+Inventory items can be dispensed using the `ap-use-item:<item-name>` netevent,
+which lets you bind hotkeys for them. The following console commands will bind
+`b`, `h`, and `m` to dispense backpacks, soulspheres, and megaspheres:
+
+    bind b "netevent ap-use-item:Backpack"
+    bind h "netevent ap-use-item:Soulsphere"
+    bind m "netevent ap-use-item:Megasphere"
 
 
 ## Compatibility

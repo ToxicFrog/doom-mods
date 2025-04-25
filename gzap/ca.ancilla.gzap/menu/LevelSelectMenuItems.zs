@@ -11,7 +11,7 @@ class ::ProgressIndicator : OptionMenuItemStaticText {
     self.mLabel = string.format(
       "MAPS: %2d/%-2d   %8s   TIME: %s",
       ::PlayEventHandler.GetState().LevelsClear(),
-      ::PlayEventHandler.GetState().LevelsTotal(),
+      ::PlayEventHandler.GetState().LevelsRequired(),
       victory ? "VICTORY!" : "",
       GetTime());
   }
@@ -198,13 +198,9 @@ class ::LevelSelector : ::KeyValueNetevent {
     string buf = "";
     foreach (loc : region.locations) {
       if (!loc.checked && !loc.unreachable) {
-        // TODO: this is a gross hack to strip the redundant "MAPNN - " prefix
-        // from the check name.
-        string shortname = loc.name;
-        shortname.replace(region.map .. " - ", "");
-        buf = buf .. string.format("\n  \c[DARKGRAY]%s", shortname);
+        buf = buf .. string.format("\n  \c[%s]%s", loc.in_logic ? "ICE" : "BLACK", loc.name);
 
-        let peek = region.GetPeek(shortname);
+        let peek = region.GetPeek(loc.name);
         if (peek) {
           buf = buf .. string.format("\n  \c-ⓘ %s for %s", peek.item, peek.player);
         }

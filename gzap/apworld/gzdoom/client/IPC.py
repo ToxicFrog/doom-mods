@@ -75,10 +75,15 @@ class IPC:
       print(e)
       sys.exit(1)
 
+  def _tuning_file_path(self, ipc_dir: str, wadname: str) -> str:
+    return os.path.join(
+      ipc_dir, "tuning", f"{wadname}.{int(time.time())}.tuning"
+    )
+
   def _log_reading_loop(self, ipc_dir: str, loop):
     log_path = os.path.join(ipc_dir, "gzdoom.log")
     tune = None
-    with open(log_path, "r") as log:
+    with open(log_path, "r", encoding="utf-8") as log:
        self._wait_for_live_log(log)
        while True:
           line = self._blocking_readline(log).strip()
@@ -101,7 +106,7 @@ class IPC:
           if evt == "AP-XON":
             if tune:
               tune.close()
-            tune = open(os.path.join(ipc_dir, 'tuning', payload["wad"]), "a")
+            tune = open(self._tuning_file_path(ipc_dir, payload["wad"]), "a", encoding="utf-8")
 
           if evt == "AP-CHECK" and tune:
             tune.write(line+"\n")
@@ -124,6 +129,8 @@ class IPC:
       print("Logfile is from a previous run of gzdoom. Waiting for a new one.")
       while fd.tell() <= os.stat(fd.fileno()).st_size:
         time.sleep(1)
+        if self.should_exit:
+          return
     fd.seek(0)
 
   def _blocking_readline(self, fd) -> str:
@@ -178,7 +185,7 @@ class IPC:
     self.ipc_path = os.path.join(self.ipc_dir, lump)
     assert size == self.ipc_size, "IPC size mismatch between gzdoom and AP -- please exit both, start then client, then gzdoom"
     self.nick = nick
-    self._flush()
+    self.flush()
     await self.ctx.on_xon(slot, seed)
 
   async def recv_ack(self, id: int) -> None:
@@ -189,7 +196,7 @@ class IPC:
     if there were any waiting for free space.
     """
     self._ack(id)
-    self._flush()
+    self.flush()
 
   async def recv_check(self, id: int) -> None:
     """
@@ -197,8 +204,6 @@ class IPC:
 
     Informs the context manager that we have checked the listed location. It's up
     to it to tell the server.
-
-    We should also save it somewhere so it can be used for tuning later!
     """
     await self.ctx.send_check(id)
 
@@ -217,7 +222,8 @@ class IPC:
   async def recv_xoff(self) -> None:
     # Stop sending things to the client.
     self.nick = None
-    self._flush()
+    await self.ctx.on_xoff()
+    self.flush()
 
 
   #### Handlers for events coming from Archipelago. ####
@@ -225,12 +231,10 @@ class IPC:
   def send_item(self, id: int, count: int) -> None:
     """Send the item with the given ID to the player."""
     self._enqueue("ITEM", id, count)
-    self._flush()
 
   def send_checked(self, id: int) -> None:
     """Mark the given location as having been checked."""
     self._enqueue("CHECKED", id)
-    self._flush()
 
   def send_text(self, message: str) -> None:
     """Display the given message to the player."""
@@ -240,7 +244,10 @@ class IPC:
     # in the log, the client sees it as a new chat message, sends it to the server,
     # which echoes it, etc.
     self._enqueue("TEXT", "[AP]"+ansi_to_gzdoom(message))
-    self._flush()
+
+  def send_track(self, id: int) -> None:
+    """Tell the game that the tracker thinks this location is in logic now."""
+    self._enqueue("TRACK", id)
 
   def send_hint(self, map: Optional[str], item: str, player: str, location: str) -> None:
     """Send a hint to the game. map is only set if it's a scoped item being hinted."""
@@ -278,7 +285,7 @@ class IPC:
     msg = IPCMessage(id, *args)
     self.ipc_queue.append(msg)
 
-  def _flush(self) -> None:
+  def flush(self) -> None:
     if not self.ipc_path:
       # Not connected to gzdoom yet
       return
@@ -311,8 +318,9 @@ class IPC:
     if buf == self.ipc_buf:
       return
     # print(f"Sending {len(buf)} bytes with ids {first_id}..{last_id}")
-    with open(self.ipc_path, "w") as fd:
+    with open(self.ipc_path, "w", encoding="utf-8") as fd:
       fd.write(buf)
-      # Use the full size, same rational as above.
+      # Use the full size, same rationale as above.
       fd.truncate(self.ipc_size)
     self.ipc_buf = buf
+    # print("Send complete.")

@@ -52,14 +52,35 @@ class ::RandoItem play {
 
   void EnforceLimit() {
     int limit = GetLimit();
-    DEBUG("Enforcing limits on %s: %d/%d limit %d", self.typename, self.held, self.total, limit);
+    DEBUG("Enforcing limits on %s: %d/%d limit %d (%s)", self.typename, self.held, self.total, limit, self.category);
     if (limit < 0) return;
     while (self.held > limit) {
       Replicate();
     }
   }
 
+  bool, int GetCustomLimit() {
+    Array<string> patterns;
+    ap_bank_custom.Split(patterns, " ", TOK_SKIPEMPTY);
+    foreach (pattern : patterns) {
+      Array<string> pair;
+      pattern.Split(pair, ":", TOK_SKIPEMPTY);
+      if (pair.Size() != 2) {
+        console.printf("Skipping incorrectly formatted ap_bank_custom entry: '%s'", pattern);
+        continue;
+      }
+
+      if (::Util.GlobMatch(pair[0], self.category) || ::Util.GlobMatch(pair[0], self.typename)) {
+        return true, pair[1].ToInt();
+      }
+    }
+    return false, 0;
+  }
+
   int GetLimit() {
+    let [custom, limit] = GetCustomLimit();
+    if (custom) return limit;
+
     if (self.category == "weapon") {
       return ap_bank_weapons;
     } else if (self.category.IndexOf("-ammo") > -1) {
@@ -98,6 +119,7 @@ class ::RandoItem play {
 }
 
 class ::RandoState play {
+  string slot_name; // Name of player in AP
   // Transaction number. Used to resolve disagreements between datascope and playscope
   // instances of the state when a savegame is loaded.
   int txn;
@@ -113,11 +135,20 @@ class ::RandoState play {
   // inventory so it can hold things not normally part of +INVBAR.
   // An array so that (a) we can sort it, and (b) we can refer to entries by
   // index in a netevent.
-  // TODO: actually sort it
   Array<::RandoItem> items;
+  // Win conditions. Key is condition name, value is condition magnitude. Exact
+  // meaning of the latter depends on the condition.
+  Map<string, int> win_conditions;
 
+  // TODO: We can do better with key/token management here.
+  // In particular, if we reify all the tokens as in-game items, we no longer
+  // need to pass them as extra IDs to RegisterMap. Instead we define a new
+  // RegisterToken() that behaves similar to RegisterKey, except it spawns
+  // the corresponding token and sets the map field on it, and on pickup it
+  // sets the requisite flags in the RandoState. This removes a whole bunch of
+  // special cases.
   void RegisterMap(string map, string checksum, uint access_apid, uint map_apid, uint clear_apid, uint exit_apid) {
-    DEBUG("Registering map: %s", map);
+    DEBUG("Registering map: %s (tokens: %d %d %d %d)", map, access_apid, map_apid, clear_apid, exit_apid);
     if (checksum != LevelInfo.MapChecksum(map)) {
       console.printfEX(PRINT_HIGH, "\c[RED]ERROR:\c- Map %s has checksum \c[RED]%s\c-, but the randomizer expected \c[CYAN]%s\c-.",
         map, LevelInfo.MapChecksum(map), checksum);
@@ -142,8 +173,13 @@ class ::RandoState play {
       || (::Util.GetFilterName(::Util.GetCurrentFilter()) != ::Util.GetFilterName(filter));
   }
 
+  // This gets called for all keys that exist in the wad, not just keys for
+  // maps we know about. So we only register it if we know the map.
   void RegisterKey(string map, string key, uint apid) {
-    regions.Get(map).RegisterKey(key);
+    DEBUG("RegisterKey %s for %s as %d", key, map, apid);
+    let region = GetRegion(map);
+    if (!region) return;
+    region.RegisterKey(key);
     map_apids.Insert(apid, ::RegionDiff.CreateKey(map, key));
   }
 
@@ -152,20 +188,33 @@ class ::RandoState play {
     item_apids.Insert(apid, typename);
   }
 
-  void RegisterCheck(string map, uint apid, string name, bool progression, Vector3 pos, bool unreachable = false) {
-    regions.Get(map).RegisterCheck(apid, name, progression, pos, unreachable);
+  void RegisterCheck(
+      string map, uint apid, string name,
+      string orig_typename, string ap_typename, string ap_name,
+      bool progression, Vector3 pos, bool unreachable = false) {
+    GetRegion(map).RegisterCheck(apid, name, orig_typename, ap_typename, ap_name, progression, pos, unreachable);
+  }
+
+  void RegisterSecretCheck(string map, uint apid, string name, int sector, bool unreachable = false) {
+    GetRegion(map).RegisterSecretCheck(apid, name, sector, unreachable);
   }
 
   void SortItems() {
     // It's small, we just bubble sort.
-    for (int i = 0; i < self.items.Size()-1; ++i) {
-      for (int j = i; j < self.items.Size()-1; ++j) {
+    for (int i = self.items.Size()-1; i > 0; --i) {
+      for (int j = 0; j < i; ++j) {
         if (!self.items[j].Order(self.items[j+1])) {
           let tmp = self.items[j];
           self.items[j] = self.items[j+1];
           self.items[j+1] = tmp;
         }
       }
+    }
+  }
+
+  void SortLocations() {
+    foreach (region : self.regions) {
+      region.SortLocations();
     }
   }
 
@@ -207,8 +256,7 @@ class ::RandoState play {
     if (map_apids.CheckKey(apid)) {
       // Count doesn't matter, you either have it or you don't.
       let diff = map_apids.Get(apid);
-      let region = regions.Get(diff.map);
-      diff.Apply(region);
+      diff.Apply(GetRegion(diff.map));
     } else if (item_apids.CheckKey(apid)) {
       let typename = item_apids.Get(apid);
       let [idx, item] = FindItem(typename);
@@ -230,15 +278,22 @@ class ::RandoState play {
     }
 
     UpdatePlayerInventory();
-    ::PlayEventHandler.Get().CheckVictory();
+    UpdateStatus();
   }
 
   void UseItem(uint idx) {
     ++txn;
     items[idx].Replicate();
-    ::PlayEventHandler.Get().CheckVictory();
+    UpdateStatus();
   }
 
+  void UseItemByName(string name) {
+    let [idx,item] = FindItem(name);
+    DEBUG("UseItemByName: %s -> %d", name, idx);
+    if (idx >= 0) UseItem(idx);
+  }
+
+  bool dirty;
   void UpdatePlayerInventory() {
     if (!GetCurrentRegion()) return;
     for (int p = 0; p < MAXPLAYERS; ++p) {
@@ -247,9 +302,20 @@ class ::RandoState play {
 
       GetCurrentRegion().UpdateInventory(players[p].mo);
     }
+    dirty = true;
+  }
+
+  void OnTick() {
+    if (!dirty) return;
+    if (!GetCurrentRegion()) return;
+    // TODO: per-player inventory will let us make this check per-player, for now
+    // we just watch player[0].
+    if (players[0].mo.vel.Length() == 0) return;
+    DEBUG("Flushing pending item grants...");
     foreach (item : self.items) {
       item.EnforceLimit();
     }
+    dirty = false;
   }
 
   ::Region GetCurrentRegion() {
@@ -266,12 +332,24 @@ class ::RandoState play {
     foreach (_, region : self.regions) {
       region.ClearLocation(apid);
     }
-    ::PlayEventHandler.Get().CheckVictory();
+    UpdateStatus();
+  }
+
+  void MarkLocationInLogic(int apid) {
+    ++txn;
+    foreach (_, region : self.regions) {
+      let loc = region.GetLocation(apid);
+      if (loc) {
+        loc.in_logic = true;
+        region.SortLocations();
+      }
+    }
+    UpdateStatus();
   }
 
   uint LevelsClear() const {
     uint n = 0;
-    foreach (_, region : self.regions) {
+    foreach (name, region : self.regions) {
       if (region.cleared) ++n;
     }
     return n;
@@ -281,7 +359,24 @@ class ::RandoState play {
     return self.regions.CountUsed();
   }
 
+  void RegisterWinCondition(string condition, int value) {
+    self.win_conditions.Insert(condition, value);
+  }
+
+  uint LevelsRequired() const {
+    return self.win_conditions.GetIfExists('levels-clear');
+  }
+
   bool Victorious() const {
-    return self.LevelsClear() == self.LevelsTotal();
+    return self.LevelsClear() >= self.LevelsRequired();
+  }
+
+  void UpdateStatus() {
+    // Might want to expand this later to list levels cleared, items collected,
+    // etc, for the use of external trackers, but for now it's just a simple
+    // "are we winning?"
+    if (Victorious()) {
+      ::IPC.Send("STATUS", "{ \"victory\": true }");
+    }
   }
 }

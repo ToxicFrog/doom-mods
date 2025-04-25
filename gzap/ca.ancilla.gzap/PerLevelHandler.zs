@@ -6,13 +6,15 @@
 #namespace GZAP;
 #debug off;
 
+const AP_RELEASE_IN_WORLD = 1;
+const AP_RELEASE_SECRETS = 2;
+
 class ::PerLevelHandler : EventHandler {
   // Archipelago state manager.
   ::RandoState apstate;
-  // Locations that we have yet to resolve when loading into the map.
-  Map<int, ::Location> pending_locations;
-  // If >0, number of ticks remaining to track spawning actors.
-  int alarm;
+  // Locations corresponding to secret sectors. Indexed by sector number.
+  // As we find each one we clear it from the map.
+  Map<int, ::Location> secret_locations;
   // If set, the player is leaving the level via the level select or similar
   // rather than by reaching the exit.
   bool early_exit;
@@ -22,7 +24,6 @@ class ::PerLevelHandler : EventHandler {
   }
 
   override void OnRegister() {
-    DEBUG("OnRegister: tic=%d alarm=%d", level.MapTime, alarm);
     InitRandoState();
   }
 
@@ -68,6 +69,45 @@ class ::PerLevelHandler : EventHandler {
     }
   }
 
+  void SetupSecrets(::Region region) {
+    self.secret_locations.Clear();
+
+    foreach (location : region.locations) {
+      if (location.secret_sector < 0) continue;
+
+      DEBUG("Init secret location: %s", location.name);
+      let sector = level.sectors[location.secret_sector];
+      if (location.checked) {
+        // Location is checked but sector is still marked undiscovered -- level
+        // probably got reset.
+        DEBUG("Clearing secret flag on sector %d", location.secret_sector);
+        sector.ClearSecret();
+        level.found_secrets++;
+        continue;
+      }
+
+      if (!sector.IsSecret()) {
+        // Location isn't marked checked but the corresponding sector has been
+        // discovered, so emit a check event for it.
+        ::PlayEventHandler.Get().CheckLocation(location);
+      } else {
+        // Player hasn't found this yet.
+        self.secret_locations.Insert(location.secret_sector, location);
+      }
+    }
+  }
+
+  void UpdateSecrets() {
+    foreach (sector_id,location : self.secret_locations) {
+      if (!level.sectors[sector_id].IsSecret()) {
+        ::PlayEventHandler.Get().CheckLocation(location);
+        // Only process one so we don't modify secret_locations while iterating it.
+        self.secret_locations.Remove(sector_id);
+        return;
+      }
+    }
+  }
+
   // Separate functions for handling "new map" and "game loaded" that are actually
   // called from the StaticEventHandler, since it's the only one that can tell
   // the difference.
@@ -79,25 +119,22 @@ class ::PerLevelHandler : EventHandler {
     let region = apstate.GetRegion(level.MapName);
     if (!region) return;
 
+    SetupSecrets(region);
     foreach (location : region.locations) {
-      DEBUG("Enqueing location: %s", location.name);
-      pending_locations.Insert(location.apid, location);
+      // Secret-sector locations are handled by SetupSecrets().
+      if (location.secret_sector >= 0) continue;
+      ::CheckPickup.Create(location);
     }
-    // Set the timer for how long we'll watch for new things spawning in (from
-    // Spawners, scripts, etc) and try to match them to checks.
-    alarm = 10;
+    apstate.UpdatePlayerInventory();
   }
 
   void OnLoadGame() {
     early_exit = false;
-    // There's a fun edge case here where we load a save game made at the start
-    // of the level while the alarm is still counting down. Fortunately this is
-    // not actually a problem: this code will get rid of any obsolete already-
-    // spawned checks, and WorldThingSpawned will prune newly spawning ones if
-    // needed.
     DEBUG("PLH Cleanup");
     apstate.UpdatePlayerInventory();
     let region = apstate.GetRegion(level.MapName);
+    if (!region) return;
+    SetupSecrets(region);
     foreach (::CheckPickup thing : ThinkerIterator.Create("::CheckPickup", Thinker.STAT_DEFAULT)) {
       // At this point, we may have a divergence, depending on whether the apstate
       // contained here or in the StaticEventHandler was deemed canonical.
@@ -113,30 +150,21 @@ class ::PerLevelHandler : EventHandler {
       DEBUG("CleanupReopened: id %d, matched %d",
           thing.location.apid, thing.location == region.GetLocation(thing.location.apid));
       thing.location = region.GetLocation(thing.location.apid);
-      thing.UpdateStatus();
+      thing.UpdateFromLocation();
     }
   }
 
   override void WorldTick() {
+    apstate.OnTick();
+
     if (allow_drops > 0) {
       DEBUG("allow_drops: %d", allow_drops);
       --allow_drops;
     }
-    if (!alarm) return;
-    --alarm;
-    if (alarm) return;
-    DEBUG("PLH AlarmClockFired");
-    foreach (loc : pending_locations) {
-      if (loc.checked) continue;
-      console.printf(
-        StringTable.Localize("$GZAP_MISSING_LOCATION"), loc.name);
-      ::CheckPickup.Create(loc, players[0].mo);
-    }
-    apstate.UpdatePlayerInventory();
-  }
 
-  void ClearPending(::Location loc) {
-    pending_locations.Remove(loc.apid);
+    if (level.total_secrets - level.found_secrets != self.secret_locations.CountUsed()) {
+      UpdateSecrets();
+    }
   }
 
   //// Handling for individual actors spawning in. ////
@@ -145,65 +173,15 @@ class ::PerLevelHandler : EventHandler {
   // checks and do so. Any leftover checks will give automatically dispensed to
   // the player via WorldTick() above.
 
-  bool IsReplaceable(Actor thing) {
-    if (!thing) return false;
-    // This also checks the GZAPRC, so if this returns a nonempty category name,
-    // it's always eligible even if it would normally be ignored for being non-
-    // physical or not an Inventory or what have you.
-    let category = ::ScannedItem.ItemCategory(thing);
-    if (category != "") return true;
-
-    if (thing.bNOBLOCKMAP || thing.bNOSECTOR || thing.bNOINTERACTION || thing.bISMONSTER) return false;
-    if (!(thing is "Inventory")) return false;
-
-    return true;
-  }
-
   override void WorldThingSpawned(WorldEvent evt) {
     let thing = evt.thing;
-    if (!IsReplaceable(thing)) return;
 
-    if (alarm) {
-      // Start-of-level countdown is still running, see if we need to replace this
-      // with an AP check token.
-      if (MaybeReplaceWithCheck(thing)) return;
-    }
-
-    // It's not a check, and it's not something we need to replace with a check.
-    // But, if it's a weapon, we might need to suppress its existence anways.
+    // Handle weapon suppression, if enabled.
     if (!ShouldAllow(Weapon(thing))) {
       ReplaceWithAmmo(thing, Weapon(thing));
       thing.ClearCounters();
       thing.Destroy();
     }
-  }
-
-  bool MaybeReplaceWithCheck(Actor thing) {
-    if (thing is "::CheckPickup") {
-      // Check has already been spawned, original item has already been deleted.
-      let thing = ::CheckPickup(thing);
-      DEBUG("WorldThingSpawned(check) = %s", thing.location.name);
-      ClearPending(thing.location);
-      thing.UpdateStatus();
-      return true;
-    }
-
-    DEBUG("WorldThingSpawned(%s)", thing.GetTag());
-    // Only checks count towards the item tally, not other items.
-    thing.ClearCounters();
-
-    let [check, distance] = FindCheckForActor(thing);
-    if (check) {
-      DEBUG("Replacing %s with %s", thing.GetTag(), check.name);
-      let pickup = ::CheckPickup.Create(check, thing);
-      DEBUG("Original has height=%d radius=%d, new height=%d r=%d",
-          thing.height, thing.radius, pickup.height, pickup.radius);
-      ClearPending(check);
-      thing.ClearCounters();
-      thing.Destroy();
-      return true;
-    }
-    return false;
   }
 
   // How many tics to allow drops for.
@@ -220,6 +198,10 @@ class ::PerLevelHandler : EventHandler {
 
   bool ShouldAllow(Weapon thing) {
     if (!thing) return true;
+    // What happens outside the randomizer stays outside the randomizer.
+    // This includes GZAPHUB and GZAPRST, so the player's starting inventory
+    // (including fists/pistol) won't get suppressed on game start.
+    if (!apstate.GetCurrentRegion()) return true;
     DEBUG("Checking spawn of %s", thing.GetTag());
     if (self.allow_drops) return true;
     if (ap_suppress_weapon_drops == 0) return true;
@@ -276,31 +258,6 @@ class ::PerLevelHandler : EventHandler {
     ammo.amount = amount;
   }
 
-  ::Location, float FindCheckForActor(Actor thing) {
-    ::Location closest;
-    float min_distance = 1e10;
-    if (pending_locations.CountUsed() == 0) return null, 0.0;
-    foreach (_, check : pending_locations) {
-      float distance = (thing.pos - check.pos).Length();
-      if (distance == 0.0) {
-        // Perfect, we found the exact check this corresponds to.
-        return check, 0.0;
-      } else if (distance < min_distance) {
-        min_distance = distance;
-        closest = check;
-      }
-    }
-    // We found something, but it's not as close as we want it to be.
-    if (::Location.IsCloseEnough(closest.pos, thing.pos)) {
-      DEBUG("WARN: Closest to %s @ (%f, %f, %f) was %s @ (%f, %f, %f)",
-        thing.GetTag(), thing.pos.x, thing.pos.y, thing.pos.z,
-        closest.name, closest.pos.x, closest.pos.y, closest.pos.z);
-      return closest, min_distance;
-    }
-    // Not feeling great about this.
-    return null, min_distance;
-  }
-
   //// Handling for level exit. ////
   // We try to guess if the player reached the exit or left in some other way.
   // In the former case, we give them credit for clearing the level.
@@ -313,17 +270,32 @@ class ::PerLevelHandler : EventHandler {
     }
 
     if (ap_scan_unreachable >= 2) {
-      foreach (::CheckPickup thing : ThinkerIterator.Create("::CheckPickup", Thinker.STAT_DEFAULT)) {
-        DEBUG("Marking %s as unreachable.", thing.location.name);
-        ::PlayEventHandler.Get().CheckLocation(thing.location.apid, thing.location.name);
+      let region = apstate.GetRegion(level.MapName);
+      foreach (location : region.locations) {
+        if (location.checked) continue;
+        DEBUG("Marking %s as unreachable.", location.name);
+        ::PlayEventHandler.Get().CheckLocation(location);
       }
     }
     cvar.FindCvar("ap_scan_unreachable").SetInt(0);
 
     if (self.early_exit) return;
 
-    ::PlayEventHandler.Get().CheckLocation(
-      apstate.GetCurrentRegion().exit_id, string.format("%s - Exit", level.MapName));
+    ::PlayEventHandler.Get().CheckLocation(apstate.GetCurrentRegion().exit_location);
+
+    if (ap_release_on_level_clear) {
+      let region = apstate.GetRegion(level.MapName);
+      foreach (location : region.locations) {
+        if (location.checked) continue;
+        if (location.secret_sector < 0) {
+          if (ap_release_on_level_clear & AP_RELEASE_IN_WORLD == 0) continue;
+        } else {
+          if (ap_release_on_level_clear & AP_RELEASE_SECRETS == 0) continue;
+        }
+        DEBUG("Collecting %s on level exit.");
+        ::PlayEventHandler.Get().CheckLocation(location, true);
+      }
+    }
   }
 }
 

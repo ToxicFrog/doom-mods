@@ -1,4 +1,5 @@
 NAME=Indestructable
+TAGS=indestructable-*
 VERSION=0.3.1
 LUMPS=CVARINFO MAPINFO MENUDEF zscript.txt LANGUAGE.*
 LUMPS+=*.md textures

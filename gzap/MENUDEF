@@ -28,6 +28,14 @@ OptionMenu "ArchipelagoOptions"
   GZAP_Tooltip "$GZAP_OPT_TT_MAP_CHECKS"
   Option "$GZAP_OPT_NAME_SHOW_PROGRESSION", "ap_show_progression", "ApShowProgressionMode"
   GZAP_Tooltip "$GZAP_OPT_TT_SHOW_PROGRESSION"
+  Option "$GZAP_OPT_NAME_SHOW_CHECK_NAMES", "ap_show_check_names", "OnOff"
+  GZAP_Tooltip "$GZAP_OPT_TT_SHOW_CHECK_NAMES"
+
+  Option "$GZAP_OPT_NAME_SHOW_CHECK_ORIGINAL", "ap_show_check_original", "OnOff"
+  GZAP_Tooltip "$GZAP_OPT_TT_SHOW_CHECK_ORIGINAL"
+  Option "$GZAP_OPT_NAME_SHOW_CHECK_CONTENTS", "ap_show_check_contents", "OnOff"
+  GZAP_Tooltip "$GZAP_OPT_TT_SHOW_CHECK_CONTENTS"
+
   Slider "$GZAP_OPT_NAME_COLLECTED_CHECK_ALPHA", "ap_collected_alpha", 0.0, 1.0, 0.1, 1
   GZAP_Tooltip "$GZAP_OPT_TT_COLLECTED_CHECK_ALPHA"
 
@@ -40,10 +48,16 @@ OptionMenu "ArchipelagoOptions"
   ScaleSlider "$GZAP_OPT_NAME_BANK_POWERUPS", "ap_bank_powerups", -1, 32, 1, "0", "$GZAP_OPT_SLIDER_UNLIMITED"
   ScaleSlider "$GZAP_OPT_NAME_BANK_OTHER", "ap_bank_other", -1, 32, 1, "0", "$GZAP_OPT_SLIDER_UNLIMITED"
   GZAP_Tooltip "$GZAP_OPT_TT_BANK_LIMITS"
+  TextField "$GZAP_OPT_NAME_BANK_CUSTOM", "ap_bank_custom"
+  GZAP_Tooltip "$GZAP_OPT_TT_BANK_CUSTOM"
 
   StaticText ""
   Option "$GZAP_OPT_NAME_ALLOW_DROPS", "ap_suppress_weapon_drops", "ApWeaponDropMode"
   GZAP_Tooltip "$GZAP_OPT_TT_ALLOW_DROPS"
+
+  StaticText ""
+  Option "$GZAP_OPT_NAME_RELEASE_ATEXIT", "ap_release_on_level_clear", "ApAtExitReleaseMode"
+  GZAP_Tooltip "$GZAP_OPT_TT_RELEASE_ATEXIT"
 
   StaticText ""
   StaticText "$GZAP_OPT_HEADER_CONTROLS", CYAN
@@ -57,6 +71,8 @@ OptionMenu "ArchipelagoOptions"
   StaticText "$GZAP_OPT_HEADER_WAD_SCANNER", CYAN
   TextField "$GZAP_OPT_NAME_SCAN_LEVELS", "ap_scan_levels"
   GZAP_Tooltip "$GZAP_OPT_TT_SCAN_LEVELS"
+  TextField "$GZAP_OPT_NAME_SCAN_SKIP", "ap_scan_skip"
+  GZAP_Tooltip "$GZAP_OPT_TT_SCAN_SKIP"
   Option "$GZAP_OPT_NAME_SCAN_RECURSE", "ap_scan_recurse", "OnOff"
   GZAP_Tooltip "$GZAP_OPT_TT_SCAN_RECURSE"
   Command "$GZAP_OPT_NAME_SCAN_BEGIN", "closemenu; map GZAPHUB; wait 1; netevent ap-scan:start"
@@ -83,13 +99,9 @@ OptionValue "ApWeaponDropMode" {
   3, "$GZAP_OPT_DROPS_3"
 }
 
-/*
-TODO: Menu rework
-
-Main Menu -> Archipelago
-  [if no datapack loaded] -> opens combined scanner/exclusion UI
-  [if not in game] -> tells you to start the game
-  Level Select [opens level select/tracker]
-  Inventory [opens rando inventory]
-  Tuning [opens level exclusion/check exclusion UI]
- */
+OptionValue "ApAtExitReleaseMode" {
+  0, "$GZAP_OPT_RELEASE_0"
+  1, "$GZAP_OPT_RELEASE_1"
+  2, "$GZAP_OPT_RELEASE_2"
+  3, "$GZAP_OPT_RELEASE_3"
+}

@@ -3,7 +3,7 @@
 // This is the file that controls per-wad settings for gzArchipelago. At present
 // this just means the scanner.
 #namespace GZAP;
-#debug on;
+#debug off;
 
 class ::RC : Object play {
   static ::RC Get() {
@@ -17,6 +17,7 @@ class ::RC : Object play {
     let parser = ::RCParser(new("::RCParser"));
     int lump = wads.FindLump(lumpname, 0, wads.GlobalNamespace);
     while (lump >= 0) {
+      console.printf("Loading GZAPRC %d (%s)", lump, wads.GetLumpFullName(lump));
       let tmp = parser.Parse(wads.ReadLump(lump));
       if (tmp) {
         rc.merge(tmp);
@@ -41,6 +42,7 @@ class ::RC : Object play {
 
   void SetCategory(string cls, string category) {
     if (category == "none") category = "";
+    DEBUG("Set category for %s to %s", cls, category);
     self.categorizations.Insert(cls, category);
   }
 
@@ -50,6 +52,7 @@ class ::RC : Object play {
   }
 
   void SetTypename(string cls, string typename) {
+    DEBUG("Set typename for %s to %s", cls, typename);
     self.typenames.Insert(cls, typename);
   }
 

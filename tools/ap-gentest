@@ -1,8 +1,11 @@
 #!/usr/bin/env zsh
 
-set -e
+set -ex
+
+AP=${AP:-$HOME/.local/share/Archipelago}
 
 make
 archipelago Generate </dev/null
-cp /home/bex/Archipelago/output/$(command ls --sort=time /home/bex/Archipelago/output/ | head -n1) testdata/ap_latest.zip
+cp $AP/output/$(command ls --sort=time $AP/output/ | head -n1) testdata/ap_latest.zip
 (cd testdata && rm -f latest.pk3 && unzip ap_latest.zip '*.pk3' && mv AP_*.pk3 latest.pk3)
+rm -f testdata/ap_latest.apsave

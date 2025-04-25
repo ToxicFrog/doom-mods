@@ -8,6 +8,8 @@ uses to improve the randomizer logic.
 This file documents how to produce and update these files. It will use Demonfear
 (DMONFEAR.WAD) as an example.
 
+⚠️ In a few wads, this process produces rapid screen flashing.
+
 
 ## Generating a new logic file
 
@@ -56,6 +58,13 @@ example, to scan Doom 1:
 Note that the quotes around the map names are mandatory in the console, and should
 be omitted if scanning from the GUI.
 
+### Skipping levels
+
+You can use `ap_scan_skip` in the same way as `ap_scan_levels`; levels found
+this way will be used to find other levels but will not themselves be scanned.
+
+    ap_scan_skip "E1END E2END CREDITS"
+
 ### Overriding scanner behaviour
 
 Some wads contain items that gzArchipelago's automatic item classifier does not
@@ -95,16 +104,19 @@ to rapidly change and test your work without repacking the apworld.
 
 When you play a multiworld game, a tuning file will be automatically created
 in the `gzdoom/tuning` directory in your Archipelago directory, with the same
-name as the wad you're playing.
+name as the wad you're playing. If you play the same wad multiple times, it
+will create multiple, numbered tuning files, all of which will be loaded by the
+apworld.
 
 When you play single-world, you can accomplish the same thing with the `logfile`
-console command.
+console command. (Or you can just leave the AP client running in the background
+-- it doesn't need to connect to the AP server to create the tuning file for
+you.)
 
-The file in `<AP dir>/gzdoom/tuning/` will be loaded automatically; to "bake it in"
-to the apworld, use the same procedure as adding a logic file, but put the file
-in the `gzdoom/tuning/` directory inside the apworld, rather than `gzdoom/logic/`.
-If a file already exists there for this WAD, simply append the new tuning data
-to it.
+The files in `<AP dir>/gzdoom/tuning/` will be loaded automatically; to "bake it
+in" to the apworld, use the same procedure as adding a logic file, but put the
+files in the `gzdoom/tuning/` directory inside the apworld, rather than
+`gzdoom/logic/`.
 
 ### Tuning without randomizing
 
@@ -116,9 +128,9 @@ mapped from the start, and no starting keys.
 
 ### Unreachable checks
 
-You may encounter checks that are unreachable in normal play. For example, Going
-Down Turbo MAP12 has a red key that exists purely for visual effect and cannot
-be collected by the player.
+You may encounter checks that are unreachable in normal play. For example, Doom
+2 MAP07 ("Dead Simple") contains a BFG in a hidden room that can only be opened
+in multiplayer.
 
 If you encounter one of these, you can mark it unreachable using the `ap_scan_unreachable`
 cvar. You can mark the next check you touch unreachable (and then use `noclip` to
@@ -130,10 +142,11 @@ Alternately, you can mark every check you touch for the rest of the level:
 
     ap_scan_unreachable 2
 
-In the latter case, it will mark all remaining checks when you exit the level, so
-you don't need to run around noclipping to all of them -- just set it to 2 and
-touch the exit.
+In the latter case, it will mark all remaining checks when you exit the level,
+so you don't need to run around noclipping to all of them -- just set it to 2
+and touch the exit.
 
 On future runs, unreachable checks will still be present in the world, but will
-be hard-coded to contain Doom filler items; they will never contain progression
-items or items from someone else's game.
+be hard-coded to contain a 1-point health restore filler item; they will never
+contain progression items or items from someone else's game. They will also be
+displayed with a greyscale icon.

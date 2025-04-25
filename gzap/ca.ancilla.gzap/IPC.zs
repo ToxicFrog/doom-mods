@@ -48,6 +48,7 @@ class ::IPC {
     bool send_ack = false;
     Array<string> fields;
     foreach (message : messages) {
+      DEBUG("RECV: %s", message);
       fields.Clear();
       message.split(fields, "\x1F");
       if (fields.Size() < 2) {
@@ -74,6 +75,9 @@ class ::IPC {
     if (send_ack) Send("ACK", string.format("{ \"id\": \"%s\" }", last_seen));
   }
 
+  // Receive a single parsed message. type is the message type. fields is the
+  // complete field array; fields[0] is always the sequence id and fields[1] is
+  // the message type, everything after that is arguments.
   bool ReceiveOne(string type, Array<string> fields) {
     if (type == "TEXT") {
       if (fields.Size() != 3) return false;
@@ -101,6 +105,10 @@ class ::IPC {
       EventHandler.SendNetworkCommand("ap-ipc:peek",
         // fields are map name, location name, destination player name, item name
         NET_STRING, fields[2], NET_STRING, fields[3], NET_STRING, fields[4], NET_STRING, fields[5]);
+      return true;
+    } else if (type == "TRACK") {
+      if (fields.Size() != 3) return false;
+      EventHandler.SendNetworkCommand("ap-ipc:track", NET_INT, fields[2].ToInt(10));
       return true;
     }
     return false;

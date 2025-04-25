@@ -38,10 +38,6 @@ something that apdoom has an easier time representing because it has subregions
 for its levels. This also means that we need a way to refer to events from AP-ITEM/
 AP-CHECK logic.
 
-We need an actor typename to category mapping file. Faithless might not need this,
-but Hedon and Ashes probably do and Square definitely does. And it needs to be
-available at scan time, so a new lump, e.g. APTYPES.
-
 The logic format needs a redesign. First draft thoughts -- separate items and
 locations. So we have:
 AP-MAP { information about the map as a whole }
@@ -49,10 +45,6 @@ AP-ITEMS { map of item name to item count for a map }
 AP-MONSTERS { map of monster name to monster count for a map }
 - maybe AP-ITEM and AP-MONSTER, each one holding a single count?
 AP-LOCATION { information about a location, including whether it's secret or not }
-
-For secrets-as-checks, not sure if this should be a flag on AP-LOCATION or, since
-it doesn't have a single, clearly defined point in space, a separate message type,
-AP-SECRET.
 
 We may also want to define key scoping here, somehow -- e.g. an AP-KEY message
 something like:
@@ -63,55 +55,44 @@ keys; frozen notes that the Hellshell Launcher can be used to break certain wall
 that normally require TNT box manipulation. This also ties in with the need to
 be able to represent logic requirements that aren't just keys.
 
+More thoughts on key scope changes -- make the key list apstate-wide rather than
+per-region; a key consists of typename, scope name, and list of levels.
+
+RegisterKey then creates an entry where level list == [scope name]
+
+Finding a key in-game that doesn't exist in the keylist automatically creates an
+entry for it. Open question: is it scoped just to the map we found it in, or to
+the whole game? perhaps we do something like:
+- if it's not interhub, just that level;
+- if it is interhub, and we're not in persistent mode, use the cluster info;
+- if we're in persistent mode, maybe plumb the cluster info through? and then
+  generate based on that?
+- emit an AP-KEY message into the tuning?
+
+Maybe we can also autogen AP-KEY messages at scan time; if we see a key and it's
+marked interhub, generate the AP-KEY for it...
+
 ### scanner
 
 - map exclusion UI
-- include secrets as checks in themselves?
-  we can build the secret list by scanning the sector array on level entry and
-  recording all sectors for which IsSecret() return true. We can associate this
-  with the sector Index(). For naming, we have a few options; there's the Index,
-  which is guaranteed unique but not useful to the player; there's also the `thinglist`
-  which is a linked list of Actors contained in that sector, which would let us
-  match it up to any check(s) inside it, and the `centerspot` which is the XY center
-  of the sector (but not guaranteed to be unique since sectors can be concave).
-  Probably quick-and-easy approach is "MAPXX - Secret {index} [{x},{y}]".
-  To detect secret collection, we watch level.total_secrets and level.found_secrets
-  in OnTick(); when the former increases, we walk the secret sectors to find out
-  which one(s) have been collected.
-
-### ingame
-
-* weapon suppression should let the weapon drop normally and apply the suppression
-  when it's picked up
-- "tracker mode" that propagates key requirements into the generated pk3 and
-  displays what it thinks you can reach from the level selector
-- when placing checks, it probably makes more sense to place the check first, then
-  delete any categorizeable items around it, rather than looking for something to
-  replace. This requires knowing what type of thing we *hoped* to replace so we
-  can copy physics info from it, so we don't get stuff in walls or anything.
+- list maps to scan as ranges or globbing expressions?
 
 ### generator
 
-- don't force keys for starting levels that have been tuned
-- option to treat secrets as checks, once above scanner changes are made
 - option to treat bosses as checks -- also needs scanner changes, highly vulnerable
   to enemy-replacement mods
+  - could try placing the check in the boss's inventory, and on the ground where
+    the boss would be if we can't find it
 - alternate win conditions:
   - clear [specific levels]
-  - clear any N levels
   - find N victory tokens
   - find N secrets
+- option to choose the X% of an item category game-wide rather than per-map
 
-### Adventures of Square
+### ingame
 
-This has some extra complications around powerups that are actually key items,
-and the like; additionally, the weapons as placed in the maps aren't real weapons,
-they're CustomInventory items that, when picked up, turn into weapons. To address
-this we probably need an option to load an external lump containing a class name
-to category mapping so that we can, for example, list the AOS weapon customs in it
-and map them to `weapon`.
-
-Support for other TCs will probably benefit from work done on AOS.
+- weapon suppression should let the weapon drop normally and apply the suppression
+  when it's picked up
 
 ### Faithless
 
@@ -127,6 +108,40 @@ This will probably require some redesign to allow treating it as a single unifie
 game, with *every* map, from every episode, in the same cluster so that they don't
 reset ever during the rando session. But we still need to remember which cluster
 they came from so that, e.g., we treat the E1 and E2 green keys differently.
+
+### Golden Souls
+
+Basic structure is one central hub map from which all other maps branch off. Access
+to these maps is gated based on number of Golden Souls or Big Coins found, with
+only map accessible initially.
+
+Each map contains weapons, ammo, health, small coins, enemies (which drop small coins),
+and one or more Golden Souls and Big Coins. Some levels contain red coins and all
+red coins must be collected to reveal the GS.
+
+For this we probably want to abandon access tokens entirely, or model them as-well-as
+golden souls. This means we also need a way to say "the requirements for entering
+map X are Y". It already has full persistence and a hub, so we don't need the
+generated MAPINFO or even, probably, the level select screen.
+
+Internally, we have a bunch of inventory items:
+Star_Soul - golden soul
+Big_Coin_Total, Big_Coin - incremented when you find a BC
+BigCoinsInMap - you get one of these when in a map that has BCs
+Token_BigCoinCounter - map-specific, gain one for each big coin
+RedCoinsInMap, Token_RedCoinCounter - as above but for red coins
+
+Initially progress is completely linear, with one level == one soul, and the next
+level needing N+1 souls to access. As you find secret levels and big coins, though,
+you can get ahead of the soul curve; secret levels contain one soul and no big coins.
+
+There are three secret levels that must be found via exits in other maps, and three
+more that require 12, 24, or 36 big coins to reach.
+
+At 8 souls, you unlock 4 more levels all at once.
+
+To reach the final boss, you need 15 souls; since there are only 12 "normal" levels,
+you also need to do at least three of the (secret hidden + secret bigcoin) levels.
 
 ## Indes
 
@@ -378,3 +393,18 @@ Upgrades inspired by DoomRL:
 - show secrets/monsters/items/etc on map
 - damage type modifications (e.g. shrapnel -> AP)
 - damage resistance while firing
+
+## Event ordering in StaticEventHandler
+
+When starting a new game:
+- PlayerSpawned
+- PlayerEntered
+- WorldLoaded
+- WorldTick (!)
+- WorldThingSpawned for every actor
+- more WorldTick
+
+When loading a game:
+- WorldLoaded
+- more WorldTick
+

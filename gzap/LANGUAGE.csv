@@ -3,6 +3,7 @@ Level Select,GZAP_MENU_LEVEL_SELECT_TITLE,
 You are victorious!,GZAP_MENU_VICTORIOUS,
 Reset All Levels,GZAP_MENU_LEVEL_SELECT_RESET,
 "Reset all levels to their start-of-game state. Does not reset randomizer state but does respawn enemies, close doors, etc.",GZAP_MENU_TT_RESET,
+No AP-generated pk3 loaded. Generate a game first.,GZAP_MENU_ERROR_NOT_IN_GAME,Displayed when the player tries to open the level select menu but no generated game is loaded.
 Return to Hub,GZAP_MENU_LEVEL_SELECT_RETURN,
 Level,GZAP_MENU_HEADER_LEVEL,"Level name column. Column contends are (e.g.) ""Underhalls (MAP02)""."
  Items ,GZAP_MENU_HEADER_ITEMS,Items collected/total column. Needs to be 7 cols long.
@@ -16,7 +17,7 @@ Automap: \c[BLACK]no,GZAP_MENU_TT_AM_NO,
 Automap: \c[GOLD]yes,GZAP_MENU_TT_AM_YES,
 Missing Keys:,GZAP_MENU_TT_KEYS,Missing keys tooltip header.
 Unchecked Locations:,GZAP_MENU_TT_CHECKS,Unchecked locations tooltip header.
-Next Hint [press →]:,GZAP_MENU_TT_HINT,Header for what the next hint you can auto-request is.
+Next Hint [press \c[GOLD]→\c-]:,GZAP_MENU_TT_HINT,Header for what the next hint you can auto-request is.
 Inventory,GZAP_MENU_INVENTORY_TITLE,
 "WARNING: game/randomizer mismatch
 
@@ -38,6 +39,20 @@ Hilight progression items,GZAP_OPT_NAME_SHOW_PROGRESSION,
 "Displays a different icon for progression items than for useful/filler/trap items.
 
 ""In person only"" matches the behaviour of apdoom. ""After map"" and ""always"" can make the game much easier by letting you check from the automap whether there are any progression items left on the level (and where they are).",GZAP_OPT_TT_SHOW_PROGRESSION,
+Show check names,GZAP_OPT_NAME_SHOW_CHECK_NAMES,
+"When collecting a check, briefly displays the check name on-screen. This is useful when still learning the maps and what each check is called.",GZAP_OPT_TT_SHOW_CHECK_NAMES,
+Show check name icons,GZAP_OPT_NAME_SHOW_CHECK_ORIGINAL,
+"Display a floating image over each check indicating what item would have been there in the vanilla game.
+
+This is primarily useful when tuning or when still learning the map; it lets you tell, at a glance, which check is ""MAP01 - RocketLauncher"" and which one is ""MAP01 - Shotgun"".
+
+These icons are displayed only in person, not on the automap. Changes to this setting don't take effect until you reset the map.",GZAP_OPT_TT_SHOW_CHECK_ORIGINAL,
+Show check content icons,GZAP_OPT_NAME_SHOW_CHECK_CONTENTS,
+"Display an image overlaid on each check indicating what is stored in it.
+
+Only items Doom has graphics for are displayed, so don't expect to see Triforce pieces or anything.
+
+These icons are displayed only in person, not on the automap. Changes to this setting don't take effect until you reset the map.",GZAP_OPT_TT_SHOW_CHECK_CONTENTS,
 Collected check opacity,GZAP_OPT_NAME_COLLECTED_CHECK_ALPHA,
 A setting of 0 makes collected checks vanish entirely. Values around 0.1-0.4 will result in them turning translucent. Higher values make them extremely difficult to distinguish from uncollected checks and are not recommended.,GZAP_OPT_TT_COLLECTED_CHECK_ALPHA,
 Weapon bank limit,GZAP_OPT_NAME_BANK_WEAPONS,
@@ -49,12 +64,24 @@ Other bank limit,GZAP_OPT_NAME_BANK_OTHER,
 "Limits for how much of each item type the randomizer will let you ""bank"" and reclaim later.
 
 If you receive an item and you're already at the limit, it will be given to you immediately, even if it's not useful to do so (e.g. a soulsphere when you're at 200% health). A limit of 0 means that all items of that type will be immediately dispensed.",GZAP_OPT_TT_BANK_LIMITS,
+Custom bank limits,GZAP_OPT_NAME_BANK_CUSTOM,
+"Custom configuration for categories not listed above, or settings for specific subcategories or items.
+
+This is a space-separated list of entries of the form ""name:limit"". The ""name"" can be a category name (like ""small-health""), an item name (like ""Stimpack""), or a prefix or suffix using *, like ""small-*"" or ""*Ammo"".
+
+Leaving ""small-*:0"" in the list is strong recommended to avoid cluttering your inventory with huge amounts of tiny health/ammo/armour pickups.",GZAP_OPT_TT_BANK_CUSTOM,
 Weapon drops from enemies,GZAP_OPT_NAME_ALLOW_DROPS,
 "Whether to allow enemies to drop weapons (in addition to getting weapons through AP), such as zombie shotgunners dropping shotguns.
 
 ""If already-filled slot"" allows weapons to drop if you already have a weapon with the same slot number, e.g. having the SSG will allow both SSGs and normal shotguns to drop.
 
 ""If already-held weapon"" allows weapons to drop only if you are already holding a copy of that weapon.",GZAP_OPT_TT_ALLOW_DROPS,
+Auto-release on level clear,GZAP_OPT_NAME_RELEASE_ATEXIT,
+"If enabled, will release some or all of the items in a level when you reach the exit.
+
+This makes the game more about figuring out when you are in ""go mode"" for each individual level and then just going for it, and less about clearing every check individually.
+
+In sync multiworld games this can produce large ""bursts"" of items which some players may find disruptive; check with your teammates before turning it on.",GZAP_OPT_TT_RELEASE_ATEXIT,
 Unlimited,GZAP_OPT_SLIDER_UNLIMITED,
 Controls,GZAP_OPT_HEADER_CONTROLS,
 AP level select/tracker,GZAP_OPT_NAME_LEVELSELECT,
@@ -69,7 +96,9 @@ WAD Import Scanner,GZAP_OPT_HEADER_WAD_SCANNER,
 Initial levels to scan,GZAP_OPT_NAME_SCAN_LEVELS,
 "Levels to scan, space-separated (e.g. ""E1M1 E2M1 E3M1"").
 
-For most Doom 2 style wads, you can just set this to MAP01 and make sure recursion is on and it will scan the entire WAD. For games separated into episodes, like Doom 1 or Heretic, you probably need to list every episode start here. For games that use map teleport specials rather than MAPINFO, like Faithless, you'll need to list all the maps you want to scan here.",GZAP_OPT_TT_SCAN_LEVELS,
+For most Doom 2 style wads, you can just set this to MAP01 and make sure recursion is on and it will scan the entire WAD. For games separated into episodes, like Doom 1 or Heretic, you probably need to list every episode start here.",GZAP_OPT_TT_SCAN_LEVELS,
+Levels to ignore,GZAP_OPT_NAME_SCAN_SKIP,
+"A space-separated list of levels that the scanner will ignore if it finds them. Deathmatch maps, end-of-episode cutscenes, and credit maps are typical things to list here.",GZAP_OPT_TT_SCAN_SKIP,
 Recursive scanning,GZAP_OPT_NAME_SCAN_RECURSE,
 "If on, after scanning a level, it will also scan the NextMap/NextSecretMap listed for that level in MAPINFO.
 
@@ -91,6 +120,10 @@ Enabled,GZAP_OPT_DROPS_0,
 If already-filled slot,GZAP_OPT_DROPS_1,
 If already-held weapon,GZAP_OPT_DROPS_2,
 Disabled,GZAP_OPT_DROPS_3,
+Nothing,GZAP_OPT_RELEASE_0,
+All in-world checks,GZAP_OPT_RELEASE_1,
+All secret-sector checks,GZAP_OPT_RELEASE_2,
+Everything,GZAP_OPT_RELEASE_3,
 [ap-scan] Starting scan of all levels.,GZAP_SCAN_STARTING,
 [ap-scan] No levels to scan. Set the ap_scan_levels cvar before starting.,GZAP_SCAN_EMPTY,
 [ap-scan] No more levels to scan.,GZAP_SCAN_DONE,

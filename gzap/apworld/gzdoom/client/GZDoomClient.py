@@ -1,26 +1,32 @@
 import asyncio
 import copy
+import locale
 import os
 import os.path
 from typing import Any, Dict
 
 import Utils
-from CommonClient import CommonContext, ClientCommandProcessor, ClientStatus, get_base_parser, gui_enabled, server_loop, logger
+from CommonClient import ClientCommandProcessor, ClientStatus, get_base_parser, gui_enabled, server_loop, logger
 from .IPC import IPC
 from .Hint import GZDoomHint
 
+tracker_loaded = False
+try:
+    from worlds.tracker.TrackerClient import TrackerGameContext as SuperContext
+    print("Universal Tracker detected, enabling tracker support.")
+    tracker_loaded = True
+except ModuleNotFoundError:
+    from CommonClient import CommonContext as SuperContext
+    print("No Universal Tracker detected, running without tracker support.")
+
 _IPC_SIZE = 4096
 
-class GZDoomCommandProcessor(ClientCommandProcessor):
-    pass
-
-
-class GZDoomContext(CommonContext):
-    command_processor = GZDoomCommandProcessor
+class GZDoomContext(SuperContext):
     game = "gzDoom"
     items_handling = 0b111  # fully remote
     want_slot_data = False
     slot_name = None
+    tags = {"AP"}
 
     def __init__(self, server_address: str, password: str, gzd_dir: str):
         self.found_gzdoom = asyncio.Event()
@@ -28,11 +34,9 @@ class GZDoomContext(CommonContext):
         self.ipc = IPC(self, gzd_dir, _IPC_SIZE)
 
     def make_gui(self):
-        from kvui import GameManager
-        class TextManager(GameManager):
-            base_title = "gzDoom Client"
-
-        return TextManager
+        ui = super().make_gui()
+        ui.base_title = "GZDoom Client"
+        return ui
 
     async def start_tasks(self) -> None:
         print("Starting log reader")
@@ -41,6 +45,10 @@ class GZDoomContext(CommonContext):
         self.items_task = asyncio.create_task(self._item_loop())
         self.locations_task = asyncio.create_task(self._location_loop())
         self.hints_task = asyncio.create_task(self._hint_loop())
+        if tracker_loaded:
+            self.tracker_task = asyncio.create_task(self._tracker_loop())
+        else:
+            self.tracker_task = None
         print("Starting server loop")
         self.server_task = asyncio.create_task(server_loop(self), name="ServerLoop")
         print("All tasks started.")
@@ -57,10 +65,11 @@ class GZDoomContext(CommonContext):
 
     async def get_username(self):
         if not self.auth:
-            print("Getting slot name from gzdoom:", self.auth, self.username)
+            print("Getting slot name from gzdoom...")
             await self.found_gzdoom.wait()
             self.username = self.slot_name
             self.auth = self.username
+            print("Got slot info:", self.username)
 
     async def server_auth(self, *args):
         """Called automatically when the server connection is established."""
@@ -73,9 +82,17 @@ class GZDoomContext(CommonContext):
         self.seed_name = seed
         self.last_items = {}  # force a re-send of all items
         self.last_locations = set()
+        self.last_tracked = set()
         self.last_hints = {}
         self.found_gzdoom.set()
         self.ipc.send_text("Archipelago<->GZDoom connection established.")
+
+    async def on_xoff(self):
+        self.username = None
+        self.auth = None
+        self.slot_name = None
+        self.found_gzdoom.clear()
+        logger.info("Connection to GZDoom closed.")
 
     async def on_victory(self):
         self.finished_game = True
@@ -84,6 +101,9 @@ class GZDoomContext(CommonContext):
             ])
 
     def on_package(self, cmd, args):
+        # print("on_package", cmd, args)
+        if cmd == "Connected" and tracker_loaded:
+            args.setdefault("slot_data", dict())
         super().on_package(cmd, args)
         self.awaken()
 
@@ -97,8 +117,9 @@ class GZDoomContext(CommonContext):
         # the coroutine just silently dies and you never know why.
         # So whenever we awaken, we first check to see if any of the coros died,
         # and propagate the error if so.
-        for task in [self.items_task, self.locations_task, self.hints_task]:
-            if task.done():
+        for task in [self.items_task, self.locations_task, self.hints_task, self.tracker_task]:
+            if task is not None and task.done():
+                print(f"Task {task} has exited!")
                 task.result()  # raises if the task errored out
         self.watcher_event.set()
 
@@ -135,6 +156,7 @@ class GZDoomContext(CommonContext):
             for id,count in new_items.items():
                 if count != self.last_items.get(id, 0):
                     self.ipc.send_item(id, count)
+            self.ipc.flush()
             self.last_items = new_items
 
     async def _location_loop(self):
@@ -146,7 +168,20 @@ class GZDoomContext(CommonContext):
             # print("Location loop running", new_locations, self.checked_locations)
             for id in new_locations:
                 self.ipc.send_checked(id)
+            self.ipc.flush()
             self.last_locations |= new_locations
+
+    async def _tracker_loop(self):
+        self.last_tracked = set()
+        while not self.exit_event.is_set():
+            await self.watcher_event.wait()
+            self.watcher_event.clear()
+            new_tracked = set(self.locations_available) - self.last_tracked
+            # print("Location loop running", new_locations, self.checked_locations)
+            for id in new_tracked:
+                self.ipc.send_track(id)
+            self.ipc.flush()
+            self.last_tracked |= new_tracked
 
     async def _hint_loop(self):
         self.last_hints = {}
@@ -164,6 +199,7 @@ class GZDoomContext(CommonContext):
                 if hint.is_peek(self):
                     # print("sending peek:", hint.peek_info(self))
                     self.ipc.send_peek(*hint.peek_info(self))
+            self.ipc.flush()
             self.last_hints = hints
 
 
@@ -188,9 +224,14 @@ def main(*args):
     with open(ipc_log, "a"):
         pass
 
-    async def actual_main(args):
+    print(f"GZDoom IPC files created. Host encoding: {locale.getencoding()}. IPC encoding: UTF-8.")
+
+    async def actual_main(args, ipc_dir, ipc_log):
         ctx = GZDoomContext(args.connect, args.password, gzd_dir)
         await ctx.start_tasks()
+        if tracker_loaded:
+            logger.info("Initializing tracker...")
+            ctx.run_generator()
         if gui_enabled:
             ctx.run_gui()
         ctx.run_cli()
@@ -199,16 +240,17 @@ def main(*args):
 
         logger.info("*" * 80)
         logger.info("Client started. Please start gzDoom with the additional flags:")
-        # TODO: can we give the actual zip name here?
-        # Not until we know the seed, looks like, which we don't get until we
-        # connect to gzdoom...
-        logger.info(f"    -file \"{ipc_dir.replace("\\", "/")}\" +logfile \"{ipc_log.replace("\\", "/")}\"")
+        # Use forward slashes unconditionally here; windows will accept either,
+        # but preferentially generates backslashes, which then are treated as
+        # escapes when invoking gzdoom.
+        logger.info(f"    -file \"{ipc_dir}\" +logfile \"{ipc_log}\"")
         logger.info("*after* any other arguments (e.g. for wad/pk3 loading).")
         logger.info("*" * 80)
 
         await ctx.exit_event.wait()
         print("Shutting down...")
         ctx.ipc.should_exit = True
+        ctx.awaken()
         await ctx.shutdown()
 
     import colorama
@@ -217,7 +259,9 @@ def main(*args):
 
     colorama.init()
     args = parser.parse_args(args)
-    asyncio.run(actual_main(args), debug=True)
+    asyncio.run(
+        actual_main(args, ipc_dir.replace("\\", "/"), ipc_log.replace("\\", "/")),
+        debug=True)
     colorama.deinit()
 
 

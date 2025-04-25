@@ -18,10 +18,13 @@ tools/ap-scan "Scythe" "testdata/doom/maps/megawads/2003 - Scythe.zip"
 tools/ap-scan "MAYhem 2048" "testdata/doom/maps/anthologies/2014 - MAYhem 2048.wad"
 tools/ap-scan "Going Down Turbo" "testdata/doom/maps/megawads/2024 - Going Down Turbo [RC1-7].wad"
 tools/ap-scan "1000 Lines" "testdata/doom/maps/anthologies/2019 - 1000 Lines.zip"
+tools/ap-scan "1000 Lines II" "testdata/doom/maps/anthologies/2020 - 1000 Lines II.zip"
+MAPS="E1A1 E1A1" SKIP="E1END E2END E2END2" tools/ap-scan \
+  "The Adventures of Square" "testdata/doom/maps/conversions/2018 - The Adventures of Square 1+2.pk3"
+
 
 # Maybe later
 # IWAD=doom_fusion.ipk3 MAPS="E1M1 E2M1 E3M1 E4M1 MAP01 TN_MAP01 PL_MAP01" tools/ap-scan "WadFusion"
-# MAPS=E1A1 tools/ap-scan "The Adventures of Square" testdata/doom/maps/conversions/2018\ -\ The\ Adventures\ of\ Square\ 1+2.pk3
 # IWAD=heretic.wad MAPS="$(echo E1M{1..9})" tools/ap-scan "Faithless" testdata/doom/maps/conversions/2024\ -\ Faithless\ Trilogy\ RC1a.pk3
 # tools/ap-scan "Necromantic Thirst" testdata/doom/maps/megawads/2024\ -\ Necromantic\ Thirst\ RC2.zip
 # tools/ap-scan "Doom 2 In City Only" testdata/doom/maps/anthologies/2024\ -\ Doom\ 2\ In\ City\ Only.zip

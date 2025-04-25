@@ -17,6 +17,11 @@ class ::LevelSelectMenu : ::CommonMenu {
     TooltipGeometry(0.0, 0.5, 0.25, 1.0, 0.5);
     TooltipAppearance("", "", "tfttbg");
 
+    if (!::PlayEventHandler.GetState()) {
+      console.printf("%s", StringTable.Localize("$GZAP_MENU_ERROR_NOT_IN_GAME"));
+      return;
+    }
+
     PushText(" ");
     PushText("$GZAP_MENU_LEVEL_SELECT_TITLE", Font.CR_WHITE);
     mDesc.mItems.Push(new("::ProgressIndicator").InitDirect("", Font.CR_CYAN));
@@ -77,8 +82,13 @@ class ::LevelSelectMenu : ::CommonMenu {
   }
 
   override void Ticker() {
-    super.Ticker();
     let state = ::PlayEventHandler.GetState();
+    if (!state) {
+      Close();
+      return;
+    }
+
+    super.Ticker();
     if (!state.ShouldWarn()) return;
 
     EventHandler.SendNetworkEvent("ap-did-warning");
@@ -103,10 +113,11 @@ class ::LevelSelectMenu : ::CommonMenu {
   }
 
   string GetFilterWarning(::RandoState state) {
-    if (state.filter == ::Util.GetCurrentFilter()) return "";
+    let ap_filter_name = ::Util.GetFilterName(state.filter);
+    let game_filter_name = ::Util.GetFilterName(::Util.GetCurrentFilter());
+    if (ap_filter_name == game_filter_name) return "";
     return string.format(
       StringTable.Localize("$GZAP_MENU_WARNING_SPAWNS"),
-      ::Util.GetFilterName(state.filter),
-      ::Util.GetFilterName(::Util.GetCurrentFilter()));
+      ap_filter_name, game_filter_name);
   }
 }

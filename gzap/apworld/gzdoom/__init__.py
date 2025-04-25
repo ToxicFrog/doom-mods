@@ -1,4 +1,5 @@
 import fnmatch
+from importlib import resources
 import jinja2
 import logging
 import os
@@ -87,12 +88,6 @@ class GZDoomWorld(World):
     wad_logic: DoomWad
     location_count: int = 0
 
-    # How many of each item we have left; stored outside the item so that we
-    # don't have to mutate the DoomItem to keep track of it, which would have
-    # bad side effects if multipler players are using this apworld in the same
-    # generation pass.
-    item_counts: Dict[str, int]
-
     # Used by the caller
     item_name_to_id: Dict[str, int] = model.unified_item_map()
     item_name_groups: Dict[str,FrozenSet[str]] = model.unified_item_groups()
@@ -130,33 +125,44 @@ class GZDoomWorld(World):
         self.options.included_levels.value = set()
         self.options.excluded_levels.value = set()
         self.options.level_order_bias.value = 0
+        self.options.local_weapon_bias.value = 0
+        self.options.carryover_weapon_bias.value = 0
         self.options.starting_levels.value = [map.map for map in self.maps]
-        self.options.full_persistence.value = False
+        self.options.start_with_keys.value = False
+        # self.options.full_persistence.value = False
         self.options.allow_respawn.value = True
+        self.included_item_categories = {
+            category: 1.0
+            for category in model.all_categories()
+        }
 
     def generate_early(self) -> None:
         wadlist = list(self.options.selected_wad.value)
         print(f"Permitted WADs: {wadlist}")
 
         self.wad_logic = model.get_wad(random.choice(wadlist))
-        print(f"Selected WAD: {self.wad_logic.name}")
-        print(f"Selected spawns: {self.options.spawn_filter.value}")
         self.spawn_filter = self.options.spawn_filter.value
+        skill_name = { 1: "easy", 2: "medium", 3: "hard" }[self.spawn_filter]
+        print(f"Selected WAD: {self.wad_logic.name}")
+        print(f"Selected spawns: {skill_name} ({self.options.spawn_filter.value})")
 
-        self.included_item_categories = (
-            self.options.included_item_categories.value | {"key", "weapon", "token"})
+        self.included_item_categories = self.options.included_item_categories.value.copy()
+        self.included_item_categories.update({ "key": 1, "weapon": 1, "token": 1 })
 
         self.maps = [
             map for map in self.wad_logic.maps.values()
             if self.should_include_map(map.map)
         ]
-        self.item_counts = {
-            item.name(): item.get_count(self.options, len(self.maps))
-            for item in self.wad_logic.items(self.spawn_filter)
-        }
 
+        # Set this up after building the map list but before building the location
+        # list or item pool, since it sets options that should include all locations
+        # and all items in the pool.
+        # The list of maps already includes everything because should_include_map
+        # has a special exception for pretuning mode.
         if self.options.pretuning_mode:
             self.setup_pretuning_mode()
+
+        self.pool = self.wad_logic.fill_pool(self)
 
         if "GZAP_DEBUG" in os.environ:
             print("Selected maps:", sorted([map.map for map in self.maps]))
@@ -173,49 +179,45 @@ class GZDoomWorld(World):
 
         for map in self.maps:
             if self.options.start_with_all_maps:
-                item = self.wad_logic.item(map.automap_name())
-                self.multiworld.push_precollected(self.create_item(map.automap_name()))
-                self.item_counts[item.name()] -= 1
+                item = self.create_item(map.automap_name())
+                self.multiworld.push_precollected(item)
+                self.pool.adjust_item(item.name, -1)
 
             if self.is_starting_map(map.map):
-                if self.options.pretuning_mode:
-                    self.multiworld.push_precollected(self.create_item(map.access_token_name()))
-                else:
-                    for name in map.starting_items():
-                        item = self.wad_logic.item(name)
-                        self.multiworld.push_precollected(GZDoomItem(item, self.player))
-                        self.item_counts[item.name()] -= 1
+                for name in map.starting_items(self.options):
+                    item = self.create_item(name)
+                    self.multiworld.push_precollected(item)
+                    self.pool.adjust_item(item.name, -1)
 
             region = Region(map.map, self.player, self.multiworld)
             self.multiworld.regions.append(region)
             if self.options.pretuning_mode:
                 rule = lambda state: True
             else:
-                rule = map.access_rule(
-                    self.player,
-                    need_priors=self.options.level_order_bias.value / 100,
-                    require_weapons=(not self.is_starting_map(map.map)))
+                rule = map.access_rule(self)
             menu_region.connect(
                 connecting_region=region,
                 name=f"{map.map}",
                 rule=rule)
-            for loc in map.all_locations(self.spawn_filter, self.included_item_categories):
+            for loc in self.pool.locations_in_map(map.map):
                 assert loc.name() not in placed, f"Location {loc.name()} was already placed but we tried to place it again!"
                 placed.add(loc.name())
                 location = GZDoomLocation(self.options, self.player, loc, region)
                 if self.options.pretuning_mode:
                     location.access_rule = lambda state: True
-                    location.place_locked_item(self.create_item(loc.orig_item.name()))
+                    if loc.orig_item:
+                        location.place_locked_item(self.create_item(loc.orig_item.name()))
+                    elif loc.item:
+                        location.place_locked_item(self.create_item(loc.item.name()))
+                    else:
+                        # Some synthetic locations, like secret sectors, don't have
+                        # any items associated with them.
+                        location.place_locked_item(self.create_item("Health"))
                 elif loc.unreachable:
-                    # TODO: put a BasicHealthBonus here or something
-                    # We want SOMETHING here so that if the player manages to
-                    # reach it after all, we emit a check message for it clearing
-                    # the unreachable bit.
-                    location.place_locked_item(GZDoomItem(
-                        self.wad_logic.item("Backpack"), self.player))
+                    location.place_locked_item(self.create_item("Health"))
                 elif loc.item:
-                    location.place_locked_item(GZDoomItem(loc.item, self.player))
-                    self.item_counts[loc.item.name()] -= 1
+                    location.place_locked_item(self.create_item(loc.item.name()))
+                    self.pool.adjust_item(loc.item.name(), -1)
                 else:
                     self.location_count += 1
                 region.locations.append(location)
@@ -228,58 +230,59 @@ class GZDoomWorld(World):
             return
 
         slots_left = self.location_count
-        main_items = (self.wad_logic.progression_items(self.spawn_filter)
-                      + self.wad_logic.useful_items(self.spawn_filter))
-        filler_items = self.wad_logic.filler_items(self.spawn_filter)
+        main_items = self.pool.progression_items() | self.pool.useful_items()
+        filler_items = self.pool.filler_items()
 
-        for item in main_items:
-            if item.map and not self.should_include_map(item.map):
-                continue
-            if item.category not in self.included_item_categories:
-                continue
-            # print("  Item:", item, item.count)
-            for _ in range(max(self.item_counts[item.name()], 0)):
-                self.multiworld.itempool.append(GZDoomItem(item, self.player))
+        for item,count in main_items.items():
+            # if count > 0:
+            #     print(f"Adding {count}× {item} to the pool.")
+            for _ in range(max(count, 0)):
+                self.multiworld.itempool.append(self.create_item(item))
                 slots_left -= 1
 
         # compare slots_left to total count of filler_items, then scale filler_items
         # based on the difference.
-        filler_count = 0
-        for item in filler_items:
-            filler_count += self.item_counts.get(item.name(), 0)
+        filler_count = sum(filler_items.values())
         if filler_count == 0:
             print("Warning: no filler items in pool!")
             return
         scale = slots_left/filler_count
 
-        for item in filler_items:
-            for _ in range(round(self.item_counts.get(item.name(), 0) * scale)):
+        for item,count in filler_items.items():
+            count = max(0, count)
+            for _ in range(round(count * scale)):
                 if slots_left <= 0:
                     break
-                self.multiworld.itempool.append(GZDoomItem(item, self.player))
+                self.multiworld.itempool.append(self.create_item(item))
                 slots_left -= 1
 
-        # Hack hack hack -- if rounding resulted having some empty slots, fill them
-        # with whatever's first in filler_items
-        while slots_left > 0:
-            self.multiworld.itempool.append(GZDoomItem(filler_items.copy().pop(), self.player))
+        # If rounding resulted in some empty slots, pick some extras from the pool
+        # to fill them.
+        for item in self.random.choices(list(filler_items.keys()), k=slots_left, weights=filler_items.values()):
+            self.multiworld.itempool.append(self.create_item(item))
             slots_left -= 1
-
-    def mission_complete(self, state: CollectionState) -> bool:
-        for map in self.maps:
-            if not state.has(map.clear_token_name(), self.player):
-                return False
-        return True
 
     def set_rules(self):
         # All region and location access rules were defined in create_regions, so we just need the
         # overall victory condition here.
-        self.multiworld.completion_condition[self.player] = lambda state: self.mission_complete(state)
+        self.multiworld.completion_condition[self.player] = lambda state: self.options.win_conditions.check_win(self, state)
+
+    def all_placed_item_names(self):
+        """
+        Returns the names of all items that exist in the generated world.
+
+        In practice this means everything in your starting inventory + everything
+        placed at at least one location.
+        """
+        return {
+            loc.item.name for loc in self.multiworld.get_locations(self.player)
+            if loc.item
+        } | {
+            item.name for item in self.multiworld.precollected_items[self.player]
+        }
 
     def generate_output(self, path):
-        def progression(id: int) -> bool:
-            # get location from ID
-            name = self.location_id_to_name[id]
+        def progression(name: str) -> bool:
             # print("is_progression?", id, name)
             loc = self.multiworld.get_location(name, self.player)
             if loc.item and (loc.item.classification & ItemClassification.progression != 0):
@@ -296,24 +299,42 @@ class GZDoomWorld(World):
             else:
                 return self.item_name_to_id[name]
 
+        def item_at(name: str) -> str:
+            loc = self.get_location(name)
+            if loc.item and loc.item.name in self.wad_logic.items_by_name:
+                return self.wad_logic.items_by_name[loc.item.name]
+            return None
+
+        def item_type_at(name: str) -> str:
+            loc = self.get_location(name)
+            if loc.item and loc.item.name in self.wad_logic.items_by_name:
+                return self.wad_logic.items_by_name[loc.item.name].typename
+            return ""
+
+        def item_name_at(name: str) -> str:
+            loc = self.get_location(name)
+            if loc.item:
+                return loc.item.name
+            return ""
+
         def locations(map):
-            return map.all_locations(self.spawn_filter, self.included_item_categories)
+            return self.pool.locations_in_map(map)
+
+        mod_version = resources.files(__package__).joinpath('VERSION').read_text().strip()
 
         data = {
             "singleplayer": self.multiworld.players == 1,
             "seed": self.multiworld.seed_name,
+            "mod_version": mod_version,
             "player": self.multiworld.player_name[self.player],
             "spawn_filter": self.spawn_filter,
             "persistence": self.options.full_persistence.value,
             "respawn": self.options.allow_respawn.value,
             "wad": self.wad_logic.name,
             "maps": self.maps,
-            "items": [
-              item for item in self.wad_logic.items(self.spawn_filter)
-              if (not item.map or self.should_include_map(item.map))
-            ],
+            "items": self.pool.all_pool_items(),
             "starting_items": [
-              item.code for item in self.multiworld.precollected_items[self.player]
+                item.code for item in self.multiworld.precollected_items[self.player]
             ],
             "singleplayer_items": {
                 loc.address: loc.item.code
@@ -323,6 +344,11 @@ class GZDoomWorld(World):
             "progression": progression,
             "locations": locations,
             "id": id,
+            "item_at": item_at,
+            "item_type_at": item_type_at,
+            "item_name_at": item_name_at,
+            "win_conditions": self.options.win_conditions.template_values(self),
+            "generate_mapinfo": (not self.options.pretuning_mode) or self.options.full_persistence,
         }
 
         env = jinja2.Environment(

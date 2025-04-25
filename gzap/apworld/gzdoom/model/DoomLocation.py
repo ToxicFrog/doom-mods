@@ -16,9 +16,9 @@ class DoomPosition(NamedTuple):
     """
     map: str
     virtual: bool  # True if this doesn't actually exist in the world and coords are meaningless
-    x: float
-    y: float
-    z: float
+    x: int
+    y: int
+    z: int
 
 
 class DoomLocation:
@@ -48,17 +48,21 @@ class DoomLocation:
     item: DoomItem | None = None  # Used for place_locked_item
     parent = None  # The enclosing DoomWad
     orig_item = None
-    disambiguate: bool = False
+    disambiguation: str = None
     skill: Set[int]
     unreachable: bool = False
     secret: bool = False
+    sector: int = 0
 
     def __init__(self, parent, map: str, item: DoomItem, secret: bool, json: str | None):
-        self.category = item.category
         self.keys = frozenset()
         self.parent = parent
-        self.orig_item = item
-        self.item_name = item.tag
+        if item:
+            # If created without an item it is the caller's responsibility to fill
+            # in these fields post hoc.
+            self.category = item.category
+            self.orig_item = item
+            self.item_name = item.tag
         self.skill = set()
         self.secret = secret
         if json:
@@ -73,9 +77,17 @@ class DoomLocation:
 
     def name(self) -> str:
         name = f"{self.pos.map} - {self.item_name}"
-        if self.disambiguate:
-            # TODO: we should figure out the bounding box of the map or nearby
-            # unique items like keys and then give a compass direction instead
+        if self.disambiguation:
+            name += f" [{self.disambiguation}]"
+        return name
+
+    def legacy_name(self) -> str:
+        """
+        Returns the name this location would have had in version 0.3.x and earlier.
+        Used to match up locations to entries in legacy tuning files.
+        """
+        name = f"{self.pos.map} - {self.item_name}"
+        if self.disambiguation:
             name += f" [{int(self.pos.x)},{int(self.pos.y)}]"
         return name
 
@@ -86,22 +98,26 @@ class DoomLocation:
     def tune_keys(self, new_keyset: FrozenSet[str]):
         # If this location was previously incorrectly marked unreachable,
         # correct it.
-        self.unreachable = False
+        # self.unreachable = False
         # If the new keyset is empty this is trivially reachable.
         if not new_keyset:
+            # print(f"Tuning keys [{self.name()}]: old={self.keys} new=none")
             self.keys = frozenset()
         # If our existing keyset is empty, it cannot be further tuned.
         if not self.keys:
             return
         # Update the keysets by removing any keysets that this one is a proper
         # subset of.
+        # TODO: if the new keyset is a superset of one of the existing ones,
+        # don't record it -- this doesn't affect logic either way but it's untidy.
         new_keys = frozenset(
             [ks for ks in self.keys if not new_keyset < ks] + [new_keyset])
         if new_keys != self.keys:
-            # print(f"Tuning keys: old={self.keys} tune={new_keyset} new={new_keys}")
+            # print(f"Tuning keys [{self.name()}]: old={self.keys} tune={new_keyset} new={new_keys}")
             self.keys = new_keys
 
     def access_rule(self, player):
+        # print(f"access_rule({self.name()}): keys={self.keys}")
         # A location is accessible if:
         # - you have access to the map (already checked at the region level)
         # - AND
@@ -127,7 +143,7 @@ class DoomLocation:
             # location is the map's only key (and thus must be accessible to
             # a player entering the map without keys).
             # print(f"Single key? {self.orig_item.name()} == {self.parent.get_map(self.pos.map).keyset}")
-            if {self.orig_item.name()} == self.parent.get_map(self.pos.map).keyset:
+            if self.orig_item and {self.orig_item.name()} == self.parent.get_map(self.pos.map).keyset:
                 return True
 
             return False

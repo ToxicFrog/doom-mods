@@ -108,16 +108,35 @@ gzDoom loaded from disk). This is used to name the generated tuning file.
 Tells the client that we have read messages it sent up to the given `id`, and
 it can overwrite them with new messages if needed.
 
-#### `AP-CHECK { id, name, keys, unreachable }`
+#### `AP-CHECK { id, name, pos, keys, unreachable }`
 
-Emitted when the player checks a location. `id` is the AP location ID, and `name`
-is the name assigned to that location by the randomizer. `keys` is a list of keys
-held by the player and is used only for logic tuning.
+Emitted when the player checks a location. The fields have the following meaning:
+- `id`: the Archipelago location ID
+- `name`: the user-facing location name
+- `pos`: a list of the form `[mapname, x, y, z]`, containing the *original*
+  coordinates of the location (not wherever the check was when the player
+  picked it up); optional
+- `keys`: a list of key names held by the player; optional
+- `unreachable`: a boolean; optional
 
-`unreachable` means that the check is not reachable in normal play and the player
-used cheats, forbidden techniques, or the `ap_scan_unreachable` command to collect
-it; including that in the tuning file will prevent it from being used for progression
-items in future games.
+In multiworld play, only `id` is used; the rest are stored for use in the
+tuning file.
+
+Since the `id` is not stable across versions, `pos` and `name` are used to
+identify locations in the tuning file, with `pos` preferred as it can only
+change if the level is rescanned, while `name` can change more freely. Older
+tuning files use `name` alone, and locations with no defined coordinates (e.g.
+the level exit) continue to use `name` and omit `pos`.
+
+`keys` lists all the keys held by the player, and is used by the logic tuner to
+update its understanding of whether the location is reachable. If empty, it
+means the location is reachable without any keys; if absent entirely, this entry
+isn't used for key requirement tuning.
+
+`unreachable`, if present and true, means that the check is not reachable in
+normal play and the player used cheats, forbidden techniques, or the
+`ap_scan_unreachable` command to collect it; including that in the tuning file
+will prevent it from being used for progression items in future games.
 
 #### `AP-CHAT { msg }`
 
@@ -203,18 +222,17 @@ it has no more messages to write; in the former case it must buffer further
 messages internally). IDs should be monotonically increasing *across process
 executions* to be tolerant of client restarts; the reference implementation
 uses `clock.monotonic()` for this purpose. The on-wire representation of the
-ID can be any printable string as long as it later IDs sort after earlier ones.
+ID can be any printable string as long as later IDs sort after earlier ones.
 (Why a string? Because then we don't need to worry about sending IDs that are
 too large to fit into a zscript integer.)
 
 On receiving an `AP-ACK`, the receiver should rewrite the file to discard any
 messages with ID numbers <= the acked ID, and append any new messages it hadn't
-previously had room for. Use of atomic writes is encouraged, as is truncating the
-file to 0 bytes if all messages have been acked and none are pending.
+previously had room for. Use of atomic writes is encouraged.
 
-If something needs to be written to the file other than valid message data for
-some reasom, simply avoid ETB bytes; filling the entire file with null bytes or
-with `.` works well.
+When not sending messages, it is recommended to fill the file with data that is
+not valid message data (so that the file size remains consistent to gzdoom's
+view); filling the entire file with null bytes or with `.` suffices.
 
 ### Message types
 
@@ -242,6 +260,11 @@ game should remove it from the list of pending checks and (TODO) despawn it from
 the world if it's currently spawned. It's safe for the player to re-collect it
 but doing so won't do anything.
 
+#### `TRACK` `id`
+
+Tells the game that the tracker thinks the given location is in logic. If it has
+not yet been collected, the in-game location display will hilight it.
+
 #### `HINT` `map` `item` `player` `location`
 
 Tells the game that we have received a hint for the location of one of our items.
@@ -267,3 +290,4 @@ about what's located where.
 
 `PEEK⋅MAP01⋅Chainsaw⋅Link⋅Hookshot`, for example, indicates that the chainsaw on
 "Entryway" contains Link's hookshot.
+

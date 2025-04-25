@@ -15,12 +15,17 @@ class ::ScannedMap play {
   // used for balancing.
   uint rank;
   Array<::ScannedLocation> locations;
+  Array<int> secrets;
+  int monster_count;
   // Highest skill we've completed a scan on.
   // We don't track 0 (ITYTD) or 4 (NM) because they have the same actor placement
   // as 1 and 3, so 0 means we have scanned nothing and 3 means we've scanned
   // all the skill levels we care about.
   int max_skill;
   bool done;
+  // Set if this map should be used for exit searching but not included in the
+  // logic file.
+  bool skip;
 
   static ::ScannedMap Create(string mapname, uint rank) {
     let sm = ::ScannedMap(new("::ScannedMap"));
@@ -33,6 +38,7 @@ class ::ScannedMap play {
   }
 
   void Output() {
+    if (self.skip) return;
     // In Wolf3d TC, failing to do this will result in garbage at the start of
     // the AP-MAP line. This only happens when scanning, but also only happens
     // when wolf3d.ipk3 is loaded for some reason. We include this to put the
@@ -40,10 +46,13 @@ class ::ScannedMap play {
     // that may have similar issues.
     console.printfEX(PRINT_LOG, "");
     ::Scanner.Output("MAP", name, string.format(
-      "\"checksum\": \"%s\", \"rank\": %d, \"info\": %s",
-      LevelInfo.MapChecksum(name), self.rank, GetMapinfoJSON()));
+      "\"checksum\": \"%s\", \"rank\": %d, \"monster_count\": %d, \"info\": %s",
+      LevelInfo.MapChecksum(name), self.rank, self.monster_count, GetMapinfoJSON()));
     foreach (loc : locations) {
       loc.Output(name);
+    }
+    foreach (sector : secrets) {
+      ::Scanner.Output("SECRET", name, string.format("\"sector\": %d", sector));
     }
   }
 
@@ -52,6 +61,9 @@ class ::ScannedMap play {
   }
 
   bool IsScanned() {
+    // Skipped levels are considered "done" as soon as they've been scanned at
+    // least once and thus we know exit capture has occurred.
+    if (self.skip) return self.max_skill > 0;
     return self.max_skill == 3;
   }
 
@@ -61,6 +73,19 @@ class ::ScannedMap play {
 
   int NextSkill() {
     return self.max_skill+1;
+  }
+
+  void CopyFromLevelLocals(LevelLocals level) {
+    foreach (sector : level.sectors) {
+      if (sector.IsSecret()) {
+        self.secrets.Push(sector.Index());
+      }
+    }
+    foreach (Actor thing : ThinkerIterator.Create("Actor", Thinker.STAT_DEFAULT)) {
+      if (thing.bISMONSTER && !thing.bCORPSE) {
+        self.monster_count++;
+      }
+    }
   }
 
   // Add a location to the map associated with the current difficulty.
@@ -107,6 +132,7 @@ class ::ScannedMap play {
     string flags = "";
     flags = AddFlag(flags, info.flags, LEVEL_DOUBLESKY, "doublesky");
     flags = AddFlag(flags, info.flags, LEVEL_USEPLAYERSTARTZ, "useplayerstartz");
+    flags = AddFlag(flags, info.flags, LEVEL_MONSTERSTELEFRAG, "allowmonstertelefrags");
     // TODO: if a level has infiniteflightpowerup, we should require wings of wrath
     // in the logic, and make sure the player always has one when entering the level
     // if they've found it.
@@ -114,11 +140,16 @@ class ::ScannedMap play {
     // Special action effects
     // specialaction_exitlevel just clears the other special flags, so we don't
     // need it; we get it just by not writing a specialaction_ flag.
+    // specialaction_lowerfloor, specialaction_opendoor, and specialaction_lowerfloortohighest
+    // get special handling -- the first two have separate bits, the last one is
+    // denoted by setting both bits at once. >.<
     flags = AddFlag(flags, info.flags, LEVEL_SPECKILLMONSTERS, "specialaction_killmonsters");
-    flags = AddFlag(flags, info.flags, LEVEL_SPECLOWERFLOOR, "specialaction_lowerfloor");
-    flags = AddFlag(flags, info.flags, LEVEL_SPECLOWERFLOORTOHIGHEST, "specialaction_lowerfloortohighest");
-    flags = AddFlag(flags, info.flags, LEVEL_SPECOPENDOOR, "specialaction_opendoor");
-    flags = AddFlag(flags, info.flags, LEVEL_MONSTERSTELEFRAG, "allowmonstertelefrags");
+    if (info.flags & LEVEL_SPECACTIONSMASK == LEVEL_SPECLOWERFLOORTOHIGHEST) {
+      flags = AddFlag(flags, info.flags, LEVEL_SPECLOWERFLOORTOHIGHEST, "specialaction_lowerfloortohighest");
+    } else {
+      flags = AddFlag(flags, info.flags, LEVEL_SPECLOWERFLOOR, "specialaction_lowerfloor");
+      flags = AddFlag(flags, info.flags, LEVEL_SPECOPENDOOR, "specialaction_opendoor");
+    }
     // Special action triggers
     flags = AddFlag(flags, info.flags, LEVEL_BRUISERSPECIAL, "baronspecial");
     flags = AddFlag(flags, info.flags, LEVEL_CYBORGSPECIAL, "cyberdemonspecial");

@@ -24,33 +24,67 @@ class ::Peek play {
 
 class ::Region play {
   string map;
+  // Kept as an array so we can sort it for display.
+  // Hopefully this doesn't become a performance issue.
   Array<::Location> locations;
   Map<string, bool> keys;
-  // Hints and peeks are indexed by their name without map qualification.
-  // So "RedCard" rather than "RedCard (MAP02)", and "Chainsaw" rather than
-  // "MAP01 - Chainsaw".
+  // Hints tell you where items relevant to this level are.
+  // Peeks tell you what items are contained in this level.
+  // Indexes are fully qualified Archipelago names, e.g. "RedCard (MAP01)" or
+  // "MAP01 - RocketLauncher".
   Map<string, ::Hint> hints;
   Map<string, ::Peek> peeks;
   bool access;
   bool automap;
   bool cleared;
-  uint exit_id;
+  ::Location exit_location;
 
   static ::Region Create(string map, uint exit_id) {
     let region = ::Region(new("::Region"));
     region.map = map;
-    region.exit_id = exit_id;
+
+    let exit = ::Location(new("::Location"));
+    exit.apid = exit_id;
+    exit.mapname = map;
+    exit.name = string.format("%s - Exit", map);
+    exit.secret_sector = -1;
+    exit.unreachable = false;
+    exit.checked = false;
+    exit.is_virt = true;
+    region.exit_location = exit;
+
     return region;
   }
 
-  void RegisterCheck(uint apid, string name, bool progression, Vector3 pos, bool unreachable) {
+  void RegisterCheck(
+      uint apid, string name,
+      string orig_typename, string ap_typename, string ap_name,
+      bool progression, Vector3 pos, bool unreachable = false) {
     let loc = ::Location(new("::Location"));
     loc.apid = apid;
+    loc.mapname = self.map;
     loc.name = name;
+    loc.orig_typename = orig_typename;
+    loc.ap_typename = ap_typename;
+    loc.ap_name = ap_name;
     loc.progression = progression;
     loc.unreachable = unreachable;
     loc.checked = false;
     loc.pos = pos;
+    loc.is_virt = false;
+    loc.secret_sector = -1;
+    locations.push(loc);
+  }
+
+  void RegisterSecretCheck(uint apid, string name, int sector, bool unreachable = false) {
+    let loc = ::Location(new("::Location"));
+    loc.apid = apid;
+    loc.mapname = self.map;
+    loc.name = name;
+    loc.secret_sector = sector;
+    loc.is_virt = true;
+    loc.unreachable = unreachable;
+    loc.checked = false;
     locations.push(loc);
   }
 
@@ -66,6 +100,7 @@ class ::Region play {
   ::Location GetLocation(uint apid) {
     foreach (loc : locations) {
       if (loc.apid == apid) {
+        DEBUG("GetLocation: found %d in %s", apid, map);
         return loc;
       }
     }
@@ -88,11 +123,23 @@ class ::Region play {
     return total;
   }
 
+  void SortLocations() {
+    // It's small, we just bubble sort.
+    for (int i = self.locations.Size()-1; i > 0; --i) {
+      for (int j = 0; j < i; ++j) {
+        if (!self.locations[j].Order(self.locations[j+1])) {
+          let tmp = self.locations[j];
+          self.locations[j] = self.locations[j+1];
+          self.locations[j+1] = tmp;
+        }
+      }
+    }
+  }
+
   // Return the name of the next item to hint for that's useful for this level.
   // If you don't have the level access, hints for that.
   // Otherwise, hints for the first key you don't have.
   // If you have access and keys, returns "".
-  // TODO: remember the hints and display them in the tooltip.
   string NextHint() const {
     if (!self.access && !self.GetHint("Level Access")) {
       return string.format("Level Access (%s)", self.map);
@@ -112,10 +159,15 @@ class ::Region play {
     hint.player = player;
     hint.location = location;
     self.hints.Insert(item, hint);
+    DEBUG("RegisterHint(%s): %s's %s", item, player, location);
   }
 
+  // This takes the item name without the map qualifier, e.g. "RedCard", and
+  // automatically qualifies it before looking it up.
   ::Hint GetHint(string item) const {
-    return self.hints.GetIfExists(item);
+    let name = string.format("%s (%s)", item, self.map);
+    // DEBUG("%s: GetHint(%s)", self.map, name);
+    return self.hints.GetIfExists(name);
   }
 
   void RegisterPeek(string location, string player, string item) {
@@ -126,8 +178,9 @@ class ::Region play {
     DEBUG("RegisterPeek(%s): %s for %s", location, item, player);
   }
 
+  // Unlike GetHint this always takes the full location name.
   ::Peek GetPeek(string location) const {
-    DEBUG("GetPeek(%s)", location);
+    // DEBUG("GetPeek(%s)", location);
     return self.peeks.GetIfExists(location);
   }
 

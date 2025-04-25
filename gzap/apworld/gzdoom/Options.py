@@ -20,7 +20,9 @@
 #   ways that are both fun and reliably avoid softlocks. Probably going to avoid
 #   this for now.
 
-from Options import PerGameCommonOptions, Toggle, DeathLink, StartInventoryPool, OptionSet, NamedRange, Range
+from math import ceil,floor
+
+from Options import PerGameCommonOptions, Toggle, DeathLink, StartInventoryPool, OptionSet, NamedRange, Range, OptionDict
 from dataclasses import dataclass
 
 from . import model
@@ -102,8 +104,22 @@ class StartingLevels(OptionSet):
     This option supports globbing expressions.
     """
     display_name = "Starting levels"
-    default = ["E1M1", "MAP01"]
+    default = ["E?M1", "MAP01"]
     # valid_keys = model.all_map_names()
+
+class StartWithKeys(Toggle):
+    """
+    If enabled, you will start with all the keys for any starting level that has
+    keys.
+
+    This is on by default because turning it off will cause generation failures
+    for newly-scanned wads, or wads where the default starting levels have very
+    restrictive item access. For properly tuned wads where at least some checks
+    are known to be reachable without keys, turning this off will allow the
+    randomizer more freedom in item placement.
+    """
+    display_name = "Start with keys"
+    default = True
 
 class IncludedLevels(OptionSet):
     """
@@ -112,8 +128,9 @@ class IncludedLevels(OptionSet):
     It is safe to select levels not in the target WAD; they will be ignored. Selecting
     no levels is equivalent to selecting all levels.
 
-    The win condition (at present) is always "complete all levels", so including more
-    levels will generally result in a longer game.
+    The default win condition is to complete all levels, so adding more levels will
+    result in a longer game. If you want to play lots of levels but only beat some
+    of them, you should also adjust the `win_conditions` option.
 
     This option supports globbing expressions.
     """
@@ -145,7 +162,7 @@ class SpawnFilter(NamedRange):
     have custom difficulty settings that are not just simple reskins of the Doom
     ones.
     """
-    display_name = "Spawn Filter"
+    display_name = "Spawn filter"
     range_start = 1
     range_end = 3
     default = 2
@@ -155,34 +172,32 @@ class SpawnFilter(NamedRange):
         "hard": 3
     }
 
-class IncludedItemCategories(OptionSet):
+class IncludedItemCategories(OptionDict):
     """
     Which item categories to include in randomization. This controls both which
     items are replaced with checks, and what the item pool contains.
 
-    Keys and weapons are always included and cannot be disabled.
+    Keys and weapons are always included and cannot be controlled with this
+    option. You must enable at least one category here or generation is likely
+    to fail.
 
-    The "tool" category is things you can pick up and carry with you to use later
-    that don't fall into any other category. In the Id IWADs this mostly applies
-    to Heretic, where it covers the egg, teleporter, and time bomb, which between
-    them account for about 25% of checks in the game.
+    For each category, a setting of `1` enables full randomization, and a setting
+    of `0` disables randomization completely. Values in between will randomize the
+    given proportion, e.g. `"powerup": 0.5` will replace half of the powerups in
+    the game with AP checks (and add the original items to the item pool) and
+    leave the rest alone.
 
-    Enabling "medium-ammo" will typically about double the number of checks.
+    See `glossary.md` for a description of the different categories and which
+    items they cover.
 
-    Adding any of the "small" categories will explode the number of checks,
-    typically a 5x-10x increase, adding thousands of checks even in small wads,
-    most of which will contain only tiny amounts of health/armour/ammo. This
-    should be treated like Grass Rando or Potsanity in other games (only worse)
-    and handled with care.
-
-    Officially supported categories are:
-        map powerup big-ammo big-health big-armor
-        medium-ammo tool
-        small-ammo small-health small-armor
+    Enabling "medium" categories tends to more than double the number of checks.
+    Enabling all categories tends to increase it by about 10x. Make sure you (and
+    your co-op partners) are prepared for a game with thousands or tens of thousands
+    of checks in Doom if you turn these on.
     """
-    display_name = "Included Item Categories"
-    default = {"map", "powerup", "big-ammo", "big-health", "big-armor"}
-    valid_keys = model.all_item_categories() - {"token", "key", "weapon"}
+    display_name = "Included item/location categories"
+    default = {"powerup": 1, "big-ammo": 1, "big-health": 1, "big-armor": 1}
+    valid_keys = model.all_categories() - {"token", "key", "weapon"}
 
 class LevelOrderBias(Range):
     """
@@ -192,16 +207,95 @@ class LevelOrderBias(Range):
     enforcing at least a bit of difficulty progression rather than being dumped
     straight from MAP01 to MAP30.
 
-    The default setting of 25%, for example, means it won't expect you to fight
-    the Cyberdemon in Doom 1 level 18¹ until you've cleared at least four earlier
-    levels, or the Spider Mastermind until you've cleared six.
+    The default setting of 25% means it won't require you to go to (e.g.) MAP08
+    until after beating two of the preceding levels.
 
-    ¹ Counting secret levels
+    Starting levels are exempt from this check.
     """
     display_name = "Level order bias"
     range_start = 0
     range_end = 100
     default = 25
+
+class LocalWeaponBias(Range):
+    """
+    How much the randomizer cares about making sure you have access to the
+    weapons in a level before it considers that level to be in logic. Most Doom
+    levels are possible to beat from a pistol start by finding weapons in the
+    level itself, but in the randomizer there is no guarantee the level contains
+    any weapons at all; this setting makes the randomizer ensure that some of
+    the weapons you would normally find in the level are accessible before you
+    enter it.
+
+    The setting is a percentage; higher values mean the randomizer will try to
+    make more of the weapons accessible before you need to enter the level. At
+    100% it will not consider a level to be in logic until all of the weapons
+    normally found in it are accessible to you elsewhere.
+
+    Starting levels are exempt from this check.
+    """
+    display_name = "In-level weapon bias"
+    range_start = 0
+    range_end = 100
+    default = 0
+
+class GlobalWeaponBias(Range):
+    """
+    How much the randomizer cares about making sure you have access to the weapons
+    you'd start a level with when not pistol-starting (i.e. weapons you'd carry
+    over from earlier levels). This setting is somewhat conservative in that it
+    doesn't take into account death exits.
+
+    The setting is a percentage; higher values mean the randomizer will try to
+    make more of the weapons accessible before you need to enter the level. At
+    100% it will not consider a level to be in logic until all of the weapons
+    normally found before entering it are availalble to you elsewhere.
+
+    Starting levels are exempt from this check.
+    """
+    display_name = "Carryover weapon bias"
+    range_start = 0
+    range_end = 100
+    default = 50
+
+class WinConditions(OptionDict):
+    """
+    Win conditions for the randomized game. At present only one condition is
+    implemented, "levels-clear".
+
+        levels-clear: (int, fraction, or "all")
+    Require the player to finish this many levels. If "all", all levels included
+    in randomization must be cleared. If set to an integer >= 1, that many levels
+    must be cleared. If a fraction, that fraction of levels is required, e.g.
+    0.5 would require you to clear 16 of Doom 2's 32 levels.
+    """
+    display_name = "Win conditions"
+    default = {
+        "levels-clear": "all",
+    }
+    valid_keys = {"levels-clear"}
+    def get_levels_needed(self, world):
+        levels_needed = self.value.get("levels-clear", 0)
+        if levels_needed == "all":
+            return len(world.maps)
+        assert levels_needed >= 0,"levels-clear win condition must be 'all' or a fraction or an integer >= 0"
+        if levels_needed > 0 and levels_needed < 1:
+            return ceil(len(world.maps) * levels_needed)
+        return min(floor(levels_needed), len(world.maps))
+
+    def check_win(self, world, state):
+        won = False
+
+        levels_needed = self.get_levels_needed(world)
+        if levels_needed > 0:
+            won = won or levels_needed <= sum([
+                1 for map in world.maps
+                if state.has(map.clear_token_name(), world.player)
+            ])
+        return won
+
+    def template_values(self, world):
+        return { 'levels-clear': self.get_levels_needed(world) }
 
 class AllowSecretProgress(Toggle):
     """
@@ -254,6 +348,10 @@ class PreTuningMode(Toggle):
     The intent of this mode is to let you play through the game, or specific
     levels, "normally", to generate a tuning file, even in cases where the
     initial scan is so conservative as to cause generation failures.
+
+    If full_persistence is off, pretuning mode also disables automatic MAPINFO
+    generation, so the game will retain its original episode divisions,
+    intermission text, etc.
     """
     display_name = "Pretuning Mode"
     default = False
@@ -266,14 +364,19 @@ class GZDoomOptions(PerGameCommonOptions):
     starting_levels: StartingLevels
     included_levels: IncludedLevels
     excluded_levels: ExcludedLevels
+    # Ordering and victory control
     level_order_bias: LevelOrderBias
+    local_weapon_bias: LocalWeaponBias
+    carryover_weapon_bias: GlobalWeaponBias
+    win_conditions: WinConditions
     # Location pool control
+    included_item_categories: IncludedItemCategories
     allow_secret_progress: AllowSecretProgress
     # Item pool control
     start_with_all_maps: StartWithAutomaps
+    start_with_keys: StartWithKeys
     max_weapon_copies: MaxWeaponCopies
     levels_per_weapon: LevelsPerWeapon
-    included_item_categories: IncludedItemCategories
     # Other settings
     allow_respawn: AllowRespawn
     full_persistence: FullPersistence

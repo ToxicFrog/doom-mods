@@ -14,7 +14,6 @@
 #include "./IPC.zsc"
 
 class ::PlayEventHandler : StaticEventHandler {
-  string slot_name; // Name of player in AP
   string seed;
   string wadname;
   bool singleplayer;
@@ -24,6 +23,7 @@ class ::PlayEventHandler : StaticEventHandler {
   ::RandoState apstate;
 
   override void OnRegister() {
+    console.printf("Loading gzArchipelago client library version %s", MOD_VERSION());
     apclient = ::IPC(new("::IPC"));
     apstate = ::RandoState(new("::RandoState"));
   }
@@ -38,7 +38,7 @@ class ::PlayEventHandler : StaticEventHandler {
     console.printf("Item/enemy layout: %s. Singleplayer: %s.", ::Util.GetFilterName(filter), singleplayer ? "yes" : "no");
     // Save this information because we need all of it later. Some is sent in
     // XON so the client can get configuration info, some is used in gameplay.
-    self.slot_name = slot_name;
+    self.apstate.slot_name = slot_name;
     self.seed = seed;
     self.wadname = wadname;
     self.singleplayer = singleplayer;
@@ -46,7 +46,7 @@ class ::PlayEventHandler : StaticEventHandler {
   }
 
   bool IsRandomized() {
-    return self.slot_name != "";
+    return self.apstate.slot_name != "";
   }
 
   bool IsSingleplayer() const {
@@ -60,7 +60,9 @@ class ::PlayEventHandler : StaticEventHandler {
   }
 
   static clearscope ::RandoState GetState() {
-    return ::PlayEventHandler.Get().apstate;
+    let peh = ::PlayEventHandler.Get();
+    if (!peh) return null;
+    return peh.apstate;
   }
 
   bool initialized;
@@ -69,7 +71,8 @@ class ::PlayEventHandler : StaticEventHandler {
     // doesn't get called and we end up missing events.
     if (!initialized) {
       initialized = true;
-      apclient.Init(self.slot_name, self.seed, self.wadname);
+      apclient.Init(self.apstate.slot_name, self.seed, self.wadname);
+      apstate.SortLocations();
     }
 
     if (level.LevelName == "TITLEMAP") return;
@@ -81,27 +84,51 @@ class ::PlayEventHandler : StaticEventHandler {
     }
   }
 
-  void CheckLocation(int apid, string name) {
-    DEBUG("CheckLocation: %d %s", apid, name);
-    // TODO: we need some way of marking checks unreachable.
-    // We can't just check if the player has +NOCLIP because if they do, they
-    // can't interact with the check in the first place. So probably we want
-    // an 'ap-unreachable' netevent; if set, the next check touched is marked
-    // as unreachable, or if the level is exited, all checks in it are marked
-    // unreachable.
-    string unreachable = "";
+  void CheckLocation(::Location loc, bool atexit=false) {
+    DEBUG("CheckLocation: %d %s", loc.apid, loc.name);
+
+    bool unreachable = false;
     if (ap_scan_unreachable) {
-      unreachable = "\"unreachable\": true, ";
+      unreachable = true;
       if (ap_scan_unreachable == 1) {
         cvar.FindCvar("ap_scan_unreachable").SetInt(0);
       }
     }
-    ::IPC.Send("CHECK",
-      string.format("{ \"id\": %d, \"name\": \"%s\", %s\"keys\": [%s] }",
-        apid, name, unreachable, apstate.GetCurrentRegion().KeyString()));
+
+    string pos = "";
+    if (!loc.is_virt) {
+      pos = string.format(", \"pos\": [\"%s\",%d,%d,%d]",
+        loc.mapname, loc.pos.x, loc.pos.y, loc.pos.z);
+    }
+
+    if (unreachable) {
+      // Omit the key field and just mark it unreachable.
+      ::IPC.Send("CHECK",
+        string.format("{ \"id\": %d, \"name\": \"%s\"%s, \"unreachable\": true }",
+        loc.apid, loc.name, pos));
+    } else if (atexit) {
+      // Also omit the key field for atexit checks, since we can't make any
+      // assumptions about reachability if the check was gathered via "release
+      // on exit" rather than normal play.
+      ::IPC.Send("CHECK",
+        string.format("{ \"id\": %d, \"name\": \"%s\"%s }",
+        loc.apid, loc.name, pos));
+    } else {
+      // It's a normally reachable check.
+      ::IPC.Send("CHECK",
+        string.format("{ \"id\": %d, \"name\": \"%s\"%s, \"keys\": [%s] }",
+        loc.apid, loc.name, pos, apstate.GetCurrentRegion().KeyString()));
+    }
+
     // In singleplayer, the netevent handler will clear the check for us.
     // In MP, we don't clear it until we get a reply from the server.
-    EventHandler.SendNetworkEvent("ap-check", apid);
+    EventHandler.SendNetworkEvent("ap-check", loc.apid);
+
+    foreach(player : players) {
+      let cv = CVar.GetCVar("ap_show_check_names", player);
+      if (!cv || !cv.GetBool()) continue;
+      player.mo.A_Print(string.format("Checked %s", loc.name));
+    }
   }
 
   // TODO: we need an "ap-uncollectable" command for dealing with uncollectable
@@ -126,6 +153,9 @@ class ::PlayEventHandler : StaticEventHandler {
     } else if (evt.name == "ap-use-item") {
       let idx = evt.args[0];
       apstate.UseItem(idx);
+    } else if (evt.name.IndexOf("ap-use-item:") == 0) {
+      let typename = evt.name.Mid(12);
+      apstate.UseItemByName(typename);
     } else if (evt.name == "ap-did-warning") {
       apstate.did_warning = true;
     }
@@ -167,19 +197,13 @@ class ::PlayEventHandler : StaticEventHandler {
       let region = apstate.GetRegion(mapname);
       if (!region) return; // AP sent us a map name that doesn't exist??
       region.RegisterPeek(location, player, item);
+    } else if (cmd.command == "ap-ipc:track") {
+      int apid = cmd.ReadInt();
+      apstate.MarkLocationInLogic(apid);
     } else if (cmd.command == "ap-hint") {
       // Player requested a hint from the level select menu.
       string item = cmd.ReadString();
       ::IPC.Send("CHAT", string.format("{ \"msg\": \"!hint %s\" }", item));
-    }
-  }
-
-  void CheckVictory() {
-    // Might want to expand this later to list levels cleared, items collected,
-    // etc, for the use of external trackers, but for now it's just a simple
-    // "are we winning?"
-    if (apstate.Victorious()) {
-      ::IPC.Send("STATUS", "{ \"victory\": true }");
     }
   }
 }
