@@ -5,6 +5,8 @@ This is a bugfix release.
 This release changes the scanner, but only wads that use the `specialaction_lowerfloortohighest`
 level special need to be rescanned.
 
+- New:
+  - Tuning data for Plutonia [from @Gwen].
 - Fix:
   - Incorrectly formatted `ap_bank_custom` entries will now be skipped instead
     of crashing the game.
