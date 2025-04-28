@@ -24,8 +24,8 @@ class ::RandoState play {
   Map<string, ::Region> regions;
   // AP item ID to gzdoom typename
   Map<int, string> item_apids;
-  // AP item ID to map token
-  Map<int, ::RegionDiff> map_apids;
+  // AP item ID to special token IDs -- level access, automap, clear flag
+  Map<int, ::RegionDiff> tokens;
   // Player inventory granted by the rando. Lives outside the normal in-game
   // inventory so it can hold things not normally part of +INVBAR.
   // An array so that (a) we can sort it, and (b) we can refer to entries by
@@ -54,9 +54,9 @@ class ::RandoState play {
     regions.Insert(map, ::Region.Create(map, exit_apid));
 
     // We need to bind these to the map name somehow, oops.
-    if (access_apid) map_apids.Insert(access_apid, ::RegionDiff.CreateFlags(map, true, false, false));
-    if (map_apid) map_apids.Insert(map_apid, ::RegionDiff.CreateFlags(map, false, true, false));
-    if (clear_apid) map_apids.Insert(clear_apid, ::RegionDiff.CreateFlags(map, false, false, true));
+    if (access_apid) tokens.Insert(access_apid, ::RegionDiff.CreateFlags(map, true, false, false));
+    if (map_apid) tokens.Insert(map_apid, ::RegionDiff.CreateFlags(map, false, true, false));
+    if (clear_apid) tokens.Insert(clear_apid, ::RegionDiff.CreateFlags(map, false, false, true));
   }
 
   bool did_warning;
@@ -75,7 +75,7 @@ class ::RandoState play {
     let region = GetRegion(map);
     if (!region) return;
     region.RegisterKey(key);
-    map_apids.Insert(apid, ::RegionDiff.CreateKey(map, key));
+    tokens.Insert(apid, ::RegionDiff.CreateKey(map, key));
   }
 
   void RegisterItem(string typename, uint apid) {
@@ -148,9 +148,9 @@ class ::RandoState play {
   void GrantItem(uint apid, uint count = 0) {
     ++txn;
     DEBUG("GrantItem: %d", apid);
-    if (map_apids.CheckKey(apid)) {
+    if (tokens.CheckKey(apid)) {
       // Count doesn't matter, you either have it or you don't.
-      let diff = map_apids.Get(apid);
+      let diff = tokens.Get(apid);
       diff.Apply(GetRegion(diff.map));
     } else if (item_apids.CheckKey(apid)) {
       let typename = item_apids.Get(apid);
