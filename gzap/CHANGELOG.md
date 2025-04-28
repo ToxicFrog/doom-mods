@@ -8,6 +8,8 @@ level special need to be rescanned.
 - New:
   - Tuning data for Plutonia [from @Gwen].
   - Partial tuning (22 maps, major items only) for Going Down Turbo.
+- Change:
+  - Going Down Turbo logic updated from RC 1.7 to the version released on idgames.
 - Fix:
   - Incorrectly formatted `ap_bank_custom` entries will now be skipped instead
     of crashing the game.
