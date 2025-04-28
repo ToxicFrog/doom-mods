@@ -9,7 +9,6 @@
 #include "./ScannedMap.zsc"
 
 class ::Scanner play {
-  Array<::ScannedMap> scanned;
   Array<::ScannedMap> queued;
   Map<string, ::ScannedMap> maps_by_name;
   Map<string, bool> skip;
@@ -78,7 +77,6 @@ class ::Scanner play {
       // If we're done scanning this map, move it to the "finished" list and try again.
       if (nextmap.IsScanned()) {
         DEBUG("Head map is done, moving on");
-        scanned.Push(nextmap);
         queued.Delete(0);
         ::Util.printf("$GZAP_SCAN_MAP_DONE", level.MapName);
         nextmap.Output();

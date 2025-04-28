@@ -17,6 +17,9 @@ level special need to be rescanned.
     logic updated accordingly.
   - `ap_scan_skip` setting did not behave properly when `ap_scan_recurse` was
     enabled.
+  - Scan data for levels is no longer retained in memory once the level logic
+    is output. This should improve performance and memory usage when scanning
+    very large wads.
 
 # 0.4.3
 
