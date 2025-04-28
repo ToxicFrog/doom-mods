@@ -39,6 +39,8 @@ class ::ScannedMap play {
 
   void Output() {
     if (self.skip) return;
+    // Do not include maps with nothing to randomize.
+    if (locations.Size() == 0) return;
     // In Wolf3d TC, failing to do this will result in garbage at the start of
     // the AP-MAP line. This only happens when scanning, but also only happens
     // when wolf3d.ipk3 is loaded for some reason. We include this to put the
