@@ -33,7 +33,7 @@ here may result in glitches.
 | Doom 2       |   32 | 116 | 501 | basic | v1.9 |
 | TNT          |   32 | 152 | 515 | basic | v1.9 |
 | Plutonia     |   32 |  95 | 427 | basic | v1.9 |
-| WadFusion    | varies | varies | varies | missing | See https://github.com/ToxicFrog/doom-mods/pull/38 |
+| [WadFusion](https://github.com/Owlet7/wadfusion) | varies | varies | varies | missing | See https://github.com/ToxicFrog/doom-mods/pull/38 |
 | Heretic      |   45 | 116 | 900 | basic | v1.3 |
 | Hexen        | | | | missing | Same concerns as Strife, plus I don't like it. |
 | Strife       | | | | missing | Hub maps and complicated level scripting mean this may need changes to the generator. |
@@ -56,7 +56,7 @@ here may result in glitches.
 
 | Game                     | Maps | Mon/Lvl | Checks | Status | Notes |
 | ------------------------ | ---- | ------- | ------ | ------ | ----- |
-| The Adventures of Square | 22 | 256 | 640 | basic | Not compatible with persistent mode. |
+| The Adventures of Square | 22 | 256 | 640 | problems | Not compatible with persistent mode. Some levels can softlock; [#43](https://github.com/ToxicFrog/doom-mods/issues/43) will fix some but not all issues. |
 | Ashes 2063               | | | | missing | |
 | Ashes: Afterglow         | | | | missing | Uses hub maps. |
 | Ashes: Hard Reset        | | | | missing | Still need to play it. |
