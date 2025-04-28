@@ -71,6 +71,10 @@ class ::Scanner play {
     DEBUG("ScanNext");
     while (queued.Size() > 0) {
       let nextmap = queued[0];
+      if (nextmap.skip) {
+        queued.Delete(0);
+        continue;
+      }
       // If we're done scanning this map, move it to the "finished" list and try again.
       if (nextmap.IsScanned()) {
         DEBUG("Head map is done, moving on");
@@ -124,7 +128,7 @@ class ::Scanner play {
     nextmap.MarkDone();
     if (nextmap.IsScanned()) nextmap.CopyFromLevelLocals(level);
 
-    if (recurse) {
+    if (recurse && !nextmap.skip) {
       EnqueueLevelports(nextmap.rank + 1);
       EnqueueNext(level.NextSecretMap, nextmap.rank + 1);
       EnqueueNext(level.NextMap, nextmap.rank + 1);

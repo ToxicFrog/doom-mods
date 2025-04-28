@@ -15,6 +15,8 @@ level special need to be rescanned.
     of crashing the game.
   - Scanner now properly handles `specialaction_lowerfloortohighest`. Heretic
     logic updated accordingly.
+  - `ap_scan_skip` setting did not behave properly when `ap_scan_recurse` was
+    enabled.
 
 # 0.4.3
 
