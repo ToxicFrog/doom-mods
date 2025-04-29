@@ -62,6 +62,12 @@ R&B on Normal, you want "easy", not "medium", unlike stock Doom.
 Sometimes spawning a soulsphere from your inventory just doesn't give you anything,
 presumably because it confuses the DRLA randomization machinery.
 
+#### AutoAutoSave
+
+Installing AAS causes some checks to give you both the original item and the
+item it was replaced with, and also causes AAS itself to not function properly.
+This happens even if AAS is turned off in the settings.
+
 ### Total conversions
 
 TCs like Ashes 2063 or Hedon Bloodrite probably will not work out of the box,
