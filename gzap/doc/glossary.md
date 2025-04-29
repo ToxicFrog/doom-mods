@@ -10,6 +10,16 @@ An *in-world* object associated with a *Location*. This is what the player actua
 sees and touches in-game. It is mostly just a visible, collectable token, with the
 actual randomizer state stored *out-of-world*.
 
+## FQIN (Fully Qualified Item Name)
+## FQLN (Fully Qualified Location Name)
+
+The full user-facing Archipelago name of an item or location, including any
+qualifiers for what map it's in. E.g. a "RedCard" could be any red keycard, but
+the item with FQIN "RedCard (MAP02)" is specifically the red keycard for MAP02;
+many maps have rocket launchers, and MAP07 may have more than one, but the FQLN
+"MAP07 - RocketLauncher [W]" uniquely identifies the western rocket launcher
+location in MAP07.
+
 ## Globbing Expression
 
 A way of concisely writing a match for multiple maps (or items, filenames, etc...)

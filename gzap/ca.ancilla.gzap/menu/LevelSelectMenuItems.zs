@@ -118,7 +118,7 @@ class ::LevelSelector : ::KeyValueNetevent {
 
     let buf = "";
     foreach (k, v : region.keys) {
-      buf = buf .. FormatKey(k, v);
+      buf = buf .. FormatKey(v);
     }
     for (int i = region.KeysTotal(); i < 7; ++i) buf = buf.." ";
     return buf;
@@ -156,7 +156,7 @@ class ::LevelSelector : ::KeyValueNetevent {
   string FormatLevelStatusTT(::Region region) {
     if (!region.access) {
       string buf = StringTable.Localize("$GZAP_MENU_TT_MAP_LOCKED");
-      let hint = region.GetHint("Level Access");
+      let hint = region.GetHint(region.AccessTokenFQIN());
       if (hint) {
         buf = buf .. string.format("\n\c-ⓘ %s @ %s", hint.player, hint.location);
       }
@@ -179,9 +179,9 @@ class ::LevelSelector : ::KeyValueNetevent {
   string FormatMissingKeysTT(::Region region) {
     string buf = "";
     foreach (k, v : region.keys) {
-      if (!v) {
-        buf = buf .. string.format("\n  %s %s", FormatKey(k, v), k);
-        let hint = region.GetHint(k);
+      if (!v.held) {
+        buf = buf .. string.format("\n  %s %s", FormatKey(v), v.typename);
+        let hint = region.GetHint(v.FQIN());
         if (hint) {
           buf = buf .. string.format("\n  \c-ⓘ %s @ %s", hint.player, hint.location);
         }
@@ -216,8 +216,8 @@ class ::LevelSelector : ::KeyValueNetevent {
   // Given a key, produce an icon for it in the level select menu.
   // Use squares for keycards, circles for skulls, and diamonds for everything else.
   // Try to colour it appropriately based on its name, too.
-  string FormatKey(string key, bool value) {
-    let key = key.MakeLower();
+  string FormatKey(::RandoKey keyinfo) {
+    let key = keyinfo.typename.MakeLower();
     static const string[] keytypes = { "card", "skull", "" };
     static const string[] keyicons = { "□", "■", "○", "●", "◇", "◆" };
     static const string[] keycolors = { "red", "orange", "yellow", "green", "blue", "purple" };
@@ -225,7 +225,7 @@ class ::LevelSelector : ::KeyValueNetevent {
     string icon; uint i;
     foreach (keytype : keytypes) {
       if (key.IndexOf(keytype) != -1) {
-        icon = keyicons[i + (value ? 1 : 0)];
+        icon = keyicons[i + (keyinfo.held ? 1 : 0)];
         break;
       }
       i += 2;

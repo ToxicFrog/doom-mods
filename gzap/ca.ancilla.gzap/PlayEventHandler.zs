@@ -184,10 +184,7 @@ class ::PlayEventHandler : StaticEventHandler {
       string player = cmd.ReadString();
       string location = cmd.ReadString();
       DEBUG("HINT: %s (%s) @ %s's %s", item, mapname, player, location);
-      if (mapname == "") return;  // TODO: Unscoped hints not supported yet
-      let region = apstate.GetRegion(mapname);
-      if (!region) return; // AP sent us a map name that doesn't exist??
-      region.RegisterHint(item, player, location);
+      apstate.RegisterHint(mapname, item, player, location);
     } else if (cmd.command == "ap-ipc:peek") {
       string mapname = cmd.ReadString();
       string location = cmd.ReadString();

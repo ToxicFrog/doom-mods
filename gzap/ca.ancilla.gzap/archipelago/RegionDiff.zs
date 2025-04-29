@@ -34,11 +34,6 @@ class ::RegionDiff play {
   void Apply(::Region region) {
     let maptitle = LevelInfo.FindLevelInfo(self.map).LookupLevelName();
 
-    if (self.key != "") {
-      ::Util.announce("$GZAP_GOT_KEY", key, maptitle, self.map);
-      region.AddKey(self.key);
-    }
-
     if (self.access && !region.access) {
       ::Util.announce("$GZAP_GOT_ACCESS", maptitle, self.map);
       region.access = true;

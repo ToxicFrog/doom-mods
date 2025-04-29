@@ -10,6 +10,7 @@
 #debug off;
 
 #include "./RandoItem.zsc"
+#include "./RandoKey.zsc"
 #include "./Region.zsc"
 #include "./RegionDiff.zsc"
 
@@ -26,6 +27,8 @@ class ::RandoState play {
   Map<int, string> item_apids;
   // AP item ID to special token IDs -- level access, automap, clear flag
   Map<int, ::RegionDiff> tokens;
+  // AP item ID to key information
+  Map<int, ::RandoKey> keys;
   // Player inventory granted by the rando. Lives outside the normal in-game
   // inventory so it can hold things not normally part of +INVBAR.
   // An array so that (a) we can sort it, and (b) we can refer to entries by
@@ -68,14 +71,29 @@ class ::RandoState play {
       || (::Util.GetFilterName(::Util.GetCurrentFilter()) != ::Util.GetFilterName(filter));
   }
 
-  // This gets called for all keys that exist in the wad, not just keys for
-  // maps we know about. So we only register it if we know the map.
-  void RegisterKey(string map, string key, uint apid) {
-    DEBUG("RegisterKey %s for %s as %d", key, map, apid);
+  ::RandoKey RegisterKey(string scope, string typename, uint apid) {
+    DEBUG("RegisterKey %s for scope %s as %d", typename, scope, apid);
+    let key = ::RandoKey.Create(scope, typename);
+    keys.Insert(apid, key);
+    UpdateKeyScope(key, scope);
+    return key;
+  }
+
+  void UpdateKeyScope(::RandoKey key, string map) {
     let region = GetRegion(map);
     if (!region) return;
+
+    key.maps.Insert(map, true);
     region.RegisterKey(key);
-    tokens.Insert(apid, ::RegionDiff.CreateKey(map, key));
+  }
+
+  ::RandoKey FindKeyByFQIN(string fqin) {
+    // This is currently only used when receiving a new hint, so we keep it
+    // simple and just do a linear search.
+    foreach (_, key : self.keys) {
+      if (key.FQIN() == fqin) return key;
+    }
+    return null;
   }
 
   void RegisterItem(string typename, uint apid) {
@@ -92,6 +110,28 @@ class ::RandoState play {
 
   void RegisterSecretCheck(string map, uint apid, string name, int sector, bool unreachable = false) {
     GetRegion(map).RegisterSecretCheck(apid, name, sector, unreachable);
+  }
+
+  // Called when we get a HINT message from AP.
+  // If a key exists that exactly matches the given FQIN, we assume it's a hint
+  // for that key, and register it on every region that the key belongs to.
+  // Otherwise we assume the scope is a level name and register the hint in just
+  // that level on the assumption it's an access token or a map or something.
+  // Unscoped hints (e.g. "your BFG is at...") are not currently supported in-game.
+  void RegisterHint(string scope, string fqin, string player, string location) {
+    let key = FindKeyByFQIN(fqin);
+    if (key) {
+      foreach (map, _ : key.maps) {
+        let region = self.GetRegion(map);
+        if (!region) continue;
+        region.RegisterHint(fqin, player, location);
+      }
+      return;
+    }
+
+    let region = self.GetRegion(scope);
+    if (!region) return;
+    region.RegisterHint(fqin, player, location);
   }
 
   void SortItems() {
@@ -152,6 +192,10 @@ class ::RandoState play {
       // Count doesn't matter, you either have it or you don't.
       let diff = tokens.Get(apid);
       diff.Apply(GetRegion(diff.map));
+    } else if (keys.CheckKey(apid)) {
+      let key = keys.Get(apid);
+      ::Util.announce("$GZAP_GOT_ITEM", key.FQIN());
+      key.held = true;
     } else if (item_apids.CheckKey(apid)) {
       let typename = item_apids.Get(apid);
       let [idx, item] = FindItem(typename);

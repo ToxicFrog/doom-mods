@@ -11,6 +11,7 @@
 #debug off;
 
 #include "./Location.zsc"
+#include "./RandoKey.zsc"
 
 class ::Hint play {
   string player;
@@ -27,7 +28,7 @@ class ::Region play {
   // Kept as an array so we can sort it for display.
   // Hopefully this doesn't become a performance issue.
   Array<::Location> locations;
-  Map<string, bool> keys;
+  Map<string, ::RandoKey> keys;
   // Hints tell you where items relevant to this level are.
   // Peeks tell you what items are contained in this level.
   // Indexes are fully qualified Archipelago names, e.g. "RedCard (MAP01)" or
@@ -136,18 +137,22 @@ class ::Region play {
     }
   }
 
+  string AccessTokenFQIN() const {
+    return string.format("Level Access (%s)", self.map);
+  }
+
   // Return the name of the next item to hint for that's useful for this level.
   // If you don't have the level access, hints for that.
   // Otherwise, hints for the first key you don't have.
   // If you have access and keys, returns "".
   string NextHint() const {
-    if (!self.access && !self.GetHint("Level Access")) {
-      return string.format("Level Access (%s)", self.map);
+    if (!self.access && !self.GetHint(self.AccessTokenFQIN())) {
+      return self.AccessTokenFQIN();
     }
 
     foreach (k, v : self.keys) {
-      if (!v && !self.GetHint(k)) {
-        return string.format("%s (%s)", k, self.map);
+      if (!v.held && !self.GetHint(v.FQIN())) {
+        return v.FQIN();
       }
     }
 
@@ -162,12 +167,11 @@ class ::Region play {
     DEBUG("RegisterHint(%s): %s's %s", item, player, location);
   }
 
-  // This takes the item name without the map qualifier, e.g. "RedCard", and
-  // automatically qualifies it before looking it up.
+  // If we remember a hint for the item with the given FQIN, returns it.
+  // Otherwise returns null.
   ::Hint GetHint(string item) const {
-    let name = string.format("%s (%s)", item, self.map);
-    // DEBUG("%s: GetHint(%s)", self.map, name);
-    return self.hints.GetIfExists(name);
+    DEBUG("[%s] GetHint(%s) -> %d", self.map, item, self.hints.CheckKey(item));
+    return self.hints.GetIfExists(item);
   }
 
   void RegisterPeek(string location, string player, string item) {
@@ -178,24 +182,20 @@ class ::Region play {
     DEBUG("RegisterPeek(%s): %s for %s", location, item, player);
   }
 
-  // Unlike GetHint this always takes the full location name.
+  // Like GetHint but takes a location name and returns the peek, if we know one.
   ::Peek GetPeek(string location) const {
     // DEBUG("GetPeek(%s)", location);
     return self.peeks.GetIfExists(location);
   }
 
-  void RegisterKey(string key) {
-    keys.Insert(key, false);
-  }
-
-  void AddKey(string key) {
-    keys.Insert(key, true);
+  void RegisterKey(::RandoKey key) {
+    keys.Insert(key.typename, key);
   }
 
   uint KeysFound() const {
     uint found = 0;
     foreach (_, v : keys) {
-      if (v) ++found;
+      if (v.held) ++found;
     }
     return found;
   }
@@ -208,8 +208,10 @@ class ::Region play {
   string KeyString() {
     string buf = "";
     foreach (k, v : keys) {
-      if (!v) continue;
-      buf.AppendFormat("%s\"%s\"", buf.Length() > 0 ? ", " : "", k);
+      if (!v.held) continue;
+      // Uses just the typenames, since scopes must be non-overlapping for a
+      // given keytype.
+      buf.AppendFormat("%s\"%s\"", buf.Length() > 0 ? ", " : "", v.typename);
     }
     return buf;
   }
@@ -221,7 +223,7 @@ class ::Region play {
 
     Array<string> keys_held;
     readonly<Inventory> item = mo.inv;
-    while(item) {
+    while (item) {
       if (item is "Key") keys_held.Push(item.GetClassName());
       item = item.inv;
     }
@@ -231,9 +233,11 @@ class ::Region play {
       mo.TakeInventory(key, 999);
     }
 
-    foreach (key, val : self.keys) {
-      DEBUG("Add key? %s %d", key, val);
-      if (val) mo.GiveInventoryType(key);
+    foreach (fqin, key : self.keys) {
+      DEBUG("Add key? %s %d", fqin, key.held);
+      if (!key.held) continue;
+      let key_item = mo.GiveInventoryType(key.typename);
+      key_item.amount = 999;
     }
   }
 }
