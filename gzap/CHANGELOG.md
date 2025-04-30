@@ -22,6 +22,9 @@ level special need to be rescanned.
   - Scan data for levels is no longer retained in memory once the level logic
     is output. This should improve performance and memory usage when scanning
     very large wads.
+  - If you pick up a key that wasn't detected by the scanner (e.g. dropped by an
+    enemy or spawned with zscript or ACS), it will now be properly detected and
+    will be restored to your inventory when you return to that level.
 
 # 0.4.3
 

@@ -56,7 +56,7 @@ here may result in glitches.
 
 | Game                     | Maps | Mon/Lvl | Checks | Status | Notes |
 | ------------------------ | ---- | ------- | ------ | ------ | ----- |
-| The Adventures of Square | 22 | 256 | 640 | problems | Not compatible with persistent mode. Some levels can softlock; [#43](https://github.com/ToxicFrog/doom-mods/issues/43) will fix some but not all issues. |
+| The Adventures of Square | 22 | 256 | 640 | problems | Not compatible with persistent mode. Some levels can softlock if you respawn rather than quickloading on death. |
 | Ashes 2063               | | | | missing | |
 | Ashes: Afterglow         | | | | missing | Uses hub maps. |
 | Ashes: Hard Reset        | | | | missing | Still need to play it. |

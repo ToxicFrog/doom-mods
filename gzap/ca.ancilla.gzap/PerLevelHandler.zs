@@ -131,6 +131,10 @@ class ::PerLevelHandler : EventHandler {
   void OnLoadGame() {
     early_exit = false;
     DEBUG("PLH Cleanup");
+    // We need to run this before UpdatePlayerInventory, so that if the player
+    // picked up keys, saved their game, then loaded their game, we record the
+    // keys they picked up in the apstate.
+    CheckForNewKeys();
     apstate.UpdatePlayerInventory();
     let region = apstate.GetRegion(level.MapName);
     if (!region) return;
@@ -262,12 +266,25 @@ class ::PerLevelHandler : EventHandler {
   // We try to guess if the player reached the exit or left in some other way.
   // In the former case, we give them credit for clearing the level.
 
+  void CheckForNewKeys() {
+    let region = apstate.GetRegion(level.MapName);
+    if (!region) return;
+    foreach (player : players) {
+      if (player && player.mo) region.CheckForNewKeys(apstate, player.mo);
+    }
+  }
+
   override void WorldUnloaded(WorldEvent evt) {
     DEBUG("PLH WorldUnloaded: save=%d warp=%d lnum=%d", evt.isSaveGame, self.early_exit, level.LevelNum);
-    if (evt.isSaveGame || !apstate.GetRegion(level.MapName)) {
+
+    let region = apstate.GetRegion(level.MapName);
+
+    if (evt.isSaveGame || !region) {
       cvar.FindCvar("ap_scan_unreachable").SetInt(0);
-      return;
     }
+
+    if (!region) return;
+    CheckForNewKeys();
 
     if (ap_scan_unreachable >= 2) {
       let region = apstate.GetRegion(level.MapName);

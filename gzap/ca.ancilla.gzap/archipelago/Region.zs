@@ -238,6 +238,27 @@ class ::Region play {
     return buf;
   }
 
+  void CheckForNewKeys(::RandoState apstate, PlayerPawn pawn) {
+    Array<string> keys_held;
+    readonly<Inventory> item = pawn.inv;
+    while (item) {
+      if (!(item is "Key")) {
+        item = item.inv;
+        continue;
+      }
+
+      let key = self.keys.GetIfExists(item.GetClassName());
+      if (key) {
+        item = item.inv;
+        continue;
+      }
+
+      key = apstate.RegisterKey(level.mapname, item.GetClassName(), -1);
+      key.held = true;
+      item = item.inv;
+    }
+  }
+
   void UpdateInventory(PlayerPawn mo) {
     if (automap) {
       mo.GiveInventoryType("MapRevealer");
