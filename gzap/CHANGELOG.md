@@ -12,6 +12,8 @@ level special need to be rescanned.
 - Change:
   - Going Down Turbo logic updated from RC 1.7 to the version released on idgames.
   - Scanner now automatically skips levels with no randomizeable actors in them.
+  - Unreachable checks are now placed next to the item they would otherwise have
+    replaced, rather than replacing it.
 - Fix:
   - Incorrectly formatted `ap_bank_custom` entries will now be skipped instead
     of crashing the game.

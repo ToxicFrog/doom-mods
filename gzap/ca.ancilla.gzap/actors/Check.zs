@@ -179,12 +179,17 @@ class ::CheckPickup : ScoreItem {
   }
 
   void Subsume() {
+    // Don't subsume if this is an unreachable check -- leave the original item
+    // in place just in case.
+    if (GetLocation().unreachable) return;
     Actor closest;
     let it = BlockThingsIterator.Create(self, 32);
     while (it.Next()) {
       Actor thing = it.thing;
       if (thing is "::CheckPickup") continue;
 
+      // TODO -- prefer things that match the recorded check category, if possible.
+      // TODO -- don't absorb things like AAS tokens that have no graphics.
       if (::ScannedItem.ItemCategory(thing) == "") {
         // If it's categorized, we skip these checks entirely -- a categorized
         // object is always replaceable.
