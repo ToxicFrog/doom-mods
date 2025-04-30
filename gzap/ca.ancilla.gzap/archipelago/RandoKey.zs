@@ -83,6 +83,18 @@ class ::RandoKey play {
     return key;
   }
 
+  void DebugPrint() {
+    console.printf("  - %s (%s) [held=%d]:%s", self.typename, self.scopename, self.held, self.DebugMapString());
+  }
+
+  string DebugMapString() {
+    string buf;
+    foreach (map, _ : self.maps) {
+      buf = buf .. " " .. map;
+    }
+    return buf;
+  }
+
   string FQIN() const {
     return string.format("%s (%s)", typename, scopename);
   }

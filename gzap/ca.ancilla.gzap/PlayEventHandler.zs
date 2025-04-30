@@ -158,6 +158,8 @@ class ::PlayEventHandler : StaticEventHandler {
       apstate.UseItemByName(typename);
     } else if (evt.name == "ap-did-warning") {
       apstate.did_warning = true;
+    } else if (evt.name == "ap-debug") {
+      apstate.DebugPrint();
     }
   }
 

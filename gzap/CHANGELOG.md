@@ -8,6 +8,7 @@ level special need to be rescanned.
 - New:
   - Tuning data for Plutonia [from @Gwen].
   - Partial tuning (22 maps, major items only) for Going Down Turbo.
+  - `ap-debug` netevent to dump the AP state to the console.
 - Change:
   - Going Down Turbo logic updated from RC 1.7 to the version released on idgames.
   - Scanner now automatically skips levels with no randomizeable actors in them.

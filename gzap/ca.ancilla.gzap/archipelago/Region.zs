@@ -57,6 +57,28 @@ class ::Region play {
     return region;
   }
 
+  void DebugPrint() {
+    console.printf("  - Region: %s [access=%d, clear=%d, automap=%d]", self.map, self.access, self.cleared, self.automap);
+    console.printf("    %d locations", self.locations.Size());
+    console.printf("    %d keys:%s", self.keys.CountUsed(), self.DebugKeyString());
+    console.printf("    %d hints", self.hints.CountUsed());
+    foreach (item, hint : self.hints) {
+      console.printf("    - %s: %s @ %s", item, hint.player, hint.location);
+    }
+    console.printf("    %d peeks", self.peeks.CountUsed());
+    foreach (location, peek : self.peeks) {
+      console.printf("    - %s: %s for %s", location, peek.item, peek.player);
+    }
+  }
+
+  string DebugKeyString() {
+    string buf;
+    foreach (_, key : self.keys) {
+      buf = buf .. " " .. key.typename;
+    }
+    return buf;
+  }
+
   void RegisterCheck(
       uint apid, string name,
       string orig_typename, string ap_typename, string ap_name,

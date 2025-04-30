@@ -38,6 +38,25 @@ class ::RandoState play {
   // meaning of the latter depends on the condition.
   Map<string, int> win_conditions;
 
+  void DebugPrint() {
+    console.printf("AP State [txn=%d, filter=%d]", self.txn, self.filter);
+
+    console.printf("  %d regions", self.regions.CountUsed());
+    foreach (name, region : self.regions) {
+      region.DebugPrint();
+    }
+
+    console.printf("  %d keys", self.keys.CountUsed());
+    foreach (apid, key : self.keys) {
+      key.DebugPrint();
+    }
+
+    console.printf("  %d items", self.items.Size());
+    foreach (item : self.items) {
+      item.DebugPrint();
+    }
+  }
+
   // TODO: We can do better with key/token management here.
   // In particular, if we reify all the tokens as in-game items, we no longer
   // need to pass them as extra IDs to RegisterMap. Instead we define a new

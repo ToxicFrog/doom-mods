@@ -36,6 +36,11 @@ class ::RandoItem play {
     return item;
   }
 
+  void DebugPrint() {
+    console.printf("  - %s [category=%s, count=%d/%d, limit=%d]",
+      self.typename, self.category, self.held, self.total, self.GetLimit());
+  }
+
   void SetTotal(int total) {
     if (total == self.total) return;
     self.held += total - self.total;
