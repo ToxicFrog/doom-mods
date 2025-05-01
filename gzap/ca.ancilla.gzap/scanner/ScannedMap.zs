@@ -41,6 +41,7 @@ class ::ScannedMap play {
   }
 
   void Output() {
+    DEBUG("ScannedMap::Output: skip=%d, locs=%d", self.skip, self.locations.Size());
     if (self.skip) return;
     // Do not include maps with nothing to randomize.
     if (locations.Size() == 0) return;

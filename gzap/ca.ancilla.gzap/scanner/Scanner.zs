@@ -67,24 +67,27 @@ class ::Scanner play {
   // Returns true if one was initiated (and calls level.ChangeLevel()), false if
   // there are no more maps left to scan.
   bool ScanNext() {
-    DEBUG("ScanNext");
     while (queued.Size() > 0) {
       let nextmap = queued[0];
       if (nextmap.skip) {
+        DEBUG("ScanNext: skipping %s", nextmap.name);
         queued.Delete(0);
         continue;
       }
       // If we're done scanning this map, move it to the "finished" list and try again.
       if (nextmap.IsScanned()) {
         DEBUG("Head map is done, moving on");
-        queued.Delete(0);
         ::Util.printf("$GZAP_SCAN_MAP_DONE", level.MapName);
         nextmap.Output();
+        queued.Delete(0);
         continue;
       }
       // Otherwise, we need to change to it and let the ScanEventHandler kick off
       // the scan.
       DEBUG("Changing to %s", nextmap.name);
+      if (level.ClusterFlags & level.CLUSTER_HUB) {
+        level.ChangeLevel("GZAPHUB", 0, CHANGELEVEL_NOINTERMISSION, nextmap.NextSkill());
+      }
       level.ChangeLevel(nextmap.name, 0, CHANGELEVEL_NOINTERMISSION, nextmap.NextSkill());
       return true;
     }

@@ -3,7 +3,8 @@
 This is a bugfix release.
 
 This release changes the scanner, but only wads that use the `specialaction_lowerfloortohighest`
-level special need to be rescanned.
+level special need to be rescanned. (It also affects wads that use hubclusters,
+but those are not yet supported in general.)
 
 - New:
   - Tuning data for Plutonia [from @Gwen].
@@ -28,6 +29,9 @@ level special need to be rescanned.
     enemy or spawned with zscript or ACS), it will now be properly detected and
     will be restored to your inventory when you return to that level.
   - `1000 Lines II` logic was accidentally a duplicate of the `Doom 2` logic.
+  - When scanning hubcluster levels, it will bounce between the level being
+    scanned and the `GZAPHUB` to force a reset. This may result in an excessive
+    number of intermission screens being displayed, unfortunately.
 
 # 0.4.3
 
