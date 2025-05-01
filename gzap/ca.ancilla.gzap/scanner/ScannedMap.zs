@@ -26,6 +26,8 @@ class ::ScannedMap play {
   // Set if this map should be used for exit searching but not included in the
   // logic file.
   bool skip;
+  // Cluster ID iff this map belongs to a hubcluster. Else 0.
+  int hub;
 
   static ::ScannedMap Create(string mapname, uint rank) {
     let sm = ::ScannedMap(new("::ScannedMap"));
@@ -34,6 +36,7 @@ class ::ScannedMap play {
     sm.done = false;
     sm.max_skill = 0;
     sm.rank = rank;
+    sm.hub = 0;
     return sm;
   }
 
@@ -88,6 +91,9 @@ class ::ScannedMap play {
         self.monster_count++;
       }
     }
+    if (level.clusterflags & level.CLUSTER_HUB) {
+      self.hub = level.cluster;
+    }
   }
 
   // Add a location to the map associated with the current difficulty.
@@ -127,7 +133,7 @@ class ::ScannedMap play {
         info.SkyPic1, info.SkySpeed1,
         info.SkyPic2, info.SkySpeed2,
         info.Music, info.MusicOrder,
-        info.Cluster, flags);
+        self.hub, flags);
   }
 
   string GetFlagsForMapinfo(LevelInfo info) {

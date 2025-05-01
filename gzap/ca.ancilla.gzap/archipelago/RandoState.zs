@@ -64,7 +64,7 @@ class ::RandoState play {
   // the corresponding token and sets the map field on it, and on pickup it
   // sets the requisite flags in the RandoState. This removes a whole bunch of
   // special cases.
-  void RegisterMap(string map, string checksum, uint access_apid, uint map_apid, uint clear_apid, uint exit_apid) {
+  void RegisterMap(string map, string checksum, int hub, uint access_apid, uint map_apid, uint clear_apid, uint exit_apid) {
     DEBUG("Registering map: %s (tokens: %d %d %d %d)", map, access_apid, map_apid, clear_apid, exit_apid);
     if (checksum != LevelInfo.MapChecksum(map)) {
       console.printfEX(PRINT_HIGH, "\c[RED]ERROR:\c- Map %s has checksum \c[RED]%s\c-, but the randomizer expected \c[CYAN]%s\c-.",
@@ -73,7 +73,7 @@ class ::RandoState play {
       // The user will get a popup when they first enter the game, if any errors were recorded.
     }
 
-    regions.Insert(map, ::Region.Create(map, exit_apid));
+    regions.Insert(map, ::Region.Create(map, hub, exit_apid));
 
     // We need to bind these to the map name somehow, oops.
     if (access_apid) tokens.Insert(access_apid, ::RegionDiff.CreateFlags(map, true, false, false));
