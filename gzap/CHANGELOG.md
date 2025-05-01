@@ -27,6 +27,7 @@ level special need to be rescanned.
   - If you pick up a key that wasn't detected by the scanner (e.g. dropped by an
     enemy or spawned with zscript or ACS), it will now be properly detected and
     will be restored to your inventory when you return to that level.
+  - `1000 Lines II` logic was accidentally a duplicate of the `Doom 2` logic.
 
 # 0.4.3
 
