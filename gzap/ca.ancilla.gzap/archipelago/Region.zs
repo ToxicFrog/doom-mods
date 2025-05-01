@@ -25,6 +25,8 @@ class ::Peek play {
 
 class ::Region play {
   string map;
+  // If nonzero, this map originally belonged to the given hubcluster.
+  int hub;
   // Kept as an array so we can sort it for display.
   // Hopefully this doesn't become a performance issue.
   Array<::Location> locations;
@@ -40,9 +42,10 @@ class ::Region play {
   bool cleared;
   ::Location exit_location;
 
-  static ::Region Create(string map, uint exit_id) {
+  static ::Region Create(string map, int hub, uint exit_id) {
     let region = ::Region(new("::Region"));
     region.map = map;
+    region.hub = hub;
 
     let exit = ::Location(new("::Location"));
     exit.apid = exit_id;
@@ -58,7 +61,9 @@ class ::Region play {
   }
 
   void DebugPrint() {
-    console.printf("  - Region: %s [access=%d, clear=%d, automap=%d]", self.map, self.access, self.cleared, self.automap);
+    console.printf("  - Region: %s%s [access=%d, clear=%d, automap=%d]",
+        self.map, self.hub ? string.format(" (hubcluster %d)", self.hub) : "",
+        self.access, self.cleared, self.automap);
     console.printf("    %d locations", self.locations.Size());
     console.printf("    %d keys:%s", self.keys.CountUsed(), self.DebugKeyString());
     console.printf("    %d hints", self.hints.CountUsed());

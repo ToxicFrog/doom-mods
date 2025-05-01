@@ -33,7 +33,7 @@ class GZAP_DataPackageEventHandler : StaticEventHandler {
   void RegisterMaps(GZAP_RandoState apstate) {
     console.printf("Registering %d maps.", {{maps|count}});
     {% for map in maps %}
-      apstate.RegisterMap("{{map.map}}", "{{map.checksum}}", {{id(map.access_token_name())}}, {{id(map.automap_name())}}, {{id(map.clear_token_name())}}, {{id(map.exit_location_name())}});
+      apstate.RegisterMap("{{map.map}}", "{{map.checksum}}", {{map.mapinfo.cluster}}, {{id(map.access_token_name())}}, {{id(map.automap_name())}}, {{id(map.clear_token_name())}}, {{id(map.exit_location_name())}});
       {% for check in locations(map.map) %}
         {% if check.category == "secret-sector" %}
         apstate.RegisterSecretCheck("{{map.map}}", {{check.id}}, "{{check.name()}}", {{check.sector}}{% if check.unreachable %}, true{% endif %});
