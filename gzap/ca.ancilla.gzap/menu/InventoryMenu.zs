@@ -30,7 +30,7 @@ class ::InventoryMenu : ::CommonMenu {
       }
     }
 
-    if (::PlayEventHandler.Get().IsPretuning()) {
+    if (::PlayEventHandler.Get().IsPretuning() || ap_scan_keys_always) {
       InitKeyDisplay();
     }
 

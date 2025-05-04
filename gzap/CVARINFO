@@ -97,7 +97,8 @@ nosave noarchive bool ap_scan_recurse = true;
 // and additionally, exiting the level will collect all remaining checks in it.
 // In either case the cvar will subsequently be reset to 0.
 nosave noarchive int ap_scan_unreachable = 0;
-
+// Always display the key toggle controls even when not in pretuning mode.
+nosave noarchive bool ap_scan_keys_always = false;
 
 
 //// Inventory options
