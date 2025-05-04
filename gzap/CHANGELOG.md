@@ -18,6 +18,8 @@ but those are not yet supported in general.)
   - Scanner now automatically skips levels with no randomizeable actors in them.
   - Unreachable checks are now placed next to the item they would otherwise have
     replaced, rather than replacing it.
+  - In pretuning mode, all items picked up will be immediately vended, the same
+    as normal Doom gameplay; the AP inventory is bypassed.
 - Fix:
   - Incorrectly formatted `ap_bank_custom` entries will now be skipped instead
     of crashing the game.

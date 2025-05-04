@@ -80,6 +80,8 @@ class ::RandoItem play {
   }
 
   int GetLimit() {
+    if (::PlayEventHandler.Get().IsPretuning()) return 0;
+
     let [custom, limit] = GetCustomLimit();
     if (custom) return limit;
 
