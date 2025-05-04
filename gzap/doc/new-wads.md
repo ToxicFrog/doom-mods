@@ -126,6 +126,17 @@ using the original item locations from the wad. To enable this, just set
 and give you a game with the original item placements, all levels unlocked and
 mapped from the start, and no starting keys.
 
+Additionally, when picking up a key in pretuning mode, it will be considered
+"disabled": it will not be placed in your inventory and will not be recorded in
+the tuning data when picking up items. This allows you to continue collecting
+things until you have fully exhausted all items reachable without the key. At
+that point, you can open the AP inventory menu and toggle the key on, then
+continue playing.
+
+Note that while you can toggle keys back off, doing so makes it *very easy* to
+create invalid logic; it is recommended that you not do this unless you really
+know what you're doing.
+
 ### Unreachable checks
 
 You may encounter checks that are unreachable in normal play. For example, Doom
