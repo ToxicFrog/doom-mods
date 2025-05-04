@@ -30,7 +30,9 @@ class ::InventoryMenu : ::CommonMenu {
       }
     }
 
-    InitKeyDisplay();
+    if (::PlayEventHandler.Get().IsPretuning()) {
+      InitKeyDisplay();
+    }
 
     if (mDesc.mSelectedItem >= mDesc.mItems.Size()) {
       mDesc.mSelectedItem = -1;
