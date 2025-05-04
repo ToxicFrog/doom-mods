@@ -16,6 +16,11 @@ class ::InventoryMenu : ::CommonMenu {
     TooltipGeometry(0.0, 0.5, 0.2, 1.0, 0.5);
     TooltipAppearance("", "", "tfttbg");
 
+    if (!::PlayEventHandler.GetState()) {
+      console.printf("%s", StringTable.Localize("$GZAP_MENU_ERROR_NOT_IN_GAME"));
+      return;
+    }
+
     PushText(" ");
     PushText("$GZAP_MENU_INVENTORY_TITLE", Font.CR_WHITE);
     PushText(" ");
@@ -37,6 +42,16 @@ class ::InventoryMenu : ::CommonMenu {
     if (mDesc.mSelectedItem >= mDesc.mItems.Size()) {
       mDesc.mSelectedItem = -1;
     }
+  }
+
+  override void Ticker() {
+    let state = ::PlayEventHandler.GetState();
+    if (!state) {
+      Close();
+      return;
+    }
+
+    super.Ticker();
   }
 
   // TODO: we need to scan for new keys before this opens, which probably means

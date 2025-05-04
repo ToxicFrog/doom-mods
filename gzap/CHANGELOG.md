@@ -40,6 +40,9 @@ but those are not yet supported in general.)
     number of intermission screens being displayed, unfortunately.
   - Item or location names from other games with quotes or backslashes in them
     should no longer crash gzdoom on startup.
+  - Attempting to open the inventory menu when not actually playing an
+    AP-randomized game now displays an error message rather than crashing, same
+    as the level select menu.
 
 # 0.4.3
 
