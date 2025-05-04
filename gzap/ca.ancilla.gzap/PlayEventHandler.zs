@@ -17,6 +17,7 @@ class ::PlayEventHandler : StaticEventHandler {
   string seed;
   string wadname;
   bool singleplayer;
+  bool pretuning;
   // IPC stub for communication with Archipelago.
   ::IPC apclient;
   // Archipelago state manager.
@@ -51,6 +52,10 @@ class ::PlayEventHandler : StaticEventHandler {
 
   bool IsSingleplayer() const {
     return self.singleplayer;
+  }
+
+  bool IsPretuning() const {
+    return self.pretuning;
   }
 
   // Used by the generated data package to get a handle to the event handler

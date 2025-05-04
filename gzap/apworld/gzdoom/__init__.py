@@ -324,6 +324,7 @@ class GZDoomWorld(World):
 
         data = {
             "singleplayer": self.multiworld.players == 1,
+            "pretuning": self.options.pretuning_mode.value,
             "seed": self.multiworld.seed_name,
             "mod_version": mod_version,
             "player": self.multiworld.player_name[self.player],

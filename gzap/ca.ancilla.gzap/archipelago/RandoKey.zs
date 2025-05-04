@@ -83,7 +83,7 @@ class ::RandoKey play {
     key.typename = typename;
     key.scopename = scope;
     key.held = false;
-    key.enabled = true;
+    key.enabled = !::PlayEventHandler.Get().IsPretuning();
     return key;
   }
 

@@ -18,6 +18,9 @@ class GZAP_DataPackageEventHandler : StaticEventHandler {
     let apstate = GZAP_PlayEventHandler.GetState();
 
     peh.RegisterGameInfo("{{player}}", "{{seed}}", "{{wad}}", {{spawn_filter}}, {{singleplayer}});
+    {% if pretuning %}
+    peh.pretuning = true;
+    {% endif %}
 
     {% for condition, value in win_conditions.items() %}
     apstate.RegisterWinCondition("{{condition}}", {{value}});
