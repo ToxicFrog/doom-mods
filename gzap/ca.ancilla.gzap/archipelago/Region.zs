@@ -235,7 +235,7 @@ class ::Region play {
   string KeyString() {
     string buf = "";
     foreach (k, v : keys) {
-      if (!v.held) continue;
+      if (!v.held || !v.enabled) continue;
       // Uses just the typenames, since scopes must be non-overlapping for a
       // given keytype.
       buf.AppendFormat("%s\"%s\"", buf.Length() > 0 ? ", " : "", v.typename);
