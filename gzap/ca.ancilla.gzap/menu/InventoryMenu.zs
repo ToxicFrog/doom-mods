@@ -30,8 +30,77 @@ class ::InventoryMenu : ::CommonMenu {
       }
     }
 
+    InitKeyDisplay();
+
     if (mDesc.mSelectedItem >= mDesc.mItems.Size()) {
       mDesc.mSelectedItem = -1;
+    }
+  }
+
+  // TODO: we need to scan for new keys before this opens, which probably means
+  // when the player picks up the key, immediately.
+  void InitKeyDisplay() {
+    let region = ::PlayEventHandler.GetState().GetCurrentRegion();
+    if (!region) return;
+    if (region.keys.CountUsed() == 0) return;
+
+    PushText(" ");
+    PushText("$GZAP_MENU_HEADER_KEYS", Font.CR_WHITE);
+    PushText(" ");
+
+    foreach (_, key : region.keys) {
+      mDesc.mItems.Push(new("::KeyToggle").Init(key));
+    }
+  }
+}
+
+class ::KeyToggle : ::KeyValueNetevent {
+  ::RandoKey key_info;
+
+  ::KeyToggle Init(::RandoKey key_info) {
+    self.key_info = key_info;
+    super.Init(
+      FormatKeyName(),
+      FormatKeyStatus(),
+      "", 0);
+    return self;
+  }
+
+  override void Ticker() {
+    self.key = FormatKeyName();
+    self.value = FormatKeyStatus();
+    super.Ticker();
+  }
+
+  override bool Selectable() {
+    return key_info.held;
+  }
+
+  override bool MenuEvent(int key, bool fromController) {
+    if (key == Menu.MKey_Enter) {
+      EventHandler.SendNetworkCommand("ap-toggle-key", NET_STRING, key_info.typename);
+      Menu.MenuSound("menu/change");
+      return true;
+    }
+
+    return super.MenuEvent(key, fromController);
+  }
+
+  string FormatKeyName() {
+    if (key_info.held) {
+      return "\c[" .. ::Util.GetKeyColour(key_info.typename, "gray") .."]" .. key_info.typename;
+    } else {
+      return "\c[BLACK]"..key_info.typename.."\c-";
+    }
+  }
+
+  string FormatKeyStatus() {
+    if (!key_info.held) {
+      return string.format("\c[BLACK]%s\c-", StringTable.Localize("$GZAP_MENU_KEY_MISSING"));
+    } else if (key_info.enabled) {
+      return string.format("\c[GREEN]%s\c-", StringTable.Localize("$GZAP_MENU_KEY_ON"));
+    } else {
+      return string.format("\c[BLACK]%s\c-", StringTable.Localize("$GZAP_MENU_KEY_OFF"));
     }
   }
 }

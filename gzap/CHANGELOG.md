@@ -10,6 +10,8 @@ but those are not yet supported in general.)
   - Tuning data for Plutonia [from @Gwen].
   - Partial tuning (22 maps, major items only) for Going Down Turbo.
   - `ap-debug` netevent to dump the AP state to the console.
+  - Keys are now displayed in the inventory menu, and can be toggled on and off
+    (once you have them) for tuning purposes.
 - Change:
   - Going Down Turbo logic updated from RC 1.7 to the version released on idgames.
   - Scanner now automatically skips levels with no randomizeable actors in them.

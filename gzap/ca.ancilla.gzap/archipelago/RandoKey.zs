@@ -74,17 +74,22 @@ class ::RandoKey play {
   Map<string, bool> maps;
   // Whether or not the player has this key.
   bool held;
+  // Whether the player has enabled this key. Keys can be temporarily turned
+  // off from the inventory to aid in tuning.
+  bool enabled;
 
   static ::RandoKey Create(string scope, string typename) {
     let key = ::RandoKey(new("::RandoKey"));
     key.typename = typename;
     key.scopename = scope;
     key.held = false;
+    key.enabled = true;
     return key;
   }
 
   void DebugPrint() {
-    console.printf("  - %s (%s) [held=%d]:%s", self.typename, self.scopename, self.held, self.DebugMapString());
+    console.printf("  - %s (%s) [held=%d, enabled=%d]:%s",
+      self.typename, self.scopename, self.held, self.enabled, self.DebugMapString());
   }
 
   string DebugMapString() {

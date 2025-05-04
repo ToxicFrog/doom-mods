@@ -258,9 +258,20 @@ class ::RandoState play {
       if (!playeringame[p]) continue;
       if (!players[p].mo) continue;
 
+      GetCurrentRegion().CheckForNewKeys(self, players[p].mo);
       GetCurrentRegion().UpdateInventory(players[p].mo);
     }
     dirty = true;
+  }
+
+  void CheckForNewKeys() {
+    if (!GetCurrentRegion()) return;
+    for (int p = 0; p < MAXPLAYERS; ++p) {
+      if (!playeringame[p]) continue;
+      if (!players[p].mo) continue;
+
+      GetCurrentRegion().CheckForNewKeys(self, players[p].mo);
+    }
   }
 
   void OnTick() {
@@ -276,7 +287,7 @@ class ::RandoState play {
     dirty = false;
   }
 
-  ::Region GetCurrentRegion() {
+  ::Region GetCurrentRegion() const {
     return regions.GetIfExists(level.MapName);
   }
 

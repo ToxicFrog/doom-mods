@@ -220,7 +220,6 @@ class ::LevelSelector : ::KeyValueNetevent {
     let key = keyinfo.typename.MakeLower();
     static const string[] keytypes = { "card", "skull", "" };
     static const string[] keyicons = { "□", "■", "○", "●", "◇", "◆" };
-    static const string[] keycolors = { "red", "orange", "yellow", "green", "blue", "purple" };
 
     string icon; uint i;
     foreach (keytype : keytypes) {
@@ -231,15 +230,7 @@ class ::LevelSelector : ::KeyValueNetevent {
       i += 2;
     }
 
-    string clr = "white";
-    for (i=0; i < keycolors.Size(); ++i) {
-      if (key.IndexOf(keycolors[i]) != -1) {
-        clr = keycolors[i];
-        break;
-      }
-    }
-
-    string buf = "\c[" .. clr .."]" .. icon;
+    string buf = "\c[" .. ::Util.GetKeyColour(key, "white") .."]" .. icon;
     return buf.filter();
   }
 

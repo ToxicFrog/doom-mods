@@ -243,6 +243,18 @@ class ::Region play {
     return buf;
   }
 
+  void ToggleKey(string keytype) {
+    let key = self.keys.GetIfExists(keytype);
+    if (!key) {
+      console.printf("ToggleKey(%s): no such key in %s", keytype, self.map);
+      return;
+    }
+    key.enabled = !key.enabled;
+    ::PlayEventHandler.GetState().UpdatePlayerInventory();
+  }
+
+  // TODO: ideally we should detect when the key is picked up and trigger this
+  // immediately, rather than waiting for a level load/unload.
   void CheckForNewKeys(::RandoState apstate, PlayerPawn pawn) {
     Array<string> keys_held;
     readonly<Inventory> item = pawn.inv;
@@ -282,8 +294,8 @@ class ::Region play {
     }
 
     foreach (fqin, key : self.keys) {
-      DEBUG("Add key? %s %d", fqin, key.held);
-      if (!key.held) continue;
+      DEBUG("Add key? %s %d %d", fqin, key.held, key.enabled);
+      if (!key.held || !key.enabled) continue;
       let key_item = mo.GiveInventoryType(key.typename);
       key_item.amount = 999;
     }

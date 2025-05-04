@@ -86,4 +86,17 @@ class ::Util play {
       return buf == glob;
     }
   }
+
+  static clearscope string GetKeyColour(string keyname, string backup) {
+    string keyname = keyname.MakeLower();
+    static const string[] keycolours = { "red", "orange", "yellow", "green", "blue", "purple" };
+
+    for (int i=0; i < keycolours.Size(); ++i) {
+      if (keyname.IndexOf(keycolours[i]) != -1) {
+        return keycolours[i];
+      }
+    }
+
+    return backup;
+  }
 }
