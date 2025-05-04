@@ -37,6 +37,8 @@ but those are not yet supported in general.)
   - When scanning hubcluster levels, it will bounce between the level being
     scanned and the `GZAPHUB` to force a reset. This may result in an excessive
     number of intermission screens being displayed, unfortunately.
+  - Item or location names from other games with quotes or backslashes in them
+    should no longer crash gzdoom on startup.
 
 # 0.4.3
 

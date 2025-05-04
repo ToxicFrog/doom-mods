@@ -311,10 +311,13 @@ class GZDoomWorld(World):
                 return self.wad_logic.items_by_name[loc.item.name].typename
             return ""
 
+        def escape(name: str) -> str:
+            return name.replace('\\', '\\\\').replace('"', '\\"')
+
         def item_name_at(name: str) -> str:
             loc = self.get_location(name)
             if loc.item:
-                return loc.item.name
+                return escape(loc.item.name)
             return ""
 
         def locations(map):
@@ -348,6 +351,7 @@ class GZDoomWorld(World):
             "item_at": item_at,
             "item_type_at": item_type_at,
             "item_name_at": item_name_at,
+            "escape": escape,
             "win_conditions": self.options.win_conditions.template_values(self),
             "generate_mapinfo": (not self.options.pretuning_mode) or self.options.full_persistence,
         }
