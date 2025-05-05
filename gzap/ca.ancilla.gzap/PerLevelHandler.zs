@@ -112,6 +112,7 @@ class ::PerLevelHandler : EventHandler {
   // called from the StaticEventHandler, since it's the only one that can tell
   // the difference.
   void OnNewMap() {
+    DEBUG("PLH OnNewMap");
     early_exit = false;
     // No mapinfo -- hopefully this just means it's a TITLEMAP added by a mod or
     // something, and not that we're missing the data package or the player has
@@ -128,9 +129,14 @@ class ::PerLevelHandler : EventHandler {
     apstate.UpdatePlayerInventory();
   }
 
+  void OnReopen() {
+    OnNewMap();
+  }
+
   void OnLoadGame() {
+    DEBUG("PLH OnLoadGame");
     early_exit = false;
-    DEBUG("PLH Cleanup");
+    apstate.CheckForNewKeys();
     apstate.UpdatePlayerInventory();
     let region = apstate.GetRegion(level.MapName);
     if (!region) return;
@@ -265,12 +271,12 @@ class ::PerLevelHandler : EventHandler {
   // We try to guess if the player reached the exit or left in some other way.
   // In the former case, we give them credit for clearing the level.
 
-  override void WorldUnloaded(WorldEvent evt) {
-    DEBUG("PLH WorldUnloaded: save=%d warp=%d lnum=%d", evt.isSaveGame, self.early_exit, level.LevelNum);
+  void OnLevelExit(bool is_save) {
+    DEBUG("PLH WorldUnloaded: save=%d warp=%d lnum=%d", is_save, self.early_exit, level.LevelNum);
 
     let region = apstate.GetRegion(level.MapName);
 
-    if (evt.isSaveGame || !region) {
+    if (is_save || !region) {
       cvar.FindCvar("ap_scan_unreachable").SetInt(0);
     }
 
@@ -287,7 +293,7 @@ class ::PerLevelHandler : EventHandler {
     }
     cvar.FindCvar("ap_scan_unreachable").SetInt(0);
 
-    if (self.early_exit) return;
+    if (is_save || self.early_exit) return;
 
     ::PlayEventHandler.Get().CheckLocation(apstate.GetCurrentRegion().exit_location);
 

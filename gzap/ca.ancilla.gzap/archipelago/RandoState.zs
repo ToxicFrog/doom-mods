@@ -258,7 +258,6 @@ class ::RandoState play {
       if (!playeringame[p]) continue;
       if (!players[p].mo) continue;
 
-      GetCurrentRegion().CheckForNewKeys(self, players[p].mo);
       GetCurrentRegion().UpdateInventory(players[p].mo);
     }
     dirty = true;

@@ -82,11 +82,17 @@ class ::PlayEventHandler : StaticEventHandler {
 
     if (level.LevelName == "TITLEMAP") return;
 
-    if (evt.IsSaveGame || evt.IsReopen) {
+    if (evt.IsSaveGame) {
       ::PerLevelHandler.Get().OnLoadGame();
+    } else if (evt.IsReopen) {
+      ::PerLevelHandler.Get().OnReopen();
     } else {
       ::PerLevelHandler.Get().OnNewMap();
     }
+  }
+
+  override void WorldUnloaded(WorldEvent evt) {
+    ::PerLevelHandler.Get().OnLevelExit(evt.IsSaveGame);
   }
 
   void CheckLocation(::Location loc, bool atexit=false) {
