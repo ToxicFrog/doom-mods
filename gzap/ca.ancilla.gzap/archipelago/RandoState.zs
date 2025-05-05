@@ -263,8 +263,14 @@ class ::RandoState play {
     dirty = true;
   }
 
+  void ToggleKey(string keytype) {
+    ++txn;
+    GetCurrentRegion().ToggleKey(keytype);
+  }
+
   void CheckForNewKeys() {
     if (!GetCurrentRegion()) return;
+    ++txn;
     for (int p = 0; p < MAXPLAYERS; ++p) {
       if (!playeringame[p]) continue;
       if (!players[p].mo) continue;
@@ -281,7 +287,7 @@ class ::RandoState play {
     if (players[0].mo.vel.Length() == 0) return;
     DEBUG("Flushing pending item grants...");
     foreach (item : self.items) {
-      item.EnforceLimit();
+      txn += item.EnforceLimit();
     }
     dirty = false;
   }

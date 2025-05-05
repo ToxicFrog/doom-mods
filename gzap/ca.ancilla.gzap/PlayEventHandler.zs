@@ -216,7 +216,7 @@ class ::PlayEventHandler : StaticEventHandler {
       ::IPC.Send("CHAT", string.format("{ \"msg\": \"!hint %s\" }", item));
     } else if (cmd.command == "ap-toggle-key") {
       string keytype = cmd.ReadString();
-      apstate.GetCurrentRegion().ToggleKey(keytype);
+      apstate.ToggleKey(keytype);
     }
   }
 }
