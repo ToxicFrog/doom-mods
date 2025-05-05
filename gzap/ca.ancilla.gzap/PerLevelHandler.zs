@@ -176,10 +176,13 @@ class ::PerLevelHandler : EventHandler {
   override void WorldThingSpawned(WorldEvent evt) {
     let thing = evt.thing;
 
+    if (!(thing is "::CheckPickup") && thing.bCOUNTITEM) {
+      thing.ClearCounters();
+    }
+
     // Handle weapon suppression, if enabled.
     if (!ShouldAllow(Weapon(thing))) {
       ReplaceWithAmmo(thing, Weapon(thing));
-      thing.ClearCounters();
       thing.Destroy();
     }
   }

@@ -43,6 +43,8 @@ but those are not yet supported in general.)
   - Attempting to open the inventory menu when not actually playing an
     AP-randomized game now displays an error message rather than crashing, same
     as the level select menu.
+  - Items counter once again properly reflects number of remaining item-based
+    checks in the map.
 
 # 0.4.3
 
