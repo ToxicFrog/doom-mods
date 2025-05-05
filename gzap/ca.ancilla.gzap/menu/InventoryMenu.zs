@@ -28,10 +28,10 @@ class ::InventoryMenu : ::CommonMenu {
     let state = ::PlayEventHandler.GetState();
     for (int n = 0; n < state.items.Size(); ++n) {
       let item = state.items[n];
-      if (item.held > 0) {
-        PushKeyValueNetevent(item.tag, string.format("%d", item.held), "ap-use-item", n);
+      if (item.vended < item.total) {
+        PushKeyValueNetevent(item.tag, string.format("%d", item.Remaining()), "ap-use-item", n);
         PushTooltip(string.format("Name: %s\nType: %s\nCategory: %s\nHeld/Found: %d/%d",
-          item.tag, item.typename, item.category, item.held, item.total));
+          item.tag, item.typename, item.category, item.Remaining(), item.total));
       }
     }
 
