@@ -45,6 +45,8 @@ but those are not yet supported in general.)
     as the level select menu.
   - Items counter once again properly reflects number of remaining item-based
     checks in the map.
+  - `ap_scan_unreachable` is now only checked when exiting the map "properly",
+    not when using the level select or loading a savegame.
 
 # 0.4.3
 

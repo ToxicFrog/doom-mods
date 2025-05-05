@@ -283,6 +283,8 @@ class ::PerLevelHandler : EventHandler {
     if (!region) return;
     apstate.CheckForNewKeys();
 
+    if (is_save || self.early_exit) return;
+
     if (ap_scan_unreachable >= 2) {
       let region = apstate.GetRegion(level.MapName);
       foreach (location : region.locations) {
@@ -292,8 +294,6 @@ class ::PerLevelHandler : EventHandler {
       }
     }
     cvar.FindCvar("ap_scan_unreachable").SetInt(0);
-
-    if (is_save || self.early_exit) return;
 
     ::PlayEventHandler.Get().CheckLocation(apstate.GetCurrentRegion().exit_location);
 
