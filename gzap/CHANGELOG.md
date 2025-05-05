@@ -26,6 +26,12 @@ but those are not yet supported in general.)
     hopefully improve compatibility with gameplay mods that implement their own
     keys and then use `replaces` rules to replace the existing keys with them,
     rather than simply reskinning the normal Doom/Heretic keys.
+  - Saving your game, collecting a check that contains a normal item (i.e. not a
+    key or access token), vending the item, then loading your game now restores
+    the item to your AP inventory rather than banishing it forever. This brings
+    our behaviour more in line with `apquake`, and means that things like
+    quicksaving, grabbing a weapon, then quickloading no longer makes that
+    weapon impossible to get.
 - Fix:
   - Incorrectly formatted `ap_bank_custom` entries will now be skipped instead
     of crashing the game.

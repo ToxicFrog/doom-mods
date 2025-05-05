@@ -239,6 +239,20 @@ class ::RandoState play {
     UpdateStatus();
   }
 
+  // For each item we have, look at the other apstate, and treat its "copies of
+  // this item vended" counter for this item as taking precedence over ours.
+  void CopyItemUsesFrom(::RandoState other) {
+    foreach (item : self.items) {
+      let [idx, other_item] = other.FindItem(item.typename);
+      if (idx < 0) {
+        // We hadn't found this yet in the other apstate.
+        item.vended = 0;
+      } else {
+        item.vended = other_item.vended;
+      }
+    }
+  }
+
   void UseItem(uint idx) {
     ++txn;
     items[idx].Replicate();

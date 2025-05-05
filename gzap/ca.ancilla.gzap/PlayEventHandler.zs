@@ -135,6 +135,13 @@ class ::PlayEventHandler : StaticEventHandler {
     // In MP, we don't clear it until we get a reply from the server.
     EventHandler.SendNetworkEvent("ap-check", loc.apid);
 
+    // TODO: this crashes if the player goes to start a new game while a game
+    // is already in progress. A basic fix for it causes the apstate from the
+    // game in progress to carry over to the new game (and the level they were
+    // in to be marked as complete). In general we need a better way of handling
+    // the player choosing "new game" from in a level, since that shows up as a
+    // level exit without savegame(!). Maybe we need a better way of detecting
+    // level exits in general, e.g. with line special triggers?
     foreach(player : players) {
       let cv = CVar.GetCVar("ap_show_check_names", player);
       if (!cv || !cv.GetBool()) continue;

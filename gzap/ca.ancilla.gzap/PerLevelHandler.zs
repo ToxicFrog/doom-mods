@@ -42,14 +42,29 @@ class ::PerLevelHandler : EventHandler {
     // If we get this far, we probably just loaded a savegame, we have a saved
     // apstate, and we disagree with the StaticEventHandler on the contents.
     // Treat whichever one has the highest transaction count as the canonical one.
+    // When this happens, our apstate will be whatever was in the savegame, and
+    // the datastate will be whatever the game-wide state was just before the
+    // game was loaded.
     DEBUG("APState conflict resolution: txn[d]=%d txn[p]=%d",
       ::PlayEventHandler.GetState().txn, apstate.txn);
 
     if (self.apstate.txn > datastate.txn) {
+      // Our state is older. This usually means someone started up the game,
+      // then loaded a savegame, so we have a new apstate in the PEH and the
+      // real one in the PLH.
       DEBUG("Using state from playscope.");
       ::PlayEventHandler.Get().apstate = self.apstate;
     } else {
+      // PEH state is older. This usually means someone saved their game, played
+      // for a while, then reloaded.
+      // This is tricky because the PEH *mostly* takes precedence, but we want
+      // to use the saved game's knowledge of which items were vended, to avoid
+      // an infelicity where the player saves, grabs a check, vends the item,
+      // dies, loads their save, and now that item is gone forever -- which is
+      // usually fine if it's like a ShellBox or something, but bad news if it's
+      // a weapon!
       DEBUG("Using state from datascope.");
+      datastate.CopyItemUsesFrom(self.apstate);
       self.apstate = datastate;
     }
     apstate.UpdatePlayerInventory();
