@@ -239,6 +239,20 @@ class ::RandoState play {
     UpdateStatus();
   }
 
+  // For each item we have, look at the other apstate, and treat its "copies of
+  // this item vended" counter for this item as taking precedence over ours.
+  void CopyItemUsesFrom(::RandoState other) {
+    foreach (item : self.items) {
+      let [idx, other_item] = other.FindItem(item.typename);
+      if (idx < 0) {
+        // We hadn't found this yet in the other apstate.
+        item.vended = 0;
+      } else {
+        item.vended = other_item.vended;
+      }
+    }
+  }
+
   void UseItem(uint idx) {
     ++txn;
     items[idx].Replicate();
@@ -258,14 +272,19 @@ class ::RandoState play {
       if (!playeringame[p]) continue;
       if (!players[p].mo) continue;
 
-      GetCurrentRegion().CheckForNewKeys(self, players[p].mo);
       GetCurrentRegion().UpdateInventory(players[p].mo);
     }
     dirty = true;
   }
 
+  void ToggleKey(string keytype) {
+    ++txn;
+    GetCurrentRegion().ToggleKey(keytype);
+  }
+
   void CheckForNewKeys() {
     if (!GetCurrentRegion()) return;
+    ++txn;
     for (int p = 0; p < MAXPLAYERS; ++p) {
       if (!playeringame[p]) continue;
       if (!players[p].mo) continue;
@@ -282,7 +301,7 @@ class ::RandoState play {
     if (players[0].mo.vel.Length() == 0) return;
     DEBUG("Flushing pending item grants...");
     foreach (item : self.items) {
-      item.EnforceLimit();
+      txn += item.EnforceLimit();
     }
     dirty = false;
   }

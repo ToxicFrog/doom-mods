@@ -42,14 +42,29 @@ class ::PerLevelHandler : EventHandler {
     // If we get this far, we probably just loaded a savegame, we have a saved
     // apstate, and we disagree with the StaticEventHandler on the contents.
     // Treat whichever one has the highest transaction count as the canonical one.
+    // When this happens, our apstate will be whatever was in the savegame, and
+    // the datastate will be whatever the game-wide state was just before the
+    // game was loaded.
     DEBUG("APState conflict resolution: txn[d]=%d txn[p]=%d",
       ::PlayEventHandler.GetState().txn, apstate.txn);
 
     if (self.apstate.txn > datastate.txn) {
+      // Our state is older. This usually means someone started up the game,
+      // then loaded a savegame, so we have a new apstate in the PEH and the
+      // real one in the PLH.
       DEBUG("Using state from playscope.");
       ::PlayEventHandler.Get().apstate = self.apstate;
     } else {
+      // PEH state is older. This usually means someone saved their game, played
+      // for a while, then reloaded.
+      // This is tricky because the PEH *mostly* takes precedence, but we want
+      // to use the saved game's knowledge of which items were vended, to avoid
+      // an infelicity where the player saves, grabs a check, vends the item,
+      // dies, loads their save, and now that item is gone forever -- which is
+      // usually fine if it's like a ShellBox or something, but bad news if it's
+      // a weapon!
       DEBUG("Using state from datascope.");
+      datastate.CopyItemUsesFrom(self.apstate);
       self.apstate = datastate;
     }
     apstate.UpdatePlayerInventory();
@@ -112,6 +127,7 @@ class ::PerLevelHandler : EventHandler {
   // called from the StaticEventHandler, since it's the only one that can tell
   // the difference.
   void OnNewMap() {
+    DEBUG("PLH OnNewMap");
     early_exit = false;
     // No mapinfo -- hopefully this just means it's a TITLEMAP added by a mod or
     // something, and not that we're missing the data package or the player has
@@ -128,9 +144,14 @@ class ::PerLevelHandler : EventHandler {
     apstate.UpdatePlayerInventory();
   }
 
+  void OnReopen() {
+    OnNewMap();
+  }
+
   void OnLoadGame() {
+    DEBUG("PLH OnLoadGame");
     early_exit = false;
-    DEBUG("PLH Cleanup");
+    apstate.CheckForNewKeys();
     apstate.UpdatePlayerInventory();
     let region = apstate.GetRegion(level.MapName);
     if (!region) return;
@@ -176,10 +197,13 @@ class ::PerLevelHandler : EventHandler {
   override void WorldThingSpawned(WorldEvent evt) {
     let thing = evt.thing;
 
+    if (!(thing is "::CheckPickup") && thing.bCOUNTITEM) {
+      thing.ClearCounters();
+    }
+
     // Handle weapon suppression, if enabled.
     if (!ShouldAllow(Weapon(thing))) {
       ReplaceWithAmmo(thing, Weapon(thing));
-      thing.ClearCounters();
       thing.Destroy();
     }
   }
@@ -262,17 +286,19 @@ class ::PerLevelHandler : EventHandler {
   // We try to guess if the player reached the exit or left in some other way.
   // In the former case, we give them credit for clearing the level.
 
-  override void WorldUnloaded(WorldEvent evt) {
-    DEBUG("PLH WorldUnloaded: save=%d warp=%d lnum=%d", evt.isSaveGame, self.early_exit, level.LevelNum);
+  void OnLevelExit(bool is_save) {
+    DEBUG("PLH WorldUnloaded: save=%d warp=%d lnum=%d", is_save, self.early_exit, level.LevelNum);
 
     let region = apstate.GetRegion(level.MapName);
 
-    if (evt.isSaveGame || !region) {
+    if (is_save || !region) {
       cvar.FindCvar("ap_scan_unreachable").SetInt(0);
     }
 
     if (!region) return;
     apstate.CheckForNewKeys();
+
+    if (is_save || self.early_exit) return;
 
     if (ap_scan_unreachable >= 2) {
       let region = apstate.GetRegion(level.MapName);
@@ -283,8 +309,6 @@ class ::PerLevelHandler : EventHandler {
       }
     }
     cvar.FindCvar("ap_scan_unreachable").SetInt(0);
-
-    if (self.early_exit) return;
 
     ::PlayEventHandler.Get().CheckLocation(apstate.GetCurrentRegion().exit_location);
 

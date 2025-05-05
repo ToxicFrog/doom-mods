@@ -16,8 +16,8 @@ class ::RandoItem play {
   string tag;
   // Internal category name
   string category;
-  // Number left to dispense
-  int held;
+  // Number vended, must be <= total
+  int vended;
   // Number received from randomizer
   int total;
 
@@ -31,34 +31,43 @@ class ::RandoItem play {
     item.typename = typename;
     item.tag = GetDefaultByType(itype).GetTag();
     item.category = ::ScannedItem.ItemCategory(GetDefaultByType(itype));
-    item.held = 0;
+    item.vended = 0;
     item.total = 0;
     return item;
   }
 
   void DebugPrint() {
     console.printf("  - %s [category=%s, count=%d/%d, limit=%d]",
-      self.typename, self.category, self.held, self.total, self.GetLimit());
+      self.typename, self.category, self.vended, self.total, self.GetLimit());
   }
 
   void SetTotal(int total) {
     if (total == self.total) return;
-    self.held += total - self.total;
     self.total = total;
   }
 
   void Inc() {
     self.total += 1;
-    self.held += 1;
   }
 
-  void EnforceLimit() {
+  int Remaining() const {
+    return self.total - self.vended;
+  }
+
+  // Enforce the carry limit on an item. Returns the number of copies vended,
+  // which may be 0.
+  int EnforceLimit() {
     int limit = GetLimit();
-    DEBUG("Enforcing limits on %s: %d/%d limit %d (%s)", self.typename, self.held, self.total, limit, self.category);
-    if (limit < 0) return;
-    while (self.held > limit) {
+    DEBUG("Enforcing limits on %s: %d left/%d total, limit %d (%s)", self.typename,
+        self.Remaining(), self.total, limit, self.category);
+    if (limit < 0) return 0;
+
+    int n = 0;
+    while (Remaining() > limit) {
+      ++n;
       Replicate();
     }
+    return n;
   }
 
   bool, int GetCustomLimit() {
@@ -103,8 +112,8 @@ class ::RandoItem play {
   // Thank you for choosing Value-Rep™!
   void Replicate() {
     DEBUG("Replicating %s", self.typename);
-    if (!self.held) return;
-    self.held -= 1;
+    if (self.vended >= self.total) return;
+    self.vended++;
     ::PerLevelHandler.Get().AllowDropsBriefly(2);
     for (int p = 0; p < MAXPLAYERS; ++p) {
       if (!playeringame[p]) continue;

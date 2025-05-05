@@ -30,6 +30,7 @@ class ::Region play {
   // Kept as an array so we can sort it for display.
   // Hopefully this doesn't become a performance issue.
   Array<::Location> locations;
+  // Key typename to key info struct. Only contains keys relevant to this level.
   Map<string, ::RandoKey> keys;
   // Hints tell you where items relevant to this level are.
   // Peeks tell you what items are contained in this level.
@@ -281,23 +282,38 @@ class ::Region play {
       mo.GiveInventoryType("MapRevealer");
     }
 
-    Array<string> keys_held;
+    Map<string, bool> keys_to_add;
+    foreach (keytype, key : self.keys) {
+      if (!key.held || !key.enabled) continue;
+      DEBUG("keys_to_add: %s", keytype);
+      keys_to_add.Insert(keytype, true);
+    }
+
+    Map<string, bool> keys_to_remove;
     readonly<Inventory> item = mo.inv;
     while (item) {
-      if (item is "Key") keys_held.Push(item.GetClassName());
+      if (item is "Key") {
+        if (keys_to_add.CheckKey(item.GetClassName())) {
+          DEBUG("keys_to_add: %s is already present in inventory", item.GetClassName());
+          keys_to_add.Remove(item.GetClassName());
+        } else {
+          DEBUG("keys_to_remove: %s", item.GetClassName());
+          keys_to_remove.Insert(item.GetClassName(), true);
+        }
+      }
       item = item.inv;
     }
 
-    foreach (key : keys_held) {
-      DEBUG("Removing key: %s", key);
-      mo.TakeInventory(key, 999);
+    foreach (keytype, _ : keys_to_remove) {
+      DEBUG("Removing key: %s", keytype);
+      mo.TakeInventory(keytype, 999);
     }
 
-    foreach (fqin, key : self.keys) {
-      DEBUG("Add key? %s %d %d", fqin, key.held, key.enabled);
-      if (!key.held || !key.enabled) continue;
-      let key_item = mo.GiveInventoryType(key.typename);
+    foreach (keytype, _ : keys_to_add) {
+      DEBUG("Adding key: %s", keytype);
+      let key_item = Inventory(mo.Spawn(keytype));
       key_item.amount = 999;
+      key_item.CallTryPickup(mo);
     }
   }
 }

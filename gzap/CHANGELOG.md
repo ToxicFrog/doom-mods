@@ -10,9 +10,10 @@ but those are not yet supported in general.)
   - Tuning data for Plutonia [from @Gwen].
   - Partial tuning (22 maps, major items only) for Going Down Turbo.
   - `ap-debug` netevent to dump the AP state to the console.
-  - Keys are now displayed in the inventory menu, and can be toggled on and off
-    (once you have them) for tuning purposes. Infelicitous use of this feature
-    can create impossible logic, so please be careful.
+  - In pretuning mode, keys are now displayed in the inventory menu and can be
+    toggled on and off, once you have them; they default off. Note that turning
+    a key off after using it to reach checks can generate impossible logic, so
+    please be careful.
 - Change:
   - Going Down Turbo logic updated from RC 1.7 to the version released on idgames.
   - Scanner now automatically skips levels with no randomizeable actors in them.
@@ -20,6 +21,17 @@ but those are not yet supported in general.)
     replaced, rather than replacing it.
   - In pretuning mode, all items picked up will be immediately vended, the same
     as normal Doom gameplay; the AP inventory is bypassed.
+  - Keys are now added to your inventory by spawning them into the world and
+    then touching them, similar to how other items are spawned. This should
+    hopefully improve compatibility with gameplay mods that implement their own
+    keys and then use `replaces` rules to replace the existing keys with them,
+    rather than simply reskinning the normal Doom/Heretic keys.
+  - Saving your game, collecting a check that contains a normal item (i.e. not a
+    key or access token), vending the item, then loading your game now restores
+    the item to your AP inventory rather than banishing it forever. This brings
+    our behaviour more in line with `apquake`, and means that things like
+    quicksaving, grabbing a weapon, then quickloading no longer makes that
+    weapon impossible to get.
 - Fix:
   - Incorrectly formatted `ap_bank_custom` entries will now be skipped instead
     of crashing the game.
@@ -37,6 +49,15 @@ but those are not yet supported in general.)
   - When scanning hubcluster levels, it will bounce between the level being
     scanned and the `GZAPHUB` to force a reset. This may result in an excessive
     number of intermission screens being displayed, unfortunately.
+  - Item or location names from other games with quotes or backslashes in them
+    should no longer crash gzdoom on startup.
+  - Attempting to open the inventory menu when not actually playing an
+    AP-randomized game now displays an error message rather than crashing, same
+    as the level select menu.
+  - Items counter once again properly reflects number of remaining item-based
+    checks in the map.
+  - `ap_scan_unreachable` is now only checked when exiting the map "properly",
+    not when using the level select or loading a savegame.
 
 # 0.4.3
 
