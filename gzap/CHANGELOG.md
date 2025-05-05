@@ -21,6 +21,11 @@ but those are not yet supported in general.)
     replaced, rather than replacing it.
   - In pretuning mode, all items picked up will be immediately vended, the same
     as normal Doom gameplay; the AP inventory is bypassed.
+  - Keys are now added to your inventory by spawning them into the world and
+    then touching them, similar to how other items are spawned. This should
+    hopefully improve compatibility with gameplay mods that implement their own
+    keys and then use `replaces` rules to replace the existing keys with them,
+    rather than simply reskinning the normal Doom/Heretic keys.
 - Fix:
   - Incorrectly formatted `ap_bank_custom` entries will now be skipped instead
     of crashing the game.
