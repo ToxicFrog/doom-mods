@@ -14,6 +14,9 @@ but those are not yet supported in general.)
     toggled on and off, once you have them; they default off. Note that turning
     a key off after using it to reach checks can generate impossible logic, so
     please be careful.
+  - `AP-KEY` messages are now emitted as part of the tuning file for keys that
+    exist across multiple maps. (This does not mean that hubmap-based megawads
+    are now playable, but it's a step in the right direction.)
 - Change:
   - Going Down Turbo logic updated from RC 1.7 to the version released on idgames.
   - Scanner now automatically skips levels with no randomizeable actors in them.
