@@ -66,6 +66,10 @@ but those are not yet supported in general.)
     in-game even if you are playing a mod that has a `TITLEMAP`. This fixes an
     issue where you could start the client sync while at the main menu and then
     interrupt it by loading a game.
+  - Universal Tracker no longer shows `unreachable` locations (i.e. those marked
+    in logic as being inaccessible by name means).
+  - Universal Tracker is disabled in pretuning mode, as its output is basically
+    useless when pretuning.
 
 # 0.4.3
 

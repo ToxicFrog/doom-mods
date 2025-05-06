@@ -116,7 +116,7 @@ class DoomLocation:
             # print(f"Tuning keys [{self.name()}]: old={self.keys} tune={new_keyset} new={new_keys}")
             self.keys = new_keys
 
-    def access_rule(self, player):
+    def access_rule(self, world):
         # print(f"access_rule({self.name()}): keys={self.keys}")
         # A location is accessible if:
         # - you have access to the map (already checked at the region level)
@@ -124,11 +124,28 @@ class DoomLocation:
         #   - either you have all the keys for the map
         #   - OR the map only has one key, and this is it
         def player_has_keys(state, keyset):
-            player_keys = { item for item in keyset if state.has(item, player) }
+            player_keys = { item for item in keyset if state.has(item, world.player) }
             # print(f"player_has_keys? {player_keys} >= {keyset}")
             return player_keys >= keyset
 
         def rule(state):
+            if hasattr(world.multiworld, "generation_is_fake"):
+                # If Universal Tracker is generating, pretend that locations
+                # with the unreachable flag are unreachable always, so they
+                # don't show up in the tracker.
+                if self.unreachable:
+                    return False
+                # Also consider everything unreachable in pretuning mode, because
+                # in pretuning the idea of "logic" kind of goes out the window
+                # entirely.
+                if world.options.pretuning_mode:
+                    return False
+
+            # Skip all checks in pretuning mode -- we know that the logic is
+            # beatable because it's the vanilla game.
+            if world.options.pretuning_mode:
+                return True
+
             # If this location requires no keys, trivially succeed.
             if not self.keys:
                 return True
