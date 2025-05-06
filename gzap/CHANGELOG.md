@@ -17,6 +17,7 @@ but those are not yet supported in general.)
   - `AP-KEY` messages are now emitted as part of the tuning file for keys that
     exist across multiple maps. (This does not mean that hubmap-based megawads
     are now playable, but it's a step in the right direction.)
+  - The client now has an icon in the AP launcher! Contributed by @DwarfWoot.
 - Change:
   - Going Down Turbo logic updated from RC 1.7 to the version released on idgames.
   - Scanner now automatically skips levels with no randomizeable actors in them.

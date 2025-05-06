@@ -29,14 +29,15 @@ def launch_client(*args) -> None:
     LauncherComponents.launch_subprocess(main, name="GZDoomClient", args=args)
 
 
+LauncherComponents.icon_paths["gzdoom_icon"] = f"ap:{__name__}/icon.png"
 LauncherComponents.components.append(
     LauncherComponents.Component(
         "GZDoom Client",
         func=launch_client,
-        component_type=LauncherComponents.Type.CLIENT
+        component_type=LauncherComponents.Type.CLIENT,
+        icon="gzdoom_icon",
     )
 )
-
 
 class GZDoomLocation(Location):
     game: str = "gzDoom"
