@@ -129,12 +129,8 @@ class ::PerLevelHandler : EventHandler {
   void OnNewMap() {
     DEBUG("PLH OnNewMap");
     early_exit = false;
-    // No mapinfo -- hopefully this just means it's a TITLEMAP added by a mod or
-    // something, and not that we're missing the data package or the player has
-    // been changemapping into places they shouldn't be.
-    let region = apstate.GetRegion(level.MapName);
-    if (!region) return;
 
+    let region = apstate.GetCurrentRegion();
     SetupSecrets(region);
     foreach (location : region.locations) {
       // Secret-sector locations are handled by SetupSecrets().
@@ -153,8 +149,8 @@ class ::PerLevelHandler : EventHandler {
     early_exit = false;
     apstate.CheckForNewKeys();
     apstate.UpdatePlayerInventory();
-    let region = apstate.GetRegion(level.MapName);
-    if (!region) return;
+
+    let region = apstate.GetCurrentRegion();
     SetupSecrets(region);
     foreach (::CheckPickup thing : ThinkerIterator.Create("::CheckPickup", Thinker.STAT_DEFAULT)) {
       // At this point, we may have a divergence, depending on whether the apstate

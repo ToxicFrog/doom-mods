@@ -62,6 +62,10 @@ but those are not yet supported in general.)
     checks in the map.
   - `ap_scan_unreachable` is now only checked when exiting the map "properly",
     not when using the level select or loading a savegame.
+  - The GZDoom<->Client connection is not initialized until you are actually
+    in-game even if you are playing a mod that has a `TITLEMAP`. This fixes an
+    issue where you could start the client sync while at the main menu and then
+    interrupt it by loading a game.
 
 # 0.4.3
 

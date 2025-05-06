@@ -72,15 +72,23 @@ class ::PlayEventHandler : StaticEventHandler {
 
   bool initialized;
   override void WorldLoaded(WorldEvent evt) {
-    // Don't initialize IPC until after we're in-game; otherwise NetworkCommandProcess
-    // doesn't get called and we end up missing events.
-    if (!initialized) {
+    let region = apstate.GetCurrentRegion();
+
+    // Don't initialize IPC until after we're in-game; otherwise
+    // NetworkCommandProcess doesn't get called and we end up missing events.
+    // "In-game" here means either any scanned level or the GZAPHUB.
+    // In particular we definitely do NOT want to do this on the TITLEMAP,
+    // or the player might end up loading their game halfway through initial
+    // sync with the client.
+    if (!initialized && (region || level.MapName == "GZAPHUB")) {
       initialized = true;
       apclient.Init(self.apstate.slot_name, self.seed, self.wadname);
       apstate.SortLocations();
     }
 
-    if (level.LevelName == "TITLEMAP") return;
+    // Don't run on-level-entry handlers for levels that aren't part of the AP
+    // game.
+    if (!region) return;
 
     if (evt.IsSaveGame) {
       ::PerLevelHandler.Get().OnLoadGame();
