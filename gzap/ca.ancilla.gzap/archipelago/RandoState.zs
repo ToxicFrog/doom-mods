@@ -323,12 +323,19 @@ class ::RandoState play {
     UpdateStatus();
   }
 
-  void MarkLocationInLogic(int apid) {
+  void MarkLocationInLogic(int apid, string type) {
     ++txn;
     foreach (_, region : self.regions) {
       let loc = region.GetLocation(apid);
       if (loc) {
-        loc.in_logic = true;
+        if (type == "IL") {
+          loc.track = AP_REACHABLE_IL;
+        } else if (type == "OOL") {
+          loc.track = AP_REACHABLE_OOL;
+        } else {
+          console.printf("[AP] Warning: unknown TRACK type for %s: %s", loc.name, type);
+          loc.track = AP_UNREACHABLE;
+        }
         region.SortLocations();
       }
     }

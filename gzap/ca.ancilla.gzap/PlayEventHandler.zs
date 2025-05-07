@@ -224,7 +224,8 @@ class ::PlayEventHandler : StaticEventHandler {
       region.RegisterPeek(location, player, item);
     } else if (cmd.command == "ap-ipc:track") {
       int apid = cmd.ReadInt();
-      apstate.MarkLocationInLogic(apid);
+      string track_type = cmd.ReadString();
+      apstate.MarkLocationInLogic(apid, track_type);
     } else if (cmd.command == "ap-hint") {
       // Player requested a hint from the level select menu.
       string item = cmd.ReadString();

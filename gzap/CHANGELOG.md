@@ -18,6 +18,12 @@ but those are not yet supported in general.)
     exist across multiple maps. (This does not mean that hubmap-based megawads
     are now playable, but it's a step in the right direction.)
   - The client now has an icon in the AP launcher! Contributed by @DwarfWoot.
+  - Universal Tracker integration now supports "glitch logic"; in UT versions
+    that support this, locations that are out of logic due to weapon or difficulty
+    settings, but which are still believed to be reachable otherwise, will show up
+    as "reachable with glitches" (which isn't quite right but it's the closest
+    UT can come to "reachable, but out of logic for other reasons"). At present
+    this is only supported in the Tracker tab of the client, not in-game.
 - Change:
   - Going Down Turbo logic updated from RC 1.7 to the version released on idgames.
   - Scanner now automatically skips levels with no randomizeable actors in them.

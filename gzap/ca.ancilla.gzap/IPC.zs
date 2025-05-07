@@ -107,8 +107,8 @@ class ::IPC {
         NET_STRING, fields[2], NET_STRING, fields[3], NET_STRING, fields[4], NET_STRING, fields[5]);
       return true;
     } else if (type == "TRACK") {
-      if (fields.Size() != 3) return false;
-      EventHandler.SendNetworkCommand("ap-ipc:track", NET_INT, fields[2].ToInt(10));
+      if (fields.Size() != 4) return false;
+      EventHandler.SendNetworkCommand("ap-ipc:track", NET_INT, fields[2].ToInt(10), NET_STRING, fields[3]);
       return true;
     }
     return false;

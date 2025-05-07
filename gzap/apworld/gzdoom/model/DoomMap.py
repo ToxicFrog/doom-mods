@@ -112,6 +112,12 @@ class DoomMap:
             if world.is_starting_map(self.map):
                 return True
 
+            # If Universal Tracker is asking for "glitch logic", skip all balancing
+            # checks and report everything the player can get to whether they have
+            # the firepower to keep it or not.
+            if state.has(world.glitches_item_name, world.player):
+                return True
+
             # Check requirement for guns the player would normally carryover
             # from earlier levels.
             player_guns = { gun for gun in self.carryover_gunset if state.has(gun, world.player) }

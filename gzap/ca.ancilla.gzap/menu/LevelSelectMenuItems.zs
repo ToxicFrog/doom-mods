@@ -197,13 +197,21 @@ class ::LevelSelector : ::KeyValueNetevent {
   string FormatMissingChecksTT(::Region region) {
     string buf = "";
     foreach (loc : region.locations) {
-      if (!loc.checked && !loc.unreachable) {
-        buf = buf .. string.format("\n  \c[%s]%s", loc.in_logic ? "ICE" : "BLACK", loc.name);
+      if (loc.checked || loc.unreachable) continue;
 
-        let peek = region.GetPeek(loc.name);
-        if (peek) {
-          buf = buf .. string.format("\n  \c-ⓘ %s for %s", peek.item, peek.player);
-        }
+      string colour;
+      if (loc.track == AP_UNREACHABLE) {
+        colour = "BLACK";
+      } else if (loc.track == AP_REACHABLE_OOL) {
+        colour = "FIRE";
+      } else if (loc.track == AP_REACHABLE_IL) {
+        colour = "ICE";
+      }
+      buf = buf .. string.format("\n  \c[%s]%s", colour, loc.name);
+
+      let peek = region.GetPeek(loc.name);
+      if (peek) {
+        buf = buf .. string.format("\n  \c-ⓘ %s for %s", peek.item, peek.player);
       }
     }
     if (buf != "") {

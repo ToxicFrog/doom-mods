@@ -57,6 +57,12 @@ class GZDoomItem(Item):
     def __init__(self, item: DoomItem, player: int) -> None:
         super().__init__(name=item.name(), classification=item.classification(), code=item.id, player=player)
 
+class GZDoomUTGlitchToken(Item):
+    game: str = "gzDoom"
+    TOKEN_NAME = "[UT Glitch Logic Token]"
+
+    def __init__(self, player) -> None:
+        super().__init__(name=self.TOKEN_NAME, classification=ItemClassification.progression, code=None, player=player)
 
 class GZDoomWeb(WebWorld):
     tutorials = [Tutorial(
@@ -95,12 +101,18 @@ class GZDoomWorld(World):
     location_name_to_id: Dict[str, int] = model.unified_location_map()
     location_name_groups: Dict[str,FrozenSet[str]] = model.unified_location_groups()
 
+    # Universal Tracker integration
+    glitches_item_name: str = GZDoomUTGlitchToken.TOKEN_NAME
+
 
     def __init__(self, multiworld: MultiWorld, player: int):
         self.location_count = 0
         super().__init__(multiworld, player)
 
     def create_item(self, name: str) -> GZDoomItem:
+        if name == GZDoomUTGlitchToken.TOKEN_NAME:
+            return GZDoomUTGlitchToken(self.player)
+
         item = self.wad_logic.items_by_name[name]
         return GZDoomItem(item, self.player)
 

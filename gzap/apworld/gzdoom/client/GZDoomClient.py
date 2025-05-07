@@ -173,15 +173,32 @@ class GZDoomContext(SuperContext):
 
     async def _tracker_loop(self):
         self.last_tracked = set()
+        self.last_tracked_ool = set()
         while not self.exit_event.is_set():
             await self.watcher_event.wait()
             self.watcher_event.clear()
-            new_tracked = set(self.locations_available) - self.last_tracked
-            # print("Location loop running", new_locations, self.checked_locations)
-            for id in new_tracked:
-                self.ipc.send_track(id)
+            if hasattr(self, 'glitches_locations'):
+                new_ool = set(self.glitches_locations) - self.last_tracked_ool
+            else:
+                # Older version of UT
+                new_ool = set()
+            new_il = set(self.locations_available) - self.last_tracked
+
+            print("tracker_loop IL: ", new_il, self.last_tracked)
+            print("tracker_loop OOL:", new_ool, self.last_tracked_ool)
+            for id in new_ool:
+                self.ipc.send_track(id, "OOL")
+            for id in new_il:
+                self.ipc.send_track(id, "IL")
             self.ipc.flush()
-            self.last_tracked |= new_tracked
+            # Over the course of the game, locations may be added to OOL and then
+            # removed from it and added to IL. These locations will gradually
+            # accumulate in last_tracked_ool. However, this is fine, because on
+            # startup the IL and OOL sets are guaranteed disjoint, and once we've
+            # sent an OOL message for a location once we won't re-send it, and
+            # it will later be overwritten by the IL message.
+            self.last_tracked_ool |= new_ool
+            self.last_tracked |= new_il
 
     async def _hint_loop(self):
         self.last_hints = {}
