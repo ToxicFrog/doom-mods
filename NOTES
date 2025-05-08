@@ -105,9 +105,26 @@ marked interhub, generate the AP-KEY for it...
   when it's picked up?
 - some hints received when playing in the weekly sync did not display on the
   map screen
-- disable tracker in pretuning mode
-- tracker should not display unreachables
 - Eviternity 1 death exits don't work right?
+- can I get the tracker to work in singleplayer?
+- yaml-less UT support
+  - need to add the logic-affecting `options` to `slot_data` at gen time
+  - then add `interpret_slot_data()` to return that info
+  - when genning, check `multiworld.re_gen_passthrough['GZDoom']` for the stuff
+    returned by `interpret_slot_data()` and trust that above `options`
+- also be nice if I could get UT working in singleplayer
+- and cut down on duplicate item pickup messages in SP when the client is connected
+- Ashes 2063 reports duplicate keys because of the way keys are handled -- you
+  pick up the BluePassCard and it gives you a BlueCard in your inventory, which
+  the AP runtime then identifies as a new key scoped to that level, which can be
+  a bit confusing but generally does not affect normal play.
+- If you play some AP, then choose "new game" from the level, it crashes:
+    VM execution aborted: tried to read from address zero. In function parameter "self"
+    Called from GZAP_PlayEventHandler.CheckLocation at gzArchipelago-latest.pk3:ca.ancilla.gzap/playeventhandler.zsc, line 156
+    Called from GZAP_PerLevelHandler.OnLevelExit at gzArchipelago-latest.pk3:ca.ancilla.gzap/perlevelhandler.zsc, line 309
+    Called from GZAP_PlayEventHandler.WorldUnloaded at gzArchipelago-latest.pk3:ca.ancilla.gzap/playeventhandler.zsc, line 103
+    Called from Actor.A_Print [Native]
+
 
 ### Faithless
 

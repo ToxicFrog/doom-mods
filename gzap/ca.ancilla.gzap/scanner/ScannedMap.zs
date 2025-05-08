@@ -26,6 +26,8 @@ class ::ScannedMap play {
   // Set if this map should be used for exit searching but not included in the
   // logic file.
   bool skip;
+  // Set if this map should be ignored entirely.
+  bool prune;
   // Cluster ID iff this map belongs to a hubcluster. Else 0.
   int hub;
 
@@ -42,7 +44,7 @@ class ::ScannedMap play {
 
   void Output() {
     DEBUG("ScannedMap::Output: skip=%d, locs=%d", self.skip, self.locations.Size());
-    if (self.skip) return;
+    if (self.skip || self.prune) return;
     // Do not include maps with nothing to randomize.
     if (locations.Size() == 0) return;
     // In Wolf3d TC, failing to do this will result in garbage at the start of
@@ -69,7 +71,7 @@ class ::ScannedMap play {
   bool IsScanned() {
     // Skipped levels are considered "done" as soon as they've been scanned at
     // least once and thus we know exit capture has occurred.
-    if (self.skip) return self.max_skill > 0;
+    if (self.skip || self.prune) return self.max_skill > 0;
     return self.max_skill == 3;
   }
 

@@ -60,10 +60,20 @@ be omitted if scanning from the GUI.
 
 ### Skipping levels
 
-You can use `ap_scan_skip` in the same way as `ap_scan_levels`; levels found
-this way will be used to find other levels but will not themselves be scanned.
+There are two cvars that control this.
+
+Levels listed in `ap_scan_skip` (which has the same format as `ap_scan_levels`)
+will be used to find other levels, but will not themselves be included in the
+logic. This is useful for cutscenes, interstitial hubs, etc that are not meant
+to be included in the randomizer but have exits leading to other levels that
+are.
 
     ap_scan_skip "E1END E2END CREDITS"
+
+Levels listed in `ap_scan_prune` will be excised from the scan entirely, and
+will not be searched for exits to other levels.
+
+    ap_scan_prune "MAP31 MAP32"
 
 ### Overriding scanner behaviour
 

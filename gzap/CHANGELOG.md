@@ -24,6 +24,8 @@ but those are not yet supported in general.)
     as "reachable with glitches" (which isn't quite right but it's the closest
     UT can come to "reachable, but out of logic for other reasons"). At present
     this is only supported in the Tracker tab of the client, not in-game.
+  - `ap_scan_prune` cvar can be used to skip levels entirely when scanning (i.e.
+    not even scan them for exits).
 - Change:
   - Going Down Turbo logic updated from RC 1.7 to the version released on idgames.
   - Scanner now automatically skips levels with no randomizeable actors in them.
@@ -47,8 +49,6 @@ but those are not yet supported in general.)
     of crashing the game.
   - Scanner now properly handles `specialaction_lowerfloortohighest`. Heretic
     logic updated accordingly.
-  - `ap_scan_skip` setting did not behave properly when `ap_scan_recurse` was
-    enabled.
   - Scan data for levels is no longer retained in memory once the level logic
     is output. This should improve performance and memory usage when scanning
     very large wads.
