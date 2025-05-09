@@ -29,7 +29,7 @@ but those are not yet supported in general.)
     this is only supported in the Tracker tab of the client, not in-game.
   - `ap_scan_prune` cvar can be used to skip levels entirely when scanning (i.e.
     not even scan them for exits).
-  -
+  - New win condition: beat specific levels.
 - Change:
   - Going Down Turbo logic updated from RC 1.7 to the version released on idgames.
   - Scanner now automatically skips levels with no randomizeable actors in them.
