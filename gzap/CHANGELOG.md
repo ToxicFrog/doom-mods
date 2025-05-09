@@ -80,6 +80,9 @@ but those are not yet supported in general.)
     in logic as being inaccessible by name means).
   - Universal Tracker is disabled in pretuning mode, as its output is basically
     useless when pretuning.
+  - Check spawning is now smarter about what it replaces, and, in particular,
+    does not replace invisible tokens. This should fix some issues with
+    Intelligent Supplies and AutoAutoSave, among others.
 
 # 0.4.3
 

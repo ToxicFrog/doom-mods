@@ -182,6 +182,7 @@ class ::CheckPickup : ScoreItem {
     // Don't subsume if this is an unreachable check -- leave the original item
     // in place just in case.
     if (GetLocation().unreachable) return;
+    DEBUG("Check[%s] Subsume", self.location.name);
     Actor closest;
     let it = BlockThingsIterator.Create(self, 32);
     while (it.Next()) {
@@ -196,12 +197,18 @@ class ::CheckPickup : ScoreItem {
         if (thing.bNOSECTOR || thing.bNOINTERACTION || thing.bISMONSTER) continue;
         if (!(thing is "Inventory")) continue;
       }
-      if (!closest) closest = thing;
-      if (Distance3D(thing) < Distance3D(closest)) closest = thing;
+
+      // Don't eat invisible things. They're probably tokens created by something
+      // like Intelligent Supplies or AutoAutoSave.
+      if (thing.CurState.Sprite == 0) continue;
+
+      if (!closest || Distance3D(thing) < Distance3D(closest)) {
+        closest = thing;
+        DEBUG("Check[%s]: closest is %s (d=%f)", self.location.name, closest.GetClassName(), Distance3D(closest));
+      }
     }
 
     if (!closest) return;
-    DEBUG("Check[%s]: closest is %s (d=%f)", self.location.name, closest.GetTag(), Distance3D(closest));
     if (Distance3D(closest) < 2.0) {
       UpdateFromOriginal(closest);
       closest.ClearCounters();
