@@ -24,7 +24,9 @@ class ::LevelSelectMenu : ::CommonMenu {
 
     PushText(" ");
     PushText("$GZAP_MENU_LEVEL_SELECT_TITLE", Font.CR_WHITE);
-    mDesc.mItems.Push(new("::ProgressIndicator").InitDirect("", Font.CR_CYAN));
+    let progress_indicator = new("::ProgressIndicator");
+    progress_indicator.apstate = ::PlayEventHandler.GetState();
+    mDesc.mItems.Push(progress_indicator.InitDirect("", Font.CR_CYAN));
     PushText(" ");
 
     PushKeyValueText(

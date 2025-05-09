@@ -1,6 +1,9 @@
 # Unreleased
 
-This is a bugfix release.
+This is a feature release.
+
+⚠️ The YAML options have changed, and in particular, some options have had their
+types and/or meanings changed. You must regenerate your template YAML.
 
 This release changes the scanner, but only wads that use the `specialaction_lowerfloortohighest`
 level special need to be rescanned. (It also affects wads that use hubclusters,
@@ -26,6 +29,7 @@ but those are not yet supported in general.)
     this is only supported in the Tracker tab of the client, not in-game.
   - `ap_scan_prune` cvar can be used to skip levels entirely when scanning (i.e.
     not even scan them for exits).
+  -
 - Change:
   - Going Down Turbo logic updated from RC 1.7 to the version released on idgames.
   - Scanner now automatically skips levels with no randomizeable actors in them.

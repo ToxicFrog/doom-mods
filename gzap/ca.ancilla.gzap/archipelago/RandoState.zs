@@ -13,6 +13,7 @@
 #include "./RandoKey.zsc"
 #include "./Region.zsc"
 #include "./RegionDiff.zsc"
+#include "./WinConditions.zsc"
 
 class ::RandoState play {
   string slot_name; // Name of player in AP
@@ -34,9 +35,13 @@ class ::RandoState play {
   // An array so that (a) we can sort it, and (b) we can refer to entries by
   // index in a netevent.
   Array<::RandoItem> items;
-  // Win conditions. Key is condition name, value is condition magnitude. Exact
-  // meaning of the latter depends on the condition.
-  Map<string, int> win_conditions;
+  ::WinConditions win_conditions;
+
+  static ::RandoState Create() {
+    let apstate = ::RandoState(new("::RandoState"));
+    apstate.win_conditions = new("::WinConditions");
+    return apstate;
+  }
 
   void DebugPrint() {
     console.printf("AP State [txn=%d, filter=%d]", self.txn, self.filter);
@@ -256,7 +261,7 @@ class ::RandoState play {
   void UseItem(uint idx) {
     ++txn;
     items[idx].Replicate();
-    UpdateStatus();
+    // UpdateStatus();
   }
 
   void UseItemByName(string name) {
@@ -320,7 +325,7 @@ class ::RandoState play {
     foreach (_, region : self.regions) {
       region.ClearLocation(apid);
     }
-    UpdateStatus();
+    // UpdateStatus();
   }
 
   void MarkLocationInLogic(int apid, string type) {
@@ -339,7 +344,6 @@ class ::RandoState play {
         region.SortLocations();
       }
     }
-    UpdateStatus();
   }
 
   uint LevelsClear() const {
@@ -354,23 +358,11 @@ class ::RandoState play {
     return self.regions.CountUsed();
   }
 
-  void RegisterWinCondition(string condition, int value) {
-    self.win_conditions.Insert(condition, value);
-  }
-
-  uint LevelsRequired() const {
-    return self.win_conditions.GetIfExists('levels-clear');
-  }
-
-  bool Victorious() const {
-    return self.LevelsClear() >= self.LevelsRequired();
-  }
-
   void UpdateStatus() {
     // Might want to expand this later to list levels cleared, items collected,
     // etc, for the use of external trackers, but for now it's just a simple
     // "are we winning?"
-    if (Victorious()) {
+    if (win_conditions.Victorious(self)) {
       ::IPC.Send("STATUS", "{ \"victory\": true }");
     }
   }

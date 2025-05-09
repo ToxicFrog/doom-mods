@@ -260,42 +260,63 @@ class GlobalWeaponBias(Range):
 
 class WinConditions(OptionDict):
     """
-    Win conditions for the randomized game. At present only one condition is
-    implemented, "levels-clear".
+    Win conditions for the randomized game. If multiple conditions are enabled,
+    the player is required to satisfy all of them!
 
-        levels-clear: (int, fraction, or "all")
+        nrof-maps: (int, fraction, or "all")
     Require the player to finish this many levels. If "all", all levels included
-    in randomization must be cleared. If set to an integer >= 1, that many levels
-    must be cleared. If a fraction, that fraction of levels is required, e.g.
-    0.5 would require you to clear 16 of Doom 2's 32 levels.
+    in randomization must be cleared. If set to an integer >= 1, that many
+    levels must be cleared. If a fraction, that fraction of levels is required,
+    e.g. 0.5 would require you to clear 16 of Doom 2's 32 levels.
+
+        specific-maps: (list of map names)
+    Require the player to finish these specific maps. Globbing expressions are
+    supported, so `maps: ["E1M?" "E?M8"]` would require the player to beat all
+    of episode 1 and all boss maps in Doom 1, for example. Maps listed here that
+    don't exist in the selected WAD are ignored.
     """
     display_name = "Win conditions"
     default = {
-        "levels-clear": "all",
+        "nrof-maps": "all",
+        "specific-maps": [],
     }
-    valid_keys = {"levels-clear"}
+    valid_keys = {"nrof-maps", "specific-maps"}
     def get_levels_needed(self, world):
-        levels_needed = self.value.get("levels-clear", 0)
+        levels_needed = self.value.get("nrof-maps", 0)
         if levels_needed == "all":
             return len(world.maps)
-        assert levels_needed >= 0,"levels-clear win condition must be 'all' or a fraction or an integer >= 0"
+        assert levels_needed >= 0,"nrof-maps win condition must be 'all' or a fraction or an integer >= 0"
         if levels_needed > 0 and levels_needed < 1:
             return ceil(len(world.maps) * levels_needed)
         return min(floor(levels_needed), len(world.maps))
 
+    def get_maplist(self, world):
+        return [
+            map for map in world.maps
+            if world.any_glob_matches(self.value.get("specific-maps", []), map.map)
+        ]
+
     def check_win(self, world, state):
-        won = False
+        won = True
 
         levels_needed = self.get_levels_needed(world)
         if levels_needed > 0:
-            won = won or levels_needed <= sum([
+            won = won and levels_needed <= sum([
                 1 for map in world.maps
                 if state.has(map.clear_token_name(), world.player)
             ])
+
+        for map in self.get_maplist(world):
+            won = won and state.has(map.clear_token_name(), world.player)
+
         return won
 
     def template_values(self, world):
-        return { 'levels-clear': self.get_levels_needed(world) }
+        return {
+            # These are 0/empty for some reason
+            'nrof-maps': self.get_levels_needed(world),
+            'specific-maps': [map.map for map in self.get_maplist(world)],
+        }
 
 class AllowSecretProgress(Toggle):
     """
