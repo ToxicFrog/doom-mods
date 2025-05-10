@@ -3,7 +3,7 @@
 #namespace GZAP;
 
 #include "./ScannedLocation.zsc"
-#debug on;
+#debug off;
 
 class ::ScannedItem : ::ScannedLocation {
   string category;

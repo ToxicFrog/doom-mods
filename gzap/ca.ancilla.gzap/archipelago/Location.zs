@@ -5,7 +5,7 @@
 // sufficient to send and receive messages about it to AP and record its state.
 
 #namespace GZAP;
-#debug on;
+#debug off;
 
 enum ::Tracking {
   AP_UNREACHABLE,     // Tracker thinks we can't get to this at all.

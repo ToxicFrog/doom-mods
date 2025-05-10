@@ -18,6 +18,11 @@ class ::PerLevelHandler : EventHandler {
   // If set, the player is leaving the level via the level select or similar
   // rather than by reaching the exit.
   bool early_exit;
+  // Set when the player triggers an exit linedef. If they don't subsequently
+  // exit the level, this is probably because they are dead, and will trigger
+  // an exit when they respawn.
+  bool line_exit_normal;
+  bool line_exit_secret;
 
   static clearscope ::PerLevelHandler Get() {
     return ::PerLevelHandler(Find("::PerLevelHandler"));
@@ -126,6 +131,8 @@ class ::PerLevelHandler : EventHandler {
   void OnNewMap() {
     DEBUG("PLH OnNewMap");
     early_exit = false;
+    line_exit_normal = false;
+    line_exit_secret = false;
 
     let region = apstate.GetCurrentRegion();
     SetupSecrets(region);
@@ -139,6 +146,8 @@ class ::PerLevelHandler : EventHandler {
 
   void OnReopen() {
     early_exit = false;
+    line_exit_normal = false;
+    line_exit_secret = false;
 
     let region = apstate.GetCurrentRegion();
     SetupSecrets(region);
@@ -182,6 +191,40 @@ class ::PerLevelHandler : EventHandler {
 
     if (level.total_secrets - level.found_secrets != self.secret_locations.CountUsed()) {
       UpdateSecrets();
+    }
+  }
+
+  // Handle exit linedef activation.
+  // Under normal circumstances, the game handles this on its own and all is well.
+  // However, this fails if it's a death exit and the source and destination
+  // maps are in the same hubcluster -- which is the case when persistence is on.
+  // To handle that case, we record that the line was activated here, and then
+  // if the player respawns without leaving the map, we trigger the exit.
+  override void WorldLinePreActivated(WorldEvent evt) {
+    let thing = evt.thing;
+    let line = evt.ActivatedLine;
+    if (!(thing is "PlayerPawn")) return;
+    console.printf("WLPA: %d %d %s", evt.ShouldActivate, evt.ActivatedLine.special, thing.GetTag());
+
+    // Key checks are done after WorldLinePreActivated, so we need to check
+    // them here just in case that check would normally fail.
+    if (!thing.CheckKeys(line.locknumber, false, true)) return;
+    if (evt.ActivatedLine.special == 243) { // LS_EXIT_NORMAL
+      console.printf("LS_EXIT_NORMAL");
+      line_exit_normal = true;
+    } else if (evt.ActivatedLine.special == 244) { // LS_EXIT_SECRET
+      console.printf("LS_EXIT_SECRET");
+      line_exit_secret = true;
+    }
+  }
+
+  override void PlayerRespawned(PlayerEvent evt) {
+    if (line_exit_secret) {
+      console.printf("doing secret exit");
+      level.SecretExitLevel(0);
+    } else if (line_exit_normal) {
+      console.printf("doing normal exit");
+      level.ExitLevel(0, false);
     }
   }
 

@@ -84,6 +84,8 @@ but those are not yet supported in general.)
     does not replace invisible tokens. This should fix some issues with
     Intelligent Supplies and AutoAutoSave, among others.
   - Fix issues with the secret and item counts.
+  - Linedef-based death exits now function properly (previously only boss-based
+    death exits did). In particular this should fix Eviternity.
 
 # 0.4.3
 
