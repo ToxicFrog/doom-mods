@@ -301,7 +301,7 @@ class ::CheckPickup : ScoreItem {
     if (ap_show_check_contents && !self.label) {
       self.label = CreateLabel(self.location.ap_typename);
     }
-    if (ap_show_check_original && !self.orig_label) {
+    if (ap_show_check_original && !self.orig_label && !::PlayEventHandler.Get().IsPretuning()) {
       self.orig_label = CreateLabel(self.location.orig_typename, 34);
     }
   }
