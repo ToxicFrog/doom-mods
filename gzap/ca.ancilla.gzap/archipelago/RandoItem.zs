@@ -119,7 +119,8 @@ class ::RandoItem play {
       if (!playeringame[p]) continue;
       if (!players[p].mo) continue;
 
-      players[p].mo.A_SpawnItemEX(self.typename);
+      let thing = players[p].mo.Spawn(self.typename, players[p].mo.pos, ALLOW_REPLACE);
+      thing.ClearCounters();
     }
   }
 

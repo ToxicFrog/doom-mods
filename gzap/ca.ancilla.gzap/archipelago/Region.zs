@@ -313,6 +313,7 @@ class ::Region play {
       DEBUG("Adding key: %s", keytype);
       let key_item = Inventory(mo.Spawn(keytype));
       key_item.amount = 999;
+      key_item.ClearCounters();
       key_item.CallTryPickup(mo);
     }
   }
