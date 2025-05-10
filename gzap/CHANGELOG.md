@@ -83,6 +83,7 @@ but those are not yet supported in general.)
   - Check spawning is now smarter about what it replaces, and, in particular,
     does not replace invisible tokens. This should fix some issues with
     Intelligent Supplies and AutoAutoSave, among others.
+  - Fix issues with the secret and item counts.
 
 # 0.4.3
 

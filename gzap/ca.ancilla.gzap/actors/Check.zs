@@ -211,7 +211,6 @@ class ::CheckPickup : ScoreItem {
     if (!closest) return;
     if (Distance3D(closest) < 2.0) {
       UpdateFromOriginal(closest);
-      closest.ClearCounters();
       closest.Destroy();
       SetStateLabel("SetProgression");
     }

@@ -92,20 +92,17 @@ class ::PerLevelHandler : EventHandler {
 
       DEBUG("Init secret location: %s", location.name);
       let sector = level.sectors[location.secret_sector];
-      if (location.checked) {
+      if (location.checked && sector.IsSecret()) {
         // Location is checked but sector is still marked undiscovered -- level
         // probably got reset.
         DEBUG("Clearing secret flag on sector %d", location.secret_sector);
         sector.ClearSecret();
         level.found_secrets++;
-        continue;
-      }
-
-      if (!sector.IsSecret()) {
+      } else if (!location.checked && !sector.IsSecret()) {
         // Location isn't marked checked but the corresponding sector has been
         // discovered, so emit a check event for it.
         ::PlayEventHandler.Get().CheckLocation(location);
-      } else {
+      } else if (!location.checked) {
         // Player hasn't found this yet.
         self.secret_locations.Insert(location.secret_sector, location);
       }
@@ -141,7 +138,11 @@ class ::PerLevelHandler : EventHandler {
   }
 
   void OnReopen() {
-    OnNewMap();
+    early_exit = false;
+
+    let region = apstate.GetCurrentRegion();
+    SetupSecrets(region);
+    apstate.UpdatePlayerInventory();
   }
 
   void OnLoadGame() {
@@ -185,10 +186,6 @@ class ::PerLevelHandler : EventHandler {
   }
 
   //// Handling for individual actors spawning in. ////
-  // This only runs when the alarm timer is set, i.e. for a few tics after level
-  // initialization. We try to detect things spawning that should be replaced with
-  // checks and do so. Any leftover checks will give automatically dispensed to
-  // the player via WorldTick() above.
 
   override void WorldThingSpawned(WorldEvent evt) {
     let thing = evt.thing;
