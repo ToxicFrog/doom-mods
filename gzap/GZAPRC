@@ -96,6 +96,44 @@ category powerup: HolySphere HotSauce Locationator;
 category none: FishTankSpawner EnviroSpawner;
 
 
+#### Space Cats Saga ####
+# The various SpaceCat actors are secrets, and spawn something else when found
+# and petted.
+# N.b. the weapon spawns (SC3 and SC4) may turn into ammo instead on some levels,
+# not sure why. And of course even if they do turn into weapons, they are replaced
+# by the SCS weapons, not the BFG/Plasma.
+#
+# This can currently be expressed in a mechanically correct manner with the category
+# and typename directives, so that e.g. SpaceCatKirie, when scanned, is categorized
+# as big-armor and placed into the item pool as BlueArmor.
+# They can also just be left alone as a small, non-randomized bonus for the player.
+# Ideally, I would like them to be entered into the item pool as themselves, so
+# that you find a "SpaceCatTiger" in a chest somewhere, and then the receiving
+# player can spawn it in and pet it for a powerup. And this works fine for most
+# of them, but the weapon ones, specifically, may count as a weapon.
+#
+# Except that, since sometimes they *don't* spawn a weapon, we can't rely on this...
+#
+# We need changes to the GZAP and maybe even to the logic format to support that
+# general idea ("treat this item as itself but for the purposes of logic treat it
+# as something else"), which might also help with things like the Ashes keys that
+# turn into vanilla keys/skulls when picked up, but for now we just pretend that
+# they are ammo.
+
+# Soulsphere kitties
+category big-health: SpaceCatUse SpaceCatSee;
+
+# Megasphere and BlueArmor kitties
+category big-armor: SpaceCatHero SpaceCatFlower SpaceCat6 SpaceCat7 SpaceCatTiger SpaceCatChauff;
+category big-armor: SpaceCat2 SpaceCatKirie;
+
+# Berserk kitty
+category powerup: SpaceCat5;
+
+# Weapon/ammo kitties; nominally plasma and BFG but usually turns into energy cells instead.
+category big-ammo: SpaceCat3 SpaceCat4;
+
+
 #### Ashes 2063 configuration ####
 # Ashes does something weird here where it has a bunch of custom keys, but under
 # the hood it uses the normal skull/keycard actors -- each key is a CustomInventory
@@ -135,10 +173,10 @@ category key:
 # e.g. we need at least three Progressive Ingrams in the pool even if number-of-weapons
 # is set to a lower value.
 #category weapon: PumpySpawn;
-#progressive PumpySpawn: pumpaction pumpaction2;
+# progressive PumpySpawn: pumpaction pumpaction2;
 
 #category weapon: IngramSpawn;
-#progressive IngramSpawn: Ingram Ingram2 Ingram3;
+# progressive IngramSpawn: Ingram Ingram2 Ingram3;
 
 # Pipebombs are formally weapons, but since each one in the game just gives you
 # one to throw -- i.e. the weapon is also the ammo -- we map them as big-ammo
@@ -152,3 +190,10 @@ category key:
 # you get the ingram3 (fully upgraded) in MAP06, Michonne Circle, by delivering
 # the briefcase to Rigs and then choosing "you make weapons?" when he offers you
 # a reward (and by having the ingram in your inventory).
+
+# There's also various quest items which are autocategorized as "tools" and should
+# instead be categorized as cross-level quest items.
+# Some of these are given by ACS and not available to the scanner.
+# Handling those properly likely requires the same sort of event support in the
+# logic file that Faithless wants.
+#category key: QuestRadio QuestJerryCan;
