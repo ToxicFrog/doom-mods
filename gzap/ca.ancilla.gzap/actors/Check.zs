@@ -268,8 +268,11 @@ class ::CheckPickup : ScoreItem {
     if (!rh) return null;
 
     // Scale is computed to make the sprite at most 12px high and will not
-    // exceed 0.5 under any circumstances.
+    // exceed 0.5 under any circumstances, except when pretuning.
     float scale = min(0.5, 12.0/rh);
+    if (::PlayEventHandler.Get().IsPretuning()) {
+      scale = 1.0;
+    }
     // Center it in the AP sprite.
     if (zoffs < 0) {
       zoffs = ceil(16 // Half the height of the AP logo
