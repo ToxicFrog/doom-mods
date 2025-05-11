@@ -30,6 +30,8 @@ but those are not yet supported in general.)
   - `ap_scan_prune` cvar can be used to skip levels entirely when scanning (i.e.
     not even scan them for exits).
   - New win condition: beat specific levels.
+  - Universal Tracker integration now supports "glitched logic" (aka "reachable
+    out of logic") locations if UT 0.2.8+ is installed.
 - Change:
   - Going Down Turbo logic updated from RC 1.7 to the version released on idgames.
   - Scanner now automatically skips levels with no randomizeable actors in them.

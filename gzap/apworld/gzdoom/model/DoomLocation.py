@@ -159,6 +159,9 @@ class DoomLocation:
             # If not, they might still be able to reach the location, if this
             # location is the map's only key (and thus must be accessible to
             # a player entering the map without keys).
+            # TODO: this should only be the case if there is only a single instance
+            # of that key in the level. If a level has e.g. two red keys, we
+            # can't know which one is the reachable one.
             # print(f"Single key? {self.orig_item.name()} == {self.parent.get_map(self.pos.map).keyset}")
             if self.orig_item and {self.orig_item.name()} == self.parent.get_map(self.pos.map).keyset:
                 return True

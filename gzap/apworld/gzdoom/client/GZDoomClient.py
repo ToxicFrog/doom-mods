@@ -177,8 +177,9 @@ class GZDoomContext(SuperContext):
         while not self.exit_event.is_set():
             await self.watcher_event.wait()
             self.watcher_event.clear()
-            if hasattr(self, 'glitches_locations'):
-                new_ool = set(self.glitches_locations) - self.last_tracked_ool
+            if hasattr(self, 'glitched_locations'):
+                # UT 0.2.8+
+                new_ool = set(self.glitched_locations) - self.last_tracked_ool
             else:
                 # Older version of UT
                 new_ool = set()

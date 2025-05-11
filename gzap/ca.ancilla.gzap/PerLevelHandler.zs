@@ -204,26 +204,21 @@ class ::PerLevelHandler : EventHandler {
     let thing = evt.thing;
     let line = evt.ActivatedLine;
     if (!(thing is "PlayerPawn")) return;
-    console.printf("WLPA: %d %d %s", evt.ShouldActivate, evt.ActivatedLine.special, thing.GetTag());
 
     // Key checks are done after WorldLinePreActivated, so we need to check
     // them here just in case that check would normally fail.
     if (!thing.CheckKeys(line.locknumber, false, true)) return;
     if (evt.ActivatedLine.special == 243) { // LS_EXIT_NORMAL
-      console.printf("LS_EXIT_NORMAL");
       line_exit_normal = true;
     } else if (evt.ActivatedLine.special == 244) { // LS_EXIT_SECRET
-      console.printf("LS_EXIT_SECRET");
       line_exit_secret = true;
     }
   }
 
   override void PlayerRespawned(PlayerEvent evt) {
     if (line_exit_secret) {
-      console.printf("doing secret exit");
       level.SecretExitLevel(0);
     } else if (line_exit_normal) {
-      console.printf("doing normal exit");
       level.ExitLevel(0, false);
     }
   }
