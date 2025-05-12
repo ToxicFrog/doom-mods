@@ -185,8 +185,8 @@ class GZDoomContext(SuperContext):
                 new_ool = set()
             new_il = set(self.locations_available) - self.last_tracked
 
-            print("tracker_loop IL: ", new_il, self.last_tracked)
-            print("tracker_loop OOL:", new_ool, self.last_tracked_ool)
+            # print("tracker_loop IL: ", new_il, self.last_tracked)
+            # print("tracker_loop OOL:", new_ool, self.last_tracked_ool)
             for id in new_ool:
                 self.ipc.send_track(id, "OOL")
             for id in new_il:
