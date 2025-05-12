@@ -28,11 +28,7 @@ class ::PerLevelHandler : EventHandler {
     return ::PerLevelHandler(Find("::PerLevelHandler"));
   }
 
-  override void OnRegister() {
-    InitRandoState();
-  }
-
-  void InitRandoState() {
+  void InitRandoState(bool restore_items) {
     let datastate = ::PlayEventHandler.GetState();
 
     if (self.apstate == null) {
@@ -53,23 +49,28 @@ class ::PerLevelHandler : EventHandler {
     DEBUG("APState conflict resolution: txn[d]=%d txn[p]=%d",
       ::PlayEventHandler.GetState().txn, apstate.txn);
 
-    if (self.apstate.txn > datastate.txn) {
-      // Our state is older. This usually means someone started up the game,
-      // then loaded a savegame, so we have a new apstate in the PEH and the
-      // real one in the PLH.
+    if (self.apstate.txn >= datastate.txn) {
+      // Our state has a higher txn. This usually means someone started up the
+      // game, then loaded a savegame, so we have a fresh apstate in the PEH and
+      // the real one in the PLH.
       DEBUG("Using state from playscope.");
       ::PlayEventHandler.Get().apstate = self.apstate;
     } else {
-      // PEH state is older. This usually means someone saved their game, played
-      // for a while, then reloaded.
-      // This is tricky because the PEH *mostly* takes precedence, but we want
-      // to use the saved game's knowledge of which items were vended, to avoid
-      // an infelicity where the player saves, grabs a check, vends the item,
-      // dies, loads their save, and now that item is gone forever -- which is
-      // usually fine if it's like a ShellBox or something, but bad news if it's
-      // a weapon!
+      // PEH state has higher txn. This is usually a result of a savegame being
+      // loaded or a return to an earlier level in persistent mode.
+      //
+      // In the latter case, we want to use the PEH state. In the former case,
+      // we want to *mostly* use the PEH state -- in particular we want its
+      // record of what checks have been collected and what keys/tokens we have
+      // -- but we want to rewind our understanding of what items have been
+      // *used* to match the loaded save, to avoid a problem where the player
+      // saves, picks up a weapon, it vends, and then they load their game and
+      // the weapon is gone forever.
       DEBUG("Using state from datascope.");
-      datastate.CopyItemUsesFrom(self.apstate);
+      if (restore_items) {
+        DEBUG("Restoring items from playscope first.");
+        datastate.CopyItemUsesFrom(self.apstate);
+      }
       self.apstate = datastate;
     }
     apstate.UpdatePlayerInventory();
@@ -130,6 +131,7 @@ class ::PerLevelHandler : EventHandler {
   // the difference.
   void OnNewMap() {
     DEBUG("PLH OnNewMap");
+    InitRandoState(false);
     early_exit = false;
     line_exit_normal = false;
     line_exit_secret = false;
@@ -145,6 +147,8 @@ class ::PerLevelHandler : EventHandler {
   }
 
   void OnReopen() {
+    DEBUG("PLH OnReopen");
+    InitRandoState(false);
     early_exit = false;
     line_exit_normal = false;
     line_exit_secret = false;
@@ -156,6 +160,7 @@ class ::PerLevelHandler : EventHandler {
 
   void OnLoadGame() {
     DEBUG("PLH OnLoadGame");
+    InitRandoState(true);
     early_exit = false;
     apstate.CheckForNewKeys();
     apstate.UpdatePlayerInventory();
@@ -352,7 +357,7 @@ class ::PerLevelHandler : EventHandler {
         } else {
           if (ap_release_on_level_clear & AP_RELEASE_SECRETS == 0) continue;
         }
-        DEBUG("Collecting %s on level exit.");
+        DEBUG("Collecting %s on level exit.", location.name);
         ::PlayEventHandler.Get().CheckLocation(location, true);
       }
     }
