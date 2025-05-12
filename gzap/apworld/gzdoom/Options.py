@@ -403,5 +403,5 @@ class GZDoomOptions(PerGameCommonOptions):
     full_persistence: FullPersistence
     pretuning_mode: PreTuningMode
     # Stock settings
-    death_link: DeathLink
+    # death_link: DeathLink
     start_inventory_from_pool: StartInventoryPool
