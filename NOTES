@@ -72,12 +72,6 @@ the whole game? perhaps we do something like:
 Maybe we can also autogen AP-KEY messages at scan time; if we see a key and it's
 marked interhub, generate the AP-KEY for it...
 
-### roadmap for next version
-
-- AP-KEY (ditto)
-- map scan globbing (maybe)
-- select specific maps to beat as a win condition
-
 ### scanner
 
 - map exclusion UI
@@ -85,12 +79,12 @@ marked interhub, generate the AP-KEY for it...
 
 ### generator
 
+- AP-KEY
 - option to treat bosses as checks -- also needs scanner changes, highly vulnerable
   to enemy-replacement mods
   - could try placing the check in the boss's inventory, and on the ground where
     the boss would be if we can't find it
 - alternate win conditions:
-  - clear [specific levels]
   - find N victory tokens
   - find N secrets
 - option to choose the X% of an item category game-wide rather than per-map
@@ -105,8 +99,6 @@ marked interhub, generate the AP-KEY for it...
   when it's picked up?
 - some hints received when playing in the weekly sync did not display on the
   map screen
-- Eviternity 1 death exits don't work right?
-- can I get the tracker to work in singleplayer?
 - yaml-less UT support
   - need to add the logic-affecting `options` to `slot_data` at gen time
   - then add `interpret_slot_data()` to return that info

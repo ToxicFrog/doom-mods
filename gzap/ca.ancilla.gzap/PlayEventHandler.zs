@@ -72,6 +72,7 @@ class ::PlayEventHandler : StaticEventHandler {
 
   bool initialized;
   override void WorldLoaded(WorldEvent evt) {
+    DEBUG("PEH WorldLoaded: %s", level.MapName);
     let region = apstate.GetCurrentRegion();
 
     // Don't initialize IPC until after we're in-game; otherwise
@@ -88,7 +89,10 @@ class ::PlayEventHandler : StaticEventHandler {
 
     // Don't run on-level-entry handlers for levels that aren't part of the AP
     // game.
-    if (!region) return;
+    if (!region) {
+      ::PerLevelHandler.Get().InitRandoState(evt.IsSaveGame);
+      return;
+    }
 
     if (evt.IsSaveGame) {
       ::PerLevelHandler.Get().OnLoadGame();
