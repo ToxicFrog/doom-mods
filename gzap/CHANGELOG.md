@@ -1,13 +1,23 @@
-# Unreleased
+# 0.5.0
 
 This is a feature release.
 
 ⚠️ The YAML options have changed, and in particular, some options have had their
 types and/or meanings changed. You must regenerate your template YAML.
 
-This release changes the scanner, but only wads that use the `specialaction_lowerfloortohighest`
-level special need to be rescanned. (It also affects wads that use hubclusters,
-but those are not yet supported in general.)
+⚠️ This release changes the scanner, but only wads that use the
+`specialaction_lowerfloortohighest` level special need to be rescanned. (It also
+affects wads that use hubclusters, but those are not yet supported in general.)
+
+This is the biggest release so far, and kind of got away from me. It's mostly
+bugfixes, and of the new features, most of them are small things laying the
+groundwork for later improvements rather than major stuff that players will
+notice. The most interesting additions, I think, are **beat specific levels as a
+win condition** and **Universal Tracker glitch logic support**.
+
+There are also many bugfixes which should improve compatibility with AutoAutoSave,
+Intelligent Supplies, Adventures of Square, anything that uses a `TITLEMAP`, and
+anything that uses death exits.
 
 - New:
   - Tuning data for Plutonia [from @Gwen].
@@ -22,16 +32,12 @@ but those are not yet supported in general.)
     are now playable, but it's a step in the right direction.)
   - The client now has an icon in the AP launcher! Contributed by @DwarfWoot.
   - Universal Tracker integration now supports "glitch logic"; in UT versions
-    that support this, locations that are out of logic due to weapon or difficulty
-    settings, but which are still believed to be reachable otherwise, will show up
-    as "reachable with glitches" (which isn't quite right but it's the closest
-    UT can come to "reachable, but out of logic for other reasons"). At present
-    this is only supported in the Tracker tab of the client, not in-game.
+    that support this (v0.2.8 or later), locations that are out of logic due to
+    weapon or difficulty settings, but which are still believed to be reachable
+    otherwise, will show up with a different colour in the in-game tracker.
   - `ap_scan_prune` cvar can be used to skip levels entirely when scanning (i.e.
     not even scan them for exits).
   - New win condition: beat specific levels.
-  - Universal Tracker integration now supports "glitched logic" (aka "reachable
-    out of logic") locations if UT 0.2.8+ is installed.
 - Change:
   - Going Down Turbo logic updated from RC 1.7 to the version released on idgames.
   - Scanner now automatically skips levels with no randomizeable actors in them.
