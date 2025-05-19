@@ -29,7 +29,7 @@ here may result in glitches.
 
 | WAD          | Maps | Mon/Lvl | Checks | Status | Notes |
 | ------------ | ---- | ------- | ------ | ------ | ----- |
-| Doom         |   36 |  90 | 509 | partial | v1.9ud |
+| Doom         |   36 |  90 | 509 | full | v1.9ud |
 | Doom 2       |   32 | 116 | 501 | basic | v1.9 |
 | TNT          |   32 | 152 | 515 | basic | v1.9 |
 | Plutonia     |   32 |  95 | 427 | basic | v1.9 |
