@@ -62,9 +62,9 @@ OptionMenu "ArchipelagoOptions"
   StaticText ""
   StaticText "$GZAP_OPT_HEADER_CONTROLS", CYAN
 
-  Control "$GZAP_OPT_NAME_LEVELSELECT", "openmenu ArchipelagoLevelSelectMenu"
+  Control "$GZAP_OPT_NAME_LEVELSELECT", "ap-level-select"
   GZAP_Tooltip "$GZAP_OPT_TT_LEVELSELECT"
-  Control "$GZAP_OPT_NAME_INVENTORY", "openmenu ArchipelagoInventoryMenu"
+  Control "$GZAP_OPT_NAME_INVENTORY", "ap-inventory"
   GZAP_Tooltip "$GZAP_OPT_TT_INVENTORY"
 
   StaticText ""

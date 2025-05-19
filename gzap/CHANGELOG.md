@@ -1,5 +1,8 @@
 # Unreleased
 
+- New:
+  - AP keybindings are now available under `Customize Controls` as well as in
+    the AP mod settings.
 - Fix:
   - "Loose" keys not found by the scanner would evaporate from your inventory
     if you picked them up, then picked up another AP item before leaving the
