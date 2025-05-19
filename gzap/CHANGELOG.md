@@ -1,3 +1,10 @@
+# Unreleased
+
+- Fix:
+  - "Loose" keys not found by the scanner would evaporate from your inventory
+    if you picked them up, then picked up another AP item before leaving the
+    level or loading a save.
+
 # 0.5.0
 
 This is a feature release.

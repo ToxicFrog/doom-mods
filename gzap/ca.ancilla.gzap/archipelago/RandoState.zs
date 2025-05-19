@@ -240,6 +240,9 @@ class ::RandoState play {
       console.printf("Unknown item ID from Archipelago: %d", apid);
     }
 
+    // Key check here, because otherwise UpdatePlayerInventory() will erase any
+    // newly collected keys.
+    CheckForNewKeys();
     UpdatePlayerInventory();
     UpdateStatus();
   }
