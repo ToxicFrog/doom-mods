@@ -271,8 +271,9 @@ class ::CheckPickup : ScoreItem {
     // exceed 0.5 under any circumstances, except when pretuning.
     float scale = min(0.5, 12.0/rh);
     if (::PlayEventHandler.Get().IsPretuning()) {
-      scale = 1.0;
+      scale = min(prototype.scale.x, prototype.scale.y);
     }
+
     // Center it in the AP sprite.
     if (zoffs < 0) {
       zoffs = ceil(16 // Half the height of the AP logo
