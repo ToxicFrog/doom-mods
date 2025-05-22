@@ -38,7 +38,7 @@ anything that uses death exits.
     toggled on and off, once you have them; they default off. Note that turning
     a key off after using it to reach checks can generate impossible logic, so
     please be careful.
-  - `AP-KEY` messages are now emitted as part of the tuning file for keys that
+  - `AP-KEY` messages are now emitted as part of the logic file for keys that
     exist across multiple maps. (This does not mean that hubmap-based megawads
     are now playable, but it's a step in the right direction.)
   - The client now has an icon in the AP launcher! Contributed by @DwarfWoot.

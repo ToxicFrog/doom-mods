@@ -55,9 +55,20 @@ class ::ScannedItem : ::ScannedLocation {
         "\"category\": \"%s\", \"typename\": \"%s\", \"tag\": \"%s\", %s%s%s",
         category, typename, tag, secret_str, OutputSkill(), OutputPosition()));
 
+    if (self.category == "key") {
+      OutputKeyInfo(mapname);
+    }
+  }
+
+  void OutputKeyInfo(string mapname) {
     if (self.hub > 0) {
       OutputHubKeyInfo(mapname);
+      return;
     }
+
+    ::Scanner.Output("KEY", mapname, string.format(
+      "\"typename\": \"%s\", \"scopename\": \"%s\", \"cluster\": %d, \"maps\": [\"%s\"]",
+      self.typename, mapname, self.hub, mapname));
   }
 
   void OutputHubKeyInfo(string mapname) {
@@ -72,9 +83,8 @@ class ::ScannedItem : ::ScannedLocation {
         map_str, map_str == "" ? "" : ", ", info.mapname);
     }
 
-    DEBUG("OutputHubKeyInfo: maps: %d / map_str: %s", maps, map_str);
+    DEBUG("OutputKeyInfo: maps: %d / map_str: %s", maps, map_str);
 
-    if (maps <= 1) return;
     ::Scanner.Output("KEY", mapname, string.format(
         "\"typename\": \"%s\", \"scopename\": \"HUB%02d\", \"cluster\": %d, \"maps\": [%s]",
         self.typename, self.hub, self.hub, map_str));
