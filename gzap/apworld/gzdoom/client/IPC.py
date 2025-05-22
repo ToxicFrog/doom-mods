@@ -183,7 +183,7 @@ class IPC:
     """
     print("XON received. Opening channels to gzdoom and to AP host.")
     self.ipc_path = os.path.join(self.ipc_dir, lump)
-    assert size == self.ipc_size, "IPC size mismatch between gzdoom and AP -- please exit both, start then client, then gzdoom"
+    assert size == self.ipc_size, "IPC size mismatch between gzdoom and AP -- please exit both, start the client, then gzdoom"
     self.nick = nick
     self.flush()
     await self.ctx.on_xon(slot, seed)
