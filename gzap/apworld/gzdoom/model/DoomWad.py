@@ -21,6 +21,7 @@ from .DoomPool import DoomPool
 from .DoomItem import DoomItem
 from .DoomLocation import DoomLocation, DoomPosition
 from .DoomMap import DoomMap
+from .DoomKey import DoomKey
 
 
 class DuplicateMapError(RuntimeError):
@@ -39,6 +40,8 @@ class DoomWad:
     items_by_name: Dict[str,DoomItem] = field(default_factory=dict)
     # Map of skill -> position -> location used while importing locations.
     locations_by_pos: Dict[int,Dict[DoomPosition,DoomLocation]] = field(default_factory=dict)
+    # Map of FQIN -> key record
+    keys_by_name: Dict[str,DoomKey] = field(default_factory=dict)
     # Location lookup by legacy name, now used only for processing legacy tuning
     # files that don't include location coordinates + virtual locations that only
     # have a name, not a position.
@@ -140,7 +143,6 @@ class DoomWad:
         map_exit.orig_item = None
         self.register_location(map_exit, {1,2,3})
 
-
     def new_item(self, json: Dict[str,str]) -> None:
         """
         Add a new item to the item pool, and its position to the location pool.
@@ -164,9 +166,6 @@ class DoomWad:
         self.new_location(map, item, secret, skill, position)
 
     def register_item(self, map: str, item: DoomItem) -> DoomItem:
-        if map is not None:
-            self.maps[map].update_access_tracking(item)
-
         if item.name() in self.items_by_name:
             return self.register_duplicate_item(map, item)
 
@@ -238,6 +237,27 @@ class DoomWad:
         location.sector = json['sector']
         self.register_location(location, {1,2,3})
 
+    def new_key(self, map: str, typename: str, scopename: str, cluster: int, maps: List[str]) -> None:
+        """
+        Register a key in the key table, along with information about which maps it's in.
+
+        Key records will be matched up with key items at the end of the tuning pass.
+        """
+        key = DoomKey(typename, scopename, cluster, frozenset(maps))
+        self.keys_by_name.setdefault(key.fqin(), key)
+
+    def keys_for_map(self, mapname):
+        return frozenset(
+            key for key in self.keys_by_name.values()
+            if mapname in key.maps)
+
+    def reify_keys(self, mapname, keytypes):
+        keys = frozenset(
+            key for key in self.keys_for_map(mapname)
+            if key.typename in keytypes)
+        assert len(keys) == len(keytypes), f"Error reifying keys for {mapname}: wanted {keytypes}, but the logic only contains {[key.fqin() for key in keys]}"
+        return keys
+
     def tune_location(self, id, name, keys=None, pos=None, unreachable=False) -> None:
         """
         Adjust the reachability rules for a location.
@@ -262,7 +282,7 @@ class DoomWad:
                 # print(f"Marking {loc.name()} as unreachable. {id(loc)}")
                 loc.unreachable = True
             elif keys is not None:
-                loc.tune_keys(frozenset([loc.fqin(key) for key in keys]))
+                loc.tune_keys(self.reify_keys(map, keys))
 
     def tune_location_by_name(self, name, keys=None, unreachable=False) -> None:
         # Index by name rather than ID because the ID may change as more WADs
@@ -281,7 +301,7 @@ class DoomWad:
                 # TODO: When we support keys with greater-than-one-map scope, this
                 # gets more complicated. Probably we have some information supplied
                 # earlier in the tuning file we use to do the conversion.
-                loc.tune_keys(frozenset([loc.fqin(key) for key in keys]))
+                loc.tune_keys(self.reify_keys(loc.pos.map, keys))
 
     def disambiguate_duplicate_locations(self) -> None:
         # Resolve name collisions among locations and register them with the logic.
@@ -292,11 +312,6 @@ class DoomWad:
             self.disambiguate_in_map(map)
 
     def finalize_location(self, loc):
-        # print(f"Finalizing {loc.name()}")
-        if self.maps[loc.pos.map].keyset:
-            loc.keys = frozenset() | { frozenset(self.maps[loc.pos.map].keyset) }
-        else:
-            loc.keys = frozenset()
         self.logic.register_location(loc)
         self.locations_by_name.setdefault(loc.legacy_name(), []).append(loc)
 
@@ -377,7 +392,6 @@ class DoomWad:
             # print(f"Renaming {oldname} -> {loc.name()}")
             self.finalize_location(loc)
 
-
     def finalize_scan(self, json) -> None:
         """
         Do postprocessing after the initial scan is completed but before tuning.
@@ -389,9 +403,23 @@ class DoomWad:
         """
         Do postprocessing after all events have been ingested.
         """
+        self.finalize_location_keysets()
         # Compute which maps precede which other maps, so that the map ordering
         # system can function. This also computes information related to weapon
         # accessibility.
         maps = sorted(self.all_maps(), key=lambda map: map.rank)
         for map in maps:
             map.build_priors([prior_map for prior_map in maps if prior_map.rank < map.rank])
+
+    def finalize_location_keysets(self):
+        """
+        Set up the information needed for key-based logic checks at generation time by:
+        - telling each map which keys exist in it, and
+        - giving each location we don't have tuning data for a pessimal default keyset
+        """
+        for map in self.maps.values():
+            keys = self.keys_for_map(map.map)
+            map.keyset = keys
+            for loc in map.locations:
+                if loc.keys is None:
+                    loc.keys = frozenset({keys})

@@ -290,6 +290,13 @@ class GZDoomWorld(World):
             item.name for item in self.multiworld.precollected_items[self.player]
         }
 
+    def keys_in_pool(self):
+        return {
+            key
+            for mapinfo in self.maps
+            for key in self.wad_logic.keys_for_map(mapinfo.map)
+        }
+
     def generate_output(self, path):
         def progression(name: str) -> bool:
             # print("is_progression?", id, name)
@@ -344,6 +351,7 @@ class GZDoomWorld(World):
             "persistence": self.options.full_persistence.value,
             "respawn": self.options.allow_respawn.value,
             "wad": self.wad_logic.name,
+            "keys": self.keys_in_pool(),
             "maps": self.maps,
             "items": self.pool.all_pool_items(),
             "starting_items": [

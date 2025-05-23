@@ -172,11 +172,6 @@ class DoomMap:
         if loc not in self.locations:
             self.locations.append(loc)
 
-    def update_access_tracking(self, item: DoomItem) -> None:
-        """Update the keyset based on the knowledge that this item exists in the level."""
-        if item.category == "key":
-            self.keyset.add(item.name())
-
     def build_priors(self, prior_maps: List['DoomMap']) -> None:
         self.prior_clears = { map.clear_token_name() for map in prior_maps }
         self.local_gunset = {

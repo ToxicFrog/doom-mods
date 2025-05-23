@@ -79,12 +79,23 @@ class ::RandoKey play {
   bool enabled;
 
   static ::RandoKey Create(string scope, string typename) {
+    DEBUG("Create key: %s (%s)", typename, scope);
     let key = ::RandoKey(new("::RandoKey"));
     key.typename = typename;
     key.scopename = scope;
     key.held = false;
     key.enabled = !::PlayEventHandler.Get().IsPretuning();
     return key;
+  }
+
+  ::RandoKey AddMap(::RandoState apstate, string map) {
+    let region = apstate.GetRegion(map);
+    if (!region) return self;
+
+    DEBUG("  Update key: %s (%s) +%s", self.typename, self.scopename, map);
+    self.maps.Insert(map, true);
+    region.RegisterKey(self);
+    return self;
   }
 
   void DebugPrint() {

@@ -99,16 +99,7 @@ class ::RandoState play {
     DEBUG("RegisterKey %s for scope %s as %d", typename, scope, apid);
     let key = ::RandoKey.Create(scope, typename);
     keys.Insert(apid, key);
-    UpdateKeyScope(key, scope);
     return key;
-  }
-
-  void UpdateKeyScope(::RandoKey key, string map) {
-    let region = GetRegion(map);
-    if (!region) return;
-
-    key.maps.Insert(map, true);
-    region.RegisterKey(key);
   }
 
   ::RandoKey FindKeyByFQIN(string fqin) {

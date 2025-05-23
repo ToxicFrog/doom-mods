@@ -44,7 +44,12 @@ class DoomLocation:
     item_name: str  # name of original item, used to name this location
     category: str
     pos: DoomPosition | None = None
-    keys: FrozenSet[FrozenSet[str]]  # What the player needs to reach this location
+    # Minimal sets of keys needed to access this location.
+    # Initially None. Tuning data is used to initialize and refine this.
+    # At the end of tuning, if still None, is replaced with a pessimal value;
+    # this is done at the end of tuning to account for AP-KEYs that are only
+    # detected during the tuning process.
+    keys: Optional[FrozenSet[FrozenSet[str]]]
     item: DoomItem | None = None  # Used for place_locked_item
     parent = None  # The enclosing DoomWad
     orig_item = None
@@ -55,7 +60,7 @@ class DoomLocation:
     sector: int = 0
 
     def __init__(self, parent, map: str, item: DoomItem, secret: bool, json: str | None):
-        self.keys = frozenset()
+        self.keys = None
         self.parent = parent
         if item:
             # If created without an item it is the caller's responsibility to fill
@@ -99,19 +104,23 @@ class DoomLocation:
         # If this location was previously incorrectly marked unreachable,
         # correct it.
         # self.unreachable = False
+
         # If the new keyset is empty this is trivially reachable.
         if not new_keyset:
             # print(f"Tuning keys [{self.name()}]: old={self.keys} new=none")
             self.keys = frozenset()
+
         # If our existing keyset is empty, it cannot be further tuned.
-        if not self.keys:
+        if self.keys == frozenset():
             return
+
         # Update the keysets by removing any keysets that this one is a proper
         # subset of.
-        # TODO: if the new keyset is a superset of one of the existing ones,
-        # don't record it -- this doesn't affect logic either way but it's untidy.
-        new_keys = frozenset(
-            [ks for ks in self.keys if not new_keyset < ks] + [new_keyset])
+        if self.keys is None:
+            self.keys = frozenset()
+
+        new_keys = frozenset({ks for ks in self.keys if not new_keyset < ks} | {new_keyset})
+
         if new_keys != self.keys:
             # print(f"Tuning keys [{self.name()}]: old={self.keys} tune={new_keyset} new={new_keys}")
             self.keys = new_keys
@@ -124,7 +133,7 @@ class DoomLocation:
         #   - either you have all the keys for the map
         #   - OR the map only has one key, and this is it
         def player_has_keys(state, keyset):
-            player_keys = { item for item in keyset if state.has(item, world.player) }
+            player_keys = { key for key in keyset if state.has(key.fqin(), world.player) }
             # print(f"player_has_keys? {player_keys} >= {keyset}")
             return player_keys >= keyset
 
