@@ -39,9 +39,9 @@ class GZAP_DataPackageEventHandler : StaticEventHandler {
     {% for key in keys|sort(attribute=scopename) %}
     apstate.RegisterKey("{{key.scopename}}", "{{key.typename}}", {{id(key.fqin())}})
       {% for map in key.maps %}
-      .AddMap(apstate, "{{map}}"){% if loop.last %};
-      {% endif %}
-      {% endfor %}
+      .AddMap(apstate, "{{map}}"){% if loop.last %};{% endif %}
+
+{% endfor %}
     {% endfor %}
   }
 
@@ -80,7 +80,7 @@ class GZAP_DataPackageEventHandler : StaticEventHandler {
     console.printf("Populating singleplayer hint table.");
       {% for map in maps %}{% for loc in locations(map.map) %}
       {% if item_at(loc.name()) and item_at(loc.name()).map %}
-      RegisterHint("{{item_name_at(loc.name())}}", "{{item_at(loc.name()).map}}", "{{loc.pos.map}}", "{{loc.name()}}");
+      PrepareHint("{{item_name_at(loc.name())}}", "{{item_at(loc.name()).map}}", "{{loc.pos.map}}", "{{loc.name()}}");
       {% endif %}
       {% endfor %}{% endfor %}
     {% endif %}
@@ -93,7 +93,7 @@ class GZAP_DataPackageEventHandler : StaticEventHandler {
     {% endfor %}
   }
 
-  void RegisterHint(string item_name, string item_map, string loc_map, string loc_name) {
+  void PrepareHint(string item_name, string item_map, string loc_map, string loc_name) {
     let hint = GZAP_HintInfo(new("GZAP_HintInfo"));
     hint.item_map = item_map;
     hint.loc_map = loc_map;
@@ -128,9 +128,12 @@ class GZAP_DataPackageEventHandler : StaticEventHandler {
       string item = cmd.ReadString();
       let hint = hints.GetIfExists(item);
       if (!hint) return;
-      let nick = peh.GetState().slot_name;
-      peh.GetState().GetRegion(hint.item_map).RegisterHint(item, nick, hint.loc_name);
-      peh.GetState().GetRegion(hint.loc_map).RegisterPeek(hint.loc_name, nick, item);
+
+      let apstate = peh.GetState();
+      let nick = apstate.slot_name;
+
+      apstate.RegisterHint(hint.item_map, item, nick, hint.loc_name);
+      apstate.GetRegion(hint.loc_map).RegisterPeek(hint.loc_name, nick, item);
     }
   }
 }

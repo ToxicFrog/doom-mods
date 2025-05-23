@@ -297,6 +297,9 @@ class GZDoomWorld(World):
             for key in self.wad_logic.keys_for_map(mapinfo.map)
         }
 
+    def key_in_world(self, keyname):
+        return keyname in {key.fqin() for key in self.keys_in_pool()}
+
     def generate_output(self, path):
         def progression(name: str) -> bool:
             # print("is_progression?", id, name)

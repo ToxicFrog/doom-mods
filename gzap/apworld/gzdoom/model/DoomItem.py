@@ -84,7 +84,7 @@ class DoomItem:
     def is_default_enabled(self) -> bool:
         return self.category in {"map", "weapon", "key", "token", "powerup", "big-health", "big-ammo", "big-armor"}
 
-    def pool_limits(self, options, maps):
+    def pool_limits(self, world):
         """
         Returns the lower and upper bounds for how many copies of this can be in the item pool.
 
@@ -92,7 +92,7 @@ class DoomItem:
         """
         # Each key in this WAD must be included exactly once.
         if self.category == "key":
-            if self.map in { map.map for map in maps }:
+            if world.key_in_world(self.name()):
                 return (1,1)
             else:
                 return (0,0)
@@ -105,10 +105,10 @@ class DoomItem:
         # Weapons have an upper bound that depends on settings.
         if self.category == "weapon":
             count = sys.maxsize
-            if options.max_weapon_copies.value > 0:
-                count = min(count, options.max_weapon_copies.value)
-            if options.levels_per_weapon.value > 0:
-                count = min(count, max(1, len(maps) // options.levels_per_weapon.value))
+            if world.options.max_weapon_copies.value > 0:
+                count = min(count, world.options.max_weapon_copies.value)
+            if world.options.levels_per_weapon.value > 0:
+                count = min(count, max(1, len(world.maps) // world.options.levels_per_weapon.value))
             return (0, count)
 
         # Anything else we just take as many as we find.

@@ -37,7 +37,7 @@ class DoomPool:
                 counts[item] = counts.get(item, 0) + count
 
         for item in self.wad.items():
-            (lower,upper) = item.pool_limits(world.options, world.maps)
+            (lower,upper) = item.pool_limits(world)
             count = counts.get(item.name(), 0)
             counts[item.name()] = max(lower, min(count, upper))
             # if counts[item.name()] != count:

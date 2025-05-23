@@ -404,6 +404,7 @@ class DoomWad:
         Do postprocessing after all events have been ingested.
         """
         self.finalize_location_keysets()
+        self.finalize_key_items()
         # Compute which maps precede which other maps, so that the map ordering
         # system can function. This also computes information related to weapon
         # accessibility.
@@ -423,3 +424,28 @@ class DoomWad:
             for loc in map.locations:
                 if loc.keys is None:
                     loc.keys = frozenset({keys})
+
+    def finalize_key_items(self):
+        """
+        Match up DoomKey records with the underlying items.
+        For simple keys (found during scan, one map) this is a no-op. For dynkeys
+        it creates the missing key item. For dynamic multikeys it also subsumes
+        all other keys that are just aspects of this one in different levels.
+        """
+        for key in self.keys_by_name.values():
+            if key.fqin() in self.items_by_name:
+                continue
+
+            key_item = DoomItem(map=key.scopename, category="key", typename=key.typename, tag=key.typename)
+            assert key_item.name() == key.fqin(), f"{key_item.name()} != {key.fqin()}"
+            self.logic.register_item(key_item)
+            self.items_by_name[key.fqin()] = key_item
+
+            # Any existing keys subsumed by this one should be replaced to point
+            # to it. In particular, this means that if a location in the pool
+            # contains "GreenKey (MAP04)" and that's subsumed by "GreenKey (EP1)",
+            # adding that location to the pool will get you the latter.
+            for mapname in key.maps:
+                keyname = f"{key.typename} ({mapname})"
+                if keyname in self.items_by_name:
+                    self.items_by_name[keyname] = key_item
