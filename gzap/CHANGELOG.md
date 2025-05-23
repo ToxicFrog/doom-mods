@@ -8,7 +8,11 @@ from earlier versions remain compatible.
     the AP mod settings.
   - Full tuning for Doom 1 [from @RakeVuril].
 - Change:
-  - Significant internal changes to how keys are modeled by the randomizer.
+  - Keys spawned during play (e.g. with scripts or via enemy drops) are now
+    properly supported by the tuning engine and will be taken into account on
+    future generations if the resulting tuning engine is loaded.
+  - Keys spawned during play are detected instantly rather than next time you
+    receive an AP item.
   - Weapon suppression settings are now applied when the weapon is picked up,
     rather than when it is dropped.
 - Fix:

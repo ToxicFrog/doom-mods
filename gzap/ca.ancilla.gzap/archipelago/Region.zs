@@ -232,6 +232,10 @@ class ::Region play {
     return keys.CountUsed();
   }
 
+  ::RandoKey GetKey(string typename) const {
+    return self.keys.GetIfExists(typename);
+  }
+
   // Get the list of keys as comma-separated JSON strings.
   string KeyString() {
     string buf = "";
@@ -252,29 +256,6 @@ class ::Region play {
     }
     key.enabled = !key.enabled;
     ::PlayEventHandler.GetState().UpdatePlayerInventory();
-  }
-
-  // TODO: ideally we should detect when the key is picked up and trigger this
-  // immediately, rather than waiting for a level load/unload.
-  void CheckForNewKeys(::RandoState apstate, PlayerPawn pawn) {
-    Array<string> keys_held;
-    readonly<Inventory> item = pawn.inv;
-    while (item) {
-      if (!(item is "Key")) {
-        item = item.inv;
-        continue;
-      }
-
-      let key = self.keys.GetIfExists(item.GetClassName());
-      if (key) {
-        item = item.inv;
-        continue;
-      }
-
-      key = apstate.RegisterKey(level.mapname, item.GetClassName(), -1);
-      key.held = true;
-      item = item.inv;
-    }
   }
 
   void UpdateInventory(PlayerPawn mo) {

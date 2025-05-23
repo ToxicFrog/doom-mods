@@ -231,9 +231,6 @@ class ::RandoState play {
       console.printf("Unknown item ID from Archipelago: %d", apid);
     }
 
-    // Key check here, because otherwise UpdatePlayerInventory() will erase any
-    // newly collected keys.
-    CheckForNewKeys();
     UpdatePlayerInventory();
     UpdateStatus();
   }
@@ -279,17 +276,6 @@ class ::RandoState play {
   void ToggleKey(string keytype) {
     ++txn;
     GetCurrentRegion().ToggleKey(keytype);
-  }
-
-  void CheckForNewKeys() {
-    if (!GetCurrentRegion()) return;
-    ++txn;
-    for (int p = 0; p < MAXPLAYERS; ++p) {
-      if (!playeringame[p]) continue;
-      if (!players[p].mo) continue;
-
-      GetCurrentRegion().CheckForNewKeys(self, players[p].mo);
-    }
   }
 
   void OnTick() {

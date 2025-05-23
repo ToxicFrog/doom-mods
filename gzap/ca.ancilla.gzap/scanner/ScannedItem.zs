@@ -60,6 +60,20 @@ class ::ScannedItem : ::ScannedLocation {
     }
   }
 
+  void GetMapsForKey(string mapname, Array<string> maps) {
+    maps.Clear();
+    if (self.hub == 0) {
+      maps.Push(mapname);
+      return;
+    }
+
+    for (int i = 0; i < LevelInfo.GetLevelInfoCount(); ++i) {
+      let info = LevelInfo.GetLevelInfo(i);
+      if (info.cluster != self.hub) continue;
+      maps.Push(info.mapname);
+    }
+  }
+
   void OutputKeyInfo(string mapname) {
     if (self.hub > 0) {
       OutputHubKeyInfo(mapname);
@@ -75,18 +89,18 @@ class ::ScannedItem : ::ScannedLocation {
     int maps;
     string map_str = "";
 
-    for (int i = 0; i < LevelInfo.GetLevelInfoCount(); ++i) {
-      let info = LevelInfo.GetLevelInfo(i);
-      if (info.cluster != self.hub) continue;
+    Array<string> maplist;
+    GetMapsForKey(mapname, maplist);
+    foreach (lump : maplist) {
       ++maps;
       map_str = string.format("%s%s\"%s\"",
-        map_str, map_str == "" ? "" : ", ", info.mapname);
+        map_str, map_str == "" ? "" : ", ", lump);
     }
 
     DEBUG("OutputKeyInfo: maps: %d / map_str: %s", maps, map_str);
 
     ::Scanner.Output("KEY", mapname, string.format(
-        "\"typename\": \"%s\", \"scopename\": \"HUB%02d\", \"cluster\": %d, \"maps\": [%s]",
+        "\"typename\": \"%s\", \"scopename\": \"HUB:%02d\", \"cluster\": %d, \"maps\": [%s]",
         self.typename, self.hub, self.hub, map_str));
   }
 

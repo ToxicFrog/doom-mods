@@ -41,6 +41,41 @@ class ::PickupDetector : Inventory {
     return true;
   }
 
+  bool HandleKey(::RandoState apstate, Inventory item) {
+    let region = apstate.GetCurrentRegion();
+    if (!region) return false;
+
+    DEBUG("HandleKey: %s %s", region.map, item.GetClassName());
+
+    let key = region.GetKey(item.GetClassName());
+    if (!key) {
+      DEBUG("  Creating new RandoKey record.");
+      // The player has found a new dynkey, a key that exists in the world but
+      // was not detected by the scanner or by previous tuning.
+      // First emit the AP-KEY message for it.
+      let scan = ::ScannedItem.Create(item);
+      scan.OutputKeyInfo(region.map);
+
+      // Now create and register the apstate's internal model of the key.
+      key = apstate.RegisterKey(region.map, item.GetClassName(), -1);
+
+      Array<string> maps; scan.GetMapsForKey(region.map, maps);
+      foreach (map : maps) {
+        key.AddMap(apstate, map);
+      }
+    }
+
+    // At this point the apstate knows about this key. We permit it to be picked
+    // up iff the apstate thinks the player should have it in their inventory.
+    key.held = true;
+    if (key.enabled) {
+      DEBUG("  Permitting key pickup.");
+      return false;
+    } else {
+      return RejectPickup(item);
+    }
+  }
+
   override bool HandlePickup(Inventory item) {
     let plh = ::PerLevelHandler.Get();
 
@@ -49,6 +84,11 @@ class ::PickupDetector : Inventory {
       DEBUG("HandlePickup: suppressing %s", item.GetClassName());
       plh.ReplaceWithAmmo(item, Weapon(item));
       return RejectPickup(item);
+    }
+
+    // Handle keys.
+    if (item is "Key") {
+      return HandleKey(plh.apstate, item);
     }
 
     return false;

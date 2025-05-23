@@ -162,7 +162,6 @@ class ::PerLevelHandler : EventHandler {
     DEBUG("PLH OnLoadGame");
     InitRandoState(true);
     early_exit = false;
-    apstate.CheckForNewKeys();
     apstate.UpdatePlayerInventory();
 
     let region = apstate.GetCurrentRegion();
@@ -328,7 +327,6 @@ class ::PerLevelHandler : EventHandler {
     }
 
     if (!region) return;
-    apstate.CheckForNewKeys();
 
     if (is_save || self.early_exit) return;
 
