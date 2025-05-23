@@ -182,6 +182,7 @@ class ::CheckPickup : ScoreItem {
     // Don't subsume if this is an unreachable check -- leave the original item
     // in place just in case.
     if (GetLocation().unreachable) return;
+    DEBUG("Check[%s] Subsume", self.location.name);
     Actor closest;
     let it = BlockThingsIterator.Create(self, 32);
     while (it.Next()) {
@@ -196,15 +197,20 @@ class ::CheckPickup : ScoreItem {
         if (thing.bNOSECTOR || thing.bNOINTERACTION || thing.bISMONSTER) continue;
         if (!(thing is "Inventory")) continue;
       }
-      if (!closest) closest = thing;
-      if (Distance3D(thing) < Distance3D(closest)) closest = thing;
+
+      // Don't eat invisible things. They're probably tokens created by something
+      // like Intelligent Supplies or AutoAutoSave.
+      if (thing.CurState.Sprite == 0) continue;
+
+      if (!closest || Distance3D(thing) < Distance3D(closest)) {
+        closest = thing;
+        DEBUG("Check[%s]: closest is %s (d=%f)", self.location.name, closest.GetClassName(), Distance3D(closest));
+      }
     }
 
     if (!closest) return;
-    DEBUG("Check[%s]: closest is %s (d=%f)", self.location.name, closest.GetTag(), Distance3D(closest));
     if (Distance3D(closest) < 2.0) {
       UpdateFromOriginal(closest);
-      closest.ClearCounters();
       closest.Destroy();
       SetStateLabel("SetProgression");
     }
@@ -262,8 +268,11 @@ class ::CheckPickup : ScoreItem {
     if (!rh) return null;
 
     // Scale is computed to make the sprite at most 12px high and will not
-    // exceed 0.5 under any circumstances.
+    // exceed 0.5 under any circumstances, except when pretuning.
     float scale = min(0.5, 12.0/rh);
+    if (::PlayEventHandler.Get().IsPretuning()) {
+      scale = 1.0;
+    }
     // Center it in the AP sprite.
     if (zoffs < 0) {
       zoffs = ceil(16 // Half the height of the AP logo
@@ -295,7 +304,7 @@ class ::CheckPickup : ScoreItem {
     if (ap_show_check_contents && !self.label) {
       self.label = CreateLabel(self.location.ap_typename);
     }
-    if (ap_show_check_original && !self.orig_label) {
+    if (ap_show_check_original && !self.orig_label && !::PlayEventHandler.Get().IsPretuning()) {
       self.orig_label = CreateLabel(self.location.orig_typename, 34);
     }
   }

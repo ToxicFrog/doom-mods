@@ -245,9 +245,9 @@ class IPC:
     # which echoes it, etc.
     self._enqueue("TEXT", "[AP]"+ansi_to_gzdoom(message))
 
-  def send_track(self, id: int) -> None:
+  def send_track(self, id: int, track_type: str) -> None:
     """Tell the game that the tracker thinks this location is in logic now."""
-    self._enqueue("TRACK", id)
+    self._enqueue("TRACK", id, track_type)
 
   def send_hint(self, map: Optional[str], item: str, player: str, location: str) -> None:
     """Send a hint to the game. map is only set if it's a scoped item being hinted."""

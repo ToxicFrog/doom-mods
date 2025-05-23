@@ -1,0 +1,11 @@
+addkeysection "gzArchipelago" GZAP
+
+alias ap-level-select "openmenu ArchipelagoLevelSelectMenu"
+  addmenukey "$GZAP_OPT_NAME_LEVELSELECT" ap-level-select
+  defaultbind M ap-level-select
+
+alias ap-inventory "openmenu ArchipelagoInventoryMenu"
+  addmenukey "$GZAP_OPT_NAME_INVENTORY" ap-inventory
+  defaultbind I ap-inventory
+
+alias ap-debug "netevent ap-debug"

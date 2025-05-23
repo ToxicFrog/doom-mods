@@ -5,7 +5,13 @@
 // sufficient to send and receive messages about it to AP and record its state.
 
 #namespace GZAP;
-#debug on;
+#debug off;
+
+enum ::Tracking {
+  AP_UNREACHABLE,     // Tracker thinks we can't get to this at all.
+  AP_REACHABLE_OOL,   // Tracker thinks we can get to it physically but not logically (e.g. not enough guns)
+  AP_REACHABLE_IL,    // Tracker thinks it's fully in logic.
+}
 
 // Information about a single check.
 class ::Location {
@@ -18,7 +24,7 @@ class ::Location {
   bool progression;   // Does it hold a progression item?
   bool unreachable;   // Do we think this is unreachable?
   bool checked;       // Has the player already checked it?
-  bool in_logic;      // Does the tracker thing we can reach it?
+  ::Tracking track;   // Tracker status for this location
   Vector3 pos;
   bool is_virt;       // Virtual location with no physical position.
   int secret_sector;
@@ -38,9 +44,9 @@ class ::Location {
   }
 
   bool Order(::Location other) {
-    if (self.in_logic != other.in_logic) {
-      // in-logic locations always sort before out-of-logic ones
-      return self.in_logic;
+    if (self.track != other.track) {
+      // In-logic is always before OOL, which is always before unreachable.
+      return self.track > other.track;
     }
     return self.name < other.name;
   }

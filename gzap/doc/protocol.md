@@ -260,10 +260,17 @@ game should remove it from the list of pending checks and (TODO) despawn it from
 the world if it's currently spawned. It's safe for the player to re-collect it
 but doing so won't do anything.
 
-#### `TRACK` `id`
+#### `TRACK` `id` `type`
 
 Tells the game that the tracker thinks the given location is in logic. If it has
 not yet been collected, the in-game location display will hilight it.
+
+`type` is a string and can be either `"IL"` for items that are reachable in
+logic, or `"OOL"` for items that are physically reachable but not in logic; for
+example, if the world was generated with `level_order_bias`, `"OOL"` will be
+used for items in levels that the player has the requisite accesses and keys
+for, but which are late enough in the game that they are not expected to attempt
+them yet.
 
 #### `HINT` `map` `item` `player` `location`
 

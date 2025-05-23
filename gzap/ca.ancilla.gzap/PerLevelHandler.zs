@@ -18,16 +18,17 @@ class ::PerLevelHandler : EventHandler {
   // If set, the player is leaving the level via the level select or similar
   // rather than by reaching the exit.
   bool early_exit;
+  // Set when the player triggers an exit linedef. If they don't subsequently
+  // exit the level, this is probably because they are dead, and will trigger
+  // an exit when they respawn.
+  bool line_exit_normal;
+  bool line_exit_secret;
 
   static clearscope ::PerLevelHandler Get() {
     return ::PerLevelHandler(Find("::PerLevelHandler"));
   }
 
-  override void OnRegister() {
-    InitRandoState();
-  }
-
-  void InitRandoState() {
+  void InitRandoState(bool restore_items) {
     let datastate = ::PlayEventHandler.GetState();
 
     if (self.apstate == null) {
@@ -48,23 +49,28 @@ class ::PerLevelHandler : EventHandler {
     DEBUG("APState conflict resolution: txn[d]=%d txn[p]=%d",
       ::PlayEventHandler.GetState().txn, apstate.txn);
 
-    if (self.apstate.txn > datastate.txn) {
-      // Our state is older. This usually means someone started up the game,
-      // then loaded a savegame, so we have a new apstate in the PEH and the
-      // real one in the PLH.
+    if (self.apstate.txn >= datastate.txn) {
+      // Our state has a higher txn. This usually means someone started up the
+      // game, then loaded a savegame, so we have a fresh apstate in the PEH and
+      // the real one in the PLH.
       DEBUG("Using state from playscope.");
       ::PlayEventHandler.Get().apstate = self.apstate;
     } else {
-      // PEH state is older. This usually means someone saved their game, played
-      // for a while, then reloaded.
-      // This is tricky because the PEH *mostly* takes precedence, but we want
-      // to use the saved game's knowledge of which items were vended, to avoid
-      // an infelicity where the player saves, grabs a check, vends the item,
-      // dies, loads their save, and now that item is gone forever -- which is
-      // usually fine if it's like a ShellBox or something, but bad news if it's
-      // a weapon!
+      // PEH state has higher txn. This is usually a result of a savegame being
+      // loaded or a return to an earlier level in persistent mode.
+      //
+      // In the latter case, we want to use the PEH state. In the former case,
+      // we want to *mostly* use the PEH state -- in particular we want its
+      // record of what checks have been collected and what keys/tokens we have
+      // -- but we want to rewind our understanding of what items have been
+      // *used* to match the loaded save, to avoid a problem where the player
+      // saves, picks up a weapon, it vends, and then they load their game and
+      // the weapon is gone forever.
       DEBUG("Using state from datascope.");
-      datastate.CopyItemUsesFrom(self.apstate);
+      if (restore_items) {
+        DEBUG("Restoring items from playscope first.");
+        datastate.CopyItemUsesFrom(self.apstate);
+      }
       self.apstate = datastate;
     }
     apstate.UpdatePlayerInventory();
@@ -92,20 +98,17 @@ class ::PerLevelHandler : EventHandler {
 
       DEBUG("Init secret location: %s", location.name);
       let sector = level.sectors[location.secret_sector];
-      if (location.checked) {
+      if (location.checked && sector.IsSecret()) {
         // Location is checked but sector is still marked undiscovered -- level
         // probably got reset.
         DEBUG("Clearing secret flag on sector %d", location.secret_sector);
         sector.ClearSecret();
         level.found_secrets++;
-        continue;
-      }
-
-      if (!sector.IsSecret()) {
+      } else if (!location.checked && !sector.IsSecret()) {
         // Location isn't marked checked but the corresponding sector has been
         // discovered, so emit a check event for it.
         ::PlayEventHandler.Get().CheckLocation(location);
-      } else {
+      } else if (!location.checked) {
         // Player hasn't found this yet.
         self.secret_locations.Insert(location.secret_sector, location);
       }
@@ -128,13 +131,12 @@ class ::PerLevelHandler : EventHandler {
   // the difference.
   void OnNewMap() {
     DEBUG("PLH OnNewMap");
+    InitRandoState(false);
     early_exit = false;
-    // No mapinfo -- hopefully this just means it's a TITLEMAP added by a mod or
-    // something, and not that we're missing the data package or the player has
-    // been changemapping into places they shouldn't be.
-    let region = apstate.GetRegion(level.MapName);
-    if (!region) return;
+    line_exit_normal = false;
+    line_exit_secret = false;
 
+    let region = apstate.GetCurrentRegion();
     SetupSecrets(region);
     foreach (location : region.locations) {
       // Secret-sector locations are handled by SetupSecrets().
@@ -145,16 +147,25 @@ class ::PerLevelHandler : EventHandler {
   }
 
   void OnReopen() {
-    OnNewMap();
+    DEBUG("PLH OnReopen");
+    InitRandoState(false);
+    early_exit = false;
+    line_exit_normal = false;
+    line_exit_secret = false;
+
+    let region = apstate.GetCurrentRegion();
+    SetupSecrets(region);
+    apstate.UpdatePlayerInventory();
   }
 
   void OnLoadGame() {
     DEBUG("PLH OnLoadGame");
+    InitRandoState(true);
     early_exit = false;
     apstate.CheckForNewKeys();
     apstate.UpdatePlayerInventory();
-    let region = apstate.GetRegion(level.MapName);
-    if (!region) return;
+
+    let region = apstate.GetCurrentRegion();
     SetupSecrets(region);
     foreach (::CheckPickup thing : ThinkerIterator.Create("::CheckPickup", Thinker.STAT_DEFAULT)) {
       // At this point, we may have a divergence, depending on whether the apstate
@@ -188,11 +199,36 @@ class ::PerLevelHandler : EventHandler {
     }
   }
 
+  // Handle exit linedef activation.
+  // Under normal circumstances, the game handles this on its own and all is well.
+  // However, this fails if it's a death exit and the source and destination
+  // maps are in the same hubcluster -- which is the case when persistence is on.
+  // To handle that case, we record that the line was activated here, and then
+  // if the player respawns without leaving the map, we trigger the exit.
+  override void WorldLinePreActivated(WorldEvent evt) {
+    let thing = evt.thing;
+    let line = evt.ActivatedLine;
+    if (!(thing is "PlayerPawn")) return;
+
+    // Key checks are done after WorldLinePreActivated, so we need to check
+    // them here just in case that check would normally fail.
+    if (!thing.CheckKeys(line.locknumber, false, true)) return;
+    if (evt.ActivatedLine.special == 243) { // LS_EXIT_NORMAL
+      line_exit_normal = true;
+    } else if (evt.ActivatedLine.special == 244) { // LS_EXIT_SECRET
+      line_exit_secret = true;
+    }
+  }
+
+  override void PlayerRespawned(PlayerEvent evt) {
+    if (line_exit_secret) {
+      level.SecretExitLevel(0);
+    } else if (line_exit_normal) {
+      level.ExitLevel(0, false);
+    }
+  }
+
   //// Handling for individual actors spawning in. ////
-  // This only runs when the alarm timer is set, i.e. for a few tics after level
-  // initialization. We try to detect things spawning that should be replaced with
-  // checks and do so. Any leftover checks will give automatically dispensed to
-  // the player via WorldTick() above.
 
   override void WorldThingSpawned(WorldEvent evt) {
     let thing = evt.thing;
@@ -321,7 +357,7 @@ class ::PerLevelHandler : EventHandler {
         } else {
           if (ap_release_on_level_clear & AP_RELEASE_SECRETS == 0) continue;
         }
-        DEBUG("Collecting %s on level exit.");
+        DEBUG("Collecting %s on level exit.", location.name);
         ::PlayEventHandler.Get().CheckLocation(location, true);
       }
     }

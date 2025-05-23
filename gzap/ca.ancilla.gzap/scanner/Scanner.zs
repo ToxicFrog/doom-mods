@@ -12,6 +12,7 @@ class ::Scanner play {
   Array<::ScannedMap> queued;
   Map<string, ::ScannedMap> maps_by_name;
   Map<string, bool> skip;
+  Map<string, bool> prune;
 
   static void Output(string type, string map, string payload) {
     ::IPC.Send(type, string.format("{ \"map\": \"%s\", %s }", map, payload));
@@ -24,6 +25,11 @@ class ::Scanner play {
   void SkipLevel(string mapname) {
     string mapname = mapname.MakeUpper();
     skip.Insert(mapname, true);
+  }
+
+  void PruneLevel(string mapname) {
+    string mapname = mapname.MakeUpper();
+    prune.Insert(mapname, true);
   }
 
   bool EnqueueLevel(string mapname, uint rank) {
@@ -40,6 +46,7 @@ class ::Scanner play {
 
     let sm = ::ScannedMap.Create(mapname, rank);
     sm.skip = self.skip.GetIfExists(mapname);
+    sm.prune = self.prune.GetIfExists(mapname);
 
     maps_by_name.Insert(mapname, sm);
     queued.Push(sm);
@@ -69,8 +76,8 @@ class ::Scanner play {
   bool ScanNext() {
     while (queued.Size() > 0) {
       let nextmap = queued[0];
-      if (nextmap.skip) {
-        DEBUG("ScanNext: skipping %s", nextmap.name);
+      if (nextmap.prune) {
+        DEBUG("ScanNext: pruning %s", nextmap.name);
         queued.Delete(0);
         continue;
       }
@@ -129,7 +136,7 @@ class ::Scanner play {
     nextmap.MarkDone();
     if (nextmap.IsScanned()) nextmap.CopyFromLevelLocals(level);
 
-    if (recurse && !nextmap.skip) {
+    if (recurse && !nextmap.prune) {
       EnqueueLevelports(nextmap.rank + 1);
       EnqueueNext(level.NextSecretMap, nextmap.rank + 1);
       EnqueueNext(level.NextMap, nextmap.rank + 1);

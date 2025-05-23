@@ -21,7 +21,7 @@ tools/ap-scan "1000 Lines" "testdata/doom/maps/anthologies/2019 - 1000 Lines.zip
 SKIP="MAP31 MAP32" tools/ap-scan "1000 Lines II" "testdata/doom/maps/anthologies/2020 - 1000 Lines 2.zip"
 MAPS="E1A1 E2A1" SKIP="E1END E2END E2END2" tools/ap-scan \
   "The Adventures of Square" "testdata/doom/maps/conversions/2018 - The Adventures of Square 1+2.pk3"
-# MAPS="MAP33 MAP45 MAP60 MAP63 MAP69" SKIP="MAP31 MAP32" tools/ap-scan \
+# MAPS="MAP33 MAP45 MAP60 MAP63 MAP69" PRUNE="MAP31 MAP32" tools/ap-scan \
 #   "Space Cats Saga" "testdata/doom/maps/conversions/2024 - Space Cats Saga 1.41.wad"
 
 # Maybe later

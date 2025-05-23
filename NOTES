@@ -72,12 +72,6 @@ the whole game? perhaps we do something like:
 Maybe we can also autogen AP-KEY messages at scan time; if we see a key and it's
 marked interhub, generate the AP-KEY for it...
 
-### roadmap for next version
-
-- AP-KEY (ditto)
-- map scan globbing (maybe)
-- select specific maps to beat as a win condition
-
 ### scanner
 
 - map exclusion UI
@@ -85,12 +79,12 @@ marked interhub, generate the AP-KEY for it...
 
 ### generator
 
+- AP-KEY
 - option to treat bosses as checks -- also needs scanner changes, highly vulnerable
   to enemy-replacement mods
   - could try placing the check in the boss's inventory, and on the ground where
     the boss would be if we can't find it
 - alternate win conditions:
-  - clear [specific levels]
   - find N victory tokens
   - find N secrets
 - option to choose the X% of an item category game-wide rather than per-map
@@ -101,13 +95,30 @@ marked interhub, generate the AP-KEY for it...
 
 ### ingame
 
+- controls should show up under Customize Controls and not just in the mod-specific
+  options menu.
 - weapon suppression should let the weapon drop normally and apply the suppression
   when it's picked up?
 - some hints received when playing in the weekly sync did not display on the
   map screen
-- disable tracker in pretuning mode
-- tracker should not display unreachables
-- Eviternity 1 death exits don't work right?
+- yaml-less UT support
+  - need to add the logic-affecting `options` to `slot_data` at gen time
+  - then add `interpret_slot_data()` to return that info
+  - when genning, check `multiworld.re_gen_passthrough['GZDoom']` for the stuff
+    returned by `interpret_slot_data()` and trust that above `options`
+- also be nice if I could get UT working in singleplayer
+- and cut down on duplicate item pickup messages in SP when the client is connected
+- Ashes 2063 reports duplicate keys because of the way keys are handled -- you
+  pick up the BluePassCard and it gives you a BlueCard in your inventory, which
+  the AP runtime then identifies as a new key scoped to that level, which can be
+  a bit confusing but generally does not affect normal play.
+- If you play some AP, then choose "new game" from the level, it crashes:
+    VM execution aborted: tried to read from address zero. In function parameter "self"
+    Called from GZAP_PlayEventHandler.CheckLocation at gzArchipelago-latest.pk3:ca.ancilla.gzap/playeventhandler.zsc, line 156
+    Called from GZAP_PerLevelHandler.OnLevelExit at gzArchipelago-latest.pk3:ca.ancilla.gzap/perlevelhandler.zsc, line 309
+    Called from GZAP_PlayEventHandler.WorldUnloaded at gzArchipelago-latest.pk3:ca.ancilla.gzap/playeventhandler.zsc, line 103
+    Called from Actor.A_Print [Native]
+
 
 ### Faithless
 

@@ -4,14 +4,15 @@
 
 class ::ProgressIndicator : OptionMenuItemStaticText {
   int victory_time;
+  ::RandoState apstate;
 
   override void Ticker() {
-    let victory = ::PlayEventHandler.GetState().Victorious();
+    let victory = apstate.win_conditions.Victorious(apstate);
     if (victory) self.mColor = Font.CR_SAPPHIRE;
     self.mLabel = string.format(
       "MAPS: %2d/%-2d   %8s   TIME: %s",
-      ::PlayEventHandler.GetState().LevelsClear(),
-      ::PlayEventHandler.GetState().LevelsRequired(),
+      apstate.LevelsClear(),
+      apstate.win_conditions.nrof_maps,
       victory ? "VICTORY!" : "",
       GetTime());
   }
@@ -21,7 +22,7 @@ class ::ProgressIndicator : OptionMenuItemStaticText {
     // We might be able to use it as a global timer, but for now, let's just
     // count in-game time.
     float t = level.TotalTime; // + menu.MenuTime();
-    if (::PlayEventHandler.GetState().Victorious()) {
+    if (apstate.win_conditions.Victorious(apstate)) {
       if (!victory_time) victory_time = t;
       t = victory_time;
     }
@@ -131,16 +132,33 @@ class ::LevelSelector : ::KeyValueNetevent {
         region.LocationsChecked(), region.LocationsTotal(),
         FormatKeyCounter(region, false),
         region.automap ? " √ " : "   ",
-        region.cleared ? "  √  " : "     "
+        FormatLevelClearMarker(region)
       );
     }
     return string.format(
-      "%s  %s  %s  %s",
+      "%s  %s  %s  %s%s",
       FormatItemCounter(region),
       FormatKeyCounter(region),
       region.automap ? "\c[GOLD] √ " : "   ",
-      region.cleared ? "\c[GOLD]  √  " : "     "
+      FormatLevelClearColour(region),
+      FormatLevelClearMarker(region)
     );
+  }
+
+  string FormatLevelClearMarker(::Region region) {
+    if (region.cleared)
+      return "  √  ";
+    if (::PlayEventHandler.GetState().win_conditions.specific_maps.CheckKey(region.map))
+      return "  X  ";
+    return "      ";
+  }
+
+  string FormatLevelClearColour(::Region region) {
+    if (region.cleared)
+      return "\c[GOLD]";
+    if (::PlayEventHandler.GetState().win_conditions.specific_maps.CheckKey(region.map))
+      return "\c[RED]";
+    return "";
   }
 
   string FormatTooltip() {
@@ -197,13 +215,21 @@ class ::LevelSelector : ::KeyValueNetevent {
   string FormatMissingChecksTT(::Region region) {
     string buf = "";
     foreach (loc : region.locations) {
-      if (!loc.checked && !loc.unreachable) {
-        buf = buf .. string.format("\n  \c[%s]%s", loc.in_logic ? "ICE" : "BLACK", loc.name);
+      if (loc.checked || loc.unreachable) continue;
 
-        let peek = region.GetPeek(loc.name);
-        if (peek) {
-          buf = buf .. string.format("\n  \c-ⓘ %s for %s", peek.item, peek.player);
-        }
+      string colour;
+      if (loc.track == AP_UNREACHABLE) {
+        colour = "BLACK";
+      } else if (loc.track == AP_REACHABLE_OOL) {
+        colour = "DARKGRAY";
+      } else if (loc.track == AP_REACHABLE_IL) {
+        colour = "ICE";
+      }
+      buf = buf .. string.format("\n  \c[%s]%s", colour, loc.name);
+
+      let peek = region.GetPeek(loc.name);
+      if (peek) {
+        buf = buf .. string.format("\n  \c-ⓘ %s for %s", peek.item, peek.player);
       }
     }
     if (buf != "") {

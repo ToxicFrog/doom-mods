@@ -102,11 +102,20 @@ class DoomMap:
     def access_rule(self, world):
         # print(f"access_rule({self.map}) = start={world.is_starting_map(self.map)}, co-guns({world.options.carryover_weapon_bias.value})={self.carryover_gunset}, local-guns({world.options.local_weapon_bias.value})={self.local_gunset}, clears({world.options.level_order_bias.value})={self.prior_clears}")
         def rule(state):
+            if world.options.pretuning_mode:
+                return True
+
             if not state.has(self.access_token_name(), world.player):
                 return False
 
             # Starting levels are exempt from all balancing checks.
             if world.is_starting_map(self.map):
+                return True
+
+            # If Universal Tracker is asking for "glitch logic", skip all balancing
+            # checks and report everything the player can get to whether they have
+            # the firepower to keep it or not.
+            if state.has(world.glitches_item_name, world.player):
                 return True
 
             # Check requirement for guns the player would normally carryover

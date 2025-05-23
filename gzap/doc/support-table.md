@@ -52,7 +52,7 @@ here may result in glitches.
 | MAYhem 2048      |   34 | 179 | 384 | partial | Would be full, but I accidentally overwrote half the tuning data. |
 | Scythe           |   32 | 106 | 405 | full | MAP26-MAP30 are much larger than the rest of the wad; consider excluding them in short sync games. |
 
-### Standalone Games
+### Standalone Games & Total Conversions
 
 | Game                     | Maps | Mon/Lvl | Checks | Status | Notes |
 | ------------------------ | ---- | ------- | ------ | ------ | ----- |
@@ -64,6 +64,7 @@ here may result in glitches.
 | Golden Souls Remastered  | | | | missing | |
 | Golden Souls 2           | | | | missing | |
 | Hedon Bloodrite          | | | | missing | This is going to be a project but I think it would be pretty cool. |
+| Space Cats Saga          | 57 | 316 | 1042 | basic | Pettable cats categorized as "big-ammo" may sometimes give you weapons out-of-logic instead. |
 
 ### Fan-Games for Other IPs
 

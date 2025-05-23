@@ -3,11 +3,13 @@
 #namespace GZAP;
 
 #include "./ScannedLocation.zsc"
+#debug off;
 
 class ::ScannedItem : ::ScannedLocation {
   string category;
   string tag;
   bool secret;
+  int hub;
 
   static ::ScannedItem Create(Actor thing) {
     let loc = ::ScannedItem(new("::ScannedItem"));
@@ -17,6 +19,10 @@ class ::ScannedItem : ::ScannedLocation {
     loc.secret = IsSecret(thing);
     loc.pos = thing.pos;
 
+    if (loc.category == "key") {
+      loc.hub = ::ScannedItem.GetHubClusterID(Inventory(thing));
+    }
+
     let [newtype, ok] = ::RC.Get().GetTypename(loc.typename);
     if (ok) {
       class<Actor> cls = newtype;
@@ -25,6 +31,17 @@ class ::ScannedItem : ::ScannedLocation {
     }
 
     return loc;
+  }
+
+  // Returns the cluster ID for the hubcluster this item belongs to, if any, or
+  // 0 if it isn't in a hubcluster/we don't care if it is.
+  static int GetHubClusterID(Inventory thing) {
+    if (!thing) return 0;
+    DEBUG("GetHubClusterID: %s (amount: %d / is_hub: %d / cluster: %d)",
+        thing.GetClassName(), thing.InterHubAmount, level.ClusterFlags & level.CLUSTER_HUB, level.cluster);
+    if (thing.InterHubAmount == 0) return 0;
+    if (level.ClusterFlags & level.CLUSTER_HUB == 0) return 0;
+    return level.cluster;
   }
 
   // TODO: make "secret" field optional and emit it only on secret items
@@ -37,6 +54,30 @@ class ::ScannedItem : ::ScannedLocation {
     ::Scanner.Output("ITEM", mapname, string.format(
         "\"category\": \"%s\", \"typename\": \"%s\", \"tag\": \"%s\", %s%s%s",
         category, typename, tag, secret_str, OutputSkill(), OutputPosition()));
+
+    if (self.hub > 0) {
+      OutputHubKeyInfo(mapname);
+    }
+  }
+
+  void OutputHubKeyInfo(string mapname) {
+    int maps;
+    string map_str = "";
+
+    for (int i = 0; i < LevelInfo.GetLevelInfoCount(); ++i) {
+      let info = LevelInfo.GetLevelInfo(i);
+      if (info.cluster != self.hub) continue;
+      ++maps;
+      map_str = string.format("%s%s\"%s\"",
+        map_str, map_str == "" ? "" : ", ", info.mapname);
+    }
+
+    DEBUG("OutputHubKeyInfo: maps: %d / map_str: %s", maps, map_str);
+
+    if (maps <= 1) return;
+    ::Scanner.Output("KEY", mapname, string.format(
+        "\"typename\": \"%s\", \"scopename\": \"HUB%02d\", \"cluster\": %d, \"maps\": [%s]",
+        self.typename, self.hub, self.hub, map_str));
   }
 
   static bool IsSecret(Actor thing) {

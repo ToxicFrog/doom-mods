@@ -1,10 +1,33 @@
 # Unreleased
 
-This is a bugfix release.
+- New:
+  - AP keybindings are now available under `Customize Controls` as well as in
+    the AP mod settings.
+- Fix:
+  - "Loose" keys not found by the scanner would evaporate from your inventory
+    if you picked them up, then picked up another AP item before leaving the
+    level or loading a save.
 
-This release changes the scanner, but only wads that use the `specialaction_lowerfloortohighest`
-level special need to be rescanned. (It also affects wads that use hubclusters,
-but those are not yet supported in general.)
+# 0.5.0
+
+This is a feature release.
+
+⚠️ The YAML options have changed, and in particular, some options have had their
+types and/or meanings changed. You must regenerate your template YAML.
+
+⚠️ This release changes the scanner, but only wads that use the
+`specialaction_lowerfloortohighest` level special need to be rescanned. (It also
+affects wads that use hubclusters, but those are not yet supported in general.)
+
+This is the biggest release so far, and kind of got away from me. It's mostly
+bugfixes, and of the new features, most of them are small things laying the
+groundwork for later improvements rather than major stuff that players will
+notice. The most interesting additions, I think, are **beat specific levels as a
+win condition** and **Universal Tracker glitch logic support**.
+
+There are also many bugfixes which should improve compatibility with AutoAutoSave,
+Intelligent Supplies, Adventures of Square, anything that uses a `TITLEMAP`, and
+anything that uses death exits.
 
 - New:
   - Tuning data for Plutonia [from @Gwen].
@@ -14,6 +37,17 @@ but those are not yet supported in general.)
     toggled on and off, once you have them; they default off. Note that turning
     a key off after using it to reach checks can generate impossible logic, so
     please be careful.
+  - `AP-KEY` messages are now emitted as part of the tuning file for keys that
+    exist across multiple maps. (This does not mean that hubmap-based megawads
+    are now playable, but it's a step in the right direction.)
+  - The client now has an icon in the AP launcher! Contributed by @DwarfWoot.
+  - Universal Tracker integration now supports "glitch logic"; in UT versions
+    that support this (v0.2.8 or later), locations that are out of logic due to
+    weapon or difficulty settings, but which are still believed to be reachable
+    otherwise, will show up with a different colour in the in-game tracker.
+  - `ap_scan_prune` cvar can be used to skip levels entirely when scanning (i.e.
+    not even scan them for exits).
+  - New win condition: beat specific levels.
 - Change:
   - Going Down Turbo logic updated from RC 1.7 to the version released on idgames.
   - Scanner now automatically skips levels with no randomizeable actors in them.
@@ -37,8 +71,6 @@ but those are not yet supported in general.)
     of crashing the game.
   - Scanner now properly handles `specialaction_lowerfloortohighest`. Heretic
     logic updated accordingly.
-  - `ap_scan_skip` setting did not behave properly when `ap_scan_recurse` was
-    enabled.
   - Scan data for levels is no longer retained in memory once the level logic
     is output. This should improve performance and memory usage when scanning
     very large wads.
@@ -58,6 +90,20 @@ but those are not yet supported in general.)
     checks in the map.
   - `ap_scan_unreachable` is now only checked when exiting the map "properly",
     not when using the level select or loading a savegame.
+  - The GZDoom<->Client connection is not initialized until you are actually
+    in-game even if you are playing a mod that has a `TITLEMAP`. This fixes an
+    issue where you could start the client sync while at the main menu and then
+    interrupt it by loading a game.
+  - Universal Tracker no longer shows `unreachable` locations (i.e. those marked
+    in logic as being inaccessible by name means).
+  - Universal Tracker is disabled in pretuning mode, as its output is basically
+    useless when pretuning.
+  - Check spawning is now smarter about what it replaces, and, in particular,
+    does not replace invisible tokens. This should fix some issues with
+    Intelligent Supplies and AutoAutoSave, among others.
+  - Fix issues with the secret and item counts.
+  - Linedef-based death exits now function properly (previously only boss-based
+    death exits did). In particular this should fix Eviternity.
 
 # 0.4.3
 

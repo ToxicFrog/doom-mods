@@ -26,7 +26,7 @@ class ::PlayEventHandler : StaticEventHandler {
   override void OnRegister() {
     console.printf("Loading gzArchipelago client library version %s", MOD_VERSION());
     apclient = ::IPC(new("::IPC"));
-    apstate = ::RandoState(new("::RandoState"));
+    apstate = ::RandoState.Create();
   }
 
   override void OnUnregister() {
@@ -72,15 +72,27 @@ class ::PlayEventHandler : StaticEventHandler {
 
   bool initialized;
   override void WorldLoaded(WorldEvent evt) {
-    // Don't initialize IPC until after we're in-game; otherwise NetworkCommandProcess
-    // doesn't get called and we end up missing events.
-    if (!initialized) {
+    DEBUG("PEH WorldLoaded: %s", level.MapName);
+    let region = apstate.GetCurrentRegion();
+
+    // Don't initialize IPC until after we're in-game; otherwise
+    // NetworkCommandProcess doesn't get called and we end up missing events.
+    // "In-game" here means either any scanned level or the GZAPHUB.
+    // In particular we definitely do NOT want to do this on the TITLEMAP,
+    // or the player might end up loading their game halfway through initial
+    // sync with the client.
+    if (!initialized && (region || level.MapName == "GZAPHUB")) {
       initialized = true;
       apclient.Init(self.apstate.slot_name, self.seed, self.wadname);
       apstate.SortLocations();
     }
 
-    if (level.LevelName == "TITLEMAP") return;
+    // Don't run on-level-entry handlers for levels that aren't part of the AP
+    // game.
+    if (!region) {
+      ::PerLevelHandler.Get().InitRandoState(evt.IsSaveGame);
+      return;
+    }
 
     if (evt.IsSaveGame) {
       ::PerLevelHandler.Get().OnLoadGame();
@@ -216,7 +228,8 @@ class ::PlayEventHandler : StaticEventHandler {
       region.RegisterPeek(location, player, item);
     } else if (cmd.command == "ap-ipc:track") {
       int apid = cmd.ReadInt();
-      apstate.MarkLocationInLogic(apid);
+      string track_type = cmd.ReadString();
+      apstate.MarkLocationInLogic(apid, track_type);
     } else if (cmd.command == "ap-hint") {
       // Player requested a hint from the level select menu.
       string item = cmd.ReadString();

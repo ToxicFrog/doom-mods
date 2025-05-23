@@ -22,8 +22,9 @@ class GZAP_DataPackageEventHandler : StaticEventHandler {
     peh.pretuning = true;
     {% endif %}
 
-    {% for condition, value in win_conditions.items() %}
-    apstate.RegisterWinCondition("{{condition}}", {{value}});
+    apstate.win_conditions.nrof_maps = {{win_conditions['nrof-maps']}};
+    {% for map in win_conditions['specific-maps'] %}
+      apstate.win_conditions.specific_maps.Insert("{{map}}", true);
     {% endfor %}
 
     RegisterMaps(apstate);
