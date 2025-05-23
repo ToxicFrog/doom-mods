@@ -114,7 +114,9 @@ class ::RandoItem play {
     DEBUG("Replicating %s", self.typename);
     if (self.vended >= self.total) return;
     self.vended++;
-    ::PerLevelHandler.Get().AllowDropsBriefly(2);
+    if (self.category == "weapon") {
+      ::PerLevelHandler.Get().AllowNextWeapon();
+    }
     for (int p = 0; p < MAXPLAYERS; ++p) {
       if (!playeringame[p]) continue;
       if (!players[p].mo) continue;

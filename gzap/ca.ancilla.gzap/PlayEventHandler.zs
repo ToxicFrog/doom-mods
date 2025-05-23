@@ -9,6 +9,7 @@
 #debug off;
 
 #include "./actors/Check.zsc"
+#include "./actors/PickupDetector.zsc"
 #include "./archipelago/RandoState.zsc"
 #include "./archipelago/Region.zsc"
 #include "./IPC.zsc"
@@ -105,6 +106,13 @@ class ::PlayEventHandler : StaticEventHandler {
 
   override void WorldUnloaded(WorldEvent evt) {
     ::PerLevelHandler.Get().OnLevelExit(evt.IsSaveGame);
+  }
+
+  override void PlayerSpawned(PlayerEvent evt) {
+    let p = evt.PlayerNumber;
+    if (!playeringame[p]) return;
+    if (!players[p].mo) return;
+    players[p].mo.GiveInventoryType("::PickupDetector");
   }
 
   void CheckLocation(::Location loc, bool atexit=false) {

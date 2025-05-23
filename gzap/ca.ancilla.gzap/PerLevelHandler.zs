@@ -189,11 +189,6 @@ class ::PerLevelHandler : EventHandler {
   override void WorldTick() {
     apstate.OnTick();
 
-    if (allow_drops > 0) {
-      DEBUG("allow_drops: %d", allow_drops);
-      --allow_drops;
-    }
-
     if (level.total_secrets - level.found_secrets != self.secret_locations.CountUsed()) {
       UpdateSecrets();
     }
@@ -236,12 +231,6 @@ class ::PerLevelHandler : EventHandler {
     if (!(thing is "::CheckPickup") && thing.bCOUNTITEM) {
       thing.ClearCounters();
     }
-
-    // Handle weapon suppression, if enabled.
-    if (!ShouldAllow(Weapon(thing))) {
-      ReplaceWithAmmo(thing, Weapon(thing));
-      thing.Destroy();
-    }
   }
 
   // How many tics to allow drops for.
@@ -253,8 +242,11 @@ class ::PerLevelHandler : EventHandler {
   // to say "allow this item, specifically", but that breaks for chains like
   // Shotgun replaced with Spawner which produces ModdedShotgun -- we end up
   // allowing the Spawner but not the ModdedShotgun.
-  int allow_drops;
-  void AllowDropsBriefly(int tics) { allow_drops = tics; }
+  int allow_weapons;
+  void AllowNextWeapon() {
+    DEBUG("Permitting next weapon pickup.");
+    allow_weapons += 1;
+  }
 
   bool ShouldAllow(Weapon thing) {
     if (!thing) return true;
@@ -262,8 +254,12 @@ class ::PerLevelHandler : EventHandler {
     // This includes GZAPHUB and GZAPRST, so the player's starting inventory
     // (including fists/pistol) won't get suppressed on game start.
     if (!apstate.GetCurrentRegion()) return true;
-    DEBUG("Checking spawn of %s", thing.GetTag());
-    if (self.allow_drops) return true;
+
+    DEBUG("Checking pickup of %s (allow=%d)", thing.GetTag(), allow_weapons);
+    if (self.allow_weapons) {
+      self.allow_weapons -= 1;
+      return true;
+    }
     if (ap_suppress_weapon_drops == 0) return true;
 
     let cls = thing.GetClass();
@@ -288,7 +284,7 @@ class ::PerLevelHandler : EventHandler {
       return apstate.HasWeapon(cls.GetClassName());
     }
 
-    DEBUG("Unconditionally blocking spawn.");
+    DEBUG("Unconditionally blocking weapon pickup.");
     return false;
   }
 

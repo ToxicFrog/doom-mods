@@ -9,6 +9,8 @@ from earlier versions remain compatible.
   - Full tuning for Doom 1 [from @RakeVuril].
 - Change:
   - Significant internal changes to how keys are modeled by the randomizer.
+  - Weapon suppression settings are now applied when the weapon is picked up,
+    rather than when it is dropped.
 - Fix:
   - "Loose" keys not found by the scanner would evaporate from your inventory
     if you picked them up, then picked up another AP item before leaving the

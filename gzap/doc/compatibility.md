@@ -29,9 +29,13 @@ be necessary for the map to be playable at all.
 Things dropped by enemies are not considered checks, so e.g. shotguns dropped
 by Sergeants are not checks and are not considered to be in logic.
 
-If this annoys you, there's a configuration setting to turn off enemy weapon drops
-entirely, or to restrict them to only weapons you've already found by other means,
-or only weapons that share a slot number with a weapon you already have.
+There is an in-game setting (`ap_suppress_weapon_drops`) which can be used to
+disable this; weapons will still drop from enemies but will be converted into
+ammo when picked up, depending on the setting.
+
+Note that some mods (Trailblazer is known to do this) will show you the weapon
+pickup message even if the weapon is converted into ammo, but this is purely a
+cosmetic issue and does not affect gameplay.
 
 ### DeHackEd
 
