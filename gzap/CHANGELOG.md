@@ -6,7 +6,7 @@ from earlier versions remain compatible.
 - New:
   - AP keybindings are now available under `Customize Controls` as well as in
     the AP mod settings.
-  - Full tuning for Doom 1 [from @RakeVuril].
+  - Full tuning for Doom 1 and 2 [from @RakeVuril].
   - Adventures of Square E1A9 dynkeys are now properly accounted for in logic.
 - Change:
   - Keys spawned during play (e.g. with scripts or via enemy drops) are now
