@@ -165,6 +165,8 @@ class IPC:
         await self.recv_chat(payload["msg"])
     elif evt == "AP-STATUS":
         await self.recv_status(**payload)
+    elif evt == "AP-DEATH":
+        await self.recv_death(**payload)
     elif evt == "AP-XOFF":
         await self.recv_xoff()
     else:
@@ -219,6 +221,9 @@ class IPC:
     if victory:
       await self.ctx.on_victory()
 
+  async def recv_death(self, reason: str) -> None:
+    await self.ctx.on_death(reason)
+
   async def recv_xoff(self) -> None:
     # Stop sending things to the client.
     self.nick = None
@@ -256,6 +261,9 @@ class IPC:
   def send_peek(self, map: str, location: str, player: str, item: str) -> None:
     """Send a peek to the game."""
     self._enqueue("PEEK", map, location, ansi_to_gzdoom(player), ansi_to_gzdoom(item))
+
+  def send_death(self, source: str, reason: str) -> None:
+    self._enqueue("DEATH", source, reason)
 
   #### Low-level outgoing IPC. ####
 

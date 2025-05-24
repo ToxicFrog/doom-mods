@@ -150,6 +150,12 @@ Informs the client that the player is victorious (by setting `victory` to `true`
 This may be expanded with other uses in the future but for now it's just a way of
 telling the client when the game is won.
 
+#### `AP-DEATH { reason }`
+
+Tells the client that the player has died, so that it can send deathlink
+messages to the rest of the game (if deathlink is enabled). `reason` is a string
+describing the cause of death.
+
 #### `AP-XOFF {}`
 
 Sent when Doom is shutting down to indicate that the connection is closing and
@@ -274,11 +280,11 @@ them yet.
 
 #### `HINT` `map` `item` `player` `location`
 
-Tells the game that we have received a hint for the location of one of our items.
-`map` is the map the item is scoped to (or the empty string if it's not a scoped
-item). `item` is the item name without map qualification. `player` and `location`
-are the name of the player who has it and the location in their world where it
-can be found, potentially including colour codes.
+Tells the game that we have received a hint for the location of one of our
+items. `map` is the map the item is scoped to (or the empty string if it's not a
+scoped item). `item` is the item name without map qualification. `player` and
+`location` are the name of the player who has it and the location in their world
+where it can be found, potentially including colour codes.
 
 For example, `HINT⋅MAP02⋅BlueCard⋅Link⋅Kokiri Shop` tells us that our
 `BlueCard (MAP02)` can be found at the Kokiri Shop in Link's world, while
@@ -289,12 +295,17 @@ In-game, this is used to display the hints on the level select screen.
 
 #### `PEEK` `map` `location` `player` `item`
 
-Tells the game that we have received a hint for the contents of one of our locations.
-`map` and `location` identify the location, `player` is the player whose item it
-is (which may be us!) and `item` is the item name. Unlike `HINT`, none of these
-fields can be empty. These are used by the level select screen to display information
-about what's located where.
+Tells the game that we have received a hint for the contents of one of our
+locations. `map` and `location` identify the location, `player` is the player
+whose item it is (which may be us!) and `item` is the item name. Unlike `HINT`,
+none of these fields can be empty. These are used by the level select screen to
+display information about what's located where.
 
 `PEEK⋅MAP01⋅Chainsaw⋅Link⋅Hookshot`, for example, indicates that the chainsaw on
 "Entryway" contains Link's hookshot.
 
+#### `DEATH` `player` `reason`
+
+Triggers deathlink. `player` is the linked player who died, and `reason`, if
+non-empty, is the reason given. Not all games will send a reason, in which case
+that field is an empty string.

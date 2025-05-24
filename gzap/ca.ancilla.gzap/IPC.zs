@@ -110,6 +110,10 @@ class ::IPC {
       if (fields.Size() != 4) return false;
       EventHandler.SendNetworkCommand("ap-ipc:track", NET_INT, fields[2].ToInt(10), NET_STRING, fields[3]);
       return true;
+    } else if (type == "DEATH") {
+      if (fields.Size() != 4) return false;
+      EventHandler.SendNetworkCommand("ap-ipc:death", NET_STRING, fields[2], NET_STRING, fields[3]);
+      return true;
     }
     return false;
   }

@@ -300,6 +300,13 @@ class GZDoomWorld(World):
     def key_in_world(self, keyname):
         return keyname in {key.fqin() for key in self.keys_in_pool()}
 
+    def fill_slot_data(self):
+        return self.options.as_dict(
+            'level_order_bias', 'local_weapon_bias', 'carryover_weapon_bias',
+            'spawn_filter', 'death_link') | {
+                'selected_wad': self.wad_logic.name
+            }
+
     def generate_output(self, path):
         def progression(name: str) -> bool:
             # print("is_progression?", id, name)

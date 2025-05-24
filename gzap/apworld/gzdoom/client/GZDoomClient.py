@@ -24,7 +24,7 @@ _IPC_SIZE = 4096
 class GZDoomContext(SuperContext):
     game = "gzDoom"
     items_handling = 0b111  # fully remote
-    want_slot_data = False
+    want_slot_data = True
     slot_name = None
     tags = {"AP"}
 
@@ -100,12 +100,26 @@ class GZDoomContext(SuperContext):
             {"cmd": "StatusUpdate", "status": ClientStatus.CLIENT_GOAL }
             ])
 
+    async def on_death(self, reason):
+        if "DeathLink" in self.tags:
+            await self.send_death(reason)
+
     def on_package(self, cmd, args):
         # print("on_package", cmd, args)
-        if cmd == "Connected" and tracker_loaded:
+        if cmd == "Connected":
+            # Workaround for Universal Tracker bug
             args.setdefault("slot_data", dict())
+            # Set up deathlink
+            self.slot_data = args['slot_data']
+            Utils.async_start(self.update_death_link(self.slot_data.get('death_link', False)), name="deathlink")
+            print('slot_data', self.slot_data)
         super().on_package(cmd, args)
         self.awaken()
+
+    def on_deathlink(self, data: Dict[str,Any]):
+        if "DeathLink" in self.tags:
+            self.ipc.send_death(data.get("source", "[unknown player]"), data.get("cause", ""))
+        super().on_deathlink(data)
 
     # async def send_msgs(self, msgs):
     #     for msg in msgs:

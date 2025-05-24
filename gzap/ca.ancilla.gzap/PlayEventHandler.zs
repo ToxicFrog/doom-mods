@@ -164,18 +164,40 @@ class ::PlayEventHandler : StaticEventHandler {
     // level exits in general, e.g. with line special triggers?
     foreach(player : players) {
       let cv = CVar.GetCVar("ap_show_check_names", player);
-      if (!cv || !cv.GetBool()) continue;
+      if (!cv || !cv.GetBool() || !player.mo) continue;
       player.mo.A_Print(string.format("Checked %s", loc.name));
     }
   }
 
-  // TODO: we need an "ap-uncollectable" command for dealing with uncollectable
-  // checks, like the flush key in GDT MAP12.
-  // This sets a flag, and then:
-  // - if a check is collected, that check is marked as uncollectable and the
-  //   flag is cleared; or
-  // - if the level is exited, all remaining checks in the level are collected
-  //   and marked as uncollectable.
+  int in_deathlink;
+  void ReportDeath(string reason) {
+    if (in_deathlink > 0) {
+      // Don't send out a deathlink report for a death we received from deathlink!
+      in_deathlink -= 1;
+      return;
+    }
+
+    if (!ap_allow_deathlink) return;
+
+    ::IPC.Send("DEATH",
+      string.format("{ \"reason\": \"%s on %s\" }", reason, level.MapName));
+  }
+
+  void ApplyDeathLink(string source, string reason) {
+    if (!ap_allow_deathlink) return;
+
+    foreach(player : players) {
+      if (!player.mo) continue;
+      in_deathlink += 1;
+      if (reason == "") {
+        player.mo.A_Print(string.format("DeathLink triggered by %s", source));
+      } else {
+        player.mo.A_Print(string.format("DeathLink triggered by %s: %s", source, reason));
+      }
+      player.mo.A_Die();
+    }
+  }
+
   override void NetworkProcess(ConsoleEvent evt) {
     DEBUG("NetworkProcess: %s %d", evt.name, evt.args[0]);
     if (evt.name == "ap-level-select") {
@@ -238,6 +260,10 @@ class ::PlayEventHandler : StaticEventHandler {
       int apid = cmd.ReadInt();
       string track_type = cmd.ReadString();
       apstate.MarkLocationInLogic(apid, track_type);
+    } else if (cmd.command == "ap-ipc:death") {
+      string source = cmd.ReadString();
+      string reason = cmd.ReadString();
+      ApplyDeathLink(source, reason);
     } else if (cmd.command == "ap-hint") {
       // Player requested a hint from the level select menu.
       string item = cmd.ReadString();

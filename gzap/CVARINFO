@@ -50,7 +50,7 @@ server string ap_bank_custom = "small-*:0";
 // 1 blocks weapons unless you already have a weapon in that slot
 // 2 blocks weapons unless you already have a copy of that weapon
 // 3 blocks weapons unconditionally
-server int ap_suppress_weapon_drops = 0;
+server int ap_suppress_weapon_drops = 1;
 
 // Whether to collect all checks when completing a level.
 // This is a bitmask:
@@ -59,6 +59,9 @@ server int ap_suppress_weapon_drops = 0;
 // 3 - collect all
 // In multiworld games this can emit a lot of check messages!
 server int ap_release_on_level_clear = 0;
+
+// Red button to turn off deathlink if it goes wrong.
+nosave noarchive bool ap_allow_deathlink = true;
 
 //// Scanner configuration.
 // These are not written to the save file or config file, since they're more
@@ -101,12 +104,3 @@ nosave noarchive bool ap_scan_recurse = true;
 nosave noarchive int ap_scan_unreachable = 0;
 // Always display the key toggle controls even when not in pretuning mode.
 nosave noarchive bool ap_scan_keys_always = false;
-
-
-//// Inventory options
-// Attempt to auto-use health, armour, ammo, etc when low?
-// Max limits?
-
-//// Death options
-// Reset level on death?
-

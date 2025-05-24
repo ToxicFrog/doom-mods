@@ -313,6 +313,25 @@ class ::PerLevelHandler : EventHandler {
     ammo.amount = amount;
   }
 
+  //// Handling for player death. ////
+  // At the moment we make no attempt to retrieve the obituary, because GetObituary()
+  // returns the *unformatted* version and there doesn't seem to be a ZS-visible
+  // way to get the formatted one.
+
+  override void WorldThingDied(WorldEvent evt) {
+    let thing = evt.thing;
+    if (!thing || !(thing is "PlayerPawn")) return;
+
+    let killer = thing.target;
+    if (!killer) {
+      ::PlayEventHandler.Get().ReportDeath("died mysteriously");
+    } else if (killer == thing) {
+      ::PlayEventHandler.Get().ReportDeath("died by misadventure");
+    } else {
+      ::PlayEventHandler.Get().ReportDeath("killed by " .. killer.GetClassName());
+    }
+  }
+
   //// Handling for level exit. ////
   // We try to guess if the player reached the exit or left in some other way.
   // In the former case, we give them credit for clearing the level.
