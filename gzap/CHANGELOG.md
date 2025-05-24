@@ -20,6 +20,8 @@ from earlier versions remain compatible.
   - "Loose" keys not found by the scanner would evaporate from your inventory
     if you picked them up, then picked up another AP item before leaving the
     level or loading a save.
+  - 8bpp colour is now supported when converting AP messages to display in
+    gzDoom. Since, apparently, AP sometimes uses that!
 
 # 0.5.0
 
