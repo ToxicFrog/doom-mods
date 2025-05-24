@@ -58,13 +58,14 @@ be able to represent logic requirements that aren't just keys.
   - find N victory tokens
   - find N secrets
 - option to choose the X% of an item category game-wide rather than per-map
-- EXCITING BUG found in Going Down Turbo
-  - if a level has only one key, but multiple copies of it, all locations of
-    that key are considered in logic even if only one of them is reachable in
-    practice
+- deathlink support
+- item tag support, allowing to treat "small", "health", and "secret" (e.g.) as
+  separate tags -- need to figure out how the YAML works for this
 
 ### ingame
 
+- bring weapon suppression more in line with how apdoom behaves by default?
+- "gzap for apdoom users" man page
 - some hints received when playing in the weekly sync did not display on the
   map screen
 - yaml-less UT support

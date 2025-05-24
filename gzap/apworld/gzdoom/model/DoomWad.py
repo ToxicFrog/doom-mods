@@ -150,8 +150,6 @@ class DoomWad:
         If it's a new kind of item, we allocate an ID for it and create an entry in the item table. Otherwise
         we just increment the count on the existing entry. The item's location is added to the location pool
         using the item's name as a disambiguator.
-
-        This is also where the keyset for the enclosing map gets updated.
         """
         # Extract the position information for addition to the location table.
         map = json["map"]

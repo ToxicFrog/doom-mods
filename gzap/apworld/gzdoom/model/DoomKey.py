@@ -34,9 +34,9 @@ class DoomKey(NamedTuple):
 
     def __str__(self):
         if len(self.maps) > 1:
-            return f"{self.fqin()} {self.maps}@C{self.cluster}"
+            return f"Key[{self.fqin()}] {self.maps}@C{self.cluster}"
         else:
-            return self.fqin()
+            return f"Key[{self.fqin()}]"
 
     def __repr__(self):
         return str(self)

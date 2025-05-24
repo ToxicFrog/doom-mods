@@ -10,7 +10,8 @@ from dataclasses import dataclass, field, InitVar
 from math import ceil
 from typing import Dict, List, NamedTuple, Optional, Set
 
-from . import DoomItem, DoomLocation
+from .DoomLocation import DoomLocation
+from .DoomKey import DoomKey
 
 
 class MAPINFO(NamedTuple):
@@ -57,7 +58,11 @@ class DoomMap:
     mapinfo: Optional[MAPINFO] = None
     # Key and weapon information for computing access rules
     # Keys in the level
-    keyset: Set[str] = field(default_factory=set)
+    keyset: Set[DoomKey] = field(default_factory=set)
+    # Number of keys (not number of distinct keys -- a level with two RedCards
+    # will have '2' here). For levels where |keyset|==1, used to check if we can
+    # safely assume that key is accessible from the start.
+    key_count: int = 0
     # Non-secret guns in the level
     local_gunset: Set[str] = field(default_factory=set)
     # Non-secret guns in levels preceding this one
@@ -169,8 +174,15 @@ class DoomMap:
             return {self.access_token_name()}
 
     def register_location(self, loc: DoomLocation) -> None:
-        if loc not in self.locations:
-            self.locations.append(loc)
+        if loc in self.locations:
+            return
+
+        self.locations.append(loc)
+        if loc.category == "key":
+            self.key_count += 1
+
+    def has_one_key(self, keyname: str) -> bool:
+        return self.key_count == 1 and keyname in {k.fqin() for k in self.keyset}
 
     def build_priors(self, prior_maps: List['DoomMap']) -> None:
         self.prior_clears = { map.clear_token_name() for map in prior_maps }
