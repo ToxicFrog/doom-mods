@@ -1,25 +1,25 @@
 # Unreleased
 
+This is a bugfix release.
+
 ⚠️ The logic format has changed. **You must rescan your wads.** Tuning files
 from earlier versions remain compatible.
 
 - New:
   - AP keybindings are now available under `Customize Controls` as well as in
     the AP mod settings.
-  - Full tuning for Doom 1 and 2 [from @RakeVuril].
+  - Full tuning for Doom 1 and 2 [from RakeVuril].
+  - Full tuning for Scythe 2 [from wrsw].
   - Adventures of Square E1A9 dynkeys are now properly accounted for in logic.
 - Change:
+  - Weapon suppression settings are now applied when the weapon is picked up,
+    rather than when it is dropped.
+- Fix:
   - Keys spawned during play (e.g. with scripts or via enemy drops) are now
     properly supported by the tuning engine and will be taken into account on
     future generations if the resulting tuning engine is loaded.
   - Keys spawned during play are detected instantly rather than next time you
     receive an AP item.
-  - Weapon suppression settings are now applied when the weapon is picked up,
-    rather than when it is dropped.
-- Fix:
-  - "Loose" keys not found by the scanner would evaporate from your inventory
-    if you picked them up, then picked up another AP item before leaving the
-    level or loading a save.
   - 8bpp colour is now supported when converting AP messages to display in
     gzDoom. Since, apparently, AP sometimes uses that!
 

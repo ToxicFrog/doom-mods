@@ -47,12 +47,13 @@ here may result in glitches.
 
 | WAD              | Maps | Mon/Lvl | Checks | Status | Notes |
 | ---------------- | ---- | ------- | ------ | ------ | ----- |
-| 1000 Lines       |   32 | 137 | 397 | full | Does not include the two bonus levels. |
-| 1000 Lines II    |   32 | 116 | 469 | full | |
-| Demonfear        |   32 |  39 | 289 | full | |
-| Going Down Turbo |   32 | 163 | 450 | partial | In persistent mode, most levels cannot be returned to after beating them -- turn off persistence, use "release on level clear", or grab all progression checks before exiting a level. |
-| MAYhem 2048      |   34 | 179 | 384 | partial | Would be full, but I accidentally overwrote half the tuning data. |
-| Scythe           |   32 | 106 | 405 | full | MAP26-MAP30 are much larger than the rest of the wad; consider excluding them in short sync games. |
+| 1000 Lines       |   32 |     137 | 397 | full | Does not include the two bonus levels. |
+| 1000 Lines II    |   32 |     116 | 469 | full | |
+| Demonfear        |   32 |      39 | 289 | full | |
+| Going Down Turbo |   32 |     163 | 450 | partial | |
+| MAYhem 2048      |   34 |     179 | 384 | partial | Would be full, but I accidentally overwrote half the tuning data. |
+| Scythe           |   32 |     106 | 405 | full | MAP26-MAP30 are much larger than the rest of the wad; consider excluding them in short sync games. |
+| Scythe 2         |   32 |     191 | 477 | full | |
 
 ### Standalone Games & Total Conversions
 
