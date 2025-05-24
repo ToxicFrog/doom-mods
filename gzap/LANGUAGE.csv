@@ -32,9 +32,8 @@ Keys,GZAP_MENU_INVENTORY_KEYS,
 "The YAML for this game used '%s' spawn_filter, but your chosen difficulty uses '%s'.
 
 ",GZAP_MENU_WARNING_SPAWNS,
-gzArchipelago Options,GZAP_OPT_TITLE,
-Visuals,GZAP_OPT_HEADER_VISUALS,
-Gameplay,GZAP_OPT_HEADER_GAMEPLAY,
+gzArchipelago Options,GZAP_OPT_TITLE,Options menu
+Visuals,GZAP_OPT_HEADER_VISUALS,Options / Visuals
 Show checks on automap,GZAP_OPT_NAME_MAP_CHECKS,
 "Select whether you want checks to show up on the automap. ""After collecting map"" will have them appear only after you collect the full map for that level. Since the map may not even be reachable until after you finish this level, it's recommended to set this to ""always"" when still learning the maps.
 
@@ -59,6 +58,7 @@ Only items Doom has graphics for are displayed, so don't expect to see Triforce 
 These icons are displayed only in person, not on the automap. Changes to this setting don't take effect until you reset the map.",GZAP_OPT_TT_SHOW_CHECK_CONTENTS,
 Collected check opacity,GZAP_OPT_NAME_COLLECTED_CHECK_ALPHA,
 A setting of 0 makes collected checks vanish entirely. Values around 0.1-0.4 will result in them turning translucent. Higher values make them extremely difficult to distinguish from uncollected checks and are not recommended.,GZAP_OPT_TT_COLLECTED_CHECK_ALPHA,
+Inventory Limits,GZAP_OPT_HEADER_INVENTORY,Options / Inventory Limits
 Weapon bank limit,GZAP_OPT_NAME_BANK_WEAPONS,
 Ammo bank limit,GZAP_OPT_NAME_BANK_AMMO,
 Armour bank limit,GZAP_OPT_NAME_BANK_ARMOUR,
@@ -76,6 +76,8 @@ This is a space-separated list of entries of the form ""name:limit"". The ""name
 Leaving ""small-*:0"" in the list is strong recommended to avoid cluttering your inventory with huge amounts of tiny health/ammo/armour pickups.",GZAP_OPT_TT_BANK_CUSTOM,
 Weapon drops from enemies,GZAP_OPT_NAME_ALLOW_DROPS,
 "Whether to allow enemies to drop weapons (in addition to getting weapons through AP), such as zombie shotgunners dropping shotguns.
+Unlimited,GZAP_OPT_SLIDER_UNLIMITED,
+Gameplay,GZAP_OPT_HEADER_GAMEPLAY,Options / Gameplay
 
 ""If already-filled slot"" allows weapons to drop if you already have a weapon with the same slot number, e.g. having the SSG will allow both SSGs and normal shotguns to drop.
 
@@ -86,8 +88,7 @@ Auto-release on level clear,GZAP_OPT_NAME_RELEASE_ATEXIT,
 This makes the game more about figuring out when you are in ""go mode"" for each individual level and then just going for it, and less about clearing every check individually.
 
 In sync multiworld games this can produce large ""bursts"" of items which some players may find disruptive; check with your teammates before turning it on.",GZAP_OPT_TT_RELEASE_ATEXIT,
-Unlimited,GZAP_OPT_SLIDER_UNLIMITED,
-Controls,GZAP_OPT_HEADER_CONTROLS,
+Controls,GZAP_OPT_HEADER_CONTROLS,Options / Controls
 AP level select/tracker,GZAP_OPT_NAME_LEVELSELECT,
 "Opens the level select menu. This also serves as your item, key, and progress tracker.
 
@@ -96,7 +97,7 @@ AP inventory,GZAP_OPT_NAME_INVENTORY,
 "Open the Archipelago inventory menu.
 
 Most items and weapons you receive from the randomizer will be stored here rather than given to you immediately. This means that you can use radsuits, megaspheres, etc when you really need them, but also means you need to have this bound to something if you want to use them at all!",GZAP_OPT_TT_INVENTORY,
-WAD Import Scanner,GZAP_OPT_HEADER_WAD_SCANNER,
+WAD Import Scanner,GZAP_OPT_HEADER_WAD_SCANNER,Options / Scanner
 Initial levels to scan,GZAP_OPT_NAME_SCAN_LEVELS,
 "Levels to scan, space-separated (e.g. ""E1M1 E2M1 E3M1"").
 
