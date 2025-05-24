@@ -37,6 +37,10 @@ OptionMenu "ArchipelagoOptions"
   GZAP_Tooltip "$GZAP_OPT_TT_ALLOW_DROPS"
   Option "$GZAP_OPT_NAME_RELEASE_ATEXIT", "ap_release_on_level_clear", "ApAtExitReleaseMode"
   GZAP_Tooltip "$GZAP_OPT_TT_RELEASE_ATEXIT"
+  Option "$GZAP_OPT_NAME_ENABLE_DEATHLINK", "ap_enable_deathlink", "OnOff"
+  GZAP_Tooltip "$GZAP_OPT_TT_ENABLE_DEATHLINK"
+
+
   StaticText ""
   StaticText "$GZAP_OPT_HEADER_VISUALS", CYAN
 

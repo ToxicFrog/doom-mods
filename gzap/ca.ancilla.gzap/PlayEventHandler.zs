@@ -177,14 +177,14 @@ class ::PlayEventHandler : StaticEventHandler {
       return;
     }
 
-    if (!ap_allow_deathlink) return;
+    if (!ap_enable_deathlink) return;
 
     ::IPC.Send("DEATH",
       string.format("{ \"reason\": \"%s on %s\" }", reason, level.MapName));
   }
 
   void ApplyDeathLink(string source, string reason) {
-    if (!ap_allow_deathlink) return;
+    if (!ap_enable_deathlink) return;
 
     foreach(player : players) {
       if (!player.mo) continue;

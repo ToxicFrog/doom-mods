@@ -11,8 +11,8 @@ from earlier versions remain compatible.
   - Full tuning for Doom 1 and 2 [from RakeVuril].
   - Full tuning for Scythe 2 [from wrsw].
   - Adventures of Square E1A9 dynkeys are now properly accounted for in logic.
-  - Deathlink support. Must be enabled in yaml; can be turned off mid-game with
-    `ap_allow_deathlink false` if needed.
+  - Deathlink support. This is an **in-game setting** accessible from the
+    gzArchipelago options menu, and defaults to off.
 - Change:
   - Weapon suppression settings are now applied when the weapon is picked up,
     rather than when it is dropped.

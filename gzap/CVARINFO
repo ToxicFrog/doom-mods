@@ -60,8 +60,8 @@ server int ap_suppress_weapon_drops = 1;
 // In multiworld games this can emit a lot of check messages!
 server int ap_release_on_level_clear = 0;
 
-// Red button to turn off deathlink if it goes wrong.
-nosave noarchive bool ap_allow_deathlink = true;
+// Deathlink enable bit.
+server bool ap_enable_deathlink = false;
 
 //// Scanner configuration.
 // These are not written to the save file or config file, since they're more

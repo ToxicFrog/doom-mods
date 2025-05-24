@@ -26,7 +26,7 @@ class GZDoomContext(SuperContext):
     items_handling = 0b111  # fully remote
     want_slot_data = True
     slot_name = None
-    tags = {"AP"}
+    tags = {"AP", "DeathLink"}
 
     def __init__(self, server_address: str, password: str, gzd_dir: str):
         self.found_gzdoom = asyncio.Event()
@@ -101,24 +101,19 @@ class GZDoomContext(SuperContext):
             ])
 
     async def on_death(self, reason):
-        if "DeathLink" in self.tags:
-            await self.send_death(reason)
+        await self.send_death(reason)
 
     def on_package(self, cmd, args):
         # print("on_package", cmd, args)
         if cmd == "Connected":
             # Workaround for Universal Tracker bug
             args.setdefault("slot_data", dict())
-            # Set up deathlink
             self.slot_data = args['slot_data']
-            Utils.async_start(self.update_death_link(self.slot_data.get('death_link', False)), name="deathlink")
-            print('slot_data', self.slot_data)
         super().on_package(cmd, args)
         self.awaken()
 
     def on_deathlink(self, data: Dict[str,Any]):
-        if "DeathLink" in self.tags:
-            self.ipc.send_death(data.get("source", "[unknown player]"), data.get("cause", ""))
+        self.ipc.send_death(data.get("source", "[unknown player]"), data.get("cause", ""))
         super().on_deathlink(data)
 
     # async def send_msgs(self, msgs):
