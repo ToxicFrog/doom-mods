@@ -22,14 +22,6 @@ the keyset, and do the same when processing tuning files. It's probably ok if we
 don't include weapons in tuning for now, but we should be able to express them
 in the logic file.
 
-We need support for keys that are scoped to multiple levels, e.g. we need to be
-able to say that the green key you find in Faithless E1M4 stays with you for all
-of Faithless E1. This may require generalizing the key state in the pk3 away from
-just keys, which is mostly just API renaming -- it's already pretty general -- but
-also away from binding keys to regions, or at least some easy API to take one key
-and install it in multiple regions. This also means we need a way to force a
-different name for it -- e.g. "Green Key (E1)".
-
 We need event support. We need, for example, to be able to say that Faithless
 E1M4 and E1M5 aren't in logic until you can trigger the Garden Portal Activated
 event in the gardens, or that E1M1 Under Belltower isn't in logic until after you
@@ -46,31 +38,10 @@ AP-MONSTERS { map of monster name to monster count for a map }
 - maybe AP-ITEM and AP-MONSTER, each one holding a single count?
 AP-LOCATION { information about a location, including whether it's secret or not }
 
-We may also want to define key scoping here, somehow -- e.g. an AP-KEY message
-something like:
-AP-KEY { typename: "GreenKey", scopename: "E1", scope: ["E1M1", "E1M2", ...] }
-
 Adventures of Square would benefit from being able to model weapons that are also
 keys; frozen notes that the Hellshell Launcher can be used to break certain walls
 that normally require TNT box manipulation. This also ties in with the need to
 be able to represent logic requirements that aren't just keys.
-
-More thoughts on key scope changes -- make the key list apstate-wide rather than
-per-region; a key consists of typename, scope name, and list of levels.
-
-RegisterKey then creates an entry where level list == [scope name]
-
-Finding a key in-game that doesn't exist in the keylist automatically creates an
-entry for it. Open question: is it scoped just to the map we found it in, or to
-the whole game? perhaps we do something like:
-- if it's not interhub, just that level;
-- if it is interhub, and we're not in persistent mode, use the cluster info;
-- if we're in persistent mode, maybe plumb the cluster info through? and then
-  generate based on that?
-- emit an AP-KEY message into the tuning?
-
-Maybe we can also autogen AP-KEY messages at scan time; if we see a key and it's
-marked interhub, generate the AP-KEY for it...
 
 ### scanner
 
@@ -79,7 +50,6 @@ marked interhub, generate the AP-KEY for it...
 
 ### generator
 
-- AP-KEY
 - option to treat bosses as checks -- also needs scanner changes, highly vulnerable
   to enemy-replacement mods
   - could try placing the check in the boss's inventory, and on the ground where
@@ -95,8 +65,6 @@ marked interhub, generate the AP-KEY for it...
 
 ### ingame
 
-- weapon suppression should let the weapon drop normally and apply the suppression
-  when it's picked up?
 - some hints received when playing in the weekly sync did not display on the
   map screen
 - yaml-less UT support
