@@ -70,7 +70,8 @@ you want more or less than the defaults.
 ### What's the win condition?
 
 By default, to clear all levels included in the randomized game. You can set
-this to a lower level in the YAML.
+this to a lower level and/or require the completion of specific levels in the
+YAML.
 
 ### Can I bind hotkeys for inventory items?
 
@@ -87,7 +88,7 @@ which lets you bind hotkeys for them. The following console commands will bind
 
 ### Can I play this singleplayer?
 
-Yes! Generate the game as normal, then load the `.zip` that Archipelago generates
+Yes! Generate the game as normal, then load the `.pk3` that Archipelago generates
 as your last mod in gzdoom. All checks will be resolved locally without needing
 a separate game host.
 

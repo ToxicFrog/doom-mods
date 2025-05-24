@@ -24,6 +24,19 @@ These are unlikely to work well unless they have lots of keys, as otherwise
 everything is in logic at once. Even if they do have lots of keys, tuning will
 be necessary for the map to be playable at all.
 
+### Single-use doors/elevators
+
+In order to support co-op play, most Doom maps are designed so that you can
+finish the map even if you respawn from the start partway through. This is not
+universally true, however (even in the official IWADs) and some levels can get
+"stuck" if you partially complete them and then return to the start (either by
+respawning when you die, or by leaving the level and returning in persistent
+mode).
+
+This can be worked around by resetting the level; without persistent mode you
+can do this by leaving the level and returning to it, and with persistent mode
+you can use the "reset" command at the bottom of the level select screen.
+
 ### Handling of weapon drops
 
 Things dropped by enemies are not considered checks, so e.g. shotguns dropped
@@ -40,6 +53,20 @@ cosmetic issue and does not affect gameplay.
 ### DeHackEd
 
 Pickups modified by DEHACKED should still be detected as checks.
+
+### Secret things
+
+Secret *sectors* are properly supported and can be included as checks in
+themselves (i.e. stepping in the sector counts as a check, in addition to any
+items it contains).
+
+Items located in secret sectors are considered "secret checks" for the purposes
+of item placement logic. Items that you need to pass through a secret sector to
+reach, but which are not themselves in that sector, are *not* considered secret,
+so this is not 100% reliable.
+
+`SecretTrigger` items, which count as finding a secret when picked up, are not
+currently supported.
 
 ### gzDoom mods
 

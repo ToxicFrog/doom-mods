@@ -20,6 +20,8 @@ The counts are also given using the default settings. Turning on more check
 categories in the yaml (via `included_item_categories`) can increase this by up
 to 10x (or more in some wads).
 
+You may also want to look at the [general compatibility notes](./compatibility.md).
+
 ### IWADs
 
 Version numbers are given so you make sure you're using the right version. If
@@ -29,17 +31,17 @@ here may result in glitches.
 
 | WAD          | Maps | Mon/Lvl | Checks | Status | Notes |
 | ------------ | ---- | ------- | ------ | ------ | ----- |
-| Doom         |   36 |  90 | 509 | full | v1.9ud |
-| Doom 2       |   32 | 116 | 501 | basic | v1.9 |
-| TNT          |   32 | 152 | 515 | basic | v1.9 |
-| Plutonia     |   32 |  95 | 427 | basic | v1.9 |
+| Doom         |   36 |      90 | 509    | full   | v1.9ud |
+| Doom 2       |   32 |     116 | 501    | basic  | v1.9 |
+| TNT          |   32 |     152 | 515    | basic  | v1.9 |
+| Plutonia     |   32 |      95 | 427    | basic  | v1.9 |
 | [WadFusion](https://github.com/Owlet7/wadfusion) | varies | varies | varies | missing | See https://github.com/ToxicFrog/doom-mods/pull/38 |
-| Heretic      |   45 | 116 | 900 | basic | v1.3 |
+| Heretic      |   45 |     116 |    900 | basic  | v1.3 |
 | Hexen        | | | | missing | Same concerns as Strife, plus I don't like it. |
 | Strife       | | | | missing | Hub maps and complicated level scripting mean this may need changes to the generator. |
-| FreeDoom     |   36 | 176 | 532 | basic | [v0.13.0](https://freedoom.github.io/download.html) |
-| FreeDoom 2   |   32 | 135 | 495 | basic | [v0.13.0](https://freedoom.github.io/download.html) |
-| Chex Quest 3 |   15 |  83 | 196 | complete | [v1.4](https://www.chexquest3.com/downloads/); v2.0-prerelease is not yet supported. |
+| FreeDoom     |   36 |     176 |    532 | basic | [v0.13.0](https://freedoom.github.io/download.html) |
+| FreeDoom 2   |   32 |     135 |    495 | basic | [v0.13.0](https://freedoom.github.io/download.html) |
+| Chex Quest 3 |   15 |      83 |    196 | complete | [v1.4](https://www.chexquest3.com/downloads/); v2.0-prerelease is not yet supported. |
 
 ### PWADs
 
@@ -56,7 +58,7 @@ here may result in glitches.
 
 | Game                     | Maps | Mon/Lvl | Checks | Status | Notes |
 | ------------------------ | ---- | ------- | ------ | ------ | ----- |
-| The Adventures of Square | 22 | 256 | 640 | problems | Not compatible with persistent mode. Some levels can softlock if you respawn rather than quickloading on death. |
+| The Adventures of Square | 22 | 256 | 640 | partial | Not compatible with persistent mode. |
 | Ashes 2063               | | | | missing | |
 | Ashes: Afterglow         | | | | missing | Uses hub maps. |
 | Ashes: Hard Reset        | | | | missing | Still need to play it. |
