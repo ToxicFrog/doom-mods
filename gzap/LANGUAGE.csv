@@ -74,14 +74,15 @@ Custom bank limits,GZAP_OPT_NAME_BANK_CUSTOM,
 This is a space-separated list of entries of the form ""name:limit"". The ""name"" can be a category name (like ""small-health""), an item name (like ""Stimpack""), or a prefix or suffix using *, like ""small-*"" or ""*Ammo"".
 
 Leaving ""small-*:0"" in the list is strong recommended to avoid cluttering your inventory with huge amounts of tiny health/ammo/armour pickups.",GZAP_OPT_TT_BANK_CUSTOM,
-Weapon drops from enemies,GZAP_OPT_NAME_ALLOW_DROPS,
-"Whether to allow enemies to drop weapons (in addition to getting weapons through AP), such as zombie shotgunners dropping shotguns.
 Unlimited,GZAP_OPT_SLIDER_UNLIMITED,
 Gameplay,GZAP_OPT_HEADER_GAMEPLAY,Options / Gameplay
+Allow using dropped weapons,GZAP_OPT_NAME_ALLOW_DROPS,
+"
+Whether the player is allowed to pick up weapons dropped by enemies (e.g. shotguns dropped by shotgun zombies), in addition to the weapons granted through Archipelago. Disallowed weapons will be converted into ammo when you pick them up.
 
-""If already-filled slot"" allows weapons to drop if you already have a weapon with the same slot number, e.g. having the SSG will allow both SSGs and normal shotguns to drop.
+""If already-filled slot"" allows you to pick up weapons if you already have a weapon with the same slot number, e.g. having the SSG will let you pick up normal shotguns. This is generally the most compatible option for weapon-replacing mods.
 
-""If already-held weapon"" allows weapons to drop only if you are already holding a copy of that weapon.",GZAP_OPT_TT_ALLOW_DROPS,
+""If already-held weapon"" allows you to collect weapons only if they are duplicates of ones you already have. This most closely matches the behaviour of APDoom.",GZAP_OPT_TT_ALLOW_DROPS,
 Auto-release on level clear,GZAP_OPT_NAME_RELEASE_ATEXIT,
 "If enabled, will release some or all of the items in a level when you reach the exit.
 
