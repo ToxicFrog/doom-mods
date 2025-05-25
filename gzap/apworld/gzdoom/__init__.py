@@ -303,7 +303,7 @@ class GZDoomWorld(World):
     def fill_slot_data(self):
         return self.options.as_dict(
             'level_order_bias', 'local_weapon_bias', 'carryover_weapon_bias',
-            'spawn_filter', 'death_link') | {
+            'spawn_filter') | {
                 'selected_wad': self.wad_logic.name
             }
 
