@@ -169,7 +169,7 @@ class DoomMap:
     def starting_items(self, options):
         """Return all items needed if this is a starting level for the player."""
         if options.start_with_keys:
-            return self.keyset | {self.access_token_name()}
+            return {key.fqin() for key in self.keyset} | {self.access_token_name()}
         else:
             return {self.access_token_name()}
 
