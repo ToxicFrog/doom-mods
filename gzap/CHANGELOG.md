@@ -13,6 +13,8 @@ from earlier versions remain compatible.
   - Adventures of Square E1A9 dynkeys are now properly accounted for in logic.
   - Deathlink support. This is an **in-game setting** accessible from the
     gzArchipelago options menu, and defaults to off.
+  - Secret-sector checks now display an AP icon on the automap (if you have
+    checks on automap enabled), same as item-based checks.
 - Change:
   - Weapon suppression settings are now applied when the weapon is picked up,
     rather than when it is dropped.

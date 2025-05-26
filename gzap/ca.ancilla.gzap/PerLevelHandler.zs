@@ -15,6 +15,7 @@ class ::PerLevelHandler : EventHandler {
   // Locations corresponding to secret sectors. Indexed by sector number.
   // As we find each one we clear it from the map.
   Map<int, ::Location> secret_locations;
+  Map<int, ::CheckMapMarker> secret_markers;
   // If set, the player is leaving the level via the level select or similar
   // rather than by reaching the exit.
   bool early_exit;
@@ -90,6 +91,22 @@ class ::PerLevelHandler : EventHandler {
     }
   }
 
+  void MarkSecret(::Location location) {
+    if (secret_markers.CheckKey(location.secret_sector)) return;
+    let sector = level.sectors[location.secret_sector];
+    let marker = ::CheckMapMarker(Actor.Spawn(
+      "::CheckMapMarker", (sector.centerspot.x, sector.centerspot.y, 0)));
+    marker.location = location;
+    secret_markers.Insert(location.secret_sector, marker);
+  }
+
+  void UnmarkSecret(::Location location) {
+    let marker = secret_markers.GetIfExists(location.secret_sector);
+    if (!marker) return;
+    marker.Destroy();
+    secret_markers.Remove(location.secret_sector);
+  }
+
   void SetupSecrets(::Region region) {
     self.secret_locations.Clear();
 
@@ -102,15 +119,18 @@ class ::PerLevelHandler : EventHandler {
         // Location is checked but sector is still marked undiscovered -- level
         // probably got reset.
         DEBUG("Clearing secret flag on sector %d", location.secret_sector);
+        UnmarkSecret(location);
         sector.ClearSecret();
         level.found_secrets++;
       } else if (!location.checked && !sector.IsSecret()) {
         // Location isn't marked checked but the corresponding sector has been
         // discovered, so emit a check event for it.
         ::PlayEventHandler.Get().CheckLocation(location);
+        UnmarkSecret(location);
       } else if (!location.checked) {
         // Player hasn't found this yet.
         self.secret_locations.Insert(location.secret_sector, location);
+        MarkSecret(location);
       }
     }
   }
@@ -119,6 +139,7 @@ class ::PerLevelHandler : EventHandler {
     foreach (sector_id,location : self.secret_locations) {
       if (!level.sectors[sector_id].IsSecret()) {
         ::PlayEventHandler.Get().CheckLocation(location);
+        UnmarkSecret(location);
         // Only process one so we don't modify secret_locations while iterating it.
         self.secret_locations.Remove(sector_id);
         return;

@@ -67,18 +67,13 @@ mixin class ::ArchipelagoIcon {
 // An automap marker that follows the corresponding CheckPickup around.
 class ::CheckMapMarker : MapMarker {
   mixin ::ArchipelagoIcon;
-  ::CheckPickup parent;
+  ::Location location;
 
   Default {
     Scale 0.25;
   }
 
-  override void Tick() {
-    self.SetOrigin(self.parent.pos, false);
-    super.Tick();
-  }
-
-  ::Location GetLocation() { return parent.GetLocation(); }
+  ::Location GetLocation() { return self.location; }
   bool IsChecked() { return GetLocation().checked; }
 
   bool ShouldDisplay() {
@@ -93,6 +88,15 @@ class ::CheckMapMarker : MapMarker {
       return ::PlayEventHandler.GetState().GetCurrentRegion().automap;
     }
     return true;
+  }
+}
+
+class ::ItemMapMarker : ::CheckMapMarker {
+  ::CheckPickup parent;
+
+  override void Tick() {
+    self.SetOrigin(self.parent.pos, false);
+    super.Tick();
   }
 }
 
@@ -124,7 +128,7 @@ class ::CheckPickup : ScoreItem {
   mixin ::ArchipelagoIcon;
 
   ::Location location;
-  ::CheckMapMarker marker;
+  ::ItemMapMarker marker;
   ::CheckLabel label;
   ::CheckLabel orig_label;
 
@@ -299,8 +303,9 @@ class ::CheckPickup : ScoreItem {
   void CreateMarkers() {
     if (!self.marker) {
       DEBUG("Check[%s] spawning map marker", self.location.name);
-      self.marker = ::CheckMapMarker(Spawn("::CheckMapMarker", self.pos));
+      self.marker = ::ItemMapMarker(Spawn("::ItemMapMarker", self.pos));
       self.marker.parent = self;
+      self.marker.location = self.location;
     }
     if (ap_show_check_contents && !self.label) {
       self.label = CreateLabel(self.location.ap_typename);
