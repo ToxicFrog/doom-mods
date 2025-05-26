@@ -128,7 +128,7 @@ class GZDoomContext(SuperContext):
         # and propagate the error if so.
         for task in [self.items_task, self.locations_task, self.hints_task, self.tracker_task]:
             if task is not None and task.done():
-                print(f"Task {task} has exited!")
+                logger.error(f"Task {task} has exited!")
                 task.result()  # raises if the task errored out
         self.watcher_event.set()
 
