@@ -1,6 +1,8 @@
-# Unreleased
+# 0.6.0
 
-This is a bugfix release.
+This is a bugfix release. (It also has some cool new features, but the main
+reason for this release -- and the reason it's 0.6.0 and not 0.5.1 -- is the
+fixes to tuning generation related to keys.)
 
 ⚠️ The logic format has changed. **You must rescan your wads.** Tuning files
 from earlier versions remain compatible.
@@ -31,6 +33,7 @@ from earlier versions remain compatible.
     receive an AP item.
   - 8bpp colour is now supported when converting AP messages to display in
     gzDoom. Since, apparently, AP sometimes uses that!
+  - The AP client program is now better about reporting errors.
 
 # 0.5.0
 
