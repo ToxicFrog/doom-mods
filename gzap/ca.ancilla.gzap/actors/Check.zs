@@ -71,6 +71,10 @@ class ::CheckMapMarker : MapMarker {
 
   Default {
     Scale 0.25;
+    // TODO: MapMarkers don't respect AutomapOffsets or A_SpriteOffset. If we
+    // want them to display centered on the map, we need to give the sprite
+    // itself centered offsets, and then A_SpriteOffset() on the in-world object
+    // to keep it from clipping into the floor.
   }
 
   ::Location GetLocation() { return self.location; }
@@ -255,6 +259,18 @@ class ::CheckPickup : ScoreItem {
   // The label will be half the height of the original or 12px high, whichever
   // is smaller. (For reference, the Check sprite is 32x32).
   ::CheckLabel CreateLabel(string typename, int zoffs = -1) {
+    // If the typename starts with ICON:, AP has already selected an icon for
+    // us to use.
+    if (typename.Left(5) == "ICON:") {
+      return CreateIconLabel(typename);
+    }
+
+    // If AP couldn't select an icon and it's not a Doom item, it's just recorded
+    // as "NONE:game name:item name" for later mapping.
+    if (typename.Left(5) == "NONE:") {
+      return null;
+    }
+
     // Start with some basic checks. We can't create a label if we don't know
     // the corresponding class, if it has no SpawnState sprite, or if the
     // sprite is 0-height.
@@ -297,6 +313,28 @@ class ::CheckPickup : ScoreItem {
     label.parent = self;
     label.zoffs = zoffs;
     label.A_SetScale(scale);
+    return label;
+  }
+
+  ::CheckLabel CreateIconLabel(string icon) {
+    // we encode both the sprite name and the frame index into the icon
+    // then we get the sprid with GetSpriteIndex()
+    // set label.sprite to the sprid
+    // set label.frame to the frame index
+    // and away we go
+    Array<string> fields;
+    icon.Split(Fields, ":");
+    let sprid = GetSpriteIndex(fields[1]);
+    let frame = fields[2].ToInt(10);
+    let zoffs = 16; // Centered in the check icon
+
+    let label = ::CheckLabel(Spawn("::CheckLabel", (pos.x, pos.y, pos.z+zoffs)));
+    label.sprite = sprid;
+    label.frame = frame;
+    label.parent = self;
+    label.zoffs = zoffs;
+    label.A_SetScale(1.0); // Icons are prescaled
+    label.A_SpriteOffset(-8, -8); // 16x16, so this puts the center of the sprite over the center of the actor
     return label;
   }
 

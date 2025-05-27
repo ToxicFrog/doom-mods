@@ -15,6 +15,11 @@ from earlier versions remain compatible.
     gzArchipelago options menu, and defaults to off.
   - Secret-sector checks now display an AP icon on the automap (if you have
     checks on automap enabled), same as item-based checks.
+  - GZAP now has a small library of builtin icons, and when generating, will try
+    to guess an appropriate icon to use for items from other games, for use in-
+    game when `ap_show_check_contents` is on. This library is still very sparse
+    and I hope to add more icons and icon mappings in the future.
+    The current icons are all from Aleksandr Makarov's Heroic Asset Series.
 - Change:
   - Weapon suppression settings are now applied when the weapon is picked up,
     rather than when it is dropped.

@@ -11,6 +11,7 @@ from BaseClasses import CollectionState, Item, ItemClassification, Location, Mul
 from worlds.AutoWorld import WebWorld, World
 import worlds.LauncherComponents as LauncherComponents
 
+from . import icons
 from .Options import GZDoomOptions
 from .model import DoomItem, DoomLocation, DoomWad, init_wads, get_wad
 
@@ -335,7 +336,8 @@ class GZDoomWorld(World):
             loc = self.get_location(name)
             if loc.item and loc.item.name in self.wad_logic.items_by_name:
                 return self.wad_logic.items_by_name[loc.item.name].typename
-            return ""
+            return (icons.guess_icon(loc.item.game, loc.item.name)
+                or f"NONE:{loc.item.game}:{loc.item.name}")
 
         def escape(name: str) -> str:
             return name.replace('\\', '\\\\').replace('"', '\\"')

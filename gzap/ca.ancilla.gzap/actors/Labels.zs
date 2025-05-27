@@ -21,3 +21,11 @@ class ::Automap : Actor {
       STOP;
   }
 }
+
+class ::IconLoader : Actor {
+  States {
+    Spawn:
+      AP00 ABCDEFGHIJKLMNOPQRSTUVWXYZ -1;
+      STOP;
+  }
+}
