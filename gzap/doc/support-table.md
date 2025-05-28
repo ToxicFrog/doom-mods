@@ -35,6 +35,7 @@ here may result in glitches.
 | Doom 2       |   32 |     116 | 501    | full   | v1.9 |
 | TNT          |   32 |     152 | 515    | basic  | v1.9 |
 | Plutonia     |   32 |      95 | 427    | basic  | v1.9 |
+| No Rest for the Living | 9 | 141 | 124 | full | |
 | [WadFusion](https://github.com/Owlet7/wadfusion) | varies | varies | varies | missing | See https://github.com/ToxicFrog/doom-mods/pull/38 |
 | Heretic      |   45 |     116 |    900 | basic  | v1.3 |
 | Hexen        | | | | missing | Same concerns as Strife, plus I don't like it. |

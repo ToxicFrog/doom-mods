@@ -1,5 +1,7 @@
 # Unreleased
 
+- New:
+  - Logic and tuning for No Rest for the Loving [from RakeVuril].
 - Fix:
   - Disabled some debug logging that was accidentally left in 0.6.0.
 
