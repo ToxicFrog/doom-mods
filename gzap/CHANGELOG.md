@@ -1,3 +1,8 @@
+# Unreleased
+
+- Fix:
+  - Disabled some debug logging that was accidentally left in 0.6.0.
+
 # 0.6.0
 
 This is a bugfix release. (It also has some cool new features, but the main
@@ -12,7 +17,6 @@ from earlier versions remain compatible.
     the AP mod settings.
   - Full tuning for Doom 1 and 2 [from RakeVuril].
   - Full tuning for Scythe 2 [from wrsw].
-  - Adventures of Square E1A9 dynkeys are now properly accounted for in logic.
   - Deathlink support. This is an **in-game setting** accessible from the
     gzArchipelago options menu, and defaults to off.
   - Secret-sector checks now display an AP icon on the automap (if you have
@@ -31,6 +35,7 @@ from earlier versions remain compatible.
     future generations if the resulting tuning engine is loaded.
   - Keys spawned during play are detected instantly rather than next time you
     receive an AP item.
+  - Adventures of Square E1A9 dynkeys are now properly accounted for in logic.
   - 8bpp colour is now supported when converting AP messages to display in
     gzDoom. Since, apparently, AP sometimes uses that!
   - The AP client program is now better about reporting errors.

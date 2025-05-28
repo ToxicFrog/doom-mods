@@ -3,7 +3,7 @@
 // - Suppressing weapon pickups that the player doesn't have unlocked yet, and
 // - Detecting when the player has picked up a dynkey and handling it.
 #namespace GZAP;
-#debug on;
+#debug off;
 
 class ::PickupDetector : Inventory {
   Default {
@@ -14,17 +14,6 @@ class ::PickupDetector : Inventory {
     +INVENTORY.UNDROPPABLE;
     +INVENTORY.QUIET;
   }
-
-  // States {
-  //   Spawn:
-  //     TNT1 A 0;
-  //     STOP;
-  //   KeyCheck:
-  //     TNT1 A 2;
-  //     TNT1 A 0 DoKeyCheck();
-  //     GOTO Spawn;
-  //     STOP;
-  // }
 
   // In order to make sure we intercept EVERY SINGLE PICKUP, we need to be in
   // head position, as otherwise pickups might get intercepted by earlier items
