@@ -9,7 +9,7 @@
 class ::LevelAccess : Actor {
   States {
     Spawn:
-      APLA A -1;
+      AP00 A -1;
       STOP;
   }
 }
@@ -17,7 +17,7 @@ class ::LevelAccess : Actor {
 class ::Automap : Actor {
   States {
     Spawn:
-      APAM A -1;
+      AP00 M -1;
       STOP;
   }
 }
@@ -25,7 +25,7 @@ class ::Automap : Actor {
 class ::IconLoader : Actor {
   States {
     Spawn:
-      AP00 ABCDEFGHIJKLMNOPQRSTUVWXYZ -1;
+      AP01 ABCDEFGHIJKLMNOPQRSTUVWXYZ -1;
       STOP;
   }
 }

@@ -32,7 +32,7 @@ _ICON_GUESSES = [
 ]
 
 # Icon shortname to actual name mapping.
-# The actual images are PNGs stored in gzap/sprites/raw/
+# These end up in sprites/icons/ in the AP01 sprite space
 _ICON_SPRITES = {
   'amulet' : 'NecklaceOutline 8',
   'armour' : 'TorsoOutline 5',
@@ -64,8 +64,8 @@ def build_icons():
   for index,icon in enumerate(sorted(_ICON_SPRITES.keys())):
     assert index < 26
     src = f'assets/{_ICON_SPRITES[icon]}.png'
-    dst = f'sprites/icons/ap00{chr(_ICON_FRAMES[icon] + ord('A'))}0.png'
-    print(f'{_ICON_SPRITES[icon]} -> AP00{chr(_ICON_FRAMES[icon] + ord('A'))}0.png')
+    dst = f'sprites/icons/ap01{chr(_ICON_FRAMES[icon] + ord('A'))}0.png'
+    print(f'{_ICON_SPRITES[icon]} -> AP01{chr(_ICON_FRAMES[icon] + ord('A'))}0.png')
     copy(src, dst)
 
 def guess_icon(game: str, name: str) -> str:

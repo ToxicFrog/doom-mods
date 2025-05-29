@@ -1,8 +1,8 @@
 NAME=gzArchipelago
 TAGS=gzap-*
 VERSION=0.6.0
-LUMPS=MAPINFO MENUDEF zscript.txt *.md LANGUAGE.csv CVARINFO KEYCONF
-LUMPS+=sprites textures maps GZAPRC
+LUMPS=MAPINFO MENUDEF zscript.txt *.md LANGUAGE.csv CVARINFO KEYCONF TEXTURES.txt
+LUMPS+=sprites textures maps patches GZAPRC
 ZSDIR=ca.ancilla.gzap
 LIBTTM=${TOPDIR}/libtooltipmenu/ca.ancilla.libtooltipmenu
 LIBTTM_PREFIX=GZAP
@@ -12,18 +12,17 @@ all: ${PK3} apworld
 include ${TOPDIR}/rules.make
 
 apworld: version ${TOPDIR}/release/gzdoom-${VERSION}.apworld
-${PK3}: sprites/icons/.built
+${PK3}: sprites/icons
 
 version:
 	${TOPDIR}/tools/version-stamp "${TAGS}" apworld/gzdoom/VERSION
 
 ca.ancilla.gzap/PlayEventHandler.zsc: apworld/gzdoom/VERSION
 
-sprites/icons/.built: apworld/gzdoom/icons.py assets/*.png
-	rm -rf sprites/icons/
-	mkdir -p sprites/icons/
+sprites/icons: apworld/gzdoom/icons.py assets/*.png
+	rm -f sprites/icons/*.png
 	python apworld/gzdoom/icons.py
-	touch sprites/icons/.built
+	touch sprites/icons
 
 ${TOPDIR}/release/gzdoom-${VERSION}.apworld: apworld/gzdoom/* apworld/gzdoom/*/*
 	cd apworld && zip -r gzdoom.apworld gzdoom

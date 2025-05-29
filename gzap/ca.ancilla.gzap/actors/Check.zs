@@ -17,15 +17,15 @@ mixin class ::ArchipelagoIcon {
       TNT1 A 0 SetProgressionState();
       STOP;
     NotProgression:
-      APIT A 35 BRIGHT;
+      AP00 C 35 BRIGHT;
       TNT1 A 0 SetProgressionState();
       LOOP;
     Progression:
-      APIT ABCDEFGHIJIHGFEDCB 2 BRIGHT;
+      AP00 P 35 BRIGHT;
       TNT1 A 0 SetProgressionState();
       LOOP;
     Unreachable:
-      APUR A 35 BRIGHT;
+      AP00 Z 35 BRIGHT;
       TNT1 A 0 SetProgressionState();
       LOOP;
     Hidden:
@@ -158,8 +158,8 @@ class ::CheckPickup : ScoreItem {
       // If we can, Subsume() will jump us straight to SetProgression.
       // Otherwise, NoOriginal will do some setup based on the defaults of the
       // type, if possible.
-      APIT AAAAAAA 1 Subsume();
-      APIT A 1 NoOriginal();
+      AP00 CCCCCCC 1 Subsume();
+      AP00 C 1 NoOriginal();
       GOTO SetProgression;
   }
 
@@ -242,6 +242,7 @@ class ::CheckPickup : ScoreItem {
       DEBUG("Check[%s] creating markers", self.location.name);
       CreateMarkers();
     }
+    A_SpriteOffset(0, -16);
   }
 
   void UpdateFromOriginal(readonly<Actor> original) {
