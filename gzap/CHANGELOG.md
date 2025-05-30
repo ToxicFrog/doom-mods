@@ -5,6 +5,7 @@
   - Artwork for checks that distinguishes between progression, useful, useful
     progression, and trap, in a way that's more consistent with other apworlds,
     contributed by Dat Boi.
+  - Showing check contents is now on by default.
 - Fix:
   - Disabled some debug logging that was accidentally left in 0.6.0.
 
