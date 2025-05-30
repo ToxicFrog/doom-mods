@@ -17,12 +17,14 @@ class ::RC : Object play {
     let parser = ::RCParser(new("::RCParser"));
     int lump = wads.FindLump(lumpname, 0, wads.AnyNamespace);
     while (lump >= 0) {
-      console.printf("Loading GZAPRC %d (%s)", lump, wads.GetLumpFullName(lump));
       let tmp = parser.Parse(wads.ReadLump(lump));
-      if (tmp) {
-        rc.merge(tmp);
+      if (!tmp) {
+        console.printf("\c[RED][AP] Error loading config file %s#%d.", wads.GetLumpFullName(lump), lump);
+      } else if (tmp.should_skip) {
+        console.printf("[AP] Skipping config file %s#%d (wrong megawad).", wads.GetLumpFullName(lump), lump);
       } else {
-        console.printf("\c[RED]Error loading lump %d (%s), skipping.", lump, wads.GetLumpFullName(lump));
+        console.printf("[AP] Loaded config file %s#%d.", wads.GetLumpFullName(lump), lump);
+        rc.merge(tmp);
       }
       lump = wads.FindLump(lumpname, lump+1, wads.AnyNamespace);
     }
@@ -59,6 +61,13 @@ class ::RC : Object play {
   string, bool GetTypename(string cls) {
     let [val, ok] = self.typenames.CheckValue(cls);
     return val, ok;
+  }
+
+  bool should_skip;
+  void CheckRequiredMap(string mapname, string checksum) {
+    if (LevelInfo.MapChecksum(mapname) != checksum) {
+      self.should_skip = true;
+    }
   }
 }
 
@@ -165,6 +174,7 @@ class ::RCParser : Object play {
   bool Statement() {
     if (peek("category")) { return ActorCategory(); }
     if (peek("typename")) { return ActorTypename(); }
+    if (peek("require")) { return Requirements(); }
     else { return Error("category or typename directive"); }
   }
 
@@ -197,6 +207,17 @@ class ::RCParser : Object play {
     foreach (cls : classes) {
       self.rc.SetTypename(cls, types[0]);
     }
+    return true;
+  }
+
+  bool Requirements() {
+    if (!require("require")) return false;
+    string mapname = next("map name");
+    if (mapname == "") return false;
+    string checksum = next("map checksum");
+    if (checksum == "") return false;
+    if (!require(";")) return false;
+    self.rc.CheckRequiredMap(mapname, checksum);
     return true;
   }
 

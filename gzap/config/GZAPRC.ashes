@@ -1,4 +1,6 @@
 #### Ashes 2063 configuration ####
+require MAP00 92a4314fb0847d33ab8559d637e7435d;
+
 # Ashes does something weird here where it has a bunch of custom keys, but under
 # the hood it uses the normal skull/keycard actors -- each key is a CustomInventory
 # that when picked up gives you the corresponding vanilla key!

@@ -10,6 +10,10 @@
   - Additional logic for Doom 2 [from j-palomo].
   - Logic fixes for FreeDoom E2 [from Vibri].
   - Showing check contents is now on by default.
+- Change:
+  - `GZAPRC` config files can now be made conditional with `require`, so that
+    they are only loaded when the specific megawad they apply to is present.
+  - Builtin `GZAPRC` files are now split up by game.
 - Fix:
   - Disabled some debug logging that was accidentally left in 0.6.0.
 

@@ -4,7 +4,16 @@
 #
 # Available directives are:
 #
+#
+#     require <map> <checksum> ;
+#
+# This GZAPRC will be loaded only if the given map is present, and has the given
+# checksum. This can be used to make GZAPRCs specific to a certain megawad load
+# only if that megawad is also loaded.
+#
+#
 #     category <cat> : <list of classes> ;
+#
 # Assign the listed classes to the given category. Any category can be specified,
 # including ones not otherwise known to the scanner -- they will be passed through
 # to the apworld as is. This can be used to add objects to the scan that would
@@ -22,7 +31,9 @@
 # A category of "none" will exclude something from the scan entirely, even if it
 # would normally have been included.
 #
+#
 #     typename <type> : <list of classes> ;
+#
 # When scanning anything in the list, report it as being <type> rather than
 # whatever its actual type is. The check will be named after that type rather
 # than whatever was actually scanned, and the given type, not the original item,
