@@ -16,22 +16,27 @@ mixin class ::ArchipelagoIcon {
     SetProgression:
       TNT1 A 0 SetProgressionState();
       STOP;
-    NotProgression:
+    Filler:
       AP00 C 35 BRIGHT;
-      TNT1 A 0 SetProgressionState();
-      LOOP;
+      GOTO SetProgression;
     Progression:
       AP00 P 35 BRIGHT;
-      TNT1 A 0 SetProgressionState();
-      LOOP;
+      GOTO SetProgression;
+    UsefulProgression:
+      AP00 Q 35 BRIGHT;
+      GOTO SetProgression;
+    Useful:
+      AP00 U 35 BRIGHT;
+      GOTO SetProgression;
+    Trap:
+      AP00 T 35 BRIGHT;
+      GOTO SetProgression;
     Unreachable:
       AP00 Z 35 BRIGHT;
-      TNT1 A 0 SetProgressionState();
-      LOOP;
+      GOTO SetProgression;
     Hidden:
       TNT1 A 35;
-      TNT1 A 0 SetProgressionState();
-      LOOP;
+      GOTO SetProgression;
   }
 
   void SetProgressionState() {
@@ -42,14 +47,23 @@ mixin class ::ArchipelagoIcon {
       A_SetRenderStyle(CVar.FindCVar("ap_collected_alpha").GetFloat(), STYLE_Translucent);
     }
 
+    let loc = GetLocation();
     if (!ShouldDisplay()) {
       SetStateLabel("Hidden");
-    } else if (GetLocation().unreachable) {
+    } else if (loc.IsUnreachable()) {
       SetStateLabel("Unreachable");
-    } else if (GetLocation().progression && ShouldHilight()) {
-      SetStateLabel("Progression");
+    } else if (loc.IsProgression() && ShouldHilight()) {
+      if (loc.IsUseful()) {
+        SetStateLabel("UsefulProgression");
+      } else {
+        SetStateLabel("Progression");
+      }
+    } else if (loc.IsUseful()) {
+      SetStateLabel("Useful");
+    } else if (loc.IsTrap()) {
+      SetStateLabel("Trap");
     } else {
-      SetStateLabel("NotProgression");
+      SetStateLabel("Filler");
     }
   }
 
@@ -57,7 +71,7 @@ mixin class ::ArchipelagoIcon {
   //    abstract bool ShouldDisplay();
   // To determine whether to render at all;
   //    abstract bool ShouldHilight() { return true; }
-  // To determine whether progression items should glow;
+  // To determine whether progression items should be marked as such;
   //    abstract ::Location GetLocation()
   // To return the backing ::Location object;
   //    abstract bool IsChecked()
@@ -166,8 +180,8 @@ class ::CheckPickup : ScoreItem {
   static ::CheckPickup Create(::Location location) {
     let thing = ::CheckPickup(Actor.Spawn("::CheckPickup", location.pos));
     thing.location = location;
-    DEBUG("Check initialize: name=%s, pr=%d, ur=%d, ck=%d",
-      location.name, location.progression, location.unreachable, location.checked);
+    DEBUG("Check initialize: name=%s, ck=%d, flags=%1X",
+      location.name, location.checked, location.flags);
     if (location.checked) level.found_items++;
     return thing;
   }
@@ -182,14 +196,14 @@ class ::CheckPickup : ScoreItem {
   //// Initialization ////
 
   override void PostBeginPlay() {
-    if (self.location.unreachable) self.ClearCounters();
+    if (self.location.IsUnreachable()) self.ClearCounters();
     UpdateFromLocation();
   }
 
   void Subsume() {
     // Don't subsume if this is an unreachable check -- leave the original item
     // in place just in case.
-    if (GetLocation().unreachable) return;
+    if (GetLocation().IsUnreachable()) return;
     DEBUG("Check[%s] Subsume", self.location.name);
     Actor closest;
     let it = BlockThingsIterator.Create(self, 32);
@@ -277,6 +291,7 @@ class ::CheckPickup : ScoreItem {
     // sprite is 0-height.
     Class<Actor> cls = typename;
     if (!cls) return null;
+    DEBUG("Check[%s]: CreateLabel from %s", self.location.name, typename);
 
     let prototype = GetDefaultByType(cls);
     let sprid = prototype.SpawnState.sprite;
@@ -318,6 +333,7 @@ class ::CheckPickup : ScoreItem {
   }
 
   ::CheckLabel CreateIconLabel(string icon) {
+    DEBUG("Check[%s]: CreateIconLabel(%s)", self.location.name, icon);
     // we encode both the sprite name and the frame index into the icon
     // then we get the sprid with GetSpriteIndex()
     // set label.sprite to the sprid

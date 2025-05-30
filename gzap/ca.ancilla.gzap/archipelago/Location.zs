@@ -13,6 +13,16 @@ enum ::Tracking {
   AP_REACHABLE_IL,    // Tracker thinks it's fully in logic.
 }
 
+enum ::LocationFlags {
+  AP_IS_FILLER = 0,
+  // These first three match the ItemClassification flags in AP
+  AP_IS_PROGRESSION = 1,
+  AP_IS_USEFUL = 2,
+  AP_IS_TRAP = 4,
+  // These are internal to gzdoom
+  AP_IS_UNREACHABLE = 8,
+}
+
 // Information about a single check.
 class ::Location {
   uint apid;
@@ -21,8 +31,7 @@ class ::Location {
   string orig_typename;  // Typename of item this location originally held
   string ap_typename;    // Typename name of item randomized into this location
   string ap_name;        // User-facing name of same
-  bool progression;   // Does it hold a progression item?
-  bool unreachable;   // Do we think this is unreachable?
+  ::LocationFlags flags; // As above
   bool checked;       // Has the player already checked it?
   ::Tracking track;   // Tracker status for this location
   Vector3 pos;
@@ -50,4 +59,10 @@ class ::Location {
     }
     return self.name < other.name;
   }
+
+  bool IsFiller() { return flags == AP_IS_FILLER; }
+  bool IsProgression() { return flags & AP_IS_PROGRESSION; }
+  bool IsTrap() { return flags & AP_IS_TRAP; }
+  bool IsUseful() { return flags & AP_IS_USEFUL; }
+  bool IsUnreachable() { return flags & AP_IS_UNREACHABLE; }
 }

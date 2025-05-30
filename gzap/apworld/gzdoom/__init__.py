@@ -13,7 +13,10 @@ import worlds.LauncherComponents as LauncherComponents
 
 from . import icons
 from .Options import GZDoomOptions
-from .model import DoomItem, DoomLocation, DoomWad, init_wads, get_wad
+from .model import init_wads
+from .model.DoomItem import DoomItem
+from .model.DoomLocation import DoomLocation
+from .model.DoomWad import DoomWad
 
 logger = logging.getLogger("gzDoom")
 
@@ -42,15 +45,30 @@ LauncherComponents.components.append(
 
 class GZDoomLocation(Location):
     game: str = "gzDoom"
+    doom_location: DoomLocation
 
     def __init__(self, world, loc: DoomLocation, region: Region) -> None:
         super().__init__(player=world.player, name=loc.name(), address=loc.id, parent=region)
         self.access_rule = loc.access_rule(world)
+        self.doom_location = loc
         if loc.secret and not world.options.allow_secret_progress.value:
             self.progress_type = LocationProgressType.EXCLUDED
         else:
             self.progress_type = LocationProgressType.DEFAULT
 
+    def flags(self) -> str:
+        flags = []
+        if self.item.classification & ItemClassification.progression:
+            flags.append('AP_IS_PROGRESSION')
+        if self.item.classification & ItemClassification.useful:
+            flags.append('AP_IS_USEFUL')
+        if self.item.classification & ItemClassification.trap:
+            flags.append('AP_IS_TRAP')
+        if self.doom_location.unreachable:
+            flags.append('AP_IS_UNREACHABLE')
+        if not flags:
+            flags.append('AP_IS_FILLER')
+        return '|'.join(flags)
 
 class GZDoomItem(Item):
     game: str = "gzDoom"
@@ -339,17 +357,20 @@ class GZDoomWorld(World):
             return (icons.guess_icon(loc.item.game, loc.item.name)
                 or f"NONE:{loc.item.game}:{loc.item.name}")
 
-        def escape(name: str) -> str:
-            return name.replace('\\', '\\\\').replace('"', '\\"')
-
         def item_name_at(name: str) -> str:
             loc = self.get_location(name)
             if loc.item:
                 return escape(loc.item.name)
             return ""
 
+        def flags_at(loc: DoomLocation) -> str:
+            return self.get_location(loc.name()).flags()
+
         def locations(map):
             return self.pool.locations_in_map(map)
+
+        def escape(name: str) -> str:
+            return name.replace('\\', '\\\\').replace('"', '\\"')
 
         mod_version = resources.files(__package__).joinpath('VERSION').read_text().strip()
 
@@ -380,6 +401,7 @@ class GZDoomWorld(World):
             "item_at": item_at,
             "item_type_at": item_type_at,
             "item_name_at": item_name_at,
+            "flags_at": flags_at,
             "escape": escape,
             "win_conditions": self.options.win_conditions.template_values(self),
             "generate_mapinfo": (not self.options.pretuning_mode) or self.options.full_persistence,

@@ -20,6 +20,9 @@ class DoomPosition(NamedTuple):
     y: int
     z: int
 
+    def as_vec3(self):
+        return f"({self.x},{self.y},{self.z})"
+
 
 class DoomLocation:
     """

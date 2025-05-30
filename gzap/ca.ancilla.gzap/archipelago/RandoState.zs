@@ -117,14 +117,15 @@ class ::RandoState play {
   }
 
   void RegisterCheck(
-      string map, uint apid, string name,
-      string orig_typename, string ap_typename, string ap_name,
-      bool progression, Vector3 pos, bool unreachable = false) {
-    GetRegion(map).RegisterCheck(apid, name, orig_typename, ap_typename, ap_name, progression, pos, unreachable);
+      // Information about the location
+      string map, uint apid, Vector3 pos, string name, string orig_typename,
+      // Information about the item it contains
+      string ap_typename, string ap_name, uint flags) {
+    GetRegion(map).RegisterCheck(apid, pos, name, orig_typename, ap_typename, ap_name, flags);
   }
 
-  void RegisterSecretCheck(string map, uint apid, string name, int sector, bool unreachable = false) {
-    GetRegion(map).RegisterSecretCheck(apid, name, sector, unreachable);
+  void RegisterSecretCheck(string map, uint apid, string name, int sector, uint flags) {
+    GetRegion(map).RegisterSecretCheck(apid, name, sector, flags);
   }
 
   // Called when we get a HINT message from AP.

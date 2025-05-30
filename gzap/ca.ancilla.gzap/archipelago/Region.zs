@@ -53,7 +53,7 @@ class ::Region play {
     exit.mapname = map;
     exit.name = string.format("%s - Exit", map);
     exit.secret_sector = -1;
-    exit.unreachable = false;
+    exit.flags = AP_IS_PROGRESSION|AP_IS_USEFUL;
     exit.checked = false;
     exit.is_virt = true;
     region.exit_location = exit;
@@ -86,33 +86,34 @@ class ::Region play {
   }
 
   void RegisterCheck(
-      uint apid, string name,
-      string orig_typename, string ap_typename, string ap_name,
-      bool progression, Vector3 pos, bool unreachable = false) {
+      uint apid, Vector3 pos, string name,
+      string orig_typename, string ap_typename, string ap_name, uint flags) {
     let loc = ::Location(new("::Location"));
-    loc.apid = apid;
     loc.mapname = self.map;
+    loc.apid = apid;
+    loc.pos = pos;
     loc.name = name;
     loc.orig_typename = orig_typename;
     loc.ap_typename = ap_typename;
     loc.ap_name = ap_name;
-    loc.progression = progression;
-    loc.unreachable = unreachable;
+    loc.flags = flags;
+
     loc.checked = false;
-    loc.pos = pos;
     loc.is_virt = false;
     loc.secret_sector = -1;
+
     locations.push(loc);
   }
 
-  void RegisterSecretCheck(uint apid, string name, int sector, bool unreachable = false) {
+  void RegisterSecretCheck(uint apid, string name, int sector, uint flags) {
     let loc = ::Location(new("::Location"));
-    loc.apid = apid;
     loc.mapname = self.map;
+    loc.apid = apid;
     loc.name = name;
     loc.secret_sector = sector;
+    loc.flags = flags;
+
     loc.is_virt = true;
-    loc.unreachable = unreachable;
     loc.checked = false;
     locations.push(loc);
   }
@@ -139,7 +140,7 @@ class ::Region play {
   uint LocationsChecked() const {
     uint found = 0;
     foreach (loc : locations) {
-      if (loc.checked && !loc.unreachable) ++found;
+      if (loc.checked && !loc.IsUnreachable()) ++found;
     }
     return found;
   }
@@ -147,7 +148,7 @@ class ::Region play {
   uint LocationsTotal() const {
     uint total = 0;
     foreach (loc : locations) {
-      if (!loc.unreachable) ++total;
+      if (!loc.IsUnreachable()) ++total;
     }
     return total;
   }

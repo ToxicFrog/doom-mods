@@ -51,11 +51,10 @@ class GZAP_DataPackageEventHandler : StaticEventHandler {
       apstate.RegisterMap("{{map.map}}", "{{map.checksum}}", {{map.mapinfo.cluster}}, {{id(map.access_token_name())}}, {{id(map.automap_name())}}, {{id(map.clear_token_name())}}, {{id(map.exit_location_name())}});
       {% for check in locations(map.map) %}
         {% if check.category == "secret-sector" %}
-        apstate.RegisterSecretCheck("{{map.map}}", {{check.id}}, "{{escape(check.name())}}", {{check.sector}}{% if check.unreachable %}, true{% endif %});
+        apstate.RegisterSecretCheck("{{map.map}}", {{check.id}}, "{{escape(check.name())}}", {{check.sector}}, {{flags_at(check)}}); // {{item_name_at(check.name())}}
         {% elif not check.pos.virtual %}
-        apstate.RegisterCheck("{{map.map}}", {{check.id}}, "{{escape(check.name())}}",
-          "{{check.orig_item.typename}}", "{{item_type_at(check.name())}}", "{{item_name_at(check.name())}}",
-          {{progression(check.name())}}, ({{check.pos.x}},{{check.pos.y}},{{check.pos.z}}){% if check.unreachable %}, true{% endif %});
+        apstate.RegisterCheck("{{map.map}}", {{check.id}}, {{check.pos.as_vec3()}}, "{{escape(check.name())}}", "{{check.orig_item.typename}}",
+            "{{item_type_at(check.name())}}", "{{item_name_at(check.name())}}", {{flags_at(check)}});
         {% endif %}
       {% endfor %}
     {% endfor %}
