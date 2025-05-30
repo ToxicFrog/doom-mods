@@ -1,12 +1,14 @@
 # Unreleased
 
 - New:
-  - Logic and tuning for No Rest for the Living [from RakeVuril].
   - Artwork for checks that distinguishes between progression, useful, useful
     progression, and trap, in a way that's more consistent with other apworlds,
     contributed by Dat Boi.
   - Traps can be disguised as filler (the default) or progression items, or
     displayed as traps.
+  - Logic and tuning for No Rest for the Living [from RakeVuril].
+  - Additional logic for Doom 2 [from j-palomo].
+  - Logic fixes for FreeDoom E2 [from Dat Boi].
   - Showing check contents is now on by default.
 - Fix:
   - Disabled some debug logging that was accidentally left in 0.6.0.
