@@ -11,6 +11,11 @@ server int ap_show_checks_on_map = 2;
 // 2: in person, and on map if you have the level map
 // 3: always
 server int ap_show_progression = 2;
+// How to display traps.
+// 0: all traps look like filler
+// 1: all traps look like traps
+// 2: all traps look like progression items  >:)
+server int ap_show_traps = 0;
 
 // How translucent to make checks once collected. A setting of 0 makes them
 // disappear entirely. A setting of 1 means you can't tell if they've been

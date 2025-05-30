@@ -35,13 +35,13 @@ Keys,GZAP_MENU_INVENTORY_KEYS,
 gzArchipelago Options,GZAP_OPT_TITLE,Options menu
 Visuals,GZAP_OPT_HEADER_VISUALS,Options / Visuals
 Show checks on automap,GZAP_OPT_NAME_MAP_CHECKS,
-"Select whether you want checks to show up on the automap. ""After collecting map"" will have them appear only after you collect the full map for that level. Since the map may not even be reachable until after you finish this level, it's recommended to set this to ""always"" when still learning the maps.
-
-Does not take effect until you enter a new level.",GZAP_OPT_TT_MAP_CHECKS,
-Hilight progression items,GZAP_OPT_NAME_SHOW_PROGRESSION,
-"Displays a different icon for progression items than for useful/filler/trap items.
+"Select whether you want checks to show up on the automap. ""After collecting map"" will have them appear only after you collect the full map for that level. Since the map may not even be reachable until after you finish this level, it's recommended to set this to ""always"" when still learning the maps.",GZAP_OPT_TT_MAP_CHECKS,
+Reveal check category,GZAP_OPT_NAME_SHOW_PROGRESSION,
+"Displays a different icon for checks depending on whether they contain filler, trap, useful, or progression items.
 
 ""In person only"" matches the behaviour of apdoom. ""After map"" and ""always"" can make the game much easier by letting you check from the automap whether there are any progression items left on the level (and where they are).",GZAP_OPT_TT_SHOW_PROGRESSION,
+Show traps,GZAP_OPT_NAME_SHOW_TRAPS,
+"If ""reveal check category"" is set to anything other than ""never"", this controls how traps are displayed: with their own icon, or disguised as filler or progression items.",GZAP_OPT_TT_SHOW_TRAPS,
 Show check names,GZAP_OPT_NAME_SHOW_CHECK_NAMES,
 "When collecting a check, briefly displays the check name on-screen. This is useful when still learning the maps and what each check is called.",GZAP_OPT_TT_SHOW_CHECK_NAMES,
 Show check name icons,GZAP_OPT_NAME_SHOW_CHECK_ORIGINAL,
@@ -124,6 +124,9 @@ Never,GZAP_OPT_SHOW_PROGRESSION_0,
 In person only,GZAP_OPT_SHOW_PROGRESSION_1,
 In person + after collecting map,GZAP_OPT_SHOW_PROGRESSION_2,
 Always,GZAP_OPT_SHOW_PROGRESSION_3,
+As filler,GZAP_OPT_SHOW_TRAPS_0,
+As traps,GZAP_OPT_SHOW_TRAPS_1,
+As progression,GZAP_OPT_SHOW_TRAPS_2,
 Enabled,GZAP_OPT_DROPS_0,
 If already-filled slot,GZAP_OPT_DROPS_1,
 If already-held weapon,GZAP_OPT_DROPS_2,

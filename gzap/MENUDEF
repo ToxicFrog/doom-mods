@@ -48,6 +48,8 @@ OptionMenu "ArchipelagoOptions"
   GZAP_Tooltip "$GZAP_OPT_TT_MAP_CHECKS"
   Option "$GZAP_OPT_NAME_SHOW_PROGRESSION", "ap_show_progression", "ApShowProgressionMode"
   GZAP_Tooltip "$GZAP_OPT_TT_SHOW_PROGRESSION"
+  Option "$GZAP_OPT_NAME_SHOW_TRAPS", "ap_show_traps", "ApShowTrapsMode"
+  GZAP_Tooltip "$GZAP_OPT_TT_SHOW_TRAPS"
   Option "$GZAP_OPT_NAME_SHOW_CHECK_NAMES", "ap_show_check_names", "OnOff"
   GZAP_Tooltip "$GZAP_OPT_TT_SHOW_CHECK_NAMES"
 
@@ -95,6 +97,12 @@ OptionValue "ApShowProgressionMode" {
   1, "$GZAP_OPT_SHOW_PROGRESSION_1"
   2, "$GZAP_OPT_SHOW_PROGRESSION_2"
   3, "$GZAP_OPT_SHOW_PROGRESSION_3"
+}
+
+OptionValue "ApShowProgressionMode" {
+  0, "$GZAP_OPT_SHOW_TRAPS_0"
+  1, "$GZAP_OPT_SHOW_TRAPS_1"
+  2, "$GZAP_OPT_SHOW_TRAPS_2"
 }
 
 OptionValue "ApWeaponDropMode" {

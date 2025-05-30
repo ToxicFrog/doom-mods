@@ -58,10 +58,18 @@ mixin class ::ArchipelagoIcon {
       } else {
         SetStateLabel("Progression");
       }
-    } else if (loc.IsUseful()) {
+    } else if (loc.IsUseful() && ShouldHilight()) {
       SetStateLabel("Useful");
-    } else if (loc.IsTrap()) {
-      SetStateLabel("Trap");
+    } else if (loc.IsTrap() && ShouldHighlight()) {
+      if (ap_show_traps == 0) {
+        // Show traps as filler
+        SetStateLabel("Filler");
+      } else if (ap_show_traps == 2) {
+        // Show traps as progression
+        SetStateLabel("Progression");
+      } else {
+        SetStateLabel("Trap");
+      }
     } else {
       SetStateLabel("Filler");
     }
