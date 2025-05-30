@@ -15,7 +15,7 @@ class ::RC : Object play {
   static ::RC LoadAll(string lumpname) {
     let rc = ::RC(new("::RC"));
     let parser = ::RCParser(new("::RCParser"));
-    int lump = wads.FindLump(lumpname, 0, wads.GlobalNamespace);
+    int lump = wads.FindLump(lumpname, 0, wads.AnyNamespace);
     while (lump >= 0) {
       console.printf("Loading GZAPRC %d (%s)", lump, wads.GetLumpFullName(lump));
       let tmp = parser.Parse(wads.ReadLump(lump));
@@ -24,7 +24,7 @@ class ::RC : Object play {
       } else {
         console.printf("\c[RED]Error loading lump %d (%s), skipping.", lump, wads.GetLumpFullName(lump));
       }
-      lump = wads.FindLump(lumpname, lump+1, wads.GlobalNamespace);
+      lump = wads.FindLump(lumpname, lump+1, wads.AnyNamespace);
     }
     return rc;
   }

@@ -1,0 +1,36 @@
+#### Space Cats Saga ####
+# The various SpaceCat actors are secrets, and spawn something else when found
+# and petted.
+# N.b. the weapon spawns (SC3 and SC4) may turn into ammo instead on some levels,
+# not sure why. And of course even if they do turn into weapons, they are replaced
+# by the SCS weapons, not the BFG/Plasma.
+#
+# This can currently be expressed in a mechanically correct manner with the category
+# and typename directives, so that e.g. SpaceCatKirie, when scanned, is categorized
+# as big-armor and placed into the item pool as BlueArmor.
+# They can also just be left alone as a small, non-randomized bonus for the player.
+# Ideally, I would like them to be entered into the item pool as themselves, so
+# that you find a "SpaceCatTiger" in a chest somewhere, and then the receiving
+# player can spawn it in and pet it for a powerup. And this works fine for most
+# of them, but the weapon ones, specifically, may count as a weapon.
+#
+# Except that, since sometimes they *don't* spawn a weapon, we can't rely on this...
+#
+# We need changes to the GZAP and maybe even to the logic format to support that
+# general idea ("treat this item as itself but for the purposes of logic treat it
+# as something else"), which might also help with things like the Ashes keys that
+# turn into vanilla keys/skulls when picked up, but for now we just pretend that
+# they are ammo.
+
+# Soulsphere kitties
+category big-health: SpaceCatUse SpaceCatSee;
+
+# Megasphere and BlueArmor kitties
+category big-armor: SpaceCatHero SpaceCatFlower SpaceCat6 SpaceCat7 SpaceCatTiger SpaceCatChauff;
+category big-armor: SpaceCat2 SpaceCatKirie;
+
+# Berserk kitty
+category powerup: SpaceCat5;
+
+# Weapon/ammo kitties; nominally plasma and BFG but usually turns into energy cells instead.
+category big-ammo: SpaceCat3 SpaceCat4;
