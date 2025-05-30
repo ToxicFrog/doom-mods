@@ -60,7 +60,7 @@ mixin class ::ArchipelagoIcon {
       }
     } else if (loc.IsUseful() && ShouldHilight()) {
       SetStateLabel("Useful");
-    } else if (loc.IsTrap() && ShouldHighlight()) {
+    } else if (loc.IsTrap() && ShouldHilight()) {
       if (ap_show_traps == 0) {
         // Show traps as filler
         SetStateLabel("Filler");
