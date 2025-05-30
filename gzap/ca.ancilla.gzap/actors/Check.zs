@@ -326,6 +326,7 @@ class ::CheckPickup : ScoreItem {
 
     let label = ::CheckLabel(Spawn("::CheckLabel", (pos.x, pos.y, pos.z+zoffs)));
     label.sprite = sprid;
+    label.frame = prototype.SpawnState.frame;
     label.parent = self;
     label.zoffs = zoffs;
     label.A_SetScale(scale);
