@@ -19,9 +19,9 @@ version:
 
 ca.ancilla.gzap/PlayEventHandler.zsc: apworld/gzdoom/VERSION
 
-sprites/icons: apworld/gzdoom/icons.py assets/*.png
+sprites/icons: apworld/gzdoom/icons/__init__.py assets/*.png
 	rm -f sprites/icons/*.png
-	python apworld/gzdoom/icons.py
+	python apworld/gzdoom/icons/__init__.py
 	touch sprites/icons
 
 ${TOPDIR}/release/gzdoom-${VERSION}.apworld: apworld/gzdoom/* apworld/gzdoom/*/*

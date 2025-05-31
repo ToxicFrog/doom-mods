@@ -4,32 +4,11 @@ Small library for guessing in-game icons to use to display things from other gam
 Inspired by LADX's ItemIconGuessing lib.
 '''
 
-import re
-
-# List of icon guesses. List so that we can control the order things are processed in.
-# First entry in each pair is the icon name to use, second is a set of substrings --
-# if any substring is contained in the item name we will use that icon.
-# TODO: support game-specific guesses.
-_ICON_GUESSES = [
-  ('shield',  {'shield', 'buckler', 'aegis'}),
-  ('ring',    {'ring', 'bracelet'}),
-  ('amulet',  {'amulet', 'charm', 'necklace', 'brooch'}),
-  ('bow',     {'bow', 'crossbow'}),
-  ('gun',     {'gun', 'rifle', 'pistol', 'beam', 'cannon'}),
-  ('sword',   {'sword', 'blade', 'knife', 'dagger'}),
-  ('armour',  {'armor', 'armour', 'coat', 'jacket', 'shirt'}),
-  ('helmet',  {'helm', 'hat', 'crown', 'circlet', 'diadem'}),
-  ('staff',   {'staff', 'wand', 'rod'}),
-  ('bomb',    {'bomb', 'tnt', 'explosive', 'firecracker', 'grenade'}),
-  ('book',    {'book', 'tome', 'codex', 'grimoire'}),
-  ('potion',  {'potion', 'bottle', 'medicine', 'flask', 'drink', 'heal', 'revive'}),
-  ('money',   {'rupee', 'money', 'geo_chest', 'geo_rock', 'dollars', 'coins'}),
-  ('gem',     {'gem', 'jewel', 'crystal', 'sapphire', 'ruby', 'emerald', 'diamond'}),
-  ('key',     {'key', 'triforce', 'questagon', 'access'}),
-  ('arrow',   {'arrow', 'missile', 'ammo'}),
-  ('upgrade', {'max ', 'upgrade'}),
-  ('orb',     {'orb', 'ball'}),
-]
+if __name__ != '__main__':
+  from .apdoom import guess_apdoom_typename
+  from .apheretic import guess_apheretic_typename
+  from .by_game import guess_icon_for_game
+  from .generic import guess_generic_icon
 
 # Icon shortname to actual name mapping.
 # These end up in sprites/icons/ in the AP01 sprite space
@@ -68,7 +47,12 @@ def build_icons():
     print(f'{_ICON_SPRITES[icon]} -> AP01{chr(_ICON_FRAMES[icon] + ord('A'))}0.png')
     copy(src, dst)
 
-def guess_icon(game: str, name: str) -> str:
+def icon_to_frame(icon_name):
+  if not icon_name:
+    return False
+  return f'ICON:AP01:{_ICON_FRAMES[icon_name]}'
+
+def guess_icon(wad, game: str, name: str) -> str:
   '''
   Try to guess what icon to display in gzDoom based on the name of an item.
 
@@ -77,13 +61,11 @@ def guess_icon(game: str, name: str) -> str:
   item name regexes with simple icon names, and a table mapping simple icon
   names to GZAP four-letter sprite IDs.
   '''
-  name = name.lower()
-  for icon,substrings in _ICON_GUESSES:
-    for substr in substrings:
-      if substr in name:
-        return f'ICON:AP00:{_ICON_FRAMES[icon]}'
-
-  return ''
+  return (
+    guess_apdoom_typename(wad, game, name)
+    or guess_apheretic_typename(wad, game, name)
+    or icon_to_frame(guess_icon_for_game(game, name))
+    or icon_to_frame(guess_generic_icon(name)))
 
 if __name__ == '__main__':
   build_icons()

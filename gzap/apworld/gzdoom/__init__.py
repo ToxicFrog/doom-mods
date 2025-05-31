@@ -354,7 +354,7 @@ class GZDoomWorld(World):
             loc = self.get_location(name)
             if loc.item and loc.item.name in self.wad_logic.items_by_name:
                 return self.wad_logic.items_by_name[loc.item.name].typename
-            return (icons.guess_icon(loc.item.game, loc.item.name)
+            return (icons.guess_icon(self.wad_logic, loc.item.game, loc.item.name)
                 or f"NONE:{loc.item.game}:{loc.item.name}")
 
         def item_name_at(name: str) -> str:

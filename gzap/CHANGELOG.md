@@ -10,6 +10,9 @@
   - Additional logic for Doom 2 [from j-palomo].
   - Logic fixes for FreeDoom E2 [from Vibri].
   - Showing check contents is now on by default.
+  - When playing a Doom or Doom 2 wad, items from `apdoom` will be shown using
+    their local Doom sprites. Likewise if you are playing a Heretic wad and
+    someone else is playing `apheretic`.
 - Change:
   - `GZAPRC` config files can now be made conditional with `require`, so that
     they are only loaded when the specific megawad they apply to is present.
