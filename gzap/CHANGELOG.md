@@ -1,3 +1,13 @@
+# Unreleased
+
+- Fix:
+  - The item icon mapper now properly detects FreeDoom 1/2 as having Doom-
+    compatible spritesheets.
+  - The item icon mapper now properly supports FreeDoom 1/2 weapons when you're
+    playing Doom and someone else is playing FreeDoom.
+  - The item icon mapper now properly supports `apdoom`/`apheretic` level access
+    tokens, maps, and keys.
+
 # 0.6.1
 
 This is a feature release.

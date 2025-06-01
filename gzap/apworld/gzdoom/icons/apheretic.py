@@ -40,9 +40,24 @@ _APHERETIC_ICONS = {
   'Blue key':                       'KeyBlue',
 }
 
+_APHERETIC_REGEXES = [
+  (r' - Blue key$',     'KeyBlue'),
+  (r' - Yellow key$',   'KeyYellow'),
+  (r' - Green key$',    'KeyGreen'),
+  (r' - Map Scroll$',   'SuperMap'),
+  (r' \(E.M.\)$',       'HereticImp'),
+]
+
+import re
+def guess_from_regexes(name):
+  for (regex, typename) in _APHERETIC_REGEXES:
+    if re.search(regex, name):
+      return typename
+  return False
+
 def guess_apheretic_typename(wad, game, name):
   # print("guess_apheretic_typename", game, name, wad.is_heretic(), name in _APHERETIC_ICONS, guess_from_regexes(name))
   return (
     game == 'Heretic'
     and wad.is_heretic()
-    and _APHERETIC_ICONS.get(name, False))
+    and _APHERETIC_ICONS.get(name, guess_from_regexes(name)))

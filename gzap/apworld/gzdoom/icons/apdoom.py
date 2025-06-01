@@ -51,9 +51,28 @@ _APDOOM_ICONS = {
   'SKAG 1337':              'BFG9000',
 }
 
+_APDOOM_REGEXES = [
+  (r' - Blue keycard$',     'BlueCard'),
+  (r' - Yellow keycard$',   'YellowCard'),
+  (r' - Red keycard$',      'RedCard'),
+  (r' - Blue skull key$',   'BlueSkull'),
+  (r' - Yellow skull key$', 'YellowSkull'),
+  (r' - Red skull key$',    'RedSkull'),
+  (r' - Computer area map$','Allmap'),
+  (r' \(E.M.\)$',           'LostSoul'),
+  (r' \(MAP..\)$',          'LostSoul'),
+]
+
+import re
+def guess_from_regexes(name):
+  for (regex, typename) in _APDOOM_REGEXES:
+    if re.search(regex, name):
+      return typename
+  return False
+
 def guess_apdoom_typename(wad, game, name):
   # print("guess_doom_typename", game, name, wad.is_doom(), name in _APDOOM_ICONS, guess_from_regexes(name))
   return (
     game in {'DOOM 1993', 'DOOM II'}
     and wad.is_doom()
-    and _APDOOM_ICONS.get(name, False))
+    and _APDOOM_ICONS.get(name, guess_from_regexes(name)))
