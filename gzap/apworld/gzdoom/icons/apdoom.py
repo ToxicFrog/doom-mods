@@ -46,5 +46,5 @@ _APDOOM_ICONS = {
 def guess_apdoom_typename(wad, game, name):
   return (
     game in {'DOOM 1993', 'DOOM II'}
-    and 'Megasphere' in wad.items_by_name
+    and 'Chainsaw' in wad.items_by_name
     and _APDOOM_ICONS.get(name, False))
