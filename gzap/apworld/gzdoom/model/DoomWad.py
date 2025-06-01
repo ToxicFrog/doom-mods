@@ -103,6 +103,21 @@ class DoomWad:
     def item(self, name: str) -> DoomItem:
         return self.items_by_name[name]
 
+    def is_doom(self) -> bool:
+        types = {i.typename for i in self.items()}
+        return (
+            'Chainsaw' in types
+            or 'ripsaw' in types # FreeDoom 1/2
+            # Just in case the wad doesn't have a chainsaw
+            or 'Soulsphere' in types
+            or 'GreenArmor' in types)
+
+    def is_heretic(self) -> bool:
+        types = {i.typename for i in self.items()}
+        return (
+            'ArtiTomeOfPower' in types
+            or 'GoldWandHefty' in types)
+
     def all_maps(self) -> List[DoomMap]:
         return self.maps.values()
 

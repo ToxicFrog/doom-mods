@@ -41,7 +41,8 @@ _APHERETIC_ICONS = {
 }
 
 def guess_apheretic_typename(wad, game, name):
+  # print("guess_apheretic_typename", game, name, wad.is_heretic(), name in _APHERETIC_ICONS, guess_from_regexes(name))
   return (
     game == 'Heretic'
-    and 'Tome of Power' in wad.items_by_name
+    and wad.is_heretic()
     and _APHERETIC_ICONS.get(name, False))

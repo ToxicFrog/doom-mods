@@ -3,6 +3,9 @@ Game-specific mappings from item names to icons.
 '''
 
 _ICON_GUESSES = {
+  # apdoom/apheretic guesses. These are used only if you aren't playing a compatible
+  # iwad; e.g. if you are playing a Doom 2 megawad, it will use native Doom 2
+  # sprites and uses the guesses here only for apheretic.
   'DOOM 1993': [
     ('key',     {'keycard', 'skull key'}),
     ('book',    {'area map'}),
