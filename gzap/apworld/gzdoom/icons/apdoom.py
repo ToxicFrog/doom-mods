@@ -41,6 +41,14 @@ _APDOOM_ICONS = {
   'Yellow skull key':       'YellowSkull',
   'Red keycard':            'RedCard',
   'Red skull key':          'RedSkull',
+  # FreeDoom-specific item names
+  'ripsaw':                 'Chainsaw',
+  'pump-action shotgun':    'Shotgun',
+  'double-barrelled shotgun':'SuperShotgun',
+  'minigun':                'Chaingun',
+  'missile launcher':       'RocketLauncher',
+  'polaric energy weapon':  'PlasmaRifle',
+  'SKAG 1337':              'BFG9000',
 }
 
 def guess_apdoom_typename(wad, game, name):
