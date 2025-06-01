@@ -1,4 +1,6 @@
-# Unreleased
+# 0.6.1
+
+This is a feature release.
 
 - New:
   - Artwork for checks that distinguishes between progression, useful, useful
