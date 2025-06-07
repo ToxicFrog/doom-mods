@@ -35,7 +35,6 @@ class DuplicateMapError(RuntimeError):
 @dataclass
 class DoomWad:
     name: str
-    logic: Any  # actually DoomLogic, but no circular dependencies please
     maps: Dict[str,DoomMap] = field(default_factory=dict)
     items_by_name: Dict[str,DoomItem] = field(default_factory=dict)
     # Map of skill -> position -> location used while importing locations.
@@ -182,7 +181,6 @@ class DoomWad:
         if item.name() in self.items_by_name:
             return self.register_duplicate_item(map, item)
 
-        self.logic.register_item(item)
         # Initially items are stored as lists to handle duplicates.
         # During postprocessing, we disambiguate.
         self.items_by_name[item.name()] = [item]
@@ -204,8 +202,6 @@ class DoomWad:
             for item in items:
                 if dupes:
                     item.disambiguate = True
-                    # Claim a new registration ID for it, since its name has changed.
-                    self.logic.register_item(item)
                 assert item.name() not in all_items,f"Error resolving item name collisions, item f{item} collides with distinct item f{all_items[item.name()]} even after trying to disambiguate."
                 all_items[item.name()] = item
         self.items_by_name = all_items
@@ -325,7 +321,6 @@ class DoomWad:
             self.disambiguate_in_map(map)
 
     def finalize_location(self, loc):
-        self.logic.register_location(loc)
         self.locations_by_name.setdefault(loc.legacy_name(), []).append(loc)
 
     def bin_locations_by(self, locs, f) -> Dict[str, List[DoomMap]]:
@@ -412,12 +407,13 @@ class DoomWad:
         self.disambiguate_duplicate_items()
         self.disambiguate_duplicate_locations()
 
-    def finalize_all(self) -> None:
+    def finalize_all(self, logic) -> None:
         """
         Do postprocessing after all events have been ingested.
         """
         self.finalize_location_keysets()
         self.finalize_key_items()
+        self.finalize_ids(logic)
         # Compute which maps precede which other maps, so that the map ordering
         # system can function. This also computes information related to weapon
         # accessibility.
@@ -451,7 +447,6 @@ class DoomWad:
 
             key_item = DoomItem(map=key.scopename, category="key", typename=key.typename, tag=key.typename)
             assert key_item.name() == key.fqin(), f"{key_item.name()} != {key.fqin()}"
-            self.logic.register_item(key_item)
             self.items_by_name[key.fqin()] = key_item
 
             # Any existing keys subsumed by this one should be replaced to point
@@ -462,3 +457,10 @@ class DoomWad:
                 keyname = f"{key.typename} ({mapname})"
                 if keyname in self.items_by_name:
                     self.items_by_name[keyname] = key_item
+
+    def finalize_ids(self, logic):
+        for item in self.items_by_name.values():
+            logic.register_item(item)
+        for locs in self.locations_by_name.values():
+            for loc in locs:
+                logic.register_location(loc)

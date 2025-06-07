@@ -34,7 +34,7 @@ class WadLogicLoader:
     def __init__(self, logic: DoomLogic, name: str):
         self.logic = logic
         self.name = name
-        self.wad = DoomWad(self.name, self.logic)
+        self.wad = DoomWad(self.name)
         self.counters = defaultdict(lambda: 0)
 
     def __enter__(self):
@@ -44,7 +44,7 @@ class WadLogicLoader:
         if err_type is not None:
             return False
 
-        self.wad.finalize_all()
+        self.wad.finalize_all(self.logic)
         self.logic.add_wad(self.name, self.wad)
         return True
 

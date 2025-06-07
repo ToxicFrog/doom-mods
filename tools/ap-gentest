@@ -6,7 +6,12 @@ AP=${AP:-$HOME/.local/share/Archipelago}
 GAME=${GAME:-gzap}
 
 make
-(cd ~/Games/Archipelago && rm -f Players && ln -s Players.${GAME} Players)
+(
+  [[ -d ~/Games/Archipelago/Players/${GAME} ]]
+  cd ~/Games/Archipelago/Players
+  rm -f *.yaml
+  cp ${GAME}/*.yaml .
+)
 archipelago Generate </dev/null
 cp $AP/output/$(command ls --sort=time $AP/output/ | head -n1) testdata/ap_latest.zip
 (cd testdata && rm -f latest.pk3 && unzip ap_latest.zip '*.pk3' && mv AP_*.pk3 latest.pk3)
