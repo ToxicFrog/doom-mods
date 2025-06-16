@@ -85,17 +85,15 @@ class ::LevelSelector : ::KeyValueNetevent {
       return true;
     }
 
-    if (key != Menu.MKey_Right) {
-      return super.MenuEvent(key, fromController);
-    }
+    return super.MenuEvent(key, fromController);
+  }
 
+  void RequestHint() {
     let hint = self.region.NextHint();
     if (hint != "") {
       Menu.MenuSound("menu/change");
       EventHandler.SendNetworkCommand("ap-hint", NET_STRING, hint);
     }
-
-    return true;
   }
 
   string FormatLevelKey(LevelInfo info, ::Region region) {

@@ -97,6 +97,21 @@ class ::LevelSelectMenu : ::CommonMenu {
     DisplayWarning(::PlayEventHandler.GetState());
   }
 
+	override bool OnUIEvent(UIEvent evt) {
+    // Key inputs other than directionals and ok/cancel/clear need to be handled
+    // by the menu, not the menu item.
+    // 0x48 == 'H'
+    if (evt.type == UIEvent.TYPE_CHAR && evt.KeyChar == 0x48) {
+      let selected = ::LevelSelector(mDesc.mItems[mDesc.mSelectedItem]);
+      if (selected) {
+        selected.RequestHint();
+      }
+      return true;
+    }
+
+    return super.OnUIEvent(evt);
+  }
+
   void DisplayWarning(::RandoState state) {
     Menu.StartMessage(
       string.format(

@@ -60,29 +60,6 @@ be able to represent logic requirements that aren't just keys.
 - option to choose the X% of an item category game-wide rather than per-map
 - item tag support, allowing to treat "small", "health", and "secret" (e.g.) as
   separate tags -- need to figure out how the YAML works for this
-- cached logic by pickling the DoomWad? That might significantly speed up load times.
-  what's logic used for in the DoomWad? well:
-  - we call register_item on the first item with a given name that we see
-  - after disambiguating everything we call register_item again
-  - we call register_location after binning and finalizing locations, and
-  - we call register_item after generating keys.
-  Probably we can just skip all of these, not take the logic as an argument, and
-  generate all items and locations without IDs. Then, after wadloading is complete,
-  we call wad.register_ids(logic) and it goes through and registers everything
-  using items_by_name and locations_by_name.
-  Just *before* we do this, we pickle it, so when unpickled we have everything
-  we need and nothing has IDs assigned.
-  So our loading probably looks something like this:
-  - find the base logic file, tuning files, base pickle, and tuned pickle
-  - if the tuned pickle is most recent:
-    - load and return that
-  - if there are more recent tuning files, but the base pickle is more recent than the base logic:
-    - load the base pickle, process the tuning, save the result as the tuned pickle, return that
-  - if the base logic is more recent than the base pickle:
-    - load the base logic, save as base pickle
-    - load all tuning files, save as tuned pickle
-  Where do we find the pickle files?
-  AP/gzdoom/cache/<wad name>.<base|tuned>[.ext].pickle
 
 ### ingame
 

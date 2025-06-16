@@ -8,6 +8,8 @@
     menu entries when they change. This won't make a difference in most games
     but can noticeably improve things in wads with huge numbers of checks
     and/or lots of levels.
+  - Hints are now requested with `shift-H` rather than `→` to make it harder to
+    request them accidentally.
 - Fix:
   - The item icon mapper now properly detects FreeDoom 1/2 as having Doom-
     compatible spritesheets.
