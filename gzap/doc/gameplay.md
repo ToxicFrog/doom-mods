@@ -1,13 +1,14 @@
 # Setup and Play
 
 This document describes how to get up and running with gzArchipelago, for players
-who just want to play one of the [supported wads](./support-table.md).
+who just want to play one of the [supported wads](./support-table.md). If you want
+to play an unsupported wad, see [this documentation](./new-wads.md).
 
 ## First-time setup
 
 Download the [apworld](../../release/gzdoom.apworld) and add it to Archipelago.
 
-Download the [latest version of the mod](../../release/gzArchipelago-latest.pk3)
+Download the [matching version of the mod](../../release/gzArchipelago-latest.pk3)
 and add it to your gzdoom load order (it doesn't much matter where).
 
 If you are new to using GZDoom, there a [quickstart guide](./gzdoom_newplayers.md)

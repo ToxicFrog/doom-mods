@@ -11,6 +11,7 @@ This is a quick reference document; the full documentation can be found
 - [gzArchipelago](https://github.com/ToxicFrog/doom-mods/releases)
   - Hosts only need the apworld (and nothing else on this list)
   - Players need the `gzArchipelago.pk3` as well
+  - **It is important that the pk3 version matches the apworld version.**
 - [gzDoom](https://zdoom.org/downloads)
 - A copy of [Doom 1/2](https://www.gog.com/en/game/doom_doom_ii) or
   [Heretic](https://www.gog.com/en/game/heretic_hexen_collection) depending on
@@ -27,7 +28,9 @@ This is a quick reference document; the full documentation can be found
 - Install the apworld
 - Add the pk3 to your load order wherever
 - Generate the game as normal
-- Archipelago will emit a pk3; add it to your load order **at the end**
+- Archipelago will emit another pk3; add it to your load order **at the end**
+  - i.e. your load order should include both `gzArchipelago.pk3` and
+    `AP_1234_whoever.wadname.pk3`, in that order
 - **Singleplayer**: just start the game and play
 - **Multiplayer**: start `GZDoom Client` from the Archipelago launcher; it will
   tell you what options to launch the game with
