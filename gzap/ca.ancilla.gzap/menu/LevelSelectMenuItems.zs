@@ -37,10 +37,12 @@ class ::LevelSelector : ::KeyValueNetevent {
   LevelInfo info;
   ::Region region;
   ::Tooltip tt;
+  uint txn;
 
   ::LevelSelector Init(int idx, LevelInfo info, ::Region region) {
     self.info = info;
     self.region = region;
+    self.txn = 0;
     super.Init(
       FormatLevelKey(info, region),
       FormatLevelValue(info, region),
@@ -63,14 +65,13 @@ class ::LevelSelector : ::KeyValueNetevent {
   }
 
   override void Ticker() {
+    if (txn == region.txn) return;
     SetColours();
     let value = FormatLevelValue(info, region);
     let tt = FormatTooltip();
-    if (value != self.value || tt != self.tt.text) {
-      self.value = value;
-      // TODO: only change tt for the currently focused item
-      self.tt.text = self.FormatTooltip();
-    }
+    self.value = value;
+    self.tt.text = self.FormatTooltip();
+    self.txn = region.txn;
   }
 
   override bool Selectable() {

@@ -1,9 +1,13 @@
 # Unreleased
 
-- New:
+- Change:
   - Compiled logic and tuning data is now cached in your AP directory. This uses
     a few tens of MB but also makes apworld loading about 4x faster after the
     first time.
+  - Significant improvement to level select menu performance by only redrawing
+    menu entries when they change. This won't make a difference in most games
+    but can noticeably improve things in wads with huge numbers of checks
+    and/or lots of levels.
 - Fix:
   - The item icon mapper now properly detects FreeDoom 1/2 as having Doom-
     compatible spritesheets.

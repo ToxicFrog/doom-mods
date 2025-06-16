@@ -24,7 +24,10 @@ class ::Peek play {
 }
 
 class ::Region play {
+  // Lump name
   string map;
+  // Transaction ID. Level select uses this to know when to redraw.
+  uint txn;
   // If nonzero, this map originally belonged to the given hubcluster.
   int hub;
   // Kept as an array so we can sort it for display.
@@ -47,6 +50,7 @@ class ::Region play {
     let region = ::Region(new("::Region"));
     region.map = map;
     region.hub = hub;
+    region.txn = 0;
 
     let exit = ::Location(new("::Location"));
     exit.apid = exit_id;
@@ -62,8 +66,8 @@ class ::Region play {
   }
 
   void DebugPrint() {
-    console.printf("  - Region: %s%s [access=%d, clear=%d, automap=%d]",
-        self.map, self.hub ? string.format(" (hubcluster %d)", self.hub) : "",
+    console.printf("  - Region: %s%s [access=%d, clear=%d, automap=%d, txn=%d]",
+        self.txn, self.map, self.hub ? string.format(" (hubcluster %d)", self.hub) : "",
         self.access, self.cleared, self.automap);
     console.printf("    %d locations", self.locations.Size());
     console.printf("    %d keys:%s", self.keys.CountUsed(), self.DebugKeyString());
@@ -88,6 +92,7 @@ class ::Region play {
   void RegisterCheck(
       uint apid, Vector3 pos, string name,
       string orig_typename, string ap_typename, string ap_name, uint flags) {
+    ++txn;
     let loc = ::Location(new("::Location"));
     loc.mapname = self.map;
     loc.apid = apid;
@@ -106,6 +111,7 @@ class ::Region play {
   }
 
   void RegisterSecretCheck(uint apid, string name, int sector, uint flags) {
+    ++txn;
     let loc = ::Location(new("::Location"));
     loc.mapname = self.map;
     loc.apid = apid;
@@ -122,12 +128,13 @@ class ::Region play {
     foreach (loc : locations) {
       if (loc.apid == apid) {
         loc.checked = true;
+        ++txn;
         return;
       }
     }
   }
 
-  ::Location GetLocation(uint apid) {
+  ::Location GetLocation(uint apid) const {
     foreach (loc : locations) {
       if (loc.apid == apid) {
         DEBUG("GetLocation: found %d in %s", apid, map);
@@ -154,6 +161,7 @@ class ::Region play {
   }
 
   void SortLocations() {
+    ++txn;
     // It's small, we just bubble sort.
     for (int i = self.locations.Size()-1; i > 0; --i) {
       for (int j = 0; j < i; ++j) {
@@ -189,6 +197,7 @@ class ::Region play {
   }
 
   void RegisterHint(string item, string player, string location) {
+    ++txn;
     let hint = ::Hint(new("::Hint"));
     hint.player = player;
     hint.location = location;
@@ -204,6 +213,7 @@ class ::Region play {
   }
 
   void RegisterPeek(string location, string player, string item) {
+    ++txn;
     let peek = ::Peek(new("::Peek"));
     peek.player = player;
     peek.item = item;
@@ -218,6 +228,7 @@ class ::Region play {
   }
 
   void RegisterKey(::RandoKey key) {
+    ++txn;
     keys.Insert(key.typename, key);
   }
 
