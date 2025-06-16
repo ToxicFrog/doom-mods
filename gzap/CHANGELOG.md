@@ -11,6 +11,8 @@
     playing Doom and someone else is playing FreeDoom.
   - The item icon mapper now properly supports `apdoom`/`apheretic` level access
     tokens, maps, and keys.
+  - A `VERSION` file is now included in the generated pk3 to make it easier to
+    debug version mismatches.
 
 # 0.6.1
 

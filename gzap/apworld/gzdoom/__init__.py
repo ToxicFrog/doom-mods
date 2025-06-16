@@ -419,3 +419,4 @@ class GZDoomWorld(World):
         with zipfile.ZipFile(pk3_path, mode="w", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as zip:
             zip.writestr("ZSCRIPT", env.get_template("zscript.jinja").render(**data))
             zip.writestr("MAPINFO", env.get_template("mapinfo.jinja").render(**data))
+            zip.writestr("VERSION", mod_version)
