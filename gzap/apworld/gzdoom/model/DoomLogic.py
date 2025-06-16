@@ -16,7 +16,9 @@ World subclass is even instantiated; well before we have access to the yaml.)
 from dataclasses import dataclass, field
 from typing import Dict, List, Set
 
-from . import DoomItem, DoomLocation, DoomMap, DoomPosition, DoomWad
+from .DoomItem import DoomItem
+from .DoomLocation import DoomLocation
+from .DoomWad import DoomWad
 
 
 @dataclass
