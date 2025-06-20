@@ -14,17 +14,15 @@ class ::WeaponInfo : Object play {
   string wpnClass;
   ::PerPlayerStats stats;
   ::Upgrade::UpgradeBag upgrades;
-  double XP;
-  double maxXP;
-  uint level;
-  ::LegendoomWeaponInfo ld_info;
+  double XP;         // total XP earned ever
+  double maxXP;      // XP at which next level is earned
+  uint level;        // current level, resets to 0 on respec
+  uint bonus_levels; // "free" levels that don't use XP and can't be rerolled, used when respeccing
 
   // Called when a new WeaponInfo is created. This should initialize the entire object.
   void Init(Weapon wpn) {
     DEBUG("Initializing WeaponInfo for %s", TAG(wpn));
     upgrades = new("::Upgrade::UpgradeBag");
-    ld_info = new("::LegendoomWeaponInfo");
-    ld_info.Init(self);
     Rebind(wpn);
     XP = 0;
     level = 0;
@@ -47,7 +45,6 @@ class ::WeaponInfo : Object play {
         // powered up, assume that we're using the max XP for it's unpowered sister.
         self.maxXP = GetXPForLevel(level+1);
     }
-    ld_info.Rebind(self);
   }
 
   void ToggleUpgrade(uint index) {
@@ -153,6 +150,13 @@ class ::WeaponInfo : Object play {
     return false;
   }
 
+  double TotalXPForLevel(uint level) const {
+    // The total cost to reach level N is the Nth triangle number (1-indexed) times
+    // the cost to reach level 1.
+    // The closed form for the Nth triangle number is N(N+1)/2.
+    return level * (level+1) / 2 * GetXPForLevel(1);
+  }
+
   double GetXPForLevel(uint level) const {
     double XP = bonsai_base_level_cost * double(level);
     double mul = 1.0;
@@ -162,7 +166,7 @@ class ::WeaponInfo : Object play {
     if (IsWimpy()) {
       mul = min(mul, bonsai_level_cost_mul_for_wimpy);
     }
-    DEBUG("GetXPForLevel: level %d -> XP %.1f", level, XP);
+    // DEBUG("GetXPForLevel: level %d -> XP %.1f", level, XP);
     return XP * mul;
   }
 
@@ -171,6 +175,7 @@ class ::WeaponInfo : Object play {
     DEBUG("Adding XP: %.3f + %.3f", XP, newXP);
     XP += newXP;
     DEBUG("XP is now %.3f", XP);
+    let xp_since = XP - GetXPForLevel(level);
     if (XP >= maxXP && XP - newXP < maxXP) {
       Fanfare();
     }
@@ -196,42 +201,59 @@ class ::WeaponInfo : Object play {
     }
   }
 
+  double BaseXP() { return TotalXPForLevel(self.level); }
+  double LevelXP() { return XP - BaseXP(); }
+
   uint CountPendingLevels() {
-    uint pending = 0;
-    uint xp = self.XP;
-    uint maxXP = self.maxXP;
-    while (xp >= maxXP) {
-      DEBUG("CountPending: xp=%d/%d pending=%d", xp, maxXP, pending);
-      xp -= maxXP;
-      ++pending;
-      maxXP = GetXPForLevel(1+level+pending);
-    }
+    uint pending = bonus_levels;
+    for (uint lv = level+1; TotalXPForLevel(lv) <= xp; ++lv) { ++pending; }
     return pending;
   }
 
   bool StartLevelUp() {
-    if (XP < maxXP) return false;
+    if (!CountPendingLevels()) return false;
 
     let giver = ::WeaponUpgradeGiver(wpn.owner.GiveInventoryType("::WeaponUpgradeGiver"));
     giver.wielded = self;
-    giver.nrof = CountPendingLevels();
 
+    if (bonsai_respec_interval) {
+      // Check if any of the pending levels would trigger a respec.
+      for (uint i = level+1; i <= level+CountPendingLevels(); ++i) {
+        if (i % bonsai_respec_interval == 0) {
+          // Respec triggered. Clear all existing upgrades.
+          OnDeactivate(); upgrades.Clear();
+          bonus_levels = level;
+          break;
+        }
+      }
+    }
+
+    giver.nrof = CountPendingLevels();  // Includes bonus_levels
     return true;
   }
 
   void RejectLevelUp() {
-    // Don't adjust maxXP -- they didn't gain a level.
-    XP -= maxXP;
+    if (bonus_levels) {
+      --bonus_levels;
+    } else {
+      // Don't adjust maxXP -- they didn't gain a level.
+      XP -= maxXP;
+    }
     wpn.owner.A_Log(StringTable.Localize("$TFLV_MSG_LEVELUP_REJECTED"), true);
     if (XP >= maxXP) Fanfare();
     return;
   }
 
   void FinishLevelUp(::Upgrade::BaseUpgrade upgrade) {
-    XP -= maxXP;
-    ++level;
-    ::PerPlayerStats.GetStatsFor(wpn.owner).AddPlayerXP(1);
-    maxXP = GetXPForLevel(level+1);
+    if (bonus_levels) {
+      --bonus_levels;
+    } else {
+      ++level;
+      ::PerPlayerStats.GetStatsFor(wpn.owner).AddPlayerXP(1);
+      maxXP = TotalXPForLevel(level+1);
+    }
+    DEBUG("Level-up completed! xp=%d, base=%d, since=%d, next=%d",
+      xp, BaseXP(), LevelXP(), maxXP);
 
     if (upgrade) {
       upgrades.AddUpgrade(upgrade).OnActivate(stats, self);
@@ -239,13 +261,6 @@ class ::WeaponInfo : Object play {
           StringTable.Localize("$TFLV_MSG_WEAPON_LEVELUP"),
           wpn.GetTag(), upgrade.GetName()),
         true);
-    }
-
-    if (::Settings.have_legendoom()
-        && bonsai_gun_levels_per_ld_effect > 0
-        && (level % bonsai_gun_levels_per_ld_effect) == 0) {
-      let ldGiver = ::LegendoomEffectGiver(wpn.owner.GiveInventoryType("::LegendoomEffectGiver"));
-      ldGiver.info = self.ld_info;
     }
   }
 }

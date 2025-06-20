@@ -12,9 +12,6 @@
 #include "./RC.zsc"
 
 #include "./EventHandler.zsc"
-#include "./LegendoomEffectGiver.zsc"
-#include "./LegendoomUtil.zsc"
-#include "./LegendoomWeaponInfo.zsc"
 #include "./PerPlayerStats.zsc"
 #include "./PerPlayerStatsProxy.zsc"
 #include "./PlayerUpgradeGiver.zsc"

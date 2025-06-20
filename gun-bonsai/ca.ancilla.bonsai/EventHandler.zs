@@ -14,13 +14,6 @@ class ::EventHandler : StaticEventHandler {
   override void OnRegister() {
     console.printf("Initializing Gun Bonsai v%s...", MOD_VERSION());
     UPGRADE_REGISTRY = new("::Upgrade::Registry");
-
-    if (::Settings.have_legendoom()) {
-      console.printf("%s", StringTable.Localize("$TFLV_MSG_LD_YES"));
-    } else {
-      console.printf("%s", StringTable.Localize("$TFLV_MSG_LD_NO"));
-    }
-
     rc = ::RC.LoadAll("BONSAIRC");
     rc.Finalize(self);
 
@@ -29,6 +22,7 @@ class ::EventHandler : StaticEventHandler {
     self.service = service;
   }
 
+  int mapnum;
   override void WorldLoaded(WorldEvent evt) {
     if (level.totaltime == 0) {
       // Starting a new game? Clear all info.
@@ -36,6 +30,20 @@ class ::EventHandler : StaticEventHandler {
     }
     for (uint i = 0; i < MAXPLAYERS; ++i) {
       if (playeringame[i]) InitPlayer(i, true);
+    }
+    if (!evt.IsSaveGame && !evt.IsReopen) {
+      console.printf("New level: %d [%d/%d]", mapnum, level.MapTime, level.Time);
+      for (uint i = 0; i < 8; ++i) {
+        // Report to all players that they have entered a new level.
+        // Note that MAP01 is levelnum=0; for linear games mapnum is thus the
+        // number of maps *cleared*. It gets weird for hubbed games like Hexen,
+        // it basically becomes the number of maps you have visited at least once
+        // minus one.
+        if (playeringame[i] && playerstats[i]) {
+          playerstats[i].OnMapEntry(level.mapname, mapnum);
+        }
+      }
+      ++mapnum;
     }
   }
 
@@ -149,33 +157,9 @@ class ::EventHandler : StaticEventHandler {
     giver.Choose(index);
   }
 
-  void CycleLDEffect(uint p) {
-    if (!playerstats[p]) return;
-    let info = playerstats[p].GetInfoForCurrentWeapon();
-    if (info) info.ld_info.CycleEffect();
-  }
-
-  void SelectLDEffect(uint p, int index) {
-    if (!playerstats[p]) return;
-    let info = playerstats[p].GetInfoForCurrentWeapon();
-    if (info) info.ld_info.SelectEffect(index);
-  }
-
   override void NetworkProcess(ConsoleEvent evt) {
     if (evt.name == "bonsai-show-info") {
       ShowInfo(evt.player);
-    } else if (evt.name == "bonsai-cycle-ld-effect") {
-      if (::Settings.have_legendoom()) {
-        CycleLDEffect(evt.player);
-      } else {
-        players[evt.player].mo.A_Log(StringTable.Localize("$TFLV_MSG_LD_REQUIRED"));
-      }
-    } else if (evt.name == "bonsai-select-effect") {
-      if (::Settings.have_legendoom()) {
-        SelectLDEffect(evt.player, evt.args[0]);
-      } else {
-        players[evt.player].mo.A_Log(StringTable.Localize("$TFLV_MSG_LD_REQUIRED"));
-      }
     } else if (evt.name == "bonsai-choose-level-up-option") {
       ChooseLevelUpOption(evt.player, evt.args[0]);
     } else if (evt.name == "bonsai-toggle-upgrade") {

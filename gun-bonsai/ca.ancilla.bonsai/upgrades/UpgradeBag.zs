@@ -31,6 +31,10 @@ class ::UpgradeBag : Object play {
     return upgrade;
   }
 
+  void Clear() {
+    upgrades.clear();
+  }
+
   uint Level(string cls) const {
     for (uint i = 0; i < upgrades.Size(); ++i) {
       if (upgrades[i].GetClassName() == cls) {
@@ -135,6 +139,13 @@ class ::UpgradeBag : Object play {
     for (uint i = 0; i < upgrades.Size(); ++i) {
       if (!upgrades[i].enabled) continue;
       upgrades[i].OnPickup(pawn, item);
+    }
+  }
+
+  void OnMapEntry(string mapname, uint mapnum) {
+    for (uint i = 0; i < upgrades.Size(); ++i) {
+      if (!upgrades[i].enabled) continue;
+      // upgrades[i].OnMapEntry(pawn, mapnam, mapnum);
     }
   }
 }

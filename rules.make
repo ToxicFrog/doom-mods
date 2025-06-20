@@ -36,6 +36,9 @@ endif # zsdir
 
 all: ${PK3}
 
+check: ${PK3}
+	gzdoom -iwad freedoom2.wad -file $^ +quit
+
 clean.super:
 	rm -f ${PK3} ${ZSCRIPT_TO_CLEAN}
 

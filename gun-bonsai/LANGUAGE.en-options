@@ -7,11 +7,12 @@ TFLV_OPT_HEADER_UI = "UI Settings";
 TFLV_OPT_HEADER_COMPATIBILITY = "Compatibility Settings";
 TFLV_OPT_HEADER_XP_SOURCE = "XP Source Settings";
 TFLV_OPT_HEADER_XP_BALANCE = "XP Balance Settings";
-TFLV_OPT_HEADER_LEGENDOOM = "LegenDoom Integration";
+TFLV_OPT_HEADER_LEVELING_MODES = "Alternate Leveling Modes";
 TFLV_OPT_HEADER_AUTOAUTOSAVE = "AutoAutoSave Integration";
 
 // Strings for option names and tooltips
 
+// UI options
 TFLV_OPT_NAME_HUD_SKIN = "HUD skin";
 TFLV_OPT_TT_HUD_SKIN = "What graphics to use for the HUD. You can also disable it entirely if you want your levelups to be a surprise.";
 TFLV_OPT_NAME_HUD_X = "HUD X position";
@@ -60,10 +61,14 @@ TFLV_OPT_TT_USE_BUILTIN_ACTORS =
   "The builtins should work in any IWAD. The generic ones are more likely to 'blend in' when playing with mods that define replacements for the generic bonuses, but (depending on the mod) may no longer give the correct amounts of health/armour.";
 TFLV_OPT_NAME_AMMOLESS_WEAPONS_ARE_WIMPY = "Treat weapons that don't use ammo as wimpy";
 TFLV_OPT_TT_AMMOLESS_WEAPONS_ARE_WIMPY = "By default, weapons that don't use ammo are considered to be 'peashooter' type weapons which can get some upgrades specific to weaker or difficult-to-use weapons. Turn this off if you are playing a mod, like Hideous Destructor, that overrides normal ammo handling mechanics, or one that has powerful ammoless weapons.";
+
+// XP source options
 TFLV_OPT_NAME_DAMAGE_TO_XP_FACTOR = "XP gain from damage";
 TFLV_OPT_NAME_SCORE_TO_XP_FACTOR = "XP gain from score";
 TFLV_OPT_TT_DAMAGE_TO_XP_FACTOR = "How much XP you earn per point of damage you inflict. This feature is built into Gun Bonsai.";
 TFLV_OPT_TT_SCORE_TO_XP_FACTOR = "How much XP you earn per point of score you accumulate. This requires you to install a mod that lets you score points, such as LazyPoints or MetaDoom. The specific actions that you gain points for, and how many points you get, will depend on the mod you use.";
+
+// XP balance options
 TFLV_OPT_NAME_BASE_LEVEL_COST = "XP needed to reach level 1";
 TFLV_OPT_TT_BASE_LEVEL_COST = "How much XP you need to earn for a weapon to gain its first level. Roughly, 1 point of damage dealt == 1 XP gained, with a bonus for damaging nastier enemies like Cyberdemons and Archviles.";
 TFLV_OPT_NAME_UPGRADE_CHOICES_PER_GUN_LEVEL = "Upgrade choices on gun level up";
@@ -76,18 +81,10 @@ TFLV_OPT_NAME_LEVEL_COST_MUL_FOR_WIMPY = "XP cost multiplier for wimpy weapons";
 TFLV_OPT_TT_LEVEL_COST_MUL =
   "XP cost multipliers for various classes of weapons. These can stack (e.g. fists are both 'melee' and 'wimpy' in vanilla Doom 2). The default settings make both weak and melee weapons easier to level up.\n"
   "Note that not all mods use these flags, or use them correctly -- in that case overrides can be applied in the BONSAIRC lump.";
-TFLV_OPT_NAME_GUN_LEVELS_PER_LD_EFFECT = "Gun levels per LD effect";
-TFLV_OPT_TT_GUN_LEVELS_PER_LD_EFFECT = "How many times a gun needs to level up to gain a new Legendoom effect. Only functions if Legendoom is installed. Set to 0 to disable.";
-TFLV_OPT_NAME_WHICH_GUNS_CAN_LEARN = "LD effects learnable by";
-TFLV_OPT_TT_WHICH_GUNS_CAN_LEARN = "Which weapons can learn new LD effects.";
-TFLV_OPT_NAME_WHICH_GUNS_CAN_REPLACE = "LD effects replaceable by";
-TFLV_OPT_TT_WHICH_GUNS_CAN_REPLACE = "Which weapons can replace old LD effects with new ones once they're full.";
-TFLV_OPT_NAME_BASE_LD_EFFECT_SLOTS = "Base number of LD effect slots";
-TFLV_OPT_TT_BASE_LD_EFFECT_SLOTS = "How many slots for LD effects non-legendary guns have.";
-TFLV_OPT_NAME_BONUS_LD_EFFECT_SLOTS = "Bonus slots per LD rarity level";
-TFLV_OPT_TT_BONUS_LD_EFFECT_SLOTS = "How many extra effect slots legendary guns get per rarity level (Common=1, Epic=4).";
-TFLV_OPT_NAME_IGNORE_GUN_RARITY = "Ignore original gun rarity for new effects";
-TFLV_OPT_TT_IGNORE_GUN_RARITY = "Whether weapons can learn LD effects that are rarer than the one they spawned with.";
+
+// Alternate leveling modes
+TFLV_OPT_NAME_RESPEC_INTERVAL = "Respec interval";
+TFLV_OPT_TT_RESPEC_INTERVAL = "Gaining this many levels will cause your weapon to automatically respec. You will be asked to re-choose all of its upgrades from scratch, and its previous set of upgrades will be discarded. Setting 'upgrade choices per gun level' to 1 as well will cause the weapon to automatically reroll its upgrades as soon as it respecs; otherwise it will not respec until you open the level-up menu.";
 
 // Strings for the various option enums
 
@@ -117,12 +114,6 @@ TFLV_OPT_FANFARE_3 = "teleport effect";
 TFLV_OPT_BINDMODE_0 = "individual weapon";
 TFLV_OPT_BINDMODE_1 = "individual weapon with inheritance";
 TFLV_OPT_BINDMODE_2 = "weapon class";
-// what sorts of weapons can get Legendoom effects by leveling up (if LD integration
-// is enabled)
-TFLV_OPT_LDMODE_0 = "none";
-TFLV_OPT_LDMODE_1 = "basic weapons only";
-TFLV_OPT_LDMODE_2 = "legendary weapons only";
-TFLV_OPT_LDMODE_3 = "all weapons";
 // non-numeric slider values
 TFLV_OPT_SLIDER_DISABLED = "Disabled";
 TFLV_OPT_SLIDER_ALLUPGRADES = "All available upgrades";

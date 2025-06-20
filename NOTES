@@ -143,24 +143,12 @@ you also need to do at least three of the (secret hidden + secret bigcoin) level
 Make stuff like "Extra lives on boss kill" available as extra upgrades or as effects
 on level up when using the integration.
 
-### Ideas for Laevis split-off
+### Laevis
 
-- eat a weapon to gain its power
-- if it's a higher rank than your current weapon, immediately add more slots appropriate to it
-- if you don't have enough slots, it asks to sacrifice a power to free a slot
-  - sacrifice enough powers and you get a new slot
-  - higher ranked powers are worth more?
-  - higher ranked powers COST MORE SLOTS?
-  - slots cost more the more you have?
-- settings: starting slots, slots/rank, cost to add slots
-- GB integration settings:
-  - gain power N GB levels
-  - gain slots every N GB levels
-
-Three possible operating modes:
-- Laevis; eat weapons to gain powers, eat higher ranked weapons to rank up and increase your power slots
-- Bonsai level integration; respond to bonsai level-up messages by giving new upgrades
-- Bonsai upgrade integration; add a set of bonsai upgrades corresponding to different LD upgrades? don't quite remember
+- random effect on bonsai level up
+  - needs bonsai distinction between "level-up earned" and "level-up claimed" with corresponding netevents
+  - needs to play nice with respecs (probably meaning: ignore them)
+- option: limit random effects based on rarity
 
 ### 0.11.x?
 
@@ -169,29 +157,36 @@ when it's nearly full and restore it when it gets low.
 
 ### Soon
 
-- feature: automatic respec on level up, clearing all upgrades and resetting level to 0
 - feature: automatic level up on map clear
   - how do we configure this? levels per map, maps per level, both?
     - maps per level
     - are levels flat or catch-up
 
-- automatically generate UPGRADES.md using console commands
-
+- fire rebalance
 - weapon: Familiarization, scales damage based on levels cleared (ever, or since you got the upgrade?)
 - player: Ammo Crate, refills ammo up to 40/70/90/100% between maps
 - player: Medical Supplies & Repair Kit, as above but for health and armour, probably 50/100/150/200
 - weapon: some sort of upgrade that resets on level change and gets stronger per kill or something?
 - per kill scaling of stuff in general?
-
 - HE shots do lots of self-damage when used with weapons like the shotgun/SSG
-- Juggler should work with fancy weapon switch animations (Hellrider, Project Brutality, etc)
-- Bandolier incompatible with Dehacked Defence and with Trailblazer
 - Rapid Fire makes it impossible to drop weapons in Legendoom
-- Balance: thunderbolt is probably still too powerful
+
 - Balance: dark harvest and leech health/armour should probably only increase the cap when leveled and increase the amount much more rarely
 - Minelayer upgrade? Dead enemies turn into mines, or you drop mines sometimes. Upgrade for Explosive Death maybe? Appears only if you have ExD and Minelayer?
 - submunitions are still completely OP
 - Explosive Death launches you into the ceiling
+
+- automatically generate UPGRADES.md using console commands
+  - this is more annoying than it looks, because in addition to upgrade names, descriptions,
+    and tooltips, UPGRADES also contains:
+    - overviews of the different elemental debuffs and how they work
+    - an overview of how elemental trees, mastery, and dual-mastery upgrades work
+    - level limits, for ugprades that have level caps
+    - prerequisites (sometimes)
+    so doing this properly will have to combine pre-written text with the dump contents,
+    probably using some sort of templating system, which in turn means it needs to be
+    smart about categorizing the upgrades, and each upgrade needs to be annotate with
+    its requirement information.
 
 - Juggler should work with fancy weapon switch animations (Hellrider, Project Brutality, etc)
 - Balance: thunderbolt is probably still too powerful

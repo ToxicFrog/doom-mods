@@ -19,13 +19,8 @@ struct ::CurrentStats {
   uint wlvl;
   // Name of current weapon.
   string wname;
-  // Currently active weapon effect.
-  string effect;
 }
 
-// TODO: see if there's a way we can evacuate this to the StaticEventHandler
-// and reinsert it into the player when something happens, so that it reliably
-// persists across deaths, pistol starts, etc -- make this an option.
 class ::PerPlayerStats : Object play {
   array<::WeaponInfo> weapons;
   ::Upgrade::UpgradeBag upgrades;
@@ -65,12 +60,11 @@ class ::PerPlayerStats : Object play {
     stats.plvl = level;
     stats.pupgrades = upgrades;
     stats.winfo = info;
-    stats.wxp = floor(info.XP);
-    stats.wmax = info.maxXP;
+    stats.wxp = info.LevelXP();
+    stats.wmax = info.GetXPForLevel(info.level+1);
     stats.wlvl = info.level;
     stats.wname = info.wpn.GetTag();
     stats.wupgrades = info.upgrades;
-    stats.effect = info.ld_info.currentEffectName;
     return true;
   }
 
@@ -354,6 +348,34 @@ class ::PerPlayerStats : Object play {
     let info = GetInfoForCurrentWeapon();
     if (!info) return;
     info.upgrades.OnPickup(PlayerPawn(owner), item);
+  }
+
+  void OnMapEntry(string mapname, uint mapnum) {
+    upgrades.OnMapEntry(mapname, mapnum);
+    for (uint i = 0; i < weapons.size(); ++i) {
+      // TODO this is kind of hinky.
+      // It will get called even for unbound weaponinfos.
+      // It will also not get called when a weaponinfo is newly created or
+      // an upgrade is newly added to a weapon, so stuff that scales with map
+      // depth won't actually start scaling until later.
+      // So we probably need some way for upgrades to know what level they're on,
+      // rather than relying entirely on OnMapEntry handlers, and only use OME
+      // for things that need to trigger at the moment of map transition, like
+      // gaining/losing resources, rather than things that scale with map depth.
+      // Upgrades can get the player stats currently by calling
+      // PerPlayerStats.GetStatsFor(pawn), which is relatively fast (finds the
+      // event handler, then does an array lookup in there with some safety checks).
+      // If we're doing that a lot, though, we might want to save a pointer to
+      // the PerPlayerStats in the upgrade object itself, probably by recording
+      // it in OnActivate.
+      weapons[i].upgrades.OnMapEntry(mapname, mapnum);
+    }
+    // Bonus levels on map transition feature.
+    // There's a bunch of things to check here:
+    // - is it enabled at all?
+    // - how many levels do we get per map transition?
+    // - are levels added only to weapons that have "fallen behind" or are they
+    //   a bonus for all held weapons?
   }
 
   // Apply all upgrades with ModifyDamageReceived/Dealt handlers here.

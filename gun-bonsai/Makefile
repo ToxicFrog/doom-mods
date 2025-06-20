@@ -1,6 +1,6 @@
 NAME=GunBonsai
 TAGS=gun-bonsai-*
-VERSION=0.10.7
+VERSION=0.11.0
 LUMPS=zscript.txt LANGUAGE.* *.md COPYING.freedoom
 LUMPS+=MAPINFO CVARINFO SNDINFO KEYCONF MENUDEF GLDEFS BONSAIRC
 LUMPS+=sprites sounds textures

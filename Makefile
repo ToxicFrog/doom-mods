@@ -1,4 +1,4 @@
-MODS=libtooltipmenu gun-bonsai indestructable gzap
+MODS=libtooltipmenu gun-bonsai indestructable gzap laevis
 
 all: ${MODS}
 	$(MAKE) -C compat TOPDIR=..

@@ -11,12 +11,6 @@ enum TFLV_UpgradeBindingMode {
   TFLV_BIND_CLASS
 }
 
-enum TFLV_VfxMode {
-  TFLV_VFX_OFF,
-  TFLV_VFX_REDUCED,
-  TFLV_VFX_FULL
-}
-
 // Interface to the CVar settings for this mod.
 class TFLV_Settings : Object {
   static int GetInt(string name) {
@@ -67,14 +61,8 @@ class TFLV_Settings : Object {
            GetInt("bonsai_hud_rgb_player") | 0xFF000000;
   }
 
-  static uint levelup_flash() {
-    if (GetBool("bonsai_levelup_flash")) {
-      // Bug in gzDoom: if this ends up at #FFFFFFFF, we get a black flash instead
-      // of a white one, so set alpha to FE instead.
-      return GetInt("bonsai_levelup_flash_rgb") | 0xFE000000;
-    } else {
-      return 0;
-    }
+  static bool levelup_flash() {
+    return GetBool("bonsai_levelup_flash");
   }
 
   static uint vfx_mode() {
@@ -88,5 +76,13 @@ class TFLV_Settings : Object {
     if (mode < 0) return GetString("bonsai_levelup_sound");
     if (mode > 3) return "";
     return sounds[mode];
+  }
+
+  static bool have_legendoom() {
+    // If we just do cls = "LDPistol" it will get checked at compile time; we
+    // need to defer this to runtime so that everything has a chance to load.
+    string ldpistol = "LDPistol";
+    class<Actor> cls = ldpistol;
+    return cls != null;
   }
 }

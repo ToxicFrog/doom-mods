@@ -1,3 +1,12 @@
+# Unreleased
+
+**This update breaks save compatibility.** You will need to start a new game.
+
+- New:
+  - "Respec interval" setting, which lets you periodically re-create your weapons. Combine with "upgrade choices: 1" to automatically, randomly reroll your weapon's upgrades.
+- Change:
+  - LegenDoom integration has been removed. It is now available as a [separate mod](../laevis).
+
 # 0.10.7
 
 This is a bugfix release.
@@ -76,6 +85,9 @@ options screen and fix them.
   - Some upgrade tooltips were incorrect or incomplete.
 
 # 0.10.3
+
+This is a bugfix release that was given to specific testers but never properly
+released on the website.
 
 - Fix:
   - Crash when hallucinating monster receives sourceless damage
