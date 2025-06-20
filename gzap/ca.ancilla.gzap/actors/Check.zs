@@ -255,6 +255,12 @@ class ::CheckPickup : ScoreItem {
   }
 
   void UpdateFromLocation() {
+    if (!self.checked && self.location.checked) {
+      level.found_items++;
+    } else if (self.checked && !self.location.checked) {
+      // Very unlikely
+      level.found_items--;
+    }
     self.checked = self.location.checked;
     SetTag(self.location.name);
     if (self.checked) {

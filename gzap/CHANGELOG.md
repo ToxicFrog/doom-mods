@@ -19,6 +19,8 @@
     tokens, maps, and keys.
   - A `VERSION` file is now included in the generated pk3 to make it easier to
     debug version mismatches.
+  - Item count is now correctly updated after saving, collecting some AP checks,
+    and then loading the savegame.
 
 # 0.6.1
 
