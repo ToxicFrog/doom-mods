@@ -21,6 +21,7 @@
     debug version mismatches.
   - Item count is now correctly updated after saving, collecting some AP checks,
     and then loading the savegame.
+  - Logic for `Space Cats Saga` reinstated.
 
 # 0.6.1
 
