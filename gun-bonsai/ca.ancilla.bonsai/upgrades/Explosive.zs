@@ -39,7 +39,7 @@ class ::ExplosiveShots::Boom : Actor {
     +NOGRAVITY;
     +MISSILE;
     +NODAMAGETHRUST;
-    DamageType "Extreme";
+    PainType "Extreme";
   }
 
   override int DoSpecialDamage(Actor target, int damage, Name damagetype) {

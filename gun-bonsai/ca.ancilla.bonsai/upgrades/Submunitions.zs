@@ -67,7 +67,7 @@ class ::Submunitions::Grenade : Actor {
     Height 24;
     Speed 15;
     Scale 0.4;
-    DamageType "Extreme";
+    PainType "Extreme";
     Projectile;
     // +FLOORHUGGER;
     +SEEKERMISSILE;

@@ -32,7 +32,7 @@ class ::ExplosiveDeath::Aux : Actor {
   uint radius;
 
   Default {
-    DamageType "Extreme";
+    PainType "Extreme";
     +NOBLOCKMAP;
     +NOGRAVITY;
   }
