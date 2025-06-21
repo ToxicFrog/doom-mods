@@ -35,9 +35,7 @@ TFLV_OPT_TT_HUD_RGB_PLAYER = "Colour of the player XP bar and player level text.
 TFLV_OPT_NAME_VFX_MODE = "Visual effects";
 TFLV_OPT_TT_VFX_MODE =
   "Setting this to 'reduced' or 'minimal' may help performance, especially on maps featuring large groups of enemies.\n"
-  "\c[CYAN][full]:\c- Visual effects use a mix of particles and sprites.\n"
-  "\c[CYAN][reduced]:\c- All particle effects are disabled. Elemental debuffs are displayed by flashing the affected monster in different colours.\n"
-  "\c[CYAN][minimal]:\c- All particle effects are disabled. Monsters don't flash.";
+  "\c[CYAN]Full\c- uses a mix of particles and sprites. \c[CYAN]Reduced\c- turns off all particle effects, and replaces some of them with sprite shading effects instead. \c[CYAN]Minimal\c- turns off sprite shading as well.\n";
 TFLV_OPT_NAME_LEVELUP_FLASH = "Flash on level-up";
 TFLV_OPT_TT_LEVELUP_FLASH = "Whether to flash the screen when your weapon gains a level.";
 TFLV_OPT_NAME_LEVELUP_FLASH_RGB = "Flash colour";
@@ -50,9 +48,8 @@ TFLV_OPT_TT_AUTOSAVE_AFTER_LEVEL = "Autosave after choosing your upgrades for a 
 TFLV_OPT_NAME_UPGRADE_BINDING_MODE = "Weapon upgrades bind to";
 TFLV_OPT_TT_UPGRADE_BINDING_MODE =
   "Determines how weapon upgrades behave when you drop a weapon or are carrying multiple weapons of the same type.\n"
-  "\c[CYAN][individual weapon]:\c- each weapon has its own upgrades. When you drop a weapon, the upgrades go with it, and if you lose a weapon permanently, the upgrades are lost forever.\n"
-  "\c[CYAN][individual w/inheritance]:\c- each weapon has its own upgrades, but if a weapon is lost and you later pick up a new weapon of the same type, the new weapon will inherit the upgrades of the old one.\n"
-  "\c[CYAN][weapon class]:\c- all weapons of the same type share the same upgrades, even if you have more than one of them in your inventory. Upgrades are remembered even if you lose all copies of a weapon.";
+  "\c[CYAN]Individual weapon\c- ties upgrades to the specific weapon that earned them. If you have multiple copies of the weapon they each have separate upgrades, and if you drop one its upgrades are gone with it. \c[CYAN]Individual with inheritance\c- is similar, but if you drop a weapon and later pick up a new one of the same type, it will 'inherit' the upgrades of its predecessor.\n"
+  "\c[CYAN]Weapon class\c- shares upgrades between all weapons of the same type, even if you have more than one of that weapon, and remembers those upgrades even if you drop the weapon.";
 TFLV_OPT_NAME_IGNORE_DEATH_EXITS = "Keep upgrades on death exit/pistol start";
 TFLV_OPT_TT_IGNORE_DEATH_EXITS = "If on, you'll keep your upgrades on level transition even if you lose your inventory (subject to the upgrades-bind-to setting above). If off, level transitions that take your inventory will also cost you your upgrades.";
 TFLV_OPT_NAME_USE_BUILTIN_ACTORS = "Use builtin actors for Scavenge drops";
