@@ -33,20 +33,28 @@ server int bonsai_upgrade_choices_per_player_level = 4;
 // permanent player-wide bonus.
 server int bonsai_gun_levels_per_player_level = 7;
 
-// Base XP needed to go from level 0 to level 1. Cost for future levels is
-// (base xp) * (destination level).
-// At the default setting of 1200, it's enough that clearing MAP01 on UV will
-// just barely get you one level-up.
+// Base XP needed to go from level 0 to level 1. Cost for future levels scales
+// based on this.
+// At the default setting of 1200 and linear scaling, it's enough that clearing
+// MAP01 on UV will just barely get you one level-up.
 // Conversely, clearing MAP01 of Sunder (a slaughterwad) will let you level all
 // of your guns to level 2, or one of them to level 5.
 server int bonsai_base_level_cost = 1200;
 
+// XP cost increase curve. Enum:
+// 0 - constant
+// 1 - linear
+// 2 - quadratic
+// 3 - cubic
+// 4 - exponential
+server int bonsai_xp_curve = 1;
+
 // Level-up cost multipliers for melee weapons, puny weapons, explosive weapons,
 // and the BFG. These require the corresponding weapon flags to be set, which
 // not all mods do (but they are set correctly for base Doom/Doom2, at least).
-// Currently disabled due to not working right.
 server float bonsai_level_cost_mul_for_melee = 0.5;
 server float bonsai_level_cost_mul_for_wimpy = 0.5;
+// TODO: These two are currently disabled due to not working right.
 server float bonsai_level_cost_mul_for_explosive = 1.5;
 server float bonsai_level_cost_mul_for_bfg = 1.5;
 

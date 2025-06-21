@@ -71,6 +71,13 @@ TFLV_OPT_TT_SCORE_TO_XP_FACTOR = "How much XP you earn per point of score you ac
 // XP balance options
 TFLV_OPT_NAME_BASE_LEVEL_COST = "XP needed to reach level 1";
 TFLV_OPT_TT_BASE_LEVEL_COST = "How much XP you need to earn for a weapon to gain its first level. Roughly, 1 point of damage dealt == 1 XP gained, with a bonus for damaging nastier enemies like Cyberdemons and Archviles.";
+TFLV_OPT_NAME_XP_CURVE = "XP cost scaling";
+TFLV_OPT_TT_XP_CURVE =
+  "How fast the XP cost for leveling increases as a gun levels up.\n"
+  "\c[CYAN]Constant\c- does not increase the cost at all.\n"
+  "\c[CYAN]Linear\c- is the original scaling and increases the cost by a fixed amount each level.\n"
+  "\c[CYAN]Quadratic\c- and \c[CYAN]cubic\c- scale with the square or cube of the level.\n"
+  "\c[CYAN]Exponential\c- doubles the cost every level. It lets you level up faster than quadratic or cubic at low levels, but slows down dramatically at higher ones.";
 TFLV_OPT_NAME_UPGRADE_CHOICES_PER_GUN_LEVEL = "Upgrade choices on gun level up";
 TFLV_OPT_NAME_UPGRADE_CHOICES_PER_PLAYER_LEVEL = "Upgrade choices on player level up";
 TFLV_OPT_TT_UPGRADE_CHOICES_PER_LEVEL = "How many different upgrades it offers you on level up. Setting it to 0 will let you pick from the full list of available upgrades. Setting it to 1 will randomly pick an upgrade for you without opening the menu.";
@@ -118,3 +125,9 @@ TFLV_OPT_BINDMODE_2 = "weapon class";
 TFLV_OPT_SLIDER_DISABLED = "Disabled";
 TFLV_OPT_SLIDER_ALLUPGRADES = "All available upgrades";
 TFLV_OPT_SLIDER_NOUPGRADES = "Upgrades disabled";
+// XP curve
+TFLV_OPT_XP_CURVE_0 = "constant (always base_cost)";
+TFLV_OPT_XP_CURVE_1 = "linear (base_cost × level)";
+TFLV_OPT_XP_CURVE_2 = "quadratic (base_cost × level²)";
+TFLV_OPT_XP_CURVE_3 = "cubic (base_cost × level³)";
+TFLV_OPT_XP_CURVE_4 = "exponential (base_cost × 2^level)";

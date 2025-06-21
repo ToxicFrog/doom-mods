@@ -150,15 +150,52 @@ class ::WeaponInfo : Object play {
     return false;
   }
 
+  // Returns the cost to get from level 0 to the given level. This is integral
+  // of the XP curve from 0 to the given level.
+  // We can do this just by iterating over the XP cost for each level, but
+  // instead we implement the closed form of each here.
   double TotalXPForLevel(uint level) const {
-    // The total cost to reach level N is the Nth triangle number (1-indexed) times
-    // the cost to reach level 1.
-    // The closed form for the Nth triangle number is N(N+1)/2.
-    return level * (level+1) / 2 * GetXPForLevel(1);
+    switch (bonsai_xp_curve) {
+      case 0:  // constant
+        return GetBaseXP() * level;
+      case 1:  // linear. Total XP is the nth triangle number.
+        return GetBaseXP() * (level * (level+1)) / 2;
+      case 2:  // quadratic. Total XP is sum of squares, which has closed form n(n+1)(2n+1)/6
+        return GetBaseXP() * (level * (level+1) * (2*level + 1))/6;
+      case 3:  // cubic. This is just the nth triangle number squared. Handy!
+        return GetBaseXP() * ((level * (level+1)) / 2)**2;
+      case 4:  // exponential
+        return GetBaseXP() * (2**level - 1);
+    }
+    // Should never happen
+    return 1e9999;
   }
 
+  // Returns the cost to reach the given level from the previous level, e.g.
+  // GetXPForLevel(4) tells you the cost to get from level 3 to level 4.
   double GetXPForLevel(uint level) const {
-    double XP = bonsai_base_level_cost * double(level);
+    switch (bonsai_xp_curve) {
+      case 0:  // constant
+        return GetBaseXP();
+      case 1:  // linear
+        return GetBaseXP() * level;
+      case 2:  // quadratic
+        return GetBaseXP() * level ** 2;
+      case 3:  // cubic
+        return GetBaseXP() * level ** 3;
+      case 4:  // exponential
+        // Check here because at level 0 we want to return 0, not half the
+        // base cost.
+        return level ? (GetBaseXP() * 2 ** (level-1)) : 0.0;
+    }
+    // Should never happen
+    return 1e9999;
+  }
+
+  // Returns base XP cost for this weapon, i.e. the reference XP cost to go from
+  // level 0 to level 1. This is configured by the user but may be modified for
+  // certain classes of weapons.
+  double GetBaseXP() const {
     double mul = 1.0;
     if (IsMelee()) {
       mul = min(mul, bonsai_level_cost_mul_for_melee);
@@ -166,8 +203,7 @@ class ::WeaponInfo : Object play {
     if (IsWimpy()) {
       mul = min(mul, bonsai_level_cost_mul_for_wimpy);
     }
-    // DEBUG("GetXPForLevel: level %d -> XP %.1f", level, XP);
-    return XP * mul;
+    return bonsai_base_level_cost * mul;
   }
 
   void AddXP(double newXP) {
@@ -201,7 +237,9 @@ class ::WeaponInfo : Object play {
     }
   }
 
+  // Amount of XP it took to reach this level.
   double BaseXP() { return TotalXPForLevel(self.level); }
+  // Amount of XP we've gained since reaching this level.
   double LevelXP() { return XP - BaseXP(); }
 
   uint CountPendingLevels() {

@@ -368,6 +368,15 @@ class ::PerPlayerStats : Object play {
       // If we're doing that a lot, though, we might want to save a pointer to
       // the PerPlayerStats in the upgrade object itself, probably by recording
       // it in OnActivate.
+      // I think part of the design problem here is that we have three different
+      // use cases conflated here:
+      // - upgrades that care about what map you're on, e.g. things that get more
+      //   powerful as you get deeper into the game even if you don't feed them XP
+      // - upgrades that do something when you enter a new map, e.g. a player upgrade
+      //   that gives you berserk or refills resources, and are then dormant
+      // - non-upgrade functionality that triggers on map transitions, e.g. a
+      //   "gain level per map" functionality.
+      // And it might be worthwhile thinking about how to deconflate them.
       weapons[i].upgrades.OnMapEntry(mapname, mapnum);
     }
     // Bonus levels on map transition feature.

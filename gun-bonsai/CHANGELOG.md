@@ -4,6 +4,7 @@
 
 - New:
   - "Respec interval" setting, which lets you periodically re-create your weapons. Combine with "upgrade choices: 1" to automatically, randomly reroll your weapon's upgrades.
+  - XP curve (the rate at which the XP cost for each level increases) is now configurable. [By `stainedofmind`.]
 - Change:
   - LegenDoom integration has been removed. It is now available as a [separate mod](../laevis).
 

@@ -73,6 +73,8 @@ OptionMenu "GunBonsaiOptions"
 
   TextField "$TFLV_OPT_NAME_BASE_LEVEL_COST", "bonsai_base_level_cost" //, 100, 10000, 100, 0
   TFLV_Tooltip "$TFLV_OPT_TT_BASE_LEVEL_COST"
+  Option "$TFLV_OPT_NAME_XP_CURVE", "bonsai_xp_curve", "GunBonsaiXPCurve"
+  TFLV_Tooltip "$TFLV_OPT_TT_XP_CURVE"
   ScaleSlider "$TFLV_OPT_NAME_UPGRADE_CHOICES_PER_GUN_LEVEL", "bonsai_upgrade_choices_per_gun_level", -1, 50, 1, "$TFLV_OPT_SLIDER_NOUPGRADES", "$TFLV_OPT_SLIDER_ALLUPGRADES"
   ScaleSlider "$TFLV_OPT_NAME_UPGRADE_CHOICES_PER_PLAYER_LEVEL", "bonsai_upgrade_choices_per_player_level", -1, 50, 1, "$TFLV_OPT_SLIDER_NOUPGRADES", "$TFLV_OPT_SLIDER_ALLUPGRADES"
   TFLV_Tooltip "$TFLV_OPT_TT_UPGRADE_CHOICES_PER_LEVEL"
@@ -125,11 +127,12 @@ OptionValue "GunBonsaiUpgradeBindingMode" {
   2, "$TFLV_OPT_BINDMODE_2"
 }
 
-OptionValue "GunBonsaiWhatKindOfGunSelector" {
-  0, "$TFLV_OPT_LDMODE_0"
-  1, "$TFLV_OPT_LDMODE_1"
-  2, "$TFLV_OPT_LDMODE_2"
-  3, "$TFLV_OPT_LDMODE_3"
+OptionValue "GunBonsaiXPCurve" {
+  0, "$TFLV_OPT_XP_CURVE_0"
+  1, "$TFLV_OPT_XP_CURVE_1"
+  2, "$TFLV_OPT_XP_CURVE_2"
+  3, "$TFLV_OPT_XP_CURVE_3"
+  4, "$TFLV_OPT_XP_CURVE_4"
 }
 
 OptionMenu "GunBonsaiPlayerLevelUpMenu"

@@ -138,6 +138,11 @@ class ::BaseUpgrade : Object play {
   // the attack, but for things like DoTs it may be null, or an Inventory being
   // held by the monster, or the like, so don't make assumptions about it.
 
+  // TODO: Investigate if we can do something useful with WorldHitscan(Pre)Fired
+  // and WorldRailgun(Pre)Fired here -- that might make it possible to trigger
+  // things like Explosive Shots even when they hit terrain! Might also break
+  // LZDoom compatibility, though.
+
   // Called when the player is about to damage something. Should return the actual
   // amount of damage to deal; this will be converted to int once all ModifyDamage
   // handlers have run.
@@ -176,8 +181,14 @@ class ::BaseUpgrade : Object play {
     return;
   }
 
-  // Called when the player picks up an item. See the comments in UpgradeBag for
-  // warnings about what this is and isn't called for. It's safe to use for armour.
+  // Called when the player picks up an item. This does not reliably detect items
+  // that merge with other things in the player's inventory, and may be called
+  // multiple times, and/or on items that can be picked up in principle but not
+  // right now (e.g. medkits when the player is at full health).
+  // At the moment it's only used by upgrades that care about max armour to figure
+  // out what your "max armour" actually is, and it's safe to use in that role,
+  // but carefully consult the comments in PerPlayerStatsProxy.HandlePickup for
+  // caveats if you want to use it for anything else.
   virtual void OnPickup(PlayerPawn pawn, Inventory item) {
     return;
   }
