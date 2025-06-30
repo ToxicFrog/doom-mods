@@ -35,7 +35,7 @@ class ::LifeLeech : ::BaseUpgrade {
     DEBUG("hp=%d/%d (base: %d)", hp.amount, hp.maxamount, cap);
   }
 
-  string GetBonusName() {
+  virtual string GetBonusName() {
     if (bonsai_use_builtin_actors) {
       return "::LifeLeech::Bonus";
     } else {
@@ -102,7 +102,7 @@ class ::ArmourLeech : ::BaseUpgrade {
     DEBUG("ap=%d/%d (base: %d)", ap.SaveAmount, ap.MaxSaveAmount, cap);
   }
 
-  string GetBonusName() {
+  virtual string GetBonusName() {
     if (bonsai_use_builtin_actors) {
       return "::ArmourLeech::Bonus";
     } else {

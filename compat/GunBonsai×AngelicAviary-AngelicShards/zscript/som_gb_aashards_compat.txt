@@ -4,90 +4,23 @@
 // #namespace TFLV::Upgrade;
 // #debug off
 
-class TFLV_Upgrade_LifeLeech_AAShards : TFLV_Upgrade_BaseUpgrade {
-  override void OnKill(PlayerPawn player, Actor shot, Actor target) {
-    let hp = Health(target.Spawn(
-      GetBonusName(), TFLV_Upgrade_LeechUtil.WigglePos(target), ALLOW_REPLACE));
-    if (!hp) {
-      // We couldn't turn this into Health. This probably means that the
-      // current setup replaces them with a HealthItemSpawner or something.
-      // So instead of dropping one and multiplying the effectiveness by level,
-      // instead just generate more drops.
-      for (uint n = 1; n < level; ++n) {
-        target.Spawn(GetBonusName(), TFLV_Upgrade_LeechUtil.WigglePos(target), ALLOW_REPLACE);
-      }
-      return;
-    }
-    // We could, so multiply the health amount by our level.
-    let cap = player.GetMaxHealth(true);
-    hp.amount = target.bBOSS ? level*10 : level;
-    hp.maxamount = clamp(cap * level, cap, 2*cap);
-//    DEBUG("hp=%d/%d (base: %d)", hp.amount, hp.maxamount, cap);
-  }
-
-  string GetBonusName() {
+class TFLV_Upgrade_LifeLeech_AAShards : TFLV_Upgrade_LifeLeech {
+  override string GetBonusName() {
     if (bonsai_use_builtin_actors) {
       return "AngelicHealthBonus";
     } else {
       return "HealthBonus";
     }
   }
-
-  override bool IsSuitableForPlayer(TFLV_PerPlayerStats stats) {
-    return true;
-  }
-
-  override void GetTooltipFields(Dictionary fields, uint level) {
-    fields.insert("amount", ""..level);
-    fields.insert("cap", AsPercent(level >= 2 ? 2 : 1));
-  }
 }
 
-class TFLV_Upgrade_ArmourLeech_AAShards : TFLV_Upgrade_BaseUpgrade {
-  uint armour_cap;
-
-  override void OnPickup(PlayerPawn pawn, Inventory item) {
-    let armour = BasicArmorPickup(item);
-    if (!armour) return;
-    armour_cap = max(self.armour_cap, armour.SaveAmount);
-  }
-
-  override void OnKill(PlayerPawn player, Actor shot, Actor target) {
-    let ap = BasicArmorBonus(target.Spawn(
-      GetBonusName(), TFLV_Upgrade_LeechUtil.WigglePos(target), ALLOW_REPLACE));
-    if (!ap) {
-      // We couldn't turn this into BasicArmorBonus. This probably means that the
-      // current setup replaces them with an ArmorBonusSpawner or something.
-      // So instead of dropping one and multiplying the effectiveness by level,
-      // instead just generate more drops.
-      for (uint n = 1; n < level; ++n) {
-        target.Spawn(GetBonusName(), TFLV_Upgrade_LeechUtil.WigglePos(target), ALLOW_REPLACE);
-      }
-      return;
-    }
-    // We could, so set the armour cap appropriately and multiply the save amount
-    // by our level.
-    uint cap = (armour_cap ? armour_cap : player.GetMaxHealth(true));
-    ap.SaveAmount = target.bBOSS ? level*20 : level*2;
-    ap.MaxSaveAmount = clamp(cap * level, cap, 2*cap);
-//    DEBUG("ap=%d/%d (base: %d)", ap.SaveAmount, ap.MaxSaveAmount, cap);
-  }
-
-  string GetBonusName() {
+class TFLV_Upgrade_ArmourLeech_AAShards : TFLV_Upgrade_ArmourLeech {
+  override string GetBonusName() {
     if (bonsai_use_builtin_actors) {
       return "AngelicArmorBonus";
     } else {
       return "ArmorBonus";
     }
-  }
-
-  override bool IsSuitableForPlayer(TFLV_PerPlayerStats stats) {
-    return true;
-  }
-
-  override void GetTooltipFields(Dictionary fields, uint level) {
-    fields.insert("amount", ""..(level*2));
-    fields.insert("cap", AsPercent(level >= 2 ? 2 : 1));
   }
 }
 

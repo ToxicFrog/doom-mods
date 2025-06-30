@@ -1,9 +1,6 @@
-
-register
-  TFLV_Upgrade_LifeLeech_AAShards
-  TFLV_Upgrade_ArmourLeech_AAShards
-  ;
-
-unregister TFLV_Upgrade_LifeLeech
-  TFLV_Upgrade_ArmourLeech
-  ;
+# If Angelic Aviary is installed, use versions of lifeleech and armourleech
+# that drop AA health/armour items.
+ifdef AngelicHealthBonus {
+  unregister TFLV_Upgrade_LifeLeech TFLV_Upgrade_ArmourLeech;
+  register TFLV_Upgrade_LifeLeech_AAShards TFLV_Upgrade_ArmourLeech_AAShards;
+}
