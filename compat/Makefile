@@ -9,5 +9,5 @@ stage:
 	git rm --cached --ignore-unmatch '${TOPDIR}/release/*×*'
 	git add -f ${TOPDIR}/release/*×*
 
-${TOPDIR}/release/%.pk3: %/zscript.txt
-	zip --junk-paths -qr -0 $@ $<
+${TOPDIR}/release/%.pk3: %/ %/*
+	(cd $< && zip -qr -0 ../$@ .)
