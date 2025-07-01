@@ -18,6 +18,12 @@ class ::Registry : Object play {
     return idx;
   }
 
+  ::BaseUpgrade FindUpgrade(string upgrade) {
+    let idx = FindRegistration(upgrade);
+    if (idx < 0) return null;
+    return upgrades[idx];
+  }
+
   bool IsUnregistered(string upgrade) {
     return unregistered.find(upgrade) != unregistered.size();
   }
@@ -57,6 +63,20 @@ class ::Registry : Object play {
       && CVar.FindCVar("indestructable_max_lives_per_level").GetInt() == 0;
   }
 
+  //// Upgrade candidate list logic below this point. ////
+  //
+  // The basic concept for both player and weapon upgrades is to create a candidate
+  // list of eligible upgrades, then randomly pick a subset of those for the list
+  // of upgrades actually generated and presented to the player. However, the ability
+  // to force upgrades into the list complicates this slightly.
+  //
+  // So the actual behaviour is:
+  // - start with an empty list of generated upgrades and an empty list of candidates;
+  // - populate the generated list with all eligible forced upgrades;
+  // - populate the candidate list with all eligible upgrades not already in the generated list;
+  // - pick upgrades from the candidate list at random, without replacement, and add them
+  //   to the generated list until its cardinality is ≥ the requested upgrade count.
+
   void PickN(Array<::BaseUpgrade> dst, Array<::BaseUpgrade> src, uint n) {
     uint max = src.size();
     while (max > 0 && dst.size() < n) {
@@ -64,6 +84,29 @@ class ::Registry : Object play {
       dst.push(src[i]);
       src[i] = src[--max];
     }
+  }
+
+  void AddEligibleUpgrades(
+      TFLV::PerPlayerStats stats, TFLV::WeaponInfo info, Array<string> names,
+      Array<::BaseUpgrade> upgrades, Array<::BaseUpgrade> exclude) {
+    for (int i = 0; i < names.Size(); ++i) {
+      let upgrade = FindUpgrade(names[i]);
+      if (!upgrade) {
+        console.printf("Warning: unknown upgrade name: %s", names[i]);
+        continue;
+      }
+      // Don't include ineligible upgrades.
+      if (exclude && exclude.Find(upgrade) < exclude.Size()) continue;
+      if (stats && !upgrade.IsSuitableForPlayer(stats)) continue;
+      if (info && !(upgrade.IsSuitableForWeapon(info) && info.CanAcceptUpgrade(names[i]))) continue;
+      upgrades.Push(upgrade);
+    }
+  }
+
+  void AddForcedUpgrades(TFLV::PerPlayerStats stats, TFLV::WeaponInfo info, Array<::BaseUpgrade> generated) {
+    Array<string> forced_names;
+    bonsai_forced_upgrades.Split(forced_names, " ", TOK_SKIPEMPTY);
+    AddEligibleUpgrades(stats, info, forced_names, generated, generated);
   }
 
   void GenerateUpgradesForPlayer(
@@ -77,14 +120,12 @@ class ::Registry : Object play {
       return;
     }
 
-    for (uint i = 0; i < upgrades.size(); ++i) {
-      if (upgrades[i].IsSuitableForPlayer(stats))
-        candidates.push(upgrades[i]);
-    }
+    AddForcedUpgrades(stats, null, generated);
+    AddEligibleUpgrades(stats, null, upgrade_names, candidates, generated);
 
     if (nrof == -1) {
       // "All upgrades" mode
-      generated.Copy(candidates);
+      generated.Append(candidates);
     } else {
       PickN(generated, candidates, nrof);
     }
@@ -101,14 +142,12 @@ class ::Registry : Object play {
       return;
     }
 
-    for (uint i = 0; i < upgrades.size(); ++i) {
-      if (upgrades[i].IsSuitableForWeapon(info) && info.CanAcceptUpgrade(upgrade_names[i]))
-        candidates.push(upgrades[i]);
-    }
+    AddForcedUpgrades(null, info, generated);
+    AddEligibleUpgrades(null, info, upgrade_names, candidates, generated);
 
     if (nrof == -1) {
       // "All upgrades" mode
-      generated.Copy(candidates);
+      generated.Append(candidates);
     } else {
       PickN(generated, candidates, nrof);
     }

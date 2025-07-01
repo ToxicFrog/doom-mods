@@ -32,6 +32,8 @@ server int bonsai_upgrade_choices_per_player_level = 4;
 // How many times the player needs to level up their guns before they get a
 // permanent player-wide bonus.
 server int bonsai_gun_levels_per_player_level = 7;
+// These are guaranteed to appear in every level up, if you meet the requirements.
+server string bonsai_forced_upgrades = "";
 
 // Base XP needed to go from level 0 to level 1. Cost for future levels scales
 // based on this.

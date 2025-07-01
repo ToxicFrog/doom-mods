@@ -7,6 +7,7 @@
   - XP curve (the rate at which the XP cost for each level increases) is now configurable. [By `stainedofmind`.]
   - Optional compat patch for Angelic Aviary, replacing Scavenge Blood/Steel drops with AA actors. [By `stainedofmind`.]
   - Optional compat patch for War Trophies, disabling kill-counting for enemies killed by damage-over-time effects. [By `stainedofmind`.]
+  - `bonsai_forced_upgrades` setting to force it to always include certain upgrades of your choice in the level-up menu. [Inspired by `stainedofmind`'s "always damage upgrade" addon.]
 - Fix:
   - Explosive effects now use `PainType` instead of `DamageType`, which should fix some issues with Brutal Doom and possibly other mods.
 - Change:

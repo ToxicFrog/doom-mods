@@ -90,6 +90,10 @@ TFLV_OPT_TT_LEVEL_COST_MUL =
 TFLV_OPT_NAME_RESPEC_INTERVAL = "Respec interval";
 TFLV_OPT_TT_RESPEC_INTERVAL = "Gaining this many levels will cause your weapon to automatically respec. You will be asked to re-choose all of its upgrades from scratch, and its previous set of upgrades will be discarded. Setting 'upgrade choices per gun level' to 1 as well will cause the weapon to automatically reroll its upgrades as soon as it respecs; otherwise it will not respec until you open the level-up menu.";
 
+TFLV_OPT_NAME_FORCED_UPGRADES = "Forced upgrades";
+TFLV_OPT_TT_FORCED_UPGRADES = "Space-separated list of upgrades to always include in the list offered to you on level up (if eligible). These need to be the internal actor names, e.g. 'TFLV_Upgrade_WeaponDamage'; check the BONSAIRC for a full list. If there are fewer eligible forced upgrades than your 'upgrade choices on level up' setting, random upgrades are used to fill the remaining slots as normal.";
+
+
 // Strings for the various option enums
 
 // HUD orientation settings

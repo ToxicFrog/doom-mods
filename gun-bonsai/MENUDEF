@@ -91,6 +91,8 @@ OptionMenu "GunBonsaiOptions"
 
   ScaleSlider "$TFLV_OPT_NAME_RESPEC_INTERVAL", "bonsai_respec_interval", 0, 32, 1, "$TFLV_OPT_SLIDER_DISABLED"
   TFLV_Tooltip "$TFLV_OPT_TT_RESPEC_INTERVAL"
+  TextField "$TFLV_OPT_NAME_FORCED_UPGRADES", "bonsai_forced_upgrades"
+  TFLV_Tooltip "$TFLV_OPT_TT_FORCED_UPGRADES"
 }
 
 OptionValue "GunBonsaiHudMirrorMode" {
