@@ -275,6 +275,9 @@ class ::CheckPickup : ScoreItem {
 
   void UpdateFromOriginal(readonly<Actor> original) {
     if (!original) return;
+    // TODO: we should set a minimum radius here, to handle things like SCS cats,
+    // which have a radius often too small to interact with because you're expected
+    // to frob them rather than picking them up.
     A_SetSize(original.radius, original.height);
     ChangeTID(original.TID);
     A_SetSpecial(original.special, original.args[0], original.args[1], original.args[2], original.args[3], original.args[4]);

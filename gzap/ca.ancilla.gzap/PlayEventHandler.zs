@@ -105,7 +105,9 @@ class ::PlayEventHandler : StaticEventHandler {
   }
 
   override void WorldUnloaded(WorldEvent evt) {
-    ::PerLevelHandler.Get().OnLevelExit(evt.IsSaveGame);
+    let plh = ::PerLevelHandler.Get();
+    if (!plh || !evt) return; // Can happen if exiting to new game
+    plh.OnLevelExit(evt.IsSaveGame);
   }
 
   override void PlayerSpawned(PlayerEvent evt) {

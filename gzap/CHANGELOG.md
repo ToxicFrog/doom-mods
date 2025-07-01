@@ -22,6 +22,8 @@
   - Item count is now correctly updated after saving, collecting some AP checks,
     and then loading the savegame.
   - Logic for `Space Cats Saga` reinstated.
+  - Crash when exiting to the menu or starting a new game while a game is
+    already in progress.
 
 # 0.6.1
 
