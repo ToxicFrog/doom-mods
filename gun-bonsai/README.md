@@ -13,7 +13,9 @@ It is inspired primarily by [War of Attrition](https://fissile.duke4.net/fissile
 
 ## Setup
 
-Add `GunBonsai-<version>.pk3` to your load order. It doesn't matter where.
+Download the latest [stable](https://github.com/ToxicFrog/doom-mods/releases/tag/gun-bonsai-0.10.6) or [unstable](../release/GunBonsai-latest.pk3) version of `GunBonsai.pk3`.
+
+Add `GunBonsai.pk3` to your load order. It doesn't matter where.
 
 Gun Bonsai adds one new mandatory command, "Show Info", bound to `I` by default; this shows you information on your character and current weapon, and is used to select upgrades on level-up.
 
@@ -112,7 +114,7 @@ Yes! See the `MODDING.md` file for instructions; if you just want to automatical
 
 ### Didn't this used to be called "Laevis"?
 
-That was the working title of early prototypes of this mod. It was renamed "Gun Bonsai" before the first official release. The name "Laevis" is now used by [another one of my mods](FIXME).
+That was the working title of early prototypes of this mod. It was renamed "Gun Bonsai" before the first official release. The name "Laevis" is now used by [another one of my mods](../laevis).
 
 
 ## Known Issues
