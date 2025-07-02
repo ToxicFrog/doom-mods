@@ -68,7 +68,7 @@ here may result in glitches.
 | Golden Souls Remastered  | | | | missing | |
 | Golden Souls 2           | | | | missing | |
 | Hedon Bloodrite          | | | | missing | This is going to be a project but I think it would be pretty cool. |
-| Space Cats Saga          | 57 | 316 | 1042 | basic | Pettable cats categorized as "big-ammo" may sometimes give you weapons out-of-logic instead. |
+| Space Cats Saga          | 57 | 316 | 1042 | partial | Pettable cats categorized as "big-ammo" may sometimes give you weapons out-of-logic instead. |
 
 ### Fan-Games for Other IPs
 

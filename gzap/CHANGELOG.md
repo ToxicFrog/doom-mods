@@ -10,6 +10,7 @@
     and/or lots of levels.
   - Hints are now requested with `shift-H` rather than `→` to make it harder to
     request them accidentally.
+  - Tuning for Episode 1 of Space Cats Saga.
 - Fix:
   - The item icon mapper now properly detects FreeDoom 1/2 as having Doom-
     compatible spritesheets.
