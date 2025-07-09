@@ -25,6 +25,8 @@
   - Logic for `Space Cats Saga` reinstated.
   - Crash when exiting to the menu or starting a new game while a game is
     already in progress.
+  - Wings of Wrath are now excluded from randomization in Heretic since they
+    are often needed for in-map progression at specific locations.
 
 # 0.6.1
 

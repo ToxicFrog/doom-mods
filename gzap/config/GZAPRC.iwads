@@ -84,3 +84,7 @@ typename Mace: MaceSpawner;
 # Ignore any Maces that spawn entirely. They will neither be converted to checks
 # nor added to the item pool.
 category none: Mace;
+
+# Also ignore the Wings of Wrath since they are often needed for level
+# progression and the logic doesn't presently understand that.
+category none: ArtiFly;
