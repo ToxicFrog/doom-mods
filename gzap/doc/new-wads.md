@@ -87,8 +87,9 @@ reclassifying something from "tool" to "powerup"), exclude items from randomizat
 and include items that would not normally be included. It can also be used to add
 a different item to the item pool than what the scanner finds.
 
-This repo contains a [commented example](../GZAPRC) containing a configuration
-for Heretic and The Adventures of Square.
+This repo contains a [commented example](../config/GZAPRC.iwads) containing a
+configuration for Heretic and Chex Quest; other files in that directory contain
+configurations for other megawads.
 
 ## Adding the logic file to the apworld
 

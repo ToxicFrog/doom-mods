@@ -3,7 +3,7 @@
 set -ex
 
 AP=${AP:-$HOME/.local/share/Archipelago}
-GAME=${GAME:-gzap}
+GAME=${1:-gzap}
 
 make
 (

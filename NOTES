@@ -63,6 +63,13 @@ be able to represent logic requirements that aren't just keys.
 
 ### ingame
 
+- fast map refresh is not refreshing properly when receiving items from other
+  players, need to close and reopen the map :<
+- TT has a bunch of stuff that breaks it: single-use teleport lines, scripts that
+  take away your guns and keys on level start
+- SA reports that dying in a level with autosaves and respawn off counts as winning
+  the level
+
 - "gzap for apdoom users" man page
 - option to disable tuning generation
 - some hints received when playing in the weekly sync did not display on the
@@ -154,6 +161,19 @@ on level up when using the integration.
 
 Bandolier rewrite idea: instead of directly affecting ammo capacity, siphon off ammo
 when it's nearly full and restore it when it gets low.
+
+### SoM addons/patches
+- [X] elementals only, no bandoliers/elementals/weapon upgrades: ignore
+- [ ] ammo reserves: integrate as bandoliers replacement
+- [X] angelic shards: integrate into compat repo
+- [X] war trophies no DOT kills: integrate into compat repo
+- [X] always weapon damage: integrate as CVAR
+- [ ] ammo leech fix: integrate
+- [ ] level requirement for elements: see if there's a way to make this doable as an addon rather than a patch?
+- [ ] DRLA & LD rapid fire fixes: integrate, see if there's a more general fix
+- [ ] levelup reject settings: integrate
+- [X] HE shot damage type fix: integrate
+- [X] XP curves: integrate
 
 ### Soon
 
