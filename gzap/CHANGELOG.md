@@ -1,3 +1,9 @@
+# Unreleased
+
+- Fix:
+  - `gzDoom.yaml` now lists all known item categories in the template, including
+    ones that are off by default.
+
 # 0.6.2
 
 This is a bugfix release.

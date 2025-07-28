@@ -196,7 +196,11 @@ class IncludedItemCategories(OptionDict):
     of checks in Doom if you turn these on.
     """
     display_name = "Included item/location categories"
-    default = {"powerup": 1, "big-ammo": 1, "big-health": 1, "big-armor": 1}
+    default = {
+        category: 0
+        for category in model.all_categories()
+        if category not in {"key", "weapon", "token", "map"}
+    } | {"powerup": 1, "big-ammo": 1, "big-health": 1, "big-armor": 1}
     valid_keys = model.all_categories() - {"token", "key", "weapon"}
 
 class LevelOrderBias(Range):
