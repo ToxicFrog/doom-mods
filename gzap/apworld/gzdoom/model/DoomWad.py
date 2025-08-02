@@ -244,7 +244,8 @@ class DoomWad:
         location.item_name = f"Secret {json['sector']}"
         location.category = "secret-sector"
         location.sector = json['sector']
-        self.register_location(location, {1,2,3})
+        skill = set(json.pop("skill", [1,2,3]))
+        self.register_location(location, skill)
 
     def new_key(self, map: str, typename: str, scopename: str, cluster: int, maps: List[str]) -> None:
         """
