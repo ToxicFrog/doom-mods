@@ -52,6 +52,7 @@ here may result in glitches.
 | 1000 Lines II    |   32 |     116 | 469 | full | |
 | Demonfear        |   32 |      39 | 289 | full | |
 | Going Down Turbo |   32 |     163 | 450 | partial | |
+| Master Levels for Doom II | 21 | 120 | 401 | full | |
 | MAYhem 2048      |   34 |     179 | 384 | partial | Would be full, but I accidentally overwrote half the tuning data. |
 | Scythe           |   32 |     106 | 405 | full | MAP26-MAP30 are much larger than the rest of the wad; consider excluding them in short sync games. |
 | Scythe 2         |   32 |     191 | 477 | full | |

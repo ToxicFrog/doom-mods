@@ -72,6 +72,10 @@ class WadLogicLoader:
         - the cache file exists, and
         - the cache is newer than the apworld (if internal), and
         - the cache is newer than the logic file (if external)
+
+        TODO: we should keep track of what files (or at least how many files)
+        went into the cache, and invalidate the cache if any of them are deleted,
+        too.
         '''
         if not os.path.exists(self.cache_path('logic')):
             return False

@@ -1,8 +1,11 @@
 # Unreleased
 
+- New:
+  - Logic and tuning for `Master Levels for Doom II` [from soopercool101]
 - Fix:
   - `gzDoom.yaml` now lists all known item categories in the template, including
     ones that are off by default.
+  - Logic loader now respects skill tags on secret sectors. [from soopercool101]
 
 # 0.6.2
 
@@ -119,7 +122,7 @@ Intelligent Supplies, Adventures of Square, anything that uses a `TITLEMAP`, and
 anything that uses death exits.
 
 - New:
-  - Tuning data for Plutonia [from @Gwen].
+  - Tuning data for Plutonia [from Gwen].
   - Partial tuning (22 maps, major items only) for Going Down Turbo.
   - `ap-debug` netevent to dump the AP state to the console.
   - In pretuning mode, keys are now displayed in the inventory menu and can be
