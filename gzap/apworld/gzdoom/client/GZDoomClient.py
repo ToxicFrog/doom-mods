@@ -6,7 +6,7 @@ import os.path
 from typing import Any, Dict
 
 import Utils
-from CommonClient import ClientCommandProcessor, ClientStatus, get_base_parser, gui_enabled, server_loop, logger
+from CommonClient import ClientStatus, get_base_parser, gui_enabled, server_loop, logger
 from .IPC import IPC
 from .Hint import GZDoomHint
 
@@ -20,6 +20,7 @@ except ModuleNotFoundError:
     print("No Universal Tracker detected, running without tracker support.")
 
 _IPC_SIZE = 4096
+_GZAP_DEBUG = "GZAP_DEBUG" in os.environ
 
 class GZDoomContext(SuperContext):
     game = "gzDoom"
@@ -38,6 +39,20 @@ class GZDoomContext(SuperContext):
         ui.base_title = "GZDoom Client"
         return ui
 
+    def init_tracker(self):
+        self.locations_available = []
+        self.glitched_locations = []
+        self.set_callback(self.ut_callback)
+        self.set_glitches_callback(self.ut_glitches_callback)
+
+    def ut_callback(self, locations):
+        self.locations_available = locations
+        return True
+
+    def ut_glitches_callback(self, locations):
+        self.glitched_locations = locations
+        return True
+
     async def start_tasks(self) -> None:
         print("Starting log reader")
         self.ipc.start_log_reader()
@@ -46,6 +61,7 @@ class GZDoomContext(SuperContext):
         self.locations_task = asyncio.create_task(self._location_loop())
         self.hints_task = asyncio.create_task(self._hint_loop())
         if tracker_loaded:
+            self.init_tracker()
             self.tracker_task = asyncio.create_task(self._tracker_loop())
         else:
             self.tracker_task = None
@@ -69,11 +85,19 @@ class GZDoomContext(SuperContext):
             await self.found_gzdoom.wait()
             self.username = self.slot_name
             self.auth = self.username
-            print("Got slot info:", self.username)
+            print("Got slot name:", self.username)
 
-    async def server_auth(self, *args):
-        """Called automatically when the server connection is established."""
-        await super().server_auth(*args)
+    async def server_auth(self, password_requested=False):
+        """Called automatically when the server connection is established.
+
+        Must send the username (and password, if applicable) in a Connect message.
+        """
+        # We can't safely call super().server_auth() to get the password here
+        # because UT's server_auth will try to send its own Connect with the
+        # wrong info, so instead we replicate the password prompt locally.
+        if password_requested and not self.password:
+            logger.info('Enter the password required to join this game:')
+            self.password = await self.console_input()
         await self.get_username()
         await self.send_connect()
 
@@ -104,22 +128,20 @@ class GZDoomContext(SuperContext):
         await self.send_death(reason)
 
     def on_package(self, cmd, args):
-        # print("on_package", cmd, args)
-        if cmd == "Connected":
-            # Workaround for Universal Tracker bug
-            args.setdefault("slot_data", dict())
-            self.slot_data = args['slot_data']
+        if _GZAP_DEBUG:
+            print("on_package", cmd, args)
         super().on_package(cmd, args)
         self.awaken()
+
+    async def send_msgs(self, msgs):
+        if _GZAP_DEBUG:
+            for msg in msgs:
+                print("SEND", msg)
+        await super().send_msgs(msgs)
 
     def on_deathlink(self, data: Dict[str,Any]):
         self.ipc.send_death(data.get("source", "[unknown player]"), data.get("cause", ""))
         super().on_deathlink(data)
-
-    # async def send_msgs(self, msgs):
-    #     for msg in msgs:
-    #         print("SEND", msg)
-    #     await super().send_msgs(msgs)
 
     def awaken(self):
         # Annoyingly, uncaught exceptions in coroutines, by default, DO NOTHING,
@@ -186,12 +208,7 @@ class GZDoomContext(SuperContext):
         while not self.exit_event.is_set():
             await self.watcher_event.wait()
             self.watcher_event.clear()
-            if hasattr(self, 'glitched_locations'):
-                # UT 0.2.8+
-                new_ool = set(self.glitched_locations) - self.last_tracked_ool
-            else:
-                # Older version of UT
-                new_ool = set()
+            new_ool = set(self.glitched_locations) - self.last_tracked_ool
             new_il = set(self.locations_available) - self.last_tracked
 
             # print("tracker_loop IL: ", new_il, self.last_tracked)

@@ -1,11 +1,19 @@
 # Unreleased
 
+⚠️ This update breaks compatibility with older versions of Universal Tracker.
+If you have UT installed, please make sure it is version 0.2.12 or later, or
+the GZDoom Client will likely crash or hang on startup.
+
 - New:
   - Logic and tuning for `Master Levels for Doom II` [from soopercool101]
+- Change:
+  - Support for recent (0.2.12+) versions of Universal Tracker.
 - Fix:
   - `gzDoom.yaml` now lists all known item categories in the template, including
     ones that are off by default.
   - Logic loader now respects skill tags on secret sectors. [from soopercool101]
+  - Universal Tracker integration now uses UT callbacks rather than reading the
+    tracker state directly.
 
 # 0.6.2
 
