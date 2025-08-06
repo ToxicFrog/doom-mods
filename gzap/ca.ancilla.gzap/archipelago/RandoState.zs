@@ -211,7 +211,7 @@ class ::RandoState play {
     } else if (keys.CheckKey(apid)) {
       let key = keys.Get(apid);
       ::Util.announce("$GZAP_GOT_ITEM", key.FQIN());
-      key.held = true;
+      key.MarkHeld(self);
     } else if (item_apids.CheckKey(apid)) {
       let typename = item_apids.Get(apid);
       let [idx, item] = FindItem(typename);

@@ -56,7 +56,7 @@ class ::PickupDetector : Inventory {
 
     // At this point the apstate knows about this key. We permit it to be picked
     // up iff the apstate thinks the player should have it in their inventory.
-    key.held = true;
+    key.MarkHeld(apstate);
     if (key.enabled) {
       DEBUG("  Permitting key pickup.");
       return false;

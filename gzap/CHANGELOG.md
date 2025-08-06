@@ -1,3 +1,11 @@
+# Unreleased
+
+This is a bugfix release.
+
+- Fix:
+  - Level select menu entries weren't being properly redrawn if you received a
+    key from another player while the menu was open.
+
 # 0.6.3
 
 This is a bugfix release.

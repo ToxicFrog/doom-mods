@@ -98,6 +98,18 @@ class ::RandoKey play {
     return self;
   }
 
+  void MarkHeld(::RandoState apstate) {
+    self.held = true;
+    // The internal state of the affected regions hasn't changed, but we still
+    // bump their TXNs so that the menu drawing code can see that something
+    // about them has changed and redraw their entries.
+    foreach (map, _ : self.maps) {
+      let region = apstate.GetRegion(map);
+      if (!region) continue;
+      region.txn++;
+    }
+  }
+
   void DebugPrint() {
     console.printf("  - %s (%s) [held=%d, enabled=%d]:%s",
       self.typename, self.scopename, self.held, self.enabled, self.DebugMapString());
