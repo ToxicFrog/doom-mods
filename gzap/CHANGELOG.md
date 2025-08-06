@@ -14,6 +14,8 @@ the GZDoom Client will likely crash or hang on startup.
   - Logic loader now respects skill tags on secret sectors. [from soopercool101]
   - Universal Tracker integration now uses UT callbacks rather than reading the
     tracker state directly.
+  - Default value for `included_item_categories` now properly lists maps as one
+    of the supported categories.
 
 # 0.6.2
 
