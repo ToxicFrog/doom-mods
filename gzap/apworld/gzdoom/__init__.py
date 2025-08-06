@@ -122,6 +122,7 @@ class GZDoomWorld(World):
 
     # Universal Tracker integration
     glitches_item_name: str = GZDoomUTGlitchToken.TOKEN_NAME
+    ut_can_gen_without_yaml = True
 
 
     def __init__(self, multiworld: MultiWorld, player: int):
@@ -169,6 +170,12 @@ class GZDoomWorld(World):
         }
 
     def generate_early(self) -> None:
+        ut_config = getattr(self.multiworld, "re_gen_passthrough", {}).get(self.game, None)
+        if ut_config:
+            print("Doing Universal Tracker worldgen with settings:", ut_config)
+            for opt in ut_config:
+                getattr(self.options, opt).value = ut_config[opt]
+
         wadlist = list(self.options.selected_wad.value)
         print(f"Permitted WADs: {wadlist}")
 
@@ -322,9 +329,16 @@ class GZDoomWorld(World):
     def fill_slot_data(self):
         return self.options.as_dict(
             'level_order_bias', 'local_weapon_bias', 'carryover_weapon_bias',
-            'spawn_filter') | {
-                'selected_wad': self.wad_logic.name
+            'spawn_filter', 'included_item_categories') | {
+                'selected_wad': [self.wad_logic.name]
             }
+
+    # Called by UT on connection. In UT mode all configuration will come from
+    # slot_data rather than via the YAML.
+    @staticmethod
+    def interpret_slot_data(slot_data):
+        print("interpret_slot_data", slot_data)
+        return slot_data
 
     def generate_output(self, path):
         def progression(name: str) -> bool:

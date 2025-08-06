@@ -6,6 +6,8 @@ the GZDoom Client will likely crash or hang on startup.
 
 - New:
   - Logic and tuning for `Master Levels for Doom II` [from soopercool101]
+  - UT integration no longer requires you to keep the YAML for your game around;
+    all needed information is loaded from the server when you connect instead.
 - Change:
   - Support for recent (0.2.12+) versions of Universal Tracker.
 - Fix:
