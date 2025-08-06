@@ -5,6 +5,8 @@ This is a bugfix release.
 - Fix:
   - Level select menu entries weren't being properly redrawn if you received a
     key from another player while the menu was open.
+  - Dying with respawn off and no valid save files is no longer counted as a
+    level clear.
 
 # 0.6.3
 

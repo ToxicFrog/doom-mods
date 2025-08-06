@@ -107,7 +107,13 @@ class ::PlayEventHandler : StaticEventHandler {
   override void WorldUnloaded(WorldEvent evt) {
     let plh = ::PerLevelHandler.Get();
     if (!plh || !evt) return; // Can happen if exiting to new game
-    plh.OnLevelExit(evt.IsSaveGame);
+    // In normal play NextMap should always be the GZAPHUB. Perhaps in the
+    // future (Faithless, Hedon, etc) it might also be another level via direct
+    // transit. If it's blank this generally means the player has died without
+    // a valid recent save and has elected to restart the game, which we should
+    // not treat as a normal exit.
+    if (evt.NextMap == "") return;
+    plh.OnLevelExit(evt.IsSaveGame, evt.NextMap);
   }
 
   override void PlayerSpawned(PlayerEvent evt) {

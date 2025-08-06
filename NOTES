@@ -63,24 +63,13 @@ be able to represent logic requirements that aren't just keys.
 
 ### ingame
 
-- fast map refresh is not refreshing properly when receiving items from other
-  players, need to close and reopen the map :<
 - TT has a bunch of stuff that breaks it: single-use teleport lines, scripts that
   take away your guns and keys on level start
-- SA reports that dying in a level with autosaves and respawn off counts as winning
-  the level
 
 - "gzap for apdoom users" man page
 - option to disable tuning generation
 - some hints received when playing in the weekly sync did not display on the
   map screen
-- yaml-less UT support
-  - need to add the logic-affecting `options` to `slot_data` at gen time
-  - then add `interpret_slot_data()` to return that info
-  - when genning, check `multiworld.re_gen_passthrough['GZDoom']` for the stuff
-    returned by `interpret_slot_data()` and trust that above `options`
-- also be nice if I could get UT working in singleplayer
-- and cut down on duplicate item pickup messages in SP when the client is connected
 - Ashes 2063 reports duplicate keys because of the way keys are handled -- you
   pick up the BluePassCard and it gives you a BlueCard in your inventory, which
   the AP runtime then identifies as a new key scoped to that level, which can be

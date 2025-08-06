@@ -357,8 +357,9 @@ class ::PerLevelHandler : EventHandler {
   // We try to guess if the player reached the exit or left in some other way.
   // In the former case, we give them credit for clearing the level.
 
-  void OnLevelExit(bool is_save) {
-    DEBUG("PLH WorldUnloaded: save=%d warp=%d lnum=%d", is_save, self.early_exit, level.LevelNum);
+  void OnLevelExit(bool is_save, string next_map) {
+    DEBUG("PLH WorldUnloaded: save=%d warp=%d lnum=%d next=%s",
+      is_save, self.early_exit, level.LevelNum, next_map);
 
     let region = apstate.GetRegion(level.MapName);
 
