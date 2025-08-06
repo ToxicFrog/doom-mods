@@ -37,14 +37,17 @@ class ::RegionDiff play {
     if (self.access && !region.access) {
       ::Util.announce("$GZAP_GOT_ACCESS", maptitle, self.map);
       region.access = true;
+      region.txn++;
     }
     if (self.automap && !region.automap) {
       ::Util.announce("$GZAP_GOT_AUTOMAP", maptitle, self.map);
       region.automap = true;
+      region.txn++;
     }
     if (self.cleared && !region.cleared) {
       ::Util.announce("$GZAP_LEVEL_DONE", maptitle, self.map);
       region.cleared = true;
+      region.txn++;
     }
   }
 }
