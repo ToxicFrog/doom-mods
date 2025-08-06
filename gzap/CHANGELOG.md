@@ -1,4 +1,4 @@
-# Unreleased
+# 0.6.3
 
 This is a bugfix release.
 
