@@ -52,7 +52,7 @@ class ::PlayEventHandler : StaticEventHandler {
   }
 
   bool IsSingleplayer() const {
-    return self.singleplayer;
+    return self.singleplayer && !apclient.IsConnected();
   }
 
   bool IsPretuning() const {

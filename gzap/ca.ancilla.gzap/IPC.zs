@@ -31,6 +31,10 @@ class ::IPC {
     Send("XOFF", "{}");
   }
 
+  bool IsConnected() {
+    return last_seen != "";
+  }
+
   // Receive all pending messages, dispatch them internally, and ack them.
   void ReceiveAll() {
     // Not initialized yet. That's fine, it means the menu loop has started up

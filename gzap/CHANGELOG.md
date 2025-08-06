@@ -1,5 +1,7 @@
 # Unreleased
 
+This is a bugfix release.
+
 ⚠️ This update breaks compatibility with older versions of Universal Tracker.
 If you have UT installed, please make sure it is version 0.2.12 or later, or
 the GZDoom Client will likely crash or hang on startup.
@@ -10,14 +12,17 @@ the GZDoom Client will likely crash or hang on startup.
     all needed information is loaded from the server when you connect instead.
 - Change:
   - Support for recent (0.2.12+) versions of Universal Tracker.
+  - If you are playing a solo game but connected to the AP client, GZAP will
+    automatically turn off "singleplayer mode" and let the AP host handle checks
+    and hints, which should eliminate duplicate messages for finding items and
+    some other small infelicities when you are playing solo games but also using
+    the client.
 - Fix:
   - `gzDoom.yaml` now lists all known item categories in the template, including
     ones that are off by default.
   - Logic loader now respects skill tags on secret sectors. [from soopercool101]
   - Universal Tracker integration now uses UT callbacks rather than reading the
     tracker state directly.
-  - Default value for `included_item_categories` now properly lists maps as one
-    of the supported categories.
 
 # 0.6.2
 
