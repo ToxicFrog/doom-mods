@@ -50,6 +50,10 @@ before your first game.
   <td><img src=images/trap.png width=64/></td>
   <td>A harmful trap. gzArchipelago doesn't have traps (yet), but in a multiworld game you may find traps that get sent to other people. Note that depending on your settings, this might instead show up as a filler or even progression item!</td>
  </tr>
+ <tr>
+  <td><img src=images/unreachable.png width=64/></td>
+  <td>An unreachable location. Typically, this replaces items that the level designer added for aesthetics but which cannot be picked up, or items that are only reachable in co-op. If you manage to reach it anyways you will get a single point of health.</td>
+ </tr>
 </table>
 
 Depending on your settings, checks may also show an item in the center, floating
