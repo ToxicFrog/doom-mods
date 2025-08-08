@@ -19,8 +19,9 @@ the randomizer:
   to put things at (but also add more filler to the item pool)
 
 You can also turn on `pretuning_mode` and play through the first few levels to
-generate a partial logic file, which in most wads will give it enough information
-about early-game item placement to get it unstuck even without `start_with_keys`.
+generate a partial [tuning file](./new-wads.md), which in most wads will give it
+enough information about early-game item placement to get it unstuck even
+without `start_with_keys`.
 
 ### I got partway through a level and now I'm stuck!
 
@@ -35,18 +36,18 @@ leave.
 
 ### I keep finding armour/powerups/etc but nothing happens!
 
-Rather than being given to you directly, these go into a special "randomizer inventory"
-that you can summon items from at any time. Open the inventory menu and choose the
-item you want. This helps mitigate issues like being given an invincibility sphere
-just before you leave the level, or a level balanced around having hazard suits
-getting all of them shuffled into other levels.
+Rather than being given to you directly, these go into a special "randomizer
+inventory" that you can summon items from at any time. Open the inventory menu
+and choose the item you want. This helps mitigate issues like being given an
+invincibility sphere just before you leave the level, or a level balanced around
+having hazard suits getting all of them shuffled into other levels.
 
-Note that items created this way are dropped at your feet; you won't pick them up
-until you take a step.
+Note that items created this way are dropped at your feet; you won't pick them
+up until you take a step.
 
 ### I can't open the level select or inventory menu!
 
-Did you remember to [bind those controls](./gameplay.md)?
+Did you remember to [bind those controls](./setup.md)?
 
 
 ## Customization

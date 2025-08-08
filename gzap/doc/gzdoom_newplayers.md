@@ -8,10 +8,10 @@ If you've never used GZDoom before, you will need to download two things:
 - A [launcher](https://zdoom.org/wiki/Frontend) to organize your game files
   (including the AP mods and any other mods you want to play with)
 
-This guide assumes that you are using [ZDL](https://zdoom.org/wiki/ZDL) as your
-launcher, which is a simple and popular launcher -- either AceCorp Launcher on
-Windows, or QZDL on Linux. Other launchers will also work, but the interface
-won't be the same as what's described here.
+This guide assumes that you are using a [ZDL](https://zdoom.org/wiki/ZDL)-based
+launcher -- either AceCorp Launcher on Windows, or QZDL on Linux. Other
+launchers will also work, but the interface won't be the same as what's
+described here.
 
 ## Windows Installation
 
@@ -60,8 +60,24 @@ and mods in order play.
 
 Click Launch to start the game.
 
-Once in game, open the `Options` Menu -> `Full options menu`, and verify that
-`gzArchipelago Options` appears at the bottom -- if so, you are set up and
-ready to generate and play a game. For instructions on how to do that, see
-[the gameplay docs](./gameplay.md).
+## In-game configuration
 
+Once in game, you need to configure gzArchipelago. Select the `Options` Menu:
+
+<img src="images/setup-mainmenu.png" width=400/>
+
+From there, select `Full options menu` to reveal the hidden options, and verify
+that `gzArchipelago Options` appears at the bottom:
+
+<img valign=top src="images/setup-simpleoptions.png" width=200/>
+<img src="images/setup-fulloptions-enabled.png" width=200/>
+
+Select `gzArchipelago Options` and configure your keybindings for `AP level select`
+and `AP inventory`. The rest of the settings can be adjusted to fit your tastes
+(and have in-game tooltips describing what they do), but those keybindings are
+mandatory.
+
+<img src="images/setup-ap-options.png" width=400/>
+
+Having done this, you're all set up and ready to generate and play a game; see
+the [setup](./setup.md) and [gameplay](./gameplay.md) docs.

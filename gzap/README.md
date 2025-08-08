@@ -19,8 +19,10 @@ and [apworld](../releases/gzdoom.apworld).
 The documentation is split into multiple files.
 
 If you just want to **play a supported wad**:
-- [Setup and Play](./doc/gameplay.md)
+- [Setup](./doc/setup.md)
+- [Gameplay](./doc/gameplay.md)
 - [Supported WAD List](./doc/support-table.md)
+- [FAQ](./doc/faq.md)
 
 If you want to **import a new wad**, or **improve support for an existing one**:
 - [Importing and Tuning Wads](./doc/new-wads.md)
