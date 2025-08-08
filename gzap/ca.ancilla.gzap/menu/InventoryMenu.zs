@@ -29,6 +29,8 @@ class ::InventoryMenu : ::CommonMenu {
     for (int n = 0; n < state.items.Size(); ++n) {
       let item = state.items[n];
       if (item.vended < item.total) {
+        // TODO: implement a new subtype for inventory menu items that permits
+        // asking to vend items without closing the menu.
         PushKeyValueNetevent(item.tag, string.format("%d", item.Remaining()), "ap-use-item", n);
         PushTooltip(string.format("Name: %s\nType: %s\nCategory: %s\nHeld/Found: %d/%d",
           item.tag, item.typename, item.category, item.Remaining(), item.total));
