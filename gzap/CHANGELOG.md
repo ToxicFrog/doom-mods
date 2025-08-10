@@ -7,6 +7,8 @@ This is a bugfix release.
     key from another player while the menu was open.
   - Dying with respawn off and no valid save files is no longer counted as a
     level clear.
+  - Selecting no starting levels in the YAML is now a generation failure rather
+    than starting you with an empty sphere 1.
 
 # 0.6.3
 

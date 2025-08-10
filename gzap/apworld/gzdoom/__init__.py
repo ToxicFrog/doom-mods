@@ -203,11 +203,22 @@ class GZDoomWorld(World):
 
         self.pool = self.wad_logic.fill_pool(self)
 
+        starting_maps = sorted([
+                map.map for map in self.maps
+                if self.is_starting_map(map.map)])
         if "GZAP_DEBUG" in os.environ:
             print("Selected maps:", sorted([map.map for map in self.maps]))
-            print("Starting maps:", sorted([
-                map.map for map in self.maps
-                if self.is_starting_map(map.map)]))
+            print("Starting maps:", starting_maps)
+        assert len(starting_maps) > 0, f'''
+            No starting levels found. You must start with access to at least one level.
+
+            Check your starting_levels YAML option. It is either empty, or none of the
+            maps listed there are available in your chosen WAD (or the ones that are
+            are not in included_levels).
+
+            starting_levels: {self.options.starting_levels.value}
+            included_levels: {sorted([map.map for map in self.maps])}
+\        '''
 
 
     def create_regions(self) -> None:

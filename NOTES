@@ -30,18 +30,32 @@ something that apdoom has an easier time representing because it has subregions
 for its levels. This also means that we need a way to refer to events from AP-ITEM/
 AP-CHECK logic.
 
-The logic format needs a redesign. First draft thoughts -- separate items and
-locations. So we have:
-AP-MAP { information about the map as a whole }
-AP-ITEMS { map of item name to item count for a map }
-AP-MONSTERS { map of monster name to monster count for a map }
-- maybe AP-ITEM and AP-MONSTER, each one holding a single count?
-AP-LOCATION { information about a location, including whether it's secret or not }
-
 Adventures of Square would benefit from being able to model weapons that are also
 keys; frozen notes that the Hellshell Launcher can be used to break certain walls
 that normally require TNT box manipulation. This also ties in with the need to
 be able to represent logic requirements that aren't just keys.
+
+### Item tag rewrite
+
+Basic idea: replace item categories with item tags. An item can have any number
+of tags.
+
+Logic format changes, `category` changes to either `categories` or `tags` -- latter
+is more precise, but has overlap with GZD's use of `tag` to mean `player-facing name`.
+Let's go with `categories` for now.
+
+Parser needs to continue supporting legacy `category` field, split on `-` and put
+each word into a separate cat.
+
+Internally each item stores cats as a set of strings. Most tests become set membership
+tests rather than equality tests.
+
+Scanner logic gets updated, emits `categories` (or maybe we keep using `category`
+but change the categorization for some things?)
+
+YAML is the tricky one, we need to change the current proportion map into a list
+of (category, amount) pairs and iterate it in order for each item and the first
+one matching is used.
 
 ### scanner
 
