@@ -63,18 +63,11 @@ class DoomMap:
     # will have '2' here). For levels where |keyset|==1, used to check if we can
     # safely assume that key is accessible from the start.
     key_count: int = 0
-    # Non-secret guns in the level
-    local_gunset: Set[str] = field(default_factory=set)
-    # Non-secret guns in levels preceding this one
-    carryover_gunset: Set[str] = field(default_factory=set)
     # All locations contained in this map
     locations: List[DoomLocation] = field(default_factory=list)
     # Items not contained in any particular location that should nonetheless
     # be added to the pool if this map is included in play.
     loose_items: Dict[str,int] = field(default_factory=dict)
-    # "Clear Token" names for all maps preceding this one in the scanned level
-    # order
-    prior_clears: Set[str] = field(default_factory=set)
 
     def __post_init__(self, info):
         self.mapinfo = MAPINFO(**info)
@@ -106,6 +99,13 @@ class DoomMap:
 
     def access_rule(self, world):
         # print(f"access_rule({self.map}) = start={world.is_starting_map(self.map)}, co-guns({world.options.carryover_weapon_bias.value})={self.carryover_gunset}, local-guns({world.options.local_weapon_bias.value})={self.local_gunset}, clears({world.options.level_order_bias.value})={self.prior_clears}")
+        prior_maps = [ map for map in world.maps if map.rank < self.rank ]
+        local_guns = self.local_guns()
+        carryover_guns = set()
+        for map in prior_maps:
+            carryover_guns |= map.local_guns()
+
+
         def rule(state):
             if world.options.pretuning_mode:
                 return True
@@ -125,25 +125,25 @@ class DoomMap:
 
             # Check requirement for guns the player would normally carryover
             # from earlier levels.
-            player_guns = { gun for gun in self.carryover_gunset if state.has(gun, world.player) }
-            guns_needed = (world.options.carryover_weapon_bias.value / 100) * len(self.carryover_gunset)
+            player_guns = { gun for gun in carryover_guns if state.has(gun, world.player) }
+            guns_needed = (world.options.carryover_weapon_bias.value / 100) * len(carryover_guns)
             if len(player_guns) < round(guns_needed):
                 return False
 
             # Check requirement for guns the player would normally find in this
             # level when pistol-starting.
-            player_guns = { gun for gun in self.local_gunset if state.has(gun, world.player) }
-            guns_needed = (world.options.local_weapon_bias.value / 100) * len(self.local_gunset)
+            player_guns = { gun for gun in local_guns if state.has(gun, world.player) }
+            guns_needed = (world.options.local_weapon_bias.value / 100) * len(local_guns)
             if len(player_guns) < round(guns_needed):
                 return False
 
             # We also need to have cleared some number of preceding levels based
             # on the level_order_bias
             levels_cleared = {
-                token for token in self.prior_clears
-                if state.has(token, world.player)
+                map.clear_token_name() for map in prior_maps
+                if state.has(map.clear_token_name(), world.player)
             }
-            levels_needed = (world.options.level_order_bias.value / 100) * len(self.prior_clears)
+            levels_needed = (world.options.level_order_bias.value / 100) * len(prior_maps)
             if len(levels_cleared) < round(levels_needed):
                 return False
 
@@ -184,15 +184,9 @@ class DoomMap:
     def has_one_key(self, keyname: str) -> bool:
         return self.key_count == 1 and keyname in {k.fqin() for k in self.keyset}
 
-    def build_priors(self, prior_maps: List['DoomMap']) -> None:
-        self.prior_clears = { map.clear_token_name() for map in prior_maps }
-        self.local_gunset = {
+    def local_guns(self):
+        return {
             loc.orig_item.name()
             for loc in self.locations
             if not loc.secret and not loc.unreachable and loc.category == "weapon"
         }
-        self.carryover_gunset = set()
-        for map in prior_maps:
-            self.carryover_gunset |= map.local_gunset
-
-        # print(self.map, [map.map for map in prior_maps], self.carryover_gunset, self.local_gunset)

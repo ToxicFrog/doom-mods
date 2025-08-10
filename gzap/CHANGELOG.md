@@ -9,6 +9,10 @@ This is a bugfix release.
     level clear.
   - Selecting no starting levels in the YAML is now a generation failure rather
     than starting you with an empty sphere 1.
+  - `level_order_bias` and `carryover_weapon_bias` are now computed based on
+    which levels are included in the AP, rather than based on all the levels in
+    the WAD. In particular this means that you can now set `level_order_bias` >0
+    even if you are excluding most or all of the early levels.
 
 # 0.6.3
 

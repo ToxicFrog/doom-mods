@@ -415,12 +415,6 @@ class DoomWad:
         self.finalize_location_keysets()
         self.finalize_key_items()
         self.finalize_ids(logic)
-        # Compute which maps precede which other maps, so that the map ordering
-        # system can function. This also computes information related to weapon
-        # accessibility.
-        maps = sorted(self.all_maps(), key=lambda map: map.rank)
-        for map in maps:
-            map.build_priors([prior_map for prior_map in maps if prior_map.rank < map.rank])
 
     def finalize_location_keysets(self):
         """
