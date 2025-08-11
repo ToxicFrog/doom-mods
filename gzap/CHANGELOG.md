@@ -7,8 +7,9 @@ This is a bugfix release.
     key from another player while the menu was open.
   - Dying with respawn off and no valid save files is no longer counted as a
     level clear.
-  - Selecting no starting levels in the YAML is now a generation failure rather
-    than starting you with an empty sphere 1.
+  - If none of your `starting_levels` are available in the WAD, generation will
+    fail. You can still request an empty sphere 0/1 by setting `starting_levels`
+    to `[]` in multiworld games.
   - `level_order_bias` and `carryover_weapon_bias` are now computed based on
     which levels are included in the AP, rather than based on all the levels in
     the WAD. In particular this means that you can now set `level_order_bias` >0

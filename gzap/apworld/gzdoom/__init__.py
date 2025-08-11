@@ -209,16 +209,17 @@ class GZDoomWorld(World):
         if "GZAP_DEBUG" in os.environ:
             print("Selected maps:", sorted([map.map for map in self.maps]))
             print("Starting maps:", starting_maps)
-        assert len(starting_maps) > 0, f'''
-            No starting levels found. You must start with access to at least one level.
+        assert len(starting_maps) > 0 or len(self.options.starting_levels.value) == 0, f'''
+            None of the levels listed in starting_levels in your YAML exist in your
+            selected WAD. This will result in an empty sphere 0/1 and your game will
+            not be playable until someone else finds progression items for you.
 
-            Check your starting_levels YAML option. It is either empty, or none of the
-            maps listed there are available in your chosen WAD (or the ones that are
-            are not in included_levels).
+            If you actually want this, set starting_levels to [] in your YAML and
+            generate again.
 
-            starting_levels: {self.options.starting_levels.value}
-            included_levels: {sorted([map.map for map in self.maps])}
-\        '''
+            starting_levels:  {self.options.starting_levels.value}
+            levels available: {sorted([map.map for map in self.maps])}
+        '''
 
 
     def create_regions(self) -> None:

@@ -96,11 +96,13 @@ class StartingLevels(OptionSet):
     """
     Set of levels to begin with access to. If you select levels that aren't in the
     WAD you choose (e.g. E1M1 when you're generating for Doom 2) they will be safely
-    ignored. You must select at least one level in your chosen WAD or generation
-    will fail.
+    ignored.
 
     You will start with the access codes for these levels; if start_with_keys is
     enabled, you will also start with all keys for them.
+
+    If you are playing a multiworld game and want to start with nothing at all
+    (i.e. Doom is not playable until another world unlocks it), set this to [].
 
     This option supports globbing expressions.
     """
