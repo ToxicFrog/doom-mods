@@ -1,10 +1,11 @@
-# Unreleased
+# 0.6.4
 
 This is a bugfix release.
 
 - Fix:
   - Level select menu entries weren't being properly redrawn if you received a
-    key from another player while the menu was open.
+    key from another player while the menu was open, or if the server was too
+    slow in acknowledging a level clear.
   - Dying with respawn off and no valid save files is no longer counted as a
     level clear.
   - If none of your `starting_levels` are available in the WAD, generation will

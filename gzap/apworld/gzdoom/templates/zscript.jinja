@@ -103,9 +103,6 @@ class GZAP_DataPackageEventHandler : StaticEventHandler {
   override void NetworkProcess(ConsoleEvent evt) {
     // In multiplayer games checks will be processed and items granted by the host,
     // so only do this in singleplayer mode.
-    // TODO: this causes some confusion if someone is playing in singleplayer but
-    // is also connected to AP, which some people do in order to use the tracker
-    // or auto-record tuning files.
     if (!peh.IsSingleplayer()) return;
     if (evt.name == "ap-check") {
       let locid = evt.args[0];
