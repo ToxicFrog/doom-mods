@@ -430,7 +430,7 @@ class GZDoomWorld(World):
             "flags_at": flags_at,
             "escape": escape,
             "win_conditions": self.options.win_conditions.template_values(self),
-            "generate_mapinfo": (not self.options.pretuning_mode) or self.options.full_persistence,
+            "generate_mapinfo": not self.options.pretuning_mode,
         }
 
         env = jinja2.Environment(

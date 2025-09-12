@@ -1,3 +1,8 @@
+# Unreleased
+
+- Fix:
+  - `MAPINFO` lump was not properly emitted when persistent mode was off.
+
 # 0.6.4
 
 This is a bugfix release.
