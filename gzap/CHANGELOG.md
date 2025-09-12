@@ -2,6 +2,8 @@
 
 - Fix:
   - `MAPINFO` lump was not properly emitted when persistent mode was off.
+  - Implement `get_filler_item_name()` to hopefully avoid generation failures
+    when paired with buggy apworlds that produce item pool underruns.
 
 # 0.6.4
 

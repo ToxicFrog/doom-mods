@@ -136,6 +136,9 @@ class GZDoomWorld(World):
         item = self.wad_logic.items_by_name[name]
         return GZDoomItem(item, self.player)
 
+    def get_filler_item_name(self):
+        return self.random.choice(self.pool.filler_items().keys())
+
     def any_glob_matches(self, globs: Set[str], name: str) -> bool:
         for glob in globs:
             if fnmatch.fnmatch(name, glob):
