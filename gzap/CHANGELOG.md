@@ -1,5 +1,8 @@
 # Unreleased
 
+- New:
+  - Generated pk3s now have a proper `archipelago.json` so that they can be
+    downloaded from the web host.
 - Fix:
   - `MAPINFO` lump was not properly emitted when persistent mode was off.
   - Implement `get_filler_item_name()` to hopefully avoid generation failures

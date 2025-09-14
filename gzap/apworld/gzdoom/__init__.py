@@ -409,6 +409,7 @@ class GZDoomWorld(World):
             "seed": self.multiworld.seed_name,
             "mod_version": mod_version,
             "player": self.multiworld.player_name[self.player],
+            "slot_number": self.player,
             "spawn_filter": self.spawn_filter,
             "persistence": self.options.full_persistence.value,
             "respawn": self.options.allow_respawn.value,
@@ -446,6 +447,7 @@ class GZDoomWorld(World):
             f"{self.multiworld.get_out_file_name_base(self.player)}.{self.wad_logic.name.replace(' ', '_')}.pk3")
 
         with zipfile.ZipFile(pk3_path, mode="w", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as zip:
+            zip.writestr("archipelago.json", env.get_template("manifest.jinja").render(**data))
             zip.writestr("ZSCRIPT", env.get_template("zscript.jinja").render(**data))
             zip.writestr("MAPINFO", env.get_template("mapinfo.jinja").render(**data))
             zip.writestr("VERSION", mod_version)
