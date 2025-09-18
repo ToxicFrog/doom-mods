@@ -11,17 +11,10 @@ min_lives_per_level doesn't work if you don't get any bonus lives at all, due to
 ## gzArchipelago
 
 ### next bugfix
-- webhost support
-  - might be sufficient to add archipelago.json to the pk3
-  - needs keys:
-    - game: "gzDoom"
-    - player: player index, integer
-    - patch_file_ending: ".pk3"
-  - on download the server will also add server: "host:port" if possible
-    so maybe we can get the server from it in-game and pass it to the client?!
+- get "server": "host:port" from archipelago.json in the generated pk3
+  and pass it on to the client in AP-XON, along with player data
 - https://github.com/ToxicFrog/doom-mods/issues/51 for quoting issue
 - update GDT hashes
-- properly generate mapinfo even when not in persistent mode
 - chex quest fails to gen with small items enabled
 
 ### general notes on scanner/logic changes
