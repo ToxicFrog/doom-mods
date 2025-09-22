@@ -54,7 +54,7 @@ class GZAP_DataPackageEventHandler : StaticEventHandler {
         apstate.RegisterSecretCheck("{{map.map}}", {{check.id}}, "{{escape(check.name())}}", {{check.sector}}, {{flags_at(check)}}); // {{item_name_at(check.name())}}
         {% elif not check.pos.virtual %}
         apstate.RegisterCheck("{{map.map}}", {{check.id}}, {{check.pos.as_vec3()}}, "{{escape(check.name())}}", "{{check.orig_item.typename}}",
-            "{{item_type_at(check.name())}}", "{{item_name_at(check.name())}}", {{flags_at(check)}});
+            "{{escape(item_type_at(check.name()))}}", "{{escape(item_name_at(check.name()))}}", {{flags_at(check)}});
         {% endif %}
       {% endfor %}
     {% endfor %}
@@ -79,7 +79,7 @@ class GZAP_DataPackageEventHandler : StaticEventHandler {
     console.printf("Populating singleplayer hint table.");
       {% for map in maps %}{% for loc in locations(map.map) %}
       {% if item_at(loc.name()) and item_at(loc.name()).map %}
-      PrepareHint("{{item_name_at(loc.name())}}", "{{item_at(loc.name()).map}}", "{{loc.pos.map}}", "{{loc.name()}}");
+      PrepareHint("{{escape(item_name_at(loc.name()))}}", "{{item_at(loc.name()).map}}", "{{loc.pos.map}}", "{{escape(loc.name())}}");
       {% endif %}
       {% endfor %}{% endfor %}
     {% endif %}

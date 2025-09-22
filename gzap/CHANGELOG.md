@@ -7,6 +7,9 @@
   - `MAPINFO` lump was not properly emitted when persistent mode was off.
   - Implement `get_filler_item_name()` to hopefully avoid generation failures
     when paired with buggy apworlds that produce item pool underruns.
+  - Icon inference and check location data were not always properly escaped in
+    the generated zscript, leading to runtime failures when paired with some
+    apworlds.
 
 # 0.6.4
 

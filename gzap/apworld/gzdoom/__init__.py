@@ -389,7 +389,7 @@ class GZDoomWorld(World):
         def item_name_at(name: str) -> str:
             loc = self.get_location(name)
             if loc.item:
-                return escape(loc.item.name)
+                return loc.item.name
             return ""
 
         def flags_at(loc: DoomLocation) -> str:
