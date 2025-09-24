@@ -50,7 +50,7 @@ here may result in glitches.
 | ---------------- | ---- | ------- | ------ | ------ | ----- |
 | 1000 Lines       |   32 |     137 | 397 | full | Does not include the two bonus levels. |
 | 1000 Lines II    |   32 |     116 | 469 | full | |
-| Amalgoom         |   37 |     244 | 972 | full | Must use [RC4](https://www.doomworld.com/forum/topic/141857-amalgoom-mixing-doom-and-doom-2-released) version and the [hotfix](https://www.doomworld.com/forum/post/2965170). Details at [#53](https://github.com/ToxicFrog/doom-mods/pull/53). |
+| Amalgoom         |   37 |     244 | 972 | full | Must use [RC4](https://www.doomworld.com/forum/topic/152974-amalgoom-rc4-sandy-petersen-interview) version and the [hotfix](https://www.doomworld.com/forum/post/2965170). Details at [#53](https://github.com/ToxicFrog/doom-mods/pull/53). |
 | Demonfear        |   32 |      39 | 289 | full | |
 | Going Down Turbo |   32 |     163 | 450 | partial | |
 | Master Levels for Doom II | 21 | 120 | 401 | full | |
