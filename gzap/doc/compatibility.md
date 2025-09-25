@@ -1,6 +1,6 @@
 # Compatibility Notes
 
-## General notes
+## Map compatibility
 
 ### Vanilla-ish (limit-removing, boom, udmf, etc) megawads
 
@@ -23,6 +23,12 @@ Not currently supported.
 These are unlikely to work well unless they have lots of keys, as otherwise
 everything is in logic at once. Even if they do have lots of keys, tuning will
 be necessary for the map to be playable at all.
+
+### Persistent hubclusters
+
+These are groups of levels that have bidirectional doors between them and retain
+their state if you leave and return to them later -- think Hexen or Faithless.
+These are not currently supported in any way and will misbehave quite badly.
 
 ### Single-use doors/elevators
 
@@ -68,40 +74,58 @@ so this is not 100% reliable.
 `SecretTrigger` items, which count as finding a secret when picked up, are not
 currently supported.
 
-### gzDoom mods
+### Total conversions
 
-Depends heavily on the mod. Mods that rely on EventHandlers will generally
-work, as will mods that use `x replaces y` or `CheckReplacement()`; gzAP gives
-you weapons and powerups by spawning them where you're standing, rather than
-inserting them directly into your inventory, so anything that properly replaces
-items at spawn time should work.
+Assuming that it isn't doing something else that makes it incompatible, these
+should generally work, but that's a big assumption, since many TCs do use such
+mechanics. See the [support table](./support-table.md) for information about
+specific TCs that have been tested.
+
+## Mod compatibility
+
+"Mod" here means gameplay mutators and weapon/enemy replacers, not total
+conversions that pair gameplay changes with new maps built around them.
+
+In general, this depends heavily on the mod. Mods that rely on EventHandlers
+will generally work, as will mods that use `x replaces y` or
+`CheckReplacement()`; gzAP gives you weapons and powerups by spawning them where
+you're standing, rather than inserting them directly into your inventory, so
+anything that properly replaces items at spawn time should work.
+
+### Mods that remove or add items to the map
 
 Mods that delete or move things around, or replace inventory/weapons with things
-that aren't those, will tend to cause problems, since gzAP relies on actor position
-to match up randomizer locations with in-game objects.
+that aren't those, will tend to cause problems, since gzAP relies on actor
+position to match up randomizer locations with in-game objects.
 
-#### Mods with custom difficulty settings
+Mods that use invisible tokens to implement items are also likely to break
+things, since gzAP will think those are script/teleport triggers and avoid
+randomizing them.
+
+Mods that add entirely new items to the map will not have those items randomized.
+
+### Mods with custom difficulty settings
 
 This includes Pandemonia and Rust & Bones, among others.
 
-These should work fine, as long as you set the `spawn_filter` in the yaml to match
-the spawn filter of the difficulty selection you're using -- e.g. if you're playing
-R&B on Normal, you want "easy", not "medium", unlike stock Doom.
+These should work fine, as long as you set the `spawn_filter` in the yaml to
+match the spawn filter of the difficulty selection you're using -- e.g. if
+you're playing R&B on Normal, you want "easy", not "medium", unlike stock Doom.
+
+### Specific mods
+
+#### Final Doomer
+
+Works, but you must set item visuals to "generic mode" in the Final Doomer
+settings.
 
 #### DoomRL Arsenal
 
-Sometimes spawning a soulsphere from your inventory just doesn't give you anything,
-presumably because it confuses the DRLA randomization machinery.
+Sometimes spawning a soulsphere from your inventory just doesn't give you
+anything, presumably because it confuses the DRLA randomization machinery.
 
 #### AutoAutoSave
 
 Installing AAS causes some checks to give you both the original item and the
 item it was replaced with, and also causes AAS itself to not function properly.
 This happens even if AAS is turned off in the settings.
-
-### Total conversions
-
-TCs like Ashes 2063 or Hedon Bloodrite probably will not work out of the box,
-just because they add a lot of new mechanics, specially scripted key items, etc.
-That said, I would very much like to have to support for them -- I just want to
-have all the basics nailed down first before I get into Hedon rando.

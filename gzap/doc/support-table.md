@@ -1,3 +1,4 @@
+
 # Support Table
 
 This file summarizes the state of support for various wads. Support is classified as:
@@ -63,14 +64,18 @@ here may result in glitches.
 | Game                     | Maps | Mon/Lvl | Checks | Status | Notes |
 | ------------------------ | ---- | ------- | ------ | ------ | ----- |
 | The Adventures of Square | 22 | 256 | 640 | partial | Not compatible with persistent mode. |
-| Ashes 2063               | | | | missing | |
-| Ashes: Afterglow         | | | | missing | Uses hub maps. |
+| Ashes 2063               | | | | missing | (1) |
+| Ashes: Afterglow         | | | | missing | (1), (2) |
 | Ashes: Hard Reset        | | | | missing | Still need to play it. |
-| Faithless Trilogy        | | | | missing | Requires manual work to handle ACS-defined portals. |
-| Golden Souls Remastered  | | | | missing | |
-| Golden Souls 2           | | | | missing | |
-| Hedon Bloodrite          | | | | missing | This is going to be a project but I think it would be pretty cool. |
+| Faithless Trilogy        | | | | missing | (2), may require manual work to handle ACS-defined portals. |
+| Golden Souls Remastered  | | | | missing | (3) |
+| Golden Souls 2           | | | | missing | (3) |
+| Hedon Bloodrite          | | | | missing | (2). This is going to be a project but I think it would be pretty cool. |
 | Space Cats Saga          | 57 | 316 | 1042 | partial | Pettable cats categorized as "big-ammo" may sometimes give you weapons out-of-logic instead. |
+
+(1) Requires progressive item support in the logic engine.
+(2) Requires hubcluster support in the logic engine and runtime.
+(3) Requires support for "stacking" keys that open more things the more you have.
 
 ### Fan-Games for Other IPs
 
