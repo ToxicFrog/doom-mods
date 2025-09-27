@@ -10,6 +10,14 @@ min_lives_per_level doesn't work if you don't get any bonus lives at all, due to
 
 ## gzArchipelago
 
+To release a new version:
+- update the version number in the CHANGELOG and Makefile
+- make
+- commit
+- tag and push the commit
+- make again to bake the release version number into the pk3
+- cut the release on github
+
 ### next bugfix
 - get "server": "host:port" from archipelago.json in the generated pk3
   and pass it on to the client in AP-XON, along with player data

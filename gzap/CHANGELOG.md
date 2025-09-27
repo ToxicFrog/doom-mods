@@ -1,4 +1,6 @@
-# Unreleased
+# 0.6.5
+
+This is a bugfix release.
 
 - New:
   - Generated pk3s now have a proper `archipelago.json` so that they can be
