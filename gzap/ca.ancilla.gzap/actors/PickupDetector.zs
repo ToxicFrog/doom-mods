@@ -69,6 +69,7 @@ class ::PickupDetector : Inventory {
     let plh = ::PerLevelHandler.Get();
 
     // Handle weapon suppression, if enabled.
+    DEBUG("HandlePickup: player found a %s", item.GetClassName());
     if (!plh.ShouldAllow(Weapon(item))) {
       DEBUG("HandlePickup: suppressing %s", item.GetClassName());
       plh.ReplaceWithAmmo(item, Weapon(item));

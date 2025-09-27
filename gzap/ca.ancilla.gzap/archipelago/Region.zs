@@ -67,8 +67,8 @@ class ::Region play {
 
   void DebugPrint() {
     console.printf("  - Region: %s%s [access=%d, clear=%d, automap=%d, txn=%d]",
-        self.txn, self.map, self.hub ? string.format(" (hubcluster %d)", self.hub) : "",
-        self.access, self.cleared, self.automap);
+        self.map, self.hub ? string.format(" (hubcluster %d)", self.hub) : "",
+        self.access, self.cleared, self.automap, self.txn);
     console.printf("    %d locations", self.locations.Size());
     console.printf("    %d keys:%s", self.keys.CountUsed(), self.DebugKeyString());
     console.printf("    %d hints", self.hints.CountUsed());

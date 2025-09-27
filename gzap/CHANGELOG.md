@@ -12,6 +12,7 @@
     apworlds.
   - There is now a [compatibility patch](../release/Archipelago×FinalDoomer.pk3)
     for Final Doomer support, contributed by snackerfork.
+  - Improvements to debug mode, including a crash fix for `ap-debug`.
 
 # 0.6.4
 
