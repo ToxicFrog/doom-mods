@@ -58,6 +58,7 @@ here may result in glitches.
 | MAYhem 2048      |   34 |     179 | 384 | partial | Would be full, but I accidentally overwrote half the tuning data. |
 | Scythe           |   32 |     106 | 405 | full | MAP26-MAP30 are much larger than the rest of the wad; consider excluding them in short sync games. |
 | Scythe 2         |   32 |     191 | 477 | full | |
+| Zone 300         |   32 |      61 | 305 | partial | |
 
 ### Standalone Games & Total Conversions
 
