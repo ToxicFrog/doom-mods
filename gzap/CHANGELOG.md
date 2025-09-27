@@ -14,6 +14,7 @@
     for Final Doomer support, contributed by snackerfork.
   - Improvements to debug mode, including a crash fix for `ap-debug`.
   - Going Down Turbo logic updated for the final release version.
+  - Support table entry for Plutonia corrected.
 
 # 0.6.4
 
