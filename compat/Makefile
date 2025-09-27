@@ -9,5 +9,6 @@ stage:
 	git rm --cached --ignore-unmatch '${TOPDIR}/release/*×*'
 	git add -f ${TOPDIR}/release/*×*
 
-${TOPDIR}/release/%.pk3: %/ %/*
+${TOPDIR}/release/%.pk3: %/ %/* %/*/* %/*/*/*
+	rm -f $@
 	(cd $< && zip -qr -0 ../$@ .)
