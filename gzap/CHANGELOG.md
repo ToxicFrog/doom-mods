@@ -5,6 +5,7 @@ This is a bugfix release.
 - New:
   - Generated pk3s now have a proper `archipelago.json` so that they can be
     downloaded from the web host.
+  - Logic and tuning for Amalgoom, contributed by zapadash04.
   - Logic for Zone 300.
 - Fix:
   - `MAPINFO` lump was not properly emitted when persistent mode was off.
