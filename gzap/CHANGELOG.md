@@ -6,10 +6,12 @@
 - Fix:
   - `MAPINFO` lump was not properly emitted when persistent mode was off.
   - Implement `get_filler_item_name()` to hopefully avoid generation failures
-    when paired with buggy apworlds that produce item pool underruns.
+    when paired with apworlds that produce item pool underruns.
   - Icon inference and check location data were not always properly escaped in
     the generated zscript, leading to runtime failures when paired with some
     apworlds.
+  - There is now a [compatibility patch](../release/Archipelago×FinalDoomer.pk3)
+    for Final Doomer support, contributed by snackerfork.
 
 # 0.6.4
 

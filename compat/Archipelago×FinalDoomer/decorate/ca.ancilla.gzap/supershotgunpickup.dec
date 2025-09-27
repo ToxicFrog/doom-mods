@@ -1,0 +1,59 @@
+ACTOR FDSuperShotgunPickupAP : FDSuperShotgunPickup replaces FDSuperShotgunPickup {
+  Alpha 0.0
+  States {
+   VisualsSpawn:
+    TNT1 A 0 A_SpawnItemEx("FDSuperShotgunPickupVisualPlutonia", 0,0,0, 0,0,0, 0, SXF_SETMASTER)
+    TNT1 A 0 A_SpawnItemEx("FDSuperShotgunPickupVisualTNT", 0,0,0, 0,0,0, 0, SXF_SETMASTER)
+    TNT1 A 0 A_SpawnItemEx("FDSuperShotgunPickupVisualDoom2", 0,0,0, 0,0,0, 0, SXF_SETMASTER)
+    TNT1 A 0 A_SpawnItemEx("FDSuperShotgunPickupVisualAliens", 0,0,0, 0,0,0, 0, SXF_SETMASTER)
+    TNT1 A 0 A_SpawnItemEx("FDSuperShotgunPickupVisualJPCP", 0,0,0, 0,0,0, 0, SXF_SETMASTER)
+    TNT1 A 0 A_SpawnItemEx("FDSuperShotgunPickupVisualBTSX", 0,0,0, 0,0,0, 0, SXF_SETMASTER)
+    TNT1 A 0 A_SpawnItemEx("FDSuperShotgunPickupVisualHellbound", 0,0,0, 0,0,0, 0, SXF_SETMASTER)
+    TNT1 A 0 A_SpawnItemEx("FDSuperShotgunPickupVisualAlienVendetta", 0,0,0, 0,0,0, 0, SXF_SETMASTER)
+    TNT1 A 0 A_SpawnItemEx("FDSuperShotgunPickupVisualWhitemare", 0,0,0, 0,0,0, 0, SXF_SETMASTER)
+    DSSG Z -1
+    Loop
+   DynamicSpawn:
+    TNT1 A 1
+    TNT1 A 0 A_SpawnItemEx("FDSuperShotgunPickupVisualPlutonia", 0,0,0, 0,0,0, 0, SXF_SETMASTER, CallACS("FDPlayerIn", 0))
+    TNT1 A 0 A_SpawnItemEx("FDSuperShotgunPickupVisualTNT", 0,0,0, 0,0,0, 0, SXF_SETMASTER, CallACS("FDPlayerIn", 1))
+    TNT1 A 0 A_SpawnItemEx("FDSuperShotgunPickupVisualDoom2", 0,0,0, 0,0,0, 0, SXF_SETMASTER, CallACS("FDPlayerIn", 2))
+    TNT1 A 0 A_SpawnItemEx("FDSuperShotgunPickupVisualAliens", 0,0,0, 0,0,0, 0, SXF_SETMASTER, CallACS("FDPlayerIn", 3))
+    TNT1 A 0 A_SpawnItemEx("FDSuperShotgunPickupVisualJPCP", 0,0,0, 0,0,0, 0, SXF_SETMASTER, CallACS("FDPlayerIn", 4))
+    TNT1 A 0 A_SpawnItemEx("FDSuperShotgunPickupVisualBTSX", 0,0,0, 0,0,0, 0, SXF_SETMASTER, CallACS("FDPlayerIn", 5))
+    TNT1 A 0 A_SpawnItemEx("FDSuperShotgunPickupVisualHellbound", 0,0,0, 0,0,0, 0, SXF_SETMASTER, CallACS("FDPlayerIn", 6))
+    TNT1 A 0 A_SpawnItemEx("FDSuperShotgunPickupVisualAlienVendetta", 0,0,0, 0,0,0, 0, SXF_SETMASTER, CallACS("FDPlayerIn", 7))
+    TNT1 A 0 A_SpawnItemEx("FDSuperShotgunPickupVisualWhitemare", 0,0,0, 0,0,0, 0, SXF_SETMASTER, CallACS("FDPlayerIn", 8))
+    DSSG Z -1
+    Loop
+   GenericSpawn:
+    TNT1 A 0 A_SetRenderStyle(1.0, STYLE_Normal)
+    DSSG Z -1
+    Loop
+   FancySpawn:
+    TNT1 A 0 A_SetRenderStyle(1.0, STYLE_Normal)
+    GSSG Z 5 Bright Light("FDGenericSuperShotgunLight")
+    "####" "#" 0 Bright A_CheckSightOrRange (1024, "FancySpawn")
+   Pickup:
+    TNT1 A 0 A_JumpIfInventory ("FDPlutSuperShotgun", 1, "GibAmmoPlox")
+    TNT1 A 0 A_JumpIfInventory ("FDTNTSuperShotgun", 1, "GibAmmoPlox")
+    TNT1 A 0 A_JumpIfInventory ("FDDoom2SuperShotgun", 1, "GibAmmoPlox")
+    TNT1 A 0 A_JumpIfInventory ("FDAliensSuperShotgun", 1, "GibAmmoPlox")
+    TNT1 A 0 A_JumpIfInventory ("FDBTSXSuperShotgun", 1, "GibAmmoPlox")
+    TNT1 A 0 A_JumpIfInventory ("FDHellboundSuperShotgun", 1, "GibAmmoPlox")
+    TNT1 A 0 A_JumpIfInventory ("FDAlienVendettaSuperShotgun", 1, "GibAmmoPlox")
+    TNT1 A 0 A_JumpIfInventory ("FDWhitemareSuperShotgun", 1, "GibAmmoPlox")
+    TNT1 A 0 A_GiveInventory ("FDGotSuperShotgun", 1)
+    TNT1 A 0 A_JumpIfInventory ("FDPlutoniaToken", 1, "PlutoniaWeapon")
+    TNT1 A 0 A_JumpIfInventory ("FDTNTToken", 1, "TNTWeapon")
+    TNT1 A 0 A_JumpIfInventory ("FDDoom2Token", 1, "Doom2Weapon")
+    TNT1 A 0 A_JumpIfInventory ("FDAliensToken", 1, "AliensWeapon")
+    TNT1 A 0 A_JumpIfInventory ("FDJPCPToken", 1, "JPCPWeapon")
+    TNT1 A 0 A_JumpIfInventory ("FDBTSXToken", 1, "BTSXWeapon")
+    TNT1 A 0 A_JumpIfInventory ("FDHellboundToken", 1, "HellboundWeapon")
+    TNT1 A 0 A_JumpIfInventory ("FDAlienVendettaToken", 1, "AlienVendettaWeapon")
+    TNT1 A 0 A_JumpIfInventory ("FDWhitemareToken", 1, "WhitemareWeapon")
+    TNT1 A 0 A_Jump (256, "PlutoniaWeapon")
+    Goto PlutoniaWeapon
+  }
+}

@@ -1,0 +1,58 @@
+ACTOR FDBFG9000PickupAP : FDBFG9000Pickup replaces FDBFG9000Pickup {
+  Alpha 0.0
+  States {
+   VisualsSpawn:
+    TNT1 A 0 A_SpawnItemEx("FDBFG9000PickupVisualPlutonia", 0,0,0, 0,0,0, 0, SXF_SETMASTER)
+    TNT1 A 0 A_SpawnItemEx("FDBFG9000PickupVisualTNT", 0,0,0, 0,0,0, 0, SXF_SETMASTER)
+    TNT1 A 0 A_SpawnItemEx("FDBFG9000PickupVisualDoom2", 0,0,0, 0,0,0, 0, SXF_SETMASTER)
+    TNT1 A 0 A_SpawnItemEx("FDBFG9000PickupVisualAliens", 0,0,0, 0,0,0, 0, SXF_SETMASTER)
+    TNT1 A 0 A_SpawnItemEx("FDBFG9000PickupVisualJPCP", 0,0,0, 0,0,0, 0, SXF_SETMASTER)
+    TNT1 A 0 A_SpawnItemEx("FDBFG9000PickupVisualBTSX", 0,0,0, 0,0,0, 0, SXF_SETMASTER)
+    TNT1 A 0 A_SpawnItemEx("FDBFG9000PickupVisualHellbound", 0,0,0, 0,0,0, 0, SXF_SETMASTER)
+    TNT1 A 0 A_SpawnItemEx("FDBFG9000PickupVisualAlienVendetta", 0,0,0, 0,0,0, 0, SXF_SETMASTER)
+    TNT1 A 0 A_SpawnItemEx("FDBFG9000PickupVisualWhitemare", 0,0,0, 0,0,0, 0, SXF_SETMASTER)
+    DBFG Z -1
+    Loop
+   DynamicSpawn:
+    TNT1 A 0 A_SpawnItemEx("FDBFG9000PickupVisualPlutonia", 0,0,0, 0,0,0, 0, SXF_SETMASTER, CallACS("FDPlayerIn", 0))
+    TNT1 A 0 A_SpawnItemEx("FDBFG9000PickupVisualTNT", 0,0,0, 0,0,0, 0, SXF_SETMASTER, CallACS("FDPlayerIn", 1))
+    TNT1 A 0 A_SpawnItemEx("FDBFG9000PickupVisualDoom2", 0,0,0, 0,0,0, 0, SXF_SETMASTER, CallACS("FDPlayerIn", 2))
+    TNT1 A 0 A_SpawnItemEx("FDBFG9000PickupVisualAliens", 0,0,0, 0,0,0, 0, SXF_SETMASTER, CallACS("FDPlayerIn", 3))
+    TNT1 A 0 A_SpawnItemEx("FDBFG9000PickupVisualJPCP", 0,0,0, 0,0,0, 0, SXF_SETMASTER, CallACS("FDPlayerIn", 4))
+    TNT1 A 0 A_SpawnItemEx("FDBFG9000PickupVisualBTSX", 0,0,0, 0,0,0, 0, SXF_SETMASTER, CallACS("FDPlayerIn", 5))
+    TNT1 A 0 A_SpawnItemEx("FDBFG9000PickupVisualHellbound", 0,0,0, 0,0,0, 0, SXF_SETMASTER, CallACS("FDPlayerIn", 6))
+    TNT1 A 0 A_SpawnItemEx("FDBFG9000PickupVisualAlienVendetta", 0,0,0, 0,0,0, 0, SXF_SETMASTER, CallACS("FDPlayerIn", 7))
+    TNT1 A 0 A_SpawnItemEx("FDBFG9000PickupVisualWhitemare", 0,0,0, 0,0,0, 0, SXF_SETMASTER, CallACS("FDPlayerIn", 8))
+    DBFG Z -1
+    Loop
+   GenericSpawn:
+    TNT1 A 0 A_SetRenderStyle(1.0, STYLE_Normal)
+    DBFG Z -1
+    Loop
+   FancySpawn:
+    TNT1 A 0 A_SetRenderStyle(1.0, STYLE_Normal)
+    GBFG Z 5 Bright Light("FDGenericBFG9000Light")
+    "####" "#" 0 Bright A_CheckSightOrRange (1024, "FancySpawn")
+   Pickup:
+    TNT1 A 0 A_JumpIfInventory ("FDPlutBFG9000", 1, "GibAmmoPlox")
+    TNT1 A 0 A_JumpIfInventory ("FDTNTBFG9000", 1, "GibAmmoPlox")
+    TNT1 A 0 A_JumpIfInventory ("FDDoom2BFG9000", 1, "GibAmmoPlox")
+    TNT1 A 0 A_JumpIfInventory ("FDAliensBFG9000", 1, "GibAmmoPlox")
+    TNT1 A 0 A_JumpIfInventory ("FDBTSXBFG9000", 1, "GibAmmoPlox")
+    TNT1 A 0 A_JumpIfInventory ("FDHellboundBFG9000", 1, "GibAmmoPlox")
+    TNT1 A 0 A_JumpIfInventory ("FDAlienVendettaBFG9000", 1, "GibAmmoPlox")
+    TNT1 A 0 A_JumpIfInventory ("FDWhitemareBFG9000", 1, "GibAmmoPlox")
+    TNT1 A 0 A_GiveInventory ("FDGotBFG9000", 1)
+    TNT1 A 0 A_JumpIfInventory ("FDPlutoniaToken", 1, "PlutoniaWeapon")
+    TNT1 A 0 A_JumpIfInventory ("FDTNTToken", 1, "TNTWeapon")
+    TNT1 A 0 A_JumpIfInventory ("FDDoom2Token", 1, "Doom2Weapon")
+    TNT1 A 0 A_JumpIfInventory ("FDAliensToken", 1, "AliensWeapon")
+    TNT1 A 0 A_JumpIfInventory ("FDJPCPToken", 1, "JPCPWeapon")
+    TNT1 A 0 A_JumpIfInventory ("FDBTSXToken", 1, "BTSXWeapon")
+    TNT1 A 0 A_JumpIfInventory ("FDHellboundToken", 1, "HellboundWeapon")
+    TNT1 A 0 A_JumpIfInventory ("FDAlienVendettaToken", 1, "AlienVendettaWeapon")
+    TNT1 A 0 A_JumpIfInventory ("FDWhitemareToken", 1, "WhitemareWeapon")
+    TNT1 A 0 A_Jump (256, "PlutoniaWeapon")
+    Goto PlutoniaWeapon
+  }
+}

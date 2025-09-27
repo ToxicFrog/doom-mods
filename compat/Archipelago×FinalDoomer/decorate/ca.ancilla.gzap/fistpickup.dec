@@ -1,0 +1,62 @@
+ACTOR FDFistPickupAP : FDFistPickup replaces FDFistPickup {
+  Alpha 0.0
+  States {
+   Spawn:
+    TNT1 A 0
+    TNT1 A 0 A_JumpIf(CallACS("FD_itemvisuals") == 0, "GenericSpawn")
+    TNT1 A 0 A_JumpIf(CallACS("FD_itemvisuals") == 2, "FancySpawn")
+    TNT1 A 0 A_JumpIf(CallACS("FD_dynamicvisuals") == 1, "DynamicSpawn")
+    TNT1 A 0 A_SpawnItemEx("FDFistPickupVisualPlutonia", 0,0,0, 0,0,0, 0, SXF_SETMASTER)
+    TNT1 A 0 A_SpawnItemEx("FDFistPickupVisualTNT", 0,0,0, 0,0,0, 0, SXF_SETMASTER)
+    TNT1 A 0 A_SpawnItemEx("FDFistPickupVisualDoom2", 0,0,0, 0,0,0, 0, SXF_SETMASTER)
+    TNT1 A 0 A_SpawnItemEx("FDFistPickupVisualAliens", 0,0,0, 0,0,0, 0, SXF_SETMASTER)
+    TNT1 A 0 A_SpawnItemEx("FDFistPickupVisualJPCP", 0,0,0, 0,0,0, 0, SXF_SETMASTER)
+    TNT1 A 0 A_SpawnItemEx("FDFistPickupVisualBTSX", 0,0,0, 0,0,0, 0, SXF_SETMASTER)
+    TNT1 A 0 A_SpawnItemEx("FDChainsawPickupVisualHellbound", 0,0,0, 0,0,0, 0, SXF_SETMASTER)
+    TNT1 A 0 A_SpawnItemEx("FDChainsawPickupVisualAlienVendetta", 0,0,0, 0,0,0, 0, SXF_SETMASTER)
+    TNT1 A 0 A_SpawnItemEx("FDChainsawPickupVisualWhitemare", 0,0,0, 0,0,0, 0, SXF_SETMASTER)
+    DFIS Z -1
+    Loop
+   DynamicSpawn:
+    TNT1 A 1
+    TNT1 A 0 A_SpawnItemEx("FDFistPickupVisualPlutonia", 0,0,0, 0,0,0, 0, SXF_SETMASTER, CallACS("FDPlayerIn", 0))
+    TNT1 A 0 A_SpawnItemEx("FDFistPickupVisualTNT", 0,0,0, 0,0,0, 0, SXF_SETMASTER, CallACS("FDPlayerIn", 1))
+    TNT1 A 0 A_SpawnItemEx("FDFistPickupVisualDoom2", 0,0,0, 0,0,0, 0, SXF_SETMASTER, CallACS("FDPlayerIn", 2))
+    TNT1 A 0 A_SpawnItemEx("FDFistPickupVisualAliens", 0,0,0, 0,0,0, 0, SXF_SETMASTER, CallACS("FDPlayerIn", 3))
+    TNT1 A 0 A_SpawnItemEx("FDFistPickupVisualJPCP", 0,0,0, 0,0,0, 0, SXF_SETMASTER, CallACS("FDPlayerIn", 4))
+    TNT1 A 0 A_SpawnItemEx("FDFistPickupVisualBTSX", 0,0,0, 0,0,0, 0, SXF_SETMASTER, CallACS("FDPlayerIn", 5))
+    TNT1 A 0 A_SpawnItemEx("FDChainsawPickupVisualHellbound", 0,0,0, 0,0,0, 0, SXF_SETMASTER, CallACS("FDPlayerIn", 6))
+    TNT1 A 0 A_SpawnItemEx("FDChainsawPickupVisualAlienVendetta", 0,0,0, 0,0,0, 0, SXF_SETMASTER, CallACS("FDPlayerIn", 7))
+    TNT1 A 0 A_SpawnItemEx("FDChainsawPickupVisualWhitemare", 0,0,0, 0,0,0, 0, SXF_SETMASTER, CallACS("FDPlayerIn", 8))
+    DFIS Z -1
+    Loop
+   GenericSpawn:
+    TNT1 A 0 A_SetRenderStyle(1.0, STYLE_Normal)
+    DFIS Z -1
+    Loop
+   FancySpawn:
+    TNT1 A 0 A_SetRenderStyle(1.0, STYLE_Normal)
+    GFIS Z 5 Bright Light("FDGenericFistLight")
+    "####" "#" 0 Bright A_CheckSightOrRange (1024, "FancySpawn")
+   Pickup:
+    TNT1 A 0 A_JumpIfInventory ("FDPlutFist", 1, "GibAmmoPlox")
+    TNT1 A 0 A_JumpIfInventory ("FDTNTFist", 1, "GibAmmoPlox")
+    TNT1 A 0 A_JumpIfInventory ("FDDoom2Fist", 1, "GibAmmoPlox")
+    TNT1 A 0 A_JumpIfInventory ("FDAliensFist", 1, "GibAmmoPlox")
+    TNT1 A 0 A_JumpIfInventory ("FDBTSXFist", 1, "GibAmmoPlox")
+    TNT1 A 0 A_JumpIfInventory ("FDHellboundFist", 1, "GibAmmoPlox")
+    TNT1 A 0 A_JumpIfInventory ("FDAlienVendettaFist", 1, "GibAmmoPlox")
+    TNT1 A 0 A_JumpIfInventory ("FDWhitemareFist", 1, "GibAmmoPlox")
+    TNT1 A 0 A_JumpIfInventory ("FDPlutoniaToken", 1, "PlutoniaWeapon")
+    TNT1 A 0 A_JumpIfInventory ("FDTNTToken", 1, "TNTWeapon")
+    TNT1 A 0 A_JumpIfInventory ("FDDoom2Token", 1, "Doom2Weapon")
+    TNT1 A 0 A_JumpIfInventory ("FDAliensToken", 1, "AliensWeapon")
+    TNT1 A 0 A_JumpIfInventory ("FDJPCPToken", 1, "JPCPWeapon")
+    TNT1 A 0 A_JumpIfInventory ("FDBTSXToken", 1, "BTSXWeapon")
+    TNT1 A 0 A_JumpIfInventory ("FDHellboundToken", 1, "HellboundWeapon")
+    TNT1 A 0 A_JumpIfInventory ("FDAlienVendettaToken", 1, "AlienVendettaWeapon")
+    TNT1 A 0 A_JumpIfInventory ("FDWhitemareToken", 1, "WhitemareWeapon")
+    TNT1 A 0 A_Jump (256, "PlutoniaWeapon")
+    Goto PlutoniaWeapon
+  }
+}

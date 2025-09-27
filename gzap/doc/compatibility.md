@@ -116,8 +116,8 @@ you're playing R&B on Normal, you want "easy", not "medium", unlike stock Doom.
 
 #### Final Doomer
 
-Works, but you must set item visuals to "generic mode" in the Final Doomer
-settings.
+Requires the [Archipelago×FinalDoomer patch](../../release/Archipelago×FinalDoomer.pk3)
+to be loaded after Final Doomer.
 
 #### DoomRL Arsenal
 
