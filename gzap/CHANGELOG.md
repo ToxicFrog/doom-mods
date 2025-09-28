@@ -1,3 +1,11 @@
+# Unreleased
+
+This is a bugfix release.
+
+- Fix:
+  - Add `map07special` flag to Master Levels for Doom II MAP20, since it was
+    originally designed to go in the MAP07 slot and relies on that behaviour.
+
 # 0.6.5
 
 This is a bugfix release.
