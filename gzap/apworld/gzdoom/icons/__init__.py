@@ -43,8 +43,8 @@ def build_icons():
   for index,icon in enumerate(sorted(_ICON_SPRITES.keys())):
     assert index < 26
     src = f'assets/{_ICON_SPRITES[icon]}.png'
-    dst = f'sprites/icons/ap01{chr(_ICON_FRAMES[icon] + ord('A'))}0.png'
-    print(f'{_ICON_SPRITES[icon]} -> AP01{chr(_ICON_FRAMES[icon] + ord('A'))}0.png')
+    dst = f'sprites/icons/ap01{chr(_ICON_FRAMES[icon] + ord("A"))}0.png'
+    print(f'{_ICON_SPRITES[icon]} -> AP01{chr(_ICON_FRAMES[icon] + ord("A"))}0.png')
     copy(src, dst)
 
 def icon_to_frame(icon_name):
