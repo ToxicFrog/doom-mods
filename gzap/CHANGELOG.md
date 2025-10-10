@@ -15,6 +15,7 @@ the apworld to contain your new tuning in order to test it.
 
 - New:
   - Separate `ap_gzdoom_extras.apworld` and `ap_gzdoom_featured.apworld` files.
+  - Autodiscovery of addon apworlds containing gzdoom tuning/logic.
 - Fix:
   - Add `map07special` flag to Master Levels for Doom II MAP20, since it was
     originally designed to go in the MAP07 slot and relies on that behaviour.

@@ -91,13 +91,11 @@ This repo contains a [commented example](../config/GZAPRC.iwads) containing a
 configuration for Heretic and Chex Quest; other files in that directory contain
 configurations for other megawads.
 
-## Adding the logic file to the apworld
+## Publishing your logic
 
-- Open gzdoom.apworld in a zip viewer
-- Add the logic file to the `gzdoom/logic/` directory
-- Save and quit
-
-That's it! It'll be automatically loaded next time you start Archipelago.
+gzArchipelago can load your logic and tuning files from disk, as long as they're
+in the right place, but for sharing with other people (like a game host) it's
+convenient to create an apworld for them, or add them to an existing one.
 
 ### Loading files without adding them to the apworld
 
@@ -110,6 +108,24 @@ directory also contains `logic` and `tuning` directories; any logic or tuning
 files placed in them will be loaded automatically (and, in the case of logic
 files, will override the builtin logic if they have the same name), allowing you
 to rapidly change and test your work without repacking the apworld.
+
+### Adding the logic file to an apworld
+
+- Open gzdoom.apworld in a zip viewer
+- Add the logic file to the `gzdoom/logic/` directory
+- Save and quit
+
+That's it! It'll be automatically loaded next time you start Archipelago.
+
+### Publishing a new apworld
+
+To do this, you just need a zip file with a `.apworld` extension, containing a
+minimal `__init__.py` along with `logic` and `tuning` directories. See the
+[extras apworld](../../release/ap_gzdoom_extras.apworld) for an example.
+
+The main thing to watch out for is that apworlds are loaded in alphabetical
+order, and these apworlds **must be loaded before `gzdoom.apworld`**. This is
+why the existing ones start with `ap_gzdoom_` rather than just `gzdoom_`.
 
 ## Tuning a logic file
 

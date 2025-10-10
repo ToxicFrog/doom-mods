@@ -107,24 +107,14 @@ def init_wads(package):
         init_wad(package, logic_file, package is None, ts)
 
 def init_all_wads():
-    import time
-    now = time.monotonic()
-    init_wads('worlds.gzdoom')
-
-    try:
-        import worlds.ap_gzdoom_featured
-        init_wads('worlds.ap_gzdoom_featured')
-    except ModuleNotFoundError:
-        print
-
-    try:
-        import worlds.ap_gzdoom_extras
-        init_wads('worlds.ap_gzdoom_extras')
-    except ModuleNotFoundError:
-        pass
+    import sys
+    keys = [key for key in sys.modules.keys() if 'gzdoom' in key]
+    for key in keys:
+        if key.count('.') != 1:
+            continue
+        init_wads(key)
 
     init_wads(None)
-    print("time:", time.monotonic() - now)
 
 def wads() -> List[DoomWad]:
     return sorted(_DOOM_LOGIC.wads.values(), key=lambda w: w.name)
