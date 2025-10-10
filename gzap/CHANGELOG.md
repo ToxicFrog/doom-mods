@@ -1,11 +1,24 @@
 # Unreleased
 
-This is a bugfix release.
+This is a feature/design release.
 
+⚠️ This update splits the apworld into three: one core apworld providing support
+for the official games, plus two addon apworlds providing support for "featured
+mods" and for community maps. See [support-table.md](doc/support-table.md) for
+a list of which maps are in which apworld.
+
+⚠️ This update changes how tuning loading works. Tuning files in your AP
+directory are now only loaded for logic files in your AP directory; they do not
+apply to logic files loaded from an apworld. If you are a logic developer
+working on new tuning for a wad that already has logic, you will need to repack
+the apworld to contain your new tuning in order to test it.
+
+- New:
+  - Separate `ap_gzdoom_extras.apworld` and `ap_gzdoom_featured.apworld` files.
 - Fix:
   - Add `map07special` flag to Master Levels for Doom II MAP20, since it was
     originally designed to go in the MAP07 slot and relies on that behaviour.
-  - Fix for older python versions that don't support PEP 701 F-strings.
+  - Fix for older python versions that don't support PEP 701 f-strings.
 
 # 0.6.5
 

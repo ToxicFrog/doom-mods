@@ -7,6 +7,11 @@ to play an unsupported wad, see [this documentation](./new-wads.md).
 ## First-time setup
 
 Download the [apworld](../../release/gzdoom.apworld) and add it to Archipelago.
+Depending on what wad(s) you want to play, you may also need the
+[featured mods apworld](../../release/ap_gzdoom_featured.apworld) and/or the
+[community extras apworld](../../release/ap_gzdoom_extras.apworld); consult the
+[support table](./support-table.md) for information about which wads each
+apworld supports.
 
 Download the [matching version of the mod](../../release/gzArchipelago-latest.pk3)
 and add it to your gzdoom load order (it doesn't much matter where).

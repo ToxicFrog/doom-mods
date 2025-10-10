@@ -23,8 +23,6 @@ from .WadLogicLoader import *
 _DOOM_LOGIC: DoomLogic = DoomLogic()
 
 
-_init_done: bool = False
-
 def add_wad(name: str, apworld_mtime: int, is_external: bool):
     return WadLogicLoader(_DOOM_LOGIC, name, apworld_mtime, is_external)
 
@@ -34,42 +32,49 @@ def get_wad(name: str) -> DoomWad:
 
 def logic_files(package):
     """
-    Returns (list of internal logic files, list of external logic files). This
-    is drawn from all files in the apworld's logic/ directory, plus all files in
-    the user's Archipelago/gzdoom/logic directory, sorted by wad name.
+    Get a list of logic files contained in an apworld or on disk, sorted by
+    name.
 
-    If a logic file exists in both places, both are loaded, but the external one
-    takes precedence; the internal one is used only for ID allocation
-    consistency.
+    If package is None, looks in $AP/gzdoom/logic. Otherwise, looks in the
+    apworld's /logic directory. The package must be an already-loaded apworld.
 
     File extensions, if present, are ignored; the wad name is everything in the
     filename up to the first '.'.
     """
-    internal = [
-        file for file in resources.files(package).joinpath("logic").iterdir()
-    ]
-    external = [
-        file for file in (Path(Utils.home_path()) / "gzdoom" / "logic").iterdir()
-        if file.is_file()
-    ]
-    return sorted(internal, key=lambda f: f.name), sorted(external)
+    if package:
+        return sorted([
+            file for file in resources.files(package).joinpath("logic").iterdir()
+        ], key=lambda f: f.name)
+        # return sorted(files, key=lambda f: f.name)
+    else:
+        return sorted([
+            file for file in (Path(Utils.home_path()) / "gzdoom" / "logic").iterdir()
+            if file.is_file()
+        ])
 
 def tuning_files(package, wad):
     """
-    Return a list of all tuning files for a given wad.
+    Return a list of all tuning files for a given wad in a given package (or in
+    the AP directory, similar to logic_files).
 
-    Tuning files are returned in a defined order: sorted by filename, with all
-    internal files sorted before all external files.
+    Note that only tuning files colocated with the logic file are returned, i.e.
+    a logic file in an apworld will only return tuning files in that apworld.
+
+    Tuning files are returned sorted by filename. With the default naming scheme
+    used by the client, this means later tuning files will sort after (and
+    override) earlier ones.
     """
-    internal = [
-        p for p in resources.files(package).joinpath("tuning").iterdir()
-        if p.is_file() and (p.name == wad or p.name.startswith(f"{wad}."))
-    ]
-    external = [
-        p for p in (Path(Utils.home_path()) / "gzdoom" / "tuning").iterdir()
-        if p.is_file() and (p.name == wad or p.name.startswith(f"{wad}."))
-    ]
-    return sorted(internal, key=lambda f: f.name) + sorted(external)
+    if package:
+        return sorted([
+            p for p in resources.files(package).joinpath("tuning").iterdir()
+            if p.is_file() and (p.name == wad or p.name.startswith(f"{wad}."))
+        ], key=lambda f: f.name)
+    else:
+        return sorted([
+            p for p in (Path(Utils.home_path()) / "gzdoom" / "tuning").iterdir()
+            if p.is_file() and (p.name == wad or p.name.startswith(f"{wad}."))
+        ])
+    # return sorted(internal, key=lambda f: f.name) + sorted(external)
 
 def init_wad(package, logic_file, is_external, apworld_mtime):
     wadname = logic_file.name.split(".")[0]
@@ -81,22 +86,45 @@ def package_timestamp(package):
     apworld_path = re.sub(r'\.apworld.*', '.apworld', str(resources.files(package)))
     return os.path.getmtime(apworld_path)
 
-def init_wads(package):
-    global _init_done
-    if _init_done:
+def print_header(package):
+    if "GZAP_DEBUG" not in os.environ:
         return
-    _init_done = True
+    print('%32s \x1B[4m[ logic from %s ]\x1B[0m' % ('', package))
 
-    gzd_dir = os.path.join(Utils.home_path(), "gzdoom")
-    os.makedirs(os.path.join(gzd_dir, "logic"), exist_ok=True) # in-dev logic files
-    os.makedirs(os.path.join(gzd_dir, "tuning"), exist_ok=True) # in-dev tuning files
+def init_wads(package):
+    if not package:
+        gzd_dir = os.path.join(Utils.home_path(), "gzdoom")
+        print_header(gzd_dir)
+        os.makedirs(os.path.join(gzd_dir, "logic"), exist_ok=True) # in-dev logic files
+        os.makedirs(os.path.join(gzd_dir, "tuning"), exist_ok=True) # in-dev tuning files
+        ts = 0
+    else:
+        print_header(package)
+        ts = package_timestamp(package)
 
-    internal, external = logic_files(package)
-    # Load all logic files included in the apworld.
-    for logic_file in internal:
-        init_wad(package, logic_file, False, package_timestamp(package))
-    for logic_file in external:
-        init_wad(package, logic_file, True, 0)
+    logic = logic_files(package)
+    for logic_file in logic:
+        init_wad(package, logic_file, package is None, ts)
+
+def init_all_wads():
+    import time
+    now = time.monotonic()
+    init_wads('worlds.gzdoom')
+
+    try:
+        import worlds.ap_gzdoom_featured
+        init_wads('worlds.ap_gzdoom_featured')
+    except ModuleNotFoundError:
+        print
+
+    try:
+        import worlds.ap_gzdoom_extras
+        init_wads('worlds.ap_gzdoom_extras')
+    except ModuleNotFoundError:
+        pass
+
+    init_wads(None)
+    print("time:", time.monotonic() - now)
 
 def wads() -> List[DoomWad]:
     return sorted(_DOOM_LOGIC.wads.values(), key=lambda w: w.name)

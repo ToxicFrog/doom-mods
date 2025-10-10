@@ -12,20 +12,29 @@ from worlds.AutoWorld import WebWorld, World
 import worlds.LauncherComponents as LauncherComponents
 
 from . import icons
-from .Options import GZDoomOptions
-from .model import init_wads
+from .model import init_all_wads
 from .model.DoomItem import DoomItem
 from .model.DoomLocation import DoomLocation
 from .model.DoomWad import DoomWad
 
+# Load logic and tuning files.
+#
+# Logic has to be fully loaded before this module finishes initializing (and,
+# more immediately, before we import the options), because AP expects us to have
+# the complete item and location index available at that time. This means we
+# need to load logic for all the wads before we know which wad the player has
+# selected.
+#
+# TODO: benchmark indicates that on a cache miss, tuning data accounts for
+# about a third of loading time, and it's only going to get worse as more things
+# are tuned. This implies we could get some significant savings by deferring
+# tuning file processing until we know what wad the player has selected, and
+# only loading the tuning data for that one.
+init_all_wads()
+
+from .Options import GZDoomOptions
+
 logger = logging.getLogger("gzDoom")
-
-# Unfortunately this has to be done at load time, and there is no way to tell
-# up front whether we're being loaded for something that needs the logic structures
-# or something that doesn't. So we load them unconditionally and hope it doesn't
-# slow things down too much as more wads are added.
-init_wads(__package__)
-
 
 def launch_client(*args) -> None:
     from .client.GZDoomClient import main

@@ -26,7 +26,6 @@ from Options import PerGameCommonOptions, Toggle, DeathLink, StartInventoryPool,
 from dataclasses import dataclass
 
 from . import model
-model.init_wads(__package__)
 
 class StartWithAutomaps(Toggle):
     """

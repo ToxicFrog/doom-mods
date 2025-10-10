@@ -18,9 +18,15 @@ To release a new version:
 - make again to bake the release version number into the pk3
 - cut the release on github
 
-### next bugfix
+### next release
 - get "server": "host:port" from archipelago.json in the generated pk3
   and pass it on to the client in AP-XON, along with player data
+- split apworld into separate files, if possible
+- fixes for unreachable items in GDT
+  MAP07 - Super Shotgun [W]
+  MAP20 - Super Shotgun [W]
+- Eviternity 2 logic by Akos
+
 
 ### general notes on scanner/logic changes
 

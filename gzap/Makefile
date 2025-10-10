@@ -11,7 +11,7 @@ all: ${PK3} apworld
 
 include ${TOPDIR}/rules.make
 
-apworld: version ${TOPDIR}/release/gzdoom-${VERSION}.apworld
+apworld: version ${TOPDIR}/release/gzdoom.apworld ${TOPDIR}/release/ap_gzdoom_featured.apworld ${TOPDIR}/release/ap_gzdoom_extras.apworld
 ${PK3}: sprites/icons
 
 version:
@@ -24,10 +24,10 @@ sprites/icons: apworld/gzdoom/icons/__init__.py assets/*.png
 	python apworld/gzdoom/icons/__init__.py
 	touch sprites/icons
 
-${TOPDIR}/release/gzdoom-${VERSION}.apworld: apworld/gzdoom/* apworld/gzdoom/*/*
-	cd apworld && zip -r gzdoom.apworld gzdoom
-	cp apworld/gzdoom.apworld ~/.local/share/Archipelago/worlds/
-	cp apworld/gzdoom.apworld ${TOPDIR}/release/
-	mv apworld/gzdoom.apworld ${TOPDIR}/release/gzdoom-${VERSION}.apworld
+${TOPDIR}/release/%.apworld: apworld/%/* apworld/%/*/*
+	cd apworld && zip -r $*.apworld $*
+	cp apworld/$*.apworld ~/.local/share/Archipelago/worlds/
+	cp apworld/$*.apworld ${TOPDIR}/release/
+	mv apworld/$*.apworld ${TOPDIR}/release/$*-${VERSION}.apworld
 
 .PHONY: apworld
