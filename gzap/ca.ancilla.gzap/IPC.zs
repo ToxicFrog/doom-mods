@@ -17,14 +17,16 @@ class ::IPC {
 
   // Initialize the IPC receiver using the given lump name.
   void Init(string slot_name, string seed, string wadname, string lumpname = "GZAPIPC") {
+    DEBUG("Initializing IPC: slot=%s, wad=%s, lump=%s", slot_name, wadname, lumpname);
     last_seen = "";
     lumpid = wads.FindLump(lumpname);
     let buf = wads.ReadLump(lumpid);
+    let server = GetArchipelagoServer();
     Send("XON", string.format(
-      "{ \"lump\": \"%s\", \"size\": %d, \"nick\": \"%s\", \"slot\": \"%s\", \"seed\": \"%s\", \"wad\": \"%s\" }",
+      "{ \"lump\": \"%s\", \"size\": %d, \"nick\": \"%s\", \"slot\": \"%s\", \"seed\": \"%s\", \"wad\": \"%s\", \"server\": \"%s\" }",
       lumpname, buf.Length(),
       cvar.FindCVar("name").GetString(),
-      slot_name, seed, wadname));
+      slot_name, seed, wadname, server));
   }
 
   void Shutdown() {
@@ -33,6 +35,31 @@ class ::IPC {
 
   bool IsConnected() {
     return last_seen != "";
+  }
+
+  // If the pk3 was downloaded from the web host, it'll contain an archipelago.json
+  // file that looks something like this:
+  // {"game": "gzDoom", "player": 2, "patch_file_ending": ".pk3", "server": "archipelago.gg:65206"}
+  // We want to extract the "server" field from it.
+  string GetArchipelagoServer() {
+    int lump = wads.FindLump("ARCHIPEL");
+    if (lump < 0) {
+      return "";
+    }
+
+    // This is a hot mess because I don't want to add an entire JSON parser.
+    string server = "";
+    Array<string> fields;
+    wads.ReadLump(lump).Split(fields, ",");
+    foreach (field : fields) {
+      if (field.IndexOf("\"server\":") != -1) {
+        int start = field.IndexOf("\"", field.IndexOf(":"));
+        int end = field.IndexOf("\"", start+1);
+        server = field.Mid(start+1, (end-start-1));
+        break;
+      }
+    }
+    return server;
   }
 
   // Receive all pending messages, dispatch them internally, and ack them.

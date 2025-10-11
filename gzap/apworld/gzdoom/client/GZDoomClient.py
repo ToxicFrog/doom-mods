@@ -65,8 +65,6 @@ class GZDoomContext(SuperContext):
             self.tracker_task = asyncio.create_task(self._tracker_loop())
         else:
             self.tracker_task = None
-        print("Starting server loop")
-        self.server_task = asyncio.create_task(server_loop(self), name="ServerLoop")
         print("All tasks started.")
 
     async def send_check(self, id: int):
@@ -100,7 +98,7 @@ class GZDoomContext(SuperContext):
         await self.get_username()
         await self.send_connect()
 
-    async def on_xon(self, slot: str, seed: str):
+    async def on_xon(self, slot: str, seed: str, server: str):
         self.slot_name = slot
         self.seed_name = seed
         self.last_items = {}  # force a re-send of all items
@@ -109,6 +107,10 @@ class GZDoomContext(SuperContext):
         self.last_hints = {}
         self.found_gzdoom.set()
         self.ipc.send_text("Archipelago<->GZDoom connection established.")
+        if server:
+            await self.connect(server)
+            # TODO: send a message to the game when the connection to the host is
+            # opened or closed.
 
     async def on_xoff(self):
         self.username = None

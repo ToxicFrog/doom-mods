@@ -181,7 +181,7 @@ class IPC:
 
   #### Handlers for events coming from gzdoom. ####
 
-  async def recv_xon(self, lump: str, size: int, nick: str, slot: str, seed: str, wad: str) -> None:
+  async def recv_xon(self, lump: str, size: int, nick: str, slot: str, seed: str, wad: str, server: str) -> None:
     """
     Called when an AP-XON message is received from gzdoom.
 
@@ -193,7 +193,7 @@ class IPC:
     assert size == self.ipc_size, "IPC size mismatch between gzdoom and AP -- please exit both, start the client, then gzdoom"
     self.nick = nick
     self.flush()
-    await self.ctx.on_xon(slot, seed)
+    await self.ctx.on_xon(slot, seed, server)
 
   async def recv_ack(self, id: int) -> None:
     """
