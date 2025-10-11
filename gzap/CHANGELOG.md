@@ -17,6 +17,7 @@ the apworld to contain your new tuning in order to test it.
   - Separate `ap_gzdoom_extras.apworld` and `ap_gzdoom_featured.apworld` files.
   - Autodiscovery of addon apworlds containing gzdoom tuning/logic.
   - Logic for Eviternity and Eviternity II, by Akos.
+  - Logic for Legacy of Rust, by RakeVuril.
 - Fix:
   - Add `map07special` flag to Master Levels for Doom II MAP20, since it was
     originally designed to go in the MAP07 slot and relies on that behaviour.

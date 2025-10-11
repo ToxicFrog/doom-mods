@@ -36,23 +36,23 @@ need to identify a WAD, the [DoomWiki Resources category](https://doomwiki.org/w
 lists all of them, with hashes. Using a different version than the one supported
 here may result in glitches.
 
-| WAD          | Maps | Mon/Lvl | Checks | Status | Notes |
-| ------------ | ---- | ------- | ------ | ------ | ----- |
-| Doom         |   36 |      90 | 509    | full   | v1.9ud |
-| Doom 2       |   32 |     116 | 501    | full   | v1.9 |
-| TNT          |   32 |     152 | 515    | basic  | v1.9 |
-| Plutonia     |   32 |      95 | 427    | full   | v1.9 |
+| WAD            | Maps | Mon/Lvl | Checks | Status | Notes |
+| -------------- | ---- | ------- | ------ | ------ | ----- |
+| Doom           |   36 |      90 | 509    | full   | v1.9ud |
+| Doom 2         |   32 |     116 | 501    | full   | v1.9 |
+| TNT            |   32 |     152 | 515    | basic  | v1.9 |
+| Plutonia       |   32 |      95 | 427    | full   | v1.9 |
 | Master Levels for Doom II | 21 | 120 | 401 | full | |
 | No Rest for the Living | 9 | 141 | 124 | full | |
-| SIGIL        | | | | missing | |
-| SIGIL II     | | | | missing | |
-| Legacy of Rust | | | | missing | |
-| Heretic      |   45 |     116 |    900 | basic  | v1.3 |
-| Hexen        | | | | missing | Same concerns as Strife, plus I don't like it. |
-| Strife       | | | | missing | Hub maps and complicated level scripting mean this may need changes to the generator. |
-| FreeDoom     |   36 |     176 |    532 | basic | [v0.13.0](https://freedoom.github.io/download.html) |
-| FreeDoom 2   |   32 |     135 |    495 | basic | [v0.13.0](https://freedoom.github.io/download.html) |
-| Chex Quest 3 |   15 |      83 |    196 | complete | [v1.4](https://www.chexquest3.com/downloads/); v2.0-prerelease is not yet supported. |
+| SIGIL          | | | | missing | |
+| SIGIL II       | | | | missing | |
+| Legacy of Rust |   16 |     212 |    270 | problems | Fully tuned, but MAP14 doesn't fully work because of [this gzdoom limitation](https://github.com/ZDoom/gzdoom/issues/2208); you will need to exclude it or make it optional. |
+| Heretic        |   45 |     116 |    900 | basic  | v1.3 |
+| Hexen          | | | | missing | Same concerns as Strife, plus I don't like it. |
+| Strife         | | | | missing | Hub maps and complicated level scripting mean this may need changes to the generator. |
+| FreeDoom       |   36 |     176 |    532 | basic | [v0.13.0](https://freedoom.github.io/download.html) |
+| FreeDoom 2     |   32 |     135 |    495 | basic | [v0.13.0](https://freedoom.github.io/download.html) |
+| Chex Quest 3   |   15 |      83 |    196 | complete | [v1.4](https://www.chexquest3.com/downloads/); v2.0-prerelease is not yet supported. |
 
 ### Featured WADs
 
