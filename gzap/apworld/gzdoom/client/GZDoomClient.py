@@ -70,9 +70,8 @@ class GZDoomContext(SuperContext):
         print("All tasks started.")
 
     async def send_check(self, id: int):
-        await self.send_msgs([
-            {"cmd": 'LocationChecks', "locations": [id]}
-            ])
+        self.locations_checked |= {id}
+        await self.check_locations(self.locations_checked)
 
     async def send_chat(self, message: str):
         await self.send_msgs([
