@@ -23,6 +23,8 @@ the apworld to contain your new tuning in order to test it.
     originally designed to go in the MAP07 slot and relies on that behaviour.
   - Fix for older python versions that don't support PEP 701 f-strings.
   - Two unreachable locations in Going Down Turbo are now properly marked as such.
+  - AP client now stores found locations and re-sends them later if the connection
+    to the host is interrupted.
 
 # 0.6.5
 
