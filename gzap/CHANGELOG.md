@@ -1,11 +1,13 @@
 # Unreleased
 
-This is a bugfix release.
+This is a bugfix release. It backports fixes for bugs discovered while working
+on 0.7.x to the 0.6 release series.
 
 - Fix:
   - Add `map07special` flag to Master Levels for Doom II MAP20, since it was
     originally designed to go in the MAP07 slot and relies on that behaviour.
-  - Fix for older python versions that don't support PEP 701 F-strings.
+  - Fix for older python versions that don't support PEP 701 f-strings.
+  - Two unreachable locations in Going Down Turbo are now properly marked as such.
 
 # 0.6.5
 
