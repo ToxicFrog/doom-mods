@@ -27,7 +27,6 @@ def add_wad(name: str, apworld_mtime: int, is_external: bool):
     return WadLogicLoader(_DOOM_LOGIC, name, apworld_mtime, is_external)
 
 def get_wad(name: str) -> DoomWad:
-    assert _init_done
     return _DOOM_LOGIC.wads[name]
 
 def logic_files(package):
