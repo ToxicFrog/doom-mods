@@ -17,6 +17,7 @@ _ICON_GUESSES = [
   ('armour',  {'armor', 'armour', 'coat', 'jacket', 'shirt'}),
   ('helmet',  {'helm', 'hat', 'crown', 'circlet', 'diadem'}),
   ('staff',   {'staff', 'wand', 'rod'}),
+  ('music',   {'song', 'music', 'instrument'}),
   ('bomb',    {'bomb', 'tnt', 'explosive', 'firecracker', 'grenade'}),
   ('book',    {'book', 'tome', 'codex', 'grimoire'}),
   ('potion',  {'potion', 'bottle', 'medicine', 'flask', 'drink', 'heal', 'revive'}),
@@ -35,7 +36,3 @@ def guess_generic_icon(name):
       if substr in name:
         return icon
   return False
-
-if __name__ == '__main__':
-  build_icons()
-

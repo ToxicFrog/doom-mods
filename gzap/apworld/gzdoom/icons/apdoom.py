@@ -2,13 +2,6 @@
 Mapping from APDoom AP item names to gzDoom actor names.
 '''
 
-# TODO: Known infelicity here -- level accesses are named (e.g.)
-#  "The Underhalls (MAP02)"
-# and keys are named
-#  "The Underhalls (MAP02) - Blue keycard"
-# neither of which are picked up by this, so it ends up falling back to
-# the generic guessers.
-# APHeretic has the same issue.
 _APDOOM_ICONS = {
   'Shotgun':                'Shotgun',
   'Rocket launcher':        'RocketLauncher',
