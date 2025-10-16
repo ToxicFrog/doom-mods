@@ -3,6 +3,12 @@ Game-specific mappings from item names to icons.
 '''
 
 _ICON_GUESSES = {
+  'Aquaria': [
+    ('music',   {' form', ' song',}),
+    ('armour',  {'costume'}),
+    # TODO: we need a food icon for most of the things in this game, and a
+    # turtle, map, or trans flag for the transturtles
+  ],
   # apdoom/apheretic guesses. These are used only if you aren't playing a compatible
   # iwad; e.g. if you are playing a Doom 2 megawad, it will use native Doom 2
   # sprites and uses the guesses here only for apheretic.
