@@ -6,6 +6,8 @@ on 0.7.x to the 0.6 release series.
 - New:
   - If you download the pk3 for your game from the web host, the client will
     read the connection address from it and connect to AP automatically.
+- Changed:
+  - Adjustments to icon guessing rules
 - Fix:
   - Add `map07special` flag to Master Levels for Doom II MAP20, since it was
     originally designed to go in the MAP07 slot and relies on that behaviour.
