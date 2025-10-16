@@ -20,6 +20,8 @@ the apworld to contain your new tuning in order to test it.
   - Logic for Legacy of Rust, by RakeVuril.
   - If you download the pk3 for your game from the web host, the client will
     read the connection address from it and connect to AP automatically.
+- Changed:
+  - Adjustments to icon guessing rules
 - Fix:
   - Add `map07special` flag to Master Levels for Doom II MAP20, since it was
     originally designed to go in the MAP07 slot and relies on that behaviour.

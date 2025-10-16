@@ -22,11 +22,12 @@ _ICON_GUESSES = [
   ('book',    {'book', 'tome', 'codex', 'grimoire'}),
   ('potion',  {'potion', 'bottle', 'medicine', 'flask', 'drink', 'heal', 'revive'}),
   ('money',   {'rupee', 'money', 'geo_chest', 'geo_rock', 'dollars', 'coins'}),
-  ('gem',     {'gem', 'jewel', 'crystal', 'sapphire', 'ruby', 'emerald', 'diamond'}),
+  ('gem',     {'gem', 'jewel', 'crystal', 'sapphire', 'ruby', 'emerald', 'diamond', 'topaz'}),
   ('key',     {'key', 'triforce', 'questagon', 'access'}),
   ('arrow',   {'arrow', 'missile', 'ammo'}),
   ('upgrade', {'max ', 'upgrade'}),
   ('orb',     {'orb', 'ball'}),
+  ('sword',   {'weapon'}), # Fallback for generic "progressive weapon" and similar
 ]
 
 def guess_generic_icon(name):
