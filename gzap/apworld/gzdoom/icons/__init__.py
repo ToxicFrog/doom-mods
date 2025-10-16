@@ -24,6 +24,7 @@ _ICON_SPRITES = {
   'helmet' : 'HelmetOutline 19',
   'key'    : 'KeyOutline 3',
   'money'  : 'ArtifactOutline 49',
+  'music'  : 'instrument-harp',
   'orb'    : 'ArtifactOutline 31',
   'potion' : 'ArtifactOutline 40',
   'ring'   : 'RingOutline 12',
