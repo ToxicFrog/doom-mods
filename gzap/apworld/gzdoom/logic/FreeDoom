@@ -88,7 +88,7 @@ AP-ITEM { "map": "E1M1", "category": "small-health", "typename": "HealthBonus", 
 AP-ITEM { "map": "E1M1", "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "position": { "x": 1344, "y": 1344, "z": -160 } }
 AP-ITEM { "map": "E1M1", "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "position": { "x": 1696, "y": 1344, "z": -160 } }
 AP-ITEM { "map": "E1M1", "category": "big-ammo", "typename": "Backpack", "tag": "Backpack", "skill": [1], "position": { "x": 640, "y": -1024, "z": 0 } }
-AP-ITEM { "map": "E1M1", "category": "powerup", "typename": "Berserk", "tag": "Berserk", "skill": [1, 2], "position": { "x": 608, "y": 480, "z": 0 } }
+AP-ITEM { "map": "E1M1", "category": "powerup-health", "typename": "Berserk", "tag": "Berserk", "skill": [1, 2], "position": { "x": 608, "y": 480, "z": 0 } }
 AP-ITEM { "map": "E1M1", "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "skill": [2, 3], "position": { "x": 1952, "y": 1520, "z": 168 } }
 AP-ITEM { "map": "E1M1", "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "skill": [3], "position": { "x": 736, "y": 2208, "z": -128 } }
 AP-ITEM { "map": "E1M1", "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "skill": [3], "position": { "x": 480, "y": 2208, "z": -128 } }
@@ -802,7 +802,7 @@ AP-ITEM { "map": "E1M6", "category": "small-ammo", "typename": "RocketAmmo", "ta
 AP-ITEM { "map": "E1M6", "category": "weapon", "typename": "PlasmaRifle", "tag": "polaric energy weapon", "secret": true,"position": { "x": -304, "y": 496, "z": -64 } }
 AP-ITEM { "map": "E1M6", "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "secret": true,"position": { "x": -368, "y": 496, "z": -64 } }
 AP-ITEM { "map": "E1M6", "category": "big-armor", "typename": "BlueArmor", "tag": "BlueArmor", "position": { "x": -624, "y": -240, "z": -64 } }
-AP-ITEM { "map": "E1M6", "category": "powerup", "typename": "Berserk", "tag": "Berserk", "position": { "x": 8, "y": -416, "z": -16 } }
+AP-ITEM { "map": "E1M6", "category": "powerup-health", "typename": "Berserk", "tag": "Berserk", "position": { "x": 8, "y": -416, "z": -16 } }
 AP-ITEM { "map": "E1M6", "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "position": { "x": -1744, "y": -1472, "z": -488 } }
 AP-ITEM { "map": "E1M6", "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "position": { "x": -1744, "y": -1504, "z": -488 } }
 AP-ITEM { "map": "E1M6", "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "position": { "x": -1744, "y": -1536, "z": -488 } }
@@ -1487,7 +1487,7 @@ AP-ITEM { "map": "E2M3", "category": "small-armor", "typename": "ArmorBonus", "t
 AP-ITEM { "map": "E2M3", "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "position": { "x": 1312, "y": 2464, "z": -64 } }
 AP-ITEM { "map": "E2M3", "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "position": { "x": 1472, "y": 2288, "z": -64 } }
 AP-ITEM { "map": "E2M3", "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "position": { "x": 992, "y": 2464, "z": -64 } }
-AP-ITEM { "map": "E2M3", "category": "powerup", "typename": "Berserk", "tag": "Berserk", "position": { "x": 1384, "y": -552, "z": -88 } }
+AP-ITEM { "map": "E2M3", "category": "powerup-health", "typename": "Berserk", "tag": "Berserk", "position": { "x": 1384, "y": -552, "z": -88 } }
 AP-ITEM { "map": "E2M3", "category": "medium-ammo", "typename": "CellPack", "tag": "Energy Cells", "position": { "x": 192, "y": -32, "z": 0 } }
 AP-ITEM { "map": "E2M3", "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "position": { "x": 928, "y": 1440, "z": -64 } }
 AP-ITEM { "map": "E2M3", "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "position": { "x": 736, "y": 1440, "z": -64 } }
@@ -1508,7 +1508,7 @@ AP-ITEM { "map": "E2M3", "category": "small-health", "typename": "Stimpack", "ta
 AP-ITEM { "map": "E2M3", "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "skill": [1, 2], "position": { "x": 1568, "y": -184, "z": -208 } }
 AP-ITEM { "map": "E2M3", "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "skill": [1, 2], "position": { "x": 1824, "y": -184, "z": -208 } }
 AP-ITEM { "map": "E2M3", "category": "weapon", "typename": "Chaingun", "tag": "minigun", "secret": true,"position": { "x": 960, "y": -192, "z": 0 } }
-AP-ITEM { "map": "E2M3", "category": "powerup", "typename": "Berserk", "tag": "Berserk", "skill": [2, 3], "position": { "x": 1920, "y": 1764, "z": -80 } }
+AP-ITEM { "map": "E2M3", "category": "powerup-health", "typename": "Berserk", "tag": "Berserk", "skill": [2, 3], "position": { "x": 1920, "y": 1764, "z": -80 } }
 AP-ITEM { "map": "E2M3", "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "skill": [2, 3], "position": { "x": 800, "y": 128, "z": -64 } }
 AP-ITEM { "map": "E2M3", "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "skill": [2, 3], "position": { "x": -672, "y": 288, "z": -128 } }
 AP-ITEM { "map": "E2M3", "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "skill": [2, 3], "position": { "x": 1632, "y": 736, "z": -256 } }
@@ -1621,7 +1621,7 @@ AP-ITEM { "map": "E2M4", "category": "medium-ammo", "typename": "ShellBox", "tag
 AP-ITEM { "map": "E2M4", "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "position": { "x": 2424, "y": 872, "z": 64 } }
 AP-ITEM { "map": "E2M4", "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "position": { "x": 2336, "y": -32, "z": 64 } }
 AP-ITEM { "map": "E2M4", "category": "big-ammo", "typename": "Backpack", "tag": "Backpack", "position": { "x": 536, "y": -64, "z": 96 } }
-AP-ITEM { "map": "E2M4", "category": "powerup", "typename": "Berserk", "tag": "Berserk", "position": { "x": 592, "y": -64, "z": 96 } }
+AP-ITEM { "map": "E2M4", "category": "powerup-health", "typename": "Berserk", "tag": "Berserk", "position": { "x": 592, "y": -64, "z": 96 } }
 AP-ITEM { "map": "E2M4", "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "skill": [1], "position": { "x": 3788, "y": -1300, "z": 32 } }
 AP-ITEM { "map": "E2M4", "category": "map", "typename": "Allmap", "tag": "Allmap", "secret": true,"position": { "x": 2664, "y": -1312, "z": 80 } }
 AP-ITEM { "map": "E2M4", "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "position": { "x": 2432, "y": -352, "z": 88 } }
@@ -1895,7 +1895,7 @@ AP-ITEM { "map": "E2M6", "category": "small-health", "typename": "HealthBonus", 
 AP-ITEM { "map": "E2M6", "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "position": { "x": 2904, "y": 360, "z": 0 } }
 AP-ITEM { "map": "E2M6", "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "position": { "x": 2856, "y": 360, "z": 0 } }
 AP-ITEM { "map": "E2M6", "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "position": { "x": 2808, "y": 360, "z": 0 } }
-AP-ITEM { "map": "E2M6", "category": "powerup", "typename": "Berserk", "tag": "Berserk", "position": { "x": 2720, "y": 364, "z": 40 } }
+AP-ITEM { "map": "E2M6", "category": "powerup-health", "typename": "Berserk", "tag": "Berserk", "position": { "x": 2720, "y": 364, "z": 40 } }
 AP-ITEM { "map": "E2M6", "category": "weapon", "typename": "RocketLauncher", "tag": "missile launcher", "position": { "x": 160, "y": 1504, "z": 128 } }
 AP-ITEM { "map": "E2M6", "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "position": { "x": 288, "y": 1504, "z": 128 } }
 AP-ITEM { "map": "E2M6", "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "position": { "x": 32, "y": 1504, "z": 128 } }
@@ -2140,7 +2140,7 @@ AP-ITEM { "map": "E2M7", "category": "small-ammo", "typename": "RocketAmmo", "ta
 AP-ITEM { "map": "E2M7", "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "position": { "x": -752, "y": -1408, "z": 112 } }
 AP-ITEM { "map": "E2M7", "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "position": { "x": -752, "y": -1536, "z": 112 } }
 AP-ITEM { "map": "E2M7", "category": "weapon", "typename": "Chainsaw", "tag": "ripsaw", "position": { "x": -5376, "y": 640, "z": -112 } }
-AP-ITEM { "map": "E2M7", "category": "powerup", "typename": "Berserk", "tag": "Berserk", "secret": true,"position": { "x": -1280, "y": 1072, "z": -8 } }
+AP-ITEM { "map": "E2M7", "category": "powerup-health", "typename": "Berserk", "tag": "Berserk", "secret": true,"position": { "x": -1280, "y": 1072, "z": -8 } }
 AP-ITEM { "map": "E2M7", "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "position": { "x": -3760, "y": -1000, "z": 16 } }
 AP-ITEM { "map": "E2M7", "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "position": { "x": -3712, "y": -1000, "z": 16 } }
 AP-ITEM { "map": "E2M7", "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "position": { "x": -4656, "y": -592, "z": -48 } }
@@ -2223,7 +2223,7 @@ AP-ITEM { "map": "E2M8", "category": "big-armor", "typename": "GreenArmor", "tag
 AP-ITEM { "map": "E2M8", "category": "weapon", "typename": "PlasmaRifle", "tag": "polaric energy weapon", "secret": true,"skill": [2, 3], "position": { "x": 1536, "y": 544, "z": 96 } }
 AP-SECRET { "map": "E2M8", "sector": 46 }
 AP-MAP { "map": "E2M9", "checksum": "0aba415a7f71e1bc673132934594d752", "rank": 1, "monster_count": 200, "info": { "levelnum": 19, "title": "HUSTR_E2M9", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "$MUSIC_E2M9", "music_track": "0", "cluster": 0, "flags": [] } }
-AP-ITEM { "map": "E2M9", "category": "powerup", "typename": "Berserk", "tag": "Berserk", "position": { "x": -196, "y": -348, "z": 72 } }
+AP-ITEM { "map": "E2M9", "category": "powerup-health", "typename": "Berserk", "tag": "Berserk", "position": { "x": -196, "y": -348, "z": 72 } }
 AP-ITEM { "map": "E2M9", "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "position": { "x": 208, "y": 40, "z": 0 } }
 AP-ITEM { "map": "E2M9", "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "position": { "x": 232, "y": 16, "z": 0 } }
 AP-ITEM { "map": "E2M9", "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "position": { "x": 232, "y": 40, "z": 0 } }
@@ -2392,7 +2392,7 @@ AP-ITEM { "map": "E2M9", "category": "small-ammo", "typename": "RocketAmmo", "ta
 AP-ITEM { "map": "E2M9", "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "position": { "x": -1512, "y": 1432, "z": 48 } }
 AP-ITEM { "map": "E2M9", "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "position": { "x": -1136, "y": 1432, "z": 48 } }
 AP-ITEM { "map": "E2M9", "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "position": { "x": -1176, "y": 1432, "z": 48 } }
-AP-ITEM { "map": "E2M9", "category": "powerup", "typename": "Berserk", "tag": "Berserk", "position": { "x": -314, "y": 4032, "z": -232 } }
+AP-ITEM { "map": "E2M9", "category": "powerup-health", "typename": "Berserk", "tag": "Berserk", "position": { "x": -314, "y": 4032, "z": -232 } }
 AP-ITEM { "map": "E2M9", "category": "medium-ammo", "typename": "CellPack", "tag": "Energy Cells", "position": { "x": -480, "y": 4144, "z": -256 } }
 AP-ITEM { "map": "E2M9", "category": "medium-ammo", "typename": "CellPack", "tag": "Energy Cells", "position": { "x": -480, "y": 3920, "z": -264 } }
 AP-ITEM { "map": "E2M9", "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "position": { "x": -400, "y": 4144, "z": -256 } }
@@ -2505,7 +2505,7 @@ AP-MAP { "map": "E3M1", "checksum": "ac93b24fc70c511ee319f0efefe0c0ec", "rank": 
 AP-ITEM { "map": "E3M1", "category": "weapon", "typename": "Shotgun", "tag": "pump-action shotgun", "skill": [1], "position": { "x": -432, "y": 48, "z": 0 } }
 AP-ITEM { "map": "E3M1", "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "position": { "x": -256, "y": 768, "z": 112 } }
 AP-ITEM { "map": "E3M1", "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "position": { "x": -256, "y": 1024, "z": 112 } }
-AP-ITEM { "map": "E3M1", "category": "powerup", "typename": "Berserk", "tag": "Berserk", "position": { "x": -256, "y": 1536, "z": 72 } }
+AP-ITEM { "map": "E3M1", "category": "powerup-health", "typename": "Berserk", "tag": "Berserk", "position": { "x": -256, "y": 1536, "z": 72 } }
 AP-ITEM { "map": "E3M1", "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "position": { "x": -512, "y": 1280, "z": 96 } }
 AP-ITEM { "map": "E3M1", "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "position": { "x": 0, "y": 1280, "z": 96 } }
 AP-ITEM { "map": "E3M1", "category": "weapon", "typename": "Shotgun", "tag": "pump-action shotgun", "position": { "x": -1840, "y": 2456, "z": -32 } }
@@ -2724,7 +2724,7 @@ AP-ITEM { "map": "E3M3", "category": "small-armor", "typename": "ArmorBonus", "t
 AP-ITEM { "map": "E3M3", "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "secret": true,"position": { "x": 1840, "y": -4248, "z": 0 } }
 AP-ITEM { "map": "E3M3", "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "secret": true,"position": { "x": 648, "y": -5848, "z": 40 } }
 AP-ITEM { "map": "E3M3", "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "secret": true,"position": { "x": 648, "y": -5816, "z": 40 } }
-AP-ITEM { "map": "E3M3", "category": "powerup", "typename": "Berserk", "tag": "Berserk", "position": { "x": 2232, "y": -4944, "z": 144 } }
+AP-ITEM { "map": "E3M3", "category": "powerup-health", "typename": "Berserk", "tag": "Berserk", "position": { "x": 2232, "y": -4944, "z": 144 } }
 AP-ITEM { "map": "E3M3", "category": "medium-ammo", "typename": "CellPack", "tag": "Energy Cells", "secret": true,"position": { "x": 568, "y": -6016, "z": 40 } }
 AP-ITEM { "map": "E3M3", "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "position": { "x": 1920, "y": -5664, "z": 32 } }
 AP-ITEM { "map": "E3M3", "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "secret": true,"position": { "x": 608, "y": -5976, "z": 40 } }
@@ -2960,7 +2960,7 @@ AP-ITEM { "map": "E3M4", "category": "small-armor", "typename": "ArmorBonus", "t
 AP-ITEM { "map": "E3M4", "category": "medium-ammo", "typename": "CellPack", "tag": "Energy Cells", "position": { "x": -2112, "y": -2816, "z": 32 } }
 AP-ITEM { "map": "E3M4", "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "position": { "x": -1840, "y": -1680, "z": -32 } }
 AP-ITEM { "map": "E3M4", "category": "weapon", "typename": "Chaingun", "tag": "minigun", "position": { "x": -2016, "y": -960, "z": 32 } }
-AP-ITEM { "map": "E3M4", "category": "powerup", "typename": "Berserk", "tag": "Berserk", "secret": true,"position": { "x": -4048, "y": -920, "z": -32 } }
+AP-ITEM { "map": "E3M4", "category": "powerup-health", "typename": "Berserk", "tag": "Berserk", "secret": true,"position": { "x": -4048, "y": -920, "z": -32 } }
 AP-ITEM { "map": "E3M4", "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "position": { "x": -2592, "y": -1576, "z": 16 } }
 AP-ITEM { "map": "E3M4", "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "position": { "x": -2016, "y": -920, "z": 32 } }
 AP-ITEM { "map": "E3M4", "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "position": { "x": -2016, "y": -1000, "z": 32 } }
@@ -3145,7 +3145,7 @@ AP-ITEM { "map": "E3M5", "category": "weapon", "typename": "RocketLauncher", "ta
 AP-ITEM { "map": "E3M5", "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "position": { "x": -1184, "y": 0, "z": -8 } }
 AP-ITEM { "map": "E3M5", "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "position": { "x": 480, "y": 400, "z": -8 } }
 AP-ITEM { "map": "E3M5", "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "position": { "x": 480, "y": 272, "z": -8 } }
-AP-ITEM { "map": "E3M5", "category": "powerup", "typename": "Berserk", "tag": "Berserk", "position": { "x": 464, "y": -528, "z": 16 } }
+AP-ITEM { "map": "E3M5", "category": "powerup-health", "typename": "Berserk", "tag": "Berserk", "position": { "x": 464, "y": -528, "z": 16 } }
 AP-ITEM { "map": "E3M5", "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "position": { "x": 536, "y": 136, "z": 0 } }
 AP-ITEM { "map": "E3M5", "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "position": { "x": 1064, "y": 136, "z": 0 } }
 AP-ITEM { "map": "E3M5", "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "position": { "x": -1024, "y": 1376, "z": 0 } }
@@ -3318,7 +3318,7 @@ AP-ITEM { "map": "E3M6", "category": "medium-ammo", "typename": "ClipBox", "tag"
 AP-ITEM { "map": "E3M6", "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "position": { "x": -4224, "y": 1184, "z": -2 } }
 AP-ITEM { "map": "E3M6", "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "position": { "x": -4224, "y": 1120, "z": -2 } }
 AP-ITEM { "map": "E3M6", "category": "weapon", "typename": "Chainsaw", "tag": "ripsaw", "position": { "x": -2560, "y": 320, "z": -8 } }
-AP-ITEM { "map": "E3M6", "category": "powerup", "typename": "Berserk", "tag": "Berserk", "secret": true,"position": { "x": 1312, "y": 1280, "z": 0 } }
+AP-ITEM { "map": "E3M6", "category": "powerup-health", "typename": "Berserk", "tag": "Berserk", "secret": true,"position": { "x": 1312, "y": 1280, "z": 0 } }
 AP-ITEM { "map": "E3M6", "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "skill": [1, 2], "position": { "x": -960, "y": 1072, "z": -16 } }
 AP-ITEM { "map": "E3M6", "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "skill": [1, 2], "position": { "x": -2140, "y": 976, "z": -5 } }
 AP-ITEM { "map": "E3M6", "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "secret": true,"position": { "x": 296, "y": 1496, "z": -8 } }
@@ -3460,7 +3460,7 @@ AP-ITEM { "map": "E3M7", "category": "medium-ammo", "typename": "ClipBox", "tag"
 AP-ITEM { "map": "E3M7", "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "position": { "x": 576, "y": 592, "z": 0 } }
 AP-ITEM { "map": "E3M7", "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "position": { "x": -1904, "y": -384, "z": -463 } }
 AP-ITEM { "map": "E3M7", "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "position": { "x": -1832, "y": -448, "z": -463 } }
-AP-ITEM { "map": "E3M7", "category": "powerup", "typename": "Berserk", "tag": "Berserk", "position": { "x": 544, "y": 656, "z": 0 } }
+AP-ITEM { "map": "E3M7", "category": "powerup-health", "typename": "Berserk", "tag": "Berserk", "position": { "x": 544, "y": 656, "z": 0 } }
 AP-ITEM { "map": "E3M7", "category": "weapon", "typename": "BFG9000", "tag": "SKAG 1337", "secret": true,"position": { "x": -2528, "y": -2592, "z": 0 } }
 AP-ITEM { "map": "E3M7", "category": "medium-ammo", "typename": "CellPack", "tag": "Energy Cells", "secret": true,"position": { "x": -2464, "y": -2592, "z": 0 } }
 AP-ITEM { "map": "E3M7", "category": "big-armor", "typename": "BlueArmor", "tag": "BlueArmor", "secret": true,"position": { "x": -2720, "y": -3056, "z": 0 } }
@@ -3781,7 +3781,7 @@ AP-ITEM { "map": "E4M1", "category": "small-armor", "typename": "ArmorBonus", "t
 AP-ITEM { "map": "E4M1", "category": "weapon", "typename": "Chainsaw", "tag": "ripsaw", "position": { "x": 416, "y": 800, "z": 176 } }
 AP-ITEM { "map": "E4M1", "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "secret": true,"position": { "x": 416, "y": 672, "z": 168 } }
 AP-ITEM { "map": "E4M1", "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "secret": true,"position": { "x": 348, "y": 688, "z": 168 } }
-AP-ITEM { "map": "E4M1", "category": "powerup", "typename": "Berserk", "tag": "Berserk", "position": { "x": 2306, "y": -406, "z": 72 } }
+AP-ITEM { "map": "E4M1", "category": "powerup-health", "typename": "Berserk", "tag": "Berserk", "position": { "x": 2306, "y": -406, "z": 72 } }
 AP-ITEM { "map": "E4M1", "category": "big-ammo", "typename": "Backpack", "tag": "Backpack", "position": { "x": 2272, "y": -512, "z": 72 } }
 AP-ITEM { "map": "E4M1", "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "position": { "x": 2508, "y": -524, "z": 72 } }
 AP-ITEM { "map": "E4M1", "category": "big-armor", "typename": "GreenArmor", "tag": "GreenArmor", "position": { "x": 1616, "y": -1136, "z": 24 } }
@@ -3884,7 +3884,7 @@ AP-ITEM { "map": "E4M2", "category": "key", "typename": "RedCard", "tag": "RedCa
 AP-KEY { "map": "E4M2", "typename": "RedCard", "scopename": "E4M2", "cluster": 0, "maps": ["E4M2"] }
 AP-ITEM { "map": "E4M2", "category": "big-health", "typename": "Soulsphere", "tag": "Soulsphere", "position": { "x": -1608, "y": 624, "z": -80 } }
 AP-ITEM { "map": "E4M2", "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "position": { "x": -1200, "y": 352, "z": -64 } }
-AP-ITEM { "map": "E4M2", "category": "powerup", "typename": "Berserk", "tag": "Berserk", "position": { "x": 888, "y": 928, "z": 64 } }
+AP-ITEM { "map": "E4M2", "category": "powerup-health", "typename": "Berserk", "tag": "Berserk", "position": { "x": 888, "y": 928, "z": 64 } }
 AP-ITEM { "map": "E4M2", "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "position": { "x": 1224, "y": 824, "z": 32 } }
 AP-ITEM { "map": "E4M2", "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "position": { "x": 1288, "y": 888, "z": 32 } }
 AP-ITEM { "map": "E4M2", "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "position": { "x": 1680, "y": -2928, "z": -136 } }
@@ -4574,7 +4574,7 @@ AP-ITEM { "map": "E4M5", "category": "medium-ammo", "typename": "ShellBox", "tag
 AP-ITEM { "map": "E4M5", "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "position": { "x": -1008, "y": -872, "z": -64 } }
 AP-ITEM { "map": "E4M5", "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "position": { "x": 1128, "y": 600, "z": 0 } }
 AP-ITEM { "map": "E4M5", "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "secret": true,"position": { "x": -1248, "y": -616, "z": -32 } }
-AP-ITEM { "map": "E4M5", "category": "powerup", "typename": "Berserk", "tag": "Berserk", "secret": true,"position": { "x": 800, "y": 552, "z": 64 } }
+AP-ITEM { "map": "E4M5", "category": "powerup-health", "typename": "Berserk", "tag": "Berserk", "secret": true,"position": { "x": 800, "y": 552, "z": 64 } }
 AP-ITEM { "map": "E4M5", "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "secret": true,"position": { "x": -1256, "y": -576, "z": -32 } }
 AP-ITEM { "map": "E4M5", "category": "big-armor", "typename": "GreenArmor", "tag": "GreenArmor", "secret": true,"position": { "x": 796, "y": -612, "z": 104 } }
 AP-ITEM { "map": "E4M5", "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "position": { "x": -1896, "y": 232, "z": 160 } }
@@ -4710,7 +4710,7 @@ AP-ITEM { "map": "E4M6", "category": "small-health", "typename": "Stimpack", "ta
 AP-ITEM { "map": "E4M6", "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "position": { "x": -216, "y": -872, "z": 128 } }
 AP-ITEM { "map": "E4M6", "category": "big-ammo", "typename": "Backpack", "tag": "Backpack", "position": { "x": -1064, "y": -640, "z": 128 } }
 AP-ITEM { "map": "E4M6", "category": "weapon", "typename": "Chainsaw", "tag": "ripsaw", "secret": true,"position": { "x": -256, "y": -960, "z": 128 } }
-AP-ITEM { "map": "E4M6", "category": "powerup", "typename": "Berserk", "tag": "Berserk", "secret": true,"position": { "x": -1896, "y": 744, "z": -128 } }
+AP-ITEM { "map": "E4M6", "category": "powerup-health", "typename": "Berserk", "tag": "Berserk", "secret": true,"position": { "x": -1896, "y": 744, "z": -128 } }
 AP-ITEM { "map": "E4M6", "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "secret": true,"position": { "x": -1552, "y": 1232, "z": -64 } }
 AP-ITEM { "map": "E4M6", "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "secret": true,"position": { "x": -1520, "y": 1232, "z": -64 } }
 AP-ITEM { "map": "E4M6", "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "secret": true,"position": { "x": -1488, "y": 1232, "z": -64 } }
@@ -5288,7 +5288,7 @@ AP-ITEM { "map": "E4M7", "category": "small-ammo", "typename": "Cell", "tag": "E
 AP-ITEM { "map": "E4M7", "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "position": { "x": -148, "y": 3856, "z": -232 } }
 AP-ITEM { "map": "E4M7", "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "position": { "x": 676, "y": 3556, "z": -232 } }
 AP-ITEM { "map": "E4M7", "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "position": { "x": 348, "y": 3932, "z": -176 } }
-AP-ITEM { "map": "E4M7", "category": "powerup", "typename": "Berserk", "tag": "Berserk", "secret": true,"position": { "x": -2532, "y": 1376, "z": 24 } }
+AP-ITEM { "map": "E4M7", "category": "powerup-health", "typename": "Berserk", "tag": "Berserk", "secret": true,"position": { "x": -2532, "y": 1376, "z": 24 } }
 AP-ITEM { "map": "E4M7", "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "position": { "x": -932, "y": 3416, "z": -136 } }
 AP-ITEM { "map": "E4M7", "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "position": { "x": 280, "y": 4264, "z": -176 } }
 AP-ITEM { "map": "E4M7", "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "position": { "x": 236, "y": 4264, "z": -176 } }
@@ -5450,7 +5450,7 @@ AP-ITEM { "map": "E4M8", "category": "small-ammo", "typename": "RocketAmmo", "ta
 AP-ITEM { "map": "E4M8", "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "position": { "x": 2048, "y": -152, "z": 0 } }
 AP-ITEM { "map": "E4M8", "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "position": { "x": 2496, "y": -152, "z": 0 } }
 AP-ITEM { "map": "E4M8", "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "position": { "x": 1600, "y": -152, "z": 0 } }
-AP-ITEM { "map": "E4M8", "category": "powerup", "typename": "Berserk", "tag": "Berserk", "position": { "x": 5072, "y": -872, "z": -128 } }
+AP-ITEM { "map": "E4M8", "category": "powerup-health", "typename": "Berserk", "tag": "Berserk", "position": { "x": 5072, "y": -872, "z": -128 } }
 AP-ITEM { "map": "E4M8", "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "position": { "x": 3784, "y": -336, "z": 0 } }
 AP-ITEM { "map": "E4M8", "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "position": { "x": 3824, "y": -336, "z": 0 } }
 AP-ITEM { "map": "E4M8", "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "position": { "x": 3824, "y": -376, "z": 0 } }
@@ -5781,7 +5781,7 @@ AP-ITEM { "map": "E4M9", "category": "small-health", "typename": "HealthBonus", 
 AP-ITEM { "map": "E4M9", "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "secret": true,"position": { "x": -2288, "y": 1168, "z": 48 } }
 AP-ITEM { "map": "E4M9", "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "secret": true,"position": { "x": -2192, "y": 1168, "z": 48 } }
 AP-ITEM { "map": "E4M9", "category": "big-armor", "typename": "GreenArmor", "tag": "GreenArmor", "position": { "x": 524, "y": 984, "z": 208 } }
-AP-ITEM { "map": "E4M9", "category": "powerup", "typename": "Berserk", "tag": "Berserk", "position": { "x": 608, "y": 936, "z": 208 } }
+AP-ITEM { "map": "E4M9", "category": "powerup-health", "typename": "Berserk", "tag": "Berserk", "position": { "x": 608, "y": 936, "z": 208 } }
 AP-ITEM { "map": "E4M9", "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "position": { "x": -996, "y": -1308, "z": -128 } }
 AP-ITEM { "map": "E4M9", "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "position": { "x": -772, "y": -496, "z": 0 } }
 AP-ITEM { "map": "E4M9", "category": "weapon", "typename": "Chaingun", "tag": "minigun", "position": { "x": 900, "y": 924, "z": 184 } }
