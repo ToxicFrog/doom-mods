@@ -178,6 +178,9 @@ class GZDoomWorld(World):
             print("Doing Universal Tracker worldgen with settings:", ut_config)
             for opt in ut_config:
                 getattr(self.options, opt).value = ut_config[opt]
+            # Clear all starting levels -- UT will work with whatever level
+            # access tokens it finds in our inventory.
+            self.options.starting_levels.value = []
 
         wadlist = list(self.options.selected_wad.value)
         print(f"Permitted WADs: {wadlist}")
