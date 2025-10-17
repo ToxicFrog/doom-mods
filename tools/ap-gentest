@@ -5,7 +5,7 @@ set -ex
 AP=${AP:-$HOME/.local/share/Archipelago}
 GAME=${1:-gzap}
 
-make
+make -C gzap TOPDIR=.. install
 (
   [[ -d ~/Games/Archipelago/Players/${GAME} ]]
   cd ~/Games/Archipelago/Players

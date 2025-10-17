@@ -26,8 +26,10 @@ sprites/icons: apworld/gzdoom/icons/__init__.py assets/*.png
 
 ${TOPDIR}/release/%.apworld: apworld/%/* apworld/%/*/*
 	cd apworld && zip -r $*.apworld $*
-	cp apworld/$*.apworld ~/.local/share/Archipelago/worlds/
 	cp apworld/$*.apworld ${TOPDIR}/release/
 	mv apworld/$*.apworld ${TOPDIR}/release/$*-${VERSION}.apworld
 
-.PHONY: apworld
+install: ${TOPDIR}/release/gzdoom.apworld ${TOPDIR}/release/ap_gzdoom_featured.apworld ${TOPDIR}/release/ap_gzdoom_extras.apworld
+	cp ${TOPDIR}/release/gzdoom.apworld ${TOPDIR}/release/ap_gzdoom_featured.apworld ${TOPDIR}/release/ap_gzdoom_extras.apworld ~/.local/share/Archipelago/worlds
+
+.PHONY: apworld install
