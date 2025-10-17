@@ -35,7 +35,6 @@ class StartWithAutomaps(Toggle):
     display_name = "Start with Automaps"
     default = False
 
-
 class MaxWeaponCopies(Range):
     """
     Applies a hard limit to the number of copies of each weapon in the item pool.
@@ -54,7 +53,6 @@ class MaxWeaponCopies(Range):
     range_start = 0
     range_end = 32
     default = 4
-
 
 class LevelsPerWeapon(Range):
     """
@@ -75,7 +73,6 @@ class LevelsPerWeapon(Range):
     range_start = 0
     range_end = 32
     default = 8
-
 
 class SelectedWad(OptionSet):
     """
@@ -376,7 +373,7 @@ class PreTuningMode(Toggle):
     levels, "normally", to generate a tuning file, even in cases where the
     initial scan is so conservative as to cause generation failures.
 
-    If full_persistence is off, pretuning mode also disables automatic MAPINFO
+    Pretuning mode also disables persistent mode and disables automatic MAPINFO
     generation, so the game will retain its original episode divisions,
     intermission text, etc.
     """
