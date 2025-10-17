@@ -61,7 +61,8 @@ class DoomLogic:
         if name not in self.item_names_to_ids:
             self.item_names_to_ids[name] = self.next_id()
         item.id = self.item_names_to_ids[name]
-        self.item_categories_to_names.setdefault(item.category, set()).add(name)
+        for cat in item.categories:
+            self.item_categories_to_names.setdefault(cat, set()).add(name)
         return item.id
 
     def register_location(self, loc: DoomLocation):
@@ -69,6 +70,7 @@ class DoomLogic:
         if name not in self.location_names_to_ids:
             self.location_names_to_ids[name] = self.next_id()
         loc.id = self.location_names_to_ids[name]
-        self.location_categories_to_names.setdefault(loc.category, set()).add(name)
+        for cat in loc.categories:
+            self.location_categories_to_names.setdefault(cat, set()).add(name)
         return loc.id
 

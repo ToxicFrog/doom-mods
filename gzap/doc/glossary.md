@@ -41,42 +41,45 @@ prefix for all gzArchipelago classes to avoid collisions with other mods.
 
 Objects that exist in the level somewhere, such as the player and *Check* actors.
 
-## Item Category
+## Item Categories
 
-An internal category assigned by the scanner and used by the randomizer to make
-decisions about which items are replaced with checks and which ones are progression,
-useful, or filler. Some categories can be turned on and off in the YAML.
+The scanner assigns one or more categories to each item (and its associated
+location). These are used by the randomizer to make decisions about which items
+to replace with checks and how to classify them in AP. Randomization can be
+controlled on a per-category basis in the yaml.
 
-Both items and locations have categories; a location's category is based on the
-item originally found there, or the nature of the location if it never had an item.
+Locations that originally contained items inherit the categories of their items.
+Locations without items have categories assigned based on the nature of the
+location.
 
-A logic file can use any categories it wants and the apworld will automatically
-pick it up, but the current list of categories used by the scanner is:
+In the logic file, categories are stored as hyphen-separated strings for
+historical reasons, e.g. the category string "small-health" denotes a weapon
+with both the `small` and `health` categories. A logic file can make up any
+categories it wants and the apworld will automatically detect them, but the
+current list of categories used by the wad scanner is:
 
 - `key`: keycards, skulls, etc; specific to a single level
 - `weapon`: any sort of weapon
 - `map`: automaps
 - `powerup`: time-limited powerups (e.g. radsuits)
-- `secret-sector`: a secret (distinct from any items *in* that secret)
-- Health and armor items:
-  - `big-health`/`big-armor`: at least 100 points
-  - `medium-health`/`medium-armor`: at least 25 points but less than 100
-  - `small-health`/`small-armor`: less than 25 points
-- Ammunition:
-  - `big-ammo`: backpacks and backpack-alikes
-  - `medium-ammo`: rocket boxes, cell packs, etc
-  - `small-ammo`: individual rockets, energy cells, etc
+- `health`: anything that restores health
+- `armor`: anything that restores armour
+- `ammo`: anything that refills ammo
 - `tool`: inventory items that aren't in any other category (e.g. time bombs)
 - `token`: used internally by the apworld for things like access codes and level exits
+- `big`, `medium`, `small`: used to differentiate different sizes of health,
+  armour, and ammo pickups
+- `secret`: an item found in a secret sector, or the secret sector itself
+- `sector`: locations only; means the location is based on a sector rather than
+  an item
 
-The `Megasphere`, which restores both health and armour, is considered `big-armor`.
+Some items will have multiple categories from this list, e.g. a Megasphere is
+`big`, `health`, and `armor`.
 
-Unrecognized ammo (e.g. from total conversions) is considered `medium` if it
-refills at least 20% of your carrying capacity, and `small` otherwise.
-
-There are no items tagged `secret-sector`, but turning it on in the YAML will
-cause secrets (in addition to the items inside them, where applicable) to be
-treated as checks.
+Ammo from Id games is considered `big` if it's a backpack, otherwise `medium` if
+it's a larger ammo pickup and `small` otherwise. Unrecognized ammo (e.g. from
+total conversions) is considered `medium` if it refills at least 20% of your
+carrying capacity, and `small` otherwise.
 
 ## Level Rank
 

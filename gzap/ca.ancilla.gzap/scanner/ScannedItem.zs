@@ -13,6 +13,8 @@ class ::ScannedItem : ::ScannedLocation {
 
   static ::ScannedItem Create(Actor thing) {
     let loc = ::ScannedItem(new("::ScannedItem"));
+    // TODO: This is a bit misnamed at the moment, it's a hyphen-separated list
+    // of categories.
     loc.category = ItemCategory(thing);
     loc.typename = thing.GetClassName();
     loc.tag = thing.GetTag();

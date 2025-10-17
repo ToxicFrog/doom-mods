@@ -5,6 +5,8 @@ This is a feature/design release.
 ⚠️ This update changes location and item IDs. You **absolutely cannot** update
 a game in progress.
 
+⚠️ This update changes the YAML options. Generate a new template.
+
 ⚠️ This update splits the apworld into three: one core apworld providing support
 for the official games, plus two addon apworlds providing support for "featured
 mods" and for community maps. See [support-table.md](doc/support-table.md) for

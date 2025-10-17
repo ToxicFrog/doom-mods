@@ -76,26 +76,8 @@ class DoomMap:
         skill = min(3, max(1, skill)) # clamp ITYTD->HNTR and N!->UV
         return [
             loc for loc in self.locations
-            if skill in loc.skill and (not categories or loc.category in categories)
+            if skill in loc.skill and (not categories or loc.has_category(*categories))
         ]
-
-    def choose_locations(self, world):
-        skill = world.spawn_filter
-        chosen = []
-        for category,amount in world.included_item_categories.items():
-            if amount == 0:
-                continue
-
-            if hasattr(world.multiworld, "generation_is_fake"):
-                # Universal Tracker support. If UT is generating, include all
-                # locations that could potentially be in the pool, whether they
-                # were or not.
-                amount = 1.0
-
-            buf = self.all_locations(skill, {category})
-            count = ceil(len(buf) * amount)
-            chosen.extend(world.random.sample(buf,count))
-        return chosen
 
     def access_rule(self, world):
         # print(f"access_rule({self.map}) = start={world.is_starting_map(self.map)}, co-guns({world.options.carryover_weapon_bias.value})={self.carryover_gunset}, local-guns({world.options.local_weapon_bias.value})={self.local_gunset}, clears({world.options.level_order_bias.value})={self.prior_clears}")
@@ -178,7 +160,7 @@ class DoomMap:
             return
 
         self.locations.append(loc)
-        if loc.category == "key":
+        if loc.has_category('key'):
             self.key_count += 1
 
     def has_one_key(self, keyname: str) -> bool:
@@ -188,5 +170,5 @@ class DoomMap:
         return {
             loc.orig_item.name()
             for loc in self.locations
-            if not loc.secret and not loc.unreachable and loc.category == "weapon"
+            if not loc.secret and not loc.unreachable and loc.has_category('weapon')
         }

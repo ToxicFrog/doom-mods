@@ -3,7 +3,7 @@ Data model for items (or rather, item types) in Doom.
 """
 
 import sys
-from typing import Optional, Set, Dict
+from typing import Optional, Set, Dict, FrozenSet
 from BaseClasses import ItemClassification
 
 
@@ -24,22 +24,23 @@ class DoomItem:
     At generation time, each AP Item is derived from a DoomItem in a many-to-one
     relationship.
     """
-    id: Optional[int] = None        # AP item ID, assigned by the caller
-    category: str           # Randomization category (e.g. key, weapon)
-    typename: str           # gzDoom class name
-    tag: str                # User-visible name *in gzDoom*
+    id: Optional[int] = None    # AP item ID, assigned by the caller
+    categories: FrozenSet[str]  # Randomization categories (e.g. key, weapon, big, small)
+    typename: str               # gzDoom class name
+    tag: str                    # User-visible name *in gzDoom*
     map: Optional[str] = None
     disambiguate: bool = False
     virtual: bool = True    # Does't exist in-game, only in AP's internal state
 
     def __init__(self, map, category, typename, tag):
-        self.category = category
+        # 'category' comes from the logic file and is a hyphen-separated string
+        self.categories = frozenset(category.split('-'))
         self.typename = typename
         self.tag = tag
         # TODO: We need a better way of handling scoped items, so that things
         # other than these types can be marked as scoped, so that we can have
         # non-scoped tokens, etc
-        if category == "key" or category == "token":
+        if self.has_category('key', 'token'):
             self.map = map
 
     def __str__(self) -> str:
@@ -59,15 +60,19 @@ class DoomItem:
             name += f" ({self.map})"
         return name
 
+    def has_category(self, *args):
+        return self.categories & frozenset(args)
+
     def classification(self) -> ItemClassification:
-        # HACK HACK HACK -- we really need a way to attach multiple categories
-        # to an item, and/or reduce how much stuff is special-cased on the token
-        # category, to let us have a "map token" distinct from "win token" etc.
-        if self.typename == "GZAP_Automap" and self.category == "token":
+        # TODO: now that we can attach multiple categories to items, we should
+        # clean this up some and base these decisions entirely on the categories
+        # and not on the typename, to let us have a "map token" distinct from
+        # "win token" etc.
+        if self.typename == "GZAP_Automap" and self.has_category('token'):
             return ItemClassification.useful
-        if self.category in {"key", "token", "weapon"}:
+        elif self.has_category('key', 'token', 'weapon'):
             return ItemClassification.progression
-        elif self.category in {"map", "upgrade"}:
+        elif self.has_category('map', 'upgrade'):
             return ItemClassification.useful
         else:
             return ItemClassification.filler
@@ -81,9 +86,6 @@ class DoomItem:
     def is_filler(self) -> bool:
         return not (self.is_progression() or self.is_useful())
 
-    def is_default_enabled(self) -> bool:
-        return self.category in {"map", "weapon", "key", "token", "powerup", "big-health", "big-ammo", "big-armor"}
-
     def pool_limits(self, world):
         """
         Returns the lower and upper bounds for how many copies of this can be in the item pool.
@@ -91,7 +93,7 @@ class DoomItem:
         In some cases this depends on YAML options and which maps are selected.
         """
         # Each key in this WAD must be included exactly once.
-        if self.category == "key":
+        if self.has_category('key'):
             if world.key_in_world(self.name()):
                 return (1,1)
             else:
@@ -99,11 +101,11 @@ class DoomItem:
 
         # Allmaps are excluded from the pool. The randomizer will add map tokens
         # to the pool (or not) depending on settings.
-        if self.category == "map":
+        if self.has_category('map'):
             return (0,0)
 
         # Weapons have an upper bound that depends on settings.
-        if self.category == "weapon":
+        if self.has_category('weapon'):
             count = sys.maxsize
             if world.options.max_weapon_copies.value > 0:
                 count = min(count, world.options.max_weapon_copies.value)

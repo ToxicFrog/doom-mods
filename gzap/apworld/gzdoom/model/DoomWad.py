@@ -91,8 +91,7 @@ class DoomWad:
         """
         locations = []
         for map in world.maps:
-            # Just choose per map for now
-            locations += map.choose_locations(world)
+            locations += map.all_locations(world.spawn_filter, {})
         pool = DoomPool(self, locations, world)
         return pool
 
@@ -242,7 +241,7 @@ class DoomWad:
     def new_secret(self, json: Dict[str, Any]) -> None:
         location = DoomLocation(self, map=json['map'], item=None, secret=True, json=None)
         location.item_name = f"Secret {json['sector']}"
-        location.category = "secret-sector"
+        location.categories = frozenset({'secret', 'sector'})
         location.sector = json['sector']
         skill = set(json.pop("skill", [1,2,3]))
         self.register_location(location, skill)

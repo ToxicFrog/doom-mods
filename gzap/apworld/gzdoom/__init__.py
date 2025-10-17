@@ -117,7 +117,6 @@ class GZDoomWorld(World):
     topology_present = True
     web = GZDoomWeb()
     required_client_version = (0, 5, 1)
-    included_item_categories = {}
 
     # Info fetched from gzDoom; contains item/location ID mappings etc.
     wad_logic: DoomWad
@@ -176,10 +175,9 @@ class GZDoomWorld(World):
         self.options.start_with_keys.value = False
         # self.options.full_persistence.value = False
         self.options.allow_respawn.value = True
-        self.included_item_categories = {
-            category: 1.0
-            for category in model.all_categories()
-        }
+        self.options.included_item_categories.value = [
+            f'{category}:1.0' for category in model.all_categories()
+        ]
 
     def generate_early(self) -> None:
         ut_config = getattr(self.multiworld, "re_gen_passthrough", {}).get(self.game, None)
@@ -199,9 +197,6 @@ class GZDoomWorld(World):
         skill_name = { 1: "easy", 2: "medium", 3: "hard" }[self.spawn_filter]
         print(f"Selected WAD: {self.wad_logic.name}")
         print(f"Selected spawns: {skill_name} ({self.options.spawn_filter.value})")
-
-        self.included_item_categories = self.options.included_item_categories.value.copy()
-        self.included_item_categories.update({ "key": 1, "weapon": 1, "token": 1 })
 
         self.maps = [
             map for map in self.wad_logic.maps.values()

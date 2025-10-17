@@ -22,7 +22,7 @@
 
 from math import ceil,floor
 
-from Options import PerGameCommonOptions, Toggle, DeathLink, StartInventoryPool, OptionSet, NamedRange, Range, OptionDict
+from Options import PerGameCommonOptions, Toggle, DeathLink, StartInventoryPool, OptionSet, NamedRange, Range, OptionDict, OptionList
 from dataclasses import dataclass
 
 from . import model
@@ -171,7 +171,7 @@ class SpawnFilter(NamedRange):
         "hard": 3
     }
 
-class IncludedItemCategories(OptionDict):
+class IncludedItemCategories(OptionList):
     """
     Which item categories to include in randomization. This controls both which
     items are replaced with checks, and what the item pool contains.
@@ -180,27 +180,60 @@ class IncludedItemCategories(OptionDict):
     option. You must enable at least one category here or generation is likely
     to fail.
 
-    For each category, a setting of `1` enables full randomization, and a setting
-    of `0` disables randomization completely. Values in between will randomize the
-    given proportion, e.g. `"powerup": 0.5` will replace half of the powerups in
-    the game with AP checks (and add the original items to the item pool) and
-    leave the rest alone.
+    This option is a list of strings, where each entry has the format
+    "category:proportion". A proportion of 0.0 means that category is excluded,
+    1.0 means all items/locations in it are included, and values in between
+    randomly select a subset of that category to include.
+
+    You can combine categories with `-`, e.g. `big-health` means all items that
+    are both `health` and `big`.
+
+    Entries are evaluated top to bottom and the first matching one applies, so
+    this will ignore small health items and include 50% of other health items:
+
+        small-health:0.0
+        health:0.5
+
+    While this will include 50% of all health items including small health:
+
+        health:0.5
+        small-health:0.0
 
     See `glossary.md` for a description of the different categories and which
     items they cover.
 
-    Enabling "medium" categories tends to more than double the number of checks.
-    Enabling all categories tends to increase it by about 10x. Make sure you (and
-    your co-op partners) are prepared for a game with thousands or tens of thousands
-    of checks in Doom if you turn these on.
+    Note that the default settings exclude all small and medium items and all
+    Heretic tools. Turning on medium items tends to more than double the number
+    of checks, and turning on everying tens to increase it by 10x. Make sure
+    everyone is prepared for a game with thousands or tens of thousands of
+    checks in Doom if you turn those on.
     """
     display_name = "Included item/location categories"
-    default = {
-        category: 0
-        for category in model.all_categories()
-        if category not in {"key", "weapon", "token"}
-    } | {"powerup": 1, "big-ammo": 1, "big-health": 1, "big-armor": 1, "map": 1}
-    valid_keys = model.all_categories() - {"token", "key", "weapon"}
+    default = [
+        'small:0.0',
+        'medium:0.0',
+        'secret-sector:1.0',
+        'big:1.0',
+        'powerup:1.0',
+        'map:1.0',
+    ]
+
+    def actual_value(self):
+        return ['weapon:1.0', 'key:1.0', 'token:1.0'] + self.value
+
+    def all_ratios(self):
+        return {
+            config.split(':')[0]: float(config.split(':')[1])
+            for config in self.actual_value()
+        }
+
+    def find_bucket(self, loc):
+        for config in self.actual_value():
+            name = config.split(':')[0]
+            cats = frozenset(name.split('-'))
+            if loc.categories >= cats:
+                return name
+        return None
 
 class LevelOrderBias(Range):
     """

@@ -45,7 +45,7 @@ class DoomLocation:
     """
     id: Optional[int] = None
     item_name: str  # name of original item, used to name this location
-    category: str
+    categories: FrozenSet[str]
     pos: DoomPosition | None = None
     # Minimal sets of keys needed to access this location.
     # Initially None. Tuning data is used to initialize and refine this.
@@ -65,10 +65,11 @@ class DoomLocation:
     def __init__(self, parent, map: str, item: DoomItem, secret: bool, json: str | None):
         self.keys = None
         self.parent = parent
+        self.categories = frozenset(['secret']) if secret else frozenset()
         if item:
             # If created without an item it is the caller's responsibility to fill
             # in these fields post hoc.
-            self.category = item.category
+            self.categories |= item.categories
             self.orig_item = item
             self.item_name = item.tag
         self.skill = set()
@@ -102,6 +103,12 @@ class DoomLocation:
     def fqin(self, item: str) -> str:
         """Return the fully qualified item name for an item scoped to this location's map."""
         return f"{item} ({self.pos.map})"
+
+    def has_category(self, *args):
+        return self.categories & frozenset(args)
+
+    def is_default_enabled(self) -> bool:
+        return self.has_category('map', 'weapon', 'key', 'token', 'powerup', 'big', 'sector')
 
     def tune_keys(self, new_keyset: FrozenSet[str]):
         # If this location was previously incorrectly marked unreachable,
@@ -174,7 +181,7 @@ class DoomLocation:
             # This applies only if this is the only instance of that key in the
             # level; if the level has multiple copies of the same key, we don't
             # know which one is reachable first.
-            if self.category == "key" and self.parent.get_map(self.pos.map).has_one_key(self.orig_item.name()):
+            if self.has_category('key') and self.parent.get_map(self.pos.map).has_one_key(self.orig_item.name()):
                 return True
 
             return False
