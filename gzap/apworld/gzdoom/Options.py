@@ -104,7 +104,6 @@ class StartingLevels(OptionSet):
     """
     display_name = "Starting levels"
     default = ["E?M1", "MAP01"]
-    # valid_keys = model.all_map_names()
 
 class StartWithKeys(Toggle):
     """
@@ -354,24 +353,6 @@ class WinConditions(OptionDict):
             'specific-maps': [map.map for map in self.get_maplist(world)],
         }
 
-class AllowSecretProgress(Toggle):
-    """
-    Whether the randomizer will place progression items in locations flagged as
-    secret. If disabled, secrets will still be randomized but only filler items
-    will be placed there.
-
-    NOTE: How well this works is extremely wad-dependent. Many wads contain
-    well-hidden items that are not formally marked as secrets and will not be
-    excluded by this setting. Others mark items that are out in the open or even
-    mandatory to collect as secrets, which can excessively restrict item placement.
-
-    NOTE: In wads where most of the items in the first level are secret -- including
-    Doom 1 and 2 -- turning this off is likely to cause generation failures unless
-    you also add more starting levels.
-    """
-    display_name = "Allow secret progression items"
-    default = True
-
 class AllowRespawn(Toggle):
     """
     If enabled, the player will respawn at the start of the level on death. If
@@ -428,7 +409,6 @@ class GZDoomOptions(PerGameCommonOptions):
     win_conditions: WinConditions
     # Location pool control
     included_item_categories: IncludedItemCategories
-    allow_secret_progress: AllowSecretProgress
     # Item pool control
     start_with_all_maps: StartWithAutomaps
     start_with_keys: StartWithKeys

@@ -33,6 +33,8 @@ file and old tuning data from the apworld).
   - Adjustments to icon guessing rules.
   - Tuning data is now loaded for a wad when generation starts, rather than on
     apworld initialization. This makes apworld loading noticeably faster.
+  - `allow_secret_progress` yaml option removed. Use `exclude_locations: ["secret"]`
+    instead.
 - Fix:
   - Add `map07special` flag to Master Levels for Doom II MAP20, since it was
     originally designed to go in the MAP07 slot and relies on that behaviour.

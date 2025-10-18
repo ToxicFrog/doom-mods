@@ -59,10 +59,7 @@ class GZDoomLocation(Location):
         super().__init__(player=world.player, name=loc.name(), address=loc.id, parent=region)
         self.access_rule = loc.access_rule(world)
         self.doom_location = loc
-        if loc.secret and not world.options.allow_secret_progress.value:
-            self.progress_type = LocationProgressType.EXCLUDED
-        else:
-            self.progress_type = LocationProgressType.DEFAULT
+        self.progress_type = LocationProgressType.DEFAULT
 
     def flags(self) -> str:
         flags = []
