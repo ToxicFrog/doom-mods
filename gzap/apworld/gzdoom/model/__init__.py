@@ -53,7 +53,7 @@ def logic_files(package):
         # return sorted(files, key=lambda f: f.name)
     else:
         return sorted([
-            file for file in (Path(Utils.home_path()) / "gzdoom" / "logic").iterdir()
+            file for file in (Path(Utils.user_path()) / "gzdoom" / "logic").iterdir()
             if file.is_file()
         ])
 
@@ -76,7 +76,7 @@ def tuning_files(package, wad):
         ], key=lambda f: f.name)
     else:
         return sorted([
-            p for p in (Path(Utils.home_path()) / "gzdoom" / "tuning").iterdir()
+            p for p in (Path(Utils.user_path()) / "gzdoom" / "tuning").iterdir()
             if p.is_file() and (p.name == wad or p.name.startswith(f"{wad}."))
         ])
     # return sorted(internal, key=lambda f: f.name) + sorted(external)
@@ -95,7 +95,7 @@ def print_header(package):
 
 def init_wads(package):
     if not package:
-        gzd_dir = os.path.join(Utils.home_path(), "gzdoom")
+        gzd_dir = os.path.join(Utils.user_path(), "gzdoom")
         print_header(gzd_dir)
         os.makedirs(os.path.join(gzd_dir, "logic"), exist_ok=True) # in-dev logic files
         os.makedirs(os.path.join(gzd_dir, "tuning"), exist_ok=True) # in-dev tuning files

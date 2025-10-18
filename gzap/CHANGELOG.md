@@ -37,6 +37,8 @@ file and old tuning data from the apworld).
   - Two unreachable locations in Going Down Turbo are now properly marked as such.
   - AP client now stores found locations and re-sends them later if the connection
     to the host is interrupted.
+  - When running from an unpacked tarball, gzdoom now locates its files with the
+    rest of the tarball contents rather than in `~/.local/share/Archipelago`.
 
 # 0.6.5
 

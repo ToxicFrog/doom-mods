@@ -253,7 +253,7 @@ def main(*args):
 
     # Initialize the gzDoom IPC structures on disk
     # TODO: do we want to support multiple running instances as the same user?
-    gzd_dir = os.path.join(Utils.home_path(), "gzdoom")
+    gzd_dir = os.path.join(Utils.user_path(), "gzdoom")
     ipc_dir = os.path.join(gzd_dir, "ipc")
     os.makedirs(ipc_dir, exist_ok=True) # communication with gzdoom
     os.makedirs(os.path.join(gzd_dir, "logic"), exist_ok=True) # in-dev logic files
