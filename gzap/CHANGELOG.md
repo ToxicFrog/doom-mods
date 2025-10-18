@@ -26,6 +26,9 @@ file and old tuning data from the apworld).
   - Logic for Legacy of Rust, by RakeVuril.
   - If you download the pk3 for your game from the web host, the client will
     read the connection address from it and connect to AP automatically.
+  - Items/locations can now have multiple categories, and existing categories
+    have been decomposed (e.g. `big-health` items now belong to two categories,
+    `big` and `health`).
 - Changed:
   - Adjustments to icon guessing rules.
   - Tuning data is now loaded for a wad when generation starts, rather than on
