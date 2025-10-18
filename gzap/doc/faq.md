@@ -89,6 +89,11 @@ Note that, due to technical limitations, the categories *must be in alphabetical
 order* when combined in this way; `health-secret` will work but `secret-health`
 will not.
 
+### How do I turn on deathlink?
+
+Deathlink (and a lot of other settings) is configured in-game, via the options
+menu, and not in the yaml.
+
 ### Can I bind hotkeys for inventory items?
 
 Inventory items can be dispensed using the `ap-use-item:<item-name>` netevent,
