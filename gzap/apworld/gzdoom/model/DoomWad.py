@@ -61,7 +61,7 @@ class DoomWad:
         skill = min(3, max(1, skill)) # clamp ITYTD->HNTR and N!->UV
         return [
             loc for map in self.maps.values() for loc in map.all_locations(skill, {})
-            if loc.orig_item and loc.orig_item.is_default_enabled()
+            if loc.is_default_enabled()
         ]
 
     def locations_at_position(self, pos: DoomPosition) -> List[DoomLocation]:

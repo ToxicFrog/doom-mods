@@ -47,6 +47,9 @@ class DoomPool:
         Given a set of locations covering the entire wad, choose a subset of those
         locations based on the yaml settings.
         '''
+        if world is None:
+            return [loc for loc in all_locations if loc.is_default_enabled()]
+
         buckets = {}
         for loc in all_locations:
             bucket = world.options.included_item_categories.find_bucket(loc)
