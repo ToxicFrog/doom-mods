@@ -20,6 +20,12 @@ To release a new version:
 
 ### next release
 
+- force vanilla locations by category yaml option
+- exclude progression by category yaml option
+- starting inventory from pool by category yaml option
+- support key/weapon categories in the above
+- release on exit only if all keys collected ingame option
+
 ### general notes on scanner/logic changes
 
 This is mostly based on what needs to change to support Faithless, but it'll help
@@ -44,28 +50,6 @@ Adventures of Square would benefit from being able to model weapons that are als
 keys; frozen notes that the Hellshell Launcher can be used to break certain walls
 that normally require TNT box manipulation. This also ties in with the need to
 be able to represent logic requirements that aren't just keys.
-
-### Item tag rewrite
-
-Basic idea: replace item categories with item tags. An item can have any number
-of tags.
-
-Logic format changes, `category` changes to either `categories` or `tags` -- latter
-is more precise, but has overlap with GZD's use of `tag` to mean `player-facing name`.
-Let's go with `categories` for now.
-
-Parser needs to continue supporting legacy `category` field, split on `-` and put
-each word into a separate cat.
-
-Internally each item stores cats as a set of strings. Most tests become set membership
-tests rather than equality tests.
-
-Scanner logic gets updated, emits `categories` (or maybe we keep using `category`
-but change the categorization for some things?)
-
-YAML is the tricky one, we need to change the current proportion map into a list
-of (category, amount) pairs and iterate it in order for each item and the first
-one matching is used.
 
 ### scanner
 
@@ -95,14 +79,12 @@ one matching is used.
     vended and re-vend them if they run out?
 
 - "gzap for apdoom users" man page
-- option to disable tuning generation
 - some hints received when playing in the weekly sync did not display on the
   map screen
 - Ashes 2063 reports duplicate keys because of the way keys are handled -- you
   pick up the BluePassCard and it gives you a BlueCard in your inventory, which
   the AP runtime then identifies as a new key scoped to that level, which can be
   a bit confusing but generally does not affect normal play.
--
 
 ### Faithless
 
