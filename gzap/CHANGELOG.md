@@ -27,7 +27,9 @@ file and old tuning data from the apworld).
   - If you download the pk3 for your game from the web host, the client will
     read the connection address from it and connect to AP automatically.
 - Changed:
-  - Adjustments to icon guessing rules
+  - Adjustments to icon guessing rules.
+  - Tuning data is now loaded for a wad when generation starts, rather than on
+    apworld initialization. This makes apworld loading noticeably faster.
 - Fix:
   - Add `map07special` flag to Master Levels for Doom II MAP20, since it was
     originally designed to go in the MAP07 slot and relies on that behaviour.

@@ -23,11 +23,17 @@ from .WadLogicLoader import *
 _DOOM_LOGIC: DoomLogic = DoomLogic()
 
 
-def add_wad(name: str, apworld_mtime: int, is_external: bool):
-    return WadLogicLoader(_DOOM_LOGIC, name, apworld_mtime, is_external)
-
 def get_wad(name: str) -> DoomWad:
     return _DOOM_LOGIC.wads[name]
+
+def get_tuned_wad(name: str) -> DoomWad:
+    wad = get_wad(name)
+    if wad.tuned:
+        return wad
+    with WadTuningLoader(wad) as wadloader:
+        wad.tuned = True
+        wadloader.load_tuning(tuning_files(wad.package, wad.name))
+    return wad
 
 def logic_files(package):
     """
@@ -75,15 +81,12 @@ def tuning_files(package, wad):
         ])
     # return sorted(internal, key=lambda f: f.name) + sorted(external)
 
-def init_wad(package, logic_file, is_external, apworld_mtime):
+def init_wad(package, logic_file):
     wadname = logic_file.name.split(".")[0]
-    with add_wad(wadname, apworld_mtime, is_external) as wadloader:
-        wadloader.load_all(logic_file, tuning_files(package, wadname))
-        wadloader.print_stats(is_external)
+    with WadLogicLoader(_DOOM_LOGIC, wadname, package) as wadloader:
+        wadloader.load_logic(logic_file)
+        wadloader.print_stats()
 
-def package_timestamp(package):
-    apworld_path = re.sub(r'\.apworld.*', '.apworld', str(resources.files(package)))
-    return os.path.getmtime(apworld_path)
 
 def print_header(package):
     if "GZAP_DEBUG" not in os.environ:
@@ -96,14 +99,12 @@ def init_wads(package):
         print_header(gzd_dir)
         os.makedirs(os.path.join(gzd_dir, "logic"), exist_ok=True) # in-dev logic files
         os.makedirs(os.path.join(gzd_dir, "tuning"), exist_ok=True) # in-dev tuning files
-        ts = 0
     else:
         print_header(package)
-        ts = package_timestamp(package)
 
     logic = logic_files(package)
     for logic_file in logic:
-        init_wad(package, logic_file, package is None, ts)
+        init_wad(package, logic_file)
 
 def init_all_wads():
     import sys

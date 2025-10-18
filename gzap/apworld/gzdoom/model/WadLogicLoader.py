@@ -1,105 +1,21 @@
-from collections import defaultdict
-import json
-import os
-import pickle
+from collections import Counter
+from importlib import resources
+import json, os, pickle, re
 
 import Utils
 
 from .DoomLogic import *
 
-class WadLogicLoader:
-    logic: DoomLogic
-    name: str
-    apworld_mtime: int
+class WadDataLoader:
     wad: DoomWad
-    external: bool
-    counters: defaultdict
-
-    def __init__(self, logic: DoomLogic, name: str, apworld_mtime: int, external: bool):
-        self.logic = logic
-        self.name = name
-        self.apworld_mtime = apworld_mtime
-        self.wad = DoomWad(self.name)
-        self.external = external
-        self.counters = defaultdict(lambda: 0)
-        os.makedirs(os.path.join(Utils.home_path(), "gzdoom/cache"), exist_ok=True)
+    counters: Counter[str]
 
     def __enter__(self):
+        self.counters = Counter()
         return self
 
-    def __exit__(self, err_type, err_value, err_stack):
-        if err_type is not None:
-            return False
-
-        self.wad.finalize_all(self.logic)
-        self.logic.add_wad(self.name, self.wad)
-        return True
-
-    def cache_path(self, type):
-        gzd_dir = os.path.join(Utils.home_path(), "gzdoom")
-        if self.external:
-            suffix = "ext.pickle"
-        else:
-            suffix = "pickle"
-        return f'{gzd_dir}/cache/{self.name}.{type}.{suffix}'
-
-    def tuning_cache_valid(self, files):
-        '''
-        A tuning cache file is valid iff:
-        - the cache file exists, and
-        - the cache is newer than the apworld (if there are internal tuning files), and
-        - the cache is newer than the newest external tuning file (if there are external tuning files)
-        '''
-        if not os.path.exists(self.cache_path('tuning')):
-            return False
-        if len(files) == 0:
-            return False
-
-        newest = 0
-        for file in files:
-            if os.path.exists(str(file)):
-                # External file
-                newest = max(newest, os.path.getmtime(file))
-            else:
-                # Internal file
-                newest = max(newest, self.apworld_mtime)
-
-        return os.path.getmtime(self.cache_path('tuning')) > newest
-
-    def logic_cache_valid(self, file):
-        '''
-        A logic cache is valid iff:
-        - the cache file exists, and
-        - the cache is newer than the apworld (if internal), and
-        - the cache is newer than the logic file (if external)
-
-        TODO: we should keep track of what files (or at least how many files)
-        went into the cache, and invalidate the cache if any of them are deleted,
-        too.
-        '''
-        if not os.path.exists(self.cache_path('logic')):
-            return False
-
-        if os.path.exists(str(file)):
-            # External file
-            newest = os.path.getmtime(file)
-        else:
-            # Internal file
-            newest = self.apworld_mtime
-
-        return os.path.getmtime(self.cache_path('logic')) > newest
-
-    def load_cache(self, type):
-        with open(self.cache_path(type), 'rb') as fd:
-          return pickle.load(fd)
-
-    def save_cache(self, type):
-        with open(self.cache_path(type), 'wb') as fd:
-            # print(f'Saving cached logic to {self.cache_path('logic')}')
-            pickle.dump(self.wad, fd)
-
     def load_records(self, file):
-        # print(f"Loading logic for {self.name} from {file}")
+        # print(f"Loading logic for {self.wad.name} from {file}")
         for idx,line in enumerate(file.read_text().splitlines()):
             if not line.startswith("AP-"):
                 continue
@@ -126,53 +42,20 @@ class WadLogicLoader:
                     pass
 
             except Exception as e:
-                raise ValueError(f"Error loading logic/tuning for {self.name} on line {idx} of {file}:\n{line}") from e
+                raise ValueError(f"Error loading logic/tuning for {self.wad.name} on line {idx} of {file}:\n{line}") from e
 
-    def load_logic(self, file):
-        self.load_records(file)
-        self.save_cache('logic')
-
-    def load_tuning(self, files):
-        if len(files) == 0:
-            # Empty tuning? Don't bother writing a cache.
-            return
-        for file in files:
-            self.load_records(file)
-        self.save_cache('tuning')
-
-    def load_all(self, logic_file, tuning_files):
-        if self.logic_cache_valid(logic_file):
-            if self.tuning_cache_valid(tuning_files):
-                # If all the caches are valid, just load the final one.
-                # print(f'loading tuning cache for {self.name}')
-                self.wad = self.load_cache('tuning')
-                return
-            else:
-                # Logic cache is valid, tuning is not. Redo the tuning.
-                # print(f'loading logic cache and redoing tuning {self.name}')
-                self.wad = self.load_cache('logic')
-                self.load_tuning(tuning_files)
-                return
-        else:
-            # Logic cache is invalid. (In this case we don't care about the
-            # tuning cache at all, since we need to redo it anyways as the
-            # underlying logic has changed.)
-            # print(f'cache miss for {self.name}')
-            self.load_logic(logic_file)
-            self.load_tuning(tuning_files)
-
-    def print_stats(self, is_external: bool) -> None:
+    def print_stats(self) -> None:
         if "GZAP_DEBUG" not in os.environ:
             return
 
         nrof_maps = len(self.wad.all_maps())
         nrof_monsters = sum(map.monster_count for map in self.wad.all_maps())
-        assert nrof_maps > 0,f"The logic for WAD {self.name} defines no maps."
+        assert nrof_maps > 0,f"The logic for WAD {self.wad.name} defines no maps."
 
-        print("\x1B[1m%32s: %2d maps, %4d monsters; %4d monsters/map\x1B[0m (I:%d S:%d T:%d)%s" % (
-            self.name, nrof_maps, nrof_monsters, nrof_monsters//nrof_maps,
+        print("\x1B[1m%32s: %2d maps, %4d monsters; %4d monsters/map\x1B[0m (I:%d S:%d T:%d)" % (
+            self.wad.name, nrof_maps, nrof_monsters, nrof_monsters//nrof_maps,
             self.counters.get("AP-ITEM", 0), self.counters.get("AP-SECRET", 0),
-            self.counters.get("AP-CHECK", 0), is_external and " external" or ""))
+            self.counters.get("AP-CHECK", 0)))
 
         for sknum, skname in [(3, "UV")]: # [(1, "HNTR"), (2, "HMP"), (3, "UV")]:
             pool = self.wad.stats_pool(sknum)
@@ -182,3 +65,80 @@ class WadLogicLoader:
             num_secrets = len([loc for loc in pool.locations if loc.secret])
             print("%32s  %4d locs (%3d secret), %4d items (%4d progression)" % (
                 skname, num_locs, num_secrets, num_items, num_p))
+
+class WadLogicLoader(WadDataLoader):
+    logic: DoomLogic
+    wad: DoomWad
+
+    def __init__(self, logic: DoomLogic, name: str, package: str):
+        self.logic = logic
+        self.wad = DoomWad(name, package)
+        os.makedirs(os.path.join(Utils.home_path(), "gzdoom/cache"), exist_ok=True)
+
+    def __exit__(self, err_type, err_value, err_stack):
+        if err_type is not None:
+            return False
+
+        self.wad.finalize_all(self.logic)
+        self.logic.add_wad(self.wad.name, self.wad)
+        return True
+
+    def load_logic(self, file):
+        if self.logic_cache_valid(file):
+            self.wad = self.load_cache()
+        else:
+            self.load_records(file)
+            self.save_cache()
+
+    def cache_path(self):
+        gzd_dir = os.path.join(Utils.home_path(), "gzdoom")
+        suffix = "ext" if self.wad.package is None else self.wad.package.replace('worlds.', '')
+        return f'{gzd_dir}/cache/{self.wad.name}.{self.wad.package or "ext"}.pickle'
+
+    def package_timestamp(self, package):
+        apworld_path = re.sub(r'\.apworld.*', '.apworld', str(resources.files(package)))
+        return os.path.getmtime(apworld_path)
+
+    def logic_cache_valid(self, file):
+        '''
+        A logic cache is valid iff:
+        - the cache file exists, and
+        - the cache file is newer than gzdoom.apworld, and
+        - the cache file is newer than the source logic.
+
+        For the latter, that means the apworld containing it for logic files in
+        apworlds, or the logic file on disk for external files.
+        '''
+        if not os.path.exists(self.cache_path()):
+            return False
+
+        if self.wad.package:
+            ts = self.package_timestamp(self.wad.package)
+        else:
+            ts = os.path.getmtime(str(file))
+        # If the core apworld is more recent, use that ts instead, since it may
+        # have changed the internal definition of the DoomWad class.
+        ts = max(ts, self.package_timestamp('worlds.gzdoom'))
+
+        return os.path.getmtime(self.cache_path()) > ts
+
+    def load_cache(self):
+        with open(self.cache_path(), 'rb') as fd:
+            # print(f'Leading cached logic from {self.cache_path()}')
+            return pickle.load(fd)
+
+    def save_cache(self):
+        with open(self.cache_path(), 'wb') as fd:
+            # print(f'Saving cached logic to {self.cache_path()}')
+            pickle.dump(self.wad, fd)
+
+class WadTuningLoader(WadDataLoader):
+    def __init__(self, wad: DoomWad):
+        self.wad = wad
+
+    def __exit__(self, err_type, err_value, err_stack):
+        return err_type is None
+
+    def load_tuning(self, files):
+        for file in files:
+            self.load_records(file)

@@ -11,8 +11,7 @@ from BaseClasses import CollectionState, Item, ItemClassification, Location, Mul
 from worlds.AutoWorld import WebWorld, World
 import worlds.LauncherComponents as LauncherComponents
 
-from . import icons
-from .model import init_all_wads
+from . import icons, model
 from .model.DoomItem import DoomItem
 from .model.DoomLocation import DoomLocation
 from .model.DoomWad import DoomWad
@@ -30,7 +29,7 @@ from .model.DoomWad import DoomWad
 # are tuned. This implies we could get some significant savings by deferring
 # tuning file processing until we know what wad the player has selected, and
 # only loading the tuning data for that one.
-init_all_wads()
+model.init_all_wads()
 
 from .Options import GZDoomOptions
 
@@ -192,7 +191,7 @@ class GZDoomWorld(World):
         wadlist = list(self.options.selected_wad.value)
         print(f"Permitted WADs: {wadlist}")
 
-        self.wad_logic = model.get_wad(random.choice(wadlist))
+        self.wad_logic = model.get_tuned_wad(random.choice(wadlist))
         self.spawn_filter = self.options.spawn_filter.value
         skill_name = { 1: "easy", 2: "medium", 3: "hard" }[self.spawn_filter]
         print(f"Selected WAD: {self.wad_logic.name}")

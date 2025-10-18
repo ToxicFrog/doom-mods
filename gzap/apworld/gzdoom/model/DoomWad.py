@@ -35,6 +35,7 @@ class DuplicateMapError(RuntimeError):
 @dataclass
 class DoomWad:
     name: str
+    package: str | None  # Name of module this logic file was loaded from, or None if from disk
     maps: Dict[str,DoomMap] = field(default_factory=dict)
     items_by_name: Dict[str,DoomItem] = field(default_factory=dict)
     # Map of skill -> position -> location used while importing locations.
@@ -49,6 +50,7 @@ class DoomWad:
     # name on different difficulties.
     locations_by_name: Dict[str,List[DoomLocation]] = field(default_factory=dict)
     first_map: DoomMap | None = None
+    tuned: bool = False
 
     def __post_init__(self):
         self.locations_by_pos = {
@@ -177,6 +179,8 @@ class DoomWad:
         self.new_location(map, item, secret, skill, position)
 
     def register_item(self, map: str, item: DoomItem) -> DoomItem:
+        assert not self.tuned, f"AP-ITEM found in tuning data for {self.name} -- make sure you don't have a logic file mixed in with the tuning."
+
         if item.name() in self.items_by_name:
             return self.register_duplicate_item(map, item)
 
@@ -218,6 +222,8 @@ class DoomWad:
         self.register_location(location, skill)
 
     def register_location(self, location: DoomLocation, skill: Set[int]) -> None:
+        assert not self.tuned, f"AP-LOCATION found in tuning data for {self.name} -- make sure you don't have a logic file mixed in with the tuning."
+
         if location.pos.virtual:
             # Virtual location, is not part of the deduplication table.
             location.skill = skill.copy()
@@ -239,6 +245,7 @@ class DoomWad:
             self.maps[location.pos.map].register_location(location)
 
     def new_secret(self, json: Dict[str, Any]) -> None:
+        assert not self.tuned, f"AP-SECRET found in tuning data for {self.name} -- make sure you don't have a logic file mixed in with the tuning."
         location = DoomLocation(self, map=json['map'], item=None, secret=True, json=None)
         location.item_name = f"Secret {json['sector']}"
         location.categories = frozenset({'secret', 'sector'})
@@ -252,6 +259,7 @@ class DoomWad:
 
         Key records will be matched up with key items at the end of the tuning pass.
         """
+        assert not self.tuned, f"AP-KEY found in tuning data for {self.name}. If this is a legitimate tuning file, this usually means tuning found keys that the scanner missed -- please find the AP-KEY messages in the tuning file and move them to the matching logic file."
         key = DoomKey(typename, scopename, cluster, frozenset(maps))
         self.keys_by_name.setdefault(key.fqin(), key)
 
