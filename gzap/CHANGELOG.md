@@ -29,6 +29,9 @@ file and old tuning data from the apworld).
   - Items/locations can now have multiple categories, and existing categories
     have been decomposed (e.g. `big-health` items now belong to two categories,
     `big` and `health`).
+  - Item/location categories, and combinations thereof, can be used in the YAML
+    in any setting that supports item/location groups; see [the faq](./doc/faq.md#how-do-item-groups-work-in-the-yaml)
+    for more details.
 - Changed:
   - Adjustments to icon guessing rules.
   - Tuning data is now loaded for a wad when generation starts, rather than on

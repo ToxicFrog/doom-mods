@@ -75,6 +75,20 @@ By default, to clear all levels included in the randomized game. You can set
 this to a lower level and/or require the completion of specific levels in the
 YAML.
 
+### How do item groups work in the YAML?
+
+YAML item/location groups are based on [item categories](./glossary.md#item-categories).
+So, for example, the `big` group contains all `big health`, `big armor`, etc.
+Categories can be combined, so the following yaml would prefer to place progression
+items in secret weapon spots, and avoid placing progression in secret health spots:
+
+    exclude_locations: ['health-secret']
+    priority_locations: ['secret-weapon']
+
+Note that, due to technical limitations, the categories *must be in alphabetical
+order* when combined in this way; `health-secret` will work but `secret-health`
+will not.
+
 ### Can I bind hotkeys for inventory items?
 
 Inventory items can be dispensed using the `ap-use-item:<item-name>` netevent,

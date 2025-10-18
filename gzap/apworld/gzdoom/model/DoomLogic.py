@@ -14,12 +14,12 @@ World subclass is even instantiated; well before we have access to the yaml.)
 """
 
 from dataclasses import dataclass, field
+from itertools import chain, combinations
 from typing import Dict, List, Set
 
 from .DoomItem import DoomItem
 from .DoomLocation import DoomLocation
 from .DoomWad import DoomWad
-
 
 @dataclass
 class DoomLogic:
@@ -46,6 +46,14 @@ class DoomLogic:
     def wad(self, name: str) -> DoomWad:
         return self.wads[name]
 
+    def all_subcategory_strings(self, cats):
+        cats = list(cats)
+        return (
+            '-'.join(sorted(subcats))
+            for subcats in chain.from_iterable(
+                combinations(cats, i) for i in range(1, len(cats)+1))
+        )
+
     def register_item(self, item: DoomItem) -> int:
         """
         Register an item and return its assigned ID.
@@ -61,7 +69,7 @@ class DoomLogic:
         if name not in self.item_names_to_ids:
             self.item_names_to_ids[name] = self.next_id()
         item.id = self.item_names_to_ids[name]
-        for cat in item.categories:
+        for cat in self.all_subcategory_strings(item.categories):
             self.item_categories_to_names.setdefault(cat, set()).add(name)
         return item.id
 
@@ -70,7 +78,6 @@ class DoomLogic:
         if name not in self.location_names_to_ids:
             self.location_names_to_ids[name] = self.next_id()
         loc.id = self.location_names_to_ids[name]
-        for cat in loc.categories:
+        for cat in self.all_subcategory_strings(loc.categories):
             self.location_categories_to_names.setdefault(cat, set()).add(name)
         return loc.id
-
