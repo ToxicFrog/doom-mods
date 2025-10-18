@@ -30,6 +30,6 @@ ${TOPDIR}/release/%.apworld: apworld/%/* apworld/%/*/*
 	mv apworld/$*.apworld ${TOPDIR}/release/$*-${VERSION}.apworld
 
 install: ${TOPDIR}/release/gzdoom.apworld ${TOPDIR}/release/ap_gzdoom_featured.apworld ${TOPDIR}/release/ap_gzdoom_extras.apworld
-	cp ${TOPDIR}/release/gzdoom.apworld ${TOPDIR}/release/ap_gzdoom_featured.apworld ${TOPDIR}/release/ap_gzdoom_extras.apworld ~/.local/share/Archipelago/worlds
+	cp -a ${TOPDIR}/release/gzdoom.apworld ${TOPDIR}/release/ap_gzdoom_featured.apworld ${TOPDIR}/release/ap_gzdoom_extras.apworld ~/.local/share/Archipelago/worlds
 
 .PHONY: apworld install
