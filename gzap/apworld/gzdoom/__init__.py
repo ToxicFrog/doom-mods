@@ -112,7 +112,7 @@ class GZDoomWorld(World):
     options: GZDoomOptions
     topology_present = True
     web = GZDoomWeb()
-    required_client_version = (0, 5, 1)
+    required_client_version = (0, 6, 3)
 
     # Info fetched from gzDoom; contains item/location ID mappings etc.
     wad_logic: DoomWad
