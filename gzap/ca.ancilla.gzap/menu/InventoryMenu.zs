@@ -1,4 +1,3 @@
-
 // Inventory select menu. Shows all the items players have received from the
 // randomizer and lets them summon them.
 
@@ -54,8 +53,21 @@ class ::InventoryMenu : ::CommonMenu {
     super.Ticker();
   }
 
-  // TODO: we need to scan for new keys before this opens, which probably means
-  // when the player picks up the key, immediately.
+  override bool OnUIEvent(UIEvent evt) {
+    // Key inputs other than directionals and ok/cancel/clear need to be handled
+    // by the menu, not the menu item.
+    // 0x48 == 'H'
+    if (evt.type == UIEvent.TYPE_CHAR && evt.KeyChar == 0x48) {
+      let selected = ::KeyToggle(mDesc.mItems[mDesc.mSelectedItem]);
+      if (selected) {
+        selected.RequestHint();
+      }
+      return true;
+    }
+
+    return super.OnUIEvent(evt);
+  }
+
   void InitKeyDisplay() {
     let region = ::PlayEventHandler.GetState().GetCurrentRegion();
     if (!region) return;
@@ -66,15 +78,17 @@ class ::InventoryMenu : ::CommonMenu {
     PushText(" ");
 
     foreach (_, key : region.keys) {
-      mDesc.mItems.Push(new("::KeyToggle").Init(key));
+      mDesc.mItems.Push(new("::KeyToggle").Init(region, key));
     }
   }
 }
 
 class ::KeyToggle : ::KeyValueNetevent {
+  ::Region region;
   ::RandoKey key_info;
 
-  ::KeyToggle Init(::RandoKey key_info) {
+  ::KeyToggle Init(::Region region, ::RandoKey key_info) {
+    self.region = region;
     self.key_info = key_info;
     super.Init(
       FormatKeyName(),
@@ -89,8 +103,10 @@ class ::KeyToggle : ::KeyValueNetevent {
     super.Ticker();
   }
 
-  override bool Selectable() {
-    return key_info.held;
+  void RequestHint() {
+    if (key_info.held) return;
+    Menu.MenuSound("menu/change");
+    EventHandler.SendNetworkCommand("ap-hint", NET_STRING, key_info.FQIN());
   }
 
   override bool MenuEvent(int key, bool fromController) {
@@ -113,11 +129,16 @@ class ::KeyToggle : ::KeyValueNetevent {
 
   string FormatKeyStatus() {
     if (!key_info.held) {
-      return string.format("\c[BLACK]%s\c-", StringTable.Localize("$GZAP_MENU_KEY_MISSING"));
+      let hint = region.GetHint(key_info.FQIN());
+      if (hint) {
+        return string.format("\c[GRAY]ⓘ %s @ %s", hint.player, hint.location);
+      } else {
+        return StringTable.Localize("$GZAP_MENU_KEY_MISSING");
+      }
     } else if (key_info.enabled) {
-      return string.format("\c[GREEN]%s\c-", StringTable.Localize("$GZAP_MENU_KEY_ON"));
+      return StringTable.Localize("$GZAP_MENU_KEY_ON");
     } else {
-      return string.format("\c[BLACK]%s\c-", StringTable.Localize("$GZAP_MENU_KEY_OFF"));
+      return StringTable.Localize("$GZAP_MENU_KEY_OFF");
     }
   }
 }

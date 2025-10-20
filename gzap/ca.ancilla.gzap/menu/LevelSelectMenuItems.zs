@@ -67,9 +67,7 @@ class ::LevelSelector : ::KeyValueNetevent {
   override void Ticker() {
     if (txn == region.txn) return;
     SetColours();
-    let value = FormatLevelValue(info, region);
-    let tt = FormatTooltip();
-    self.value = value;
+    self.value = FormatLevelValue(info, region);
     self.tt.text = self.FormatTooltip();
     self.txn = region.txn;
   }

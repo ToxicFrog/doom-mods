@@ -34,6 +34,10 @@ file and old tuning data from the apworld).
     for more details.
   - Spoiler log now includes information about which WAD was actually selected,
     not just which WADs you listed as selectable in the yaml.
+  - The inventory screen now lists all keys for the current level. Keys you do
+    not yet have are hintable with `shift-H`. (This is the same mechanism as
+    hinting them from the level select screen, but unlike the level select it
+    lets you choose which order to hint them in.)
 - Changed:
   - Adjustments to icon guessing rules.
   - Tuning data is now loaded for a wad when generation starts, rather than on
@@ -46,6 +50,7 @@ file and old tuning data from the apworld).
   - `MapRevealers` (e.g. Computer Area Map, Map Scroll) are now classified as
     `powerup` rather than as `map` for the purposes of choosing which locations
     to randomize.
+  - The (poorly named) cvar `ap_scan_keys_always` was removed.
 - Fix:
   - Add `map07special` flag to Master Levels for Doom II MAP20, since it was
     originally designed to go in the MAP07 slot and relies on that behaviour.
