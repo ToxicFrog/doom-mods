@@ -20,11 +20,17 @@ To release a new version:
 
 ### next release
 
-- force vanilla locations by category yaml option
-- exclude progression by category yaml option
-- starting inventory from pool by category yaml option
-- support key/weapon categories in the above
-- release on exit only if all keys collected ingame option
+- recategorize automap pickups as powerups
+- more granular release on exit options
+  - what to release: secret only, non-secret only, all
+  - when to release: never, only if all keys collected, always
+- remove ap_scan_keys_always option, always display keys in inventory
+- inventory multivend
+
+(maybe wait for 0.7.1)
+- display weapons in inventory even if you don't have them
+- let you hint keys/weapons from the inventory screen
+- weapon ownership rework
 
 ### general notes on scanner/logic changes
 

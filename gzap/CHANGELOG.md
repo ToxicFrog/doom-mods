@@ -38,6 +38,9 @@ file and old tuning data from the apworld).
     apworld initialization. This makes apworld loading noticeably faster.
   - `allow_secret_progress` yaml option removed. Use `exclude_locations: ["secret"]`
     instead.
+  - `included_item_categories` can now be used to force entire categories into
+    starting inventory or their vanilla locations.
+  - `included_item_categories` now supports keys, weapons, and AP automaps.
 - Fix:
   - Add `map07special` flag to Master Levels for Doom II MAP20, since it was
     originally designed to go in the MAP07 slot and relies on that behaviour.
