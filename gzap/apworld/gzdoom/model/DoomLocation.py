@@ -135,10 +135,6 @@ class DoomLocation:
             # print(f"Tuning keys [{self.name()}]: old={self.keys} tune={new_keyset} new={new_keys}")
             self.keys = new_keys
 
-    # TODO: known issue here: if you set key:vanilla in the yaml, it should
-    # probably consider all items reachable, but in practice it only does if
-    # you've done tuning, which means you cannot turn on that setting AT ALL
-    # except on a fully tuned wad.
     def access_rule(self, world):
         # print(f"access_rule({self.name()}): keys={self.keys}")
         # A location is accessible if:
@@ -171,6 +167,12 @@ class DoomLocation:
 
             # If this location requires no keys, trivially succeed.
             if not self.keys:
+                return True
+
+            # If keys are forced to be in vanilla locations, skip all key-based
+            # checks since progression through the level will be as normal, even
+            # if we don't understand it.
+            if world.options.included_item_categories.all_keys_are_vanilla:
                 return True
 
             # Does the player have any of the sets of keys that grant access

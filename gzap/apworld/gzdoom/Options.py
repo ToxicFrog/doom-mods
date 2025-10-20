@@ -236,6 +236,9 @@ class IncludedItemCategories(OptionList):
             if ratio not in {1.0, 'vanilla', 'start'}:
                 raise OptionError(f'Entry {key} has invalid setting {ratio}; this category only permits "all", "vanilla", or "start".')
 
+        # Convenience field used later by the location access logic.
+        self.all_keys_are_vanilla = self.ratios['key'] == 'vanilla'
+
     def actual_value(self):
         return self.value + ['token:all']
 
