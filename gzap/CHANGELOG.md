@@ -5,7 +5,8 @@ This is a feature/design release.
 ⚠️ This update changes location and item IDs. You **absolutely cannot** update
 a game in progress.
 
-⚠️ This update changes the YAML options. Generate a new template.
+⚠️ This update changes both yaml and in-game settings. Regenerate your yaml and
+double-check your in-game settings.
 
 ⚠️ This update splits the apworld into three: one core apworld providing support
 for the official games, plus two addon apworlds providing support for "featured
@@ -38,6 +39,7 @@ file and old tuning data from the apworld).
     not yet have are hintable with `shift-H`. (This is the same mechanism as
     hinting them from the level select screen, but unlike the level select it
     lets you choose which order to hint them in.)
+  - Auto-release on exit can be made conditional on having all keys for the level.
 - Changed:
   - Adjustments to icon guessing rules.
   - Tuning data is now loaded for a wad when generation starts, rather than on

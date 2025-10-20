@@ -6,8 +6,13 @@
 #namespace GZAP;
 #debug off;
 
-const AP_RELEASE_IN_WORLD = 1;
-const AP_RELEASE_SECRETS = 2;
+// Release-on-exit enablement enums
+const AP_RELEASE_NEVER = 0;
+const AP_RELEASE_IF_KEYS = 1;
+const AP_RELEASE_ALWAYS = 2;
+// Release-on-exit behaviour bitmask
+const AP_RELEASE_OVERT = 1;
+const AP_RELEASE_SECRET = 2;
 
 class ::PerLevelHandler : EventHandler {
   // Archipelago state manager.
@@ -357,6 +362,26 @@ class ::PerLevelHandler : EventHandler {
   // We try to guess if the player reached the exit or left in some other way.
   // In the former case, we give them credit for clearing the level.
 
+  bool ShouldAutoRelease(::Region region) {
+    DEBUG("Should we release %s? enable=%d, keys=%d/%d", region.map, ap_enable_release_on_level_clear, region.KeysFound(), region.KeysTotal());
+    if (ap_enable_release_on_level_clear == AP_RELEASE_ALWAYS) {
+      return true;
+    } else if (ap_enable_release_on_level_clear == AP_RELEASE_IF_KEYS) {
+      return region.KeysFound() >= region.KeysTotal();
+    } else { // AP_RELEASE_NEVER, or unknown value
+      return false;
+    }
+  }
+
+  bool ShouldAutoReleaseLocation(::Location location) {
+    if (location.checked) return false;
+    if (location.IsSecret()) {
+      return (ap_release_on_level_clear & AP_RELEASE_SECRET) != 0;
+    } else {
+      return (ap_release_on_level_clear & AP_RELEASE_OVERT) != 0;
+    }
+  }
+
   void OnLevelExit(bool is_save, string next_map) {
     DEBUG("PLH WorldUnloaded: save=%d warp=%d lnum=%d next=%s",
       is_save, self.early_exit, level.LevelNum, next_map);
@@ -372,7 +397,6 @@ class ::PerLevelHandler : EventHandler {
     if (is_save || self.early_exit) return;
 
     if (ap_scan_unreachable >= 2) {
-      let region = apstate.GetRegion(level.MapName);
       foreach (location : region.locations) {
         if (location.checked) continue;
         DEBUG("Marking %s as unreachable.", location.name);
@@ -381,19 +405,15 @@ class ::PerLevelHandler : EventHandler {
     }
     cvar.FindCvar("ap_scan_unreachable").SetInt(0);
 
-    ::PlayEventHandler.Get().CheckLocation(apstate.GetCurrentRegion().exit_location);
+    ::PlayEventHandler.Get().CheckLocation(region.exit_location);
 
-    if (ap_release_on_level_clear) {
-      let region = apstate.GetRegion(level.MapName);
+    if (ShouldAutoRelease(region)) {
+      DEBUG("AutoRelease enabled");
       foreach (location : region.locations) {
-        if (location.checked) continue;
-        if (location.secret_sector < 0) {
-          if (ap_release_on_level_clear & AP_RELEASE_IN_WORLD == 0) continue;
-        } else {
-          if (ap_release_on_level_clear & AP_RELEASE_SECRETS == 0) continue;
+        if (ShouldAutoReleaseLocation(location)) {
+          DEBUG("Collecting %s on level exit.", location.name);
+          ::PlayEventHandler.Get().CheckLocation(location, true);
         }
-        DEBUG("Collecting %s on level exit.", location.name);
-        ::PlayEventHandler.Get().CheckLocation(location, true);
       }
     }
   }

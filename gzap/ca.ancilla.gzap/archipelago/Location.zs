@@ -60,6 +60,17 @@ class ::Location {
     return self.name < other.name;
   }
 
+  // TODO: pass through category information from the generated zscript, which
+  // we can use for this and possibly for other stuff as well. We can't use the
+  // orig_typename for this because some categories, like secret, depend on where
+  // it was found, not what it is.
+  bool IsSecret() {
+    if (secret_sector >= 0) return true;
+    let sector = level.PointInSector((self.pos.x, self.pos.y));
+    DEBUG("IsSecret(%s): (%d,%d) is=%d was=%d", self.name, self.pos.x, self.pos.y, sector.IsSecret(), sector.WasSecret());
+    return sector.IsSecret() || sector.WasSecret();
+  }
+
   bool IsFiller() { return flags == AP_IS_FILLER; }
   bool IsProgression() { return flags & AP_IS_PROGRESSION; }
   bool IsTrap() { return flags & AP_IS_TRAP; }

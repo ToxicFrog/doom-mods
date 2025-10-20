@@ -57,13 +57,19 @@ server string ap_bank_custom = "small-*:0";
 // 3 blocks weapons unconditionally
 server int ap_suppress_weapon_drops = 1;
 
-// Whether to collect all checks when completing a level.
-// This is a bitmask:
-// 1 - collect all in-world checks
-// 2 - collect all secret-sector checks
-// 3 - collect all
+// Whether to auto-release all checks in the level when you finish it.
+// Enum:
+// 0 - off
+// 1 - require all keys
+// 2 - no special requirements
+server int ap_enable_release_on_level_clear = 0;
+
+// What checks to collect when ap_enable_release_on_level_clear is turned on.
+// Bitmask:
+// 1 - collect non-secret checks
+// 2 - collect secret checks
 // In multiworld games this can emit a lot of check messages!
-server int ap_release_on_level_clear = 0;
+server int ap_release_on_level_clear = 3;
 
 // Deathlink enable bit.
 server bool ap_enable_deathlink = false;

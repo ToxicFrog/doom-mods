@@ -83,12 +83,10 @@ Whether the player is allowed to pick up weapons dropped by enemies (e.g. shotgu
 ""If already-filled slot"" allows you to pick up weapons if you already have a weapon with the same slot number, e.g. having the SSG will let you pick up normal shotguns. This is generally the most compatible option for weapon-replacing mods.
 
 ""If already-held weapon"" allows you to collect weapons only if they are duplicates of ones you already have. This most closely matches the behaviour of APDoom.",GZAP_OPT_TT_ALLOW_DROPS,
-Auto-release on level clear,GZAP_OPT_NAME_RELEASE_ATEXIT,
-"If enabled, will release some or all of the items in a level when you reach the exit.
-
-This makes the game more about figuring out when you are in ""go mode"" for each individual level and then just going for it, and less about clearing every check individually.
-
-In sync multiworld games this can produce large ""bursts"" of items which some players may find disruptive; check with your teammates before turning it on.",GZAP_OPT_TT_RELEASE_ATEXIT,
+Auto-release on level clear,GZAP_OPT_NAME_ENABLE_RELEASE_ATEXIT,
+"If enabled, will release some or all of the items in a level when you reach the exit. This makes the game more about figuring out when you are in ""go mode"" for each individual level and then just going for it, and less about clearing every check individually. In sync multiworld games this can produce large ""bursts"" of items which some players may find disruptive; check with your teammates before turning it on.",GZAP_OPT_TT_ENABLE_RELEASE_ATEXIT,
+What to release,GZAP_OPT_NAME_RELEASE_ATEXIT,
+"Controls which checks are released when ""auto-release on level clear"" is triggered.",GZAP_OPT_TT_RELEASE_ATEXIT,
 Enable deathlink,GZAP_OPT_NAME_ENABLE_DEATHLINK,
 "If enabled, your game will participate in Archipelago's Deathlink mechanic.",GZAP_OPT_TT_ENABLE_DEATHLINK,
 Controls,GZAP_OPT_HEADER_CONTROLS,Options / Controls
@@ -131,9 +129,11 @@ Enabled,GZAP_OPT_DROPS_0,
 If already-filled slot,GZAP_OPT_DROPS_1,
 If already-held weapon,GZAP_OPT_DROPS_2,
 Disabled,GZAP_OPT_DROPS_3,
-Nothing,GZAP_OPT_RELEASE_0,
-All in-world checks,GZAP_OPT_RELEASE_1,
-All secret-sector checks,GZAP_OPT_RELEASE_2,
+Disabled,GZAP_OPT_ENABLE_RELEASE_0,
+Only if all keys collected,GZAP_OPT_ENABLE_RELEASE_1,
+Always,GZAP_OPT_ENABLE_RELEASE_2,
+Everything except secrets,GZAP_OPT_RELEASE_1,
+Secrets only,GZAP_OPT_RELEASE_2,
 Everything,GZAP_OPT_RELEASE_3,
 [ap-scan] Starting scan of all levels.,GZAP_SCAN_STARTING,
 [ap-scan] No levels to scan. Set the ap_scan_levels cvar before starting.,GZAP_SCAN_EMPTY,
