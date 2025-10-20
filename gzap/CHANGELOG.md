@@ -32,6 +32,8 @@ file and old tuning data from the apworld).
   - Item/location categories, and combinations thereof, can be used in the YAML
     in any setting that supports item/location groups; see [the faq](./doc/faq.md#how-do-item-groups-work-in-the-yaml)
     for more details.
+  - Spoiler log now includes information about which WAD was actually selected,
+    not just which WADs you listed as selectable in the yaml.
 - Changed:
   - Adjustments to icon guessing rules.
   - Tuning data is now loaded for a wad when generation starts, rather than on
@@ -41,6 +43,9 @@ file and old tuning data from the apworld).
   - `included_item_categories` can now be used to force entire categories into
     starting inventory or their vanilla locations.
   - `included_item_categories` now supports keys, weapons, and AP automaps.
+  - `MapRevealers` (e.g. Computer Area Map, Map Scroll) are now classified as
+    `powerup` rather than as `map` for the purposes of choosing which locations
+    to randomize.
 - Fix:
   - Add `map07special` flag to Master Levels for Doom II MAP20, since it was
     originally designed to go in the MAP07 slot and relies on that behaviour.
