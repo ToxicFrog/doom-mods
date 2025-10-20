@@ -8,10 +8,8 @@ from .DoomLogic import *
 
 class WadDataLoader:
     wad: DoomWad
-    counters: Counter[str]
 
     def __enter__(self):
-        self.counters = Counter()
         return self
 
     def load_records(self, file):
@@ -23,7 +21,6 @@ class WadDataLoader:
             try:
                 [evt, payload] = line.split(" ", 1)
                 payload = json.loads(payload)
-                self.counters[evt] += 1
 
                 if evt == "AP-MAP":
                     self.wad.new_map(payload)
@@ -52,10 +49,8 @@ class WadDataLoader:
         nrof_monsters = sum(map.monster_count for map in self.wad.all_maps())
         assert nrof_maps > 0,f"The logic for WAD {self.wad.name} defines no maps."
 
-        print("\x1B[1m%32s: %2d maps, %4d monsters; %4d monsters/map\x1B[0m (I:%d S:%d T:%d)" % (
-            self.wad.name, nrof_maps, nrof_monsters, nrof_monsters//nrof_maps,
-            self.counters.get("AP-ITEM", 0), self.counters.get("AP-SECRET", 0),
-            self.counters.get("AP-CHECK", 0)))
+        print("\x1B[1m%32s: %2d maps, %4d monsters; %4d monsters/map\x1B[0m" % (
+            self.wad.name, nrof_maps, nrof_monsters, nrof_monsters//nrof_maps))
 
         for sknum, skname in [(3, "UV")]: # [(1, "HNTR"), (2, "HMP"), (3, "UV")]:
             pool = self.wad.stats_pool(sknum)
