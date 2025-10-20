@@ -6,8 +6,10 @@ on 0.7.x to the 0.6 release series.
 - New:
   - If you download the pk3 for your game from the web host, the client will
     read the connection address from it and connect to AP automatically.
+  - Spoiler log now includes information about which WAD was actually selected,
+    not just which WADs you listed as selectable in the yaml.
 - Changed:
-  - Adjustments to icon guessing rules
+  - Adjustments to icon guessing rules.
 - Fix:
   - Add `map07special` flag to Master Levels for Doom II MAP20, since it was
     originally designed to go in the MAP07 slot and relies on that behaviour.
@@ -15,6 +17,8 @@ on 0.7.x to the 0.6 release series.
   - Two unreachable locations in Going Down Turbo are now properly marked as such.
   - AP client now stores found locations and re-sends them later if the connection
     to the host is interrupted.
+  - Client initialization no longer fails if UT is installed and you are playing
+    a wad that doesn't have any overlap with the default set of starting levels.
 
 # 0.6.5
 

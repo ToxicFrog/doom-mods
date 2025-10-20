@@ -109,6 +109,7 @@ class GZDoomWorld(World):
     web = GZDoomWeb()
     required_client_version = (0, 5, 1)
     included_item_categories = {}
+    mod_version = resources.files(__package__).joinpath('VERSION').read_text().strip()
 
     # Info fetched from gzDoom; contains item/location ID mappings etc.
     wad_logic: DoomWad
@@ -351,6 +352,11 @@ class GZDoomWorld(World):
                 'selected_wad': [self.wad_logic.name]
             }
 
+    def write_spoiler_header(self, fd):
+        fd.write(f'Random WAD selected:             {self.wad_logic.name}\n')
+        fd.write(f'MAPINFO generation:              {not self.options.pretuning_mode}\n')
+        fd.write(f'apworld version code:            {self.mod_version}\n')
+
     # Called by UT on connection. In UT mode all configuration will come from
     # slot_data rather than via the YAML.
     @staticmethod
@@ -404,13 +410,11 @@ class GZDoomWorld(World):
         def escape(name: str) -> str:
             return name.replace('\\', '\\\\').replace('"', '\\"')
 
-        mod_version = resources.files(__package__).joinpath('VERSION').read_text().strip()
-
         data = {
             "singleplayer": self.multiworld.players == 1,
             "pretuning": self.options.pretuning_mode.value,
             "seed": self.multiworld.seed_name,
-            "mod_version": mod_version,
+            "mod_version": self.mod_version,
             "player": self.multiworld.player_name[self.player],
             "slot_number": self.player,
             "spawn_filter": self.spawn_filter,
@@ -453,4 +457,4 @@ class GZDoomWorld(World):
             zip.writestr("archipelago.json", env.get_template("manifest.jinja").render(**data))
             zip.writestr("ZSCRIPT", env.get_template("zscript.jinja").render(**data))
             zip.writestr("MAPINFO", env.get_template("mapinfo.jinja").render(**data))
-            zip.writestr("VERSION", mod_version)
+            zip.writestr("VERSION", self.mod_version)
