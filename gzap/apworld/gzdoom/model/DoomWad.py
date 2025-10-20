@@ -103,6 +103,9 @@ class DoomWad:
     def item(self, name: str) -> DoomItem:
         return self.items_by_name[name]
 
+    def placeholder_item(self) -> DoomItem:
+        return self.items_by_name['Health']
+
     def is_doom(self) -> bool:
         types = {i.typename for i in self.items()}
         return (
@@ -142,15 +145,15 @@ class DoomWad:
         self.register_item(None,
             DoomItem(map=None, category="small-health", typename="Health", tag="Health"))
         access_token = self.register_item(None,
-            DoomItem(map=map.map, category="token", typename="GZAP_LevelAccess", tag="Level Access"))
+            DoomItem(map=map.map, category="token-ap_level", typename="GZAP_LevelAccess", tag="Level Access"))
         map.add_loose_item(access_token.name())
 
         automap_token = self.register_item(None,
-            DoomItem(map=map.map, category="token", typename="GZAP_Automap", tag="Automap"))
+            DoomItem(map=map.map, category="token-ap_map", typename="GZAP_Automap", tag="Automap"))
         map.add_loose_item(automap_token.name())
 
         clear_token = self.register_item(None,
-            DoomItem(map=map.map, category="token", typename="", tag="Level Clear"))
+            DoomItem(map=map.map, category="token-ap_victory", typename="", tag="Level Clear"))
         map_exit = DoomLocation(self, map=map.map, item=clear_token, secret=False, json=None)
         # TODO: there should be a better way of overriding location names
         map_exit.item_name = "Exit"

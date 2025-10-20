@@ -235,11 +235,6 @@ class GZDoomWorld(World):
         placed = set()
 
         for map in self.maps:
-            if self.options.start_with_all_maps:
-                item = self.create_item(map.automap_name())
-                self.multiworld.push_precollected(item)
-                self.pool.adjust_item(item.name, -1)
-
             if self.is_starting_map(map.map):
                 for name in map.starting_items(self.options):
                     item = self.create_item(name)
@@ -253,30 +248,27 @@ class GZDoomWorld(World):
                 connecting_region=region,
                 name=f"{map.map}",
                 rule=rule)
+
             for loc in self.pool.locations_in_map(map.map):
                 assert loc.name() not in placed, f"Location {loc.name()} was already placed but we tried to place it again!"
                 placed.add(loc.name())
                 location = GZDoomLocation(self, loc, region)
-                if self.options.pretuning_mode:
-                    if loc.orig_item:
-                        location.place_locked_item(self.create_item(loc.orig_item.name()))
-                    elif loc.item:
-                        location.place_locked_item(self.create_item(loc.item.name()))
-                    else:
-                        # Some synthetic locations, like secret sectors, don't have
-                        # any items associated with them.
-                        location.place_locked_item(self.create_item("Health"))
-                elif loc.unreachable:
-                    location.place_locked_item(self.create_item("Health"))
+                # Believed-to-be-unreachable locations get a generic health item.
+                if loc.unreachable:
+                    location.place_locked_item(self.create_item('Health'))
                 elif loc.item:
                     location.place_locked_item(self.create_item(loc.item.name()))
-                    self.pool.adjust_item(loc.item.name(), -1)
                 else:
+                    # No preexisting item here, so increment the count for how
+                    # many we'll need from the pool.
                     self.location_count += 1
                 region.locations.append(location)
 
 
     def create_items(self) -> None:
+        for item in self.pool.starting_item_counts.elements():
+            self.multiworld.push_precollected(self.create_item(item))
+
         if self.options.pretuning_mode:
             # All locations have locked items in them, so there's no need to add
             # anything to the item pool.
@@ -286,28 +278,26 @@ class GZDoomWorld(World):
         main_items = self.pool.progression_items() | self.pool.useful_items()
         filler_items = self.pool.filler_items()
 
-        for item,count in main_items.items():
-            # if count > 0:
-            #     print(f"Adding {count}× {item} to the pool.")
-            for _ in range(max(count, 0)):
-                self.multiworld.itempool.append(self.create_item(item))
-                slots_left -= 1
+        for item in main_items.elements():
+            self.multiworld.itempool.append(self.create_item(item))
+            slots_left -= 1
 
         # compare slots_left to total count of filler_items, then scale filler_items
         # based on the difference.
-        filler_count = sum(filler_items.values())
+        filler_count = filler_items.total()
         if filler_count == 0:
             print("Warning: no filler items in pool!")
             return
         scale = slots_left/filler_count
 
         for item,count in filler_items.items():
-            count = max(0, count)
-            for _ in range(round(count * scale)):
-                if slots_left <= 0:
-                    break
-                self.multiworld.itempool.append(self.create_item(item))
-                slots_left -= 1
+            filler_items[item] = round(count * scale)
+
+        for item in filler_items.elements():
+            if slots_left <= 0:
+                break
+            self.multiworld.itempool.append(self.create_item(item))
+            slots_left -= 1
 
         # If rounding resulted in some empty slots, pick some extras from the pool
         # to fill them.

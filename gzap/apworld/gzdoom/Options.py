@@ -22,7 +22,7 @@
 
 from math import ceil,floor
 
-from Options import PerGameCommonOptions, Toggle, DeathLink, StartInventoryPool, OptionSet, NamedRange, Range, OptionDict, OptionList
+from Options import PerGameCommonOptions, Toggle, DeathLink, StartInventoryPool, OptionSet, NamedRange, Range, OptionDict, OptionList, OptionError
 from dataclasses import dataclass
 
 from . import model
@@ -175,31 +175,27 @@ class IncludedItemCategories(OptionList):
     Which item categories to include in randomization. This controls both which
     items are replaced with checks, and what the item pool contains.
 
-    Keys and weapons are always included and cannot be controlled with this
-    option. You must enable at least one category here or generation is likely
-    to fail.
+    Each entry has the format 'categories:percent'. You can use 'all' or 'none'
+    as aliases for '100' or '0'. See doc/glossary.md for an explanation of
+    what item categories are available. Categories can be combined using '-',
+    e.g. 'secret-health' means all health items that are in secrets.
 
-    This option is a list of strings, where each entry has the format
-    "category:proportion". A proportion of 0.0 means that category is excluded,
-    1.0 means all items/locations in it are included, and values in between
-    randomly select a subset of that category to include.
+    For each location or item, entries are checked *in order* and the first entry
+    that matches is used. A category of "*" matches everything. Items or locations
+    that don't match any entry are excluded by default.
 
-    You can combine categories with `-`, e.g. `big-health` means all items that
-    are both `health` and `big`.
+    You can also use two special values in place of a percentage:
 
-    Entries are evaluated top to bottom and the first matching one applies, so
-    this will ignore small health items and include 50% of other health items:
+      'vanilla'
+      All items in this category will be "randomized" into their vanilla locations.
+      Use this instead of "none" if you want to play with non-randomized keys or
+      weapons.
 
-        small-health:0.0
-        health:0.5
-
-    While this will include 50% of all health items including small health:
-
-        health:0.5
-        small-health:0.0
-
-    See `glossary.md` for a description of the different categories and which
-    items they cover.
+      'start'
+      All items in this category will be placed in your starting inventory instead
+      of in the item pool. Use "key:start", "weapon:start", "ap_map:start", or
+      "ap_level:start" to start with all keys, weapons, maps, or level accesses,
+      respectively.
 
     Note that the default settings exclude all small and medium items and all
     Heretic tools. Turning on medium items tends to more than double the number
@@ -209,28 +205,63 @@ class IncludedItemCategories(OptionList):
     """
     display_name = "Included item/location categories"
     default = [
-        'small:0.0',
-        'medium:0.0',
-        'secret-sector:1.0',
-        'big:1.0',
-        'powerup:1.0',
-        'map:1.0',
+        'big:all',
+        'medium:none',
+        'small:none',
+        'ap_level:all',
+        'ap_map:all',
+        'key:all',
+        'weapon:all',
+        'map:all',
+        'tool:none'
+        'secret-sector:all',
+        'powerup:all',
     ]
 
-    def actual_value(self):
-        return ['weapon:1.0', 'key:1.0', 'token:1.0'] + self.value
+    def verify(self, world, player_name, plando_options):
+        super(OptionList, self).verify(world, player_name, plando_options)
+        self.ratios = {}
+        for config in self.actual_value():
+            key,ratio = config.split(':')
+            if key in self.ratios:
+                raise OptionError(f'Duplicate entry {key} in included_item_categories')
+            self.ratios[key] = self.ratio_value(ratio)
 
-    def all_ratios(self):
-        return {
-            config.split(':')[0]: float(config.split(':')[1])
-            for config in self.actual_value()
-        }
+        for key in ['ap_level', 'ap_map']:
+            ratio = self.ratios.get(key, '(missing)')
+            if ratio not in {1.0, 'vanilla', 'start'}:
+                raise OptionError(f'Entry {key} has invalid setting {ratio}; this category only permits "all" or "start".')
+        for key in ['key', 'weapon']:
+            ratio = self.ratios.get(key, '(missing)')
+            if ratio not in {1.0, 'vanilla', 'start'}:
+                raise OptionError(f'Entry {key} has invalid setting {ratio}; this category only permits "all", "vanilla", or "start".')
+
+    def actual_value(self):
+        return self.value + ['token:all']
+
+    def ratio_value(self, string):
+        if string == 'all':
+            return 1.0
+        elif string == 'none':
+            return 0.0
+        elif string in {'vanilla', 'start'}:
+            return string
+        else:
+            return int(string)/100.0
+
+    def ratio_for_bucket(self, bucket):
+        if not bucket:
+            return 0.0
+        return self.ratios[bucket]
+
+    def find_ratio(self, loc):
+        return self.ratio_for_bucket(self.find_bucket(loc))
 
     def find_bucket(self, loc):
         for config in self.actual_value():
             name = config.split(':')[0]
             cats = frozenset(name.split('-'))
-            if loc.categories >= cats:
+            if name == '*' or loc.categories >= cats:
                 return name
         return None
 

@@ -32,35 +32,77 @@ class DoomPool:
     # the settings in the yaml. These are the locations that will go in the AP
     # location pool, and the AP item pool will be based on (but not necessarily
     # identical to) the items from these locations.
+    # Locations with vanilla placement forced will have their .item field set
+    # accordingly.
     locations: List["DoomLocation"] = None
     # All items in the pool, indexed by name.
     item_counts: Counter[str] = None
+    # All starting inventory items, indexed by name.
+    starting_item_counts: Counter[str] = None
     wad = None
 
     def __init__(self, wad, locations, world):
         self.wad = wad
-        self.locations = self.select_locations(locations, world)
-        self.item_counts = self.prepare_item_counts(world)
+        self.locations = []
+        self.vanilla_locations = []
+        self.item_counts = Counter()
+        self.starting_item_counts = Counter()
+        self.select_locations(locations, world)
+        self.finalize_item_counts(world)
+
+    def add_items_to_pool(self, counter, locations):
+        for loc in (loc for loc in locations if loc.orig_item):
+            counter[loc.orig_item.name()] += 1
 
     def select_locations(self, all_locations, world):
         '''
-        Given a set of locations covering the entire wad, choose a subset of those
-        locations based on the yaml settings.
+        Given all the locations in the wad, choose which locations will actually
+        be randomized based on yaml settings. Locations are sorted into normal
+        and forced-vanilla locations. Items are added to the item pool and,
+        optionally, to the starting inventory pool.
         '''
         if world is None:
-            return [loc for loc in all_locations if loc.is_default_enabled()]
+            self.locations = [loc for loc in all_locations if loc.is_default_enabled()]
+            self.add_items_to_pool(self.item_counts, self.locations)
+            return
 
         buckets = {}
         for loc in all_locations:
             bucket = world.options.included_item_categories.find_bucket(loc)
             buckets.setdefault(bucket, []).append(loc)
 
-        selected_locations = []
-        ratios = world.options.included_item_categories.all_ratios()
         for bucket,locs in buckets.items():
-            ratio = ratios[bucket]
+            ratio = world.options.included_item_categories.ratio_for_bucket(bucket)
+            print(f'Considering bucket {bucket} with {len(locs)} locations and configured ratio {ratio}')
+            if world.options.pretuning_mode:
+                ratio = 'vanilla'
+
             if ratio == 0:
+                print('Skipping bucket', bucket)
                 continue
+
+            if ratio == 'vanilla':
+                # Locations forced to hold their vanilla items. We add these
+                # to a separate pool so the item/location placement code in
+                # the GZDoomWorld knows what to do with them later.
+                print(f'Bucket {bucket} has vanilla items forced.')
+                for loc in locs:
+                    if loc.orig_item:
+                        loc.item = loc.orig_item
+                    elif world.options.pretuning_mode:
+                        loc.item = self.wad.placeholder_item()
+                self.locations.extend(locs)
+                continue
+
+            if ratio == 'start':
+                # Locations that should have their items moved to the player's
+                # starting inventory (and the locations themselves acting as
+                # normal checks). We record these in the starting item pool *but
+                # also* record the items and locations in the main pool; we do
+                # it this way so that pool limits get applied properly.
+                print(f'Adding bucket {bucket} to starting inventory.')
+                self.add_items_to_pool(self.starting_item_counts, locs)
+                ratio = 1.0
 
             if hasattr(world.multiworld, "generation_is_fake"):
                 # Universal Tracker support. If UT is generating, include all
@@ -68,42 +110,46 @@ class DoomPool:
                 # were or not.
                 ratio = 1.0
 
-            selected_locations.extend(world.random.sample(locs, ceil(len(locs)*ratio)))
-        return selected_locations
+            # Select a random subset of the locations in this bucket, put the
+            # locations themselves in the location pool and the items contained
+            # there in the item pool.
+            selected_locs = world.random.sample(locs, ceil(len(locs)*ratio))
+            print(f'Selecting {len(selected_locs)} from {bucket} with ratio {ratio}')
+            self.locations.extend(selected_locs)
+            self.add_items_to_pool(self.item_counts, selected_locs)
 
-    def prepare_item_counts(self, world):
+    def finalize_item_counts(self, world):
         '''
-        Fill the item pool. This is initially based on the contents of the
-        location pool, but it can also have "loose" items not sourced from any
-        location (like level access tokens) added to it, and individual item
-        definitions can also set lower and upper bounds on how many of that item
-        can be in the pool.
+        Do final tidying of the item pool. This means adding items to it that
+        don't come from locations (like access and victory tokens), applying
+        pool limits, and then removing starting items from the pool so that they
+        exist only in the starting-item pool.
         '''
-        counts = Counter()
-        for loc in self.locations:
-            item = loc.orig_item
-            if item is None:
-                continue
-            counts[item.name()] += 1
-
         # Not generating anything, so we skip anything that depends on settings.
         if world is None:
-            return counts
+            return
 
-        # Get the 'loose items', like access tokens, from each map, and insert
-        # them into the pool.
+        # Add all non-location-based items to the pool based on which maps were
+        # selected.
         for map in world.maps:
             for item,count in map.loose_items.items():
-                counts[item] += count
+                ratio = world.options.included_item_categories.find_ratio(self.wad.item(item))
+                self.item_counts[item] += count
+                if ratio == 'start':
+                    self.starting_item_counts[item] += count
 
         # Apply item lower/upper bounds.
         for item in self.wad.items():
             (lower,upper) = item.pool_limits(world)
-            counts[item.name()] = max(lower, min(counts[item.name()], upper))
-            # if counts[item.name()] != count:
-            #     print(f"Updating count of {item.name()} from {count} to {counts[item.name()]}")
+            self.item_counts[item.name()] = max(lower, min(self.item_counts[item.name()], upper))
 
-        return counts
+        # Withdraw starting inventory from the pool.
+        for item,count in self.starting_item_counts.items():
+            if count <= self.item_counts[item]:
+                self.item_counts[item] -= count
+            else:
+                self.starting_item_counts[item] = self.item_counts[item]
+                self.item_counts[item] = 0
 
     def adjust_item(self, item, count):
         self.item_counts[item] = self.item_counts.get(item, 0) + count
@@ -118,22 +164,22 @@ class DoomPool:
         return [self.wad.item(name) for name in self.item_counts.keys()]
 
     def progression_items(self):
-        return {
+        return Counter({
             name: count
             for name,count in self.item_counts.items()
             if self.wad.item(name).is_progression()
-        }
+        })
 
     def useful_items(self):
-        return {
+        return Counter({
             name: count
             for name,count in self.item_counts.items()
             if self.wad.item(name).is_useful()
-        }
+        })
 
     def filler_items(self):
-        return {
+        return Counter({
             name: count
             for name,count in self.item_counts.items()
             if self.wad.item(name).is_filler()
-        }
+        })
