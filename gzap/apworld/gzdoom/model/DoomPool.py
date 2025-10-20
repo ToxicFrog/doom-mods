@@ -39,6 +39,8 @@ class DoomPool:
     item_counts: Counter[str] = None
     # All starting inventory items, indexed by name.
     starting_item_counts: Counter[str] = None
+    # Items forced to vanilla locations that should be removed from the pool.
+    vanilla_item_counts: Counter[str]
     wad = None
 
     def __init__(self, wad, locations, world):
@@ -47,6 +49,7 @@ class DoomPool:
         self.vanilla_locations = []
         self.item_counts = Counter()
         self.starting_item_counts = Counter()
+        self.vanilla_item_counts = Counter()
         self.select_locations(locations, world)
         self.finalize_item_counts(world)
 
@@ -89,6 +92,7 @@ class DoomPool:
                 for loc in locs:
                     if loc.orig_item:
                         loc.item = loc.orig_item
+                        self.vanilla_item_counts[loc.item.name()] += 1
                     elif world.options.pretuning_mode:
                         loc.item = self.wad.placeholder_item()
                 self.locations.extend(locs)
@@ -143,7 +147,12 @@ class DoomPool:
             (lower,upper) = item.pool_limits(world)
             self.item_counts[item.name()] = max(lower, min(self.item_counts[item.name()], upper))
 
-        # Withdraw starting inventory from the pool.
+        # Withdraw starting inventory and vanilla forcing from the pool.
+        # We do both here because otherwise we end up with an issue where (e.g.)
+        # vanilla-forced keys still have min=1 in the pool, so you get two copies
+        # of each key, one at the vanilla location and one random.
+        for item,count in self.vanilla_item_counts.items():
+            self.item_counts[item] -= count
         for item,count in self.starting_item_counts.items():
             if count <= self.item_counts[item]:
                 self.item_counts[item] -= count
