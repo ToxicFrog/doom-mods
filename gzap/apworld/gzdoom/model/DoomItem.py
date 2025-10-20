@@ -68,11 +68,11 @@ class DoomItem:
         # clean this up some and base these decisions entirely on the categories
         # and not on the typename, to let us have a "map token" distinct from
         # "win token" etc.
-        if self.typename == "GZAP_Automap" and self.has_category('token'):
+        if self.has_category('ap_map'):
             return ItemClassification.useful
         elif self.has_category('key', 'token', 'weapon'):
             return ItemClassification.progression
-        elif self.has_category('map', 'upgrade'):
+        elif self.has_category('upgrade'):
             return ItemClassification.useful
         else:
             return ItemClassification.filler
@@ -101,7 +101,7 @@ class DoomItem:
 
         # Allmaps are excluded from the pool. The randomizer will add map tokens
         # to the pool (or not) depending on settings.
-        if self.has_category('map'):
+        if self.has_category('maprevealer'):
             return (0,0)
 
         # Weapons have an upper bound that depends on settings.

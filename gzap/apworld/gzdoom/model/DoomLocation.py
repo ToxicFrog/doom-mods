@@ -108,7 +108,7 @@ class DoomLocation:
         return self.categories & frozenset(args)
 
     def is_default_enabled(self) -> bool:
-        return self.has_category('map', 'weapon', 'key', 'token', 'powerup', 'big', 'sector')
+        return self.has_category('weapon', 'key', 'token', 'powerup', 'big', 'sector')
 
     def tune_keys(self, new_keyset: FrozenSet[str]):
         # If this location was previously incorrectly marked unreachable,

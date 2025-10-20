@@ -151,7 +151,7 @@ class ::ScannedItem : ::ScannedLocation {
     } else if (thing is "BackpackItem") {
       return "big-ammo";
     } else if (thing is "MapRevealer") {
-      return "map";
+      return "powerup-maprevealer";
     } else if (thing is "PowerupGiver") {
       return "powerup";
     } else if (thing is "BasicArmorPickup") {
