@@ -60,6 +60,7 @@ current list of categories used by the wad scanner is:
 
 - `key`: keycards, skulls, etc; specific to a single level
 - `weapon`: any sort of weapon
+- `ap_map`: Archipelago automaps (grant map view + check information)
 - `map`: automaps
 - `powerup`: time-limited powerups (e.g. radsuits)
 - `health`: anything that restores health

@@ -193,9 +193,8 @@ class IncludedItemCategories(OptionList):
 
       'start'
       All items in this category will be placed in your starting inventory instead
-      of in the item pool. Use "key:start", "weapon:start", "ap_map:start", or
-      "ap_level:start" to start with all keys, weapons, maps, or level accesses,
-      respectively.
+      of in the item pool. Use "key:start", "weapon:start", or "ap_map:start" to
+      start with all keys, weapons, or maps, respectively.
 
     Note that the default settings exclude all small and medium items and all
     Heretic tools. Turning on medium items tends to more than double the number
@@ -208,7 +207,6 @@ class IncludedItemCategories(OptionList):
         'big:all',
         'medium:none',
         'small:none',
-        'ap_level:all',
         'ap_map:all',
         'key:all',
         'weapon:all',
@@ -227,7 +225,7 @@ class IncludedItemCategories(OptionList):
                 raise OptionError(f'Duplicate entry {key} in included_item_categories')
             self.ratios[key] = self.ratio_value(ratio)
 
-        for key in ['ap_level', 'ap_map']:
+        for key in ['ap_map']:
             ratio = self.ratios.get(key, '(missing)')
             if ratio not in {1.0, 'vanilla', 'start'}:
                 raise OptionError(f'Entry {key} has invalid setting {ratio}; this category only permits "all" or "start".')
@@ -240,7 +238,11 @@ class IncludedItemCategories(OptionList):
         self.all_keys_are_vanilla = self.ratios['key'] == 'vanilla'
 
     def actual_value(self):
-        return self.value + ['token:all']
+        # Player is not allowed to override these parts. Level accesses must
+        # always be in the pool -- starting_levels will handle removing them
+        # if needed -- and we need a fallback for other tokens if the user
+        # doesn't specify one.
+        return ['ap_level:all'] + self.value + ['token:all']
 
     def ratio_value(self, string):
         if string == 'all':
