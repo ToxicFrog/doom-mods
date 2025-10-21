@@ -1,0 +1,162 @@
+# Roadmap
+
+## gzArchipelago
+
+To release a new version:
+- update the version number in the CHANGELOG and Makefile
+- make
+- commit
+- tag and push the commit
+- make again to bake the release version number into the pk3
+- cut the release on github
+
+### next release
+
+(maybe wait for 0.7.1)
+- weapon ownership rework
+- display weapons in inventory even if you don't have them
+- let you hint weapons from the inventory screen
+- hints section in the inventory screen for hints pointing to the current level
+- ability to put custom location names in the logic file
+
+(soon?)
+- go through tuning files and remove or redo tuning that relies on legacy location
+  checks (i.e. ones without coordinates):
+  - Doom 2
+  - Scythe
+  - AOS
+  - CQ3
+  - Heretic
+  - FD2
+  - Doom
+  - 1000 Lines
+  - 1000 Lines 2
+  - Demonfear
+  - Mayhem 2048
+  and then drop legacy location support
+
+### general notes on scanner/logic changes
+
+This is mostly based on what needs to change to support Faithless, but it'll help
+a bunch of other games as well.
+
+We need to support logic dependencies on things other than keys. This is trickier.
+At the moment the keyset implicitly means "these keys scoped to the enclosing level".
+We probably need to promote scoped keys to their fully qualified names when generating
+the keyset, and do the same when processing tuning files. It's probably ok if we
+don't include weapons in tuning for now, but we should be able to express them
+in the logic file.
+
+We need event support. We need, for example, to be able to say that Faithless
+E1M4 and E1M5 aren't in logic until you can trigger the Garden Portal Activated
+event in the gardens, or that E1M1 Under Belltower isn't in logic until after you
+flip the switch for the portcullis (in addition to having the green key). This is
+something that apdoom has an easier time representing because it has subregions
+for its levels. This also means that we need a way to refer to events from AP-ITEM/
+AP-CHECK logic.
+
+Adventures of Square would benefit from being able to model weapons that are also
+keys; frozen notes that the Hellshell Launcher can be used to break certain walls
+that normally require TNT box manipulation. This also ties in with the need to
+be able to represent logic requirements that aren't just keys.
+
+### scanner
+
+- map exclusion UI
+- list maps to scan as ranges or globbing expressions?
+
+### generator
+
+- option to treat bosses as checks -- also needs scanner changes, highly vulnerable
+  to enemy-replacement mods
+  - could try placing the check in the boss's inventory, and on the ground where
+    the boss would be if we can't find it
+- alternate win conditions:
+  - find N victory tokens
+  - find N secrets
+- option to choose the X% of an item category game-wide rather than per-map
+- item tag support, allowing to treat "small", "health", and "secret" (e.g.) as
+  separate tags -- need to figure out how the YAML works for this
+
+### ingame
+
+- TT has a bunch of stuff that breaks it: single-use teleport lines, scripts that
+  take away your guns and keys on level start
+  - we can probably be better about keeping the player's key inventory up to
+    date, at least.
+  - can we do anything about weapons? remember how many the player has been
+    vended and re-vend them if they run out?
+
+- "gzap for apdoom users" man page
+- some hints received when playing in the weekly sync did not display on the
+  map screen
+- Ashes 2063 reports duplicate keys because of the way keys are handled -- you
+  pick up the BluePassCard and it gives you a BlueCard in your inventory, which
+  the AP runtime then identifies as a new key scoped to that level, which can be
+  a bit confusing but generally does not affect normal play.
+
+### Faithless
+
+This handles much more like a unified game than a collection of isolated levels.
+Each episode is an entire hubcluster and there's a lot of cross-map interaction,
+e.g. there's a whole area in E1M1 (including an exit to another map) that's only
+accessible after flipping a switch in E1M3 *and* picking up a key in E1M5.
+
+Logic is probably going to need to be updated with event handling, for stuff
+like the above -- it can't currently understand that even if you have the E1M5
+key you also need to trigger the E1M3 event.
+
+Entering a door can take you to a level you don't have the access code for yet.
+We can easily fix this just by checking for access on WorldLoaded and kicking
+the player back to the hub if they don't have it. We might even be able to do it
+on WorldUnloaded and redirect the transition, but probably not.
+
+AP doesn't distinguish between level entries. So if you have something like an
+area in map A that you can only reach initially by going through map B, it
+doesn't understand that you need map B access to get there. This can probably be
+dealt with using events again; put an AP-EVENT in map B with the requisite
+requirements and make that area in map A contingent on it. But it's tricky to
+get right.
+
+Leaving a level through an interlevel portal counts as "finishing the level",
+since it's a level exit to another level that isn't a save-restore. This means
+once you have access to a level you can "beat" it by just entering and
+immediately leaving through a portal.
+
+We might be able to do something by watching for line 74 (TELEPORT_NEWMAP) and
+75 (TELEPORT_ENDGAME) triggers, but if the developer used scripting all bets are
+off and we just see the WorldUnloaded event.
+
+### Golden Souls
+
+Basic structure is one central hub map from which all other maps branch off. Access
+to these maps is gated based on number of Golden Souls or Big Coins found, with
+only map accessible initially.
+
+Each map contains weapons, ammo, health, small coins, enemies (which drop small coins),
+and one or more Golden Souls and Big Coins. Some levels contain red coins and all
+red coins must be collected to reveal the GS.
+
+For this we probably want to abandon access tokens entirely, or model them as-well-as
+golden souls. This means we also need a way to say "the requirements for entering
+map X are Y". It already has full persistence and a hub, so we don't need the
+generated MAPINFO or even, probably, the level select screen.
+
+Internally, we have a bunch of inventory items:
+Star_Soul - golden soul
+Big_Coin_Total, Big_Coin - incremented when you find a BC
+BigCoinsInMap - you get one of these when in a map that has BCs
+Token_BigCoinCounter - map-specific, gain one for each big coin
+RedCoinsInMap, Token_RedCoinCounter - as above but for red coins
+
+Initially progress is completely linear, with one level == one soul, and the next
+level needing N+1 souls to access. As you find secret levels and big coins, though,
+you can get ahead of the soul curve; secret levels contain one soul and no big coins.
+
+There are three secret levels that must be found via exits in other maps, and three
+more that require 12, 24, or 36 big coins to reach.
+
+At 8 souls, you unlock 4 more levels all at once.
+
+To reach the final boss, you need 15 souls; since there are only 12 "normal" levels,
+you also need to do at least three of the (secret hidden + secret bigcoin) levels.
