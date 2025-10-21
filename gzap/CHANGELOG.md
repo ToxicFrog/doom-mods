@@ -40,6 +40,8 @@ file and old tuning data from the apworld).
     hinting them from the level select screen, but unlike the level select it
     lets you choose which order to hint them in.)
   - Auto-release on exit can be made conditional on having all keys for the level.
+  - The inventory menu now lets you queue up multiple items and dispenses them
+    all at once when closed.
 - Changed:
   - Adjustments to icon guessing rules.
   - Tuning data is now loaded for a wad when generation starts, rather than on

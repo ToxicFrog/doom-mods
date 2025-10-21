@@ -262,6 +262,29 @@ class ::RandoState play {
     if (idx >= 0) UseItem(idx);
   }
 
+  void GrabItem(string name, int delta) {
+    let [idx,item] = FindItem(name);
+    if (idx < 0) return;
+    let grabbed = item.grabbed + delta;
+    if (grabbed > item.Remaining() || grabbed < 0) return;
+    item.grabbed = grabbed;
+  }
+
+  void CancelItemGrabs() {
+    for (int n = 0; n < self.items.Size(); ++n) {
+      self.items[n].grabbed = 0;
+    }
+  }
+
+  void CommitItemGrabs() {
+    for (int n = 0; n < self.items.Size(); ++n) {
+      while (items[n].grabbed > 0) {
+        items[n].grabbed--;
+        items[n].Replicate();
+      }
+    }
+  }
+
   bool dirty;
   void UpdatePlayerInventory() {
     if (!GetCurrentRegion()) return;

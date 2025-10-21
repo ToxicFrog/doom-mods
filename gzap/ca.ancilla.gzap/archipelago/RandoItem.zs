@@ -20,6 +20,8 @@ class ::RandoItem play {
   int vended;
   // Number received from randomizer
   int total;
+  // Number player wants to take out of the backpack.
+  int grabbed;
 
   static ::RandoItem Create(string typename) {
     Class<Actor> itype = typename;
@@ -70,7 +72,7 @@ class ::RandoItem play {
     return n;
   }
 
-  bool, int GetCustomLimit() {
+  bool, int GetCustomLimit() const {
     Array<string> patterns;
     ap_bank_custom.Split(patterns, " ", TOK_SKIPEMPTY);
     foreach (pattern : patterns) {
@@ -88,7 +90,7 @@ class ::RandoItem play {
     return false, 0;
   }
 
-  int GetLimit() {
+  int GetLimit() const {
     if (::PlayEventHandler.Get().IsPretuning()) return 0;
 
     let [custom, limit] = GetCustomLimit();

@@ -218,9 +218,6 @@ class ::PlayEventHandler : StaticEventHandler {
       }
       ::PerLevelHandler.Get().early_exit = true;
       level.ChangeLevel(info.MapName, 0, CHANGELEVEL_NOINTERMISSION, -1);
-    } else if (evt.name == "ap-use-item") {
-      let idx = evt.args[0];
-      apstate.UseItem(idx);
     } else if (evt.name.IndexOf("ap-use-item:") == 0) {
       let typename = evt.name.Mid(12);
       apstate.UseItemByName(typename);
@@ -279,6 +276,14 @@ class ::PlayEventHandler : StaticEventHandler {
     } else if (cmd.command == "ap-toggle-key") {
       string keytype = cmd.ReadString();
       apstate.ToggleKey(keytype);
+    } else if (cmd.command == "ap-inv-grab-commit") {
+      apstate.CommitItemGrabs();
+    } else if (cmd.command == "ap-inv-grab-cancel") {
+      apstate.CancelItemGrabs();
+    } else if (cmd.command == "ap-inv-grab-more") {
+      apstate.GrabItem(cmd.ReadString(), 1);
+    } else if (cmd.command == "ap-inv-grab-less") {
+      apstate.GrabItem(cmd.ReadString(), -1);
     }
   }
 }

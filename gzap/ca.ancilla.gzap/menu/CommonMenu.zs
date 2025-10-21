@@ -47,18 +47,13 @@ class ::KeyValueText : OptionMenuItem {
   }
 }
 
-class ::KeyValueNetevent : ::KeyValueText {
-  string command;
-  int index;
+class ::KeyValueSelectable : ::KeyValueText {
   uint idle_colour;
   uint hot_colour;
 
-  ::KeyValueNetevent Init(
-      string key, string value, string command_,
-      int index_, uint idle = Font.CR_DARKRED, uint hot = Font.CR_RED) {
+  ::KeyValueSelectable Init(
+      string key, string value, uint idle = Font.CR_DARKRED, uint hot = Font.CR_RED) {
     super.Init(key, value, idle);
-    command = command_;
-    index = index_;
     idle_colour = idle;
     hot_colour = hot;
     return self;
@@ -66,9 +61,27 @@ class ::KeyValueNetevent : ::KeyValueText {
 
   override bool Selectable() { return true; }
 
+  virtual int GetColour(bool selected) {
+    return selected ? self.hot_colour : self.idle_colour;
+  }
+
   override int Draw(OptionMenuDescriptor d, int y, int indent, bool selected) {
-    colour = selected ? hot_colour : idle_colour;
+    self.colour = GetColour(selected);
     return super.Draw(d, y, indent, selected);
+  }
+}
+
+class ::KeyValueNetevent : ::KeyValueSelectable {
+  string command;
+  int index;
+
+  ::KeyValueNetevent Init(
+      string key, string value, string command, int index,
+      uint idle = Font.CR_DARKRED, uint hot = Font.CR_RED) {
+    super.Init(key, value, idle, hot);
+    self.command = command;
+    self.index = index;
+    return self;
   }
 
   override bool MenuEvent(int key, bool fromController) {

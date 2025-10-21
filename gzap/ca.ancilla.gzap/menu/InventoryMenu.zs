@@ -27,20 +27,14 @@ class ::InventoryMenu : ::CommonMenu {
     let state = ::PlayEventHandler.GetState();
     for (int n = 0; n < state.items.Size(); ++n) {
       let item = state.items[n];
-      if (item.vended < item.total) {
-        // TODO: implement a new subtype for inventory menu items that permits
-        // asking to vend items without closing the menu.
-        PushKeyValueNetevent(item.tag, string.format("%d", item.Remaining()), "ap-use-item", n);
-        PushTooltip(string.format("Name: %s\nType: %s\nCategory: %s\nHeld/Found: %d/%d",
-          item.tag, item.typename, item.category, item.Remaining(), item.total));
-      }
+      if (item.GetLimit() == 0) continue;
+      let menu_item = new("::InventoryItem").Init(item);
+      mDesc.mItems.Push(menu_item);
+      menu_item.tt = PushTooltip(menu_item.FormatTooltip());
     }
 
     InitKeyDisplay();
-
-    if (mDesc.mSelectedItem >= mDesc.mItems.Size()) {
-      mDesc.mSelectedItem = -1;
-    }
+    mDesc.mSelectedItem = -1;
   }
 
   override void Ticker() {
@@ -83,17 +77,74 @@ class ::InventoryMenu : ::CommonMenu {
   }
 }
 
-class ::KeyToggle : ::KeyValueNetevent {
+class ::InventoryItem : ::KeyValueSelectable {
+  ::RandoItem item;
+  ::Tooltip tt;
+
+  ::InventoryItem Init(::RandoItem item) {
+    self.item = item;
+    super.Init(item.tag, FormatValue());
+    return self;
+  }
+
+  override void Ticker() {
+    self.value = FormatValue();
+    self.tt.text = FormatTooltip();
+    super.Ticker();
+  }
+
+  override int GetColour(bool selected) {
+    if (!self.Selectable()) return font.CR_BLACK;
+    return super.GetColour(selected);
+  }
+
+  string FormatValue() {
+    if (item.grabbed > 0) {
+      return string.format("%3d -> %d", item.Remaining() - item.grabbed, item.grabbed);
+    } else {
+      return string.format("%3d", item.Remaining());
+    }
+  }
+
+  string FormatTooltip() {
+    return string.format(
+      StringTable.Localize("$GZAP_MENU_INVENTORY_ITEM_TT"),
+      item.tag, item.typename, item.category, item.Remaining(), item.total);
+  }
+
+  override bool Selectable() { return item.Remaining() > 0; }
+
+  override bool MenuEvent(int key, bool fromController) {
+    if (key == Menu.MKey_Enter) {
+      EventHandler.SendNetworkCommand("ap-inv-grab-commit");
+      Menu.MenuSound("menu/choose");
+      Menu.GetCurrentMenu().Close();
+      return true;
+    } else if (key == Menu.MKey_Left) {
+      EventHandler.SendNetworkCommand("ap-inv-grab-less", NET_STRING, item.typename);
+      Menu.MenuSound("menu/change");
+      return true;
+    } else if (key == Menu.MKey_Right) {
+      EventHandler.SendNetworkCommand("ap-inv-grab-more", NET_STRING, item.typename);
+      Menu.MenuSound("menu/change");
+      return true;
+    } else if (key == Menu.MKey_Back) {
+      EventHandler.SendNetworkCommand("ap-inv-grab-cancel");
+      return super.MenuEvent(key, fromController);
+    }
+
+    return super.MenuEvent(key, fromController);
+  }
+}
+
+class ::KeyToggle : ::KeyValueSelectable {
   ::Region region;
   ::RandoKey key_info;
 
   ::KeyToggle Init(::Region region, ::RandoKey key_info) {
     self.region = region;
     self.key_info = key_info;
-    super.Init(
-      FormatKeyName(),
-      FormatKeyStatus(),
-      "", 0);
+    super.Init(FormatKeyName(), FormatKeyStatus());
     return self;
   }
 
