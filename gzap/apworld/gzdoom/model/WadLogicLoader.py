@@ -14,9 +14,17 @@ class WadDataLoader:
 
     def load_records(self, file):
         # print(f"Loading logic for {self.wad.name} from {file}")
+        buf = ''
         for idx,line in enumerate(file.read_text().splitlines()):
-            if not line.startswith("AP-"):
+            if not line.startswith("AP-") and not buf:
                 continue
+
+            if not line.endswith('}'):
+                buf += line +  '\n'
+                continue
+
+            line = buf + line
+            buf = ''
 
             try:
                 [evt, payload] = line.split(" ", 1)
