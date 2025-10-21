@@ -50,7 +50,7 @@ class ::ScannedItem : ::ScannedLocation {
   override void Output(string mapname) {
     string secret_str = "";
     if (secret) {
-      secret_str = string.format("\"secret\": %s,", ::Util.bool2str(secret));
+      secret_str = string.format("\"secret\": %s, ", ::Util.bool2str(secret));
     }
 
     ::Scanner.Output("ITEM", mapname, string.format(
