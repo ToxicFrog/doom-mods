@@ -57,15 +57,17 @@ class DoomLocation:
     parent = None  # The enclosing DoomWad
     orig_item = None
     disambiguation: str = None
+    custom_name: str = None
     skill: Set[int]
     unreachable: bool = False
     secret: bool = False
     sector: int = 0
 
-    def __init__(self, parent, map: str, item: DoomItem, secret: bool, json: str | None):
+    def __init__(self, parent, map: str, item: DoomItem, secret: bool, pos: dict | None, custom_name: str | None = None):
         self.keys = None
         self.parent = parent
         self.categories = frozenset(['secret']) if secret else frozenset()
+        self.custom_name = custom_name
         if item:
             # If created without an item it is the caller's responsibility to fill
             # in these fields post hoc.
@@ -74,8 +76,8 @@ class DoomLocation:
             self.item_name = item.tag
         self.skill = set()
         self.secret = secret
-        if json:
-            self.pos = DoomPosition(map=map, virtual=False, **json)
+        if pos:
+            self.pos = DoomPosition(map=map, virtual=False, **pos)
         else:
             self.pos = DoomPosition(map=map, virtual=True, x=0, y=0, z=0)
 
@@ -85,7 +87,7 @@ class DoomLocation:
     __repr__ = __str__
 
     def name(self) -> str:
-        name = f"{self.pos.map} - {self.item_name}"
+        name = f"{self.pos.map} - {self.custom_name or self.item_name}"
         if self.disambiguation:
             name += f" [{self.disambiguation}]"
         return name

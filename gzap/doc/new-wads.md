@@ -91,6 +91,17 @@ This repo contains a [commented example](../config/GZAPRC.iwads) containing a
 configuration for Heretic and Chex Quest; other files in that directory contain
 configurations for other megawads.
 
+### Custom location names
+
+You can define custom names for locations that are more descriptive than the
+default item-and-coordinate based ones, like "Stimpack in GreenArmor secret" or
+"Megasphere near blue key". To do this, find the `AP-ITEM` or `AP-SECRET` entry
+for the location you want to rename in the logic file, and add a `"name":` key
+to it. See the Doom 2 logic for an example.
+
+Names do not have to be unique; the randomizer will add a unique suffix if there
+are duplicate location names in the logic.
+
 ## Publishing your logic
 
 gzArchipelago can load your logic and tuning files from disk, as long as they're

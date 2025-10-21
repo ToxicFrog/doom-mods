@@ -154,7 +154,7 @@ class DoomWad:
 
         clear_token = self.register_item(None,
             DoomItem(map=map.map, category="token-ap_victory", typename="", tag="Level Clear"))
-        map_exit = DoomLocation(self, map=map.map, item=clear_token, secret=False, json=None)
+        map_exit = DoomLocation(self, map=map.map, item=clear_token, secret=False, pos=None)
         # TODO: there should be a better way of overriding location names
         map_exit.item_name = "Exit"
         map_exit.item = clear_token
@@ -174,12 +174,13 @@ class DoomWad:
         position = json.pop("position")
         skill = set(json.pop("skill", [1,2,3]))
         secret = json.pop("secret", False)
+        name = json.pop("name", None)
 
         # We add everything in the logic file to the pool. Not everything will
         # necessarily be used in randomization, but we need to do this at load
         # time, before we know what item categories the user has requested.
         item = self.register_item(map, DoomItem(**json))
-        self.new_location(map, item, secret, skill, position)
+        self.new_location(map, item, secret, skill, position, name)
 
     def register_item(self, map: str, item: DoomItem) -> DoomItem:
         assert not self.tuned, f"AP-ITEM found in tuning data for {self.name} -- make sure you don't have a logic file mixed in with the tuning."
@@ -212,7 +213,7 @@ class DoomWad:
                 all_items[item.name()] = item
         self.items_by_name = all_items
 
-    def new_location(self, map: str, item: DoomItem, secret: bool, skill: Set[int], json: Dict[str, str]) -> None:
+    def new_location(self, map: str, item: DoomItem, secret: bool, skill: Set[int], pos: Dict[str, int], name: str) -> None:
         """
         Add a new location to the location pool.
 
@@ -221,7 +222,7 @@ class DoomWad:
         all of their items are added to the pool but it's undefined which one the location is named
         after and inherits the item category from.
         """
-        location = DoomLocation(self, map, item, secret, json)
+        location = DoomLocation(self, map, item, secret, pos, name)
         self.register_location(location, skill)
 
     def register_location(self, location: DoomLocation, skill: Set[int]) -> None:
@@ -249,7 +250,7 @@ class DoomWad:
 
     def new_secret(self, json: Dict[str, Any]) -> None:
         assert not self.tuned, f"AP-SECRET found in tuning data for {self.name} -- make sure you don't have a logic file mixed in with the tuning."
-        location = DoomLocation(self, map=json['map'], item=None, secret=True, json=None)
+        location = DoomLocation(self, map=json['map'], item=None, secret=True, pos=None, custom_name=json.get('name', None))
         location.item_name = f"Secret {json['sector']}"
         location.categories = frozenset({'secret', 'sector'})
         location.sector = json['sector']
