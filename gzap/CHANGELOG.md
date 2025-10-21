@@ -43,6 +43,8 @@ file and old tuning data from the apworld).
   - The inventory menu now lets you queue up multiple items and dispenses them
     all at once when closed.
   - Logic files can now define custom names for locations.
+  - Logic and tuning files support multiline entries. If a line ends with `}` it
+    is considered the end of the entry.
 - Changed:
   - Adjustments to icon guessing rules.
   - Tuning data is now loaded for a wad when generation starts, rather than on
