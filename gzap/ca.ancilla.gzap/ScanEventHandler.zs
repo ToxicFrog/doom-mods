@@ -39,7 +39,7 @@ class ::ScanEventHandler : StaticEventHandler {
     if (timer > 2) {
       DEBUG("Timer expired, finalizing level");
       timer = 0;
-      scan_enabled = scanner.FinalizeLevel(ap_scan_recurse);
+      scan_enabled = scanner.FinalizeLevel(ap_scan_recurse, ap_scan_clusters);
       if (!scan_enabled) scanner.FinalizeScan();
     }
   }

@@ -39,15 +39,15 @@ There are a few ways we can treat level access in this sort of game, basically
 breaking down along three axes.
 
 **Per-episode vs. per-map.** Is each episode treated as a single giant level,
-with a single access card, or does each map in the episode have a separate
-access card?
+with a single access token, or does each map in the episode have a separate
+access token?
 
 **Shortcuts.** Is the player allowed to use the level select screen to warp to
 individual maps in the episode, or does it only permit warping to the first map
 of the episode?
 
-**Strict vs. relaxed.** If you don't have the access card for a level, are you allowed
-to access it via interlevel gates anyways?
+**Strict vs. relaxed.** If you don't have the access token for a level, are you
+allowed to access it via interlevel gates anyways?
 
 The "safest" option is per-map, no shortcuts, strict. Per-map gives us more
 spheres by completely excluding some items until we have the access token. No
@@ -114,7 +114,9 @@ that end, we introduce two new messages:
 Emitted the first time the player visits a new map. Contains the complete list
 of maps the player has entered at least once. If shortcuts are off (or if
 "improved shortcuts" is implemented) this is useful even outside of pretuning
-mode.
+mode, since it lets us map alternate but still valid routes -- e.g. locations in
+map A that are normally only reached via map B, but can also be reached
+directly if you get the green key early.
 
     AP-WEAPONS {map of weapon: count}
 

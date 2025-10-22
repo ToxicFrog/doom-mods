@@ -54,6 +54,19 @@ class ::Scanner play {
     return true;
   }
 
+  // Like EnqueueNext, but takes a cluster number and enqueues all maps in that
+  // cluster at the given rank.
+  void EnqueueCluster(int cluster, uint rank) {
+    // We do this in reverse so that they get pushed into the front of the queue
+    // in the same order they appear in the maplist, which makes the generated
+    // logic a bit easier to navigate.
+    for (int i = LevelInfo.GetLevelInfoCount()-1; i >= 0; --i) {
+      let info = LevelInfo.GetLevelInfo(i);
+      if (info.cluster != cluster) continue;
+      EnqueueNext(info.mapname, rank);
+    }
+  }
+
   // Like EnqueueLevel, but places it at the head of the queue, immediately behind
   // the current level, rather than at the end.
   void EnqueueNext(string mapname, uint rank) {
@@ -93,6 +106,8 @@ class ::Scanner play {
       // the scan.
       DEBUG("Changing to %s", nextmap.name);
       if (level.ClusterFlags & level.CLUSTER_HUB) {
+        // If it's a hubcluster level, blip us back to the GZAPHUB for a moment
+        // to reset its state.
         level.ChangeLevel("GZAPHUB", 0, CHANGELEVEL_NOINTERMISSION, nextmap.NextSkill());
       }
       level.ChangeLevel(nextmap.name, 0, CHANGELEVEL_NOINTERMISSION, nextmap.NextSkill());
@@ -121,7 +136,7 @@ class ::Scanner play {
   // It is responsible for ingesting level information not related to actors,
   // and populating the queue with other levels reachable from this one.
   // Returns true if scanning is continuing, false otherwise.
-  bool FinalizeLevel(bool recurse) {
+  bool FinalizeLevel(bool recurse, bool clusters) {
     DEBUG("FinalizeLevel: %d remaining", queued.Size());
     if (queued.Size() == 0) return false;
 
@@ -135,6 +150,10 @@ class ::Scanner play {
 
     nextmap.MarkDone();
     if (nextmap.IsScanned()) nextmap.CopyFromLevelLocals(level);
+
+    if (clusters && nextmap.hub > 0) {
+      EnqueueCluster(nextmap.hub, nextmap.rank);
+    }
 
     if (recurse && !nextmap.prune) {
       EnqueueLevelports(nextmap.rank + 1);

@@ -76,20 +76,22 @@ server bool ap_enable_deathlink = false;
 
 //// Scanner configuration.
 // These are not written to the save file or config file, since they're more
-// like commands than settings.
-// For most wads, you can just do something like:
-// ] ap_scan_levels "MAP01"
-// ] netevent ap-scan:start
+// like commands than settings. They can, however, be given wad-specific default
+// values in a GZAPRC lump.
+//
+// For wads without defaults, you can usually do something like this:
+//    ] ap_scan_levels "MAP01"
+//    ] netevent ap-scan:start
 // and it'll scan the entire wad. If it's broken into episodes, like Doom 1, you
 // might instead need something like:
-// ] ap_scan_levels "E1M1 E2M1 E3M1 E4M1"
-// ] netevent ap-scan:start
+//    ] ap_scan_levels "E1M1 E2M1 E3M1 E4M1"
+//    ] netevent ap-scan:start
 // If this is one of those wads where, e.g., there are five levels but they
 // continue on into the Doom 2 levels after the last one, you probably want to
 // turn off recursion:
-// ] ap_scan_recurse false
-// ] ap_scan_levels "MAP01 MAP02 MAP03 MAP04 MAP05"
-// ] netevent ap-scan:start
+//    ] ap_scan_recurse false
+//    ] ap_scan_levels "MAP01 MAP02 MAP03 MAP04 MAP05"
+//    ] netevent ap-scan:start
 
 // List of levels to scan. If ap_scan_recurse is set, these levels and all
 // levels reachable from them will be scanned. Otherwise, only these levels
@@ -102,11 +104,17 @@ nosave noarchive string ap_scan_prune = "";
 // If false, only levels listed in ap_scan_levels will be scanned. If true, any
 // level reachable by exits from those levels will be as well, recursively.
 // Caveats:
-// - level transitions using zscript or intermap teleport specials are not
-//   currently detected, only NextMap/NextSecretMap MAPINFO entries
+// - level transitions using zscript or ACS are not detected, nor are normal
+//   exits or levelports that start inactive and are activated later via scripts
 // - levels listed in NextSecretMap are considered reachable even if there is
 //   no secret exit in the level itself
 nosave noarchive bool ap_scan_recurse = true;
+
+// If true, scanning a map adds all other maps in the same cluster to the queue.
+// This is mainly useful for wads with scripted levelports where ap_scan_recurse
+// cannot find them but they share clusters with other maps that it can find.
+nosave noarchive bool ap_scan_clusters = false;
+
 // Mark one or more checks unreachable.
 // If set to 1, the next check you collect will be flagged.
 // If set to 2, all checks you collect until the level exit will be flagged,
