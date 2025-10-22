@@ -1,0 +1,8 @@
+#### 1000 Lines II ####
+require MAP01 a00288aaa7922e38c10d7642f55a9782;
+
+# 1KL2 doesn't replace the stock secret maps, but does leave references to them
+# in the MAPINFO, so exclude them.
+scanner {
+  skip MAP31 MAP32;
+}

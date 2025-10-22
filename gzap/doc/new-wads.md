@@ -87,9 +87,14 @@ reclassifying something from "tool" to "powerup"), exclude items from randomizat
 and include items that would not normally be included. It can also be used to add
 a different item to the item pool than what the scanner finds.
 
-This repo contains a [commented example](../config/GZAPRC.iwads) containing a
-configuration for Heretic and Chex Quest; other files in that directory contain
-configurations for other megawads.
+By including a `scanner { ... }` block, you can also set default values for the
+scanner configuration cvars, controlling which levels are scanned and which are
+ignored.
+
+This repo contains a [several examples](../config/) in the config directory.
+
+If you are a mapper, you can include a `GZAPRC` lump in your wad and it will be
+automatically detected and loaded by gzArchipelago.
 
 ### Custom location names
 
@@ -161,6 +166,17 @@ The files in `<AP dir>/gzdoom/tuning/` will be loaded automatically; to "bake it
 in" to the apworld, use the same procedure as adding a logic file, but put the
 files in the `gzdoom/tuning/` directory inside the apworld, rather than
 `gzdoom/logic/`.
+
+### Keys not detected by the scanner
+
+Some wads contain keys that are not visible at scan time, because they are
+spawned as enemy drops or via scripts. These will be not be added to the item
+pool, but when picked up normally, gzArchipelago will detect them and emit an
+appropriate `AP-KEY` message into the tuning file.
+
+Once you finish tuning, you must move these messages from the tuning file to the
+logic file; to function properly they *must* be in the main logic file, and
+failure to do so will prevent the apworld from initializing.
 
 ### Tuning without randomizing
 

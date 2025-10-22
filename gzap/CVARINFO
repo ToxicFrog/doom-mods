@@ -96,7 +96,7 @@ server bool ap_enable_deathlink = false;
 // List of levels to scan. If ap_scan_recurse is set, these levels and all
 // levels reachable from them will be scanned. Otherwise, only these levels
 // exactly will be. Space-separated.
-nosave noarchive string ap_scan_levels = "";
+nosave noarchive string ap_scan_levels = "E1M1 E2M1 E3M1 E4M1 E5M1 E6M1 MAP01";
 // List of levels to include in scan but skip in output. As above, space-separated.
 nosave noarchive string ap_scan_skip = "";
 // List of levels to not even scan.

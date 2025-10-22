@@ -10,6 +10,8 @@
 # This GZAPRC will be loaded only if the given map is present, and has the given
 # checksum. This can be used to make GZAPRCs specific to a certain megawad load
 # only if that megawad is also loaded.
+# You can specify multiple require lines, in which case the GZAPRC will be loaded
+# if any of them match.
 #
 #
 #     category <cat> : <list of classes> ;
@@ -38,6 +40,18 @@
 # whatever its actual type is. The check will be named after that type rather
 # than whatever was actually scanned, and the given type, not the original item,
 # will be added to the item pool.
+#
+#
+#     scanner {
+#       maps = list of maps to start scanning at;
+#       skip = list of maps to skip;
+#       prune = list of maps to prune;
+#       recurse = true|false;
+#       clusters = true|false;
+#     }
+#
+# Set defaults for the scanner.
+# These are the same as the ap_scan_* CVARs without the ap_scan_ prefix.
 
 #### General Doom/Heretic/Chex item categories ####
 # GZAP has built in heuristics for item categorization: health and armour is

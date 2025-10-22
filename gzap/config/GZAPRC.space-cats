@@ -1,6 +1,12 @@
 #### Space Cats Saga ####
 require MAP33 1506ec8dcc3800486866f010f790fb22;
 
+scanner {
+  levels MAP33 MAP45 MAP60 MAP63 MAP69;
+  prune MAP31 MAP32;
+  recurse true;
+}
+
 # The various SpaceCat actors are secrets, and spawn something else when found
 # and petted.
 # N.b. the weapon spawns (SC3 and SC4) may turn into ammo instead on some levels,
