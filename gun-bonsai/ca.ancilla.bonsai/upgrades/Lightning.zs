@@ -652,7 +652,7 @@ class ::ChainLightning::VFX : Actor {
     RenderStyle "Add";
     Alpha 0.7;
     Scale 0.2;
-    +NOBLOCKMAP +NOGRAVITY;
+    +NOBLOCKMAP +NOGRAVITY +NOINTERACTION;
   }
 
   override void PostBeginPlay() {
@@ -671,7 +671,7 @@ class ::Thunderbolt::VFX : Actor {
     RenderStyle "Add";
     Alpha 1.0;
     Scale 2.0;
-    +NOBLOCKMAP +NOGRAVITY;
+    +NOBLOCKMAP +NOGRAVITY +NOINTERACTION;
   }
 
   override void PostBeginPlay() {
@@ -692,7 +692,7 @@ class ::Revivification::VFX : Actor {
     RenderStyle "Add";
     Alpha 1.0;
     Scale 0.3;
-    +NOBLOCKMAP +NOGRAVITY;
+    +NOBLOCKMAP +NOGRAVITY +NOINTERACTION;
   }
 
   override void PostBeginPlay() {
