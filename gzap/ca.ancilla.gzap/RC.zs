@@ -20,7 +20,7 @@ class ::RC : Object play {
       let tmp = parser.Parse(wads.ReadLump(lump));
       if (!tmp) {
         console.printf("\c[RED][AP] Error loading config file %s#%d.", wads.GetLumpFullName(lump), lump);
-      } else if (tmp.should_skip) {
+      } else if (tmp.has_requirements && tmp.should_skip) {
         console.printf("[AP] Skipping config file %s#%d (wrong megawad).", wads.GetLumpFullName(lump), lump);
       } else {
         console.printf("[AP] Loaded config file %s#%d.", wads.GetLumpFullName(lump), lump);
@@ -81,10 +81,15 @@ class ::RC : Object play {
     return val, ok;
   }
 
+  bool has_requirements;
   bool should_skip;
   void CheckRequiredMap(string mapname, string checksum) {
-    if (LevelInfo.MapChecksum(mapname) != checksum) {
+    if (!has_requirements) {
+      self.has_requirements = true;
       self.should_skip = true;
+    }
+    if (LevelInfo.MapChecksum(mapname) == checksum) {
+      self.should_skip = false;
     }
   }
 }
