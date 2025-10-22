@@ -1,0 +1,9 @@
+#### Faithless Trilogy configuration ####
+require E1M1 7ecc53cfff9c9be6eeee4fb2726480f0;
+
+scanner {
+  levels E1M1 E2M1 E3M1;
+  recurse false;
+  clusters true;
+  logic_flags use_hub_logic;
+}
