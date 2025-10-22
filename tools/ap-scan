@@ -13,7 +13,7 @@ gzdoom \
   -iwad /ancilla/installs/games/PC/DOOM/IWAD/${IWAD} \
   -file release/gzArchipelago-latest.pk3 \
   "$@" \
-  -warp 1 \
+  -warp 1 -nomusic \
   +"logfile \"$TMPFILE\"; disableautosave 1; wipetype 0; wait 1; noclip; ap_scan_levels \"${MAPS}\"; ap_scan_skip \"${SKIP}\"; ap_scan_prune \"${PRUNE}\"; netevent ap-scan:start"
 
 sed -E -i -n '/^AP-/ p;' "$TMPFILE"
