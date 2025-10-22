@@ -49,8 +49,10 @@ class DoomWad:
     # same position contains items with different underlying type but same display
     # name on different difficulties.
     locations_by_name: Dict[str,List[DoomLocation]] = field(default_factory=dict)
-    first_map: DoomMap | None = None
+    # Tuning data is being loaded, or has been loaded, for this wad.
     tuned: bool = False
+    # Flags passed through from the tuning file
+    flags: Set[str] = field(default_factory=frozenset)
 
     def __post_init__(self):
         self.locations_by_pos = {
@@ -58,6 +60,9 @@ class DoomWad:
             2: {},
             3: {},
         }
+
+    def has_flag(self, flag):
+        return flag in self.flags
 
     def locations_for_stats(self, skill: int) -> List[DoomLocation]:
         skill = min(3, max(1, skill)) # clamp ITYTD->HNTR and N!->UV
@@ -134,9 +139,6 @@ class DoomWad:
 
         self.maps[map] = DoomMap(**json)
         self.register_map_tokens(self.maps[map])
-
-        if self.first_map is None:
-            self.first_map = self.maps[map]
 
     def register_map_tokens(self, map: DoomMap):
         # Register 'Health' on all maps since it's used as a placeholder in

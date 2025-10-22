@@ -18,6 +18,19 @@ class ::Scanner play {
     ::IPC.Send(type, string.format("{ \"map\": \"%s\", %s }", map, payload));
   }
 
+  void Init() {
+    ::Util.printf("$GZAP_SCAN_STARTING");
+
+    if (ap_scan_logic_flags == "") {
+      // TODO: perhaps additional info here like wad name?
+      ::IPC.Send("SCAN", "{ \"flags\": [] }");
+    } else {
+      string buf = ap_scan_logic_flags;
+      buf.Replace(" ", "\", \"");
+      ::IPC.Send("SCAN", string.format("{ \"flags\": [\"%s\"] }", buf));
+    }
+  }
+
   int QueueSize() {
     return self.queued.Size();
   }

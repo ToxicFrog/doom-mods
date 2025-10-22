@@ -101,6 +101,10 @@ nosave noarchive string ap_scan_levels = "E1M1 E2M1 E3M1 E4M1 E5M1 E6M1 MAP01";
 nosave noarchive string ap_scan_skip = "";
 // List of levels to not even scan.
 nosave noarchive string ap_scan_prune = "";
+// Arbitrary flags to emit in the tuning file. May be used by the logic loader
+// later. Currently experimental.
+nosave noarchive string ap_scan_logic_flags = "";
+
 // If false, only levels listed in ap_scan_levels will be scanned. If true, any
 // level reachable by exits from those levels will be as well, recursively.
 // Caveats:

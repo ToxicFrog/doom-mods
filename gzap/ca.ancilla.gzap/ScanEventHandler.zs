@@ -74,7 +74,7 @@ class ::ScanEventHandler : StaticEventHandler {
           ::Util.printf("$GZAP_SCAN_EMPTY");
           return;
         }
-        ::Util.printf("$GZAP_SCAN_STARTING");
+        scanner.Init();
         scan_enabled = scanner.ScanNext();
         // EventHandler.SendNetworkEvent("ap-scan:continue", 0, 0, 0);
       }

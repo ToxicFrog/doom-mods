@@ -33,6 +33,12 @@ Individual message types are documented below.
 
 These messages are emitted during the scan process.
 
+#### `AP-SCAN { tags: [ ... ] }`
+
+Emitted at the start of the scan. `tags` is a list of arbitrary strings provided
+by the user or by the GZAPRC, which may in the future be used by the apworld for
+various purposes.
+
 #### `AP-MAP { map, info: { ... } }`
 
 Emitted when the scanner has just begun processing a map. `map` is the name of the

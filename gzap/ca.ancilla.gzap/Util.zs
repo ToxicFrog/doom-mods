@@ -22,6 +22,17 @@ class ::Util play {
     return b ? "true" : "false";
   }
 
+  static string join(string sep, Array<string> xs) {
+    if (xs.Size() == 0) {
+      return "";
+    }
+    string buf = xs[0];
+    for (int i = 1; i < xs.Size(); ++i) {
+      buf.AppendFormat("%s%s", sep, xs[i]);
+    }
+    return buf;
+  }
+
   static int GetSkill() {
     return G_SkillPropertyInt(SKILLP_ACSReturn);
   }
