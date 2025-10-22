@@ -33,12 +33,30 @@ class ::RC : Object play {
 
   Map<string, string> categorizations;
   Map<string, string> typenames;
+  Map<string, string> scanner_settings;
   void merge(::RC other) {
     foreach (k, v : other.categorizations) {
       SetCategory(k, v);
     }
     foreach (k, v : other.typenames) {
       SetTypename(k, v);
+    }
+    foreach (k, v : other.scanner_settings) {
+      self.scanner_settings.Insert(k, v);
+    }
+  }
+
+  void ApplyScannerSettings() {
+    if (self.scanner_settings.CountUsed() == 0) return;
+    console.printf("[AP] Applying default scanner settings from GZAPRC lumps:");
+    foreach (k, v : self.scanner_settings) {
+      console.printf("[AP]   %s = %s", k, v);
+      let cv = CVar.FindCVar(k);
+      if (cv.GetRealType() == CVAR.CVAR_Bool) {
+        cv.SetBool(v == "true");
+      } else if (cv.GetRealType() == CVAR.CVAR_String) {
+        cv.SetString(v);
+      }
     }
   }
 
@@ -175,6 +193,7 @@ class ::RCParser : Object play {
     if (peek("category")) { return ActorCategory(); }
     if (peek("typename")) { return ActorTypename(); }
     if (peek("require")) { return Requirements(); }
+    if (peek("scanner")) { return ScannerConfig(); }
     else { return Error("category or typename directive"); }
   }
 
@@ -219,6 +238,36 @@ class ::RCParser : Object play {
     if (!require(";")) return false;
     self.rc.CheckRequiredMap(mapname, checksum);
     return true;
+  }
+
+  bool ScannerConfig() {
+    if (!require("scanner") || !require("{")) return false;
+    while (!peek("}")) {
+      string suffix = next("scanner setting name");
+      string cvname = "ap_scan_" .. suffix;
+      let cv = CVar.FindCVar(cvname);
+      if (!cv) {
+        return ErrorNoExpectation("Unknown scanner cvar " .. cvname);
+      }
+
+      if (cv.GetRealType() == CVar.CVAR_Bool) {
+        if (peek("false") || peek("true")) {
+          rc.scanner_settings.Insert(cvname, next("boolean"));
+          require(";");
+        } else {
+          return require("true or false");
+        }
+
+      } else if (cv.GetRealType() == CVar.CVAR_String) {
+        Array<string> xs;
+        if (!TokenList(xs, ";", "scanner settings")) return false;
+        rc.scanner_settings.Insert(cvname, ::Util.join(" ", xs));
+
+      } else {
+        return ErrorNoExpectation("Unsupported cvar type for scanner cvar " .. cvname);
+      }
+    }
+    return require("}");
   }
 
   bool ClassList(array<string> tokens, string terminator) {

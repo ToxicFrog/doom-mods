@@ -16,6 +16,7 @@ class ::ScanEventHandler : StaticEventHandler {
     self.scan_enabled = false;
     self.scanner = ::Scanner(new("::Scanner"));
     self.rc = ::RC.LoadAll("GZAPRC");
+    self.rc.ApplyScannerSettings();
   }
 
   override void WorldLoaded(WorldEvent evt) {
