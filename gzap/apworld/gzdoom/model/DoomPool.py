@@ -93,7 +93,7 @@ class DoomPool:
                     if loc.orig_item:
                         loc.item = loc.orig_item
                         self.vanilla_item_counts[loc.item.name()] += 1
-                    elif world.options.pretuning_mode:
+                    elif world.options.pretuning_mode and not loc.item:
                         loc.item = self.wad.placeholder_item()
                 self.locations.extend(locs)
                 continue

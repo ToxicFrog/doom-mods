@@ -217,6 +217,9 @@ class IncludedItemCategories(OptionList):
 
     def verify(self, world, player_name, plando_options):
         super(OptionList, self).verify(world, player_name, plando_options)
+        self.build_ratios()
+
+    def build_ratios(self):
         self.ratios = {}
         for config in self.actual_value():
             key,ratio = config.split(':')
@@ -225,16 +228,16 @@ class IncludedItemCategories(OptionList):
             self.ratios[key] = self.ratio_value(ratio)
 
         for key in ['ap_map']:
-            ratio = self.ratios.get(key, '(missing)')
+            ratio = self.ratio_for_categories({key})
             if ratio not in {1.0, 'vanilla', 'start'}:
                 raise OptionError(f'Entry {key} has invalid setting {ratio}; this category only permits "all" or "start".')
         for key in ['key', 'weapon']:
-            ratio = self.ratios.get(key, '(missing)')
+            ratio = self.ratio_for_categories({key})
             if ratio not in {1.0, 'vanilla', 'start'}:
                 raise OptionError(f'Entry {key} has invalid setting {ratio}; this category only permits "all", "vanilla", or "start".')
 
         # Convenience field used later by the location access logic.
-        self.all_keys_are_vanilla = self.ratios['key'] == 'vanilla'
+        self.all_keys_are_vanilla = self.ratio_for_categories({'key'}) == 'vanilla'
 
     def actual_value(self):
         # Player is not allowed to override these parts. Level accesses must
@@ -258,14 +261,20 @@ class IncludedItemCategories(OptionList):
             return 0.0
         return self.ratios[bucket]
 
+    def ratio_for_categories(self, categories):
+        return self.ratio_for_bucket(self.find_bucket_for_categories(categories))
+
     def find_ratio(self, loc):
         return self.ratio_for_bucket(self.find_bucket(loc))
 
     def find_bucket(self, loc):
+        return self.find_bucket_for_categories(loc.categories)
+
+    def find_bucket_for_categories(self, categories):
         for config in self.actual_value():
             name = config.split(':')[0]
             cats = frozenset(name.split('-'))
-            if name == '*' or loc.categories >= cats:
+            if name == '*' or categories >= cats:
                 return name
         return None
 

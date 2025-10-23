@@ -173,8 +173,9 @@ class GZDoomWorld(World):
         # self.options.full_persistence.value = False
         self.options.allow_respawn.value = True
         self.options.included_item_categories.value = [
-            f'{category}:1.0' for category in model.all_categories()
+            '*:vanilla'
         ]
+        self.options.included_item_categories.build_ratios()
 
     def generate_early(self) -> None:
         ut_config = getattr(self.multiworld, "re_gen_passthrough", {}).get(self.game, None)
