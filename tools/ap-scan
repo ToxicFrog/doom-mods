@@ -17,9 +17,11 @@ gzdoom \
   +"logfile \"$TMPFILE\"; disableautosave 1; wipetype 0; wait 1; noclip; ap_scan_levels \"${MAPS}\"; ap_scan_skip \"${SKIP}\"; ap_scan_prune \"${PRUNE}\"; netevent ap-scan:start"
 
 sed -E -i -n '/^AP-/ p;' "$TMPFILE"
-if [[ -f "gzap/apworld/gzdoom/logic/${name}" ]]; then
-  # Update existing logic file
-  mv "$TMPFILE" "gzap/apworld/gzdoom/logic/${name}"
-else
-  mv "$TMPFILE" ~/.local/share/Archipelago/gzdoom/logic/"${name}"
-fi
+for dir in gzap/apworld/*; do
+  if [[ -f "${dir}/logic/${name}" ]]; then
+    mv -v "$TMPFILE" "${dir}/logic/${name}"
+    exit 0
+  fi
+done
+
+mv -v "$TMPFILE" ~/.local/share/Archipelago/gzdoom/logic/"${name}"
