@@ -27,6 +27,7 @@ class DoomKey(NamedTuple):
     This doesn't describe an in-game key *item*, but the concept of the key itself,
     including information about which maps it is valid for and how it is named.
     """
+    tag: str        # e.g. Yellow Keycard
     typename: str   # e.g. YellowCard
     scopename: str  # Usually map name; hub/episode name for multimap keys
     cluster: int    # Cluster ID, 0 if no cluster
@@ -42,5 +43,5 @@ class DoomKey(NamedTuple):
         return str(self)
 
     def fqin(self):
-        return f"{self.typename} ({self.scopename})"
+        return f"{self.tag} ({self.scopename})"
 

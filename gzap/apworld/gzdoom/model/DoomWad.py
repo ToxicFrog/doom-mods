@@ -259,14 +259,14 @@ class DoomWad:
         skill = set(json.pop("skill", [1,2,3]))
         self.register_location(location, skill)
 
-    def new_key(self, map: str, typename: str, scopename: str, cluster: int, maps: List[str]) -> None:
+    def new_key(self, map: str, tag: str, typename: str, scopename: str, cluster: int, maps: List[str]) -> None:
         """
         Register a key in the key table, along with information about which maps it's in.
 
         Key records will be matched up with key items at the end of the tuning pass.
         """
         assert not self.tuned, f"AP-KEY found in tuning data for {self.name}. If this is a legitimate tuning file, this usually means tuning found keys that the scanner missed -- please find the AP-KEY messages in the tuning file and move them to the matching logic file."
-        key = DoomKey(typename, scopename, cluster, frozenset(maps))
+        key = DoomKey(tag, typename, scopename, cluster, frozenset(maps))
         self.keys_by_name.setdefault(key.fqin(), key)
 
     def keys_for_map(self, mapname):
@@ -453,7 +453,7 @@ class DoomWad:
             if key.fqin() in self.items_by_name:
                 continue
 
-            key_item = DoomItem(map=key.scopename, category="key", typename=key.typename, tag=key.typename)
+            key_item = DoomItem(map=key.scopename, category="key", typename=key.typename, tag=key.tag)
             assert key_item.name() == key.fqin(), f"{key_item.name()} != {key.fqin()}"
             self.items_by_name[key.fqin()] = key_item
 
@@ -462,7 +462,7 @@ class DoomWad:
             # contains "GreenKey (MAP04)" and that's subsumed by "GreenKey (EP1)",
             # adding that location to the pool will get you the latter.
             for mapname in key.maps:
-                keyname = f"{key.typename} ({mapname})"
+                keyname = f"{key.tag} ({mapname})"
                 if keyname in self.items_by_name:
                     self.items_by_name[keyname] = key_item
 

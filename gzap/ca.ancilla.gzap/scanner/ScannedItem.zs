@@ -82,8 +82,8 @@ class ::ScannedItem : ::ScannedLocation {
     }
 
     ::Scanner.Output("KEY", mapname, string.format(
-      "\"typename\": \"%s\", \"scopename\": \"%s\", \"cluster\": %d, \"maps\": [\"%s\"]",
-      self.typename, mapname, self.hub, mapname));
+      "\"tag\": \"%s\", \"typename\": \"%s\", \"scopename\": \"%s\", \"cluster\": %d, \"maps\": [\"%s\"]",
+      self.tag, self.typename, mapname, self.hub, mapname));
   }
 
   void OutputHubKeyInfo(string mapname) {
@@ -101,8 +101,8 @@ class ::ScannedItem : ::ScannedLocation {
     DEBUG("OutputKeyInfo: maps: %d / map_str: %s", maps, map_str);
 
     ::Scanner.Output("KEY", mapname, string.format(
-        "\"typename\": \"%s\", \"scopename\": \"HUB:%02d\", \"cluster\": %d, \"maps\": [%s]",
-        self.typename, self.hub, self.hub, map_str));
+        "\"tag\": \"%s\", \"typename\": \"%s\", \"scopename\": \"HUB:%02d\", \"cluster\": %d, \"maps\": [%s]",
+        self.tag, self.typename, self.hub, self.hub, map_str));
   }
 
   static bool IsSecret(Actor thing) {
