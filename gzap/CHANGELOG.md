@@ -1,4 +1,4 @@
-# Unreleased
+# 0.6.6
 
 This is a bugfix release. It backports fixes for bugs discovered while working
 on 0.7.x to the 0.6 release series.
