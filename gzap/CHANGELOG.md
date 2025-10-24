@@ -10,6 +10,8 @@ on 0.7.x to the 0.6 release series.
     not just which WADs you listed as selectable in the yaml.
 - Changed:
   - Adjustments to icon guessing rules.
+  - Reachable but out-of-logic locations reported by UT will now show up as
+    orange in-game rather than dark grey.
 - Fix:
   - Add `map07special` flag to Master Levels for Doom II MAP20, since it was
     originally designed to go in the MAP07 slot and relies on that behaviour.
