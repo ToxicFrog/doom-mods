@@ -120,6 +120,11 @@ files placed in them will be loaded automatically (and, in the case of logic
 files, will override the builtin logic if they have the same name), allowing you
 to rapidly change and test your work without repacking the apworld.
 
+Note that tuning files in this directory do not apply to logic files inside an
+apworld; if you want to add tuning to a wad that has logic in the apworld, you
+will need to either pack your tuning files into the same apworld to test, or
+unpack the logic from the apworld while testing.
+
 ### Adding the logic file to an apworld
 
 - Open gzdoom.apworld in a zip viewer
@@ -134,9 +139,10 @@ To do this, you just need a zip file with a `.apworld` extension, containing a
 minimal `__init__.py` along with `logic` and `tuning` directories. See the
 [extras apworld](../../release/ap_gzdoom_extras.apworld) for an example.
 
-The main thing to watch out for is that apworlds are loaded in alphabetical
-order, and these apworlds **must be loaded before `gzdoom.apworld`**. This is
-why the existing ones start with `ap_gzdoom_` rather than just `gzdoom_`.
+There is a restriction on apworld naming: gzdoom addon apworlds must have an
+apworld name that **alphabetically sorts before gzdoom.apworld**. This is why
+the featured and extras apworlds have names starting with `ap_gzdoom_` rather
+than just `gzdoom_`.
 
 ## Tuning a logic file
 

@@ -2,23 +2,21 @@
 
 This is a feature/design release.
 
-⚠️ This update changes location and item IDs. You **absolutely cannot** update
-a game in progress.
+⚠️ **This update breaks backwards compatibility.** ⚠️
 
-⚠️ This update changes both yaml and in-game settings. Regenerate your yaml and
-double-check your in-game settings.
+⚠️ Internal data structures have changed. Finish all games in progress first.
+
+⚠️ YAML and in-game settings have changed. Generate a new template YAML and
+double-check the correctness of your in-game settings.
 
 ⚠️ This update splits the apworld into three: one core apworld providing support
 for the official games, plus two addon apworlds providing support for "featured
 mods" and for community maps. See [support-table.md](doc/support-table.md) for
 a list of which wads are in which apworld.
 
-⚠️ This update changes how tuning loading works. Tuning files in your AP
-directory are now only loaded for logic files in your AP directory; they do not
-apply to logic files loaded from an apworld. If you are a logic developer
-working on new tuning for a wad that already has logic, you will need to repack
-the apworld to contain your new tuning in order to test it (or extract the logic
-file and old tuning data from the apworld).
+⚠️ This update changes how tuning loading works. If you are not a logic
+developer this probably does not affect you. If you are, see [new-wads.md](doc/new-wads.md#loading-files-without-adding-them-to-the-apworld)
+for details.
 
 - New:
   - Separate `ap_gzdoom_extras.apworld` and `ap_gzdoom_featured.apworld` files.
