@@ -108,12 +108,20 @@ def init_wads(package):
 
 def init_all_wads():
     import sys
-    keys = [key for key in sys.modules.keys() if 'gzdoom' in key]
-    for key in keys:
-        if key.count('.') != 1:
-            continue
-        init_wads(key)
+    # We always load the core logic first, in a defined order.
+    load_first = ['worlds.gzdoom', 'worlds.ap_gzdoom_featured', 'worlds.ap_gzdoom_extras']
+    packages = load_first + sorted([
+        package for package in sys.modules.keys()
+        if 'gzdoom' in package
+        # Don't include stuff like "worlds.gzdoom.model"
+        and package.count('.') == 1
+        # Don't load the load_first stuff twice
+        and package not in load_first
+    ])
+    for package in packages:
+        init_wads(package)
 
+    # Load loose files from the AP directory
     init_wads(None)
 
 def wads() -> List[DoomWad]:
