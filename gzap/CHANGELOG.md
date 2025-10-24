@@ -12,6 +12,8 @@ on 0.7.x to the 0.6 release series.
   - Adjustments to icon guessing rules.
   - Reachable but out-of-logic locations reported by UT will now show up as
     orange in-game rather than dark grey.
+  - In-game performance should now be modestly increased, especially for games
+    with huge numbers of locations.
 - Fix:
   - Add `map07special` flag to Master Levels for Doom II MAP20, since it was
     originally designed to go in the MAP07 slot and relies on that behaviour.
