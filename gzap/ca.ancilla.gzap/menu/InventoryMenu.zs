@@ -172,9 +172,9 @@ class ::KeyToggle : ::KeyValueSelectable {
 
   string FormatKeyName() {
     if (key_info.held) {
-      return "\c[" .. ::Util.GetKeyColour(key_info.typename, "gray") .."]" .. key_info.typename;
+      return "\c[" .. ::Util.GetKeyColour(key_info.typename, "gray") .."]" .. key_info.tag;
     } else {
-      return "\c[BLACK]"..key_info.typename.."\c-";
+      return "\c[BLACK]"..key_info.tag.."\c-";
     }
   }
 

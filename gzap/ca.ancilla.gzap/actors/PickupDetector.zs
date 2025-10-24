@@ -46,7 +46,7 @@ class ::PickupDetector : Inventory {
       scan.OutputKeyInfo(region.map);
 
       // Now create and register the apstate's internal model of the key.
-      key = apstate.RegisterKey(region.map, item.GetClassName(), -1);
+      key = apstate.RegisterKey(region.map, item.GetTag(), item.GetClassName(), -1);
 
       Array<string> maps; scan.GetMapsForKey(region.map, maps);
       foreach (map : maps) {

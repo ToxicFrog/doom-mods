@@ -95,9 +95,9 @@ class ::RandoState play {
       || (::Util.GetFilterName(::Util.GetCurrentFilter()) != ::Util.GetFilterName(filter));
   }
 
-  ::RandoKey RegisterKey(string scope, string typename, uint apid) {
-    DEBUG("RegisterKey %s for scope %s as %d", typename, scope, apid);
-    let key = ::RandoKey.Create(scope, typename);
+  ::RandoKey RegisterKey(string scope, string tag, string typename, uint apid) {
+    DEBUG("RegisterKey %s (type %s) for scope %s as %d", tag, typename, scope, apid);
+    let key = ::RandoKey.Create(scope, tag, typename);
     keys.Insert(apid, key);
     return key;
   }

@@ -37,7 +37,7 @@ class GZAP_DataPackageEventHandler : StaticEventHandler {
 
   void RegisterKeys(GZAP_RandoState apstate) {
     {% for key in keys|sort(attribute=scopename) %}
-    apstate.RegisterKey("{{key.scopename}}", "{{key.typename}}", {{id(key.fqin())}})
+    apstate.RegisterKey("{{key.scopename}}", "{{key.tag}}", "{{key.typename}}", {{id(key.fqin())}})
       {% for map in key.maps %}
       .AddMap(apstate, "{{map}}"){% if loop.last %};{% endif %}
 

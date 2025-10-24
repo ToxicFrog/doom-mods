@@ -65,6 +65,8 @@
 #debug off;
 
 class ::RandoKey play {
+  // Name tag.
+  string tag;
   // Underlying type, e.g. RedCard
   string typename;
   // Short scope name, e.g. "MAP01" or "EP1".
@@ -78,9 +80,10 @@ class ::RandoKey play {
   // off from the inventory to aid in tuning.
   bool enabled;
 
-  static ::RandoKey Create(string scope, string typename) {
+  static ::RandoKey Create(string scope, string tag, string typename) {
     DEBUG("Create key: %s (%s)", typename, scope);
     let key = ::RandoKey(new("::RandoKey"));
+    key.tag = tag;
     key.typename = typename;
     key.scopename = scope;
     key.held = false;
@@ -92,7 +95,7 @@ class ::RandoKey play {
     let region = apstate.GetRegion(map);
     if (!region) return self;
 
-    DEBUG("  Update key: %s (%s) +%s", self.typename, self.scopename, map);
+    DEBUG("  Update key: %s (%s) +%s", self.tag, self.scopename, map);
     self.maps.Insert(map, true);
     region.RegisterKey(self);
     return self;
@@ -111,8 +114,8 @@ class ::RandoKey play {
   }
 
   void DebugPrint() {
-    console.printf("  - %s (%s) [held=%d, enabled=%d]:%s",
-      self.typename, self.scopename, self.held, self.enabled, self.DebugMapString());
+    console.printf("  - %s (%s) [type=%s, held=%d, enabled=%d]:%s",
+      self.tag, self.scopename, self.typename, self.held, self.enabled, self.DebugMapString());
   }
 
   string DebugMapString() {
@@ -124,6 +127,6 @@ class ::RandoKey play {
   }
 
   string FQIN() const {
-    return string.format("%s (%s)", typename, scopename);
+    return string.format("%s (%s)", tag, scopename);
   }
 }
