@@ -62,7 +62,6 @@ be able to represent logic requirements that aren't just keys.
 
 ### scanner
 
-- map exclusion UI
 - list maps to scan as ranges or globbing expressions?
 
 ### generator
@@ -97,35 +96,22 @@ be able to represent logic requirements that aren't just keys.
 
 ### Faithless
 
-This handles much more like a unified game than a collection of isolated levels.
-Each episode is an entire hubcluster and there's a lot of cross-map interaction,
-e.g. there's a whole area in E1M1 (including an exit to another map) that's only
-accessible after flipping a switch in E1M3 *and* picking up a key in E1M5.
+Ideally we want a way to toggle levels on and off in the visited list. For example,
+we need to pass through E1M2 to get to the room in E1M1 where the yellow key is,
+but if we have the yellow key there's a bunch of areas in E1M1 we can get to
+*without* passing through E1M2. So basically the same as the key list interface
+but for the list of visited levels. Display only levels in the same cluster as
+the current one and only display that section at all if the current cluster
+contains more than one level.
 
-Logic is probably going to need to be updated with event handling, for stuff
-like the above -- it can't currently understand that even if you have the E1M5
-key you also need to trigger the E1M3 event.
+The fact that AP-KEY includes the type name but not the tag makes handling it
+more complicated in the apworld. This is fine for Doom because keys are untagged,
+but in Heretic it means the *item* is ingested as "Yellow Key (E1M1)" but the
+*key* is reified as "KeyYellow" and then it can't find the original to subsume it.
 
-Entering a door can take you to a level you don't have the access code for yet.
-We can easily fix this just by checking for access on WorldLoaded and kicking
-the player back to the hub if they don't have it. We might even be able to do it
-on WorldUnloaded and redirect the transition, but probably not.
-
-AP doesn't distinguish between level entries. So if you have something like an
-area in map A that you can only reach initially by going through map B, it
-doesn't understand that you need map B access to get there. This can probably be
-dealt with using events again; put an AP-EVENT in map B with the requisite
-requirements and make that area in map A contingent on it. But it's tricky to
-get right.
-
-Leaving a level through an interlevel portal counts as "finishing the level",
-since it's a level exit to another level that isn't a save-restore. This means
-once you have access to a level you can "beat" it by just entering and
-immediately leaving through a portal.
-
-We might be able to do something by watching for line 74 (TELEPORT_NEWMAP) and
-75 (TELEPORT_ENDGAME) triggers, but if the developer used scripting all bets are
-off and we just see the WorldUnloaded event.
+We can handle this post hoc by searching for a key in the same level with the same
+typename and extracting its tag, but in keeping with "complex data, simple code",
+I'd prefer to include the tag in the AP-KEY message itself.
 
 ### Golden Souls
 

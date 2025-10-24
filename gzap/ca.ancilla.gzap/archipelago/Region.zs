@@ -44,6 +44,7 @@ class ::Region play {
   Map<string, ::Peek> peeks;
   bool access;
   bool automap;
+  bool visited;
   bool cleared;
   ::Location exit_location;
 

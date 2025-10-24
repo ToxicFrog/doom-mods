@@ -118,6 +118,21 @@ host to the AP client without user intervention.
 Tells the client that we have read messages it sent up to the given `id`, and
 it can overwrite them with new messages if needed.
 
+#### `AP-VISITED { maps: [ ... ] }`
+
+Emitted whenever the set of visited levels changes. This is only used when
+playing a wad that uses hubclusters; standalone maps do not produce this and
+thus it will be absent from most tuning files. `maps` is a list of map lump
+names.
+
+In normal play this will only ever be added to, but in pretuning mode the player
+may temporarily disable maps to generate more accurate tuning.
+
+#### `AP-WEAPONS { weapons: { ... } }`
+
+Emitted whenever the player receives a new weapon via AP. `weapons` is a map
+from weapon name to weapon count. Used for fine-tuning weapon logic.
+
 #### `AP-CHECK { id, name, pos, keys, unreachable }`
 
 Emitted when the player checks a location. The fields have the following meaning:

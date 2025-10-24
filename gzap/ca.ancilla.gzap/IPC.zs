@@ -29,6 +29,26 @@ class ::IPC {
       slot_name, seed, wadname, server));
   }
 
+  void ReportVisited(Array<string> visited) {
+    if (visited.Size() == 0) {
+      Send("VISITED", "{ \"visited\": [] }");
+    } else {
+      Send("VISITED", string.format(
+        "{ \"visited\": [ \"%s\" ] }", ::Util.Join("\", \"", visited)));
+    }
+  }
+
+  void ReportWeapons(Map<string, int> weapons) {
+    Array<string> buf;
+    MapIterator<string, int> iter;
+    iter.Init(weapons);
+    foreach (weapon, count : iter) {
+      buf.Push(string.format("\"%s\": %d", weapon, count));
+    }
+    Send("WEAPONS", string.format(
+      "{ \"weapons\": { %s } }", ::Util.Join(", ", buf)));
+  }
+
   void Shutdown() {
     Send("XOFF", "{}");
   }

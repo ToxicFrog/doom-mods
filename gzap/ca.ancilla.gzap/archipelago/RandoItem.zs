@@ -90,19 +90,23 @@ class ::RandoItem play {
     return false, 0;
   }
 
+  bool IsWeapon() const {
+    return self.category.IndexOf("weapon") > -1;
+  }
+
   int GetLimit() const {
     if (::PlayEventHandler.Get().IsPretuning()) return 0;
 
     let [custom, limit] = GetCustomLimit();
     if (custom) return limit;
 
-    if (self.category == "weapon") {
+    if (IsWeapon()) {
       return ap_bank_weapons;
-    } else if (self.category.IndexOf("-ammo") > -1) {
+    } else if (self.category.IndexOf("ammo") > -1) {
       return ap_bank_ammo;
-    } else if (self.category.IndexOf("-armor") > -1) {
+    } else if (self.category.IndexOf("armor") > -1) {
       return ap_bank_armour;
-    } else if (self.category.IndexOf("-health") > -1) {
+    } else if (self.category.IndexOf("health") > -1) {
       return ap_bank_health;
     } else if (self.category == "powerup") {
       return ap_bank_powerups;
@@ -125,6 +129,9 @@ class ::RandoItem play {
 
       let thing = players[p].mo.Spawn(self.typename, players[p].mo.pos, ALLOW_REPLACE);
       thing.ClearCounters();
+    }
+    if (IsWeapon()) {
+      ::PlayEventHandler.Get().ReportWeaponStateChange();
     }
   }
 

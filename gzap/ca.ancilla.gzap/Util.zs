@@ -22,7 +22,7 @@ class ::Util play {
     return b ? "true" : "false";
   }
 
-  static string join(string sep, Array<string> xs) {
+  clearscope static string join(string sep, Array<string> xs) {
     if (xs.Size() == 0) {
       return "";
     }

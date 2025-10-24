@@ -86,6 +86,7 @@ class ::PlayEventHandler : StaticEventHandler {
       initialized = true;
       apclient.Init(self.apstate.slot_name, self.seed, self.wadname);
       apstate.SortLocations();
+      ReportWeaponStateChange();
     }
 
     // Don't run on-level-entry handlers for levels that aren't part of the AP
@@ -93,6 +94,8 @@ class ::PlayEventHandler : StaticEventHandler {
     if (!region) {
       ::PerLevelHandler.Get().InitRandoState(evt.IsSaveGame);
       return;
+    } else {
+      region.visited = true;
     }
 
     if (evt.IsSaveGame) {
@@ -102,6 +105,7 @@ class ::PlayEventHandler : StaticEventHandler {
     } else {
       ::PerLevelHandler.Get().OnNewMap();
     }
+    ReportVisitStateChange();
   }
 
   override void WorldUnloaded(WorldEvent evt) {
@@ -121,6 +125,35 @@ class ::PlayEventHandler : StaticEventHandler {
     if (!playeringame[p]) return;
     if (!players[p].mo) return;
     players[p].mo.GiveInventoryType("::PickupDetector");
+  }
+
+  int last_visited;
+  void ReportVisitStateChange() {
+    Array<string> visited;
+    foreach (name, region : apstate.regions) {
+      if (region.visited && region.hub) {
+        visited.push(name);
+      }
+    }
+    if (visited.Size() != last_visited) {
+      last_visited = visited.Size();
+      apclient.ReportVisited(visited);
+    }
+  }
+
+  void ReportWeaponStateChange() {
+    // Weapon state change tracking is available only in pretuning mode, since
+    // that's less likely to feature players going "lmao I can pistol only the
+    // cyberdemon".
+    if (!IsPretuning()) return;
+
+    Map<string, int> weapons;
+    foreach (item : apstate.items) {
+      if (item.IsWeapon() && item.vended > 0) {
+        weapons.Insert(item.tag, item.vended);
+      }
+    }
+    apclient.ReportWeapons(weapons);
   }
 
   void CheckLocation(::Location loc, bool atexit=false) {
