@@ -19,6 +19,7 @@ on 0.7.x to the 0.6 release series.
     to the host is interrupted.
   - Client initialization no longer fails if UT is installed and you are playing
     a wad that doesn't have any overlap with the default set of starting levels.
+  - UT integration was not properly displayed tracker information in-game.
 
 # 0.6.5
 
