@@ -210,7 +210,7 @@ class IncludedItemCategories(OptionList):
         'ap_map:all',
         'key:all',
         'weapon:all',
-        'tool:none'
+        'tool:none',
         'secret-sector:all',
         'powerup:all',
     ]
