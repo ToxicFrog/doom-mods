@@ -218,7 +218,7 @@ class ::LevelSelector : ::KeyValueNetevent {
       if (loc.track == AP_UNREACHABLE) {
         colour = "BLACK";
       } else if (loc.track == AP_REACHABLE_OOL) {
-        colour = "DARKGRAY";
+        colour = "FIRE";
       } else if (loc.track == AP_REACHABLE_IL) {
         colour = "ICE";
       }

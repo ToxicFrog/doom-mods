@@ -25,16 +25,12 @@ file and old tuning data from the apworld).
   - Autodiscovery of addon apworlds containing gzdoom tuning/logic.
   - Logic for Eviternity and Eviternity II, by Akos.
   - Logic for Legacy of Rust, by RakeVuril.
-  - If you download the pk3 for your game from the web host, the client will
-    read the connection address from it and connect to AP automatically.
   - Items/locations can now have multiple categories, and existing categories
     have been decomposed (e.g. `big-health` items now belong to two categories,
     `big` and `health`).
   - Item/location categories, and combinations thereof, can be used in the YAML
     in any setting that supports item/location groups; see [the faq](./doc/faq.md#how-do-item-groups-work-in-the-yaml)
     for more details.
-  - Spoiler log now includes information about which WAD was actually selected,
-    not just which WADs you listed as selectable in the yaml.
   - The inventory screen now lists all keys for the current level. Keys you do
     not yet have are hintable with `shift-H`. (This is the same mechanism as
     hinting them from the level select screen, but unlike the level select it
@@ -46,7 +42,6 @@ file and old tuning data from the apworld).
   - Logic and tuning files support multiline entries. If a line ends with `}` it
     is considered the end of the entry.
 - Changed:
-  - Adjustments to icon guessing rules.
   - Tuning data is now loaded for a wad when generation starts, rather than on
     apworld initialization. This makes apworld loading noticeably faster.
   - `allow_secret_progress` yaml option removed. Use `exclude_locations: ["secret"]`
@@ -58,6 +53,26 @@ file and old tuning data from the apworld).
     `powerup` rather than as `map` for the purposes of choosing which locations
     to randomize.
   - The (poorly named) cvar `ap_scan_keys_always` was removed.
+- Fixed:
+  - When running from an unpacked tarball, gzdoom now locates its files with the
+    rest of the tarball contents rather than in `~/.local/share/Archipelago`.
+
+# 0.6.6
+
+This is a bugfix release. It backports fixes for bugs discovered while working
+on 0.7.x to the 0.6 release series.
+
+- New:
+  - If you download the pk3 for your game from the web host, the client will
+    read the connection address from it and connect to AP automatically.
+  - Spoiler log now includes information about which WAD was actually selected,
+    not just which WADs you listed as selectable in the yaml.
+- Changed:
+  - Adjustments to icon guessing rules.
+  - Reachable but out-of-logic locations reported by UT will now show up as
+    orange in-game rather than dark grey.
+  - In-game performance should now be modestly increased, especially for games
+    with huge numbers of locations.
 - Fix:
   - Add `map07special` flag to Master Levels for Doom II MAP20, since it was
     originally designed to go in the MAP07 slot and relies on that behaviour.
@@ -65,8 +80,9 @@ file and old tuning data from the apworld).
   - Two unreachable locations in Going Down Turbo are now properly marked as such.
   - AP client now stores found locations and re-sends them later if the connection
     to the host is interrupted.
-  - When running from an unpacked tarball, gzdoom now locates its files with the
-    rest of the tarball contents rather than in `~/.local/share/Archipelago`.
+  - Client initialization no longer fails if UT is installed and you are playing
+    a wad that doesn't have any overlap with the default set of starting levels.
+  - UT integration was not properly displaying tracker information in-game.
 
 # 0.6.5
 

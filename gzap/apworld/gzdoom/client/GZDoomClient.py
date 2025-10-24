@@ -208,16 +208,20 @@ class GZDoomContext(SuperContext):
         self.last_tracked_ool = set()
         while not self.exit_event.is_set():
             await self.watcher_event.wait()
+            if self.tracker_core.get_current_world() is None:
+                continue
+
             self.watcher_event.clear()
             new_ool = set(self.glitched_locations) - self.last_tracked_ool
             new_il = set(self.locations_available) - self.last_tracked
 
             # print("tracker_loop IL: ", new_il, self.last_tracked)
             # print("tracker_loop OOL:", new_ool, self.last_tracked_ool)
-            for id in new_ool:
-                self.ipc.send_track(id, "OOL")
-            for id in new_il:
-                self.ipc.send_track(id, "IL")
+            id_map = self.tracker_core.get_current_world().location_name_to_id
+            for name in new_ool:
+                self.ipc.send_track(id_map[name], "OOL")
+            for name in new_il:
+                self.ipc.send_track(id_map[name], "IL")
             self.ipc.flush()
             # Over the course of the game, locations may be added to OOL and then
             # removed from it and added to IL. These locations will gradually

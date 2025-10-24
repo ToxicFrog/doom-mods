@@ -33,6 +33,7 @@ class ::Region play {
   // Kept as an array so we can sort it for display.
   // Hopefully this doesn't become a performance issue.
   Array<::Location> locations;
+  Map<uint, ::Location> locations_by_id;
   // Key typename to key info struct. Only contains keys relevant to this level.
   Map<string, ::RandoKey> keys;
   // Hints tell you where items relevant to this level are.
@@ -108,6 +109,7 @@ class ::Region play {
     loc.secret_sector = -1;
 
     locations.push(loc);
+    locations_by_id.Insert(loc.apid, loc);
   }
 
   void RegisterSecretCheck(uint apid, string name, int sector, uint flags) {
@@ -122,24 +124,21 @@ class ::Region play {
     loc.is_virt = true;
     loc.checked = false;
     locations.push(loc);
+    locations_by_id.Insert(loc.apid, loc);
   }
 
   void ClearLocation(uint apid) {
-    foreach (loc : locations) {
-      if (loc.apid == apid) {
-        loc.checked = true;
-        ++txn;
-        return;
-      }
-    }
+    let loc = GetLocation(apid);
+    if (!loc) return;
+
+    loc.checked = true;
+    ++txn;
   }
 
   ::Location GetLocation(uint apid) const {
-    foreach (loc : locations) {
-      if (loc.apid == apid) {
-        DEBUG("GetLocation: found %d in %s", apid, map);
-        return loc;
-      }
+    if (locations_by_id.CheckKey(apid)) {
+      DEBUG("GetLocation: found %d in %s", apid, map);
+      return locations_by_id.GetIfExists(apid);
     }
     return null;
   }
