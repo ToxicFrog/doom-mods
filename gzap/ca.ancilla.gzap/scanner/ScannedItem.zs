@@ -41,7 +41,6 @@ class ::ScannedItem : ::ScannedLocation {
     if (!thing) return 0;
     DEBUG("GetHubClusterID: %s (amount: %d / is_hub: %d / cluster: %d)",
         thing.GetClassName(), thing.InterHubAmount, level.ClusterFlags & level.CLUSTER_HUB, level.cluster);
-    if (thing.InterHubAmount == 0) return 0;
     if (level.ClusterFlags & level.CLUSTER_HUB == 0) return 0;
     return level.cluster;
   }
