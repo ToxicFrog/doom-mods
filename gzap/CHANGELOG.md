@@ -1,3 +1,8 @@
+# Unreleased - hubcluster branch
+
+- New:
+  - Basic logic for `Arrival`, `Base Ganymede`, `Deathless`, and `Scientist`
+
 # Unreleased
 
 This is a feature/design release.

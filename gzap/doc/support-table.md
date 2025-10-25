@@ -60,9 +60,27 @@ These are the WADs included in `ap_gzdoom_featured.apworld`. Any WADs available
 via the [Featured Mods List](https://doomwiki.org/wiki/Featured_mods) in the
 `Doom + Doom II` re-release by Night Dive should be added here.
 
-| WAD              | Maps | Mon/Lvl | Checks | Status | Notes |
-| ---------------- | ---- | ------- | ------ | ------ | ----- |
-| Going Down Turbo |   32 |     163 | 450 | partial | |
+| WAD              | Maps | Mon/Lvl | Checks |  Status | Notes |
+| ---------------- | ---- | ------- | ------ | ------- | ----- |
+| Anomaly Report   |      |         |        | missing |       |
+| Arrival          |      |         |        | basic   |       |
+| Base Ganymede    |      |         |        | basic   |       |
+| BTSX Episode 1   |      |         |        | missing |       |
+| BTSX Episode 2   |      |         |        | missing |       |
+| Deathless        |      |         |        | basic   |       |
+| Doom Zero        |      |         |        | missing |       |
+| Double Impact    |      |         |        | missing |       |
+| Earthless: Prelude |    |         |        | missing |       |
+| Going Down       |      |         |        | missing |       |
+| Going Down Turbo |   32 |     163 | 450    | partial |       |
+| Harmony          |      |         |        | missing |       |
+| No End In Sight  |      |         |        | missing |       |
+| REKKR            |      |         |        | missing |       |
+| Revolution!      |      |         |        | missing |       |
+| Scientist 2023   |      |         |        | basic   |       |
+| Syringe          |      |         |        | missing |       |
+| Tetanus          |      |         |        | missing |       |
+| Trooper's Playground |  |         |        | missing |       |
 
 ### Extra WADs
 
