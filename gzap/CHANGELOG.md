@@ -1,7 +1,23 @@
 # Unreleased - hubcluster branch
 
+⚠️ Logic format has changed. Rescan any wads you have custom logic for. Tuning
+data is unaffected.
+
 - New:
-  - Basic logic for `Arrival`, `Base Ganymede`, `Deathless`, and `Scientist`
+  - Basic logic for `Arrival`, `Base Ganymede`, `Deathless`, and `Scientist`.
+  - Logic entries for keys include the key's display name, if any. This name is
+    used instead of the typename by the randomizer.
+  - New features to better support scanning of wads with multimap levels:
+    - `GZAPRC` lump can now define default scanner settings for the wad.
+    - `GZAPRC` lump can now define cluster names.
+    - Scanner can now find maps to scan via cluster membership as well as (or
+      instead of) following exits.
+    - Scanner can add arbitrary tags to the logic header which can then be read
+      by the apworld to adjust logic behaviour.
+    - Tuner emits information about which weapons the player has and which maps
+      they have visited.
+    - In pretuning mode, the inventory menu lets you lie to the tuner about
+      which maps you have visited if needed.
 
 # Unreleased
 
