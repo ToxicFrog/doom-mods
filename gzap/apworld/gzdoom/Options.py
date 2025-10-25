@@ -85,7 +85,7 @@ class SelectedWad(OptionSet):
     If you select more than one WAD from this list, it will pick one for you at random.
     """
     display_name = "WAD to play"
-    default = set([wad.name for wad in model.wads()])
+    default = sorted([wad.name for wad in model.wads()])
     valid_keys = [wad.name for wad in model.wads()]
 
 class StartingLevels(OptionSet):
