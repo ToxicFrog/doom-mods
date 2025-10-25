@@ -69,8 +69,7 @@ class ::Region play {
 
   void DebugPrint() {
     console.printf("  - Region: %s%s [access=%d, clear=%d, automap=%d, txn=%d]",
-        self.map, self.hub ? string.format(" (hubcluster %d)", self.hub) : "",
-        self.access, self.cleared, self.automap, self.txn);
+        self.map, ClusterDesc(), self.access, self.cleared, self.automap, self.txn);
     console.printf("    %d locations", self.locations.Size());
     console.printf("    %d keys:%s", self.keys.CountUsed(), self.DebugKeyString());
     console.printf("    %d hints", self.hints.CountUsed());
@@ -81,6 +80,17 @@ class ::Region play {
     foreach (location, peek : self.peeks) {
       console.printf("    - %s: %s for %s", location, peek.item, peek.player);
     }
+  }
+
+  string ClusterDesc() {
+    if (self.hub == 0) {
+      return "";
+    }
+    let name = ::RC.Get().GetNameForCluster(self.hub);
+    if (name == "") {
+      return string.format(" (hubcluster %d)", self.hub);
+    }
+    return string.format(" (hubcluster %d: %s)", self.hub, name);
   }
 
   string DebugKeyString() {

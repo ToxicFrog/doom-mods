@@ -172,7 +172,7 @@ and passed to `tune_location`, which records them in the location. This likely
 entails generalizing location prerequisites from keysets/weaponsets to some
 shared `LocationPrerequisite` type. At this point, the wad is ready for play.
 
-# Future work
+## Future work
 
 I feel like this is brushing against the edges of a more general set of changes
 to the scanner, by decoupling "map" from "level" and generalizing location
@@ -180,3 +180,24 @@ prereqs. In this model, AP-VISITED applies to any multi-map hubcluster by
 default and Faithless is effectively modeled as three levels made up of several
 maps each. This won't work for Golden Souls but it is a sensible way to model
 Ashes and Hedon.
+
+### Automatic subregion mapping
+
+This is a lot more speculative, but the concept here is, use the linedef trigger
+events and level transitions to figure out what the graph edges between subregions
+are.
+
+For the Faithless example, we start out in E1M1, and crossing a level transition
+results in an edge to a new subregion for that level; crossing a linedef that
+requires a key results in an edge to a new subregion for the part of the level
+that requires that key.
+
+The tricky part remains dealing with areas that can be reached via multiple
+pathways. E.g. if you go from E1M1 to E1M2, back to the E1M1 key annex, grab the
+yellow key and exit to the main courtyard, you're back in the starting area,
+*not* in an area that can only be reached using E1M2 and the yellow key. But it's
+hard to automatically model this without doing things like keeping track of what
+sectors the player has visited in each map and going "oh, this is the same sector
+as before, so it must be the same region" -- and even that breaks down in cases
+where clever door/elevator tricks mean the same fundamental sector belongs to
+multiple regions that are logically distinct!

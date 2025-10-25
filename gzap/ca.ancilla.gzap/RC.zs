@@ -34,6 +34,7 @@ class ::RC : Object play {
   Map<string, string> categorizations;
   Map<string, string> typenames;
   Map<string, string> scanner_settings;
+  Map<int, string> cluster_names;
   void merge(::RC other) {
     foreach (k, v : other.categorizations) {
       SetCategory(k, v);
@@ -43,6 +44,9 @@ class ::RC : Object play {
     }
     foreach (k, v : other.scanner_settings) {
       self.scanner_settings.Insert(k, v);
+    }
+    foreach (k, v : other.cluster_names) {
+      self.SetClusterName(k, v);
     }
   }
 
@@ -79,6 +83,17 @@ class ::RC : Object play {
   string, bool GetTypename(string cls) {
     let [val, ok] = self.typenames.CheckValue(cls);
     return val, ok;
+  }
+
+  void SetClusterName(int cluster, string name) {
+    self.cluster_names.Insert(cluster, name);
+  }
+
+  string GetNameForCluster(int cluster) {
+    if (self.cluster_names.CheckKey(cluster)) {
+      return self.cluster_names.GetIfExists(cluster);
+    }
+    return "";
   }
 
   bool has_requirements;
@@ -199,6 +214,7 @@ class ::RCParser : Object play {
     if (peek("typename")) { return ActorTypename(); }
     if (peek("require")) { return Requirements(); }
     if (peek("scanner")) { return ScannerConfig(); }
+    if (peek("cluster")) { return ClusterName(); }
     else { return Error("category or typename directive"); }
   }
 
@@ -264,15 +280,25 @@ class ::RCParser : Object play {
         }
 
       } else if (cv.GetRealType() == CVar.CVAR_String) {
-        Array<string> xs;
-        if (!TokenList(xs, ";", "scanner settings")) return false;
-        rc.scanner_settings.Insert(cvname, ::Util.join(" ", xs));
+        let val = StringFromTokenList(";", "scanner settings");
+        if (val == "") return false;
+        rc.scanner_settings.Insert(cvname, val);
 
       } else {
         return ErrorNoExpectation("Unsupported cvar type for scanner cvar " .. cvname);
       }
     }
     return require("}");
+  }
+
+  bool ClusterName() {
+    if (!require("cluster")) return false;
+    int cluster = next("cluster id").ToInt();
+    if (cluster <= 0) return Error("numeric cluster id");
+    string name = StringFromTokenList(";", "cluster name");
+    if (name == "") return Error("non-empty cluster name");
+    self.rc.SetClusterName(cluster, name);
+    return true;
   }
 
   bool ClassList(array<string> tokens, string terminator) {
@@ -291,6 +317,11 @@ class ::RCParser : Object play {
     }
     require(terminator);
     return true;
+  }
+  string StringFromTokenList(string terminator, string expected) {
+    array<string> tokens;
+    if (!TokenList(tokens, terminator, expected)) return "";
+    return ::Util.join(" ", tokens);
   }
 }
 
