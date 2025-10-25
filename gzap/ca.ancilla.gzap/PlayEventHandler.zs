@@ -307,8 +307,10 @@ class ::PlayEventHandler : StaticEventHandler {
       string item = cmd.ReadString();
       ::IPC.Send("CHAT", string.format("{ \"msg\": \"!hint %s\" }", item));
     } else if (cmd.command == "ap-toggle-key") {
-      string keytype = cmd.ReadString();
-      apstate.ToggleKey(keytype);
+      apstate.ToggleKey(cmd.ReadString());
+    } else if (cmd.command == "ap-toggle-visited") {
+      apstate.ToggleRegionVisited(cmd.ReadString());
+      ReportVisitStateChange();
     } else if (cmd.command == "ap-inv-grab-commit") {
       apstate.CommitItemGrabs();
     } else if (cmd.command == "ap-inv-grab-cancel") {

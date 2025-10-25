@@ -34,6 +34,7 @@ class ::InventoryMenu : ::CommonMenu {
     }
 
     InitKeyDisplay();
+    InitRegionDisplay();
     mDesc.mSelectedItem = -1;
   }
 
@@ -73,6 +74,38 @@ class ::InventoryMenu : ::CommonMenu {
 
     foreach (_, key : region.keys) {
       mDesc.mItems.Push(new("::KeyToggle").Init(region, key));
+    }
+  }
+
+  void InitRegionDisplay() {
+    // Do not allow the player to directly wiggle this when not in pretuning mode.
+    if (!::PlayEventHandler.Get().IsPretuning()) return;
+
+    let this_region = ::PlayEventHandler.GetState().GetCurrentRegion();
+    if (!this_region) return;
+    if (!this_region.hub) return; // Only meaningful in a hubcluster
+
+    Array<::Region> regions;
+    for (int i = 0; i < LevelInfo.GetLevelInfoCount(); ++i) {
+      let info = LevelInfo.GetLevelInfo(i);
+      // Sometimes we get MAPINFO entries that don't actually exist.
+      if (!info || !LevelInfo.MapExists(info.MapName)) continue;
+
+      let region = ::PlayEventHandler.GetState().GetRegion(info.MapName);
+      if (!region) continue;
+      if (region.hub != this_region.hub) continue;
+
+      regions.push(region);
+    }
+
+    if (regions.Size() <= 1) return;
+
+    PushText(" ");
+    PushText("Pretuning region list control");
+    PushText(" ");
+
+    foreach (region : regions) {
+      mDesc.mItems.Push(new("::RegionToggle").Init(region));
     }
   }
 }
@@ -190,6 +223,45 @@ class ::KeyToggle : ::KeyValueSelectable {
       return StringTable.Localize("$GZAP_MENU_KEY_ON");
     } else {
       return StringTable.Localize("$GZAP_MENU_KEY_OFF");
+    }
+  }
+}
+
+class ::RegionToggle : ::KeyValueSelectable {
+  ::Region region;
+  LevelInfo info;
+
+  ::RegionToggle Init(::Region region) {
+    self.region = region;
+    self.info = LevelInfo.FindLevelInfo(region.map);
+    super.Init(FormatRegionName(), FormatRegionStatus());
+    return self;
+  }
+
+  override void Ticker() {
+    self.value = FormatRegionStatus();
+    super.Ticker();
+  }
+
+  override bool MenuEvent(int key, bool fromController) {
+    if (key == Menu.MKey_Enter) {
+      EventHandler.SendNetworkCommand("ap-toggle-visited", NET_STRING, region.map);
+      Menu.MenuSound("menu/change");
+      return true;
+    }
+
+    return super.MenuEvent(key, fromController);
+  }
+
+  string FormatRegionName() {
+    return string.format("%s (%s)", info.LookupLevelName(), region.map);
+  }
+
+  string FormatRegionStatus() {
+    if (!region.visited) {
+      return "\c[GRAY][UNVISITED]\c-";
+    } else {
+      return "\c[GREEN][VISITED]\c-";
     }
   }
 }

@@ -302,6 +302,12 @@ class ::RandoState play {
     GetCurrentRegion().ToggleKey(keytype);
   }
 
+  void ToggleRegionVisited(string map) {
+    let region = GetRegion(map);
+    if (!region) return;
+    region.visited = !region.visited;
+  }
+
   void OnTick() {
     if (!dirty) return;
     if (!GetCurrentRegion()) return;
