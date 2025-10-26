@@ -308,6 +308,15 @@ class ::RandoState play {
     region.visited = !region.visited;
   }
 
+  string VisitedString() {
+    string buf = "";
+    foreach (name, region : self.regions) {
+      if (!region.visited) continue;
+      buf.AppendFormat("%s\"%s\"", buf.Length() > 0 ? ", " : "", name);
+    }
+    return buf;
+  }
+
   void OnTick() {
     if (!dirty) return;
     if (!GetCurrentRegion()) return;

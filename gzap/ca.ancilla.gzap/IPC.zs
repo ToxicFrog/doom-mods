@@ -29,7 +29,7 @@ class ::IPC {
       slot_name, seed, wadname, server));
   }
 
-  void ReportVisited(Array<string> visited) {
+  static void ReportVisited(Array<string> visited) {
     if (visited.Size() == 0) {
       Send("VISITED", "{ \"visited\": [] }");
     } else {
@@ -38,7 +38,13 @@ class ::IPC {
     }
   }
 
-  void ReportWeapons(Map<string, int> weapons) {
+  static void DefineRegion(string map, string name, string visited, string keys) {
+    Send("REGION", string.format(
+      "{ \"map\": \"%s\", \"region\": \"%s\", \"visited\": [%s], \"keys\": [%s] }",
+      map, name, visited, keys));
+  }
+
+  static void ReportWeapons(Map<string, int> weapons) {
     Array<string> buf;
     MapIterator<string, int> iter;
     iter.Init(weapons);
@@ -47,6 +53,24 @@ class ::IPC {
     }
     Send("WEAPONS", string.format(
       "{ \"weapons\": { %s } }", ::Util.Join(", ", buf)));
+  }
+
+  static void CheckWithoutTuning(int id, string name, string pos_field, bool unreachable) {
+    Send("CHECK",
+      string.format("{ \"id\": %d, \"name\": \"%s\"%s%s }",
+        id, name, pos_field, unreachable ? ", \"unreachable\": true" : ""));
+  }
+
+  static void CheckWithKeyTuning(int id, string name, string pos_field, string keys) {
+    Send("CHECK",
+      string.format("{ \"id\": %d, \"name\": \"%s\"%s, \"keys\": [%s] }",
+        id, name, pos_field, keys));
+  }
+
+  static void CheckWithRegionTuning(int id, string name, string pos_field, string region) {
+    Send("CHECK",
+      string.format("{ \"id\": %d, \"name\": \"%s\"%s, \"region\": \"%s\" }",
+        id, name, pos_field, region));
   }
 
   void Shutdown() {

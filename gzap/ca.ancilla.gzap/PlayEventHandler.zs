@@ -17,6 +17,7 @@
 class ::PlayEventHandler : StaticEventHandler {
   string seed;
   string wadname;
+  string subregion;  // Current level subregion when pretuning
   bool singleplayer;
   bool pretuning;
   // IPC stub for communication with Archipelago.
@@ -111,11 +112,11 @@ class ::PlayEventHandler : StaticEventHandler {
   override void WorldUnloaded(WorldEvent evt) {
     let plh = ::PerLevelHandler.Get();
     if (!plh || !evt) return; // Can happen if exiting to new game
-    // In normal play NextMap should always be the GZAPHUB. Perhaps in the
-    // future (Faithless, Hedon, etc) it might also be another level via direct
-    // transit. If it's blank this generally means the player has died without
-    // a valid recent save and has elected to restart the game, which we should
-    // not treat as a normal exit.
+    // NextMap might be the GZAPHUB, or, failing that, another level in the same
+    // cluster via levelport if playing something like Faithless.
+    // If it's blank, this generally means the player has died without a valid
+    // recent save and has elected to restart the game, which we should not
+    // treat as a normal exit.
     if (evt.NextMap == "") return;
     plh.OnLevelExit(evt.IsSaveGame, evt.NextMap);
   }
@@ -156,6 +157,12 @@ class ::PlayEventHandler : StaticEventHandler {
     apclient.ReportWeapons(weapons);
   }
 
+  void RedefineSubregion() {
+    if (self.subregion == "") return;
+    let region = apstate.GetCurrentRegion();
+    ::IPC.DefineRegion(region.map, self.subregion, apstate.VisitedString(), region.KeyString());
+  }
+
   void CheckLocation(::Location loc, bool atexit=false) {
     DEBUG("CheckLocation: %d %s", loc.apid, loc.name);
 
@@ -175,25 +182,23 @@ class ::PlayEventHandler : StaticEventHandler {
 
     if (unreachable) {
       // Omit the key field and just mark it unreachable.
-      ::IPC.Send("CHECK",
-        string.format("{ \"id\": %d, \"name\": \"%s\"%s, \"unreachable\": true }",
-        loc.apid, loc.name, pos));
+      ::IPC.CheckWithoutTuning(loc.apid, loc.name, pos, true);
     } else if (atexit) {
-      // Also omit the key field for atexit checks, since we can't make any
-      // assumptions about reachability if the check was gathered via "release
-      // on exit" rather than normal play.
-      ::IPC.Send("CHECK",
-        string.format("{ \"id\": %d, \"name\": \"%s\"%s }",
-        loc.apid, loc.name, pos));
+      // atexit checks aren't necessarily unreachable but nor can we make any
+      // assumptions about their tuning.
+      ::IPC.CheckWithoutTuning(loc.apid, loc.name, pos, false);
     } else {
       // It's a normally reachable check.
-      ::IPC.Send("CHECK",
-        string.format("{ \"id\": %d, \"name\": \"%s\"%s, \"keys\": [%s] }",
-        loc.apid, loc.name, pos, apstate.GetCurrentRegion().KeyString()));
+      if (self.subregion == "") {
+        ::IPC.CheckWithKeyTuning(loc.apid, loc.name, pos, apstate.GetCurrentRegion().KeyString());
+      } else {
+        ::IPC.CheckWithRegionTuning(loc.apid, loc.name, pos, self.subregion);
+      }
     }
 
     // In singleplayer, the netevent handler will clear the check for us.
-    // In MP, we don't clear it until we get a reply from the server.
+    // In MP, we don't clear it until we get a reply from the server, and this
+    // message is ignored.
     EventHandler.SendNetworkEvent("ap-check", loc.apid);
 
     // TODO: this crashes if the player goes to start a new game while a game
@@ -254,6 +259,9 @@ class ::PlayEventHandler : StaticEventHandler {
     } else if (evt.name.IndexOf("ap-use-item:") == 0) {
       let typename = evt.name.Mid(12);
       apstate.UseItemByName(typename);
+    } else if (evt.name.IndexOf("ap-region/") == 0) {
+      self.subregion = evt.name.Mid(10);
+      RedefineSubregion();
     } else if (evt.name == "ap-did-warning") {
       apstate.did_warning = true;
     } else if (evt.name == "ap-debug") {

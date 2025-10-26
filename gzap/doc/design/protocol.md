@@ -133,7 +133,15 @@ may temporarily disable maps to generate more accurate tuning.
 Emitted whenever the player receives a new weapon via AP. `weapons` is a map
 from weapon name to weapon count. Used for fine-tuning weapon logic.
 
-#### `AP-CHECK { id, name, pos, keys, unreachable }`
+#### `AP-REGION { map, region, visited: [ ... ], keys: [ ... ] }`
+
+Emitted, at the direction of the player, to define a new subregion of a map.
+Names are scoped to the map (i.e. regions in different maps may have the same
+name without being considered the same region). `visited` has the meaning as
+the `maps` list in `AP-VISITED`, and `keys` the same meaning it does in
+`AP-CHECK`.
+
+#### `AP-CHECK { id, name, pos, region, keys, unreachable }`
 
 Emitted when the player checks a location. The fields have the following meaning:
 - `id`: the Archipelago location ID
@@ -142,6 +150,7 @@ Emitted when the player checks a location. The fields have the following meaning
   coordinates of the location (not wherever the check was when the player
   picked it up); optional
 - `keys`: a list of key names held by the player; optional
+- `region`: the name of the check's enclosing region; optional
 - `unreachable`: a boolean; optional
 
 In multiworld play, only `id` is used; the rest are stored for use in the
@@ -154,9 +163,15 @@ tuning files use `name` alone, and locations with no defined coordinates (e.g.
 the level exit) continue to use `name` and omit `pos`.
 
 `keys` lists all the keys held by the player, and is used by the logic tuner to
-update its understanding of whether the location is reachable. If empty, it
-means the location is reachable without any keys; if absent entirely, this entry
-isn't used for key requirement tuning.
+update its understanding of whether the location is reachable. If present but
+empty, it means the location is reachable without any keys.
+
+`region`, if present, is the name of the location's enclosing subregion defined
+by `AP-REGION`. In this case the reachability information for the region as a
+whole is used to compute the reachability of the check.
+
+If both `region` and `keys` are present, both must be satisfied to reach this
+location. If both are absent, this record is not used for reachability tuning.
 
 `unreachable`, if present and true, means that the check is not reachable in
 normal play and the player used cheats, forbidden techniques, or the

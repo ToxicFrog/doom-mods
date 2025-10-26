@@ -2,6 +2,7 @@
 // randomizer and lets them summon them.
 
 #namespace GZAP;
+#debug on;
 
 #include "../archipelago/RandoState.zsc"
 #include "./CommonMenu.zsc"
@@ -101,8 +102,10 @@ class ::InventoryMenu : ::CommonMenu {
     if (regions.Size() <= 1) return;
 
     PushText(" ");
-    PushText("Pretuning region list control");
+    PushText("Pretuning region console");
     PushText(" ");
+
+    mDesc.mItems.Push(new("::RegionNameEntry").Init("Subregion Name"));
 
     foreach (region : regions) {
       mDesc.mItems.Push(new("::RegionToggle").Init(region));
@@ -223,6 +226,32 @@ class ::KeyToggle : ::KeyValueSelectable {
       return StringTable.Localize("$GZAP_MENU_KEY_ON");
     } else {
       return StringTable.Localize("$GZAP_MENU_KEY_OFF");
+    }
+  }
+}
+
+class ::RegionNameEntry : OptionMenuItemTextField
+{
+	OptionMenuItemTextField Init(string label) {
+    super.Init(label, "", null);
+    mEnter = null;
+    return self;
+  }
+
+  override bool,string GetString(int i) {
+    if (i == 0) {
+      return true,::PlayEventHandler.Get().subregion;
+    } else {
+      return false,"";
+    }
+  }
+
+	override bool SetString(int i, string s) {
+		if (i == 0) {
+      if (s != "-") EventHandler.SendNetworkEvent("ap-region/"..s, 0);
+      return true;
+    } else {
+      return false;
     }
   }
 }
