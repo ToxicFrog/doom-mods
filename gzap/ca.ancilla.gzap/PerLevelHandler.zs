@@ -252,9 +252,12 @@ class ::PerLevelHandler : EventHandler {
 
   override void WorldThingSpawned(WorldEvent evt) {
     let thing = evt.thing;
-
-    if (!(thing is "::CheckPickup") && thing.bCOUNTITEM) {
-      thing.ClearCounters();
+    
+    if (thing != null)
+    {
+      if (!(thing is "::CheckPickup") && thing.bCOUNTITEM) {
+        thing.ClearCounters();
+      }
     }
   }
 
