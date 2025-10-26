@@ -170,6 +170,9 @@ class ::PerLevelHandler : EventHandler {
       ::CheckPickup.Create(location);
     }
     apstate.UpdatePlayerInventory();
+    // Since this is our first time visiting, we should record our current
+    // location as this region's spawnpoint, for fast-travel in hub-logic based
+    // wads.
   }
 
   void OnReopen() {
@@ -182,6 +185,9 @@ class ::PerLevelHandler : EventHandler {
     let region = apstate.GetCurrentRegion();
     SetupSecrets(region);
     apstate.UpdatePlayerInventory();
+    // Returning to an earlier level, we should teleport the player to the point
+    // they were in when they exited it, if we have one recorded.
+    // We also need a way to teleport them back to the level entrance...
   }
 
   void OnLoadGame() {
@@ -225,6 +231,9 @@ class ::PerLevelHandler : EventHandler {
   // maps are in the same hubcluster -- which is the case when persistence is on.
   // To handle that case, we record that the line was activated here, and then
   // if the player respawns without leaving the map, we trigger the exit.
+  // TODO: investigate if we can use WorldLineActivated, which fires after line
+  // activation, instead.
+  // TODO: handle 74 (teleport_newmap) and 75 (teleport_endgame)
   override void WorldLinePreActivated(WorldEvent evt) {
     let thing = evt.thing;
     let line = evt.ActivatedLine;
@@ -387,6 +396,10 @@ class ::PerLevelHandler : EventHandler {
       is_save, self.early_exit, level.LevelNum, next_map);
 
     let region = apstate.GetRegion(level.MapName);
+    // If this is an "early exit" and persistent mode is on, we should record
+    // the player's location and return them to it when they re-enter.
+    // In hubcluster-based games this might make more sense stored per cluster
+    // rather than per map?
 
     if (is_save || !region) {
       cvar.FindCvar("ap_scan_unreachable").SetInt(0);

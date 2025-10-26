@@ -284,6 +284,11 @@ class GZDoomWorld(World):
             self.multiworld.itempool.append(self.create_item(item))
             slots_left -= 1
 
+        # TODO: when generating a game where all small/medium items are vanilla,
+        # this should result in no small/medium items in randomized filler in
+        # other worlds. In practice this does not seem to be the case for some
+        # reason.
+
         # compare slots_left to total count of filler_items, then scale filler_items
         # based on the difference.
         filler_count = filler_items.total()

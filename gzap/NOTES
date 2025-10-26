@@ -12,28 +12,20 @@ To release a new version:
 
 ### next release
 
+(0.7 is focusing on logic/tuning format changes and bugfixes)
+- fix filler pool population for :vanilla categories
+- AP-REGION message
+- region-based logic loading
+- in-game region controls when pretuning
+  - keys, maps, weapons
+- extended keylist format in tuning files
+- logic engine changes to acommodate all of the above
+
 (maybe wait for 0.7.1)
 - weapon ownership rework
 - display weapons in inventory even if you don't have them
 - let you hint weapons from the inventory screen
 - hints section in the inventory screen for hints pointing to the current level
-- ability to put custom location names in the logic file
-
-(soon?)
-- go through tuning files and remove or redo tuning that relies on legacy location
-  checks (i.e. ones without coordinates):
-  - Doom 2
-  - Scythe
-  - AOS
-  - CQ3
-  - Heretic
-  - FD2
-  - Doom
-  - 1000 Lines
-  - 1000 Lines 2
-  - Demonfear
-  - Mayhem 2048
-  and then drop legacy location support
 
 ### general notes on scanner/logic changes
 
