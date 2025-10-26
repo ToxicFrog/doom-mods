@@ -39,9 +39,9 @@ Based on this, the logic for each check is adjusted:
 - If you found it with keys that are a subset of the current requirements, those
   become the new key requirement.
 
-It does not currently handle the case where multiple sets of keys without a subset
-relation can work; for example, MAP19 requires the red key and *either* the blue
-or yellow key. <!-- TODO: support this by making the keys a set-of-sets -->
+If you find a check multiple times (i.e. on different playthroughs) using different
+keys each time, the logic tuning takes that into account, and correctly handles
+cases like "this item can be found with either the blue or red key".
 
 As a megawad receives more tuning, the breadth of what's considered "in logic"
 increases to match what you can actually reach.
@@ -55,14 +55,14 @@ The item pool is initially populated with progression and useful items:
   - an automap for the level; and
   - one copy of each key in the level.
 - All weapons, to a maximum of one copy of each weapon per eight levels.
+- All other randomized items:
+  - By default this means backpacks, powerups, and "big" items
+  - The YAML can be used to adjust this as desired
 
-Access codes and keys for any starting levels are then removed from the pool and
-added to the player's starting inventory. If "start with all maps" was enabled,
-maps are also moved from the pool to the player's inventory.
+Starting inventory (typically access codes for some starting levels, but this
+can also include keys, weapons, automaps, or other things depending on settings)
+are then removed from the pool and placed in the player's starting inventory.
 
-Any remaining slots are filled with powerups and upgrades. If the number available
-doesn't exactly match the number of slots remaining, the quantities are scaled to
-retain the original proportions.
-
-At some point, I want to add an option to pad out the item pool with ammo pickups
-as well, but that's not implemented yet. <!-- TODO -->
+The contents of the pool are then scaled by adding or removing filler items
+until it exactly matches the number of locations to be filled, based on the
+original proportions of filler in the pool.
