@@ -1,0 +1,31 @@
+ACTOR RLMultiItemSpawner : CustomInventory
+{
+    Radius 14
+    Height 30
+	Inventory.PickupMessage ""
+	Inventory.PickupSound ""
+
+	-COUNTITEM
+	+NOTONAUTOMAP
+	+NOINTERACTION
+	+NEVERRESPAWN
+
+	States
+	{
+	Spawn:
+	    TNT1 A 0
+	    TNT1 A 0 A_JumpIf(CallACS("DRPGCheckTiem"), "SpawnItems")
+		TNT1 A 0 A_JumpIf(CallACS("DRLA_specialstarts") == 2, "SpawnDuke2")
+	    TNT1 A 0 A_Jump(256, "SpawnItems")
+		Goto SpawnItems
+    SpawnItems:
+	    TNT1 A 0 A_Jump(256, "WaitForCollection")
+		Goto WaitForCollection
+    WaitForCollection:
+		TNT1 A -1
+		Stop
+	SpawnDuke2:
+		TNT1 A 0 A_SpawnItemEx("RLDuke2GuaranteedHealthCrate",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		Stop
+	}
+}
