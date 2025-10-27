@@ -308,13 +308,24 @@ class ::RandoState play {
     region.visited = !region.visited;
   }
 
-  string VisitedString() {
-    string buf = "";
-    foreach (name, region : self.regions) {
-      if (!region.visited) continue;
-      buf.AppendFormat("%s\"%s\"", buf.Length() > 0 ? ", " : "", name);
+  void FillRegionPrereqs(Array<string> prereqs) {
+    prereqs.Clear();
+    foreach (k, v : GetCurrentRegion().keys) {
+      if (v.held && v.enabled) {
+        prereqs.Push("key/" .. v.typename);
+      }
     }
-    return buf;
+    let region = GetCurrentRegion();
+    foreach (k, v : self.regions) {
+      if (v.visited && v != region) {
+        prereqs.Push("map/" .. k);
+      }
+    }
+    // foreach (item : self.items) {
+    //   if (item.IsWeapon() && item.vended > 0) {
+    //     prereqs.Push("weapon/" .. item.typename .. "/want");
+    //   }
+    // }
   }
 
   void OnTick() {

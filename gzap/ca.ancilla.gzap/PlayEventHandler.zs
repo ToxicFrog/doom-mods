@@ -160,7 +160,10 @@ class ::PlayEventHandler : StaticEventHandler {
   void RedefineSubregion() {
     if (self.subregion == "") return;
     let region = apstate.GetCurrentRegion();
-    ::IPC.DefineRegion(region.map, self.subregion, apstate.VisitedString(), region.KeyString());
+    if (!region) return;
+    Array<string> prereqs;
+    apstate.FillRegionPrereqs(prereqs);
+    ::IPC.DefineRegion(region.map, self.subregion, prereqs);
   }
 
   void CheckLocation(::Location loc, bool atexit=false) {

@@ -38,10 +38,15 @@ class ::IPC {
     }
   }
 
-  static void DefineRegion(string map, string name, string visited, string keys) {
+  static void DefineRegion(string map, string name, Array<string> prereqs) {
+    string prereq_str = "";
+    if (prereqs.Size() > 0) {
+      prereq_str = "\"" .. ::Util.join("\", \"", prereqs) .. "\"";
+    }
+
     Send("REGION", string.format(
-      "{ \"map\": \"%s\", \"region\": \"%s\", \"visited\": [%s], \"keys\": [%s] }",
-      map, name, visited, keys));
+      "{ \"map\": \"%s\", \"region\": \"%s\", \"keys\": [%s] }",
+      map, name, prereq_str));
   }
 
   static void ReportWeapons(Map<string, int> weapons) {
