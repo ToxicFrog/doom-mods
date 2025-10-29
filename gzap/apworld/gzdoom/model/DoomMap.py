@@ -166,6 +166,12 @@ class DoomMap:
     def has_one_key(self, keyname: str) -> bool:
         return self.key_count == 1 and keyname in {k.fqin() for k in self.keyset}
 
+    def key_by_type(self, typename: str) -> DoomKey:
+        for key in self.keyset:
+            if key.typename == typename:
+                return key
+        raise RuntimeError(f"Couldn't find key of type {typename} in map {self.name} with keys {self.keyset}")
+
     def local_guns(self):
         return {
             loc.orig_item.name()

@@ -37,7 +37,8 @@ class WadDataLoader:
                 elif evt == "AP-ITEM":
                     self.wad.new_item(payload)
                 elif evt == "AP-SCAN-DONE":
-                    self.wad.finalize_scan(payload)
+                    # self.wad.finalize_scan(payload)
+                    pass
                 elif evt == "AP-CHECK":
                     self.wad.tune_location(**payload)
                 elif evt == "AP-SECRET":
@@ -84,7 +85,7 @@ class WadLogicLoader(WadDataLoader):
         if err_type is not None:
             return False
 
-        self.wad.finalize_all(self.logic)
+        self.wad.finalize_logic(self.logic)
         self.logic.add_wad(self.wad.name, self.wad)
         return True
 
@@ -147,3 +148,4 @@ class WadTuningLoader(WadDataLoader):
     def load_tuning(self, files):
         for file in files:
             self.load_records(file)
+        self.wad.finalize_tuning()

@@ -14,12 +14,11 @@ To release a new version:
 
 (0.7 is focusing on logic/tuning format changes and bugfixes)
 - fix filler pool population for :vanilla categories
-- AP-REGION message
-- region-based logic loading
-- in-game region controls when pretuning
-  - keys, maps, weapons
 - extended keylist format in tuning files
 - logic engine changes to acommodate all of the above
+  - don't generate exit nodes except for the cluster as a whole
+  - don't mark level complete until we hit teleport_endgame trigger
+  - processing for extended keylist format and region-based prereqs
 
 (maybe wait for 0.7.1)
 - weapon ownership rework
@@ -88,22 +87,7 @@ be able to represent logic requirements that aren't just keys.
 
 ### Faithless
 
-Ideally we want a way to toggle levels on and off in the visited list. For example,
-we need to pass through E1M2 to get to the room in E1M1 where the yellow key is,
-but if we have the yellow key there's a bunch of areas in E1M1 we can get to
-*without* passing through E1M2. So basically the same as the key list interface
-but for the list of visited levels. Display only levels in the same cluster as
-the current one and only display that section at all if the current cluster
-contains more than one level.
 
-The fact that AP-KEY includes the type name but not the tag makes handling it
-more complicated in the apworld. This is fine for Doom because keys are untagged,
-but in Heretic it means the *item* is ingested as "Yellow Key (E1M1)" but the
-*key* is reified as "KeyYellow" and then it can't find the original to subsume it.
-
-We can handle this post hoc by searching for a key in the same level with the same
-typename and extracting its tag, but in keeping with "complex data, simple code",
-I'd prefer to include the tag in the AP-KEY message itself.
 
 ### Golden Souls
 

@@ -133,13 +133,12 @@ may temporarily disable maps to generate more accurate tuning.
 Emitted whenever the player receives a new weapon via AP. `weapons` is a map
 from weapon name to weapon count. Used for fine-tuning weapon logic.
 
-#### `AP-REGION { map, region, visited: [ ... ], keys: [ ... ] }`
+#### `AP-REGION { map, region, keys: [ ... ] }`
 
 Emitted, at the direction of the player, to define a new subregion of a map.
 Names are scoped to the map (i.e. regions in different maps may have the same
-name without being considered the same region). `visited` has the meaning as
-the `maps` list in `AP-VISITED`, and `keys` the same meaning it does in
-`AP-CHECK`.
+name without being considered the same region). `keys` has the same meaning as
+in `AP-CHECK`.
 
 #### `AP-CHECK { id, name, pos, region, keys, unreachable }`
 
@@ -162,9 +161,9 @@ change if the level is rescanned, while `name` can change more freely. Older
 tuning files use `name` alone, and locations with no defined coordinates (e.g.
 the level exit) continue to use `name` and omit `pos`.
 
-`keys` lists all the keys held by the player, and is used by the logic tuner to
-update its understanding of whether the location is reachable. If present but
-empty, it means the location is reachable without any keys.
+`keys` lists all prerequisites in the format described in [regions.md](./regions.md#extended-keylist-format).
+In normal play this is just a list of all keys held by the player, but can be
+edited by the logic maintainer post hoc if needed.
 
 `region`, if present, is the name of the location's enclosing subregion defined
 by `AP-REGION`. In this case the reachability information for the region as a

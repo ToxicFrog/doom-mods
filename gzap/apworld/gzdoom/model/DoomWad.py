@@ -37,7 +37,8 @@ class DoomWad:
     name: str
     package: str | None  # Name of module this logic file was loaded from, or None if from disk
     maps: Dict[str,DoomMap] = field(default_factory=dict)
-    items_by_name: Dict[str,DoomItem] = field(default_factory=dict)
+    items_by_name: Dict[str,DoomItem] = field(default_factory=dict) # Indexed by FQIN
+    items_by_type: Dict[str,DoomItem] = field(default_factory=dict) # Indexed by typename
     # Map of skill -> position -> location used while importing locations.
     locations_by_pos: Dict[int,Dict[DoomPosition,DoomLocation]] = field(default_factory=dict)
     # Map of FQIN -> key record
@@ -52,7 +53,7 @@ class DoomWad:
     # Tuning data is being loaded, or has been loaded, for this wad.
     tuned: bool = False
     # Flags passed through from the tuning file
-    flags: Set[str] = field(default_factory=frozenset)
+    flags: FrozenSet[str] = frozenset()
 
     def __post_init__(self):
         self.locations_by_pos = {
@@ -214,6 +215,7 @@ class DoomWad:
                 assert item.name() not in all_items,f"Error resolving item name collisions, item f{item} collides with distinct item f{all_items[item.name()]} even after trying to disambiguate."
                 all_items[item.name()] = item
         self.items_by_name = all_items
+        self.items_by_type = { item.typename: item for item in self.items() }
 
     def new_location(self, map: str, item: DoomItem, secret: bool, skill: Set[int], pos: Dict[str, int], name: str) -> None:
         """
@@ -281,7 +283,14 @@ class DoomWad:
         assert len(keys) == len(keytypes), f"Error reifying keys for {mapname}: wanted {keytypes}, but the logic only contains {[key.fqin() for key in keys]}"
         return keys
 
-    def tune_location(self, id, name, keys=None, pos=None, unreachable=False) -> None:
+    def record_tuning(self, locs, keys, region, unreachable):
+        for loc in locs:
+            if unreachable:
+                loc.unreachable = True
+            else:
+                loc.record_tuning(keys, region)
+
+    def tune_location(self, id, name, pos=None, keys=None, region=None, unreachable=False) -> None:
         """
         Adjust the reachability rules for a location.
 
@@ -296,35 +305,14 @@ class DoomWad:
         if pos is None:
             # Legacy tuning file, or location with no position (e.g. level exit
             # or secret sector).
-            return self.tune_location_by_name(name, keys, unreachable)
+            return self.record_tuning(self.locations_by_name.get(name, []), keys, region, unreachable)
+
+        if not unreachable and not keys and not region:
+            return
 
         (map,x,y,z) = pos
         pos = DoomPosition(map=map, virtual=False, x=x, y=y, z=z)
-        for loc in self.locations_at_position(pos):
-            if unreachable:
-                # print(f"Marking {loc.name()} as unreachable. {id(loc)}")
-                loc.unreachable = True
-            elif keys is not None:
-                loc.tune_keys(self.reify_keys(map, keys))
-
-    def tune_location_by_name(self, name, keys=None, unreachable=False) -> None:
-        # Index by name rather than ID because the ID may change as more WADs
-        # are added, but the name should not.
-        locs = self.locations_by_name.get(name, [])
-        if len(locs) == 0:
-            # print(f"Tuning file contains info for nonexistent check {name}")
-            return
-        for loc in locs:
-            if unreachable:
-                # print(f"Marking {loc.name()} as unreachable. {id(loc)}")
-                loc.unreachable = True
-            elif keys is not None:
-                # Before passing the keys to tune_keys, we need to annotate them with
-                # the map name so that they match the names that Archipelago expects.
-                # TODO: When we support keys with greater-than-one-map scope, this
-                # gets more complicated. Probably we have some information supplied
-                # earlier in the tuning file we use to do the conversion.
-                loc.tune_keys(self.reify_keys(loc.pos.map, keys))
+        self.record_tuning(self.locations_at_position(pos), keys, region, unreachable)
 
     def disambiguate_duplicate_locations(self) -> None:
         # Resolve name collisions among locations and register them with the logic.
@@ -414,33 +402,25 @@ class DoomWad:
             # print(f"Renaming {oldname} -> {loc.name()}")
             self.finalize_location(loc)
 
-    def finalize_scan(self, json) -> None:
+    def finalize_logic(self, logic) -> None:
         """
         Do postprocessing after the initial scan is completed but before tuning.
+
+        At this point all IDs need to be defined and all items reified, but
+        we don't need complete reachability information.
         """
         self.disambiguate_duplicate_items()
         self.disambiguate_duplicate_locations()
-
-    def finalize_all(self, logic) -> None:
-        """
-        Do postprocessing after all events have been ingested.
-        """
-        self.finalize_location_keysets()
         self.finalize_key_items()
         self.finalize_ids(logic)
 
-    def finalize_location_keysets(self):
+    def finalize_tuning(self) -> None:
         """
-        Set up the information needed for key-based logic checks at generation time by:
-        - telling each map which keys exist in it, and
-        - giving each location we don't have tuning data for a pessimal default keyset
+        Do postprocessing after all events have been ingested, including tuning.
         """
-        for map in self.maps.values():
-            keys = self.keys_for_map(map.map)
-            map.keyset = keys
-            for loc in map.locations:
-                if loc.keys is None:
-                    loc.keys = frozenset({keys})
+        for locs in self.locations_by_name.values():
+            for loc in locs:
+                loc.finalize_tuning()
 
     def finalize_key_items(self):
         """
