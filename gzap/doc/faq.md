@@ -24,6 +24,26 @@ generate a partial [tuning file](./new-wads.md), which in most wads will give it
 enough information about early-game item placement to get it unstuck even
 without `start_with_keys`.
 
+### The game doesn't start up and I get a huge number of zscript errors!
+
+Make sure that you loaded both `gzArchipelago.pk3` and the `pk3` provided by
+the game host, **and** that you loaded the `pk3` from the game host last.
+
+### I started the game and immediately got a "game/randomizer mismatch" error!
+
+If it says that *every* level is wrong, you probably loaded the wrong WAD, e.g.
+accidentally selecting `doom.wad` when you meant to load `doom2.wad`.
+
+If only some of the levels are wrong, you are probably using the wrong version
+of the WAD. If you're using the `DOOM + DOOM II` re-release version, use the
+WADs in the `base/` directory rather than the `rerelease/` directory; the latter
+have modifications specific to the rerelease and will not work with the
+randomizer.
+
+If you need help figuring out what version you're using,
+[this table on DoomWiki](https://doomwiki.org/wiki/IWAD#Official) has links to
+a page for each official WAD with information about the different versions.
+
 ### I got partway through a level and now I'm stuck!
 
 Try a different level -- the randomizer may require you to visit one level to get
