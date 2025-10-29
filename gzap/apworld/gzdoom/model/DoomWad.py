@@ -424,12 +424,21 @@ class DoomWad:
 
     def finalize_key_items(self):
         """
-        Match up DoomKey records with the underlying items.
-        For simple keys (found during scan, one map) this is a no-op. For dynkeys
-        it creates the missing key item. For dynamic multikeys it also subsumes
-        all other keys that are just aspects of this one in different levels.
+        Hook up DoomKeys with their underlying items and corresponding maps.
+
+        For simple keys (one-map scope, found during scan), we just add the key
+        to the map's keyset (so we can easily look it up by map later) and we're
+        done.
+
+        For dynkeys (found during tuning) and multikeys (multi-map scope), it
+        creates a new DoomItem representing the key, links the key to it, and
+        replaces any item table entries for single-map versions of the same
+        actual key with references to the newly created multikey item.
         """
         for key in self.keys_by_name.values():
+            for mapname in key.maps:
+                self.maps[mapname].keyset.add(key)
+
             if key.fqin() in self.items_by_name:
                 continue
 
