@@ -1,4 +1,6 @@
 AP-SCAN { "flags": ["use_hub_logic"] }
+// Green key can show up in either E1M4 or E1M5 depending on what order the player visits them in
+AP-KEY { "map": "E1M5", "tag": "Green Key", "typename": "KeyGreen", "scopename": "Faithless", "cluster": 66, "maps": ["E1M1", "E1M2", "E1M3", "E1M4", "E1M5", "E1M6", "E1M7", "E1M8", "E1M9"] }
 AP-MAP { "map": "E1M1", "checksum": "7ecc53cfff9c9be6eeee4fb2726480f0", "rank": 0, "monster_count": 111, "info": { "levelnum": 1, "title": "FAITH_E1M1", "is_lookup": true, "sky1": "HSKY2", "sky1speed": "0.003500", "sky2": "HSKY3", "sky2speed": "0.003500", "music": "$MUSIC_FAITH_1", "music_track": "0", "cluster": 66, "flags": ["useplayerstartz"] } }
 AP-ITEM { "map": "E1M1", "category": "key", "typename": "KeyYellow", "tag": "Yellow Key", "position": { "x": 320, "y": 480, "z": 176 } }
 AP-KEY { "map": "E1M1", "tag": "Yellow Key", "typename": "KeyYellow", "scopename": "Faithless", "cluster": 66, "maps": ["E1M1", "E1M2", "E1M3", "E1M4", "E1M5", "E1M6", "E1M7", "E1M8", "E1M9"] }
