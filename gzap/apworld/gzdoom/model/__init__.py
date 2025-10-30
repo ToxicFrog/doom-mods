@@ -85,8 +85,6 @@ def init_wad(package, logic_file):
     wadname = logic_file.name.split(".")[0]
     with WadLogicLoader(_DOOM_LOGIC, wadname, package) as wadloader:
         wadloader.load_logic(logic_file)
-        wadloader.print_stats()
-
 
 def print_header(package):
     if "GZAP_DEBUG" not in os.environ:
@@ -123,6 +121,10 @@ def init_all_wads():
 
     # Load loose files from the AP directory
     init_wads(None)
+
+    if 'GZAP_LOAD_ALL_TUNING' in os.environ:
+        for name,wad in _DOOM_LOGIC.wads.items():
+            get_tuned_wad(name)
 
 def wads() -> List[DoomWad]:
     return sorted(_DOOM_LOGIC.wads.values(), key=lambda w: w.name)

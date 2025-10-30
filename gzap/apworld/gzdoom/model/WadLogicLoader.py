@@ -86,6 +86,7 @@ class WadLogicLoader(WadDataLoader):
             return False
 
         self.wad.finalize_logic(self.logic)
+        self.print_stats()
         self.logic.add_wad(self.wad.name, self.wad)
         return True
 
