@@ -17,7 +17,12 @@ def strings_to_prereq_fn(world, wad, map, xs):
   return prereq
 
 def string_to_prereq_fn(world, wad, map, string):
-  type,name,qualifier = (string.split('/') + [None])
+  fields = string.split('/')
+  if len(fields) == 3:
+    type,name,qualifier = fields
+  else:
+    type,name = fields
+    qualifier = None
 
   match type:
     case 'fqin':
@@ -53,6 +58,6 @@ def region_prereq(world, wad, map, mapname, subregion):
   # In the above, 'map' is the map this prereq is evaluated in the context of,
   # and mapname is the name of the other map we're evaluating.
   if subregion is None:
-    return world.region_by_name(mapname).access_rule(world)
+    return wad.maps[mapname].access_rule(world)
   else:
-    return world.region_by_name(f'{mapname}/{subregion}').access_rule(world)
+    return wad.regions[f'{mapname}/{subregion}'].access_rule(world, wad, map)

@@ -41,14 +41,16 @@ AP-REGION { "map": "E1M3", "region": "green-door", "keys": ["key/KeyGreen", "map
 //////// E1M4: Kingdom of Roots
 // Main area accessible from both M3 and M5 teleporters.
 AP-REGION { "map": "E1M4", "region": "main", "keys": ["map/E1M3/garden"] }
-AP-REGION { "map": "E1M4", "region": "main", "keys": ["map/E1M5/main"] }
+// There's a direct link between M4 and M5, but trying to model it produces an infinite loop,
+// and in practice we don't need it because there's no way to reach either without M3 garden access.
+// AP-REGION { "map": "E1M4", "region": "main", "keys": ["map/E1M5/main"] }
 // Side area accessible only after raising the water in M5 using the switch in the tomb.
 AP-REGION { "map": "E1M4", "region": "after-raising-water", "keys": ["map/E1M4/main", "map/E1M5/main"] }
 
 //////// E1M5: Savaged Lands
 // Main area accessible from both M3 and M5 teleporters.
 AP-REGION { "map": "E1M5", "region": "main", "keys": ["map/E1M3/garden"] }
-AP-REGION { "map": "E1M5", "region": "main", "keys": ["map/E1M4/main"] }
+// AP-REGION { "map": "E1M5", "region": "main", "keys": ["map/E1M4/main"] }
 // Central and western area accessible only after getting the red key.
 // Also includes the southeastern area where the green key can be found, since that's unlocked via a trigger in
 // the red keep area (when you pick up the hellstaff).
@@ -324,7 +326,7 @@ AP-CHECK { "id": 91334, "name": "E1M1 - Quartz Flask [-1664,-192]", "pos": ["E1M
 AP-CHECK { "id": 91312, "name": "E1M1 - Ethereal Arrows [-1408,-128]", "pos": ["E1M1",-1408,-128,96], "region": "from-garden-teleporter" }
 AP-CHECK { "id": 91313, "name": "E1M1 - Ethereal Arrows [-1408,-256]", "pos": ["E1M1",-1408,-256,96], "region": "from-garden-teleporter" }
 // AP-CHECK { "id": 114, "name": "E1M1 - Exit", "region": "from-garden-teleporter" }
-AP-CHECK { "id": 91521, "name": "E1M3 - Secret 371", "region": "from-garden-teleporter" }
+AP-CHECK { "id": 91521, "name": "E1M3 - Secret 371", "region": "garden" }
 // AP-CHECK { "id": 229, "name": "E1M3 - Exit", "region": "garden" }
 AP-VISITED { "visited": [ "E1M3", "E1M4", "E1M1" ] }
 AP-CHECK { "id": 91540, "name": "E1M4 - Emerald Amulet [NW]", "pos": ["E1M4",-1216,896,128], "region": "main" }

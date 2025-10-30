@@ -243,17 +243,36 @@ class GZDoomWorld(World):
                     self.multiworld.push_precollected(item)
                     self.pool.adjust_item(item.name, -1)
 
-            region = Region(map.map, self.player, self.multiworld)
-            self.multiworld.regions.append(region)
-            rule = map.access_rule(self)
+            regions = {}
+            regions[map.map] = Region(map.map, self.player, self.multiworld)
+            self.multiworld.regions.append(regions[map.map])
+            # For hub logic, this isn't really a true modeling -- it models each
+            # region as reachable from the level select screen, and some of them
+            # just happen to have additional requirements like "can also reach
+            # these other regions".
+            # For level subregions, we can connect them to their enclosing level
+            # rather than to the menu, but we won't draw connections between them.
             menu_region.connect(
-                connecting_region=region,
+                connecting_region=regions[map.map],
                 name=f"{map.map}",
-                rule=rule)
+                rule=map.access_rule(self))
+
+            for region in self.wad_logic.regions_in_map(map.map):
+                rg = Region(region.name(), self.player, self.multiworld)
+                regions[region.name()] = rg
+                self.multiworld.regions.append(rg)
+                regions[map.map].connect(
+                    connecting_region=rg,
+                    name=region.name(),
+                    rule=region.access_rule(self, self.wad_logic, map))
 
             for loc in self.pool.locations_in_map(map.map):
                 assert loc.name() not in placed, f"Location {loc.name()} was already placed but we tried to place it again!"
                 placed.add(loc.name())
+                if loc.region:
+                    region = regions[f'{map.map}/{loc.region}']
+                else:
+                    region = regions[map.map]
                 location = GZDoomLocation(self, loc, region)
                 # Believed-to-be-unreachable locations get a generic health item.
                 if loc.unreachable:
@@ -265,7 +284,6 @@ class GZDoomWorld(World):
                     # many we'll need from the pool.
                     self.location_count += 1
                 region.locations.append(location)
-
 
     def create_items(self) -> None:
         for item in self.pool.starting_item_counts.elements():

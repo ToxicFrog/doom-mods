@@ -22,6 +22,7 @@ from .DoomItem import DoomItem
 from .DoomLocation import DoomLocation, DoomPosition
 from .DoomMap import DoomMap
 from .DoomKey import DoomKey
+from .DoomRegion import DoomRegion
 
 
 class DuplicateMapError(RuntimeError):
@@ -54,6 +55,8 @@ class DoomWad:
     tuned: bool = False
     # Flags passed through from the tuning file
     flags: FrozenSet[str] = frozenset()
+    # Implicit and explicit regions. Minimum one per map, but there might be more.
+    regions: Dict[str,DoomRegion] = field(default_factory=dict)
 
     def __post_init__(self):
         self.locations_by_pos = {
@@ -218,6 +221,13 @@ class DoomWad:
                 all_items[item.name()] = item
         self.items_by_name = all_items
         self.items_by_type = { item.typename: item for item in self.items() }
+
+    def define_region(self, map: str, region: str, keys: List[str]):
+        name = f'{map}/{region}'
+        self.regions.setdefault(name, DoomRegion(map, region)).record_tuning(keys)
+
+    def regions_in_map(self, map: str):
+        return (r for r in self.regions.values() if r.map == map)
 
     def new_location(self, map: str, item: DoomItem, secret: bool, skill: Set[int], pos: Dict[str, int], name: str) -> None:
         """
@@ -420,6 +430,8 @@ class DoomWad:
         for locs in self.locations_by_name.values():
             for loc in locs:
                 loc.finalize_tuning()
+        for name,region in self.regions.items():
+            region.finalize_tuning(default=[])
 
     def finalize_key_items(self):
         """

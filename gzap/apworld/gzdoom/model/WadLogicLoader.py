@@ -39,6 +39,8 @@ class WadDataLoader:
                 elif evt == "AP-SCAN-DONE":
                     # self.wad.finalize_scan(payload)
                     pass
+                elif evt == "AP-REGION":
+                    self.wad.define_region(**payload)
                 elif evt == "AP-CHECK":
                     self.wad.tune_location(**payload)
                 elif evt == "AP-SECRET":
