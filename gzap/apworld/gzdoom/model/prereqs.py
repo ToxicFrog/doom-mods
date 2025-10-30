@@ -20,6 +20,8 @@ def string_to_prereq_fn(world, wad, map, string):
   type,name,qualifier = (string.split('/') + [None])
 
   match type:
+    case 'fqin':
+      return fqin_prereq(world, wad, map, name)
     case 'key':
       return key_prereq(world, wad, map, name)
     case 'item':

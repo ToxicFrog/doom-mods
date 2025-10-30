@@ -155,6 +155,8 @@ class DoomWad:
             DoomItem(map=map.map, category="token-ap_map", typename="GZAP_Automap", tag="Automap"))
         map.add_loose_item(automap_token.name())
 
+        # Create these only when not in hub mode. In hub mode we create one exit
+        # per cluster, not one per map.
         clear_token = self.register_item(None,
             DoomItem(map=map.map, category="token-ap_victory", typename="", tag="Level Clear"))
         map_exit = DoomLocation(self, map=map.map, item=clear_token, secret=False, pos=None)
@@ -285,12 +287,9 @@ class DoomWad:
 
     def record_tuning(self, locs, keys, region, unreachable):
         for loc in locs:
-            if unreachable:
-                loc.unreachable = True
-            else:
-                loc.record_tuning(keys, region)
+            loc.record_tuning(keys, region, unreachable)
 
-    def tune_location(self, id, name, pos=None, keys=None, region=None, unreachable=False) -> None:
+    def tune_location(self, id, name, pos=None, keys=None, region=None, unreachable=None) -> None:
         """
         Adjust the reachability rules for a location.
 
@@ -307,7 +306,7 @@ class DoomWad:
             # or secret sector).
             return self.record_tuning(self.locations_by_name.get(name, []), keys, region, unreachable)
 
-        if not unreachable and not keys and not region:
+        if unreachable is None and not keys and not region:
             return
 
         (map,x,y,z) = pos

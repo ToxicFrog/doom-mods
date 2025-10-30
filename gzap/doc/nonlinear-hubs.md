@@ -150,6 +150,32 @@ location in B itself. So the actual hoisting needed is "requirement exists for
 every location in this level and every location that lists this level in its
 prerequisite set".
 
+### Exit handling
+
+In a normal wad, we generate an exit for each map, on the assumption that one
+map == one level. For this -- and to properly handle multi-map levels in general
+-- we need to generate one exit per *level*.
+
+In practice this means: if a level is not part of a hubcluster, generate an exit
+for that level; if it is, do not generate an exit for it, and instead generate
+an exit for the cluster as a whole.
+
+We can pass this through to the runtime by assigning the cluster exit as the
+exit for all maps contained within it. When exiting a map in the cluster we then
+need to figure out if it's a "proper" exit.
+
+Unfortunately there's a bunch of ways this can happen. `exit_normal` and
+`exit_secret` probably aren't used in hubclusters, but I can't prove they're
+not. `teleport_endgame` definitionally counts as a win. `teleport_newmap`
+probably should iff it takes you out of the cluster, but not otherwise. And of
+course a lot of fancy wads use ZS or ACS `ChangeLevel()` to move you between
+maps.
+
+So probably what we want to do is let the levelport proceed as planned, and when
+we enter the next level, if it is in a different cluster *and* the levelport was
+not initiated from the level select menu or `load`, consider the previous level
+to have been completed.
+
 ## End-to-end walkthrough
 
 Faithless is loaded up and scanned. The starting levels are set to E?M1, with
