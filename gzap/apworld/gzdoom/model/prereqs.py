@@ -42,7 +42,7 @@ def fqin_prereq(world, wad, map, fqin):
   return lambda state: state.has(fqin, world.player)
 
 def item_prereq(world, wad, map, typename):
-  return fqin_prereq(world, wad, map, wad.items_by_type[typename].fqin())
+  return fqin_prereq(world, wad, map, wad.items_by_type[typename].name())
 
 def weapon_prereq(world, wad, map, typename, strictness):
   if strictness == 'need':
