@@ -15,7 +15,8 @@ This file summarizes the state of support for various wads. Support is classifie
 The number of levels, monsters-per-level, and checks is given as a rough guide
 to the size of the wad for the purposes of rando planning with others. The check
 and monster counts assumes you are playing on UV and using the default settings;
-there is usually a small amount of variation across difficulties.
+there is usually a small amount of variation across difficulties. Enabling
+`medium` or `small` items will significantly increase the number of checks.
 
 The counts are also given using the default settings. Turning on more check
 categories in the yaml (via `included_item_categories`) can increase this by up
@@ -63,21 +64,21 @@ via the [Featured Mods List](https://doomwiki.org/wiki/Featured_mods) in the
 | WAD              | Maps | Mon/Lvl | Checks |  Status | Notes |
 | ---------------- | ---- | ------- | ------ | ------- | ----- |
 | Anomaly Report   |      |         |        | missing |       |
-| Arrival          |      |         |        | basic   |       |
-| Base Ganymede    |      |         |        | basic   |       |
+| Arrival          |   11 |     250 |    309 | basic   |       |
+| Base Ganymede    |   27 |     149 |    344 | basic   |       |
 | BTSX Episode 1   |      |         |        | missing |       |
 | BTSX Episode 2   |      |         |        | missing |       |
-| Deathless        |      |         |        | basic   |       |
+| Deathless        |   36 |      65 |    432 | basic   |       |
 | Doom Zero        |      |         |        | missing |       |
 | Double Impact    |      |         |        | missing |       |
 | Earthless: Prelude |    |         |        | missing |       |
 | Going Down       |      |         |        | missing |       |
-| Going Down Turbo |   32 |     163 | 450    | partial |       |
+| Going Down Turbo |   32 |     163 |    450 | partial |       |
 | Harmony          |      |         |        | missing |       |
 | No End In Sight  |      |         |        | missing |       |
 | REKKR            |      |         |        | missing |       |
 | Revolution!      |      |         |        | missing |       |
-| Scientist 2023   |      |         |        | basic   |       |
+| Scientist 2023   |   20 |     118 |    365 | basic   |       |
 | Syringe          |      |         |        | missing |       |
 | Tetanus          |      |         |        | missing |       |
 | Trooper's Playground |  |         |        | missing |       |

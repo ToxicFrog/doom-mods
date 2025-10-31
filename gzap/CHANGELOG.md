@@ -1,24 +1,3 @@
-# Unreleased - hubcluster branch
-
-⚠️ Logic format has changed. Rescan any wads you have custom logic for. Tuning
-data is unaffected.
-
-- New:
-  - Basic logic for `Arrival`, `Base Ganymede`, `Deathless`, and `Scientist`.
-  - Logic entries for keys include the key's display name, if any. This name is
-    used instead of the typename by the randomizer.
-  - New features to better support scanning of wads with multimap levels:
-    - `GZAPRC` lump can now define default scanner settings for the wad.
-    - `GZAPRC` lump can now define cluster names.
-    - Scanner can now find maps to scan via cluster membership as well as (or
-      instead of) following exits.
-    - Scanner can add arbitrary tags to the logic header which can then be read
-      by the apworld to adjust logic behaviour.
-    - Tuner emits information about which weapons the player has and which maps
-      they have visited.
-    - In pretuning mode, the inventory menu lets you lie to the tuner about
-      which maps you have visited if needed.
-
 # Unreleased
 
 This is a feature/design release.
@@ -30,6 +9,9 @@ This is a feature/design release.
 ⚠️ YAML and in-game settings have changed. Generate a new template YAML and
 double-check the correctness of your in-game settings.
 
+⚠️ Logic format has changed. Existing logic should still load, but rescanning
+will result in better randomizer behaviour. Tuning data is unaffected.
+
 ⚠️ This update splits the apworld into three: one core apworld providing support
 for the official games, plus two addon apworlds providing support for "featured
 mods" and for community maps. See [support-table.md](doc/support-table.md) for
@@ -39,17 +21,35 @@ a list of which wads are in which apworld.
 developer this probably does not affect you. If you are, see [new-wads.md](doc/new-wads.md#loading-files-without-adding-them-to-the-apworld)
 for details.
 
-- New:
+- New WAD support:
+  - Logic and tuning for `Eviternity` and `Eviternity II`, by Akos.
+  - Logic and tuning for `Legacy of Rust`, by RakeVuril.
+  - Basic logic for `Arrival`, `Base Ganymede`, `Deathless`, and `Scientist`.
+- New scanner and tuner features:
+  - `GZAPRC` lump can now define default scanner settings for the wad.
+  - `GZAPRC` lump can now define cluster names.
+  - Scanner can now find maps to scan via cluster membership as well as (or
+    instead of) following exits.
+  - Scanner can add arbitrary tags to the logic header which can then be read by
+    the apworld to adjust logic behaviour.
+  - Tuner emits information about which weapons the player has and which maps
+    they have visited.
+  - In pretuning mode, the inventory menu lets you lie to the tuner about which
+    maps you have visited if needed. ⚠️ This feature is probably getting removed
+    again in favour of region prerequisite declarations.
+  - Logic files can now define custom names for locations.
+  - Logic and tuning files support multiline entries. If a line ends with `}` it
+    is considered the end of the entry.
+- New apworld features:
   - Separate `ap_gzdoom_extras.apworld` and `ap_gzdoom_featured.apworld` files.
   - Autodiscovery of addon apworlds containing gzdoom tuning/logic.
-  - Logic for Eviternity and Eviternity II, by Akos.
-  - Logic for Legacy of Rust, by RakeVuril.
   - Items/locations can now have multiple categories, and existing categories
     have been decomposed (e.g. `big-health` items now belong to two categories,
     `big` and `health`).
   - Item/location categories, and combinations thereof, can be used in the YAML
     in any setting that supports item/location groups; see [the faq](./doc/faq.md#how-do-item-groups-work-in-the-yaml)
     for more details.
+- New gameplay features:
   - The inventory screen now lists all keys for the current level. Keys you do
     not yet have are hintable with `shift-H`. (This is the same mechanism as
     hinting them from the level select screen, but unlike the level select it
@@ -57,10 +57,10 @@ for details.
   - Auto-release on exit can be made conditional on having all keys for the level.
   - The inventory menu now lets you queue up multiple items and dispenses them
     all at once when closed.
-  - Logic files can now define custom names for locations.
-  - Logic and tuning files support multiline entries. If a line ends with `}` it
-    is considered the end of the entry.
 - Changed:
+  - The scanner now reports the display names for keys as well as the typename.
+    This results in better item and location names for keys in WADs that support
+    key names (i.e. not Doom 1/2).
   - Tuning data is now loaded for a wad when generation starts, rather than on
     apworld initialization. This makes apworld loading noticeably faster.
   - `allow_secret_progress` yaml option removed. Use `exclude_locations: ["secret"]`
