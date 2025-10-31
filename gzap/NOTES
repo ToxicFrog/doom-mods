@@ -23,7 +23,9 @@ To release a new version:
   - keep track of which locations are in which regions
     - rework create_regions to use this info
     - use it for weapon logic
-
+- UI changes: drop the visited-levels thing. Either keep a list of all previous
+  regions and let the player select regions, keys, and weapons, or just have a
+  textbox.
 
 (maybe wait for 0.7.1)
 - weapon ownership rework
