@@ -15,7 +15,7 @@ if [[ $SKIP ]]; then
   autoexec="$autoexec ap_scan_skip \"${SKIP}\";"
 fi
 if [[ $PRUNE ]]; then
-  autoexec="$autoexec ap_scan_skip \"${PRUNE}\";"
+  autoexec="$autoexec ap_scan_prune \"${PRUNE}\";"
 fi
 
 make

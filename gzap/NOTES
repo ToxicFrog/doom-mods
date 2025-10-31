@@ -14,11 +14,16 @@ To release a new version:
 
 (0.7 is focusing on logic/tuning format changes and bugfixes)
 - fix filler pool population for :vanilla categories
-- extended keylist format in tuning files
-- logic engine changes to acommodate all of the above
-  - don't generate exit nodes except for the cluster as a whole
-  - don't mark level complete until we hit teleport_endgame trigger
-  - processing for extended keylist format and region-based prereqs
+- logic engine changes to acommodate hubclusters
+  - generate exit nodes per cluster rather than per map
+  - trigger exit when leaving the cluster via non-level-select, non-loadgame means
+  - associate a region with each map and allow configuring it with AP-REGION
+    - map access requires access key + other region requirements
+    - DoomRegion implicitly wants an enclosing map so we probably want to inherit from DoomReachable in DoomMap
+  - keep track of which locations are in which regions
+    - rework create_regions to use this info
+    - use it for weapon logic
+
 
 (maybe wait for 0.7.1)
 - weapon ownership rework
