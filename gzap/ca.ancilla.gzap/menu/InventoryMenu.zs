@@ -152,6 +152,21 @@ class ::InventoryItem : ::KeyValueSelectable {
 
   override bool MenuEvent(int key, bool fromController) {
     if (key == Menu.MKey_Enter) {
+      let state = ::PlayEventHandler.GetState();
+      int total = 0;
+      for (int n = 0; n < state.items.Size(); ++n) {
+        total += state.items[n].grabbed;
+      }
+      // If the user hasn't selected anything, and the item currently under the
+      // cursor has at least one left, vend that immediately by sending an
+      // increment followed by a commit.
+      if (total == 0) {
+        if (item.Remaining() == 0) {
+          Menu.MenuSound("menu/invalid");
+          return true;
+        }
+        EventHandler.SendNetworkCommand("ap-inv-grab-more", NET_STRING, item.typename);
+      }
       EventHandler.SendNetworkCommand("ap-inv-grab-commit");
       Menu.MenuSound("menu/choose");
       Menu.GetCurrentMenu().Close();
