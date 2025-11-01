@@ -143,16 +143,14 @@ class DoomPool:
                     self.starting_item_counts[item] += count
 
         # Apply item lower/upper bounds.
+        # Items set to 'vanilla' skip this.
         for item in self.wad.items():
+            if item.name() in self.vanilla_item_counts:
+                continue
             (lower,upper) = item.pool_limits(world)
             self.item_counts[item.name()] = max(lower, min(self.item_counts[item.name()], upper))
 
-        # Withdraw starting inventory and vanilla forcing from the pool.
-        # We do both here because otherwise we end up with an issue where (e.g.)
-        # vanilla-forced keys still have min=1 in the pool, so you get two copies
-        # of each key, one at the vanilla location and one random.
-        for item,count in self.vanilla_item_counts.items():
-            self.item_counts[item] -= count
+        # Withdraw starting inventory from the pool only after limits are applied.
         for item,count in self.starting_item_counts.items():
             if count <= self.item_counts[item]:
                 self.item_counts[item] -= count
@@ -191,4 +189,5 @@ class DoomPool:
             name: count
             for name,count in self.item_counts.items()
             if self.wad.item(name).is_filler()
+            and count > 0
         })
