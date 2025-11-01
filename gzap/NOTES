@@ -14,6 +14,7 @@ To release a new version:
 
 (0.7 is focusing on logic/tuning format changes and bugfixes)
 - fix filler pool population for :vanilla categories
+- allow configuring specific items by type or fqin in included_item_categories
 - logic engine changes to acommodate hubclusters
   - generate exit nodes per cluster rather than per map
   - trigger exit when leaving the cluster via non-level-select, non-loadgame means
@@ -23,9 +24,11 @@ To release a new version:
   - keep track of which locations are in which regions
     - rework create_regions to use this info
     - use it for weapon logic
-- UI changes: drop the visited-levels thing. Either keep a list of all previous
-  regions and let the player select regions, keys, and weapons, or just have a
-  textbox.
+- UI changes:
+  - drop the visited-levels thing. Either keep a list of all previous regions
+    and let the player select regions, keys, and weapons, or just have a
+    textbox.
+  - rework the custom inventory limit stuff to work with the new item tagging system
 
 (maybe wait for 0.7.1)
 - weapon ownership rework

@@ -27,14 +27,6 @@ from dataclasses import dataclass
 
 from . import model
 
-class StartWithAutomaps(Toggle):
-    """
-    Give the player automaps for all levels from the start.
-    Otherwise, they'll be in the pool as useful, but not required, items.
-    """
-    display_name = "Start with Automaps"
-    default = False
-
 class MaxWeaponCopies(Range):
     """
     Applies a hard limit to the number of copies of each weapon in the item pool.
@@ -454,7 +446,6 @@ class GZDoomOptions(PerGameCommonOptions):
     # Location pool control
     included_item_categories: IncludedItemCategories
     # Item pool control
-    start_with_all_maps: StartWithAutomaps
     start_with_keys: StartWithKeys
     max_weapon_copies: MaxWeaponCopies
     levels_per_weapon: LevelsPerWeapon

@@ -162,7 +162,6 @@ class GZDoomWorld(World):
 
     def setup_pretuning_mode(self):
         print("PRETUNING ENABLED - overriding most settings")
-        self.options.start_with_all_maps.value = True
         self.options.included_levels.value = set()
         self.options.excluded_levels.value = set()
         self.options.level_order_bias.value = 0
@@ -173,7 +172,8 @@ class GZDoomWorld(World):
         # self.options.full_persistence.value = False
         self.options.allow_respawn.value = True
         self.options.included_item_categories.value = [
-            '*:vanilla'
+            'ap_map:start',
+            '*:vanilla',
         ]
         self.options.included_item_categories.build_ratios()
 

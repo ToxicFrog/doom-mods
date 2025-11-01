@@ -72,6 +72,8 @@ for details.
     `powerup` rather than as `map` for the purposes of choosing which locations
     to randomize.
   - The (poorly named) cvar `ap_scan_keys_always` was removed.
+  - `start_with_all_maps` yaml option removed. Use `"ap_map:start"` in
+    `included_item_categories` instead.
   - Items which are both powerups and tools, such as the Tome of Power from
     Heretic, are now classified as `powerup-tool` rather than just `powerup`.
 - Fixed:
