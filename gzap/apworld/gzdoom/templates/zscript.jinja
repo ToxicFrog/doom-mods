@@ -30,6 +30,10 @@ class GZAP_DataPackageEventHandler : StaticEventHandler {
     RegisterMaps(apstate);
     RegisterKeys(apstate);
     RegisterItems(apstate);
+    {% if singleplayer %}
+    RegisterLocationContents(apstate);
+    RegisterHints(apstate);
+    {% endif %}
     GrantStartingItems(apstate);
 
     console.printf("Archipelago data package initialized.");
@@ -70,20 +74,25 @@ class GZAP_DataPackageEventHandler : StaticEventHandler {
     {% endfor %}
     // Access codes, automaps, and clear tokens are registered via the extra IDs
     // passed to RegisterMap(), so they aren't listed here.
+  }
 
-    {% if singleplayer %}
+  {% if singleplayer %}
+  void RegisterLocationContents(GZAP_RandoState apstate) {
     console.printf("Populating singleplayer item table.");
       {% for locid, itemid in singleplayer_items.items() %}
       locations_to_items.Insert({{locid}}, {{itemid}});
       {% endfor %}
+  }
+
+  void RegisterHints(GZAP_RandoState apstate) {
     console.printf("Populating singleplayer hint table.");
       {% for map in maps %}{% for loc in locations(map.map) %}
       {% if item_at(loc.name()) and item_at(loc.name()).map %}
       PrepareHint("{{escape(item_name_at(loc.name()))}}", "{{item_at(loc.name()).map}}", "{{loc.pos.map}}", "{{escape(loc.name())}}");
       {% endif %}
       {% endfor %}{% endfor %}
-    {% endif %}
   }
+  {% endif %}
 
   void GrantStartingItems(GZAP_RandoState apstate) {
     console.printf("Granting starting inventory.");

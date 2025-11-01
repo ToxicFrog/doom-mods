@@ -17,6 +17,7 @@ def strings_to_prereq_fn(world, wad, map, xs):
   return prereq
 
 def string_to_prereq_fn(world, wad, map, string):
+  # print('string_to_prereq', wad.name, map.map, string)
   fields = string.split('/')
   if len(fields) == 3:
     type,name,qualifier = fields
@@ -39,6 +40,7 @@ def string_to_prereq_fn(world, wad, map, string):
       raise RuntimeError(f'Unknown prerequisite {string}')
 
 def fqin_prereq(world, wad, map, fqin):
+  # print(f'    (has "{fqin}")')
   return lambda state: state.has(fqin, world.player)
 
 def item_prereq(world, wad, map, typename):
@@ -49,6 +51,7 @@ def weapon_prereq(world, wad, map, typename, strictness):
     return item_prereq(world, wad, map, typename)
   else:
     # TODO: use this for more sophisticated weapon logic
+    # print('    (constantly true)')
     return lambda state: True
 
 def key_prereq(world, wad, map, typename):
@@ -58,6 +61,8 @@ def region_prereq(world, wad, map, mapname, subregion):
   # In the above, 'map' is the map this prereq is evaluated in the context of,
   # and mapname is the name of the other map we're evaluating.
   if subregion is None:
+    # print(f'    (reachable "{mapname}")')
     return wad.maps[mapname].access_rule(world)
   else:
+    # print(f'    (reachable "{mapname}/{subregion}")')
     return wad.regions[f'{mapname}/{subregion}'].access_rule(world, wad, map)

@@ -352,11 +352,11 @@ class GZDoomWorld(World):
         }
 
     def keys_in_pool(self):
-        return {
+        return sorted({
             key
             for mapinfo in self.maps
             for key in self.wad_logic.keys_for_map(mapinfo.map)
-        }
+        }, key=lambda k: f'{k.scopename} {k.tag}')
 
     def key_in_world(self, keyname):
         return keyname in {key.fqin() for key in self.keys_in_pool()}
