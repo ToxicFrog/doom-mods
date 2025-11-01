@@ -156,7 +156,11 @@ class ::ScannedItem : ::ScannedLocation {
     } else if (thing is "MapRevealer") {
       return "powerup-maprevealer";
     } else if (thing is "PowerupGiver") {
-      return "powerup";
+      if (IsTool(Inventory(thing))) {
+        return "powerup-tool";
+      } else {
+        return "powerup";
+      }
     } else if (thing is "BasicArmorPickup") {
       return ArmourCategory(BasicArmorPickup(thing).SaveAmount);
     } else if (thing is "BasicArmorBonus") {

@@ -72,6 +72,8 @@ for details.
     `powerup` rather than as `map` for the purposes of choosing which locations
     to randomize.
   - The (poorly named) cvar `ap_scan_keys_always` was removed.
+  - Items which are both powerups and tools, such as the Tome of Power from
+    Heretic, are now classified as `powerup-tool` rather than just `powerup`.
 - Fixed:
   - When running from an unpacked tarball, gzdoom now locates its files with the
     rest of the tarball contents rather than in `~/.local/share/Archipelago`.
