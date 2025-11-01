@@ -226,6 +226,8 @@ class GZDoomWorld(World):
             generate again.
 
             starting_levels:  {self.options.starting_levels.value}
+            included_levels:  {self.options.included_levels.value}
+            levels in wad:    {sorted([lump for lump in self.wad_logic.maps.keys()])}
             levels available: {sorted([map.map for map in self.maps])}
         '''
 
