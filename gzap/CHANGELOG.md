@@ -49,6 +49,11 @@ for details.
   - Item/location categories, and combinations thereof, can be used in the YAML
     in any setting that supports item/location groups; see [the faq](./doc/faq.md#how-do-item-groups-work-in-the-yaml)
     for more details.
+  - `included_item_categories` can now be used to force entire categories into
+    starting inventory or their vanilla locations.
+  - `included_item_categories` now supports keys, weapons, and AP automaps.
+  - `included_item_categories` now supports specific item names as well as
+    broader item categories.
 - New gameplay features:
   - The inventory screen now lists all keys for the current level. Keys you do
     not yet have are hintable with `shift-H`. (This is the same mechanism as
@@ -65,9 +70,6 @@ for details.
     apworld initialization. This makes apworld loading noticeably faster.
   - `allow_secret_progress` yaml option removed. Use `exclude_locations: ["secret"]`
     instead.
-  - `included_item_categories` can now be used to force entire categories into
-    starting inventory or their vanilla locations.
-  - `included_item_categories` now supports keys, weapons, and AP automaps.
   - `MapRevealers` (e.g. Computer Area Map, Map Scroll) are now classified as
     `powerup` rather than as `map` for the purposes of choosing which locations
     to randomize.

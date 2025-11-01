@@ -176,6 +176,10 @@ class IncludedItemCategories(OptionList):
     that matches is used. A category of "*" matches everything. Items or locations
     that don't match any entry are excluded by default.
 
+    Using an item name, e.g. "ArmorBonus:none", is also permitted, and will match
+    that exact item. To avoid ambiguity, you have to use Doom's internal name,
+    e.g. "ClipBox" instead of "Bullets" and "ArtiHealth" instead of "Quartz Flask".
+
     You can also use two special values in place of a percentage:
 
       'vanilla'
@@ -213,23 +217,26 @@ class IncludedItemCategories(OptionList):
 
     def build_ratios(self):
         self.ratios = {}
+        self.bucket_list = []
         for config in self.actual_value():
             key,ratio = config.split(':')
+            assert key != '' and ratio != '', 'Entries in included_item_categories must have both a category and a percentage'
             if key in self.ratios:
                 raise OptionError(f'Duplicate entry {key} in included_item_categories')
             self.ratios[key] = self.ratio_value(ratio)
+            self.bucket_list.append((frozenset(key.split('-')), key))
 
         for key in ['ap_map']:
-            ratio = self.ratio_for_categories({key})
+            ratio = self.find_ratio(None, {key})
             if ratio not in {1.0, 'vanilla', 'start'}:
-                raise OptionError(f'Entry {key} has invalid setting {ratio}; this category only permits "all" or "start".')
+                raise OptionError(f'Category {key} has invalid setting {ratio}; this category only permits "all" or "start".')
         for key in ['key', 'weapon']:
-            ratio = self.ratio_for_categories({key})
+            ratio = self.find_ratio(None, {key})
             if ratio not in {1.0, 'vanilla', 'start'}:
-                raise OptionError(f'Entry {key} has invalid setting {ratio}; this category only permits "all", "vanilla", or "start".')
+                raise OptionError(f'Category {key} has invalid setting {ratio}; this category only permits "all", "vanilla", or "start".')
 
         # Convenience field used later by the location access logic.
-        self.all_keys_are_vanilla = self.ratio_for_categories({'key'}) == 'vanilla'
+        self.all_keys_are_vanilla = self.find_ratio(None, {'key'}) == 'vanilla'
 
     def actual_value(self):
         # Player is not allowed to override these parts. Level accesses must
@@ -253,22 +260,23 @@ class IncludedItemCategories(OptionList):
             return 0.0
         return self.ratios[bucket]
 
-    def ratio_for_categories(self, categories):
-        return self.ratio_for_bucket(self.find_bucket_for_categories(categories))
-
-    def find_ratio(self, loc):
-        return self.ratio_for_bucket(self.find_bucket(loc))
-
-    def find_bucket(self, loc):
-        return self.find_bucket_for_categories(loc.categories)
-
-    def find_bucket_for_categories(self, categories):
-        for config in self.actual_value():
-            name = config.split(':')[0]
-            cats = frozenset(name.split('-'))
-            if name == '*' or categories >= cats:
-                return name
+    def find_bucket(self, item_type, loc_cats):
+        for (categories,bucket) in self.bucket_list:
+            if bucket == '*' or categories == {item_type} or categories <= loc_cats:
+                return bucket
         return None
+
+    def find_ratio(self, item_type, loc_cats):
+        return self.ratio_for_bucket(self.find_bucket(item_type, loc_cats))
+
+    def ratio_for_item(self, item):
+        return self.find_ratio(item.typename, item.categories)
+
+    def bucket_for_location(self, loc):
+        if loc.orig_item:
+            return self.find_bucket(loc.orig_item.typename, loc.categories)
+        else:
+            return self.find_bucket(None, loc.categories)
 
 class LevelOrderBias(Range):
     """

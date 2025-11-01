@@ -71,7 +71,7 @@ class DoomPool:
 
         buckets = {}
         for loc in all_locations:
-            bucket = world.options.included_item_categories.find_bucket(loc)
+            bucket = world.options.included_item_categories.bucket_for_location(loc)
             buckets.setdefault(bucket, []).append(loc)
 
         for bucket,locs in buckets.items():
@@ -137,10 +137,16 @@ class DoomPool:
         # selected.
         for map in world.maps:
             for item,count in map.loose_items.items():
-                ratio = world.options.included_item_categories.find_ratio(self.wad.item(item))
+                ratio = world.options.included_item_categories.ratio_for_item(self.wad.item(item))
                 self.item_counts[item] += count
+                # We don't really respect ratios here except for starting-inventory,
+                # because these loose items are load bearing for the randomizer
+                # and have no vanilla location, so they cannot be excluded or
+                # vanilla-placed.
                 if ratio == 'start':
                     self.starting_item_counts[item] += count
+                elif ratio != 1.0:
+                    raise RuntimeError(f'AP-generated item {item} from {map.map} has invalid included_item_categories setting of "{ratio}"')
 
         # Apply item lower/upper bounds.
         # Items set to 'vanilla' skip this.
