@@ -76,19 +76,19 @@ class DoomPool:
 
         for bucket,locs in buckets.items():
             ratio = world.options.included_item_categories.ratio_for_bucket(bucket)
-            print(f'Considering bucket {bucket} with {len(locs)} locations and configured ratio {ratio}')
+            # print(f'Considering bucket {bucket} with {len(locs)} locations and configured ratio {ratio}')
             if world.options.pretuning_mode:
                 ratio = 'vanilla'
 
             if ratio == 0:
-                print('Skipping bucket', bucket)
+                # print('Skipping bucket', bucket)
                 continue
 
             if ratio == 'vanilla':
                 # Locations forced to hold their vanilla items. We add these
                 # to a separate pool so the item/location placement code in
                 # the GZDoomWorld knows what to do with them later.
-                print(f'Bucket {bucket} has vanilla items forced.')
+                # print(f'Bucket {bucket} has vanilla items forced.')
                 for loc in locs:
                     if loc.orig_item:
                         loc.item = loc.orig_item
@@ -104,7 +104,7 @@ class DoomPool:
                 # normal checks). We record these in the starting item pool *but
                 # also* record the items and locations in the main pool; we do
                 # it this way so that pool limits get applied properly.
-                print(f'Adding bucket {bucket} to starting inventory.')
+                # print(f'Adding bucket {bucket} to starting inventory.')
                 self.add_items_to_pool(self.starting_item_counts, locs)
                 ratio = 1.0
 
@@ -118,7 +118,7 @@ class DoomPool:
             # locations themselves in the location pool and the items contained
             # there in the item pool.
             selected_locs = world.random.sample(locs, ceil(len(locs)*ratio))
-            print(f'Selecting {len(selected_locs)} from {bucket} with ratio {ratio}')
+            # print(f'Selecting {len(selected_locs)} from {bucket} with ratio {ratio}')
             self.locations.extend(selected_locs)
             self.add_items_to_pool(self.item_counts, selected_locs)
 
@@ -168,7 +168,10 @@ class DoomPool:
         ]
 
     def all_pool_items(self):
-        return [self.wad.item(name) for name in self.item_counts.keys()]
+        return [
+            self.wad.item(name)
+            for name in sorted(
+            { name for name in self.item_counts.keys() } | { name for name in self.vanilla_item_counts.keys() })]
 
     def progression_items(self):
         return Counter({

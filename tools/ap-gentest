@@ -6,12 +6,14 @@ AP=${AP:-$HOME/.local/share/Archipelago}
 GAME=${1:-gzap}
 
 make -C gzap TOPDIR=.. install
-(
+if [[ $GAME != none ]]; then
   [[ -d ~/Games/Archipelago/Players/${GAME} ]]
-  cd ~/Games/Archipelago/Players
-  rm -f *.yaml
-  cp ${GAME}/*.yaml .
-)
+  (
+    cd ~/Games/Archipelago/Players
+    rm -f *.yaml
+    cp ${GAME}/*.yaml .
+  )
+fi
 archipelago Generate </dev/null
 cp $AP/output/$(command ls --sort=time $AP/output/ | head -n1) testdata/ap_latest.zip
 (cd testdata && rm -f latest.pk3 && unzip ap_latest.zip '*.pk3' && mv AP_*.pk3 latest.pk3)

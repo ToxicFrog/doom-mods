@@ -113,7 +113,7 @@ class DoomLocation(DoomReachable):
             self.region = region
 
         if keys:
-            print(f'Recording tuning record for {self.name()}: {region} {keys}')
+            # print(f'Recording tuning record for {self.name()}: {region} {keys}')
             super().record_tuning(keys, unreachable)
 
     def assume_key_reachable(self):
