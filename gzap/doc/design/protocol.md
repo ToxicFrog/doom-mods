@@ -165,7 +165,7 @@ the level exit) continue to use `name` and omit `pos`.
 In normal play this is just a list of all keys held by the player, but can be
 edited by the logic maintainer post hoc if needed.
 
-`region`, if present, is the name of the location's enclosing subregion defined
+`region`, if present, is the name of the location's enclosing map region defined
 by `AP-REGION`. In this case the reachability information for the region as a
 whole is used to compute the reachability of the check.
 

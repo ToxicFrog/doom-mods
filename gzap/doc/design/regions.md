@@ -12,8 +12,8 @@ describing the access requirements.
 
 No provision is currently given for modeling edges between regions. If region A
 has no requirements, region B can be reached from A using just the yellow key,
-and region C can be reached from B using just the green key, C requires both the
-green and yellow keys, same as checks.
+and region C can be reached from B using just the green key, C's ACL must record
+both the green and yellow keys, same as with individual checks.
 
 ## On naming
 
@@ -24,7 +24,7 @@ a tag to be emitted into the tuning file.
 
 ## The UI
 
-In-game, the play accesses region control via the inventory screen. This
+In-game, the player accesses region control via the inventory screen. This
 contains a widget that can be used to set or unset the current region name,
 along with controls for keys, weapons, and maps.
 
@@ -101,3 +101,35 @@ The `keys` field is omitted by default if a region is defined. If both fields
 are present they form a logical conjunction, i.e. that location requires both
 access to the enclosing region and everything in the `keys`. The `keys` field
 now uses the *extended keylist format* described above.
+
+
+
+## Future work: region hierarchies and level/map decoupling
+
+This is, I think, where we ultimately want to end up, although a lot of this is
+internal changes that don't affect external formats and should be deferred to
+0.7.x or even 0.8.
+
+The idea is that we draw a clear distinction between:
+- *levels*, which can be completed, contribute towards goals, and contain keys
+  and maps;
+- *maps*, which are individual lumps in the wad with MAPINFO entries
+- *regions*, which contain locations and have access rules;
+- and *locations*
+
+So we end up with a heirarchy like:
+
+- DoomWad
+  - top-level item, location, key, and region lookups
+  - DoomLevel[]
+    - keys, victory token
+    - DoomMap[]
+      - automap and access tokens
+      - DoomRegion[]
+        - access rules
+        - DoomLocation[]
+          - access rules
+          - item info
+
+In Doom 1/2 and Heretic, levels and maps are coterminous, so the current codebase
+effectively conflates the two concepts, and we want to stop doing that if we can.

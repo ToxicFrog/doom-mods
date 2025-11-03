@@ -9,8 +9,8 @@ This is a feature/design release.
 ⚠️ YAML and in-game settings have changed. Generate a new template YAML and
 double-check the correctness of your in-game settings.
 
-⚠️ Logic format has changed. Existing logic should still load, but rescanning
-will result in better randomizer behaviour. Tuning data is unaffected.
+⚠️ Logic format has changed. Existing logic may fail to load, and even if it
+loads successfully, rescanning is recommended. Tuning data is unaffected.
 
 ⚠️ This update splits the apworld into three: one core apworld providing support
 for the official games, plus two addon apworlds providing support for "featured
