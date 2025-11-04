@@ -16,9 +16,6 @@ To release a new version:
 - logic engine changes to acommodate hubclusters
   - generate exit nodes per cluster rather than per map
   - trigger exit when leaving the cluster via non-level-select, non-loadgame means
-  - associate a region with each map and allow configuring it with AP-REGION
-    - map access requires access key + other region requirements
-    - DoomRegion implicitly wants an enclosing map so we probably want to inherit from DoomReachable in DoomMap
   - keep track of which locations are in which regions
     - rework create_regions to use this info
     - use it for weapon logic
@@ -33,6 +30,9 @@ To release a new version:
 - display weapons in inventory even if you don't have them
 - let you hint weapons from the inventory screen
 - hints section in the inventory screen for hints pointing to the current level
+- associate a region with each map and allow configuring it with AP-REGION
+  - map access requires access key + other region requirements
+  - DoomRegion implicitly wants an enclosing map so we probably want to inherit from DoomReachable in DoomMap
 
 ### general notes on scanner/logic changes
 

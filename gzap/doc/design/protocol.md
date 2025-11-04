@@ -39,13 +39,20 @@ Emitted at the start of the scan. `tags` is a list of arbitrary strings provided
 by the user or by the GZAPRC, which may in the future be used by the apworld for
 various purposes.
 
-#### `AP-MAP { map, info: { ... } }`
+#### `AP-MAP { map, checksum, rank, monster_count, clustername, info: { ... } }`
 
 Emitted when the scanner has just begun processing a map. `map` is the name of the
 lump being scanned, e.g. `E1M1` or `MAP01`. `info` is an object containing information
 needed to (re)construct the `MAPINFO` entry. It's not documented here as I expect
 it to change rapidly in use as I encounter more edge cases; the canonical form
 of it is the [`MAPINFO` class](../apworld/gzdoom/model/DoomMap.py) in the apworld.
+
+`checksum` is the checksum of the map as reported by the chunkloader, and is
+used to check that the correct WAD is loaded at runtime. `rank` is a count of
+the number of edges between this map and the start of the scan, used for
+difficulty-based logic. `monster_count` is the number of monsters in the map on
+UV, used for stats reporting. `clustername`, if nonempty, is the name of the
+cluster (typically: episode or chapter) this map belongs to.
 
 #### `AP-ITEM { map, category, typename, tag, secret, skill, position: { x, y, z } }`
 

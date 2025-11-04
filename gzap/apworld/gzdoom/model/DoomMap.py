@@ -56,6 +56,7 @@ class DoomMap:
     # Data for the MAPINFO lump
     rank: int = 0
     mapinfo: Optional[MAPINFO] = None
+    clustername: str = ''
     # Key and weapon information for computing access rules
     # Keys in the level
     keyset: Set[DoomKey] = field(default_factory=set)
@@ -140,10 +141,16 @@ class DoomMap:
         return f"Automap ({self.map})"
 
     def clear_token_name(self):
-        return f"Level Clear ({self.map})"
+        if self.clustername:
+            return f'Chapter Clear ({self.clustername})'
+        else:
+            return f'Level Clear ({self.map})'
 
     def exit_location_name(self):
-        return f"{self.map} - Exit"
+        if self.clustername:
+            return f'{self.clustername} - Exit'
+        else:
+            return f'{self.map} - Exit'
 
     def add_loose_item(self, item, count=1):
         self.loose_items[item] = self.loose_items.get(item, 0) + count

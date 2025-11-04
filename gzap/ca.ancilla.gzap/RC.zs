@@ -90,10 +90,11 @@ class ::RC : Object play {
   }
 
   string GetNameForCluster(int cluster) {
+    if (cluster == 0) return "";
     if (self.cluster_names.CheckKey(cluster)) {
       return self.cluster_names.GetIfExists(cluster);
     }
-    return "";
+    return string.format("HUB:%02d", cluster);
   }
 
   bool has_requirements;

@@ -101,9 +101,6 @@ class ::ScannedItem : ::ScannedLocation {
     DEBUG("OutputKeyInfo: maps: %d / map_str: %s", maps, map_str);
 
     let scopename = ::RC.Get().GetNameForCluster(self.hub);
-    if (scopename == "") {
-      scopename = string.format("HUB:%02d", self.hub);
-    }
     ::Scanner.Output("KEY", mapname, string.format(
         "\"tag\": \"%s\", \"typename\": \"%s\", \"scopename\": \"%s\", \"cluster\": %d, \"maps\": [%s]",
         self.tag, self.typename, scopename, self.hub, map_str));
