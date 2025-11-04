@@ -405,8 +405,18 @@ class ::PerLevelHandler : EventHandler {
       cvar.FindCvar("ap_scan_unreachable").SetInt(0);
     }
 
+    // TODO: in hubclusters we should only fire if exit_location is nonzero
+    // *and* we are exiting to another cluster.
     if (!region) return;
 
+    if (region.hub) {
+      // This used to be part of a hubcluster -- this only counts as an exit if
+      // we are exiting to another cluster.
+      let next_region = apstate.GetRegion(next_map);
+      if (!next_region || next_region.hub == region.hub) return;
+    }
+
+    if (region.exit_location == 0) return;
     if (is_save || self.early_exit) return;
 
     if (ap_scan_unreachable >= 2) {

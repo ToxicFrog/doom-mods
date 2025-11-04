@@ -152,7 +152,7 @@ class DoomWad:
         if map in self.maps:
             raise DuplicateMapError(map)
 
-        self.maps[map] = DoomMap(**json)
+        self.maps[map] = DoomMap(wad=self, **json)
         self.register_map_tokens(self.maps[map])
 
     def register_map_tokens(self, map: DoomMap):

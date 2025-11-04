@@ -8,7 +8,7 @@ weapons it contains.
 """
 from dataclasses import dataclass, field, InitVar
 from math import ceil
-from typing import Dict, List, NamedTuple, Optional, Set
+from typing import Dict, List, NamedTuple, Optional, Set, Type
 
 from .DoomLocation import DoomLocation
 from .DoomKey import DoomKey
@@ -50,6 +50,7 @@ class DoomMap:
     """
     map: str
     checksum: str
+    wad: Type['DoomWad']
     # JSON initializer for the mapinfo
     info: InitVar[Dict]
     monster_count: int = 0
@@ -147,10 +148,9 @@ class DoomMap:
             return f'Level Clear ({self.map})'
 
     def exit_location_name(self):
-        # This is the same whether we are in a cluster or not -- hitting [final map in cluster] - Exit
-        # is the win condition.
-        # This probably needs rethinking if we are ever in a situation where a
-        # cluster has multiple valid exit points though. :/
+        if self.wad.use_hub_logic() and not self.map in self.wad.hub_logic_exits():
+            # In hub mode, only maps containing cluster exits get exit locations.
+            return None
         return f'{self.map} - Exit'
 
     def add_loose_item(self, item, count=1):

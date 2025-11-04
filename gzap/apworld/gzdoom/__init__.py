@@ -393,7 +393,9 @@ class GZDoomWorld(World):
         # is that we know each ID can only ever be one or the other, so this is
         # safe.
         def id(name: str) -> int:
-            if name in self.location_name_to_id:
+            if name is None:
+                return 0
+            elif name in self.location_name_to_id:
                 return self.location_name_to_id[name]
             else:
                 return self.item_name_to_id[name]
