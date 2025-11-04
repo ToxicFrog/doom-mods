@@ -14,8 +14,6 @@ To release a new version:
 
 (0.7 is focusing on logic/tuning format changes and bugfixes)
 - logic engine changes to acommodate hubclusters
-  - generate exit nodes per cluster rather than per map
-  - trigger exit when leaving the cluster via non-level-select, non-loadgame means
   - keep track of which locations are in which regions
     - rework create_regions to use this info
     - use it for weapon logic

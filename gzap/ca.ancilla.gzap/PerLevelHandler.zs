@@ -413,10 +413,11 @@ class ::PerLevelHandler : EventHandler {
       // This used to be part of a hubcluster -- this only counts as an exit if
       // we are exiting to another cluster.
       let next_region = apstate.GetRegion(next_map);
-      if (!next_region || next_region.hub == region.hub) return;
+      DEBUG("Unloaded in hub: hub=%d, next=%d", region.hub, next_region ? next_region.hub : -1);
+      if (next_region && next_region.hub == region.hub) return;
     }
 
-    if (region.exit_location == 0) return;
+    if (region.exit_location.apid == 0) return;
     if (is_save || self.early_exit) return;
 
     if (ap_scan_unreachable >= 2) {
