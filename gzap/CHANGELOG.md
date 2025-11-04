@@ -82,6 +82,7 @@ for details.
   - When running from an unpacked tarball, gzdoom now locates its files with the
     rest of the tarball contents rather than in `~/.local/share/Archipelago`.
   - Removed incorrect tuning data for `Doom` and `Doom 2`.
+  - Improved and corrected tuning data for `Chex Quest 3` [from wobblefowl].
 
 # 0.6.6
 

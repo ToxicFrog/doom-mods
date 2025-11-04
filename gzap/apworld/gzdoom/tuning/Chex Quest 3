@@ -1,217 +1,922 @@
-AP-CHECK { "id": 100, "name": "E1M1 - Exit", "keys": ["ChexRedCard"] }
-AP-CHECK { "id": 101, "name": "E1M1 - Rapid Zorcher", "keys": [] }
-AP-CHECK { "id": 102, "name": "E1M1 - ChexBlueCard", "keys": [] }
-AP-CHECK { "id": 103, "name": "E1M1 - ChexRedCard", "keys": ["ChexBlueCard"] }
-AP-CHECK { "id": 104, "name": "E1M1 - ChexArmor", "keys": ["ChexRedCard"] }
-AP-CHECK { "id": 105, "name": "E1M2 - Exit", "keys": ["ChexBlueCard"] }
-AP-CHECK { "id": 105, "name": "E1M2 - Exit", "keys": ["ChexRedCard"] }
-// ^^ Red or Blue
-AP-CHECK { "id": 106, "name": "E1M2 - ZorchPack [-768,2880]", "keys": ["ChexRedCard"] }
-AP-CHECK { "id": 107, "name": "E1M2 - ZorchPack [2688,1648]", "keys": ["ChexYellowCard"] }
-AP-CHECK { "id": 108, "name": "E1M2 - ZorchPack [1312,-16]", "keys": [] }
-AP-CHECK { "id": 109, "name": "E1M2 - ChexYellowCard", "keys": [] }
-AP-CHECK { "id": 110, "name": "E1M2 - ChexRedCard", "keys": ["ChexYellowCard"] }
-AP-CHECK { "id": 111, "name": "E1M2 - Rapid Zorcher [626,2036]", "keys": [] }
-AP-CHECK { "id": 112, "name": "E1M2 - Rapid Zorcher [1497,-1167]", "keys": [] }
-AP-CHECK { "id": 113, "name": "E1M2 - Rapid Zorcher [-428,324]", "keys": [] }
-AP-CHECK { "id": 114, "name": "E1M2 - ChexArmor [0,3168]", "keys": ["ChexRedCard"] }
-AP-CHECK { "id": 114, "name": "E1M2 - ChexArmor [0,3168]", "keys": ["ChexBlueCard"] }
-// ^^ Red or Blue
-AP-CHECK { "id": 115, "name": "E1M2 - ChexArmor [1965,1581]", "keys": ["ChexYellowCard"] }
-AP-CHECK { "id": 116, "name": "E1M2 - Zorch Propulsor [0,1312]", "keys": [] }
-AP-CHECK { "id": 117, "name": "E1M2 - Zorch Propulsor [3220,1192]", "keys": ["ChexYellowCard"] }
-AP-CHECK { "id": 118, "name": "E1M2 - Phasing Zorcher [2864,1888]", "keys": ["ChexYellowCard"] }
-AP-CHECK { "id": 119, "name": "E1M2 - Phasing Zorcher [-1328,-48]", "keys": [] }
-AP-CHECK { "id": 120, "name": "E1M2 - Phasing Zorcher [-3123,496]", "keys": ["ChexYellowCard"] }
-AP-CHECK { "id": 121, "name": "E1M2 - ChexBlueCard", "keys": ["ChexYellowCard"] }
-AP-CHECK { "id": 122, "name": "E1M2 - SuperChexArmor [4,-1244]", "keys": [] }
-AP-CHECK { "id": 123, "name": "E1M2 - SuperChexArmor [-3136,768]", "keys": ["ChexYellowCard"] }
-AP-CHECK { "id": 124, "name": "E1M2 - SuperChexArmor [160,348]", "keys": [] }
-AP-CHECK { "id": 125, "name": "E1M2 - SuperchargeBreakfast", "keys": [] }
-AP-CHECK { "id": 126, "name": "E1M2 - LAZ Device", "keys": ["ChexYellowCard"] }
-AP-CHECK { "id": 127, "name": "E1M3 - Exit", "keys": ["ChexRedCard", "ChexBlueCard"] }
-AP-CHECK { "id": 128, "name": "E1M3 - ChexBlueCard", "keys": [] }
-AP-CHECK { "id": 129, "name": "E1M3 - ChexRedCard", "keys": ["ChexYellowCard", "ChexBlueCard"] }
-AP-CHECK { "id": 130, "name": "E1M3 - ChexYellowCard", "keys": ["ChexBlueCard"] }
-AP-CHECK { "id": 131, "name": "E1M3 - ComputerAreaMap [-1152,992]", "keys": [] }
-AP-CHECK { "id": 132, "name": "E1M3 - ComputerAreaMap [-1600,-576]", "keys": ["ChexYellowCard", "ChexBlueCard"] }
-AP-CHECK { "id": 133, "name": "E1M3 - Phasing Zorcher", "keys": [] }
-AP-CHECK { "id": 134, "name": "E1M3 - ChexArmor [704,64]", "keys": ["ChexBlueCard"] }
-AP-CHECK { "id": 135, "name": "E1M3 - ChexArmor [-960,-1536]", "keys": ["ChexYellowCard", "ChexBlueCard"] }
-AP-CHECK { "id": 136, "name": "E1M3 - Super Bootspork", "keys": [] }
-AP-CHECK { "id": 137, "name": "E1M3 - Large Zorcher", "keys": ["ChexBlueCard"] }
-AP-CHECK { "id": 138, "name": "E1M3 - ZorchPack", "keys": ["ChexBlueCard"] }
-AP-CHECK { "id": 139, "name": "E1M3 - Zorch Propulsor", "keys": ["ChexBlueCard"] }
-AP-CHECK { "id": 140, "name": "E1M4 - Exit", "keys": ["ChexYellowCard", "ChexBlueCard"] }
-AP-CHECK { "id": 141, "name": "E1M4 - ZorchPack [224,-272]", "keys": [] }
-AP-CHECK { "id": 142, "name": "E1M4 - ZorchPack [-1456,564]", "keys": ["ChexYellowCard", "ChexBlueCard"] }
-AP-CHECK { "id": 143, "name": "E1M4 - ZorchPack [1792,1440]", "keys": ["ChexBlueCard"] }
-AP-CHECK { "id": 144, "name": "E1M4 - ChexBlueCard", "keys": [] }
-AP-CHECK { "id": 145, "name": "E1M4 - ChexYellowCard", "keys": ["ChexBlueCard"] }
-AP-CHECK { "id": 146, "name": "E1M4 - SuperchargeBreakfast", "keys": ["ChexYellowCard", "ChexBlueCard"] }
-AP-CHECK { "id": 147, "name": "E1M4 - Rapid Zorcher", "keys": [] }
-AP-CHECK { "id": 148, "name": "E1M4 - SuperChexArmor", "keys": [] }
-AP-CHECK { "id": 149, "name": "E1M5 - Exit", "keys": [] }
-AP-CHECK { "id": 150, "name": "E1M5 - Large Zorcher [2272,-292]", "keys": ["ChexBlueCard"] }
-AP-CHECK { "id": 151, "name": "E1M5 - Large Zorcher [-1760,-200]", "keys": [] }
-AP-CHECK { "id": 152, "name": "E1M5 - Large Zorcher [1552,3332]", "keys": [] }
-AP-CHECK { "id": 153, "name": "E1M5 - Super Bootspork [543,960]", "keys": [] }
-AP-CHECK { "id": 154, "name": "E1M5 - Super Bootspork [-2432,128]", "keys": [] }
-AP-CHECK { "id": 155, "name": "E1M5 - ChexBlueCard", "keys": [] }
-AP-CHECK { "id": 156, "name": "E1M5 - ChexYellowCard [992,1016]", "keys": [] }
-AP-CHECK { "id": 157, "name": "E1M5 - ChexYellowCard [-784,792]", "keys": [] }
-AP-CHECK { "id": 158, "name": "E1M5 - Rapid Zorcher", "keys": ["ChexYellowCard", "ChexBlueCard"] }
-AP-CHECK { "id": 159, "name": "E1M5 - SlimeProofSuit", "keys": [] }
-AP-CHECK { "id": 160, "name": "E1M5 - ChexRedCard", "keys": ["ChexYellowCard", "ChexBlueCard"] }
-AP-CHECK { "id": 161, "name": "E1M5 - Phasing Zorcher", "keys": ["ChexBlueCard"] }
-AP-CHECK { "id": 162, "name": "E1M5 - ChexArmor [-1525,253]", "keys": [] }
-AP-CHECK { "id": 163, "name": "E1M5 - ChexArmor [4828,3230]", "keys": [] }
-AP-CHECK { "id": 164, "name": "E1M5 - ZorchPack", "keys": ["ChexRedCard"] }
-AP-CHECK { "id": 165, "name": "E1M5 - Zorch Propulsor", "keys": [] }
-AP-CHECK { "id": 166, "name": "E1M5 - SuperChexArmor", "keys": [] }
-AP-CHECK { "id": 167, "name": "E1M5 - LAZ Device", "keys": [] }
-AP-CHECK { "id": 168, "name": "E2M1 - Exit", "keys": ["ChexRedCard"] }
-AP-CHECK { "id": 169, "name": "E2M1 - ChexRedCard", "keys": ["ChexBlueCard"] }
-AP-CHECK { "id": 170, "name": "E2M1 - ZorchPack", "keys": [] }
-AP-CHECK { "id": 171, "name": "E2M1 - SuperChexArmor", "keys": ["ChexRedCard"] }
-AP-CHECK { "id": 172, "name": "E2M1 - SuperchargeBreakfast [-1888,1952]", "keys": ["ChexRedCard"] }
-AP-CHECK { "id": 173, "name": "E2M1 - SuperchargeBreakfast [832,2816]", "keys": [] }
-AP-CHECK { "id": 174, "name": "E2M1 - SuperchargeBreakfast [0,432]", "keys": [] }
-AP-CHECK { "id": 175, "name": "E2M1 - Phasing Zorcher", "keys": ["ChexRedCard"] }
-AP-CHECK { "id": 176, "name": "E2M1 - ChexBlueCard", "keys": [] }
-AP-CHECK { "id": 177, "name": "E2M1 - Zorch Propulsor", "keys": [] }
-AP-CHECK { "id": 178, "name": "E2M1 - Large Zorcher [160,575]", "keys": [] }
-AP-CHECK { "id": 179, "name": "E2M1 - Large Zorcher [-512,-1024]", "keys": ["ChexBlueCard"] }
-AP-CHECK { "id": 180, "name": "E2M1 - Rapid Zorcher", "keys": [] }
-AP-CHECK { "id": 181, "name": "E2M2 - Exit", "keys": ["ChexRedCard"] }
-AP-CHECK { "id": 182, "name": "E2M2 - ChexRedCard", "keys": ["ChexYellowCard"] }
-AP-CHECK { "id": 183, "name": "E2M2 - ZorchPack", "keys": ["ChexYellowCard"] }
-AP-CHECK { "id": 184, "name": "E2M2 - Large Zorcher", "keys": [] }
-AP-CHECK { "id": 185, "name": "E2M2 - ChexYellowCard", "keys": ["ChexBlueCard"] }
-AP-CHECK { "id": 186, "name": "E2M2 - ChexBlueCard", "keys": [] }
-AP-CHECK { "id": 187, "name": "E2M2 - Super Bootspork", "keys": ["ChexYellowCard"] }
-AP-CHECK { "id": 188, "name": "E2M2 - ChexArmor", "keys": ["ChexYellowCard"] }
-AP-CHECK { "id": 189, "name": "E2M2 - Zorch Propulsor", "keys": ["ChexBlueCard"] }
-AP-CHECK { "id": 190, "name": "E2M2 - Phasing Zorcher", "keys": [] }
-AP-CHECK { "id": 191, "name": "E2M3 - Exit", "keys": ["ChexRedCard", "ChexBlueCard"] }
-AP-CHECK { "id": 191, "name": "E2M3 - Exit", "keys": ["ChexRedCard", "ChexYellowCard"] }
-// ^^ Yellow or Blue
-AP-CHECK { "id": 192, "name": "E2M3 - ChexBlueCard", "keys": [] }
-AP-CHECK { "id": 193, "name": "E2M3 - SuperchargeBreakfast", "keys": ["ChexYellowCard"] }
-AP-CHECK { "id": 194, "name": "E2M3 - ChexRedCard", "keys": ["ChexYellowCard"] }
-AP-CHECK { "id": 195, "name": "E2M3 - ChexYellowCard", "keys": ["ChexBlueCard"] }
-AP-CHECK { "id": 195, "name": "E2M3 - ChexYellowCard", "keys": ["ChexYellowCard"] }
-// ^^ Yellow or Blue
-AP-CHECK { "id": 196, "name": "E2M3 - LAZ Device", "keys": ["ChexBlueCard"] }
-AP-CHECK { "id": 196, "name": "E2M3 - LAZ Device", "keys": ["ChexYellowCard"] }
-// ^^ Yellow or Blue
-AP-CHECK { "id": 197, "name": "E2M3 - ZorchPack", "keys": ["ChexRedCard", "ChexBlueCard"] }
-AP-CHECK { "id": 197, "name": "E2M3 - ZorchPack", "keys": ["ChexRedCard", "ChexYellowCard"] }
-// ^^ Yellow or Blue
-AP-CHECK { "id": 198, "name": "E2M3 - Large Zorcher [-440,1704]", "keys": ["ChexRedCard", "ChexBlueCard"] }
-AP-CHECK { "id": 198, "name": "E2M3 - Large Zorcher [-440,1704]", "keys": ["ChexRedCard", "ChexYellowCard"] }
-// ^^ Yellow or Blue
-AP-CHECK { "id": 199, "name": "E2M3 - Large Zorcher [96,-1024]", "keys": ["ChexYellowCard", "ChexBlueCard"] }
-AP-CHECK { "id": 200, "name": "E2M3 - Rapid Zorcher [312,1448]", "keys": ["ChexRedCard", "ChexBlueCard"] }
-AP-CHECK { "id": 200, "name": "E2M3 - Rapid Zorcher [312,1448]", "keys": ["ChexRedCard", "ChexYellowCard"] }
-// ^^ Yellow or Blue
-AP-CHECK { "id": 201, "name": "E2M3 - Rapid Zorcher [32,-288]", "keys": [] }
-AP-CHECK { "id": 202, "name": "E2M3 - SuperChexArmor", "keys": ["ChexRedCard", "ChexBlueCard"] }
-AP-CHECK { "id": 202, "name": "E2M3 - SuperChexArmor", "keys": ["ChexRedCard", "ChexYellowCard"] }
-// ^^ Yellow or Blue
-AP-CHECK { "id": 203, "name": "E2M3 - Zorch Propulsor", "keys": ["ChexRedCard", "ChexBlueCard"] }
-AP-CHECK { "id": 203, "name": "E2M3 - Zorch Propulsor", "keys": ["ChexRedCard", "ChexYellowCard"] }
-// ^^ Yellow or Blue
-AP-CHECK { "id": 204, "name": "E2M4 - Exit", "keys": ["ChexRedCard"] }
-AP-CHECK { "id": 205, "name": "E2M4 - ChexRedCard", "keys": ["ChexYellowCard"] }
-AP-CHECK { "id": 206, "name": "E2M4 - ChexBlueCard", "keys": [] }
-AP-CHECK { "id": 207, "name": "E2M4 - ChexYellowCard", "keys": ["ChexBlueCard"] }
-AP-CHECK { "id": 208, "name": "E2M4 - ZorchPack", "keys": [] }
-AP-CHECK { "id": 209, "name": "E2M4 - Zorch Propulsor [-1376,144]", "keys": ["ChexRedCard"] }
-AP-CHECK { "id": 210, "name": "E2M4 - Zorch Propulsor [-1872,912]", "keys": ["ChexYellowCard"] }
-AP-CHECK { "id": 211, "name": "E2M4 - Phasing Zorcher", "keys": ["ChexYellowCard", "ChexBlueCard"] }
-AP-CHECK { "id": 212, "name": "E2M4 - Rapid Zorcher [-1176,620]", "keys": [] }
-AP-CHECK { "id": 213, "name": "E2M4 - Rapid Zorcher [-1664,-128]", "keys": ["ChexRedCard"] }
-AP-CHECK { "id": 214, "name": "E2M4 - Rapid Zorcher [360,68]", "keys": [] }
-AP-CHECK { "id": 215, "name": "E2M4 - Large Zorcher [160,1196]", "keys": [] }
-AP-CHECK { "id": 216, "name": "E2M4 - Large Zorcher [-1184,-800]", "keys": [] }
-AP-CHECK { "id": 217, "name": "E2M4 - ChexArmor [-1728,-796]", "keys": [] }
-AP-CHECK { "id": 218, "name": "E2M4 - ChexArmor [1152,-1056]", "keys": ["ChexBlueCard"] }
-AP-CHECK { "id": 219, "name": "E2M4 - SuperChexArmor", "keys": ["ChexRedCard"] }
-AP-CHECK { "id": 220, "name": "E2M4 - SuperchargeBreakfast", "keys": ["ChexRedCard"] }
-AP-CHECK { "id": 221, "name": "E2M4 - ComputerAreaMap", "keys": [] }
-AP-CHECK { "id": 222, "name": "E2M5 - Exit", "keys": ["ChexRedCard"] }
-AP-CHECK { "id": 223, "name": "E2M5 - ChexBlueCard", "keys": [] }
-AP-CHECK { "id": 224, "name": "E2M5 - ChexRedCard", "keys": ["ChexYellowCard", "ChexBlueCard"] }
-AP-CHECK { "id": 225, "name": "E2M5 - Rapid Zorcher [672,-1568]", "keys": ["ChexBlueCard"] }
-AP-CHECK { "id": 226, "name": "E2M5 - Rapid Zorcher [2112,-2208]", "keys": ["ChexRedCard"] }
-AP-CHECK { "id": 227, "name": "E2M5 - SuperchargeBreakfast [4672,-2628]", "keys": ["ChexRedCard"] }
-AP-CHECK { "id": 228, "name": "E2M5 - SuperchargeBreakfast [704,-512]", "keys": [] }
-AP-CHECK { "id": 229, "name": "E2M5 - ZorchPack [1824,-480]", "keys": ["ChexYellowCard", "ChexBlueCard"] }
-AP-CHECK { "id": 230, "name": "E2M5 - ZorchPack [2992,-320]", "keys": [] }
-AP-CHECK { "id": 231, "name": "E2M5 - Large Zorcher [-192,384]", "keys": [] }
-AP-CHECK { "id": 232, "name": "E2M5 - Large Zorcher [1600,896]", "keys": [] }
-AP-CHECK { "id": 233, "name": "E2M5 - ChexArmor [-736,-1952]", "keys": [] }
-AP-CHECK { "id": 234, "name": "E2M5 - ChexArmor [900,-2220]", "keys": [] }
-AP-CHECK { "id": 235, "name": "E2M5 - ChexArmor [3456,-1536]", "keys": ["ChexRedCard"] }
-AP-CHECK { "id": 236, "name": "E2M5 - Super Bootspork", "keys": [] }
-AP-CHECK { "id": 237, "name": "E2M5 - ChexYellowCard", "keys": [] }
-AP-CHECK { "id": 238, "name": "E3M1 - Exit", "keys": ["ChexYellowCard", "ChexRedCard", "ChexBlueCard"] }
-AP-CHECK { "id": 239, "name": "E3M1 - ChexBlueCard", "keys": [] }
-AP-CHECK { "id": 241, "name": "E3M1 - Rapid Zorcher [-788,308]", "keys": ["ChexYellowCard", "ChexBlueCard"] }
-AP-CHECK { "id": 242, "name": "E3M1 - ChexYellowCard", "keys": ["ChexBlueCard"] }
-AP-CHECK { "id": 243, "name": "E3M1 - ChexArmor", "keys": ["ChexBlueCard"] }
-AP-CHECK { "id": 244, "name": "E3M1 - ChexRedCard", "keys": ["ChexYellowCard", "ChexBlueCard"] }
-AP-CHECK { "id": 245, "name": "E3M1 - Large Zorcher", "keys": ["ChexBlueCard"] }
-AP-CHECK { "id": 246, "name": "E3M1 - UltraGoggles", "keys": ["ChexYellowCard", "ChexBlueCard"] }
-AP-CHECK { "id": 247, "name": "E3M1 - ZorchPack", "keys": ["ChexYellowCard", "ChexBlueCard"] }
-AP-CHECK { "id": 248, "name": "E3M2 - Exit", "keys": ["ChexRedCard", "ChexBlueCard"] }
-AP-CHECK { "id": 249, "name": "E3M2 - ChexRedCard", "keys": ["ChexYellowCard", "ChexBlueCard"] }
-AP-CHECK { "id": 250, "name": "E3M2 - Large Zorcher", "keys": [] }
-AP-CHECK { "id": 251, "name": "E3M2 - Rapid Zorcher", "keys": [] }
-AP-CHECK { "id": 252, "name": "E3M2 - ChexArmor [-4352,-5696]", "keys": [] }
-AP-CHECK { "id": 253, "name": "E3M2 - ChexArmor [-3712,-4800]", "keys": ["ChexYellowCard", "ChexBlueCard"] }
-AP-CHECK { "id": 254, "name": "E3M2 - ChexBlueCard", "keys": [] }
-AP-CHECK { "id": 255, "name": "E3M2 - ChexYellowCard", "keys": ["ChexBlueCard"] }
-AP-CHECK { "id": 256, "name": "E3M2 - SuperchargeBreakfast [-4320,-6976]", "keys": ["ChexYellowCard", "ChexBlueCard"] }
-AP-CHECK { "id": 257, "name": "E3M2 - SuperchargeBreakfast [-3552,-4256]", "keys": ["ChexBlueCard"] }
-AP-CHECK { "id": 258, "name": "E3M2 - SuperChexArmor", "keys": ["ChexBlueCard"] }
-AP-CHECK { "id": 259, "name": "E3M2 - Zorch Propulsor", "keys": [] }
-AP-CHECK { "id": 260, "name": "E3M2 - Phasing Zorcher", "keys": [] }
-AP-CHECK { "id": 261, "name": "E3M3 - Exit", "keys": ["ChexRedCard", "ChexYellowCard", "ChexBlueCard"] }
-AP-CHECK { "id": 262, "name": "E3M3 - ChexBlueCard", "keys": [] }
-AP-CHECK { "id": 263, "name": "E3M3 - ChexRedCard", "keys": ["ChexYellowCard", "ChexBlueCard"] }
-AP-CHECK { "id": 264, "name": "E3M3 - ChexArmor", "keys": ["ChexYellowCard", "ChexBlueCard"] }
-AP-CHECK { "id": 265, "name": "E3M3 - LAZ Device", "keys": ["ChexYellowCard", "ChexBlueCard"] }
-AP-CHECK { "id": 266, "name": "E3M3 - ChexYellowCard", "keys": ["ChexBlueCard"] }
-AP-CHECK { "id": 267, "name": "E3M3 - Large Zorcher", "keys": [] }
-AP-CHECK { "id": 268, "name": "E3M3 - Phasing Zorcher", "keys": [] }
-AP-CHECK { "id": 269, "name": "E3M3 - Zorch Propulsor", "keys": [] }
-AP-CHECK { "id": 270, "name": "E3M3 - Super Bootspork", "keys": ["ChexYellowCard", "ChexBlueCard"] }
-AP-CHECK { "id": 271, "name": "E3M3 - SlimeProofSuit", "keys": ["ChexRedCard", "ChexYellowCard", "ChexBlueCard"] }
-AP-CHECK { "id": 272, "name": "E3M4 - Exit", "keys": ["ChexRedCard", "ChexYellowCard", "ChexBlueCard"] }
-AP-CHECK { "id": 273, "name": "E3M4 - ChexRedCard", "keys": ["ChexYellowCard", "ChexBlueCard"] }
-AP-CHECK { "id": 274, "name": "E3M4 - ZorchPack", "keys": ["ChexYellowCard", "ChexBlueCard"] }
-AP-CHECK { "id": 275, "name": "E3M4 - LAZ Device", "keys": ["ChexRedCard", "ChexYellowCard", "ChexBlueCard"] }
-AP-CHECK { "id": 276, "name": "E3M4 - ChexBlueCard", "keys": [] }
-AP-CHECK { "id": 277, "name": "E3M4 - ChexYellowCard", "keys": ["ChexBlueCard"] }
-AP-CHECK { "id": 278, "name": "E3M4 - SuperchargeBreakfast [-828,-4956]", "keys": [] }
-AP-CHECK { "id": 279, "name": "E3M4 - SuperchargeBreakfast [-268,-676]", "keys": ["ChexYellowCard", "ChexBlueCard"] }
-AP-CHECK { "id": 280, "name": "E3M4 - ChexArmor", "keys": ["ChexYellowCard", "ChexBlueCard"] }
-AP-CHECK { "id": 281, "name": "E3M4 - Zorch Propulsor", "keys": [] }
-AP-CHECK { "id": 282, "name": "E3M4 - SuperChexArmor", "keys": [] }
-AP-CHECK { "id": 283, "name": "E3M4 - Phasing Zorcher", "keys": [] }
-AP-CHECK { "id": 284, "name": "E3M5 - Exit", "keys": ["RedFlemKey"] }
-AP-CHECK { "id": 285, "name": "E3M5 - BlueFlemKey", "keys": [] }
-AP-CHECK { "id": 286, "name": "E3M5 - Zorch Propulsor", "keys": [] }
-AP-CHECK { "id": 287, "name": "E3M5 - YellowFlemKey", "keys": ["BlueFlemKey"] }
-AP-CHECK { "id": 288, "name": "E3M5 - Rapid Zorcher", "keys": [] }
-AP-CHECK { "id": 289, "name": "E3M5 - Large Zorcher", "keys": [] }
-AP-CHECK { "id": 290, "name": "E3M5 - SuperChexArmor", "keys": ["RedFlemKey"] }
-AP-CHECK { "id": 291, "name": "E3M5 - SuperchargeBreakfast", "keys": ["RedFlemKey"] }
-AP-CHECK { "id": 292, "name": "E3M5 - RedFlemKey", "keys": ["YellowFlemKey"] }
-AP-CHECK { "id": 293, "name": "E3M5 - Phasing Zorcher", "keys": [] }
-AP-CHECK { "id": 294, "name": "E3M5 - ChexArmor", "keys": ["RedFlemKey"] }
-AP-CHECK { "id": 295, "name": "E3M5 - ZorchPack", "keys": [] }
-AP-CHECK { "id": 296, "name": "E3M5 - Super Bootspork", "keys": ["BlueFlemKey"] }
-AP-CHECK { "id": 297, "name": "E3M5 - LAZ Device", "keys": ["YellowFlemKey"] }
+AP-CHECK { "id": 18123, "name": "E1M1 - Exit", "keys": ["ChexRedCard"] }
+AP-CHECK { "id": 18124, "name": "E1M1 - Rapid Zorcher", "pos": ["E1M1",-192,-2016,0], "keys": [] }
+AP-CHECK { "id": 18125, "name": "E1M1 - ChexBlueCard", "pos": ["E1M1",-800,-1824,0], "keys": [] }
+AP-CHECK { "id": 18126, "name": "E1M1 - ChexRedCard", "pos": ["E1M1",800,1056,0], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18127, "name": "E1M1 - BowlOfVegetables", "pos": ["E1M1",1200,-1128,-64], "keys": [] }
+AP-CHECK { "id": 18128, "name": "E1M1 - SlimeRepellent [-1760,-1760]", "pos": ["E1M1",-1760,-1760,0], "keys": [] }
+AP-CHECK { "id": 18129, "name": "E1M1 - SlimeRepellent [-1664,-1856]", "pos": ["E1M1",-1664,-1856,0], "keys": [] }
+AP-CHECK { "id": 18130, "name": "E1M1 - SlimeRepellent [-1568,-1952]", "pos": ["E1M1",-1568,-1952,0], "keys": [] }
+AP-CHECK { "id": 18131, "name": "E1M1 - SlimeRepellent [-1054,-2]", "pos": ["E1M1",-1054,-2,0], "keys": [] }
+AP-CHECK { "id": 18132, "name": "E1M1 - SlimeRepellent [-1062,-430]", "pos": ["E1M1",-1062,-430,0], "keys": [] }
+AP-CHECK { "id": 18133, "name": "E1M1 - SlimeRepellent [802,860]", "pos": ["E1M1",802,860,0], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18134, "name": "E1M1 - SlimeRepellent [96,160]", "pos": ["E1M1",96,160,-64], "keys": [] }
+AP-CHECK { "id": 18135, "name": "E1M1 - SlimeRepellent [1088,-192]", "pos": ["E1M1",1088,-192,-64], "keys": [] }
+AP-CHECK { "id": 18136, "name": "E1M1 - SlimeRepellent [576,-1111]", "pos": ["E1M1",576,-1111,-64], "keys": [] }
+AP-CHECK { "id": 18137, "name": "E1M1 - Mini Zorch Charge [-358,-100]", "pos": ["E1M1",-358,-100,-32], "keys": [] }
+AP-CHECK { "id": 18138, "name": "E1M1 - Mini Zorch Charge [-450,-764]", "pos": ["E1M1",-450,-764,0], "keys": [] }
+AP-CHECK { "id": 18139, "name": "E1M1 - Mini Zorch Charge [1344,-864]", "pos": ["E1M1",1344,-864,-64], "keys": [] }
+AP-CHECK { "id": 18140, "name": "E1M1 - Mini Zorch Charge [628,-176]", "pos": ["E1M1",628,-176,-64], "keys": [] }
+AP-CHECK { "id": 18141, "name": "E1M1 - Mini Zorch Charge [-1344,428]", "pos": ["E1M1",-1344,428,0], "keys": [] }
+AP-CHECK { "id": 18142, "name": "E1M1 - Mini Zorch Charge [-1664,-1120]", "pos": ["E1M1",-1664,-1120,0], "keys": [] }
+AP-CHECK { "id": 18143, "name": "E1M1 - Mini Zorch Charge [-1024,-1984]", "pos": ["E1M1",-1024,-1984,0], "keys": [] }
+AP-CHECK { "id": 18144, "name": "E1M1 - ChexArmor", "pos": ["E1M1",256,-1824,-32], "keys": ["ChexRedCard"] }
+AP-CHECK { "id": 18145, "name": "E1M1 - BowlOfFruit [Center]", "pos": ["E1M1",-312,-640,-32], "keys": ["ChexRedCard"] }
+AP-CHECK { "id": 18146, "name": "E1M1 - BowlOfFruit [N]", "pos": ["E1M1",-448,1024,0], "keys": [] }
+AP-CHECK { "id": 18147, "name": "E1M1 - BowlOfFruit [W]", "pos": ["E1M1",-1552,-48,0], "keys": [] }
+AP-CHECK { "id": 18148, "name": "E1M1 - GlassOfWater [-1544,-408]", "pos": ["E1M1",-1544,-408,0], "keys": [] }
+AP-CHECK { "id": 18149, "name": "E1M1 - GlassOfWater [-1570,-407]", "pos": ["E1M1",-1570,-407,0], "keys": [] }
+AP-CHECK { "id": 18150, "name": "E1M1 - GlassOfWater [-1596,-408]", "pos": ["E1M1",-1596,-408,0], "keys": [] }
+AP-CHECK { "id": 18151, "name": "E1M1 - GlassOfWater [-1592,-48]", "pos": ["E1M1",-1592,-48,0], "keys": [] }
+AP-CHECK { "id": 18152, "name": "E1M1 - GlassOfWater [736,1056]", "pos": ["E1M1",736,1056,0], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18153, "name": "E1M1 - GlassOfWater [480,800]", "pos": ["E1M1",480,800,0], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18154, "name": "E1M1 - GlassOfWater [800,928]", "pos": ["E1M1",800,928,0], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18155, "name": "E1M1 - Secret 10", "keys": [] }
+AP-CHECK { "id": 18156, "name": "E1M1 - Secret 115", "keys": [] }
+AP-CHECK { "id": 18157, "name": "E1M1 - Secret 125", "keys": ["ChexRedCard"] }
+AP-CHECK { "id": 18158, "name": "E1M2 - Exit", "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18158, "name": "E1M2 - Exit", "keys": ["ChexRedCard"] }
+AP-CHECK { "id": 18159, "name": "E1M2 - ZorchPack [NW]", "pos": ["E1M2",-768,2880,-228], "keys": ["ChexRedCard"] }
+AP-CHECK { "id": 18160, "name": "E1M2 - ZorchPack [E]", "pos": ["E1M2",2688,1648,600], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18161, "name": "E1M2 - ZorchPack [SE]", "pos": ["E1M2",1312,-16,400], "keys": [] }
+AP-CHECK { "id": 18162, "name": "E1M2 - GlassOfWater [-512,2896]", "pos": ["E1M2",-512,2896,-228], "keys": ["ChexRedCard"] }
+AP-CHECK { "id": 18163, "name": "E1M2 - GlassOfWater [-512,2864]", "pos": ["E1M2",-512,2864,-228], "keys": ["ChexRedCard"] }
+AP-CHECK { "id": 18164, "name": "E1M2 - GlassOfWater [-2608,1216]", "pos": ["E1M2",-2608,1216,600], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18165, "name": "E1M2 - GlassOfWater [-3136,1216]", "pos": ["E1M2",-3136,1216,600], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18166, "name": "E1M2 - GlassOfWater [-3072,1216]", "pos": ["E1M2",-3072,1216,600], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18167, "name": "E1M2 - GlassOfWater [-2528,1216]", "pos": ["E1M2",-2528,1216,600], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18168, "name": "E1M2 - GlassOfWater [-2816,1216]", "pos": ["E1M2",-2816,1216,600], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18169, "name": "E1M2 - GlassOfWater [-2752,1216]", "pos": ["E1M2",-2752,1216,600], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18170, "name": "E1M2 - GlassOfWater [-2944,1216]", "pos": ["E1M2",-2944,1216,600], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18171, "name": "E1M2 - GlassOfWater [-2880,1216]", "pos": ["E1M2",-2880,1216,600], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18172, "name": "E1M2 - GlassOfWater [-1824,1504]", "pos": ["E1M2",-1824,1504,600], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18173, "name": "E1M2 - GlassOfWater [-2934,976]", "pos": ["E1M2",-2934,976,200], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18174, "name": "E1M2 - GlassOfWater [-2592,656]", "pos": ["E1M2",-2592,656,200], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18175, "name": "E1M2 - Large Zorcher Charge [N]", "pos": ["E1M2",512,2880,-228], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18176, "name": "E1M2 - Large Zorcher Charge [W]", "pos": ["E1M2",-2272,1712,600], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18177, "name": "E1M2 - Large Zorcher Charge [S]", "pos": ["E1M2",-204,-864,0], "keys": [] }
+AP-CHECK { "id": 18178, "name": "E1M2 - BowlOfFruit [N]", "pos": ["E1M2",768,2880,-228], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18179, "name": "E1M2 - BowlOfFruit [Center]", "pos": ["E1M2",-1136,560,400], "keys": [] }
+AP-CHECK { "id": 18180, "name": "E1M2 - BowlOfFruit [E]", "pos": ["E1M2",1991,1715,600], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18181, "name": "E1M2 - BowlOfFruit [NE]", "pos": ["E1M2",2600,2291,600], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18182, "name": "E1M2 - BowlOfFruit [W]", "pos": ["E1M2",-2772,418,200], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18183, "name": "E1M2 - BowlOfFruit [S]", "pos": ["E1M2",312,-576,0], "keys": [] }
+AP-CHECK { "id": 18184, "name": "E1M2 - ChexYellowCard", "pos": ["E1M2",0,-1072,400], "keys": [] }
+AP-CHECK { "id": 18185, "name": "E1M2 - ChexRedCard", "pos": ["E1M2",2016,2304,600], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18186, "name": "E1M2 - SlimeRepellent [-640,1840]", "pos": ["E1M2",-640,1840,-228], "keys": [] }
+AP-CHECK { "id": 18187, "name": "E1M2 - SlimeRepellent [1120,416]", "pos": ["E1M2",1120,416,400], "keys": [] }
+AP-CHECK { "id": 18188, "name": "E1M2 - SlimeRepellent [1123,388]", "pos": ["E1M2",1123,388,400], "keys": [] }
+AP-CHECK { "id": 18189, "name": "E1M2 - SlimeRepellent [352,-1216]", "pos": ["E1M2",352,-1216,400], "keys": [] }
+AP-CHECK { "id": 18190, "name": "E1M2 - SlimeRepellent [-352,-1216]", "pos": ["E1M2",-352,-1216,400], "keys": [] }
+AP-CHECK { "id": 18191, "name": "E1M2 - SlimeRepellent [-976,-1248]", "pos": ["E1M2",-976,-1248,400], "keys": [] }
+AP-CHECK { "id": 18192, "name": "E1M2 - SlimeRepellent [976,-1248]", "pos": ["E1M2",976,-1248,400], "keys": [] }
+AP-CHECK { "id": 18193, "name": "E1M2 - Rapid Zorcher [626,2036]", "pos": ["E1M2",626,2036,-228], "keys": [] }
+AP-CHECK { "id": 18194, "name": "E1M2 - Rapid Zorcher [-428,324]", "pos": ["E1M2",-428,324,0], "keys": [] }
+AP-CHECK { "id": 18195, "name": "E1M2 - Rapid Zorcher [1497,-1167]", "pos": ["E1M2",1497,-1167,400], "keys": [] }
+AP-CHECK { "id": 18196, "name": "E1M2 - Mini Zorch Charge [608,2432]", "pos": ["E1M2",608,2432,-228], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18197, "name": "E1M2 - Mini Zorch Charge [1503,-1207]", "pos": ["E1M2",1503,-1207,400], "keys": [] }
+AP-CHECK { "id": 18198, "name": "E1M2 - Mini Zorch Charge [580,-304]", "pos": ["E1M2",580,-304,0], "keys": [] }
+AP-CHECK { "id": 18199, "name": "E1M2 - Mini Zorch Charge [2402,1295]", "pos": ["E1M2",2402,1295,600], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18200, "name": "E1M2 - Mini Zorch Charge [2360,1658]", "pos": ["E1M2",2360,1658,600], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18201, "name": "E1M2 - Mini Zorch Charge [2810,1280]", "pos": ["E1M2",2810,1280,600], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18202, "name": "E1M2 - Mini Zorch Charge [400,224]", "pos": ["E1M2",400,224,0], "keys": [] }
+AP-CHECK { "id": 18203, "name": "E1M2 - Mini Zorch Charge [-184,-280]", "pos": ["E1M2",-184,-280,0], "keys": [] }
+AP-CHECK { "id": 18204, "name": "E1M2 - Mini Zorch Charge [-540,-248]", "pos": ["E1M2",-540,-248,0], "keys": [] }
+AP-CHECK { "id": 18205, "name": "E1M2 - Mini Zorch Charge [380,-820]", "pos": ["E1M2",380,-820,0], "keys": [] }
+AP-CHECK { "id": 18206, "name": "E1M2 - ChexArmor [N]", "pos": ["E1M2",0,3168,0], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18206, "name": "E1M2 - ChexArmor [N]", "pos": ["E1M2",0,3168,0], "keys": ["ChexRedCard"] }
+AP-CHECK { "id": 18207, "name": "E1M2 - ChexArmor [E]", "pos": ["E1M2",1965,1581,600], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18208, "name": "E1M2 - Phasing Zorcher Charge [78,1808]", "pos": ["E1M2",78,1808,-228], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18208, "name": "E1M2 - Phasing Zorcher Charge [78,1808]", "pos": ["E1M2",78,1808,-228], "keys": ["ChexRedCard"] }
+AP-CHECK { "id": 18209, "name": "E1M2 - Phasing Zorcher Charge [-260,480]", "pos": ["E1M2",-260,480,0], "keys": [] }
+AP-CHECK { "id": 18210, "name": "E1M2 - Phasing Zorcher Charge [1955,1969]", "pos": ["E1M2",1955,1969,600], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18211, "name": "E1M2 - Phasing Zorcher Charge [2868,1844]", "pos": ["E1M2",2868,1844,600], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18212, "name": "E1M2 - Phasing Zorcher Charge [1472,1280]", "pos": ["E1M2",1472,1280,330], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18213, "name": "E1M2 - Phasing Zorcher Charge [-1952,2064]", "pos": ["E1M2",-1952,2064,600], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18214, "name": "E1M2 - Phasing Zorcher Charge [-3081,466]", "pos": ["E1M2",-3081,466,200], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18215, "name": "E1M2 - Zorch Propulsor [Center]", "pos": ["E1M2",0,1312,-228], "keys": [] }
+AP-CHECK { "id": 18216, "name": "E1M2 - Zorch Propulsor [E]", "pos": ["E1M2",3220,1192,600], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18217, "name": "E1M2 - Phasing Zorcher [E]", "pos": ["E1M2",2864,1888,600], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18218, "name": "E1M2 - Phasing Zorcher [SW]", "pos": ["E1M2",-1328,-48,400], "keys": [] }
+AP-CHECK { "id": 18219, "name": "E1M2 - Phasing Zorcher [W]", "pos": ["E1M2",-3123,496,200], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18220, "name": "E1M2 - Propulsor Charge", "pos": ["E1M2",2164,1612,640], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18221, "name": "E1M2 - BowlOfVegetables [2720,1904]", "pos": ["E1M2",2720,1904,600], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18222, "name": "E1M2 - BowlOfVegetables [1506,413]", "pos": ["E1M2",1506,413,400], "keys": [] }
+AP-CHECK { "id": 18223, "name": "E1M2 - BowlOfVegetables [-1904,1744]", "pos": ["E1M2",-1904,1744,600], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18224, "name": "E1M2 - BowlOfVegetables [-2414,1887]", "pos": ["E1M2",-2414,1887,600], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18225, "name": "E1M2 - BowlOfVegetables [-2451,1555]", "pos": ["E1M2",-2451,1555,600], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18226, "name": "E1M2 - BowlOfVegetables [-2967,415]", "pos": ["E1M2",-2967,415,200], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18227, "name": "E1M2 - BowlOfVegetables [-72,136]", "pos": ["E1M2",-72,136,0], "keys": [] }
+AP-CHECK { "id": 18228, "name": "E1M2 - ChexBlueCard", "pos": ["E1M2",-2656,1920,600], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18229, "name": "E1M2 - SuperChexArmor [S]", "pos": ["E1M2",4,-1244,400], "keys": [] }
+AP-CHECK { "id": 18230, "name": "E1M2 - SuperChexArmor [W]", "pos": ["E1M2",-3136,768,200], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18231, "name": "E1M2 - SuperChexArmor [Center]", "pos": ["E1M2",160,348,0], "keys": [] }
+AP-CHECK { "id": 18232, "name": "E1M2 - SuperchargeBreakfast", "pos": ["E1M2",1310,558,400], "keys": [] }
+AP-CHECK { "id": 18233, "name": "E1M2 - LAZ Device", "pos": ["E1M2",1472,1216,330], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18234, "name": "E1M2 - Secret 269", "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18235, "name": "E1M2 - Secret 275", "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18236, "name": "E1M2 - Secret 290", "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18237, "name": "E1M2 - Secret 350", "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18238, "name": "E1M3 - Exit", "keys": ["ChexRedCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18239, "name": "E1M3 - ChexBlueCard", "pos": ["E1M3",376,1880,64], "keys": [] }
+AP-CHECK { "id": 18240, "name": "E1M3 - ChexRedCard", "pos": ["E1M3",-360,-1632,0], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18241, "name": "E1M3 - ChexYellowCard", "pos": ["E1M3",1336,-576,40], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18242, "name": "E1M3 - ComputerAreaMap [NW]", "pos": ["E1M3",-1152,992,64], "keys": [] }
+AP-CHECK { "id": 18243, "name": "E1M3 - ComputerAreaMap [W]", "pos": ["E1M3",-1600,-576,32], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18244, "name": "E1M3 - Mini Zorch Charge [-352,1728]", "pos": ["E1M3",-352,1728,64], "keys": [] }
+AP-CHECK { "id": 18245, "name": "E1M3 - Mini Zorch Charge [-288,1728]", "pos": ["E1M3",-288,1728,64], "keys": [] }
+AP-CHECK { "id": 18246, "name": "E1M3 - Mini Zorch Charge [-224,1728]", "pos": ["E1M3",-224,1728,64], "keys": [] }
+AP-CHECK { "id": 18247, "name": "E1M3 - Mini Zorch Charge [1312,416]", "pos": ["E1M3",1312,416,80], "keys": [] }
+AP-CHECK { "id": 18248, "name": "E1M3 - Mini Zorch Charge [704,-544]", "pos": ["E1M3",704,-544,64], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18249, "name": "E1M3 - Mini Zorch Charge [800,408]", "pos": ["E1M3",800,408,64], "keys": [] }
+AP-CHECK { "id": 18250, "name": "E1M3 - Mini Zorch Charge [-1440,656]", "pos": ["E1M3",-1440,656,0], "keys": [] }
+AP-CHECK { "id": 18251, "name": "E1M3 - Mini Zorch Charge [384,1184]", "pos": ["E1M3",384,1184,64], "keys": [] }
+AP-CHECK { "id": 18252, "name": "E1M3 - Mini Zorch Charge [2080,-1792]", "pos": ["E1M3",2080,-1792,0], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18253, "name": "E1M3 - Mini Zorch Charge [2128,-1792]", "pos": ["E1M3",2128,-1792,0], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18254, "name": "E1M3 - Mini Zorch Charge [2704,-1440]", "pos": ["E1M3",2704,-1440,0], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18255, "name": "E1M3 - Mini Zorch Charge [2644,-1490]", "pos": ["E1M3",2644,-1490,0], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18256, "name": "E1M3 - Mini Zorch Charge [2492,-1458]", "pos": ["E1M3",2492,-1458,0], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18257, "name": "E1M3 - Mini Zorch Charge [2536,-1446]", "pos": ["E1M3",2536,-1446,0], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18258, "name": "E1M3 - Phasing Zorcher", "pos": ["E1M3",-256,384,64], "keys": [] }
+AP-CHECK { "id": 18259, "name": "E1M3 - Propulsor Charge", "pos": ["E1M3",1472,64,64], "keys": ["ChexRedCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18260, "name": "E1M3 - ChexArmor [Center]", "pos": ["E1M3",704,64,64], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18261, "name": "E1M3 - ChexArmor [SW]", "pos": ["E1M3",-960,-1536,0], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18262, "name": "E1M3 - Phasing Zorcher Charge [160,352]", "pos": ["E1M3",160,352,64], "keys": [] }
+AP-CHECK { "id": 18263, "name": "E1M3 - Phasing Zorcher Charge [126,353]", "pos": ["E1M3",126,353,64], "keys": [] }
+AP-CHECK { "id": 18264, "name": "E1M3 - Phasing Zorcher Charge [126,386]", "pos": ["E1M3",126,386,64], "keys": [] }
+AP-CHECK { "id": 18265, "name": "E1M3 - Phasing Zorcher Charge [-1760,640]", "pos": ["E1M3",-1760,640,0], "keys": [] }
+AP-CHECK { "id": 18266, "name": "E1M3 - Phasing Zorcher Charge [2608,-1440]", "pos": ["E1M3",2608,-1440,0], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18267, "name": "E1M3 - GlassOfWater [NW]", "pos": ["E1M3",-1008,656,0], "keys": [] }
+AP-CHECK { "id": 18268, "name": "E1M3 - GlassOfWater [Center]", "pos": ["E1M3",800,352,64], "keys": [] }
+AP-CHECK { "id": 18269, "name": "E1M3 - GlassOfWater [S]", "pos": ["E1M3",992,-1440,64], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18270, "name": "E1M3 - BowlOfFruit", "pos": ["E1M3",-1056,576,0], "keys": [] }
+AP-CHECK { "id": 18271, "name": "E1M3 - SlimeRepellent [64,864]", "pos": ["E1M3",64,864,64], "keys": [] }
+AP-CHECK { "id": 18272, "name": "E1M3 - SlimeRepellent [624,848]", "pos": ["E1M3",624,848,64], "keys": [] }
+AP-CHECK { "id": 18273, "name": "E1M3 - SlimeRepellent [784,834]", "pos": ["E1M3",784,834,64], "keys": [] }
+AP-CHECK { "id": 18274, "name": "E1M3 - SlimeRepellent [604,819]", "pos": ["E1M3",604,819,64], "keys": [] }
+AP-CHECK { "id": 18275, "name": "E1M3 - SlimeRepellent [805,813]", "pos": ["E1M3",805,813,64], "keys": [] }
+AP-CHECK { "id": 18276, "name": "E1M3 - SlimeRepellent [2208,-1888]", "pos": ["E1M3",2208,-1888,0], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18277, "name": "E1M3 - SlimeRepellent [2272,-1888]", "pos": ["E1M3",2272,-1888,0], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18278, "name": "E1M3 - Super Bootspork", "pos": ["E1M3",-1792,672,0], "keys": [] }
+AP-CHECK { "id": 18279, "name": "E1M3 - Large Zorcher Charge [576,1248]", "pos": ["E1M3",576,1248,64], "keys": [] }
+AP-CHECK { "id": 18280, "name": "E1M3 - Large Zorcher Charge [1120,672]", "pos": ["E1M3",1120,672,88], "keys": [] }
+AP-CHECK { "id": 18281, "name": "E1M3 - Large Zorcher Charge [-184,1160]", "pos": ["E1M3",-184,1160,64], "keys": [] }
+AP-CHECK { "id": 18282, "name": "E1M3 - Large Zorcher Charge [2432,-1284]", "pos": ["E1M3",2432,-1284,0], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18283, "name": "E1M3 - Large Zorcher Charge [1976,-949]", "pos": ["E1M3",1976,-949,0], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18284, "name": "E1M3 - Large Zorcher Charge [2464,-944]", "pos": ["E1M3",2464,-944,0], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18285, "name": "E1M3 - BowlOfVegetables [NW]", "pos": ["E1M3",124,1136,64], "keys": [] }
+AP-CHECK { "id": 18286, "name": "E1M3 - BowlOfVegetables [SE]", "pos": ["E1M3",1248,-1440,64], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18287, "name": "E1M3 - BowlOfVegetables [E]", "pos": ["E1M3",3144,-1152,0], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18288, "name": "E1M3 - BowlOfVegetables [W]", "pos": ["E1M3",-1536,-352,-16], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18289, "name": "E1M3 - Large Zorcher", "pos": ["E1M3",1120,-1440,64], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18290, "name": "E1M3 - ZorchPack", "pos": ["E1M3",2208,-2184,0], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18291, "name": "E1M3 - Zorch Propulsor", "pos": ["E1M3",2264,-2184,0], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18292, "name": "E1M3 - Secret 119", "keys": [] }
+AP-CHECK { "id": 18293, "name": "E1M3 - Secret 196", "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18294, "name": "E1M3 - Secret 223", "keys": [] }
+AP-CHECK { "id": 18295, "name": "E1M3 - Secret 248", "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18296, "name": "E1M4 - Exit", "keys": ["ChexBlueCard", "ChexYellowCard"] }
+AP-CHECK { "id": 18297, "name": "E1M4 - ZorchPack [Center]", "pos": ["E1M4",224,-272,0], "keys": [] }
+AP-CHECK { "id": 18298, "name": "E1M4 - ZorchPack [W]", "pos": ["E1M4",-1456,564,-148], "keys": ["ChexBlueCard", "ChexYellowCard"] }
+AP-CHECK { "id": 18299, "name": "E1M4 - ZorchPack [NE]", "pos": ["E1M4",1792,1440,-128], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18300, "name": "E1M4 - ChexBlueCard", "pos": ["E1M4",1368,-1104,0], "keys": [] }
+AP-CHECK { "id": 18301, "name": "E1M4 - ChexYellowCard", "pos": ["E1M4",2176,-320,-192], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18302, "name": "E1M4 - Propulsor Charge", "pos": ["E1M4",-200,1446,-148], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18303, "name": "E1M4 - SuperchargeBreakfast", "pos": ["E1M4",-1152,1544,-148], "keys": ["ChexBlueCard", "ChexYellowCard"] }
+AP-CHECK { "id": 18304, "name": "E1M4 - BowlOfFruit [-1440,346]", "pos": ["E1M4",-1440,346,-148], "keys": ["ChexBlueCard", "ChexYellowCard"] }
+AP-CHECK { "id": 18305, "name": "E1M4 - BowlOfFruit [-1970,830]", "pos": ["E1M4",-1970,830,-148], "keys": ["ChexBlueCard", "ChexYellowCard"] }
+AP-CHECK { "id": 18306, "name": "E1M4 - BowlOfFruit [692,-274]", "pos": ["E1M4",692,-274,0], "keys": [] }
+AP-CHECK { "id": 18307, "name": "E1M4 - BowlOfVegetables [E]", "pos": ["E1M4",2144,736,-192], "keys": [] }
+AP-CHECK { "id": 18308, "name": "E1M4 - BowlOfVegetables [NE]", "pos": ["E1M4",976,1296,-148], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18309, "name": "E1M4 - Mini Zorch Charge [2080,-32]", "pos": ["E1M4",2080,-32,-192], "keys": [] }
+AP-CHECK { "id": 18310, "name": "E1M4 - Mini Zorch Charge [1730,-442]", "pos": ["E1M4",1730,-442,0], "keys": [] }
+AP-CHECK { "id": 18311, "name": "E1M4 - Mini Zorch Charge [1728,-318]", "pos": ["E1M4",1728,-318,0], "keys": [] }
+AP-CHECK { "id": 18312, "name": "E1M4 - Mini Zorch Charge [1728,-202]", "pos": ["E1M4",1728,-202,0], "keys": [] }
+AP-CHECK { "id": 18313, "name": "E1M4 - Mini Zorch Charge [1730,-568]", "pos": ["E1M4",1730,-568,0], "keys": [] }
+AP-CHECK { "id": 18314, "name": "E1M4 - Mini Zorch Charge [1352,-1296]", "pos": ["E1M4",1352,-1296,0], "keys": [] }
+AP-CHECK { "id": 18315, "name": "E1M4 - Mini Zorch Charge [416,-1248]", "pos": ["E1M4",416,-1248,0], "keys": [] }
+AP-CHECK { "id": 18316, "name": "E1M4 - Mini Zorch Charge [64,-710]", "pos": ["E1M4",64,-710,0], "keys": [] }
+AP-CHECK { "id": 18317, "name": "E1M4 - Mini Zorch Charge [-202,1376]", "pos": ["E1M4",-202,1376,-148], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18318, "name": "E1M4 - Mini Zorch Charge [-2276,408]", "pos": ["E1M4",-2276,408,-148], "keys": ["ChexBlueCard", "ChexYellowCard"] }
+AP-CHECK { "id": 18319, "name": "E1M4 - Mini Zorch Charge [-2272,752]", "pos": ["E1M4",-2272,752,-148], "keys": ["ChexBlueCard", "ChexYellowCard"] }
+AP-CHECK { "id": 18320, "name": "E1M4 - Mini Zorch Charge [-1564,580]", "pos": ["E1M4",-1564,580,-148], "keys": ["ChexBlueCard", "ChexYellowCard"] }
+AP-CHECK { "id": 18321, "name": "E1M4 - Mini Zorch Charge [-1716,628]", "pos": ["E1M4",-1716,628,-148], "keys": ["ChexBlueCard", "ChexYellowCard"] }
+AP-CHECK { "id": 18322, "name": "E1M4 - Mini Zorch Charge [-2168,1304]", "pos": ["E1M4",-2168,1304,-148], "keys": ["ChexBlueCard", "ChexYellowCard"] }
+AP-CHECK { "id": 18323, "name": "E1M4 - Mini Zorch Charge [-1964,1876]", "pos": ["E1M4",-1964,1876,-148], "keys": ["ChexBlueCard", "ChexYellowCard"] }
+AP-CHECK { "id": 18324, "name": "E1M4 - Mini Zorch Charge [-1372,932]", "pos": ["E1M4",-1372,932,-148], "keys": ["ChexBlueCard", "ChexYellowCard"] }
+AP-CHECK { "id": 18325, "name": "E1M4 - Rapid Zorcher", "pos": ["E1M4",456,-1096,0], "keys": [] }
+AP-CHECK { "id": 18326, "name": "E1M4 - SuperChexArmor", "pos": ["E1M4",349,-979,0], "keys": [] }
+AP-CHECK { "id": 18327, "name": "E1M4 - GlassOfWater [824,-1384]", "pos": ["E1M4",824,-1384,0], "keys": [] }
+AP-CHECK { "id": 18328, "name": "E1M4 - GlassOfWater [770,-1380]", "pos": ["E1M4",770,-1380,0], "keys": [] }
+AP-CHECK { "id": 18329, "name": "E1M4 - GlassOfWater [1006,-458]", "pos": ["E1M4",1006,-458,0], "keys": [] }
+AP-CHECK { "id": 18330, "name": "E1M4 - GlassOfWater [1034,-488]", "pos": ["E1M4",1034,-488,0], "keys": [] }
+AP-CHECK { "id": 18331, "name": "E1M4 - GlassOfWater [1034,-532]", "pos": ["E1M4",1034,-532,0], "keys": [] }
+AP-CHECK { "id": 18332, "name": "E1M4 - GlassOfWater [1032,-564]", "pos": ["E1M4",1032,-564,0], "keys": [] }
+AP-CHECK { "id": 18333, "name": "E1M4 - GlassOfWater [1024,-610]", "pos": ["E1M4",1024,-610,0], "keys": [] }
+AP-CHECK { "id": 18334, "name": "E1M4 - Large Zorcher Charge", "pos": ["E1M4",-352,-128,64], "keys": [] }
+AP-CHECK { "id": 18335, "name": "E1M4 - SlimeRepellent [-702,1022]", "pos": ["E1M4",-702,1022,-148], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18336, "name": "E1M4 - SlimeRepellent [-704,960]", "pos": ["E1M4",-704,960,-148], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18337, "name": "E1M4 - SlimeRepellent [-640,960]", "pos": ["E1M4",-640,960,-148], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18338, "name": "E1M4 - SlimeRepellent [-642,1020]", "pos": ["E1M4",-642,1020,-148], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18339, "name": "E1M4 - Secret 38", "keys": [] }
+AP-CHECK { "id": 18340, "name": "E1M4 - Secret 139", "keys": [] }
+AP-CHECK { "id": 18341, "name": "E1M4 - Secret 195", "keys": [] }
+AP-CHECK { "id": 18342, "name": "E1M5 - Exit", "keys": [] }
+AP-CHECK { "id": 18343, "name": "E1M5 - BowlOfVegetables [-2048,-448]", "pos": ["E1M5",-2048,-448,2], "keys": [] }
+AP-CHECK { "id": 18344, "name": "E1M5 - BowlOfVegetables [2272,-336]", "pos": ["E1M5",2272,-336,60], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18345, "name": "E1M5 - BowlOfVegetables [2688,-8]", "pos": ["E1M5",2688,-8,60], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18346, "name": "E1M5 - BowlOfVegetables [1096,968]", "pos": ["E1M5",1096,968,360], "keys": [] }
+AP-CHECK { "id": 18347, "name": "E1M5 - BowlOfVegetables [3918,2850]", "pos": ["E1M5",3918,2850,-8], "keys": [] }
+AP-CHECK { "id": 18348, "name": "E1M5 - BowlOfVegetables [4860,3288]", "pos": ["E1M5",4860,3288,-8], "keys": [] }
+AP-CHECK { "id": 18349, "name": "E1M5 - BowlOfVegetables [2468,4760]", "pos": ["E1M5",2468,4760,-8], "keys": [] }
+AP-CHECK { "id": 18350, "name": "E1M5 - GlassOfWater [-1856,-128]", "pos": ["E1M5",-1856,-128,10], "keys": [] }
+AP-CHECK { "id": 18351, "name": "E1M5 - GlassOfWater [2772,4580]", "pos": ["E1M5",2772,4580,-8], "keys": [] }
+AP-CHECK { "id": 18352, "name": "E1M5 - GlassOfWater [2800,4616]", "pos": ["E1M5",2800,4616,-8], "keys": [] }
+AP-CHECK { "id": 18353, "name": "E1M5 - GlassOfWater [2884,4644]", "pos": ["E1M5",2884,4644,-8], "keys": [] }
+AP-CHECK { "id": 18354, "name": "E1M5 - GlassOfWater [2928,4644]", "pos": ["E1M5",2928,4644,-8], "keys": [] }
+AP-CHECK { "id": 18355, "name": "E1M5 - GlassOfWater [3024,4572]", "pos": ["E1M5",3024,4572,-8], "keys": [] }
+AP-CHECK { "id": 18356, "name": "E1M5 - GlassOfWater [2952,4592]", "pos": ["E1M5",2952,4592,-8], "keys": [] }
+AP-CHECK { "id": 18357, "name": "E1M5 - GlassOfWater [2840,4636]", "pos": ["E1M5",2840,4636,-8], "keys": [] }
+AP-CHECK { "id": 18358, "name": "E1M5 - GlassOfWater [2768,4532]", "pos": ["E1M5",2768,4532,-8], "keys": [] }
+AP-CHECK { "id": 18359, "name": "E1M5 - GlassOfWater [2860,4600]", "pos": ["E1M5",2860,4600,-8], "keys": [] }
+AP-CHECK { "id": 18360, "name": "E1M5 - GlassOfWater [2908,4604]", "pos": ["E1M5",2908,4604,-8], "keys": [] }
+AP-CHECK { "id": 18361, "name": "E1M5 - GlassOfWater [3004,4608]", "pos": ["E1M5",3004,4608,-8], "keys": [] }
+AP-CHECK { "id": 18362, "name": "E1M5 - GlassOfWater [3024,4492]", "pos": ["E1M5",3024,4492,-8], "keys": [] }
+AP-CHECK { "id": 18363, "name": "E1M5 - GlassOfWater [2968,4632]", "pos": ["E1M5",2968,4632,-8], "keys": [] }
+AP-CHECK { "id": 18364, "name": "E1M5 - GlassOfWater [3028,4532]", "pos": ["E1M5",3028,4532,-8], "keys": [] }
+AP-CHECK { "id": 18365, "name": "E1M5 - GlassOfWater [2996,4464]", "pos": ["E1M5",2996,4464,-8], "keys": [] }
+AP-CHECK { "id": 18366, "name": "E1M5 - GlassOfWater [2984,4564]", "pos": ["E1M5",2984,4564,-8], "keys": [] }
+AP-CHECK { "id": 18367, "name": "E1M5 - GlassOfWater [2816,4464]", "pos": ["E1M5",2816,4464,-8], "keys": [] }
+AP-CHECK { "id": 18368, "name": "E1M5 - GlassOfWater [2780,4488]", "pos": ["E1M5",2780,4488,-8], "keys": [] }
+AP-CHECK { "id": 18369, "name": "E1M5 - GlassOfWater [2820,4576]", "pos": ["E1M5",2820,4576,-8], "keys": [] }
+AP-CHECK { "id": 18370, "name": "E1M5 - GlassOfWater [4888,3220]", "pos": ["E1M5",4888,3220,-8], "keys": [] }
+AP-CHECK { "id": 18371, "name": "E1M5 - GlassOfWater [4012,2784]", "pos": ["E1M5",4012,2784,-8], "keys": [] }
+AP-CHECK { "id": 18372, "name": "E1M5 - GlassOfWater [3972,2788]", "pos": ["E1M5",3972,2788,-8], "keys": [] }
+AP-CHECK { "id": 18373, "name": "E1M5 - GlassOfWater [3938,2814]", "pos": ["E1M5",3938,2814,-8], "keys": [] }
+AP-CHECK { "id": 18374, "name": "E1M5 - GlassOfWater [4096,2800]", "pos": ["E1M5",4096,2800,-8], "keys": [] }
+AP-CHECK { "id": 18375, "name": "E1M5 - GlassOfWater [4148,2856]", "pos": ["E1M5",4148,2856,-8], "keys": [] }
+AP-CHECK { "id": 18376, "name": "E1M5 - GlassOfWater [4156,2896]", "pos": ["E1M5",4156,2896,-8], "keys": [] }
+AP-CHECK { "id": 18377, "name": "E1M5 - GlassOfWater [4138,2978]", "pos": ["E1M5",4138,2978,-8], "keys": [] }
+AP-CHECK { "id": 18378, "name": "E1M5 - GlassOfWater [4156,2938]", "pos": ["E1M5",4156,2938,-8], "keys": [] }
+AP-CHECK { "id": 18379, "name": "E1M5 - GlassOfWater [4056,2788]", "pos": ["E1M5",4056,2788,-8], "keys": [] }
+AP-CHECK { "id": 18380, "name": "E1M5 - GlassOfWater [4128,2820]", "pos": ["E1M5",4128,2820,-8], "keys": [] }
+AP-CHECK { "id": 18381, "name": "E1M5 - GlassOfWater [3914,2890]", "pos": ["E1M5",3914,2890,-8], "keys": [] }
+AP-CHECK { "id": 18382, "name": "E1M5 - BowlOfFruit [SW]", "pos": ["E1M5",-2304,-448,2], "keys": [] }
+AP-CHECK { "id": 18383, "name": "E1M5 - BowlOfFruit [Center]", "pos": ["E1M5",1101,1008,360], "keys": [] }
+AP-CHECK { "id": 18384, "name": "E1M5 - BowlOfFruit [S]", "pos": ["E1M5",1276,-800,-200], "keys": [] }
+AP-CHECK { "id": 18385, "name": "E1M5 - BowlOfFruit [NE]", "pos": ["E1M5",4768,4020,-8], "keys": [] }
+AP-CHECK { "id": 18386, "name": "E1M5 - BowlOfFruit [E]", "pos": ["E1M5",4848,3162,-8], "keys": [] }
+AP-CHECK { "id": 18387, "name": "E1M5 - Large Zorcher [SE]", "pos": ["E1M5",2272,-292,60], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18388, "name": "E1M5 - Large Zorcher [SW]", "pos": ["E1M5",-1760,-200,0], "keys": [] }
+AP-CHECK { "id": 18389, "name": "E1M5 - Large Zorcher [Center]", "pos": ["E1M5",1552,3332,-8], "keys": [] }
+AP-CHECK { "id": 18390, "name": "E1M5 - Large Zorcher Charge [544,912]", "pos": ["E1M5",544,912,286], "keys": [] }
+AP-CHECK { "id": 18391, "name": "E1M5 - Large Zorcher Charge [542,933]", "pos": ["E1M5",542,933,286], "keys": [] }
+AP-CHECK { "id": 18392, "name": "E1M5 - Large Zorcher Charge [1472,3360]", "pos": ["E1M5",1472,3360,-8], "keys": [] }
+AP-CHECK { "id": 18393, "name": "E1M5 - Large Zorcher Charge [1568,3404]", "pos": ["E1M5",1568,3404,-8], "keys": [] }
+AP-CHECK { "id": 18394, "name": "E1M5 - Large Zorcher Charge [1516,3392]", "pos": ["E1M5",1516,3392,-8], "keys": [] }
+AP-CHECK { "id": 18395, "name": "E1M5 - Large Zorcher Charge [-1888,-104]", "pos": ["E1M5",-1888,-104,10], "keys": [] }
+AP-CHECK { "id": 18396, "name": "E1M5 - Large Zorcher Charge [2424,4760]", "pos": ["E1M5",2424,4760,-8], "keys": [] }
+AP-CHECK { "id": 18397, "name": "E1M5 - Super Bootspork [Center]", "pos": ["E1M5",543,960,286], "keys": [] }
+AP-CHECK { "id": 18398, "name": "E1M5 - Super Bootspork [SW]", "pos": ["E1M5",-2432,128,10], "keys": [] }
+AP-CHECK { "id": 18399, "name": "E1M5 - SlimeRepellent [200,-176]", "pos": ["E1M5",200,-176,2], "keys": [] }
+AP-CHECK { "id": 18400, "name": "E1M5 - SlimeRepellent [129,67]", "pos": ["E1M5",129,67,10], "keys": [] }
+AP-CHECK { "id": 18401, "name": "E1M5 - SlimeRepellent [1784,3212]", "pos": ["E1M5",1784,3212,-8], "keys": [] }
+AP-CHECK { "id": 18402, "name": "E1M5 - SlimeRepellent [1764,3164]", "pos": ["E1M5",1764,3164,-8], "keys": [] }
+AP-CHECK { "id": 18403, "name": "E1M5 - SlimeRepellent [1720,3136]", "pos": ["E1M5",1720,3136,-8], "keys": [] }
+AP-CHECK { "id": 18404, "name": "E1M5 - SlimeRepellent [1628,3112]", "pos": ["E1M5",1628,3112,-8], "keys": [] }
+AP-CHECK { "id": 18405, "name": "E1M5 - SlimeRepellent [1580,3120]", "pos": ["E1M5",1580,3120,-8], "keys": [] }
+AP-CHECK { "id": 18406, "name": "E1M5 - SlimeRepellent [1440,3260]", "pos": ["E1M5",1440,3260,-8], "keys": [] }
+AP-CHECK { "id": 18407, "name": "E1M5 - SlimeRepellent [1436,3308]", "pos": ["E1M5",1436,3308,-8], "keys": [] }
+AP-CHECK { "id": 18408, "name": "E1M5 - SlimeRepellent [1460,3212]", "pos": ["E1M5",1460,3212,-8], "keys": [] }
+AP-CHECK { "id": 18409, "name": "E1M5 - SlimeRepellent [1492,3168]", "pos": ["E1M5",1492,3168,-8], "keys": [] }
+AP-CHECK { "id": 18410, "name": "E1M5 - SlimeRepellent [1532,3136]", "pos": ["E1M5",1532,3136,-8], "keys": [] }
+AP-CHECK { "id": 18411, "name": "E1M5 - SlimeRepellent [1676,3120]", "pos": ["E1M5",1676,3120,-8], "keys": [] }
+AP-CHECK { "id": 18412, "name": "E1M5 - SlimeRepellent [2392,4616]", "pos": ["E1M5",2392,4616,-8], "keys": [] }
+AP-CHECK { "id": 18413, "name": "E1M5 - SlimeRepellent [2368,4656]", "pos": ["E1M5",2368,4656,-8], "keys": [] }
+AP-CHECK { "id": 18414, "name": "E1M5 - SlimeRepellent [2496,4656]", "pos": ["E1M5",2496,4656,-8], "keys": [] }
+AP-CHECK { "id": 18415, "name": "E1M5 - SlimeRepellent [2512,4696]", "pos": ["E1M5",2512,4696,-8], "keys": [] }
+AP-CHECK { "id": 18416, "name": "E1M5 - SlimeRepellent [2512,4744]", "pos": ["E1M5",2512,4744,-8], "keys": [] }
+AP-CHECK { "id": 18417, "name": "E1M5 - SlimeRepellent [4736,4056]", "pos": ["E1M5",4736,4056,-8], "keys": [] }
+AP-CHECK { "id": 18418, "name": "E1M5 - SlimeRepellent [4764,4148]", "pos": ["E1M5",4764,4148,-8], "keys": [] }
+AP-CHECK { "id": 18419, "name": "E1M5 - SlimeRepellent [4888,4032]", "pos": ["E1M5",4888,4032,-8], "keys": [] }
+AP-CHECK { "id": 18420, "name": "E1M5 - SlimeRepellent [4848,4012]", "pos": ["E1M5",4848,4012,-8], "keys": [] }
+AP-CHECK { "id": 18421, "name": "E1M5 - SlimeRepellent [4804,4000]", "pos": ["E1M5",4804,4000,-8], "keys": [] }
+AP-CHECK { "id": 18422, "name": "E1M5 - SlimeRepellent [4916,4064]", "pos": ["E1M5",4916,4064,-8], "keys": [] }
+AP-CHECK { "id": 18423, "name": "E1M5 - SlimeRepellent [4908,4108]", "pos": ["E1M5",4908,4108,-8], "keys": [] }
+AP-CHECK { "id": 18424, "name": "E1M5 - SlimeRepellent [4732,4108]", "pos": ["E1M5",4732,4108,-8], "keys": [] }
+AP-CHECK { "id": 18425, "name": "E1M5 - SlimeRepellent [2380,4740]", "pos": ["E1M5",2380,4740,-8], "keys": [] }
+AP-CHECK { "id": 18426, "name": "E1M5 - SlimeRepellent [2356,4700]", "pos": ["E1M5",2356,4700,-8], "keys": [] }
+AP-CHECK { "id": 18427, "name": "E1M5 - SlimeRepellent [4778,3188]", "pos": ["E1M5",4778,3188,-8], "keys": [] }
+AP-CHECK { "id": 18428, "name": "E1M5 - ChexBlueCard", "pos": ["E1M5",-1568,304,75], "keys": [] }
+AP-CHECK { "id": 18429, "name": "E1M5 - ChexYellowCard [Center]", "pos": ["E1M5",992,1016,360], "keys": [] }
+AP-CHECK { "id": 18430, "name": "E1M5 - ChexYellowCard [SW]", "pos": ["E1M5",-784,792,270], "keys": [] }
+AP-CHECK { "id": 18431, "name": "E1M5 - Rapid Zorcher", "pos": ["E1M5",2688,64,60], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18432, "name": "E1M5 - SlimeProofSuit", "pos": ["E1M5",1000,-800,18], "keys": [] }
+AP-CHECK { "id": 18433, "name": "E1M5 - ChexRedCard", "pos": ["E1M5",2592,168,60], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18434, "name": "E1M5 - Phasing Zorcher", "pos": ["E1M5",2608,352,60], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18435, "name": "E1M5 - ChexArmor [SW]", "pos": ["E1M5",-1525,253,75], "keys": [] }
+AP-CHECK { "id": 18436, "name": "E1M5 - ChexArmor [E]", "pos": ["E1M5",4828,3230,-8], "keys": [] }
+AP-CHECK { "id": 18437, "name": "E1M5 - ZorchPack", "pos": ["E1M5",4256,-536,150], "keys": ["ChexRedCard"] }
+AP-CHECK { "id": 18438, "name": "E1M5 - Propulsor Charge", "pos": ["E1M5",4044,2872,-8], "keys": [] }
+AP-CHECK { "id": 18439, "name": "E1M5 - Zorch Propulsor", "pos": ["E1M5",4820,4092,-8], "keys": [] }
+AP-CHECK { "id": 18440, "name": "E1M5 - SuperChexArmor", "pos": ["E1M5",4896,3744,-32], "keys": [] }
+AP-CHECK { "id": 18441, "name": "E1M5 - LAZ Device", "pos": ["E1M5",4896,3616,-32], "keys": [] }
+AP-CHECK { "id": 18442, "name": "E1M5 - Secret 84", "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18443, "name": "E1M5 - Secret 88", "keys": [] }
+AP-CHECK { "id": 18444, "name": "E1M5 - Secret 174", "keys": [] }
+AP-CHECK { "id": 18445, "name": "E1M5 - Secret 187", "keys": [] }
+AP-CHECK { "id": 18446, "name": "E2M1 - Exit", "keys": ["ChexRedCard"] }
+AP-CHECK { "id": 18447, "name": "E2M1 - ChexRedCard", "pos": ["E2M1",-674,-480,64], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18448, "name": "E2M1 - ZorchPack", "pos": ["E2M1",32,992,8], "keys": [] }
+AP-CHECK { "id": 18449, "name": "E2M1 - SuperChexArmor", "pos": ["E2M1",-1696,1952,32], "keys": ["ChexRedCard"] }
+AP-CHECK { "id": 18450, "name": "E2M1 - SuperchargeBreakfast [NW]", "pos": ["E2M1",-1888,1952,32], "keys": ["ChexRedCard"] }
+AP-CHECK { "id": 18451, "name": "E2M1 - SuperchargeBreakfast [N]", "pos": ["E2M1",832,2816,64], "keys": [] }
+AP-CHECK { "id": 18452, "name": "E2M1 - SuperchargeBreakfast [Center]", "pos": ["E2M1",0,432,40], "keys": [] }
+AP-CHECK { "id": 18453, "name": "E2M1 - Phasing Zorcher", "pos": ["E2M1",-1824,1920,32], "keys": ["ChexRedCard"] }
+AP-CHECK { "id": 18454, "name": "E2M1 - Phasing Zorcher Charge", "pos": ["E2M1",-1760,1920,32], "keys": ["ChexRedCard"] }
+AP-CHECK { "id": 18455, "name": "E2M1 - ChexBlueCard", "pos": ["E2M1",-160,2304,24], "keys": [] }
+AP-CHECK { "id": 18456, "name": "E2M1 - Zorch Propulsor", "pos": ["E2M1",640,2816,64], "keys": [] }
+AP-CHECK { "id": 18457, "name": "E2M1 - Propulsor Charge [768,2816]", "pos": ["E2M1",768,2816,64], "keys": [] }
+AP-CHECK { "id": 18458, "name": "E2M1 - Propulsor Charge [512,2816]", "pos": ["E2M1",512,2816,64], "keys": [] }
+AP-CHECK { "id": 18459, "name": "E2M1 - BowlOfFruit [Center]", "pos": ["E2M1",-304,912,40], "keys": [] }
+AP-CHECK { "id": 18460, "name": "E2M1 - BowlOfFruit [S]", "pos": ["E2M1",896,-1024,-64], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18461, "name": "E2M1 - BowlOfFruit [SE]", "pos": ["E2M1",928,-992,-64], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18462, "name": "E2M1 - GlassOfWater [-306,514]", "pos": ["E2M1",-306,514,40], "keys": [] }
+AP-CHECK { "id": 18463, "name": "E2M1 - GlassOfWater [740,-480]", "pos": ["E2M1",740,-480,-64], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18464, "name": "E2M1 - GlassOfWater [804,-480]", "pos": ["E2M1",804,-480,-64], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18465, "name": "E2M1 - GlassOfWater [544,-480]", "pos": ["E2M1",544,-480,-64], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18466, "name": "E2M1 - GlassOfWater [608,-480]", "pos": ["E2M1",608,-480,-64], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18467, "name": "E2M1 - GlassOfWater [668,-480]", "pos": ["E2M1",668,-480,-64], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18468, "name": "E2M1 - Large Zorcher [Center]", "pos": ["E2M1",160,575,8], "keys": [] }
+AP-CHECK { "id": 18469, "name": "E2M1 - Large Zorcher [S]", "pos": ["E2M1",-512,-1024,64], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18470, "name": "E2M1 - Rapid Zorcher", "pos": ["E2M1",1728,1552,-128], "keys": [] }
+AP-CHECK { "id": 18471, "name": "E2M1 - BowlOfVegetables [2128,1584]", "pos": ["E2M1",2128,1584,-128], "keys": [] }
+AP-CHECK { "id": 18472, "name": "E2M1 - BowlOfVegetables [2096,1584]", "pos": ["E2M1",2096,1584,-128], "keys": [] }
+AP-CHECK { "id": 18473, "name": "E2M1 - BowlOfVegetables [384,-256]", "pos": ["E2M1",384,-256,-64], "keys": [] }
+AP-CHECK { "id": 18474, "name": "E2M1 - SlimeRepellent [384,28]", "pos": ["E2M1",384,28,-64], "keys": [] }
+AP-CHECK { "id": 18475, "name": "E2M1 - SlimeRepellent [384,-32]", "pos": ["E2M1",384,-32,-64], "keys": [] }
+AP-CHECK { "id": 18476, "name": "E2M1 - SlimeRepellent [448,-32]", "pos": ["E2M1",448,-32,-64], "keys": [] }
+AP-CHECK { "id": 18477, "name": "E2M1 - SlimeRepellent [448,32]", "pos": ["E2M1",448,32,-64], "keys": [] }
+AP-CHECK { "id": 18478, "name": "E2M1 - SlimeRepellent [416,0]", "pos": ["E2M1",416,0,-64], "keys": [] }
+AP-CHECK { "id": 18479, "name": "E2M1 - Mini Zorch Charge", "pos": ["E2M1",224,-864,0], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18480, "name": "E2M1 - Secret 50", "keys": [] }
+AP-CHECK { "id": 18481, "name": "E2M1 - Secret 82", "keys": [] }
+AP-CHECK { "id": 18482, "name": "E2M1 - Secret 84", "keys": ["ChexRedCard"] }
+AP-CHECK { "id": 18483, "name": "E2M2 - Exit", "keys": ["ChexRedCard"] }
+AP-CHECK { "id": 18484, "name": "E2M2 - ChexRedCard", "pos": ["E2M2",-8736,-5352,-105], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18485, "name": "E2M2 - BowlOfFruit [-7536,-5336]", "pos": ["E2M2",-7536,-5336,0], "keys": [] }
+AP-CHECK { "id": 18486, "name": "E2M2 - BowlOfFruit [-7520,-7664]", "pos": ["E2M2",-7520,-7664,0], "keys": [] }
+AP-CHECK { "id": 18487, "name": "E2M2 - BowlOfVegetables [SW]", "pos": ["E2M2",-6112,-7008,0], "keys": [] }
+AP-CHECK { "id": 18488, "name": "E2M2 - BowlOfVegetables [W]", "pos": ["E2M2",-8996,-5464,-105], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18489, "name": "E2M2 - SlimeRepellent [-6176,-7008]", "pos": ["E2M2",-6176,-7008,0], "keys": [] }
+AP-CHECK { "id": 18490, "name": "E2M2 - SlimeRepellent [-6536,-5376]", "pos": ["E2M2",-6536,-5376,128], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18491, "name": "E2M2 - SlimeRepellent [-6448,-5312]", "pos": ["E2M2",-6448,-5312,128], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18492, "name": "E2M2 - SlimeRepellent [-6360,-5376]", "pos": ["E2M2",-6360,-5376,128], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18493, "name": "E2M2 - SlimeRepellent [-6448,-5440]", "pos": ["E2M2",-6448,-5440,128], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18494, "name": "E2M2 - ZorchPack", "pos": ["E2M2",-6880,-5920,128], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18495, "name": "E2M2 - Large Zorcher", "pos": ["E2M2",-6688,-7008,0], "keys": [] }
+AP-CHECK { "id": 18496, "name": "E2M2 - Large Zorcher Charge [-7200,-7672]", "pos": ["E2M2",-7200,-7672,0], "keys": [] }
+AP-CHECK { "id": 18497, "name": "E2M2 - Large Zorcher Charge [-7200,-5336]", "pos": ["E2M2",-7200,-5336,0], "keys": [] }
+AP-CHECK { "id": 18498, "name": "E2M2 - Large Zorcher Charge [-6944,-5408]", "pos": ["E2M2",-6944,-5408,128], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18499, "name": "E2M2 - Mini Zorch Charge [-5472,-5600]", "pos": ["E2M2",-5472,-5600,0], "keys": [] }
+AP-CHECK { "id": 18500, "name": "E2M2 - Mini Zorch Charge [-8320,-8064]", "pos": ["E2M2",-8320,-8064,-115], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18501, "name": "E2M2 - Mini Zorch Charge [-8192,-8064]", "pos": ["E2M2",-8192,-8064,-115], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18502, "name": "E2M2 - Mini Zorch Charge [-8064,-8064]", "pos": ["E2M2",-8064,-8064,-115], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18503, "name": "E2M2 - Mini Zorch Charge [-7936,-8068]", "pos": ["E2M2",-7936,-8068,-115], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18504, "name": "E2M2 - Mini Zorch Charge [-7808,-8068]", "pos": ["E2M2",-7808,-8068,-115], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18505, "name": "E2M2 - Mini Zorch Charge [-6976,-7712]", "pos": ["E2M2",-6976,-7712,0], "keys": [] }
+AP-CHECK { "id": 18506, "name": "E2M2 - Mini Zorch Charge [-8288,-5088]", "pos": ["E2M2",-8288,-5088,-105], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18507, "name": "E2M2 - Mini Zorch Charge [-8224,-5088]", "pos": ["E2M2",-8224,-5088,-105], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18508, "name": "E2M2 - Mini Zorch Charge [-8160,-5088]", "pos": ["E2M2",-8160,-5088,-105], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18509, "name": "E2M2 - Mini Zorch Charge [-8096,-5088]", "pos": ["E2M2",-8096,-5088,-105], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18510, "name": "E2M2 - Mini Zorch Charge [-8032,-5088]", "pos": ["E2M2",-8032,-5088,-105], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18511, "name": "E2M2 - Mini Zorch Charge [-8352,-5088]", "pos": ["E2M2",-8352,-5088,-105], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18512, "name": "E2M2 - Mini Zorch Charge [-8996,-5512]", "pos": ["E2M2",-8996,-5512,-105], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18513, "name": "E2M2 - ChexYellowCard", "pos": ["E2M2",-6308,-7168,95], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18514, "name": "E2M2 - ChexBlueCard", "pos": ["E2M2",-7168,-6496,0], "keys": [] }
+AP-CHECK { "id": 18515, "name": "E2M2 - Super Bootspork", "pos": ["E2M2",-5600,-5312,128], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18516, "name": "E2M2 - ChexArmor", "pos": ["E2M2",-8592,-5684,-50], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18517, "name": "E2M2 - Zorch Propulsor", "pos": ["E2M2",-6432,-7264,95], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18518, "name": "E2M2 - Propulsor Charge", "pos": ["E2M2",-6368,-7264,95], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18519, "name": "E2M2 - Phasing Zorcher", "pos": ["E2M2",-7072,-6110,0], "keys": [] }
+AP-CHECK { "id": 18520, "name": "E2M2 - Secret 29", "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18521, "name": "E2M2 - Secret 874", "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18522, "name": "E2M2 - Secret 882", "keys": [] }
+AP-CHECK { "id": 18523, "name": "E2M3 - Exit", "keys": ["ChexRedCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18523, "name": "E2M3 - Exit", "keys": ["ChexYellowCard", "ChexRedCard"] }
+AP-CHECK { "id": 18524, "name": "E2M3 - ChexBlueCard", "pos": ["E2M3",256,320,0], "keys": [] }
+AP-CHECK { "id": 18525, "name": "E2M3 - SuperchargeBreakfast", "pos": ["E2M3",-1504,-1128,0], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18526, "name": "E2M3 - ChexRedCard", "pos": ["E2M3",-736,-1312,0], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18527, "name": "E2M3 - ChexYellowCard", "pos": ["E2M3",1408,-576,320], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18527, "name": "E2M3 - ChexYellowCard", "pos": ["E2M3",1408,-576,320], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18528, "name": "E2M3 - LAZ Device", "pos": ["E2M3",-512,-1344,192], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18528, "name": "E2M3 - LAZ Device", "pos": ["E2M3",-512,-1344,192], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18529, "name": "E2M3 - ZorchPack", "pos": ["E2M3",-1760,-1572,0], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18530, "name": "E2M3 - Large Zorcher [N]", "pos": ["E2M3",-440,1704,-256], "keys": ["ChexRedCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18530, "name": "E2M3 - Large Zorcher [N]", "pos": ["E2M3",-440,1704,-256], "keys": ["ChexYellowCard", "ChexRedCard"] }
+AP-CHECK { "id": 18531, "name": "E2M3 - Large Zorcher [S]", "pos": ["E2M3",96,-1024,192], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18531, "name": "E2M3 - Large Zorcher [S]", "pos": ["E2M3",96,-1024,192], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18532, "name": "E2M3 - BowlOfFruit", "pos": ["E2M3",64,1968,-256], "keys": ["ChexRedCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18532, "name": "E2M3 - BowlOfFruit", "pos": ["E2M3",64,1968,-256], "keys": ["ChexYellowCard", "ChexRedCard"] }
+AP-CHECK { "id": 18533, "name": "E2M3 - BowlOfVegetables [128,1704]", "pos": ["E2M3",128,1704,-256], "keys": ["ChexRedCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18533, "name": "E2M3 - BowlOfVegetables [128,1704]", "pos": ["E2M3",128,1704,-256], "keys": ["ChexYellowCard", "ChexRedCard"] }
+AP-CHECK { "id": 18534, "name": "E2M3 - BowlOfVegetables [-64,-576]", "pos": ["E2M3",-64,-576,192], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18534, "name": "E2M3 - BowlOfVegetables [-64,-576]", "pos": ["E2M3",-64,-576,192], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18535, "name": "E2M3 - BowlOfVegetables [-512,-1472]", "pos": ["E2M3",-512,-1472,192], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18535, "name": "E2M3 - BowlOfVegetables [-512,-1472]", "pos": ["E2M3",-512,-1472,192], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18536, "name": "E2M3 - BowlOfVegetables [1152,-576]", "pos": ["E2M3",1152,-576,320], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18536, "name": "E2M3 - BowlOfVegetables [1152,-576]", "pos": ["E2M3",1152,-576,320], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18537, "name": "E2M3 - BowlOfVegetables [-1300,-746]", "pos": ["E2M3",-1300,-746,0], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18538, "name": "E2M3 - BowlOfVegetables [-192,64]", "pos": ["E2M3",-192,64,0], "keys": [] }
+AP-CHECK { "id": 18539, "name": "E2M3 - BowlOfVegetables [-166,334]", "pos": ["E2M3",-166,334,0], "keys": [] }
+AP-CHECK { "id": 18540, "name": "E2M3 - Rapid Zorcher [N]", "pos": ["E2M3",312,1448,-256], "keys": ["ChexRedCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18540, "name": "E2M3 - Rapid Zorcher [N]", "pos": ["E2M3",312,1448,-256], "keys": ["ChexYellowCard", "ChexRedCard"] }
+AP-CHECK { "id": 18541, "name": "E2M3 - Rapid Zorcher [Center]", "pos": ["E2M3",32,-288,-8], "keys": [] }
+AP-CHECK { "id": 18542, "name": "E2M3 - SuperChexArmor", "pos": ["E2M3",512,1968,-256], "keys": ["ChexRedCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18542, "name": "E2M3 - SuperChexArmor", "pos": ["E2M3",512,1968,-256], "keys": ["ChexYellowCard", "ChexRedCard"] }
+AP-CHECK { "id": 18543, "name": "E2M3 - Zorch Propulsor", "pos": ["E2M3",-768,992,-256], "keys": ["ChexRedCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18543, "name": "E2M3 - Zorch Propulsor", "pos": ["E2M3",-768,992,-256], "keys": ["ChexYellowCard", "ChexRedCard"] }
+AP-CHECK { "id": 18544, "name": "E2M3 - Mini Zorch Charge [-274,52]", "pos": ["E2M3",-274,52,0], "keys": [] }
+AP-CHECK { "id": 18545, "name": "E2M3 - Mini Zorch Charge [362,514]", "pos": ["E2M3",362,514,0], "keys": [] }
+AP-CHECK { "id": 18546, "name": "E2M3 - Mini Zorch Charge [-1440,-1128]", "pos": ["E2M3",-1440,-1128,0], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18547, "name": "E2M3 - Mini Zorch Charge [-1440,-1188]", "pos": ["E2M3",-1440,-1188,0], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18548, "name": "E2M3 - Mini Zorch Charge [-1572,-1188]", "pos": ["E2M3",-1572,-1188,0], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18549, "name": "E2M3 - Mini Zorch Charge [-1248,-1184]", "pos": ["E2M3",-1248,-1184,0], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18550, "name": "E2M3 - Mini Zorch Charge [-988,-1184]", "pos": ["E2M3",-988,-1184,0], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18551, "name": "E2M3 - Mini Zorch Charge [-1032,-1184]", "pos": ["E2M3",-1032,-1184,0], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18552, "name": "E2M3 - Mini Zorch Charge [-1068,-1184]", "pos": ["E2M3",-1068,-1184,0], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18553, "name": "E2M3 - Mini Zorch Charge [-1204,-1188]", "pos": ["E2M3",-1204,-1188,0], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18554, "name": "E2M3 - Mini Zorch Charge [-1196,-932]", "pos": ["E2M3",-1196,-932,0], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18555, "name": "E2M3 - Mini Zorch Charge [-1244,-928]", "pos": ["E2M3",-1244,-928,0], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18556, "name": "E2M3 - Mini Zorch Charge [-640,-1024]", "pos": ["E2M3",-640,-1024,64], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18556, "name": "E2M3 - Mini Zorch Charge [-640,-1024]", "pos": ["E2M3",-640,-1024,64], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18557, "name": "E2M3 - Mini Zorch Charge [-128,-1184]", "pos": ["E2M3",-128,-1184,192], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18557, "name": "E2M3 - Mini Zorch Charge [-128,-1184]", "pos": ["E2M3",-128,-1184,192], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18558, "name": "E2M3 - Mini Zorch Charge [-64,-1184]", "pos": ["E2M3",-64,-1184,192], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18558, "name": "E2M3 - Mini Zorch Charge [-64,-1184]", "pos": ["E2M3",-64,-1184,192], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18559, "name": "E2M3 - SlimeRepellent [-832,224]", "pos": ["E2M3",-832,224,0], "keys": [] }
+AP-CHECK { "id": 18560, "name": "E2M3 - SlimeRepellent [-736,88]", "pos": ["E2M3",-736,88,0], "keys": [] }
+AP-CHECK { "id": 18561, "name": "E2M3 - SlimeRepellent [-646,166]", "pos": ["E2M3",-646,166,0], "keys": [] }
+AP-CHECK { "id": 18562, "name": "E2M3 - SlimeRepellent [-676,-68]", "pos": ["E2M3",-676,-68,0], "keys": [] }
+AP-CHECK { "id": 18563, "name": "E2M3 - SlimeRepellent [-784,-74]", "pos": ["E2M3",-784,-74,0], "keys": [] }
+AP-CHECK { "id": 18564, "name": "E2M3 - SlimeRepellent [-664,-212]", "pos": ["E2M3",-664,-212,0], "keys": [] }
+AP-CHECK { "id": 18565, "name": "E2M3 - GlassOfWater [-646,634]", "pos": ["E2M3",-646,634,0], "keys": [] }
+AP-CHECK { "id": 18566, "name": "E2M3 - GlassOfWater [80,820]", "pos": ["E2M3",80,820,0], "keys": [] }
+AP-CHECK { "id": 18567, "name": "E2M3 - GlassOfWater [278,568]", "pos": ["E2M3",278,568,0], "keys": [] }
+AP-CHECK { "id": 18568, "name": "E2M3 - GlassOfWater [176,214]", "pos": ["E2M3",176,214,26], "keys": [] }
+AP-CHECK { "id": 18569, "name": "E2M3 - GlassOfWater [-704,-960]", "pos": ["E2M3",-704,-960,64], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18569, "name": "E2M3 - GlassOfWater [-704,-960]", "pos": ["E2M3",-704,-960,64], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18570, "name": "E2M3 - Large Zorcher Charge [SE]", "pos": ["E2M3",638,-1028,192], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18570, "name": "E2M3 - Large Zorcher Charge [SE]", "pos": ["E2M3",638,-1028,192], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18571, "name": "E2M3 - Large Zorcher Charge [W]", "pos": ["E2M3",-1096,-122,0], "keys": [] }
+AP-CHECK { "id": 18572, "name": "E2M3 - Secret 69", "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18572, "name": "E2M3 - Secret 69", "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18573, "name": "E2M3 - Secret 121", "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18574, "name": "E2M4 - Exit", "keys": ["ChexRedCard"] }
+AP-CHECK { "id": 18575, "name": "E2M4 - ChexRedCard", "pos": ["E2M4",-160,1056,584], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18576, "name": "E2M4 - ChexBlueCard", "pos": ["E2M4",-1928,-1256,32], "keys": [] }
+AP-CHECK { "id": 18577, "name": "E2M4 - ChexYellowCard", "pos": ["E2M4",544,480,400], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18578, "name": "E2M4 - ZorchPack", "pos": ["E2M4",480,412,0], "keys": [] }
+AP-CHECK { "id": 18579, "name": "E2M4 - Zorch Propulsor [W]", "pos": ["E2M4",-1376,144,128], "keys": ["ChexRedCard"] }
+AP-CHECK { "id": 18580, "name": "E2M4 - Zorch Propulsor [NW]", "pos": ["E2M4",-1872,912,584], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18581, "name": "E2M4 - Phasing Zorcher", "pos": ["E2M4",-1836,-4,528], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18582, "name": "E2M4 - Mini Zorch Charge [W]", "pos": ["E2M4",-1836,-324,528], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18583, "name": "E2M4 - Mini Zorch Charge [NE]", "pos": ["E2M4",128,512,-8], "keys": [] }
+AP-CHECK { "id": 18584, "name": "E2M4 - Mini Zorch Charge [Center]", "pos": ["E2M4",-384,128,128], "keys": [] }
+AP-CHECK { "id": 18585, "name": "E2M4 - Rapid Zorcher [NW]", "pos": ["E2M4",-1176,620,164], "keys": [] }
+AP-CHECK { "id": 18586, "name": "E2M4 - Rapid Zorcher [W]", "pos": ["E2M4",-1664,-128,-8], "keys": ["ChexRedCard"] }
+AP-CHECK { "id": 18587, "name": "E2M4 - Rapid Zorcher [E]", "pos": ["E2M4",360,68,0], "keys": [] }
+AP-CHECK { "id": 18588, "name": "E2M4 - Large Zorcher [NE]", "pos": ["E2M4",160,1196,0], "keys": [] }
+AP-CHECK { "id": 18589, "name": "E2M4 - Large Zorcher [SW]", "pos": ["E2M4",-1184,-800,0], "keys": [] }
+AP-CHECK { "id": 18590, "name": "E2M4 - BowlOfFruit", "pos": ["E2M4",-672,512,0], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18591, "name": "E2M4 - BowlOfVegetables [480,476]", "pos": ["E2M4",480,476,400], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18592, "name": "E2M4 - BowlOfVegetables [960,640]", "pos": ["E2M4",960,640,0], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18593, "name": "E2M4 - BowlOfVegetables [-1888,448]", "pos": ["E2M4",-1888,448,512], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18594, "name": "E2M4 - ChexArmor [SW]", "pos": ["E2M4",-1728,-796,0], "keys": [] }
+AP-CHECK { "id": 18595, "name": "E2M4 - ChexArmor [SE]", "pos": ["E2M4",1152,-1056,0], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18596, "name": "E2M4 - SuperChexArmor", "pos": ["E2M4",-808,-88,0], "keys": ["ChexRedCard"] }
+AP-CHECK { "id": 18597, "name": "E2M4 - SuperchargeBreakfast", "pos": ["E2M4",-280,-480,0], "keys": ["ChexRedCard"] }
+AP-CHECK { "id": 18598, "name": "E2M4 - Large Zorcher Charge [NW]", "pos": ["E2M4",-1536,896,-8], "keys": [] }
+AP-CHECK { "id": 18599, "name": "E2M4 - Large Zorcher Charge [NE]", "pos": ["E2M4",512,352,0], "keys": [] }
+AP-CHECK { "id": 18600, "name": "E2M4 - Large Zorcher Charge [SW]", "pos": ["E2M4",-1248,-928,0], "keys": [] }
+AP-CHECK { "id": 18601, "name": "E2M4 - SlimeRepellent [-512,-1024]", "pos": ["E2M4",-512,-1024,-8], "keys": ["ChexRedCard"] }
+AP-CHECK { "id": 18602, "name": "E2M4 - SlimeRepellent [-1608,-408]", "pos": ["E2M4",-1608,-408,-8], "keys": ["ChexRedCard"] }
+AP-CHECK { "id": 18603, "name": "E2M4 - SlimeRepellent [-1504,832]", "pos": ["E2M4",-1504,832,-8], "keys": [] }
+AP-CHECK { "id": 18604, "name": "E2M4 - SlimeRepellent [450,761]", "pos": ["E2M4",450,761,400], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18605, "name": "E2M4 - SlimeRepellent [800,-64]", "pos": ["E2M4",800,-64,0], "keys": [] }
+AP-CHECK { "id": 18606, "name": "E2M4 - SlimeRepellent [1346,-282]", "pos": ["E2M4",1346,-282,-8], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18607, "name": "E2M4 - SlimeRepellent [100,-884]", "pos": ["E2M4",100,-884,-8], "keys": ["ChexRedCard"] }
+AP-CHECK { "id": 18608, "name": "E2M4 - GlassOfWater [-2077,-296]", "pos": ["E2M4",-2077,-296,512], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18609, "name": "E2M4 - GlassOfWater [-1664,448]", "pos": ["E2M4",-1664,448,0], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18610, "name": "E2M4 - GlassOfWater [-1612,-242]", "pos": ["E2M4",-1612,-242,-8], "keys": ["ChexRedCard"] }
+AP-CHECK { "id": 18611, "name": "E2M4 - GlassOfWater [-1576,10]", "pos": ["E2M4",-1576,10,-8], "keys": ["ChexRedCard"] }
+AP-CHECK { "id": 18612, "name": "E2M4 - GlassOfWater [-1678,58]", "pos": ["E2M4",-1678,58,-8], "keys": ["ChexRedCard"] }
+AP-CHECK { "id": 18613, "name": "E2M4 - GlassOfWater [-2080,448]", "pos": ["E2M4",-2080,448,512], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18614, "name": "E2M4 - GlassOfWater [-1984,800]", "pos": ["E2M4",-1984,800,576], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18615, "name": "E2M4 - GlassOfWater [-1568,1056]", "pos": ["E2M4",-1568,1056,584], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18616, "name": "E2M4 - GlassOfWater [-1408,1056]", "pos": ["E2M4",-1408,1056,584], "keys": ["ChexYellowCard"] }
+AP-CHECK { "id": 18617, "name": "E2M4 - GlassOfWater [-1024,832]", "pos": ["E2M4",-1024,832,-8], "keys": [] }
+AP-CHECK { "id": 18618, "name": "E2M4 - GlassOfWater [-1020,-65]", "pos": ["E2M4",-1020,-65,128], "keys": [] }
+AP-CHECK { "id": 18619, "name": "E2M4 - GlassOfWater [32,-352]", "pos": ["E2M4",32,-352,0], "keys": [] }
+AP-CHECK { "id": 18620, "name": "E2M4 - GlassOfWater [224,-352]", "pos": ["E2M4",224,-352,0], "keys": [] }
+AP-CHECK { "id": 18621, "name": "E2M4 - GlassOfWater [1312,320]", "pos": ["E2M4",1312,320,-60], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18622, "name": "E2M4 - GlassOfWater [1312,448]", "pos": ["E2M4",1312,448,-60], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18623, "name": "E2M4 - GlassOfWater [1312,384]", "pos": ["E2M4",1312,384,-60], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18624, "name": "E2M4 - GlassOfWater [896,928]", "pos": ["E2M4",896,928,0], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18625, "name": "E2M4 - GlassOfWater [864,896]", "pos": ["E2M4",864,896,0], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18626, "name": "E2M4 - GlassOfWater [896,864]", "pos": ["E2M4",896,864,0], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18627, "name": "E2M4 - GlassOfWater [928,896]", "pos": ["E2M4",928,896,0], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18628, "name": "E2M4 - GlassOfWater [992,928]", "pos": ["E2M4",992,928,0], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18629, "name": "E2M4 - GlassOfWater [992,864]", "pos": ["E2M4",992,864,0], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18630, "name": "E2M4 - GlassOfWater [128,832]", "pos": ["E2M4",128,832,-8], "keys": [] }
+AP-CHECK { "id": 18631, "name": "E2M4 - GlassOfWater [-384,832]", "pos": ["E2M4",-384,832,-8], "keys": [] }
+AP-CHECK { "id": 18632, "name": "E2M4 - Phasing Zorcher Charge [-800,-1056]", "pos": ["E2M4",-800,-1056,-8], "keys": ["ChexRedCard"] }
+AP-CHECK { "id": 18633, "name": "E2M4 - Phasing Zorcher Charge [-1186,-560]", "pos": ["E2M4",-1186,-560,0], "keys": ["ChexRedCard"] }
+AP-CHECK { "id": 18634, "name": "E2M4 - Phasing Zorcher Charge [-232,-866]", "pos": ["E2M4",-232,-866,-8], "keys": ["ChexRedCard"] }
+AP-CHECK { "id": 18635, "name": "E2M4 - Phasing Zorcher Charge [92,-1208]", "pos": ["E2M4",92,-1208,-8], "keys": ["ChexRedCard"] }
+AP-CHECK { "id": 18636, "name": "E2M4 - ComputerAreaMap", "pos": ["E2M4",-1440,-674,0], "keys": [] }
+AP-CHECK { "id": 18637, "name": "E2M4 - Secret 15", "keys": ["ChexRedCard"] }
+AP-CHECK { "id": 18638, "name": "E2M4 - Secret 69", "keys": [] }
+AP-CHECK { "id": 18639, "name": "E2M4 - Secret 110", "keys": [] }
+AP-CHECK { "id": 18640, "name": "E2M5 - Exit", "keys": ["ChexRedCard"] }
+AP-CHECK { "id": 18641, "name": "E2M5 - ChexBlueCard", "pos": ["E2M5",-1024,-1152,15], "keys": [] }
+AP-CHECK { "id": 18642, "name": "E2M5 - ChexRedCard", "pos": ["E2M5",2720,-1184,30], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18643, "name": "E2M5 - BowlOfVegetables [3376,-1536]", "pos": ["E2M5",3376,-1536,30], "keys": ["ChexRedCard"] }
+AP-CHECK { "id": 18644, "name": "E2M5 - BowlOfVegetables [1824,-1504]", "pos": ["E2M5",1824,-1504,30], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18645, "name": "E2M5 - BowlOfVegetables [2592,-1472]", "pos": ["E2M5",2592,-1472,0], "keys": ["ChexRedCard"] }
+AP-CHECK { "id": 18646, "name": "E2M5 - BowlOfVegetables [-1600,-2368]", "pos": ["E2M5",-1600,-2368,-60], "keys": [] }
+AP-CHECK { "id": 18647, "name": "E2M5 - BowlOfVegetables [-304,-2216]", "pos": ["E2M5",-304,-2216,-80], "keys": [] }
+AP-CHECK { "id": 18648, "name": "E2M5 - BowlOfVegetables [2432,64]", "pos": ["E2M5",2432,64,0], "keys": [] }
+AP-CHECK { "id": 18649, "name": "E2M5 - BowlOfVegetables [-110,-80]", "pos": ["E2M5",-110,-80,0], "keys": [] }
+AP-CHECK { "id": 18650, "name": "E2M5 - Rapid Zorcher [Center]", "pos": ["E2M5",672,-1568,20], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18651, "name": "E2M5 - Rapid Zorcher [SE]", "pos": ["E2M5",2112,-2208,0], "keys": ["ChexRedCard"] }
+AP-CHECK { "id": 18652, "name": "E2M5 - SuperchargeBreakfast [SE]", "pos": ["E2M5",4672,-2628,-100], "keys": ["ChexRedCard"] }
+AP-CHECK { "id": 18653, "name": "E2M5 - SuperchargeBreakfast [Center]", "pos": ["E2M5",704,-512,0], "keys": [] }
+AP-CHECK { "id": 18654, "name": "E2M5 - ZorchPack [Center]", "pos": ["E2M5",1824,-480,30], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18655, "name": "E2M5 - ZorchPack [E]", "pos": ["E2M5",2992,-320,0], "keys": [] }
+AP-CHECK { "id": 18656, "name": "E2M5 - Large Zorcher [NW]", "pos": ["E2M5",-192,384,15], "keys": [] }
+AP-CHECK { "id": 18657, "name": "E2M5 - Large Zorcher [N]", "pos": ["E2M5",1600,896,30], "keys": [] }
+AP-CHECK { "id": 18658, "name": "E2M5 - Large Zorcher Charge [N]", "pos": ["E2M5",1024,960,30], "keys": [] }
+AP-CHECK { "id": 18659, "name": "E2M5 - Large Zorcher Charge [Center]", "pos": ["E2M5",740,-20,0], "keys": [] }
+AP-CHECK { "id": 18660, "name": "E2M5 - Large Zorcher Charge [W]", "pos": ["E2M5",48,-1040,0], "keys": [] }
+AP-CHECK { "id": 18661, "name": "E2M5 - SlimeRepellent [-608,224]", "pos": ["E2M5",-608,224,30], "keys": [] }
+AP-CHECK { "id": 18662, "name": "E2M5 - SlimeRepellent [552,224]", "pos": ["E2M5",552,224,30], "keys": [] }
+AP-CHECK { "id": 18663, "name": "E2M5 - SlimeRepellent [968,728]", "pos": ["E2M5",968,728,15], "keys": [] }
+AP-CHECK { "id": 18664, "name": "E2M5 - SlimeRepellent [1256,888]", "pos": ["E2M5",1256,888,30], "keys": [] }
+AP-CHECK { "id": 18665, "name": "E2M5 - SlimeRepellent [2528,1064]", "pos": ["E2M5",2528,1064,30], "keys": [] }
+AP-CHECK { "id": 18666, "name": "E2M5 - SlimeRepellent [2608,384]", "pos": ["E2M5",2608,384,30], "keys": [] }
+AP-CHECK { "id": 18667, "name": "E2M5 - SlimeRepellent [1856,224]", "pos": ["E2M5",1856,224,30], "keys": [] }
+AP-CHECK { "id": 18668, "name": "E2M5 - SlimeRepellent [1632,-1248]", "pos": ["E2M5",1632,-1248,30], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18669, "name": "E2M5 - SlimeRepellent [-960,-1152]", "pos": ["E2M5",-960,-1152,15], "keys": [] }
+AP-CHECK { "id": 18670, "name": "E2M5 - ChexArmor [-736,-1952]", "pos": ["E2M5",-736,-1952,0], "keys": [] }
+AP-CHECK { "id": 18671, "name": "E2M5 - ChexArmor [900,-2220]", "pos": ["E2M5",900,-2220,-80], "keys": [] }
+AP-CHECK { "id": 18672, "name": "E2M5 - ChexArmor [3456,-1536]", "pos": ["E2M5",3456,-1536,30], "keys": ["ChexRedCard"] }
+AP-CHECK { "id": 18673, "name": "E2M5 - BowlOfFruit [96,-2272]", "pos": ["E2M5",96,-2272,30], "keys": [] }
+AP-CHECK { "id": 18674, "name": "E2M5 - BowlOfFruit [-1024,-2368]", "pos": ["E2M5",-1024,-2368,-80], "keys": [] }
+AP-CHECK { "id": 18675, "name": "E2M5 - BowlOfFruit [3360,-736]", "pos": ["E2M5",3360,-736,30], "keys": [] }
+AP-CHECK { "id": 18676, "name": "E2M5 - BowlOfFruit [2080,-2752]", "pos": ["E2M5",2080,-2752,0], "keys": ["ChexRedCard"] }
+AP-CHECK { "id": 18677, "name": "E2M5 - GlassOfWater [1568,-2880]", "pos": ["E2M5",1568,-2880,-60], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18678, "name": "E2M5 - GlassOfWater [1440,-2880]", "pos": ["E2M5",1440,-2880,-60], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18679, "name": "E2M5 - GlassOfWater [1504,-2880]", "pos": ["E2M5",1504,-2880,-60], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18680, "name": "E2M5 - GlassOfWater [1600,-2784]", "pos": ["E2M5",1600,-2784,-60], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18681, "name": "E2M5 - GlassOfWater [1536,-2624]", "pos": ["E2M5",1536,-2624,-60], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18682, "name": "E2M5 - GlassOfWater [1600,-2656]", "pos": ["E2M5",1600,-2656,-60], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18683, "name": "E2M5 - GlassOfWater [1600,-2720]", "pos": ["E2M5",1600,-2720,-60], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18684, "name": "E2M5 - GlassOfWater [320,-2752]", "pos": ["E2M5",320,-2752,-80], "keys": [] }
+AP-CHECK { "id": 18685, "name": "E2M5 - GlassOfWater [320,-2816]", "pos": ["E2M5",320,-2816,-80], "keys": [] }
+AP-CHECK { "id": 18686, "name": "E2M5 - Super Bootspork", "pos": ["E2M5",-48,-1136,0], "keys": [] }
+AP-CHECK { "id": 18687, "name": "E2M5 - Mini Zorch Charge", "pos": ["E2M5",2976,-1120,30], "keys": [] }
+AP-CHECK { "id": 18688, "name": "E2M5 - ChexYellowCard", "pos": ["E2M5",2272,544,30], "keys": [] }
+AP-CHECK { "id": 18689, "name": "E2M5 - Secret 129", "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18690, "name": "E2M5 - Secret 189", "keys": ["ChexRedCard"] }
+AP-CHECK { "id": 18691, "name": "E2M5 - Secret 219", "keys": ["ChexRedCard"] }
+AP-CHECK { "id": 18692, "name": "E3M1 - Exit", "keys": ["ChexYellowCard", "ChexRedCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18693, "name": "E3M1 - ChexBlueCard", "pos": ["E3M1",-2848,1536,0], "keys": [] }
+AP-CHECK { "id": 18694, "name": "E3M1 - GlassOfWater [-776,2560]", "pos": ["E3M1",-776,2560,0], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18695, "name": "E3M1 - GlassOfWater [-680,2560]", "pos": ["E3M1",-680,2560,0], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18696, "name": "E3M1 - GlassOfWater [-728,2560]", "pos": ["E3M1",-728,2560,0], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18697, "name": "E3M1 - GlassOfWater [-2208,-56]", "pos": ["E3M1",-2208,-56,100], "keys": [] }
+AP-CHECK { "id": 18698, "name": "E3M1 - GlassOfWater [-2400,-56]", "pos": ["E3M1",-2400,-56,100], "keys": [] }
+AP-CHECK { "id": 18699, "name": "E3M1 - GlassOfWater [-1488,968]", "pos": ["E3M1",-1488,968,235], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18700, "name": "E3M1 - GlassOfWater [-1528,1008]", "pos": ["E3M1",-1528,1008,235], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18701, "name": "E3M1 - GlassOfWater [-2928,2368]", "pos": ["E3M1",-2928,2368,370], "keys": ["ChexYellowCard", "ChexRedCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18702, "name": "E3M1 - GlassOfWater [-2968,2408]", "pos": ["E3M1",-2968,2408,370], "keys": ["ChexYellowCard", "ChexRedCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18703, "name": "E3M1 - GlassOfWater [-3264,944]", "pos": ["E3M1",-3264,944,370], "keys": ["ChexYellowCard", "ChexRedCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18704, "name": "E3M1 - GlassOfWater [-3232,960]", "pos": ["E3M1",-3232,960,370], "keys": ["ChexYellowCard", "ChexRedCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18705, "name": "E3M1 - SlimeRepellent [-2474,-300]", "pos": ["E3M1",-2474,-300,100], "keys": [] }
+AP-CHECK { "id": 18706, "name": "E3M1 - SlimeRepellent [-2474,-260]", "pos": ["E3M1",-2474,-260,100], "keys": [] }
+AP-CHECK { "id": 18707, "name": "E3M1 - SlimeRepellent [-2132,-260]", "pos": ["E3M1",-2132,-260,100], "keys": [] }
+AP-CHECK { "id": 18708, "name": "E3M1 - SlimeRepellent [-2132,-300]", "pos": ["E3M1",-2132,-300,100], "keys": [] }
+AP-CHECK { "id": 18709, "name": "E3M1 - SlimeRepellent [-712,712]", "pos": ["E3M1",-712,712,120], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18710, "name": "E3M1 - SlimeRepellent [-728,808]", "pos": ["E3M1",-728,808,140], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18711, "name": "E3M1 - SlimeRepellent [-736,904]", "pos": ["E3M1",-736,904,160], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18712, "name": "E3M1 - SlimeRepellent [-752,1016]", "pos": ["E3M1",-752,1016,180], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18713, "name": "E3M1 - SlimeRepellent [-128,752]", "pos": ["E3M1",-128,752,180], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18714, "name": "E3M1 - SlimeRepellent [-528,672]", "pos": ["E3M1",-528,672,120], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18715, "name": "E3M1 - SlimeRepellent [-384,576]", "pos": ["E3M1",-384,576,120], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18716, "name": "E3M1 - SlimeRepellent [-480,768]", "pos": ["E3M1",-480,768,140], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18717, "name": "E3M1 - SlimeRepellent [-288,640]", "pos": ["E3M1",-288,640,140], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18718, "name": "E3M1 - SlimeRepellent [-448,864]", "pos": ["E3M1",-448,864,160], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18719, "name": "E3M1 - SlimeRepellent [-208,704]", "pos": ["E3M1",-208,704,160], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18720, "name": "E3M1 - SlimeRepellent [-400,944]", "pos": ["E3M1",-400,944,180], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18721, "name": "E3M1 - Rapid Zorcher [Center]", "pos": ["E3M1",-2176,2360,100], "keys": [] }
+AP-CHECK { "id": 18722, "name": "E3M1 - Rapid Zorcher [SE]", "pos": ["E3M1",-788,308,130], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18723, "name": "E3M1 - ChexYellowCard", "pos": ["E3M1",-3584,3360,200], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18724, "name": "E3M1 - ChexArmor", "pos": ["E3M1",-3184,4064,13], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18725, "name": "E3M1 - ChexRedCard", "pos": ["E3M1",-3354,3646,200], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18726, "name": "E3M1 - Large Zorcher Charge [-1824,3096]", "pos": ["E3M1",-1824,3096,0], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18727, "name": "E3M1 - Large Zorcher Charge [-1824,3032]", "pos": ["E3M1",-1824,3032,0], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18728, "name": "E3M1 - Large Zorcher Charge [-768,1120]", "pos": ["E3M1",-768,1120,200], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18729, "name": "E3M1 - Large Zorcher Charge [-784,1184]", "pos": ["E3M1",-784,1184,200], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18730, "name": "E3M1 - Large Zorcher Charge [-3872,1312]", "pos": ["E3M1",-3872,1312,370], "keys": ["ChexYellowCard", "ChexRedCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18731, "name": "E3M1 - Mini Zorch Charge [-2912,1440]", "pos": ["E3M1",-2912,1440,0], "keys": [] }
+AP-CHECK { "id": 18732, "name": "E3M1 - Mini Zorch Charge [-4128,2848]", "pos": ["E3M1",-4128,2848,200], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18733, "name": "E3M1 - Mini Zorch Charge [-4088,2848]", "pos": ["E3M1",-4088,2848,200], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18734, "name": "E3M1 - Mini Zorch Charge [-2912,1632]", "pos": ["E3M1",-2912,1632,0], "keys": [] }
+AP-CHECK { "id": 18735, "name": "E3M1 - Mini Zorch Charge [-816,264]", "pos": ["E3M1",-816,264,130], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18736, "name": "E3M1 - BowlOfVegetables [-2320,1840]", "pos": ["E3M1",-2320,1840,150], "keys": [] }
+AP-CHECK { "id": 18737, "name": "E3M1 - BowlOfVegetables [-2312,1208]", "pos": ["E3M1",-2312,1208,150], "keys": [] }
+AP-CHECK { "id": 18738, "name": "E3M1 - BowlOfVegetables [-592,376]", "pos": ["E3M1",-592,376,130], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18739, "name": "E3M1 - BowlOfVegetables [-3944,2848]", "pos": ["E3M1",-3944,2848,200], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18740, "name": "E3M1 - BowlOfVegetables [-3872,1248]", "pos": ["E3M1",-3872,1248,370], "keys": ["ChexYellowCard", "ChexRedCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18741, "name": "E3M1 - Large Zorcher", "pos": ["E3M1",-1536,-280,100], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18742, "name": "E3M1 - BowlOfFruit", "pos": ["E3M1",-3800,632,370], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18743, "name": "E3M1 - UltraGoggles", "pos": ["E3M1",-1504,2912,42], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18744, "name": "E3M1 - ZorchPack", "pos": ["E3M1",-2128,3136,0], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18745, "name": "E3M1 - Secret 0", "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18746, "name": "E3M1 - Secret 130", "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18747, "name": "E3M1 - Secret 210", "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18748, "name": "E3M2 - Exit", "keys": ["ChexRedCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18749, "name": "E3M2 - ChexRedCard", "pos": ["E3M2",-4320,-7056,128], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18750, "name": "E3M2 - Large Zorcher", "pos": ["E3M2",-5120,-6208,-13], "keys": [] }
+AP-CHECK { "id": 18751, "name": "E3M2 - Rapid Zorcher", "pos": ["E3M2",-4352,-6208,-13], "keys": [] }
+AP-CHECK { "id": 18752, "name": "E3M2 - ChexArmor [-4352,-5696]", "pos": ["E3M2",-4352,-5696,-13], "keys": [] }
+AP-CHECK { "id": 18753, "name": "E3M2 - ChexArmor [-3712,-4800]", "pos": ["E3M2",-3712,-4800,0], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18754, "name": "E3M2 - BowlOfVegetables [-5120,-5696]", "pos": ["E3M2",-5120,-5696,-13], "keys": [] }
+AP-CHECK { "id": 18755, "name": "E3M2 - BowlOfVegetables [-4272,-4896]", "pos": ["E3M2",-4272,-4896,20], "keys": [] }
+AP-CHECK { "id": 18756, "name": "E3M2 - BowlOfVegetables [-2532,-3036]", "pos": ["E3M2",-2532,-3036,-40], "keys": ["ChexRedCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18757, "name": "E3M2 - ChexBlueCard", "pos": ["E3M2",-5204,-4892,20], "keys": [] }
+AP-CHECK { "id": 18758, "name": "E3M2 - Mini Zorch Charge [-2474,-3038]", "pos": ["E3M2",-2474,-3038,-40], "keys": ["ChexRedCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18759, "name": "E3M2 - Mini Zorch Charge [-4320,-3680]", "pos": ["E3M2",-4320,-3680,20], "keys": [] }
+AP-CHECK { "id": 18760, "name": "E3M2 - Mini Zorch Charge [-3232,-6944]", "pos": ["E3M2",-3232,-6944,118], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18761, "name": "E3M2 - Mini Zorch Charge [-3296,-6944]", "pos": ["E3M2",-3296,-6944,118], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18762, "name": "E3M2 - SlimeRepellent [-2536,-3222]", "pos": ["E3M2",-2536,-3222,-40], "keys": ["ChexRedCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18763, "name": "E3M2 - SlimeRepellent [-2486,-3224]", "pos": ["E3M2",-2486,-3224,-40], "keys": ["ChexRedCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18764, "name": "E3M2 - SlimeRepellent [-2322,-3222]", "pos": ["E3M2",-2322,-3222,-40], "keys": ["ChexRedCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18765, "name": "E3M2 - SlimeRepellent [-2272,-3224]", "pos": ["E3M2",-2272,-3224,-40], "keys": ["ChexRedCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18766, "name": "E3M2 - SlimeRepellent [-4608,-7184]", "pos": ["E3M2",-4608,-7184,0], "keys": [] }
+AP-CHECK { "id": 18767, "name": "E3M2 - SlimeRepellent [-4528,-7184]", "pos": ["E3M2",-4528,-7184,0], "keys": [] }
+AP-CHECK { "id": 18768, "name": "E3M2 - SlimeRepellent [-4464,-7136]", "pos": ["E3M2",-4464,-7136,0], "keys": [] }
+AP-CHECK { "id": 18769, "name": "E3M2 - SlimeRepellent [-4416,-7088]", "pos": ["E3M2",-4416,-7088,0], "keys": [] }
+AP-CHECK { "id": 18770, "name": "E3M2 - SlimeRepellent [-4864,-7184]", "pos": ["E3M2",-4864,-7184,0], "keys": [] }
+AP-CHECK { "id": 18771, "name": "E3M2 - SlimeRepellent [-4960,-7184]", "pos": ["E3M2",-4960,-7184,0], "keys": [] }
+AP-CHECK { "id": 18772, "name": "E3M2 - SlimeRepellent [-5008,-7136]", "pos": ["E3M2",-5008,-7136,0], "keys": [] }
+AP-CHECK { "id": 18773, "name": "E3M2 - SlimeRepellent [-5056,-7088]", "pos": ["E3M2",-5056,-7088,0], "keys": [] }
+AP-CHECK { "id": 18774, "name": "E3M2 - BowlOfFruit [-3616,-4704]", "pos": ["E3M2",-3616,-4704,0], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18775, "name": "E3M2 - BowlOfFruit [-4288,-4448]", "pos": ["E3M2",-4288,-4448,20], "keys": [] }
+AP-CHECK { "id": 18776, "name": "E3M2 - BowlOfFruit [-3584,-6720]", "pos": ["E3M2",-3584,-6720,118], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18777, "name": "E3M2 - Large Zorcher Charge [-3200,-4928]", "pos": ["E3M2",-3200,-4928,0], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18778, "name": "E3M2 - Large Zorcher Charge [-3264,-4928]", "pos": ["E3M2",-3264,-4928,0], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18779, "name": "E3M2 - Large Zorcher Charge [-4288,-4064]", "pos": ["E3M2",-4288,-4064,20], "keys": [] }
+AP-CHECK { "id": 18780, "name": "E3M2 - Large Zorcher Charge [-3136,-4928]", "pos": ["E3M2",-3136,-4928,0], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18781, "name": "E3M2 - ChexYellowCard", "pos": ["E3M2",-2560,-4124,0], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18782, "name": "E3M2 - SuperchargeBreakfast [SW]", "pos": ["E3M2",-4320,-6976,128], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18783, "name": "E3M2 - SuperchargeBreakfast [Center]", "pos": ["E3M2",-3552,-4256,-10], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18784, "name": "E3M2 - SuperChexArmor", "pos": ["E3M2",-3480,-4256,136], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18785, "name": "E3M2 - Zorch Propulsor", "pos": ["E3M2",-4480,-4640,20], "keys": [] }
+AP-CHECK { "id": 18786, "name": "E3M2 - Propulsor Charge", "pos": ["E3M2",-4416,-4640,20], "keys": [] }
+AP-CHECK { "id": 18787, "name": "E3M2 - GlassOfWater [-4992,-4640]", "pos": ["E3M2",-4992,-4640,20], "keys": [] }
+AP-CHECK { "id": 18788, "name": "E3M2 - GlassOfWater [-5056,-4640]", "pos": ["E3M2",-5056,-4640,20], "keys": [] }
+AP-CHECK { "id": 18789, "name": "E3M2 - GlassOfWater [-5056,-4704]", "pos": ["E3M2",-5056,-4704,20], "keys": [] }
+AP-CHECK { "id": 18790, "name": "E3M2 - Phasing Zorcher", "pos": ["E3M2",-4768,-3680,20], "keys": [] }
+AP-CHECK { "id": 18791, "name": "E3M2 - Phasing Zorcher Charge", "pos": ["E3M2",-4704,-3680,20], "keys": [] }
+AP-CHECK { "id": 18792, "name": "E3M2 - Secret 308", "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18793, "name": "E3M2 - Secret 319", "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18794, "name": "E3M3 - Exit", "keys": ["ChexRedCard", "ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18795, "name": "E3M3 - ChexBlueCard", "pos": ["E3M3",-1768,-3192,10], "keys": [] }
+AP-CHECK { "id": 18796, "name": "E3M3 - Propulsor Charge [2888,-2136]", "pos": ["E3M3",2888,-2136,-128], "keys": ["ChexRedCard", "ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18797, "name": "E3M3 - Propulsor Charge [3024,-2168]", "pos": ["E3M3",3024,-2168,-128], "keys": ["ChexRedCard", "ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18798, "name": "E3M3 - Propulsor Charge [-224,-2496]", "pos": ["E3M3",-224,-2496,90], "keys": [] }
+AP-CHECK { "id": 18799, "name": "E3M3 - ChexRedCard", "pos": ["E3M3",1504,-1568,140], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18800, "name": "E3M3 - ChexArmor", "pos": ["E3M3",1504,-1760,140], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18801, "name": "E3M3 - LAZ Device", "pos": ["E3M3",512,-1248,140], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18802, "name": "E3M3 - Phasing Zorcher Charge [N]", "pos": ["E3M3",320,-1248,140], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18803, "name": "E3M3 - Phasing Zorcher Charge [SW]", "pos": ["E3M3",-1760,-5504,-20], "keys": [] }
+AP-CHECK { "id": 18804, "name": "E3M3 - Phasing Zorcher Charge [NE]", "pos": ["E3M3",2240,-864,0], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18805, "name": "E3M3 - Phasing Zorcher Charge [S]", "pos": ["E3M3",992,-4640,10], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18806, "name": "E3M3 - ChexYellowCard", "pos": ["E3M3",828,-3048,-90], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18807, "name": "E3M3 - Large Zorcher Charge [-2400,-5504]", "pos": ["E3M3",-2400,-5504,-20], "keys": [] }
+AP-CHECK { "id": 18808, "name": "E3M3 - Large Zorcher Charge [-608,-2912]", "pos": ["E3M3",-608,-2912,90], "keys": [] }
+AP-CHECK { "id": 18809, "name": "E3M3 - Large Zorcher Charge [640,-3552]", "pos": ["E3M3",640,-3552,-90], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18810, "name": "E3M3 - Large Zorcher Charge [1760,-1376]", "pos": ["E3M3",1760,-1376,0], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18811, "name": "E3M3 - Large Zorcher Charge [928,-4704]", "pos": ["E3M3",928,-4704,10], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18812, "name": "E3M3 - Large Zorcher", "pos": ["E3M3",-2336,-5504,-20], "keys": [] }
+AP-CHECK { "id": 18813, "name": "E3M3 - Phasing Zorcher", "pos": ["E3M3",-1824,-5504,-20], "keys": [] }
+AP-CHECK { "id": 18814, "name": "E3M3 - SlimeRepellent [-2304,-5312]", "pos": ["E3M3",-2304,-5312,10], "keys": [] }
+AP-CHECK { "id": 18815, "name": "E3M3 - SlimeRepellent [-2304,-5248]", "pos": ["E3M3",-2304,-5248,10], "keys": [] }
+AP-CHECK { "id": 18816, "name": "E3M3 - SlimeRepellent [-1856,-5312]", "pos": ["E3M3",-1856,-5312,10], "keys": [] }
+AP-CHECK { "id": 18817, "name": "E3M3 - SlimeRepellent [-1856,-5248]", "pos": ["E3M3",-1856,-5248,10], "keys": [] }
+AP-CHECK { "id": 18818, "name": "E3M3 - SlimeRepellent [-736,-4224]", "pos": ["E3M3",-736,-4224,10], "keys": [] }
+AP-CHECK { "id": 18819, "name": "E3M3 - SlimeRepellent [-736,-4160]", "pos": ["E3M3",-736,-4160,10], "keys": [] }
+AP-CHECK { "id": 18820, "name": "E3M3 - SlimeRepellent [-800,-4224]", "pos": ["E3M3",-800,-4224,10], "keys": [] }
+AP-CHECK { "id": 18821, "name": "E3M3 - SlimeRepellent [-736,-4096]", "pos": ["E3M3",-736,-4096,10], "keys": [] }
+AP-CHECK { "id": 18822, "name": "E3M3 - SlimeRepellent [-864,-4224]", "pos": ["E3M3",-864,-4224,10], "keys": [] }
+AP-CHECK { "id": 18823, "name": "E3M3 - SlimeRepellent [960,-3552]", "pos": ["E3M3",960,-3552,-90], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18824, "name": "E3M3 - Zorch Propulsor", "pos": ["E3M3",-32,-2496,90], "keys": [] }
+AP-CHECK { "id": 18825, "name": "E3M3 - BowlOfFruit [-512,-2912]", "pos": ["E3M3",-512,-2912,90], "keys": [] }
+AP-CHECK { "id": 18826, "name": "E3M3 - BowlOfFruit [1216,-3040]", "pos": ["E3M3",1216,-3040,-90], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18827, "name": "E3M3 - BowlOfFruit [1216,-2816]", "pos": ["E3M3",1216,-2816,-90], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18828, "name": "E3M3 - BowlOfFruit [1088,-2816]", "pos": ["E3M3",1088,-2816,-90], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18829, "name": "E3M3 - BowlOfFruit [832,-2784]", "pos": ["E3M3",832,-2784,-90], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18830, "name": "E3M3 - BowlOfFruit [2336,-2784]", "pos": ["E3M3",2336,-2784,-128], "keys": ["ChexRedCard", "ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18831, "name": "E3M3 - Mini Zorch Charge [2464,-1440]", "pos": ["E3M3",2464,-1440,0], "keys": ["ChexRedCard", "ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18832, "name": "E3M3 - Mini Zorch Charge [2848,-1184]", "pos": ["E3M3",2848,-1184,0], "keys": ["ChexRedCard", "ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18833, "name": "E3M3 - Mini Zorch Charge [128,-1248]", "pos": ["E3M3",128,-1248,0], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18834, "name": "E3M3 - Mini Zorch Charge [-2272,-2240]", "pos": ["E3M3",-2272,-2240,10], "keys": [] }
+AP-CHECK { "id": 18835, "name": "E3M3 - Mini Zorch Charge [-2272,-2304]", "pos": ["E3M3",-2272,-2304,10], "keys": [] }
+AP-CHECK { "id": 18836, "name": "E3M3 - Mini Zorch Charge [832,-4704]", "pos": ["E3M3",832,-4704,10], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18837, "name": "E3M3 - Mini Zorch Charge [768,-4704]", "pos": ["E3M3",768,-4704,10], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18838, "name": "E3M3 - Mini Zorch Charge [704,-4704]", "pos": ["E3M3",704,-4704,10], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18839, "name": "E3M3 - Mini Zorch Charge [640,-4704]", "pos": ["E3M3",640,-4704,10], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18840, "name": "E3M3 - Mini Zorch Charge [576,-4704]", "pos": ["E3M3",576,-4704,10], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18841, "name": "E3M3 - BowlOfVegetables", "pos": ["E3M3",1152,-1248,140], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18842, "name": "E3M3 - Super Bootspork", "pos": ["E3M3",1344,-1248,140], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18843, "name": "E3M3 - GlassOfWater [1856,-1920]", "pos": ["E3M3",1856,-1920,140], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18844, "name": "E3M3 - GlassOfWater [1920,-1920]", "pos": ["E3M3",1920,-1920,140], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18845, "name": "E3M3 - GlassOfWater [1984,-1920]", "pos": ["E3M3",1984,-1920,140], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18846, "name": "E3M3 - GlassOfWater [2048,-1920]", "pos": ["E3M3",2048,-1920,140], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18847, "name": "E3M3 - GlassOfWater [2112,-1920]", "pos": ["E3M3",2112,-1920,140], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18848, "name": "E3M3 - GlassOfWater [2176,-1920]", "pos": ["E3M3",2176,-1920,140], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18849, "name": "E3M3 - GlassOfWater [1664,-1728]", "pos": ["E3M3",1664,-1728,140], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18850, "name": "E3M3 - GlassOfWater [1664,-1664]", "pos": ["E3M3",1664,-1664,140], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18851, "name": "E3M3 - GlassOfWater [1664,-1600]", "pos": ["E3M3",1664,-1600,140], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18852, "name": "E3M3 - GlassOfWater [1664,-1536]", "pos": ["E3M3",1664,-1536,140], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18853, "name": "E3M3 - GlassOfWater [1664,-1472]", "pos": ["E3M3",1664,-1472,140], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18854, "name": "E3M3 - GlassOfWater [1664,-1408]", "pos": ["E3M3",1664,-1408,140], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18855, "name": "E3M3 - GlassOfWater [192,-1792]", "pos": ["E3M3",192,-1792,-100], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18856, "name": "E3M3 - GlassOfWater [320,-1888]", "pos": ["E3M3",320,-1888,-100], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18857, "name": "E3M3 - GlassOfWater [224,-1920]", "pos": ["E3M3",224,-1920,-100], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18858, "name": "E3M3 - GlassOfWater [288,-1824]", "pos": ["E3M3",288,-1824,-100], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18859, "name": "E3M3 - GlassOfWater [128,-1856]", "pos": ["E3M3",128,-1856,-100], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18860, "name": "E3M3 - GlassOfWater [212,-1852]", "pos": ["E3M3",212,-1852,-100], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18861, "name": "E3M3 - GlassOfWater [260,-1744]", "pos": ["E3M3",260,-1744,-100], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18862, "name": "E3M3 - SlimeProofSuit", "pos": ["E3M3",1952,-2836,-138], "keys": ["ChexRedCard", "ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18863, "name": "E3M3 - Secret 169", "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18864, "name": "E3M3 - Secret 347", "keys": ["ChexRedCard", "ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18865, "name": "E3M4 - Exit", "keys": ["ChexYellowCard", "ChexRedCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18866, "name": "E3M4 - ChexRedCard", "pos": ["E3M4",-158,102,272], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18867, "name": "E3M4 - ZorchPack", "pos": ["E3M4",408,-816,172], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18868, "name": "E3M4 - Mini Zorch Charge [504,-816]", "pos": ["E3M4",504,-816,172], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18869, "name": "E3M4 - Mini Zorch Charge [544,-816]", "pos": ["E3M4",544,-816,172], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18870, "name": "E3M4 - Mini Zorch Charge [3076,-3344]", "pos": ["E3M4",3076,-3344,0], "keys": [] }
+AP-CHECK { "id": 18871, "name": "E3M4 - Mini Zorch Charge [2176,-3104]", "pos": ["E3M4",2176,-3104,0], "keys": [] }
+AP-CHECK { "id": 18872, "name": "E3M4 - Mini Zorch Charge [-1760,-2784]", "pos": ["E3M4",-1760,-2784,0], "keys": [] }
+AP-CHECK { "id": 18873, "name": "E3M4 - LAZ Device", "pos": ["E3M4",736,-1628,100], "keys": ["ChexYellowCard", "ChexRedCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18874, "name": "E3M4 - Phasing Zorcher Charge [2408,-2580]", "pos": ["E3M4",2408,-2580,300], "keys": ["ChexYellowCard", "ChexRedCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18875, "name": "E3M4 - Phasing Zorcher Charge [2352,-2640]", "pos": ["E3M4",2352,-2640,300], "keys": ["ChexYellowCard", "ChexRedCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18876, "name": "E3M4 - Phasing Zorcher Charge [-128,-1696]", "pos": ["E3M4",-128,-1696,250], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18877, "name": "E3M4 - Phasing Zorcher Charge [128,-512]", "pos": ["E3M4",128,-512,272], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18878, "name": "E3M4 - SlimeRepellent [2120,-2560]", "pos": ["E3M4",2120,-2560,300], "keys": ["ChexYellowCard", "ChexRedCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18879, "name": "E3M4 - SlimeRepellent [2160,-2608]", "pos": ["E3M4",2160,-2608,300], "keys": ["ChexYellowCard", "ChexRedCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18880, "name": "E3M4 - SlimeRepellent [2216,-2640]", "pos": ["E3M4",2216,-2640,300], "keys": ["ChexYellowCard", "ChexRedCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18881, "name": "E3M4 - SlimeRepellent [2232,-2400]", "pos": ["E3M4",2232,-2400,300], "keys": ["ChexYellowCard", "ChexRedCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18882, "name": "E3M4 - SlimeRepellent [2296,-2384]", "pos": ["E3M4",2296,-2384,300], "keys": ["ChexYellowCard", "ChexRedCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18883, "name": "E3M4 - SlimeRepellent [3124,-3336]", "pos": ["E3M4",3124,-3336,0], "keys": [] }
+AP-CHECK { "id": 18884, "name": "E3M4 - SlimeRepellent [2400,-2452]", "pos": ["E3M4",2400,-2452,300], "keys": ["ChexYellowCard", "ChexRedCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18885, "name": "E3M4 - SlimeRepellent [2416,-2516]", "pos": ["E3M4",2416,-2516,300], "keys": ["ChexYellowCard", "ChexRedCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18886, "name": "E3M4 - SlimeRepellent [-2104,-2460]", "pos": ["E3M4",-2104,-2460,245], "keys": [] }
+AP-CHECK { "id": 18887, "name": "E3M4 - SlimeRepellent [-1984,-2460]", "pos": ["E3M4",-1984,-2460,245], "keys": [] }
+AP-CHECK { "id": 18888, "name": "E3M4 - SlimeRepellent [-2108,-2408]", "pos": ["E3M4",-2108,-2408,245], "keys": [] }
+AP-CHECK { "id": 18889, "name": "E3M4 - SlimeRepellent [-1996,-2412]", "pos": ["E3M4",-1996,-2412,245], "keys": [] }
+AP-CHECK { "id": 18890, "name": "E3M4 - ChexBlueCard", "pos": ["E3M4",-1728,-2832,0], "keys": [] }
+AP-CHECK { "id": 18891, "name": "E3M4 - ChexYellowCard", "pos": ["E3M4",-1924,-1620,380], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18892, "name": "E3M4 - SuperchargeBreakfast [S]", "pos": ["E3M4",-828,-4956,250], "keys": [] }
+AP-CHECK { "id": 18893, "name": "E3M4 - SuperchargeBreakfast [N]", "pos": ["E3M4",-268,-676,172], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18894, "name": "E3M4 - BowlOfFruit [N]", "pos": ["E3M4",416,-248,307], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18895, "name": "E3M4 - BowlOfFruit [NW]", "pos": ["E3M4",-3424,-1056,250], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18896, "name": "E3M4 - BowlOfVegetables [48,-112]", "pos": ["E3M4",48,-112,307], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18897, "name": "E3M4 - BowlOfVegetables [-1812,-1996]", "pos": ["E3M4",-1812,-1996,205], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18898, "name": "E3M4 - BowlOfVegetables [-1568,-1056]", "pos": ["E3M4",-1568,-1056,250], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18899, "name": "E3M4 - BowlOfVegetables [-1312,-1632]", "pos": ["E3M4",-1312,-1632,240], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18900, "name": "E3M4 - BowlOfVegetables [-1600,-3936]", "pos": ["E3M4",-1600,-3936,250], "keys": [] }
+AP-CHECK { "id": 18901, "name": "E3M4 - GlassOfWater [-96,-380]", "pos": ["E3M4",-96,-380,307], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18902, "name": "E3M4 - GlassOfWater [-80,-252]", "pos": ["E3M4",-80,-252,307], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18903, "name": "E3M4 - GlassOfWater [32,-352]", "pos": ["E3M4",32,-352,307], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18904, "name": "E3M4 - GlassOfWater [0,-128]", "pos": ["E3M4",0,-128,307], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18905, "name": "E3M4 - GlassOfWater [512,-232]", "pos": ["E3M4",512,-232,307], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18906, "name": "E3M4 - GlassOfWater [-1482,-1223]", "pos": ["E3M4",-1482,-1223,250], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18907, "name": "E3M4 - GlassOfWater [-1384,-1220]", "pos": ["E3M4",-1384,-1220,250], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18908, "name": "E3M4 - GlassOfWater [-1388,-1168]", "pos": ["E3M4",-1388,-1168,250], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18909, "name": "E3M4 - GlassOfWater [-1483,-1168]", "pos": ["E3M4",-1483,-1168,250], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18910, "name": "E3M4 - GlassOfWater [-3424,-1120]", "pos": ["E3M4",-3424,-1120,250], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18911, "name": "E3M4 - ChexArmor", "pos": ["E3M4",-1432,-1192,250], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18912, "name": "E3M4 - Zorch Propulsor", "pos": ["E3M4",3082,-3132,0], "keys": [] }
+AP-CHECK { "id": 18913, "name": "E3M4 - Propulsor Charge [3124,-3142]", "pos": ["E3M4",3124,-3142,0], "keys": [] }
+AP-CHECK { "id": 18914, "name": "E3M4 - Propulsor Charge [-2720,-3168]", "pos": ["E3M4",-2720,-3168,245], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18915, "name": "E3M4 - Propulsor Charge [-2784,-3136]", "pos": ["E3M4",-2784,-3136,245], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18916, "name": "E3M4 - Propulsor Charge [-2656,-3232]", "pos": ["E3M4",-2656,-3232,245], "keys": ["ChexBlueCard"] }
+AP-CHECK { "id": 18917, "name": "E3M4 - SuperChexArmor", "pos": ["E3M4",-2048,-2500,245], "keys": [] }
+AP-CHECK { "id": 18918, "name": "E3M4 - Phasing Zorcher", "pos": ["E3M4",1344,-2752,256], "keys": [] }
+AP-CHECK { "id": 18919, "name": "E3M4 - Large Zorcher Charge [-1600,-2848]", "pos": ["E3M4",-1600,-2848,0], "keys": [] }
+AP-CHECK { "id": 18920, "name": "E3M4 - Large Zorcher Charge [-1728,-2880]", "pos": ["E3M4",-1728,-2880,0], "keys": [] }
+AP-CHECK { "id": 18921, "name": "E3M4 - Large Zorcher Charge [576,-128]", "pos": ["E3M4",576,-128,272], "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18922, "name": "E3M4 - Secret 97", "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18923, "name": "E3M4 - Secret 118", "keys": ["ChexYellowCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18924, "name": "E3M4 - Secret 142", "keys": [] }
+AP-CHECK { "id": 18925, "name": "E3M4 - Secret 232", "keys": [] }
+AP-CHECK { "id": 18926, "name": "E3M4 - Secret 247", "keys": ["ChexYellowCard", "ChexRedCard", "ChexBlueCard"] }
+AP-CHECK { "id": 18927, "name": "E3M5 - Exit", "keys": ["RedFlemKey"] }
+AP-CHECK { "id": 18928, "name": "E3M5 - Phasing Zorcher Charge [-2416,216]", "pos": ["E3M5",-2416,216,0], "keys": [] }
+AP-CHECK { "id": 18929, "name": "E3M5 - Phasing Zorcher Charge [-1872,272]", "pos": ["E3M5",-1872,272,0], "keys": [] }
+AP-CHECK { "id": 18930, "name": "E3M5 - Phasing Zorcher Charge [-5768,216]", "pos": ["E3M5",-5768,216,128], "keys": ["RedFlemKey"] }
+AP-CHECK { "id": 18931, "name": "E3M5 - Phasing Zorcher Charge [-5104,408]", "pos": ["E3M5",-5104,408,0], "keys": ["RedFlemKey"] }
+AP-CHECK { "id": 18932, "name": "E3M5 - Phasing Zorcher Charge [-4256,1008]", "pos": ["E3M5",-4256,1008,0], "keys": ["RedFlemKey"] }
+AP-CHECK { "id": 18933, "name": "E3M5 - Phasing Zorcher Charge [-4272,608]", "pos": ["E3M5",-4272,608,0], "keys": ["RedFlemKey"] }
+AP-CHECK { "id": 18934, "name": "E3M5 - Phasing Zorcher Charge [-5768,1384]", "pos": ["E3M5",-5768,1384,128], "keys": ["RedFlemKey"] }
+AP-CHECK { "id": 18935, "name": "E3M5 - Phasing Zorcher Charge [-5104,1192]", "pos": ["E3M5",-5104,1192,0], "keys": ["RedFlemKey"] }
+AP-CHECK { "id": 18936, "name": "E3M5 - Phasing Zorcher Charge [-2584,1568]", "pos": ["E3M5",-2584,1568,300], "keys": [] }
+AP-CHECK { "id": 18937, "name": "E3M5 - Phasing Zorcher Charge [-2664,1664]", "pos": ["E3M5",-2664,1664,300], "keys": [] }
+AP-CHECK { "id": 18938, "name": "E3M5 - Phasing Zorcher Charge [-1344,1920]", "pos": ["E3M5",-1344,1920,390], "keys": [] }
+AP-CHECK { "id": 18939, "name": "E3M5 - Phasing Zorcher Charge [-1664,2304]", "pos": ["E3M5",-1664,2304,390], "keys": [] }
+AP-CHECK { "id": 18940, "name": "E3M5 - Phasing Zorcher Charge [-448,3008]", "pos": ["E3M5",-448,3008,0], "keys": ["BlueFlemKey"] }
+AP-CHECK { "id": 18941, "name": "E3M5 - Phasing Zorcher Charge [-1056,2784]", "pos": ["E3M5",-1056,2784,0], "keys": ["BlueFlemKey"] }
+AP-CHECK { "id": 18942, "name": "E3M5 - Phasing Zorcher Charge [-992,3360]", "pos": ["E3M5",-992,3360,0], "keys": ["BlueFlemKey"] }
+AP-CHECK { "id": 18943, "name": "E3M5 - BlueFlemKey", "pos": ["E3M5",-1896,1880,300], "keys": [] }
+AP-CHECK { "id": 18944, "name": "E3M5 - Zorch Propulsor", "pos": ["E3M5",-1544,1504,390], "keys": [] }
+AP-CHECK { "id": 18945, "name": "E3M5 - SlimeRepellent [-1520,1464]", "pos": ["E3M5",-1520,1464,390], "keys": [] }
+AP-CHECK { "id": 18946, "name": "E3M5 - SlimeRepellent [-1480,1464]", "pos": ["E3M5",-1480,1464,390], "keys": [] }
+AP-CHECK { "id": 18947, "name": "E3M5 - SlimeRepellent [-1528,1552]", "pos": ["E3M5",-1528,1552,390], "keys": [] }
+AP-CHECK { "id": 18948, "name": "E3M5 - SlimeRepellent [-1488,1552]", "pos": ["E3M5",-1488,1552,390], "keys": [] }
+AP-CHECK { "id": 18949, "name": "E3M5 - SlimeRepellent [-1480,3248]", "pos": ["E3M5",-1480,3248,0], "keys": ["BlueFlemKey"] }
+AP-CHECK { "id": 18950, "name": "E3M5 - SlimeRepellent [-1448,3280]", "pos": ["E3M5",-1448,3280,0], "keys": ["BlueFlemKey"] }
+AP-CHECK { "id": 18951, "name": "E3M5 - SlimeRepellent [-1480,3160]", "pos": ["E3M5",-1480,3160,0], "keys": ["BlueFlemKey"] }
+AP-CHECK { "id": 18952, "name": "E3M5 - SlimeRepellent [-1440,3136]", "pos": ["E3M5",-1440,3136,0], "keys": ["BlueFlemKey"] }
+AP-CHECK { "id": 18953, "name": "E3M5 - SlimeRepellent [-3176,168]", "pos": ["E3M5",-3176,168,0], "keys": ["RedFlemKey"] }
+AP-CHECK { "id": 18954, "name": "E3M5 - SlimeRepellent [-3160,224]", "pos": ["E3M5",-3160,224,0], "keys": ["RedFlemKey"] }
+AP-CHECK { "id": 18955, "name": "E3M5 - SlimeRepellent [-3048,168]", "pos": ["E3M5",-3048,168,0], "keys": ["RedFlemKey"] }
+AP-CHECK { "id": 18956, "name": "E3M5 - SlimeRepellent [-3072,104]", "pos": ["E3M5",-3072,104,0], "keys": ["RedFlemKey"] }
+AP-CHECK { "id": 18957, "name": "E3M5 - GlassOfWater [-1152,2088]", "pos": ["E3M5",-1152,2088,0], "keys": ["BlueFlemKey"] }
+AP-CHECK { "id": 18958, "name": "E3M5 - GlassOfWater [-1104,1800]", "pos": ["E3M5",-1104,1800,0], "keys": ["BlueFlemKey"] }
+AP-CHECK { "id": 18959, "name": "E3M5 - GlassOfWater [-552,1808]", "pos": ["E3M5",-552,1808,0], "keys": ["BlueFlemKey"] }
+AP-CHECK { "id": 18960, "name": "E3M5 - GlassOfWater [-536,2088]", "pos": ["E3M5",-536,2088,0], "keys": ["BlueFlemKey"] }
+AP-CHECK { "id": 18961, "name": "E3M5 - GlassOfWater [-1128,2344]", "pos": ["E3M5",-1128,2344,0], "keys": ["BlueFlemKey"] }
+AP-CHECK { "id": 18962, "name": "E3M5 - GlassOfWater [-1040,2520]", "pos": ["E3M5",-1040,2520,0], "keys": ["BlueFlemKey"] }
+AP-CHECK { "id": 18963, "name": "E3M5 - GlassOfWater [-632,2528]", "pos": ["E3M5",-632,2528,0], "keys": ["BlueFlemKey"] }
+AP-CHECK { "id": 18964, "name": "E3M5 - GlassOfWater [-536,2328]", "pos": ["E3M5",-536,2328,0], "keys": ["BlueFlemKey"] }
+AP-CHECK { "id": 18965, "name": "E3M5 - GlassOfWater [-2760,3792]", "pos": ["E3M5",-2760,3792,10], "keys": ["YellowFlemKey"] }
+AP-CHECK { "id": 18966, "name": "E3M5 - GlassOfWater [-2664,3752]", "pos": ["E3M5",-2664,3752,10], "keys": ["YellowFlemKey"] }
+AP-CHECK { "id": 18967, "name": "E3M5 - GlassOfWater [-2600,3680]", "pos": ["E3M5",-2600,3680,10], "keys": ["YellowFlemKey"] }
+AP-CHECK { "id": 18968, "name": "E3M5 - GlassOfWater [-2568,3600]", "pos": ["E3M5",-2568,3600,10], "keys": ["YellowFlemKey"] }
+AP-CHECK { "id": 18969, "name": "E3M5 - GlassOfWater [-2560,3528]", "pos": ["E3M5",-2560,3528,10], "keys": ["YellowFlemKey"] }
+AP-CHECK { "id": 18970, "name": "E3M5 - GlassOfWater [-2560,3448]", "pos": ["E3M5",-2560,3448,10], "keys": ["YellowFlemKey"] }
+AP-CHECK { "id": 18971, "name": "E3M5 - GlassOfWater [-2568,3368]", "pos": ["E3M5",-2568,3368,10], "keys": ["YellowFlemKey"] }
+AP-CHECK { "id": 18972, "name": "E3M5 - GlassOfWater [-3112,3792]", "pos": ["E3M5",-3112,3792,10], "keys": ["YellowFlemKey"] }
+AP-CHECK { "id": 18973, "name": "E3M5 - GlassOfWater [-3208,3776]", "pos": ["E3M5",-3208,3776,10], "keys": ["YellowFlemKey"] }
+AP-CHECK { "id": 18974, "name": "E3M5 - GlassOfWater [-3288,3728]", "pos": ["E3M5",-3288,3728,10], "keys": ["YellowFlemKey"] }
+AP-CHECK { "id": 18975, "name": "E3M5 - GlassOfWater [-3336,3648]", "pos": ["E3M5",-3336,3648,10], "keys": ["YellowFlemKey"] }
+AP-CHECK { "id": 18976, "name": "E3M5 - GlassOfWater [-3360,3552]", "pos": ["E3M5",-3360,3552,10], "keys": ["YellowFlemKey"] }
+AP-CHECK { "id": 18977, "name": "E3M5 - GlassOfWater [-3360,3472]", "pos": ["E3M5",-3360,3472,10], "keys": ["YellowFlemKey"] }
+AP-CHECK { "id": 18978, "name": "E3M5 - GlassOfWater [-3352,3376]", "pos": ["E3M5",-3352,3376,10], "keys": ["YellowFlemKey"] }
+AP-CHECK { "id": 18979, "name": "E3M5 - YellowFlemKey", "pos": ["E3M5",-1416,3208,0], "keys": ["BlueFlemKey"] }
+AP-CHECK { "id": 18980, "name": "E3M5 - Propulsor Charge [-1400,3296]", "pos": ["E3M5",-1400,3296,0], "keys": ["BlueFlemKey"] }
+AP-CHECK { "id": 18981, "name": "E3M5 - Propulsor Charge [-1392,3128]", "pos": ["E3M5",-1392,3128,0], "keys": ["BlueFlemKey"] }
+AP-CHECK { "id": 18982, "name": "E3M5 - Propulsor Charge [-5864,240]", "pos": ["E3M5",-5864,240,128], "keys": ["RedFlemKey"] }
+AP-CHECK { "id": 18983, "name": "E3M5 - Propulsor Charge [-3776,496]", "pos": ["E3M5",-3776,496,0], "keys": ["RedFlemKey"] }
+AP-CHECK { "id": 18984, "name": "E3M5 - Propulsor Charge [-5864,1360]", "pos": ["E3M5",-5864,1360,128], "keys": ["RedFlemKey"] }
+AP-CHECK { "id": 18985, "name": "E3M5 - Propulsor Charge [-3768,1112]", "pos": ["E3M5",-3768,1112,0], "keys": ["RedFlemKey"] }
+AP-CHECK { "id": 18986, "name": "E3M5 - Propulsor Charge [-3760,2220]", "pos": ["E3M5",-3760,2220,200], "keys": ["YellowFlemKey"] }
+AP-CHECK { "id": 18987, "name": "E3M5 - BowlOfVegetables [-1488,3208]", "pos": ["E3M5",-1488,3208,0], "keys": ["BlueFlemKey"] }
+AP-CHECK { "id": 18988, "name": "E3M5 - BowlOfVegetables [-4776,1160]", "pos": ["E3M5",-4776,1160,0], "keys": ["RedFlemKey"] }
+AP-CHECK { "id": 18989, "name": "E3M5 - BowlOfVegetables [-5160,1192]", "pos": ["E3M5",-5160,1192,0], "keys": ["RedFlemKey"] }
+AP-CHECK { "id": 18990, "name": "E3M5 - BowlOfVegetables [-5160,408]", "pos": ["E3M5",-5160,408,0], "keys": ["RedFlemKey"] }
+AP-CHECK { "id": 18991, "name": "E3M5 - BowlOfVegetables [-4768,448]", "pos": ["E3M5",-4768,448,0], "keys": ["RedFlemKey"] }
+AP-CHECK { "id": 18992, "name": "E3M5 - BowlOfVegetables [-4088,528]", "pos": ["E3M5",-4088,528,0], "keys": ["RedFlemKey"] }
+AP-CHECK { "id": 18993, "name": "E3M5 - BowlOfVegetables [-4072,1088]", "pos": ["E3M5",-4072,1088,0], "keys": ["RedFlemKey"] }
+AP-CHECK { "id": 18994, "name": "E3M5 - BowlOfVegetables [-3592,512]", "pos": ["E3M5",-3592,512,0], "keys": ["RedFlemKey"] }
+AP-CHECK { "id": 18995, "name": "E3M5 - BowlOfVegetables [-3592,1104]", "pos": ["E3M5",-3592,1104,0], "keys": ["RedFlemKey"] }
+AP-CHECK { "id": 18996, "name": "E3M5 - BowlOfVegetables [-2268,1250]", "pos": ["E3M5",-2268,1250,0], "keys": [] }
+AP-CHECK { "id": 18997, "name": "E3M5 - BowlOfVegetables [-3760,1436]", "pos": ["E3M5",-3760,1436,200], "keys": ["YellowFlemKey"] }
+AP-CHECK { "id": 18998, "name": "E3M5 - Mini Zorch Charge [-1184,2896]", "pos": ["E3M5",-1184,2896,0], "keys": ["BlueFlemKey"] }
+AP-CHECK { "id": 18999, "name": "E3M5 - Mini Zorch Charge [-512,3248]", "pos": ["E3M5",-512,3248,0], "keys": ["BlueFlemKey"] }
+AP-CHECK { "id": 19000, "name": "E3M5 - Mini Zorch Charge [-496,2872]", "pos": ["E3M5",-496,2872,0], "keys": ["BlueFlemKey"] }
+AP-CHECK { "id": 19001, "name": "E3M5 - Mini Zorch Charge [-1328,568]", "pos": ["E3M5",-1328,568,0], "keys": [] }
+AP-CHECK { "id": 19002, "name": "E3M5 - Mini Zorch Charge [-4832,440]", "pos": ["E3M5",-4832,440,0], "keys": ["RedFlemKey"] }
+AP-CHECK { "id": 19003, "name": "E3M5 - Mini Zorch Charge [-2292,1588]", "pos": ["E3M5",-2292,1588,0], "keys": [] }
+AP-CHECK { "id": 19004, "name": "E3M5 - Mini Zorch Charge [-2062,1588]", "pos": ["E3M5",-2062,1588,0], "keys": [] }
+AP-CHECK { "id": 19005, "name": "E3M5 - Mini Zorch Charge [-3680,2208]", "pos": ["E3M5",-3680,2208,200], "keys": ["YellowFlemKey"] }
+AP-CHECK { "id": 19006, "name": "E3M5 - Mini Zorch Charge [-3840,1472]", "pos": ["E3M5",-3840,1472,200], "keys": ["YellowFlemKey"] }
+AP-CHECK { "id": 19007, "name": "E3M5 - Rapid Zorcher", "pos": ["E3M5",-1328,512,0], "keys": [] }
+AP-CHECK { "id": 19008, "name": "E3M5 - Large Zorcher", "pos": ["E3M5",-1160,512,0], "keys": [] }
+AP-CHECK { "id": 19009, "name": "E3M5 - Large Zorcher Charge [-1160,568]", "pos": ["E3M5",-1160,568,0], "keys": [] }
+AP-CHECK { "id": 19010, "name": "E3M5 - Large Zorcher Charge [-4832,1168]", "pos": ["E3M5",-4832,1168,0], "keys": ["RedFlemKey"] }
+AP-CHECK { "id": 19011, "name": "E3M5 - Large Zorcher Charge [-3520,1728]", "pos": ["E3M5",-3520,1728,200], "keys": ["YellowFlemKey"] }
+AP-CHECK { "id": 19012, "name": "E3M5 - Large Zorcher Charge [-3520,1920]", "pos": ["E3M5",-3520,1920,200], "keys": ["YellowFlemKey"] }
+AP-CHECK { "id": 19013, "name": "E3M5 - SuperChexArmor", "pos": ["E3M5",-5816,224,128], "keys": ["RedFlemKey"] }
+AP-CHECK { "id": 19014, "name": "E3M5 - SuperchargeBreakfast", "pos": ["E3M5",-5816,1376,128], "keys": ["RedFlemKey"] }
+AP-CHECK { "id": 19015, "name": "E3M5 - RedFlemKey", "pos": ["E3M5",-2956,3836,40], "keys": ["YellowFlemKey"] }
+AP-CHECK { "id": 19016, "name": "E3M5 - Phasing Zorcher", "pos": ["E3M5",-2648,1592,300], "keys": [] }
+AP-CHECK { "id": 19017, "name": "E3M5 - ChexArmor", "pos": ["E3M5",-3152,112,0], "keys": ["RedFlemKey"] }
+AP-CHECK { "id": 19018, "name": "E3M5 - ZorchPack", "pos": ["E3M5",-2266,1200,0], "keys": [] }
+AP-CHECK { "id": 19019, "name": "E3M5 - Super Bootspork", "pos": ["E3M5",-640,3392,0], "keys": ["BlueFlemKey"] }
+AP-CHECK { "id": 19020, "name": "E3M5 - LAZ Device", "pos": ["E3M5",-3996,2364,210], "keys": ["YellowFlemKey"] }
+AP-CHECK { "id": 19021, "name": "E3M5 - Secret 65", "keys": [] }
+AP-CHECK { "id": 19022, "name": "E3M5 - Secret 390", "keys": ["YellowFlemKey"] }
