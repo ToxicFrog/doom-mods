@@ -124,7 +124,7 @@ class DoomLocation(DoomReachable):
         must be reachable without any other keys.
         '''
         return (
-            'use_hub_logic' not in self.parent.flags
+            not self.parent.use_hub_logic()
             and self.has_category('key')
             and self.parent.get_map(self.pos.map).has_one_key(self.orig_item.name()))
 

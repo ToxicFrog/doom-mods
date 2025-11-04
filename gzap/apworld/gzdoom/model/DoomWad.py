@@ -18,7 +18,7 @@ from typing import Any, Dict, List, Set, FrozenSet, Tuple
 
 from .BoundingBox import BoundingBox
 from .DoomPool import DoomPool
-from .DoomItem import DoomItem
+from .DoomItem import DoomItem, DoomToken
 from .DoomLocation import DoomLocation, DoomPosition
 from .DoomMap import DoomMap
 from .DoomKey import DoomKey
@@ -67,6 +67,17 @@ class DoomWad:
 
     def has_flag(self, flag):
         return flag in self.flags
+
+    def use_hub_logic(self):
+        return self.has_flag('use_hub_logic')
+
+    def hub_logic_exits(self):
+        assert self.use_hub_logic()
+        return {
+            map
+            for flag in self.flags if flag.startswith('hub_logic_exits:')
+            for map in flag.split(':')[1].split(',')
+        }
 
     def locations_for_stats(self, skill: int) -> List[DoomLocation]:
         skill = min(3, max(1, skill)) # clamp ITYTD->HNTR and N!->UV
@@ -148,21 +159,26 @@ class DoomWad:
         # Register 'Health' on all maps since it's used as a placeholder in
         # pretuning mode. It's one of the gzDoom base classes so we know it'll
         # always be available.
-        self.register_item(None,
+        self.register_item(
             DoomItem(map=None, category="small-health", typename="Health", tag="Health"))
-        access_token = self.register_item(None,
-            DoomItem(map=map.map, category="token-ap_level", typename="GZAP_LevelAccess", tag="Level Access"))
+        access_token = self.register_item(
+            DoomToken(map=map.map, category="token-ap_level", typename="GZAP_LevelAccess", tag=map.access_token_name()))
         map.add_loose_item(access_token.name())
 
-        automap_token = self.register_item(None,
-            DoomItem(map=map.map, category="token-ap_map", typename="GZAP_Automap", tag="Automap"))
+        automap_token = self.register_item(
+            DoomToken(map=map.map, category="token-ap_map", typename="GZAP_Automap", tag=map.automap_name()))
         map.add_loose_item(automap_token.name())
 
-        # Create these only when not in hub mode. In hub mode we create one exit
-        # per cluster, not one per map.
-        clear_token = self.register_item(None,
-            DoomItem(map=map.map, category="token-ap_victory", typename="", tag="Level Clear"))
+        if self.use_hub_logic():
+            # In hub mode, we create one victory token and one exit per cluster,
+            # rather than one per map.
+            if map.map not in self.hub_logic_exits():
+                return
+
+        clear_token = self.register_item(
+            DoomToken(map=map.map, category="token-ap_victory", typename="GZAP_VictoryToken", tag=map.clear_token_name()))
         map_exit = DoomLocation(self, map=map.map, item=clear_token, secret=False, pos=None)
+
         # TODO: there should be a better way of overriding location names
         map_exit.item_name = "Exit"
         map_exit.item = clear_token
@@ -187,21 +203,21 @@ class DoomWad:
         # We add everything in the logic file to the pool. Not everything will
         # necessarily be used in randomization, but we need to do this at load
         # time, before we know what item categories the user has requested.
-        item = self.register_item(map, DoomItem(**json))
+        item = self.register_item(DoomItem(**json))
         self.new_location(map, item, secret, skill, position, name)
 
-    def register_item(self, map: str, item: DoomItem) -> DoomItem:
+    def register_item(self, item: DoomItem) -> DoomItem:
         assert not self.tuned, f"AP-ITEM found in tuning data for {self.name} -- make sure you don't have a logic file mixed in with the tuning."
 
         if item.name() in self.items_by_name:
-            return self.register_duplicate_item(map, item)
+            return self.register_duplicate_item(item)
 
         # Initially items are stored as lists to handle duplicates.
         # During postprocessing, we disambiguate.
         self.items_by_name[item.name()] = [item]
         return item
 
-    def register_duplicate_item(self, map: str, item: DoomItem) -> DoomItem:
+    def register_duplicate_item(self, item: DoomItem) -> DoomItem:
         for other in self.items_by_name[item.name()]:
             if other == item:
                 # An exact duplicate of this item is already known.

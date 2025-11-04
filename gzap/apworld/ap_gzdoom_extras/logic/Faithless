@@ -1,4 +1,4 @@
-AP-SCAN { "flags": ["use_hub_logic"] }
+AP-SCAN { "flags": ["use_hub_logic", "hub_logic_exits:E1M8,E2M8,E3M8"] }
 // Green key can show up in either E1M4 or E1M5 depending on what order the player visits them in
 // TODO: defining this renders pretuning mode unusable because it doesn't know where to place the green key and
 // concludes, on that basis, that the game is unwinnable

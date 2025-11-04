@@ -115,3 +115,12 @@ class DoomItem:
 
         # Anything else we just take as many as we find.
         return (0, sys.maxsize)
+
+
+class DoomToken(DoomItem):
+    """
+    A type of DoomItem that is managed entirely by Archipelago and has a name
+    wholly controlled by the apworld.
+    """
+    def name(self) -> str:
+        return self.tag

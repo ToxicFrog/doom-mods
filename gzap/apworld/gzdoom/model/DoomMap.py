@@ -147,10 +147,11 @@ class DoomMap:
             return f'Level Clear ({self.map})'
 
     def exit_location_name(self):
-        if self.clustername:
-            return f'{self.clustername} - Exit'
-        else:
-            return f'{self.map} - Exit'
+        # This is the same whether we are in a cluster or not -- hitting [final map in cluster] - Exit
+        # is the win condition.
+        # This probably needs rethinking if we are ever in a situation where a
+        # cluster has multiple valid exit points though. :/
+        return f'{self.map} - Exit'
 
     def add_loose_item(self, item, count=1):
         self.loose_items[item] = self.loose_items.get(item, 0) + count

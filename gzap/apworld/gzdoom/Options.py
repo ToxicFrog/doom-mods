@@ -378,6 +378,10 @@ class WinConditions(OptionDict):
     def check_win(self, world, state):
         won = True
 
+        # TODO: this should be based on clusters/levels, not maps
+        # It works for now because all maps in the cluster share the same
+        # clear_token_name, so grabbing the clear token from the real end-of-cluster
+        # map clears the entire cluster.
         levels_needed = self.get_levels_needed(world)
         if levels_needed > 0:
             won = won and levels_needed <= sum([
