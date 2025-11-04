@@ -108,7 +108,10 @@ def init_all_wads():
     import sys
     # We always load the core logic first, in a defined order.
     load_first = ['worlds.gzdoom', 'worlds.ap_gzdoom_featured', 'worlds.ap_gzdoom_extras']
-    packages = load_first + sorted([
+    packages = [
+        package for package in load_first
+        if package in sys.modules.keys()
+    ] + sorted([
         package for package in sys.modules.keys()
         if 'gzdoom' in package
         # Don't include stuff like "worlds.gzdoom.model"
