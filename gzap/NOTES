@@ -13,10 +13,6 @@ To release a new version:
 ### next release
 
 (0.7 is focusing on logic/tuning format changes and bugfixes)
-- logic engine changes to acommodate hubclusters
-  - keep track of which locations are in which regions
-    - rework create_regions to use this info
-    - use it for weapon logic
 - UI changes:
   - drop the visited-levels thing. Either keep a list of all previous regions
     and let the player select regions, keys, and weapons, or just have a
@@ -31,6 +27,10 @@ To release a new version:
 - associate a region with each map and allow configuring it with AP-REGION
   - map access requires access key + other region requirements
   - DoomRegion implicitly wants an enclosing map so we probably want to inherit from DoomReachable in DoomMap
+- logic engine changes to acommodate hubclusters
+  - keep track of which locations are in which regions
+    - rework create_regions to use this info
+    - use it for weapon logic
 
 ### general notes on scanner/logic changes
 

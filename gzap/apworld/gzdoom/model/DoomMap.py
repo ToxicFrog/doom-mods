@@ -107,6 +107,10 @@ class DoomMap:
             if state.has(world.glitches_item_name, world.player):
                 return True
 
+            # If hublogic is on, skip per-map weapon logic.
+            if self.wad.use_hub_logic():
+                return True
+
             # Check requirement for guns the player would normally carryover
             # from earlier levels.
             player_guns = { gun for gun in carryover_guns if state.has(gun, world.player) }
