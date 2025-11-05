@@ -49,6 +49,7 @@ here may result in glitches.
 | SIGIL II       | | | | missing | |
 | Legacy of Rust |   16 |     212 |    270 | problems | Fully tuned, but MAP14 doesn't fully work because of [this gzdoom limitation](https://github.com/ZDoom/gzdoom/issues/2208); you will need to exclude it or make it optional. |
 | Heretic        |   45 |     116 |    900 | basic  | v1.3 |
+| HereticEx      |   48 |     123 |    925 | Partial  | v2.2 | Tuned up to episode 3. Requires both the "heretic.wad" and "heretic_ex.wad" wad file in your main Heretic + Hexen folder.
 | Hexen          | | | | missing | Same concerns as Strife, plus I don't like it. |
 | Strife         | | | | missing | Hub maps and complicated level scripting mean this may need changes to the generator. |
 | FreeDoom       |   36 |     176 |    532 | basic | [v0.13.0](https://freedoom.github.io/download.html) |
@@ -101,6 +102,7 @@ official launcher. You can generally read about them and find download links via
 | MAYhem 2048      |   34 |     179 | 384 | partial | |
 | Scythe           |   32 |     106 | 405 | full | MAP26-MAP30 are much larger than the rest of the wad; consider excluding them in short sync games. |
 | Scythe 2         |   32 |     191 | 477 | full | |
+| Plutonia 2       |   33 |     208 | 589 | complete | Download: (https://www.doomworld.com/idgames/levels/doom2/megawads/pl2)
 | [WadFusion](https://github.com/Owlet7/wadfusion) | varies | varies | varies | missing | See https://github.com/ToxicFrog/doom-mods/pull/38 |
 | Zone 300         |   32 |      61 | 305 | partial | |
 
