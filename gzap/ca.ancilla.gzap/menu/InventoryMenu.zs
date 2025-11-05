@@ -107,9 +107,9 @@ class ::InventoryMenu : ::CommonMenu {
 
     mDesc.mItems.Push(new("::RegionNameEntry").Init("Subregion Name"));
 
-    foreach (region : regions) {
-      mDesc.mItems.Push(new("::RegionToggle").Init(region));
-    }
+    // foreach (region : regions) {
+    //   mDesc.mItems.Push(new("::RegionToggle").Init(region));
+    // }
   }
 }
 
