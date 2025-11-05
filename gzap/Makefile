@@ -25,7 +25,7 @@ sprites/icons: apworld/gzdoom/icons/__init__.py assets/*.png
 	touch sprites/icons
 
 ${TOPDIR}/release/%.apworld: apworld/%/* apworld/%/*/*
-	cd apworld && zip -r $*.apworld $*
+	cd apworld && zip -qr $*.apworld $*
 	cp apworld/$*.apworld ${TOPDIR}/release/
 	mv apworld/$*.apworld ${TOPDIR}/release/$*-${VERSION}.apworld
 
