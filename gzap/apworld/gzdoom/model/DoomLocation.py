@@ -111,10 +111,17 @@ class DoomLocation(DoomReachable):
         if region:
             assert (not self.region or self.region == region), f'Location {self.name()} is listed as both in region {self.region} and in region {region}'
             self.region = region
+        else:
+            if self.region:
+                print(f"Ignoring tuning for location '{self.name()}' that tries to remove it from region {self.loc.map}/{self.region}")
+                return
 
         if keys:
             # print(f'Recording tuning record for {self.name()}: {region} {keys}')
             super().record_tuning(keys, unreachable)
+
+    def is_tuned(self) -> bool:
+        return self.tuning or self.unreachable or self.region
 
     def assume_key_reachable(self):
         '''

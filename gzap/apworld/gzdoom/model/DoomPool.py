@@ -7,11 +7,14 @@ The basic idea here is:
 - for each bucket, randomly choose (bucket size * inclusion ratio) locations
     - add these to the location pool
 - for each location in the location pool, add its item to the item pool, if any
+    - alternately, fix the item in place (vanilla positioning) or move it to
+      the starting inventory
 - add "loose items" to the item pool
 - apply pool limits
-- TODO: optionally move items from the pool to the starting inventory or their
-        default locations, if configured
+- move items from the pool to the starting inventory
 """
+import os
+
 from collections import Counter
 from math import ceil
 from typing import List,Dict
@@ -57,6 +60,16 @@ class DoomPool:
         for loc in (loc for loc in locations if loc.orig_item):
             counter[loc.orig_item.name()] += 1
 
+    def _skip_in_pretuning(self, world, loc):
+        return (
+            world.options.pretuning_mode
+            and loc.is_tuned()
+            and 'GZAP_INCREMENTAL_PRETUNING' in os.environ
+            and 'weapon' not in loc.categories
+            and 'key' not in loc.categories
+            and 'token' not in loc.categories
+        )
+
     def select_locations(self, all_locations, world):
         '''
         Given all the locations in the wad, choose which locations will actually
@@ -71,6 +84,8 @@ class DoomPool:
 
         buckets = {}
         for loc in all_locations:
+            if self._skip_in_pretuning(world, loc):
+                continue
             bucket = world.options.included_item_categories.bucket_for_location(loc)
             buckets.setdefault(bucket, []).append(loc)
 

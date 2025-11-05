@@ -373,11 +373,18 @@ class GZDoomWorld(World):
         fd.write(f'MAPINFO generation:              {not self.options.pretuning_mode}\n')
         fd.write(f'apworld version code:            {self.mod_version}\n')
 
+        if self.options.pretuning_mode:
+            fd.write(f'[Pretuning] The following locations lack tuning data or region associations:\n')
+            for locs in self.wad_logic.locations_by_name.values():
+                for loc in locs:
+                    if not loc.is_tuned():
+                        fd.write(f'- {loc.name()}\n')
+
+
     # Called by UT on connection. In UT mode all configuration will come from
     # slot_data rather than via the YAML.
     @staticmethod
     def interpret_slot_data(slot_data):
-        print("interpret_slot_data", slot_data)
         return slot_data
 
     def generate_output(self, path):
