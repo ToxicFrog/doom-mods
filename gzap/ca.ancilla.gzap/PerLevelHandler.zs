@@ -217,11 +217,13 @@ class ::PerLevelHandler : EventHandler {
     }
   }
 
+  int last_secret;
   override void WorldTick() {
     apstate.OnTick();
 
-    if (level.total_secrets - level.found_secrets != self.secret_locations.CountUsed()) {
+    if (last_secret != level.found_secrets) {
       UpdateSecrets();
+      last_secret = level.found_secrets;
     }
   }
 

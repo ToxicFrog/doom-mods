@@ -107,7 +107,7 @@ class ::ScannedItem : ::ScannedLocation {
   }
 
   static bool IsSecret(Actor thing) {
-    return (thing.cursector.IsSecret() || thing.cursector.WasSecret());
+    return (thing.cursector.IsSecret() || thing.cursector.WasSecret() || thing is "SecretTrigger");
   }
 
   static bool IsTool(readonly<Inventory> thing) {
@@ -152,6 +152,8 @@ class ::ScannedItem : ::ScannedLocation {
       return "big-ammo";
     } else if (thing is "MapRevealer") {
       return "powerup-maprevealer";
+    } else if (thing is "SecretTrigger") {
+      return "secret-marker";
     } else if (thing is "PowerupGiver") {
       if (IsTool(Inventory(thing))) {
         return "powerup-tool";
