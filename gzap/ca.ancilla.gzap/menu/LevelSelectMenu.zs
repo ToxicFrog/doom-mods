@@ -58,15 +58,7 @@ class ::LevelSelectMenu : ::CommonMenu {
       PushTooltip("$GZAP_MENU_TT_RESET");
     }
 
-    PushKeyValueNetevent("$GZAP_MENU_LEVEL_SELECT_RETURN", "", "ap-level-select", HubIndex());
-  }
-
-  int HubIndex() {
-    for (int i = 0; i < LevelInfo.GetLevelInfoCount(); ++i) {
-      let info = LevelInfo.GetLevelInfo(i);
-      if (info && info.MapName == "GZAPHUB") return i;
-    }
-    return 0;
+    PushKeyValueNetevent("$GZAP_MENU_LEVEL_SELECT_RETURN", "", "ap-level-select", ::Util.HubIndex());
   }
 
   int ResetIndex() {

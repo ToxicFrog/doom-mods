@@ -152,6 +152,11 @@ class ::PerLevelHandler : EventHandler {
     }
   }
 
+  // TODO: we should investigate the use of a LevelPostProcessor (https://zdoom.org/wiki/LevelPostProcessor)
+  // to place checks on level load. Tricky because anything we place needs an
+  // ednum, but we could perhaps use this to remove existing stuff that needs
+  // to be replaced and queue up the checks to replace them later?
+
   // Separate functions for handling "new map" and "game loaded" that are actually
   // called from the StaticEventHandler, since it's the only one that can tell
   // the difference.
@@ -170,6 +175,12 @@ class ::PerLevelHandler : EventHandler {
       ::CheckPickup.Create(location);
     }
     apstate.UpdatePlayerInventory();
+
+    if (!region.access) {
+      EventHandler.SendNetworkEvent("ap-level-select", ::Util.HubIndex());
+      return;
+    }
+
     // Since this is our first time visiting, we should record our current
     // location as this region's spawnpoint, for fast-travel in hub-logic based
     // wads.
@@ -185,6 +196,11 @@ class ::PerLevelHandler : EventHandler {
     let region = apstate.GetCurrentRegion();
     SetupSecrets(region);
     apstate.UpdatePlayerInventory();
+
+    if (!region.access) {
+      EventHandler.SendNetworkEvent("ap-level-select", ::Util.HubIndex());
+      return;
+    }
     // Returning to an earlier level, we should teleport the player to the point
     // they were in when they exited it, if we have one recorded.
     // We also need a way to teleport them back to the level entrance...

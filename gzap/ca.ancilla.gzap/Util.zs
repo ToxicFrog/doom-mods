@@ -110,4 +110,12 @@ class ::Util play {
 
     return backup;
   }
+
+  static clearscope int HubIndex() {
+    for (int i = 0; i < LevelInfo.GetLevelInfoCount(); ++i) {
+      let info = LevelInfo.GetLevelInfo(i);
+      if (info && info.MapName == "GZAPHUB") return i;
+    }
+    return 0;
+  }
 }
