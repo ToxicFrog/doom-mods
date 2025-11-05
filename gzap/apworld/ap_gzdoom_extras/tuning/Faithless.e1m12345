@@ -5,6 +5,12 @@ AP-XON { "lump": "GZAPIPC", "size": 4096, "nick": "Player", "slot": "Player1", "
 AP-WEAPONS { "weapons": {  } }
 AP-VISITED { "visited": [ "E1M1" ] }
 
+//////// Region logic
+// Weapon logic is included here manually based on what weapons you normally find
+// in those levels or are expected to have when exploring them.
+// TODO: in the future, infer weapon logic based on what weapons are in what regions,
+// and drop the manual weapon annotations here.
+
 //////// E1M1: Port Mercy
 // Main region encompasses the streets, portals to M2 and M3, basically everywhere you can get without either
 // leaving M1 or having a key.
@@ -16,7 +22,9 @@ AP-REGION { "map": "E1M1", "region": "key-shack", "keys": ["map/E1M2/main"] }
 // The bell tower requires the yellow key.
 AP-REGION { "map": "E1M1", "region": "belltower", "keys": ["key/KeyYellow", "weapon/Crossbow2/need"] }
 // The tiny annex near the M3 teleporter accessed via a switch in M3.
-AP-REGION { "map": "E1M1", "region": "from-garden-teleporter", "keys": ["map/E1M3/garden"] }
+// It can also be reached from M1 once the bell is rung.
+AP-REGION { "map": "E1M1", "region": "garden-annex", "keys": ["map/E1M3/garden"] }
+AP-REGION { "map": "E1M1", "region": "garden-annex", "keys": ["map/E1M1/belltower"] }
 // The area inside the southern fortress. This requires you to have the green key,
 // both to open the door proper and to reach the area in M3 with the portcullis switch.
 AP-REGION { "map": "E1M1", "region": "portcullis-open", "keys": ["key/KeyGreen", "map/E1M3/green-door", "weapon/SkullRod2/need"]}
@@ -32,15 +40,17 @@ AP-REGION { "map": "E1M2", "region": "yellow-area", "keys": ["map/E1M1/main", "k
 // proper via the belltower.
 AP-REGION { "map": "E1M3", "region": "courtyard", "keys": ["map/E1M1"] }
 // The main area of the gardens. Accessed by ringing the bell in M1.
-// Note that the teleporters are logically in the gardens, even though they're physically in the courtyard:
-// you need to flip two switches in the gardens to activate them.
 AP-REGION { "map": "E1M3", "region": "garden", "keys": ["map/E1M1/belltower", "map/E1M3/courtyard", "weapon/Gauntlets2/need"] }
+// The portals to M4, M5, and M9.
+// These are logically in the gardens even though they're physically in the courtyard,
+// because the switches that activate them are in the gardens.
+AP-REGION { "map": "E1M3", "region": "portals", "keys": ["map/E1M3/courtyard", "map/E1M3/garden"] }
 // Area behind the green door in M3. Contains the switch that raises the portcullis in M1.
 AP-REGION { "map": "E1M3", "region": "green-door", "keys": ["key/KeyGreen", "map/E1M3/garden"] }
 
 //////// E1M4: Kingdom of Roots
 // Main area accessible from both M3 and M5 teleporters.
-AP-REGION { "map": "E1M4", "region": "main", "keys": ["map/E1M3/garden", "weapon/Blaster2/need"] }
+AP-REGION { "map": "E1M4", "region": "main", "keys": ["map/E1M3/portals", "weapon/Blaster2/need"] }
 // There's a direct link between M4 and M5, but trying to model it produces an infinite loop,
 // and in practice we don't need it because there's no way to reach either without M3 garden access.
 // AP-REGION { "map": "E1M4", "region": "main", "keys": ["map/E1M5/main"] }
@@ -49,7 +59,7 @@ AP-REGION { "map": "E1M4", "region": "after-raising-water", "keys": ["map/E1M4/m
 
 //////// E1M5: Savaged Lands
 // Main area accessible from both M3 and M5 teleporters.
-AP-REGION { "map": "E1M5", "region": "main", "keys": ["map/E1M3/garden", "weapon/SkullRod2/need"] }
+AP-REGION { "map": "E1M5", "region": "main", "keys": ["map/E1M3/portals", "weapon/Blaster2/need"] }
 // AP-REGION { "map": "E1M5", "region": "main", "keys": ["map/E1M4/main"] }
 // Central and western area accessible only after getting the red key.
 // Also includes the southeastern area where the green key can be found, since that's unlocked via a trigger in
@@ -134,7 +144,6 @@ AP-CHECK { "id": 91316, "name": "E1M1 - Ethereal Arrows [-1344,-1984]", "pos": [
 AP-CHECK { "id": 91333, "name": "E1M1 - Quartz Flask [-1344,-1344]", "pos": ["E1M1",-1344,-1344,8], "region": "main" }
 AP-CHECK { "id": 91351, "name": "E1M1 - Secret 438", "region": "main" }
 AP-CHECK { "id": 91342, "name": "E1M1 - Morph Ovum [Center]", "pos": ["E1M1",-384,-1792,64], "region": "main" }
-// AP-CHECK { "id": 114, "name": "E1M1 - Exit", "region": "main" }
 AP-VISITED { "visited": [ "E1M1", "E1M2" ] }
 AP-CHECK { "id": 91428, "name": "E1M2 - Time Bomb of the Ancients [-720,-1376]", "pos": ["E1M2",-720,-1376,0], "region": "main" }
 AP-CHECK { "id": 91429, "name": "E1M2 - Time Bomb of the Ancients [-624,-1376]", "pos": ["E1M2",-624,-1376,0], "region": "main" }
@@ -223,7 +232,6 @@ AP-CHECK { "id": 91405, "name": "E1M2 - Crystal Vial [-1024,2144]", "pos": ["E1M
 AP-CHECK { "id": 91438, "name": "E1M2 - Time Bomb of the Ancients [-2400,1024]", "pos": ["E1M2",-2400,1024,-24], "region": "main" }
 AP-CHECK { "id": 91439, "name": "E1M2 - Time Bomb of the Ancients [-2400,896]", "pos": ["E1M2",-2400,896,-24], "region": "main" }
 AP-CHECK { "id": 91422, "name": "E1M2 - Quartz Flask [-1920,896]", "pos": ["E1M2",-1920,896,-16], "region": "main" }
-// AP-CHECK { "id": 149, "name": "E1M2 - Exit", "region": "main" }
 AP-XOFF {}
 AP-XON { "lump": "GZAPIPC", "size": 4096, "nick": "Player", "slot": "Player1", "seed": "80463283865778101564", "wad": "Faithless", "server": "" }
 AP-WEAPONS { "weapons": {  } }
@@ -235,7 +243,6 @@ AP-CHECK { "id": 91282, "name": "E1M1 - Crystal Vial [64,368]", "pos": ["E1M1",6
 AP-CHECK { "id": 91319, "name": "E1M1 - Ethereal Arrows [320,400]", "pos": ["E1M1",320,400,96], "region": "key-shack" }
 AP-CHECK { "id": 18150, "name": "E1M1 - Yellow Key", "pos": ["E1M1",320,480,176], "region": "key-shack" }
 AP-VISITED { "visited": [ "E1M1" ] }
-// AP-CHECK { "id": 114, "name": "E1M1 - Exit", "region": "main" }
 AP-VISITED { "visited": [ "E1M3", "E1M1" ] }
 AP-CHECK { "id": 91455, "name": "E1M3 - Time Bomb of the Ancients [696,-112]", "pos": ["E1M3",696,-112,8], "region": "courtyard" }
 AP-CHECK { "id": 91463, "name": "E1M3 - Elixir Vitae [E]", "pos": ["E1M3",700,-192,40], "region": "courtyard" }
@@ -246,14 +253,12 @@ AP-CHECK { "id": 91473, "name": "E1M3 - Ethereal Arrows [208,-240]", "pos": ["E1
 AP-CHECK { "id": 18442, "name": "E1M3 - Ethereal Crossbow", "pos": ["E1M3",160,-192,0], "region": "courtyard" }
 AP-WEAPONS { "weapons": { "Gauntlets of the Necromancer": 1, "Ethereal Crossbow": 4 } }
 AP-CHECK { "id": 91472, "name": "E1M3 - Ethereal Arrows [208,-144]", "pos": ["E1M3",208,-144,0], "region": "courtyard" }
-// AP-CHECK { "id": 229, "name": "E1M3 - Exit", "region": "courtyard" }
 AP-VISITED { "visited": [ "E1M1" ] }
 AP-CHECK { "id": 91317, "name": "E1M1 - Ethereal Arrows [0,-528]", "pos": ["E1M1",0,-528,0], "region": "belltower" }
 AP-CHECK { "id": 91276, "name": "E1M1 - Elixir Vitae", "pos": ["E1M1",384,-800,0], "region": "belltower" }
 AP-CHECK { "id": 91278, "name": "E1M1 - Crystal Vial [-256,-736]", "pos": ["E1M1",-256,-736,0], "region": "belltower" }
 AP-CHECK { "id": 91279, "name": "E1M1 - Crystal Vial [-256,-576]", "pos": ["E1M1",-256,-576,0], "region": "belltower" }
 AP-CHECK { "id": 91277, "name": "E1M1 - Crystal Vial [160,-1152]", "pos": ["E1M1",160,-1152,16], "region": "belltower" }
-// AP-CHECK { "id": 114, "name": "E1M1 - Exit", "region": "belltower" }
 AP-VISITED { "visited": [ "E1M2", "E1M1" ] }
 AP-CHECK { "id": 91379, "name": "E1M2 - Wand Crystals [336,1568]", "pos": ["E1M2",336,1568,-16], "region": "yellow-area" }
 AP-CHECK { "id": 91378, "name": "E1M2 - Wand Crystals [336,1792]", "pos": ["E1M2",336,1792,48], "region": "yellow-area" }
@@ -264,12 +269,8 @@ AP-CHECK { "id": 91426, "name": "E1M2 - Quartz Flask [1216,864]", "pos": ["E1M2"
 AP-CHECK { "id": 91435, "name": "E1M2 - Time Bomb of the Ancients [1024,544]", "pos": ["E1M2",1024,544,64], "region": "yellow-area" }
 AP-CHECK { "id": 91443, "name": "E1M2 - Secret 263", "region": "yellow-area" }
 AP-CHECK { "id": 91355, "name": "E1M2 - Enchanted Shield [NE]", "pos": ["E1M2",896,864,80], "region": "yellow-area" }
-// AP-CHECK { "id": 149, "name": "E1M2 - Exit", "region": "yellow-area" }
-// AP-CHECK { "id": 114, "name": "E1M1 - Exit", "region": "yellow-area" }
 AP-VISITED { "visited": [ "E1M3", "E1M2", "E1M1" ] }
 AP-VISITED { "visited": [ "E1M3", "E1M1" ] }
-// AP-CHECK { "id": 229, "name": "E1M3 - Exit", "region": "garden" }
-// AP-CHECK { "id": 114, "name": "E1M1 - Exit", "region": "garden" }
 AP-CHECK { "id": 91495, "name": "E1M3 - Crystal Vial [656,1040]", "pos": ["E1M3",656,1040,-16], "region": "garden" }
 AP-CHECK { "id": 91474, "name": "E1M3 - Ethereal Arrows [96,720]", "pos": ["E1M3",96,720,-16], "region": "garden" }
 AP-CHECK { "id": 91475, "name": "E1M3 - Ethereal Arrows [208,1120]", "pos": ["E1M3",208,1120,-16], "region": "garden" }
@@ -320,14 +321,11 @@ AP-CHECK { "id": 91513, "name": "E1M3 - Hellstaff Runes [272,544]", "pos": ["E1M
 AP-CHECK { "id": 91461, "name": "E1M3 - Quartz Flask [368,560]", "pos": ["E1M3",368,560,-16], "region": "garden" }
 AP-CHECK { "id": 91522, "name": "E1M3 - Secret 398", "region": "garden" }
 AP-CHECK { "id": 91505, "name": "E1M3 - Claw Orbs [48,-1664]", "pos": ["E1M3",48,-1664,48], "region": "garden" }
-// AP-CHECK { "id": 229, "name": "E1M3 - Exit", "region": "garden" }
-AP-CHECK { "id": 91269, "name": "E1M1 - Wand Crystals [-1920,-192]", "pos": ["E1M1",-1920,-192,72], "region": "from-garden-teleporter" }
-AP-CHECK { "id": 91334, "name": "E1M1 - Quartz Flask [-1664,-192]", "pos": ["E1M1",-1664,-192,72], "region": "from-garden-teleporter" }
-AP-CHECK { "id": 91312, "name": "E1M1 - Ethereal Arrows [-1408,-128]", "pos": ["E1M1",-1408,-128,96], "region": "from-garden-teleporter" }
-AP-CHECK { "id": 91313, "name": "E1M1 - Ethereal Arrows [-1408,-256]", "pos": ["E1M1",-1408,-256,96], "region": "from-garden-teleporter" }
-// AP-CHECK { "id": 114, "name": "E1M1 - Exit", "region": "from-garden-teleporter" }
+AP-CHECK { "id": 91269, "name": "E1M1 - Wand Crystals [-1920,-192]", "pos": ["E1M1",-1920,-192,72], "region": "garden-annex" }
+AP-CHECK { "id": 91334, "name": "E1M1 - Quartz Flask [-1664,-192]", "pos": ["E1M1",-1664,-192,72], "region": "garden-annex" }
+AP-CHECK { "id": 91312, "name": "E1M1 - Ethereal Arrows [-1408,-128]", "pos": ["E1M1",-1408,-128,96], "region": "garden-annex" }
+AP-CHECK { "id": 91313, "name": "E1M1 - Ethereal Arrows [-1408,-256]", "pos": ["E1M1",-1408,-256,96], "region": "garden-annex" }
 AP-CHECK { "id": 91521, "name": "E1M3 - Secret 371", "region": "garden" }
-// AP-CHECK { "id": 229, "name": "E1M3 - Exit", "region": "garden" }
 AP-VISITED { "visited": [ "E1M3", "E1M4", "E1M1" ] }
 AP-CHECK { "id": 91540, "name": "E1M4 - Emerald Amulet [NW]", "pos": ["E1M4",-1216,896,128], "region": "main" }
 AP-CHECK { "id": 91584, "name": "E1M4 - Crystal Vial [-1072,928]", "pos": ["E1M4",-1072,928,128], "region": "main" }
@@ -425,7 +423,6 @@ AP-XOFF {}
 AP-XON { "lump": "GZAPIPC", "size": 4096, "nick": "Player", "slot": "Player1", "seed": "80463283865778101564", "wad": "Faithless", "server": "" }
 AP-WEAPONS { "weapons": {  } }
 AP-VISITED { "visited": [ "E1M3", "E1M4", "E1M1" ] }
-// AP-CHECK { "id": 287, "name": "E1M4 - Exit", "keys": ["KeyYellow"] }
 AP-VISITED { "visited": [ "E1M3", "E1M4", "E1M1", "E1M5" ] }
 AP-CHECK { "id": 91687, "name": "E1M5 - Claw Orbs [96,2272]", "pos": ["E1M5",96,2272,80], "region": "main" }
 AP-CHECK { "id": 91649, "name": "E1M5 - Ethereal Arrows [368,2272]", "pos": ["E1M5",368,2272,80], "region": "main" }
@@ -495,7 +492,6 @@ AP-CHECK { "id": 91648, "name": "E1M5 - Ethereal Arrows [-912,-1312]", "pos": ["
 AP-CHECK { "id": 91711, "name": "E1M5 - Crystal Vial [-1152,-1312]", "pos": ["E1M5",-1152,-1312,72], "region": "main" }
 AP-CHECK { "id": 91700, "name": "E1M5 - Claw Orbs [-912,-992]", "pos": ["E1M5",-912,-992,72], "region": "main" }
 AP-CHECK { "id": 91712, "name": "E1M5 - Crystal Vial [-1152,-992]", "pos": ["E1M5",-1152,-992,72], "region": "main" }
-// AP-CHECK { "id": 333, "name": "E1M5 - Exit", "region": "main" }
 AP-VISITED { "visited": [ "E1M3", "E1M4", "E1M1", "E1M5" ] }
 AP-XON { "lump": "GZAPIPC", "size": 4096, "nick": "Player", "slot": "Player1", "seed": "80463283865778101564", "wad": "Faithless", "server": "" }
 AP-WEAPONS { "weapons": {  } }
@@ -503,7 +499,6 @@ AP-VISITED { "visited": [ "E1M3", "E1M4", "E1M5", "E1M1" ] }
 AP-CHECK { "id": 91525, "name": "E1M4 - Enchanted Shield [S]", "pos": ["E1M4",192,-2576,-40], "region": "after-raising-water" }
 AP-CHECK { "id": 91588, "name": "E1M4 - Crystal Vial [224,-1632]", "pos": ["E1M4",224,-1632,-48], "region": "after-raising-water" }
 AP-CHECK { "id": 91589, "name": "E1M4 - Crystal Vial [160,-1632]", "pos": ["E1M4",160,-1632,-48], "region": "after-raising-water" }
-// AP-CHECK { "id": 287, "name": "E1M4 - Exit", "region": "after-raising-water" }
 AP-VISITED { "visited": [ "E1M3", "E1M5", "E1M1" ] }
 AP-CHECK { "id": 91710, "name": "E1M5 - Crystal Vial [736,48]", "pos": ["E1M5",736,48,152], "region": "main" }
 AP-CHECK { "id": 91735, "name": "E1M5 - Secret 224", "region": "main" }
@@ -558,16 +553,12 @@ AP-CHECK { "id": 91720, "name": "E1M5 - Hellstaff Runes [1736,-1056]", "pos": ["
 AP-CHECK { "id": 91723, "name": "E1M5 - Hellstaff Runes [1928,-1056]", "pos": ["E1M5",1928,-1056,80], "region": "red-keep" }
 AP-CHECK { "id": 91674, "name": "E1M5 - Quartz Flask [2016,-1152]", "pos": ["E1M5",2016,-1152,80], "region": "red-keep" }
 AP-CHECK { "id": 91722, "name": "E1M5 - Hellstaff Runes [1928,-1248]", "pos": ["E1M5",1928,-1248,80], "region": "red-keep" }
-// AP-CHECK { "id": 333, "name": "E1M5 - Exit", "region": "red-keep" }
-// AP-CHECK { "id": 229, "name": "E1M3 - Exit", "region": "red-keep" }
 AP-VISITED { "visited": [ "E1M3", "E1M9", "E1M5", "E1M1" ] }
 AP-VISITED { "visited": [ "E1M3", "E1M4", "E1M9", "E1M5", "E1M1" ] }
-AP-CHECK { "id": 92055, "name": "E1M9 - Crystal Vial [1472,-3488]", "pos": ["E1M9",1472,-3488,128], "region": "main" }
 AP-XOFF {}
 AP-XON { "lump": "GZAPIPC", "size": 4096, "nick": "Player", "slot": "Player1", "seed": "80463283865778101564", "wad": "Faithless", "server": "" }
 AP-WEAPONS { "weapons": {  } }
 AP-VISITED { "visited": [ "E1M3", "E1M4", "E1M1", "E1M9", "E1M5" ] }
-// AP-CHECK { "id": 2153, "name": "E1M9 - Exit", "keys": ["KeyRed", "PuzzStoneFace", "KeyYellow"] }
 AP-VISITED { "visited": [ "E1M3", "E1M1", "E1M9", "E1M5" ] }
 AP-VISITED { "visited": [ "E1M3", "E1M1", "E1M9" ] }
 AP-VISITED { "visited": [ "E1M3", "E1M1" ] }
@@ -588,7 +579,6 @@ AP-CHECK { "id": 91512, "name": "E1M3 - Claw Orbs [-3904,-32]", "pos": ["E1M3",-
 AP-CHECK { "id": 91517, "name": "E1M3 - Hellstaff Runes [-3904,-352]", "pos": ["E1M3",-3904,-352,48], "region": "green-door" }
 AP-CHECK { "id": 91445, "name": "E1M3 - Time Bomb of the Ancients [-1792,-416]", "pos": ["E1M3",-1792,-416,-64], "region": "green-door" }
 AP-CHECK { "id": 91444, "name": "E1M3 - Time Bomb of the Ancients [-1792,32]", "pos": ["E1M3",-1792,32,-64], "region": "green-door" }
-// AP-CHECK { "id": 229, "name": "E1M3 - Exit", "region": "green-door" }
 AP-CHECK { "id": 91338, "name": "E1M1 - Claw Orbs [-256,-2592]", "pos": ["E1M1",-256,-2592,-80], "region": "portcullis-open" }
 AP-CHECK { "id": 91308, "name": "E1M1 - Ethereal Arrows [-320,-3136]", "pos": ["E1M1",-320,-3136,-80], "region": "portcullis-open" }
 AP-CHECK { "id": 91337, "name": "E1M1 - Claw Orbs [320,-3136]", "pos": ["E1M1",320,-3136,-80], "region": "portcullis-open" }
