@@ -69,9 +69,7 @@ current list of categories used by the wad scanner is:
 - `token`: used internally by the apworld for things like access codes and level exits
 - `big`, `medium`, `small`: used to differentiate different sizes of health,
   armour, and ammo pickups
-- `secret`: an item or location found in a secret, or the secret itself
-- `marker`: an invisible item denoting a point of interest; currently only used
-  for ZDoom SecretTrigger markers
+- `secret`: an item found in a secret sector, or the secret sector itself
 - `sector`: locations only; means the location is based on a sector rather than
   an item
 
