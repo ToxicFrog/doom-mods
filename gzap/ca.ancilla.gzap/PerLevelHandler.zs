@@ -235,7 +235,6 @@ class ::PerLevelHandler : EventHandler {
   // if the player respawns without leaving the map, we trigger the exit.
   // TODO: investigate if we can use WorldLineActivated, which fires after line
   // activation, instead.
-  // TODO: handle 74 (teleport_newmap) and 75 (teleport_endgame)
   override void WorldLinePreActivated(WorldEvent evt) {
     let thing = evt.thing;
     let line = evt.ActivatedLine;
@@ -244,10 +243,16 @@ class ::PerLevelHandler : EventHandler {
     // Key checks are done after WorldLinePreActivated, so we need to check
     // them here just in case that check would normally fail.
     if (!thing.CheckKeys(line.locknumber, false, true)) return;
-    if (evt.ActivatedLine.special == 243) { // LS_EXIT_NORMAL
+    if (line.special == 243) { // LS_EXIT_NORMAL
       line_exit_normal = true;
-    } else if (evt.ActivatedLine.special == 244) { // LS_EXIT_SECRET
+    } else if (line.special == 244) { // LS_EXIT_SECRET
       line_exit_secret = true;
+    } else if (line.special == 74) {
+      let info = LevelInfo.FindLevelByNum(line.args[0]);
+      let region = apstate.GetRegion(info.MapName);
+      if (region && !region.access) {
+        evt.ShouldActivate = false;
+      }
     }
   }
 
