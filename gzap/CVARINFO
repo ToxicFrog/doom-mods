@@ -36,19 +36,13 @@ server bool ap_show_check_contents = true;
 //// Gameplay configuration
 
 //// Inventory configuration.
-// How many of each thing the randomizer will bank. If you're at the limit and
-// you receive more, they will be vended to you immediately.
-// 0 means bank none, dispense immediately.
-// -1 means no limit, save until requested.
-server int ap_bank_weapons = 0;
-server int ap_bank_ammo = 0;
-server int ap_bank_armour = -1;
-server int ap_bank_health = -1;
-server int ap_bank_powerups = -1;
+// Space-separated list of category:limit. If you receive an item from AP and
+// you are already at the limit, it will dispense the item immediately.
+// Category format is the same as in the YAML's included_item_categories setting.
+// Use -1 as the amount to mean no limit.
+server string ap_bank_custom = "small:0 weapon:0 ammo:0";
+// Default limit for stuff not covered by ap_bank_custom.
 server int ap_bank_other = -1;
-// Items to auto-vend when you get them.
-// Space separated list of category or typename substrings.
-server string ap_bank_custom = "small-*:0";
 
 // Whether or not weapons can drop outside of the normal AP progression.
 // 0 means no blocking of weapons

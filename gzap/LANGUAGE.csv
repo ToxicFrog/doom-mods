@@ -60,21 +60,12 @@ These icons are displayed only in person, not on the automap. Changes to this se
 Collected check opacity,GZAP_OPT_NAME_COLLECTED_CHECK_ALPHA,
 A setting of 0 makes collected checks vanish entirely. Values around 0.1-0.4 will result in them turning translucent. Higher values make them extremely difficult to distinguish from uncollected checks and are not recommended.,GZAP_OPT_TT_COLLECTED_CHECK_ALPHA,
 Inventory Limits,GZAP_OPT_HEADER_INVENTORY,Options / Inventory Limits
-Weapon bank limit,GZAP_OPT_NAME_BANK_WEAPONS,
-Ammo bank limit,GZAP_OPT_NAME_BANK_AMMO,
-Armour bank limit,GZAP_OPT_NAME_BANK_ARMOUR,
-Health bank limit,GZAP_OPT_NAME_BANK_HEALTH,
-Powerup bank limit,GZAP_OPT_NAME_BANK_POWERUPS,
 Other bank limit,GZAP_OPT_NAME_BANK_OTHER,
-"Limits for how much of each item type the randomizer will let you ""bank"" and reclaim later.
-
-If you receive an item and you're already at the limit, it will be given to you immediately, even if it's not useful to do so (e.g. a soulsphere when you're at 200% health). A limit of 0 means that all items of that type will be immediately dispensed.",GZAP_OPT_TT_BANK_LIMITS,
+"Default limit for anything not covered by the setting above.",GZAP_OPT_TT_BANK_LIMITS,
 Custom bank limits,GZAP_OPT_NAME_BANK_CUSTOM,
-"Custom configuration for categories not listed above, or settings for specific subcategories or items.
+"Limits for how much of each item the randomizer will let you ""bank"" and reclaim later. Format is the same as the included_item_categories YAML setting.
 
-This is a space-separated list of entries of the form ""name:limit"". The ""name"" can be a category name (like ""small-health""), an item name (like ""Stimpack""), or a prefix or suffix using *, like ""small-*"" or ""*Ammo"".
-
-Leaving ""small-*:0"" in the list is strong recommended to avoid cluttering your inventory with huge amounts of tiny health/ammo/armour pickups.",GZAP_OPT_TT_BANK_CUSTOM,
+A limit of 0 means those items cannot be stored and will be given to you immediately upon receipt. A limit of -1 means no limit.",GZAP_OPT_TT_BANK_CUSTOM,
 Unlimited,GZAP_OPT_SLIDER_UNLIMITED,
 Gameplay,GZAP_OPT_HEADER_GAMEPLAY,Options / Gameplay
 Allow using dropped weapons,GZAP_OPT_NAME_ALLOW_DROPS,

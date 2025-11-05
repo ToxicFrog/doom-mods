@@ -16,6 +16,7 @@ class ::RandoItem play {
   string tag;
   // Internal category name
   string category;
+  Map<string, bool> category_set;
   // Number vended, must be <= total
   int vended;
   // Number received from randomizer
@@ -35,12 +36,21 @@ class ::RandoItem play {
     item.category = ::ScannedItem.ItemCategory(GetDefaultByType(itype));
     item.vended = 0;
     item.total = 0;
+    item.MakeCategorySet();
     return item;
   }
 
   void DebugPrint() {
     console.printf("  - %s [category=%s, count=%d/%d, limit=%d]",
       self.typename, self.category, self.vended, self.total, self.GetLimit());
+  }
+
+  void MakeCategorySet() {
+    Array<string> category_tokens;
+    self.category.Split(category_tokens, "-", TOK_SKIPEMPTY);
+    foreach (token : category_tokens) {
+      self.category_set.Insert(token, true);
+    }
   }
 
   void SetTotal(int total) {
@@ -72,6 +82,16 @@ class ::RandoItem play {
     return n;
   }
 
+  bool MatchCategories(string pattern) {
+    Array<string> pattern_tokens;
+    pattern.Split(pattern_tokens, "-", TOK_SKIPEMPTY);
+
+    foreach (token : pattern_tokens) {
+      if (!self.category_set.CheckKey(token)) return false;
+    }
+    return true;
+  }
+
   bool, int GetCustomLimit() const {
     Array<string> patterns;
     ap_bank_custom.Split(patterns, " ", TOK_SKIPEMPTY);
@@ -83,7 +103,7 @@ class ::RandoItem play {
         continue;
       }
 
-      if (::Util.GlobMatch(pair[0], self.category) || ::Util.GlobMatch(pair[0], self.typename)) {
+      if (pair[0] == self.typename || MatchCategories(pair[0])) {
         return true, pair[1].ToInt();
       }
     }
@@ -91,7 +111,7 @@ class ::RandoItem play {
   }
 
   bool IsWeapon() const {
-    return self.category.IndexOf("weapon") > -1;
+    return self.category_set.CheckKey("weapon");
   }
 
   int GetLimit() const {
@@ -99,20 +119,7 @@ class ::RandoItem play {
 
     let [custom, limit] = GetCustomLimit();
     if (custom) return limit;
-
-    if (IsWeapon()) {
-      return ap_bank_weapons;
-    } else if (self.category.IndexOf("ammo") > -1) {
-      return ap_bank_ammo;
-    } else if (self.category.IndexOf("armor") > -1) {
-      return ap_bank_armour;
-    } else if (self.category.IndexOf("health") > -1) {
-      return ap_bank_health;
-    } else if (self.category == "powerup") {
-      return ap_bank_powerups;
-    } else{
-      return ap_bank_other;
-    }
+    return ap_bank_other;
   }
 
   // Thank you for choosing Value-Rep™!
