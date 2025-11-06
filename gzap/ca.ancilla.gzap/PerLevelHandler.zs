@@ -96,58 +96,105 @@ class ::PerLevelHandler : EventHandler {
     }
   }
 
+  // Trigger-based secrets have even less of a defined position than secret sectors
+  // and thus don't get a map marker.
   void MarkSecret(::Location location) {
-    if (secret_markers.CheckKey(location.secret_sector)) return;
-    let sector = level.sectors[location.secret_sector];
+    if (location.flags & AP_IS_SECRET_TRIGGER) return;
+    if (secret_markers.CheckKey(location.secret_id)) return;
+    let sector = level.sectors[location.secret_id];
     let marker = ::CheckMapMarker(Actor.Spawn(
       "::CheckMapMarker", (sector.centerspot.x, sector.centerspot.y, 0)));
     marker.location = location;
-    secret_markers.Insert(location.secret_sector, marker);
+    secret_markers.Insert(location.secret_id, marker);
   }
 
   void UnmarkSecret(::Location location) {
-    let marker = secret_markers.GetIfExists(location.secret_sector);
+    if (location.flags & AP_IS_SECRET_TRIGGER) return;
+    let marker = secret_markers.GetIfExists(location.secret_id);
     if (!marker) return;
     marker.Destroy();
-    secret_markers.Remove(location.secret_sector);
+    secret_markers.Remove(location.secret_id);
   }
 
   void SetupSecrets(::Region region) {
     self.secret_locations.Clear();
 
     foreach (location : region.locations) {
-      if (location.secret_sector < 0) continue;
+      if (location.secret_id < 0) continue;
 
       DEBUG("Init secret location: %s", location.name);
-      let sector = level.sectors[location.secret_sector];
-      if (location.checked && sector.IsSecret()) {
-        // Location is checked but sector is still marked undiscovered -- level
-        // probably got reset.
-        DEBUG("Clearing secret flag on sector %d", location.secret_sector);
-        UnmarkSecret(location);
-        sector.ClearSecret();
-        level.found_secrets++;
-      } else if (!location.checked && !sector.IsSecret()) {
-        // Location isn't marked checked but the corresponding sector has been
-        // discovered, so emit a check event for it.
-        ::PlayEventHandler.Get().CheckLocation(location);
-        UnmarkSecret(location);
-      } else if (!location.checked) {
-        // Player hasn't found this yet.
-        self.secret_locations.Insert(location.secret_sector, location);
-        MarkSecret(location);
+      if (location.flags & AP_IS_SECRET_TRIGGER) {
+        SetupTriggerSecret(location);
+      } else {
+        SetupSectorSecret(location);
       }
+    }
+    DEBUG("Done secret location initialization.");
+  }
+
+  void SetupSectorSecret(::Location location) {
+    let sector = level.sectors[location.secret_id];
+    if (location.checked && sector.IsSecret()) {
+      // Location is checked but sector is still marked undiscovered -- level
+      // probably got reset.
+      DEBUG("Clearing secret flag on sector %d", location.secret_id);
+      UnmarkSecret(location);
+      sector.ClearSecret();
+      level.found_secrets++;
+    } else if (!location.checked && !sector.IsSecret()) {
+      // Location isn't marked checked but the corresponding sector has been
+      // discovered, so emit a check event for it.
+      ::PlayEventHandler.Get().CheckLocation(location);
+      UnmarkSecret(location);
+    } else if (!location.checked) {
+      // Player hasn't found this yet.
+      self.secret_locations.Insert(location.secret_id, location);
+      MarkSecret(location);
     }
   }
 
+  void SetupTriggerSecret(::Location location) {
+    let iter = level.CreateActorIterator(location.secret_id, "SecretTrigger");
+    if (location.checked) {
+      // Location has already been checked in AP, remove any triggers left in the map.
+      foreach (Actor trigger : iter) {
+        trigger.Activate(trigger);
+      }
+      return;
+    }
+
+    // Location has not been checked. If any triggers are left in the map,
+    // that means the player hasn't found this yet.
+    if (iter.Next() != null) {
+      self.secret_locations.Insert(location.secret_id, location);
+      return;
+    }
+
+    // Location not marked checked, but the trigger is gone, so the player must
+    // have found it and we just didn't notice.
+    DEBUG("%s has been checked, marking it off", location.ap_name);
+    ::PlayEventHandler.Get().CheckLocation(location);
+  }
+
   void UpdateSecrets() {
-    foreach (sector_id,location : self.secret_locations) {
-      if (!level.sectors[sector_id].IsSecret()) {
-        ::PlayEventHandler.Get().CheckLocation(location);
-        UnmarkSecret(location);
-        // Only process one so we don't modify secret_locations while iterating it.
-        self.secret_locations.Remove(sector_id);
-        return;
+    foreach (secret_id,location : self.secret_locations) {
+      if (location.flags & AP_IS_SECRET_TRIGGER) {
+        let iter = level.CreateActorIterator(location.secret_id, "SecretTrigger");
+        if (iter.Next() == null) {
+          DEBUG("%s has been checked, marking it off", location.ap_name);
+          ::PlayEventHandler.Get().CheckLocation(location);
+          self.secret_locations.Remove(secret_id);
+          return;
+        }
+      } else {
+        if (!level.sectors[secret_id].IsSecret()) {
+          DEBUG("%s has been checked, marking it off", location.ap_name);
+          ::PlayEventHandler.Get().CheckLocation(location);
+          UnmarkSecret(location);
+          // Only process one so we don't modify secret_locations while iterating it.
+          self.secret_locations.Remove(secret_id);
+          return;
+        }
       }
     }
   }
@@ -171,7 +218,7 @@ class ::PerLevelHandler : EventHandler {
     SetupSecrets(region);
     foreach (location : region.locations) {
       // Secret-sector locations are handled by SetupSecrets().
-      if (location.secret_sector >= 0) continue;
+      if (location.secret_id >= 0) continue;
       ::CheckPickup.Create(location);
     }
     apstate.UpdatePlayerInventory();

@@ -124,8 +124,8 @@ class ::RandoState play {
     GetRegion(map).RegisterCheck(apid, pos, name, orig_typename, ap_typename, ap_name, flags);
   }
 
-  void RegisterSecretCheck(string map, uint apid, string name, int sector, uint flags) {
-    GetRegion(map).RegisterSecretCheck(apid, name, sector, flags);
+  void RegisterSecretCheck(string map, uint apid, string name, int secret_id, uint flags) {
+    GetRegion(map).RegisterSecretCheck(apid, name, secret_id, flags);
   }
 
   // Called when we get a HINT message from AP.

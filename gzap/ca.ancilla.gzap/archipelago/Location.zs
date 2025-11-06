@@ -21,6 +21,7 @@ enum ::LocationFlags {
   AP_IS_TRAP = 4,
   // These are internal to gzdoom
   AP_IS_UNREACHABLE = 8,
+  AP_IS_SECRET_TRIGGER = 16, // This secret uses a TID rather than a sector ID
 }
 
 // Information about a single check.
@@ -36,7 +37,7 @@ class ::Location {
   ::Tracking track;   // Tracker status for this location
   Vector3 pos;
   bool is_virt;       // Virtual location with no physical position.
-  int secret_sector;
+  int secret_id;      // Either a sector ID or a TID depending
 
   // We consider two positions "close enough" to each other iff:
   // - d is less than MAX_DISTANCE, and
@@ -65,7 +66,7 @@ class ::Location {
   // orig_typename for this because some categories, like secret, depend on where
   // it was found, not what it is.
   bool IsSecret() {
-    if (secret_sector >= 0) return true;
+    if (secret_id >= 0) return true;
     let sector = level.PointInSector((self.pos.x, self.pos.y));
     DEBUG("IsSecret(%s): (%d,%d) is=%d was=%d", self.name, self.pos.x, self.pos.y, sector.IsSecret(), sector.WasSecret());
     return sector.IsSecret() || sector.WasSecret();

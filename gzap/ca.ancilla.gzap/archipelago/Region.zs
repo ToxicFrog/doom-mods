@@ -58,7 +58,7 @@ class ::Region play {
     exit.apid = exit_id;
     exit.mapname = map;
     exit.name = string.format("%s - Exit", map);
-    exit.secret_sector = -1;
+    exit.secret_id = -1;
     exit.flags = AP_IS_PROGRESSION|AP_IS_USEFUL;
     exit.checked = false;
     exit.is_virt = true;
@@ -117,19 +117,19 @@ class ::Region play {
 
     loc.checked = false;
     loc.is_virt = false;
-    loc.secret_sector = -1;
+    loc.secret_id = -1;
 
     locations.push(loc);
     locations_by_id.Insert(loc.apid, loc);
   }
 
-  void RegisterSecretCheck(uint apid, string name, int sector, uint flags) {
+  void RegisterSecretCheck(uint apid, string name, int secret_id, uint flags) {
     ++txn;
     let loc = ::Location(new("::Location"));
     loc.mapname = self.map;
     loc.apid = apid;
     loc.name = name;
-    loc.secret_sector = sector;
+    loc.secret_id = secret_id;
     loc.flags = flags;
 
     loc.is_virt = true;
