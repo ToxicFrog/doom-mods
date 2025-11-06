@@ -103,7 +103,7 @@ AP-ITEM { "map": "E1M1", "category": "small-health", "typename": "CrystalVial", 
 AP-ITEM { "map": "E1M1", "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "position": { "x": -208, "y": -5408, "z": -64 } }
 AP-ITEM { "map": "E1M1", "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "position": { "x": 464, "y": -5888, "z": -80 } }
 AP-ITEM { "map": "E1M1", "category": "powerup-tool", "typename": "ArtiTomeOfPower", "tag": "Tome of Power", "position": { "x": 0, "y": -2048, "z": -64 } }
-AP-SECRET { "map": "E1M1", "tid": 9 }
+AP-SECRET { "map": "E1M1", "tid": 9, "name": "Map secret" }
 AP-ITEM { "map": "E1M1", "category": "tool", "typename": "ArtiEgg2", "tag": "Morph Ovum", "secret": true, "position": { "x": -384, "y": -1792, "z": 64 } }
 AP-ITEM { "map": "E1M1", "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "position": { "x": 944, "y": -456, "z": 56 } }
 AP-ITEM { "map": "E1M1", "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "position": { "x": 1024, "y": -456, "z": 56 } }
@@ -213,10 +213,10 @@ AP-ITEM { "map": "E1M2", "category": "tool", "typename": "ArtiTimeBomb2", "tag":
 AP-ITEM { "map": "E1M2", "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "skill": [2, 3], "position": { "x": -2400, "y": 1024, "z": -24 } }
 AP-ITEM { "map": "E1M2", "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "skill": [2, 3], "position": { "x": -2400, "y": 896, "z": -24 } }
 AP-ITEM { "map": "E1M2", "category": "medium-health", "typename": "ArtiHealth", "tag": "Quartz Flask", "skill": [2, 3], "position": { "x": 864, "y": 1536, "z": 56 } }
-AP-SECRET { "map": "E1M2", "sector": 124 }
-AP-SECRET { "map": "E1M2", "sector": 263 }
+AP-SECRET { "map": "E1M2", "sector": 124, "name": "Tome secret" }
+AP-SECRET { "map": "E1M2", "sector": 263, "name": "Shield secret" }
 AP-MAP { "map": "E1M3", "checksum": "d59433737159bcc1e4141f99f57034e0", "rank": 0, "monster_count": 70, "clustername": "Faithless", "info": { "levelnum": 3, "title": "FAITH_E1M3", "is_lookup": true, "sky1": "HSKY1GR", "sky1speed": "0.003500", "sky2": "HSKY1GR", "sky2speed": "0.000000", "music": "$MUSIC_FAITH_3", "music_track": "0", "cluster": 66, "flags": [] } }
-AP-SECRET { "map": "E1M3", "tid": 137 }
+AP-SECRET { "map": "E1M3", "tid": 137, "name": "Portal secret" }
 AP-ITEM { "map": "E1M3", "category": "powerup-tool", "typename": "ArtiInvuln2", "tag": "Ring of Invincibility", "secret": true, "position": { "x": 208, "y": 1696, "z": 96 } }
 AP-ITEM { "map": "E1M3", "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "position": { "x": -1792, "y": 32, "z": -64 } }
 AP-ITEM { "map": "E1M3", "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "position": { "x": -1792, "y": -416, "z": -64 } }
@@ -285,7 +285,7 @@ AP-ITEM { "map": "E1M3", "category": "small-ammo", "typename": "BlasterAmmo2", "
 AP-ITEM { "map": "E1M3", "category": "small-ammo", "typename": "BlasterMed", "tag": "Claw Orbs", "position": { "x": -3904, "y": -32, "z": 48 } }
 AP-ITEM { "map": "E1M3", "category": "medium-ammo", "typename": "SkullRodMed", "tag": "Hellstaff Runes", "position": { "x": -3904, "y": -352, "z": 48 } }
 AP-ITEM { "map": "E1M3", "category": "big-armor", "typename": "FlameShield", "tag": "Enchanted Shield", "skill": [1, 2], "position": { "x": -800, "y": -624, "z": 56 } }
-AP-SECRET { "map": "E1M3", "tid": 2 }
+AP-SECRET { "map": "E1M3", "tid": 2, "name": "Amulet secret" }
 AP-ITEM { "map": "E1M3", "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "position": { "x": 208, "y": -144, "z": 0 } }
 AP-ITEM { "map": "E1M3", "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "position": { "x": 208, "y": -240, "z": 0 } }
 AP-ITEM { "map": "E1M3", "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "skill": [2, 3], "position": { "x": -752, "y": 784, "z": -8 } }
@@ -298,9 +298,9 @@ AP-ITEM { "map": "E1M3", "category": "medium-ammo", "typename": "CrossbowHefty2"
 AP-ITEM { "map": "E1M3", "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "skill": [3], "position": { "x": -688, "y": 848, "z": -8 } }
 AP-ITEM { "map": "E1M3", "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "skill": [3], "position": { "x": -688, "y": 720, "z": -8 } }
 AP-ITEM { "map": "E1M3", "category": "medium-ammo", "typename": "CrossbowHefty2", "tag": "Ethereal Arrows", "skill": [3], "position": { "x": 704, "y": -1472, "z": 80 } }
-AP-SECRET { "map": "E1M3", "sector": 127 }
-AP-SECRET { "map": "E1M3", "sector": 371 }
-AP-SECRET { "map": "E1M3", "sector": 398 }
+AP-SECRET { "map": "E1M3", "sector": 127, "name": "Ring secret" }
+AP-SECRET { "map": "E1M3", "sector": 371, "name": "Shield secret" }
+AP-SECRET { "map": "E1M3", "sector": 398, "name": "Energy Orb secret" }
 AP-MAP { "map": "E1M4", "checksum": "39df6d09f70ab58eda4f5244554a4f7b", "rank": 0, "monster_count": 68, "clustername": "Faithless", "info": { "levelnum": 4, "title": "FAITH_E1M4", "is_lookup": true, "sky1": "HSKY1GR", "sky1speed": "0.003500", "sky2": "HSKY1GR", "sky2speed": "0.000000", "music": "$MUSIC_FAITH_4", "music_track": "0", "cluster": 66, "flags": [] } }
 AP-ITEM { "map": "E1M4", "category": "weapon", "typename": "Blaster2", "tag": "Dragon Claw", "position": { "x": 576, "y": 672, "z": 80 } }
 AP-ITEM { "map": "E1M4", "category": "key", "typename": "PuzzStoneFace", "tag": "Granite Icon", "position": { "x": 208, "y": 1696, "z": 176 } }
@@ -398,8 +398,8 @@ AP-ITEM { "map": "E1M4", "category": "medium-ammo", "typename": "BlasterHefty50"
 AP-ITEM { "map": "E1M4", "category": "powerup-tool", "typename": "ArtiTomeOfPower", "tag": "Tome of Power", "skill": [2, 3], "position": { "x": -656, "y": -1096, "z": -48 } }
 AP-ITEM { "map": "E1M4", "category": "key", "typename": "KeyRed", "tag": "KeyRed", "skill": [3], "position": { "x": 192, "y": -2576, "z": -40 } }
 AP-KEY { "map": "E1M4", "tag": "KeyRed", "typename": "KeyRed", "scopename": "Faithless", "cluster": 66, "maps": ["E1M1", "E1M2", "E1M3", "E1M4", "E1M5", "E1M6", "E1M7", "E1M8", "E1M9"] }
-AP-SECRET { "map": "E1M4", "sector": 95 }
-AP-SECRET { "map": "E1M4", "sector": 153 }
+AP-SECRET { "map": "E1M4", "sector": 95, "name": "Switch secret" }
+AP-SECRET { "map": "E1M4", "sector": 153, "name": "Icon secret" }
 AP-MAP { "map": "E1M5", "checksum": "c26bc811f20ede7d06f60156d4cc9077", "rank": 0, "monster_count": 112, "clustername": "Faithless", "info": { "levelnum": 5, "title": "FAITH_E1M5", "is_lookup": true, "sky1": "SKYWALL2", "sky1speed": "0.000000", "sky2": "HSKY4", "sky2speed": "0.003500", "music": "$MUSIC_FAITH_5", "music_track": "0", "cluster": 66, "flags": ["doublesky"] } }
 AP-ITEM { "map": "E1M5", "category": "weapon", "typename": "SkullRod2", "tag": "Hellstaff", "position": { "x": -1184, "y": -1152, "z": 112 } }
 AP-ITEM { "map": "E1M5", "category": "tool", "typename": "ArtiTeleport2", "tag": "Escapement Device", "position": { "x": -1088, "y": -1760, "z": 112 } }
@@ -528,9 +528,9 @@ AP-ITEM { "map": "E1M5", "category": "weapon", "typename": "Blaster2", "tag": "D
 AP-ITEM { "map": "E1M5", "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "skill": [3], "position": { "x": 320, "y": 1664, "z": 80 } }
 AP-ITEM { "map": "E1M5", "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "skill": [3], "position": { "x": 384, "y": 1632, "z": 80 } }
 AP-ITEM { "map": "E1M5", "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "skill": [3], "position": { "x": 384, "y": 1696, "z": 80 } }
-AP-SECRET { "map": "E1M5", "sector": 92 }
-AP-SECRET { "map": "E1M5", "sector": 224 }
-AP-SECRET { "map": "E1M5", "sector": 304 }
+AP-SECRET { "map": "E1M5", "sector": 92, "name": "Icon socket secret" }
+AP-SECRET { "map": "E1M5", "sector": 224, "name": "Bag of Holding secret" }
+AP-SECRET { "map": "E1M5", "sector": 304, "name": "Fried egg secret" }
 AP-MAP { "map": "E1M6", "checksum": "66d740a496bf0ecdf1a1e8b6cddb3123", "rank": 0, "monster_count": 125, "clustername": "Faithless", "info": { "levelnum": 6, "title": "FAITH_E1M6", "is_lookup": true, "sky1": "HSKY1", "sky1speed": "0.003500", "sky2": "HSKY1", "sky2speed": "0.000000", "music": "$MUSIC_FAITH_6", "music_track": "0", "cluster": 66, "flags": [] } }
 AP-ITEM { "map": "E1M6", "category": "key", "typename": "HexenPuzzFlameMask", "tag": "Flame Mask", "position": { "x": 2392, "y": -1792, "z": -80 } }
 AP-KEY { "map": "E1M6", "tag": "Flame Mask", "typename": "HexenPuzzFlameMask", "scopename": "Faithless", "cluster": 66, "maps": ["E1M1", "E1M2", "E1M3", "E1M4", "E1M5", "E1M6", "E1M7", "E1M8", "E1M9"] }
@@ -776,7 +776,7 @@ AP-SECRET { "map": "E1M8", "sector": 125 }
 AP-MAP { "map": "E1M9", "checksum": "b57321c9cf7785285bfeeb2ce5a80ad2", "rank": 0, "monster_count": 180, "clustername": "Faithless", "info": { "levelnum": 9, "title": "FAITH_E1M9", "is_lookup": true, "sky1": "SKY1WHO", "sky1speed": "0.000000", "sky2": "SKY1NM", "sky2speed": "0.007000", "music": "$MUSIC_FAITH_9", "music_track": "0", "cluster": 66, "flags": ["doublesky"] } }
 AP-ITEM { "map": "E1M9", "category": "weapon", "typename": "Crossbow2", "tag": "Ethereal Crossbow", "position": { "x": 1344, "y": -3280, "z": 144 } }
 AP-ITEM { "map": "E1M9", "category": "powerup-tool", "typename": "ArtiInvuln2", "tag": "Ring of Invincibility", "position": { "x": -1312, "y": -416, "z": 192 } }
-AP-SECRET { "map": "E1M9", "tid": 6 }
+AP-SECRET { "map": "E1M9", "tid": 6, "name": "Firemace secret" }
 AP-ITEM { "map": "E1M9", "category": "tool", "typename": "ArtiTeleport2", "tag": "Escapement Device", "position": { "x": 1312, "y": 1504, "z": 112 } }
 AP-ITEM { "map": "E1M9", "category": "small-ammo", "typename": "SkullRodAmmo2", "tag": "Hellstaff Runes", "position": { "x": 1056, "y": 1072, "z": 80 } }
 AP-ITEM { "map": "E1M9", "category": "small-ammo", "typename": "SkullRodAmmo2", "tag": "Hellstaff Runes", "position": { "x": 1120, "y": 992, "z": 80 } }
@@ -784,8 +784,8 @@ AP-ITEM { "map": "E1M9", "category": "weapon", "typename": "Blaster2", "tag": "D
 AP-ITEM { "map": "E1M9", "category": "weapon", "typename": "SkullRod2", "tag": "Hellstaff", "position": { "x": 736, "y": -2016, "z": 32 } }
 AP-ITEM { "map": "E1M9", "category": "weapon", "typename": "Mace2", "tag": "Firemace", "position": { "x": -96, "y": -3456, "z": 256 } }
 AP-ITEM { "map": "E1M9", "category": "tool", "typename": "ArtiInvisibility2", "tag": "Shadowsphere", "position": { "x": -96, "y": -2560, "z": 256 } }
-AP-SECRET { "map": "E1M9", "tid": 4 }
-AP-SECRET { "map": "E1M9", "tid": 5 }
+AP-SECRET { "map": "E1M9", "tid": 4, "name": "Ring secret" }
+AP-SECRET { "map": "E1M9", "tid": 5, "name": "Shadowsphere secret" }
 AP-ITEM { "map": "E1M9", "category": "medium-ammo", "typename": "MaceMed", "tag": "Mace Spheres", "position": { "x": -320, "y": -3680, "z": 128 } }
 AP-ITEM { "map": "E1M9", "category": "medium-ammo", "typename": "MaceMed", "tag": "Mace Spheres", "position": { "x": 192, "y": -3680, "z": 128 } }
 AP-ITEM { "map": "E1M9", "category": "medium-health", "typename": "ArtiHealth", "tag": "Quartz Flask", "position": { "x": -512, "y": -432, "z": 0 } }
@@ -1009,9 +1009,9 @@ AP-ITEM { "map": "E1M9", "category": "tool", "typename": "ArtiTimeBomb2", "tag":
 AP-ITEM { "map": "E1M9", "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "skill": [3], "position": { "x": 1440, "y": -960, "z": 72 } }
 AP-ITEM { "map": "E1M9", "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "skill": [3], "position": { "x": 1632, "y": -160, "z": 80 } }
 AP-ITEM { "map": "E1M9", "category": "medium-health", "typename": "ArtiHealth", "tag": "Quartz Flask", "skill": [3], "position": { "x": 640, "y": -1056, "z": -40 } }
-AP-SECRET { "map": "E1M9", "sector": 375 }
-AP-SECRET { "map": "E1M9", "sector": 397 }
-AP-SECRET { "map": "E1M9", "sector": 492 }
+AP-SECRET { "map": "E1M9", "sector": 375, "name": "Wings secret" }
+AP-SECRET { "map": "E1M9", "sector": 397, "name": "Boots secret" }
+AP-SECRET { "map": "E1M9", "sector": 492, "name": "Breath secret" }
 AP-MAP { "map": "E2M1", "checksum": "38e3a8087a2608aca8a6d29d3ca8183d", "rank": 0, "monster_count": 428, "clustername": "Merciless", "info": { "levelnum": 11, "title": "FAITH_E2M1", "is_lookup": true, "sky1": "HSKY1GY", "sky1speed": "0.003500", "sky2": "HSKY1GY", "sky2speed": "0.000000", "music": "$MUSIC_MERCI_1", "music_track": "0", "cluster": 67, "flags": [] } }
 AP-ITEM { "map": "E2M1", "category": "key", "typename": "KeyGreen", "tag": "Green Key", "position": { "x": 0, "y": 1088, "z": 248 } }
 AP-KEY { "map": "E2M1", "tag": "Green Key", "typename": "KeyGreen", "scopename": "Merciless", "cluster": 67, "maps": ["E2M1", "E2M2", "E2M3", "E2M4", "E2M5", "E2M6", "E2M7", "E2M8", "E2M9", "E2M0"] }

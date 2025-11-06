@@ -13,10 +13,30 @@ To release a new version:
 ### next release
 
 (0.7 is focusing on logic/tuning format changes and bugfixes)
-- SecretTrigger -- probably during scanning, report them as AP-SECRET with an
-  appropriate TID
+- faithless-specific logic issues
+  - green key exists out of logic since it's dispensed by event triggers in M4/M5
+    in non-pretuning mode we need to add it to the pool and block it from pickup
+  - phoenix rod can be gotten OOL by exploring e1m9 and flipping the switch in the ice keep
+    to spawn an extra rod in the belltower, but only if weapon suppression is off
+- fix location matching for virtualpos locations
+  - [map,"secret","tid",id] or [map,"secret","sector",idx] for secrets
+  - [map,"exit"] for exits
+  - the following tuning files have non-exit, non-secret entries that lack
+    position information:
+      gzap/apworld/ap_gzdoom_extras/tuning/1000 Lines
+      gzap/apworld/ap_gzdoom_extras/tuning/1000 Lines II
+      gzap/apworld/ap_gzdoom_extras/tuning/Demonfear
+      gzap/apworld/ap_gzdoom_extras/tuning/Faithless.e1m12345
+      gzap/apworld/ap_gzdoom_extras/tuning/MAYhem 2048
+      gzap/apworld/ap_gzdoom_extras/tuning/Scythe
+      gzap/apworld/ap_gzdoom_extras/tuning/The Adventures of Square
+      gzap/apworld/gzdoom/tuning/Doom
+      gzap/apworld/gzdoom/tuning/Doom 2
+      gzap/apworld/gzdoom/tuning/FreeDoom 2
+      gzap/apworld/gzdoom/tuning/Heretic
 
 (maybe wait for 0.7.1)
+- weapon suppression just makes the gun non-interactable rather than tuning it into ammo?
 - weapon ownership rework
 - display weapons in inventory even if you don't have them
 - let you hint weapons from the inventory screen
@@ -28,31 +48,6 @@ To release a new version:
   - keep track of which locations are in which regions
     - rework create_regions to use this info
     - use it for weapon logic
-
-### general notes on scanner/logic changes
-
-This is mostly based on what needs to change to support Faithless, but it'll help
-a bunch of other games as well.
-
-We need to support logic dependencies on things other than keys. This is trickier.
-At the moment the keyset implicitly means "these keys scoped to the enclosing level".
-We probably need to promote scoped keys to their fully qualified names when generating
-the keyset, and do the same when processing tuning files. It's probably ok if we
-don't include weapons in tuning for now, but we should be able to express them
-in the logic file.
-
-We need event support. We need, for example, to be able to say that Faithless
-E1M4 and E1M5 aren't in logic until you can trigger the Garden Portal Activated
-event in the gardens, or that E1M1 Under Belltower isn't in logic until after you
-flip the switch for the portcullis (in addition to having the green key). This is
-something that apdoom has an easier time representing because it has subregions
-for its levels. This also means that we need a way to refer to events from AP-ITEM/
-AP-CHECK logic.
-
-Adventures of Square would benefit from being able to model weapons that are also
-keys; frozen notes that the Hellshell Launcher can be used to break certain walls
-that normally require TNT box manipulation. This also ties in with the need to
-be able to represent logic requirements that aren't just keys.
 
 ### scanner
 
