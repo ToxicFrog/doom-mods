@@ -40,6 +40,7 @@ for details.
   - Logic files can now define custom names for locations.
   - Logic and tuning files support multiline entries. If a line ends with `}` it
     is considered the end of the entry.
+  - Trigger-based secrets are now supported in addition to sector-based secrets.
 - New apworld features:
   - Separate `ap_gzdoom_extras.apworld` and `ap_gzdoom_featured.apworld` files.
   - Autodiscovery of addon apworlds containing gzdoom tuning/logic.
