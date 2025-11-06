@@ -54,13 +54,14 @@ difficulty-based logic. `monster_count` is the number of monsters in the map on
 UV, used for stats reporting. `clustername`, if nonempty, is the name of the
 cluster (typically: episode or chapter) this map belongs to.
 
-#### `AP-ITEM { map, category, typename, tag, secret, skill, position: { x, y, z } }`
+#### `AP-ITEM { map, name, category, typename, tag, secret, skill, position: { x, y, z } }`
 
 Emitted for each item the scanner finds. Note that this is *everything*; the randomizer
 makes decisions about which items to randomize and which not to.
 
 Fields:
 - `map`: the map lump name, as above
+- `name`: the human-facing name to assign to the location this item was found at
 - `category`: a guess at the item category
 - `typename`: the gzDoom class name
 - `tag`: the gzDoom human-facing name (if none, duplicates `typename`)
@@ -87,6 +88,12 @@ full set of item categories is:
 
 Currently only some of these are actually used by the generator, but they are all
 emitted for potential future use.
+
+#### `AP-SECRET { map, sector, tid, name }`
+
+Emitted for each secret the scanner finds. If the secret is a secret sector, the
+`sector` field will be the sector ID. If it is a `SecretTrigger`, the `tid` field
+will be the trigger's TID. `name` has the same meaning as in `AP-ITEM`.
 
 #### `AP-SCAN-DONE {}`
 

@@ -207,7 +207,7 @@ class IncludedItemCategories(OptionList):
         'key:all',
         'weapon:all',
         'tool:none',
-        'secret-sector:all',
+        'secret:all',
         'powerup:all',
     ]
 

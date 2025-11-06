@@ -10,6 +10,7 @@ class ::ScannedItem : ::ScannedLocation {
   string tag;
   bool secret;
   int hub;
+  int tid;
 
   static ::ScannedItem Create(Actor thing) {
     let loc = ::ScannedItem(new("::ScannedItem"));
@@ -20,6 +21,7 @@ class ::ScannedItem : ::ScannedLocation {
     loc.tag = thing.GetTag();
     loc.secret = IsSecret(thing);
     loc.pos = thing.pos;
+    loc.tid = thing.tid;
 
     if (loc.category == "key") {
       loc.hub = ::ScannedItem.GetHubClusterID(Inventory(thing));
@@ -45,11 +47,15 @@ class ::ScannedItem : ::ScannedLocation {
     return level.cluster;
   }
 
-  // TODO: make "secret" field optional and emit it only on secret items
   override void Output(string mapname) {
     string secret_str = "";
     if (secret) {
       secret_str = string.format("\"secret\": %s, ", ::Util.bool2str(secret));
+    }
+
+    if (typename == "SecretTrigger") {
+      ::Scanner.Output("SECRET", mapname, string.format("\"tid\": %d", self.tid));
+      return;
     }
 
     ::Scanner.Output("ITEM", mapname, string.format(
@@ -107,7 +113,7 @@ class ::ScannedItem : ::ScannedLocation {
   }
 
   static bool IsSecret(Actor thing) {
-    return (thing.cursector.IsSecret() || thing.cursector.WasSecret());
+    return (thing.cursector.IsSecret() || thing.cursector.WasSecret() || thing is "SecretTrigger");
   }
 
   static bool IsTool(readonly<Inventory> thing) {
@@ -152,6 +158,8 @@ class ::ScannedItem : ::ScannedLocation {
       return "big-ammo";
     } else if (thing is "MapRevealer") {
       return "powerup-maprevealer";
+    } else if (thing is "SecretTrigger") {
+      return "secret-marker";
     } else if (thing is "PowerupGiver") {
       if (IsTool(Inventory(thing))) {
         return "powerup-tool";
