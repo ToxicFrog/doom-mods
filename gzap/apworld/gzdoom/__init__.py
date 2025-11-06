@@ -69,10 +69,12 @@ class GZDoomLocation(Location):
             flags.append('AP_IS_USEFUL')
         if self.item.classification & ItemClassification.trap:
             flags.append('AP_IS_TRAP')
-        if self.doom_location.unreachable:
-            flags.append('AP_IS_UNREACHABLE')
         if not flags:
             flags.append('AP_IS_FILLER')
+        if self.doom_location.has_category('secret') and self.doom_location.has_category('marker'):
+            flags.append('AP_IS_SECRET_TRIGGER')
+        if self.doom_location.unreachable:
+            flags.append('AP_IS_UNREACHABLE')
         return '|'.join(flags)
 
 class GZDoomItem(Item):

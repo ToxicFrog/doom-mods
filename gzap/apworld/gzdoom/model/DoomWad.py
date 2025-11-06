@@ -283,9 +283,15 @@ class DoomWad:
     def new_secret(self, json: Dict[str, Any]) -> None:
         assert not self.tuned, f"AP-SECRET found in tuning data for {self.name} -- make sure you don't have a logic file mixed in with the tuning."
         location = DoomLocation(self, map=json['map'], item=None, secret=True, pos=None, custom_name=json.get('name', None))
-        location.item_name = f"Secret {json['sector']}"
-        location.categories = frozenset({'secret', 'sector'})
-        location.sector = json['sector']
+        if 'sector' in json:
+            location.item_name = f"Secret {json['sector']}"
+            location.categories = frozenset({'secret', 'sector'})
+            location.secret_id = json['sector']
+        else:
+            location.item_name = f"Secret T{json['tid']}"
+            location.categories = frozenset({'secret', 'marker'})
+            location.secret_id = json['tid']
+
         skill = set(json.pop("skill", [1,2,3]))
         self.register_location(location, skill)
 

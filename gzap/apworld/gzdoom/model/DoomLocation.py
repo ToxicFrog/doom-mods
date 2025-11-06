@@ -56,7 +56,7 @@ class DoomLocation(DoomReachable):
     custom_name: str = None
     skill: Set[int]
     secret: bool = False
-    sector: int = 0
+    secret_id: int = 0  # used for sector IDs and TIDs
 
     def __init__(self, parent, map: str, item: DoomItem, secret: bool, pos: dict | None, custom_name: str | None = None):
         super().__init__()
