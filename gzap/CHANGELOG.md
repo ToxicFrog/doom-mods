@@ -79,6 +79,8 @@ for details.
     `included_item_categories` instead.
   - Items which are both powerups and tools, such as the Tome of Power from
     Heretic, are now classified as `powerup-tool` rather than just `powerup`.
+  - Individual `ap_bank_` cvars were removed; `ap_bank_custom` and `ap_bank_other`
+    now support everything you could do with those.
 - Fixed:
   - When running from an unpacked tarball, gzdoom now locates its files with the
     rest of the tarball contents rather than in `~/.local/share/Archipelago`.
