@@ -1,12 +1,12 @@
 AP-CHECK { "id": 48076, "name": "MAP33 - SCSBlueArmor", "pos": ["MAP33",-156,1256,0], "keys": [] }
 AP-CHECK { "id": 48076, "name": "MAP33 - SCSBlueArmor", "pos": ["MAP33",-156,1256,0], "keys": [] }
 AP-CHECK { "id": 48075, "name": "MAP33 - SCSSoulsphere", "pos": ["MAP33",228,1528,80], "keys": [] }
-AP-CHECK { "id": 48081, "name": "MAP33 - Secret 177", "keys": [] }
+AP-CHECK { "id": 48081, "name": "MAP33 - Secret 177", "pos": ["MAP33","secret","sector",177], "keys": [] }
 AP-CHECK { "id": 48078, "name": "MAP33 - YellowCard", "pos": ["MAP33",-176,1528,80], "keys": [] }
 AP-CHECK { "id": 48079, "name": "MAP33 - SpaceCat4", "pos": ["MAP33",-136,1528,80], "keys": [] }
 AP-CHECK { "id": 48080, "name": "MAP33 - Laserweapon", "pos": ["MAP33",-52,1572,80], "keys": [] }
 AP-CHECK { "id": 48077, "name": "MAP33 - BlueCard", "pos": ["MAP33",36,1584,100], "keys": [] }
-AP-CHECK { "id": 48074, "name": "MAP33 - Exit", "keys": ["BlueCard"] }
+AP-CHECK { "id": 48074, "name": "MAP33 - Exit", "pos": ["MAP33","event","exit"], "keys": ["BlueCard"] }
 AP-CHECK { "id": 48246, "name": "MAP34 - Shotgun Shells [360,496]", "pos": ["MAP34",360,496,8], "keys": [] }
 AP-CHECK { "id": 48335, "name": "MAP34 - Shotgun", "pos": ["MAP34",352,632,48], "keys": [] }
 AP-CHECK { "id": 48247, "name": "MAP34 - Shotgun Shells [160,416]", "pos": ["MAP34",160,416,0], "keys": [] }
@@ -263,8 +263,8 @@ AP-CHECK { "id": 48325, "name": "MAP34 - SCSStimpack [-644,-4264]", "pos": ["MAP
 AP-CHECK { "id": 43363, "name": "MAP34 - Plasma Rifle", "pos": ["MAP34",168,-3736,-24], "keys": ["YellowCard"] }
 AP-CHECK { "id": 48329, "name": "MAP34 - Energy Cells [176,-3752]", "pos": ["MAP34",176,-3752,-24], "keys": ["YellowCard"] }
 AP-CHECK { "id": 48330, "name": "MAP34 - Energy Cells [176,-3720]", "pos": ["MAP34",176,-3720,-24], "keys": ["YellowCard"] }
-AP-CHECK { "id": 48338, "name": "MAP34 - Secret 530", "unreachable": true }
-AP-CHECK { "id": 43359, "name": "MAP34 - Exit", "keys": ["BlueCard", "YellowCard"] }
+AP-CHECK { "id": 48338, "name": "MAP34 - Secret 530", "pos": ["MAP34","secret","sector",530], "unreachable": true }
+AP-CHECK { "id": 43359, "name": "MAP34 - Exit", "pos": ["MAP34","event","exit"], "keys": ["BlueCard", "YellowCard"] }
 AP-CHECK { "id": 48392, "name": "MAP35 - SCSHealthBonus [-812,1004]", "pos": ["MAP35",-812,1004,-8], "keys": [] }
 AP-CHECK { "id": 48391, "name": "MAP35 - SCSHealthBonus [-820,1052]", "pos": ["MAP35",-820,1052,-8], "keys": [] }
 AP-CHECK { "id": 48390, "name": "MAP35 - SCSHealthBonus [-812,1092]", "pos": ["MAP35",-812,1092,-8], "keys": [] }
@@ -348,7 +348,7 @@ AP-CHECK { "id": 48379, "name": "MAP35 - SCSHealthBonus [-80,1272]", "pos": ["MA
 AP-CHECK { "id": 48384, "name": "MAP35 - SCSHealthBonus [-64,1312]", "pos": ["MAP35",-64,1312,104], "keys": ["YellowCard"] }
 AP-CHECK { "id": 48385, "name": "MAP35 - SCSHealthBonus [-24,1328]", "pos": ["MAP35",-24,1328,104], "keys": ["YellowCard"] }
 AP-CHECK { "id": 48386, "name": "MAP35 - SCSHealthBonus [16,1328]", "pos": ["MAP35",16,1328,104], "keys": ["YellowCard"] }
-AP-CHECK { "id": 43352, "name": "MAP35 - Exit", "keys": ["RedCard"] }
+AP-CHECK { "id": 43352, "name": "MAP35 - Exit", "pos": ["MAP35","event","exit"], "keys": ["RedCard"] }
 AP-CHECK { "id": 48456, "name": "MAP36 - Shotgun Shells [-200,-48]", "pos": ["MAP36",-200,-48,0], "keys": [] }
 AP-CHECK { "id": 48455, "name": "MAP36 - Shotgun Shells [-200,-88]", "pos": ["MAP36",-200,-88,0], "keys": [] }
 AP-CHECK { "id": 48459, "name": "MAP36 - Shotgun Shells [-216,-384]", "pos": ["MAP36",-216,-384,16], "keys": [] }
@@ -462,8 +462,8 @@ AP-CHECK { "id": 48475, "name": "MAP36 - Shotgun Shells [456,-6536]", "pos": ["M
 AP-CHECK { "id": 48474, "name": "MAP36 - Shotgun Shells [192,-6488]", "pos": ["MAP36",192,-6488,152], "keys": ["YellowCard"] }
 AP-CHECK { "id": 48476, "name": "MAP36 - Shotgun Shells [232,-6488]", "pos": ["MAP36",232,-6488,152], "keys": ["YellowCard"] }
 AP-CHECK { "id": 48529, "name": "MAP36 - SCSMedikit [400,-6384]", "pos": ["MAP36",400,-6384,120], "keys": ["YellowCard"] }
-AP-CHECK { "id": 48568, "name": "MAP36 - Secret 225", "unreachable": true }
-AP-CHECK { "id": 48454, "name": "MAP36 - Exit", "keys": ["YellowCard"] }
+AP-CHECK { "id": 48568, "name": "MAP36 - Secret 225", "pos": ["MAP36","secret","sector",225], "unreachable": true }
+AP-CHECK { "id": 48454, "name": "MAP36 - Exit", "pos": ["MAP36","event","exit"], "keys": ["YellowCard"] }
 AP-CHECK { "id": 48728, "name": "MAP37 - SCSHealthBonus [-404,1284]", "pos": ["MAP37",-404,1284,0], "keys": [] }
 AP-CHECK { "id": 48729, "name": "MAP37 - SCSHealthBonus [-404,1252]", "pos": ["MAP37",-404,1252,0], "keys": [] }
 AP-CHECK { "id": 48730, "name": "MAP37 - SCSHealthBonus [-404,1212]", "pos": ["MAP37",-404,1212,0], "keys": [] }
@@ -570,7 +570,7 @@ AP-CHECK { "id": 48574, "name": "MAP37 - Shotgun Shells [1132,-828]", "pos": ["M
 AP-CHECK { "id": 48785, "name": "MAP37 - RadSuit [1484,-844]", "pos": ["MAP37",1484,-844,-24], "keys": [] }
 AP-CHECK { "id": 48786, "name": "MAP37 - RadSuit [1484,-788]", "pos": ["MAP37",1484,-788,-24], "keys": [] }
 AP-CHECK { "id": 48753, "name": "MAP37 - SCSStimpack [1280,-1128]", "pos": ["MAP37",1280,-1128,-16], "keys": [] }
-AP-CHECK { "id": 48789, "name": "MAP37 - Secret 142", "keys": [] }
+AP-CHECK { "id": 48789, "name": "MAP37 - Secret 142", "pos": ["MAP37","secret","sector",142], "keys": [] }
 AP-CHECK { "id": 48570, "name": "MAP37 - Super Shotgun [NW]", "pos": ["MAP37",992,-1080,0], "keys": [] }
 AP-CHECK { "id": 48572, "name": "MAP37 - Shotgun Shells [976,-1092]", "pos": ["MAP37",976,-1092,0], "keys": [] }
 AP-CHECK { "id": 48573, "name": "MAP37 - Shotgun Shells [1008,-1092]", "pos": ["MAP37",1008,-1092,0], "keys": [] }
@@ -757,7 +757,7 @@ AP-CHECK { "id": 48785, "name": "MAP37 - RadSuit [1484,-844]", "pos": ["MAP37",1
 AP-CHECK { "id": 48786, "name": "MAP37 - RadSuit [1484,-788]", "pos": ["MAP37",1484,-788,-24], "keys": [] }
 AP-CHECK { "id": 48597, "name": "MAP37 - Shotgun Shells [852,-1096]", "pos": ["MAP37",852,-1096,128], "keys": [] }
 AP-CHECK { "id": 48752, "name": "MAP37 - SCSStimpack [848,-1248]", "pos": ["MAP37",848,-1248,128], "keys": [] }
-AP-CHECK { "id": 48789, "name": "MAP37 - Secret 142", "keys": [] }
+AP-CHECK { "id": 48789, "name": "MAP37 - Secret 142", "pos": ["MAP37","secret","sector",142], "keys": [] }
 AP-CHECK { "id": 48570, "name": "MAP37 - Super Shotgun [NW]", "pos": ["MAP37",992,-1080,0], "keys": [] }
 AP-CHECK { "id": 48572, "name": "MAP37 - Shotgun Shells [976,-1092]", "pos": ["MAP37",976,-1092,0], "keys": [] }
 AP-CHECK { "id": 48573, "name": "MAP37 - Shotgun Shells [1008,-1092]", "pos": ["MAP37",1008,-1092,0], "keys": [] }
@@ -865,7 +865,7 @@ AP-CHECK { "id": 48612, "name": "MAP37 - Shotgun Shells [5920,-8904]", "pos": ["
 AP-CHECK { "id": 48627, "name": "MAP37 - SCSMedikit [6176,-8784]", "pos": ["MAP37",6176,-8784,296], "keys": ["RedCard", "YellowCard"] }
 AP-CHECK { "id": 48774, "name": "MAP37 - Bullets [6588,-8992]", "pos": ["MAP37",6588,-8992,328], "keys": ["RedCard", "YellowCard"] }
 AP-CHECK { "id": 48630, "name": "MAP37 - SCSMedikit [6300,-7632]", "pos": ["MAP37",6300,-7632,332], "keys": ["RedCard", "YellowCard"] }
-AP-CHECK { "id": 48569, "name": "MAP37 - Exit", "keys": ["RedCard", "YellowCard"] }
+AP-CHECK { "id": 48569, "name": "MAP37 - Exit", "pos": ["MAP37","event","exit"], "keys": ["RedCard", "YellowCard"] }
 AP-CHECK { "id": 64550, "name": "MAP38 - UACMachineGun", "pos": ["MAP38",1472,2424,-53], "keys": [] }
 AP-CHECK { "id": 64530, "name": "MAP38 - Bullets [608,2272]", "pos": ["MAP38",608,2272,-200], "keys": [] }
 AP-CHECK { "id": 64531, "name": "MAP38 - Bullets [480,2272]", "pos": ["MAP38",480,2272,-200], "keys": [] }
@@ -1022,7 +1022,7 @@ AP-CHECK { "id": 64611, "name": "MAP38 - SCSHealthBonus [2364,-1204]", "pos": ["
 AP-CHECK { "id": 64612, "name": "MAP38 - SCSHealthBonus [2364,-1172]", "pos": ["MAP38",2364,-1172,40], "keys": ["BlueCard"] }
 AP-CHECK { "id": 64613, "name": "MAP38 - SCSHealthBonus [2364,-1140]", "pos": ["MAP38",2364,-1140,40], "keys": ["BlueCard"] }
 AP-CHECK { "id": 64614, "name": "MAP38 - SCSHealthBonus [2364,-1108]", "pos": ["MAP38",2364,-1108,40], "keys": ["BlueCard"] }
-AP-CHECK { "id": 64665, "name": "MAP38 - Secret 107", "keys": ["BlueCard"] }
+AP-CHECK { "id": 64665, "name": "MAP38 - Secret 107", "pos": ["MAP38","secret","sector",107], "keys": ["BlueCard"] }
 AP-CHECK { "id": 64663, "name": "MAP38 - SpaceCatUse", "pos": ["MAP38",2176,-1356,32], "keys": ["BlueCard"] }
 AP-CHECK { "id": 64657, "name": "MAP38 - Rockets [3228,-1244]", "pos": ["MAP38",3228,-1244,0], "keys": ["BlueCard"] }
 AP-CHECK { "id": 64554, "name": "MAP38 - SCSStimpack [2956,-876]", "pos": ["MAP38",2956,-876,0], "keys": ["BlueCard"] }
@@ -1069,7 +1069,7 @@ AP-CHECK { "id": 64555, "name": "MAP38 - SCSStimpack [6376,-2480]", "pos": ["MAP
 AP-CHECK { "id": 64661, "name": "MAP38 - SCSSoulsphere [E]", "pos": ["MAP38",7136,-2560,192], "keys": ["BlueCard"] }
 AP-CHECK { "id": 64654, "name": "MAP38 - YellowCard", "pos": ["MAP38",7144,-2080,192], "keys": ["BlueCard"] }
 AP-CHECK { "id": 64539, "name": "MAP38 - Bullets [5360,-1496]", "pos": ["MAP38",5360,-1496,32], "keys": ["BlueCard"] }
-AP-CHECK { "id": 64462, "name": "MAP38 - Exit", "keys": ["BlueCard", "YellowCard"] }
+AP-CHECK { "id": 64462, "name": "MAP38 - Exit", "pos": ["MAP38","event","exit"], "keys": ["BlueCard", "YellowCard"] }
 AP-CHECK { "id": 64794, "name": "MAP39 - SCSHealthBonus [2088,224]", "pos": ["MAP39",2088,224,0], "keys": [] }
 AP-CHECK { "id": 64795, "name": "MAP39 - SCSHealthBonus [2088,184]", "pos": ["MAP39",2088,184,0], "keys": [] }
 AP-CHECK { "id": 64757, "name": "MAP39 - Bullets [2052,172]", "pos": ["MAP39",2052,172,24], "keys": [] }
@@ -1104,7 +1104,7 @@ AP-CHECK { "id": 64892, "name": "MAP39 - SCSStimpack [5764,-1940]", "pos": ["MAP
 AP-CHECK { "id": 64891, "name": "MAP39 - SCSStimpack [5648,-2024]", "pos": ["MAP39",5648,-2024,-56], "keys": [] }
 AP-CHECK { "id": 64968, "name": "MAP39 - Super Shotgun", "pos": ["MAP39",5664,-2528,-56], "keys": [] }
 AP-CHECK { "id": 64683, "name": "MAP39 - Shotgun Shells [5760,-2496]", "pos": ["MAP39",5760,-2496,-56], "keys": [] }
-AP-CHECK { "id": 64977, "name": "MAP39 - Secret 885", "keys": [] }
+AP-CHECK { "id": 64977, "name": "MAP39 - Secret 885", "pos": ["MAP39","secret","sector",885], "keys": [] }
 AP-CHECK { "id": 64970, "name": "MAP39 - SpaceCat7", "pos": ["MAP39",7576,-3996,40], "keys": [] }
 AP-CHECK { "id": 64670, "name": "MAP39 - SCSBlueArmor [E]", "pos": ["MAP39",6064,-2672,104], "keys": [] }
 AP-CHECK { "id": 64760, "name": "MAP39 - Bullets [6072,-2572]", "pos": ["MAP39",6072,-2572,104], "keys": [] }
@@ -1235,12 +1235,12 @@ AP-CHECK { "id": 64712, "name": "MAP39 - Energy Cells [1540,452]", "pos": ["MAP3
 AP-CHECK { "id": 64973, "name": "MAP39 - SCSGreenArmor [1712,448]", "pos": ["MAP39",1712,448,104], "keys": ["BlueCard", "RedCard"] }
 AP-CHECK { "id": 64713, "name": "MAP39 - Energy Cells [1664,496]", "pos": ["MAP39",1664,496,104], "keys": ["BlueCard", "RedCard"] }
 AP-CHECK { "id": 64714, "name": "MAP39 - Energy Cells [1600,496]", "pos": ["MAP39",1600,496,104], "keys": ["BlueCard", "RedCard"] }
-AP-CHECK { "id": 64975, "name": "MAP39 - Secret 745", "keys": ["BlueCard", "RedCard"] }
+AP-CHECK { "id": 64975, "name": "MAP39 - Secret 745", "pos": ["MAP39","secret","sector",745], "keys": ["BlueCard", "RedCard"] }
 AP-CHECK { "id": 64931, "name": "MAP39 - FreakinCannon [Center]", "pos": ["MAP39",2796,708,-280], "keys": ["BlueCard", "RedCard"] }
 AP-CHECK { "id": 64701, "name": "MAP39 - Energy Cells [2840,732]", "pos": ["MAP39",2840,732,-280], "keys": ["BlueCard", "RedCard"] }
 AP-CHECK { "id": 64700, "name": "MAP39 - Energy Cells [2800,752]", "pos": ["MAP39",2800,752,-280], "keys": ["BlueCard", "RedCard"] }
 AP-CHECK { "id": 64702, "name": "MAP39 - Energy Cells [2736,732]", "pos": ["MAP39",2736,732,-280], "keys": ["BlueCard", "RedCard"] }
-AP-CHECK { "id": 64976, "name": "MAP39 - Secret 748", "keys": ["BlueCard", "RedCard"] }
+AP-CHECK { "id": 64976, "name": "MAP39 - Secret 748", "pos": ["MAP39","secret","sector",748], "keys": ["BlueCard", "RedCard"] }
 AP-CHECK { "id": 64884, "name": "MAP39 - SCSStimpack [-268,-1468]", "pos": ["MAP39",-268,-1468,16], "keys": ["BlueCard", "RedCard"] }
 AP-CHECK { "id": 64880, "name": "MAP39 - SCSStimpack [-332,-1468]", "pos": ["MAP39",-332,-1468,16], "keys": ["BlueCard", "RedCard"] }
 AP-CHECK { "id": 64806, "name": "MAP39 - SCSHealthBonus [1484,-100]", "pos": ["MAP39",1484,-100,0], "keys": ["BlueCard", "RedCard"] }
@@ -1381,7 +1381,7 @@ AP-CHECK { "id": 64687, "name": "MAP39 - Shotgun Shells [-3120,-3004]", "pos": [
 AP-CHECK { "id": 64788, "name": "MAP39 - Bullets [-2616,-2636]", "pos": ["MAP39",-2616,-2636,-72], "keys": ["BlueCard", "YellowCard", "RedCard"] }
 AP-CHECK { "id": 64692, "name": "MAP39 - Shotgun Shells [-2548,-2468]", "pos": ["MAP39",-2548,-2468,-72], "keys": ["BlueCard", "YellowCard", "RedCard"] }
 AP-CHECK { "id": 64748, "name": "MAP39 - Energy Cells [-2928,-2072]", "pos": ["MAP39",-2928,-2072,-48], "keys": ["BlueCard", "YellowCard", "RedCard"] }
-AP-CHECK { "id": 64666, "name": "MAP39 - Exit", "keys": ["BlueCard", "YellowCard", "RedCard"] }
+AP-CHECK { "id": 64666, "name": "MAP39 - Exit", "pos": ["MAP39","event","exit"], "keys": ["BlueCard", "YellowCard", "RedCard"] }
 AP-CHECK { "id": 64988, "name": "MAP40 - Shotgun Shells [-824,-680]", "pos": ["MAP40",-824,-680,-8], "keys": [] }
 AP-CHECK { "id": 64987, "name": "MAP40 - Shotgun", "pos": ["MAP40",-960,-744,16], "keys": [] }
 AP-CHECK { "id": 65126, "name": "MAP40 - SCSMedikit [256,-992]", "pos": ["MAP40",256,-992,-16], "keys": [] }
@@ -1552,7 +1552,7 @@ AP-CHECK { "id": 65025, "name": "MAP40 - Shotgun Shells [8720,-3156]", "pos": ["
 AP-CHECK { "id": 65026, "name": "MAP40 - Shotgun Shells [8628,-3100]", "pos": ["MAP40",8628,-3100,-144], "keys": ["YellowCard", "BlueCard"] }
 AP-CHECK { "id": 65021, "name": "MAP40 - Shotgun Shells [8480,-3648]", "pos": ["MAP40",8480,-3648,-106], "keys": ["YellowCard", "BlueCard"] }
 AP-CHECK { "id": 65135, "name": "MAP40 - SCSMedikit [8140,-3208]", "pos": ["MAP40",8140,-3208,-144], "keys": ["YellowCard", "BlueCard"] }
-AP-CHECK { "id": 65174, "name": "MAP40 - Secret 727", "keys": ["YellowCard", "BlueCard"] }
+AP-CHECK { "id": 65174, "name": "MAP40 - Secret 727", "pos": ["MAP40","secret","sector",727], "keys": ["YellowCard", "BlueCard"] }
 AP-CHECK { "id": 65166, "name": "MAP40 - Energy Cells [8140,-3620]", "pos": ["MAP40",8140,-3620,-144], "keys": ["YellowCard", "BlueCard"] }
 AP-CHECK { "id": 65167, "name": "MAP40 - Energy Cells [8140,-3580]", "pos": ["MAP40",8140,-3580,-144], "keys": ["YellowCard", "BlueCard"] }
 AP-CHECK { "id": 65172, "name": "MAP40 - SpaceCat3", "pos": ["MAP40",8096,-3648,-114], "keys": ["YellowCard", "BlueCard"] }
@@ -1578,7 +1578,7 @@ AP-CHECK { "id": 65011, "name": "MAP40 - Shotgun Shells [7244,-1924]", "pos": ["
 AP-CHECK { "id": 65117, "name": "MAP40 - SCSMedikit [7240,-1784]", "pos": ["MAP40",7240,-1784,-296], "keys": ["RedCard", "YellowCard", "BlueCard"] }
 AP-CHECK { "id": 65116, "name": "MAP40 - SCSMedikit [7392,-1788]", "pos": ["MAP40",7392,-1788,-296], "keys": ["RedCard", "YellowCard", "BlueCard"] }
 AP-CHECK { "id": 65109, "name": "MAP40 - SCSMedikit [3816,-1044]", "pos": ["MAP40",3816,-1044,16], "unreachable": true }
-AP-CHECK { "id": 64978, "name": "MAP40 - Exit", "keys": ["RedCard", "YellowCard", "BlueCard"] }
+AP-CHECK { "id": 64978, "name": "MAP40 - Exit", "pos": ["MAP40","event","exit"], "keys": ["RedCard", "YellowCard", "BlueCard"] }
 AP-CHECK { "id": 65216, "name": "MAP41 - Energy Cells [-272,344]", "pos": ["MAP41",-272,344,-296], "keys": [] }
 AP-CHECK { "id": 65391, "name": "MAP41 - Plasma Rifle", "pos": ["MAP41",-152,528,-296], "keys": [] }
 AP-CHECK { "id": 65269, "name": "MAP41 - SCSHealthBonus [208,1648]", "pos": ["MAP41",208,1648,-296], "keys": [] }
@@ -1650,7 +1650,7 @@ AP-CHECK { "id": 65350, "name": "MAP41 - Bullets [-1680,10808]", "pos": ["MAP41"
 AP-CHECK { "id": 65324, "name": "MAP41 - Shotgun Shells [-1096,11272]", "pos": ["MAP41",-1096,11272,-440], "keys": [] }
 AP-CHECK { "id": 65349, "name": "MAP41 - Bullets [-452,12324]", "pos": ["MAP41",-452,12324,-488], "keys": [] }
 AP-CHECK { "id": 65312, "name": "MAP41 - Shotgun Shells [728,13176]", "pos": ["MAP41",728,13176,-488], "keys": [] }
-AP-CHECK { "id": 65395, "name": "MAP41 - Secret 652", "keys": [] }
+AP-CHECK { "id": 65395, "name": "MAP41 - Secret 652", "pos": ["MAP41","secret","sector",652], "keys": [] }
 AP-CHECK { "id": 65393, "name": "MAP41 - SpaceCat6", "pos": ["MAP41",940,12472,-432], "keys": [] }
 AP-CHECK { "id": 65188, "name": "MAP41 - SCSMedikit [1008,12980]", "pos": ["MAP41",1008,12980,-488], "keys": [] }
 AP-CHECK { "id": 65192, "name": "MAP41 - SCSMedikit [-1432,11064]", "pos": ["MAP41",-1432,11064,-440], "keys": [] }
@@ -1729,7 +1729,7 @@ AP-CHECK { "id": 65356, "name": "MAP41 - Bullets [4,17796]", "pos": ["MAP41",4,1
 AP-CHECK { "id": 65177, "name": "MAP41 - SCSMedikit [404,17820]", "pos": ["MAP41",404,17820,-502], "keys": [] }
 AP-CHECK { "id": 65178, "name": "MAP41 - SCSMedikit [476,17940]", "pos": ["MAP41",476,17940,-502], "keys": [] }
 AP-CHECK { "id": 65181, "name": "MAP41 - SCSMedikit [-428,18588]", "pos": ["MAP41",-428,18588,-512], "keys": [] }
-AP-CHECK { "id": 65394, "name": "MAP41 - Secret 302", "keys": [] }
+AP-CHECK { "id": 65394, "name": "MAP41 - Secret 302", "pos": ["MAP41","secret","sector",302], "keys": [] }
 AP-CHECK { "id": 65163, "name": "MAP41 - SCSSoulsphere [N]", "pos": ["MAP41",-2800,19048,-512], "keys": [] }
 AP-CHECK { "id": 65162, "name": "MAP41 - YellowSkull", "pos": ["MAP41",-2696,17840,-488], "keys": [] }
 AP-CHECK { "id": 65176, "name": "MAP41 - SCSMedikit [-468,18324]", "pos": ["MAP41",-468,18324,-664], "keys": [] }
@@ -1807,14 +1807,14 @@ AP-CHECK { "id": 65184, "name": "MAP41 - SCSMedikit [2036,11084]", "pos": ["MAP4
 AP-CHECK { "id": 65186, "name": "MAP41 - SCSMedikit [956,10268]", "pos": ["MAP41",956,10268,-268], "keys": ["YellowSkull"] }
 AP-CHECK { "id": 65187, "name": "MAP41 - SCSMedikit [1260,9940]", "pos": ["MAP41",1260,9940,-288], "keys": ["YellowSkull"] }
 AP-CHECK { "id": 65167, "name": "MAP41 - BlueSkull", "pos": ["MAP41",1248,10112,-288], "keys": ["YellowSkull"] }
-AP-CHECK { "id": 65161, "name": "MAP41 - Exit", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 65161, "name": "MAP41 - Exit", "pos": ["MAP41","event","exit"], "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
 AP-CHECK { "id": 65208, "name": "MAP41 - Energy Cells [-20,6708]", "pos": ["MAP41",-20,6708,-304], "unreachable": true }
 AP-CHECK { "id": 65211, "name": "MAP41 - Energy Cells [-252,6716]", "pos": ["MAP41",-252,6716,-304], "unreachable": true }
 AP-CHECK { "id": 65210, "name": "MAP41 - Energy Cells [-292,6708]", "pos": ["MAP41",-292,6708,-304], "unreachable": true }
 AP-CHECK { "id": 65209, "name": "MAP41 - Energy Cells [-292,6756]", "pos": ["MAP41",-292,6756,-304], "unreachable": true }
 AP-CHECK { "id": 65206, "name": "MAP41 - Energy Cells [32,6712]", "pos": ["MAP41",32,6712,-304], "unreachable": true }
 AP-CHECK { "id": 65207, "name": "MAP41 - Energy Cells [36,6772]", "pos": ["MAP41",36,6772,-304], "unreachable": true }
-AP-CHECK { "id": 65161, "name": "MAP41 - Exit", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 65161, "name": "MAP41 - Exit", "pos": ["MAP41","event","exit"], "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
 AP-CHECK { "id": 65638, "name": "MAP42 - SCSBlueArmor [SE]", "pos": ["MAP42",-136,216,24], "keys": [] }
 AP-CHECK { "id": 65525, "name": "MAP42 - SCSSoulsphere [132,216]", "pos": ["MAP42",132,216,24], "keys": [] }
 AP-CHECK { "id": 65485, "name": "MAP42 - Shotgun Shells [136,660]", "pos": ["MAP42",136,660,24], "keys": [] }
@@ -1836,7 +1836,7 @@ AP-CHECK { "id": 65616, "name": "MAP42 - SCSHealthBonus [-1048,3062]", "pos": ["
 AP-CHECK { "id": 65615, "name": "MAP42 - SCSHealthBonus [-1052,3118]", "pos": ["MAP42",-1052,3118,88], "keys": [] }
 AP-CHECK { "id": 65614, "name": "MAP42 - SCSHealthBonus [-1052,3154]", "pos": ["MAP42",-1052,3154,88], "keys": [] }
 AP-CHECK { "id": 65636, "name": "MAP42 - Laserweapon", "pos": ["MAP42",-1440,1896,96], "keys": [] }
-AP-CHECK { "id": 65643, "name": "MAP42 - Secret 562", "keys": [] }
+AP-CHECK { "id": 65643, "name": "MAP42 - Secret 562", "pos": ["MAP42","secret","sector",562], "keys": [] }
 AP-CHECK { "id": 65642, "name": "MAP42 - SpaceCat5", "pos": ["MAP42",-1748,2480,120], "keys": [] }
 AP-CHECK { "id": 65538, "name": "MAP42 - RocketGuns [-1400,2776]", "pos": ["MAP42",-1400,2776,-16], "keys": [] }
 AP-CHECK { "id": 65487, "name": "MAP42 - Shotgun Shells [-1456,3424]", "pos": ["MAP42",-1456,3424,88], "keys": [] }
@@ -2062,17 +2062,17 @@ AP-CHECK { "id": 65550, "name": "MAP42 - Rockets [-13360,560]", "pos": ["MAP42",
 AP-CHECK { "id": 65552, "name": "MAP42 - Rockets [-13356,900]", "pos": ["MAP42",-13356,900,-544], "keys": ["RedCard", "YellowSkull"] }
 AP-CHECK { "id": 65583, "name": "MAP42 - SCSArmorBonus [672,2488]", "pos": ["MAP42",672,2488,104], "unreachable": true }
 AP-CHECK { "id": 65585, "name": "MAP42 - SCSArmorBonus [728,2496]", "pos": ["MAP42",728,2496,104], "unreachable": true }
-AP-CHECK { "id": 65396, "name": "MAP42 - Exit", "keys": ["RedCard", "YellowSkull"] }
-AP-CHECK { "id": 65396, "name": "MAP42 - Exit", "keys": ["RedCard", "YellowSkull"] }
+AP-CHECK { "id": 65396, "name": "MAP42 - Exit", "pos": ["MAP42","event","exit"], "keys": ["RedCard", "YellowSkull"] }
+AP-CHECK { "id": 65396, "name": "MAP42 - Exit", "pos": ["MAP42","event","exit"], "keys": ["RedCard", "YellowSkull"] }
 AP-CHECK { "id": 66231, "name": "MAP44 - FreakinCannon [NE]", "pos": ["MAP44",512,-96,-704], "keys": [] }
-AP-CHECK { "id": 65644, "name": "MAP44 - Exit", "keys": [] }
+AP-CHECK { "id": 65644, "name": "MAP44 - Exit", "pos": ["MAP44","event","exit"], "keys": [] }
 AP-CHECK { "id": 66311, "name": "MAP43 - Bullets [-752,-416]", "pos": ["MAP43",-752,-416,-8], "keys": [] }
 AP-CHECK { "id": 66310, "name": "MAP43 - Bullets [-800,-416]", "pos": ["MAP43",-800,-416,-8], "keys": [] }
 AP-CHECK { "id": 66308, "name": "MAP43 - Bullets [-568,56]", "pos": ["MAP43",-568,56,-8], "keys": [] }
 AP-CHECK { "id": 66307, "name": "MAP43 - Bullets [-616,96]", "pos": ["MAP43",-616,96,-8], "keys": [] }
 AP-CHECK { "id": 66309, "name": "MAP43 - Bullets [-616,16]", "pos": ["MAP43",-616,16,-8], "keys": [] }
 AP-CHECK { "id": 66331, "name": "MAP43 - UACMachineGun [NW]", "pos": ["MAP43",-800,-160,0], "keys": [] }
-AP-CHECK { "id": 66341, "name": "MAP43 - Secret 28", "keys": [] }
+AP-CHECK { "id": 66341, "name": "MAP43 - Secret 28", "pos": ["MAP43","secret","sector",28], "keys": [] }
 AP-CHECK { "id": 66333, "name": "MAP43 - SpaceCat6", "pos": ["MAP43",236,40,16], "keys": [] }
 AP-CHECK { "id": 66278, "name": "MAP43 - SCSGreenArmor [N]", "pos": ["MAP43",1152,352,144], "keys": [] }
 AP-CHECK { "id": 66287, "name": "MAP43 - SCSHealthBonus [1288,-8]", "pos": ["MAP43",1288,-8,24], "keys": [] }
@@ -2154,7 +2154,7 @@ AP-CHECK { "id": 66314, "name": "MAP43 - SCSMedikit [1332,-4284]", "pos": ["MAP4
 AP-CHECK { "id": 66305, "name": "MAP43 - Bullets [852,-3632]", "pos": ["MAP43",852,-3632,-72], "keys": ["RedCard"] }
 AP-CHECK { "id": 66267, "name": "MAP43 - Shotgun Shells [528,-3600]", "pos": ["MAP43",528,-3600,-72], "keys": ["RedCard"] }
 AP-CHECK { "id": 66266, "name": "MAP43 - Shotgun Shells [196,-3844]", "pos": ["MAP43",196,-3844,-72], "keys": ["RedCard"] }
-AP-CHECK { "id": 66342, "name": "MAP43 - Secret 355", "keys": ["RedCard"] }
+AP-CHECK { "id": 66342, "name": "MAP43 - Secret 355", "pos": ["MAP43","secret","sector",355], "keys": ["RedCard"] }
 AP-CHECK { "id": 66270, "name": "MAP43 - Shotgun [S]", "pos": ["MAP43",1120,-4832,-112], "keys": ["RedCard"] }
 AP-CHECK { "id": 66240, "name": "MAP43 - Laserweapon [S]", "pos": ["MAP43",1016,-4812,-112], "keys": ["RedCard"] }
 AP-CHECK { "id": 66332, "name": "MAP43 - UACMachineGun [S]", "pos": ["MAP43",1032,-4860,-104], "keys": ["RedCard"] }
@@ -2170,4 +2170,4 @@ AP-CHECK { "id": 66336, "name": "MAP43 - Rockets [1369,-5044]", "pos": ["MAP43",
 AP-CHECK { "id": 66326, "name": "MAP43 - Energy Cells [1335,-5040]", "pos": ["MAP43",1335,-5040,-88], "keys": ["RedCard"] }
 AP-CHECK { "id": 66327, "name": "MAP43 - Energy Cells [1331,-5036]", "pos": ["MAP43",1331,-5036,-88], "keys": ["RedCard"] }
 AP-CHECK { "id": 66306, "name": "MAP43 - Bullets [1315,-5040]", "pos": ["MAP43",1315,-5040,-88], "keys": ["RedCard"] }
-AP-CHECK { "id": 66238, "name": "MAP43 - Exit", "keys": ["RedCard"] }
+AP-CHECK { "id": 66238, "name": "MAP43 - Exit", "pos": ["MAP43","event","exit"], "keys": ["RedCard"] }

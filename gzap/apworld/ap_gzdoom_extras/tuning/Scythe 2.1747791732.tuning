@@ -1,12 +1,12 @@
 AP-CHECK { "id": 15097, "name": "MAP01 - Chainsaw", "pos": ["MAP01",-656,-64,-8], "keys": [] }
 AP-CHECK { "id": 47863, "name": "MAP01 - ArmorBonus [-608,-64]", "pos": ["MAP01",-608,-64,-8], "keys": [] }
-AP-CHECK { "id": 47887, "name": "MAP01 - Secret 61", "keys": [] }
+AP-CHECK { "id": 47887, "name": "MAP01 - Secret 61", "pos": ["MAP01","secret","sector",61], "keys": [] }
 AP-CHECK { "id": 47873, "name": "MAP01 - Bullets [-304,0]", "pos": ["MAP01",-304,0,-8], "keys": [] }
 AP-CHECK { "id": 47874, "name": "MAP01 - Bullets [-288,-32]", "pos": ["MAP01",-288,-32,-8], "keys": [] }
 AP-CHECK { "id": 47861, "name": "MAP01 - Medikit [NE]", "pos": ["MAP01",-352,-272,-16], "keys": [] }
 AP-CHECK { "id": 47854, "name": "MAP01 - Shotgun Shells [-256,72]", "pos": ["MAP01",-256,72,-88], "keys": [] }
 AP-CHECK { "id": 47853, "name": "MAP01 - Shotgun Shells [-296,120]", "pos": ["MAP01",-296,120,-88], "keys": [] }
-AP-CHECK { "id": 47888, "name": "MAP01 - Secret 62", "keys": [] }
+AP-CHECK { "id": 47888, "name": "MAP01 - Secret 62", "pos": ["MAP01","secret","sector",62], "keys": [] }
 AP-CHECK { "id": 200, "name": "MAP01 - Shotgun", "pos": ["MAP01",-864,288,-80], "keys": [] }
 AP-CHECK { "id": 202, "name": "MAP01 - GreenArmor", "pos": ["MAP01",-768,-416,-88], "keys": [] }
 AP-CHECK { "id": 47857, "name": "MAP01 - Shotgun Shells [-1024,-624]", "pos": ["MAP01",-1024,-624,-88], "keys": [] }
@@ -40,8 +40,8 @@ AP-CHECK { "id": 47867, "name": "MAP01 - ArmorBonus [-1968,-160]", "pos": ["MAP0
 AP-CHECK { "id": 47866, "name": "MAP01 - ArmorBonus [-1936,-160]", "pos": ["MAP01",-1936,-160,-64], "keys": ["YellowCard"] }
 AP-CHECK { "id": 47878, "name": "MAP01 - Stimpack [-1616,152]", "pos": ["MAP01",-1616,152,-64], "keys": ["BlueCard", "YellowCard"] }
 AP-CHECK { "id": 47879, "name": "MAP01 - Stimpack [-1552,152]", "pos": ["MAP01",-1552,152,-64], "keys": ["BlueCard", "YellowCard"] }
-AP-CHECK { "id": 199, "name": "MAP01 - Exit", "keys": ["BlueCard", "YellowCard"] }
-AP-CHECK { "id": 47947, "name": "MAP02 - Secret 20", "keys": [] }
+AP-CHECK { "id": 199, "name": "MAP01 - Exit", "pos": ["MAP01","event","exit"], "keys": ["BlueCard", "YellowCard"] }
+AP-CHECK { "id": 47947, "name": "MAP02 - Secret 20", "pos": ["MAP02","secret","sector",20], "keys": [] }
 AP-CHECK { "id": 47894, "name": "MAP02 - Shotgun Shells [-776,1320]", "pos": ["MAP02",-776,1320,192], "keys": [] }
 AP-CHECK { "id": 47893, "name": "MAP02 - Shotgun Shells [-752,1320]", "pos": ["MAP02",-752,1320,192], "keys": [] }
 AP-CHECK { "id": 47891, "name": "MAP02 - Shotgun [NW]", "pos": ["MAP02",-688,1328,192], "keys": [] }
@@ -93,7 +93,7 @@ AP-CHECK { "id": 47918, "name": "MAP02 - HealthBonus [544,-768]", "pos": ["MAP02
 AP-CHECK { "id": 47907, "name": "MAP02 - Bullets [416,-768]", "pos": ["MAP02",416,-768,24], "keys": ["YellowCard"] }
 AP-CHECK { "id": 47906, "name": "MAP02 - Bullets [384,-768]", "pos": ["MAP02",384,-768,24], "keys": ["YellowCard"] }
 AP-CHECK { "id": 47905, "name": "MAP02 - Bullets [352,-768]", "pos": ["MAP02",352,-768,24], "keys": ["YellowCard"] }
-AP-CHECK { "id": 47948, "name": "MAP02 - Secret 57", "keys": ["YellowCard"] }
+AP-CHECK { "id": 47948, "name": "MAP02 - Secret 57", "pos": ["MAP02","secret","sector",57], "keys": ["YellowCard"] }
 AP-CHECK { "id": 47896, "name": "MAP02 - Shotgun Shells [224,-800]", "pos": ["MAP02",224,-800,32], "keys": ["YellowCard"] }
 AP-CHECK { "id": 378, "name": "MAP02 - Soulsphere", "pos": ["MAP02",96,-832,32], "keys": ["YellowCard"] }
 AP-CHECK { "id": 379, "name": "MAP02 - Backpack", "pos": ["MAP02",224,-864,32], "keys": ["YellowCard"] }
@@ -110,7 +110,7 @@ AP-CHECK { "id": 47900, "name": "MAP02 - Stimpack [1248,592]", "pos": ["MAP02",1
 AP-CHECK { "id": 47917, "name": "MAP02 - Medikit [1664,96]", "pos": ["MAP02",1664,96,96], "keys": ["BlueCard", "YellowCard"] }
 AP-CHECK { "id": 47916, "name": "MAP02 - Medikit [1664,224]", "pos": ["MAP02",1664,224,96], "keys": ["BlueCard", "YellowCard"] }
 AP-CHECK { "id": 4486, "name": "MAP02 - BlueArmor", "pos": ["MAP02",1872,160,96], "keys": ["BlueCard", "YellowCard"] }
-AP-CHECK { "id": 280, "name": "MAP02 - Exit", "keys": ["BlueCard", "YellowCard"] }
+AP-CHECK { "id": 280, "name": "MAP02 - Exit", "pos": ["MAP02","event","exit"], "keys": ["BlueCard", "YellowCard"] }
 AP-CHECK { "id": 48034, "name": "MAP03 - Bullets [S]", "pos": ["MAP03",-2752,384,-144], "keys": [] }
 AP-CHECK { "id": 48025, "name": "MAP03 - Stimpack [-2848,-104]", "pos": ["MAP03",-2848,-104,-144], "keys": [] }
 AP-CHECK { "id": 9443, "name": "MAP03 - Backpack", "pos": ["MAP03",-2728,-96,-144], "keys": [] }
@@ -123,7 +123,7 @@ AP-CHECK { "id": 48027, "name": "MAP03 - Stimpack [-2384,-320]", "pos": ["MAP03"
 AP-CHECK { "id": 4608, "name": "MAP03 - Super Shotgun", "pos": ["MAP03",-1824,-320,112], "keys": [] }
 AP-CHECK { "id": 48031, "name": "MAP03 - Stimpack [-1120,256]", "pos": ["MAP03",-1120,256,72], "keys": [] }
 AP-CHECK { "id": 48030, "name": "MAP03 - Stimpack [-1184,256]", "pos": ["MAP03",-1184,256,72], "keys": [] }
-AP-CHECK { "id": 48040, "name": "MAP03 - Secret 208", "keys": [] }
+AP-CHECK { "id": 48040, "name": "MAP03 - Secret 208", "pos": ["MAP03","secret","sector",208], "keys": [] }
 AP-CHECK { "id": 4711, "name": "MAP03 - Berserk", "pos": ["MAP03",-1664,1040,88], "keys": [] }
 AP-CHECK { "id": 48016, "name": "MAP03 - Rockets [-1616,816]", "pos": ["MAP03",-1616,816,88], "keys": [] }
 AP-CHECK { "id": 48017, "name": "MAP03 - Rockets [-1568,816]", "pos": ["MAP03",-1568,816,88], "keys": [] }
@@ -179,7 +179,7 @@ AP-CHECK { "id": 48038, "name": "MAP03 - GreenArmor [-2688,576]", "pos": ["MAP03
 AP-CHECK { "id": 385, "name": "MAP03 - RedCard", "pos": ["MAP03",-2448,-96,-40], "keys": [] }
 AP-CHECK { "id": 48028, "name": "MAP03 - Stimpack [-2528,-96]", "pos": ["MAP03",-2528,-96,-56], "keys": [] }
 AP-CHECK { "id": 48029, "name": "MAP03 - Stimpack [-2560,-96]", "pos": ["MAP03",-2560,-96,-56], "keys": [] }
-AP-CHECK { "id": 48039, "name": "MAP03 - Secret 57", "keys": [] }
+AP-CHECK { "id": 48039, "name": "MAP03 - Secret 57", "pos": ["MAP03","secret","sector",57], "keys": [] }
 AP-CHECK { "id": 4664, "name": "MAP03 - Soulsphere", "pos": ["MAP03",-2544,1328,88], "keys": [] }
 AP-CHECK { "id": 4607, "name": "MAP03 - YellowCard", "pos": ["MAP03",-2960,536,96], "keys": ["RedCard"] }
 AP-CHECK { "id": 47956, "name": "MAP03 - Medikit [-2208,2032]", "pos": ["MAP03",-2208,2032,64], "keys": ["YellowCard", "RedCard"] }
@@ -196,7 +196,7 @@ AP-CHECK { "id": 47975, "name": "MAP03 - ArmorBonus [-2112,3232]", "pos": ["MAP0
 AP-CHECK { "id": 47955, "name": "MAP03 - Medikit [-3104,1952]", "pos": ["MAP03",-3104,1952,16], "keys": ["BlueCard", "YellowCard", "RedCard"] }
 AP-CHECK { "id": 47993, "name": "MAP03 - HealthBonus [-3864,1728]", "pos": ["MAP03",-3864,1728,184], "keys": ["BlueCard", "YellowCard", "RedCard"] }
 AP-CHECK { "id": 47998, "name": "MAP03 - HealthBonus [-3872,1760]", "pos": ["MAP03",-3872,1760,184], "keys": ["BlueCard", "YellowCard", "RedCard"] }
-AP-CHECK { "id": 4721, "name": "MAP03 - Secret 91", "keys": ["BlueCard", "YellowCard", "RedCard"] }
+AP-CHECK { "id": 4721, "name": "MAP03 - Secret 91", "pos": ["MAP03","secret","sector",91], "keys": ["BlueCard", "YellowCard", "RedCard"] }
 AP-CHECK { "id": 47992, "name": "MAP03 - HealthBonus [-3904,1768]", "pos": ["MAP03",-3904,1768,184], "keys": ["BlueCard", "YellowCard", "RedCard"] }
 AP-CHECK { "id": 47994, "name": "MAP03 - HealthBonus [-3944,1728]", "pos": ["MAP03",-3944,1728,184], "keys": ["BlueCard", "YellowCard", "RedCard"] }
 AP-CHECK { "id": 4605, "name": "MAP03 - BlueArmor", "pos": ["MAP03",-3904,1728,184], "keys": ["BlueCard", "YellowCard", "RedCard"] }
@@ -216,12 +216,12 @@ AP-CHECK { "id": 48020, "name": "MAP03 - Shotgun Shells [-3712,-64]", "pos": ["M
 AP-CHECK { "id": 47954, "name": "MAP03 - Medikit [-3904,64]", "pos": ["MAP03",-3904,64,112], "keys": ["BlueCard", "YellowCard", "RedCard"] }
 AP-CHECK { "id": 47950, "name": "MAP03 - Medikit [-2688,4128]", "pos": ["MAP03",-2688,4128,112], "keys": ["BlueCard", "YellowCard", "RedCard"] }
 AP-CHECK { "id": 47949, "name": "MAP03 - Medikit [-2752,4128]", "pos": ["MAP03",-2752,4128,112], "keys": ["BlueCard", "YellowCard", "RedCard"] }
-AP-CHECK { "id": 383, "name": "MAP03 - Exit", "keys": ["BlueCard", "YellowCard", "RedCard"] }
+AP-CHECK { "id": 383, "name": "MAP03 - Exit", "pos": ["MAP03","event","exit"], "keys": ["BlueCard", "YellowCard", "RedCard"] }
 AP-CHECK { "id": 48121, "name": "MAP04 - Medikit [-480,128]", "pos": ["MAP04",-480,128,0], "keys": [] }
 AP-CHECK { "id": 48042, "name": "MAP04 - Shotgun Shells [-48,176]", "pos": ["MAP04",-48,176,0], "keys": [] }
 AP-CHECK { "id": 4727, "name": "MAP04 - Shotgun", "pos": ["MAP04",-40,128,0], "keys": [] }
 AP-CHECK { "id": 48041, "name": "MAP04 - Shotgun Shells [-48,80]", "pos": ["MAP04",-48,80,0], "keys": [] }
-AP-CHECK { "id": 383, "name": "MAP03 - Exit", "keys": ["BlueCard", "YellowCard", "RedCard"] }
+AP-CHECK { "id": 383, "name": "MAP03 - Exit", "pos": ["MAP03","event","exit"], "keys": ["BlueCard", "YellowCard", "RedCard"] }
 AP-CHECK { "id": 9471, "name": "MAP04 - Chaingun", "pos": ["MAP04",480,648,112], "keys": [] }
 AP-CHECK { "id": 48051, "name": "MAP04 - Shotgun Shells [-96,448]", "pos": ["MAP04",-96,448,120], "keys": [] }
 AP-CHECK { "id": 48050, "name": "MAP04 - Shotgun Shells [-64,448]", "pos": ["MAP04",-64,448,120], "keys": [] }
@@ -246,8 +246,8 @@ AP-CHECK { "id": 28115, "name": "MAP04 - Plasma Rifle", "pos": ["MAP04",-160,227
 AP-CHECK { "id": 48070, "name": "MAP04 - Energy Cells [-160,2208]", "pos": ["MAP04",-160,2208,-24], "keys": [] }
 AP-CHECK { "id": 48069, "name": "MAP04 - Energy Cells [-96,2208]", "pos": ["MAP04",-96,2208,-24], "keys": [] }
 AP-CHECK { "id": 48067, "name": "MAP04 - Energy Cells [-96,2272]", "pos": ["MAP04",-96,2272,-24], "keys": [] }
-AP-CHECK { "id": 48128, "name": "MAP04 - Secret 219", "keys": [] }
-AP-CHECK { "id": 48127, "name": "MAP04 - Secret 148", "keys": [] }
+AP-CHECK { "id": 48128, "name": "MAP04 - Secret 219", "pos": ["MAP04","secret","sector",219], "keys": [] }
+AP-CHECK { "id": 48127, "name": "MAP04 - Secret 148", "pos": ["MAP04","secret","sector",148], "keys": [] }
 AP-CHECK { "id": 41050, "name": "MAP04 - BlueArmor", "pos": ["MAP04",-1200,1216,208], "keys": [] }
 AP-CHECK { "id": 4726, "name": "MAP04 - GreenArmor", "pos": ["MAP04",-480,-384,-128], "keys": [] }
 AP-CHECK { "id": 41069, "name": "MAP04 - Backpack", "pos": ["MAP04",-480,-1024,-128], "keys": [] }
@@ -256,7 +256,7 @@ AP-CHECK { "id": 48059, "name": "MAP04 - Shotgun Shells [-544,-1504]", "pos": ["
 AP-CHECK { "id": 4725, "name": "MAP04 - Super Shotgun", "pos": ["MAP04",-480,-1568,-120], "keys": [] }
 AP-CHECK { "id": 48060, "name": "MAP04 - Shotgun Shells [-416,-1504]", "pos": ["MAP04",-416,-1504,-128], "keys": [] }
 AP-CHECK { "id": 48118, "name": "MAP04 - Stimpack [-416,-1296]", "pos": ["MAP04",-416,-1296,-128], "keys": [] }
-AP-CHECK { "id": 48126, "name": "MAP04 - Secret 95", "keys": [] }
+AP-CHECK { "id": 48126, "name": "MAP04 - Secret 95", "pos": ["MAP04","secret","sector",95], "keys": [] }
 AP-CHECK { "id": 48106, "name": "MAP04 - HealthBonus [32,-1024]", "pos": ["MAP04",32,-1024,-128], "keys": [] }
 AP-CHECK { "id": 48105, "name": "MAP04 - HealthBonus [0,-1024]", "pos": ["MAP04",0,-1024,-128], "keys": [] }
 AP-CHECK { "id": 48101, "name": "MAP04 - HealthBonus [32,-992]", "pos": ["MAP04",32,-992,-128], "keys": [] }
@@ -282,7 +282,7 @@ AP-CHECK { "id": 48100, "name": "MAP04 - HealthBonus [64,-992]", "pos": ["MAP04"
 AP-CHECK { "id": 48107, "name": "MAP04 - HealthBonus [64,-1024]", "pos": ["MAP04",64,-1024,-128], "keys": [] }
 AP-CHECK { "id": 48099, "name": "MAP04 - HealthBonus [64,-960]", "pos": ["MAP04",64,-960,-128], "keys": [] }
 AP-CHECK { "id": 48074, "name": "MAP04 - Bullets [128,-864]", "pos": ["MAP04",128,-864,-112], "keys": [] }
-AP-CHECK { "id": 48125, "name": "MAP04 - Secret 89", "keys": [] }
+AP-CHECK { "id": 48125, "name": "MAP04 - Secret 89", "pos": ["MAP04","secret","sector",89], "keys": [] }
 AP-CHECK { "id": 48088, "name": "MAP04 - ArmorBonus [-1088,-1024]", "pos": ["MAP04",-1088,-1024,-128], "keys": [] }
 AP-CHECK { "id": 48087, "name": "MAP04 - ArmorBonus [-1056,-1024]", "pos": ["MAP04",-1056,-1024,-128], "keys": [] }
 AP-CHECK { "id": 48086, "name": "MAP04 - ArmorBonus [-1024,-1024]", "pos": ["MAP04",-1024,-1024,-128], "keys": [] }
@@ -317,12 +317,12 @@ AP-CHECK { "id": 48123, "name": "MAP04 - Medikit [-1600,224]", "pos": ["MAP04",-
 AP-CHECK { "id": 48124, "name": "MAP04 - BFG 9000", "pos": ["MAP04",-1600,800,80], "unreachable": true }
 AP-CHECK { "id": 9447, "name": "MAP04 - Megasphere", "pos": ["MAP04",-1536,800,80], "unreachable": true }
 AP-CHECK { "id": 48071, "name": "MAP04 - Energy Cells [-1664,800]", "pos": ["MAP04",-1664,800,80], "unreachable": true }
-AP-CHECK { "id": 455, "name": "MAP04 - Exit", "keys": ["BlueCard", "RedCard"] }
+AP-CHECK { "id": 455, "name": "MAP04 - Exit", "pos": ["MAP04","event","exit"], "keys": ["BlueCard", "RedCard"] }
 AP-CHECK { "id": 9476, "name": "MAP05 - Chaingun", "pos": ["MAP05",408,-2208,-16], "keys": [] }
 AP-CHECK { "id": 707, "name": "MAP05 - Berserk", "pos": ["MAP05",224,-2208,48], "keys": [] }
-AP-CHECK { "id": 48162, "name": "MAP05 - Secret 51", "keys": [] }
+AP-CHECK { "id": 48162, "name": "MAP05 - Secret 51", "pos": ["MAP05","secret","sector",51], "keys": [] }
 AP-CHECK { "id": 708, "name": "MAP05 - Soulsphere", "pos": ["MAP05",32,-2208,48], "keys": [] }
-AP-CHECK { "id": 48161, "name": "MAP05 - Secret 50", "keys": [] }
+AP-CHECK { "id": 48161, "name": "MAP05 - Secret 50", "pos": ["MAP05","secret","sector",50], "keys": [] }
 AP-CHECK { "id": 48149, "name": "MAP05 - Stimpack [-112,-1408]", "pos": ["MAP05",-112,-1408,0], "keys": [] }
 AP-CHECK { "id": 48147, "name": "MAP05 - Stimpack [-112,-1152]", "pos": ["MAP05",-112,-1152,0], "keys": [] }
 AP-CHECK { "id": 48130, "name": "MAP05 - Shotgun Shells [-376,-1240]", "pos": ["MAP05",-376,-1240,16], "keys": [] }
@@ -363,7 +363,7 @@ AP-CHECK { "id": 48154, "name": "MAP05 - Medikit [-320,1056]", "pos": ["MAP05",-
 AP-CHECK { "id": 48155, "name": "MAP05 - Medikit [224,1216]", "pos": ["MAP05",224,1216,0], "keys": [] }
 AP-CHECK { "id": 4910, "name": "MAP05 - BlueSkull", "pos": ["MAP05",128,1288,0], "keys": [] }
 AP-CHECK { "id": 680, "name": "MAP05 - Rocket Launcher", "pos": ["MAP05",32,1216,0], "keys": [] }
-AP-CHECK { "id": 547, "name": "MAP05 - Exit", "keys": ["BlueSkull"] }
+AP-CHECK { "id": 547, "name": "MAP05 - Exit", "pos": ["MAP05","event","exit"], "keys": ["BlueSkull"] }
 AP-CHECK { "id": 48164, "name": "MAP06 - Stimpack [32,32]", "pos": ["MAP06",32,32,16], "keys": [] }
 AP-CHECK { "id": 28248, "name": "MAP06 - Berserk", "pos": ["MAP06",32,160,16], "keys": [] }
 AP-CHECK { "id": 48163, "name": "MAP06 - Stimpack [160,160]", "pos": ["MAP06",160,160,16], "keys": [] }
@@ -386,7 +386,7 @@ AP-CHECK { "id": 48181, "name": "MAP06 - HealthBonus [1952,-384]", "pos": ["MAP0
 AP-CHECK { "id": 48186, "name": "MAP06 - HealthBonus [1952,-448]", "pos": ["MAP06",1952,-448,32], "keys": [] }
 AP-CHECK { "id": 48188, "name": "MAP06 - HealthBonus [1952,-512]", "pos": ["MAP06",1952,-512,32], "keys": [] }
 AP-CHECK { "id": 48187, "name": "MAP06 - HealthBonus [2016,-512]", "pos": ["MAP06",2016,-512,32], "keys": [] }
-AP-CHECK { "id": 48191, "name": "MAP06 - Secret 59", "keys": [] }
+AP-CHECK { "id": 48191, "name": "MAP06 - Secret 59", "pos": ["MAP06","secret","sector",59], "keys": [] }
 AP-CHECK { "id": 48169, "name": "MAP06 - Stimpack [2112,512]", "pos": ["MAP06",2112,512,240], "keys": [] }
 AP-CHECK { "id": 48172, "name": "MAP06 - Shotgun Shells [-288,-480]", "pos": ["MAP06",-288,-480,240], "keys": [] }
 AP-CHECK { "id": 48174, "name": "MAP06 - Bullets [-288,-448]", "pos": ["MAP06",-288,-448,240], "keys": [] }
@@ -395,21 +395,21 @@ AP-CHECK { "id": 48170, "name": "MAP06 - Shotgun Shells [-224,-480]", "pos": ["M
 AP-CHECK { "id": 15307, "name": "MAP06 - Backpack", "pos": ["MAP06",-224,-416,240], "keys": [] }
 AP-CHECK { "id": 789, "name": "MAP06 - Shotgun", "pos": ["MAP06",-160,-448,320], "keys": [] }
 AP-CHECK { "id": 5054, "name": "MAP06 - BlueArmor", "pos": ["MAP06",672,-320,320], "keys": [] }
-AP-CHECK { "id": 48193, "name": "MAP06 - Secret 130", "keys": [] }
+AP-CHECK { "id": 48193, "name": "MAP06 - Secret 130", "pos": ["MAP06","secret","sector",130], "keys": [] }
 AP-CHECK { "id": 728, "name": "MAP06 - RedCard", "pos": ["MAP06",-352,32,64], "keys": [] }
-AP-CHECK { "id": 48192, "name": "MAP06 - Secret 92", "keys": [] }
+AP-CHECK { "id": 48192, "name": "MAP06 - Secret 92", "pos": ["MAP06","secret","sector",92], "keys": [] }
 AP-CHECK { "id": 815, "name": "MAP06 - Super Shotgun", "pos": ["MAP06",1120,320,272], "keys": [] }
 AP-CHECK { "id": 48168, "name": "MAP06 - Stimpack [1632,-736]", "pos": ["MAP06",1632,-736,32], "keys": [] }
 AP-CHECK { "id": 48173, "name": "MAP06 - Shotgun Shells [1440,-736]", "pos": ["MAP06",1440,-736,32], "keys": [] }
 AP-CHECK { "id": 48189, "name": "MAP06 - Medikit [2496,128]", "pos": ["MAP06",2496,128,32], "keys": ["RedCard"] }
 AP-CHECK { "id": 48190, "name": "MAP06 - Medikit [2496,64]", "pos": ["MAP06",2496,64,32], "keys": ["RedCard"] }
-AP-CHECK { "id": 715, "name": "MAP06 - Exit", "keys": ["RedCard"] }
+AP-CHECK { "id": 715, "name": "MAP06 - Exit", "pos": ["MAP06","event","exit"], "keys": ["RedCard"] }
 AP-CHECK { "id": 48199, "name": "MAP07 - Shotgun Shells [2208,-288]", "pos": ["MAP07",2208,-288,200], "keys": [] }
 AP-CHECK { "id": 28292, "name": "MAP07 - Shotgun", "pos": ["MAP07",2144,-288,200], "keys": [] }
 AP-CHECK { "id": 48200, "name": "MAP07 - Shotgun Shells [2080,-288]", "pos": ["MAP07",2080,-288,200], "keys": [] }
 AP-CHECK { "id": 5152, "name": "MAP07 - GreenArmor", "pos": ["MAP07",2144,-352,200], "keys": [] }
 AP-CHECK { "id": 9539, "name": "MAP07 - Chaingun", "pos": ["MAP07",1920,-304,184], "keys": [] }
-AP-CHECK { "id": 48232, "name": "MAP07 - Secret 112", "keys": [] }
+AP-CHECK { "id": 48232, "name": "MAP07 - Secret 112", "pos": ["MAP07","secret","sector",112], "keys": [] }
 AP-CHECK { "id": 15341, "name": "MAP07 - Berserk", "pos": ["MAP07",1856,-304,184], "keys": [] }
 AP-CHECK { "id": 5196, "name": "MAP07 - Bullets [S]", "pos": ["MAP07",864,-768,32], "keys": [] }
 AP-CHECK { "id": 48227, "name": "MAP07 - Medikit [S]", "pos": ["MAP07",768,-864,32], "keys": [] }
@@ -456,8 +456,8 @@ AP-CHECK { "id": 48197, "name": "MAP07 - Shotgun Shells [2208,-544]", "pos": ["M
 AP-CHECK { "id": 48198, "name": "MAP07 - Shotgun Shells [2080,-544]", "pos": ["MAP07",2080,-544,200], "keys": ["BlueSkull"] }
 AP-CHECK { "id": 48195, "name": "MAP07 - Shotgun Shells [2080,-480]", "pos": ["MAP07",2080,-480,200], "keys": ["BlueSkull"] }
 AP-CHECK { "id": 893, "name": "MAP07 - Super Shotgun", "pos": ["MAP07",2144,-544,224], "keys": ["BlueSkull"] }
-AP-CHECK { "id": 889, "name": "MAP07 - Exit", "keys": ["BlueSkull"] }
-AP-CHECK { "id": 889, "name": "MAP07 - Exit", "keys": ["BlueSkull"] }
+AP-CHECK { "id": 889, "name": "MAP07 - Exit", "pos": ["MAP07","event","exit"], "keys": ["BlueSkull"] }
+AP-CHECK { "id": 889, "name": "MAP07 - Exit", "pos": ["MAP07","event","exit"], "keys": ["BlueSkull"] }
 AP-CHECK { "id": 48269, "name": "MAP08 - Bullets [-416,928]", "pos": ["MAP08",-416,928,32], "keys": [] }
 AP-CHECK { "id": 48236, "name": "MAP08 - Shotgun Shells [-1248,800]", "pos": ["MAP08",-1248,800,104], "keys": [] }
 AP-CHECK { "id": 48235, "name": "MAP08 - Shotgun Shells [-1360,800]", "pos": ["MAP08",-1360,800,104], "keys": [] }
@@ -486,8 +486,8 @@ AP-CHECK { "id": 48261, "name": "MAP08 - Shotgun Shells [576,3168]", "pos": ["MA
 AP-CHECK { "id": 48262, "name": "MAP08 - Shotgun Shells [192,3328]", "pos": ["MAP08",192,3328,32], "keys": [] }
 AP-CHECK { "id": 48234, "name": "MAP08 - Shotgun [NW]", "pos": ["MAP08",192,3376,32], "keys": [] }
 AP-CHECK { "id": 48331, "name": "MAP08 - Energy Cells [788,2096]", "pos": ["MAP08",788,2096,120], "keys": [] }
-AP-CHECK { "id": 48341, "name": "MAP08 - Secret 533", "keys": [] }
-AP-CHECK { "id": 48338, "name": "MAP08 - Secret 208", "keys": [] }
+AP-CHECK { "id": 48341, "name": "MAP08 - Secret 533", "pos": ["MAP08","secret","sector",533], "keys": [] }
+AP-CHECK { "id": 48338, "name": "MAP08 - Secret 208", "pos": ["MAP08","secret","sector",208], "keys": [] }
 AP-CHECK { "id": 48314, "name": "MAP08 - BlueArmor [Center]", "pos": ["MAP08",764,2256,176], "keys": [] }
 AP-CHECK { "id": 48316, "name": "MAP08 - HealthBonus", "pos": ["MAP08",420,2244,144], "keys": [] }
 AP-CHECK { "id": 48274, "name": "MAP08 - Bullets [736,1312]", "pos": ["MAP08",736,1312,144], "keys": [] }
@@ -499,9 +499,9 @@ AP-CHECK { "id": 48248, "name": "MAP08 - Shotgun Shells [-1376,1472]", "pos": ["
 AP-CHECK { "id": 48277, "name": "MAP08 - Medikit [-1312,1280]", "pos": ["MAP08",-1312,1280,-1872], "keys": [] }
 AP-CHECK { "id": 48247, "name": "MAP08 - Shotgun Shells [-1248,1472]", "pos": ["MAP08",-1248,1472,176], "keys": [] }
 AP-CHECK { "id": 5326, "name": "MAP08 - Super Shotgun", "pos": ["MAP08",-1312,1536,192], "keys": [] }
-AP-CHECK { "id": 48336, "name": "MAP08 - Secret 160", "keys": [] }
+AP-CHECK { "id": 48336, "name": "MAP08 - Secret 160", "pos": ["MAP08","secret","sector",160], "keys": [] }
 AP-CHECK { "id": 48292, "name": "MAP08 - Rockets [-1352,936]", "pos": ["MAP08",-1352,936,104], "keys": [] }
-AP-CHECK { "id": 48337, "name": "MAP08 - Secret 173", "keys": [] }
+AP-CHECK { "id": 48337, "name": "MAP08 - Secret 173", "pos": ["MAP08","secret","sector",173], "keys": [] }
 AP-CHECK { "id": 48291, "name": "MAP08 - Rockets [-1352,904]", "pos": ["MAP08",-1352,904,104], "keys": [] }
 AP-CHECK { "id": 48289, "name": "MAP08 - Rockets [-1256,936]", "pos": ["MAP08",-1256,936,104], "keys": [] }
 AP-CHECK { "id": 48290, "name": "MAP08 - Rockets [-1256,904]", "pos": ["MAP08",-1256,904,104], "keys": [] }
@@ -517,13 +517,13 @@ AP-CHECK { "id": 48299, "name": "MAP08 - Rockets [-592,2560]", "pos": ["MAP08",-
 AP-CHECK { "id": 48311, "name": "MAP08 - Rockets [-32,2944]", "pos": ["MAP08",-32,2944,336], "keys": [] }
 AP-CHECK { "id": 1039, "name": "MAP08 - Rocket Launcher", "pos": ["MAP08",-32,2912,336], "keys": [] }
 AP-CHECK { "id": 48312, "name": "MAP08 - Rockets [-32,2880]", "pos": ["MAP08",-32,2880,336], "keys": [] }
-AP-CHECK { "id": 48335, "name": "MAP08 - Secret 131", "keys": [] }
+AP-CHECK { "id": 48335, "name": "MAP08 - Secret 131", "pos": ["MAP08","secret","sector",131], "keys": [] }
 AP-CHECK { "id": 5242, "name": "MAP08 - RedCard", "pos": ["MAP08",-752,1168,128], "keys": [] }
-AP-CHECK { "id": 48339, "name": "MAP08 - Secret 309", "keys": ["RedCard"] }
+AP-CHECK { "id": 48339, "name": "MAP08 - Secret 309", "pos": ["MAP08","secret","sector",309], "keys": ["RedCard"] }
 AP-CHECK { "id": 48329, "name": "MAP08 - Soulsphere [NW]", "pos": ["MAP08",224,3632,32], "keys": ["RedCard"] }
 AP-CHECK { "id": 48330, "name": "MAP08 - Energy Cells [224,3728]", "pos": ["MAP08",224,3728,32], "keys": ["RedCard"] }
 AP-CHECK { "id": 15414, "name": "MAP08 - BFG 9000", "pos": ["MAP08",32,3696,184], "keys": ["RedCard"] }
-AP-CHECK { "id": 48340, "name": "MAP08 - Secret 320", "keys": ["RedCard"] }
+AP-CHECK { "id": 48340, "name": "MAP08 - Secret 320", "pos": ["MAP08","secret","sector",320], "keys": ["RedCard"] }
 AP-CHECK { "id": 48279, "name": "MAP08 - Medikit [416,4096]", "pos": ["MAP08",416,4096,88], "keys": [] }
 AP-CHECK { "id": 48280, "name": "MAP08 - Medikit [1376,4096]", "pos": ["MAP08",1376,4096,88], "keys": [] }
 AP-CHECK { "id": 48284, "name": "MAP08 - Medikit [2016,4416]", "pos": ["MAP08",2016,4416,88], "keys": [] }
@@ -563,7 +563,7 @@ AP-CHECK { "id": 48328, "name": "MAP08 - Stimpack [-720,14]", "pos": ["MAP08",-7
 AP-CHECK { "id": 48326, "name": "MAP08 - Stimpack [-693,494]", "pos": ["MAP08",-693,494,120], "keys": [] }
 AP-CHECK { "id": 48325, "name": "MAP08 - Stimpack [-792,530]", "pos": ["MAP08",-792,530,120], "keys": [] }
 AP-CHECK { "id": 965, "name": "MAP08 - Berserk", "pos": ["MAP08",-752,928,88], "keys": [] }
-AP-CHECK { "id": 48334, "name": "MAP08 - Secret 77", "keys": [] }
+AP-CHECK { "id": 48334, "name": "MAP08 - Secret 77", "pos": ["MAP08","secret","sector",77], "keys": [] }
 AP-CHECK { "id": 24274, "name": "MAP08 - YellowCard", "pos": ["MAP08",-480,1088,160], "keys": [] }
 AP-CHECK { "id": 48294, "name": "MAP08 - Rockets [-480,784]", "pos": ["MAP08",-480,784,160], "keys": [] }
 AP-CHECK { "id": 48293, "name": "MAP08 - Rockets [-480,752]", "pos": ["MAP08",-480,752,160], "keys": [] }
@@ -577,7 +577,7 @@ AP-CHECK { "id": 5223, "name": "MAP08 - Soulsphere [E]", "pos": ["MAP08",3040,17
 AP-CHECK { "id": 966, "name": "MAP08 - Plasma Rifle", "pos": ["MAP08",2656,1792,192], "keys": ["YellowCard"] }
 AP-CHECK { "id": 48332, "name": "MAP08 - Energy Cells [2944,1504]", "pos": ["MAP08",2944,1504,184], "keys": ["YellowCard"] }
 AP-CHECK { "id": 48333, "name": "MAP08 - Energy Cells [3136,1504]", "pos": ["MAP08",3136,1504,184], "keys": ["YellowCard"] }
-AP-CHECK { "id": 960, "name": "MAP08 - Exit", "keys": ["YellowCard"] }
+AP-CHECK { "id": 960, "name": "MAP08 - Exit", "pos": ["MAP08","event","exit"], "keys": ["YellowCard"] }
 AP-CHECK { "id": 48369, "name": "MAP09 - Bullets [-1032,-3432]", "pos": ["MAP09",-1032,-3432,208], "keys": [] }
 AP-CHECK { "id": 5432, "name": "MAP09 - Backpack", "pos": ["MAP09",-1000,-3424,208], "keys": [] }
 AP-CHECK { "id": 48362, "name": "MAP09 - Stimpack [-609,-3109]", "pos": ["MAP09",-609,-3109,8], "keys": [] }
@@ -588,7 +588,7 @@ AP-CHECK { "id": 48343, "name": "MAP09 - Shotgun Shells [-2183,-3024]", "pos": [
 AP-CHECK { "id": 1118, "name": "MAP09 - GreenArmor", "pos": ["MAP09",-2215,-2988,0], "keys": [] }
 AP-CHECK { "id": 15434, "name": "MAP09 - Shotgun", "pos": ["MAP09",-2167,-3076,-8], "keys": [] }
 AP-CHECK { "id": 1052, "name": "MAP09 - Super Shotgun", "pos": ["MAP09",-2451,-2952,48], "keys": [] }
-AP-CHECK { "id": 48371, "name": "MAP09 - Secret 45", "keys": [] }
+AP-CHECK { "id": 48371, "name": "MAP09 - Secret 45", "pos": ["MAP09","secret","sector",45], "keys": [] }
 AP-CHECK { "id": 48342, "name": "MAP09 - Shotgun Shells [-2519,-2960]", "pos": ["MAP09",-2519,-2960,48], "keys": [] }
 AP-CHECK { "id": 48349, "name": "MAP09 - Rockets [-2866,-3256]", "pos": ["MAP09",-2866,-3256,-112], "keys": [] }
 AP-CHECK { "id": 48350, "name": "MAP09 - Rockets [-2933,-3240]", "pos": ["MAP09",-2933,-3240,-112], "keys": [] }
@@ -596,7 +596,7 @@ AP-CHECK { "id": 5356, "name": "MAP09 - Rocket Launcher", "pos": ["MAP09",-2988,
 AP-CHECK { "id": 48351, "name": "MAP09 - Rockets [-2995,-3119]", "pos": ["MAP09",-2995,-3119,-112], "keys": [] }
 AP-CHECK { "id": 48352, "name": "MAP09 - Rockets [-2974,-3054]", "pos": ["MAP09",-2974,-3054,-112], "keys": [] }
 AP-CHECK { "id": 9691, "name": "MAP09 - Berserk", "pos": ["MAP09",-2290,-2399,144], "keys": [] }
-AP-CHECK { "id": 48372, "name": "MAP09 - Secret 140", "keys": [] }
+AP-CHECK { "id": 48372, "name": "MAP09 - Secret 140", "pos": ["MAP09","secret","sector",140], "keys": [] }
 AP-CHECK { "id": 24517, "name": "MAP09 - Energy Cells [SE]", "pos": ["MAP09",139,-2610,0], "keys": [] }
 AP-CHECK { "id": 5381, "name": "MAP09 - Plasma Rifle", "pos": ["MAP09",154,-2642,0], "keys": [] }
 AP-CHECK { "id": 48367, "name": "MAP09 - Bullets [-1071,-2472]", "pos": ["MAP09",-1071,-2472,216], "keys": [] }
@@ -620,7 +620,7 @@ AP-CHECK { "id": 48359, "name": "MAP09 - Medikit [-981,-817]", "pos": ["MAP09",-
 AP-CHECK { "id": 48370, "name": "MAP09 - Bullets [-1955,-744]", "pos": ["MAP09",-1955,-744,0], "keys": [] }
 AP-CHECK { "id": 48360, "name": "MAP09 - Energy Cells [NE]", "pos": ["MAP09",162,-550,-2048], "keys": [] }
 AP-CHECK { "id": 48358, "name": "MAP09 - Medikit [-832,-128]", "pos": ["MAP09",-832,-128,56], "keys": [] }
-AP-CHECK { "id": 1048, "name": "MAP09 - Exit", "keys": [] }
+AP-CHECK { "id": 1048, "name": "MAP09 - Exit", "pos": ["MAP09","event","exit"], "keys": [] }
 AP-CHECK { "id": 48373, "name": "MAP10 - Shotgun Shells [144,-1200]", "pos": ["MAP10",144,-1200,0], "keys": [] }
 AP-CHECK { "id": 1136, "name": "MAP10 - Shotgun", "pos": ["MAP10",192,-1224,0], "keys": [] }
 AP-CHECK { "id": 48374, "name": "MAP10 - Shotgun Shells [240,-1200]", "pos": ["MAP10",240,-1200,0], "keys": [] }
@@ -628,7 +628,7 @@ AP-CHECK { "id": 48375, "name": "MAP10 - Shotgun Shells [688,-1088]", "pos": ["M
 AP-CHECK { "id": 48376, "name": "MAP10 - Shotgun Shells [720,-1088]", "pos": ["MAP10",720,-1088,-16], "keys": [] }
 AP-CHECK { "id": 5546, "name": "MAP10 - GreenArmor", "pos": ["MAP10",864,-876,-16], "keys": [] }
 AP-CHECK { "id": 1164, "name": "MAP10 - Berserk", "pos": ["MAP10",352,-656,0], "keys": [] }
-AP-CHECK { "id": 48408, "name": "MAP10 - Secret 107", "keys": [] }
+AP-CHECK { "id": 48408, "name": "MAP10 - Secret 107", "pos": ["MAP10","secret","sector",107], "keys": [] }
 AP-CHECK { "id": 48383, "name": "MAP10 - Medikit [768,-1824]", "pos": ["MAP10",768,-1824,-32], "keys": [] }
 AP-CHECK { "id": 1137, "name": "MAP10 - Chaingun", "pos": ["MAP10",-64,-1536,-40], "keys": [] }
 AP-CHECK { "id": 1212, "name": "MAP10 - Super Shotgun", "pos": ["MAP10",-312,-672,-24], "keys": [] }
@@ -669,14 +669,14 @@ AP-CHECK { "id": 48405, "name": "MAP10 - Energy Cells [728,-5160]", "pos": ["MAP
 AP-CHECK { "id": 15548, "name": "MAP10 - BFG 9000", "pos": ["MAP10",768,-5176,-448], "keys": ["YellowCard"] }
 AP-CHECK { "id": 5469, "name": "MAP10 - Megasphere", "pos": ["MAP10",768,-5296,-448], "keys": ["YellowCard"] }
 AP-CHECK { "id": 48406, "name": "MAP10 - Energy Cells [808,-5160]", "pos": ["MAP10",808,-5160,-448], "keys": ["YellowCard"] }
-AP-CHECK { "id": 1135, "name": "MAP10 - Exit", "keys": ["YellowCard"] }
+AP-CHECK { "id": 1135, "name": "MAP10 - Exit", "pos": ["MAP10","event","exit"], "keys": ["YellowCard"] }
 AP-CHECK { "id": 48435, "name": "MAP11 - Medikit [416,-888]", "pos": ["MAP11",416,-888,-8], "keys": [] }
 AP-CHECK { "id": 5601, "name": "MAP11 - Shotgun", "pos": ["MAP11",416,-776,-8], "keys": [] }
 AP-CHECK { "id": 48422, "name": "MAP11 - Stimpack [376,-272]", "pos": ["MAP11",376,-272,160], "keys": [] }
 AP-CHECK { "id": 48423, "name": "MAP11 - Stimpack [456,-272]", "pos": ["MAP11",456,-272,160], "keys": [] }
 AP-CHECK { "id": 48409, "name": "MAP11 - Shotgun Shells [16,-128]", "pos": ["MAP11",16,-128,144], "keys": [] }
 AP-CHECK { "id": 48421, "name": "MAP11 - Chainsaw", "pos": ["MAP11",200,-280,104], "keys": [] }
-AP-CHECK { "id": 48446, "name": "MAP11 - Secret 92", "keys": [] }
+AP-CHECK { "id": 48446, "name": "MAP11 - Secret 92", "pos": ["MAP11","secret","sector",92], "keys": [] }
 AP-CHECK { "id": 1398, "name": "MAP11 - BlueArmor", "pos": ["MAP11",416,320,112], "keys": [] }
 AP-CHECK { "id": 5556, "name": "MAP11 - YellowCard", "pos": ["MAP11",-1312,732,112], "keys": [] }
 AP-CHECK { "id": 5557, "name": "MAP11 - GreenArmor", "pos": ["MAP11",-992,-88,144], "keys": [] }
@@ -713,12 +713,12 @@ AP-CHECK { "id": 48439, "name": "MAP11 - HealthBonus [1000,192]", "pos": ["MAP11
 AP-CHECK { "id": 48437, "name": "MAP11 - HealthBonus [1032,192]", "pos": ["MAP11",1032,192,-40], "keys": ["RedCard", "YellowCard"] }
 AP-CHECK { "id": 48438, "name": "MAP11 - HealthBonus [1064,192]", "pos": ["MAP11",1064,192,-40], "keys": ["RedCard", "YellowCard"] }
 AP-CHECK { "id": 48436, "name": "MAP11 - Medikit [2200,-856]", "pos": ["MAP11",2200,-856,104], "keys": ["RedCard", "YellowCard"] }
-AP-CHECK { "id": 48447, "name": "MAP11 - Secret 378", "keys": ["RedCard", "YellowCard"] }
+AP-CHECK { "id": 48447, "name": "MAP11 - Secret 378", "pos": ["MAP11","secret","sector",378], "keys": ["RedCard", "YellowCard"] }
 AP-CHECK { "id": 1334, "name": "MAP11 - Rocket Launcher", "pos": ["MAP11",1992,-816,104], "keys": ["RedCard", "YellowCard"] }
 AP-CHECK { "id": 48433, "name": "MAP11 - Medikit [-512,-1216]", "pos": ["MAP11",-512,-1216,0], "keys": ["RedCard", "YellowCard", "BlueCard"] }
 AP-CHECK { "id": 48419, "name": "MAP11 - Shotgun Shells [-712,-1224]", "pos": ["MAP11",-712,-1224,8], "keys": ["RedCard", "YellowCard", "BlueCard"] }
 AP-CHECK { "id": 48432, "name": "MAP11 - Medikit [-1944,-1152]", "pos": ["MAP11",-1944,-1152,40], "keys": ["RedCard", "YellowCard", "BlueCard"] }
-AP-CHECK { "id": 1297, "name": "MAP11 - Exit", "keys": ["RedCard", "YellowCard", "BlueCard"] }
+AP-CHECK { "id": 1297, "name": "MAP11 - Exit", "pos": ["MAP11","event","exit"], "keys": ["RedCard", "YellowCard", "BlueCard"] }
 AP-CHECK { "id": 5660, "name": "MAP12 - Shotgun", "pos": ["MAP12",2824,-544,32], "keys": [] }
 AP-CHECK { "id": 1484, "name": "MAP12 - GreenArmor", "pos": ["MAP12",2872,-544,32], "keys": [] }
 AP-CHECK { "id": 48458, "name": "MAP12 - Shotgun Shells [2760,-480]", "pos": ["MAP12",2760,-480,32], "keys": [] }
@@ -745,7 +745,7 @@ AP-CHECK { "id": 15879, "name": "MAP12 - BlueCard", "pos": ["MAP12",1408,-320,-8
 AP-CHECK { "id": 1483, "name": "MAP12 - Soulsphere", "pos": ["MAP12",1800,-492,64], "keys": [] }
 AP-CHECK { "id": 48469, "name": "MAP12 - Medikit [1408,-528]", "pos": ["MAP12",1408,-528,-144], "keys": [] }
 AP-CHECK { "id": 28607, "name": "MAP12 - BlueArmor", "pos": ["MAP12",1408,1104,-32], "keys": [] }
-AP-CHECK { "id": 48485, "name": "MAP12 - Secret 434", "keys": ["BlueCard"] }
+AP-CHECK { "id": 48485, "name": "MAP12 - Secret 434", "pos": ["MAP12","secret","sector",434], "keys": ["BlueCard"] }
 AP-CHECK { "id": 48449, "name": "MAP12 - Rockets [632,312]", "pos": ["MAP12",632,312,-56], "keys": ["BlueCard"] }
 AP-CHECK { "id": 48448, "name": "MAP12 - Rockets [584,312]", "pos": ["MAP12",584,312,-56], "keys": ["BlueCard"] }
 AP-CHECK { "id": 5661, "name": "MAP12 - Rocket Launcher", "pos": ["MAP12",584,232,-56], "keys": ["BlueCard"] }
@@ -769,7 +769,7 @@ AP-CHECK { "id": 48453, "name": "MAP12 - Rockets [656,1056]", "pos": ["MAP12",65
 AP-CHECK { "id": 48451, "name": "MAP12 - Rockets [656,1120]", "pos": ["MAP12",656,1120,-48], "keys": ["RedCard", "BlueCard"] }
 AP-CHECK { "id": 48479, "name": "MAP12 - Energy Cells [720,1056]", "pos": ["MAP12",720,1056,-48], "keys": ["RedCard", "BlueCard"] }
 AP-CHECK { "id": 48471, "name": "MAP12 - Medikit [784,1016]", "pos": ["MAP12",784,1016,-40], "keys": ["RedCard", "BlueCard"] }
-AP-CHECK { "id": 1401, "name": "MAP12 - Exit", "keys": ["RedCard", "BlueCard"] }
+AP-CHECK { "id": 1401, "name": "MAP12 - Exit", "pos": ["MAP12","event","exit"], "keys": ["RedCard", "BlueCard"] }
 AP-CHECK { "id": 48508, "name": "MAP13 - Shotgun Shells [928,-1088]", "pos": ["MAP13",928,-1088,-64], "keys": [] }
 AP-CHECK { "id": 5892, "name": "MAP13 - Backpack", "pos": ["MAP13",872,-1104,-64], "keys": [] }
 AP-CHECK { "id": 5798, "name": "MAP13 - Shotgun", "pos": ["MAP13",960,-1152,-56], "keys": [] }
@@ -789,7 +789,7 @@ AP-CHECK { "id": 5844, "name": "MAP13 - RedCard", "pos": ["MAP13",264,-944,76], 
 AP-CHECK { "id": 48534, "name": "MAP13 - Stimpack [392,-800]", "pos": ["MAP13",392,-800,64], "keys": [] }
 AP-CHECK { "id": 48533, "name": "MAP13 - Stimpack [344,-800]", "pos": ["MAP13",344,-800,64], "keys": [] }
 AP-CHECK { "id": 16041, "name": "MAP13 - BlueArmor", "pos": ["MAP13",1424,-1088,128], "keys": [] }
-AP-CHECK { "id": 48546, "name": "MAP13 - Secret 319", "keys": [] }
+AP-CHECK { "id": 48546, "name": "MAP13 - Secret 319", "pos": ["MAP13","secret","sector",319], "keys": [] }
 AP-CHECK { "id": 48545, "name": "MAP13 - HealthBonus [-496,-2112]", "pos": ["MAP13",-496,-2112,8], "keys": [] }
 AP-CHECK { "id": 48544, "name": "MAP13 - HealthBonus [-496,-2144]", "pos": ["MAP13",-496,-2144,8], "keys": [] }
 AP-CHECK { "id": 48543, "name": "MAP13 - HealthBonus [-496,-2176]", "pos": ["MAP13",-496,-2176,8], "keys": [] }
@@ -842,7 +842,7 @@ AP-CHECK { "id": 48503, "name": "MAP13 - Medikit [96,-2272]", "pos": ["MAP13",96
 AP-CHECK { "id": 48504, "name": "MAP13 - Medikit [288,-2464]", "pos": ["MAP13",288,-2464,-128], "keys": ["RedCard", "YellowCard", "BlueCard"] }
 AP-CHECK { "id": 48498, "name": "MAP13 - Medikit [960,-1664]", "pos": ["MAP13",960,-1664,-112], "keys": ["RedCard", "YellowCard", "BlueCard"] }
 AP-CHECK { "id": 48499, "name": "MAP13 - Medikit [960,-1576]", "pos": ["MAP13",960,-1576,-112], "keys": ["RedCard", "YellowCard", "BlueCard"] }
-AP-CHECK { "id": 1493, "name": "MAP13 - Exit", "keys": ["RedCard", "YellowCard", "BlueCard"] }
+AP-CHECK { "id": 1493, "name": "MAP13 - Exit", "pos": ["MAP13","event","exit"], "keys": ["RedCard", "YellowCard", "BlueCard"] }
 AP-CHECK { "id": 1688, "name": "MAP14 - Backpack", "pos": ["MAP14",384,512,0], "keys": [] }
 AP-CHECK { "id": 5982, "name": "MAP14 - Berserk", "pos": ["MAP14",64,608,0], "keys": [] }
 AP-CHECK { "id": 1570, "name": "MAP14 - Shotgun", "pos": ["MAP14",160,608,8], "keys": [] }
@@ -865,7 +865,7 @@ AP-CHECK { "id": 48583, "name": "MAP14 - Stimpack [-1600,128]", "pos": ["MAP14",
 AP-CHECK { "id": 48588, "name": "MAP14 - Energy Cells [-1600,704]", "pos": ["MAP14",-1600,704,160], "keys": [] }
 AP-CHECK { "id": 48585, "name": "MAP14 - Stimpack [-1600,1152]", "pos": ["MAP14",-1600,1152,160], "keys": [] }
 AP-CHECK { "id": 48593, "name": "MAP14 - BlueArmor [NW]", "pos": ["MAP14",-1600,1248,-24], "keys": [] }
-AP-CHECK { "id": 48606, "name": "MAP14 - Secret 832", "keys": [] }
+AP-CHECK { "id": 48606, "name": "MAP14 - Secret 832", "pos": ["MAP14","secret","sector",832], "keys": [] }
 AP-CHECK { "id": 48561, "name": "MAP14 - Shotgun Shells [-1656,1224]", "pos": ["MAP14",-1656,1224,-24], "keys": [] }
 AP-CHECK { "id": 48562, "name": "MAP14 - Shotgun Shells [-1544,1224]", "pos": ["MAP14",-1544,1224,-24], "keys": [] }
 AP-CHECK { "id": 48560, "name": "MAP14 - Shotgun Shells [-832,72]", "pos": ["MAP14",-832,72,-40], "keys": [] }
@@ -902,7 +902,7 @@ AP-CHECK { "id": 48564, "name": "MAP14 - Shotgun Shells [2592,-848]", "pos": ["M
 AP-CHECK { "id": 48567, "name": "MAP14 - Shotgun Shells [2720,-760]", "pos": ["MAP14",2720,-760,-56], "keys": ["RedCard"] }
 AP-CHECK { "id": 48566, "name": "MAP14 - Shotgun Shells [2976,-376]", "pos": ["MAP14",2976,-376,-56], "keys": ["RedCard"] }
 AP-CHECK { "id": 1689, "name": "MAP14 - Soulsphere", "pos": ["MAP14",736,224,64], "keys": ["RedCard"] }
-AP-CHECK { "id": 48607, "name": "MAP14 - Secret 1071", "keys": ["RedCard"] }
+AP-CHECK { "id": 48607, "name": "MAP14 - Secret 1071", "pos": ["MAP14","secret","sector",1071], "keys": ["RedCard"] }
 AP-CHECK { "id": 9946, "name": "MAP14 - BlueCard", "pos": ["MAP14",720,-224,-56], "keys": ["RedCard"] }
 AP-CHECK { "id": 48595, "name": "MAP14 - BFG 9000", "pos": ["MAP14",712,-264,-56], "keys": ["RedCard"] }
 AP-CHECK { "id": 48586, "name": "MAP14 - Stimpack [832,448]", "pos": ["MAP14",832,448,-64], "keys": ["RedCard"] }
@@ -911,12 +911,12 @@ AP-CHECK { "id": 48549, "name": "MAP14 - Shotgun Shells [-312,-552]", "pos": ["M
 AP-CHECK { "id": 48578, "name": "MAP14 - Medikit [1344,256]", "pos": ["MAP14",1344,256,128], "keys": ["RedCard"] }
 AP-CHECK { "id": 48604, "name": "MAP14 - Rockets [1344,192]", "pos": ["MAP14",1344,192,120], "keys": ["RedCard"] }
 AP-CHECK { "id": 48605, "name": "MAP14 - Rockets [1344,160]", "pos": ["MAP14",1344,160,120], "keys": ["RedCard"] }
-AP-CHECK { "id": 48608, "name": "MAP14 - Secret 1205", "keys": ["RedCard"] }
+AP-CHECK { "id": 48608, "name": "MAP14 - Secret 1205", "pos": ["MAP14","secret","sector",1205], "keys": ["RedCard"] }
 AP-CHECK { "id": 48556, "name": "MAP14 - Shotgun Shells [-664,-1024]", "pos": ["MAP14",-664,-1024,0], "keys": [] }
 AP-CHECK { "id": 48591, "name": "MAP14 - Energy Cells [-80,-1256]", "pos": ["MAP14",-80,-1256,32], "keys": ["BlueCard", "RedCard"] }
 AP-CHECK { "id": 48592, "name": "MAP14 - Energy Cells [-128,-1384]", "pos": ["MAP14",-128,-1384,32], "keys": ["BlueCard", "RedCard"] }
 AP-CHECK { "id": 48577, "name": "MAP14 - Medikit [-72,-1464]", "pos": ["MAP14",-72,-1464,0], "keys": ["BlueCard", "RedCard"] }
-AP-CHECK { "id": 1566, "name": "MAP14 - Exit", "keys": ["BlueCard", "RedCard"] }
+AP-CHECK { "id": 1566, "name": "MAP14 - Exit", "pos": ["MAP14","event","exit"], "keys": ["BlueCard", "RedCard"] }
 AP-CHECK { "id": 16090, "name": "MAP15 - Shotgun", "pos": ["MAP15",256,1360,52], "keys": [] }
 AP-CHECK { "id": 48637, "name": "MAP15 - GreenArmor [-480,1184]", "pos": ["MAP15",-480,1184,104], "keys": [] }
 AP-CHECK { "id": 16149, "name": "MAP15 - YellowCard", "pos": ["MAP15",256,1536,128], "keys": [] }
@@ -985,29 +985,29 @@ AP-CHECK { "id": 48659, "name": "MAP15 - Energy Cells [2340,1052]", "pos": ["MAP
 AP-CHECK { "id": 48656, "name": "MAP15 - Soulsphere [E]", "pos": ["MAP15",1952,1728,1032], "keys": ["BlueCard", "YellowCard", "RedCard"] }
 AP-CHECK { "id": 25656, "name": "MAP15 - BlueArmor [E]", "pos": ["MAP15",1952,640,1032], "keys": ["BlueCard", "YellowCard", "RedCard"] }
 AP-CHECK { "id": 48655, "name": "MAP15 - ArmorBonus", "pos": ["MAP15",-1328,1328,40], "keys": ["BlueCard", "RedCard"] }
-AP-CHECK { "id": 48662, "name": "MAP15 - Secret 1202", "keys": ["BlueCard", "RedCard"] }
-AP-CHECK { "id": 1696, "name": "MAP15 - Exit", "keys": ["BlueCard", "RedCard"] }
+AP-CHECK { "id": 48662, "name": "MAP15 - Secret 1202", "pos": ["MAP15","secret","sector",1202], "keys": ["BlueCard", "RedCard"] }
+AP-CHECK { "id": 1696, "name": "MAP15 - Exit", "pos": ["MAP15","event","exit"], "keys": ["BlueCard", "RedCard"] }
 AP-CHECK { "id": 50646, "name": "MAP31 - Shotgun Shells [288,-384]", "pos": ["MAP31",288,-384,0], "keys": [] }
-AP-CHECK { "id": 50651, "name": "MAP31 - Secret 8", "keys": [] }
+AP-CHECK { "id": 50651, "name": "MAP31 - Secret 8", "pos": ["MAP31","secret","sector",8], "keys": [] }
 AP-CHECK { "id": 50645, "name": "MAP31 - Shotgun Shells [288,-336]", "pos": ["MAP31",288,-336,0], "keys": [] }
-AP-CHECK { "id": 1696, "name": "MAP15 - Exit", "keys": ["BlueCard", "RedCard"] }
+AP-CHECK { "id": 1696, "name": "MAP15 - Exit", "pos": ["MAP15","event","exit"], "keys": ["BlueCard", "RedCard"] }
 AP-CHECK { "id": 4171, "name": "MAP31 - Megasphere", "pos": ["MAP31",96,-336,0], "keys": [] }
 AP-CHECK { "id": 4066, "name": "MAP31 - RedCard", "pos": ["MAP31",-160,192,124], "keys": [] }
 AP-CHECK { "id": 4064, "name": "MAP31 - BlueCard", "pos": ["MAP31",544,192,124], "keys": [] }
 AP-CHECK { "id": 4115, "name": "MAP31 - Rocket Launcher", "pos": ["MAP31",192,-544,8], "keys": [] }
 AP-CHECK { "id": 50647, "name": "MAP31 - Shotgun Shells [288,-560]", "pos": ["MAP31",288,-560,8], "keys": [] }
-AP-CHECK { "id": 1696, "name": "MAP15 - Exit", "keys": ["BlueCard", "RedCard"] }
+AP-CHECK { "id": 1696, "name": "MAP15 - Exit", "pos": ["MAP15","event","exit"], "keys": ["BlueCard", "RedCard"] }
 AP-CHECK { "id": 50648, "name": "MAP31 - Medikit", "pos": ["MAP31",96,-560,8], "keys": [] }
 AP-CHECK { "id": 4063, "name": "MAP31 - Super Shotgun", "pos": ["MAP31",192,-368,0], "keys": [] }
 AP-CHECK { "id": 4065, "name": "MAP31 - YellowCard", "pos": ["MAP31",192,-1168,-8], "keys": [] }
-AP-CHECK { "id": 1696, "name": "MAP15 - Exit", "keys": ["BlueCard", "RedCard"] }
+AP-CHECK { "id": 1696, "name": "MAP15 - Exit", "pos": ["MAP15","event","exit"], "keys": ["BlueCard", "RedCard"] }
 AP-CHECK { "id": 50650, "name": "MAP31 - Berserk [N]", "pos": ["MAP31",192,768,56], "keys": ["BlueCard", "YellowCard", "RedCard"] }
 AP-CHECK { "id": 50649, "name": "MAP31 - Berserk [NW]", "pos": ["MAP31",-368,960,0], "unreachable": true }
-AP-CHECK { "id": 4062, "name": "MAP31 - Exit", "keys": ["BlueCard", "YellowCard", "RedCard"] }
+AP-CHECK { "id": 4062, "name": "MAP31 - Exit", "pos": ["MAP31","event","exit"], "keys": ["BlueCard", "YellowCard", "RedCard"] }
 AP-CHECK { "id": 30184, "name": "MAP32 - Bullets", "pos": ["MAP32",96,64,0], "keys": [] }
 AP-CHECK { "id": 50662, "name": "MAP32 - Medikit [256,-32]", "pos": ["MAP32",256,-32,0], "keys": [] }
 AP-CHECK { "id": 11487, "name": "MAP32 - Chainsaw", "pos": ["MAP32",352,352,8], "keys": [] }
-AP-CHECK { "id": 50716, "name": "MAP32 - Secret 13", "keys": [] }
+AP-CHECK { "id": 50716, "name": "MAP32 - Secret 13", "pos": ["MAP32","secret","sector",13], "keys": [] }
 AP-CHECK { "id": 50652, "name": "MAP32 - Stimpack [Center]", "pos": ["MAP32",-96,224,0], "keys": [] }
 AP-CHECK { "id": 50659, "name": "MAP32 - HealthBonus", "pos": ["MAP32",-128,768,-56], "keys": [] }
 AP-CHECK { "id": 50653, "name": "MAP32 - Stimpack [N]", "pos": ["MAP32",-392,888,-56], "keys": [] }
@@ -1051,7 +1051,7 @@ AP-CHECK { "id": 50680, "name": "MAP32 - Energy Cells [64,-1120]", "pos": ["MAP3
 AP-CHECK { "id": 50687, "name": "MAP32 - Energy Cells [-480,-1248]", "pos": ["MAP32",-480,-1248,20], "keys": ["RedCard"] }
 AP-CHECK { "id": 50688, "name": "MAP32 - Energy Cells [-480,-1184]", "pos": ["MAP32",-480,-1184,20], "keys": ["RedCard"] }
 AP-CHECK { "id": 50670, "name": "MAP32 - Energy Cells [-448,-416]", "pos": ["MAP32",-448,-416,-32], "keys": ["RedCard"] }
-AP-CHECK { "id": 50717, "name": "MAP32 - Secret 137", "keys": ["RedCard"] }
+AP-CHECK { "id": 50717, "name": "MAP32 - Secret 137", "pos": ["MAP32","secret","sector",137], "keys": ["RedCard"] }
 AP-CHECK { "id": 50713, "name": "MAP32 - Megasphere [NW]", "pos": ["MAP32",-448,336,-32], "keys": ["RedCard"] }
 AP-CHECK { "id": 50704, "name": "MAP32 - Energy Cells [-512,896]", "pos": ["MAP32",-512,896,16], "keys": ["RedCard"] }
 AP-CHECK { "id": 50705, "name": "MAP32 - Energy Cells [-560,896]", "pos": ["MAP32",-560,896,16], "keys": ["RedCard"] }
@@ -1081,14 +1081,14 @@ AP-CHECK { "id": 50693, "name": "MAP32 - Energy Cells [168,800]", "pos": ["MAP32
 AP-CHECK { "id": 50691, "name": "MAP32 - Energy Cells [168,840]", "pos": ["MAP32",168,840,-56], "keys": ["RedCard", "BlueSkull"] }
 AP-CHECK { "id": 50692, "name": "MAP32 - Energy Cells [168,880]", "pos": ["MAP32",168,880,-56], "keys": ["RedCard", "BlueSkull"] }
 AP-CHECK { "id": 11488, "name": "MAP32 - Berserk", "pos": ["MAP32",1312,160,0], "unreachable": true }
-AP-CHECK { "id": 4180, "name": "MAP32 - Exit", "keys": ["RedCard", "YellowSkull", "BlueSkull"] }
+AP-CHECK { "id": 4180, "name": "MAP32 - Exit", "pos": ["MAP32","event","exit"], "keys": ["RedCard", "YellowSkull", "BlueSkull"] }
 AP-CHECK { "id": 48677, "name": "MAP16 - Bullets [1840,-120]", "pos": ["MAP16",1840,-120,-188], "keys": [] }
 AP-CHECK { "id": 48679, "name": "MAP16 - Bullets [1920,-136]", "pos": ["MAP16",1920,-136,-188], "keys": [] }
 AP-CHECK { "id": 48678, "name": "MAP16 - Bullets [2000,-152]", "pos": ["MAP16",2000,-152,-188], "keys": [] }
 AP-CHECK { "id": 48675, "name": "MAP16 - Shotgun Shells [1888,120]", "pos": ["MAP16",1888,120,-188], "keys": [] }
 AP-CHECK { "id": 48676, "name": "MAP16 - Shotgun Shells [1912,136]", "pos": ["MAP16",1912,136,-188], "keys": [] }
 AP-CHECK { "id": 1812, "name": "MAP16 - YellowSkull", "pos": ["MAP16",1956,152,-188], "keys": [] }
-AP-CHECK { "id": 48684, "name": "MAP16 - Secret 139", "keys": ["YellowSkull"] }
+AP-CHECK { "id": 48684, "name": "MAP16 - Secret 139", "pos": ["MAP16","secret","sector",139], "keys": ["YellowSkull"] }
 AP-CHECK { "id": 48668, "name": "MAP16 - HealthBonus [384,-520]", "pos": ["MAP16",384,-520,0], "keys": ["YellowSkull"] }
 AP-CHECK { "id": 48667, "name": "MAP16 - HealthBonus [384,-576]", "pos": ["MAP16",384,-576,0], "keys": ["YellowSkull"] }
 AP-CHECK { "id": 48666, "name": "MAP16 - HealthBonus [384,-632]", "pos": ["MAP16",384,-632,0], "keys": ["YellowSkull"] }
@@ -1101,21 +1101,21 @@ AP-CHECK { "id": 48664, "name": "MAP16 - HealthBonus [256,-576]", "pos": ["MAP16
 AP-CHECK { "id": 48663, "name": "MAP16 - HealthBonus [256,-632]", "pos": ["MAP16",256,-632,0], "keys": ["YellowSkull"] }
 AP-CHECK { "id": 48680, "name": "MAP16 - Medikit", "pos": ["MAP16",-352,-320,104], "keys": ["YellowSkull"] }
 AP-CHECK { "id": 16248, "name": "MAP16 - BlueSkull", "pos": ["MAP16",400,784,88], "keys": ["YellowSkull"] }
-AP-CHECK { "id": 48685, "name": "MAP16 - Secret 146", "keys": ["YellowSkull", "BlueSkull"] }
+AP-CHECK { "id": 48685, "name": "MAP16 - Secret 146", "pos": ["MAP16","secret","sector",146], "keys": ["YellowSkull", "BlueSkull"] }
 AP-CHECK { "id": 2088, "name": "MAP16 - Backpack", "pos": ["MAP16",1056,544,8], "keys": ["YellowSkull", "BlueSkull"] }
 AP-CHECK { "id": 48681, "name": "MAP16 - Stimpack", "pos": ["MAP16",488,-16,72], "keys": ["YellowSkull", "BlueSkull"] }
-AP-CHECK { "id": 48686, "name": "MAP16 - Secret 187", "keys": ["YellowSkull", "BlueSkull"] }
+AP-CHECK { "id": 48686, "name": "MAP16 - Secret 187", "pos": ["MAP16","secret","sector",187], "keys": ["YellowSkull", "BlueSkull"] }
 AP-CHECK { "id": 48674, "name": "MAP16 - Shotgun [552,40]", "pos": ["MAP16",552,40,104], "keys": ["YellowSkull", "BlueSkull"] }
 AP-CHECK { "id": 48683, "name": "MAP16 - ArmorBonus [592,104]", "pos": ["MAP16",592,104,40], "keys": ["YellowSkull", "BlueSkull"] }
 AP-CHECK { "id": 48682, "name": "MAP16 - ArmorBonus [620,104]", "pos": ["MAP16",620,104,40], "keys": ["YellowSkull", "BlueSkull"] }
 AP-CHECK { "id": 1811, "name": "MAP16 - RedSkull", "pos": ["MAP16",744,-72,40], "keys": ["YellowSkull", "BlueSkull"] }
 AP-CHECK { "id": 48672, "name": "MAP16 - GreenArmor [W]", "pos": ["MAP16",-1482,-170,96], "unreachable": true }
-AP-CHECK { "id": 1805, "name": "MAP16 - Exit", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 1805, "name": "MAP16 - Exit", "pos": ["MAP16","event","exit"], "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
 AP-CHECK { "id": 48687, "name": "MAP17 - GreenArmor [NE]", "pos": ["MAP17",-2206,-896,96], "keys": [] }
 AP-CHECK { "id": 2121, "name": "MAP17 - Shotgun", "pos": ["MAP17",-1528,-592,112], "keys": [] }
 AP-CHECK { "id": 2164, "name": "MAP17 - Berserk", "pos": ["MAP17",-1192,-844,104], "keys": [] }
 AP-CHECK { "id": 48717, "name": "MAP17 - Shotgun Shells [-1192,-904]", "pos": ["MAP17",-1192,-904,104], "keys": [] }
-AP-CHECK { "id": 48766, "name": "MAP17 - Secret 318", "keys": [] }
+AP-CHECK { "id": 48766, "name": "MAP17 - Secret 318", "pos": ["MAP17","secret","sector",318], "keys": [] }
 AP-CHECK { "id": 48716, "name": "MAP17 - Shotgun Shells [-1140,-832]", "pos": ["MAP17",-1140,-832,104], "keys": [] }
 AP-CHECK { "id": 48715, "name": "MAP17 - Shotgun Shells [-1204,-780]", "pos": ["MAP17",-1204,-780,104], "keys": [] }
 AP-CHECK { "id": 2095, "name": "MAP17 - Chaingun", "pos": ["MAP17",-1376,-2752,-12], "keys": [] }
@@ -1139,7 +1139,7 @@ AP-CHECK { "id": 48730, "name": "MAP17 - Medikit [-3272,-2880]", "pos": ["MAP17"
 AP-CHECK { "id": 2093, "name": "MAP17 - BlueSkull", "pos": ["MAP17",-3144,-3720,-360], "keys": [] }
 AP-CHECK { "id": 48737, "name": "MAP17 - Bullets [-3288,-2232]", "pos": ["MAP17",-3288,-2232,-432], "keys": [] }
 AP-CHECK { "id": 6340, "name": "MAP17 - GreenArmor [Center]", "pos": ["MAP17",-3244,-2224,-432], "keys": [] }
-AP-CHECK { "id": 48767, "name": "MAP17 - Secret 343", "keys": [] }
+AP-CHECK { "id": 48767, "name": "MAP17 - Secret 343", "pos": ["MAP17","secret","sector",343], "keys": [] }
 AP-CHECK { "id": 48702, "name": "MAP17 - Shotgun Shells [-3760,-3040]", "pos": ["MAP17",-3760,-3040,-352], "keys": ["BlueSkull"] }
 AP-CHECK { "id": 48731, "name": "MAP17 - Medikit [-3800,-3504]", "pos": ["MAP17",-3800,-3504,-312], "keys": ["BlueSkull"] }
 AP-CHECK { "id": 48747, "name": "MAP17 - Rockets [-4000,-3496]", "pos": ["MAP17",-4000,-3496,-344], "keys": ["BlueSkull"] }
@@ -1204,7 +1204,7 @@ AP-CHECK { "id": 48690, "name": "MAP17 - Energy Cells [-2984,-2192]", "pos": ["M
 AP-CHECK { "id": 48729, "name": "MAP17 - Medikit [-2936,-2152]", "pos": ["MAP17",-2936,-2152,-400], "keys": ["BlueSkull", "YellowSkull"] }
 AP-CHECK { "id": 48758, "name": "MAP17 - Rockets [-2936,-2104]", "pos": ["MAP17",-2936,-2104,-400], "keys": ["BlueSkull", "YellowSkull"] }
 AP-CHECK { "id": 48757, "name": "MAP17 - Rockets [-2888,-2096]", "pos": ["MAP17",-2888,-2096,-400], "keys": ["BlueSkull", "YellowSkull"] }
-AP-CHECK { "id": 2091, "name": "MAP17 - Exit", "keys": ["BlueSkull", "YellowSkull"] }
+AP-CHECK { "id": 2091, "name": "MAP17 - Exit", "pos": ["MAP17","event","exit"], "keys": ["BlueSkull", "YellowSkull"] }
 AP-CHECK { "id": 16462, "name": "MAP18 - Shotgun", "pos": ["MAP18",272,-304,-272], "keys": [] }
 AP-CHECK { "id": 48778, "name": "MAP18 - Shotgun Shells [256,-272]", "pos": ["MAP18",256,-272,-272], "keys": [] }
 AP-CHECK { "id": 48786, "name": "MAP18 - Stimpack [1912,-56]", "pos": ["MAP18",1912,-56,48], "keys": [] }
@@ -1230,7 +1230,7 @@ AP-CHECK { "id": 48792, "name": "MAP18 - Medikit [Center]", "pos": ["MAP18",1480
 AP-CHECK { "id": 48779, "name": "MAP18 - Shotgun Shells [1532,1244]", "pos": ["MAP18",1532,1244,40], "keys": [] }
 AP-CHECK { "id": 2217, "name": "MAP18 - BlueSkull", "pos": ["MAP18",1888,1248,40], "keys": [] }
 AP-CHECK { "id": 48774, "name": "MAP18 - Shotgun Shells [1912,892]", "pos": ["MAP18",1912,892,128], "keys": [] }
-AP-CHECK { "id": 48809, "name": "MAP18 - Secret 55", "keys": [] }
+AP-CHECK { "id": 48809, "name": "MAP18 - Secret 55", "pos": ["MAP18","secret","sector",55], "keys": [] }
 AP-CHECK { "id": 16486, "name": "MAP18 - Berserk", "pos": ["MAP18",3344,-720,56], "keys": [] }
 AP-CHECK { "id": 6496, "name": "MAP18 - Rocket Launcher", "pos": ["MAP18",4156,76,48], "keys": ["BlueSkull"] }
 AP-CHECK { "id": 48799, "name": "MAP18 - Rockets [4456,116]", "pos": ["MAP18",4456,116,48], "keys": ["BlueSkull"] }
@@ -1259,7 +1259,7 @@ AP-CHECK { "id": 48808, "name": "MAP18 - Energy Cells [2592,-1100]", "pos": ["MA
 AP-CHECK { "id": 48782, "name": "MAP18 - Shotgun Shells [3540,-936]", "pos": ["MAP18",3540,-936,160], "keys": ["RedSkull", "BlueSkull"] }
 AP-CHECK { "id": 48783, "name": "MAP18 - Shotgun Shells [3696,-644]", "pos": ["MAP18",3696,-644,144], "keys": ["RedSkull", "BlueSkull"] }
 AP-CHECK { "id": 48789, "name": "MAP18 - Stimpack [4088,-632]", "pos": ["MAP18",4088,-632,144], "keys": ["RedSkull", "BlueSkull"] }
-AP-CHECK { "id": 2216, "name": "MAP18 - Exit", "keys": ["RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 2216, "name": "MAP18 - Exit", "pos": ["MAP18","event","exit"], "keys": ["RedSkull", "BlueSkull"] }
 AP-CHECK { "id": 6597, "name": "MAP19 - Backpack", "pos": ["MAP19",160,-416,8], "keys": [] }
 AP-CHECK { "id": 2472, "name": "MAP19 - Berserk", "pos": ["MAP19",220,-484,8], "keys": [] }
 AP-CHECK { "id": 2288, "name": "MAP19 - Shotgun", "pos": ["MAP19",224,-348,8], "keys": [] }
@@ -1270,8 +1270,8 @@ AP-CHECK { "id": 48813, "name": "MAP19 - Shotgun Shells [1688,-1808]", "pos": ["
 AP-CHECK { "id": 2287, "name": "MAP19 - YellowSkull", "pos": ["MAP19",1664,-1248,216], "keys": [] }
 AP-CHECK { "id": 16810, "name": "MAP19 - Chaingun", "pos": ["MAP19",1984,-896,-8], "keys": [] }
 AP-CHECK { "id": 48822, "name": "MAP19 - Medikit [1152,148]", "pos": ["MAP19",1152,148,40], "keys": [] }
-AP-CHECK { "id": 2216, "name": "MAP18 - Exit", "keys": ["RedSkull", "BlueSkull"] }
-AP-CHECK { "id": 2216, "name": "MAP18 - Exit", "keys": ["RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 2216, "name": "MAP18 - Exit", "pos": ["MAP18","event","exit"], "keys": ["RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 2216, "name": "MAP18 - Exit", "pos": ["MAP18","event","exit"], "keys": ["RedSkull", "BlueSkull"] }
 AP-CHECK { "id": 48812, "name": "MAP19 - Shotgun Shells [456,360]", "pos": ["MAP19",456,360,80], "keys": [] }
 AP-CHECK { "id": 48831, "name": "MAP19 - Bullets [NW]", "pos": ["MAP19",296,360,80], "keys": [] }
 AP-CHECK { "id": 48826, "name": "MAP19 - Energy Cells [408,560]", "pos": ["MAP19",408,560,200], "keys": [] }
@@ -1285,7 +1285,7 @@ AP-CHECK { "id": 48828, "name": "MAP19 - Energy Cells [2200,700]", "pos": ["MAP1
 AP-CHECK { "id": 48829, "name": "MAP19 - Energy Cells [2168,720]", "pos": ["MAP19",2168,720,0], "keys": [] }
 AP-CHECK { "id": 48819, "name": "MAP19 - Shotgun Shells [2124,-376]", "pos": ["MAP19",2124,-376,16], "keys": [] }
 AP-CHECK { "id": 48818, "name": "MAP19 - Shotgun Shells [2048,72]", "pos": ["MAP19",2048,72,152], "keys": [] }
-AP-CHECK { "id": 48849, "name": "MAP19 - Secret 408", "keys": [] }
+AP-CHECK { "id": 48849, "name": "MAP19 - Secret 408", "pos": ["MAP19","secret","sector",408], "keys": [] }
 AP-CHECK { "id": 16885, "name": "MAP19 - BlurSphere", "pos": ["MAP19",2120,-72,160], "keys": [] }
 AP-CHECK { "id": 6498, "name": "MAP19 - BFG 9000", "pos": ["MAP19",1968,0,160], "keys": [] }
 AP-CHECK { "id": 48832, "name": "MAP19 - Bullets [N]", "pos": ["MAP19",1536,416,80], "keys": [] }
@@ -1299,7 +1299,7 @@ AP-CHECK { "id": 48839, "name": "MAP19 - Rockets [1896,416]", "pos": ["MAP19",18
 AP-CHECK { "id": 48838, "name": "MAP19 - Rockets [1896,448]", "pos": ["MAP19",1896,448,40], "keys": [] }
 AP-CHECK { "id": 48837, "name": "MAP19 - Rockets [1896,480]", "pos": ["MAP19",1896,480,40], "keys": [] }
 AP-CHECK { "id": 48834, "name": "MAP19 - Stimpack [NE]", "pos": ["MAP19",1808,408,40], "keys": [] }
-AP-CHECK { "id": 48848, "name": "MAP19 - Secret 208", "keys": [] }
+AP-CHECK { "id": 48848, "name": "MAP19 - Secret 208", "pos": ["MAP19","secret","sector",208], "keys": [] }
 AP-CHECK { "id": 16867, "name": "MAP19 - Soulsphere", "pos": ["MAP19",2624,-832,16], "keys": [] }
 AP-CHECK { "id": 48843, "name": "MAP19 - Rockets [-120,-80]", "pos": ["MAP19",-120,-80,80], "keys": ["RedSkull", "YellowSkull"] }
 AP-CHECK { "id": 48835, "name": "MAP19 - Stimpack [NW]", "pos": ["MAP19",-240,-196,80], "keys": ["RedSkull", "YellowSkull"] }
@@ -1316,10 +1316,10 @@ AP-CHECK { "id": 48825, "name": "MAP19 - Medikit [1184,-2504]", "pos": ["MAP19",
 AP-CHECK { "id": 48830, "name": "MAP19 - Energy Cells [1248,-2496]", "pos": ["MAP19",1248,-2496,-128], "keys": ["RedSkull", "YellowSkull"] }
 AP-CHECK { "id": 48824, "name": "MAP19 - Medikit [1264,-2064]", "pos": ["MAP19",1264,-2064,0], "keys": ["RedSkull", "YellowSkull"] }
 AP-CHECK { "id": 2474, "name": "MAP19 - BlueArmor", "pos": ["MAP19",1400,-1240,-64], "keys": [] }
-AP-CHECK { "id": 2285, "name": "MAP19 - Exit", "keys": ["RedSkull", "YellowSkull"] }
+AP-CHECK { "id": 2285, "name": "MAP19 - Exit", "pos": ["MAP19","event","exit"], "keys": ["RedSkull", "YellowSkull"] }
 AP-CHECK { "id": 29162, "name": "MAP20 - Shotgun", "pos": ["MAP20",2016,-1064,-8], "keys": [] }
 AP-CHECK { "id": 48850, "name": "MAP20 - Shotgun Shells [1624,-832]", "pos": ["MAP20",1624,-832,-56], "keys": [] }
-AP-CHECK { "id": 48990, "name": "MAP20 - Secret 46", "keys": [] }
+AP-CHECK { "id": 48990, "name": "MAP20 - Secret 46", "pos": ["MAP20","secret","sector",46], "keys": [] }
 AP-CHECK { "id": 6843, "name": "MAP20 - Soulsphere [Center]", "pos": ["MAP20",1572,-812,-56], "keys": [] }
 AP-CHECK { "id": 2490, "name": "MAP20 - Super Shotgun", "pos": ["MAP20",1524,-828,-56], "keys": [] }
 AP-CHECK { "id": 48853, "name": "MAP20 - Shotgun Shells [460,-1732]", "pos": ["MAP20",460,-1732,-72], "keys": [] }
@@ -1402,7 +1402,7 @@ AP-CHECK { "id": 48943, "name": "MAP20 - Rockets [-1424,48]", "pos": ["MAP20",-1
 AP-CHECK { "id": 48975, "name": "MAP20 - HealthBonus [-1856,288]", "pos": ["MAP20",-1856,288,0], "keys": [] }
 AP-CHECK { "id": 48971, "name": "MAP20 - HealthBonus [-1824,288]", "pos": ["MAP20",-1824,288,0], "keys": [] }
 AP-CHECK { "id": 48970, "name": "MAP20 - HealthBonus [-1792,288]", "pos": ["MAP20",-1792,288,0], "keys": [] }
-AP-CHECK { "id": 48991, "name": "MAP20 - Secret 343", "keys": [] }
+AP-CHECK { "id": 48991, "name": "MAP20 - Secret 343", "pos": ["MAP20","secret","sector",343], "keys": [] }
 AP-CHECK { "id": 48969, "name": "MAP20 - HealthBonus [-1760,288]", "pos": ["MAP20",-1760,288,0], "keys": [] }
 AP-CHECK { "id": 48965, "name": "MAP20 - HealthBonus [-1728,288]", "pos": ["MAP20",-1728,288,0], "keys": [] }
 AP-CHECK { "id": 48978, "name": "MAP20 - HealthBonus [-1728,256]", "pos": ["MAP20",-1728,256,0], "keys": [] }
@@ -1437,7 +1437,7 @@ AP-CHECK { "id": 48981, "name": "MAP20 - HealthBonus [-1696,224]", "pos": ["MAP2
 AP-CHECK { "id": 2492, "name": "MAP20 - BlueArmor", "pos": ["MAP20",-1792,224,0], "keys": [] }
 AP-CHECK { "id": 48968, "name": "MAP20 - HealthBonus [-1856,224]", "pos": ["MAP20",-1856,224,0], "keys": [] }
 AP-CHECK { "id": 48967, "name": "MAP20 - HealthBonus [-1888,224]", "pos": ["MAP20",-1888,224,0], "keys": [] }
-AP-CHECK { "id": 48992, "name": "MAP20 - Secret 534", "keys": [] }
+AP-CHECK { "id": 48992, "name": "MAP20 - Secret 534", "pos": ["MAP20","secret","sector",534], "keys": [] }
 AP-CHECK { "id": 16935, "name": "MAP20 - Megasphere", "pos": ["MAP20",-108,-596,88], "keys": [] }
 AP-CHECK { "id": 48878, "name": "MAP20 - Medikit [-1720,1208]", "pos": ["MAP20",-1720,1208,0], "keys": [] }
 AP-CHECK { "id": 48879, "name": "MAP20 - Medikit [-1784,1216]", "pos": ["MAP20",-1784,1216,0], "keys": [] }
@@ -1471,7 +1471,7 @@ AP-CHECK { "id": 48915, "name": "MAP20 - Energy Cells [412,1828]", "pos": ["MAP2
 AP-CHECK { "id": 48885, "name": "MAP20 - Medikit [640,1984]", "pos": ["MAP20",640,1984,120], "keys": [] }
 AP-CHECK { "id": 48886, "name": "MAP20 - Medikit [1284,1988]", "pos": ["MAP20",1284,1988,120], "keys": [] }
 AP-CHECK { "id": 48919, "name": "MAP20 - Energy Cells [1500,1828]", "pos": ["MAP20",1500,1828,120], "keys": [] }
-AP-CHECK { "id": 2484, "name": "MAP20 - Exit", "keys": [] }
+AP-CHECK { "id": 2484, "name": "MAP20 - Exit", "pos": ["MAP20","event","exit"], "keys": [] }
 AP-CHECK { "id": 49013, "name": "MAP21 - Stimpack [48,-896]", "pos": ["MAP21",48,-896,120], "keys": [] }
 AP-CHECK { "id": 10600, "name": "MAP21 - Chainsaw", "pos": ["MAP21",1152,-384,112], "keys": [] }
 AP-CHECK { "id": 2710, "name": "MAP21 - Rocket Launcher", "pos": ["MAP21",-512,-384,112], "keys": [] }
@@ -1502,8 +1502,8 @@ AP-CHECK { "id": 26174, "name": "MAP21 - BlurSphere", "pos": ["MAP21",1712,2256,
 AP-CHECK { "id": 49009, "name": "MAP21 - Medikit [608,2432]", "pos": ["MAP21",608,2432,72], "keys": ["YellowSkull"] }
 AP-CHECK { "id": 49015, "name": "MAP21 - Stimpack [1152,1560]", "pos": ["MAP21",1152,1560,72], "keys": ["YellowSkull"] }
 AP-CHECK { "id": 49014, "name": "MAP21 - Stimpack [1488,1224]", "pos": ["MAP21",1488,1224,64], "keys": ["YellowSkull"] }
-AP-CHECK { "id": 49021, "name": "MAP21 - Secret 571", "keys": ["YellowSkull"] }
-AP-CHECK { "id": 2684, "name": "MAP21 - Exit", "keys": ["YellowSkull"] }
+AP-CHECK { "id": 49021, "name": "MAP21 - Secret 571", "pos": ["MAP21","secret","sector",571], "keys": ["YellowSkull"] }
+AP-CHECK { "id": 2684, "name": "MAP21 - Exit", "pos": ["MAP21","event","exit"], "keys": ["YellowSkull"] }
 AP-CHECK { "id": 2897, "name": "MAP22 - Shotgun", "pos": ["MAP22",832,-384,-8], "keys": [] }
 AP-CHECK { "id": 7013, "name": "MAP22 - Berserk", "pos": ["MAP22",832,-1432,-104], "keys": [] }
 AP-CHECK { "id": 49023, "name": "MAP22 - Medikit [376,-1472]", "pos": ["MAP22",376,-1472,-112], "keys": [] }
@@ -1585,9 +1585,9 @@ AP-CHECK { "id": 49079, "name": "MAP22 - Shotgun Shells [3304,432]", "pos": ["MA
 AP-CHECK { "id": 49080, "name": "MAP22 - Shotgun Shells [2904,152]", "pos": ["MAP22",2904,152,-40], "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
 AP-CHECK { "id": 49071, "name": "MAP22 - Energy Cells [3128,152]", "pos": ["MAP22",3128,152,-40], "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
 AP-CHECK { "id": 49084, "name": "MAP22 - Soulsphere [Center]", "pos": ["MAP22",2392,-448,0], "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
-AP-CHECK { "id": 49117, "name": "MAP22 - Secret 728", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 49117, "name": "MAP22 - Secret 728", "pos": ["MAP22","secret","sector",728], "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
 AP-CHECK { "id": 49025, "name": "MAP22 - Medikit [832,1872]", "pos": ["MAP22",832,1872,16], "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
-AP-CHECK { "id": 2749, "name": "MAP22 - Exit", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 2749, "name": "MAP22 - Exit", "pos": ["MAP22","event","exit"], "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
 AP-CHECK { "id": 10734, "name": "MAP23 - GreenArmor [S]", "pos": ["MAP23",384,-704,-32], "keys": [] }
 AP-CHECK { "id": 49136, "name": "MAP23 - Medikit [352,-1008]", "pos": ["MAP23",352,-1008,-32], "keys": [] }
 AP-CHECK { "id": 49137, "name": "MAP23 - Medikit [352,-1056]", "pos": ["MAP23",352,-1056,-32], "keys": [] }
@@ -1656,7 +1656,7 @@ AP-CHECK { "id": 49144, "name": "MAP23 - Medikit [-256,1472]", "pos": ["MAP23",-
 AP-CHECK { "id": 49145, "name": "MAP23 - Medikit [-64,1472]", "pos": ["MAP23",-64,1472,64], "keys": ["RedSkull"] }
 AP-CHECK { "id": 49165, "name": "MAP23 - Energy Cells [944,1216]", "pos": ["MAP23",944,1216,64], "keys": ["RedSkull"] }
 AP-CHECK { "id": 49262, "name": "MAP23 - Rockets [1088,1536]", "pos": ["MAP23",1088,1536,160], "keys": ["RedSkull"] }
-AP-CHECK { "id": 49288, "name": "MAP23 - Secret 471", "keys": ["RedSkull"] }
+AP-CHECK { "id": 49288, "name": "MAP23 - Secret 471", "pos": ["MAP23","secret","sector",471], "keys": ["RedSkull"] }
 AP-CHECK { "id": 49202, "name": "MAP23 - Energy Cells [1680,1696]", "pos": ["MAP23",1680,1696,24], "keys": ["BlueSkull", "RedSkull"] }
 AP-CHECK { "id": 49134, "name": "MAP23 - Shotgun Shells [1296,2616]", "pos": ["MAP23",1296,2616,80], "keys": ["BlueSkull", "RedSkull"] }
 AP-CHECK { "id": 49196, "name": "MAP23 - Energy Cells [1440,2400]", "pos": ["MAP23",1440,2400,80], "keys": ["BlueSkull", "RedSkull"] }
@@ -1664,7 +1664,7 @@ AP-CHECK { "id": 49149, "name": "MAP23 - Medikit [1496,2800]", "pos": ["MAP23",1
 AP-CHECK { "id": 49195, "name": "MAP23 - Energy Cells [1056,2976]", "pos": ["MAP23",1056,2976,80], "keys": ["BlueSkull", "RedSkull"] }
 AP-CHECK { "id": 49148, "name": "MAP23 - Medikit [1376,2912]", "pos": ["MAP23",1376,2912,80], "keys": ["BlueSkull", "RedSkull"] }
 AP-CHECK { "id": 49275, "name": "MAP23 - Rockets [1656,2360]", "pos": ["MAP23",1656,2360,80], "keys": ["BlueSkull", "RedSkull"] }
-AP-CHECK { "id": 49289, "name": "MAP23 - Secret 512", "keys": ["BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 49289, "name": "MAP23 - Secret 512", "pos": ["MAP23","secret","sector",512], "keys": ["BlueSkull", "RedSkull"] }
 AP-CHECK { "id": 49274, "name": "MAP23 - Rockets [1656,2424]", "pos": ["MAP23",1656,2424,80], "keys": ["BlueSkull", "RedSkull"] }
 AP-CHECK { "id": 49273, "name": "MAP23 - Rockets [1656,2488]", "pos": ["MAP23",1656,2488,80], "keys": ["BlueSkull", "RedSkull"] }
 AP-CHECK { "id": 49272, "name": "MAP23 - Rockets [1656,2552]", "pos": ["MAP23",1656,2552,80], "keys": ["BlueSkull", "RedSkull"] }
@@ -1731,7 +1731,7 @@ AP-CHECK { "id": 49175, "name": "MAP23 - Energy Cells [1344,1200]", "pos": ["MAP
 AP-CHECK { "id": 49219, "name": "MAP23 - Energy Cells [1392,1248]", "pos": ["MAP23",1392,1248,-256], "keys": ["BlueSkull", "RedSkull"] }
 AP-CHECK { "id": 49218, "name": "MAP23 - Energy Cells [1392,1296]", "pos": ["MAP23",1392,1296,-256], "keys": ["BlueSkull", "RedSkull"] }
 AP-CHECK { "id": 17127, "name": "MAP23 - YellowSkull", "pos": ["MAP23",1464,1652,-264], "keys": ["BlueSkull", "RedSkull"] }
-AP-CHECK { "id": 2899, "name": "MAP23 - Exit", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 2899, "name": "MAP23 - Exit", "pos": ["MAP23","event","exit"], "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
 AP-CHECK { "id": 3043, "name": "MAP24 - Shotgun", "pos": ["MAP24",896,-1472,96], "keys": [] }
 AP-CHECK { "id": 49508, "name": "MAP24 - GreenArmor [896,-1216]", "pos": ["MAP24",896,-1216,96], "keys": [] }
 AP-CHECK { "id": 49326, "name": "MAP24 - Shotgun Shells [608,-928]", "pos": ["MAP24",608,-928,96], "keys": [] }
@@ -1901,7 +1901,7 @@ AP-CHECK { "id": 49324, "name": "MAP24 - Shotgun Shells [424,-1592]", "pos": ["M
 AP-CHECK { "id": 49325, "name": "MAP24 - Shotgun Shells [464,-1592]", "pos": ["MAP24",464,-1592,-96], "keys": [] }
 AP-CHECK { "id": 49352, "name": "MAP24 - Rockets [192,-1616]", "pos": ["MAP24",192,-1616,-96], "keys": [] }
 AP-CHECK { "id": 17325, "name": "MAP24 - BFG 9000", "pos": ["MAP24",1040,272,160], "keys": [] }
-AP-CHECK { "id": 49519, "name": "MAP24 - Secret 1489", "keys": [] }
+AP-CHECK { "id": 49519, "name": "MAP24 - Secret 1489", "pos": ["MAP24","secret","sector",1489], "keys": [] }
 AP-CHECK { "id": 49513, "name": "MAP24 - InvulnerabilitySphere [464,-1192]", "pos": ["MAP24",464,-1192,128], "keys": [] }
 AP-CHECK { "id": 49419, "name": "MAP24 - Energy Cells [544,-1552]", "pos": ["MAP24",544,-1552,-96], "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
 AP-CHECK { "id": 49429, "name": "MAP24 - Energy Cells [560,-1552]", "pos": ["MAP24",560,-1552,-96], "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
@@ -1936,7 +1936,7 @@ AP-CHECK { "id": 49481, "name": "MAP24 - Energy Cells [1184,2336]", "pos": ["MAP
 AP-CHECK { "id": 49412, "name": "MAP24 - Soulsphere [4536,-424]", "pos": ["MAP24",4536,-424,88], "keys": [] }
 AP-CHECK { "id": 49392, "name": "MAP24 - RedSkull [S]", "pos": ["MAP24",1152,-1592,224], "unreachable": true }
 AP-CHECK { "id": 49406, "name": "MAP24 - YellowSkull [W]", "pos": ["MAP24",-1144,664,320], "unreachable": true }
-AP-CHECK { "id": 3038, "name": "MAP24 - Exit", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 3038, "name": "MAP24 - Exit", "pos": ["MAP24","event","exit"], "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
 AP-CHECK { "id": 3309, "name": "MAP25 - Shotgun", "pos": ["MAP25",864,-3680,-16], "keys": [] }
 AP-CHECK { "id": 7373, "name": "MAP25 - Chaingun", "pos": ["MAP25",928,-3680,-16], "keys": [] }
 AP-CHECK { "id": 7436, "name": "MAP25 - Backpack", "pos": ["MAP25",896,-3600,-16], "keys": [] }
@@ -2031,7 +2031,7 @@ AP-CHECK { "id": 49551, "name": "MAP25 - Shotgun Shells [2208,-1984]", "pos": ["
 AP-CHECK { "id": 49631, "name": "MAP25 - Medikit [1712,-1984]", "pos": ["MAP25",1712,-1984,128], "keys": [] }
 AP-CHECK { "id": 49567, "name": "MAP25 - Energy Cells [1280,-2496]", "pos": ["MAP25",1280,-2496,128], "keys": [] }
 AP-CHECK { "id": 29665, "name": "MAP25 - Plasma Rifle [SE]", "pos": ["MAP25",1744,-2240,240], "keys": [] }
-AP-CHECK { "id": 49719, "name": "MAP25 - Secret 735", "keys": [] }
+AP-CHECK { "id": 49719, "name": "MAP25 - Secret 735", "pos": ["MAP25","secret","sector",735], "keys": [] }
 AP-CHECK { "id": 49622, "name": "MAP25 - Medikit [1296,-1664]", "pos": ["MAP25",1296,-1664,128], "keys": [] }
 AP-CHECK { "id": 49623, "name": "MAP25 - Medikit [1296,-1728]", "pos": ["MAP25",1296,-1728,128], "keys": [] }
 AP-CHECK { "id": 49554, "name": "MAP25 - Shotgun Shells [1968,-1888]", "pos": ["MAP25",1968,-1888,128], "keys": [] }
@@ -2092,7 +2092,7 @@ AP-CHECK { "id": 49536, "name": "MAP25 - Shotgun Shells [1280,-1536]", "pos": ["
 AP-CHECK { "id": 49686, "name": "MAP25 - Rockets [1120,1008]", "pos": ["MAP25",1120,1008,224], "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
 AP-CHECK { "id": 49644, "name": "MAP25 - Rocket Launcher [N]", "pos": ["MAP25",1184,1008,224], "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
 AP-CHECK { "id": 49687, "name": "MAP25 - Rockets [1248,1008]", "pos": ["MAP25",1248,1008,224], "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
-AP-CHECK { "id": 3166, "name": "MAP25 - Exit", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 3166, "name": "MAP25 - Exit", "pos": ["MAP25","event","exit"], "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
 AP-CHECK { "id": 29757, "name": "MAP26 - Berserk", "pos": ["MAP26",258,-334,16], "keys": [] }
 AP-CHECK { "id": 49720, "name": "MAP26 - Stimpack [752,-312]", "pos": ["MAP26",752,-312,8], "keys": [] }
 AP-CHECK { "id": 10916, "name": "MAP26 - Medikit", "pos": ["MAP26",544,-432,0], "keys": [] }
@@ -2109,7 +2109,7 @@ AP-CHECK { "id": 49735, "name": "MAP26 - ArmorBonus [656,-112]", "pos": ["MAP26"
 AP-CHECK { "id": 49736, "name": "MAP26 - ArmorBonus [688,-112]", "pos": ["MAP26",688,-112,32], "keys": [] }
 AP-CHECK { "id": 49742, "name": "MAP26 - Shotgun Shells [952,-708]", "pos": ["MAP26",952,-708,-8], "keys": [] }
 AP-CHECK { "id": 3456, "name": "MAP26 - GreenArmor", "pos": ["MAP26",1008,-740,-8], "keys": [] }
-AP-CHECK { "id": 49773, "name": "MAP26 - Secret 216", "keys": [] }
+AP-CHECK { "id": 49773, "name": "MAP26 - Secret 216", "pos": ["MAP26","secret","sector",216], "keys": [] }
 AP-CHECK { "id": 49721, "name": "MAP26 - Stimpack [312,-1144]", "pos": ["MAP26",312,-1144,-56], "keys": [] }
 AP-CHECK { "id": 49722, "name": "MAP26 - Stimpack [200,-1096]", "pos": ["MAP26",200,-1096,-56], "keys": [] }
 AP-CHECK { "id": 7461, "name": "MAP26 - Chaingun", "pos": ["MAP26",688,-1048,-48], "keys": [] }
@@ -2156,7 +2156,7 @@ AP-CHECK { "id": 49727, "name": "MAP26 - Stimpack [1888,448]", "pos": ["MAP26",1
 AP-CHECK { "id": 49762, "name": "MAP26 - Shotgun Shells [1052,672]", "pos": ["MAP26",1052,672,0], "keys": ["RedSkull", "YellowSkull"] }
 AP-CHECK { "id": 49764, "name": "MAP26 - Shotgun Shells [1112,644]", "pos": ["MAP26",1112,644,0], "keys": ["RedSkull", "YellowSkull"] }
 AP-CHECK { "id": 49763, "name": "MAP26 - Shotgun Shells [1088,664]", "pos": ["MAP26",1088,664,0], "keys": ["RedSkull", "YellowSkull"] }
-AP-CHECK { "id": 3349, "name": "MAP26 - Exit", "keys": ["RedSkull", "YellowSkull"] }
+AP-CHECK { "id": 3349, "name": "MAP26 - Exit", "pos": ["MAP26","event","exit"], "keys": ["RedSkull", "YellowSkull"] }
 AP-CHECK { "id": 49921, "name": "MAP27 - Berserk [784,-1760]", "pos": ["MAP27",784,-1760,-64], "keys": [] }
 AP-CHECK { "id": 49778, "name": "MAP27 - GreenArmor [1008,-1760]", "pos": ["MAP27",1008,-1760,-64], "keys": [] }
 AP-CHECK { "id": 49942, "name": "MAP27 - Stimpack [1088,-1440]", "pos": ["MAP27",1088,-1440,-64], "keys": [] }
@@ -2187,7 +2187,7 @@ AP-CHECK { "id": 49790, "name": "MAP27 - Shotgun Shells [128,32]", "pos": ["MAP2
 AP-CHECK { "id": 49827, "name": "MAP27 - Shotgun Shells [1552,168]", "pos": ["MAP27",1552,168,72], "keys": [] }
 AP-CHECK { "id": 49886, "name": "MAP27 - Rockets [2392,352]", "pos": ["MAP27",2392,352,88], "keys": [] }
 AP-CHECK { "id": 49895, "name": "MAP27 - Medikit [2184,528]", "pos": ["MAP27",2184,528,168], "keys": [] }
-AP-CHECK { "id": 49948, "name": "MAP27 - Secret 2683", "keys": [] }
+AP-CHECK { "id": 49948, "name": "MAP27 - Secret 2683", "pos": ["MAP27","secret","sector",2683], "keys": [] }
 AP-CHECK { "id": 49933, "name": "MAP27 - Energy Cells [2240,552]", "pos": ["MAP27",2240,552,168], "keys": [] }
 AP-CHECK { "id": 49893, "name": "MAP27 - Bullets [2576,-428]", "pos": ["MAP27",2576,-428,112], "keys": [] }
 AP-CHECK { "id": 49828, "name": "MAP27 - Shotgun Shells [2580,-232]", "pos": ["MAP27",2580,-232,144], "keys": [] }
@@ -2229,7 +2229,7 @@ AP-CHECK { "id": 49842, "name": "MAP27 - Rockets [-912,-288]", "pos": ["MAP27",-
 AP-CHECK { "id": 49843, "name": "MAP27 - Rockets [-912,-224]", "pos": ["MAP27",-912,-224,164], "keys": [] }
 AP-CHECK { "id": 49844, "name": "MAP27 - Rockets [-912,-160]", "pos": ["MAP27",-912,-160,164], "keys": [] }
 AP-CHECK { "id": 49845, "name": "MAP27 - Rockets [-912,-96]", "pos": ["MAP27",-912,-96,164], "keys": [] }
-AP-CHECK { "id": 49944, "name": "MAP27 - Secret 745", "keys": [] }
+AP-CHECK { "id": 49944, "name": "MAP27 - Secret 745", "pos": ["MAP27","secret","sector",745], "keys": [] }
 AP-CHECK { "id": 10949, "name": "MAP27 - Rocket Launcher", "pos": ["MAP27",-768,-192,224], "keys": [] }
 AP-CHECK { "id": 45542, "name": "MAP27 - Soulsphere [SW]", "pos": ["MAP27",-2844,620,400], "keys": [] }
 AP-CHECK { "id": 49800, "name": "MAP27 - Shotgun Shells [-1024,1344]", "pos": ["MAP27",-1024,1344,160], "keys": [] }
@@ -2261,9 +2261,9 @@ AP-CHECK { "id": 49924, "name": "MAP27 - Energy Cells [1232,2592]", "pos": ["MAP
 AP-CHECK { "id": 49859, "name": "MAP27 - Rockets [752,2560]", "pos": ["MAP27",752,2560,264], "keys": [] }
 AP-CHECK { "id": 49858, "name": "MAP27 - Rockets [752,2608]", "pos": ["MAP27",752,2608,264], "keys": [] }
 AP-CHECK { "id": 49936, "name": "MAP27 - BlueArmor [384,1936]", "pos": ["MAP27",384,1936,240], "keys": [] }
-AP-CHECK { "id": 49945, "name": "MAP27 - Secret 1112", "keys": [] }
+AP-CHECK { "id": 49945, "name": "MAP27 - Secret 1112", "pos": ["MAP27","secret","sector",1112], "keys": [] }
 AP-CHECK { "id": 49781, "name": "MAP27 - Soulsphere [Center]", "pos": ["MAP27",744,2328,264], "keys": [] }
-AP-CHECK { "id": 49946, "name": "MAP27 - Secret 1798", "keys": [] }
+AP-CHECK { "id": 49946, "name": "MAP27 - Secret 1798", "pos": ["MAP27","secret","sector",1798], "keys": [] }
 AP-CHECK { "id": 49875, "name": "MAP27 - Rockets [2528,2464]", "pos": ["MAP27",2528,2464,256], "keys": [] }
 AP-CHECK { "id": 49871, "name": "MAP27 - Rockets [2592,2464]", "pos": ["MAP27",2592,2464,256], "keys": [] }
 AP-CHECK { "id": 49872, "name": "MAP27 - Rockets [2656,2464]", "pos": ["MAP27",2656,2464,256], "keys": [] }
@@ -2320,12 +2320,12 @@ AP-CHECK { "id": 49917, "name": "MAP27 - Medikit [2824,6200]", "pos": ["MAP27",2
 AP-CHECK { "id": 49918, "name": "MAP27 - Medikit [2800,6240]", "pos": ["MAP27",2800,6240,128], "keys": [] }
 AP-CHECK { "id": 49919, "name": "MAP27 - Medikit [2776,6296]", "pos": ["MAP27",2776,6296,128], "keys": [] }
 AP-CHECK { "id": 7512, "name": "MAP27 - YellowSkull", "pos": ["MAP27",896,384,120], "keys": [] }
-AP-CHECK { "id": 49943, "name": "MAP27 - Secret 292", "keys": [] }
+AP-CHECK { "id": 49943, "name": "MAP27 - Secret 292", "pos": ["MAP27","secret","sector",292], "keys": [] }
 AP-CHECK { "id": 17632, "name": "MAP27 - InvulnerabilitySphere [SE]", "pos": ["MAP27",1600,-48,136], "keys": [] }
 AP-CHECK { "id": 49904, "name": "MAP27 - Medikit [-658,2628]", "pos": ["MAP27",-658,2628,200], "keys": [] }
 AP-CHECK { "id": 49903, "name": "MAP27 - Medikit [-680,2678]", "pos": ["MAP27",-680,2678,200], "keys": [] }
 AP-CHECK { "id": 49928, "name": "MAP27 - Energy Cells [-1298,2110]", "pos": ["MAP27",-1298,2110,136], "keys": [] }
-AP-CHECK { "id": 49947, "name": "MAP27 - Secret 1938", "keys": [] }
+AP-CHECK { "id": 49947, "name": "MAP27 - Secret 1938", "pos": ["MAP27","secret","sector",1938], "keys": [] }
 AP-CHECK { "id": 49867, "name": "MAP27 - Rockets [-1236,2156]", "pos": ["MAP27",-1236,2156,136], "keys": [] }
 AP-CHECK { "id": 49857, "name": "MAP27 - Rockets [-1194,2194]", "pos": ["MAP27",-1194,2194,136], "keys": [] }
 AP-CHECK { "id": 45643, "name": "MAP27 - Megasphere", "pos": ["MAP27",-1162,2236,136], "keys": [] }
@@ -2344,7 +2344,7 @@ AP-CHECK { "id": 49930, "name": "MAP27 - Energy Cells [336,-1256]", "pos": ["MAP
 AP-CHECK { "id": 49911, "name": "MAP27 - Medikit [256,-1216]", "pos": ["MAP27",256,-1216,32], "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
 AP-CHECK { "id": 49835, "name": "MAP27 - Rockets [176,-1176]", "pos": ["MAP27",176,-1176,32], "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
 AP-CHECK { "id": 49929, "name": "MAP27 - Energy Cells [176,-1256]", "pos": ["MAP27",176,-1256,32], "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
-AP-CHECK { "id": 3475, "name": "MAP27 - Exit", "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
+AP-CHECK { "id": 3475, "name": "MAP27 - Exit", "pos": ["MAP27","event","exit"], "keys": ["YellowSkull", "BlueSkull", "RedSkull"] }
 AP-CHECK { "id": 7891, "name": "MAP28 - Megasphere [S]", "pos": ["MAP28",448,-704,-8], "keys": [] }
 AP-CHECK { "id": 7979, "name": "MAP28 - Backpack", "pos": ["MAP28",216,-688,0], "keys": [] }
 AP-CHECK { "id": 7830, "name": "MAP28 - BFG 9000", "pos": ["MAP28",96,-688,8], "keys": [] }
@@ -2499,7 +2499,7 @@ AP-CHECK { "id": 50036, "name": "MAP28 - Energy Cells [2372,644]", "pos": ["MAP2
 AP-CHECK { "id": 50035, "name": "MAP28 - Energy Cells [2400,700]", "pos": ["MAP28",2400,700,-40], "keys": [] }
 AP-CHECK { "id": 42927, "name": "MAP28 - Megasphere [N]", "pos": ["MAP28",608,2400,432], "keys": [] }
 AP-CHECK { "id": 49967, "name": "MAP28 - Energy Cells [704,2496]", "pos": ["MAP28",704,2496,440], "keys": [] }
-AP-CHECK { "id": 50120, "name": "MAP28 - Secret 262", "keys": [] }
+AP-CHECK { "id": 50120, "name": "MAP28 - Secret 262", "pos": ["MAP28","secret","sector",262], "keys": [] }
 AP-CHECK { "id": 49968, "name": "MAP28 - Energy Cells [736,2496]", "pos": ["MAP28",736,2496,440], "keys": [] }
 AP-CHECK { "id": 49969, "name": "MAP28 - Energy Cells [736,2528]", "pos": ["MAP28",736,2528,440], "keys": [] }
 AP-CHECK { "id": 49970, "name": "MAP28 - Energy Cells [704,2528]", "pos": ["MAP28",704,2528,440], "keys": [] }
@@ -2526,7 +2526,7 @@ AP-CHECK { "id": 50057, "name": "MAP28 - Energy Cells [16,736]", "pos": ["MAP28"
 AP-CHECK { "id": 50053, "name": "MAP28 - Energy Cells [16,704]", "pos": ["MAP28",16,704,-64], "keys": [] }
 AP-CHECK { "id": 7888, "name": "MAP28 - Megasphere [Center]", "pos": ["MAP28",452,1160,48], "keys": [] }
 AP-CHECK { "id": 50117, "name": "MAP28 - Soulsphere [E]", "pos": ["MAP28",2608,1456,48], "keys": [] }
-AP-CHECK { "id": 3593, "name": "MAP28 - Exit", "keys": [] }
+AP-CHECK { "id": 3593, "name": "MAP28 - Exit", "pos": ["MAP28","event","exit"], "keys": [] }
 AP-CHECK { "id": 3704, "name": "MAP29 - Shotgun", "pos": ["MAP29",720,-632,0], "keys": [] }
 AP-CHECK { "id": 50121, "name": "MAP29 - Shotgun Shells [792,-616]", "pos": ["MAP29",792,-616,0], "keys": [] }
 AP-CHECK { "id": 50164, "name": "MAP29 - Stimpack [1008,-296]", "pos": ["MAP29",1008,-296,0], "keys": [] }
@@ -2550,11 +2550,11 @@ AP-CHECK { "id": 50176, "name": "MAP29 - Bullets [-248,1000]", "pos": ["MAP29",-
 AP-CHECK { "id": 50130, "name": "MAP29 - Shotgun Shells [-1328,-24]", "pos": ["MAP29",-1328,-24,-120], "keys": [] }
 AP-CHECK { "id": 8079, "name": "MAP29 - YellowSkull", "pos": ["MAP29",-880,-8,-48], "keys": [] }
 AP-CHECK { "id": 50129, "name": "MAP29 - Shotgun Shells [-1664,96]", "pos": ["MAP29",-1664,96,-128], "keys": [] }
-AP-CHECK { "id": 50252, "name": "MAP29 - Secret 252", "keys": [] }
+AP-CHECK { "id": 50252, "name": "MAP29 - Secret 252", "pos": ["MAP29","secret","sector",252], "keys": [] }
 AP-CHECK { "id": 50222, "name": "MAP29 - Soulsphere [SW]", "pos": ["MAP29",-1456,-192,-120], "keys": [] }
 AP-CHECK { "id": 50165, "name": "MAP29 - Stimpack [-612,256]", "pos": ["MAP29",-612,256,-128], "keys": [] }
 AP-CHECK { "id": 50215, "name": "MAP29 - RadSuit [-540,236]", "pos": ["MAP29",-540,236,-120], "keys": [] }
-AP-CHECK { "id": 50250, "name": "MAP29 - Secret 127", "keys": [] }
+AP-CHECK { "id": 50250, "name": "MAP29 - Secret 127", "pos": ["MAP29","secret","sector",127], "keys": [] }
 AP-CHECK { "id": 50211, "name": "MAP29 - Super Shotgun [-540,272]", "pos": ["MAP29",-540,272,-120], "keys": [] }
 AP-CHECK { "id": 50131, "name": "MAP29 - Shotgun Shells [604,516]", "pos": ["MAP29",604,516,48], "keys": [] }
 AP-CHECK { "id": 50187, "name": "MAP29 - Medikit [648,528]", "pos": ["MAP29",648,528,48], "keys": [] }
@@ -2565,7 +2565,7 @@ AP-CHECK { "id": 50123, "name": "MAP29 - Shotgun Shells [100,-924]", "pos": ["MA
 AP-CHECK { "id": 50193, "name": "MAP29 - Medikit [160,-924]", "pos": ["MAP29",160,-924,160], "keys": ["YellowSkull"] }
 AP-CHECK { "id": 50185, "name": "MAP29 - Medikit [176,-280]", "pos": ["MAP29",176,-280,104], "keys": ["YellowSkull"] }
 AP-CHECK { "id": 50183, "name": "MAP29 - GreenArmor [S]", "pos": ["MAP29",168,-320,104], "keys": ["YellowSkull"] }
-AP-CHECK { "id": 50251, "name": "MAP29 - Secret 226", "keys": ["YellowSkull"] }
+AP-CHECK { "id": 50251, "name": "MAP29 - Secret 226", "pos": ["MAP29","secret","sector",226], "keys": ["YellowSkull"] }
 AP-CHECK { "id": 50124, "name": "MAP29 - Shotgun Shells [1024,96]", "pos": ["MAP29",1024,96,32], "keys": ["YellowSkull"] }
 AP-CHECK { "id": 50138, "name": "MAP29 - Shotgun Shells [-912,692]", "pos": ["MAP29",-912,692,256], "keys": ["YellowSkull"] }
 AP-CHECK { "id": 50142, "name": "MAP29 - Shotgun Shells [-852,892]", "pos": ["MAP29",-852,892,256], "keys": ["YellowSkull"] }
@@ -2616,7 +2616,7 @@ AP-CHECK { "id": 50141, "name": "MAP29 - Shotgun Shells [-304,1216]", "pos": ["M
 AP-CHECK { "id": 50197, "name": "MAP29 - Medikit [-304,1264]", "pos": ["MAP29",-304,1264,0], "keys": ["YellowSkull"] }
 AP-CHECK { "id": 50218, "name": "MAP29 - RadSuit [-1912,2364]", "pos": ["MAP29",-1912,2364,80], "keys": ["YellowSkull", "RedSkull"] }
 AP-CHECK { "id": 50235, "name": "MAP29 - BlueArmor [W]", "pos": ["MAP29",-1952,2340,80], "keys": ["YellowSkull", "RedSkull"] }
-AP-CHECK { "id": 50253, "name": "MAP29 - Secret 620", "keys": ["YellowSkull", "RedSkull"] }
+AP-CHECK { "id": 50253, "name": "MAP29 - Secret 620", "pos": ["MAP29","secret","sector",620], "keys": ["YellowSkull", "RedSkull"] }
 AP-CHECK { "id": 50147, "name": "MAP29 - Shotgun Shells [-256,3216]", "pos": ["MAP29",-256,3216,-248], "keys": ["YellowSkull", "RedSkull"] }
 AP-CHECK { "id": 50224, "name": "MAP29 - Energy Cells [-264,3272]", "pos": ["MAP29",-264,3272,-248], "keys": ["YellowSkull", "RedSkull"] }
 AP-CHECK { "id": 8116, "name": "MAP29 - BlueSkull", "pos": ["MAP29",-204,3400,-56], "keys": ["YellowSkull", "RedSkull"] }
@@ -2655,13 +2655,13 @@ AP-CHECK { "id": 50161, "name": "MAP29 - Shotgun Shells [3024,2288]", "pos": ["M
 AP-CHECK { "id": 47249, "name": "MAP29 - BlueArmor [NE]", "pos": ["MAP29",2784,2144,-208], "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
 AP-CHECK { "id": 50155, "name": "MAP29 - Shotgun Shells [2880,1248]", "pos": ["MAP29",2880,1248,-64], "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
 AP-CHECK { "id": 50205, "name": "MAP29 - Medikit [2824,1264]", "pos": ["MAP29",2824,1264,-64], "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
-AP-CHECK { "id": 50255, "name": "MAP29 - Secret 989", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 50255, "name": "MAP29 - Secret 989", "pos": ["MAP29","secret","sector",989], "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
 AP-CHECK { "id": 50219, "name": "MAP29 - RadSuit [3584,2080]", "pos": ["MAP29",3584,2080,-80], "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
 AP-CHECK { "id": 50154, "name": "MAP29 - Shotgun Shells [3584,2144]", "pos": ["MAP29",3584,2144,-80], "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
 AP-CHECK { "id": 50221, "name": "MAP29 - BFG 9000 [E]", "pos": ["MAP29",3392,2144,-88], "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
 AP-CHECK { "id": 50231, "name": "MAP29 - Energy Cells [3360,2208]", "pos": ["MAP29",3360,2208,-88], "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
 AP-CHECK { "id": 47319, "name": "MAP29 - Berserk", "pos": ["MAP29",3424,2208,-88], "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
-AP-CHECK { "id": 50254, "name": "MAP29 - Secret 728", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 50254, "name": "MAP29 - Secret 728", "pos": ["MAP29","secret","sector",728], "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
 AP-CHECK { "id": 27612, "name": "MAP29 - Soulsphere [Center]", "pos": ["MAP29",688,1288,128], "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
 AP-CHECK { "id": 50202, "name": "MAP29 - Medikit [2848,160]", "pos": ["MAP29",2848,160,8], "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
 AP-CHECK { "id": 50201, "name": "MAP29 - Medikit [2896,160]", "pos": ["MAP29",2896,160,8], "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
@@ -2675,7 +2675,7 @@ AP-CHECK { "id": 50152, "name": "MAP29 - Shotgun Shells [2680,664]", "pos": ["MA
 AP-CHECK { "id": 50151, "name": "MAP29 - Shotgun Shells [2640,664]", "pos": ["MAP29",2640,664,32], "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
 AP-CHECK { "id": 50230, "name": "MAP29 - Energy Cells [2560,568]", "pos": ["MAP29",2560,568,32], "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
 AP-CHECK { "id": 50229, "name": "MAP29 - Energy Cells [2520,568]", "pos": ["MAP29",2520,568,32], "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
-AP-CHECK { "id": 3671, "name": "MAP29 - Exit", "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
+AP-CHECK { "id": 3671, "name": "MAP29 - Exit", "pos": ["MAP29","event","exit"], "keys": ["YellowSkull", "RedSkull", "BlueSkull"] }
 AP-CHECK { "id": 8197, "name": "MAP30 - Plasma Rifle", "pos": ["MAP30",960,-608,80], "keys": [] }
 AP-CHECK { "id": 8195, "name": "MAP30 - Super Shotgun", "pos": ["MAP30",896,-608,80], "keys": [] }
 AP-CHECK { "id": 8194, "name": "MAP30 - Shotgun", "pos": ["MAP30",864,-544,80], "keys": [] }
@@ -2684,7 +2684,7 @@ AP-CHECK { "id": 8196, "name": "MAP30 - Rocket Launcher", "pos": ["MAP30",1024,-
 AP-CHECK { "id": 3845, "name": "MAP30 - Chaingun", "pos": ["MAP30",1056,-544,80], "keys": [] }
 AP-CHECK { "id": 50497, "name": "MAP30 - Berserk [SE]", "pos": ["MAP30",1328,-560,80], "keys": [] }
 AP-CHECK { "id": 50496, "name": "MAP30 - Berserk [S]", "pos": ["MAP30",592,-560,80], "keys": [] }
-AP-CHECK { "id": 50643, "name": "MAP30 - Secret 1654", "keys": [] }
+AP-CHECK { "id": 50643, "name": "MAP30 - Secret 1654", "pos": ["MAP30","secret","sector",1654], "keys": [] }
 AP-CHECK { "id": 50635, "name": "MAP30 - Megasphere [-488,-544]", "pos": ["MAP30",-488,-544,352], "keys": [] }
 AP-CHECK { "id": 50490, "name": "MAP30 - Energy Cells [-320,-576]", "pos": ["MAP30",-320,-576,320], "keys": [] }
 AP-CHECK { "id": 50493, "name": "MAP30 - Energy Cells [-256,-576]", "pos": ["MAP30",-256,-576,320], "keys": [] }
@@ -3038,7 +3038,7 @@ AP-CHECK { "id": 50484, "name": "MAP30 - Energy Cells [5248,4224]", "pos": ["MAP
 AP-CHECK { "id": 50487, "name": "MAP30 - Energy Cells [5280,4176]", "pos": ["MAP30",5280,4176,344], "keys": [] }
 AP-CHECK { "id": 50485, "name": "MAP30 - Energy Cells [5328,4224]", "pos": ["MAP30",5328,4224,344], "keys": [] }
 AP-CHECK { "id": 50634, "name": "MAP30 - Megasphere [5208,4288]", "pos": ["MAP30",5208,4288,344], "keys": [] }
-AP-CHECK { "id": 50644, "name": "MAP30 - Secret 1665", "keys": [] }
+AP-CHECK { "id": 50644, "name": "MAP30 - Secret 1665", "pos": ["MAP30","secret","sector",1665], "keys": [] }
 AP-CHECK { "id": 50638, "name": "MAP30 - InvulnerabilitySphere [W]", "pos": ["MAP30",-2596,3316,64], "keys": [] }
 AP-CHECK { "id": 50450, "name": "MAP30 - Energy Cells [-2784,3584]", "pos": ["MAP30",-2784,3584,32], "keys": [] }
 AP-CHECK { "id": 50451, "name": "MAP30 - Energy Cells [-2688,3584]", "pos": ["MAP30",-2688,3584,32], "keys": [] }
@@ -3060,7 +3060,7 @@ AP-CHECK { "id": 50555, "name": "MAP30 - Rockets [-4064,3952]", "pos": ["MAP30",
 AP-CHECK { "id": 50472, "name": "MAP30 - Energy Cells [-3872,4160]", "pos": ["MAP30",-3872,4160,0], "keys": [] }
 AP-CHECK { "id": 50474, "name": "MAP30 - Energy Cells [-3760,4176]", "pos": ["MAP30",-3760,4176,0], "keys": [] }
 AP-CHECK { "id": 50473, "name": "MAP30 - Energy Cells [-3872,4240]", "pos": ["MAP30",-3872,4240,0], "keys": [] }
-AP-CHECK { "id": 50642, "name": "MAP30 - Secret 840", "keys": [] }
+AP-CHECK { "id": 50642, "name": "MAP30 - Secret 840", "pos": ["MAP30","secret","sector",840], "keys": [] }
 AP-CHECK { "id": 50542, "name": "MAP30 - Rockets [-2252,4436]", "pos": ["MAP30",-2252,4436,0], "keys": [] }
 AP-CHECK { "id": 50541, "name": "MAP30 - Rockets [-2208,4452]", "pos": ["MAP30",-2208,4452,0], "keys": [] }
 AP-CHECK { "id": 50540, "name": "MAP30 - Rockets [-2164,4486]", "pos": ["MAP30",-2164,4486,0], "keys": [] }
@@ -3072,5 +3072,5 @@ AP-CHECK { "id": 50640, "name": "MAP30 - BlurSphere [-1888,4344]", "pos": ["MAP3
 AP-CHECK { "id": 50631, "name": "MAP30 - Megasphere [-2104,4208]", "pos": ["MAP30",-2104,4208,0], "keys": [] }
 AP-CHECK { "id": 50559, "name": "MAP30 - Rockets [2080,-544]", "pos": ["MAP30",2080,-544,320], "keys": [] }
 AP-CHECK { "id": 50560, "name": "MAP30 - Rockets [2336,-544]", "pos": ["MAP30",2336,-544,320], "keys": [] }
-AP-CHECK { "id": 3844, "name": "MAP30 - Exit", "keys": [] }
-AP-CHECK { "id": 3844, "name": "MAP30 - Exit", "keys": [] }
+AP-CHECK { "id": 3844, "name": "MAP30 - Exit", "pos": ["MAP30","event","exit"], "keys": [] }
+AP-CHECK { "id": 3844, "name": "MAP30 - Exit", "pos": ["MAP30","event","exit"], "keys": [] }

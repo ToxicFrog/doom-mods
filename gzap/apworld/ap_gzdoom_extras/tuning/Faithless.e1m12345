@@ -27,7 +27,7 @@ AP-REGION { "map": "E1M1", "region": "garden-annex", "keys": ["map/E1M3/garden"]
 AP-REGION { "map": "E1M1", "region": "garden-annex", "keys": ["map/E1M1/belltower"] }
 // The area inside the southern fortress. This requires you to have the green key,
 // both to open the door proper and to reach the area in M3 with the portcullis switch.
-AP-REGION { "map": "E1M1", "region": "portcullis-open", "keys": ["key/KeyGreen", "map/E1M3/green-door", "weapon/SkullRod2/need"]}
+AP-REGION { "map": "E1M1", "region": "portcullis-open", "keys": ["key/KeyGreen", "map/E1M3/green", "weapon/SkullRod2/need"]}
 
 //////// E1M2: Dockside
 // Main region is everywhere you can reach from M1 at the start of the game, which is almost everything.
@@ -107,7 +107,7 @@ AP-CHECK { "id": 91295, "name": "E1M1 - Crystal Vial [704,-2304]", "pos": ["E1M1
 AP-CHECK { "id": 91263, "name": "E1M1 - Wand Crystals [960,-2304]", "pos": ["E1M1",960,-2304,64], "region": "main" }
 AP-CHECK { "id": 91264, "name": "E1M1 - Wand Crystals [1216,-2304]", "pos": ["E1M1",1216,-2304,64], "region": "main" }
 AP-CHECK { "id": 91272, "name": "E1M1 - Wand Crystals [1312,-1952]", "pos": ["E1M1",1312,-1952,64], "region": "main" }
-AP-CHECK { "id": 91350, "name": "E1M1 - Secret 374", "region": "main" }
+AP-CHECK { "id": 91350, "name": "E1M1 - Secret 374", "pos": ["E1M1","secret","sector",374], "region": "main" }
 AP-CHECK { "id": 91239, "name": "E1M1 - Wand Crystals [1208,-1760]", "pos": ["E1M1",1208,-1760,64], "region": "main" }
 AP-CHECK { "id": 91240, "name": "E1M1 - Wand Crystals [1208,-1824]", "pos": ["E1M1",1208,-1824,64], "region": "main" }
 AP-CHECK { "id": 91329, "name": "E1M1 - Quartz Flask [896,-1600]", "pos": ["E1M1",896,-1600,72], "region": "main" }
@@ -144,11 +144,11 @@ AP-CHECK { "id": 91307, "name": "E1M1 - Ethereal Arrows [-1024,-2464]", "pos": [
 AP-CHECK { "id": 91262, "name": "E1M1 - Wand Crystals [-704,-2464]", "pos": ["E1M1",-704,-2464,0], "region": "main" }
 AP-CHECK { "id": 18243, "name": "E1M1 - Ethereal Crossbow", "pos": ["E1M1",-480,-2464,8], "region": "main" }
 AP-WEAPONS { "weapons": { "Ethereal Crossbow": 1 } }
-AP-CHECK { "id": 91348, "name": "E1M1 - Secret 205", "region": "main" }
+AP-CHECK { "id": 91348, "name": "E1M1 - Secret 205", "pos": ["E1M1","secret","sector",205], "region": "main" }
 AP-CHECK { "id": 91297, "name": "E1M1 - Crystal Vial [-1024,-2304]", "pos": ["E1M1",-1024,-2304,8], "region": "main" }
 AP-CHECK { "id": 91316, "name": "E1M1 - Ethereal Arrows [-1344,-1984]", "pos": ["E1M1",-1344,-1984,8], "region": "main" }
 AP-CHECK { "id": 91333, "name": "E1M1 - Quartz Flask [-1344,-1344]", "pos": ["E1M1",-1344,-1344,8], "region": "main" }
-AP-CHECK { "id": 91351, "name": "E1M1 - Secret 438", "region": "main" }
+AP-CHECK { "id": 91351, "name": "E1M1 - Secret 438", "pos": ["E1M1","secret","sector",438], "region": "main" }
 AP-CHECK { "id": 91342, "name": "E1M1 - Morph Ovum [Center]", "pos": ["E1M1",-384,-1792,64], "region": "main" }
 AP-VISITED { "visited": [ "E1M1", "E1M2" ] }
 AP-CHECK { "id": 91428, "name": "E1M2 - Time Bomb of the Ancients [-720,-1376]", "pos": ["E1M2",-720,-1376,0], "region": "main" }
@@ -175,7 +175,7 @@ AP-CHECK { "id": 91412, "name": "E1M2 - Crystal Vial [384,128]", "pos": ["E1M2",
 AP-CHECK { "id": 91417, "name": "E1M2 - Crystal Vial [80,672]", "pos": ["E1M2",80,672,-16], "region": "main" }
 AP-CHECK { "id": 91396, "name": "E1M2 - Ethereal Arrows [256,672]", "pos": ["E1M2",256,672,-16], "region": "main" }
 AP-CHECK { "id": 91381, "name": "E1M2 - Wand Crystals [928,416]", "pos": ["E1M2",928,416,-16], "region": "main" }
-AP-CHECK { "id": 91442, "name": "E1M2 - Secret 124", "region": "main" }
+AP-CHECK { "id": 91442, "name": "E1M2 - Secret 124", "pos": ["E1M2","secret","sector",124], "region": "main" }
 AP-CHECK { "id": 91441, "name": "E1M2 - Tome of Power", "pos": ["E1M2",288,-608,128], "region": "main" }
 AP-CHECK { "id": 91398, "name": "E1M2 - Ethereal Arrows [928,800]", "pos": ["E1M2",928,800,-16], "region": "main" }
 AP-CHECK { "id": 91430, "name": "E1M2 - Time Bomb of the Ancients [272,1040]", "pos": ["E1M2",272,1040,-16], "region": "main" }
@@ -273,7 +273,7 @@ AP-CHECK { "id": 91427, "name": "E1M2 - Quartz Flask [864,1536]", "pos": ["E1M2"
 AP-CHECK { "id": 91434, "name": "E1M2 - Time Bomb of the Ancients [1024,1184]", "pos": ["E1M2",1024,1184,64], "region": "yellow" }
 AP-CHECK { "id": 91426, "name": "E1M2 - Quartz Flask [1216,864]", "pos": ["E1M2",1216,864,80], "region": "yellow" }
 AP-CHECK { "id": 91435, "name": "E1M2 - Time Bomb of the Ancients [1024,544]", "pos": ["E1M2",1024,544,64], "region": "yellow" }
-AP-CHECK { "id": 91443, "name": "E1M2 - Secret 263", "region": "yellow" }
+AP-CHECK { "id": 91443, "name": "E1M2 - Secret 263", "pos": ["E1M2","secret","sector",263], "region": "yellow" }
 AP-CHECK { "id": 91355, "name": "E1M2 - Enchanted Shield [NE]", "pos": ["E1M2",896,864,80], "region": "yellow" }
 AP-VISITED { "visited": [ "E1M3", "E1M2", "E1M1" ] }
 AP-VISITED { "visited": [ "E1M3", "E1M1" ] }
@@ -325,13 +325,13 @@ AP-CHECK { "id": 91506, "name": "E1M3 - Claw Orbs [256,-944]", "pos": ["E1M3",25
 AP-CHECK { "id": 91514, "name": "E1M3 - Hellstaff Runes [208,608]", "pos": ["E1M3",208,608,64], "region": "garden" }
 AP-CHECK { "id": 91513, "name": "E1M3 - Hellstaff Runes [272,544]", "pos": ["E1M3",272,544,64], "region": "garden" }
 AP-CHECK { "id": 91461, "name": "E1M3 - Quartz Flask [368,560]", "pos": ["E1M3",368,560,-16], "region": "garden" }
-AP-CHECK { "id": 91522, "name": "E1M3 - Secret 398", "region": "garden" }
+AP-CHECK { "id": 91522, "name": "E1M3 - Secret 398", "pos": ["E1M3","secret","sector",398], "region": "garden" }
 AP-CHECK { "id": 91505, "name": "E1M3 - Claw Orbs [48,-1664]", "pos": ["E1M3",48,-1664,48], "region": "garden" }
 AP-CHECK { "id": 91269, "name": "E1M1 - Wand Crystals [-1920,-192]", "pos": ["E1M1",-1920,-192,72], "region": "garden-annex" }
 AP-CHECK { "id": 91334, "name": "E1M1 - Quartz Flask [-1664,-192]", "pos": ["E1M1",-1664,-192,72], "region": "garden-annex" }
 AP-CHECK { "id": 91312, "name": "E1M1 - Ethereal Arrows [-1408,-128]", "pos": ["E1M1",-1408,-128,96], "region": "garden-annex" }
 AP-CHECK { "id": 91313, "name": "E1M1 - Ethereal Arrows [-1408,-256]", "pos": ["E1M1",-1408,-256,96], "region": "garden-annex" }
-AP-CHECK { "id": 91521, "name": "E1M3 - Secret 371", "region": "garden" }
+AP-CHECK { "id": 91521, "name": "E1M3 - Secret 371", "pos": ["E1M3","secret","sector",371], "region": "garden" }
 AP-VISITED { "visited": [ "E1M3", "E1M4", "E1M1" ] }
 AP-CHECK { "id": 91540, "name": "E1M4 - Emerald Amulet [NW]", "pos": ["E1M4",-1216,896,128], "region": "main" }
 AP-CHECK { "id": 91584, "name": "E1M4 - Crystal Vial [-1072,928]", "pos": ["E1M4",-1072,928,128], "region": "main" }
@@ -356,7 +356,7 @@ AP-WEAPONS { "weapons": { "Gauntlets of the Necromancer": 1, "Dragon Claw": 1, "
 AP-CHECK { "id": 91553, "name": "E1M4 - Claw Orbs [576,800]", "pos": ["E1M4",576,800,80], "region": "main" }
 AP-CHECK { "id": 91600, "name": "E1M4 - Crystal Vial [672,928]", "pos": ["E1M4",672,928,80], "region": "main" }
 AP-CHECK { "id": 91599, "name": "E1M4 - Crystal Vial [656,1008]", "pos": ["E1M4",656,1008,80], "region": "main" }
-AP-CHECK { "id": 91614, "name": "E1M4 - Secret 153", "region": "main" }
+AP-CHECK { "id": 91614, "name": "E1M4 - Secret 153", "pos": ["E1M4","secret","sector",153], "region": "main" }
 AP-CHECK { "id": 91564, "name": "E1M4 - Quartz Flask [512,1248]", "pos": ["E1M4",512,1248,80], "region": "main" }
 AP-CHECK { "id": 91586, "name": "E1M4 - Crystal Vial [528,1584]", "pos": ["E1M4",528,1584,80], "region": "main" }
 AP-CHECK { "id": 91585, "name": "E1M4 - Crystal Vial [448,1584]", "pos": ["E1M4",448,1584,80], "region": "main" }
@@ -393,7 +393,7 @@ AP-CHECK { "id": 91543, "name": "E1M4 - Claw Orbs [992,-992]", "pos": ["E1M4",99
 AP-CHECK { "id": 91544, "name": "E1M4 - Claw Orbs [992,-1056]", "pos": ["E1M4",992,-1056,24], "region": "main" }
 AP-CHECK { "id": 91568, "name": "E1M4 - Quartz Flask [688,-640]", "pos": ["E1M4",688,-640,16], "region": "main" }
 AP-CHECK { "id": 91524, "name": "E1M4 - Enchanted Shield [SE]", "pos": ["E1M4",600,-1312,24], "region": "main" }
-AP-CHECK { "id": 91613, "name": "E1M4 - Secret 95", "region": "main" }
+AP-CHECK { "id": 91613, "name": "E1M4 - Secret 95", "pos": ["E1M4","secret","sector",95], "region": "main" }
 AP-CHECK { "id": 91533, "name": "E1M4 - Noxious Spore [608,-1616]", "pos": ["E1M4",608,-1616,16], "region": "main" }
 AP-CHECK { "id": 91534, "name": "E1M4 - Noxious Spore [736,-1616]", "pos": ["E1M4",736,-1616,16], "region": "main" }
 AP-CHECK { "id": 91592, "name": "E1M4 - Crystal Vial [192,-160]", "pos": ["E1M4",192,-160,8], "region": "main" }
@@ -507,7 +507,7 @@ AP-CHECK { "id": 91588, "name": "E1M4 - Crystal Vial [224,-1632]", "pos": ["E1M4
 AP-CHECK { "id": 91589, "name": "E1M4 - Crystal Vial [160,-1632]", "pos": ["E1M4",160,-1632,-48], "region": "after-raising-water" }
 AP-VISITED { "visited": [ "E1M3", "E1M5", "E1M1" ] }
 AP-CHECK { "id": 91710, "name": "E1M5 - Crystal Vial [736,48]", "pos": ["E1M5",736,48,152], "region": "main" }
-AP-CHECK { "id": 91735, "name": "E1M5 - Secret 224", "region": "main" }
+AP-CHECK { "id": 91735, "name": "E1M5 - Secret 224", "pos": ["E1M5","secret","sector",224], "region": "main" }
 AP-CHECK { "id": 18864, "name": "E1M5 - Bag of Holding", "pos": ["E1M5",640,1104,176], "region": "main" }
 AP-CHECK { "id": 91730, "name": "E1M5 - Hellstaff Runes [1984,1024]", "pos": ["E1M5",1984,1024,152], "region": "main" }
 AP-CHECK { "id": 91729, "name": "E1M5 - Hellstaff Runes [1984,1216]", "pos": ["E1M5",1984,1216,152], "region": "main" }
@@ -548,8 +548,8 @@ AP-CHECK { "id": 91616, "name": "E1M5 - Escapement Device [SW]", "pos": ["E1M5",
 AP-CHECK { "id": 91703, "name": "E1M5 - Claw Orbs [-1056,-1920]", "pos": ["E1M5",-1056,-1920,112], "region": "red-keep" }
 AP-CHECK { "id": 91702, "name": "E1M5 - Claw Orbs [-1056,-1600]", "pos": ["E1M5",-1056,-1600,112], "region": "red-keep" }
 AP-CHECK { "id": 18890, "name": "E1M5 - Morph Ovum", "pos": ["E1M5",-1040,1040,-32], "region": "red-keep" }
-AP-CHECK { "id": 91736, "name": "E1M5 - Secret 304", "region": "red-keep" }
-AP-CHECK { "id": 49737, "name": "E1M5 - Secret 92", "region": "red-keep" }
+AP-CHECK { "id": 91736, "name": "E1M5 - Secret 304", "pos": ["E1M5","secret","sector",304], "region": "red-keep" }
+AP-CHECK { "id": 49737, "name": "E1M5 - Secret 92", "pos": ["E1M5","secret","sector",92], "region": "red-keep" }
 AP-CHECK { "id": 91694, "name": "E1M5 - Claw Orbs [-640,960]", "pos": ["E1M5",-640,960,16], "region": "red-keep" }
 AP-CHECK { "id": 91728, "name": "E1M5 - Hellstaff Runes [-640,1152]", "pos": ["E1M5",-640,1152,16], "region": "red-keep" }
 AP-CHECK { "id": 91643, "name": "E1M5 - Enchanted Shield [-480,1344]", "pos": ["E1M5",-480,1344,16], "region": "red-keep" }
@@ -559,15 +559,6 @@ AP-CHECK { "id": 91720, "name": "E1M5 - Hellstaff Runes [1736,-1056]", "pos": ["
 AP-CHECK { "id": 91723, "name": "E1M5 - Hellstaff Runes [1928,-1056]", "pos": ["E1M5",1928,-1056,80], "region": "red-keep" }
 AP-CHECK { "id": 91674, "name": "E1M5 - Quartz Flask [2016,-1152]", "pos": ["E1M5",2016,-1152,80], "region": "red-keep" }
 AP-CHECK { "id": 91722, "name": "E1M5 - Hellstaff Runes [1928,-1248]", "pos": ["E1M5",1928,-1248,80], "region": "red-keep" }
-AP-VISITED { "visited": [ "E1M3", "E1M9", "E1M5", "E1M1" ] }
-AP-VISITED { "visited": [ "E1M3", "E1M4", "E1M9", "E1M5", "E1M1" ] }
-AP-XOFF {}
-AP-XON { "lump": "GZAPIPC", "size": 4096, "nick": "Player", "slot": "Player1", "seed": "80463283865778101564", "wad": "Faithless", "server": "" }
-AP-WEAPONS { "weapons": {  } }
-AP-VISITED { "visited": [ "E1M3", "E1M4", "E1M1", "E1M9", "E1M5" ] }
-AP-VISITED { "visited": [ "E1M3", "E1M1", "E1M9", "E1M5" ] }
-AP-VISITED { "visited": [ "E1M3", "E1M1", "E1M9" ] }
-AP-VISITED { "visited": [ "E1M3", "E1M1" ] }
 AP-CHECK { "id": 91508, "name": "E1M3 - Claw Orbs [-1168,-320]", "pos": ["E1M3",-1168,-320,16], "region": "green" }
 AP-CHECK { "id": 91488, "name": "E1M3 - Ethereal Arrows [-1504,-336]", "pos": ["E1M3",-1504,-336,16], "region": "green" }
 AP-CHECK { "id": 91509, "name": "E1M3 - Claw Orbs [-1168,-48]", "pos": ["E1M3",-1168,-48,16], "region": "green" }
@@ -600,3 +591,254 @@ AP-CHECK { "id": 91275, "name": "E1M1 - Tome of Power [SE]", "pos": ["E1M1",736,
 AP-CHECK { "id": 91304, "name": "E1M1 - Crystal Vial [800,-3968]", "pos": ["E1M1",800,-3968,-136], "region": "portcullis-open" }
 AP-CHECK { "id": 91340, "name": "E1M1 - Shadowsphere", "pos": ["E1M1",0,-4032,-64], "region": "portcullis-open" }
 AP-XOFF {}
+
+AP-CHECK { "id": 91351, "name": "E1M1 - Map secret", "pos": ["E1M1","secret","tid",9], "region": "main" }
+AP-CHECK { "id": 91313, "name": "E1M1 - Ethereal Arrows [0,-1224]", "pos": ["E1M1",0,-1224,0], "region": "main" }
+AP-CHECK { "id": 91356, "name": "E1M1 - Belltower secret", "pos": ["E1M1","secret","sector",453], "region": "main" }
+
+AP-CHECK { "id": 91524, "name": "E1M3 - Amulet secret", "pos": ["E1M3","secret","tid",2], "region": "gardens" }
+
+AP-CHECK { "id": 91448, "name": "E1M3 - Secret T137", "pos": ["E1M3","secret","tid",137], "region": "red-keep" }
+
+AP-CHECK { "id": 92064, "name": "E1M9 - Crystal Vial [1472,-3488]", "pos": ["E1M9",1472,-3488,128], "region": "main" }
+AP-CHECK { "id": 19655, "name": "E1M9 - Ethereal Crossbow", "pos": ["E1M9",1344,-3280,144], "region": "main" }
+AP-CHECK { "id": 92109, "name": "E1M9 - Crystal Vial [1824,-3168]", "pos": ["E1M9",1824,-3168,128], "region": "main" }
+AP-CHECK { "id": 92089, "name": "E1M9 - Crystal Vial [-96,3136]", "pos": ["E1M9",-96,3136,128], "region": "main" }
+AP-CHECK { "id": 92090, "name": "E1M9 - Crystal Vial [-96,3008]", "pos": ["E1M9",-96,3008,128], "region": "main" }
+AP-CHECK { "id": 91978, "name": "E1M9 - Hellstaff Runes [1056,1072]", "pos": ["E1M9",1056,1072,80], "region": "main" }
+AP-CHECK { "id": 91979, "name": "E1M9 - Hellstaff Runes [1120,992]", "pos": ["E1M9",1120,992,80], "region": "main" }
+AP-CHECK { "id": 92081, "name": "E1M9 - Crystal Vial [832,736]", "pos": ["E1M9",832,736,-32], "region": "main" }
+AP-CHECK { "id": 92080, "name": "E1M9 - Crystal Vial [912,816]", "pos": ["E1M9",912,816,-32], "region": "main" }
+AP-CHECK { "id": 92079, "name": "E1M9 - Crystal Vial [1008,800]", "pos": ["E1M9",1008,800,-32], "region": "main" }
+AP-CHECK { "id": 91999, "name": "E1M9 - Hellstaff Runes [800,192]", "pos": ["E1M9",800,192,-16], "region": "main" }
+AP-CHECK { "id": 92183, "name": "E1M9 - Wand Crystals [Center]", "pos": ["E1M9",1152,320,-32], "region": "main" }
+AP-CHECK { "id": 92021, "name": "E1M9 - Mace Spheres [704,512]", "pos": ["E1M9",704,512,0], "region": "main" }
+AP-CHECK { "id": 92126, "name": "E1M9 - Claw Orbs [512,352]", "pos": ["E1M9",512,352,0], "region": "main" }
+AP-CHECK { "id": 92075, "name": "E1M9 - Crystal Vial [336,-176]", "pos": ["E1M9",336,-176,0], "region": "main" }
+AP-CHECK { "id": 92162, "name": "E1M9 - Ethereal Arrows [992,-192]", "pos": ["E1M9",992,-192,16], "region": "main" }
+AP-CHECK { "id": 92074, "name": "E1M9 - Crystal Vial [1248,112]", "pos": ["E1M9",1248,112,32], "region": "main" }
+AP-CHECK { "id": 92073, "name": "E1M9 - Crystal Vial [1280,208]", "pos": ["E1M9",1280,208,32], "region": "main" }
+AP-CHECK { "id": 92046, "name": "E1M9 - Time Bomb of the Ancients [1696,-192]", "pos": ["E1M9",1696,-192,80], "region": "main" }
+AP-CHECK { "id": 92047, "name": "E1M9 - Time Bomb of the Ancients [1696,-128]", "pos": ["E1M9",1696,-128,80], "region": "main" }
+AP-CHECK { "id": 92124, "name": "E1M9 - Claw Orbs [1664,128]", "pos": ["E1M9",1664,128,32], "region": "main" }
+AP-CHECK { "id": 92036, "name": "E1M9 - Quartz Flask [1872,352]", "pos": ["E1M9",1872,352,16], "region": "main" }
+AP-CHECK { "id": 92035, "name": "E1M9 - Quartz Flask [1840,464]", "pos": ["E1M9",1840,464,16], "region": "main" }
+AP-CHECK { "id": 92177, "name": "E1M9 - Ethereal Arrows [1248,992]", "pos": ["E1M9",1248,992,32], "region": "main" }
+AP-CHECK { "id": 91983, "name": "E1M9 - Hellstaff Runes [1776,896]", "pos": ["E1M9",1776,896,32], "region": "main" }
+AP-CHECK { "id": 92151, "name": "E1M9 - Claw Orbs [1872,1728]", "pos": ["E1M9",1872,1728,32], "region": "main" }
+AP-CHECK { "id": 92121, "name": "E1M9 - Crystal Vial [1856,1776]", "pos": ["E1M9",1856,1776,32], "region": "main" }
+AP-CHECK { "id": 92122, "name": "E1M9 - Crystal Vial [1920,1744]", "pos": ["E1M9",1920,1744,32], "region": "main" }
+AP-CHECK { "id": 92095, "name": "E1M9 - Crystal Vial [1264,1952]", "pos": ["E1M9",1264,1952,112], "region": "main" }
+AP-CHECK { "id": 19679, "name": "E1M9 - Map Scroll", "pos": ["E1M9",1104,2688,112], "region": "main" }
+AP-CHECK { "id": 92096, "name": "E1M9 - Crystal Vial [512,2752]", "pos": ["E1M9",512,2752,112], "region": "main" }
+AP-CHECK { "id": 92092, "name": "E1M9 - Crystal Vial [384,2144]", "pos": ["E1M9",384,2144,128], "region": "main" }
+AP-CHECK { "id": 92091, "name": "E1M9 - Crystal Vial [384,2208]", "pos": ["E1M9",384,2208,128], "region": "main" }
+AP-CHECK { "id": 92040, "name": "E1M9 - Morph Ovum [-96,2464]", "pos": ["E1M9",-96,2464,112], "region": "main" }
+AP-CHECK { "id": 92017, "name": "E1M9 - Mace Spheres [-288,2464]", "pos": ["E1M9",-288,2464,112], "region": "main" }
+AP-CHECK { "id": 92018, "name": "E1M9 - Mace Spheres [96,2464]", "pos": ["E1M9",96,2464,112], "region": "main" }
+AP-CHECK { "id": 92171, "name": "E1M9 - Ethereal Arrows [-736,2176]", "pos": ["E1M9",-736,2176,128], "region": "main" }
+AP-CHECK { "id": 92039, "name": "E1M9 - Quartz Flask [-928,2176]", "pos": ["E1M9",-928,2176,128], "region": "main" }
+AP-CHECK { "id": 91993, "name": "E1M9 - Hellstaff Runes [-1120,1408]", "pos": ["E1M9",-1120,1408,112], "region": "main" }
+AP-CHECK { "id": 91992, "name": "E1M9 - Hellstaff Runes [-1216,1472]", "pos": ["E1M9",-1216,1472,112], "region": "main" }
+AP-CHECK { "id": 92104, "name": "E1M9 - Crystal Vial [-992,1824]", "pos": ["E1M9",-992,1824,96], "region": "main" }
+AP-CHECK { "id": 92172, "name": "E1M9 - Ethereal Arrows [-1440,1888]", "pos": ["E1M9",-1440,1888,64], "region": "main" }
+AP-CHECK { "id": 92153, "name": "E1M9 - Claw Orbs [-2272,1984]", "pos": ["E1M9",-2272,1984,48], "region": "main" }
+AP-CHECK { "id": 92052, "name": "E1M9 - Time Bomb of the Ancients [-2144,2208]", "pos": ["E1M9",-2144,2208,64], "region": "main" }
+AP-CHECK { "id": 92106, "name": "E1M9 - Crystal Vial [-2080,2208]", "pos": ["E1M9",-2080,2208,64], "region": "main" }
+AP-CHECK { "id": 92053, "name": "E1M9 - Time Bomb of the Ancients [-2080,2272]", "pos": ["E1M9",-2080,2272,64], "region": "main" }
+AP-CHECK { "id": 92105, "name": "E1M9 - Crystal Vial [-2144,2272]", "pos": ["E1M9",-2144,2272,64], "region": "main" }
+AP-CHECK { "id": 92043, "name": "E1M9 - Morph Ovum [-2432,1472]", "pos": ["E1M9",-2432,1472,48], "region": "main" }
+AP-CHECK { "id": 92025, "name": "E1M9 - Mace Spheres [-2528,1248]", "pos": ["E1M9",-2528,1248,48], "region": "main" }
+AP-CHECK { "id": 92026, "name": "E1M9 - Mace Spheres [-2496,1152]", "pos": ["E1M9",-2496,1152,48], "region": "main" }
+AP-CHECK { "id": 92038, "name": "E1M9 - Quartz Flask [-2240,944]", "pos": ["E1M9",-2240,944,64], "region": "main" }
+AP-CHECK { "id": 92152, "name": "E1M9 - Claw Orbs [-1600,1120]", "pos": ["E1M9",-1600,1120,48], "region": "main" }
+AP-CHECK { "id": 92139, "name": "E1M9 - Claw Orbs [-2016,-320]", "pos": ["E1M9",-2016,-320,56], "region": "main" }
+AP-CHECK { "id": 92082, "name": "E1M9 - Crystal Vial [-1872,-736]", "pos": ["E1M9",-1872,-736,64], "region": "main" }
+AP-CHECK { "id": 92083, "name": "E1M9 - Crystal Vial [-1648,-736]", "pos": ["E1M9",-1648,-736,64], "region": "main" }
+AP-CHECK { "id": 92174, "name": "E1M9 - Ethereal Arrows [-1664,-480]", "pos": ["E1M9",-1664,-480,64], "region": "main" }
+AP-CHECK { "id": 92103, "name": "E1M9 - Crystal Vial [-960,840]", "pos": ["E1M9",-960,840,128], "region": "main" }
+AP-CHECK { "id": 92108, "name": "E1M9 - Crystal Vial [-960,800]", "pos": ["E1M9",-960,800,128], "region": "main" }
+AP-CHECK { "id": 92107, "name": "E1M9 - Crystal Vial [-960,760]", "pos": ["E1M9",-960,760,128], "region": "main" }
+AP-CHECK { "id": 92167, "name": "E1M9 - Ethereal Arrows [1120,-2848]", "pos": ["E1M9",1120,-2848,112], "region": "main" }
+AP-CHECK { "id": 92141, "name": "E1M9 - Claw Orbs [1568,-2080]", "pos": ["E1M9",1568,-2080,128], "region": "main" }
+AP-CHECK { "id": 92066, "name": "E1M9 - Crystal Vial [928,-2496]", "pos": ["E1M9",928,-2496,112], "region": "main" }
+AP-CHECK { "id": 92170, "name": "E1M9 - Ethereal Arrows [1024,-2624]", "pos": ["E1M9",1024,-2624,112], "region": "main" }
+AP-CHECK { "id": 92058, "name": "E1M9 - Crystal Vial [896,-2752]", "pos": ["E1M9",896,-2752,112], "region": "main" }
+AP-CHECK { "id": 92065, "name": "E1M9 - Crystal Vial [608,-2784]", "pos": ["E1M9",608,-2784,112], "region": "main" }
+AP-CHECK { "id": 92051, "name": "E1M9 - Time Bomb of the Ancients [496,-2240]", "pos": ["E1M9",496,-2240,128], "region": "main" }
+AP-CHECK { "id": 92050, "name": "E1M9 - Time Bomb of the Ancients [496,-2176]", "pos": ["E1M9",496,-2176,128], "region": "main" }
+AP-CHECK { "id": 91990, "name": "E1M9 - Hellstaff Runes [320,-2496]", "pos": ["E1M9",320,-2496,64], "region": "main" }
+AP-CHECK { "id": 92061, "name": "E1M9 - Crystal Vial [64,-2560]", "pos": ["E1M9",64,-2560,48], "region": "main" }
+AP-CHECK { "id": 92013, "name": "E1M9 - Mace Spheres [-96,-3360]", "pos": ["E1M9",-96,-3360,48], "region": "main" }
+AP-CHECK { "id": 19659, "name": "E1M9 - Torch", "pos": ["E1M9",-448,-3424,48], "region": "main" }
+AP-CHECK { "id": 92062, "name": "E1M9 - Crystal Vial [336,-3376]", "pos": ["E1M9",336,-3376,48], "region": "main" }
+AP-CHECK { "id": 92063, "name": "E1M9 - Crystal Vial [336,-3440]", "pos": ["E1M9",336,-3440,48], "region": "main" }
+AP-CHECK { "id": 92168, "name": "E1M9 - Ethereal Arrows [-304,-2960]", "pos": ["E1M9",-304,-2960,48], "region": "main" }
+AP-CHECK { "id": 92169, "name": "E1M9 - Ethereal Arrows [-464,-2944]", "pos": ["E1M9",-464,-2944,48], "region": "main" }
+AP-CHECK { "id": 92160, "name": "E1M9 - Ethereal Arrows [-1280,-2608]", "pos": ["E1M9",-1280,-2608,48], "region": "main" }
+AP-CHECK { "id": 92159, "name": "E1M9 - Ethereal Arrows [-1408,-2288]", "pos": ["E1M9",-1408,-2288,48], "region": "main" }
+AP-CHECK { "id": 92138, "name": "E1M9 - Claw Orbs [-816,-2144]", "pos": ["E1M9",-816,-2144,48], "region": "main" }
+AP-CHECK { "id": 92085, "name": "E1M9 - Crystal Vial [-1104,-1936]", "pos": ["E1M9",-1104,-1936,64], "region": "main" }
+AP-CHECK { "id": 92084, "name": "E1M9 - Crystal Vial [-1312,-1968]", "pos": ["E1M9",-1312,-1968,64], "region": "main" }
+AP-CHECK { "id": 92088, "name": "E1M9 - Crystal Vial [-704,-2640]", "pos": ["E1M9",-704,-2640,64], "region": "main" }
+AP-CHECK { "id": 92060, "name": "E1M9 - Crystal Vial [-256,-2560]", "pos": ["E1M9",-256,-2560,48], "region": "main" }
+AP-CHECK { "id": 91996, "name": "E1M9 - Hellstaff Runes [-448,-2496]", "pos": ["E1M9",-448,-2496,64], "region": "main" }
+AP-CHECK { "id": 92198, "name": "E1M9 - Enchanted Shield [S]", "pos": ["E1M9",-96,-2240,64], "region": "main" }
+AP-CHECK { "id": 92186, "name": "E1M9 - Flame Orbs [-96,-1952]", "pos": ["E1M9",-96,-1952,128], "region": "main" }
+AP-CHECK { "id": 92086, "name": "E1M9 - Crystal Vial [-160,-1824]", "pos": ["E1M9",-160,-1824,128], "region": "main" }
+AP-CHECK { "id": 92059, "name": "E1M9 - Crystal Vial [-32,-1824]", "pos": ["E1M9",-32,-1824,128], "region": "main" }
+AP-CHECK { "id": 92101, "name": "E1M9 - Crystal Vial [-672,1760]", "pos": ["E1M9",-672,1760,64], "region": "main" }
+AP-CHECK { "id": 91991, "name": "E1M9 - Hellstaff Runes [-576,1760]", "pos": ["E1M9",-576,1760,64], "region": "main" }
+AP-CHECK { "id": 92102, "name": "E1M9 - Crystal Vial [-480,1760]", "pos": ["E1M9",-480,1760,64], "region": "main" }
+AP-CHECK { "id": 92042, "name": "E1M9 - Morph Ovum [-576,1664]", "pos": ["E1M9",-576,1664,0], "region": "main" }
+AP-CHECK { "id": 92000, "name": "E1M9 - Hellstaff Runes [-288,800]", "pos": ["E1M9",-288,800,-24], "region": "main" }
+AP-CHECK { "id": 92022, "name": "E1M9 - Mace Spheres [96,800]", "pos": ["E1M9",96,800,-24], "region": "main" }
+AP-CHECK { "id": 92041, "name": "E1M9 - Morph Ovum [384,1664]", "pos": ["E1M9",384,1664,0], "region": "main" }
+AP-CHECK { "id": 92197, "name": "E1M9 - Enchanted Shield [N]", "pos": ["E1M9",-96,1888,0], "region": "main" }
+AP-CHECK { "id": 91994, "name": "E1M9 - Hellstaff Runes [192,2272]", "pos": ["E1M9",192,2272,0], "region": "main" }
+AP-CHECK { "id": 91995, "name": "E1M9 - Hellstaff Runes [192,2080]", "pos": ["E1M9",192,2080,0], "region": "main" }
+AP-CHECK { "id": 92148, "name": "E1M9 - Claw Orbs [-384,2080]", "pos": ["E1M9",-384,2080,0], "region": "main" }
+AP-CHECK { "id": 92100, "name": "E1M9 - Crystal Vial [-576,2144]", "pos": ["E1M9",-576,2144,128], "region": "main" }
+AP-CHECK { "id": 92099, "name": "E1M9 - Crystal Vial [-576,2208]", "pos": ["E1M9",-576,2208,128], "region": "main" }
+AP-CHECK { "id": 92147, "name": "E1M9 - Claw Orbs [-384,2272]", "pos": ["E1M9",-384,2272,0], "region": "main" }
+AP-CHECK { "id": 92094, "name": "E1M9 - Crystal Vial [480,1760]", "pos": ["E1M9",480,1760,64], "region": "main" }
+AP-CHECK { "id": 92016, "name": "E1M9 - Mace Spheres [384,1760]", "pos": ["E1M9",384,1760,64], "region": "main" }
+AP-CHECK { "id": 92093, "name": "E1M9 - Crystal Vial [288,1760]", "pos": ["E1M9",288,1760,64], "region": "main" }
+AP-CHECK { "id": 91997, "name": "E1M9 - Hellstaff Runes [-96,160]", "pos": ["E1M9",-96,160,-64], "region": "main" }
+AP-CHECK { "id": 92127, "name": "E1M9 - Claw Orbs [-320,480]", "pos": ["E1M9",-320,480,-64], "region": "main" }
+AP-CHECK { "id": 92128, "name": "E1M9 - Claw Orbs [128,480]", "pos": ["E1M9",128,480,-64], "region": "main" }
+AP-CHECK { "id": 92076, "name": "E1M9 - Crystal Vial [-528,-176]", "pos": ["E1M9",-528,-176,0], "region": "main" }
+AP-CHECK { "id": 92125, "name": "E1M9 - Claw Orbs [-704,320]", "pos": ["E1M9",-704,320,0], "region": "main" }
+AP-CHECK { "id": 92024, "name": "E1M9 - Mace Spheres [-896,512]", "pos": ["E1M9",-896,512,0], "region": "main" }
+AP-CHECK { "id": 92182, "name": "E1M9 - Wand Crystals [W]", "pos": ["E1M9",-1152,352,-16], "region": "main" }
+AP-CHECK { "id": 92140, "name": "E1M9 - Claw Orbs [-1312,-96]", "pos": ["E1M9",-1312,-96,0], "region": "main" }
+AP-CHECK { "id": 92173, "name": "E1M9 - Ethereal Arrows [-1056,-512]", "pos": ["E1M9",-1056,-512,0], "region": "main" }
+AP-CHECK { "id": 92137, "name": "E1M9 - Claw Orbs [-832,-800]", "pos": ["E1M9",-832,-800,0], "region": "main" }
+AP-CHECK { "id": 91998, "name": "E1M9 - Hellstaff Runes [-544,-640]", "pos": ["E1M9",-544,-640,0], "region": "main" }
+AP-CHECK { "id": 92029, "name": "E1M9 - Quartz Flask [-512,-432]", "pos": ["E1M9",-512,-432,0], "region": "main" }
+AP-CHECK { "id": 92023, "name": "E1M9 - Mace Spheres [-1312,-672]", "pos": ["E1M9",-1312,-672,-16], "region": "main" }
+AP-CHECK { "id": 91976, "name": "E1M9 - Secret T6", "pos": ["E1M9","secret","sector",6], "region": "main" }
+AP-CHECK { "id": 92008, "name": "E1M9 - Firemace", "pos": ["E1M9",-96,-3456,256], "region": "main" }
+AP-CHECK { "id": 92011, "name": "E1M9 - Mace Spheres [-320,-3680]", "pos": ["E1M9",-320,-3680,128], "region": "main" }
+AP-CHECK { "id": 92012, "name": "E1M9 - Mace Spheres [192,-3680]", "pos": ["E1M9",192,-3680,128], "region": "main" }
+AP-CHECK { "id": 92194, "name": "E1M9 - Flame Orbs [-352,3024]", "pos": ["E1M9",-352,3024,128], "region": "main" }
+AP-CHECK { "id": 92206, "name": "E1M9 - Secret 397", "pos": ["E1M9","secret","sector",397], "region": "main" }
+AP-CHECK { "id": 92195, "name": "E1M9 - Flame Orbs [-352,3104]", "pos": ["E1M9",-352,3104,128], "region": "main" }
+AP-CHECK { "id": 92199, "name": "E1M9 - Boots of the North", "pos": ["E1M9",-352,3184,128], "region": "main" }
+AP-CHECK { "id": 19459, "name": "E1M9 - Bag of Holding", "pos": ["E1M9",-96,-736,-32], "region": "main" }
+AP-CHECK { "id": 92132, "name": "E1M9 - Claw Orbs [-96,-1056]", "pos": ["E1M9",-96,-1056,-32], "region": "main" }
+AP-CHECK { "id": 92185, "name": "E1M9 - Flame Orbs [-64,-1376]", "pos": ["E1M9",-64,-1376,-32], "region": "main" }
+AP-CHECK { "id": 92184, "name": "E1M9 - Flame Orbs [-128,-1376]", "pos": ["E1M9",-128,-1376,-32], "region": "main" }
+AP-CHECK { "id": 92158, "name": "E1M9 - Ethereal Arrows [-320,-1408]", "pos": ["E1M9",-320,-1408,-32], "region": "main" }
+AP-CHECK { "id": 92131, "name": "E1M9 - Claw Orbs [-544,-1056]", "pos": ["E1M9",-544,-1056,-32], "region": "main" }
+AP-CHECK { "id": 92031, "name": "E1M9 - Quartz Flask [-544,-928]", "pos": ["E1M9",-544,-928,-32], "region": "main" }
+AP-CHECK { "id": 92136, "name": "E1M9 - Claw Orbs [-832,-1920]", "pos": ["E1M9",-832,-1920,32], "region": "main" }
+AP-CHECK { "id": 92006, "name": "E1M9 - Dragon Claw", "pos": ["E1M9",-928,-2016,32], "region": "main" }
+AP-CHECK { "id": 92087, "name": "E1M9 - Crystal Vial [-160,-1504]", "pos": ["E1M9",-160,-1504,-32], "region": "main" }
+AP-CHECK { "id": 92068, "name": "E1M9 - Crystal Vial [-32,-1504]", "pos": ["E1M9",-32,-1504,-32], "region": "main" }
+AP-CHECK { "id": 91989, "name": "E1M9 - Hellstaff Runes [640,-1920]", "pos": ["E1M9",640,-1920,32], "region": "main" }
+AP-CHECK { "id": 92007, "name": "E1M9 - Hellstaff", "pos": ["E1M9",736,-2016,32], "region": "main" }
+AP-CHECK { "id": 92161, "name": "E1M9 - Ethereal Arrows [128,-1408]", "pos": ["E1M9",128,-1408,-32], "region": "main" }
+AP-CHECK { "id": 92133, "name": "E1M9 - Claw Orbs [352,-1056]", "pos": ["E1M9",352,-1056,-32], "region": "main" }
+AP-CHECK { "id": 92077, "name": "E1M9 - Crystal Vial [352,-544]", "pos": ["E1M9",352,-544,144], "region": "main" }
+AP-CHECK { "id": 92078, "name": "E1M9 - Crystal Vial [544,-368]", "pos": ["E1M9",544,-368,144], "region": "main" }
+AP-CHECK { "id": 92033, "name": "E1M9 - Quartz Flask [624,-144]", "pos": ["E1M9",624,-144,144], "region": "main" }
+AP-CHECK { "id": 92163, "name": "E1M9 - Ethereal Arrows [544,-144]", "pos": ["E1M9",544,-144,144], "region": "main" }
+AP-CHECK { "id": 92032, "name": "E1M9 - Quartz Flask [464,-144]", "pos": ["E1M9",464,-144,144], "region": "main" }
+AP-CHECK { "id": 92129, "name": "E1M9 - Claw Orbs [-800,-192]", "pos": ["E1M9",-800,-192,144], "region": "main" }
+AP-CHECK { "id": 92069, "name": "E1M9 - Crystal Vial [-800,-64]", "pos": ["E1M9",-800,-64,144], "region": "main" }
+AP-CHECK { "id": 92070, "name": "E1M9 - Crystal Vial [-672,-64]", "pos": ["E1M9",-672,-64,144], "region": "main" }
+AP-CHECK { "id": 92165, "name": "E1M9 - Ethereal Arrows [-672,-192]", "pos": ["E1M9",-672,-192,144], "region": "main" }
+AP-CHECK { "id": 92130, "name": "E1M9 - Claw Orbs [-800,-384]", "pos": ["E1M9",-800,-384,144], "region": "main" }
+AP-CHECK { "id": 92071, "name": "E1M9 - Crystal Vial [-800,-512]", "pos": ["E1M9",-800,-512,144], "region": "main" }
+AP-CHECK { "id": 92072, "name": "E1M9 - Crystal Vial [-672,-512]", "pos": ["E1M9",-672,-512,144], "region": "main" }
+AP-CHECK { "id": 92164, "name": "E1M9 - Ethereal Arrows [-672,-384]", "pos": ["E1M9",-672,-384,144], "region": "main" }
+AP-CHECK { "id": 19658, "name": "E1M9 - Ring of Invincibility", "pos": ["E1M9",-1312,-416,192], "region": "main" }
+AP-CHECK { "id": 92009, "name": "E1M9 - Secret T4", "pos": ["E1M9","secret","sector",4], "region": "main" }
+AP-CHECK { "id": 92002, "name": "E1M9 - Hellstaff Runes [768,-1280]", "pos": ["E1M9",768,-1280,-56], "region": "main" }
+AP-CHECK { "id": 92030, "name": "E1M9 - Quartz Flask [960,-1056]", "pos": ["E1M9",960,-1056,-40], "region": "main" }
+AP-CHECK { "id": 92067, "name": "E1M9 - Crystal Vial [1120,-1056]", "pos": ["E1M9",1120,-1056,-40], "region": "main" }
+AP-CHECK { "id": 92166, "name": "E1M9 - Ethereal Arrows [1440,-1152]", "pos": ["E1M9",1440,-1152,72], "region": "main" }
+AP-CHECK { "id": 92045, "name": "E1M9 - Time Bomb of the Ancients [1312,-960]", "pos": ["E1M9",1312,-960,72], "region": "main" }
+AP-CHECK { "id": 92044, "name": "E1M9 - Time Bomb of the Ancients [1200,-960]", "pos": ["E1M9",1200,-960,72], "region": "main" }
+AP-CHECK { "id": 92123, "name": "E1M9 - Claw Orbs [1184,-1152]", "pos": ["E1M9",1184,-1152,72], "region": "main" }
+AP-CHECK { "id": 92134, "name": "E1M9 - Claw Orbs [896,-640]", "pos": ["E1M9",896,-640,-56], "region": "main" }
+AP-CHECK { "id": 92003, "name": "E1M9 - Hellstaff Runes [1280,-768]", "pos": ["E1M9",1280,-768,-56], "region": "main" }
+AP-CHECK { "id": 92135, "name": "E1M9 - Claw Orbs [1664,-768]", "pos": ["E1M9",1664,-768,-56], "region": "main" }
+AP-CHECK { "id": 92001, "name": "E1M9 - Hellstaff Runes [1504,-1056]", "pos": ["E1M9",1504,-1056,-56], "region": "main" }
+AP-CHECK { "id": 92004, "name": "E1M9 - Hellstaff Runes [1536,-1536]", "pos": ["E1M9",1536,-1536,-56], "region": "main" }
+AP-CHECK { "id": 92142, "name": "E1M9 - Claw Orbs [1280,-1408]", "pos": ["E1M9",1280,-1408,-56], "region": "main" }
+AP-CHECK { "id": 92014, "name": "E1M9 - Mace Spheres [2112,1216]", "pos": ["E1M9",2112,1216,-56], "region": "main" }
+AP-CHECK { "id": 92149, "name": "E1M9 - Claw Orbs [2816,768]", "pos": ["E1M9",2816,768,-112], "region": "main" }
+AP-CHECK { "id": 91981, "name": "E1M9 - Hellstaff Runes [2208,736]", "pos": ["E1M9",2208,736,-128], "region": "main" }
+AP-CHECK { "id": 92015, "name": "E1M9 - Mace Spheres [2016,480]", "pos": ["E1M9",2016,480,-128], "region": "main" }
+AP-CHECK { "id": 92180, "name": "E1M9 - Elixir Vitae [NE]", "pos": ["E1M9",2016,416,-128], "region": "main" }
+AP-CHECK { "id": 92020, "name": "E1M9 - Mace Spheres [2032,352]", "pos": ["E1M9",2032,352,-128], "region": "main" }
+AP-CHECK { "id": 91980, "name": "E1M9 - Hellstaff Runes [2592,960]", "pos": ["E1M9",2592,960,-128], "region": "main" }
+AP-CHECK { "id": 92019, "name": "E1M9 - Mace Spheres [3008,384]", "pos": ["E1M9",3008,384,-64], "region": "main" }
+AP-CHECK { "id": 92179, "name": "E1M9 - Mystic Urn", "pos": ["E1M9",3168,448,-64], "region": "main" }
+AP-CHECK { "id": 92156, "name": "E1M9 - Claw Orbs [2176,-256]", "pos": ["E1M9",2176,-256,-192], "region": "main" }
+AP-CHECK { "id": 92119, "name": "E1M9 - Crystal Vial [1936,-224]", "pos": ["E1M9",1936,-224,-192], "region": "main" }
+AP-CHECK { "id": 92120, "name": "E1M9 - Crystal Vial [2128,-784]", "pos": ["E1M9",2128,-784,-192], "region": "main" }
+AP-CHECK { "id": 91985, "name": "E1M9 - Hellstaff Runes [2432,-608]", "pos": ["E1M9",2432,-608,-192], "region": "main" }
+AP-CHECK { "id": 92155, "name": "E1M9 - Claw Orbs [3136,-256]", "pos": ["E1M9",3136,-256,-192], "region": "main" }
+AP-CHECK { "id": 92118, "name": "E1M9 - Crystal Vial [3376,-160]", "pos": ["E1M9",3376,-160,-192], "region": "main" }
+AP-CHECK { "id": 91984, "name": "E1M9 - Hellstaff Runes [2816,0]", "pos": ["E1M9",2816,0,-192], "region": "main" }
+AP-CHECK { "id": 92196, "name": "E1M9 - Enchanted Shield [E]", "pos": ["E1M9",2656,-384,-192], "region": "main" }
+
+AP-CHECK { "id": 92154, "name": "E1M9 - Claw Orbs [2016,64]", "pos": ["E1M9",2016,64,-176], "region": "after-ice" }
+AP-CHECK { "id": 91987, "name": "E1M9 - Hellstaff Runes [3248,128]", "pos": ["E1M9",3248,128,-176], "region": "after-ice" }
+AP-CHECK { "id": 91986, "name": "E1M9 - Hellstaff Runes [3312,160]", "pos": ["E1M9",3312,160,-176], "region": "after-ice" }
+AP-CHECK { "id": 91988, "name": "E1M9 - Hellstaff Runes [3200,192]", "pos": ["E1M9",3200,192,-176], "region": "after-ice" }
+AP-CHECK { "id": 92175, "name": "E1M9 - Ethereal Arrows [3520,-640]", "pos": ["E1M9",3520,-640,-176], "region": "after-ice" }
+AP-CHECK { "id": 92097, "name": "E1M9 - Crystal Vial [1136,1632]", "pos": ["E1M9",1136,1632,112], "region": "after-ice" }
+AP-CHECK { "id": 91982, "name": "E1M9 - Hellstaff Runes [1344,1728]", "pos": ["E1M9",1344,1728,128], "region": "after-ice" }
+AP-CHECK { "id": 91977, "name": "E1M9 - Escapement Device", "pos": ["E1M9",1312,1504,112], "region": "after-ice" }
+AP-CHECK { "id": 92098, "name": "E1M9 - Crystal Vial [1136,1392]", "pos": ["E1M9",1136,1392,112], "region": "after-ice" }
+AP-CHECK { "id": 92150, "name": "E1M9 - Claw Orbs [1248,1280]", "pos": ["E1M9",1248,1280,128], "region": "after-ice" }
+AP-CHECK { "id": 92111, "name": "E1M9 - Crystal Vial [2720,-1344]", "pos": ["E1M9",2720,-1344,-200], "region": "after-ice" }
+AP-CHECK { "id": 92110, "name": "E1M9 - Crystal Vial [2592,-1344]", "pos": ["E1M9",2592,-1344,-200], "region": "after-ice" }
+AP-CHECK { "id": 92192, "name": "E1M9 - Flame Orbs [3088,-1648]", "pos": ["E1M9",3088,-1648,-192], "region": "after-ice" }
+AP-CHECK { "id": 92191, "name": "E1M9 - Flame Orbs [3088,-1776]", "pos": ["E1M9",3088,-1776,-192], "region": "after-ice" }
+AP-CHECK { "id": 92054, "name": "E1M9 - Time Bomb of the Ancients [3040,-2240]", "pos": ["E1M9",3040,-2240,-48], "region": "after-ice" }
+AP-CHECK { "id": 92056, "name": "E1M9 - Time Bomb of the Ancients [2848,-2240]", "pos": ["E1M9",2848,-2240,-48], "region": "after-ice" }
+AP-CHECK { "id": 92115, "name": "E1M9 - Crystal Vial [2912,-1856]", "pos": ["E1M9",2912,-1856,-48], "region": "after-ice" }
+AP-CHECK { "id": 92114, "name": "E1M9 - Crystal Vial [2784,-1856]", "pos": ["E1M9",2784,-1856,-48], "region": "after-ice" }
+AP-CHECK { "id": 92143, "name": "E1M9 - Claw Orbs [2656,-1712]", "pos": ["E1M9",2656,-1712,-48], "region": "after-ice" }
+AP-CHECK { "id": 92028, "name": "E1M9 - Mace Spheres [2928,-1456]", "pos": ["E1M9",2928,-1456,-48], "region": "after-ice" }
+AP-CHECK { "id": 92193, "name": "E1M9 - Flame Orbs [2384,-1456]", "pos": ["E1M9",2384,-1456,-48], "region": "after-ice" }
+AP-CHECK { "id": 92144, "name": "E1M9 - Claw Orbs [3040,-1568]", "pos": ["E1M9",3040,-1568,-320], "region": "after-ice" }
+AP-CHECK { "id": 92005, "name": "E1M9 - Hellstaff Runes [3168,-2032]", "pos": ["E1M9",3168,-2032,-320], "region": "after-ice" }
+AP-CHECK { "id": 92176, "name": "E1M9 - Ethereal Arrows [2944,-1056]", "pos": ["E1M9",2944,-1056,-320], "region": "after-ice" }
+AP-CHECK { "id": 92057, "name": "E1M9 - Time Bomb of the Ancients [2656,-1136]", "pos": ["E1M9",2656,-1136,-320], "region": "after-ice" }
+AP-CHECK { "id": 92055, "name": "E1M9 - Time Bomb of the Ancients [2656,-1232]", "pos": ["E1M9",2656,-1232,-320], "region": "after-ice" }
+AP-CHECK { "id": 92145, "name": "E1M9 - Claw Orbs [2464,-1376]", "pos": ["E1M9",2464,-1376,-320], "region": "after-ice" }
+AP-CHECK { "id": 92178, "name": "E1M9 - Ethereal Arrows [1888,-1632]", "pos": ["E1M9",1888,-1632,-320], "region": "after-ice" }
+AP-CHECK { "id": 92116, "name": "E1M9 - Crystal Vial [1792,-1920]", "pos": ["E1M9",1792,-1920,-320], "region": "after-ice" }
+AP-CHECK { "id": 92027, "name": "E1M9 - Mace Spheres [1808,-1968]", "pos": ["E1M9",1808,-1968,-320], "region": "after-ice" }
+AP-CHECK { "id": 92117, "name": "E1M9 - Crystal Vial [1840,-2016]", "pos": ["E1M9",1840,-2016,-320], "region": "after-ice" }
+AP-CHECK { "id": 92190, "name": "E1M9 - Flame Orbs [2224,-1776]", "pos": ["E1M9",2224,-1776,-208], "region": "after-ice" }
+AP-CHECK { "id": 92189, "name": "E1M9 - Flame Orbs [2224,-1648]", "pos": ["E1M9",2224,-1648,-208], "region": "after-ice" }
+AP-CHECK { "id": 92112, "name": "E1M9 - Crystal Vial [2396,-2052]", "pos": ["E1M9",2396,-2052,-192], "region": "after-ice" }
+AP-CHECK { "id": 92037, "name": "E1M9 - Quartz Flask [2464,-1968]", "pos": ["E1M9",2464,-1968,-192], "region": "after-ice" }
+AP-CHECK { "id": 92113, "name": "E1M9 - Crystal Vial [2532,-2052]", "pos": ["E1M9",2532,-2052,-192], "region": "after-ice" }
+AP-CHECK { "id": 92146, "name": "E1M9 - Claw Orbs [2776,-1976]", "pos": ["E1M9",2776,-1976,-192], "region": "after-ice" }
+AP-CHECK { "id": 92181, "name": "E1M9 - Elixir Vitae [SE]", "pos": ["E1M9",2920,-2056,-192], "region": "after-ice" }
+AP-CHECK { "id": 92157, "name": "E1M9 - Claw Orbs [1824,-3632]", "pos": ["E1M9",1824,-3632,128], "region": "after-ice" }
+AP-CHECK { "id": 92010, "name": "E1M9 - Secret T5", "pos": ["E1M9","secret","sector",5], "region": "after-ice" }
+AP-CHECK { "id": 19656, "name": "E1M9 - Shadowsphere", "pos": ["E1M9",-96,-2560,256], "region": "after-ice" }
+AP-CHECK { "id": 92207, "name": "E1M9 - Secret 492", "pos": ["E1M9","secret","sector",492], "region": "after-ice" }
+AP-CHECK { "id": 92204, "name": "E1M9 - Wendigo's Breath [224,3104]", "pos": ["E1M9",224,3104,128], "region": "after-ice" }
+AP-CHECK { "id": 92202, "name": "E1M9 - Wendigo's Breath [160,3104]", "pos": ["E1M9",160,3104,128], "region": "after-ice" }
+AP-CHECK { "id": 92203, "name": "E1M9 - Wendigo's Breath [160,3168]", "pos": ["E1M9",160,3168,128], "region": "after-ice" }
+AP-CHECK { "id": 92200, "name": "E1M9 - Wendigo's Breath [96,3104]", "pos": ["E1M9",96,3104,128], "region": "after-ice" }
+AP-CHECK { "id": 92201, "name": "E1M9 - Wendigo's Breath [160,3040]", "pos": ["E1M9",160,3040,128], "region": "after-ice" }
+
+// Wings of Wrath secret in M9. Wings themselves not actually tracked because they are considered a load-bearing
+// level element, but AFAIK nothing in Faithless actually depends on them, so maybe we can include them in logic?
+AP-CHECK { "id": 92205, "name": "E1M9 - Secret 375", "pos": ["E1M9","secret","sector",375], "region": "main" }
+AP-CHECK { "id": 92187, "name": "E1M9 - Flame Orbs [1792,2080]", "pos": ["E1M9",1792,2080,-520], "region": "main" }
+AP-CHECK { "id": 92188, "name": "E1M9 - Flame Orbs [1792,1952]", "pos": ["E1M9",1792,1952,-520], "region": "main" }
+
+AP-CHECK { "id": 91526, "name": "E1M3 - Secret 127", "pos": ["E1M3","secret","sector",127], "region": "tree-secret" }
+AP-CHECK { "id": 18580, "name": "E1M3 - Ring of Invincibility", "pos": ["E1M3",208,1696,96], "region": "tree-secret" }

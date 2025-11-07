@@ -18,22 +18,8 @@ To release a new version:
     in non-pretuning mode we need to add it to the pool and block it from pickup
   - phoenix rod can be gotten OOL by exploring e1m9 and flipping the switch in the ice keep
     to spawn an extra rod in the belltower, but only if weapon suppression is off
-- fix location matching for virtualpos locations
-  - [map,"secret","tid",id] or [map,"secret","sector",idx] for secrets
-  - [map,"exit"] for exits
-  - the following tuning files have non-exit, non-secret entries that lack
-    position information:
-      gzap/apworld/ap_gzdoom_extras/tuning/1000 Lines
-      gzap/apworld/ap_gzdoom_extras/tuning/1000 Lines II
-      gzap/apworld/ap_gzdoom_extras/tuning/Demonfear
-      gzap/apworld/ap_gzdoom_extras/tuning/Faithless.e1m12345
-      gzap/apworld/ap_gzdoom_extras/tuning/MAYhem 2048
-      gzap/apworld/ap_gzdoom_extras/tuning/Scythe
-      gzap/apworld/ap_gzdoom_extras/tuning/The Adventures of Square
-      gzap/apworld/gzdoom/tuning/Doom
-      gzap/apworld/gzdoom/tuning/Doom 2
-      gzap/apworld/gzdoom/tuning/FreeDoom 2
-      gzap/apworld/gzdoom/tuning/Heretic
+- player should not be able to pick up dynkeys if they already exist in the pool
+- player should not be able to fast travel to unvisited maps unless they are starting maps
 
 (maybe wait for 0.7.1)
 - weapon suppression just makes the gun non-interactable rather than tuning it into ammo?

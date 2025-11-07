@@ -39,14 +39,14 @@ AP-CHECK { "id": 6159, "name": "E1A1 - ArmorCardboard [1744,1184]", "keys": ["Sq
 AP-CHECK { "id": 6163, "name": "E1A1 - CircleKey", "keys": ["SquareKey", "CircleKey", "TriangleKey"] }
 AP-CHECK { "id": 6161, "name": "E1A1 - ArmorCardboard [1752,3568]", "keys": ["SquareKey", "CircleKey", "TriangleKey"] }
 AP-CHECK { "id": 6782, "name": "OLDSEWER - ArmorWood [32,2176]", "keys": ["SquareKey", "CircleKey"] }
-AP-CHECK { "id": 6779, "name": "OLDSEWER - Exit", "keys": ["SquareKey", "CircleKey"] }
+AP-CHECK { "id": 6779, "name": "OLDSEWER - Exit", "pos": ["OLDSEWER","event","exit"], "keys": ["SquareKey", "CircleKey"] }
 AP-CHECK { "id": 6169, "name": "E1A1 - FizzoPop [1944,3760]", "keys": ["SquareKey", "CircleKey", "TriangleKey"] }
 AP-CHECK { "id": 6168, "name": "E1A1 - FizzoPop [256,4948]", "keys": ["SquareKey", "CircleKey", "TriangleKey"] }
 AP-CHECK { "id": 6162, "name": "E1A1 - ArmorCardboard [208,5012]", "keys": ["SquareKey", "CircleKey", "TriangleKey"] }
 AP-CHECK { "id": 6164, "name": "E1A1 - SquareKey", "keys": ["SquareKey", "CircleKey", "TriangleKey"] }
 AP-CHECK { "id": 6167, "name": "E1A1 - FizzoPop [768,4096]", "keys": ["SquareKey", "CircleKey", "TriangleKey"] }
 AP-CHECK { "id": 6160, "name": "E1A1 - ArmorCardboard [-96,4832]", "keys": ["SquareKey", "CircleKey", "TriangleKey"] }
-AP-CHECK { "id": 6157, "name": "E1A1 - Exit", "keys": ["SquareKey", "CircleKey", "TriangleKey"] }
+AP-CHECK { "id": 6157, "name": "E1A1 - Exit", "pos": ["E1A1","event","exit"], "keys": ["SquareKey", "CircleKey", "TriangleKey"] }
 AP-CHECK { "id": 6783, "name": "OLDSEWER - SquareKey", "keys": ["SquareKey", "CircleKey", "TriangleKey"] }
 AP-CHECK { "id": 6717, "name": "E2A11 - ArmorWood [-696,4264]", "keys": [] }
 AP-CHECK { "id": 6720, "name": "E2A11 - SquareBackpack [2816,5128]", "keys": [] }
@@ -96,7 +96,7 @@ AP-CHECK { "id": 68986, "name": "E1A1 - Soda [2264,904]", "keys": [] }
 AP-CHECK { "id": 68985, "name": "E1A1 - Soda [2288,944]", "keys": [] }
 AP-CHECK { "id": 68983, "name": "E1A1 - Soda [2240,1112]", "keys": [] }
 AP-CHECK { "id": 68984, "name": "E1A1 - Soda [2232,1160]", "keys": [] }
-AP-CHECK { "id": 69109, "name": "E1A1 - Secret 256", "keys": [] }
+AP-CHECK { "id": 69109, "name": "E1A1 - Secret 256", "pos": ["E1A1","secret","sector",256], "keys": [] }
 AP-CHECK { "id": 68948, "name": "E1A1 - ArmorWood", "keys": [] }
 AP-CHECK { "id": 68960, "name": "E1A1 - Cake [1400,1904]", "keys": [] }
 AP-CHECK { "id": 68961, "name": "E1A1 - Cake [1448,1912]", "keys": [] }
@@ -156,7 +156,7 @@ AP-CHECK { "id": 69117, "name": "E1A2 - SquareBackpack", "keys": [] }
 AP-CHECK { "id": 69136, "name": "E1A2 - PaintAmmo [-992,1344]", "keys": [] }
 AP-CHECK { "id": 69153, "name": "E1A2 - ShotboltAmmo [-928,1392]", "keys": [] }
 AP-CHECK { "id": 69192, "name": "E1A2 - OoziAmmo [-864,1344]", "keys": [] }
-AP-CHECK { "id": 69222, "name": "E1A2 - Secret 217", "keys": [] }
+AP-CHECK { "id": 69222, "name": "E1A2 - Secret 217", "pos": ["E1A2","secret","sector",217], "keys": [] }
 AP-CHECK { "id": 69115, "name": "E1A2 - ArmorWood [-1248,1504]", "keys": [] }
 AP-CHECK { "id": 69120, "name": "E1A2 - Lemonade [-512,1248]", "keys": [] }
 AP-CHECK { "id": 69218, "name": "E1A2 - FizzoPop", "keys": [] }
@@ -239,7 +239,7 @@ AP-CHECK { "id": 69226, "name": "E1A3 - TriangleKey", "keys": [] }
 AP-CHECK { "id": 69279, "name": "E1A3 - Soda [160,-704]", "keys": ["TriangleKey"] }
 AP-CHECK { "id": 69278, "name": "E1A3 - Soda [112,-704]", "keys": ["TriangleKey"] }
 AP-CHECK { "id": 69277, "name": "E1A3 - Soda [64,-704]", "keys": ["TriangleKey"] }
-AP-CHECK { "id": 69345, "name": "E1A3 - Secret 240", "keys": ["TriangleKey"] }
+AP-CHECK { "id": 69345, "name": "E1A3 - Secret 240", "pos": ["E1A3","secret","sector",240], "keys": ["TriangleKey"] }
 AP-CHECK { "id": 69280, "name": "E1A3 - Soda [-72,-704]", "keys": ["TriangleKey"] }
 AP-CHECK { "id": 69281, "name": "E1A3 - Soda [-120,-704]", "keys": ["TriangleKey"] }
 AP-CHECK { "id": 69264, "name": "E1A3 - Soda [-168,-704]", "keys": ["TriangleKey"] }
@@ -579,7 +579,7 @@ AP-CHECK { "id": 71393, "name": "E2A1 - Cake [3376,2112]", "keys": ["SphereKey",
 AP-CHECK { "id": 71395, "name": "E2A1 - Cake [3440,2176]", "keys": ["SphereKey", "PyramidKey"] }
 AP-CHECK { "id": 71392, "name": "E2A1 - Cake [3440,2048]", "keys": ["SphereKey", "PyramidKey"] }
 AP-CHECK { "id": 71363, "name": "E2A1 - Lemonade [3160,2536]", "keys": ["SphereKey", "PyramidKey"] }
-AP-CHECK { "id": 71418, "name": "E2A1 - Secret 631", "keys": ["SphereKey", "PyramidKey"] }
+AP-CHECK { "id": 71418, "name": "E2A1 - Secret 631", "pos": ["E2A1","secret","sector",631], "keys": ["SphereKey", "PyramidKey"] }
 AP-CHECK { "id": 71353, "name": "E2A1 - ArmorBrick", "keys": ["SphereKey", "PyramidKey"] }
 AP-CHECK { "id": 71410, "name": "E2A1 - ShotboltAmmoBig", "keys": ["SphereKey", "PyramidKey"] }
 AP-CHECK { "id": 71409, "name": "E2A1 - PaintAmmoBig", "keys": ["SphereKey", "PyramidKey"] }
@@ -589,7 +589,7 @@ AP-CHECK { "id": 71390, "name": "E2A1 - Cake [2736,1136]", "keys": ["SphereKey",
 AP-CHECK { "id": 71268, "name": "E2A1 - PaintAmmo [3936,576]", "keys": ["SphereKey", "PyramidKey"] }
 AP-CHECK { "id": 71269, "name": "E2A1 - PaintAmmo [3984,544]", "keys": ["SphereKey", "PyramidKey"] }
 AP-CHECK { "id": 71270, "name": "E2A1 - PaintAmmo [4040,520]", "keys": ["SphereKey", "PyramidKey"] }
-AP-CHECK { "id": 71420, "name": "E2A1 - Secret 1083", "keys": ["SphereKey", "PyramidKey"] }
+AP-CHECK { "id": 71420, "name": "E2A1 - Secret 1083", "pos": ["E2A1","secret","sector",1083], "keys": ["SphereKey", "PyramidKey"] }
 AP-CHECK { "id": 71407, "name": "E2A1 - FizzoPop [4968,1216]", "keys": ["SphereKey", "PyramidKey"] }
 AP-CHECK { "id": 71406, "name": "E2A1 - ShotboltAmmo [4240,1648]", "keys": ["SphereKey", "PyramidKey"] }
 AP-CHECK { "id": 71405, "name": "E2A1 - ShotboltAmmo [4400,1808]", "keys": ["SphereKey", "PyramidKey"] }
@@ -603,4 +603,4 @@ AP-CHECK { "id": 71414, "name": "E2A1 - EnviroSuit", "keys": ["SphereKey", "Cube
 AP-CHECK { "id": 71401, "name": "E2A1 - ArmorWood [17768,-808]", "keys": ["SphereKey", "CubeKey", "PyramidKey"] }
 AP-CHECK { "id": 71398, "name": "E2A1 - CircoolAid [17004,1604]", "keys": ["SphereKey", "CubeKey", "PyramidKey"] }
 AP-CHECK { "id": 71396, "name": "E2A1 - Cake [16952,1588]", "keys": ["SphereKey", "CubeKey", "PyramidKey"] }
-AP-CHECK { "id": 71253, "name": "E2A1 - Exit", "keys": ["SphereKey", "CubeKey", "PyramidKey"] }
+AP-CHECK { "id": 71253, "name": "E2A1 - Exit", "pos": ["E2A1","event","exit"], "keys": ["SphereKey", "CubeKey", "PyramidKey"] }
