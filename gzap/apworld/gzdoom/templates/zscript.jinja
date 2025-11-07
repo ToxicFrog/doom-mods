@@ -53,6 +53,9 @@ class GZAP_DataPackageEventHandler : StaticEventHandler {
     console.printf("Registering %d maps.", {{maps|count}});
     {% for map in maps %}
       apstate.RegisterMap("{{map.map}}", "{{map.checksum}}", {{map.mapinfo.cluster}}, {{id(map.access_token_name())}}, {{id(map.automap_name())}}, {{id(map.clear_token_name())}}, {{id(map.exit_location_name())}});
+      {% if map.clustername and map.rank == 0 %}
+      apstate.GetRegion("{{map.map}}").visited = true;
+      {% endif %}
       {% for check in locations(map.map) %}
         {% if check.pos.has_coords() %}
         apstate.RegisterCheck("{{map.map}}", {{check.id}}, {{check.pos.as_vec3()}}, "{{escape(check.name())}}", "{{check.orig_item.typename}}",

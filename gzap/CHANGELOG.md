@@ -35,9 +35,11 @@ for details.
     the apworld to adjust logic behaviour.
   - Tuner emits information about which weapons the player has and which maps
     they have visited.
-  - In pretuning mode, the inventory menu lets you lie to the tuner about which
-    maps you have visited if needed. ⚠️ This feature is probably getting removed
-    again in favour of region prerequisite declarations.
+  - Tuning files can declare regions, with region-wide access rules, and checks
+    can be grouped into regions instead of (or as well as) having their own rules.
+    Regions can be assigned in-game while playing.
+  - Region and check access rules can include dependencies on arbitrary weapons,
+    items, or access to other maps or regions.
   - Logic files can now define custom names for locations.
   - Logic and tuning files support multiline entries. If a line ends with `}` it
     is considered the end of the entry.

@@ -261,6 +261,19 @@ class ::PlayEventHandler : StaticEventHandler {
         console.printf("No level with number %d found.", idx);
         return;
       }
+      let region = apstate.GetRegion(info.MapName);
+      if (region.hub && !region.visited) {
+        // In classical maps, hub is 0 and thus this doesn't fire.
+        // In hub levels, the initially scanned maps(s) will have rank 0 and
+        // everything else will have rank 1+, and maps with rank 0 will be flagged
+        // as visited on startup, so this lets you levelport to hub entrances
+        // but not deeper into the cluster until you make your way there by
+        // other means.
+        // TODO: this will drop you at whatever the default spawnpoint for the
+        // map is, which isn't necessarily the same as the first entrance!
+        console.printf("You must visit %s before you can fast travel to it!", info. MapName);
+        return;
+      }
       ::PerLevelHandler.Get().early_exit = true;
       level.ChangeLevel(info.MapName, 0, CHANGELEVEL_NOINTERMISSION, -1);
     } else if (evt.name.IndexOf("ap-use-item:") == 0) {

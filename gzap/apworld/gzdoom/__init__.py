@@ -256,6 +256,8 @@ class GZDoomWorld(World):
             # these other regions".
             # For level subregions, we can connect them to their enclosing level
             # rather than to the menu, but we won't draw connections between them.
+            # It will probably result in better behaviour from the randomizer if
+            # we CAN draw these connections; something to consider.
             menu_region.connect(
                 connecting_region=regions[map.map],
                 name=f"{map.map}",

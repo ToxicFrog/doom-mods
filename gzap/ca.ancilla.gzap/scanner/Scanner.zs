@@ -165,7 +165,7 @@ class ::Scanner play {
     if (nextmap.IsScanned()) nextmap.CopyFromLevelLocals(level);
 
     if (clusters && nextmap.hub > 0) {
-      EnqueueCluster(nextmap.hub, nextmap.rank);
+      EnqueueCluster(nextmap.hub, nextmap.rank+1);
     }
 
     if (recurse && !nextmap.prune) {
