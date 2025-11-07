@@ -185,6 +185,10 @@ class ::PlayEventHandler : StaticEventHandler {
       let is_trigger = loc.flags & AP_IS_SECRET_TRIGGER;
       pos = string.format(", \"pos\": [\"%s\",\"secret\",\"%s\",%d]",
         loc.mapname, is_trigger ? "tid" : "sector", loc.secret_id);
+    } else if (loc.name.IndexOf(" - Exit") > -1) {
+      // HACK HACK HACK -- at some point we need to generalize this for
+      // event-based locations.
+      pos = string.format(", \"pos\": [\"%s\",\"event\",\"exit\"]", loc.mapname);
     }
 
     if (unreachable) {
