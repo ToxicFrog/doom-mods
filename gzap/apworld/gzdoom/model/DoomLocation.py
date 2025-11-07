@@ -2,28 +2,11 @@
 Data model for the locations items are found at in the WAD.
 """
 
-from typing import NamedTuple, Optional, Set, List, FrozenSet, Collection
+from typing import NamedTuple, Optional, Set, List, FrozenSet, Collection, Sequence, Any
 
 from .DoomItem import DoomItem
 from .DoomReachable import DoomReachable
-
-class DoomPosition(NamedTuple):
-    """
-    A Doom playsim position.
-
-    This is a direct copy of the `pos` field of an Actor, plus the name of the
-    containing map (so we don't consider two locations with the same coordinates
-    but in different maps to actually be identical).
-    """
-    map: str
-    virtual: bool  # True if this doesn't actually exist in the world and coords are meaningless
-    x: int
-    y: int
-    z: int
-
-    def as_vec3(self):
-        return f"({self.x},{self.y},{self.z})"
-
+from .DoomPosition import DoomPosition, to_position
 
 class DoomLocation(DoomReachable):
     """
@@ -58,7 +41,7 @@ class DoomLocation(DoomReachable):
     secret: bool = False
     secret_id: int = 0  # used for sector IDs and TIDs
 
-    def __init__(self, parent, map: str, item: DoomItem, secret: bool, pos: dict | None, custom_name: str | None = None):
+    def __init__(self, parent, item: DoomItem, secret: bool, pos: Sequence[Any], custom_name: str | None = None):
         super().__init__()
         self.parent = parent
         self.categories = frozenset(['secret']) if secret else frozenset()
@@ -71,10 +54,7 @@ class DoomLocation(DoomReachable):
             self.item_name = item.tag
         self.skill = set()
         self.secret = secret
-        if pos:
-            self.pos = DoomPosition(map=map, virtual=False, **pos)
-        else:
-            self.pos = DoomPosition(map=map, virtual=True, x=0, y=0, z=0)
+        self.pos = to_position(*pos)
 
     def __str__(self) -> str:
         return f"DoomLocation#{self.id}({self.name()} @ {self.pos} % {self.keys})"
@@ -85,16 +65,6 @@ class DoomLocation(DoomReachable):
         name = f"{self.pos.map} - {self.custom_name or self.item_name}"
         if self.disambiguation:
             name += f" [{self.disambiguation}]"
-        return name
-
-    def legacy_name(self) -> str:
-        """
-        Returns the name this location would have had in version 0.3.x and earlier.
-        Used to match up locations to entries in legacy tuning files.
-        """
-        name = f"{self.pos.map} - {self.item_name}"
-        if self.disambiguation:
-            name += f" [{int(self.pos.x)},{int(self.pos.y)}]"
         return name
 
     def fqin(self, item: str) -> str:

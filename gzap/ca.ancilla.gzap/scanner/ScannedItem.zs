@@ -12,7 +12,7 @@ class ::ScannedItem : ::ScannedLocation {
   int hub;
   int tid;
 
-  static ::ScannedItem Create(Actor thing) {
+  static ::ScannedItem Create(Actor thing, string mapname) {
     let loc = ::ScannedItem(new("::ScannedItem"));
     // TODO: This is a bit misnamed at the moment, it's a hyphen-separated list
     // of categories.
@@ -22,6 +22,7 @@ class ::ScannedItem : ::ScannedLocation {
     loc.secret = IsSecret(thing);
     loc.pos = thing.pos;
     loc.tid = thing.tid;
+    loc.mapname = mapname;
 
     if (loc.category == "key") {
       loc.hub = ::ScannedItem.GetHubClusterID(Inventory(thing));
@@ -47,27 +48,28 @@ class ::ScannedItem : ::ScannedLocation {
     return level.cluster;
   }
 
-  override void Output(string mapname) {
+  override void Output() {
     string secret_str = "";
     if (secret) {
       secret_str = string.format("\"secret\": %s, ", ::Util.bool2str(secret));
     }
 
     if (typename == "SecretTrigger") {
-      ::Scanner.Output("SECRET", mapname, string.format("\"tid\": %d", self.tid));
+      ::Scanner.Output("SECRET", string.format(
+          "\"pos\": [\"%s\",\"secret\",\"tid\",%d]", mapname, self.tid));
       return;
     }
 
-    ::Scanner.Output("ITEM", mapname, string.format(
-        "\"category\": \"%s\", \"typename\": \"%s\", \"tag\": \"%s\", %s%s%s",
-        category, typename, tag, secret_str, OutputSkill(), OutputPosition()));
+    ::Scanner.Output("ITEM", string.format(
+      "\"category\": \"%s\", \"typename\": \"%s\", \"tag\": \"%s\", %s%s%s",
+      category, typename, tag, secret_str, OutputSkill(), OutputPosition()));
 
     if (self.category == "key") {
-      OutputKeyInfo(mapname);
+      OutputKeyInfo();
     }
   }
 
-  void GetMapsForKey(string mapname, Array<string> maps) {
+  void GetMapsForKey(Array<string> maps) {
     maps.Clear();
     if (self.hub == 0) {
       maps.Push(mapname);
@@ -81,23 +83,23 @@ class ::ScannedItem : ::ScannedLocation {
     }
   }
 
-  void OutputKeyInfo(string mapname) {
+  void OutputKeyInfo() {
     if (self.hub > 0) {
-      OutputHubKeyInfo(mapname);
+      OutputHubKeyInfo();
       return;
     }
 
-    ::Scanner.Output("KEY", mapname, string.format(
+    ::Scanner.Output("KEY", string.format(
       "\"tag\": \"%s\", \"typename\": \"%s\", \"scopename\": \"%s\", \"cluster\": %d, \"maps\": [\"%s\"]",
       self.tag, self.typename, mapname, self.hub, mapname));
   }
 
-  void OutputHubKeyInfo(string mapname) {
+  void OutputHubKeyInfo() {
     int maps;
     string map_str = "";
 
     Array<string> maplist;
-    GetMapsForKey(mapname, maplist);
+    GetMapsForKey(maplist);
     foreach (lump : maplist) {
       ++maps;
       map_str = string.format("%s%s\"%s\"",
@@ -107,7 +109,7 @@ class ::ScannedItem : ::ScannedLocation {
     DEBUG("OutputKeyInfo: maps: %d / map_str: %s", maps, map_str);
 
     let scopename = ::RC.Get().GetNameForCluster(self.hub);
-    ::Scanner.Output("KEY", mapname, string.format(
+    ::Scanner.Output("KEY", string.format(
         "\"tag\": \"%s\", \"typename\": \"%s\", \"scopename\": \"%s\", \"cluster\": %d, \"maps\": [%s]",
         self.tag, self.typename, scopename, self.hub, map_str));
   }

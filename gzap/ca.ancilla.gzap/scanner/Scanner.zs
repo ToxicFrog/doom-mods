@@ -14,8 +14,8 @@ class ::Scanner play {
   Map<string, bool> skip;
   Map<string, bool> prune;
 
-  static void Output(string type, string map, string payload) {
-    ::IPC.Send(type, string.format("{ \"map\": \"%s\", %s }", map, payload));
+  static void Output(string type, string payload) {
+    ::IPC.Send(type, string.format("{ %s }", payload));
   }
 
   void Init() {
@@ -199,7 +199,7 @@ class ::Scanner play {
     } else if (thing is "DehackedPickup") {
       return ScanDehacked(nextmap, DehackedPickup(thing));
     } else if (::ScannedItem.ItemCategory(thing) != "") {
-      nextmap.AddLocation(::ScannedItem.Create(thing));
+      nextmap.AddLocation(::ScannedItem.Create(thing, nextmap.name));
       return true;
     }
     return false;

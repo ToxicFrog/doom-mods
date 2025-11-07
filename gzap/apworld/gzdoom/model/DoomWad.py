@@ -14,12 +14,13 @@ to keep track of:
 import sys
 
 from dataclasses import dataclass, field, InitVar
-from typing import Any, Dict, List, Set, FrozenSet, Tuple
+from typing import Any, Dict, List, Set, FrozenSet, Tuple, Iterable
 
 from .BoundingBox import BoundingBox
 from .DoomPool import DoomPool
 from .DoomItem import DoomItem, DoomToken
-from .DoomLocation import DoomLocation, DoomPosition
+from .DoomLocation import DoomLocation
+from .DoomPosition import DoomPosition, DoomCoordPosition, to_position
 from .DoomMap import DoomMap
 from .DoomKey import DoomKey
 from .DoomRegion import DoomRegion
@@ -44,13 +45,6 @@ class DoomWad:
     locations_by_pos: Dict[int,Dict[DoomPosition,DoomLocation]] = field(default_factory=dict)
     # Map of FQIN -> key record
     keys_by_name: Dict[str,DoomKey] = field(default_factory=dict)
-    # Location lookup by legacy name, now used only for processing legacy tuning
-    # files that don't include location coordinates + virtual locations that only
-    # have a name, not a position.
-    # Might contain multiple locations with the same name in rare cases where the
-    # same position contains items with different underlying type but same display
-    # name on different difficulties.
-    locations_by_name: Dict[str,List[DoomLocation]] = field(default_factory=dict)
     # Tuning data is being loaded, or has been loaded, for this wad.
     tuned: bool = False
     # Flags passed through from the tuning file
@@ -79,12 +73,15 @@ class DoomWad:
             for map in flag.split(':')[1].split(',')
         }
 
-    def locations_for_stats(self, skill: int) -> List[DoomLocation]:
+    def all_locations(self) -> Iterable[DoomLocation]:
+        return (loc for map in self.maps.values() for loc in map.locations)
+
+    def locations_for_stats(self, skill: int) -> Iterable[DoomLocation]:
         skill = min(3, max(1, skill)) # clamp ITYTD->HNTR and N!->UV
-        return [
+        return (
             loc for map in self.maps.values() for loc in map.all_locations(skill, {})
             if loc.is_default_enabled()
-        ]
+        )
 
     def locations_at_position(self, pos: DoomPosition) -> List[DoomLocation]:
         """
@@ -177,7 +174,7 @@ class DoomWad:
 
         clear_token = self.register_item(
             DoomToken(map=map.map, category="token-ap_victory", typename="GZAP_VictoryToken", tag=map.clear_token_name()))
-        map_exit = DoomLocation(self, map=map.map, item=clear_token, secret=False, pos=None)
+        map_exit = DoomLocation(self, item=clear_token, secret=False, pos=[map.map,'event','exit'])
 
         # TODO: there should be a better way of overriding location names
         map_exit.item_name = "Exit"
@@ -194,8 +191,7 @@ class DoomWad:
         using the item's name as a disambiguator.
         """
         # Extract the position information for addition to the location table.
-        map = json["map"]
-        position = json.pop("position")
+        pos = json.pop("pos")
         skill = set(json.pop("skill", [1,2,3]))
         secret = json.pop("secret", False)
         name = json.pop("name", None)
@@ -203,8 +199,8 @@ class DoomWad:
         # We add everything in the logic file to the pool. Not everything will
         # necessarily be used in randomization, but we need to do this at load
         # time, before we know what item categories the user has requested.
-        item = self.register_item(DoomItem(**json))
-        self.new_location(map, item, secret, skill, position, name)
+        item = self.register_item(DoomItem(pos[0], **json))
+        self.new_location(item, secret, skill, pos, name)
 
     def register_item(self, item: DoomItem) -> DoomItem:
         assert not self.tuned, f"AP-ITEM found in tuning data for {self.name} -- make sure you don't have a logic file mixed in with the tuning."
@@ -245,26 +241,22 @@ class DoomWad:
     def regions_in_map(self, map: str):
         return (r for r in self.regions.values() if r.map == map)
 
-    def new_location(self, map: str, item: DoomItem, secret: bool, skill: Set[int], pos: Dict[str, int], name: str) -> None:
+    def new_location(self, item: DoomItem, secret: bool, skill: Set[int], pos: List[Any], name: str) -> None:
         """
         Add a new location to the location pool.
 
-        If it is identical (same position) as an existing location, it is silently dropped. This is,
-        fortunately, rare. If multiple locations share the same position but have different items,
-        all of their items are added to the pool but it's undefined which one the location is named
-        after and inherits the item category from.
+        Items are uniquely identified by their position (xyz coordinates, or
+        sector, TID, or event association) and skill level. If multiple
+        locations have the same position (i.e. the mapper placed multiple items
+        exactly on top of each other) they will be coalesced into a single
+        position, and if they have different items in them it is unspecified
+        which one "wins".
         """
-        location = DoomLocation(self, map, item, secret, pos, name)
+        location = DoomLocation(self, item, secret, pos, name)
         self.register_location(location, skill)
 
     def register_location(self, location: DoomLocation, skill: Set[int]) -> None:
         assert not self.tuned, f"AP-LOCATION found in tuning data for {self.name} -- make sure you don't have a logic file mixed in with the tuning."
-
-        if location.pos.virtual:
-            # Virtual location, is not part of the deduplication table.
-            location.skill = skill.copy()
-            self.maps[location.pos.map].register_location(location)
-            return
 
         for sk in skill:
             locs_by_pos = self.locations_by_pos[sk]
@@ -282,20 +274,18 @@ class DoomWad:
 
     def new_secret(self, json: Dict[str, Any]) -> None:
         assert not self.tuned, f"AP-SECRET found in tuning data for {self.name} -- make sure you don't have a logic file mixed in with the tuning."
-        location = DoomLocation(self, map=json['map'], item=None, secret=True, pos=None, custom_name=json.get('name', None))
-        if 'sector' in json:
-            location.item_name = f"Secret {json['sector']}"
+        location = DoomLocation(self, item=None, secret=True, pos=json['pos'], custom_name=json.get('name', None))
+        if location.pos.secret_type == 'sector':
+            location.item_name = f"Secret {location.pos.secret_id}"
             location.categories = frozenset({'secret', 'sector'})
-            location.secret_id = json['sector']
         else:
-            location.item_name = f"Secret T{json['tid']}"
+            location.item_name = f"Secret T{location.pos.secret_id}"
             location.categories = frozenset({'secret', 'marker'})
-            location.secret_id = json['tid']
 
         skill = set(json.pop("skill", [1,2,3]))
         self.register_location(location, skill)
 
-    def new_key(self, map: str, tag: str, typename: str, scopename: str, cluster: int, maps: List[str]) -> None:
+    def new_key(self, tag: str, typename: str, scopename: str, cluster: int, maps: List[str]) -> None:
         """
         Register a key in the key table, along with information about which maps it's in.
 
@@ -333,16 +323,10 @@ class DoomWad:
         which shouldn't be a problem in practice unless people are assembling play
         logs out of order.
         """
-        if pos is None:
-            # Legacy tuning file, or location with no position (e.g. level exit
-            # or secret sector).
-            return self.record_tuning(self.locations_by_name.get(name, []), keys, region, unreachable)
-
         if unreachable is None and not keys and not region:
             return
 
-        (map,x,y,z) = pos
-        pos = DoomPosition(map=map, virtual=False, x=x, y=y, z=z)
+        pos = to_position(*pos)
         self.record_tuning(self.locations_at_position(pos), keys, region, unreachable)
 
     def disambiguate_duplicate_locations(self) -> None:
@@ -352,9 +336,6 @@ class DoomWad:
         # in their corresponding maps.
         for map in self.maps.values():
             self.disambiguate_in_map(map)
-
-    def finalize_location(self, loc):
-        self.locations_by_name.setdefault(loc.legacy_name(), []).append(loc)
 
     def bin_locations_by(self, locs, f) -> Dict[str, List[DoomMap]]:
         """
@@ -371,15 +352,14 @@ class DoomWad:
         for bin in bins.values():
             if len(bin) > 1:
                 return { name: locs for name,locs in bins.items() }
-        for bin in bins.values():
-            self.finalize_location(bin[0])
         return {}
 
     def disambiguate_in_map(self, map) -> None:
         bb = BoundingBox()
 
         for loc in map.locations:
-            bb.add_point(loc.pos)
+            if type(loc.pos) is DoomCoordPosition:
+                bb.add_point(loc.pos)
 
         bins = self.bin_locations_by(map.locations, lambda loc: loc.name())
 
@@ -387,9 +367,7 @@ class DoomWad:
         # same fallback for every location of that name, rather than (say) a mix
         # of coordinates for some soulspheres and compass directions for others.
         for bin in bins.values():
-            if len(bin) == 1:
-                self.finalize_location(bin[0])
-            else:
+            if len(bin) > 1:
                 self.disambiguate_bin(bb, bin)
 
     def disambiguate_bin(self, bb, locs):
@@ -422,16 +400,11 @@ class DoomWad:
             return
 
         # If we get here, the binner couldn't fully disambiguate things even
-        # with XY coordinates. At this point we commit anything that *could* be
-        # disambiguated with XY, and then add Z coordinate to what's left.
-        for bin in [bin for bin in bins.values() if len(bin) == 1]:
-            self.finalize_location(bin[0])
-
+        # with XY coordinates. Add a Z coordinate to anything that's left.
         for loc in [loc for bin in bins.values() for loc in bin if len(bin) > 1]:
             oldname = loc.name()
             loc.disambiguation = f"{int(loc.pos.x)},{int(loc.pos.y)},{int(loc.pos.z)}"
             # print(f"Renaming {oldname} -> {loc.name()}")
-            self.finalize_location(loc)
 
     def finalize_logic(self, logic) -> None:
         """
@@ -449,9 +422,8 @@ class DoomWad:
         """
         Do postprocessing after all events have been ingested, including tuning.
         """
-        for locs in self.locations_by_name.values():
-            for loc in locs:
-                loc.finalize_tuning()
+        for loc in self.all_locations():
+            loc.finalize_tuning()
         for name,region in self.regions.items():
             region.finalize_tuning(default=[])
 
@@ -491,6 +463,5 @@ class DoomWad:
     def finalize_ids(self, logic):
         for item in self.items_by_name.values():
             logic.register_item(item)
-        for locs in self.locations_by_name.values():
-            for loc in locs:
-                logic.register_location(loc)
+        for loc in self.all_locations():
+            logic.register_location(loc)

@@ -54,11 +54,11 @@ class GZAP_DataPackageEventHandler : StaticEventHandler {
     {% for map in maps %}
       apstate.RegisterMap("{{map.map}}", "{{map.checksum}}", {{map.mapinfo.cluster}}, {{id(map.access_token_name())}}, {{id(map.automap_name())}}, {{id(map.clear_token_name())}}, {{id(map.exit_location_name())}});
       {% for check in locations(map.map) %}
-        {% if check.has_category('secret') and check.has_category('sector', 'marker') %}
-        apstate.RegisterSecretCheck("{{map.map}}", {{check.id}}, "{{escape(check.name())}}", {{check.secret_id}}, {{flags_at(check)}}); // {{item_name_at(check.name())}}
-        {% elif not check.pos.virtual %}
+        {% if check.pos.has_coords() %}
         apstate.RegisterCheck("{{map.map}}", {{check.id}}, {{check.pos.as_vec3()}}, "{{escape(check.name())}}", "{{check.orig_item.typename}}",
             "{{escape(item_type_at(check.name()))}}", "{{escape(item_name_at(check.name()))}}", {{flags_at(check)}});
+        {% elif check.pos.is_secret() %}
+        apstate.RegisterSecretCheck("{{map.map}}", {{check.id}}, "{{escape(check.name())}}", {{check.pos.secret_id}}, {{flags_at(check)}}); // {{item_name_at(check.name())}}
         {% endif %}
       {% endfor %}
     {% endfor %}

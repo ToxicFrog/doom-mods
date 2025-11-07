@@ -53,14 +53,15 @@ class ::ScannedMap play {
     // garbage on a previous line and hopefully work around this in other (i)wads
     // that may have similar issues.
     console.printfEX(PRINT_LOG, "");
-    ::Scanner.Output("MAP", name, string.format(
-      "\"checksum\": \"%s\", \"rank\": %d, \"monster_count\": %d, \"clustername\": \"%s\", \"info\": %s",
-      LevelInfo.MapChecksum(name), self.rank, self.monster_count, ::RC.Get().GetNameForCluster(self.hub), GetMapinfoJSON()));
+    ::Scanner.Output("MAP", string.format(
+      "\"map\": \"%s\", \"checksum\": \"%s\", \"rank\": %d, \"monster_count\": %d, \"clustername\": \"%s\", \"info\": %s",
+      name, LevelInfo.MapChecksum(name), self.rank, self.monster_count, ::RC.Get().GetNameForCluster(self.hub), GetMapinfoJSON()));
     foreach (loc : locations) {
-      loc.Output(name);
+      loc.Output();
     }
     foreach (sector : secrets) {
-      ::Scanner.Output("SECRET", name, string.format("\"sector\": %d", sector));
+      ::Scanner.Output("SECRET", string.format(
+        "\"pos\": [\"%s\",\"secret\",\"sector\",%d]", name, sector));
     }
   }
 

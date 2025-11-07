@@ -18,7 +18,7 @@ class ::DehackedPickupProber : Actor {
     }
     if (::ScannedItem.ItemCategory(item) != "") {
       DEBUG("Is not DEH, recording it");
-      real_item = ::ScannedItem.Create(item);
+      real_item = ::ScannedItem.Create(item, level.info.mapname);
     }
     return false;
   }

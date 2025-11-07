@@ -4,6 +4,7 @@
 #namespace GZAP;
 
 class ::ScannedLocation abstract play {
+  string mapname;
   Vector3 pos;
   string typename;
   // Which skills this location is valid on.
@@ -11,12 +12,11 @@ class ::ScannedLocation abstract play {
   // for NM! and UV, the only skills we track are 1 (HNTR), 2 (HMP), and 3 (UV).
   Array<int> skill;
 
-  abstract void Output(string mapname);
+  abstract void Output();
 
   string OutputPosition() {
-    return string.format(
-      "\"position\": { \"x\": %d, \"y\": %d, \"z\": %d }",
-      round(pos.x), round(pos.y), round(pos.z));
+    return string.format("\"pos\": [\"%s\",%d,%d,%d]",
+      mapname, round(pos.x), round(pos.y), round(pos.z));
   }
 
   string OutputSkill() {

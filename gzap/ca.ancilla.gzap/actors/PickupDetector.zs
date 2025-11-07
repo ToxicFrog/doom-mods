@@ -42,13 +42,13 @@ class ::PickupDetector : Inventory {
       // The player has found a new dynkey, a key that exists in the world but
       // was not detected by the scanner or by previous tuning.
       // First emit the AP-KEY message for it.
-      let scan = ::ScannedItem.Create(item);
-      scan.OutputKeyInfo(region.map);
+      let scan = ::ScannedItem.Create(item, region.map);
+      scan.OutputKeyInfo();
 
       // Now create and register the apstate's internal model of the key.
       key = apstate.RegisterKey(region.map, item.GetTag(), item.GetClassName(), -1);
 
-      Array<string> maps; scan.GetMapsForKey(region.map, maps);
+      Array<string> maps; scan.GetMapsForKey(maps);
       foreach (map : maps) {
         key.AddMap(apstate, map);
       }

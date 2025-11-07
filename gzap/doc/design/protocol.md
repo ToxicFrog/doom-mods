@@ -29,6 +29,32 @@ body. The body is not optional; empty messages must send `{}`.
 Individual message types are documented below.
 
 
+### Positions
+
+Both the scan and tuning output use *positions* to identify randomizer
+locations. These are always stored in the `pos` field, and take the form of a
+list. The first element is the map name, and subsequent elements depend on the
+type of position being recorded.
+
+In the common case, where the position is a point in physical space, it is:
+
+    [mapname, x, y, z]
+
+The x, y, and z coordinates are conventionally ints.
+
+If the position is associated with a secret sector or thing, the format is:
+
+    [mapname, "secret", "sector", sector_idx]
+    [mapname, "secret", "thing", tid]
+
+If it's associated with an event, the format is:
+
+    [mapname, "event", event_name]
+
+At present the only supported `event_name` is `"exit"` and this is only used in
+tuning, not scanner output.
+
+
 ### Scan Messages
 
 These messages are emitted during the scan process.
@@ -54,7 +80,7 @@ difficulty-based logic. `monster_count` is the number of monsters in the map on
 UV, used for stats reporting. `clustername`, if nonempty, is the name of the
 cluster (typically: episode or chapter) this map belongs to.
 
-#### `AP-ITEM { map, name, category, typename, tag, secret, skill, position: { x, y, z } }`
+#### `AP-ITEM { map, name, category, typename, tag, secret, skill, pos }`
 
 Emitted for each item the scanner finds. Note that this is *everything*; the randomizer
 makes decisions about which items to randomize and which not to.
@@ -67,7 +93,6 @@ Fields:
 - `tag`: the gzDoom human-facing name (if none, duplicates `typename`)
 - `secret`: whether the item is located in a secret sector or not
 - `skill`: a list of skill values (1-3) the item appears on; if omitted, it is available on all skills
-- `position`: the (x,y,z) position of the item
 
 `category` is an internal category used for item classification, and is finer-
 grained than the (progression, useful, filler, trap) categories used by AP. The
@@ -89,11 +114,12 @@ full set of item categories is:
 Currently only some of these are actually used by the generator, but they are all
 emitted for potential future use.
 
-#### `AP-SECRET { map, sector, tid, name }`
+#### `AP-SECRET { map, pos, name }`
 
-Emitted for each secret the scanner finds. If the secret is a secret sector, the
-`sector` field will be the sector ID. If it is a `SecretTrigger`, the `tid` field
-will be the trigger's TID. `name` has the same meaning as in `AP-ITEM`.
+Emitted for each secret (sector or `SecretTrigger`) the scanner finds. If it is
+a secret sector, `pos` is `[mapname, "secret", "sector", sectoridx]`; if a
+trigger, it will be `[mapname, "secret", "tid", tid]`. `name` has the same
+meaning as in `AP-ITEM`.
 
 #### `AP-SCAN-DONE {}`
 
@@ -159,21 +185,12 @@ in `AP-CHECK`.
 Emitted when the player checks a location. The fields have the following meaning:
 - `id`: the Archipelago location ID
 - `name`: the user-facing location name
-- `pos`: a list of the form `[mapname, x, y, z]`, containing the *original*
-  coordinates of the location (not wherever the check was when the player
-  picked it up); optional
 - `keys`: a list of key names held by the player; optional
 - `region`: the name of the check's enclosing region; optional
 - `unreachable`: a boolean; optional
 
 In multiworld play, only `id` is used; the rest are stored for use in the
 tuning file.
-
-Since the `id` is not stable across versions, `pos` and `name` are used to
-identify locations in the tuning file, with `pos` preferred as it can only
-change if the level is rescanned, while `name` can change more freely. Older
-tuning files use `name` alone, and locations with no defined coordinates (e.g.
-the level exit) continue to use `name` and omit `pos`.
 
 `keys` lists all prerequisites in the format described in [regions.md](./regions.md#extended-keylist-format).
 In normal play this is just a list of all keys held by the player, but can be

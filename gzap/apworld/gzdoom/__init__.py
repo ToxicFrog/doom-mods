@@ -377,10 +377,9 @@ class GZDoomWorld(World):
 
         if self.options.pretuning_mode:
             fd.write(f'[Pretuning] The following locations lack tuning data or region associations:\n')
-            for locs in self.wad_logic.locations_by_name.values():
-                for loc in locs:
-                    if not loc.is_tuned():
-                        fd.write(f'- {loc.name()}\n')
+            for loc in self.wad_logic.all_locations():
+                if not loc.is_tuned():
+                    fd.write(f'- {loc.name()}\n')
 
 
     # Called by UT on connection. In UT mode all configuration will come from

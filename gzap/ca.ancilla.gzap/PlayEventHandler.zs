@@ -181,6 +181,10 @@ class ::PlayEventHandler : StaticEventHandler {
     if (!loc.is_virt) {
       pos = string.format(", \"pos\": [\"%s\",%d,%d,%d]",
         loc.mapname, loc.pos.x, loc.pos.y, loc.pos.z);
+    } else if (loc.secret_id >= 0) {
+      let is_trigger = loc.flags & AP_IS_SECRET_TRIGGER;
+      pos = string.format(", \"pos\": [\"%s\",\"secret\",\"%s\",%d]",
+        loc.mapname, is_trigger ? "tid" : "sector", loc.secret_id);
     }
 
     if (unreachable) {
