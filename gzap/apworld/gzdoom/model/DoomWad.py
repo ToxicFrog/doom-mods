@@ -311,7 +311,7 @@ class DoomWad:
         for loc in locs:
             loc.record_tuning(keys, region, unreachable)
 
-    def tune_location(self, id, name, pos=None, keys=None, region=None, unreachable=None) -> None:
+    def tune_location(self, id, name, pos, keys=None, region=None, unreachable=None) -> None:
         """
         Adjust the reachability rules for a location.
 
