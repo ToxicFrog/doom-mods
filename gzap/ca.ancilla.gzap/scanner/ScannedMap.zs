@@ -53,9 +53,15 @@ class ::ScannedMap play {
     // garbage on a previous line and hopefully work around this in other (i)wads
     // that may have similar issues.
     console.printfEX(PRINT_LOG, "");
+
+    let clustername = ::RC.Get().GetNameForCluster(self.hub);
+    if (clustername != "") {
+      clustername = string.format(" \"clustername\": \"%s\",", clustername);
+    }
+
     ::Scanner.Output("MAP", string.format(
-      "\"map\": \"%s\", \"checksum\": \"%s\", \"rank\": %d, \"monster_count\": %d, \"clustername\": \"%s\", \"info\": %s",
-      name, LevelInfo.MapChecksum(name), self.rank, self.monster_count, ::RC.Get().GetNameForCluster(self.hub), GetMapinfoJSON()));
+      "\"map\": \"%s\", \"checksum\": \"%s\", \"rank\": %d, \"monster_count\": %d,%s \"info\": %s",
+      name, LevelInfo.MapChecksum(name), self.rank, self.monster_count, clustername, GetMapinfoJSON()));
     foreach (loc : locations) {
       loc.Output();
     }
