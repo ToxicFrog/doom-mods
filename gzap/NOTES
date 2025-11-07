@@ -54,6 +54,10 @@ To release a new version:
 
 ### ingame
 
+- If a check gets destroyed (e.g. with thing_remove), we should dispense whatever
+  it contained. This would let us (e.g.) reinstate the urns and shields in Faithless
+  E1M7 without the risk of making the game unwinnable.
+
 - TT has a bunch of stuff that breaks it: single-use teleport lines, scripts that
   take away your guns and keys on level start
   - we can probably be better about keeping the player's key inventory up to

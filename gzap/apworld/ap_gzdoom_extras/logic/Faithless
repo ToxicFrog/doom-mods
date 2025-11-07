@@ -1,6 +1,10 @@
 AP-SCAN { "flags": ["use_hub_logic", "hub_logic_exits:E1M8,E2M8,E3M8"] }
+
 // Green key can show up in either E1M4 or E1M5 depending on what order the player visits them in.
 AP-KEY { "tag": "Green Key", "typename": "KeyGreen", "scopename": "Faithless", "cluster": 66, "maps": ["E1M1", "E1M2", "E1M3", "E1M4", "E1M5", "E1M6", "E1M7", "E1M8", "E1M9"] }
+// Blue key is normally dropped by the M7 boss.
+AP-KEY { "tag": "Blue Key", "typename": "KeyBlue", "scopename": "Faithless", "cluster": 66, "maps": ["E1M1", "E1M2", "E1M3", "E1M4", "E1M5", "E1M6", "E1M7", "E1M8", "E1M9"] }
+
 AP-MAP { "map": "E1M1", "checksum": "7ecc53cfff9c9be6eeee4fb2726480f0", "rank": 0, "monster_count": 111, "clustername": "Faithless", "info": { "levelnum": 1, "title": "FAITH_E1M1", "is_lookup": true, "sky1": "HSKY2", "sky1speed": "0.003500", "sky2": "HSKY3", "sky2speed": "0.003500", "music": "$MUSIC_FAITH_1", "music_track": "0", "cluster": 66, "flags": ["useplayerstartz"] } }
 AP-ITEM { "category": "key", "typename": "KeyYellow", "tag": "Yellow Key", "pos": ["E1M1",320,480,176] }
 AP-KEY { "tag": "Yellow Key", "typename": "KeyYellow", "scopename": "Faithless", "cluster": 66, "maps": ["E1M1", "E1M2", "E1M3", "E1M4", "E1M5", "E1M6", "E1M7", "E1M8", "E1M9"] }
@@ -640,19 +644,24 @@ AP-ITEM { "category": "medium-health", "typename": "ArtiHealth", "tag": "Quartz 
 AP-ITEM { "category": "medium-health", "typename": "ArtiHealth", "tag": "Quartz Flask", "skill": [2, 3], "pos": ["E1M6",448,1728,96] }
 AP-ITEM { "category": "medium-ammo", "typename": "PhoenixRodHefty2", "tag": "Flame Orbs", "skill": [3], "pos": ["E1M6",1968,-928,-168] }
 AP-ITEM { "category": "big-ammo", "typename": "BagOfHolding", "tag": "Bag of Holding", "secret": true, "skill": [3], "pos": ["E1M6",1872,-928,-176] }
-AP-SECRET { "pos": ["E1M6","secret","sector",40] }
-AP-SECRET { "pos": ["E1M6","secret","sector",173] }
-AP-SECRET { "pos": ["E1M6","secret","sector",315] }
+AP-SECRET { "pos": ["E1M6","secret","sector",40], "name": "Egg secret" }
+AP-SECRET { "pos": ["E1M6","secret","sector",173], "name": "Tome secret" }
+AP-SECRET { "pos": ["E1M6","secret","sector",315], "name": "Treasure room" }
 AP-MAP { "map": "E1M7", "checksum": "8b3a54020428077b0417a8d39dd562dc", "rank": 1, "monster_count": 55, "clustername": "Faithless", "info": { "levelnum": 7, "title": "FAITH_E1M7", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "$MUSIC_FAITH_7", "music_track": "0", "cluster": 66, "flags": [] } }
-AP-ITEM { "category": "big-armor", "typename": "SilverShield", "tag": "Enchanted Shield", "secret": true, "pos": ["E1M7",1888,2976,336] }
+// These items are located in the secrets in the north chamber. However, they are crosslinked
+// with thing_remove specials, so picking up one shield or urn deletes the other two.
+// Since we cannot guarantee which one the player will pick up first, it becomes possible
+// for one of these to hold a progression item that gets deleted and, consequently,
+// lost forever.
+// AP-ITEM { "category": "big-armor", "typename": "SilverShield", "tag": "Enchanted Shield", "secret": true, "pos": ["E1M7",1888,2976,336] }
+// AP-ITEM { "category": "big-armor", "typename": "SilverShield", "tag": "Enchanted Shield", "secret": true, "pos": ["E1M7",224,1952,336] }
+// AP-ITEM { "category": "big-armor", "typename": "SilverShield", "tag": "Enchanted Shield", "secret": true, "pos": ["E1M7",-1376,2976,336] }
+// AP-ITEM { "category": "big-health", "typename": "ArtiSuperHealth", "tag": "Mystic Urn", "secret": true, "pos": ["E1M7",-224,1952,336] }
+// AP-ITEM { "category": "big-health", "typename": "ArtiSuperHealth", "tag": "Mystic Urn", "secret": true, "pos": ["E1M7",-1824,2976,336] }
+// AP-ITEM { "category": "big-health", "typename": "ArtiSuperHealth", "tag": "Mystic Urn", "secret": true, "pos": ["E1M7",1440,2976,336] }
 AP-ITEM { "category": "medium-ammo", "typename": "SkullRodMed", "tag": "Hellstaff Runes", "pos": ["E1M7",0,-256,32] }
-AP-ITEM { "category": "big-health", "typename": "ArtiSuperHealth", "tag": "Mystic Urn", "secret": true, "pos": ["E1M7",-224,1952,336] }
-AP-ITEM { "category": "big-health", "typename": "ArtiSuperHealth", "tag": "Mystic Urn", "secret": true, "pos": ["E1M7",-1824,2976,336] }
-AP-ITEM { "category": "big-armor", "typename": "SilverShield", "tag": "Enchanted Shield", "secret": true, "pos": ["E1M7",224,1952,336] }
 AP-ITEM { "category": "medium-ammo", "typename": "MaceHefty", "tag": "Mace Spheres", "pos": ["E1M7",0,576,160] }
 AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M7",-384,0,32] }
-AP-ITEM { "category": "big-health", "typename": "ArtiSuperHealth", "tag": "Mystic Urn", "secret": true, "pos": ["E1M7",1440,2976,336] }
-AP-ITEM { "category": "big-armor", "typename": "SilverShield", "tag": "Enchanted Shield", "secret": true, "pos": ["E1M7",-1376,2976,336] }
 AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M7",384,-256,32] }
 AP-ITEM { "category": "weapon", "typename": "SkullRod2", "tag": "Hellstaff", "pos": ["E1M7",-1600,1920,144] }
 AP-ITEM { "category": "weapon", "typename": "Blaster2", "tag": "Dragon Claw", "pos": ["E1M7",1664,1920,144] }
@@ -713,8 +722,8 @@ AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orb
 AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M7",-704,-320,32] }
 AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "skill": [2, 3], "pos": ["E1M7",-2336,2304,160] }
 AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "skill": [2, 3], "pos": ["E1M7",-864,2304,160] }
-AP-SECRET { "pos": ["E1M7","secret","sector",10] }
-AP-SECRET { "pos": ["E1M7","secret","sector",78] }
+AP-SECRET { "pos": ["E1M7","secret","sector",10], "name": "Urn secret" }
+AP-SECRET { "pos": ["E1M7","secret","sector",78], "name": "Shield secret" }
 AP-MAP { "map": "E1M8", "checksum": "c149969843e7091f55f6801a66a85eb3", "rank": 1, "monster_count": 93, "clustername": "Faithless", "info": { "levelnum": 8, "title": "FAITH_E1M8", "is_lookup": true, "sky1": "HSKY1", "sky1speed": "0.003500", "sky2": "HSKY1", "sky2speed": "0.000000", "music": "$MUSIC_FAITH_8", "music_track": "0", "cluster": 66, "flags": [] } }
 AP-ITEM { "category": "big-ammo", "typename": "BagOfHolding", "tag": "Bag of Holding", "pos": ["E1M8",-96,-1120,-8] }
 AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M8",-320,-1408,-8] }
@@ -772,7 +781,7 @@ AP-ITEM { "category": "medium-health", "typename": "ArtiHealth", "tag": "Quartz 
 AP-ITEM { "category": "medium-health", "typename": "ArtiHealth", "tag": "Quartz Flask", "skill": [2, 3], "pos": ["E1M8",224,544,-128] }
 AP-ITEM { "category": "medium-health", "typename": "ArtiHealth", "tag": "Quartz Flask", "skill": [3], "pos": ["E1M8",-288,-688,0] }
 AP-ITEM { "category": "medium-health", "typename": "ArtiHealth", "tag": "Quartz Flask", "skill": [3], "pos": ["E1M8",96,-688,0] }
-AP-SECRET { "pos": ["E1M8","secret","sector",125] }
+AP-SECRET { "pos": ["E1M8","secret","sector",125], "name": "Shield secret" }
 AP-MAP { "map": "E1M9", "checksum": "b57321c9cf7785285bfeeb2ce5a80ad2", "rank": 1, "monster_count": 180, "clustername": "Faithless", "info": { "levelnum": 9, "title": "FAITH_E1M9", "is_lookup": true, "sky1": "SKY1WHO", "sky1speed": "0.000000", "sky2": "SKY1NM", "sky2speed": "0.007000", "music": "$MUSIC_FAITH_9", "music_track": "0", "cluster": 66, "flags": ["doublesky"] } }
 AP-ITEM { "category": "weapon", "typename": "Crossbow2", "tag": "Ethereal Crossbow", "pos": ["E1M9",1344,-3280,144] }
 AP-ITEM { "category": "powerup-tool", "typename": "ArtiInvuln2", "tag": "Ring of Invincibility", "pos": ["E1M9",-1312,-416,192] }
