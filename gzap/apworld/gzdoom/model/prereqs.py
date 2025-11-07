@@ -19,23 +19,18 @@ def strings_to_prereq_fn(world, wad, map, xs):
 def string_to_prereq_fn(world, wad, map, string):
   # print('string_to_prereq', wad.name, map.map, string)
   fields = string.split('/')
-  if len(fields) == 3:
-    type,name,qualifier = fields
-  else:
-    type,name = fields
-    qualifier = None
 
-  match type:
+  match fields[0]:
     case 'fqin':
-      return fqin_prereq(world, wad, map, name)
+      return fqin_prereq(world, wad, map, *fields[1:])
     case 'key':
-      return key_prereq(world, wad, map, name)
+      return key_prereq(world, wad, map, *fields[1:])
     case 'item':
-      return item_prereq(world, wad, map, name)
+      return item_prereq(world, wad, map, *fields[1:])
     case 'map':
-      return region_prereq(world, wad, map, name, qualifier)
+      return region_prereq(world, wad, map, *fields[1:])
     case 'weapon':
-      return weapon_prereq(world, wad, map, name, qualifier)
+      return weapon_prereq(world, wad, map, *fields[1:])
     case _:
       raise RuntimeError(f'Unknown prerequisite {string}')
 
@@ -57,7 +52,7 @@ def weapon_prereq(world, wad, map, typename, strictness = 'need'):
 def key_prereq(world, wad, map, typename):
   return fqin_prereq(world, wad, map, map.key_by_type(typename).fqin())
 
-def region_prereq(world, wad, map, mapname, subregion):
+def region_prereq(world, wad, map, mapname, subregion = None):
   # In the above, 'map' is the map this prereq is evaluated in the context of,
   # and mapname is the name of the other map we're evaluating.
   if subregion is None:
