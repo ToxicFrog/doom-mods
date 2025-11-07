@@ -12,6 +12,7 @@ from typing import Dict, List, NamedTuple, Optional, Set, Type
 
 from .DoomLocation import DoomLocation
 from .DoomKey import DoomKey
+from .DoomReachable import DoomReachable
 
 
 class MAPINFO(NamedTuple):
@@ -70,6 +71,7 @@ class DoomMap:
     # Items not contained in any particular location that should nonetheless
     # be added to the pool if this map is included in play.
     loose_items: Dict[str,int] = field(default_factory=dict)
+    extra_rules: DoomReachable = field(default_factory=DoomReachable)
 
     def __post_init__(self, info):
         self.mapinfo = MAPINFO(**info)
@@ -89,12 +91,19 @@ class DoomMap:
         for map in prior_maps:
             carryover_guns |= map.local_guns()
 
+        if self.extra_rules.prereqs:
+            extra_rule = self.extra_rules.access_rule(world, self.wad, self)
+        else:
+            extra_rule = lambda _: True
 
         def rule(state):
             if world.options.pretuning_mode:
                 return True
 
             if not state.has(self.access_token_name(), world.player):
+                return False
+
+            if not extra_rule(state):
                 return False
 
             # Starting levels are exempt from all balancing checks.

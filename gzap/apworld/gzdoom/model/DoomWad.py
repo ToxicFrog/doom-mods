@@ -234,9 +234,12 @@ class DoomWad:
         self.items_by_name = all_items
         self.items_by_type = { item.typename: item for item in self.items() }
 
-    def define_region(self, map: str, region: str, keys: List[str]):
-        name = f'{map}/{region}'
-        self.regions.setdefault(name, DoomRegion(map, region)).record_tuning(keys)
+    def define_region(self, map: str, keys: List[str], region: str = None):
+        if not region:
+            self.maps[map].extra_rules.record_tuning(keys)
+        else:
+            name = f'{map}/{region}'
+            self.regions.setdefault(name, DoomRegion(map, region)).record_tuning(keys)
 
     def regions_in_map(self, map: str):
         return (r for r in self.regions.values() if r.map == map)
@@ -426,6 +429,8 @@ class DoomWad:
             loc.finalize_tuning()
         for name,region in self.regions.items():
             region.finalize_tuning(default=[])
+        for map in self.maps.values():
+            map.extra_rules.finalize_tuning(default=[])
 
     def finalize_key_items(self):
         """

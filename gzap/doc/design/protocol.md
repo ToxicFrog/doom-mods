@@ -202,6 +202,11 @@ Names are scoped to the map (i.e. regions in different maps may have the same
 name without being considered the same region). `keys` has the same meaning as
 in `AP-CHECK`.
 
+If issued without a `region`, defines access rules common to the entire map, e.g.
+`AP-REGION { "map": "MAP30", "keys": ["weapon/RocketLauncher"] }` says that no
+part of MAP30 is in logic unless the player has the rocket launcher (in addition
+to any other requirements).
+
 #### `AP-CHECK { id, name, pos, region, keys, unreachable }`
 
 Emitted when the player checks a location. The fields have the following meaning:

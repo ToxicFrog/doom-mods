@@ -20,7 +20,7 @@ AP-REGION { "map": "E1M1", "region": "main", "keys": [] }
 // inside it that you have to hit first.
 AP-REGION { "map": "E1M1", "region": "key-shack", "keys": ["map/E1M2/main"] }
 // The bell tower requires the yellow key.
-AP-REGION { "map": "E1M1", "region": "belltower", "keys": ["key/KeyYellow", "weapon/Crossbow2/need"] }
+AP-REGION { "map": "E1M1", "region": "belltower", "keys": ["key/KeyYellow", "weapon/Crossbow2"] }
 // The tiny annex near the M3 teleporter accessed via a switch in M3.
 // It can also be reached from M1 once the bell is rung.
 AP-REGION { "map": "E1M1", "region": "garden-annex", "keys": ["map/E1M3/garden"] }
@@ -30,12 +30,14 @@ AP-REGION { "map": "E1M1", "region": "garden-annex", "keys": ["map/E1M1/belltowe
 AP-REGION { "map": "E1M1", "region": "portcullis-open", "keys": ["key/KeyGreen", "map/E1M3/green", "weapon/SkullRod2"]}
 
 //////// E1M2: Dockside
+AP-REGION { "map": "E1M2", "keys": ["map/E1M1", "weapon/Crossbow2"] }
 // Main region is everywhere you can reach from M1 at the start of the game, which is almost everything.
 AP-REGION { "map": "E1M2", "region": "main", "keys": ["map/E1M1/main", "weapon/Crossbow2"] }
 // The area behind the yellow door to the northeast.
 AP-REGION { "map": "E1M2", "region": "yellow", "keys": ["map/E1M1/main", "key/KeyYellow"] }
 
 //////// E1M3: Odious Gardens
+AP-REGION { "map": "E1M3", "keys": ["map/E1M1"] }
 // Courtyard area you can reach from M1. In practice you can't do much here until you unlock the gates to the gardens
 // proper via the belltower.
 AP-REGION { "map": "E1M3", "region": "courtyard", "keys": ["map/E1M1"] }
@@ -51,6 +53,7 @@ AP-REGION { "map": "E1M3", "region": "green", "keys": ["key/KeyGreen", "map/E1M3
 AP-REGION { "map": "E1M3", "region": "tree-secret", "keys": ["map/E1M3/garden", "weapon/PhoenixRod2"] }
 
 //////// E1M4: Kingdom of Roots
+AP-REGION { "map": "E1M4", "keys": ["map/E1M3/portals", "weapon/Blaster2"] }
 // Main area accessible from both M3 and M5 teleporters.
 AP-REGION { "map": "E1M4", "region": "main", "keys": ["map/E1M3/portals", "weapon/Blaster2"] }
 // There's a direct link between M4 and M5, but trying to model it produces an infinite loop,
@@ -60,6 +63,7 @@ AP-REGION { "map": "E1M4", "region": "main", "keys": ["map/E1M3/portals", "weapo
 AP-REGION { "map": "E1M4", "region": "after-raising-water", "keys": ["map/E1M4/main", "map/E1M5/main"] }
 
 //////// E1M5: Savaged Lands
+AP-REGION { "map": "E1M5", "keys": ["map/E1M3/portals", "weapon/Blaster2"] }
 // Main area accessible from both M3 and M5 teleporters.
 AP-REGION { "map": "E1M5", "region": "main", "keys": ["map/E1M3/portals", "weapon/Blaster2"] }
 // AP-REGION { "map": "E1M5", "region": "main", "keys": ["map/E1M4/main"] }
@@ -71,11 +75,17 @@ AP-REGION { "map": "E1M5", "region": "red-keep", "keys": ["map/E1M5/main", "key/
 // portal to M9 back in the garden.
 AP-REGION { "map": "E1M5", "region": "stone-face", "keys": ["map/E1M5/red-keep", "key/PuzzStoneFace"] }
 
+AP-REGION { "map": "E1M6", "keys": ["map/E1M1/portcullis-open"] }
+AP-REGION { "map": "E1M7", "keys": ["map/E1M6"] }
+AP-REGION { "map": "E1M8", "keys": ["map/E1M7"] }
+AP-REGION { "map": "E1M9", "keys": ["map/E1M8"] }
+
+
 //////// E1M9: Breathless Wastes
+AP-REGION { "map": "E1M9", "keys": ["map/E1M3/courtyard", "map/E1M5/stone-face", "weapon/SkullRod2", "weapon/Blaster2"] }
 // Secret level accessible from the garden portal courtyard, only after having installed the stone face (normally
 // found in M4) in a secret area in the red keep in M5.
-AP-REGION { "map": "E1M9", "region": "main",
-            "keys": ["map/E1M3/courtyard", "map/E1M5/stone-face", "weapon/SkullRod2/need", "weapon/Blaster2/need"] }
+AP-REGION { "map": "E1M9", "region": "main", "keys": [] }
 // Areas that you can only reach after melting the ice in the east caves: the southeast keep, the shadowsphere
 // near the firemace platform, the teleporter exit near the portal, the wendigo's breath cache near the chasm.
 AP-REGION { "map": "E1M9", "region": "after-ice", "keys": ["map/E1M9/main", "weapon/Mace2"] }
@@ -596,9 +606,9 @@ AP-CHECK { "id": 91351, "name": "E1M1 - Map secret", "pos": ["E1M1","secret","ti
 AP-CHECK { "id": 91313, "name": "E1M1 - Ethereal Arrows [0,-1224]", "pos": ["E1M1",0,-1224,0], "region": "main" }
 AP-CHECK { "id": 91356, "name": "E1M1 - Belltower secret", "pos": ["E1M1","secret","sector",453], "region": "main" }
 
-AP-CHECK { "id": 91524, "name": "E1M3 - Amulet secret", "pos": ["E1M3","secret","tid",2], "region": "gardens" }
+AP-CHECK { "id": 91524, "name": "E1M3 - Amulet secret", "pos": ["E1M3","secret","tid",2], "region": "garden" }
 
-AP-CHECK { "id": 91448, "name": "E1M3 - Secret T137", "pos": ["E1M3","secret","tid",137], "region": "red-keep" }
+AP-CHECK { "id": 91448, "name": "E1M3 - Portal secret", "pos": ["E1M3","secret","tid",137], "region": "garden", "keys": ["map/E1M5/stone-face"] }
 
 AP-CHECK { "id": 92064, "name": "E1M9 - Crystal Vial [1472,-3488]", "pos": ["E1M9",1472,-3488,128], "region": "main" }
 AP-CHECK { "id": 19655, "name": "E1M9 - Ethereal Crossbow", "pos": ["E1M9",1344,-3280,144], "region": "main" }
