@@ -120,7 +120,7 @@ class ::ScannedItem : ::ScannedLocation {
 
   static bool IsTool(readonly<Inventory> thing) {
     if (!thing) return false;
-    return thing.bINVBAR;
+    return thing.bINVBAR && !thing.bAUTOACTIVATE;
   }
 
   static string HealthCategory(int amount) {
