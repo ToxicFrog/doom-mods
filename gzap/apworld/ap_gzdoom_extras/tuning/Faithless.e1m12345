@@ -27,11 +27,11 @@ AP-REGION { "map": "E1M1", "region": "garden-annex", "keys": ["map/E1M3/garden"]
 AP-REGION { "map": "E1M1", "region": "garden-annex", "keys": ["map/E1M1/belltower"] }
 // The area inside the southern fortress. This requires you to have the green key,
 // both to open the door proper and to reach the area in M3 with the portcullis switch.
-AP-REGION { "map": "E1M1", "region": "portcullis-open", "keys": ["key/KeyGreen", "map/E1M3/green", "weapon/SkullRod2/need"]}
+AP-REGION { "map": "E1M1", "region": "portcullis-open", "keys": ["key/KeyGreen", "map/E1M3/green", "weapon/SkullRod2"]}
 
 //////// E1M2: Dockside
 // Main region is everywhere you can reach from M1 at the start of the game, which is almost everything.
-AP-REGION { "map": "E1M2", "region": "main", "keys": ["map/E1M1/main", "weapon/Crossbow2/need"] }
+AP-REGION { "map": "E1M2", "region": "main", "keys": ["map/E1M1/main", "weapon/Crossbow2"] }
 // The area behind the yellow door to the northeast.
 AP-REGION { "map": "E1M2", "region": "yellow", "keys": ["map/E1M1/main", "key/KeyYellow"] }
 
@@ -40,7 +40,7 @@ AP-REGION { "map": "E1M2", "region": "yellow", "keys": ["map/E1M1/main", "key/Ke
 // proper via the belltower.
 AP-REGION { "map": "E1M3", "region": "courtyard", "keys": ["map/E1M1"] }
 // The main area of the gardens. Accessed by ringing the bell in M1.
-AP-REGION { "map": "E1M3", "region": "garden", "keys": ["map/E1M1/belltower", "map/E1M3/courtyard", "weapon/Gauntlets2/need"] }
+AP-REGION { "map": "E1M3", "region": "garden", "keys": ["map/E1M1/belltower", "map/E1M3/courtyard", "weapon/Gauntlets2"] }
 // The portals to M4, M5, and M9.
 // These are logically in the gardens even though they're physically in the courtyard,
 // because the switches that activate them are in the gardens.
@@ -48,11 +48,11 @@ AP-REGION { "map": "E1M3", "region": "portals", "keys": ["map/E1M3/courtyard", "
 // Area behind the green door in M3. Contains the switch that raises the portcullis in M1.
 AP-REGION { "map": "E1M3", "region": "green", "keys": ["key/KeyGreen", "map/E1M3/garden"] }
 // Ring of invulnerability secret to the north. Trees blocking access can only be destroyed with the phoenix rod.
-AP-REGION { "map": "E1M3", "region": "tree-secret", "keys": ["map/E1M3/garden", "weapon/PhoenixRod2/need"] }
+AP-REGION { "map": "E1M3", "region": "tree-secret", "keys": ["map/E1M3/garden", "weapon/PhoenixRod2"] }
 
 //////// E1M4: Kingdom of Roots
 // Main area accessible from both M3 and M5 teleporters.
-AP-REGION { "map": "E1M4", "region": "main", "keys": ["map/E1M3/portals", "weapon/Blaster2/need"] }
+AP-REGION { "map": "E1M4", "region": "main", "keys": ["map/E1M3/portals", "weapon/Blaster2"] }
 // There's a direct link between M4 and M5, but trying to model it produces an infinite loop,
 // and in practice we don't need it, because M3 portal access is both necessary and sufficient.
 // AP-REGION { "map": "E1M4", "region": "main", "keys": ["map/E1M5/main"] }
@@ -61,12 +61,12 @@ AP-REGION { "map": "E1M4", "region": "after-raising-water", "keys": ["map/E1M4/m
 
 //////// E1M5: Savaged Lands
 // Main area accessible from both M3 and M5 teleporters.
-AP-REGION { "map": "E1M5", "region": "main", "keys": ["map/E1M3/portals", "weapon/Blaster2/need"] }
+AP-REGION { "map": "E1M5", "region": "main", "keys": ["map/E1M3/portals", "weapon/Blaster2"] }
 // AP-REGION { "map": "E1M5", "region": "main", "keys": ["map/E1M4/main"] }
 // Central and western area accessible only after getting the red key.
 // Also includes the southeastern area where the green key can be found, since that's unlocked via a trigger in
 // the red keep area (when you pick up the hellstaff).
-AP-REGION { "map": "E1M5", "region": "red-keep", "keys": ["map/E1M5/main", "key/KeyRed", "weapon/SkullRod2/need"] }
+AP-REGION { "map": "E1M5", "region": "red-keep", "keys": ["map/E1M5/main", "key/KeyRed", "weapon/SkullRod2"] }
 // Logic-only region indicating that you have installed the Stone Face in the basement storeroom, opening the
 // portal to M9 back in the garden.
 AP-REGION { "map": "E1M5", "region": "stone-face", "keys": ["map/E1M5/red-keep", "key/PuzzStoneFace"] }
@@ -78,7 +78,7 @@ AP-REGION { "map": "E1M9", "region": "main",
             "keys": ["map/E1M3/courtyard", "map/E1M5/stone-face", "weapon/SkullRod2/need", "weapon/Blaster2/need"] }
 // Areas that you can only reach after melting the ice in the east caves: the southeast keep, the shadowsphere
 // near the firemace platform, the teleporter exit near the portal, the wendigo's breath cache near the chasm.
-AP-REGION { "map": "E1M9", "region": "after-ice", "keys": ["map/E1M9/main", "weapon/Mace2/need"] }
+AP-REGION { "map": "E1M9", "region": "after-ice", "keys": ["map/E1M9/main", "weapon/Mace2"] }
 
 AP-CHECK { "id": 91244, "name": "E1M1 - Wand Crystals [1840,-704]", "pos": ["E1M1",1840,-704,72], "region": "main" }
 AP-CHECK { "id": 91247, "name": "E1M1 - Wand Crystals [1536,-704]", "pos": ["E1M1",1536,-704,72], "region": "main" }

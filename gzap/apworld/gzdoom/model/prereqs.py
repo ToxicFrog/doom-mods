@@ -46,7 +46,7 @@ def fqin_prereq(world, wad, map, fqin):
 def item_prereq(world, wad, map, typename):
   return fqin_prereq(world, wad, map, wad.items_by_type[typename].name())
 
-def weapon_prereq(world, wad, map, typename, strictness):
+def weapon_prereq(world, wad, map, typename, strictness = 'need'):
   if strictness == 'need':
     return item_prereq(world, wad, map, typename)
   else:
