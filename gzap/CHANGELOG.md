@@ -89,6 +89,17 @@ for details.
     rest of the tarball contents rather than in `~/.local/share/Archipelago`.
   - Removed incorrect tuning data for `Doom` and `Doom 2`.
   - Improved and corrected tuning data for `Chex Quest 3` [from wobblefowl].
+- Removed:
+  - Tuning data for the following wads was from a much earlier version and could
+    not be upgraded to the new format:
+    - `Doom`
+    - `Heretic`
+    - `FreeDoom 2`
+    - `1000 Lines` and `1000 Lines II`
+    - `Demonfear`
+    - `MAYhem 2048`
+    - `Scythe`
+    - `The Adventures of Square`
 
 # 0.6.6
 

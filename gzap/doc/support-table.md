@@ -37,23 +37,23 @@ need to identify a WAD, the [DoomWiki Resources category](https://doomwiki.org/w
 lists all of them, with hashes. Using a different version than the one supported
 here may result in glitches.
 
-| WAD            | Maps | Mon/Lvl | Checks | Status | Notes |
-| -------------- | ---- | ------- | ------ | ------ | ----- |
-| Doom           |   36 |      90 | 509    | full   | v1.9ud |
-| Doom 2         |   32 |     116 | 501    | full   | v1.9 |
-| TNT            |   32 |     152 | 515    | basic  | v1.9 |
-| Plutonia       |   32 |      95 | 427    | full   | v1.9 |
-| Master Levels for Doom II | 21 | 120 | 401 | full | |
-| No Rest for the Living | 9 | 141 | 124 | full | |
-| SIGIL          | | | | missing | |
-| SIGIL II       | | | | missing | |
-| Legacy of Rust |   16 |     212 |    270 | problems | Fully tuned, but MAP14 doesn't fully work because of [this gzdoom limitation](https://github.com/ZDoom/gzdoom/issues/2208); you will need to exclude it or make it optional. |
-| Heretic        |   45 |     116 |    900 | basic  | v1.3 |
-| Hexen          | | | | missing | Same concerns as Strife, plus I don't like it. |
-| Strife         | | | | missing | Hub maps and complicated level scripting mean this may need changes to the generator. |
-| FreeDoom       |   36 |     176 |    532 | basic | [v0.13.0](https://freedoom.github.io/download.html) |
-| FreeDoom 2     |   32 |     135 |    495 | basic | [v0.13.0](https://freedoom.github.io/download.html) |
-| Chex Quest 3   |   15 |      83 |    196 | complete | [v1.4](https://www.chexquest3.com/downloads/); v2.0-prerelease is not yet supported. |
+| WAD                       | Maps | Mon/Lvl | Checks | Status | Notes |
+| --------------            | ---- | ------- | ------ | ------ | ----- |
+| Doom                      |   36 |      90 |    509 | basic  | v1.9ud |
+| Doom 2                    |   32 |     116 |    501 | full   | v1.9 |
+| TNT                       |   32 |     152 |    515 | basic  | v1.9 |
+| Plutonia                  |   32 |      95 |    427 | full   | v1.9 |
+| Master Levels for Doom II |   21 |     120 |    401 | full   | |
+| No Rest for the Living    |    9 |     141 |    124 | full   | |
+| SIGIL                     |      |         |        | missing | |
+| SIGIL II                  |      |         |        | missing | |
+| Legacy of Rust            |   16 |     212 |    270 | problems | Fully tuned, but MAP14 doesn't fully work because of [this gzdoom limitation](https://github.com/ZDoom/gzdoom/issues/2208); you will need to exclude it or make it optional. |
+| Heretic                   |   45 |     116 |    900 | basic  | v1.3 |
+| Hexen                     |      |         |        | missing | I don't like it, but if someone wants to contribute logic, feel free. |
+| Strife                    |      |         |        | missing | |
+| FreeDoom                  |   36 |     176 |    532 | basic | [v0.13.0](https://freedoom.github.io/download.html) |
+| FreeDoom 2                |   32 |     135 |    495 | basic | [v0.13.0](https://freedoom.github.io/download.html) |
+| Chex Quest 3              |   15 |      83 |    196 | complete | [v1.4](https://www.chexquest3.com/downloads/); v2.0-prerelease is not yet supported. |
 
 ### Featured WADs
 
@@ -61,27 +61,27 @@ These are the WADs included in `ap_gzdoom_featured.apworld`. Any WADs available
 via the [Featured Mods List](https://doomwiki.org/wiki/Featured_mods) in the
 `Doom + Doom II` re-release by Night Dive should be added here.
 
-| WAD              | Maps | Mon/Lvl | Checks |  Status | Notes |
-| ---------------- | ---- | ------- | ------ | ------- | ----- |
-| Anomaly Report   |      |         |        | missing |       |
-| Arrival          |   11 |     250 |    309 | basic   |       |
-| Base Ganymede    |   27 |     149 |    344 | basic   |       |
-| BTSX Episode 1   |      |         |        | missing |       |
-| BTSX Episode 2   |      |         |        | missing |       |
-| Deathless        |   36 |      65 |    432 | basic   |       |
-| Doom Zero        |      |         |        | missing |       |
-| Double Impact    |      |         |        | missing |       |
-| Earthless: Prelude |    |         |        | missing |       |
-| Going Down       |      |         |        | missing |       |
-| Going Down Turbo |   32 |     163 |    450 | partial |       |
-| Harmony          |      |         |        | missing |       |
-| No End In Sight  |      |         |        | missing |       |
-| REKKR            |      |         |        | missing |       |
-| Revolution!      |      |         |        | missing |       |
-| Scientist 2023   |   20 |     118 |    365 | basic   |       |
-| Syringe          |      |         |        | missing |       |
-| Tetanus          |      |         |        | missing |       |
-| Trooper's Playground |  |         |        | missing |       |
+| WAD                | Maps | Mon/Lvl | Checks | Status  | Notes |
+| ----------------   | ---- | ------- | ------ | ------- | ----- |
+| Anomaly Report     |      |         |        | missing |       |
+| Arrival            |   11 |     250 |    309 | basic   |       |
+| Base Ganymede      |   27 |     149 |    344 | basic   |       |
+| BTSX Episode 1     |      |         |        | missing |       |
+| BTSX Episode 2     |      |         |        | missing |       |
+| Deathless          |   36 |      65 |    432 | basic   |       |
+| Doom Zero          |      |         |        | missing |       |
+| Double Impact      |      |         |        | missing |       |
+| Earthless: Prelude |      |         |        | missing |       |
+| Going Down         |      |         |        | missing |       |
+| Going Down Turbo   |   32 |     163 |    450 | partial |       |
+| Harmony            |      |         |        | missing |       |
+| No End In Sight    |      |         |        | missing |       |
+| REKKR              |      |         |        | missing |       |
+| Revolution!        |      |         |        | missing |       |
+| Scientist 2023     |   20 |     118 |    365 | basic   |       |
+| Syringe            |      |         |        | missing |       |
+| Tetanus            |      |         |        | missing |       |
+| Trooper's Playground |    |         |        | missing |       |
 
 ### Extra WADs
 
@@ -92,34 +92,33 @@ official launcher. You can generally read about them and find download links via
 
 #### Maps
 
-| WAD              | Maps | Mon/Lvl | Checks | Status | Notes |
-| ---------------- | ---- | ------- | ------ | ------ | ----- |
-| 1000 Lines       |   32 |     137 | 397 | full | Does not include the two bonus levels. |
-| 1000 Lines II    |   32 |     116 | 469 | full | |
-| Amalgoom         |   37 |     244 | 972 | full | Must use [RC4](https://www.doomworld.com/forum/topic/152974-amalgoom-rc4-sandy-petersen-interview) version and the [hotfix](https://www.doomworld.com/forum/post/2965170). Details at [#53](https://github.com/ToxicFrog/doom-mods/pull/53). |
-| Demonfear        |   32 |      39 | 289 | full | |
-| MAYhem 2048      |   34 |     179 | 384 | partial | |
-| Scythe           |   32 |     106 | 405 | full | MAP26-MAP30 are much larger than the rest of the wad; consider excluding them in short sync games. |
-| Scythe 2         |   32 |     191 | 477 | full | |
+| WAD              | Maps | Mon/Lvl | Checks | Status  | Notes |
+| ---------------- | ---- | ------- | ------ | ------- | ----- |
+| 1000 Lines       |   32 |     137 |    397 | basic   | Does not include the two bonus levels. |
+| 1000 Lines II    |   32 |     116 |    469 | basic   | |
+| Amalgoom         |   37 |     244 |    972 | full    | Must use [RC4](https://www.doomworld.com/forum/topic/152974-amalgoom-rc4-sandy-petersen-interview) version and the [hotfix](https://www.doomworld.com/forum/post/2965170). Details at [#53](https://github.com/ToxicFrog/doom-mods/pull/53). |
+| Demonfear        |   32 |      39 |    289 | basic   | |
+| MAYhem 2048      |   34 |     179 |    384 | baic    | |
+| Scythe           |   32 |     106 |    405 | basic   | MAP26-MAP30 are much larger than the rest of the wad; consider excluding them in short sync games. |
+| Scythe 2         |   32 |     191 |    477 | full    | |
 | [WadFusion](https://github.com/Owlet7/wadfusion) | varies | varies | varies | missing | See https://github.com/ToxicFrog/doom-mods/pull/38 |
-| Zone 300         |   32 |      61 | 305 | partial | |
+| Zone 300         |   32 |      61 |    305 | partial | |
 
 #### Standalone Games & Total Conversions
 
-| Game                     | Maps | Mon/Lvl | Checks | Status | Notes |
-| ------------------------ | ---- | ------- | ------ | ------ | ----- |
-| The Adventures of Square | 22 | 256 | 640 | partial | Not compatible with persistent mode. |
-| Ashes 2063               | | | | missing | (1) |
-| Ashes: Afterglow         | | | | missing | (1), (2) |
-| Ashes: Hard Reset        | | | | missing | Still need to play it. |
-| Faithless Trilogy        | | | | missing | (2), may require manual work to handle ACS-defined portals. |
-| Golden Souls Remastered  | | | | missing | (3) |
-| Golden Souls 2           | | | | missing | (3) |
-| Hedon Bloodrite          | | | | missing | (2). This is going to be a project but I think it would be pretty cool. |
-| Space Cats Saga          | 57 | 316 | 1042 | partial | Episode 1 fully tunned. Pettable cats categorized as "big-ammo" may sometimes give you weapons out-of-logic instead. |
+| Game                     | Maps | Mon/Lvl | Checks | Status  | Notes |
+| ------------------------ | ---- | ------- | ------ | ------- | ----- |
+| The Adventures of Square |   22 |     256 |    640 | basic   | Not compatible with persistent mode. |
+| Ashes 2063               |      |         |        | missing | (1) |
+| Ashes: Afterglow         |      |         |        | missing | (1) |
+| Ashes: Hard Reset        |      |         |        | missing | Still need to play it. |
+| Faithless Trilogy        |   28 |     156 |    427 | WIP     |  |
+| Golden Souls Remastered  |      |         |        | missing | (3) |
+| Golden Souls 2           |      |         |        | missing | (3) |
+| Hedon Bloodrite          |      |         |        | missing | (2). This is going to be a project but I think it would be pretty cool. |
+| Space Cats Saga          |   57 |     316 |   1042 | partial | Episode 1 fully tuned. Pettable cats categorized as "big-ammo" may sometimes give you weapons out-of-logic instead. |
 
 (1) Requires progressive item support in the logic engine.
-(2) Requires hubcluster support in the logic engine and runtime.
 (3) Requires support for "stacking" keys that open more things the more you have.
 
 ### Fan-Games for Other IPs
