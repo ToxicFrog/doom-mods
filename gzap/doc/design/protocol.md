@@ -114,6 +114,28 @@ full set of item categories is:
 Currently only some of these are actually used by the generator, but they are all
 emitted for potential future use.
 
+#### `AP-KEY { tag, typename, scopename, cluster, maps: [...] }`
+
+Defines a key. Keys are handled specially by the apworld since they are so important
+for progression, and this message contains additional data about them that does not
+fit into `AP-ITEM`.
+
+- `tag`: the player-facing name, e.g. "Stone Icon"
+- `typename`: the internal actor type, e.g. "PuzzStoneFace"
+- `scopename`: the name of the game region the key is valid in. In classical
+  maps this is the name of the map. In wads where keys can be carried across
+  multiple maps in a hubcluster, this is the cluster name.
+- `cluster`: the numeric cluster ID. 0 if the scope is not a hubcluster.
+- `maps`: a list of map names that the key is valid in.
+
+This is used both to define single-map keys (as in Doom 1/2 and Heretic), and
+multi-map keys that are valid across an entire cluster.
+
+When playing, if the player encounters a key that the randomizer was not
+previously aware of, the game will emit an `AP-KEY` message for it when it is
+picked up. All keys need to be declared before tuning is loaded, so this message
+must be moved to the logic file before generating again.
+
 #### `AP-SECRET { map, pos, name }`
 
 Emitted for each secret (sector or `SecretTrigger`) the scanner finds. If it is
