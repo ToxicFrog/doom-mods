@@ -295,7 +295,7 @@ class ::Region play {
     Map<string, bool> keys_to_remove;
     readonly<Inventory> item = mo.inv;
     while (item) {
-      if (item is "Key") {
+      if (item is "Key" || item is "PuzzleItem") {
         if (keys_to_add.CheckKey(item.GetClassName())) {
           DEBUG("keys_to_add: %s is already present in inventory", item.GetClassName());
           keys_to_add.Remove(item.GetClassName());
