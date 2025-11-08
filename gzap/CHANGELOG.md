@@ -1,6 +1,13 @@
 # Unreleased
 
-This is a feature/design release.
+This is a major release. The focus of this release is on adding features needed
+for hub-based games like Hexen, Faithless, Abysm, etc. This has required many
+changes to the logic and tuning format and significant internal adjustments.
+
+As a secondary change, this also brings the ability to distribute logic and
+tuning data as separate apworlds, making it easier to share custom logic with
+game hosts and speeding up load times for players who don't need the complete
+collection of custom logic.
 
 ⚠️ **This update breaks backwards compatibility.** ⚠️
 
