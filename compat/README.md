@@ -17,4 +17,4 @@ them.
 ## For gzArchipelago
 
 - `Archipelago×FinalDoomer`: Fixes check spawning and weapon suppression behaviour when Final Doomer is loaded. **Mandatory** unless you play FD with "generic visuals" enabled.
-- `Archipelago×DoomRL Arsenal`: Fixes powerup spawners from being collected before being able to spawn powerups and crates. **Mandatory**.
+- `Archipelago×DoomRLArsenal`: Fixes powerup spawners from disappearing without spawning anything. **Mandatory**.

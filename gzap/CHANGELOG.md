@@ -27,6 +27,7 @@ for details.
   - Logic and tuning for `Legacy of Rust`, by RakeVuril.
   - Basic logic for `Arrival`, `Base Ganymede`, `Deathless`, and `Scientist`.
   - Logic and tuning for episode 1 of `Faithless Trilogy`.
+  - Compatibility patch for DoomRL Arsenal [by J0osp].
 - New scanner and tuner features:
   - `GZAPRC` lump can now define default scanner settings for the wad.
   - `GZAPRC` lump can now define cluster names.
