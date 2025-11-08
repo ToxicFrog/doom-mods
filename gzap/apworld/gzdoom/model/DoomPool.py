@@ -58,7 +58,12 @@ class DoomPool:
 
     def add_items_to_pool(self, counter, locations):
         for loc in (loc for loc in locations if loc.orig_item):
-            counter[loc.orig_item.name()] += 1
+            # We do this because some items may have been remapped at the wad
+            # level, e.g. "YellowKey (E1M1)" remapped to "YellowKey (E1)".
+            # Doing so doesn't replace the original item in the individual
+            # location, so we look it up int the wad and then use that.
+            item = self.wad.items_by_name[loc.orig_item.name()]
+            counter[item.name()] += 1
 
     def _skip_in_pretuning(self, world, loc):
         return (
