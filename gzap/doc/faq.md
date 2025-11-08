@@ -127,6 +127,11 @@ which lets you bind hotkeys for them. The following console commands will bind
 
 ## Compatibility
 
+### Does this work with UZDoom?
+
+[Not yet.](https://github.com/UZDoom/UZDoom/issues/378) The eventual goal is to
+support both uzdoom and gzdoom as long as is practical, however.
+
 ### Can I play this singleplayer?
 
 Yes! Generate the game as normal, then load the `.pk3` that Archipelago generates
