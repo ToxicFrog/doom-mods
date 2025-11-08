@@ -52,12 +52,22 @@ class ::PickupDetector : Inventory {
       foreach (map : maps) {
         key.AddMap(apstate, map);
       }
+
+      // Tell the state that we are allowed to manifest this key.
+      key.MarkHeld(apstate);
+
+    } else if (::PlayEventHandler.Get().IsPretuning()) {
+      // The state already knows about the key. If the player has just found it
+      // lying around in the world somewhere, we should reject the pickup -- they
+      // are expected to find it in the pool -- *unless* we are in pretuning mode,
+      // in which case dynkeys do not exist in the pool in the first place and
+      // this is the only way to get it.
+      key.MarkHeld(apstate);
     }
 
     // At this point the apstate knows about this key. We permit it to be picked
     // up iff the apstate thinks the player should have it in their inventory.
-    key.MarkHeld(apstate);
-    if (key.enabled) {
+    if (key.held && key.enabled) {
       DEBUG("  Permitting key pickup.");
       return false;
     } else {
