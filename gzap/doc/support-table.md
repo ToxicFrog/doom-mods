@@ -112,7 +112,7 @@ official launcher. You can generally read about them and find download links via
 | Ashes 2063               |      |         |        | missing | (1) |
 | Ashes: Afterglow         |      |         |        | missing | (1) |
 | Ashes: Hard Reset        |      |         |        | missing | Still need to play it. |
-| Faithless Trilogy        |   28 |     156 |    427 | WIP     |  |
+| Faithless Trilogy        |   28 |     156 |    427 | partial | Episode 1 fully supported. 2/3 are not yet ready for play. |
 | Golden Souls Remastered  |      |         |        | missing | (3) |
 | Golden Souls 2           |      |         |        | missing | (3) |
 | Hedon Bloodrite          |      |         |        | missing | (2). This is going to be a project but I think it would be pretty cool. |

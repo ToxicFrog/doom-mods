@@ -13,13 +13,6 @@ To release a new version:
 ### next release
 
 (0.7 is focusing on logic/tuning format changes and bugfixes)
-- faithless-specific logic issues
-  - green key exists out of logic since it's dispensed by event triggers in M4/M5
-    in non-pretuning mode we need to add it to the pool and block it from pickup
-  - phoenix rod can be gotten OOL by exploring e1m9 and flipping the switch in the ice keep
-    to spawn an extra rod in the belltower, but only if weapon suppression is off
-- player should not be able to pick up dynkeys if they already exist in the pool
-- player should not be able to fast travel to unvisited maps unless they are starting maps
 
 (maybe wait for 0.7.1)
 - weapon suppression just makes the gun non-interactable rather than tuning it into ammo?

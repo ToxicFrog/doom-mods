@@ -26,6 +26,7 @@ for details.
   - Logic and tuning for `Eviternity` and `Eviternity II`, by Akos.
   - Logic and tuning for `Legacy of Rust`, by RakeVuril.
   - Basic logic for `Arrival`, `Base Ganymede`, `Deathless`, and `Scientist`.
+  - Logic and tuning for episode 1 of `Faithless Trilogy`.
 - New scanner and tuner features:
   - `GZAPRC` lump can now define default scanner settings for the wad.
   - `GZAPRC` lump can now define cluster names.
@@ -91,6 +92,8 @@ for details.
     rest of the tarball contents rather than in `~/.local/share/Archipelago`.
   - Removed incorrect tuning data for `Doom` and `Doom 2`.
   - Improved and corrected tuning data for `Chex Quest 3` [from wobblefowl].
+  - Duplicate puzzle items no long appear at the center of the map.
+  - Duplicate keys no longer appear in the item pool.
 - Removed:
   - Tuning data for the following wads was from a much earlier version and could
     not be upgraded to the new format:
