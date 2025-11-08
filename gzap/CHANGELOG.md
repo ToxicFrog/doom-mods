@@ -60,6 +60,7 @@ for details.
   - `included_item_categories` now supports keys, weapons, and AP automaps.
   - `included_item_categories` now supports specific item names as well as
     broader item categories.
+  - Internal manifest for compatibility with future AP versions.
 - New gameplay features:
   - The inventory screen now lists all keys for the current level. Keys you do
     not yet have are hintable with `shift-H`. (This is the same mechanism as
