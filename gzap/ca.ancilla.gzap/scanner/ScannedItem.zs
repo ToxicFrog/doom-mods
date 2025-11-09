@@ -123,37 +123,38 @@ class ::ScannedItem : ::ScannedLocation {
     return thing.bINVBAR && !thing.bAUTOACTIVATE;
   }
 
-  static string HealthCategory(int amount) {
-    if (amount >= 100) return "big-health";
-    if (amount >= 25) return "medium-health";
-    return "small-health";
+  static string HealthSize(int amount) {
+    if (amount >= 100) return "big";
+    if (amount >= 25) return "medium";
+    return "small";
   }
 
-  static string ArmourCategory(int amount) {
-    if (amount >= 100) return "big-armor";
-    if (amount >= 25) return "medium-armor";
-    return "small-armor";
+  static string ArmourSize(int amount) {
+    if (amount >= 100) return "big";
+    if (amount >= 25) return "medium";
+    return "small";
   }
 
-  static string AmmoCategory(int amount, int maxamount) {
-    if (amount >= maxamount/5) return "medium-ammo";
-    return "small-ammo";
+  static string AmmoSize(int amount, int maxamount) {
+    if (amount >= maxamount/5) return "medium";
+    return "small";
   }
 
   // TODO: we can use inventory flags for this better than class hierarchy in many cases.
-  // INVENTORY.AUTOACTIVATE - item activates when picked up
-  // .INVBAR - item goes to the inventory screen and can be used later
   // .BIGPOWERUP - item is particularly powerful
-  // .ISHEALTH, .ISARMOR - as it says
   // .HUBPOWER, .PERSISTENTPOWER, and .InterHubAmount allow carrying between levels
   // .COUNTITEM - counts towards the % items collected stat
   // there's also sv_unlimited_pickup to remove all limits on ammo capacity(!)
   static string ItemCategory(readonly<Actor> thing) {
+    // Categories set in GZAPRC take precedence over everything else.
     let [category, ok] = ::RC.Get().GetCategory(thing.GetClassName());
     if (ok) return category;
 
+    // Hardcoded categories or category sets.
+    // TODO: if we can get GZAPRC to check any-subclass-of rather than exact
+    // class matches, we can move a lot of this into GZAPRC.
     if (thing is "Key" || thing is "PuzzleItem") {
-      return "key"; // TODO: allow duplicate PuzzleItems but not Keys
+      return "key";
     } else if (thing is "Weapon" || thing is "WeaponPiece") {
       return "weapon";
     } else if (thing is "BackpackItem") {
@@ -162,27 +163,53 @@ class ::ScannedItem : ::ScannedLocation {
       return "powerup-maprevealer";
     } else if (thing is "SecretTrigger") {
       return "secret-marker";
-    } else if (thing is "PowerupGiver") {
-      if (IsTool(Inventory(thing))) {
-        return "powerup-tool";
-      } else {
-        return "powerup";
-      }
-    } else if (thing is "BasicArmorPickup") {
-      return ArmourCategory(BasicArmorPickup(thing).SaveAmount);
-    } else if (thing is "BasicArmorBonus") {
-      return ArmourCategory(BasicArmorBonus(thing).SaveAmount);
-    } else if (thing is "Health") {
-      return HealthCategory(Health(thing).Amount);
-    } else if (thing is "HealthPickup") {
-      return HealthCategory(HealthPickup(thing).Health);
-    } else if (thing is "Ammo") {
-      let a = Ammo(thing);
-      return AmmoCategory(a.Amount, a.MaxAmount);
-    } else if (IsTool(Inventory(thing))) {
-      return "tool";
     }
 
-    return "";
+    readonly<Inventory> inv = Inventory(thing);
+    if (!inv) { return ""; }
+
+    // Composite categories.
+    Array<string> categories;
+
+    // Things that restore health.
+    if (inv is "Health") {
+      categories.Push(HealthSize(Health(inv).Amount));
+      categories.Push("health");
+    } else if (inv is "HealthPickup") {
+      categories.Push(HealthSize(HealthPickup(inv).Health));
+      categories.Push("health");
+    } else if (inv.bISHEALTH) {
+      categories.Push("health");
+    }
+
+    // Things that restore armour.
+    if (inv is "BasicArmorPickup") {
+      categories.Push(ArmourSize(BasicArmorPickup(inv).SaveAmount));
+      categories.push("armor");
+    } else if (inv is "BasicArmorBonus") {
+      categories.Push(ArmourSize(BasicArmorBonus(inv).SaveAmount));
+      categories.push("armor");
+    } else if (inv.bISARMOR) {
+      categories.push("armor");
+    }
+
+    // Things that restore ammunition.
+    if (inv is "Ammo") {
+      let a = Ammo(inv);
+      categories.Push(AmmoSize(a.Amount, a.MaxAmount));
+      categories.Push("ammo");
+    }
+
+    // Buffs and whatnot.
+    if (inv is "PowerupGiver") {
+      categories.Push("powerup");
+    }
+
+    // Things that can be picked up and carried around and used later.
+    if (IsTool(inv)) {
+      categories.Push("tool");
+    }
+
+    return ::Util.join("-", categories);
   }
 }
