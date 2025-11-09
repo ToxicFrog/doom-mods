@@ -58,7 +58,9 @@ with both the `small` and `health` categories. A logic file can make up any
 categories it wants and the apworld will automatically detect them, but the
 current list of categories used by the wad scanner is:
 
-- `key`: keycards, skulls, etc; specific to a single level or cluster
+- `key`: keycards, skulls, etc; specific to a single level or cluster. Includes
+  "key-like quest items" like gears, the stone idol, etc.
+- `token`: single-use keys that must be expended in exchange for something.
 - `weapon`: any sort of weapon
 - `powerup`: time-limited or per-level powerups (e.g. radsuits, berserk)
 - `health`: anything that restores health

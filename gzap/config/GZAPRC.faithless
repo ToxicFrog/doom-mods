@@ -16,3 +16,14 @@ scanner {
 category medium-health-tool: ArtiRegenPotion;
 category big-health-tool: ArtiMiraclePotion;
 
+# These are inventory items used to open optional bonus chests.
+# KeyChest opens chests scattered around random levels; KeySafe opens prize
+# chests in the hub.
+# Unlike normal keys, these are single-use.
+# They are not needed for progression; they just get you bonus supplies (and the
+# items in the chests aren't randomized).
+category token: KeyChest KeySafe;
+# One of the keys is stored in a HangingPot in E2M4, but we can't scan all of
+# them as such because they're used for other things in other maps.
+#category token: HangingPot1;
+#typename KeySafe: HangingPot1;
