@@ -72,7 +72,7 @@ class DoomPool:
             and 'GZAP_INCREMENTAL_PRETUNING' in os.environ
             and 'weapon' not in loc.categories
             and 'key' not in loc.categories
-            and 'token' not in loc.categories
+            and 'ap_flag' not in loc.categories
         )
 
     def select_locations(self, all_locations, world):
@@ -145,7 +145,7 @@ class DoomPool:
     def finalize_item_counts(self, world):
         '''
         Do final tidying of the item pool. This means adding items to it that
-        don't come from locations (like access and victory tokens), applying
+        don't come from locations (like access and victory flags), applying
         pool limits, and then removing starting items from the pool so that they
         exist only in the starting-item pool.
         '''

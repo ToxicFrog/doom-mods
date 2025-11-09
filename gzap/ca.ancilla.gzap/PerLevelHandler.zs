@@ -67,7 +67,7 @@ class ::PerLevelHandler : EventHandler {
       //
       // In the latter case, we want to use the PEH state. In the former case,
       // we want to *mostly* use the PEH state -- in particular we want its
-      // record of what checks have been collected and what keys/tokens we have
+      // record of what checks have been collected and what keys/flags we have
       // -- but we want to rewind our understanding of what items have been
       // *used* to match the loaded save, to avoid a problem where the player
       // saves, picks up a weapon, it vends, and then they load their game and

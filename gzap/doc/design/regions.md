@@ -69,7 +69,7 @@ are supported:
 
 `map`. The `name` is the lump name, e.g. `map/E1M1`. The qualifier is optional;
 if present, this is the name of a subregion, e.g. `map/E1M1/belltower`. The
-player must have the access token for the given map. If a region is specified,
+player must have the access flag for the given map. If a region is specified,
 they must also have access to the given region.
 
 `key`. The `name` is the key typename, e.g. `key/KeyYellow`. Qualifier is not
@@ -122,9 +122,9 @@ So we end up with a heirarchy like:
 - DoomWad
   - top-level item, location, key, and region lookups
   - DoomLevel[]
-    - keys, victory token
+    - keys, victory flag
     - DoomMap[]
-      - automap and access tokens
+      - automap and access flagss
       - DoomRegion[]
         - access rules
         - DoomLocation[]

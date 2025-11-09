@@ -52,7 +52,7 @@ class GZAP_DataPackageEventHandler : StaticEventHandler {
   void RegisterMaps(GZAP_RandoState apstate) {
     console.printf("Registering %d maps.", {{maps|count}});
     {% for map in maps %}
-      apstate.RegisterMap("{{map.map}}", "{{map.checksum}}", {{map.mapinfo.cluster}}, {{id(map.access_token_name())}}, {{id(map.automap_name())}}, {{id(map.clear_token_name())}}, {{id(map.exit_location_name())}});
+      apstate.RegisterMap("{{map.map}}", "{{map.checksum}}", {{map.mapinfo.cluster}}, {{id(map.access_flag_name())}}, {{id(map.automap_name())}}, {{id(map.clear_flag_name())}}, {{id(map.exit_location_name())}});
       {% if map.clustername and map.rank == 0 %}
       apstate.GetRegion("{{map.map}}").visited = true;
       {% endif %}
@@ -71,11 +71,11 @@ class GZAP_DataPackageEventHandler : StaticEventHandler {
     console.printf("Registering %d items.", {{items|count}});
     // TODO: can we include keys in RegisterItem without breaking anything?
     {% for item in items %}
-      {% if item.typename and not item.has_category('token', 'key') %}
+      {% if item.typename and not item.has_category('ap_flag', 'key') %}
       apstate.RegisterItem("{{item.typename}}", {{item.id}});
       {% endif %}
     {% endfor %}
-    // Access codes, automaps, and clear tokens are registered via the extra IDs
+    // Access flags, automaps, and clear flags are registered via the extra IDs
     // passed to RegisterMap(), so they aren't listed here.
   }
 

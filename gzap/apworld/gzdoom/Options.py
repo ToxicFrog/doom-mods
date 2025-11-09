@@ -1,24 +1,13 @@
 # TODO: add/implement options for:
-# - in-level/across-level monster shuffle
-# - in-level/across-level minor item shuffle
-# - behaviour on death
-# - weapon logic
 # - win logic: all levels/N levels/all bosses/N bosses
 # - are bosses checks
-# - are exits checks (in addition to giving you a clear token)
-#   we do this by registering multiple checks per level, adding a new API to the
-#   generated zscript to register them all, and checking all of them on exit
+# - are exits checks (in addition to giving you a clear flag)
+#   we do this by making the "level exit flag" an internal event at generation
+#   time, and at runtime just setting a flag on the Region object when the level
+#   is clear.
 # - progressive automap -- automaps bind to the first unmapped level you have,
 #   and/or you need multiple automaps to display everything for a level (say,
 #   one gets you checks, one gets you geometry, one gets you progression hilights)
-# - progressive keys -- this will be tricky to implement, I think, but the idea
-#   is that keys start out unformed, and the first door you use when having an
-#   unformed key specializes it for that door. Alternately, have a menu that
-#   lets you intentionally form keys. Adds more choice about what you unlock when.
-#   From talking to people on the discord, this (a) has no particular support in
-#   AP, you need to implement it yourself and (b) is very hard to get right in
-#   ways that are both fun and reliably avoid softlocks. Probably going to avoid
-#   this for now.
 
 from math import ceil,floor
 
@@ -242,9 +231,9 @@ class IncludedItemCategories(OptionList):
     def actual_value(self):
         # Player is not allowed to override these parts. Level accesses must
         # always be in the pool -- starting_levels will handle removing them
-        # if needed -- and we need a fallback for other tokens if the user
+        # if needed -- and we need a fallback for other flags if the user
         # doesn't specify one.
-        return ['ap_level:all'] + self.value + ['token:all']
+        return ['ap_level:all'] + self.value + ['ap_flag:all']
 
     def ratio_value(self, string):
         if string == 'all':
@@ -381,17 +370,17 @@ class WinConditions(OptionDict):
 
         # TODO: this should be based on clusters/levels, not maps
         # It works for now because all maps in the cluster share the same
-        # clear_token_name, so grabbing the clear token from the real end-of-cluster
+        # clear_flag_name, so grabbing the clear flag from the real end-of-cluster
         # map clears the entire cluster.
         levels_needed = self.get_levels_needed(world)
         if levels_needed > 0:
             won = won and levels_needed <= sum([
                 1 for map in world.maps
-                if state.has(map.clear_token_name(), world.player)
+                if state.has(map.clear_flag_name(), world.player)
             ])
 
         for map in self.get_maplist(world):
-            won = won and state.has(map.clear_token_name(), world.player)
+            won = won and state.has(map.clear_flag_name(), world.player)
 
         return won
 

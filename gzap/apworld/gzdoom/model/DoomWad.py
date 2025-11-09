@@ -18,7 +18,7 @@ from typing import Any, Dict, List, Set, FrozenSet, Tuple, Iterable
 
 from .BoundingBox import BoundingBox
 from .DoomPool import DoomPool
-from .DoomItem import DoomItem, DoomToken
+from .DoomItem import DoomItem, DoomFlag
 from .DoomLocation import DoomLocation
 from .DoomPosition import DoomPosition, DoomCoordPosition, to_position
 from .DoomMap import DoomMap
@@ -150,35 +150,35 @@ class DoomWad:
             raise DuplicateMapError(map)
 
         self.maps[map] = DoomMap(wad=self, **json)
-        self.register_map_tokens(self.maps[map])
+        self.register_map_flags(self.maps[map])
 
-    def register_map_tokens(self, map: DoomMap):
+    def register_map_flags(self, map: DoomMap):
         # Register 'Health' on all maps since it's used as a placeholder in
         # pretuning mode. It's one of the gzDoom base classes so we know it'll
         # always be available.
         self.register_item(
             DoomItem(map=None, category="small-health", typename="Health", tag="Health"))
-        access_token = self.register_item(
-            DoomToken(map=map.map, category="token-ap_level", typename="GZAP_LevelAccess", tag=map.access_token_name()))
-        map.add_loose_item(access_token.name())
+        access_flag = self.register_item(
+            DoomFlag(map=map.map, category="ap_flag-ap_level", typename="GZAP_LevelAccess", tag=map.access_flag_name()))
+        map.add_loose_item(access_flag.name())
 
-        automap_token = self.register_item(
-            DoomToken(map=map.map, category="token-ap_map", typename="GZAP_Automap", tag=map.automap_name()))
-        map.add_loose_item(automap_token.name())
+        automap_flag = self.register_item(
+            DoomFlag(map=map.map, category="ap_flag-ap_map", typename="GZAP_Automap", tag=map.automap_name()))
+        map.add_loose_item(automap_flag.name())
 
         if self.use_hub_logic():
-            # In hub mode, we create one victory token and one exit per cluster,
+            # In hub mode, we create one victory flag and one exit per cluster,
             # rather than one per map.
             if map.map not in self.hub_logic_exits():
                 return
 
-        clear_token = self.register_item(
-            DoomToken(map=map.map, category="token-ap_victory", typename="GZAP_VictoryToken", tag=map.clear_token_name()))
-        map_exit = DoomLocation(self, item=clear_token, secret=False, pos=[map.map,'event','exit'])
+        clear_flag = self.register_item(
+            DoomFlag(map=map.map, category="ap_flag-ap_victory", typename="GZAP_VictoryFlag", tag=map.clear_flag_name()))
+        map_exit = DoomLocation(self, item=clear_flag, secret=False, pos=[map.map,'event','exit'])
 
         # TODO: there should be a better way of overriding location names
         map_exit.item_name = "Exit"
-        map_exit.item = clear_token
+        map_exit.item = clear_flag
         map_exit.orig_item = None
         self.register_location(map_exit, {1,2,3})
 

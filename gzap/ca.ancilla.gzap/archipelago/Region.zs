@@ -184,7 +184,7 @@ class ::Region play {
     }
   }
 
-  string AccessTokenFQIN() const {
+  string AccessFlagFQIN() const {
     return string.format("Level Access (%s)", self.map);
   }
 
@@ -193,8 +193,8 @@ class ::Region play {
   // Otherwise, hints for the first key you don't have.
   // If you have access and keys, returns "".
   string NextHint() const {
-    if (!self.access && !self.GetHint(self.AccessTokenFQIN())) {
-      return self.AccessTokenFQIN();
+    if (!self.access && !self.GetHint(self.AccessFlagFQIN())) {
+      return self.AccessFlagFQIN();
     }
 
     foreach (k, v : self.keys) {

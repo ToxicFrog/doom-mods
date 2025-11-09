@@ -171,7 +171,7 @@ class ::LevelSelector : ::KeyValueNetevent {
   string FormatLevelStatusTT(::Region region) {
     if (!region.access) {
       string buf = StringTable.Localize("$GZAP_MENU_TT_MAP_LOCKED");
-      let hint = region.GetHint(region.AccessTokenFQIN());
+      let hint = region.GetHint(region.AccessFlagFQIN());
       if (hint) {
         buf = buf .. string.format("\n\c-ⓘ %s @ %s", hint.player, hint.location);
       }

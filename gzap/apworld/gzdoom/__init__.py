@@ -83,12 +83,12 @@ class GZDoomItem(Item):
     def __init__(self, item: DoomItem, player: int) -> None:
         super().__init__(name=item.name(), classification=item.classification(), code=item.id, player=player)
 
-class GZDoomUTGlitchToken(Item):
+class GZDoomUTGlitchFlag(Item):
     game: str = "gzDoom"
-    TOKEN_NAME = "[UT Glitch Logic Token]"
+    FLAG_NAME = "[UT Glitch Logic Flag]"
 
     def __init__(self, player) -> None:
-        super().__init__(name=self.TOKEN_NAME, classification=ItemClassification.progression, code=None, player=player)
+        super().__init__(name=self.FLAG_NAME, classification=ItemClassification.progression, code=None, player=player)
 
 class GZDoomWeb(WebWorld):
     tutorials = [Tutorial(
@@ -128,7 +128,7 @@ class GZDoomWorld(World):
     location_name_groups: Dict[str,FrozenSet[str]] = model.unified_location_groups()
 
     # Universal Tracker integration
-    glitches_item_name: str = GZDoomUTGlitchToken.TOKEN_NAME
+    glitches_item_name: str = GZDoomUTGlitchFlag.FLAG_NAME
     ut_can_gen_without_yaml = True
 
 
@@ -137,8 +137,8 @@ class GZDoomWorld(World):
         super().__init__(multiworld, player)
 
     def create_item(self, name: str) -> GZDoomItem:
-        if name == GZDoomUTGlitchToken.TOKEN_NAME:
-            return GZDoomUTGlitchToken(self.player)
+        if name == GZDoomUTGlitchFlag.FLAG_NAME:
+            return GZDoomUTGlitchFlag(self.player)
 
         item = self.wad_logic.items_by_name[name]
         return GZDoomItem(item, self.player)
@@ -186,7 +186,7 @@ class GZDoomWorld(World):
             for opt in ut_config:
                 getattr(self.options, opt).value = ut_config[opt]
             # Clear all starting levels -- UT will work with whatever level
-            # access tokens it finds in our inventory.
+            # access flags it finds in our inventory.
             self.options.starting_levels.value = []
 
         wadlist = list(self.options.selected_wad.value)

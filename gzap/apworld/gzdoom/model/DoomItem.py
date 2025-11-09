@@ -39,8 +39,8 @@ class DoomItem:
         self.tag = tag
         # TODO: We need a better way of handling scoped items, so that things
         # other than these types can be marked as scoped, so that we can have
-        # non-scoped tokens, etc
-        if self.has_category('key', 'token'):
+        # non-scoped flags, etc
+        if self.has_category('key', 'ap_flag'):
             self.map = map
 
     def __str__(self) -> str:
@@ -66,11 +66,11 @@ class DoomItem:
     def classification(self) -> ItemClassification:
         # TODO: now that we can attach multiple categories to items, we should
         # clean this up some and base these decisions entirely on the categories
-        # and not on the typename, to let us have a "map token" distinct from
-        # "win token" etc.
+        # and not on the typename, to let us have a "access flag" distinct from
+        # "win flag" etc.
         if self.has_category('ap_map'):
             return ItemClassification.useful
-        elif self.has_category('key', 'token', 'weapon'):
+        elif self.has_category('key', 'ap_flag', 'weapon'):
             return ItemClassification.progression
         elif self.has_category('upgrade'):
             return ItemClassification.useful
@@ -99,7 +99,7 @@ class DoomItem:
             else:
                 return (0,0)
 
-        # Allmaps are excluded from the pool. The randomizer will add map tokens
+        # Allmaps are excluded from the pool. The randomizer will add AP automaps
         # to the pool (or not) depending on settings.
         if self.has_category('maprevealer'):
             return (0,0)
@@ -117,10 +117,11 @@ class DoomItem:
         return (0, sys.maxsize)
 
 
-class DoomToken(DoomItem):
+class DoomFlag(DoomItem):
     """
     A type of DoomItem that is managed entirely by Archipelago and has a name
-    wholly controlled by the apworld.
+    wholly controlled by the apworld. Used for tracking or granting of randomizer
+    state like "can the player access this level".
     """
     def name(self) -> str:
         return self.tag

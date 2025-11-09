@@ -39,23 +39,23 @@ There are a few ways we can treat level access in this sort of game, basically
 breaking down along three axes.
 
 **Per-episode vs. per-map.** Is each episode treated as a single giant level,
-with a single access token, or does each map in the episode have a separate
-access token?
+with a single access flag, or does each map in the episode have a separate
+access flag?
 
 **Shortcuts.** Is the player allowed to use the level select screen to warp to
 individual maps in the episode, or does it only permit warping to the first map
 of the episode?
 
-**Strict vs. relaxed.** If you don't have the access token for a level, are you
+**Strict vs. relaxed.** If you don't have the access flag for a level, are you
 allowed to access it via interlevel gates anyways?
 
 The "safest" option is per-map, no shortcuts, strict. Per-map gives us more
-spheres by completely excluding some items until we have the access token. No
+spheres by completely excluding some items until we have the access flag. No
 shortcuts removes the very real possibility of levelporting to a part of the
 level that isn't actually meant to be reachable until later, since the default
 levelport destination doesn't necessarily match the intended route of reaching
 the level. And strict prevents the player from going dramatically out of logic
-and makes the access tokens actually meaningful rather than just a fast travel
+and makes the access flags actually meaningful rather than just a fast travel
 network.
 
 #### Better shortcuts
@@ -137,7 +137,7 @@ When loading the logic and tuning, we end up effectively ignoring weapon logic
 at the map level. Instead we record key, weapon, and preceding-map information
 in each Location we tune.
 
-The access rule for each map is then "has access token", and the access rule for
+The access rule for each map is then "has access flag", and the access rule for
 each location in the map is "has listed set of keys and weapons and has access
 to the listed maps".
 

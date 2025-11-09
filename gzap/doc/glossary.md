@@ -65,7 +65,6 @@ current list of categories used by the wad scanner is:
 - `armor`: anything that restores armour
 - `ammo`: anything that refills ammo
 - `tool`: inventory items that aren't in any other category (e.g. time bombs)
-- `token`: used internally by the apworld for things like access codes and level exits
 - `big`, `medium`, `small`: used to differentiate different sizes of health,
   armour, and ammo pickups
 
@@ -73,7 +72,7 @@ In addition, there are some categories not present in the logic file but which
 are used by the apworld:
 
 - `ap_map`: Archipelago automaps (grant map view + check information).
-- `ap_token`: Archipelago internal; do not use.
+- `ap_flag`: Archipelago internal; do not use.
 - `secret`: for items, means the item is located in a secret sector. For
   locations, means the location is checked by discovering a secret in-game.
 - `sector`: `secret` locations only. Means the secret is a map sector.

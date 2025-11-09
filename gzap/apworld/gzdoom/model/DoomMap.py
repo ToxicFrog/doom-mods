@@ -100,7 +100,7 @@ class DoomMap:
             if world.options.pretuning_mode:
                 return True
 
-            if not state.has(self.access_token_name(), world.player):
+            if not state.has(self.access_flag_name(), world.player):
                 return False
 
             if not extra_rule(state):
@@ -137,8 +137,8 @@ class DoomMap:
             # We also need to have cleared some number of preceding levels based
             # on the level_order_bias
             levels_cleared = {
-                map.clear_token_name() for map in prior_maps
-                if state.has(map.clear_token_name(), world.player)
+                map.clear_flag_name() for map in prior_maps
+                if state.has(map.clear_flag_name(), world.player)
             }
             levels_needed = (world.options.level_order_bias.value / 100) * len(prior_maps)
             if len(levels_cleared) < round(levels_needed):
@@ -148,13 +148,13 @@ class DoomMap:
 
         return rule
 
-    def access_token_name(self):
+    def access_flag_name(self):
         return f"Level Access ({self.map})"
 
     def automap_name(self):
         return f"Automap ({self.map})"
 
-    def clear_token_name(self):
+    def clear_flag_name(self):
         if self.clustername:
             return f'Chapter Clear ({self.clustername})'
         else:
@@ -172,9 +172,9 @@ class DoomMap:
     def starting_items(self, options):
         """Return all items needed if this is a starting level for the player."""
         if options.start_with_keys:
-            return {key.fqin() for key in self.keyset} | {self.access_token_name()}
+            return {key.fqin() for key in self.keyset} | {self.access_flag_name()}
         else:
-            return {self.access_token_name()}
+            return {self.access_flag_name()}
 
     def register_location(self, loc: DoomLocation) -> None:
         if loc in self.locations:

@@ -75,7 +75,7 @@ class DoomLocation(DoomReachable):
         return self.categories & frozenset(args)
 
     def is_default_enabled(self) -> bool:
-        return self.has_category('weapon', 'key', 'token', 'powerup', 'big', 'sector')
+        return self.has_category('weapon', 'key', 'ap_flag', 'powerup', 'big', 'sector')
 
     def record_tuning(self, keys: List[str] = None, region: str = None, unreachable: bool = None):
         if region:

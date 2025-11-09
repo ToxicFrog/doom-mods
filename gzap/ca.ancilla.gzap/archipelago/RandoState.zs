@@ -26,8 +26,8 @@ class ::RandoState play {
   Map<string, ::Region> regions;
   // AP item ID to gzdoom typename
   Map<int, string> item_apids;
-  // AP item ID to special token IDs -- level access, automap, clear flag
-  Map<int, ::RegionDiff> tokens;
+  // AP item ID to special ap_flag IDs -- level access flag, automap, clear flag
+  Map<int, ::RegionDiff> ap_flags;
   // AP item ID to key information
   Map<int, ::RandoKey> keys;
   // Player inventory granted by the rando. Lives outside the normal in-game
@@ -62,15 +62,15 @@ class ::RandoState play {
     }
   }
 
-  // TODO: We can do better with key/token management here.
-  // In particular, if we reify all the tokens as in-game items, we no longer
+  // TODO: We can do better with key/flag management here.
+  // In particular, if we reify all the flags as in-game items, we no longer
   // need to pass them as extra IDs to RegisterMap. Instead we define a new
-  // RegisterToken() that behaves similar to RegisterKey, except it spawns
-  // the corresponding token and sets the map field on it, and on pickup it
+  // RegisterFlag() that behaves similar to RegisterKey, except it spawns
+  // the corresponding flag and sets the map field on it, and on pickup it
   // sets the requisite flags in the RandoState. This removes a whole bunch of
   // special cases.
   void RegisterMap(string map, string checksum, int hub, uint access_apid, uint map_apid, uint clear_apid, uint exit_apid) {
-    DEBUG("Registering map: %s (tokens: %d %d %d %d)", map, access_apid, map_apid, clear_apid, exit_apid);
+    DEBUG("Registering map: %s (flags: %d %d %d %d)", map, access_apid, map_apid, clear_apid, exit_apid);
     if (checksum != LevelInfo.MapChecksum(map)) {
       console.printfEX(PRINT_HIGH, "\c[RED]ERROR:\c- Map %s has checksum \c[RED]%s\c-, but the randomizer expected \c[CYAN]%s\c-.",
         map, LevelInfo.MapChecksum(map), checksum);
@@ -81,9 +81,9 @@ class ::RandoState play {
     regions.Insert(map, ::Region.Create(map, hub, exit_apid));
 
     // We need to bind these to the map name somehow, oops.
-    if (access_apid) tokens.Insert(access_apid, ::RegionDiff.CreateFlags(map, true, false, false));
-    if (map_apid) tokens.Insert(map_apid, ::RegionDiff.CreateFlags(map, false, true, false));
-    if (clear_apid) tokens.Insert(clear_apid, ::RegionDiff.CreateFlags(map, false, false, true));
+    if (access_apid) ap_flags.Insert(access_apid, ::RegionDiff.CreateFlags(map, true, false, false));
+    if (map_apid) ap_flags.Insert(map_apid, ::RegionDiff.CreateFlags(map, false, true, false));
+    if (clear_apid) ap_flags.Insert(clear_apid, ::RegionDiff.CreateFlags(map, false, false, true));
   }
 
   bool did_warning;
@@ -132,7 +132,7 @@ class ::RandoState play {
   // If a key exists that exactly matches the given FQIN, we assume it's a hint
   // for that key, and register it on every region that the key belongs to.
   // Otherwise we assume the scope is a level name and register the hint in just
-  // that level on the assumption it's an access token or a map or something.
+  // that level on the assumption it's an access flag or a map or something.
   // Unscoped hints (e.g. "your BFG is at...") are not currently supported in-game.
   void RegisterHint(string scope, string fqin, string player, string location) {
     let key = FindKeyByFQIN(fqin);
@@ -204,9 +204,9 @@ class ::RandoState play {
   void GrantItem(uint apid, uint count = 0) {
     ++txn;
     DEBUG("GrantItem: %d", apid);
-    if (tokens.CheckKey(apid)) {
+    if (ap_flags.CheckKey(apid)) {
       // Count doesn't matter, you either have it or you don't.
-      let diff = tokens.Get(apid);
+      let diff = ap_flags.Get(apid);
       diff.Apply(GetRegion(diff.map));
     } else if (keys.CheckKey(apid)) {
       let key = keys.Get(apid);
