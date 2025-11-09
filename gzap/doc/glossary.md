@@ -53,14 +53,13 @@ Locations without items have categories assigned based on the nature of the
 location.
 
 In the logic file, categories are stored as hyphen-separated strings for
-historical reasons, e.g. the category string "small-health" denotes a weapon
+historical reasons, e.g. the category string "small-health" denotes an item
 with both the `small` and `health` categories. A logic file can make up any
 categories it wants and the apworld will automatically detect them, but the
 current list of categories used by the wad scanner is:
 
-- `key`: keycards, skulls, etc; specific to a single level
+- `key`: keycards, skulls, etc; specific to a single level or cluster
 - `weapon`: any sort of weapon
-- `ap_map`: Archipelago automaps (grant map view + check information)
 - `powerup`: time-limited or per-level powerups (e.g. radsuits, berserk)
 - `health`: anything that restores health
 - `armor`: anything that restores armour
@@ -69,14 +68,22 @@ current list of categories used by the wad scanner is:
 - `token`: used internally by the apworld for things like access codes and level exits
 - `big`, `medium`, `small`: used to differentiate different sizes of health,
   armour, and ammo pickups
-- `secret`: an item or location found in a secret, or the secret itself
-- `marker`: an invisible item denoting a point of interest; currently only used
-  for ZDoom SecretTrigger markers
-- `sector`: locations only; means the location is based on a sector rather than
-  an item
+
+In addition, there are some categories not present in the logic file but which
+are used by the apworld:
+
+- `ap_map`: Archipelago automaps (grant map view + check information).
+- `ap_token`: Archipelago internal; do not use.
+- `secret`: for items, means the item is located in a secret sector. For
+  locations, means the location is checked by discovering a secret in-game.
+- `sector`: `secret` locations only. Means the secret is a map sector.
+- `marker`: `secret` locations only. Means the sector is an item or scripted trigger.
 
 Some items will have multiple categories from this list, e.g. a Megasphere is
-`big`, `health`, and `armor`.
+`big`, `health`, and `armor`, and also `secret` if it's found in a secret sector.
+
+Health and armour is considered `big` if it restores 100 points or more, `small`
+if it restores less than 25, and `medium` otherwise.
 
 Ammo from Id games is considered `big` if it's a backpack, otherwise `medium` if
 it's a larger ammo pickup and `small` otherwise. Unrecognized ammo (e.g. from
