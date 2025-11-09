@@ -189,16 +189,14 @@ class IncludedItemCategories(OptionList):
     """
     display_name = "Included item/location categories"
     default = [
+        'weapon:all',
+        'key:all',
+        'token:all',
         'big:all',
         'medium:none',
         'small:none',
-        'ap_map:all',
-        'key:all',
-        'weapon:all',
         'tool:none',
-        'secret-sector:all',
-        'secret-marker:all',
-        'powerup:all',
+        '*:all',
     ]
 
     def verify(self, world, player_name, plando_options):
