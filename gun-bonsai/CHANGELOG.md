@@ -10,6 +10,7 @@
   - `bonsai_forced_upgrades` setting to force it to always include certain upgrades of your choice in the level-up menu. [Inspired by `stainedofmind`'s "always damage upgrade" addon.]
 - Fix:
   - Explosive effects now use `PainType` instead of `DamageType`, which should fix some issues with Brutal Doom and possibly other mods.
+  - Faithless Trilogy weapons are now categorized properly.
 - Change:
   - LegenDoom integration has been removed. It is now available as a [separate mod](../laevis).
   - Lightning VFX should now be slightly more performant.

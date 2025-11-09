@@ -106,6 +106,13 @@ ifdef GoldWand {
   type GoldWand: HITSCAN WIMPY;
 }
 
+# Faithless trilogy
+ifdef GoldWand2 {
+  type Staff2: HITSCAN MELEE WIMPY;
+  type Gauntlets2: HITSCAN MELEE;
+  type GoldWand2: HITSCAN WIMPY;
+}
+
 # Hexen fixes.
 ifdef MWeapWand {
   # Hexen melee weapons have unusually long reach and may not autodetect
