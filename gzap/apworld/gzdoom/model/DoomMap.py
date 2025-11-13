@@ -191,7 +191,7 @@ class DoomMap:
         for key in self.keyset:
             if key.typename == typename:
                 return key
-        raise RuntimeError(f"Couldn't find key of type {typename} in map {self.name} with keys {self.keyset}")
+        raise RuntimeError(f"Couldn't find key of type {typename} in map {self.map} with keys {self.keyset}")
 
     def local_guns(self):
         return {
