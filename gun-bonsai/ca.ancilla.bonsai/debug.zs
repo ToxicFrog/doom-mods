@@ -4,6 +4,9 @@ class ::Debug : Object play {
   static void DebugCommand(::GunBonsaiService service, int player, string cmd, uint arg) {
     Array<string> argv;
     cmd.split(argv, ",");
+    if (argv.Size() <= 1) {
+      console.printf("Insufficient args.");
+    }
     // 0: bonsai-debug, 1: <command>, 2: args...
     if (argv[1] == "info") {
       ShowInfoConsole(players[player].mo);
