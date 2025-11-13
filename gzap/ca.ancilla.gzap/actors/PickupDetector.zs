@@ -25,6 +25,7 @@ class ::PickupDetector : Inventory {
   // void MoveToHead() {}
 
   bool RejectPickup(Inventory item) {
+    item.DoPickupSpecial(owner);
     item.bPickupGood = false;
     item.GoAwayAndDie();
     return true;
