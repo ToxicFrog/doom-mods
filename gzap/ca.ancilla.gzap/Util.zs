@@ -98,13 +98,40 @@ class ::Util play {
     }
   }
 
+  // TODO: move this into python?
   static clearscope string GetKeyColour(string keyname, string backup) {
     string keyname = keyname.MakeLower();
-    static const string[] keycolours = { "red", "orange", "yellow", "green", "blue", "purple" };
 
-    for (int i=0; i < keycolours.Size(); ++i) {
-      if (keyname.IndexOf(keycolours[i]) != -1) {
-        return keycolours[i];
+    Map<string, string> colours;
+    if (colours.CountUsed() == 0) {
+      // Red
+      colours.Insert("red", "red");
+      colours.Insert("ruby", "red");
+      colours.Insert("circlekey", "red");
+      // Orange
+      colours.Insert("orange", "orange");
+      // Yellow
+      colours.Insert("yellow", "yellow");
+      colours.Insert("topaz", "yellow");
+      colours.Insert("trianglekey", "yellow");
+      // Green
+      colours.Insert("green", "green");
+      colours.Insert("emerald", "green");
+      // Blue
+      colours.Insert("blue", "blue");
+      colours.Insert("sapphire", "blue");
+      // Purple
+      colours.Insert("purple", "purple");
+      colours.Insert("amethyst", "purple");
+      colours.Insert("squarekey", "purple");
+      // Grey
+      colours.Insert("floppydisk", "grey");
+      colours.Insert("gear", "grey");
+    }
+
+    foreach (name, colour : colours) {
+      if (keyname.IndexOf(name) != -1) {
+        return colour;
       }
     }
 
