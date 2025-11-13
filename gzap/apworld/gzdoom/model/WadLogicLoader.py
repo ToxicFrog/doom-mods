@@ -62,8 +62,8 @@ class WadDataLoader:
         nrof_monsters = sum(map.monster_count for map in self.wad.all_maps())
         assert nrof_maps > 0,f"The logic for WAD {self.wad.name} defines no maps."
 
-        print("\x1B[1m%32s: %2d maps, %4d monsters; %4d monsters/map\x1B[0m" % (
-            self.wad.name, nrof_maps, nrof_monsters, nrof_monsters//nrof_maps))
+        print("\x1B[1m%32s: %2d maps, %4d monsters; %4d monsters/map; %d checks\x1B[0m" % (
+            self.wad.name, nrof_maps, nrof_monsters, nrof_monsters//nrof_maps, len(list(self.wad.all_locations()))))
 
         for sknum, skname in [(3, "UV")]: # [(1, "HNTR"), (2, "HMP"), (3, "UV")]:
             pool = self.wad.stats_pool(sknum)
