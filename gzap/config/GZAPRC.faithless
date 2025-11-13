@@ -25,5 +25,6 @@ category big-health-tool: ArtiMiraclePotion;
 category token: KeyChest KeySafe;
 # One of the keys is stored in a HangingPot in E2M4, but we can't scan all of
 # them as such because they're used for other things in other maps.
-#category token: HangingPot1;
+# We mark it .replaceonly so it's a valid target for being replaced by a check.
+category .replaceonly: HangingPot1;
 #typename KeySafe: HangingPot1;

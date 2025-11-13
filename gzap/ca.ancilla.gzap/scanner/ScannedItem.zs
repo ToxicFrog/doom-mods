@@ -49,6 +49,21 @@ class ::ScannedItem : ::ScannedLocation {
   }
 
   override void Output() {
+    // HACK HACK HACK
+    // If the category is .replaceonly, do not emit it into the logic file,
+    // but since it has a non-empty category, it can still be replaced at runtime.
+    // This is currently only used for a hanging pot in E2M4 Faithless that in
+    // normal play is scripted to drop a key when broken, so that the Check based
+    // on that key replaces it.
+    // We need a better way to handle this, like associating the location with a
+    // specific actor type and allowing it to replace that even if the actor
+    // would not normally be subject to scanning; at present, since the hanging
+    // pot is not Inventory, it does not get considered as a replacement target
+    // without this.
+    if (self.category == "" || self.category == ".replaceonly") {
+      return;
+    }
+
     string secret_str = "";
     if (secret) {
       secret_str = string.format("\"secret\": %s, ", ::Util.bool2str(secret));

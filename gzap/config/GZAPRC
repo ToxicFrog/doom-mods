@@ -33,6 +33,11 @@
 # A category of "none" will exclude something from the scan entirely, even if it
 # would normally have been included.
 #
+# As a special case, a typename of ".replaceonly" means the item/location should
+# not be included in the logic file, but during gameplay, it *is* a valid target
+# for replacement by a check. This is primarily useful with manually placed
+# checks.
+#
 #
 #     typename <type> : <list of classes> ;
 #

@@ -88,7 +88,7 @@ class ::PickupDetector : Inventory {
     }
 
     // Handle keys.
-    if (item is "Key") {
+    if (::ScannedItem.ItemCategory(item) == "key") {
       return HandleKey(plh.apstate, item);
     }
 
