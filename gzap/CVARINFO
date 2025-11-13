@@ -22,6 +22,7 @@ server int ap_show_traps = 0;
 // collected or not. I find 0.2 to be a good value if you want to be able to
 // see where they used to be.
 user float ap_collected_alpha = 0;
+user float ap_uncollected_alpha = 1;
 
 // Whether to display the name of each check when you find it.
 user bool ap_show_check_names = false;

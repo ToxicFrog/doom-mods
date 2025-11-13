@@ -39,12 +39,20 @@ mixin class ::ArchipelagoIcon {
       GOTO SetProgression;
   }
 
+  // True if this location has already been checked, but we respawned it because
+  // it may be an event trigger and the user needs to be able to hit it again.
+  bool is_trigger;
+
   void SetProgressionState() {
     // DEBUG("SetProgressionState(%s) checked=%d display=%d unreachable=%d progression=%d hilight=%d",
     //   GetLocation().name, IsChecked(),
     //   ShouldDisplay(), GetLocation().unreachable, GetLocation().progression, ShouldHilight());
     if (IsChecked()) {
       A_SetRenderStyle(CVar.FindCVar("ap_collected_alpha").GetFloat(), STYLE_Translucent);
+
+    if (self.is_trigger) {
+      SetStateLabel("Unreachable");
+      return;
     }
 
     let loc = GetLocation();
@@ -282,6 +290,13 @@ class ::CheckPickup : ScoreItem {
     ChangeTID(original.TID);
     A_SetSpecial(original.special, original.args[0], original.args[1], original.args[2], original.args[3], original.args[4]);
     self.bNOGRAVITY = original.bNOGRAVITY;
+
+    if (self.checked && (original.special || original.TID)) {
+      // We've been checked, but the original has an action special or TID associated with it,
+      // which means collecting it may be vital to progress in the game.
+      self.checked = false;
+      self.is_trigger = true;
+    }
   }
 
   //// Label/Marker handling ////
@@ -403,7 +418,9 @@ class ::CheckPickup : ScoreItem {
 
   override bool TryPickup (in out Actor toucher) {
     DEBUG("TryPickup: %s", self.location.name);
-    ::PlayEventHandler.Get().CheckLocation(self.location);
+    if (!self.is_trigger) {
+      ::PlayEventHandler.Get().CheckLocation(self.location);
+    }
     // It might take the server a moment to respond and set location.checked, so
     // we force the checked flag locally.
     self.checked = true;

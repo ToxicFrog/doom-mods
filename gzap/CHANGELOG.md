@@ -103,6 +103,8 @@ for details.
   - Improved and corrected tuning data for `Chex Quest 3` [from wobblefowl].
   - Duplicate puzzle items no long appear at the center of the map.
   - Duplicate keys no longer appear in the item pool.
+  - Checks associated with event triggers will now respawn if the map is reset,
+    even if collected, to allow the trigger to be repeated.
 - Removed:
   - Tuning data for the following wads was from a much earlier version and could
     not be upgraded to the new format:
