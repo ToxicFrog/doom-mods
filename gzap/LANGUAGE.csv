@@ -57,6 +57,8 @@ Show check content icons,GZAP_OPT_NAME_SHOW_CHECK_CONTENTS,
 Only items Doom has graphics for are displayed, so don't expect to see Triforce pieces or anything.
 
 These icons are displayed only in person, not on the automap. Changes to this setting don't take effect until you reset the map.",GZAP_OPT_TT_SHOW_CHECK_CONTENTS,
+Uncollected check opacity,GZAP_OPT_NAME_UNCOLLECTED_CHECK_ALPHA,
+"Lowering this makes uncollected checks translucent. A setting of 0 makes them completely invisible unless ""show check content icons"" is enabled *and* the check has a valid icon!",GZAP_OPT_TT_UNCOLLECTED_CHECK_ALPHA,
 Collected check opacity,GZAP_OPT_NAME_COLLECTED_CHECK_ALPHA,
 A setting of 0 makes collected checks vanish entirely. Values around 0.1-0.4 will result in them turning translucent. Higher values make them extremely difficult to distinguish from uncollected checks and are not recommended.,GZAP_OPT_TT_COLLECTED_CHECK_ALPHA,
 Inventory Limits,GZAP_OPT_HEADER_INVENTORY,Options / Inventory Limits

@@ -49,6 +49,9 @@ mixin class ::ArchipelagoIcon {
     //   ShouldDisplay(), GetLocation().unreachable, GetLocation().progression, ShouldHilight());
     if (IsChecked()) {
       A_SetRenderStyle(CVar.FindCVar("ap_collected_alpha").GetFloat(), STYLE_Translucent);
+    } else {
+      A_SetRenderStyle(CVar.FindCVar("ap_uncollected_alpha").GetFloat(), STYLE_Translucent);
+    }
 
     if (self.is_trigger) {
       SetStateLabel("Unreachable");

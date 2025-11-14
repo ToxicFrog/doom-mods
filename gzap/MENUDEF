@@ -60,6 +60,8 @@ OptionMenu "ArchipelagoOptions"
   Option "$GZAP_OPT_NAME_SHOW_CHECK_CONTENTS", "ap_show_check_contents", "OnOff"
   GZAP_Tooltip "$GZAP_OPT_TT_SHOW_CHECK_CONTENTS"
 
+  Slider "$GZAP_OPT_NAME_UNCOLLECTED_CHECK_ALPHA", "ap_uncollected_alpha", 0.0, 1.0, 0.1, 1
+  GZAP_Tooltip "$GZAP_OPT_TT_UNCOLLECTED_CHECK_ALPHA"
   Slider "$GZAP_OPT_NAME_COLLECTED_CHECK_ALPHA", "ap_collected_alpha", 0.0, 1.0, 0.1, 1
   GZAP_Tooltip "$GZAP_OPT_TT_COLLECTED_CHECK_ALPHA"
 

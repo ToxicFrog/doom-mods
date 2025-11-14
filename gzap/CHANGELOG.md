@@ -76,6 +76,7 @@ for details.
   - Auto-release on exit can be made conditional on having all keys for the level.
   - The inventory menu now lets you queue up multiple items and dispenses them
     all at once when closed.
+  - The opacity of uncollected checks can be configured.
 - Changed:
   - The scanner now reports the display names for keys as well as the typename.
     This results in better item and location names for keys in WADs that support
