@@ -282,6 +282,13 @@ class ::CheckPickup : ScoreItem {
       CreateMarkers();
     }
     A_SpriteOffset(0, -16);
+
+    if (self.checked && (self.special || self.TID)) {
+      // We've been checked, but the original has an action special or TID associated with it,
+      // which means collecting it may be vital to progress in the game.
+      self.checked = false;
+      self.is_trigger = true;
+    }
   }
 
   void UpdateFromOriginal(readonly<Actor> original) {
@@ -294,7 +301,7 @@ class ::CheckPickup : ScoreItem {
     A_SetSpecial(original.special, original.args[0], original.args[1], original.args[2], original.args[3], original.args[4]);
     self.bNOGRAVITY = original.bNOGRAVITY;
 
-    if (self.checked && (original.special || original.TID)) {
+    if (self.checked && (self.special || self.TID)) {
       // We've been checked, but the original has an action special or TID associated with it,
       // which means collecting it may be vital to progress in the game.
       self.checked = false;
