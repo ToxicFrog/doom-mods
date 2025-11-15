@@ -52,7 +52,7 @@ here may result in glitches.
 | Hexen                     |      |         |        | missing | I don't like it, but if someone wants to contribute logic, feel free. |
 | Strife                    |      |         |        | missing | |
 | FreeDoom                  |   36 |     176 |    532 | basic | [v0.13.0](https://freedoom.github.io/download.html) |
-| FreeDoom 2                |   32 |     135 |    495 | basic | [v0.13.0](https://freedoom.github.io/download.html) |
+| FreeDoom 2                |   32 |     135 |    495 | full | [v0.13.0](https://freedoom.github.io/download.html) see details [#59](https://github.com/ToxicFrog/doom-mods/pull/59). |
 | Chex Quest 3              |   15 |      83 |    196 | complete | [v1.4](https://www.chexquest3.com/downloads/); v2.0-prerelease is not yet supported. |
 
 ### Featured WADs
