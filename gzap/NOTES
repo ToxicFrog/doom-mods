@@ -68,7 +68,17 @@ To release a new version:
 
 ### Faithless
 
+### Adventures of Square
 
+Some areas require Hellshell to reach via rocket jumping -- all in E2M3 so far,
+but there are probably more. Need to make sure they are catalogued correctly.
+
+Powerzade is often load-bearing for progression, similar to envirosuits or fishbowls.
+It should be either excluded from randomization or handled differently. The way
+it's scripted, there's a thing that respawns it if the original is gone, but since
+we just *hide* the check when collected, we don't *delete* it, the respawn doesn't work.
+
+HotSauce is also used in E1M10 to unlock a secret.
 
 ### Golden Souls
 

@@ -326,7 +326,7 @@ class DoomWad:
         which shouldn't be a problem in practice unless people are assembling play
         logs out of order.
         """
-        if unreachable is None and not keys and not region:
+        if unreachable is None and keys is None and region is None:
             return
 
         pos = to_position(*pos)
