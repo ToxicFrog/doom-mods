@@ -108,12 +108,14 @@ class ::Util play {
       colours.Insert("red", "red");
       colours.Insert("ruby", "red");
       colours.Insert("circlekey", "red");
+      colours.Insert("spherekey", "red");
       // Orange
       colours.Insert("orange", "orange");
       // Yellow
       colours.Insert("yellow", "yellow");
       colours.Insert("topaz", "yellow");
       colours.Insert("trianglekey", "yellow");
+      colours.Insert("pyramidkey", "yellow");
       // Green
       colours.Insert("green", "green");
       colours.Insert("emerald", "green");
@@ -124,6 +126,7 @@ class ::Util play {
       colours.Insert("purple", "purple");
       colours.Insert("amethyst", "purple");
       colours.Insert("squarekey", "purple");
+      colours.Insert("cubekey", "purple");
       // Grey
       colours.Insert("floppydisk", "grey");
       colours.Insert("gear", "grey");
