@@ -125,7 +125,7 @@ class ::Util play {
       // Purple
       colours.Insert("purple", "purple");
       colours.Insert("amethyst", "purple");
-      colours.Insert("squarekey", "purple");\
+      colours.Insert("squarekey", "purple");
       colours.Insert("cubekey", "purple");
       // Grey
       colours.Insert("floppydisk", "grey");
