@@ -14,9 +14,7 @@ Features include:
 You can download the latest stable release from the
 [release page](https://github.com/ToxicFrog/doom-mods/releases/). You can also
 try the development version: [mod](../release/gzArchipelago-latest.pk3),
-[core apworld](../release/gzdoom.apworld),
-[featured mods apworld](../release/ap_gzdoom_featured.apworld),
-[community extras apworld](../release/ap_gzdoom_extras.apworld).
+[core apworld](../release/gzdoom.apworld), [addon apworlds](../release/apworlds/).
 
 The documentation is split into multiple files.
 

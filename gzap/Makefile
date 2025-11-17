@@ -14,7 +14,7 @@ include ${TOPDIR}/rules.make
 
 apworlds: core_apworld addon_apworlds
 
-core_apworld: version ${APWORLDS}/gzdoom.apworld
+core_apworld: version ${TOPDIR}/release/gzdoom.apworld
 addon_apworlds: $(patsubst apworld/addons/%/,${APWORLDS}/addon_gzdoom_%.apworld,$(wildcard apworld/addons/*/))
 ${PK3}: sprites/icons
 
@@ -28,7 +28,7 @@ sprites/icons: apworld/gzdoom/icons/__init__.py assets/*.png
 	python apworld/gzdoom/icons/__init__.py
 	touch sprites/icons
 
-${APWORLDS}/gzdoom.apworld:
+${TOPDIR}/release/gzdoom.apworld:
 	cd apworld && zip -qr gzdoom.apworld gzdoom
 	mv apworld/gzdoom.apworld $@
 
