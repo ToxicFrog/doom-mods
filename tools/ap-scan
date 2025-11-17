@@ -27,7 +27,7 @@ gzdoom \
   +"logfile \"$TMPFILE\"; disableautosave 1; wipetype 0; wait 1; noclip; $autoexec netevent ap-scan:start"
 
 sed -E -i -n '/^AP-/ p;' "$TMPFILE"
-for dir in gzap/apworld/*; do
+for dir in gzap/apworld/gzdoom/ gzap/apworld/addons/*; do
   if [[ -f "${dir}/logic/${name}" ]]; then
     mv -v "$TMPFILE" "${dir}/logic/${name}"
     exit 0

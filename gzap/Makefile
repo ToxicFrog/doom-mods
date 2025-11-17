@@ -6,12 +6,16 @@ LUMPS+=sprites textures maps patches config/*
 ZSDIR=ca.ancilla.gzap
 LIBTTM=${TOPDIR}/libtooltipmenu/ca.ancilla.libtooltipmenu
 LIBTTM_PREFIX=GZAP
+APWORLDS:=${TOPDIR}/release/apworlds
 
-all: ${PK3} apworld install
+all: version ${PK3} apworlds install
 
 include ${TOPDIR}/rules.make
 
-apworld: version ${TOPDIR}/release/gzdoom.apworld ${TOPDIR}/release/ap_gzdoom_featured.apworld ${TOPDIR}/release/ap_gzdoom_extras.apworld
+apworlds: core_apworld addon_apworlds
+
+core_apworld: version ${APWORLDS}/gzdoom.apworld
+addon_apworlds: $(patsubst apworld/addons/%/,${APWORLDS}/addon_gzdoom_%.apworld,$(wildcard apworld/addons/*/))
 ${PK3}: sprites/icons
 
 version:
@@ -24,12 +28,22 @@ sprites/icons: apworld/gzdoom/icons/__init__.py assets/*.png
 	python apworld/gzdoom/icons/__init__.py
 	touch sprites/icons
 
-${TOPDIR}/release/%.apworld: apworld/%/* apworld/%/*/*
-	cd apworld && zip -qr $*.apworld $*
-	cp apworld/$*.apworld ${TOPDIR}/release/
-	mv apworld/$*.apworld ${TOPDIR}/release/$*-${VERSION}.apworld
+${APWORLDS}/gzdoom.apworld:
+	cd apworld && zip -qr gzdoom.apworld gzdoom
+	mv apworld/gzdoom.apworld $@
 
-install: ${TOPDIR}/release/gzdoom.apworld ${TOPDIR}/release/ap_gzdoom_featured.apworld ${TOPDIR}/release/ap_gzdoom_extras.apworld
-	cp -a ${TOPDIR}/release/gzdoom.apworld ${TOPDIR}/release/ap_gzdoom_featured.apworld ${TOPDIR}/release/ap_gzdoom_extras.apworld ~/.local/share/Archipelago/worlds
+${APWORLDS}/addon_gzdoom_%.apworld: apworld/addon_gzdoom_%/__init__.py
+	cd apworld && zip -qr9 addon_gzdoom_$*.apworld addon_gzdoom_$*/
+	mv apworld/addon_gzdoom_$*.apworld $@
+
+apworld/addon_gzdoom_%/__init__.py: apworld/addons/*.tmpl apworld/addons/%/*
+	mkdir -p apworld/addon_gzdoom_$*/logic apworld/addon_gzdoom_$*/tuning
+	cp apworld/addons/$*/* apworld/addon_gzdoom_$*/logic/
+	mv apworld/addon_gzdoom_$*/logic/*.tuning apworld/addon_gzdoom_$*/tuning/ || true
+	sed -E "s,__WAD__,$*," apworld/addons/archipelago.tmpl > apworld/addon_gzdoom_$*/archipelago.json
+	sed -E "s,__WAD__,$*," apworld/addons/__init__.tmpl > apworld/addon_gzdoom_$*/__init__.py
+
+install: apworlds
+	cp -a ${APWORLDS}/*.apworld ~/.local/share/Archipelago/worlds
 
 .PHONY: apworld install
