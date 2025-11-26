@@ -43,7 +43,8 @@ apworld/addon_gzdoom_%/__init__.py: apworld/addons/*.tmpl apworld/addons/%/*
 	sed -E "s,__WAD__,$*," apworld/addons/archipelago.tmpl > apworld/addon_gzdoom_$*/archipelago.json
 	sed -E "s,__WAD__,$*," apworld/addons/__init__.tmpl > apworld/addon_gzdoom_$*/__init__.py
 
-install: apworlds
+install: core_apworld addon_apworlds
+	cp -a ${TOPDIR}/release/gzdoom.apworld ~/.local/share/Archipelago/worlds
 	cp -a ${APWORLDS}/*.apworld ~/.local/share/Archipelago/worlds
 
 .PHONY: apworld install
