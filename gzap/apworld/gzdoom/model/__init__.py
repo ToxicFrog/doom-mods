@@ -20,14 +20,8 @@ from .DoomWad import *
 from .DoomLogic import *
 from .WadLogicLoader import *
 
-_DOOM_LOGIC: DoomLogic = DoomLogic()
 
-
-def get_wad(name: str) -> DoomWad:
-    return _DOOM_LOGIC.wads[name]
-
-def get_tuned_wad(name: str) -> DoomWad:
-    wad = get_wad(name)
+def get_tuned_wad(wad: DoomWad) -> DoomWad:
     if wad.tuned:
         return wad
     with WadTuningLoader(wad) as wadloader:
@@ -81,9 +75,9 @@ def tuning_files(package, wad):
         ])
     # return sorted(internal, key=lambda f: f.name) + sorted(external)
 
-def init_wad(package, logic_file):
+def init_wad(logic, package, logic_file):
     wadname = logic_file.name.split(".")[0]
-    with WadLogicLoader(_DOOM_LOGIC, wadname, package) as wadloader:
+    with WadLogicLoader(logic, wadname, package) as wadloader:
         wadloader.load_logic(logic_file)
 
 def print_header(package):
@@ -100,55 +94,33 @@ def init_wads(package):
     else:
         print_header(package)
 
-    logic = logic_files(package)
-    for logic_file in logic:
-        init_wad(package, logic_file)
+    logic = DoomLogic()
 
-def init_all_wads():
-    import sys
-    # We always load the core logic first, in a defined order.
-    load_first = ['worlds.gzdoom', 'worlds.ap_gzdoom_featured', 'worlds.ap_gzdoom_extras']
-    packages = [
-        package for package in load_first
-        if package in sys.modules.keys()
-    ] + sorted([
-        package for package in sys.modules.keys()
-        if 'gzdoom' in package
-        # Don't include stuff like "worlds.gzdoom.model"
-        and package.count('.') == 1
-        # Don't load the load_first stuff twice
-        and package not in load_first
-    ])
-    for package in packages:
-        init_wads(package)
-
-    # Load loose files from the AP directory
-    init_wads(None)
+    files = logic_files(package)
+    assert len(files) > 0, f'Package {package} contains no logic files'
+    assert len(files) == 1, f'Package {package} contains multiple logic files: {files}'
+    for logic_file in files:
+        init_wad(logic, package, logic_file)
 
     if 'GZAP_LOAD_ALL_TUNING' in os.environ:
-        for name,wad in _DOOM_LOGIC.wads.items():
-            get_tuned_wad(name)
+        get_tuned_wad(logic.wad)
 
-def wads() -> List[DoomWad]:
-    return sorted(_DOOM_LOGIC.wads.values(), key=lambda w: w.name)
+    return logic
 
-def all_map_names() -> Set[str]:
-    names = set()
-    for wad in wads():
-        names.update([map.map for map in wad.all_maps()])
-    return names
+def all_map_names(logic) -> Set[str]:
+    return {map.map for map in logic.wad.all_maps()}
 
-def all_categories() -> FrozenSet[str]:
-    return frozenset(unified_item_groups().keys()) | frozenset(unified_location_groups().keys())
+def all_categories(logic) -> FrozenSet[str]:
+    return frozenset(unified_item_groups(logic).keys()) | frozenset(unified_location_groups(logic).keys())
 
-def unified_item_map():
-    return _DOOM_LOGIC.item_names_to_ids.copy()
+def unified_item_map(logic):
+    return logic.item_names_to_ids.copy()
 
-def unified_item_groups():
-    return _DOOM_LOGIC.item_categories_to_names.copy()
+def unified_item_groups(logic):
+    return logic.item_categories_to_names.copy()
 
-def unified_location_map():
-    return _DOOM_LOGIC.location_names_to_ids.copy()
+def unified_location_map(logic):
+    return logic.location_names_to_ids.copy()
 
-def unified_location_groups():
-    return _DOOM_LOGIC.location_categories_to_names.copy()
+def unified_location_groups(logic):
+    return logic.location_categories_to_names.copy()

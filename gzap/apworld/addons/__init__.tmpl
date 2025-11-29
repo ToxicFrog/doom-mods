@@ -1,7 +1,19 @@
+import sys
 from worlds.AutoWorld import World
 
-class GZDoomExtrasWorld(World):
-    game = "GZDoom logic pack (__WAD__)"
-    hidden = True
-    item_name_to_id = {}
-    location_name_to_id = {}
+gzdoom = sys.modules['worlds.gzdoom']
+model = sys.modules['worlds.gzdoom.model']
+
+included_logic = model.init_wads(__package__)
+
+class GZDoomWorld___WAD__(gzdoom.GZDoomWorld):
+    game = f"GZDoom ({included_logic.wad.name})"
+    mod_version = "__VERSION__"
+    hidden = False
+    wad_logic = included_logic.wad
+
+    # Used by the caller
+    item_name_to_id = model.unified_item_map(included_logic)
+    item_name_groups = model.unified_item_groups(included_logic)
+    location_name_to_id = model.unified_location_map(included_logic)
+    location_name_groups = model.unified_location_groups(included_logic)

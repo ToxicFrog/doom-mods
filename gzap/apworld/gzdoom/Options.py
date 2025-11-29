@@ -14,8 +14,6 @@ from math import ceil,floor
 from Options import PerGameCommonOptions, Toggle, DeathLink, StartInventoryPool, OptionSet, NamedRange, Range, OptionDict, OptionList, OptionError
 from dataclasses import dataclass
 
-from . import model
-
 class MaxWeaponCopies(Range):
     """
     Applies a hard limit to the number of copies of each weapon in the item pool.
@@ -54,20 +52,6 @@ class LevelsPerWeapon(Range):
     range_start = 0
     range_end = 32
     default = 8
-
-class SelectedWad(OptionSet):
-    """
-    Which WAD to generate for.
-
-    This list is populated from the logic files built in to the apworld. If you
-    want to generate a game for something else, see the 'new-wads.md' documentation
-    file.
-
-    If you select more than one WAD from this list, it will pick one for you at random.
-    """
-    display_name = "WAD to play"
-    default = sorted([wad.name for wad in model.wads()])
-    valid_keys = [wad.name for wad in model.wads()]
 
 class StartingLevels(OptionSet):
     """
@@ -114,7 +98,7 @@ class IncludedLevels(OptionSet):
     This option supports globbing expressions.
     """
     display_name = "Included levels"
-    default = [] # sorted(model.all_map_names())
+    default = []
 
 class ExcludedLevels(OptionSet):
     """
@@ -433,7 +417,6 @@ class PreTuningMode(Toggle):
 @dataclass
 class GZDoomOptions(PerGameCommonOptions):
     # Skill level, WAD, and level selection
-    selected_wad: SelectedWad
     spawn_filter: SpawnFilter
     starting_levels: StartingLevels
     included_levels: IncludedLevels
