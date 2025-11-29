@@ -83,11 +83,11 @@ name to download the latest version of its logic pack.
 | Tetanus              |      |         |        | missing |       |
 | Trooper's Playground |      |         |        | missing |       |
 
-[Arrival]: ../../release/apworlds/addon_gzdoom_arrival.apworld
-[Base Ganymede]: ../../release/apworlds/addon_gzdoom_base_ganymede.apworld
-[Deathless]: ../../release/apworlds/addon_gzdoom_deathless.apworld
-[Going Down Turbo]: ../../release/apworlds/addon_gzdoom_going_down_turbo.apworld
-[Scientist 2023]: ../../release/apworlds/addon_gzdoom_scientist.apworld
+[Arrival]: ../../release/apworlds/zdoom_arrival.apworld
+[Base Ganymede]: ../../release/apworlds/zdoom_base_ganymede.apworld
+[Deathless]: ../../release/apworlds/zdoom_deathless.apworld
+[Going Down Turbo]: ../../release/apworlds/zdoom_going_down_turbo.apworld
+[Scientist 2023]: ../../release/apworlds/zdoom_scientist.apworld
 
 ### Extra WADs
 
@@ -115,14 +115,14 @@ Map packs that use vanilla or lightly-modified monsters, weapons, etc.
 | [Scythe 2]       |   32 |     191 |    582 | full    | |
 | [Zone 300]       |   32 |      61 |    392 | partial | |
 
-[1000 Lines]: ../../release/apworlds/addon_gzdoom_1000_lines.apworld
-[1000 Lines II]: ../../release/apworlds/addon_gzdoom_1000_lines_ii.apworld
-[Amalgoom]: ../../release/apworlds/addon_gzdoom_amalgoom.apworld
-[Demonfear]: ../../release/apworlds/addon_gzdoom_demonfear.apworld
-[MAYhem 2048]: ../../release/apworlds/addon_gzdoom_mayhem_2048.apworld
-[Scythe]: ../../release/apworlds/addon_gzdoom_scythe.apworld
-[Scythe 2]: ../../release/apworlds/addon_gzdoom_scythe_2.apworld
-[Zone 300]: ../../release/apworlds/addon_gzdoom_zone_300.apworld
+[1000 Lines]: ../../release/apworlds/zdoom_1000_lines.apworld
+[1000 Lines II]: ../../release/apworlds/zdoom_1000_lines_ii.apworld
+[Amalgoom]: ../../release/apworlds/zdoom_amalgoom.apworld
+[Demonfear]: ../../release/apworlds/zdoom_demonfear.apworld
+[MAYhem 2048]: ../../release/apworlds/zdoom_mayhem_2048.apworld
+[Scythe]: ../../release/apworlds/zdoom_scythe.apworld
+[Scythe 2]: ../../release/apworlds/zdoom_scythe_2.apworld
+[Zone 300]: ../../release/apworlds/zdoom_zone_300.apworld
 
 
 #### Standalone Games & Total Conversions
@@ -144,8 +144,8 @@ Entire games that replace most or all of the vanilla gameplay.
 (1) Requires progressive item support in the logic engine.
 (3) Requires support for "stacking" keys that open more things the more you have.
 
-[The Adventures of Square]: ../../release/apworlds/addon_gzdoom_the_adventures_of_square.apworld
-[Space Cats Saga]: ../../release/apworlds/addon_gzdoom_space_cats_saga.apworld
+[The Adventures of Square]: ../../release/apworlds/zdoom_the_adventures_of_square.apworld
+[Space Cats Saga]: ../../release/apworlds/zdoom_space_cats_saga.apworld
 
 ### Fan-Games for Other IPs
 
