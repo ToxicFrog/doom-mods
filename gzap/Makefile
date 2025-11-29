@@ -15,7 +15,7 @@ include ${TOPDIR}/rules.make
 apworlds: core_apworld addon_apworlds
 
 core_apworld: version ${TOPDIR}/release/gzdoom.apworld
-addon_apworlds: $(patsubst apworld/addons/%/,${APWORLDS}/zdoom_%.apworld,$(wildcard apworld/addons/*/))
+addon_apworlds: $(patsubst apworld/wads/%/,${APWORLDS}/zdoom_%.apworld,$(wildcard apworld/wads/*/))
 ${PK3}: sprites/icons
 
 version:
@@ -36,12 +36,12 @@ ${APWORLDS}/zdoom_%.apworld: apworld/zdoom_%/__init__.py
 	cd apworld && zip -qr9 zdoom_$*.apworld zdoom_$*/
 	mv apworld/zdoom_$*.apworld $@
 
-apworld/zdoom_%/__init__.py: apworld/addons/*.tmpl apworld/addons/%/* version
+apworld/zdoom_%/__init__.py: apworld/wads/*.tmpl apworld/wads/%/* version
 	mkdir -p apworld/zdoom_$*/logic apworld/zdoom_$*/tuning
-	cp apworld/addons/$*/* apworld/zdoom_$*/logic/
+	cp apworld/wads/$*/* apworld/zdoom_$*/logic/
 	mv apworld/zdoom_$*/logic/*.tuning apworld/zdoom_$*/tuning/ || true
-	sed -E "s,__WAD__,$*," apworld/addons/archipelago.tmpl > apworld/zdoom_$*/archipelago.json
-	sed -E "s,__WAD__,$*,; s,__VERSION__,`cat apworld/gzdoom/VERSION`," apworld/addons/__init__.tmpl > apworld/zdoom_$*/__init__.py
+	sed -E "s,__WAD__,$*," apworld/wads/archipelago.tmpl > apworld/zdoom_$*/archipelago.json
+	sed -E "s,__WAD__,$*,; s,__VERSION__,`cat apworld/gzdoom/VERSION`," apworld/wads/__init__.tmpl > apworld/zdoom_$*/__init__.py
 
 install: core_apworld addon_apworlds
 	cp -a ${TOPDIR}/release/gzdoom.apworld ~/.local/share/Archipelago/worlds
