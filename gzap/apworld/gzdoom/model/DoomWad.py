@@ -69,8 +69,8 @@ class DoomWad:
         assert self.use_hub_logic()
         return {
             map
-            for flag in self.flags if flag.startswith('hub_logic_exits:')
-            for map in flag.split(':')[1].split(',')
+            for flag in self.flags if flag.startswith('hub_logic_exits=')
+            for map in flag.split('=')[1].split(',')
         }
 
     def all_locations(self) -> Iterable[DoomLocation]:
