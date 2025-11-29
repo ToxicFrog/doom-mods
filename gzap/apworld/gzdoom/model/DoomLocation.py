@@ -57,7 +57,7 @@ class DoomLocation(DoomReachable):
         self.pos = to_position(*pos)
 
     def __str__(self) -> str:
-        return f"DoomLocation#{self.id}({self.name()} @ {self.pos} % {self.keys})"
+        return f"DoomLocation#{self.id}({self.name()} @ {self.pos} % {self.prereqs})"
 
     __repr__ = __str__
 

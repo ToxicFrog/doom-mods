@@ -54,7 +54,7 @@ class DoomReachable:
             if not frozenset(ks for ks in keysets if ks < tuning):
                 keysets.add(frozenset(tuning))
 
-        # print(f'Tuning {self.name()}: optimizing {self.tuning} -> {keysets}')
+        # print(f'Tuning {self}: optimizing {self.tuning} -> {keysets}')
         self.prereqs = frozenset(keysets)
 
     def access_rule(self, world, wad, map):
