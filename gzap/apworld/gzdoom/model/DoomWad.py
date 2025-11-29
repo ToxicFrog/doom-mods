@@ -195,6 +195,7 @@ class DoomWad:
         skill = set(json.pop("skill", [1,2,3]))
         secret = json.pop("secret", False)
         name = json.pop("name", None)
+        tid = json.pop("tid", None)
 
         # We add everything in the logic file to the pool. Not everything will
         # necessarily be used in randomization, but we need to do this at load
