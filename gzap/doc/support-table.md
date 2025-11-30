@@ -1,16 +1,25 @@
 
 # Support Table
 
-This file summarizes the state of support for various wads. Support is classified as:
+This file summarizes the state of support for various wads, and contains
+download links for the WAD-specific apworlds. Click on the name of a WAD to
+download the corresponding apworld.
 
-- **basic**: the WAD has been scanned and is confirmed to generate a working game,
-  but has not been playtested beyond that.
-- **partial**: at least one episode's worth of levels have been played and
-  the results used for logic tuning.
-- **full**: all levels have been played at least once.
-- **complete**: the logic is believed to be a complete and accurate reflection of the game.
-- **problems**: testing has revealed that changes to the scanner, randomizer, or tuner are needed to support this properly
-- **missing**: not yet supported, but I either want to add support or know people are going to ask about it.
+Support is classified as:
+
+- **basic**: the WAD has been scanned and is confirmed working. It is playable
+  in single and multiworld but the randomizer will be very cautious about item
+  placement and many things you can easily reach will be considered out of logic.
+- **partial**: tuning data (i.e. detailed logic) is present for at least one
+  episode's worth of levels.
+- **full**: tuning data is present for all levels. A small number of individual
+  items may still be using basic logic.
+- **complete**: tuning data is present for all items in all levels. The logic is
+  believed to be an accurate and complete description of the game.
+- **problems**: testing has revealed that changes to the scanner, randomizer,
+  or tuner are needed to support this properly.
+- **missing**: not yet supported, but I either want to add support or know
+  people are going to ask about it.
 
 The number of levels, monsters-per-level, and checks is given as a rough guide
 to the size of the wad for the purposes of rando planning with others. The check
@@ -22,7 +31,7 @@ You may also want to look at the [general compatibility notes](./compatibility.m
 
 ### Core WADs
 
-These are WADs with support built into `gzdoom.apworld`.
+These are the "canonical" WADs: base games and official expansion packs.
 
 The eventual goal is to have full coverage for the official Id and Raven games,
 official expansions like TNT and Sigil, and widely-used vanilla-compatible fan
@@ -33,33 +42,42 @@ need to identify a WAD, the [DoomWiki Resources category](https://doomwiki.org/w
 lists all of them, with hashes. Using a different version than the one supported
 here may result in glitches.
 
-| WAD                       | Maps | Mon/Lvl | Checks | Status | Notes |
-| --------------            | ---- | ------- | ------ | ------ | ----- |
-| Doom                      |   36 |      90 |    652 | basic  | v1.9ud |
-| Doom 2                    |   32 |     116 |    640 | full   | v1.9 |
-| TNT                       |   32 |     152 |    641 | basic  | v1.9 |
-| Plutonia                  |   32 |      95 |    509 | full   | v1.9 |
-| Master Levels for Doom II |   21 |     120 |    483 | full   | |
-| No Rest for the Living    |    9 |     141 |    202 | full   | |
-| SIGIL                     |      |         |        | missing | |
-| SIGIL II                  |      |         |        | missing | |
-| Legacy of Rust            |   16 |     212 |    359 | problems | Fully tuned, but MAP14 doesn't fully work because of [this gzdoom limitation](https://github.com/ZDoom/gzdoom/issues/2208); you will need to exclude it or make it optional. |
-| Heretic                   |   45 |     116 |   1159 | basic  | v1.3 |
-| Hexen                     |      |         |        | missing | I don't like it, but if someone wants to contribute logic, feel free. |
-| Strife                    |      |         |        | missing | |
-| FreeDoom                  |   36 |     176 |    715 | basic | [v0.13.0](https://freedoom.github.io/download.html) |
-| FreeDoom 2                |   32 |     135 |    636 | basic | [v0.13.0](https://freedoom.github.io/download.html) |
-| Chex Quest 3              |   15 |      83 |    242 | complete | [v1.4](https://www.chexquest3.com/downloads/); v2.0-prerelease is not yet supported. |
-| WadFusion                | varies | varies | varies | missing | A [tool](https://github.com/Owlet7/wadfusion) for combining official WADs into one game. See https://github.com/ToxicFrog/doom-mods/pull/38 for progress of support. |
+| WAD                         | Maps | Mon/Lvl | Checks | Status | Notes |
+| --------------------------- | ---- | ------- | ------ | ------ | ----- |
+| [Chex Quest 3]              |   15 |      83 |    242 | complete | [v1.4](https://www.chexquest3.com/downloads/); v2.0-prerelease is not yet supported. |
+| [Doom]                      |   36 |      90 |    652 | basic  | v1.9ud |
+| [Doom 2]                    |   32 |     116 |    640 | full   | v1.9 |
+| [FreeDoom]                  |   36 |     176 |    715 | basic | [v0.13.0](https://freedoom.github.io/download.html) |
+| [FreeDoom 2]                |   32 |     135 |    636 | basic | [v0.13.0](https://freedoom.github.io/download.html) |
+| [Heretic]                   |   45 |     116 |   1159 | basic  | v1.3 |
+| Hexen                       |      |         |        | missing | I don't like it, but if someone wants to contribute logic, feel free. |
+| [Legacy of Rust]            |   16 |     212 |    359 | problems | Fully tuned, but MAP14 doesn't fully work because of [this gzdoom limitation](https://github.com/ZDoom/gzdoom/issues/2208); you will need to exclude it or make it optional. |
+| [Master Levels for Doom II] |   21 |     120 |    483 | full   | |
+| [No Rest for the Living]    |    9 |     141 |    202 | full   | |
+| [Plutonia]                  |   32 |      95 |    509 | full   | v1.9 |
+| SIGIL                       |      |         |        | missing | |
+| SIGIL II                    |      |         |        | missing | |
+| Strife                      |      |         |        | missing | |
+| [TNT]                       |   32 |     152 |    641 | basic  | v1.9 |
+| WadFusion                   | varies | varies | varies | missing | A [tool](https://github.com/Owlet7/wadfusion) for combining official WADs into one game. See https://github.com/ToxicFrog/doom-mods/pull/38 for progress of support. |
+
+[Chex Quest 3]: ../../release/apworlds/zdoom_chex_quest_3.apworld
+[Doom]: ../../release/apworlds/zdoom_doom.apworld
+[Doom 2]: ../../release/apworlds/zdoom_doom_2.apworld
+[FreeDoom]: ../../release/apworlds/zdoom_freedoom.apworld
+[FreeDoom 2]: ../../release/apworlds/zdoom_freedoom_2.apworld
+[Heretic]: ../../release/apworlds/zdoom_heretic.apworld
+[Legacy of Rust]: ../../release/apworlds/zdoom_legacy_of_rust.apworld
+[Master Levels for Doom II]: ../../release/apworlds/zdoom_master_levels_for_doom_ii.apworld
+[No Rest for the Living]: ../../release/apworlds/zdoom_no_rest_for_the_living.apworld
+[Plutonia]: ../../release/apworlds/zdoom_plutonia.apworld
+[TNT]: ../../release/apworlds/zdoom_tnt.apworld
 
 ### Featured WADs
 
 These are WADs available throught Night Dive's
 [Featured Mods List](https://doomwiki.org/wiki/Featured_mods) in the
 `Doom + Doom II` launcher.
-
-Support for these is packaged as separate "logic pack" apworlds. Click the wad
-name to download the latest version of its logic pack.
 
 | WAD                  | Maps | Mon/Lvl | Checks | Status  | Notes |
 | -------------------- | ---- | ------- | ------ | ------- | ----- |
@@ -96,9 +114,6 @@ sigificant variation in size and style, and is basically just "everything people
 played randomized and went through the effort to produce logic and tuning for".
 You can generally read about them and find download links for the WADs via
 [DoomWiki](https://doomwiki.org/).
-
-Support for these is packaged as separate "logic pack" apworlds. Click the wad
-name to download the latest version of its logic pack.
 
 #### Maps
 

@@ -7,9 +7,9 @@ to play an unsupported wad, see [this documentation](./new-wads.md).
 ## First-time setup
 
 Download the [apworld](../../release/gzdoom.apworld) and add it to Archipelago.
-If the WAD you want to play isn't in the "Core WADs" list in the
-[support table](./support-table.md), you should also download the apworld for
-that wad from the [addon apworlds directory](../../release/apworlds/).
+
+Find the additional apworlds for the WADs you want to play in the [support table](./support-table.md).
+Download and install those as well.
 
 Download the [matching version of the mod](../../release/gzArchipelago-latest.pk3)
 and add it to your gzdoom load order (it doesn't much matter where).
@@ -26,14 +26,17 @@ more detail.
 
 This works the same as in any other Archipelago game: `Generate Template Options`
 to get an example YAML file, edit it to your taste, then either `Generate` it
-yourself, or send it to the host who does so. Don't forget to select a wad --
-otherwise it will select one at random from all the wads it supports.
+yourself, or send it to the host who does so. Note that every WAD has a separate
+YAML file!
 
 The zip file emitted by the generator will contain, in addition to the AP data
 package and the spoiler log, a `pk3` file with your name on it. Add this to your
 load order *at the end*, or at least, after gzArchipelago.pk3 and after whatever
 wad you're playing. **You must include both gzArchipelago.pk3 and the generated
 pk3 in your load order.**
+
+If you're using the web host, you can download the pk3 directly using the
+"download patch file" link for your slot.
 
 ## Single-world
 
