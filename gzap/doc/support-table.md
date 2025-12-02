@@ -146,7 +146,7 @@ Entire games that replace most or all of the vanilla gameplay.
 
 | Game                       | Maps | Mon/Lvl | Checks | Status  | Notes |
 | -------------------------- | ---- | ------- | ------ | ------- | ----- |
-| [The Adventures of Square] |   22 |     256 |    795 | problems | Not compatible with persistent mode. Hotsauce, Powerzade, and Hellshell jumps are not currently accounted for in logic; this is being worked on. |
+| [The Adventures of Square] |   22 |     256 |    795 | problems | Not compatible with persistent mode, but otherwise complete. Checks that require explosives do not logically require Hellshells if there are TNT crates in the level. |
 | Ashes 2063                 |      |         |        | missing | (1) |
 | Ashes: Afterglow           |      |         |        | missing | (1) |
 | Ashes: Hard Reset          |      |         |        | missing | Still need to play it. |

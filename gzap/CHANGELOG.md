@@ -32,6 +32,7 @@ for details.
 - New WAD support:
   - Logic and tuning for `Eviternity` and `Eviternity II`, by Akos.
   - Logic and tuning for `Legacy of Rust`, by RakeVuril.
+  - Complete tuning for `The Adventures of Square`.
   - Basic logic for `Arrival`, `Base Ganymede`, `Deathless`, and `Scientist`.
   - Logic and tuning for episode 1 of `Faithless Trilogy`.
   - Compatibility patch for DoomRL Arsenal [by J0osp].
