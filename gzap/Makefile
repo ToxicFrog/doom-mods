@@ -37,6 +37,7 @@ ${APWORLDS}/zdoom_%.apworld: apworld/zdoom_%/__init__.py
 	mv apworld/zdoom_$*.apworld $@
 
 apworld/zdoom_%/__init__.py: apworld/wads/*.tmpl apworld/wads/%/* version
+	rm -rf apworld/zdoom_$*/
 	mkdir -p apworld/zdoom_$*/logic apworld/zdoom_$*/tuning
 	cp apworld/wads/$*/* apworld/zdoom_$*/logic/
 	mv apworld/zdoom_$*/logic/*.tuning apworld/zdoom_$*/tuning/ || true
