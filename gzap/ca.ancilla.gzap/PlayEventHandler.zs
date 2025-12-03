@@ -266,7 +266,7 @@ class ::PlayEventHandler : StaticEventHandler {
         return;
       }
       let region = apstate.GetRegion(info.MapName);
-      if (region.hub && !region.visited) {
+      if (region && region.hub && !region.visited) {
         // In classical maps, hub is 0 and thus this doesn't fire.
         // In hub levels, the initially scanned maps(s) will have rank 0 and
         // everything else will have rank 1+, and maps with rank 0 will be flagged
