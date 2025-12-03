@@ -87,7 +87,7 @@ class DoomLocation(DoomReachable):
             self.region = region
         else:
             if self.region:
-                print(f"Ignoring tuning for location '{self.name()}' that tries to remove it from region {self.loc.map}/{self.region}")
+                print(f"Ignoring tuning for location '{self.name()}' that tries to remove it from region {self.pos.map}/{self.region}")
                 return
 
             # print(f'Recording tuning record for {self.name()}: {region} {keys}')
