@@ -21,7 +21,7 @@ AP-REGION { "map": "E2M1", "region": "second-floor", "keys": ["key/KeyYellow", "
 // Logic-only region to indicate bell on the second floor has been rung
 AP-REGION { "map": "E2M1", "region": "bell", "keys": ["map/E2M1/second-floor"] }
 // Green key on top of post that lowers once you complete both the M2 mural and M3 clockwork
-AP-REGION { "map": "E2M1", "region": "green-key", "keys": ["map/E2M2/mural", "map/E2M3/clockwork"] }
+AP-REGION { "map": "E2M1", "region": "green-key", "keys": ["map/E2M2/mural", "map/E2M3/mechanism"] }
 
 
 Routing notes
@@ -62,7 +62,7 @@ AP-REGION { "map": "E2M2", "region": "machine-room-switch", "keys": ["map/E2M2/m
 // North central vault area, accessible by either flipping a switch in M3 machine room or using
 // a portal in M3 machine room.
 AP-REGION { "map": "E2M2", "region": "vault", "keys": ["map/E2M2/mural-room", "map/E2M3/vault-switch"] }
-AP-REGION { "map": "E2M2", "region": "vault", "keys": ["map/E2M2/mural-room", "map/E2M3/machine-room"] }
+AP-REGION { "map": "E2M2", "region": "vault", "keys": ["map/E2M3/machine-room"] }
 // Actually completing the mural by returning all five gems to it unlocks one check, and is
 // also needed for the green key.
 AP-REGION { "map": "E2M2", "region": "mural", "keys": ["key/HexenPuzzGemBlue1", "key/HexenPuzzGemGreen1", "key/HexenPuzzGemGreen2", "key/HexenPuzzGemBlue2", "key/HexenPuzzGemRed", "map/E2M2/mural-room"] }
@@ -72,33 +72,34 @@ AP-REGION { "map": "E2M2", "region": "chest-secret", "keys": ["map/E2M2/mural-ro
 
 
 //////// E2M3: Clock Tower
-AP-REGION { "map": "E2M3", "region": "machine-room", "keys": ["key/KeyYellow", "map/E2M1", "map/E2M4", "map/E2M2", "map/E3M1", "map/E1M1"] }
-AP-REGION { "map": "E2M3", "region": "main", "keys": ["key/KeyYellow", "map/E2M1", "map/E2M4", "map/E2M2", "map/E3M1", "map/E1M1"] }
-AP-REGION { "map": "E2M3", "region": "main", "keys": ["key/KeyYellow", "map/E2M1", "map/E2M4", "map/E2M2", "map/E3M1", "map/E1M1"] }
-AP-REGION { "map": "E2M3", "region": "mechanism", "keys": ["key/KeyYellow", "map/E2M1", "map/E2M4", "map/E2M2", "map/E3M1", "map/E1M1"] }
-AP-REGION { "map": "E2M3", "region": "vault-door-open", "keys": ["key/KeyYellow", "map/E2M1", "map/E2M4", "map/E2M2", "map/E3M1", "map/E1M1"] }
-AP-REGION { "map": "E2M3", "region": "via-second-floor", "keys": ["key/KeyYellow", "map/E2M1", "map/E2M4", "map/E2M2", "map/E3M1", "map/E1M1"] }
-AP-REGION { "map": "E2M3", "region": "via-second-floor", "keys": ["key/KeyYellow", "map/E2M1", "map/E2M4", "map/E2M2", "map/E3M1", "map/E1M1"] }
+// Main area accessed from ground floor portals.
+AP-REGION { "map": "E2M3", "region": "main", "keys": ["map/E2M1/portals"] }
+// Second floor area accessed from bell portals.
+AP-REGION { "map": "E2M3", "region": "via-second-floor", "keys": ["map/E2M1/bell"] }
+// Machine room area to the north
+// Accessible either by throwing a switch in M2, or a portal in the M2 vault.
+AP-REGION { "map": "E2M3", "region": "machine-room", "keys": ["map/E2M3/main", "map/E2M2/machine-room-switch"] }
+// FIXME: this creates a circular dependency
+AP-REGION { "map": "E2M3", "region": "machine-room", "keys": ["map/E2M2/vault"] }
+// Area accessed by inserting all the gears into the mechanism. Unlocks a handful of checks
+// and is a prereq for the green key back in M1.
+AP-REGION { "map": "E2M3", "region": "mechanism", "keys": ["map/E2M3/via-second-floor", "key/HexenPuzzGear1", "key/HexenPuzzGear2", "key/HexenPuzzGear3", "key/HexenPuzzGear4"] }
+// Switch on second floor that opens the vault in M2.
+AP-REGION { "map": "E2M3", "region": "vault-switch", "keys": ["map/E2M3/via-second-floor"] }
 
 //////// E2M4: Willowwood
 AP-REGION { "map": "E2M4", "keys": ["map/E2M1/caves"] }
 // Main area accessible from the portal
 // contains crossbow and jadewand
-AP-REGION { "map": "E2M4", "region": "main", "keys": ["map/E2M1", "map/E1M1", "map/E3M1"] }
+AP-REGION { "map": "E2M4", "region": "main", "keys": [] }
 // caves to the west
-AP-REGION { "map": "E2M4", "region": "caves", "keys": ["map/E2M1", "map/E1M1", "map/E3M1"] }
+AP-REGION { "map": "E2M4", "region": "caves", "keys": ["map/E2M4/main"] }
 // central village area
-AP-REGION { "map": "E2M4", "region": "village", "keys": ["map/E2M1", "map/E1M1", "map/E3M1"] }
+AP-REGION { "map": "E2M4", "region": "village", "keys": ["map/E2M4/caves"] }
 // Village shrine, two nasty minibosses in there, you can cheese them through the windows
 // but in a fair fight they hit really hard. Also contains green and red switches.
 // contains dragon claw
-AP-REGION { "map": "E2M4", "region": "shrine", "keys": ["map/E2M1", "map/E1M1", "map/E3M1"] }
-
-
-AP-REGION { "map": "E2M4", "region": "caves", "keys": ["map/E2M1", "map/E1M1", "map/E3M1"] }
-AP-REGION { "map": "E2M4", "region": "main", "keys": ["map/E2M1", "map/E1M1", "map/E3M1"] }
-AP-REGION { "map": "E2M4", "region": "shrine", "keys": ["map/E2M1", "map/E1M1", "map/E3M1"] }
-AP-REGION { "map": "E2M4", "region": "village", "keys": ["map/E2M1", "map/E1M1", "map/E3M1"] }
+AP-REGION { "map": "E2M4", "region": "shrine", "keys": ["map/E2M4/village"] }
 
 //////// E2M5: Fractured Monasteries
 //////// E2M6: Vulture's Point
@@ -729,7 +730,6 @@ AP-XON { "lump": "GZAPIPC", "size": 4096, "nick": "Player", "slot": "Becca", "se
 AP-WEAPONS { "weapons": {  } }
 AP-VISITED { "visited": [ "E2M1", "E2M4", "E1M1", "E3M1" ] }
 AP-VISITED { "visited": [ "E2M1", "E2M4", "E2M2", "E1M1", "E3M1" ] }
-AP-REGION { "map": "E2M2", "region": "main", "keys": ["key/KeyYellow", "map/E2M1", "map/E2M4", "map/E1M1", "map/E3M1"] }
 AP-CHECK { "id": 92894, "name": "E2M2 - Wand Crystals [-3904,0]", "pos": ["E2M2",-3904,0,80], "region": "main" }
 AP-CHECK { "id": 92890, "name": "E2M2 - Ethereal Arrows [-3360,-320]", "pos": ["E2M2",-3360,-320,64], "region": "main" }
 AP-CHECK { "id": 92895, "name": "E2M2 - JadeAmmo [-3712,0]", "pos": ["E2M2",-3712,0,80], "region": "main" }
@@ -823,7 +823,6 @@ AP-WEAPONS { "weapons": {  } }
 AP-VISITED { "visited": [ "E2M1", "E2M4", "E2M2", "E3M1", "E1M1" ] }
 AP-CHECK { "id": 92634, "name": "E2M2 - Sapphire Planet", "pos": ["E2M2",-1632,2016,112], "keys": ["KeyYellow"] }
 AP-VISITED { "visited": [ "E2M1", "E2M4", "E2M2", "E3M1", "E1M1", "E2M3" ] }
-AP-REGION { "map": "E2M3", "region": "main", "keys": ["key/KeyYellow", "map/E2M1", "map/E2M4", "map/E2M2", "map/E3M1", "map/E1M1"] }
 AP-CHECK { "id": 93134, "name": "E2M3 - Quartz Flask [0,-1856]", "pos": ["E2M3",0,-1856,-256], "region": "main" }
 AP-CHECK { "id": 93152, "name": "E2M3 - Time Bomb of the Ancients [0,-1536]", "pos": ["E2M3",0,-1536,-264], "region": "main" }
 AP-CHECK { "id": 93151, "name": "E2M3 - Time Bomb of the Ancients [0,-1408]", "pos": ["E2M3",0,-1408,-264], "region": "main" }
@@ -914,7 +913,6 @@ AP-CHECK { "id": 93045, "name": "E2M3 - Ethereal Arrows [0,3680]", "pos": ["E2M3
 AP-CHECK { "id": 93046, "name": "E2M3 - JadeHefty [-896,3680]", "pos": ["E2M3",-896,3680,-80], "region": "main" }
 AP-CHECK { "id": 93047, "name": "E2M3 - Wand Crystals [-896,3488]", "pos": ["E2M3",-896,3488,-80], "region": "main" }
 AP-CHECK { "id": 92981, "name": "E2M3 - Enchanted Shield [N]", "pos": ["E2M3",-992,3584,-72], "region": "main" }
-AP-REGION { "map": "E2M1", "region": "second-floor", "keys": ["key/KeyYellow", "map/E2M4", "map/E2M2", "map/E3M1", "map/E1M1", "map/E2M3"] }
 AP-CHECK { "id": 92452, "name": "E2M1 - JadeAmmo [-576,1024]", "pos": ["E2M1",-576,1024,256], "region": "second-floor" }
 AP-CHECK { "id": 92589, "name": "E2M1 - JadeAmmo [576,928]", "pos": ["E2M1",576,928,256], "region": "second-floor" }
 AP-CHECK { "id": 92588, "name": "E2M1 - JadeAmmo [576,1120]", "pos": ["E2M1",576,1120,256], "region": "second-floor" }
@@ -928,8 +926,6 @@ AP-CHECK { "id": 92592, "name": "E2M1 - Ethereal Arrows [1296,1056]", "pos": ["E
 AP-CHECK { "id": 92590, "name": "E2M1 - Escapement Device", "pos": ["E2M1",1216,384,112], "region": "second-floor" }
 AP-CHECK { "id": 92211, "name": "E2M1 - Time Bomb of the Ancients [1184,352]", "pos": ["E2M1",1184,352,112], "region": "second-floor" }
 AP-CHECK { "id": 92214, "name": "E2M1 - Time Bomb of the Ancients [1184,416]", "pos": ["E2M1",1184,416,112], "region": "second-floor" }
-AP-REGION { "map": "E2M1", "region": "bell", "keys": ["key/KeyYellow", "map/E2M4", "map/E2M2", "map/E3M1", "map/E1M1", "map/E2M3"] }
-AP-REGION { "map": "E2M3", "region": "via-second-floor", "keys": ["key/KeyYellow", "map/E2M1", "map/E2M4", "map/E2M2", "map/E3M1", "map/E1M1"] }
 AP-CHECK { "id": 92972, "name": "E2M3 - Jade Wand", "pos": ["E2M3",-2800,-544,64], "region": "via-second-floor" }
 AP-WEAPONS { "weapons": { "Jade Wand": 3, "Gauntlets of the Necromancer": 1, "Dragon Claw": 1, "Ethereal Crossbow": 4 } }
 AP-CHECK { "id": 93076, "name": "E2M3 - Ethereal Arrows [-2880,-992]", "pos": ["E2M3",-2880,-992,80], "region": "via-second-floor" }
@@ -991,8 +987,6 @@ AP-CHECK { "id": 92974, "name": "E2M3 - JadeMed [-1552,-1600]", "pos": ["E2M3",-
 AP-CHECK { "id": 93108, "name": "E2M3 - Torch [SW]", "pos": ["E2M3",-2416,-832,0], "region": "via-second-floor" }
 AP-CHECK { "id": 93063, "name": "E2M3 - Topaz Planet", "pos": ["E2M3",-2416,-544,24], "region": "via-second-floor" }
 AP-CHECK { "id": 93064, "name": "E2M3 - Quartz Flask [-544,-1280]", "pos": ["E2M3",-544,-1280,0], "region": "via-second-floor" }
-AP-REGION { "map": "E2M3", "region": "vault-door-open", "keys": ["key/KeyYellow", "map/E2M1", "map/E2M4", "map/E2M2", "map/E3M1", "map/E1M1"] }
-AP-REGION { "map": "E2M3", "region": "via-second-floor", "keys": ["key/KeyYellow", "map/E2M1", "map/E2M4", "map/E2M2", "map/E3M1", "map/E1M1"] }
 AP-CHECK { "id": 93135, "name": "E2M3 - Crystal Vial [-1376,-1952]", "pos": ["E2M3",-1376,-1952,-160], "region": "via-second-floor" }
 AP-CHECK { "id": 93136, "name": "E2M3 - Ethereal Arrows [-1280,-1952]", "pos": ["E2M3",-1280,-1952,-160], "region": "via-second-floor" }
 AP-CHECK { "id": 93137, "name": "E2M3 - Crystal Vial [-1184,-1952]", "pos": ["E2M3",-1184,-1952,-160], "region": "via-second-floor" }
@@ -1003,7 +997,6 @@ AP-XOFF {}
 AP-XON { "lump": "GZAPIPC", "size": 4096, "nick": "Player", "slot": "Becca", "seed": "72971159185702107095", "wad": "Faithless", "server": "" }
 AP-WEAPONS { "weapons": {  } }
 AP-VISITED { "visited": [ "E2M1", "E2M4", "E2M2", "E2M3", "E1M1", "E3M1" ] }
-AP-REGION { "map": "E2M2", "region": "via-second-floor", "keys": ["key/KeyYellow", "map/E2M1", "map/E2M4", "map/E2M3", "map/E1M1", "map/E3M1"] }
 AP-CHECK { "id": 92918, "name": "E2M2 - Wand Crystals [1952,-32]", "pos": ["E2M2",1952,-32,24], "region": "via-second-floor" }
 AP-CHECK { "id": 92917, "name": "E2M2 - Wand Crystals [1952,96]", "pos": ["E2M2",1952,96,24], "region": "via-second-floor" }
 AP-CHECK { "id": 92914, "name": "E2M2 - Ethereal Arrows [1696,-704]", "pos": ["E2M2",1696,-704,16], "region": "via-second-floor" }
@@ -1116,7 +1109,6 @@ AP-CHECK { "id": 92626, "name": "E2M2 - JadeAmmo [-1344,-192]", "pos": ["E2M2",-
 AP-CHECK { "id": 92625, "name": "E2M2 - Wand Crystals [-1216,64]", "pos": ["E2M2",-1216,64,72], "region": "via-second-floor" }
 AP-CHECK { "id": 92624, "name": "E2M2 - Wand Crystals [-1344,192]", "pos": ["E2M2",-1344,192,72], "region": "via-second-floor" }
 AP-CHECK { "id": 92623, "name": "E2M2 - Chest Key [-1216,352]", "pos": ["E2M2",-1216,352,96], "region": "via-second-floor" }
-AP-REGION { "map": "E2M2", "region": "mural-room", "keys": ["key/KeyYellow", "map/E2M1", "map/E2M4", "map/E2M3", "map/E1M1", "map/E3M1"] }
 AP-CHECK { "id": 92688, "name": "E2M2 - JadeAmmo [288,1504]", "pos": ["E2M2",288,1504,0], "region": "mural-room" }
 AP-CHECK { "id": 92686, "name": "E2M2 - Wand Crystals [0,1344]", "pos": ["E2M2",0,1344,0], "region": "mural-room" }
 AP-CHECK { "id": 92925, "name": "E2M2 - Quartz Flask [0,1472]", "pos": ["E2M2",0,1472,0], "region": "mural-room" }
@@ -1210,7 +1202,6 @@ AP-CHECK { "id": 92865, "name": "E2M2 - Time Bomb of the Ancients [3008,3968]", 
 AP-CHECK { "id": 92911, "name": "E2M2 - JadeHefty [3008,4064]", "pos": ["E2M2",3008,4064,40], "region": "mural-room" }
 AP-CHECK { "id": 92864, "name": "E2M2 - Time Bomb of the Ancients [3008,4160]", "pos": ["E2M2",3008,4160,40], "region": "mural-room" }
 AP-CHECK { "id": 92866, "name": "E2M2 - Ethereal Arrows [2848,4160]", "pos": ["E2M2",2848,4160,40], "region": "mural-room" }
-AP-REGION { "map": "E2M2", "region": "vault", "keys": ["key/KeyYellow", "map/E2M1", "map/E2M4", "map/E2M3", "map/E1M1", "map/E3M1"] }
 AP-CHECK { "id": 92808, "name": "E2M2 - Ethereal Arrows [0,3136]", "pos": ["E2M2",0,3136,8], "region": "vault" }
 AP-CHECK { "id": 92830, "name": "E2M2 - JadeAmmo [64,3200]", "pos": ["E2M2",64,3200,8], "region": "vault" }
 AP-CHECK { "id": 92802, "name": "E2M2 - Wand Crystals [448,3200]", "pos": ["E2M2",448,3200,8], "region": "vault" }
@@ -1243,8 +1234,6 @@ AP-CHECK { "id": 92632, "name": "E2M2 - Claw Orbs", "pos": ["E2M2",160,4352,24],
 AP-CHECK { "id": 92858, "name": "E2M2 - Quartz Flask [-64,4624]", "pos": ["E2M2",-64,4624,72], "region": "vault" }
 AP-CHECK { "id": 92857, "name": "E2M2 - Enchanted Shield [N]", "pos": ["E2M2",0,4592,72], "region": "vault" }
 AP-CHECK { "id": 92643, "name": "E2M2 - Quartz Flask [64,4624]", "pos": ["E2M2",64,4624,72], "region": "vault" }
-AP-REGION { "map": "E2M2", "region": "mural-room", "keys": ["key/KeyYellow", "map/E2M1", "map/E2M4", "map/E2M3", "map/E1M1", "map/E3M1"] }
-AP-REGION { "map": "E2M2", "region": "chest-secret", "keys": ["key/KeyYellow", "map/E2M1", "map/E2M4", "map/E2M3", "map/E1M1", "map/E3M1"] }
 AP-CHECK { "id": 92728, "name": "E2M2 - Quartz Flask [1120,1824]", "pos": ["E2M2",1120,1824,32], "region": "chest-secret" }
 AP-CHECK { "id": 92943, "name": "E2M2 - Secret 499", "pos": ["E2M2","secret","sector",499], "region": "chest-secret" }
 AP-CHECK { "id": 92910, "name": "E2M2 - Ethereal Arrows [800,2496]", "pos": ["E2M2",800,2496,40], "region": "chest-secret" }
@@ -1253,16 +1242,12 @@ AP-CHECK { "id": 92908, "name": "E2M2 - Crystal Vial [1040,2336]", "pos": ["E2M2
 AP-CHECK { "id": 92906, "name": "E2M2 - Morph Ovum [NE]", "pos": ["E2M2",1008,2656,32], "region": "chest-secret" }
 AP-CHECK { "id": 92675, "name": "E2M2 - Bouncing Bomb", "pos": ["E2M2",672,1984,32], "region": "chest-secret" }
 AP-CHECK { "id": 92854, "name": "E2M2 - Secret T20", "pos": ["E2M2","secret","tid",20], "region": "chest-secret" }
-AP-REGION { "map": "E2M2", "region": "main", "keys": ["key/KeyYellow", "map/E2M1", "map/E2M4", "map/E2M3", "map/E1M1", "map/E3M1"] }
-AP-REGION { "map": "E2M2", "region": "vault", "keys": ["key/KeyYellow", "map/E2M1", "map/E2M4", "map/E2M3", "map/E1M1", "map/E3M1"] }
 AP-CHECK { "id": 92905, "name": "E2M2 - Ethereal Arrows [-192,4736]", "pos": ["E2M2",-192,4736,-56], "region": "vault" }
 AP-CHECK { "id": 92784, "name": "E2M2 - Strongbox Key", "pos": ["E2M2",0,4960,-56], "region": "vault" }
-AP-REGION { "map": "E2M2", "region": "main", "keys": ["key/KeyYellow", "map/E2M1", "map/E2M4", "map/E2M3", "map/E1M1", "map/E3M1"] }
 AP-CHECK { "id": 92945, "name": "E2M2 - Secret 699", "pos": ["E2M2","secret","sector",699], "region": "main" }
 AP-CHECK { "id": 92735, "name": "E2M2 - Noxious Spore [-1856,-736]", "pos": ["E2M2",-1856,-736,144], "region": "main" }
 AP-CHECK { "id": 92734, "name": "E2M2 - Noxious Spore [-1952,-736]", "pos": ["E2M2",-1952,-736,144], "region": "main" }
 AP-CHECK { "id": 92672, "name": "E2M2 - Elixir Vitae [SW]", "pos": ["E2M2",-2048,-1360,144], "region": "main" }
-AP-REGION { "map": "E2M2", "region": "mural", "keys": ["key/HexenPuzzGemBlue1", "key/HexenPuzzGemGreen1", "key/KeyYellow", "key/HexenPuzzGemGreen2", "key/HexenPuzzGemBlue2", "key/HexenPuzzGemRed", "map/E2M1", "map/E2M4", "map/E2M3", "map/E1M1", "map/E3M1"] }
 AP-XOFF {}
 AP-XOFF {}
 AP-XON { "lump": "GZAPIPC", "size": 4096, "nick": "Player", "slot": "Becca", "seed": "72971159185702107095", "wad": "Faithless", "server": "" }
@@ -1275,12 +1260,9 @@ AP-XOFF {}
 AP-XON { "lump": "GZAPIPC", "size": 4096, "nick": "Player", "slot": "Becca", "seed": "72971159185702107095", "wad": "Faithless", "server": "" }
 AP-WEAPONS { "weapons": {  } }
 AP-VISITED { "visited": [ "E2M1", "E2M4", "E2M3", "E2M2", "E3M1", "E1M1" ] }
-AP-REGION { "map": "E2M2", "region": "mural", "keys": ["key/HexenPuzzGemBlue1", "key/HexenPuzzGemGreen1", "key/KeyYellow", "key/HexenPuzzGemGreen2", "key/HexenPuzzGemBlue2", "key/HexenPuzzGemRed", "map/E2M1", "map/E2M4", "map/E2M3", "map/E3M1", "map/E1M1"] }
 AP-CHECK { "id": 19887, "name": "E2M2 - Dragon Claw", "pos": ["E2M2",0,1280,144], "region": "mural" }
 AP-WEAPONS { "weapons": { "Jade Wand": 4, "Gauntlets of the Necromancer": 1, "Dragon Claw": 2, "Ethereal Crossbow": 6 } }
-AP-REGION { "map": "E2M3", "region": "main", "keys": ["key/KeyYellow", "map/E2M1", "map/E2M4", "map/E2M2", "map/E3M1", "map/E1M1"] }
 AP-CHECK { "id": 92986, "name": "E2M3 - Strongbox Key", "pos": ["E2M3",-832,1344,-256], "region": "main" }
-AP-REGION { "map": "E2M3", "region": "machine-room", "keys": ["key/KeyYellow", "map/E2M1", "map/E2M4", "map/E2M2", "map/E3M1", "map/E1M1"] }
 AP-CHECK { "id": 92983, "name": "E2M3 - Quartz Flask [352,1184]", "pos": ["E2M3",352,1184,-192], "region": "machine-room" }
 AP-CHECK { "id": 93132, "name": "E2M3 - Ethereal Arrows [-544,1504]", "pos": ["E2M3",-544,1504,-176], "region": "machine-room" }
 AP-CHECK { "id": 92982, "name": "E2M3 - Quartz Flask [-352,1184]", "pos": ["E2M3",-352,1184,-192], "region": "machine-room" }
@@ -1339,7 +1321,6 @@ AP-CHECK { "id": 92979, "name": "E2M3 - Claw Orbs [-1472,2752]", "pos": ["E2M3",
 AP-CHECK { "id": 92978, "name": "E2M3 - Ethereal Arrows [-1984,2368]", "pos": ["E2M3",-1984,2368,-192], "region": "machine-room" }
 AP-CHECK { "id": 92980, "name": "E2M3 - Quartz Flask [-1472,1728]", "pos": ["E2M3",-1472,1728,-192], "region": "machine-room" }
 AP-CHECK { "id": 92948, "name": "E2M3 - Silver and brass gear", "pos": ["E2M3",-1472,2240,-3000], "region": "machine-room" }
-AP-REGION { "map": "E2M3", "region": "mechanism", "keys": ["key/KeyYellow", "map/E2M1", "map/E2M4", "map/E2M2", "map/E3M1", "map/E1M1"] }
 AP-CHECK { "id": 92956, "name": "E2M3 - JadeHefty [0,320]", "pos": ["E2M3",0,320,0], "region": "mechanism" }
 AP-CHECK { "id": 93101, "name": "E2M3 - Claw Orbs [-512,288]", "pos": ["E2M3",-512,288,0], "region": "mechanism" }
 AP-CHECK { "id": 93103, "name": "E2M3 - Claw Orbs [-128,672]", "pos": ["E2M3",-128,672,-64], "region": "mechanism" }
@@ -1350,7 +1331,6 @@ AP-CHECK { "id": 93102, "name": "E2M3 - Claw Orbs [512,288]", "pos": ["E2M3",512
 AP-CHECK { "id": 93163, "name": "E2M3 - Secret 386", "pos": ["E2M3","secret","sector",386], "region": "mechanism" }
 AP-CHECK { "id": 93148, "name": "E2M3 - Claw Orbs [-368,64]", "pos": ["E2M3",-368,64,0], "region": "mechanism" }
 AP-CHECK { "id": 20098, "name": "E2M3 - Enchanted Shield [Center]", "pos": ["E2M3",-576,64,0], "region": "mechanism" }
-AP-REGION { "map": "E2M1", "region": "green-key", "keys": ["key/KeyYellow", "key/HexenPuzzGear2", "key/HexenPuzzGear4", "key/HexenPuzzGear3", "key/HexenPuzzGear1", "map/E2M4", "map/E2M3", "map/E2M2", "map/E1M1", "map/E3M1"] }
 AP-CHECK { "id": 19716, "name": "E2M1 - Green Key", "pos": ["E2M1",0,1088,248], "region": "green-key" }
 AP-VISITED { "visited": [ "E2M1", "E2M4", "E2M3", "E2M2", "E1M1", "E2M0", "E3M1" ] }
 AP-XOFF {}
