@@ -4,6 +4,9 @@ AP-KEY { "tag": "Green Key", "typename": "KeyGreen", "scopename": "Faithless", "
 // Blue key is normally dropped by the M7 boss.
 AP-KEY { "tag": "Blue Key", "typename": "KeyBlue", "scopename": "Faithless", "cluster": 66, "maps": ["E1M1", "E1M2", "E1M3", "E1M4", "E1M5", "E1M6", "E1M7", "E1M8", "E1M9"] }
 
+// Spawned in ep2 in the vault
+AP-KEY { "tag": "Ruby Planet", "typename": "HexenPuzzGemRed", "scopename": "Merciless", "cluster": 67, "maps": ["E2M1", "E2M2", "E2M3", "E2M4", "E2M5", "E2M6", "E2M7", "E2M8", "E2M9", "E2M0"] }
+
 AP-SCAN { "flags": ["use_hub_logic", "hub_logic_exits=E1M8,E2M8,E3M8"] }
 AP-MAP { "map": "E1M1", "checksum": "7ecc53cfff9c9be6eeee4fb2726480f0", "rank": 0, "monster_count": 111, "clustername": "Faithless", "info": { "levelnum": 1, "title": "FAITH_E1M1", "is_lookup": true, "sky1": "HSKY2", "sky1speed": "0.003500", "sky2": "HSKY3", "sky2speed": "0.003500", "music": "$MUSIC_FAITH_1", "music_track": "0", "cluster": 66, "flags": ["useplayerstartz"] } }
 AP-ITEM { "category": "key", "typename": "KeyYellow", "tag": "Yellow Key", "pos": ["E1M1",320,480,176] }

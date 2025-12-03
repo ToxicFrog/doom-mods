@@ -1,4 +1,3 @@
-AP-XON { "lump": "GZAPIPC", "size": 4096, "nick": "Player", "slot": "Becca", "seed": "27630892076934167461", "wad": "Faithless", "server": "" }
 
 //////// E2M0: The Unholy Font
 // not really included in the rando as it contains no items
@@ -47,8 +46,6 @@ M4 contains a secondary entrance to the Unholy Font in the village.
 
 //////// E2M2: Treasure Vault
 AP-REGION { "map": "E2M2", "keys": ["map/E2M1/portals"] }
-// Found in the downstairs forge
-// AP-KEY { "tag": "Ruby Planet", "typename": "HexenPuzzGemRed", "scopename": "Merciless", "cluster": 67, "maps": ["E2M1", "E2M2", "E2M3", "E2M4", "E2M5", "E2M6", "E2M7", "E2M8", "E2M9", "E2M0"] }
 // Southwest region accessible from M1 main floor portal
 AP-REGION { "map": "E2M2", "region": "main", "keys": ["map/E2M1/portals"] }
 // Northeast and central region accessible from M1 second floor portal
@@ -113,7 +110,6 @@ AP-CHECK { "id": 92231, "name": "E2M1 - Wand Crystals [0,-928]", "pos": ["E2M1",
 AP-CHECK { "id": 92232, "name": "E2M1 - Wand Crystals [0,-864]", "pos": ["E2M1",0,-864,-32], "region": "main" }
 AP-CHECK { "id": 92233, "name": "E2M1 - Wand Crystals [0,-800]", "pos": ["E2M1",0,-800,-16], "region": "main" }
 AP-CHECK { "id": 92607, "name": "E2M1 - Gauntlets of the Necromancer", "pos": ["E2M1",0,-720,0], "region": "main" }
-AP-WEAPONS { "weapons": { "Gauntlets of the Necromancer": 1 } }
 AP-CHECK { "id": 92511, "name": "E2M1 - Quartz Flask [-80,-704]", "pos": ["E2M1",-80,-704,0], "region": "main" }
 AP-CHECK { "id": 92512, "name": "E2M1 - Quartz Flask [80,-704]", "pos": ["E2M1",80,-704,0], "region": "main" }
 AP-CHECK { "id": 92349, "name": "E2M1 - Time Bomb of the Ancients [-104,-200]", "pos": ["E2M1",-104,-200,0], "region": "main" }
@@ -199,7 +195,6 @@ AP-CHECK { "id": 92260, "name": "E2M1 - Wand Crystals [1408,-1920]", "pos": ["E2
 AP-CHECK { "id": 92340, "name": "E2M1 - Time Bomb of the Ancients [832,-2176]", "pos": ["E2M1",832,-2176,32], "region": "main" }
 AP-CHECK { "id": 92249, "name": "E2M1 - Wand Crystals [768,-3328]", "pos": ["E2M1",768,-3328,16], "region": "main" }
 AP-CHECK { "id": 92383, "name": "E2M1 - Ethereal Crossbow [0,-3936]", "pos": ["E2M1",0,-3936,32], "region": "main" }
-AP-WEAPONS { "weapons": { "Gauntlets of the Necromancer": 1, "Ethereal Crossbow": 1 } }
 AP-CHECK { "id": 92411, "name": "E2M1 - Crystal Vial [-240,-4112]", "pos": ["E2M1",-240,-4112,32], "region": "main" }
 AP-CHECK { "id": 92518, "name": "E2M1 - Ethereal Arrows [-256,-3904]", "pos": ["E2M1",-256,-3904,32], "region": "main" }
 AP-CHECK { "id": 92412, "name": "E2M1 - Crystal Vial [240,-4112]", "pos": ["E2M1",240,-4112,32], "region": "main" }
@@ -368,7 +363,6 @@ AP-CHECK { "id": 19831, "name": "E2M1 - Shadowsphere", "pos": ["E2M1",3680,-864,
 AP-CHECK { "id": 92270, "name": "E2M1 - Wand Crystals [3648,-928]", "pos": ["E2M1",3648,-928,152], "region": "yellow-trap" }
 AP-CHECK { "id": 92542, "name": "E2M1 - Ethereal Arrows [96,1760]", "pos": ["E2M1",96,1760,32], "region": "caves" }
 AP-CHECK { "id": 92386, "name": "E2M1 - Ethereal Crossbow [0,1760]", "pos": ["E2M1",0,1760,32], "region": "caves" }
-AP-WEAPONS { "weapons": { "Gauntlets of the Necromancer": 1, "Ethereal Crossbow": 2 } }
 AP-CHECK { "id": 92541, "name": "E2M1 - Ethereal Arrows [-96,1760]", "pos": ["E2M1",-96,1760,32], "region": "caves" }
 AP-CHECK { "id": 92299, "name": "E2M1 - Time Bomb of the Ancients [-64,2064]", "pos": ["E2M1",-64,2064,32], "region": "caves" }
 AP-CHECK { "id": 92302, "name": "E2M1 - Time Bomb of the Ancients [64,2064]", "pos": ["E2M1",64,2064,32], "region": "caves" }
@@ -438,52 +432,9 @@ AP-CHECK { "id": 92456, "name": "E2M1 - Crystal Vial [2880,96]", "pos": ["E2M1",
 AP-CHECK { "id": 92608, "name": "E2M1 - Torch [2784,264]", "pos": ["E2M1",2784,264,-32], "region": "caves" }
 AP-CHECK { "id": 92620, "name": "E2M1 - Secret 1376", "pos": ["E2M1","secret","sector",1376], "region": "caves" }
 AP-CHECK { "id": 92395, "name": "E2M1 - Tome of Power [SE]", "pos": ["E2M1",2992,-304,96], "region": "caves" }
-AP-XOFF {}
-AP-XON { "lump": "GZAPIPC", "size": 4096, "nick": "Player", "slot": "Becca", "seed": "67811175957952295970", "wad": "Faithless", "server": "" }
-AP-WEAPONS { "weapons": {  } }
-AP-VISITED { "visited": [ "E2M1", "E1M1", "E3M1" ] }
-AP-XOFF {}
-AP-XON { "lump": "GZAPIPC", "size": 4096, "nick": "Player", "slot": "Becca", "seed": "67811175957952295970", "wad": "Faithless", "server": "" }
-AP-WEAPONS { "weapons": {  } }
-AP-VISITED { "visited": [ "E2M1", "E1M1", "E3M1" ] }
-AP-XON { "lump": "GZAPIPC", "size": 4096, "nick": "Player", "slot": "Becca", "seed": "67811175957952295970", "wad": "Faithless", "server": "" }
-AP-WEAPONS { "weapons": {  } }
-AP-VISITED { "visited": [ "E2M1", "E1M1", "E3M1" ] }
-AP-XOFF {}
-AP-XON { "lump": "GZAPIPC", "size": 4096, "nick": "Player", "slot": "Becca", "seed": "67811175957952295970", "wad": "Faithless", "server": "" }
-AP-WEAPONS { "weapons": {  } }
-AP-VISITED { "visited": [ "E2M1", "E1M1", "E3M1" ] }
-AP-XOFF {}
-AP-XON { "lump": "GZAPIPC", "size": 4096, "nick": "Player", "slot": "Becca", "seed": "72971159185702107095", "wad": "Faithless", "server": "" }
-AP-WEAPONS { "weapons": {  } }
-AP-VISITED { "visited": [ "E2M1", "E1M1", "E3M1" ] }
-AP-VISITED { "visited": [ "E2M1", "E2M4", "E1M1", "E3M1" ] }
-AP-XON { "lump": "GZAPIPC", "size": 4096, "nick": "Player", "slot": "Becca", "seed": "72971159185702107095", "wad": "Faithless", "server": "" }
-AP-WEAPONS { "weapons": {  } }
-AP-VISITED { "visited": [ "E2M1", "E1M1", "E3M1" ] }
-AP-VISITED { "visited": [ "E2M1", "E2M4", "E1M1", "E3M1" ] }
-AP-XON { "lump": "GZAPIPC", "size": 4096, "nick": "Player", "slot": "Becca", "seed": "72971159185702107095", "wad": "Faithless", "server": "" }
-AP-WEAPONS { "weapons": {  } }
-AP-VISITED { "visited": [ "E2M1", "E2M4", "E1M1", "E3M1" ] }
-AP-XON { "lump": "GZAPIPC", "size": 4096, "nick": "Player", "slot": "Becca", "seed": "72971159185702107095", "wad": "Faithless", "server": "" }
-AP-WEAPONS { "weapons": {  } }
-AP-VISITED { "visited": [ "E2M1", "E1M1", "E3M1" ] }
-AP-VISITED { "visited": [ "E2M1", "E2M4", "E1M1", "E3M1" ] }
-AP-XON { "lump": "GZAPIPC", "size": 4096, "nick": "Player", "slot": "Becca", "seed": "72971159185702107095", "wad": "Faithless", "server": "" }
-AP-WEAPONS { "weapons": {  } }
-AP-VISITED { "visited": [ "E2M1", "E1M1", "E3M1" ] }
 AP-CHECK { "id": 92415, "name": "E2M1 - Gauntlets of the Necromancer", "pos": ["E2M1",0,-720,0], "region": "main" }
-AP-WEAPONS { "weapons": { "Gauntlets of the Necromancer": 1 } }
 AP-CHECK { "id": 92215, "name": "E2M1 - Ethereal Crossbow [0,-3936]", "pos": ["E2M1",0,-3936,32], "region": "main" }
-AP-WEAPONS { "weapons": { "Gauntlets of the Necromancer": 1, "Ethereal Crossbow": 1 } }
 AP-CHECK { "id": 19715, "name": "E2M1 - Yellow Key", "pos": ["E2M1",3776,-4032,272], "region": "main" }
-AP-CHECK { "id": 92604, "name": "E2M1 - Ethereal Crossbow [0,1760]", "pos": ["E2M1",0,1760,32], "region": "main" }
-AP-WEAPONS { "weapons": { "Gauntlets of the Necromancer": 1, "Ethereal Crossbow": 2 } }
-AP-VISITED { "visited": [ "E2M1", "E2M4", "E1M1", "E3M1" ] }
-AP-XON { "lump": "GZAPIPC", "size": 4096, "nick": "Player", "slot": "Becca", "seed": "72971159185702107095", "wad": "Faithless", "server": "" }
-AP-WEAPONS { "weapons": {  } }
-AP-VISITED { "visited": [ "E2M1", "E3M1", "E1M1" ] }
-AP-VISITED { "visited": [ "E2M1", "E2M4", "E3M1", "E1M1" ] }
 AP-CHECK { "id": 93376, "name": "E2M4 - JadeAmmo [-64,-4064]", "pos": ["E2M4",-64,-4064,-16], "region": "main" }
 AP-CHECK { "id": 93378, "name": "E2M4 - JadeAmmo [-192,-4032]", "pos": ["E2M4",-192,-4032,-16], "region": "main" }
 AP-CHECK { "id": 93377, "name": "E2M4 - Ethereal Arrows [-256,-3360]", "pos": ["E2M4",-256,-3360,-32], "region": "main" }
@@ -495,7 +446,6 @@ AP-CHECK { "id": 93382, "name": "E2M4 - Crystal Vial [64,-3264]", "pos": ["E2M4"
 AP-CHECK { "id": 93242, "name": "E2M4 - Quartz Flask [544,-3008]", "pos": ["E2M4",544,-3008,-16], "region": "main" }
 AP-CHECK { "id": 93379, "name": "E2M4 - JadeHefty [576,-3104]", "pos": ["E2M4",576,-3104,-16], "region": "main" }
 AP-CHECK { "id": 20236, "name": "E2M4 - Ethereal Crossbow", "pos": ["E2M4",-16,-3872,-32], "region": "main" }
-AP-WEAPONS { "weapons": { "Gauntlets of the Necromancer": 1, "Ethereal Crossbow": 3 } }
 AP-CHECK { "id": 93338, "name": "E2M4 - Ethereal Arrows [320,-3712]", "pos": ["E2M4",320,-3712,-32], "region": "main" }
 AP-CHECK { "id": 93328, "name": "E2M4 - Time Bomb of the Ancients [448,-3616]", "pos": ["E2M4",448,-3616,-48], "region": "main" }
 AP-CHECK { "id": 93348, "name": "E2M4 - Time Bomb of the Ancients [464,-3792]", "pos": ["E2M4",464,-3792,-48], "region": "main" }
@@ -512,7 +462,6 @@ AP-CHECK { "id": 93477, "name": "E2M4 - Ethereal Arrows [976,-2864]", "pos": ["E
 AP-CHECK { "id": 93213, "name": "E2M4 - Crystal Vial [832,-2848]", "pos": ["E2M4",832,-2848,-112], "region": "main" }
 AP-CHECK { "id": 93212, "name": "E2M4 - Crystal Vial [640,-2912]", "pos": ["E2M4",640,-2912,-112], "region": "main" }
 AP-CHECK { "id": 93179, "name": "E2M4 - Jade Wand", "pos": ["E2M4",760,-2984,-108], "region": "main" }
-AP-WEAPONS { "weapons": { "Gauntlets of the Necromancer": 1, "Jade Wand": 1, "Ethereal Crossbow": 3 } }
 AP-CHECK { "id": 93381, "name": "E2M4 - Ethereal Arrows [1568,-4032]", "pos": ["E2M4",1568,-4032,-80], "region": "main" }
 AP-CHECK { "id": 93175, "name": "E2M4 - Crystal Vial [1696,-3488]", "pos": ["E2M4",1696,-3488,-80], "region": "main" }
 AP-CHECK { "id": 93211, "name": "E2M4 - Crystal Vial [1664,-3424]", "pos": ["E2M4",1664,-3424,-80], "region": "main" }
@@ -693,7 +642,6 @@ AP-CHECK { "id": 20370, "name": "E2M4 - Map Scroll", "pos": ["E2M4",512,16,-24],
 AP-CHECK { "id": 93235, "name": "E2M4 - Claw Orbs [-192,440]", "pos": ["E2M4",-192,440,-16], "region": "shrine" }
 AP-CHECK { "id": 93236, "name": "E2M4 - Claw Orbs [-64,440]", "pos": ["E2M4",-64,440,-16], "region": "shrine" }
 AP-CHECK { "id": 20238, "name": "E2M4 - Dragon Claw", "pos": ["E2M4",-128,536,-16], "region": "shrine" }
-AP-WEAPONS { "weapons": { "Jade Wand": 1, "Gauntlets of the Necromancer": 1, "Dragon Claw": 1, "Ethereal Crossbow": 3 } }
 AP-CHECK { "id": 93218, "name": "E2M4 - Crystal Vial [-128,2048]", "pos": ["E2M4",-128,2048,-120], "region": "village" }
 AP-CHECK { "id": 93219, "name": "E2M4 - Crystal Vial [-128,1856]", "pos": ["E2M4",-128,1856,-120], "region": "village" }
 AP-CHECK { "id": 93241, "name": "E2M4 - Claw Orbs [-480,1312]", "pos": ["E2M4",-480,1312,-112], "region": "village" }
@@ -705,31 +653,8 @@ AP-CHECK { "id": 93166, "name": "E2M4 - Quartz Flask [-768,848]", "pos": ["E2M4"
 AP-CHECK { "id": 93349, "name": "E2M4 - Claw Orbs [-928,-2848]", "pos": ["E2M4",-928,-2848,-32], "region": "village" }
 AP-CHECK { "id": 93494, "name": "E2M4 - Secret 429", "pos": ["E2M4","secret","sector",429], "region": "village" }
 AP-CHECK { "id": 93216, "name": "E2M4 - Mystic Urn [S]", "pos": ["E2M4",-128,-1664,-56], "region": "village" }
-AP-XOFF {}
-AP-XON { "lump": "GZAPIPC", "size": 4096, "nick": "Player", "slot": "Becca", "seed": "72971159185702107095", "wad": "Faithless", "server": "" }
-AP-WEAPONS { "weapons": {  } }
-AP-VISITED { "visited": [ "E2M1", "E2M4", "E3M1", "E1M1" ] }
 AP-CHECK { "id": 93494, "name": "E2M4 - Secret 429", "pos": ["E2M4","secret","sector",429], "region": "village" }
 AP-CHECK { "id": 93216, "name": "E2M4 - Mystic Urn [S]", "pos": ["E2M4",-128,-1664,-56], "region": "village" }
-AP-VISITED { "visited": [ "E2M1", "E2M4", "E3M1", "E2M0", "E1M1" ] }
-AP-VISITED { "visited": [ "E2M1", "E2M4", "E1M1", "E3M1" ] }
-AP-VISITED { "visited": [ "E2M1", "E2M4", "E1M1", "E2M0", "E3M1" ] }
-AP-VISITED { "visited": [ "E2M1", "E2M4", "E3M1", "E1M1" ] }
-AP-XOFF {}
-AP-WHATEVER
-AP-WHATEVER
-AP-WHATEVER
-AP-WHATEVER
-AP-WHATEVER
-AP-WHATEVER
-AP-WHATEVER
-AP-WHATEVER
-AP-WHATEVER
-AP-WHATEVER
-AP-XON { "lump": "GZAPIPC", "size": 4096, "nick": "Player", "slot": "Becca", "seed": "72971159185702107095", "wad": "Faithless", "server": "" }
-AP-WEAPONS { "weapons": {  } }
-AP-VISITED { "visited": [ "E2M1", "E2M4", "E1M1", "E3M1" ] }
-AP-VISITED { "visited": [ "E2M1", "E2M4", "E2M2", "E1M1", "E3M1" ] }
 AP-CHECK { "id": 92894, "name": "E2M2 - Wand Crystals [-3904,0]", "pos": ["E2M2",-3904,0,80], "region": "main" }
 AP-CHECK { "id": 92890, "name": "E2M2 - Ethereal Arrows [-3360,-320]", "pos": ["E2M2",-3360,-320,64], "region": "main" }
 AP-CHECK { "id": 92895, "name": "E2M2 - JadeAmmo [-3712,0]", "pos": ["E2M2",-3712,0,80], "region": "main" }
@@ -795,7 +720,6 @@ AP-CHECK { "id": 92795, "name": "E2M2 - Crystal Vial [-2624,-640]", "pos": ["E2M
 AP-CHECK { "id": 92761, "name": "E2M2 - Ethereal Arrows [-2624,-768]", "pos": ["E2M2",-2624,-768,76], "region": "main" }
 AP-CHECK { "id": 92640, "name": "E2M2 - JadeMed [-1952,0]", "pos": ["E2M2",-1952,0,96], "region": "main" }
 AP-CHECK { "id": 92674, "name": "E2M2 - Jade Wand [SW]", "pos": ["E2M2",-1760,0,96], "region": "main" }
-AP-WEAPONS { "weapons": { "Jade Wand": 2, "Gauntlets of the Necromancer": 1, "Dragon Claw": 1, "Ethereal Crossbow": 3 } }
 AP-CHECK { "id": 92792, "name": "E2M2 - Time Bomb of the Ancients [-1504,-608]", "pos": ["E2M2",-1504,-608,96], "region": "main" }
 AP-CHECK { "id": 92791, "name": "E2M2 - Time Bomb of the Ancients [-1632,-608]", "pos": ["E2M2",-1632,-608,96], "region": "main" }
 AP-CHECK { "id": 92705, "name": "E2M2 - Wand Crystals [-2016,-224]", "pos": ["E2M2",-2016,-224,144], "region": "main" }
@@ -811,23 +735,10 @@ AP-CHECK { "id": 92710, "name": "E2M2 - JadeMed [-2336,1056]", "pos": ["E2M2",-2
 AP-CHECK { "id": 92702, "name": "E2M2 - JadeAmmo [-1344,1024]", "pos": ["E2M2",-1344,1024,48], "region": "main" }
 AP-CHECK { "id": 92694, "name": "E2M2 - Tome of Power [NW]", "pos": ["E2M2",-1856,2304,184], "region": "main" }
 AP-CHECK { "id": 92634, "name": "E2M2 - Sapphire Planet", "pos": ["E2M2",-1632,2016,112], "region": "main" }
-AP-XOFF {}
-AP-XON { "lump": "GZAPIPC", "size": 4096, "nick": "Player", "slot": "Becca", "seed": "72971159185702107095", "wad": "Faithless", "server": "" }
-AP-WEAPONS { "weapons": {  } }
-AP-VISITED { "visited": [ "E2M1", "E2M4", "E2M2", "E3M1", "E1M1" ] }
-AP-CHECK { "id": 92634, "name": "E2M2 - Sapphire Planet", "pos": ["E2M2",-1632,2016,112], "keys": ["KeyYellow"] }
-AP-KEY { "tag": "Ruby Planet", "typename": "HexenPuzzGemRed", "scopename": "Merciless", "cluster": 67, "maps": ["E2M1", "E2M2", "E2M3", "E2M4", "E2M5", "E2M6", "E2M7", "E2M8", "E2M9", "E2M0"] }
-AP-XOFF {}
-AP-XON { "lump": "GZAPIPC", "size": 4096, "nick": "Player", "slot": "Becca", "seed": "72971159185702107095", "wad": "Faithless", "server": "" }
-AP-WEAPONS { "weapons": {  } }
-AP-VISITED { "visited": [ "E2M1", "E2M4", "E2M2", "E3M1", "E1M1" ] }
-AP-CHECK { "id": 92634, "name": "E2M2 - Sapphire Planet", "pos": ["E2M2",-1632,2016,112], "keys": ["KeyYellow"] }
-AP-VISITED { "visited": [ "E2M1", "E2M4", "E2M2", "E3M1", "E1M1", "E2M3" ] }
 AP-CHECK { "id": 93134, "name": "E2M3 - Quartz Flask [0,-1856]", "pos": ["E2M3",0,-1856,-256], "region": "main" }
 AP-CHECK { "id": 93152, "name": "E2M3 - Time Bomb of the Ancients [0,-1536]", "pos": ["E2M3",0,-1536,-264], "region": "main" }
 AP-CHECK { "id": 93151, "name": "E2M3 - Time Bomb of the Ancients [0,-1408]", "pos": ["E2M3",0,-1408,-264], "region": "main" }
 AP-CHECK { "id": 93144, "name": "E2M3 - Ethereal Crossbow [S]", "pos": ["E2M3",0,-992,-256], "region": "main" }
-AP-WEAPONS { "weapons": { "Jade Wand": 2, "Gauntlets of the Necromancer": 1, "Dragon Claw": 1, "Ethereal Crossbow": 4 } }
 AP-CHECK { "id": 93001, "name": "E2M3 - Wand Crystals [864,-928]", "pos": ["E2M3",864,-928,-256], "region": "main" }
 AP-CHECK { "id": 93002, "name": "E2M3 - Wand Crystals [1056,-608]", "pos": ["E2M3",1056,-608,-256], "region": "main" }
 AP-CHECK { "id": 93000, "name": "E2M3 - Wand Crystals [-544,-1152]", "pos": ["E2M3",-544,-1152,-256], "region": "main" }
@@ -927,7 +838,6 @@ AP-CHECK { "id": 92590, "name": "E2M1 - Escapement Device", "pos": ["E2M1",1216,
 AP-CHECK { "id": 92211, "name": "E2M1 - Time Bomb of the Ancients [1184,352]", "pos": ["E2M1",1184,352,112], "region": "second-floor" }
 AP-CHECK { "id": 92214, "name": "E2M1 - Time Bomb of the Ancients [1184,416]", "pos": ["E2M1",1184,416,112], "region": "second-floor" }
 AP-CHECK { "id": 92972, "name": "E2M3 - Jade Wand", "pos": ["E2M3",-2800,-544,64], "region": "via-second-floor" }
-AP-WEAPONS { "weapons": { "Jade Wand": 3, "Gauntlets of the Necromancer": 1, "Dragon Claw": 1, "Ethereal Crossbow": 4 } }
 AP-CHECK { "id": 93076, "name": "E2M3 - Ethereal Arrows [-2880,-992]", "pos": ["E2M3",-2880,-992,80], "region": "via-second-floor" }
 AP-CHECK { "id": 93067, "name": "E2M3 - Wand Crystals [-2816,-1008]", "pos": ["E2M3",-2816,-1008,64], "region": "via-second-floor" }
 AP-CHECK { "id": 93075, "name": "E2M3 - Crystal Vial [-2800,-1072]", "pos": ["E2M3",-2800,-1072,80], "region": "via-second-floor" }
@@ -941,7 +851,6 @@ AP-CHECK { "id": 93078, "name": "E2M3 - JadeAmmo [-2144,-1344]", "pos": ["E2M3",
 AP-CHECK { "id": 93079, "name": "E2M3 - Ethereal Arrows [-1920,-1328]", "pos": ["E2M3",-1920,-1328,24], "region": "via-second-floor" }
 AP-CHECK { "id": 93081, "name": "E2M3 - Ethereal Arrows [-2144,-672]", "pos": ["E2M3",-2144,-672,0], "region": "via-second-floor" }
 AP-CHECK { "id": 92970, "name": "E2M3 - Ethereal Crossbow [SW]", "pos": ["E2M3",-1920,-544,0], "region": "via-second-floor" }
-AP-WEAPONS { "weapons": { "Jade Wand": 3, "Gauntlets of the Necromancer": 1, "Dragon Claw": 1, "Ethereal Crossbow": 5 } }
 AP-CHECK { "id": 93150, "name": "E2M3 - Quartz Flask [-1536,-640]", "pos": ["E2M3",-1536,-640,0], "region": "via-second-floor" }
 AP-CHECK { "id": 93149, "name": "E2M3 - Quartz Flask [-1536,-448]", "pos": ["E2M3",-1536,-448,0], "region": "via-second-floor" }
 AP-CHECK { "id": 93080, "name": "E2M3 - Ethereal Arrows [-2144,-416]", "pos": ["E2M3",-2144,-416,0], "region": "via-second-floor" }
@@ -992,11 +901,6 @@ AP-CHECK { "id": 93136, "name": "E2M3 - Ethereal Arrows [-1280,-1952]", "pos": [
 AP-CHECK { "id": 93137, "name": "E2M3 - Crystal Vial [-1184,-1952]", "pos": ["E2M3",-1184,-1952,-160], "region": "via-second-floor" }
 AP-CHECK { "id": 93164, "name": "E2M3 - Secret 502", "pos": ["E2M3","secret","sector",502], "region": "via-second-floor" }
 AP-CHECK { "id": 20137, "name": "E2M3 - Mystic Urn", "pos": ["E2M3",-1280,-2048,-48], "region": "via-second-floor" }
-
-AP-XOFF {}
-AP-XON { "lump": "GZAPIPC", "size": 4096, "nick": "Player", "slot": "Becca", "seed": "72971159185702107095", "wad": "Faithless", "server": "" }
-AP-WEAPONS { "weapons": {  } }
-AP-VISITED { "visited": [ "E2M1", "E2M4", "E2M2", "E2M3", "E1M1", "E3M1" ] }
 AP-CHECK { "id": 92918, "name": "E2M2 - Wand Crystals [1952,-32]", "pos": ["E2M2",1952,-32,24], "region": "via-second-floor" }
 AP-CHECK { "id": 92917, "name": "E2M2 - Wand Crystals [1952,96]", "pos": ["E2M2",1952,96,24], "region": "via-second-floor" }
 AP-CHECK { "id": 92914, "name": "E2M2 - Ethereal Arrows [1696,-704]", "pos": ["E2M2",1696,-704,16], "region": "via-second-floor" }
@@ -1007,7 +911,6 @@ AP-CHECK { "id": 92671, "name": "E2M2 - Wand Crystals [1312,32]", "pos": ["E2M2"
 AP-CHECK { "id": 92677, "name": "E2M2 - Wand Crystals [1120,32]", "pos": ["E2M2",1120,32,-32], "region": "via-second-floor" }
 AP-CHECK { "id": 92676, "name": "E2M2 - Wand Crystals [928,32]", "pos": ["E2M2",928,32,-32], "region": "via-second-floor" }
 AP-CHECK { "id": 92658, "name": "E2M2 - Jade Wand [SE]", "pos": ["E2M2",704,32,-32], "region": "via-second-floor" }
-AP-WEAPONS { "weapons": { "Jade Wand": 4, "Gauntlets of the Necromancer": 1, "Dragon Claw": 1, "Ethereal Crossbow": 5 } }
 AP-CHECK { "id": 92695, "name": "E2M2 - Wand Crystals [448,384]", "pos": ["E2M2",448,384,-16], "region": "via-second-floor" }
 AP-CHECK { "id": 92701, "name": "E2M2 - Crystal Vial [736,-896]", "pos": ["E2M2",736,-896,-24], "region": "via-second-floor" }
 AP-CHECK { "id": 92739, "name": "E2M2 - Morph Ovum [SE]", "pos": ["E2M2",960,-912,-16], "region": "via-second-floor" }
@@ -1039,7 +942,6 @@ AP-CHECK { "id": 92741, "name": "E2M2 - Crystal Vial [-448,-608]", "pos": ["E2M2
 AP-CHECK { "id": 92809, "name": "E2M2 - Crystal Vial [-1024,-608]", "pos": ["E2M2",-1024,-608,96], "region": "via-second-floor" }
 AP-CHECK { "id": 92649, "name": "E2M2 - Ethereal Arrows [-992,-896]", "pos": ["E2M2",-992,-896,96], "region": "via-second-floor" }
 AP-CHECK { "id": 19841, "name": "E2M2 - Ethereal Crossbow", "pos": ["E2M2",-992,-992,112], "region": "via-second-floor" }
-AP-WEAPONS { "weapons": { "Jade Wand": 4, "Gauntlets of the Necromancer": 1, "Dragon Claw": 1, "Ethereal Crossbow": 6 } }
 AP-CHECK { "id": 92650, "name": "E2M2 - Ethereal Arrows [-992,-1088]", "pos": ["E2M2",-992,-1088,96], "region": "via-second-floor" }
 AP-CHECK { "id": 92729, "name": "E2M2 - Elixir Vitae [S]", "pos": ["E2M2",-736,-992,96], "region": "via-second-floor" }
 AP-CHECK { "id": 92736, "name": "E2M2 - Time Bomb of the Ancients [-608,-832]", "pos": ["E2M2",-608,-832,-40], "region": "via-second-floor" }
@@ -1128,7 +1030,6 @@ AP-CHECK { "id": 92821, "name": "E2M2 - JadeAmmo [-896,1792]", "pos": ["E2M2",-8
 AP-CHECK { "id": 92822, "name": "E2M2 - JadeAmmo [-896,1536]", "pos": ["E2M2",-896,1536,-16], "region": "mural-room" }
 AP-CHECK { "id": 92700, "name": "E2M2 - Crystal Vial [-1120,2240]", "pos": ["E2M2",-1120,2240,128], "region": "mural-room" }
 AP-CHECK { "id": 92820, "name": "E2M2 - JadeAmmo [-800,2240]", "pos": ["E2M2",-800,2240,128], "region": "mural-room" }
-AP-KEY { "tag": "Ruby Planet", "typename": "HexenPuzzGemRed", "scopename": "Merciless", "cluster": 67, "maps": ["E2M1", "E2M2", "E2M3", "E2M4", "E2M5", "E2M6", "E2M7", "E2M8", "E2M9", "E2M0"] }
 AP-CHECK { "id": 92766, "name": "E2M2 - JadeMed [992,1904]", "pos": ["E2M2",992,1904,-32], "region": "mural-room" }
 AP-CHECK { "id": 92855, "name": "E2M2 - Quartz Flask [1056,1696]", "pos": ["E2M2",1056,1696,-32], "region": "mural-room" }
 AP-CHECK { "id": 92722, "name": "E2M2 - Crystal Vial [1760,1312]", "pos": ["E2M2",1760,1312,-40], "region": "mural-room" }
@@ -1248,20 +1149,7 @@ AP-CHECK { "id": 92945, "name": "E2M2 - Secret 699", "pos": ["E2M2","secret","se
 AP-CHECK { "id": 92735, "name": "E2M2 - Noxious Spore [-1856,-736]", "pos": ["E2M2",-1856,-736,144], "region": "main" }
 AP-CHECK { "id": 92734, "name": "E2M2 - Noxious Spore [-1952,-736]", "pos": ["E2M2",-1952,-736,144], "region": "main" }
 AP-CHECK { "id": 92672, "name": "E2M2 - Elixir Vitae [SW]", "pos": ["E2M2",-2048,-1360,144], "region": "main" }
-AP-XOFF {}
-AP-XOFF {}
-AP-XON { "lump": "GZAPIPC", "size": 4096, "nick": "Player", "slot": "Becca", "seed": "72971159185702107095", "wad": "Faithless", "server": "" }
-AP-WEAPONS { "weapons": {  } }
-AP-VISITED { "visited": [ "E2M1", "E2M4", "E2M3", "E2M2", "E3M1", "E1M1" ] }
-AP-KEY { "tag": "Ruby Planet", "typename": "HexenPuzzGemRed", "scopename": "Merciless", "cluster": 67, "maps": ["E2M1", "E2M2", "E2M3", "E2M4", "E2M5", "E2M6", "E2M7", "E2M8", "E2M9", "E2M0"] }
-AP-CHECK { "id": 92647, "name": "E2M2 - Iron gear", "pos": ["E2M2",0,1792,0], "keys": ["KeyYellow"] }
-AP-XOFF {}
-AP-XOFF {}
-AP-XON { "lump": "GZAPIPC", "size": 4096, "nick": "Player", "slot": "Becca", "seed": "72971159185702107095", "wad": "Faithless", "server": "" }
-AP-WEAPONS { "weapons": {  } }
-AP-VISITED { "visited": [ "E2M1", "E2M4", "E2M3", "E2M2", "E3M1", "E1M1" ] }
 AP-CHECK { "id": 19887, "name": "E2M2 - Dragon Claw", "pos": ["E2M2",0,1280,144], "region": "mural" }
-AP-WEAPONS { "weapons": { "Jade Wand": 4, "Gauntlets of the Necromancer": 1, "Dragon Claw": 2, "Ethereal Crossbow": 6 } }
 AP-CHECK { "id": 92986, "name": "E2M3 - Strongbox Key", "pos": ["E2M3",-832,1344,-256], "region": "main" }
 AP-CHECK { "id": 92983, "name": "E2M3 - Quartz Flask [352,1184]", "pos": ["E2M3",352,1184,-192], "region": "machine-room" }
 AP-CHECK { "id": 93132, "name": "E2M3 - Ethereal Arrows [-544,1504]", "pos": ["E2M3",-544,1504,-176], "region": "machine-room" }
@@ -1325,12 +1213,9 @@ AP-CHECK { "id": 92956, "name": "E2M3 - JadeHefty [0,320]", "pos": ["E2M3",0,320
 AP-CHECK { "id": 93101, "name": "E2M3 - Claw Orbs [-512,288]", "pos": ["E2M3",-512,288,0], "region": "mechanism" }
 AP-CHECK { "id": 93103, "name": "E2M3 - Claw Orbs [-128,672]", "pos": ["E2M3",-128,672,-64], "region": "mechanism" }
 AP-CHECK { "id": 20061, "name": "E2M3 - Dragon Claw", "pos": ["E2M3",0,672,-64], "region": "mechanism" }
-AP-WEAPONS { "weapons": { "Jade Wand": 4, "Gauntlets of the Necromancer": 1, "Dragon Claw": 3, "Ethereal Crossbow": 6 } }
 AP-CHECK { "id": 93104, "name": "E2M3 - Claw Orbs [128,672]", "pos": ["E2M3",128,672,-64], "region": "mechanism" }
 AP-CHECK { "id": 93102, "name": "E2M3 - Claw Orbs [512,288]", "pos": ["E2M3",512,288,0], "region": "mechanism" }
 AP-CHECK { "id": 93163, "name": "E2M3 - Secret 386", "pos": ["E2M3","secret","sector",386], "region": "mechanism" }
 AP-CHECK { "id": 93148, "name": "E2M3 - Claw Orbs [-368,64]", "pos": ["E2M3",-368,64,0], "region": "mechanism" }
 AP-CHECK { "id": 20098, "name": "E2M3 - Enchanted Shield [Center]", "pos": ["E2M3",-576,64,0], "region": "mechanism" }
 AP-CHECK { "id": 19716, "name": "E2M1 - Green Key", "pos": ["E2M1",0,1088,248], "region": "green-key" }
-AP-VISITED { "visited": [ "E2M1", "E2M4", "E2M3", "E2M2", "E1M1", "E2M0", "E3M1" ] }
-AP-XOFF {}
