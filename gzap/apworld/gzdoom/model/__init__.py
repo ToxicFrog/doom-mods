@@ -44,7 +44,6 @@ def logic_files(package):
         return sorted([
             file for file in resources.files(package).joinpath("logic").iterdir()
         ], key=lambda f: f.name)
-        # return sorted(files, key=lambda f: f.name)
     else:
         return sorted([
             file for file in (Path(Utils.user_path()) / "gzdoom" / "logic").iterdir()
@@ -66,7 +65,6 @@ def tuning_files(package, wad):
     if package:
         return sorted([
             p for p in resources.files(package).joinpath("tuning").iterdir()
-            if p.is_file() and (p.name == wad or p.name.startswith(f"{wad}."))
         ], key=lambda f: f.name)
     else:
         return sorted([
@@ -75,10 +73,11 @@ def tuning_files(package, wad):
         ])
     # return sorted(internal, key=lambda f: f.name) + sorted(external)
 
-def init_wad(logic, package, logic_file):
-    wadname = logic_file.name.split(".")[0]
+def init_wad(logic, package, logic_files):
+    wadname = logic_files[0].name.split(".")[0]
     with WadLogicLoader(logic, wadname, package) as wadloader:
-        wadloader.load_logic(logic_file)
+        for file in logic_files:
+            wadloader.load_logic(file)
 
 def print_header(package):
     if "GZAP_DEBUG" not in os.environ:
@@ -98,9 +97,7 @@ def init_wads(package):
 
     files = logic_files(package)
     assert len(files) > 0, f'Package {package} contains no logic files'
-    assert len(files) == 1, f'Package {package} contains multiple logic files: {files}'
-    for logic_file in files:
-        init_wad(logic, package, logic_file)
+    init_wad(logic, package, files)
 
     if 'GZAP_LOAD_ALL_TUNING' in os.environ:
         get_tuned_wad(logic.wad)
