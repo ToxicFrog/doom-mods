@@ -55,12 +55,9 @@ class LevelsPerWeapon(Range):
 
 class StartingLevels(OptionSet):
     """
-    Set of levels to begin with access to. If you select levels that aren't in the
-    WAD you choose (e.g. E1M1 when you're generating for Doom 2) they will be safely
-    ignored.
-
-    You will start with the access codes for these levels; if start_with_keys is
-    enabled, you will also start with all keys for them.
+    Levels you can access at the start of the game. You will spawn with access
+    codes for these levels; if start_with_keys is enabled, you will also spawn
+    with all keys for them.
 
     If you are playing a multiworld game and want to start with nothing at all
     (i.e. Doom is not playable until another world unlocks it), set this to [].
@@ -68,7 +65,7 @@ class StartingLevels(OptionSet):
     This option supports globbing expressions.
     """
     display_name = "Starting levels"
-    default = ["E?M1", "MAP01"]
+    default = ["E?M1", "MAP01", "E?A1"]
 
 class StartWithKeys(Toggle):
     """
@@ -86,25 +83,15 @@ class StartWithKeys(Toggle):
 
 class IncludedLevels(OptionSet):
     """
-    Set of levels to include in randomization.
-
-    It is safe to select levels not in the target WAD; they will be ignored. Selecting
-    no levels is equivalent to selecting all levels.
-
-    The default win condition is to complete all levels, so adding more levels will
-    result in a longer game. If you want to play lots of levels but only beat some
-    of them, you should also adjust the `win_conditions` option.
-
-    This option supports globbing expressions.
+    Levels to randomize.
+    This is overridden by wad-specific apworlds to list all the levels in the wad.
     """
     display_name = "Included levels"
     default = []
 
 class ExcludedLevels(OptionSet):
     """
-    Set of levels to exclude from randomization.
-
-    This takes precedence over included_levels, if a map appears in both.
+    Levels not to randomize, even if they are listed in included_levels.
 
     This option supports globbing expressions.
     """
@@ -122,8 +109,8 @@ class SpawnFilter(NamedRange):
 
     If you are playing with a mod that changes this, make sure that you choose the
     filter appropriate to the difficulty level you are selecting. Many gameplay mods
-    have custom difficulty settings that are not just simple reskins of the Doom
-    ones.
+    have custom difficulty settings, and it's not always obvious which ones correspond
+    to easy/medium/hard.
     """
     display_name = "Spawn filter"
     range_start = 1

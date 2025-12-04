@@ -120,7 +120,7 @@ class GZDoomWorld(World):
     wad_logic: DoomWad
     location_count: int = 0
 
-    # Used by the caller
+    # Used by AP itself
     # These are placeholders; subclasses in the wad apworlds will populate
     # these when loaded.
     item_name_to_id: Dict[str, int] = {}
