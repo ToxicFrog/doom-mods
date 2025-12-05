@@ -53,7 +53,7 @@ class ::PlayEventHandler : StaticEventHandler {
   }
 
   bool IsSingleplayer() const {
-    return self.singleplayer && !apclient.IsConnected();
+    return self.singleplayer;
   }
 
   bool IsPretuning() const {
@@ -304,6 +304,9 @@ class ::PlayEventHandler : StaticEventHandler {
       string message = cmd.ReadString();
       console.printfEX(PRINT_TEAMCHAT, "%s", message);
     } else if (cmd.command == "ap-ipc:item") {
+      // In singleplayer, if the client is connected, don't accept any items
+      // from it.
+      if (self.IsSingleplayer()) return;
       int apid = cmd.ReadInt();
       int count = cmd.ReadInt();
       apstate.GrantItem(apid, count);
@@ -311,6 +314,7 @@ class ::PlayEventHandler : StaticEventHandler {
       int apid = cmd.ReadInt();
       apstate.MarkLocationChecked(apid);
     } else if (cmd.command == "ap-ipc:hint") {
+      if (self.IsSingleplayer()) return;
       string mapname = cmd.ReadString();
       string item = cmd.ReadString();
       string player = cmd.ReadString();
