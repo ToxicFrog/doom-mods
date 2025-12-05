@@ -30,6 +30,7 @@ class ::IPC {
   }
 
   static void ReportVisited(Array<string> visited) {
+    return;
     if (visited.Size() == 0) {
       Send("VISITED", "{ \"visited\": [] }");
     } else {
@@ -50,6 +51,7 @@ class ::IPC {
   }
 
   static void ReportWeapons(Map<string, int> weapons) {
+    return;
     Array<string> buf;
     MapIterator<string, int> iter;
     iter.Init(weapons);
