@@ -1,4 +1,4 @@
-# Unreleased
+# 0.7.0
 
 This is a major release. The focus of this release is on adding features needed
 for hub-based games like Hexen, Faithless, Abysm, etc. This has required many
@@ -22,9 +22,7 @@ to enumerate them all I will just give update instructions:
 - Start up AP and `Generate Template Options`.
 - You now have a separate YAML for each WAD, and can configure and play normally.
 
-⚠️ This update also changes how tuning loading works. If you are not a logic
-developer this probably does not affect you. If you are, see [new-wads.md](doc/new-wads.md#loading-files-without-adding-them-to-the-apworld)
-for details.
+If you are a logic developer, see also the updated [new-wads.md](doc/new-wads.md#loading-files-without-adding-them-to-the-apworld).
 
 - New WAD support:
   - Logic and tuning for `Eviternity` and `Eviternity II`, by Akos.
