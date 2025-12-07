@@ -62,16 +62,20 @@ def tuning_files(package, wad):
     used by the client, this means later tuning files will sort after (and
     override) earlier ones.
     """
+
     if package:
-        return sorted([
-            p for p in resources.files(package).joinpath("tuning").iterdir()
-        ], key=lambda f: f.name)
+        tuning_dir = resources.files(package).joinpath("tuning")
     else:
-        return sorted([
-            p for p in (Path(Utils.user_path()) / "gzdoom" / "tuning").iterdir()
-            if p.is_file() and (p.name == wad or p.name.startswith(f"{wad}."))
-        ])
-    # return sorted(internal, key=lambda f: f.name) + sorted(external)
+        tuning_dir = Path(Utils.user_path()) / "gzdoom" / "tuning"
+
+    if not tuning_dir.is_dir():
+        # No tuning data for this wad!
+        return []
+
+    return sorted([
+        p for p in tuning_dir.iterdir()
+        if package or (p.is_file() and (p.name == wad or p.name.startswith(f"{wad}.")))
+    ], key=lambda f: f.name)
 
 def init_wad(logic, package, logic_files):
     wadname = logic_files[0].name.split(".")[0]
