@@ -51,7 +51,7 @@ LauncherComponents.components.append(
 )
 
 class GZDoomLocation(Location):
-    game: str = "gzDoom"
+    game: str = "GZDoom"
     doom_location: DoomLocation
 
     def __init__(self, world, loc: DoomLocation, region: Region) -> None:
@@ -77,13 +77,13 @@ class GZDoomLocation(Location):
         return '|'.join(flags)
 
 class GZDoomItem(Item):
-    game: str = "gzDoom"
+    game: str = "GZDoom"
 
     def __init__(self, item: DoomItem, player: int) -> None:
         super().__init__(name=item.name(), classification=item.classification(), code=item.id, player=player)
 
 class GZDoomUTGlitchFlag(Item):
-    game: str = "gzDoom"
+    game: str = "GZDoom"
     FLAG_NAME = "[UT Glitch Logic Flag]"
 
     def __init__(self, player) -> None:
@@ -108,7 +108,7 @@ class GZDoomWorld(World):
 
     This randomizer comes with an automated WAD scanner that makes it easy to add support for new WADs.
     """
-    game = "gzDoom"
+    game = "GZDoom"
     options_dataclass = GZDoomOptions
     options: GZDoomOptions
     topology_present = True

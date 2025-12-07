@@ -193,7 +193,7 @@ class IPC:
     assert size == self.ipc_size, "IPC size mismatch between gzdoom and AP -- please exit both, start the client, then gzdoom"
     self.nick = nick
     self.flush()
-    await self.ctx.on_xon(slot, seed, server)
+    await self.ctx.on_xon(wad, slot, seed, server)
 
   async def recv_ack(self, id: int) -> None:
     """

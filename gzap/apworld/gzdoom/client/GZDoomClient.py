@@ -23,7 +23,7 @@ _IPC_SIZE = 4096
 _GZAP_DEBUG = "GZAP_DEBUG" in os.environ
 
 class GZDoomContext(SuperContext):
-    game = "gzDoom"
+    game = "GZDoom"
     items_handling = 0b111  # fully remote
     want_slot_data = True
     slot_name = None
@@ -84,6 +84,12 @@ class GZDoomContext(SuperContext):
             self.auth = self.username
             print("Got slot name:", self.username)
 
+    async def connect(self, server):
+        if self.game == "GZDoom":
+            logger.error("No WAD loaded. Start the game and let it connect first.")
+            return
+        await super().connect(server)
+
     async def server_auth(self, password_requested=False):
         """Called automatically when the server connection is established.
 
@@ -98,7 +104,8 @@ class GZDoomContext(SuperContext):
         await self.get_username()
         await self.send_connect()
 
-    async def on_xon(self, slot: str, seed: str, server: str):
+    async def on_xon(self, wad: str, slot: str, seed: str, server: str):
+        self.game = f'GZDoom ({wad})'
         self.slot_name = slot
         self.seed_name = seed
         self.last_items = {}  # force a re-send of all items
