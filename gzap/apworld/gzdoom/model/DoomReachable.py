@@ -36,7 +36,8 @@ class DoomReachable:
         """
         if unreachable is not None:
             self.unreachable = unreachable
-        self.tuning.append(frozenset(k if '/' in k else 'key/'+k for k in keys))
+        if keys is not None:
+            self.tuning.append(frozenset(k if '/' in k else 'key/'+k for k in keys))
 
     def finalize_tuning(self, default):
         """
@@ -105,5 +106,3 @@ class DoomReachable:
             return False
 
         return rule
-
-
