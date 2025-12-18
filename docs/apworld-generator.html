@@ -63,7 +63,8 @@
         zip.file(getApworldName() + "/__init__.py", mkInit());
 
         let futures = [];
-        for (file of files.files) {
+        for (f of files.files) {
+          let file = f; // Introduce a new binding so each closure gets a different one
           if (file.name.endsWith(".logic")) {
             futures.push(file.bytes().then((bytes) => zip.file(getApworldName() + "/logic/" + file.name, bytes)));
           } else {

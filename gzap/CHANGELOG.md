@@ -8,6 +8,8 @@
     game errors when playing multiworld.
   - The maps from Heretic E6, the deathmatch maps from Shadow of the Serpent
     Riders, have been dropped from the logic.
+  - Typo in the GZAPRC file for Adventures of Square.
+  - apworld packaging page would misbehave when passed multiple tuning files.
 
 # 0.7.0
 
