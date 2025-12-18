@@ -113,7 +113,7 @@ class IPC:
               tune.close()
             tune = open(self._tuning_file_path(ipc_dir, payload["wad"]), "a", encoding="utf-8")
 
-          if evt in {"AP-CHECK", "AP-KEY"} and tune:
+          if evt in {"AP-CHECK", "AP-KEY", "AP-REGION", "AP-NOTE"} and tune:
             tune.write(line+"\n")
             tune.flush()
 
