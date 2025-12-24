@@ -79,30 +79,31 @@ These are WADs available throught Night Dive's
 [Featured Mods List](https://doomwiki.org/wiki/Featured_mods) in the
 `Doom + Doom II` launcher.
 
-| WAD                  | Maps | Mon/Lvl | Checks | Status  | Notes |
-| -------------------- | ---- | ------- | ------ | ------- | ----- |
-| Anomaly Report       |      |         |        | missing |       |
-| [Arrival]            |   11 |     250 |    309 | basic   |       |
-| [Base Ganymede]      |   27 |     149 |    344 | basic   |       |
-| BTSX Episode 1       |      |         |        | missing |       |
-| BTSX Episode 2       |      |         |        | missing |       |
-| [Deathless]          |   36 |      65 |    432 | basic   |       |
-| Doom Zero            |      |         |        | missing |       |
-| Double Impact        |      |         |        | missing |       |
-| Earthless: Prelude   |      |         |        | missing |       |
-| Going Down           |      |         |        | missing |       |
-| [Going Down Turbo]   |   32 |     163 |    486 | partial |       |
-| Harmony              |      |         |        | missing |       |
-| No End In Sight      |      |         |        | missing |       |
-| REKKR                |      |         |        | missing |       |
-| Revolution!          |      |         |        | missing |       |
-| [Scientist 2023]     |   20 |     118 |    365 | basic   |       |
-| Syringe              |      |         |        | missing |       |
-| Tetanus              |      |         |        | missing |       |
-| Trooper's Playground |      |         |        | missing |       |
+| WAD                  | Maps | Mon/Lvl | Checks | Status   | Notes |
+| -------------------- | ---- | ------- | ------ | -------- | ----- |
+| Anomaly Report       |      |         |        | missing  |       |
+| [Arrival]            |   11 |     250 |    309 | basic    |       |
+| [Base Ganymede]      |   27 |     149 |    344 | basic    |       |
+| [BTSX Episode 1]     |   23 |     254 |    554 | complete |       |
+| BTSX Episode 2       |      |         |        | missing  |       |
+| [Deathless]          |   36 |      65 |    432 | basic    |       |
+| Doom Zero            |      |         |        | missing  |       |
+| Double Impact        |      |         |        | missing  |       |
+| Earthless: Prelude   |      |         |        | missing  |       |
+| Going Down           |      |         |        | missing  |       |
+| [Going Down Turbo]   |   32 |     163 |    486 | partial  |       |
+| Harmony              |      |         |        | missing  |       |
+| No End In Sight      |      |         |        | missing  |       |
+| REKKR                |      |         |        | missing  |       |
+| Revolution!          |      |         |        | missing  |       |
+| [Scientist 2023]     |   20 |     118 |    365 | basic    |       |
+| Syringe              |      |         |        | missing  |       |
+| Tetanus              |      |         |        | missing  |       |
+| Trooper's Playground |      |         |        | missing  |       |
 
 [Arrival]: ../../release/apworlds/zdoom_arrival.apworld
 [Base Ganymede]: ../../release/apworlds/zdoom_base_ganymede.apworld
+[BTSX Episode 1]: ../../release/apworlds/zdoom_btsx_e1.apworld
 [Deathless]: ../../release/apworlds/zdoom_deathless.apworld
 [Going Down Turbo]: ../../release/apworlds/zdoom_going_down_turbo.apworld
 [Scientist 2023]: ../../release/apworlds/zdoom_scientist.apworld
