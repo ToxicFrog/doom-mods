@@ -10,17 +10,18 @@ To release a new version:
 - make again to bake the release version number into the pk3
 - cut the release on github
 
-### next release (0.7)
-
-- apworld splitting rework
-  - common code in gzdoom.apworld, but not logic
-  - client in gzdoom.apworld
-  - every wad its own apworld with its own logic/tuning and its own yaml
-
 ### scanner
 
 ### generator
 
+- better handling for vanilla/local/pretuning settings
+  - need a way to say "this item should be written into the pk3 as if it were randomized, and still used for tuning, but not reported to the server"
+- support `key/*` to mean "any key"
+- test with uzdoom and migrate
+- region hierarchy refactor
+  - a wad contains maps, which contain regions, which contain locations
+  - maps/regions/locations are all DoomReachable and form a tree
+  - in particular this means you can ask any of them "which reachables do you contain", recursively
 - option to treat bosses as checks -- also needs scanner changes, highly vulnerable
   to enemy-replacement mods
   - could try placing the check in the boss's inventory, and on the ground where
@@ -28,13 +29,6 @@ To release a new version:
 - alternate win conditions:
   - find N victory tokens
   - find N secrets
-- region hierarchy refactor
-  - a wad contains maps, which contain regions, which contain locations
-  - maps/regions/locations are all DoomReachable and form a tree
-  - in particular this means you can ask any of them "which reachables do you contain", recursively
-- better handling for vanilla/local/pretuning settings
-  - need a way to say "this item should be written into the pk3 as if it were randomized, and still used for tuning, but not reported to the server"
-- support `key/*` to mean "any key"
 
 ### ingame
 

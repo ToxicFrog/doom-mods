@@ -4,6 +4,9 @@ from dataclasses import dataclass
 from worlds.AutoWorld import World
 from Options import PerGameCommonOptions, Toggle, DeathLink, StartInventoryPool, OptionSet, NamedRange, Range, OptionDict, OptionList, OptionError
 
+if 'worlds.gzdoom' not in sys.modules:
+    raise RuntimeError(f'Unable to load supporting libraries -- make sure that `gzdoom.apworld` is installed!')
+
 gzdoom = sys.modules['worlds.gzdoom']
 model = sys.modules['worlds.gzdoom.model']
 options = sys.modules['worlds.gzdoom.Options']
