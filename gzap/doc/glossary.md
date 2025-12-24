@@ -60,6 +60,8 @@ current list of categories used by the wad scanner is:
 
 - `key`: keycards, skulls, etc; specific to a single level or cluster. Includes
   "key-like quest items" like gears, the stone idol, etc.
+- `maprevealer`: computer area maps and similar. These locations are added to
+  the pool but the items themselves are not, since AP handles maps specially.
 - `token`: single-use keys that must be expended in exchange for something.
 - `weapon`: any sort of weapon
 - `powerup`: time-limited or per-level powerups (e.g. radsuits, berserk)
