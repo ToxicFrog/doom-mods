@@ -50,7 +50,15 @@ def weapon_prereq(world, wad, map, typename, strictness = 'need'):
     return lambda state: True
 
 def key_prereq(world, wad, map, typename):
-  return fqin_prereq(world, wad, map, map.key_by_type(typename).fqin())
+  if typename == '*':
+    # match any key in cluster
+    prereqs = [
+      fqin_prereq(world, wad, map, key.fqin())
+      for key in sorted(map.keyset)
+    ]
+    return lambda state: sum(p(state) for p in prereqs) > 0
+  else:
+    return fqin_prereq(world, wad, map, map.key_by_type(typename).fqin())
 
 def region_prereq(world, wad, map, mapname, subregion = None):
   # In the above, 'map' is the map this prereq is evaluated in the context of,

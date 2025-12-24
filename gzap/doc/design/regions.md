@@ -77,6 +77,9 @@ currently supported, although I could see it being useful for count, e.g. for
 stacking key items like the souls in Golden Souls. The key scope is implicitly
 the scope the region belongs to.
 
+As a special case, `key/*` means that any key valid on that level can be used
+to access that region.
+
 `weapon`. The `name` is the weapon typename, e.g. `weapon/Crossbow2`. The
 qualifier is required and can be either `want`, for a weapon considered in
 carryover weapon logic according to the yaml, or `need`, for a weapon which is
