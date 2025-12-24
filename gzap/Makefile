@@ -18,7 +18,9 @@ core_apworld: version ${TOPDIR}/release/gzdoom.apworld
 addon_apworlds: $(patsubst wads/%/,${APWORLDS}/zdoom_%.apworld,$(wildcard wads/*/))
 ${PK3}: sprites/icons
 
-version:
+version: apworld/gzdoom/VERSION
+
+apworld/gzdoom/VERSION: ${TOPDIR}/.git/HEAD
 	${TOPDIR}/tools/version-stamp "${TAGS}" apworld/gzdoom/VERSION
 
 ca.ancilla.gzap/PlayEventHandler.zsc: apworld/gzdoom/VERSION
@@ -32,22 +34,22 @@ ${TOPDIR}/release/gzdoom.apworld: apworld/gzdoom/* apworld/gzdoom/*/*
 	cd apworld && zip -qr gzdoom.apworld gzdoom
 	mv apworld/gzdoom.apworld $@
 
-${APWORLDS}/zdoom_%.apworld: apworld/zdoom_%/__init__.py apworld/zdoom_%/archipelago.json
+${APWORLDS}/zdoom_%.apworld: apworld/zdoom_%/./ apworld/zdoom_%/archipelago.json apworld/zdoom_%/__init__.py
 	cd apworld && zip -qr9 zdoom_$*.apworld zdoom_$*/
 	mv apworld/zdoom_$*.apworld $@
 
-apworld/zdoom_%/archipelago.json: wads/archipelago.tmpl version apworld/zdoom_%
-	sed -E "s,__WAD__,$*," wads/archipelago.tmpl > apworld/zdoom_$*/archipelago.json
-
-apworld/zdoom_%/__init__.py: wads/__init__.tmpl apworld/zdoom_%
-	sed -E "s,__WAD__,$*,; s,__VERSION__,`cat apworld/gzdoom/VERSION`," wads/__init__.tmpl > apworld/zdoom_$*/__init__.py
-
-apworld/zdoom_%: wads/$* wads/$*/*
+apworld/zdoom_%/./: wads/%/*
 	rm -rf apworld/zdoom_$*/
 	cp -a wads/$* apworld/zdoom_$*
 	mkdir -p apworld/zdoom_$*/logic apworld/zdoom_$*/tuning
 	mv apworld/zdoom_$*/*.logic apworld/zdoom_$*/logic/ || true
 	mv apworld/zdoom_$*/*.tuning apworld/zdoom_$*/tuning/ || true
+
+apworld/zdoom_%/archipelago.json: wads/archipelago.tmpl version apworld/zdoom_%/./
+	sed -E "s,__WAD__,$*," wads/archipelago.tmpl > apworld/zdoom_$*/archipelago.json
+
+apworld/zdoom_%/__init__.py: wads/__init__.tmpl apworld/zdoom_%/./
+	sed -E "s,__WAD__,$*,; s,__VERSION__,`cat apworld/gzdoom/VERSION`," wads/__init__.tmpl > apworld/zdoom_$*/__init__.py
 
 install: core_apworld addon_apworlds
 	cp -a ${TOPDIR}/release/gzdoom.apworld ~/.local/share/Archipelago/worlds
