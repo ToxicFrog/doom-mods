@@ -10,6 +10,9 @@
     Riders, have been dropped from the logic.
   - Typo in the GZAPRC file for Adventures of Square.
   - apworld packaging page would misbehave when passed multiple tuning files.
+  - More readable errors reported when the main apworld is missing.
+  - The generated pk3 should have the correct manifest and thus be downloadable
+    from the website as a patch file again. (0.7.0 broke this.)
 
 # 0.7.0
 
