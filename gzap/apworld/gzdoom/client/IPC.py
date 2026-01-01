@@ -113,7 +113,7 @@ class IPC:
               tune.close()
             tune = open(self._tuning_file_path(ipc_dir, payload["wad"]), "a", encoding="utf-8")
 
-          if evt in {"AP-CHECK", "AP-KEY"} and tune:
+          if evt in {"AP-CHECK", "AP-KEY", "AP-REGION", "AP-NOTE"} and tune:
             tune.write(line+"\n")
             tune.flush()
 
@@ -193,7 +193,7 @@ class IPC:
     assert size == self.ipc_size, "IPC size mismatch between gzdoom and AP -- please exit both, start the client, then gzdoom"
     self.nick = nick
     self.flush()
-    await self.ctx.on_xon(slot, seed, server)
+    await self.ctx.on_xon(wad, slot, seed, server)
 
   async def recv_ack(self, id: int) -> None:
     """

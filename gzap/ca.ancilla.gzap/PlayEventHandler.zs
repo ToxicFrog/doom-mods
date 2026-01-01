@@ -53,7 +53,7 @@ class ::PlayEventHandler : StaticEventHandler {
   }
 
   bool IsSingleplayer() const {
-    return self.singleplayer && !apclient.IsConnected();
+    return self.singleplayer;
   }
 
   bool IsPretuning() const {
@@ -266,7 +266,7 @@ class ::PlayEventHandler : StaticEventHandler {
         return;
       }
       let region = apstate.GetRegion(info.MapName);
-      if (region.hub && !region.visited) {
+      if (region && region.hub && !region.visited) {
         // In classical maps, hub is 0 and thus this doesn't fire.
         // In hub levels, the initially scanned maps(s) will have rank 0 and
         // everything else will have rank 1+, and maps with rank 0 will be flagged
@@ -304,6 +304,9 @@ class ::PlayEventHandler : StaticEventHandler {
       string message = cmd.ReadString();
       console.printfEX(PRINT_TEAMCHAT, "%s", message);
     } else if (cmd.command == "ap-ipc:item") {
+      // In singleplayer, if the client is connected, don't accept any items
+      // from it.
+      if (self.IsSingleplayer()) return;
       int apid = cmd.ReadInt();
       int count = cmd.ReadInt();
       apstate.GrantItem(apid, count);
@@ -311,6 +314,7 @@ class ::PlayEventHandler : StaticEventHandler {
       int apid = cmd.ReadInt();
       apstate.MarkLocationChecked(apid);
     } else if (cmd.command == "ap-ipc:hint") {
+      if (self.IsSingleplayer()) return;
       string mapname = cmd.ReadString();
       string item = cmd.ReadString();
       string player = cmd.ReadString();

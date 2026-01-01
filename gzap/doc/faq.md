@@ -129,8 +129,9 @@ which lets you bind hotkeys for them. The following console commands will bind
 
 ### Does this work with UZDoom?
 
-[Not yet.](https://github.com/UZDoom/UZDoom/issues/378) The eventual goal is to
-support both uzdoom and gzdoom as long as is practical, however.
+It should, yes! I plan to move to UZDoom as my main testing platform
+[once it is in nixpkgs](https://search.nixos.org/packages?channel=unstable&query=uzdoom),
+but it should be compatible with both UZ and GZ.
 
 ### Can I play this singleplayer?
 

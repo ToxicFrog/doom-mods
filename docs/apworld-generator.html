@@ -1,0 +1,156 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>GZDoom APworld packager</title>
+    <script src="jszip.min.js"></script>
+    <script>
+      var generate_enabled = false;
+      function updateInfo() {
+        let wadname = document.querySelector("#name");
+        let button = document.querySelector("#generate");
+        let files = document.querySelector("#files");
+        let filelist = document.querySelector("#filelist");
+
+        var has_logic = false;
+        filelist.innerHTML = "";
+        for (file of files.files) {
+          has_logic = has_logic || file.name.endsWith(".logic");
+          filelist.innerHTML += "- " + file.name + "\n";
+        }
+
+        generate_enabled = false;
+        if (wadname.value === "") {
+          button.value = "⛔ No WAD name entered";
+        } else if (files.files.length <= 0) {
+          button.value = "⛔ No logic/tuning files selected";
+        } else if (!has_logic) {
+          button.value = "⛔ No .logic files selected";
+        } else {
+          button.value = "✓ Generate " + getApworldFileName();
+          generate_enabled = true;
+        }
+      }
+
+      function getWadTitle() {
+        return document.querySelector("#name").value;
+      }
+      function getWadSymbol() {
+        return document.querySelector("#name").value.toLowerCase().replaceAll(" ", "_");
+      }
+      function getApworldName() {
+        return "zdoom_" + getWadSymbol();
+      }
+      function getApworldFileName() {
+        return getApworldName() + ".apworld";
+      }
+
+      function mkManifest() {
+        return document.querySelector("#manifest_template").innerText.replaceAll("__WAD__", getWadSymbol());
+      }
+
+      function mkInit() {
+        return document.querySelector("#init_template").innerText.replaceAll("__WAD__", getWadSymbol());
+      }
+
+      function generate() {
+        if (!generate_enabled) return;
+
+        let files = document.querySelector("#files");
+        let zip = JSZip();
+
+        zip.file(getApworldName() + "/archipelago.json", mkManifest());
+        zip.file(getApworldName() + "/__init__.py", mkInit());
+
+        let futures = [];
+        for (f of files.files) {
+          let file = f; // Introduce a new binding so each closure gets a different one
+          if (file.name.endsWith(".logic")) {
+            futures.push(file.bytes().then((bytes) => zip.file(getApworldName() + "/logic/" + file.name, bytes)));
+          } else {
+            futures.push(file.bytes().then((bytes) => zip.file(getApworldName() + "/tuning/" + file.name, bytes)));
+          }
+        }
+        Promise.allSettled(futures)
+          .then(() => zip.generateAsync({
+            type: "blob", platform: "UNIX", compression: "DEFLATE"
+          }))
+          .then((blob) => {
+            let url = URL.createObjectURL(blob);
+            let a = document.querySelector("#download");
+            a.href = url;
+            a.download = getApworldFileName();
+            console.log("Download ready:", blob);
+            window.setTimeout(() => URL.revokeObjectURL(url), 30*1000);
+            a.click();
+          });
+      }
+    </script>
+  </head>
+  <body>
+    <label for="name">WAD name:</label>
+    <input type="text" id="name" name="name" required oninput="updateInfo();"/>
+    <br/>
+    <label for="files">Logic/tuning files:</label>
+    <input type="file" id="files" name="files" required multiple accept=".logic,.tuning" oninput="updateInfo();"/>
+    <pre id="filelist"></pre>
+    <br/>
+    <input type="button" id="generate" value="⛔ No WAD name entered" onclick="generate();"/>
+
+    <div style="display:none">
+      <a id="download"></a>
+      <pre id="manifest_template">
+{
+    "game": "GZDoom (__WAD__)",
+    "version": 7,
+    "compatible_version":7,
+    "authors": ["ToxicFrog's robot army"]
+}
+      </pre>
+      <pre id="init_template">
+import sys
+from dataclasses import dataclass
+
+from worlds.AutoWorld import World
+from Options import PerGameCommonOptions, Toggle, DeathLink, StartInventoryPool, OptionSet, NamedRange, Range, OptionDict, OptionList, OptionError
+
+gzdoom = sys.modules['worlds.gzdoom']
+model = sys.modules['worlds.gzdoom.model']
+options = sys.modules['worlds.gzdoom.Options']
+
+included_logic = model.init_wads(__package__)
+
+
+class IncludedLevels___WAD__(options.IncludedLevels):
+    """
+    Levels to include in randomization. By default this lists all levels available
+    in the WAD. Removing levels from this will result in a shorter game, as will
+    changing the win_conditions so that you don't need to finish all of them.
+
+    This option supports globbing expressions.
+    """
+    default = sorted(included_logic.wad.maps.keys())
+
+
+@dataclass
+class GZDoomOptions___WAD__(options.GZDoomOptions):
+    included_levels: IncludedLevels___WAD__
+
+
+class GZDoomWorld___WAD__(gzdoom.GZDoomWorld):
+    game = f"GZDoom ({included_logic.wad.name})"
+    mod_version = "0.0.0-web"
+    hidden = False
+    wad_logic = included_logic.wad
+    options_dataclass = GZDoomOptions___WAD__
+    options: GZDoomOptions___WAD__
+
+    # Used by AP itself
+    item_name_to_id = model.unified_item_map(included_logic)
+    item_name_groups = model.unified_item_groups(included_logic)
+    location_name_to_id = model.unified_location_map(included_logic)
+    location_name_groups = model.unified_location_groups(included_logic)
+      </pre>
+    </div>
+  </body>
+</html>

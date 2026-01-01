@@ -9,7 +9,7 @@ scanner {
   levels E1M1 E2M1 E3M1;
   recurse false;
   clusters true;
-  logic_flags use_hub_logic;
+  logic_flags use_hub_logic hub_logic_exits=E1M8,E2M8,E3M8;
 }
 
 # Custom healing items.

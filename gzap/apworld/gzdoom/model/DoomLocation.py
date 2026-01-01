@@ -57,7 +57,7 @@ class DoomLocation(DoomReachable):
         self.pos = to_position(*pos)
 
     def __str__(self) -> str:
-        return f"DoomLocation#{self.id}({self.name()} @ {self.pos} % {self.keys})"
+        return f"DoomLocation#{self.id}({self.name()} @ {self.pos} % {self.prereqs})"
 
     __repr__ = __str__
 
@@ -75,7 +75,11 @@ class DoomLocation(DoomReachable):
         return self.categories & frozenset(args)
 
     def is_default_enabled(self) -> bool:
-        return self.has_category('weapon', 'key', 'ap_flag', 'powerup', 'big', 'sector')
+        if self.has_category('weapon', 'key', 'token', 'ap_flag', 'big'):
+            return True
+        if self.has_category('medium', 'small', 'tool'):
+            return False
+        return True
 
     def record_tuning(self, keys: List[str] = None, region: str = None, unreachable: bool = None):
         if region:
@@ -83,12 +87,10 @@ class DoomLocation(DoomReachable):
             self.region = region
         else:
             if self.region:
-                print(f"Ignoring tuning for location '{self.name()}' that tries to remove it from region {self.loc.map}/{self.region}")
+                print(f"Ignoring tuning for location '{self.name()}' that tries to remove it from region {self.pos.map}/{self.region}")
                 return
 
-        if keys:
-            # print(f'Recording tuning record for {self.name()}: {region} {keys}')
-            super().record_tuning(keys, unreachable)
+        super().record_tuning(keys, unreachable)
 
     def is_tuned(self) -> bool:
         return self.tuning or self.unreachable or self.region

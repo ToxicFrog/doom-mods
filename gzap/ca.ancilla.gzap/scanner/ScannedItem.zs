@@ -75,9 +75,15 @@ class ::ScannedItem : ::ScannedLocation {
       return;
     }
 
+    string tid_str = "";
+    if (self.tid) {
+      tid_str = string.format("\"tid\": %d, ", self.tid);
+    }
+
     ::Scanner.Output("ITEM", string.format(
-      "\"category\": \"%s\", \"typename\": \"%s\", \"tag\": \"%s\", %s%s%s",
-      category, typename, tag, secret_str, OutputSkill(), OutputPosition()));
+      "\"category\": \"%s\", \"typename\": \"%s\", \"tag\": \"%s\", %s%s%s%s",
+      category, typename, tag, secret_str, tid_str,
+      OutputSkill(), OutputPosition()));
 
     if (self.category == "key") {
       OutputKeyInfo();

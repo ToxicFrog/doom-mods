@@ -69,8 +69,8 @@ class DoomWad:
         assert self.use_hub_logic()
         return {
             map
-            for flag in self.flags if flag.startswith('hub_logic_exits:')
-            for map in flag.split(':')[1].split(',')
+            for flag in self.flags if flag.startswith('hub_logic_exits=')
+            for map in flag.split('=')[1].split(',')
         }
 
     def all_locations(self) -> Iterable[DoomLocation]:
@@ -195,6 +195,7 @@ class DoomWad:
         skill = set(json.pop("skill", [1,2,3]))
         secret = json.pop("secret", False)
         name = json.pop("name", None)
+        tid = json.pop("tid", None)
 
         # We add everything in the logic file to the pool. Not everything will
         # necessarily be used in randomization, but we need to do this at load
@@ -326,7 +327,7 @@ class DoomWad:
         which shouldn't be a problem in practice unless people are assembling play
         logs out of order.
         """
-        if unreachable is None and not keys and not region:
+        if unreachable is None and keys is None and region is None:
             return
 
         pos = to_position(*pos)

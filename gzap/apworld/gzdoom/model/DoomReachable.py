@@ -36,7 +36,8 @@ class DoomReachable:
         """
         if unreachable is not None:
             self.unreachable = unreachable
-        self.tuning.append(frozenset(k if '/' in k else 'key/'+k for k in keys))
+        if keys is not None:
+            self.tuning.append(frozenset(k if '/' in k else 'key/'+k for k in keys))
 
     def finalize_tuning(self, default):
         """
@@ -54,7 +55,7 @@ class DoomReachable:
             if not frozenset(ks for ks in keysets if ks < tuning):
                 keysets.add(frozenset(tuning))
 
-        # print(f'Tuning {self.name()}: optimizing {self.tuning} -> {keysets}')
+        # print(f'Tuning {self}: optimizing {self.tuning} -> {keysets}')
         self.prereqs = frozenset(keysets)
 
     def access_rule(self, world, wad, map):
@@ -105,5 +106,3 @@ class DoomReachable:
             return False
 
         return rule
-
-

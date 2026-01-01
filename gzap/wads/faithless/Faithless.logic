@@ -1,0 +1,1019 @@
+AP-SCAN { "flags": ["use_hub_logic", "hub_logic_exits=E1M8,E2M8,E3M8"] }
+
+// Green key can show up in either E1M4 or E1M5 depending on what order the player visits them in.
+AP-KEY { "tag": "Green Key", "typename": "KeyGreen", "scopename": "Faithless", "cluster": 66, "maps": ["E1M1", "E1M2", "E1M3", "E1M4", "E1M5", "E1M6", "E1M7", "E1M8", "E1M9"] }
+// Blue key is normally dropped by the M7 boss.
+AP-KEY { "tag": "Blue Key", "typename": "KeyBlue", "scopename": "Faithless", "cluster": 66, "maps": ["E1M1", "E1M2", "E1M3", "E1M4", "E1M5", "E1M6", "E1M7", "E1M8", "E1M9"] }
+
+AP-MAP { "map": "E1M1", "checksum": "7ecc53cfff9c9be6eeee4fb2726480f0", "rank": 0, "monster_count": 111, "clustername": "Faithless", "info": { "levelnum": 1, "title": "FAITH_E1M1", "is_lookup": true, "sky1": "HSKY2", "sky1speed": "0.003500", "sky2": "HSKY3", "sky2speed": "0.003500", "music": "$MUSIC_FAITH_1", "music_track": "0", "cluster": 66, "flags": ["useplayerstartz"] } }
+AP-ITEM { "category": "key", "typename": "KeyYellow", "tag": "Yellow Key", "pos": ["E1M1",320,480,176] }
+AP-KEY { "tag": "Yellow Key", "typename": "KeyYellow", "scopename": "Faithless", "cluster": 66, "maps": ["E1M1", "E1M2", "E1M3", "E1M4", "E1M5", "E1M6", "E1M7", "E1M8", "E1M9"] }
+AP-ITEM { "category": "weapon", "typename": "Crossbow2", "tag": "Ethereal Crossbow", "secret": true, "pos": ["E1M1",-480,-2464,8] }
+AP-ITEM { "category": "medium-ammo", "typename": "GoldWandHefty2", "tag": "Wand Crystals", "pos": ["E1M1",1208,-1760,64] }
+AP-ITEM { "category": "medium-ammo", "typename": "GoldWandHefty2", "tag": "Wand Crystals", "pos": ["E1M1",1208,-1824,64] }
+AP-ITEM { "category": "powerup-tool", "typename": "ArtiTomeOfPower", "tag": "Tome of Power", "secret": true, "pos": ["E1M1",0,-5472,64] }
+AP-ITEM { "category": "medium-ammo", "typename": "GoldWandMed", "tag": "Wand Crystals", "pos": ["E1M1",0,32,0] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiRegenPotion", "tag": "Elixir Vitae", "pos": ["E1M1",384,-800,0] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M1",160,-1152,16] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M1",-256,-736,0] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M1",-256,-576,0] }
+AP-ITEM { "category": "small-ammo", "typename": "GoldWandAmmo2", "tag": "Wand Crystals", "pos": ["E1M1",912,-608,16] }
+AP-ITEM { "category": "small-ammo", "typename": "GoldWandAmmo2", "tag": "Wand Crystals", "pos": ["E1M1",912,-816,16] }
+AP-ITEM { "category": "small-ammo", "typename": "GoldWandAmmo2", "tag": "Wand Crystals", "pos": ["E1M1",-160,32,0] }
+AP-ITEM { "category": "small-ammo", "typename": "GoldWandAmmo2", "tag": "Wand Crystals", "pos": ["E1M1",160,32,0] }
+AP-ITEM { "category": "small-ammo", "typename": "GoldWandAmmo2", "tag": "Wand Crystals", "pos": ["E1M1",-192,-1632,0] }
+AP-ITEM { "category": "small-ammo", "typename": "GoldWandAmmo2", "tag": "Wand Crystals", "pos": ["E1M1",192,-1632,0] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M1",288,-1920,-80] }
+AP-ITEM { "category": "medium-ammo", "typename": "GoldWandMed", "tag": "Wand Crystals", "pos": ["E1M1",-1152,-1344,-64] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M1",-992,-1152,-64] }
+AP-ITEM { "category": "medium-ammo", "typename": "GoldWandMed", "tag": "Wand Crystals", "pos": ["E1M1",-608,448,64] }
+AP-ITEM { "category": "small-ammo", "typename": "GoldWandAmmo2", "tag": "Wand Crystals", "pos": ["E1M1",672,480,48] }
+AP-ITEM { "category": "small-ammo", "typename": "GoldWandAmmo2", "tag": "Wand Crystals", "pos": ["E1M1",800,480,64] }
+AP-ITEM { "category": "small-ammo", "typename": "GoldWandAmmo2", "tag": "Wand Crystals", "pos": ["E1M1",928,480,64] }
+AP-ITEM { "category": "medium-ammo", "typename": "GoldWandMed", "tag": "Wand Crystals", "pos": ["E1M1",1184,352,56] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M1",1184,800,56] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M1",1504,864,56] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "pos": ["E1M1",-48,-224,0] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "pos": ["E1M1",48,-224,0] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "pos": ["E1M1",-160,-1248,0] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "pos": ["E1M1",160,-1248,0] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M1",-896,-560,8] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M1",-896,-848,8] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M1",864,-384,0] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M1",864,-992,0] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M1",1216,-352,64] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M1",704,-2304,64] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "pos": ["E1M1",896,-1600,72] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "pos": ["E1M1",960,32,88] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "pos": ["E1M1",-1024,-704,128] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M1",-64,368,96] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M1",64,368,96] }
+AP-ITEM { "category": "medium-ammo", "typename": "GoldWandHefty2", "tag": "Wand Crystals", "pos": ["E1M1",1840,-704,72] }
+AP-ITEM { "category": "small-ammo", "typename": "GoldWandAmmo2", "tag": "Wand Crystals", "pos": ["E1M1",1104,-816,48] }
+AP-ITEM { "category": "small-ammo", "typename": "GoldWandAmmo2", "tag": "Wand Crystals", "pos": ["E1M1",1104,-608,48] }
+AP-ITEM { "category": "small-ammo", "typename": "GoldWandAmmo2", "tag": "Wand Crystals", "pos": ["E1M1",-1504,-1344,0] }
+AP-ITEM { "category": "small-ammo", "typename": "GoldWandAmmo2", "tag": "Wand Crystals", "pos": ["E1M1",-1504,-1984,0] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M1",-1344,-2464,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "GoldWandHefty2", "tag": "Wand Crystals", "pos": ["E1M1",-704,-2464,0] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M1",-1024,-2464,0] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M1",-1504,-2304,0] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M1",-1504,-1664,0] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "pos": ["E1M1",-1344,-1344,8] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M1",-1344,-1984,8] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M1",-1024,-2304,8] }
+AP-ITEM { "category": "small-ammo", "typename": "GoldWandAmmo2", "tag": "Wand Crystals", "pos": ["E1M1",960,-2304,64] }
+AP-ITEM { "category": "small-ammo", "typename": "GoldWandAmmo2", "tag": "Wand Crystals", "pos": ["E1M1",1216,-2304,64] }
+AP-ITEM { "category": "powerup-maprevealer", "typename": "SuperMap", "tag": "Map Scroll", "pos": ["E1M1",1376,-1232,64] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "pos": ["E1M1",-1664,-192,72] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M1",-1600,-608,0] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M1",-1600,-800,0] }
+AP-ITEM { "category": "small-ammo", "typename": "GoldWandAmmo2", "tag": "Wand Crystals", "pos": ["E1M1",768,128,64] }
+AP-ITEM { "category": "small-ammo", "typename": "GoldWandAmmo2", "tag": "Wand Crystals", "pos": ["E1M1",768,0,64] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M1",352,-1024,0] }
+AP-ITEM { "category": "small-ammo", "typename": "GoldWandAmmo2", "tag": "Wand Crystals", "pos": ["E1M1",-576,-2080,-80] }
+AP-ITEM { "category": "small-ammo", "typename": "GoldWandAmmo2", "tag": "Wand Crystals", "pos": ["E1M1",-576,-1504,-16] }
+AP-ITEM { "category": "medium-ammo", "typename": "CrossbowHefty2", "tag": "Ethereal Arrows", "pos": ["E1M1",0,-528,0] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M1",-320,560,64] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M1",320,400,96] }
+AP-ITEM { "category": "medium-ammo", "typename": "GoldWandHefty2", "tag": "Wand Crystals", "pos": ["E1M1",0,464,96] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M1",-1408,-128,96] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M1",-1408,-256,96] }
+AP-ITEM { "category": "medium-ammo", "typename": "GoldWandHefty2", "tag": "Wand Crystals", "pos": ["E1M1",-1920,-192,72] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M1",304,-5888,-80] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M1",-320,-3136,-80] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M1",320,-3136,-80] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M1",256,-2592,-80] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M1",-256,-2592,-80] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M1",512,-3968,-136] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M1",-512,-3968,-136] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "pos": ["E1M1",512,-3776,-136] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "pos": ["E1M1",-512,-3776,-136] }
+AP-ITEM { "category": "tool", "typename": "ArtiInvisibility2", "tag": "Shadowsphere", "pos": ["E1M1",0,-4032,-64] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M1",-800,-3840,-136] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M1",-800,-3968,-136] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M1",800,-3968,-136] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M1",800,-3840,-136] }
+AP-ITEM { "category": "big-armor", "typename": "SilverShield", "tag": "Enchanted Shield", "pos": ["E1M1",0,-4864,-64] }
+AP-ITEM { "category": "tool", "typename": "ArtiEgg2", "tag": "Morph Ovum", "pos": ["E1M1",1104,-256,56] }
+AP-ITEM { "category": "small-ammo", "typename": "MaceAmmo", "tag": "Mace Spheres", "pos": ["E1M1",-224,-4544,-64] }
+AP-ITEM { "category": "medium-ammo", "typename": "CrossbowHefty2", "tag": "Ethereal Arrows", "pos": ["E1M1",0,-4672,-64] }
+AP-ITEM { "category": "medium-ammo", "typename": "GoldWandHefty2", "tag": "Wand Crystals", "pos": ["E1M1",0,-4256,-64] }
+AP-ITEM { "category": "medium-ammo", "typename": "PhoenixRodHefty2", "tag": "Flame Orbs", "pos": ["E1M1",0,-4544,-64] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterMed", "tag": "Claw Orbs", "pos": ["E1M1",-304,-5024,-64] }
+AP-ITEM { "category": "medium-ammo", "typename": "SkullRodHefty2", "tag": "Hellstaff Runes", "pos": ["E1M1",304,-5024,-64] }
+AP-ITEM { "category": "medium-ammo", "typename": "MaceHefty", "tag": "Mace Spheres", "secret": true, "pos": ["E1M1",0,-5248,64] }
+AP-ITEM { "category": "small-ammo", "typename": "MaceAmmo", "tag": "Mace Spheres", "pos": ["E1M1",224,-4544,-64] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M1",-304,-5408,-64] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M1",-208,-5408,-64] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M1",464,-5888,-80] }
+AP-ITEM { "category": "powerup-tool", "typename": "ArtiTomeOfPower", "tag": "Tome of Power", "pos": ["E1M1",0,-2048,-64] }
+AP-SECRET { "pos": ["E1M1","secret","tid",9], "name": "Map secret" }
+AP-ITEM { "category": "tool", "typename": "ArtiEgg2", "tag": "Morph Ovum", "secret": true, "pos": ["E1M1",-384,-1792,64] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M1",944,-456,56] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M1",1024,-456,56] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M1",1104,-456,56] }
+AP-ITEM { "category": "medium-ammo", "typename": "CrossbowMed", "tag": "Ethereal Arrows", "secret": true, "pos": ["E1M1",0,-1224,0] }
+AP-ITEM { "category": "small-ammo", "typename": "GoldWandAmmo2", "tag": "Wand Crystals", "pos": ["E1M1",1536,-704,72] }
+AP-ITEM { "category": "small-ammo", "typename": "GoldWandAmmo2", "tag": "Wand Crystals", "pos": ["E1M1",-704,-576,-8] }
+AP-ITEM { "category": "small-ammo", "typename": "GoldWandAmmo2", "tag": "Wand Crystals", "pos": ["E1M1",-704,-864,-8] }
+AP-ITEM { "category": "medium-ammo", "typename": "GoldWandMed", "tag": "Wand Crystals", "pos": ["E1M1",1312,-1952,64] }
+AP-ITEM { "category": "powerup-tool", "typename": "ArtiTomeOfPower", "tag": "Tome of Power", "skill": [2, 3], "pos": ["E1M1",736,-3904,-136] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "skill": [3], "pos": ["E1M1",1456,512,56] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "skill": [3], "pos": ["E1M1",1504,512,56] }
+AP-SECRET { "pos": ["E1M1","secret","sector",205], "name": "Crossbow secret" }
+AP-SECRET { "pos": ["E1M1","secret","sector",228], "name": "Tome secret" }
+AP-SECRET { "pos": ["E1M1","secret","sector",374], "name": "Tavern secret" }
+AP-SECRET { "pos": ["E1M1","secret","sector",438], "name": "Egg secret" }
+AP-SECRET { "pos": ["E1M1","secret","sector",453], "name": "Belltower secret" }
+AP-MAP { "map": "E1M2", "checksum": "5b3dda9c8ad34edb7d20bce58f4979c7", "rank": 1, "monster_count": 113, "clustername": "Faithless", "info": { "levelnum": 2, "title": "FAITH_E1M2", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "$MUSIC_FAITH_2", "music_track": "0", "cluster": 66, "flags": [] } }
+AP-ITEM { "category": "weapon", "typename": "Crossbow2", "tag": "Ethereal Crossbow", "pos": ["E1M2",160,-192,-16] }
+AP-ITEM { "category": "big-armor", "typename": "EnchantedShield", "tag": "Enchanted Shield", "secret": true, "tid": 1, "pos": ["E1M2",896,864,80] }
+AP-ITEM { "category": "medium-ammo", "typename": "GoldWandHefty2", "tag": "Wand Crystals", "pos": ["E1M2",48,-1344,-4] }
+AP-ITEM { "category": "big-armor", "typename": "SilverShield", "tag": "Enchanted Shield", "pos": ["E1M2",-2272,640,104] }
+AP-ITEM { "category": "medium-ammo", "typename": "CrossbowHefty2", "tag": "Ethereal Arrows", "pos": ["E1M2",-992,1120,192] }
+AP-ITEM { "category": "weapon", "typename": "Crossbow2", "tag": "Ethereal Crossbow", "pos": ["E1M2",-768,1504,192] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M2",-816,1648,184] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M2",-816,1360,184] }
+AP-ITEM { "category": "weapon", "typename": "Gauntlets2", "tag": "Gauntlets of the Necromancer", "pos": ["E1M2",-832,960,112] }
+AP-ITEM { "category": "medium-ammo", "typename": "CrossbowHefty2", "tag": "Ethereal Arrows", "pos": ["E1M2",-464,288,112] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "pos": ["E1M2",-720,192,112] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M2",-384,96,128] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "pos": ["E1M2",-720,-1376,0] }
+AP-ITEM { "category": "small-ammo", "typename": "GoldWandAmmo2", "tag": "Wand Crystals", "pos": ["E1M2",-480,912,112] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M2",-672,-608,112] }
+AP-ITEM { "category": "small-ammo", "typename": "GoldWandAmmo2", "tag": "Wand Crystals", "pos": ["E1M2",-1200,80,128] }
+AP-ITEM { "category": "small-ammo", "typename": "GoldWandAmmo2", "tag": "Wand Crystals", "pos": ["E1M2",-1200,-16,128] }
+AP-ITEM { "category": "medium-ammo", "typename": "GoldWandMed", "tag": "Wand Crystals", "pos": ["E1M2",-1456,480,104] }
+AP-ITEM { "category": "small-ammo", "typename": "GoldWandAmmo2", "tag": "Wand Crystals", "pos": ["E1M2",-1328,1248,88] }
+AP-ITEM { "category": "small-ammo", "typename": "GoldWandAmmo2", "tag": "Wand Crystals", "pos": ["E1M2",-1136,1248,88] }
+AP-ITEM { "category": "medium-ammo", "typename": "GoldWandMed", "tag": "Wand Crystals", "pos": ["E1M2",-1008,480,104] }
+AP-ITEM { "category": "medium-ammo", "typename": "GoldWandMed", "tag": "Wand Crystals", "pos": ["E1M2",-2304,1792,104] }
+AP-ITEM { "category": "small-ammo", "typename": "GoldWandAmmo2", "tag": "Wand Crystals", "pos": ["E1M2",-2080,1184,104] }
+AP-ITEM { "category": "small-ammo", "typename": "GoldWandAmmo2", "tag": "Wand Crystals", "pos": ["E1M2",-2240,1184,104] }
+AP-ITEM { "category": "small-ammo", "typename": "GoldWandAmmo2", "tag": "Wand Crystals", "pos": ["E1M2",-1920,1184,104] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M2",-2400,2272,96] }
+AP-ITEM { "category": "small-ammo", "typename": "GoldWandAmmo2", "tag": "Wand Crystals", "pos": ["E1M2",-272,768,112] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M2",-928,944,88] }
+AP-ITEM { "category": "medium-ammo", "typename": "GoldWandHefty2", "tag": "Wand Crystals", "pos": ["E1M2",-672,352,112] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "pos": ["E1M2",-1920,1472,-16] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "pos": ["E1M2",-1920,896,-16] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M2",-288,1568,64] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M2",-832,2144,200] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M2",-1024,2144,200] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M2",-1440,2144,200] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M2",-1632,2144,200] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M2",384,128,0] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M2",384,-480,0] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M2",288,-1056,0] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M2",288,-1632,0] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "pos": ["E1M2",-512,-896,0] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "pos": ["E1M2",-896,-896,96] }
+AP-ITEM { "category": "tool", "typename": "ArtiEgg2", "tag": "Morph Ovum", "pos": ["E1M2",-1040,-1168,96] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "pos": ["E1M2",272,1040,-16] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "pos": ["E1M2",272,1120,-16] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "pos": ["E1M2",-128,1088,112] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "pos": ["E1M2",128,1088,112] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "pos": ["E1M2",-416,1120,128] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M2",-1232,1248,88] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M2",-2304,1696,104] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M2",-2112,640,104] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M2",80,672,-16] }
+AP-ITEM { "category": "powerup-maprevealer", "typename": "SuperMap", "tag": "Map Scroll", "pos": ["E1M2",-736,-1120,96] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "pos": ["E1M2",-624,-1376,0] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M2",160,-1696,128] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M2",-896,-1088,96] }
+AP-ITEM { "category": "medium-ammo", "typename": "CrossbowMed", "tag": "Ethereal Arrows", "pos": ["E1M2",152,-832,0] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M2",256,672,-16] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M2",-128,-736,192] }
+AP-ITEM { "category": "small-ammo", "typename": "GoldWandAmmo2", "tag": "Wand Crystals", "pos": ["E1M2",-416,-704,192] }
+AP-ITEM { "category": "small-ammo", "typename": "GoldWandAmmo2", "tag": "Wand Crystals", "pos": ["E1M2",-352,-768,192] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M2",928,928,-16] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M2",928,800,-16] }
+AP-ITEM { "category": "medium-ammo", "typename": "CrossbowMed", "tag": "Ethereal Arrows", "pos": ["E1M2",0,1248,112] }
+AP-ITEM { "category": "small-ammo", "typename": "GoldWandAmmo2", "tag": "Wand Crystals", "pos": ["E1M2",-272,512,112] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "pos": ["E1M2",1024,544,64] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "pos": ["E1M2",1024,1184,64] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "pos": ["E1M2",1216,864,80] }
+AP-ITEM { "category": "medium-ammo", "typename": "GoldWandHefty2", "tag": "Wand Crystals", "pos": ["E1M2",-560,1696,72] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M2",-288,1952,64] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M2",-416,1408,64] }
+AP-ITEM { "category": "powerup-tool", "typename": "ArtiTomeOfPower", "tag": "Tome of Power", "secret": true, "pos": ["E1M2",288,-608,128] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M2",-256,-1952,112] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M2",-128,-1952,112] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M2",-704,-2080,128] }
+AP-ITEM { "category": "small-ammo", "typename": "GoldWandAmmo2", "tag": "Wand Crystals", "pos": ["E1M2",-352,-2080,112] }
+AP-ITEM { "category": "small-ammo", "typename": "GoldWandAmmo2", "tag": "Wand Crystals", "pos": ["E1M2",-32,-2080,112] }
+AP-ITEM { "category": "small-ammo", "typename": "GoldWandAmmo2", "tag": "Wand Crystals", "pos": ["E1M2",32,-1824,128] }
+AP-ITEM { "category": "medium-ammo", "typename": "CrossbowMed", "tag": "Ethereal Arrows", "pos": ["E1M2",640,1408,48] }
+AP-ITEM { "category": "medium-ammo", "typename": "GoldWandMed", "tag": "Wand Crystals", "pos": ["E1M2",336,1792,48] }
+AP-ITEM { "category": "medium-ammo", "typename": "GoldWandHefty2", "tag": "Wand Crystals", "pos": ["E1M2",336,1568,-16] }
+AP-ITEM { "category": "medium-ammo", "typename": "GoldWandMed", "tag": "Wand Crystals", "pos": ["E1M2",928,416,-16] }
+AP-ITEM { "category": "medium-ammo", "typename": "GoldWandMed", "tag": "Wand Crystals", "pos": ["E1M2",928,1312,-16] }
+AP-ITEM { "category": "medium-ammo", "typename": "CrossbowMed", "tag": "Ethereal Arrows", "pos": ["E1M2",-1232,2080,184] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M2",-2400,2208,96] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M2",-2336,2272,96] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "skill": [2, 3], "pos": ["E1M2",-2400,1568,-24] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "skill": [2, 3], "pos": ["E1M2",-2400,1376,-24] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "skill": [2, 3], "pos": ["E1M2",-2400,1024,-24] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "skill": [2, 3], "pos": ["E1M2",-2400,896,-24] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "skill": [2, 3], "pos": ["E1M2",864,1536,56] }
+AP-SECRET { "pos": ["E1M2","secret","sector",124], "name": "Tome secret" }
+AP-SECRET { "pos": ["E1M2","secret","sector",263], "name": "Shield secret" }
+AP-MAP { "map": "E1M3", "checksum": "d59433737159bcc1e4141f99f57034e0", "rank": 1, "monster_count": 70, "clustername": "Faithless", "info": { "levelnum": 3, "title": "FAITH_E1M3", "is_lookup": true, "sky1": "HSKY1GR", "sky1speed": "0.003500", "sky2": "HSKY1GR", "sky2speed": "0.000000", "music": "$MUSIC_FAITH_3", "music_track": "0", "cluster": 66, "flags": [] } }
+AP-SECRET { "pos": ["E1M3","secret","tid",137], "name": "Portal secret" }
+AP-ITEM { "category": "powerup-tool", "typename": "ArtiInvuln2", "tag": "Ring of Invincibility", "secret": true, "pos": ["E1M3",208,1696,96] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "pos": ["E1M3",-1792,32,-64] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "pos": ["E1M3",-1792,-416,-64] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "pos": ["E1M3",-1856,-544,-64] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "pos": ["E1M3",-1856,-800,-64] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiRegenPotion", "tag": "Elixir Vitae", "pos": ["E1M3",700,-192,40] }
+AP-ITEM { "category": "tool", "typename": "ArtiEmerald", "tag": "Emerald Amulet", "pos": ["E1M3",-688,784,88] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "pos": ["E1M3",-1856,192,-64] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "pos": ["E1M3",-1856,448,-64] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiRegenPotion", "tag": "Elixir Vitae", "pos": ["E1M3",-3504,-192,64] }
+AP-ITEM { "category": "small-ammo", "typename": "PhoenixRodAmmo2", "tag": "Flame Orbs", "pos": ["E1M3",208,1520,96] }
+AP-ITEM { "category": "weapon", "typename": "Crossbow2", "tag": "Ethereal Crossbow", "pos": ["E1M3",160,-192,0] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M3",1232,-32,0] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M3",1232,-352,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "CrossbowMed", "tag": "Ethereal Arrows", "pos": ["E1M3",1344,192,88] }
+AP-ITEM { "category": "medium-ammo", "typename": "GoldWandHefty2", "tag": "Wand Crystals", "pos": ["E1M3",1344,0,88] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M3",1344,-384,88] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M3",1344,-576,88] }
+AP-ITEM { "category": "medium-ammo", "typename": "BlasterHefty50", "tag": "Claw Orbs", "secret": true, "pos": ["E1M3",48,-1664,48] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M3",256,-944,64] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M3",176,-1024,64] }
+AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo2", "tag": "Hellstaff Runes", "pos": ["E1M3",272,544,64] }
+AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo2", "tag": "Hellstaff Runes", "pos": ["E1M3",208,608,64] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "pos": ["E1M3",368,560,-16] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "pos": ["E1M3",352,-928,-16] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M3",656,1040,-16] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M3",640,-1408,-16] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M3",96,720,-16] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M3",96,-1104,-16] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M3",208,1120,-16] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M3",448,-1696,-16] }
+AP-ITEM { "category": "small-ammo", "typename": "GoldWandAmmo2", "tag": "Wand Crystals", "pos": ["E1M3",384,-1584,-16] }
+AP-ITEM { "category": "small-ammo", "typename": "GoldWandAmmo2", "tag": "Wand Crystals", "pos": ["E1M3",416,-1824,-16] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M3",960,1344,80] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M3",960,-1728,80] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M3",-368,-1696,-16] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M3",-304,-1696,-16] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "pos": ["E1M3",-800,-560,-8] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "pos": ["E1M3",-800,-688,-8] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "pos": ["E1M3",696,-272,8] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "pos": ["E1M3",696,-112,8] }
+AP-ITEM { "category": "tool", "typename": "ArtiEgg2", "tag": "Morph Ovum", "pos": ["E1M3",-288,1312,96] }
+AP-ITEM { "category": "powerup-tool", "typename": "ArtiTomeOfPower", "tag": "Tome of Power", "pos": ["E1M3",-960,-192,16] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M3",-160,544,64] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M3",-32,672,64] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M3",-32,-1056,64] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M3",-160,-928,64] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M3",-32,352,64] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M3",-32,-736,64] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M3",-576,-352,-16] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M3",-832,-352,-16] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M3",-784,272,-8] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M3",-448,1104,-8] }
+AP-ITEM { "category": "small-ammo", "typename": "GoldWandAmmo2", "tag": "Wand Crystals", "pos": ["E1M3",1536,-384,88] }
+AP-ITEM { "category": "small-ammo", "typename": "GoldWandAmmo2", "tag": "Wand Crystals", "pos": ["E1M3",1536,-576,88] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M3",-336,1360,96] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M3",-336,1264,96] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M3",-1504,-48,16] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M3",-1504,-336,16] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M3",-1168,-320,16] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M3",-1168,-48,16] }
+AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo2", "tag": "Hellstaff Runes", "pos": ["E1M3",-2944,-64,-64] }
+AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo2", "tag": "Hellstaff Runes", "pos": ["E1M3",-2304,-320,-64] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M3",-2304,-64,-64] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M3",-2944,-320,-64] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterMed", "tag": "Claw Orbs", "pos": ["E1M3",-3904,-32,48] }
+AP-ITEM { "category": "medium-ammo", "typename": "SkullRodMed", "tag": "Hellstaff Runes", "pos": ["E1M3",-3904,-352,48] }
+AP-ITEM { "category": "big-armor", "typename": "FlameShield", "tag": "Enchanted Shield", "skill": [1, 2], "pos": ["E1M3",-800,-624,56] }
+AP-SECRET { "pos": ["E1M3","secret","tid",2], "name": "Amulet secret" }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M3",208,-144,0] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M3",208,-240,0] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "skill": [2, 3], "pos": ["E1M3",-752,784,-8] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "skill": [2, 3], "pos": ["E1M3",-624,784,-8] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "skill": [2, 3], "pos": ["E1M3",-864,-624,-8] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "skill": [2, 3], "pos": ["E1M3",-736,-624,-8] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "skill": [2, 3], "pos": ["E1M3",-1184,-912,-16] }
+AP-ITEM { "category": "big-health-tool", "typename": "ArtiSuperHealth", "tag": "Mystic Urn", "skill": [3], "pos": ["E1M3",-800,-624,56] }
+AP-ITEM { "category": "medium-ammo", "typename": "CrossbowHefty2", "tag": "Ethereal Arrows", "skill": [3], "pos": ["E1M3",720,1104,80] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "skill": [3], "pos": ["E1M3",-688,848,-8] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "skill": [3], "pos": ["E1M3",-688,720,-8] }
+AP-ITEM { "category": "medium-ammo", "typename": "CrossbowHefty2", "tag": "Ethereal Arrows", "skill": [3], "pos": ["E1M3",704,-1472,80] }
+AP-SECRET { "pos": ["E1M3","secret","sector",127], "name": "Ring secret" }
+AP-SECRET { "pos": ["E1M3","secret","sector",371], "name": "Shield secret" }
+AP-SECRET { "pos": ["E1M3","secret","sector",398], "name": "Energy Orb secret" }
+AP-MAP { "map": "E1M4", "checksum": "39df6d09f70ab58eda4f5244554a4f7b", "rank": 1, "monster_count": 68, "clustername": "Faithless", "info": { "levelnum": 4, "title": "FAITH_E1M4", "is_lookup": true, "sky1": "HSKY1GR", "sky1speed": "0.003500", "sky2": "HSKY1GR", "sky2speed": "0.000000", "music": "$MUSIC_FAITH_4", "music_track": "0", "cluster": 66, "flags": [] } }
+AP-ITEM { "category": "weapon", "typename": "Blaster2", "tag": "Dragon Claw", "pos": ["E1M4",576,672,80] }
+AP-ITEM { "category": "key", "typename": "PuzzStoneFace", "tag": "Granite Icon", "pos": ["E1M4",208,1696,176] }
+AP-KEY { "tag": "Granite Icon", "typename": "PuzzStoneFace", "scopename": "Faithless", "cluster": 66, "maps": ["E1M1", "E1M2", "E1M3", "E1M4", "E1M5", "E1M6", "E1M7", "E1M8", "E1M9"] }
+AP-ITEM { "category": "big-armor", "typename": "SilverShield", "tag": "Enchanted Shield", "pos": ["E1M4",600,-1312,24] }
+AP-ITEM { "category": "powerup-tool", "typename": "ArtiTorch", "tag": "Torch", "pos": ["E1M4",240,224,16] }
+AP-ITEM { "category": "big-armor", "typename": "EnchantedShield", "tag": "Enchanted Shield", "skill": [1, 2], "pos": ["E1M4",192,-2576,-40] }
+AP-ITEM { "category": "tool", "typename": "ArtiPodEgg", "tag": "Noxious Spore", "pos": ["E1M4",-1120,-1392,-64] }
+AP-ITEM { "category": "tool", "typename": "ArtiPodEgg", "tag": "Noxious Spore", "pos": ["E1M4",-1152,-1328,-64] }
+AP-ITEM { "category": "tool", "typename": "ArtiPodEgg", "tag": "Noxious Spore", "pos": ["E1M4",-1056,-1408,-64] }
+AP-ITEM { "category": "tool", "typename": "ArtiEmerald", "tag": "Emerald Amulet", "pos": ["E1M4",-1216,896,128] }
+AP-ITEM { "category": "tool", "typename": "ArtiPodEgg", "tag": "Noxious Spore", "pos": ["E1M4",720,-2208,-48] }
+AP-ITEM { "category": "tool", "typename": "ArtiPodEgg", "tag": "Noxious Spore", "pos": ["E1M4",784,-2208,-48] }
+AP-ITEM { "category": "tool", "typename": "ArtiPodEgg", "tag": "Noxious Spore", "pos": ["E1M4",784,-2272,-48] }
+AP-ITEM { "category": "tool", "typename": "ArtiPodEgg", "tag": "Noxious Spore", "pos": ["E1M4",720,-2272,-48] }
+AP-ITEM { "category": "tool", "typename": "ArtiPodEgg", "tag": "Noxious Spore", "pos": ["E1M4",1216,112,0] }
+AP-ITEM { "category": "tool", "typename": "ArtiPodEgg", "tag": "Noxious Spore", "pos": ["E1M4",1216,64,0] }
+AP-ITEM { "category": "tool", "typename": "ArtiPodEgg", "tag": "Noxious Spore", "pos": ["E1M4",1216,16,0] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterMed", "tag": "Claw Orbs", "pos": ["E1M4",992,-992,24] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "skill": [1], "pos": ["E1M4",-656,-1104,-48] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M4",-1072,816,128] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M4",-640,416,8] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterMed", "tag": "Claw Orbs", "pos": ["E1M4",-480,-640,-80] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M4",-224,896,0] }
+AP-ITEM { "category": "tool", "typename": "ArtiEmerald", "tag": "Emerald Amulet", "secret": true, "pos": ["E1M4",128,1408,80] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "pos": ["E1M4",512,1248,80] }
+AP-ITEM { "category": "powerup-tool", "typename": "ArtiTomeOfPower", "tag": "Tome of Power", "pos": ["E1M4",288,1232,80] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M4",448,1584,80] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M4",528,1584,80] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M4",-704,1376,16] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M4",-848,1648,64] }
+AP-ITEM { "category": "medium-ammo", "typename": "GoldWandMed", "tag": "Wand Crystals", "pos": ["E1M4",-1056,1472,112] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M4",-96,288,72] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M4",96,288,72] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterMed", "tag": "Claw Orbs", "pos": ["E1M4",672,160,8] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterMed", "tag": "Claw Orbs", "pos": ["E1M4",896,-320,8] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterMed", "tag": "Claw Orbs", "pos": ["E1M4",-544,64,-72] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterMed", "tag": "Claw Orbs", "pos": ["E1M4",992,-1056,24] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M4",224,-1632,-48] }
+AP-ITEM { "category": "medium-ammo", "typename": "BlasterHefty50", "tag": "Claw Orbs", "pos": ["E1M4",496,160,8] }
+AP-ITEM { "category": "medium-ammo", "typename": "CrossbowMed", "tag": "Ethereal Arrows", "pos": ["E1M4",288,16,16] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M4",-768,-320,-72] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M4",-416,-320,-72] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M4",-192,-320,-72] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M4",-1280,-224,16] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M4",-1280,-416,16] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M4",-1104,-416,16] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M4",-1104,-224,16] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "pos": ["E1M4",-1376,-320,16] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M4",-1360,-576,24] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M4",-1024,-576,24] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M4",-1024,-64,24] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M4",-1360,-64,24] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M4",-544,-320,-72] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "pos": ["E1M4",32,656,80] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "pos": ["E1M4",-160,-1920,-40] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M4",160,-1632,-48] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "pos": ["E1M4",688,-640,16] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "pos": ["E1M4",464,-224,8] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "pos": ["E1M4",528,-224,8] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "pos": ["E1M4",464,-416,8] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "pos": ["E1M4",528,-416,8] }
+AP-ITEM { "category": "tool", "typename": "ArtiPodEgg", "tag": "Noxious Spore", "pos": ["E1M4",1152,-344,0] }
+AP-ITEM { "category": "tool", "typename": "ArtiPodEgg", "tag": "Noxious Spore", "pos": ["E1M4",1152,-296,0] }
+AP-ITEM { "category": "tool", "typename": "ArtiPodEgg", "tag": "Noxious Spore", "secret": true, "pos": ["E1M4",608,-1616,16] }
+AP-ITEM { "category": "tool", "typename": "ArtiPodEgg", "tag": "Noxious Spore", "secret": true, "pos": ["E1M4",736,-1616,16] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M4",-640,896,8] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M4",-864,672,8] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M4",-384,672,8] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M4",656,1008,80] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M4",672,928,80] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M4",656,400,80] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M4",656,320,80] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M4",928,160,8] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M4",192,-160,8] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M4",192,-480,8] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M4",480,-1120,16] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M4",480,-928,16] }
+AP-ITEM { "category": "medium-ammo", "typename": "CrossbowMed", "tag": "Ethereal Arrows", "pos": ["E1M4",-544,-32,-72] }
+AP-ITEM { "category": "medium-ammo", "typename": "CrossbowMed", "tag": "Ethereal Arrows", "pos": ["E1M4",-128,896,80] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M4",576,800,80] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M4",576,544,80] }
+AP-ITEM { "category": "medium-ammo", "typename": "BlasterHefty50", "tag": "Claw Orbs", "pos": ["E1M4",64,-1456,-80] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterMed", "tag": "Claw Orbs", "pos": ["E1M4",-672,-1440,-80] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M4",-224,448,0] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M4",-1072,928,128] }
+AP-ITEM { "category": "tool", "typename": "ArtiEgg2", "tag": "Morph Ovum", "pos": ["E1M4",0,-320,16] }
+AP-ITEM { "category": "tool", "typename": "ArtiEmerald", "tag": "Emerald Amulet", "pos": ["E1M4",720,80,8] }
+AP-ITEM { "category": "powerup-maprevealer", "typename": "SuperMap", "tag": "Map Scroll", "pos": ["E1M4",-1328,-960,-72] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterMed", "tag": "Claw Orbs", "pos": ["E1M4",448,-1952,-48] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M4",-480,-1584,-80] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M4",-1184,-688,-80] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M4",400,-320,8] }
+AP-ITEM { "category": "medium-ammo", "typename": "BlasterHefty50", "tag": "Claw Orbs", "skill": [2, 3], "pos": ["E1M4",176,-608,16] }
+AP-ITEM { "category": "powerup-tool", "typename": "ArtiTomeOfPower", "tag": "Tome of Power", "skill": [2, 3], "pos": ["E1M4",-656,-1096,-48] }
+AP-ITEM { "category": "key", "typename": "KeyRed", "tag": "KeyRed", "skill": [3], "pos": ["E1M4",192,-2576,-40] }
+AP-KEY { "tag": "KeyRed", "typename": "KeyRed", "scopename": "Faithless", "cluster": 66, "maps": ["E1M1", "E1M2", "E1M3", "E1M4", "E1M5", "E1M6", "E1M7", "E1M8", "E1M9"] }
+AP-SECRET { "pos": ["E1M4","secret","sector",95], "name": "Switch secret" }
+AP-SECRET { "pos": ["E1M4","secret","sector",153], "name": "Icon secret" }
+AP-MAP { "map": "E1M5", "checksum": "c26bc811f20ede7d06f60156d4cc9077", "rank": 1, "monster_count": 112, "clustername": "Faithless", "info": { "levelnum": 5, "title": "FAITH_E1M5", "is_lookup": true, "sky1": "SKYWALL2", "sky1speed": "0.000000", "sky2": "HSKY4", "sky2speed": "0.003500", "music": "$MUSIC_FAITH_5", "music_track": "0", "cluster": 66, "flags": ["doublesky"] } }
+AP-ITEM { "category": "weapon", "typename": "SkullRod2", "tag": "Hellstaff", "pos": ["E1M5",-1184,-1152,112] }
+AP-ITEM { "category": "tool", "typename": "ArtiTeleport2", "tag": "Escapement Device", "pos": ["E1M5",-1088,-1760,112] }
+AP-ITEM { "category": "medium-ammo", "typename": "GoldWandHefty2", "tag": "Wand Crystals", "pos": ["E1M5",96,1664,80] }
+AP-ITEM { "category": "powerup-tool", "typename": "ArtiTomeOfPower", "tag": "Tome of Power", "pos": ["E1M5",-480,1472,8] }
+AP-ITEM { "category": "key", "typename": "KeyRed", "tag": "KeyRed", "skill": [1], "pos": ["E1M5",-1008,-1152,72] }
+AP-KEY { "tag": "KeyRed", "typename": "KeyRed", "scopename": "Faithless", "cluster": 66, "maps": ["E1M1", "E1M2", "E1M3", "E1M4", "E1M5", "E1M6", "E1M7", "E1M8", "E1M9"] }
+AP-ITEM { "category": "powerup-tool", "typename": "ArtiTorch", "tag": "Torch", "skill": [1, 3], "pos": ["E1M5",-912,-2064,24] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "pos": ["E1M5",-328,800,128] }
+AP-ITEM { "category": "big-armor", "typename": "FlameShield", "tag": "Enchanted Shield", "pos": ["E1M5",-480,1344,16] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "pos": ["E1M5",320,-1216,72] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "pos": ["E1M5",320,-1088,72] }
+AP-ITEM { "category": "tool", "typename": "ArtiTeleport2", "tag": "Escapement Device", "pos": ["E1M5",272,2080,80] }
+AP-ITEM { "category": "medium-ammo", "typename": "CrossbowMed", "tag": "Ethereal Arrows", "pos": ["E1M5",-976,-1568,16] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "pos": ["E1M5",832,48,168] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M5",960,-1152,72] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M5",960,-1072,104] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M5",960,-1232,104] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M5",224,464,80] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M5",1360,1968,80] }
+AP-ITEM { "category": "medium-ammo", "typename": "BlasterHefty50", "tag": "Claw Orbs", "pos": ["E1M5",96,2272,80] }
+AP-ITEM { "category": "medium-ammo", "typename": "CrossbowHefty2", "tag": "Ethereal Arrows", "pos": ["E1M5",368,2272,80] }
+AP-ITEM { "category": "medium-ammo", "typename": "CrossbowHefty2", "tag": "Ethereal Arrows", "pos": ["E1M5",608,-544,80] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M5",352,-832,96] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M5",352,-1472,96] }
+AP-ITEM { "category": "medium-ammo", "typename": "CrossbowMed", "tag": "Ethereal Arrows", "pos": ["E1M5",496,-1616,80] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "pos": ["E1M5",344,-1584,72] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M5",-544,800,80] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M5",-416,800,80] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M5",-480,800,48] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M5",-1152,-1312,72] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M5",-1152,-992,72] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M5",-832,-1952,16] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M5",-992,-1952,16] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M5",1280,448,152] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M5",1344,864,152] }
+AP-ITEM { "category": "medium-ammo", "typename": "CrossbowMed", "tag": "Ethereal Arrows", "pos": ["E1M5",928,48,152] }
+AP-ITEM { "category": "medium-ammo", "typename": "GoldWandHefty2", "tag": "Wand Crystals", "pos": ["E1M5",1120,160,152] }
+AP-ITEM { "category": "medium-ammo", "typename": "GoldWandMed", "tag": "Wand Crystals", "pos": ["E1M5",1120,1952,80] }
+AP-ITEM { "category": "small-ammo", "typename": "GoldWandAmmo2", "tag": "Wand Crystals", "pos": ["E1M5",736,544,80] }
+AP-ITEM { "category": "small-ammo", "typename": "GoldWandAmmo2", "tag": "Wand Crystals", "pos": ["E1M5",672,416,80] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M5",1024,640,80] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterMed", "tag": "Claw Orbs", "pos": ["E1M5",-160,-832,80] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterMed", "tag": "Claw Orbs", "pos": ["E1M5",-160,-1472,80] }
+AP-ITEM { "category": "medium-ammo", "typename": "GoldWandHefty2", "tag": "Wand Crystals", "pos": ["E1M5",-1536,-128,-32] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "pos": ["E1M5",2016,-1152,80] }
+AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo2", "tag": "Hellstaff Runes", "pos": ["E1M5",1736,-1056,80] }
+AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo2", "tag": "Hellstaff Runes", "pos": ["E1M5",1736,-1248,80] }
+AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo2", "tag": "Hellstaff Runes", "pos": ["E1M5",1928,-1248,80] }
+AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo2", "tag": "Hellstaff Runes", "pos": ["E1M5",1928,-1056,80] }
+AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo2", "tag": "Hellstaff Runes", "pos": ["E1M5",-592,1824,40] }
+AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo2", "tag": "Hellstaff Runes", "pos": ["E1M5",-352,1824,40] }
+AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo2", "tag": "Hellstaff Runes", "pos": ["E1M5",-1184,1664,40] }
+AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo2", "tag": "Hellstaff Runes", "pos": ["E1M5",-1184,1472,40] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M5",1952,160,152] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M5",1824,-192,152] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M5",400,1936,80] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M5",1632,1232,152] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M5",736,48,152] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M5",1232,-432,80] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M5",256,1888,80] }
+AP-ITEM { "category": "medium-ammo", "typename": "BlasterHefty50", "tag": "Claw Orbs", "secret": true, "pos": ["E1M5",-640,960,16] }
+AP-ITEM { "category": "medium-ammo", "typename": "SkullRodHefty2", "tag": "Hellstaff Runes", "pos": ["E1M5",-640,1152,16] }
+AP-ITEM { "category": "medium-ammo", "typename": "CrossbowMed", "tag": "Ethereal Arrows", "pos": ["E1M5",-640,1344,16] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M5",-320,-1584,80] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M5",-1872,-976,112] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M5",-1824,-1296,112] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M5",-992,-96,-24] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "pos": ["E1M5",-992,-192,-24] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M5",-992,-288,-24] }
+AP-ITEM { "category": "big-ammo", "typename": "BagOfHolding", "tag": "Bag of Holding", "secret": true, "pos": ["E1M5",640,1104,176] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M5",-1248,-288,-32] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M5",-1728,512,-32] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M5",0,-1584,80] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M5",1472,-112,152] }
+AP-ITEM { "category": "big-armor", "typename": "SilverShield", "tag": "Enchanted Shield", "pos": ["E1M5",-1104,896,64] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M5",-416,416,136] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M5",-768,800,80] }
+AP-ITEM { "category": "medium-ammo", "typename": "GoldWandHefty2", "tag": "Wand Crystals", "pos": ["E1M5",-832,752,136] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M5",-1472,640,-32] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M5",-1888,176,-32] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M5",-1824,832,-32] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M5",-992,768,64] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterMed", "tag": "Claw Orbs", "pos": ["E1M5",-992,448,64] }
+AP-ITEM { "category": "tool", "typename": "ArtiEgg2", "tag": "Morph Ovum", "secret": true, "pos": ["E1M5",-1040,1040,-32] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M5",-1328,1040,-32] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M5",-1744,-704,-32] }
+AP-ITEM { "category": "medium-ammo", "typename": "CrossbowMed", "tag": "Ethereal Arrows", "pos": ["E1M5",-800,-160,136] }
+AP-ITEM { "category": "medium-ammo", "typename": "GoldWandHefty2", "tag": "Wand Crystals", "pos": ["E1M5",-192,720,176] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M5",1632,1888,80] }
+AP-ITEM { "category": "medium-ammo", "typename": "BlasterHefty50", "tag": "Claw Orbs", "pos": ["E1M5",-912,-992,72] }
+AP-ITEM { "category": "medium-ammo", "typename": "CrossbowMed", "tag": "Ethereal Arrows", "pos": ["E1M5",-912,-1312,72] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterMed", "tag": "Claw Orbs", "pos": ["E1M5",-1008,-592,72] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterMed", "tag": "Claw Orbs", "pos": ["E1M5",-1056,-1600,112] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterMed", "tag": "Claw Orbs", "pos": ["E1M5",-1056,-1920,112] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M5",-32,-288,-16] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M5",-288,-288,-16] }
+AP-ITEM { "category": "medium-ammo", "typename": "CrossbowMed", "tag": "Ethereal Arrows", "pos": ["E1M5",-160,-512,80] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterMed", "tag": "Claw Orbs", "pos": ["E1M5",-32,-96,-16] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M5",-704,-128,80] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M5",-784,-64,80] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiRegenPotion", "tag": "Elixir Vitae", "pos": ["E1M5",-160,-96,-16] }
+AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo2", "tag": "Hellstaff Runes", "pos": ["E1M5",1984,1216,152] }
+AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo2", "tag": "Hellstaff Runes", "pos": ["E1M5",1984,1024,152] }
+AP-ITEM { "category": "weapon", "typename": "Blaster2", "tag": "Dragon Claw", "skill": [1], "pos": ["E1M5",400,-1152,72] }
+AP-ITEM { "category": "big-armor", "typename": "FlameShield", "tag": "Enchanted Shield", "skill": [1], "pos": ["E1M5",-160,-384,80] }
+AP-ITEM { "category": "powerup-maprevealer", "typename": "SuperMap", "tag": "Map Scroll", "pos": ["E1M5",1696,-16,152] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M5",1200,-400,80] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M5",1200,-464,80] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "skill": [1], "pos": ["E1M5",-288,-384,80] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "skill": [1], "pos": ["E1M5",-32,-384,80] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "pos": ["E1M5",-280,800,128] }
+AP-ITEM { "category": "tool", "typename": "ArtiInvisibility2", "tag": "Shadowsphere", "skill": [2, 3], "pos": ["E1M5",-160,-400,80] }
+AP-ITEM { "category": "key", "typename": "KeyRed", "tag": "KeyRed", "skill": [2], "pos": ["E1M5",-912,-2064,24] }
+AP-KEY { "tag": "KeyRed", "typename": "KeyRed", "scopename": "Faithless", "cluster": 66, "maps": ["E1M1", "E1M2", "E1M3", "E1M4", "E1M5", "E1M6", "E1M7", "E1M8", "E1M9"] }
+AP-ITEM { "category": "powerup-tool", "typename": "ArtiTorch", "tag": "Torch", "skill": [2], "pos": ["E1M5",-160,-1984,80] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "skill": [2, 3], "pos": ["E1M5",336,-1632,72] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "skill": [2, 3], "pos": ["E1M5",-512,-544,80] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "skill": [2, 3], "pos": ["E1M5",-464,-624,80] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "skill": [2, 3], "pos": ["E1M5",192,-544,80] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "skill": [2, 3], "pos": ["E1M5",144,-624,80] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "skill": [2, 3], "pos": ["E1M5",224,160,19] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "skill": [2, 3], "pos": ["E1M5",1776,1376,144] }
+AP-ITEM { "category": "weapon", "typename": "Blaster2", "tag": "Dragon Claw", "skill": [2], "pos": ["E1M5",-96,-1152,72] }
+AP-ITEM { "category": "weapon", "typename": "Blaster2", "tag": "Dragon Claw", "skill": [3], "pos": ["E1M5",-608,-1152,80] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "skill": [3], "pos": ["E1M5",320,1664,80] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "skill": [3], "pos": ["E1M5",384,1632,80] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "skill": [3], "pos": ["E1M5",384,1696,80] }
+AP-SECRET { "pos": ["E1M5","secret","sector",92], "name": "Icon socket secret" }
+AP-SECRET { "pos": ["E1M5","secret","sector",224], "name": "Bag of Holding secret" }
+AP-SECRET { "pos": ["E1M5","secret","sector",304], "name": "Fried egg secret" }
+AP-MAP { "map": "E1M6", "checksum": "66d740a496bf0ecdf1a1e8b6cddb3123", "rank": 1, "monster_count": 125, "clustername": "Faithless", "info": { "levelnum": 6, "title": "FAITH_E1M6", "is_lookup": true, "sky1": "HSKY1", "sky1speed": "0.003500", "sky2": "HSKY1", "sky2speed": "0.000000", "music": "$MUSIC_FAITH_6", "music_track": "0", "cluster": 66, "flags": [] } }
+AP-ITEM { "category": "key", "typename": "HexenPuzzFlameMask", "tag": "Flame Mask", "pos": ["E1M6",2392,-1792,-80] }
+AP-KEY { "tag": "Flame Mask", "typename": "HexenPuzzFlameMask", "scopename": "Faithless", "cluster": 66, "maps": ["E1M1", "E1M2", "E1M3", "E1M4", "E1M5", "E1M6", "E1M7", "E1M8", "E1M9"] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiRegenPotion", "tag": "Elixir Vitae", "pos": ["E1M6",-720,-320,-64] }
+AP-ITEM { "category": "powerup-tool", "typename": "ArtiTomeOfPower", "tag": "Tome of Power", "secret": true, "pos": ["E1M6",-1200,32,256] }
+AP-ITEM { "category": "tool", "typename": "ArtiEgg2", "tag": "Morph Ovum", "pos": ["E1M6",-856,-1496,144] }
+AP-ITEM { "category": "medium-ammo", "typename": "PhoenixRodMed", "tag": "Flame Orbs", "pos": ["E1M6",2016,-992,-160] }
+AP-ITEM { "category": "medium-ammo", "typename": "PhoenixRodMed", "tag": "Flame Orbs", "pos": ["E1M6",2016,-864,-160] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M6",512,-1792,0] }
+AP-ITEM { "category": "powerup-tool", "typename": "ArtiTorch", "tag": "Torch", "pos": ["E1M6",256,-1216,-64] }
+AP-ITEM { "category": "powerup-maprevealer", "typename": "SuperMap", "tag": "Map Scroll", "pos": ["E1M6",0,-1216,-64] }
+AP-ITEM { "category": "big-health-tool", "typename": "ArtiSuperHealth", "tag": "Mystic Urn", "pos": ["E1M6",128,-320,-56] }
+AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo2", "tag": "Hellstaff Runes", "pos": ["E1M6",1216,-2016,0] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M6",352,-672,-64] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M6",-96,-672,-64] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "pos": ["E1M6",-1392,-128,256] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "pos": ["E1M6",-1008,-128,256] }
+AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo2", "tag": "Hellstaff Runes", "pos": ["E1M6",1520,-208,0] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "pos": ["E1M6",-416,-1184,-64] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "pos": ["E1M6",-416,-1248,-64] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "pos": ["E1M6",672,-992,0] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "pos": ["E1M6",800,-992,0] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "pos": ["E1M6",1312,-992,0] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "pos": ["E1M6",1440,-992,0] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "pos": ["E1M6",928,-2016,0] }
+AP-ITEM { "category": "big-armor", "typename": "SilverShield", "tag": "Enchanted Shield", "pos": ["E1M6",928,-1568,0] }
+AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo2", "tag": "Hellstaff Runes", "pos": ["E1M6",960,-736,0] }
+AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo2", "tag": "Hellstaff Runes", "pos": ["E1M6",1152,-736,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "CrossbowMed", "tag": "Ethereal Arrows", "pos": ["E1M6",1696,-1632,-112] }
+AP-ITEM { "category": "medium-ammo", "typename": "CrossbowHefty2", "tag": "Ethereal Arrows", "pos": ["E1M6",128,-1600,-64] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterMed", "tag": "Claw Orbs", "pos": ["E1M6",-1376,-976,128] }
+AP-ITEM { "category": "medium-ammo", "typename": "CrossbowMed", "tag": "Ethereal Arrows", "pos": ["E1M6",-1376,-1136,128] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterMed", "tag": "Claw Orbs", "pos": ["E1M6",544,-1216,-64] }
+AP-ITEM { "category": "medium-ammo", "typename": "BlasterHefty50", "tag": "Claw Orbs", "pos": ["E1M6",1856,-1344,-112] }
+AP-ITEM { "category": "small-ammo", "typename": "PhoenixRodAmmo2", "tag": "Flame Orbs", "pos": ["E1M6",1728,-928,-176] }
+AP-ITEM { "category": "medium-ammo", "typename": "SkullRodHefty2", "tag": "Hellstaff Runes", "pos": ["E1M6",1344,-1120,-176] }
+AP-ITEM { "category": "medium-ammo", "typename": "CrossbowMed", "tag": "Ethereal Arrows", "pos": ["E1M6",1344,-1376,-176] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "pos": ["E1M6",1568,-1792,0] }
+AP-ITEM { "category": "weapon", "typename": "Mace2", "tag": "Firemace", "pos": ["E1M6",1056,-320,16] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "pos": ["E1M6",1568,-432,0] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M6",-192,-1584,0] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M6",448,-1584,0] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M6",0,-800,-64] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M6",256,-800,-64] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M6",928,288,0] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M6",1184,288,0] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M6",896,-928,0] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M6",1216,-928,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "BlasterHefty50", "tag": "Claw Orbs", "pos": ["E1M6",128,416,64] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterMed", "tag": "Claw Orbs", "pos": ["E1M6",1696,-1952,-112] }
+AP-ITEM { "category": "small-ammo", "typename": "MaceAmmo", "tag": "Mace Spheres", "pos": ["E1M6",1056,-192,16] }
+AP-ITEM { "category": "small-ammo", "typename": "MaceAmmo", "tag": "Mace Spheres", "pos": ["E1M6",1056,-448,16] }
+AP-ITEM { "category": "small-ammo", "typename": "MaceAmmo", "tag": "Mace Spheres", "pos": ["E1M6",1248,-1568,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "SkullRodMed", "tag": "Hellstaff Runes", "pos": ["E1M6",1984,-1600,-112] }
+AP-ITEM { "category": "small-ammo", "typename": "MaceAmmo", "tag": "Mace Spheres", "pos": ["E1M6",1984,-1984,-112] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M6",-1712,-992,256] }
+AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo2", "tag": "Hellstaff Runes", "pos": ["E1M6",-832,-384,256] }
+AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo2", "tag": "Hellstaff Runes", "pos": ["E1M6",-1600,-384,256] }
+AP-ITEM { "category": "medium-ammo", "typename": "SkullRodHefty2", "tag": "Hellstaff Runes", "pos": ["E1M6",-544,-1792,8] }
+AP-ITEM { "category": "tool", "typename": "ArtiEgg2", "tag": "Morph Ovum", "pos": ["E1M6",1056,864,0] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M6",1568,480,0] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M6",1568,352,0] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M6",-192,1536,96] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M6",448,1536,96] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M6",-256,-1792,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "BlasterHefty50", "tag": "Claw Orbs", "pos": ["E1M6",-160,-896,-64] }
+AP-ITEM { "category": "medium-ammo", "typename": "SkullRodHefty2", "tag": "Hellstaff Runes", "pos": ["E1M6",416,-896,-64] }
+AP-ITEM { "category": "medium-ammo", "typename": "CrossbowHefty2", "tag": "Ethereal Arrows", "pos": ["E1M6",128,-640,-64] }
+AP-ITEM { "category": "medium-ammo", "typename": "CrossbowMed", "tag": "Ethereal Arrows", "pos": ["E1M6",608,-416,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "CrossbowMed", "tag": "Ethereal Arrows", "pos": ["E1M6",928,704,-8] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterMed", "tag": "Claw Orbs", "pos": ["E1M6",1184,704,-8] }
+AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo2", "tag": "Hellstaff Runes", "pos": ["E1M6",1616,-208,0] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterMed", "tag": "Claw Orbs", "pos": ["E1M6",1568,-608,0] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M6",704,1216,-64] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M6",-38,-320,-64] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M6",288,-320,-64] }
+AP-ITEM { "category": "medium-ammo", "typename": "GoldWandHefty2", "tag": "Wand Crystals", "pos": ["E1M6",128,0,-64] }
+AP-ITEM { "category": "medium-ammo", "typename": "GoldWandMed", "tag": "Wand Crystals", "pos": ["E1M6",-256,-1216,-64] }
+AP-ITEM { "category": "medium-ammo", "typename": "CrossbowHefty2", "tag": "Ethereal Arrows", "pos": ["E1M6",736,-1088,56] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M6",-544,-1664,0] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M6",-544,-1920,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "CrossbowHefty2", "tag": "Ethereal Arrows", "pos": ["E1M6",-1152,-1344,128] }
+AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo2", "tag": "Hellstaff Runes", "pos": ["E1M6",-768,-1136,128] }
+AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo2", "tag": "Hellstaff Runes", "pos": ["E1M6",-768,-912,128] }
+AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo2", "tag": "Hellstaff Runes", "pos": ["E1M6",1168,-1408,40] }
+AP-ITEM { "category": "medium-ammo", "typename": "BlasterHefty50", "tag": "Claw Orbs", "pos": ["E1M6",-1712,-1120,256] }
+AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo2", "tag": "Hellstaff Runes", "pos": ["E1M6",-64,416,-64] }
+AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo2", "tag": "Hellstaff Runes", "pos": ["E1M6",320,416,-64] }
+AP-ITEM { "category": "medium-ammo", "typename": "SkullRodMed", "tag": "Hellstaff Runes", "pos": ["E1M6",128,928,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "MaceHefty", "tag": "Mace Spheres", "pos": ["E1M6",-1376,-736,160] }
+AP-ITEM { "category": "small-ammo", "typename": "MaceAmmo", "tag": "Mace Spheres", "pos": ["E1M6",928,880,0] }
+AP-ITEM { "category": "small-ammo", "typename": "MaceAmmo", "tag": "Mace Spheres", "pos": ["E1M6",1184,880,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "SkullRodMed", "tag": "Hellstaff Runes", "pos": ["E1M6",544,416,0] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "pos": ["E1M6",-496,-320,-4160] }
+AP-ITEM { "category": "medium-ammo", "typename": "BlasterHefty50", "tag": "Claw Orbs", "pos": ["E1M6",-512,-1472,256] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterMed", "tag": "Claw Orbs", "pos": ["E1M6",-1200,-224,256] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M6",-1328,-512,128] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M6",-1072,-512,128] }
+AP-ITEM { "category": "medium-ammo", "typename": "MaceMed", "tag": "Mace Spheres", "secret": true, "pos": ["E1M6",1888,-880,-176] }
+AP-ITEM { "category": "medium-ammo", "typename": "MaceMed", "tag": "Mace Spheres", "secret": true, "pos": ["E1M6",1888,-976,-176] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M6",-448,1216,-64] }
+AP-ITEM { "category": "weapon", "typename": "PhoenixRod2", "tag": "Phoenix Rod", "skill": [1, 2], "pos": ["E1M6",1968,-928,-168] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "skill": [2, 3], "pos": ["E1M6",128,-1504,-64] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "skill": [2, 3], "pos": ["E1M6",-1232,-48,256] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "skill": [2, 3], "pos": ["E1M6",-1168,-48,256] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "skill": [2, 3], "pos": ["E1M6",-192,1728,96] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "skill": [2, 3], "pos": ["E1M6",448,1728,96] }
+AP-ITEM { "category": "medium-ammo", "typename": "PhoenixRodHefty2", "tag": "Flame Orbs", "skill": [3], "pos": ["E1M6",1968,-928,-168] }
+AP-ITEM { "category": "big-ammo", "typename": "BagOfHolding", "tag": "Bag of Holding", "secret": true, "skill": [3], "pos": ["E1M6",1872,-928,-176] }
+AP-SECRET { "pos": ["E1M6","secret","sector",40], "name": "Egg secret" }
+AP-SECRET { "pos": ["E1M6","secret","sector",173], "name": "Tome secret" }
+AP-SECRET { "pos": ["E1M6","secret","sector",315], "name": "Treasure room" }
+AP-MAP { "map": "E1M7", "checksum": "8b3a54020428077b0417a8d39dd562dc", "rank": 1, "monster_count": 55, "clustername": "Faithless", "info": { "levelnum": 7, "title": "FAITH_E1M7", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "$MUSIC_FAITH_7", "music_track": "0", "cluster": 66, "flags": [] } }
+AP-ITEM { "category": "big-armor", "typename": "SilverShield", "tag": "Enchanted Shield", "secret": true, "tid": 21, "pos": ["E1M7",1888,2976,336] }
+AP-ITEM { "category": "medium-ammo", "typename": "SkullRodMed", "tag": "Hellstaff Runes", "pos": ["E1M7",0,-256,32] }
+AP-ITEM { "category": "big-health-tool", "typename": "ArtiSuperHealth", "tag": "Mystic Urn", "secret": true, "tid": 20, "pos": ["E1M7",-224,1952,336] }
+AP-ITEM { "category": "big-health-tool", "typename": "ArtiSuperHealth", "tag": "Mystic Urn", "secret": true, "tid": 20, "pos": ["E1M7",-1824,2976,336] }
+AP-ITEM { "category": "big-armor", "typename": "SilverShield", "tag": "Enchanted Shield", "secret": true, "tid": 21, "pos": ["E1M7",224,1952,336] }
+AP-ITEM { "category": "medium-ammo", "typename": "MaceHefty", "tag": "Mace Spheres", "pos": ["E1M7",0,576,160] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M7",-384,0,32] }
+AP-ITEM { "category": "big-health-tool", "typename": "ArtiSuperHealth", "tag": "Mystic Urn", "secret": true, "tid": 20, "pos": ["E1M7",1440,2976,336] }
+AP-ITEM { "category": "big-armor", "typename": "SilverShield", "tag": "Enchanted Shield", "secret": true, "tid": 21, "pos": ["E1M7",-1376,2976,336] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M7",384,-256,32] }
+AP-ITEM { "category": "weapon", "typename": "SkullRod2", "tag": "Hellstaff", "pos": ["E1M7",-1600,1920,144] }
+AP-ITEM { "category": "weapon", "typename": "Blaster2", "tag": "Dragon Claw", "pos": ["E1M7",1664,1920,144] }
+AP-ITEM { "category": "weapon", "typename": "Mace2", "tag": "Firemace", "pos": ["E1M7",0,896,144] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M7",384,0,32] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M7",-384,-256,32] }
+AP-ITEM { "category": "small-ammo", "typename": "MaceAmmo", "tag": "Mace Spheres", "pos": ["E1M7",-384,1280,80] }
+AP-ITEM { "category": "small-ammo", "typename": "MaceAmmo", "tag": "Mace Spheres", "pos": ["E1M7",384,1280,80] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M7",-448,1472,80] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M7",512,1472,80] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M7",-128,1024,80] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M7",512,1152,80] }
+AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo2", "tag": "Hellstaff Runes", "pos": ["E1M7",192,1088,80] }
+AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo2", "tag": "Hellstaff Runes", "pos": ["E1M7",0,1536,80] }
+AP-ITEM { "category": "tool", "typename": "ArtiPodEgg", "tag": "Noxious Spore", "pos": ["E1M7",2400,2208,160] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "pos": ["E1M7",-736,1344,160] }
+AP-ITEM { "category": "tool", "typename": "ArtiPodEgg", "tag": "Noxious Spore", "pos": ["E1M7",2400,2304,160] }
+AP-ITEM { "category": "tool", "typename": "ArtiPodEgg", "tag": "Noxious Spore", "pos": ["E1M7",928,2208,160] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "pos": ["E1M7",736,1344,160] }
+AP-ITEM { "category": "tool", "typename": "ArtiPodEgg", "tag": "Noxious Spore", "pos": ["E1M7",2400,2400,160] }
+AP-ITEM { "category": "small-ammo", "typename": "MaceAmmo", "tag": "Mace Spheres", "pos": ["E1M7",-352,832,112] }
+AP-ITEM { "category": "small-ammo", "typename": "MaceAmmo", "tag": "Mace Spheres", "pos": ["E1M7",352,832,112] }
+AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo2", "tag": "Hellstaff Runes", "pos": ["E1M7",-1952,1856,112] }
+AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo2", "tag": "Hellstaff Runes", "pos": ["E1M7",-1248,1856,112] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M7",-2048,2496,80] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M7",-1088,2496,80] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M7",-1728,2048,80] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M7",-1088,2176,80] }
+AP-ITEM { "category": "small-ammo", "typename": "MaceAmmo", "tag": "Mace Spheres", "pos": ["E1M7",-1408,2112,80] }
+AP-ITEM { "category": "small-ammo", "typename": "MaceAmmo", "tag": "Mace Spheres", "pos": ["E1M7",-1600,2560,80] }
+AP-ITEM { "category": "small-ammo", "typename": "MaceAmmo", "tag": "Mace Spheres", "pos": ["E1M7",1248,2304,80] }
+AP-ITEM { "category": "small-ammo", "typename": "MaceAmmo", "tag": "Mace Spheres", "pos": ["E1M7",2080,2528,72] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterMed", "tag": "Claw Orbs", "pos": ["E1M7",2016,1856,112] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterMed", "tag": "Claw Orbs", "pos": ["E1M7",1312,1856,112] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M7",1664,2080,80] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M7",2208,2304,80] }
+AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo2", "tag": "Hellstaff Runes", "pos": ["E1M7",1856,2240,80] }
+AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo2", "tag": "Hellstaff Runes", "pos": ["E1M7",1664,2560,80] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "pos": ["E1M7",-2336,2400,160] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "pos": ["E1M7",-2336,2208,160] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "pos": ["E1M7",-864,2400,160] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "pos": ["E1M7",-864,2208,160] }
+AP-ITEM { "category": "tool", "typename": "ArtiPodEgg", "tag": "Noxious Spore", "pos": ["E1M7",928,2400,160] }
+AP-ITEM { "category": "tool", "typename": "ArtiPodEgg", "tag": "Noxious Spore", "pos": ["E1M7",928,2304,160] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "pos": ["E1M7",-736,1216,160] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "pos": ["E1M7",736,1216,160] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M7",-1088,224,80] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "pos": ["E1M7",-1792,-128,32] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M7",-832,224,80] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M7",-832,-480,80] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M7",-1088,-480,80] }
+AP-ITEM { "category": "medium-ammo", "typename": "CrossbowHefty2", "tag": "Ethereal Arrows", "pos": ["E1M7",-1408,-128,32] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterMed", "tag": "Claw Orbs", "pos": ["E1M7",832,192,32] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterMed", "tag": "Claw Orbs", "pos": ["E1M7",832,-448,32] }
+AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo2", "tag": "Hellstaff Runes", "pos": ["E1M7",-1024,-320,32] }
+AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo2", "tag": "Hellstaff Runes", "pos": ["E1M7",-1024,64,32] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M7",-704,64,32] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M7",-704,-320,32] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "skill": [2, 3], "pos": ["E1M7",-2336,2304,160] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "skill": [2, 3], "pos": ["E1M7",-864,2304,160] }
+AP-SECRET { "pos": ["E1M7","secret","sector",10], "name": "Urn secret" }
+AP-SECRET { "pos": ["E1M7","secret","sector",78], "name": "Shield secret" }
+AP-MAP { "map": "E1M8", "checksum": "c149969843e7091f55f6801a66a85eb3", "rank": 1, "monster_count": 93, "clustername": "Faithless", "info": { "levelnum": 8, "title": "FAITH_E1M8", "is_lookup": true, "sky1": "HSKY1", "sky1speed": "0.003500", "sky2": "HSKY1", "sky2speed": "0.000000", "music": "$MUSIC_FAITH_8", "music_track": "0", "cluster": 66, "flags": [] } }
+AP-ITEM { "category": "big-ammo", "typename": "BagOfHolding", "tag": "Bag of Holding", "pos": ["E1M8",-96,-1120,-8] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M8",-320,-1408,-8] }
+AP-ITEM { "category": "medium-ammo", "typename": "SkullRodHefty2", "tag": "Hellstaff Runes", "pos": ["E1M8",32,-1776,48] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterMed", "tag": "Claw Orbs", "pos": ["E1M8",-224,-1776,48] }
+AP-ITEM { "category": "medium-ammo", "typename": "PhoenixRodHefty2", "tag": "Flame Orbs", "pos": ["E1M8",-96,-1696,48] }
+AP-ITEM { "category": "medium-ammo", "typename": "GoldWandHefty2", "tag": "Wand Crystals", "pos": ["E1M8",-224,-1696,48] }
+AP-ITEM { "category": "medium-ammo", "typename": "GoldWandHefty2", "tag": "Wand Crystals", "pos": ["E1M8",224,-1056,-8] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M8",128,-1408,-8] }
+AP-ITEM { "category": "big-armor", "typename": "SilverShield", "tag": "Enchanted Shield", "pos": ["E1M8",-320,1600,-32] }
+AP-ITEM { "category": "big-health-tool", "typename": "ArtiSuperHealth", "tag": "Mystic Urn", "pos": ["E1M8",128,1600,-32] }
+AP-ITEM { "category": "medium-ammo", "typename": "MaceHefty", "tag": "Mace Spheres", "pos": ["E1M8",-224,1968,-128] }
+AP-ITEM { "category": "medium-ammo", "typename": "MaceHefty", "tag": "Mace Spheres", "pos": ["E1M8",32,1968,-128] }
+AP-ITEM { "category": "medium-ammo", "typename": "PhoenixRodHefty2", "tag": "Flame Orbs", "pos": ["E1M8",-672,960,-136] }
+AP-ITEM { "category": "medium-ammo", "typename": "PhoenixRodHefty2", "tag": "Flame Orbs", "pos": ["E1M8",480,960,-136] }
+AP-ITEM { "category": "medium-ammo", "typename": "BlasterHefty50", "tag": "Claw Orbs", "pos": ["E1M8",896,1440,-136] }
+AP-ITEM { "category": "medium-ammo", "typename": "BlasterHefty50", "tag": "Claw Orbs", "pos": ["E1M8",896,1248,-136] }
+AP-ITEM { "category": "medium-ammo", "typename": "SkullRodHefty2", "tag": "Hellstaff Runes", "pos": ["E1M8",-1088,1440,-136] }
+AP-ITEM { "category": "medium-ammo", "typename": "SkullRodHefty2", "tag": "Hellstaff Runes", "pos": ["E1M8",-1088,1248,-136] }
+AP-ITEM { "category": "powerup-tool", "typename": "ArtiTomeOfPower", "tag": "Tome of Power", "pos": ["E1M8",-96,1344,-136] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "pos": ["E1M8",-416,-688,0] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "pos": ["E1M8",224,-688,0] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiRegenPotion", "tag": "Elixir Vitae", "pos": ["E1M8",-96,-640,0] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "pos": ["E1M8",-480,544,-128] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "pos": ["E1M8",288,544,-128] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "pos": ["E1M8",-736,1824,-128] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "pos": ["E1M8",-608,1824,-128] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "pos": ["E1M8",416,1824,-128] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "pos": ["E1M8",544,1824,-128] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "pos": ["E1M8",544,864,-128] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "pos": ["E1M8",-736,864,-128] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "pos": ["E1M8",-608,864,-128] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "pos": ["E1M8",416,864,-128] }
+AP-ITEM { "category": "medium-ammo", "typename": "GoldWandHefty2", "tag": "Wand Crystals", "pos": ["E1M8",-384,-1152,-8] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M8",-256,-1280,-8] }
+AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo2", "tag": "Hellstaff Runes", "pos": ["E1M8",-224,-1088,-8] }
+AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo2", "tag": "Hellstaff Runes", "pos": ["E1M8",0,-1280,-8] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M8",128,-1152,-8] }
+AP-ITEM { "category": "big-armor", "typename": "EnchantedShield", "tag": "Enchanted Shield", "pos": ["E1M8",-96,1952,-136] }
+AP-ITEM { "category": "small-ammo", "typename": "PhoenixRodAmmo2", "tag": "Flame Orbs", "pos": ["E1M8",224,448,-128] }
+AP-ITEM { "category": "small-ammo", "typename": "PhoenixRodAmmo2", "tag": "Flame Orbs", "pos": ["E1M8",704,-224,-136] }
+AP-ITEM { "category": "small-ammo", "typename": "PhoenixRodAmmo2", "tag": "Flame Orbs", "pos": ["E1M8",-416,448,-128] }
+AP-ITEM { "category": "small-ammo", "typename": "PhoenixRodAmmo2", "tag": "Flame Orbs", "pos": ["E1M8",-896,-224,-136] }
+AP-ITEM { "category": "weapon", "typename": "PhoenixRod2", "tag": "Phoenix Rod", "pos": ["E1M8",-96,288,-136] }
+AP-ITEM { "category": "medium-ammo", "typename": "MaceHefty", "tag": "Mace Spheres", "pos": ["E1M8",-96,-1776,48] }
+AP-ITEM { "category": "medium-ammo", "typename": "CrossbowHefty2", "tag": "Ethereal Arrows", "pos": ["E1M8",32,-1696,48] }
+AP-ITEM { "category": "big-armor", "typename": "FlameShield", "tag": "Enchanted Shield", "secret": true, "pos": ["E1M8",-96,-2224,40] }
+AP-ITEM { "category": "medium-ammo", "typename": "CrossbowHefty2", "tag": "Ethereal Arrows", "pos": ["E1M8",-672,864,-128] }
+AP-ITEM { "category": "medium-ammo", "typename": "CrossbowHefty2", "tag": "Ethereal Arrows", "pos": ["E1M8",480,864,-128] }
+AP-ITEM { "category": "small-ammo", "typename": "PhoenixRodAmmo2", "tag": "Flame Orbs", "pos": ["E1M8",-384,1600,-32] }
+AP-ITEM { "category": "small-ammo", "typename": "PhoenixRodAmmo2", "tag": "Flame Orbs", "pos": ["E1M8",192,1600,-32] }
+AP-ITEM { "category": "small-ammo", "typename": "PhoenixRodAmmo2", "tag": "Flame Orbs", "pos": ["E1M8",-320,1664,-32] }
+AP-ITEM { "category": "small-ammo", "typename": "PhoenixRodAmmo2", "tag": "Flame Orbs", "pos": ["E1M8",128,1664,-32] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "skill": [2, 3], "pos": ["E1M8",-416,544,-128] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "skill": [2, 3], "pos": ["E1M8",224,544,-128] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "skill": [3], "pos": ["E1M8",-288,-688,0] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "skill": [3], "pos": ["E1M8",96,-688,0] }
+AP-SECRET { "pos": ["E1M8","secret","sector",125], "name": "Shield secret" }
+AP-MAP { "map": "E1M9", "checksum": "b57321c9cf7785285bfeeb2ce5a80ad2", "rank": 1, "monster_count": 180, "clustername": "Faithless", "info": { "levelnum": 9, "title": "FAITH_E1M9", "is_lookup": true, "sky1": "SKY1WHO", "sky1speed": "0.000000", "sky2": "SKY1NM", "sky2speed": "0.007000", "music": "$MUSIC_FAITH_9", "music_track": "0", "cluster": 66, "flags": ["doublesky"] } }
+AP-ITEM { "category": "weapon", "typename": "Crossbow2", "tag": "Ethereal Crossbow", "pos": ["E1M9",1344,-3280,144] }
+AP-ITEM { "category": "powerup-tool", "typename": "ArtiInvuln2", "tag": "Ring of Invincibility", "pos": ["E1M9",-1312,-416,192] }
+AP-SECRET { "pos": ["E1M9","secret","tid",6], "name": "Firemace secret" }
+AP-ITEM { "category": "tool", "typename": "ArtiTeleport2", "tag": "Escapement Device", "pos": ["E1M9",1312,1504,112] }
+AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo2", "tag": "Hellstaff Runes", "pos": ["E1M9",1056,1072,80] }
+AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo2", "tag": "Hellstaff Runes", "pos": ["E1M9",1120,992,80] }
+AP-ITEM { "category": "weapon", "typename": "Blaster2", "tag": "Dragon Claw", "pos": ["E1M9",-928,-2016,32] }
+AP-ITEM { "category": "weapon", "typename": "SkullRod2", "tag": "Hellstaff", "pos": ["E1M9",736,-2016,32] }
+AP-ITEM { "category": "weapon", "typename": "Mace2", "tag": "Firemace", "pos": ["E1M9",-96,-3456,256] }
+AP-ITEM { "category": "tool", "typename": "ArtiInvisibility2", "tag": "Shadowsphere", "pos": ["E1M9",-96,-2560,256] }
+AP-SECRET { "pos": ["E1M9","secret","tid",4], "name": "Ring secret" }
+AP-SECRET { "pos": ["E1M9","secret","tid",5], "name": "Shadowsphere secret" }
+AP-ITEM { "category": "medium-ammo", "typename": "MaceMed", "tag": "Mace Spheres", "pos": ["E1M9",-320,-3680,128] }
+AP-ITEM { "category": "medium-ammo", "typename": "MaceMed", "tag": "Mace Spheres", "pos": ["E1M9",192,-3680,128] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "pos": ["E1M9",-512,-432,0] }
+AP-ITEM { "category": "tool", "typename": "ArtiEgg2", "tag": "Morph Ovum", "pos": ["E1M9",-96,2464,112] }
+AP-ITEM { "category": "powerup-tool", "typename": "ArtiTorch", "tag": "Torch", "pos": ["E1M9",-448,-3424,48] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "pos": ["E1M9",1200,-960,72] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "pos": ["E1M9",1312,-960,72] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M9",896,-2752,112] }
+AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo2", "tag": "Hellstaff Runes", "pos": ["E1M9",2592,960,-128] }
+AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo2", "tag": "Hellstaff Runes", "pos": ["E1M9",2208,736,-128] }
+AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo2", "tag": "Hellstaff Runes", "pos": ["E1M9",2816,0,-192] }
+AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo2", "tag": "Hellstaff Runes", "pos": ["E1M9",2432,-608,-192] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterMed", "tag": "Claw Orbs", "pos": ["E1M9",1184,-1152,72] }
+AP-ITEM { "category": "big-ammo", "typename": "BagOfHolding", "tag": "Bag of Holding", "pos": ["E1M9",-96,-736,-32] }
+AP-ITEM { "category": "medium-ammo", "typename": "SkullRodHefty2", "tag": "Hellstaff Runes", "pos": ["E1M9",640,-1920,32] }
+AP-ITEM { "category": "medium-ammo", "typename": "BlasterHefty50", "tag": "Claw Orbs", "pos": ["E1M9",-832,-1920,32] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M9",-320,-1408,-32] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M9",128,-1408,-32] }
+AP-ITEM { "category": "medium-ammo", "typename": "BlasterHefty50", "tag": "Claw Orbs", "pos": ["E1M9",-832,-800,0] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterMed", "tag": "Claw Orbs", "pos": ["E1M9",-2016,-320,56] }
+AP-ITEM { "category": "medium-ammo", "typename": "BlasterHefty50", "tag": "Claw Orbs", "pos": ["E1M9",1664,128,32] }
+AP-ITEM { "category": "big-health-tool", "typename": "ArtiSuperHealth", "tag": "Mystic Urn", "pos": ["E1M9",3168,448,-64] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiRegenPotion", "tag": "Elixir Vitae", "pos": ["E1M9",2016,416,-128] }
+AP-ITEM { "category": "medium-ammo", "typename": "MaceHefty", "tag": "Mace Spheres", "pos": ["E1M9",2112,1216,-56] }
+AP-ITEM { "category": "medium-ammo", "typename": "CrossbowMed", "tag": "Ethereal Arrows", "pos": ["E1M9",1120,-2848,112] }
+AP-ITEM { "category": "medium-ammo", "typename": "BlasterHefty50", "tag": "Claw Orbs", "pos": ["E1M9",1568,-2080,128] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "pos": ["E1M9",496,-2176,128] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "pos": ["E1M9",496,-2240,128] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "pos": ["E1M9",1696,-192,80] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "pos": ["E1M9",1696,-128,80] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "pos": ["E1M9",-2144,2208,64] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "pos": ["E1M9",-2080,2272,64] }
+AP-ITEM { "category": "medium-ammo", "typename": "SkullRodHefty2", "tag": "Hellstaff Runes", "pos": ["E1M9",-576,1760,64] }
+AP-ITEM { "category": "medium-ammo", "typename": "MaceHefty", "tag": "Mace Spheres", "pos": ["E1M9",384,1760,64] }
+AP-ITEM { "category": "small-ammo", "typename": "MaceAmmo", "tag": "Mace Spheres", "pos": ["E1M9",-288,2464,112] }
+AP-ITEM { "category": "small-ammo", "typename": "MaceAmmo", "tag": "Mace Spheres", "pos": ["E1M9",96,2464,112] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M9",-384,2272,0] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M9",-384,2080,0] }
+AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo2", "tag": "Hellstaff Runes", "pos": ["E1M9",192,2272,0] }
+AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo2", "tag": "Hellstaff Runes", "pos": ["E1M9",192,2080,0] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M9",-736,2176,128] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M9",-1312,-96,0] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M9",-704,320,0] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M9",512,352,0] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterMed", "tag": "Claw Orbs", "pos": ["E1M9",2816,768,-112] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M9",992,-192,16] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M9",-1056,-512,0] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M9",-1664,-480,64] }
+AP-ITEM { "category": "medium-ammo", "typename": "GoldWandHefty2", "tag": "Wand Crystals", "pos": ["E1M9",-1152,352,-16] }
+AP-ITEM { "category": "medium-ammo", "typename": "GoldWandHefty2", "tag": "Wand Crystals", "pos": ["E1M9",1152,320,-32] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterMed", "tag": "Claw Orbs", "pos": ["E1M9",-320,480,-64] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterMed", "tag": "Claw Orbs", "pos": ["E1M9",128,480,-64] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterMed", "tag": "Claw Orbs", "pos": ["E1M9",-1600,1120,48] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterMed", "tag": "Claw Orbs", "pos": ["E1M9",-2272,1984,48] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M9",-1440,1888,64] }
+AP-ITEM { "category": "small-ammo", "typename": "PhoenixRodAmmo2", "tag": "Flame Orbs", "pos": ["E1M9",-128,-1376,-32] }
+AP-ITEM { "category": "small-ammo", "typename": "PhoenixRodAmmo2", "tag": "Flame Orbs", "pos": ["E1M9",-64,-1376,-32] }
+AP-ITEM { "category": "small-ammo", "typename": "PhoenixRodAmmo2", "tag": "Flame Orbs", "pos": ["E1M9",-96,-1952,128] }
+AP-ITEM { "category": "small-ammo", "typename": "PhoenixRodAmmo2", "tag": "Flame Orbs", "secret": true, "pos": ["E1M9",1792,2080,-520] }
+AP-ITEM { "category": "small-ammo", "typename": "PhoenixRodAmmo2", "tag": "Flame Orbs", "secret": true, "pos": ["E1M9",1792,1952,-520] }
+AP-ITEM { "category": "small-ammo", "typename": "PhoenixRodAmmo2", "tag": "Flame Orbs", "pos": ["E1M9",2224,-1648,-208] }
+AP-ITEM { "category": "small-ammo", "typename": "PhoenixRodAmmo2", "tag": "Flame Orbs", "pos": ["E1M9",2224,-1776,-208] }
+AP-ITEM { "category": "small-ammo", "typename": "PhoenixRodAmmo2", "tag": "Flame Orbs", "pos": ["E1M9",3088,-1776,-192] }
+AP-ITEM { "category": "small-ammo", "typename": "PhoenixRodAmmo2", "tag": "Flame Orbs", "pos": ["E1M9",3088,-1648,-192] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterMed", "tag": "Claw Orbs", "pos": ["E1M9",2016,64,-176] }
+AP-ITEM { "category": "medium-ammo", "typename": "CrossbowMed", "tag": "Ethereal Arrows", "pos": ["E1M9",3520,-640,-176] }
+AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo2", "tag": "Hellstaff Runes", "pos": ["E1M9",3312,160,-176] }
+AP-ITEM { "category": "medium-ammo", "typename": "SkullRodMed", "tag": "Hellstaff Runes", "pos": ["E1M9",3248,128,-176] }
+AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo2", "tag": "Hellstaff Runes", "pos": ["E1M9",3200,192,-176] }
+AP-ITEM { "category": "big-armor", "typename": "SilverShield", "tag": "Enchanted Shield", "pos": ["E1M9",2656,-384,-192] }
+AP-ITEM { "category": "big-armor", "typename": "EnchantedShield", "tag": "Enchanted Shield", "pos": ["E1M9",-96,1888,0] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "pos": ["E1M9",960,-1056,-40] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M9",1120,-1056,-40] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "pos": ["E1M9",1840,464,16] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "pos": ["E1M9",1872,352,16] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M9",-1872,-736,64] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M9",-1648,-736,64] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M9",-1312,-1968,64] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M9",-1104,-1936,64] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M9",-160,-1824,128] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M9",-32,-1824,128] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M9",-160,-1504,-32] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M9",-32,-1504,-32] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "pos": ["E1M9",-544,-928,-32] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "pos": ["E1M9",464,-144,144] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "pos": ["E1M9",624,-144,144] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M9",-800,-64,144] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M9",-672,-64,144] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M9",-800,-512,144] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M9",-672,-512,144] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M9",1280,208,32] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M9",1248,112,32] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M9",336,-176,0] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M9",-528,-176,0] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M9",-96,3136,128] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M9",-96,3008,128] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M9",-576,2208,128] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M9",-576,2144,128] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M9",384,2208,128] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M9",384,2144,128] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M9",-672,1760,64] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M9",-480,1760,64] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M9",288,1760,64] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M9",480,1760,64] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M9",-960,840,128] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M9",1264,1952,112] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M9",512,2752,112] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M9",352,-544,144] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M9",544,-368,144] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M9",-704,-2640,64] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M9",-256,-2560,48] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M9",64,-2560,48] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M9",336,-3376,48] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M9",336,-3440,48] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M9",1472,-3488,128] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M9",1824,-3168,128] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M9",608,-2784,112] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M9",928,-2496,112] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M9",-992,1824,96] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M9",-2144,2272,64] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M9",-2080,2208,64] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M9",2592,-1344,-200] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M9",2720,-1344,-200] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M9",3376,-160,-192] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M9",1936,-224,-192] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M9",2128,-784,-192] }
+AP-ITEM { "category": "big-armor", "typename": "SilverShield", "tag": "Enchanted Shield", "pos": ["E1M9",-96,-2240,64] }
+AP-ITEM { "category": "medium-ammo", "typename": "CrossbowMed", "tag": "Ethereal Arrows", "pos": ["E1M9",544,-144,144] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M9",-800,-192,144] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M9",-800,-384,144] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M9",-672,-384,144] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M9",-672,-192,144] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M9",-304,-2960,48] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M9",-464,-2944,48] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M9",-1408,-2288,48] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M9",-1280,-2608,48] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterMed", "tag": "Claw Orbs", "pos": ["E1M9",-816,-2144,48] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M9",-544,-1056,-32] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterMed", "tag": "Claw Orbs", "pos": ["E1M9",-96,-1056,-32] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M9",352,-1056,-32] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M9",1440,-1152,72] }
+AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo2", "tag": "Hellstaff Runes", "pos": ["E1M9",320,-2496,64] }
+AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo2", "tag": "Hellstaff Runes", "pos": ["E1M9",-448,-2496,64] }
+AP-ITEM { "category": "medium-ammo", "typename": "SkullRodMed", "tag": "Hellstaff Runes", "pos": ["E1M9",-96,160,-64] }
+AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo2", "tag": "Hellstaff Runes", "pos": ["E1M9",1344,1728,128] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M9",1248,1280,128] }
+AP-ITEM { "category": "medium-ammo", "typename": "SkullRodHefty2", "tag": "Hellstaff Runes", "pos": ["E1M9",1776,896,32] }
+AP-ITEM { "category": "medium-ammo", "typename": "CrossbowHefty2", "tag": "Ethereal Arrows", "pos": ["E1M9",1248,992,32] }
+AP-ITEM { "category": "medium-ammo", "typename": "BlasterHefty50", "tag": "Claw Orbs", "pos": ["E1M9",1872,1728,32] }
+AP-ITEM { "category": "small-ammo", "typename": "MaceAmmo", "tag": "Mace Spheres", "pos": ["E1M9",3008,384,-64] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M9",1856,1776,32] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M9",1920,1744,32] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M9",1136,1632,112] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M9",1136,1392,112] }
+AP-ITEM { "category": "small-ammo", "typename": "MaceAmmo", "tag": "Mace Spheres", "pos": ["E1M9",2016,480,-128] }
+AP-ITEM { "category": "small-ammo", "typename": "MaceAmmo", "tag": "Mace Spheres", "pos": ["E1M9",2032,352,-128] }
+AP-ITEM { "category": "small-ammo", "typename": "MaceAmmo", "tag": "Mace Spheres", "pos": ["E1M9",704,512,0] }
+AP-ITEM { "category": "small-ammo", "typename": "MaceAmmo", "tag": "Mace Spheres", "pos": ["E1M9",-1312,-672,-16] }
+AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo2", "tag": "Hellstaff Runes", "pos": ["E1M9",-544,-640,0] }
+AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo2", "tag": "Hellstaff Runes", "pos": ["E1M9",800,192,-16] }
+AP-ITEM { "category": "small-ammo", "typename": "MaceAmmo", "tag": "Mace Spheres", "pos": ["E1M9",-896,512,0] }
+AP-ITEM { "category": "tool", "typename": "ArtiEgg2", "tag": "Morph Ovum", "pos": ["E1M9",-576,1664,0] }
+AP-ITEM { "category": "tool", "typename": "ArtiEgg2", "tag": "Morph Ovum", "pos": ["E1M9",384,1664,0] }
+AP-ITEM { "category": "tool", "typename": "ArtiEgg2", "tag": "Morph Ovum", "pos": ["E1M9",-2432,1472,48] }
+AP-ITEM { "category": "small-ammo", "typename": "MaceAmmo", "tag": "Mace Spheres", "pos": ["E1M9",-2528,1248,48] }
+AP-ITEM { "category": "small-ammo", "typename": "MaceAmmo", "tag": "Mace Spheres", "pos": ["E1M9",-2496,1152,48] }
+AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo2", "tag": "Hellstaff Runes", "pos": ["E1M9",-1216,1472,112] }
+AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo2", "tag": "Hellstaff Runes", "pos": ["E1M9",-1120,1408,112] }
+AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo2", "tag": "Hellstaff Runes", "pos": ["E1M9",-288,800,-24] }
+AP-ITEM { "category": "small-ammo", "typename": "MaceAmmo", "tag": "Mace Spheres", "pos": ["E1M9",96,800,-24] }
+AP-ITEM { "category": "medium-ammo", "typename": "SkullRodHefty2", "tag": "Hellstaff Runes", "pos": ["E1M9",1504,-1056,-56] }
+AP-ITEM { "category": "small-ammo", "typename": "MaceAmmo", "tag": "Mace Spheres", "pos": ["E1M9",-96,-3360,48] }
+AP-ITEM { "category": "medium-ammo", "typename": "CrossbowHefty2", "tag": "Ethereal Arrows", "pos": ["E1M9",1024,-2624,112] }
+AP-ITEM { "category": "powerup-maprevealer", "typename": "SuperMap", "tag": "Map Scroll", "pos": ["E1M9",1104,2688,112] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M9",3136,-256,-192] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M9",2176,-256,-192] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M9",896,-640,-56] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M9",1664,-768,-56] }
+AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo2", "tag": "Hellstaff Runes", "pos": ["E1M9",1536,-1536,-56] }
+AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo2", "tag": "Hellstaff Runes", "pos": ["E1M9",768,-1280,-56] }
+AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo2", "tag": "Hellstaff Runes", "pos": ["E1M9",1280,-768,-56] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M9",1280,-1408,-56] }
+AP-ITEM { "category": "powerup-tool", "typename": "ArtiIceBoots", "tag": "Boots of the North", "secret": true, "pos": ["E1M9",-352,3184,128] }
+AP-ITEM { "category": "small-ammo", "typename": "PhoenixRodAmmo2", "tag": "Flame Orbs", "secret": true, "pos": ["E1M9",-352,3024,128] }
+AP-ITEM { "category": "small-ammo", "typename": "PhoenixRodAmmo2", "tag": "Flame Orbs", "secret": true, "pos": ["E1M9",-352,3104,128] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M9",-960,760,128] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M9",-960,800,128] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M9",1008,800,-32] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M9",912,816,-32] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M9",832,736,-32] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M9",2396,-2052,-192] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M9",2532,-2052,-192] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M9",2784,-1856,-48] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M9",2912,-1856,-48] }
+AP-ITEM { "category": "medium-ammo", "typename": "SkullRodMed", "tag": "Hellstaff Runes", "pos": ["E1M9",3168,-2032,-320] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiRegenPotion", "tag": "Elixir Vitae", "pos": ["E1M9",2920,-2056,-192] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "pos": ["E1M9",2464,-1968,-192] }
+AP-ITEM { "category": "medium-ammo", "typename": "BlasterHefty50", "tag": "Claw Orbs", "pos": ["E1M9",2656,-1712,-48] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M9",1792,-1920,-320] }
+AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M9",1840,-2016,-320] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "pos": ["E1M9",3040,-2240,-48] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M9",1888,-1632,-320] }
+AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M9",2944,-1056,-320] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M9",3040,-1568,-320] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M9",2464,-1376,-320] }
+AP-ITEM { "category": "small-ammo", "typename": "MaceAmmo", "tag": "Mace Spheres", "pos": ["E1M9",1808,-1968,-320] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterMed", "tag": "Claw Orbs", "pos": ["E1M9",2776,-1976,-192] }
+AP-ITEM { "category": "tool", "typename": "ArtiWendigoBreath", "tag": "Wendigo's Breath", "secret": true, "pos": ["E1M9",96,3104,128] }
+AP-ITEM { "category": "tool", "typename": "ArtiWendigoBreath", "tag": "Wendigo's Breath", "secret": true, "pos": ["E1M9",160,3040,128] }
+AP-ITEM { "category": "tool", "typename": "ArtiWendigoBreath", "tag": "Wendigo's Breath", "secret": true, "pos": ["E1M9",160,3104,128] }
+AP-ITEM { "category": "tool", "typename": "ArtiWendigoBreath", "tag": "Wendigo's Breath", "secret": true, "pos": ["E1M9",160,3168,128] }
+AP-ITEM { "category": "tool", "typename": "ArtiWendigoBreath", "tag": "Wendigo's Breath", "secret": true, "pos": ["E1M9",224,3104,128] }
+AP-ITEM { "category": "small-ammo", "typename": "BlasterMed", "tag": "Claw Orbs", "pos": ["E1M9",1824,-3632,128] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "skill": [2, 3], "pos": ["E1M9",-2240,944,64] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "skill": [2, 3], "pos": ["E1M9",-928,2176,128] }
+AP-ITEM { "category": "medium-ammo", "typename": "PhoenixRodHefty2", "tag": "Flame Orbs", "skill": [2, 3], "pos": ["E1M9",2384,-1456,-48] }
+AP-ITEM { "category": "medium-ammo", "typename": "MaceHefty", "tag": "Mace Spheres", "skill": [2, 3], "pos": ["E1M9",2928,-1456,-48] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "skill": [2, 3], "pos": ["E1M9",2656,-1136,-320] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "skill": [2, 3], "pos": ["E1M9",2656,-1232,-320] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "skill": [2, 3], "pos": ["E1M9",2848,-2240,-48] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "skill": [3], "pos": ["E1M9",1440,-960,72] }
+AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "skill": [3], "pos": ["E1M9",1632,-160,80] }
+AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "skill": [3], "pos": ["E1M9",640,-1056,-40] }
+AP-SECRET { "pos": ["E1M9","secret","sector",375], "name": "Wings secret" }
+AP-SECRET { "pos": ["E1M9","secret","sector",397], "name": "Boots secret" }
+AP-SECRET { "pos": ["E1M9","secret","sector",492], "name": "Breath secret" }
+AP-SCAN-DONE {}

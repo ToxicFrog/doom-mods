@@ -1,20 +1,26 @@
 NAME=gzArchipelago
 TAGS=gzap-*
-VERSION=0.6.6
+VERSION=0.7.0
 LUMPS=MAPINFO MENUDEF zscript.txt *.md LANGUAGE.csv CVARINFO KEYCONF TEXTURES.txt
 LUMPS+=sprites textures maps patches config/*
 ZSDIR=ca.ancilla.gzap
 LIBTTM=${TOPDIR}/libtooltipmenu/ca.ancilla.libtooltipmenu
 LIBTTM_PREFIX=GZAP
+APWORLDS:=${TOPDIR}/release/apworlds
 
-all: ${PK3} apworld install
+all: version ${PK3} apworlds install
 
 include ${TOPDIR}/rules.make
 
-apworld: version ${TOPDIR}/release/gzdoom.apworld ${TOPDIR}/release/ap_gzdoom_featured.apworld ${TOPDIR}/release/ap_gzdoom_extras.apworld
+apworlds: core_apworld addon_apworlds
+
+core_apworld: version ${TOPDIR}/release/gzdoom.apworld
+addon_apworlds: $(patsubst wads/%/,${APWORLDS}/zdoom_%.apworld,$(wildcard wads/*/))
 ${PK3}: sprites/icons
 
-version:
+version: apworld/gzdoom/VERSION
+
+apworld/gzdoom/VERSION: ${TOPDIR}/.git/HEAD
 	${TOPDIR}/tools/version-stamp "${TAGS}" apworld/gzdoom/VERSION
 
 ca.ancilla.gzap/PlayEventHandler.zsc: apworld/gzdoom/VERSION
@@ -24,12 +30,34 @@ sprites/icons: apworld/gzdoom/icons/__init__.py assets/*.png
 	python apworld/gzdoom/icons/__init__.py
 	touch sprites/icons
 
-${TOPDIR}/release/%.apworld: apworld/%/* apworld/%/*/*
-	cd apworld && zip -qr $*.apworld $*
-	cp apworld/$*.apworld ${TOPDIR}/release/
-	mv apworld/$*.apworld ${TOPDIR}/release/$*-${VERSION}.apworld
+${TOPDIR}/release/gzdoom.apworld: apworld/gzdoom/* apworld/gzdoom/*/*
+	cd apworld && zip -qr gzdoom.apworld gzdoom
+	mv apworld/gzdoom.apworld $@
 
-install: ${TOPDIR}/release/gzdoom.apworld ${TOPDIR}/release/ap_gzdoom_featured.apworld ${TOPDIR}/release/ap_gzdoom_extras.apworld
-	cp -a ${TOPDIR}/release/gzdoom.apworld ${TOPDIR}/release/ap_gzdoom_featured.apworld ${TOPDIR}/release/ap_gzdoom_extras.apworld ~/.local/share/Archipelago/worlds
+${APWORLDS}/zdoom_%.apworld: apworld/zdoom_%/./ apworld/zdoom_%/archipelago.json apworld/zdoom_%/__init__.py
+	cd apworld && zip -qr9 zdoom_$*.apworld zdoom_$*/
+	mv apworld/zdoom_$*.apworld $@
+
+apworld/zdoom_%/./: wads/%/*
+	rm -rf apworld/zdoom_$*/
+	cp -a wads/$* apworld/zdoom_$*
+	mkdir -p apworld/zdoom_$*/logic apworld/zdoom_$*/tuning
+	mv apworld/zdoom_$*/*.logic apworld/zdoom_$*/logic/ || true
+	mv apworld/zdoom_$*/*.tuning apworld/zdoom_$*/tuning/ || true
+
+apworld/zdoom_%/archipelago.json: wads/archipelago.tmpl version apworld/zdoom_%/./
+	sed -E "s,__WAD__,$*," wads/archipelago.tmpl > apworld/zdoom_$*/archipelago.json
+
+apworld/zdoom_%/__init__.py: wads/__init__.tmpl apworld/zdoom_%/./
+	sed -E "s,__WAD__,$*,; s,__VERSION__,`cat apworld/gzdoom/VERSION`," wads/__init__.tmpl > apworld/zdoom_$*/__init__.py
+
+install: core_apworld addon_apworlds
+	cp -a ${TOPDIR}/release/gzdoom.apworld ~/.local/share/Archipelago/worlds
+	cp -a ${APWORLDS}/*.apworld ~/.local/share/Archipelago/worlds
+
+clean: clean.super
+	rm -rf apworld/zdoom_*
+	rm -rf ${APWORLDS}/zdoom_*
 
 .PHONY: apworld install
+.SECONDARY:

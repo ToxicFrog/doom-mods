@@ -1,0 +1,45 @@
+import sys
+from dataclasses import dataclass
+
+from worlds.AutoWorld import World
+from Options import PerGameCommonOptions, Toggle, DeathLink, StartInventoryPool, OptionSet, NamedRange, Range, OptionDict, OptionList, OptionError
+
+if 'worlds.gzdoom' not in sys.modules:
+    raise RuntimeError(f'Unable to load supporting libraries -- make sure that `gzdoom.apworld` is installed!')
+
+gzdoom = sys.modules['worlds.gzdoom']
+model = sys.modules['worlds.gzdoom.model']
+options = sys.modules['worlds.gzdoom.Options']
+
+included_logic = model.init_wads(__package__)
+
+
+class IncludedLevels___WAD__(options.IncludedLevels):
+    """
+    Levels to include in randomization. By default this lists all levels available
+    in the WAD. Removing levels from this will result in a shorter game, as will
+    changing the win_conditions so that you don't need to finish all of them.
+
+    This option supports globbing expressions.
+    """
+    default = sorted(included_logic.wad.maps.keys())
+
+
+@dataclass
+class GZDoomOptions___WAD__(options.GZDoomOptions):
+    included_levels: IncludedLevels___WAD__
+
+
+class GZDoomWorld___WAD__(gzdoom.GZDoomWorld):
+    game = f"GZDoom ({included_logic.wad.name})"
+    mod_version = "__VERSION__"
+    hidden = False
+    wad_logic = included_logic.wad
+    options_dataclass = GZDoomOptions___WAD__
+    options: GZDoomOptions___WAD__
+
+    # Used by AP itself
+    item_name_to_id = model.unified_item_map(included_logic)
+    item_name_groups = model.unified_item_groups(included_logic)
+    location_name_to_id = model.unified_location_map(included_logic)
+    location_name_groups = model.unified_location_groups(included_logic)

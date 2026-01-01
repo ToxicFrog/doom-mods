@@ -24,7 +24,7 @@ from .DoomWad import DoomWad
 @dataclass
 class DoomLogic:
     last_id: int = 0
-    wads: Dict[str,DoomWad] = field(default_factory=dict)
+    wad: DoomWad = None
     item_names_to_ids: Dict[str,int] = field(default_factory=dict)
     item_categories_to_names: Dict[str, Set[str]] = field(default_factory=dict)
     location_names_to_ids: Dict[str,int] = field(default_factory=dict)
@@ -41,10 +41,8 @@ class DoomLogic:
     #     return self.locations.values()
 
     def add_wad(self, name: str, wad: DoomWad):
-        self.wads[name] = wad
-
-    def wad(self, name: str) -> DoomWad:
-        return self.wads[name]
+        assert self.wad is None
+        self.wad = wad
 
     def all_subcategory_strings(self, cats):
         cats = list(cats)

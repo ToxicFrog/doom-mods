@@ -25,7 +25,7 @@ loaded:
 Then you need to create a logfile. Unfortunately the mod **cannot do this for you**,
 you have to do it yourself. Open the console and:
 
-    logfile Demonfear
+    logfile Demonfear.logic
 
 While you're here, you might want to change some settings that will make the scan
 go a lot faster. (Don't forget to change them back later!)
@@ -42,8 +42,8 @@ a scan, or you can do it, too, from the console:
 
 In either case, it will start the scan. If it encounters any cutscenes, you may
 need to fast forward through them for it. When it finishes, quit and the scan
-results will be in the `Demonfear` file (or whatever filename you passed to
-the `logfile` command).
+results will be in the `Demonfear.logic` file (or whatever filename you passed
+to the `logfile` command).
 
 ### Multiple episodes and standalone maps
 
@@ -107,47 +107,24 @@ to it. See the Doom 2 logic for an example.
 Names do not have to be unique; the randomizer will add a unique suffix if there
 are duplicate location names in the logic.
 
+
 ## Publishing your logic
 
-gzArchipelago can load your logic and tuning files from disk, as long as they're
-in the right place, but for sharing with other people (like a game host) it's
-convenient to create an apworld for them, or add them to an existing one.
+Logic for a wad must be published as an apworld. Each apworld contains support
+for one wad.
 
-### Loading files without adding them to the apworld
+The easiest way to do this is in your browser, using the
+[gzArchipelago apworld packager](https://toxicfrog.github.io/doom-mods/apworld-generator.html).
+Enter a name, select your logic file (and tuning files, if any), and click the
+"generate apworld" button. It will offer you the apworld as a download.
 
-When still developing, it's convenient to be able to load your logic and tuning
-files without needing to re-pack the apworld each time.
+Note that your logic files *must* end with a `.logic` extension, and tuning
+files with `.tuning`.
 
-On startup, the apworld will have created a `gzdoom` directory inside your
-Archipelago directory, used to communicate with gzdoom while playing. This
-directory also contains `logic` and `tuning` directories; any logic or tuning
-files placed in them will be loaded automatically (and, in the case of logic
-files, will override the builtin logic if they have the same name), allowing you
-to rapidly change and test your work without repacking the apworld.
+### Loading files without packaging them
 
-Note that tuning files in this directory do not apply to logic files inside an
-apworld; if you want to add tuning to a wad that has logic in the apworld, you
-will need to either pack your tuning files into the same apworld to test, or
-unpack the logic from the apworld while testing.
+(This feature is currently unavailable.)
 
-### Adding the logic file to an apworld
-
-- Open gzdoom.apworld in a zip viewer
-- Add the logic file to the `gzdoom/logic/` directory
-- Save and quit
-
-That's it! It'll be automatically loaded next time you start Archipelago.
-
-### Publishing a new apworld
-
-To do this, you just need a zip file with a `.apworld` extension, containing a
-minimal `__init__.py` along with `logic` and `tuning` directories. See the
-[extras apworld](../../release/ap_gzdoom_extras.apworld) for an example.
-
-There is a restriction on apworld naming: gzdoom addon apworlds must have an
-apworld name that **alphabetically sorts before gzdoom.apworld**. This is why
-the featured and extras apworlds have names starting with `ap_gzdoom_` rather
-than just `gzdoom_`.
 
 ## Tuning a logic file
 
@@ -158,14 +135,11 @@ will create multiple, numbered tuning files, all of which will be loaded by the
 apworld.
 
 When you play single-world, you can accomplish the same thing with the `logfile`
-console command. (Or you can just leave the AP client running in the background
--- it doesn't need to connect to the AP server to create the tuning file for
-you.)
+console command. (Or you can just leave the AP client running in the background,
+without connecting to a host.)
 
-The files in `<AP dir>/gzdoom/tuning/` will be loaded automatically; to "bake it
-in" to the apworld, use the same procedure as adding a logic file, but put the
-files in the `gzdoom/tuning/` directory inside the apworld, rather than
-`gzdoom/logic/`.
+Once you've generated the tuning files, you can package them into an apworld
+alongside the logic using the instructions above.
 
 ### Keys not detected by the scanner
 

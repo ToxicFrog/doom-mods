@@ -10,30 +10,18 @@ To release a new version:
 - make again to bake the release version number into the pk3
 - cut the release on github
 
-### next release
-
-(0.7 is focusing on logic/tuning format changes and bugfixes)
-
-(maybe wait for 0.7.1)
-- weapon suppression just makes the gun non-interactable rather than tuning it into ammo?
-- weapon ownership rework
-- display weapons in inventory even if you don't have them
-- let you hint weapons from the inventory screen
-- hints section in the inventory screen for hints pointing to the current level
-- associate a region with each map and allow configuring it with AP-REGION
-  - map access requires access key + other region requirements
-  - DoomRegion implicitly wants an enclosing map so we probably want to inherit from DoomReachable in DoomMap
-- logic engine changes to acommodate hubclusters
-  - keep track of which locations are in which regions
-    - rework create_regions to use this info
-    - use it for weapon logic
-
 ### scanner
-
-- list maps to scan as ranges or globbing expressions?
 
 ### generator
 
+- better handling for vanilla/local/pretuning settings
+  - need a way to say "this item should be written into the pk3 as if it were randomized, and still used for tuning, but not reported to the server"
+- support `key/*` to mean "any key"
+- test with uzdoom and migrate
+- region hierarchy refactor
+  - a wad contains maps, which contain regions, which contain locations
+  - maps/regions/locations are all DoomReachable and form a tree
+  - in particular this means you can ask any of them "which reachables do you contain", recursively
 - option to treat bosses as checks -- also needs scanner changes, highly vulnerable
   to enemy-replacement mods
   - could try placing the check in the boss's inventory, and on the ground where
@@ -41,34 +29,58 @@ To release a new version:
 - alternate win conditions:
   - find N victory tokens
   - find N secrets
-- option to choose the X% of an item category game-wide rather than per-map
-- item tag support, allowing to treat "small", "health", and "secret" (e.g.) as
-  separate tags -- need to figure out how the YAML works for this
 
 ### ingame
+
+- weapon ownership rework -- remember which weapons the player ended up with when
+  we granted them some, and restore them if they go away
+  - this may fix TT
+- display weapons in inventory even if you don't have them
+- let you hint weapons from the inventory screen
+- hints section in the inventory screen for hints pointing to the current level
 
 - If a check gets destroyed (e.g. with thing_remove), we should dispense whatever
   it contained. This would let us (e.g.) reinstate the urns and shields in Faithless
   E1M7 without the risk of making the game unwinnable.
 
-- TT has a bunch of stuff that breaks it: single-use teleport lines, scripts that
-  take away your guns and keys on level start
-  - we can probably be better about keeping the player's key inventory up to
-    date, at least.
-  - can we do anything about weapons? remember how many the player has been
-    vended and re-vend them if they run out?
+- We should probably delete checks outright when collected so that TID-based stuff
+  works properly, e.g. the fizzopops and fishtanks in AOS.
 
-- "gzap for apdoom users" man page
-- some hints received when playing in the weekly sync did not display on the
-  map screen
-- Ashes 2063 reports duplicate keys because of the way keys are handled -- you
-  pick up the BluePassCard and it gives you a BlueCard in your inventory, which
-  the AP runtime then identifies as a new key scoped to that level, which can be
-  a bit confusing but generally does not affect normal play.
+- bug in item display -- for example, fizzopop factory says 7/232 items collected
+  in the menu (I think from other players using !collect), but says 14/226 items
+  and 0/6 secrets in-level. Cosmetic only, but annoying.
+
+- we need a better region dashboard, probably as a separate menu rather than wired
+  into the inventory. List all weapons, all keys relevant to this level, all
+  regions and maps in the cluster, and let them be toggled individually, along
+  with a region name field, and then separate "commit region" and "no region"
+  buttons.
+
+- if a check is deleted outright without being collected, we should reinstate it if we can.
+
+- New check graphics:
+  - hollow cyan for "check is empty but has a trigger associated with it"
+  - hollow grey? with full size icon for "check is local-only and won't be sent to the server"
 
 ### Faithless
 
+### Adventures of Square
 
+Some areas require Hellshell to reach via rocket jumping -- all in E2M3 so far,
+but there are probably more. Need to make sure they are catalogued correctly.
+
+Powerzade is often load-bearing for progression, similar to envirosuits or fishbowls.
+It should be either excluded from randomization or handled differently. The way
+it's scripted, there's a thing that respawns it if the original is gone, but since
+we just *hide* the check when collected, we don't *delete* it, the respawn doesn't work.
+
+We can handle this by:
+- breaking the TID relationship for the check;
+- setting the check to have TID 0 when picked up so it looks like it's been deleted;
+- deleting checks when picked up, which might be a good idea more generally; if the
+  user wants ghost checks left behind we can spawn a separate marker for them
+
+HotSauce is also used in E1M10 to unlock a secret.
 
 ### Golden Souls
 
@@ -103,3 +115,10 @@ At 8 souls, you unlock 4 more levels all at once.
 
 To reach the final boss, you need 15 souls; since there are only 12 "normal" levels,
 you also need to do at least three of the (secret hidden + secret bigcoin) levels.
+
+### Ashes
+
+- Ashes 2063 reports duplicate keys because of the way keys are handled -- you
+  pick up the BluePassCard and it gives you a BlueCard in your inventory, which
+  the AP runtime then identifies as a new key scoped to that level, which can be
+  a bit confusing but generally does not affect normal play.

@@ -29,7 +29,6 @@ from .model.DoomWad import DoomWad
 # are tuned. This implies we could get some significant savings by deferring
 # tuning file processing until we know what wad the player has selected, and
 # only loading the tuning data for that one.
-model.init_all_wads()
 
 from .Options import GZDoomOptions
 
@@ -52,7 +51,7 @@ LauncherComponents.components.append(
 )
 
 class GZDoomLocation(Location):
-    game: str = "gzDoom"
+    game: str = "GZDoom"
     doom_location: DoomLocation
 
     def __init__(self, world, loc: DoomLocation, region: Region) -> None:
@@ -78,13 +77,13 @@ class GZDoomLocation(Location):
         return '|'.join(flags)
 
 class GZDoomItem(Item):
-    game: str = "gzDoom"
+    game: str = "GZDoom"
 
     def __init__(self, item: DoomItem, player: int) -> None:
         super().__init__(name=item.name(), classification=item.classification(), code=item.id, player=player)
 
 class GZDoomUTGlitchFlag(Item):
-    game: str = "gzDoom"
+    game: str = "GZDoom"
     FLAG_NAME = "[UT Glitch Logic Flag]"
 
     def __init__(self, player) -> None:
@@ -109,23 +108,25 @@ class GZDoomWorld(World):
 
     This randomizer comes with an automated WAD scanner that makes it easy to add support for new WADs.
     """
-    game = "gzDoom"
+    game = "GZDoom"
     options_dataclass = GZDoomOptions
     options: GZDoomOptions
     topology_present = True
     web = GZDoomWeb()
     required_client_version = (0, 6, 3)
-    mod_version = resources.files(__package__).joinpath('VERSION').read_text().strip()
+    hidden = True
 
     # Info fetched from gzDoom; contains item/location ID mappings etc.
     wad_logic: DoomWad
     location_count: int = 0
 
-    # Used by the caller
-    item_name_to_id: Dict[str, int] = model.unified_item_map()
-    item_name_groups: Dict[str,FrozenSet[str]] = model.unified_item_groups()
-    location_name_to_id: Dict[str, int] = model.unified_location_map()
-    location_name_groups: Dict[str,FrozenSet[str]] = model.unified_location_groups()
+    # Used by AP itself
+    # These are placeholders; subclasses in the wad apworlds will populate
+    # these when loaded.
+    item_name_to_id: Dict[str, int] = {}
+    item_name_groups: Dict[str,FrozenSet[str]] = {}
+    location_name_to_id: Dict[str, int] = {}
+    location_name_groups: Dict[str,FrozenSet[str]] = {}
 
     # Universal Tracker integration
     glitches_item_name: str = GZDoomUTGlitchFlag.FLAG_NAME
@@ -189,10 +190,7 @@ class GZDoomWorld(World):
             # access flags it finds in our inventory.
             self.options.starting_levels.value = []
 
-        wadlist = list(self.options.selected_wad.value)
-        print(f"Permitted WADs: {wadlist}")
-
-        self.wad_logic = model.get_tuned_wad(random.choice(wadlist))
+        model.get_tuned_wad(self.wad_logic)
         self.spawn_filter = self.options.spawn_filter.value
         skill_name = { 1: "easy", 2: "medium", 3: "hard" }[self.spawn_filter]
         print(f"Selected WAD: {self.wad_logic.name}")
@@ -368,9 +366,7 @@ class GZDoomWorld(World):
     def fill_slot_data(self):
         return self.options.as_dict(
             'level_order_bias', 'local_weapon_bias', 'carryover_weapon_bias',
-            'spawn_filter', 'included_item_categories') | {
-                'selected_wad': [self.wad_logic.name]
-            }
+            'spawn_filter', 'included_item_categories')
 
     def write_spoiler_header(self, fd):
         fd.write(f'Random WAD selected:             {self.wad_logic.name}\n')
