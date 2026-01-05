@@ -1600,7 +1600,6 @@ AP-ITEM { "category": "small-ammo", "typename": "BlasterMed", "tag": "Claw Orbs"
 AP-ITEM { "category": "small-ammo", "typename": "JadeAmmo", "tag": "JadeAmmo", "pos": ["E2M6",368,-2560,-8] }
 AP-ITEM { "category": "small-ammo", "typename": "JadeAmmo", "tag": "JadeAmmo", "pos": ["E2M6",-640,64,-88] }
 AP-ITEM { "category": "small-ammo", "typename": "JadeAmmo", "tag": "JadeAmmo", "pos": ["E2M6",-1040,256,-88] }
-AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E2M6",-992,6816,0] }
 AP-ITEM { "category": "big-armor", "typename": "SilverShield", "tag": "Enchanted Shield", "pos": ["E2M6",-1024,3664,0] }
 AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "pos": ["E2M6",-1248,-976,-208] }
 AP-ITEM { "category": "medium-ammo", "typename": "BlasterHefty50", "tag": "Claw Orbs", "pos": ["E2M6",-1200,-928,-208] }
@@ -1778,24 +1777,14 @@ AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal
 AP-ITEM { "category": "medium-ammo", "typename": "SkullRodMed", "tag": "Hellstaff Runes", "pos": ["E2M6",-1712,1040,0] }
 AP-ITEM { "category": "medium-ammo", "typename": "MaceMed", "tag": "Mace Spheres", "pos": ["E2M6",-1584,1088,0] }
 AP-ITEM { "category": "tool", "typename": "ArtiHorn", "tag": "Horn of Conjuring", "secret": true, "pos": ["E2M6",-2256,1696,16] }
-AP-ITEM { "category": "small-ammo", "typename": "DSparilAmmo", "tag": "DSparilAmmo", "pos": ["E2M6",-1104,6768,0] }
-AP-ITEM { "category": "small-ammo", "typename": "DSparilMed", "tag": "DSparilMed", "pos": ["E2M6",-1152,6816,0] }
 AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E2M6",-1152,5600,-4] }
 AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E2M6",-1152,5728,-4] }
 AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E2M6",-1152,5856,-4] }
 AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E2M6",-1152,5984,-4] }
-AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E2M6",-1152,6112,-4] }
-AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E2M6",-1152,6240,-4] }
-AP-ITEM { "category": "small-ammo", "typename": "DSparilAmmo", "tag": "DSparilAmmo", "pos": ["E2M6",-1200,6768,0] }
-AP-ITEM { "category": "small-ammo", "typename": "DSparilAmmo", "tag": "DSparilAmmo", "pos": ["E2M6",-1200,6864,0] }
-AP-ITEM { "category": "small-ammo", "typename": "DSparilAmmo", "tag": "DSparilAmmo", "pos": ["E2M6",-1104,6864,0] }
 AP-ITEM { "category": "medium-health-tool", "typename": "ArtiHealth", "tag": "Quartz Flask", "pos": ["E2M6",3648,2880,-328] }
 AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E2M6",3328,2576,-256] }
 AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E2M6",3456,2576,-256] }
 AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E2M6",3392,2576,-256] }
-AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E2M6",-1152,6976,0] }
-AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E2M6",-1312,6816,0] }
-AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E2M6",-1152,6656,0] }
 AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo2", "tag": "Hellstaff Runes", "pos": ["E2M6",4928,3264,-320] }
 AP-ITEM { "category": "small-ammo", "typename": "BlasterMed", "tag": "Claw Orbs", "pos": ["E2M6",4416,3040,-336] }
 AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo2", "tag": "Hellstaff Runes", "pos": ["E2M6",4928,3456,-320] }
@@ -1832,6 +1821,20 @@ AP-SECRET { "pos": ["E2M6","secret","sector",401] }
 AP-SECRET { "pos": ["E2M6","secret","sector",422] }
 AP-SECRET { "pos": ["E2M6","secret","sector",491] }
 AP-SECRET { "pos": ["E2M6","secret","sector",696] }
+// These items are in the final room of the level. As you approach the center, the floor collapses and the items fall
+// into the pit leading to M8. A fast player can grab some of them, but not all, and there is no guarantee the player
+// will be able to grab any of them.
+// AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E2M6",-992,6816,0] }
+// AP-ITEM { "category": "small-ammo", "typename": "DSparilAmmo", "tag": "DSparilAmmo", "pos": ["E2M6",-1104,6768,0] }
+// AP-ITEM { "category": "small-ammo", "typename": "DSparilMed", "tag": "DSparilMed", "pos": ["E2M6",-1152,6816,0] }
+// AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E2M6",-1152,6112,-4] }
+// AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E2M6",-1152,6240,-4] }
+// AP-ITEM { "category": "small-ammo", "typename": "DSparilAmmo", "tag": "DSparilAmmo", "pos": ["E2M6",-1200,6768,0] }
+// AP-ITEM { "category": "small-ammo", "typename": "DSparilAmmo", "tag": "DSparilAmmo", "pos": ["E2M6",-1200,6864,0] }
+// AP-ITEM { "category": "small-ammo", "typename": "DSparilAmmo", "tag": "DSparilAmmo", "pos": ["E2M6",-1104,6864,0] }
+// AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E2M6",-1152,6976,0] }
+// AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E2M6",-1312,6816,0] }
+// AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E2M6",-1152,6656,0] }
 AP-MAP { "map": "E2M7", "checksum": "6dab56bfbe81df86d2b839e12873c588", "rank": 1, "monster_count": 314, "clustername": "Merciless", "info": { "levelnum": 17, "title": "FAITH_E2M7", "is_lookup": true, "sky1": "SKYWALL2", "sky1speed": "0.000000", "sky2": "SKY1NM", "sky2speed": "0.003500", "music": "$MUSIC_MERCI_7", "music_track": "0", "cluster": 67, "flags": ["doublesky"] } }
 AP-ITEM { "category": "key", "typename": "PuzzDSparilBook1", "tag": "Daemon Codex", "pos": ["E2M7",3616,1024,136] }
 AP-KEY { "tag": "Daemon Codex", "typename": "PuzzDSparilBook1", "scopename": "Merciless", "cluster": 67, "maps": ["E2M1", "E2M2", "E2M3", "E2M4", "E2M5", "E2M6", "E2M7", "E2M8", "E2M9", "E2M0"] }
@@ -2209,11 +2212,12 @@ AP-ITEM { "category": "small-ammo", "typename": "BlasterMed", "tag": "Claw Orbs"
 AP-ITEM { "category": "medium-ammo", "typename": "JadeHefty", "tag": "JadeHefty", "pos": ["E2M8",-512,704,-8] }
 AP-ITEM { "category": "medium-ammo", "typename": "PhoenixRodMed", "tag": "Flame Orbs", "pos": ["E2M8",528,736,-8] }
 AP-MAP { "map": "E2M9", "checksum": "064e7f72909fe1145556ca07dfee40ea", "rank": 1, "monster_count": 240, "clustername": "Merciless", "info": { "levelnum": 19, "title": "FAITH_E2M9", "is_lookup": true, "sky1": "HSKY1BR", "sky1speed": "0.007000", "sky2": "HSKY1BR", "sky2speed": "0.000000", "music": "$MUSIC_MERCI_9", "music_track": "0", "cluster": 67, "flags": [] } }
+// TODO: these are mutually exclusive.
+// AP-ITEM { "category": "weapon", "typename": "PhoenixRod2", "tag": "Phoenix Rod", "tid": 17, "pos": ["E2M9",-320,3808,72] }
+// AP-ITEM { "category": "weapon", "typename": "DSparilStaff", "tag": "Justifier", "tid": 17, "pos": ["E2M9",-64,3808,72] }
 AP-ITEM { "category": "small-ammo", "typename": "DSparilAmmo", "tag": "DSparilAmmo", "pos": ["E2M9",608,-480,128] }
 AP-ITEM { "category": "small-ammo", "typename": "DSparilMed", "tag": "DSparilMed", "pos": ["E2M9",384,-320,128] }
 AP-ITEM { "category": "small-ammo", "typename": "DSparilAmmo", "tag": "DSparilAmmo", "pos": ["E2M9",160,-480,128] }
-AP-ITEM { "category": "weapon", "typename": "PhoenixRod2", "tag": "Phoenix Rod", "tid": 17, "pos": ["E2M9",-320,3808,72] }
-AP-ITEM { "category": "weapon", "typename": "DSparilStaff", "tag": "Justifier", "tid": 17, "pos": ["E2M9",-64,3808,72] }
 AP-ITEM { "category": "medium-ammo", "typename": "PhoenixRodMed", "tag": "Flame Orbs", "pos": ["E2M9",96,2848,96] }
 AP-ITEM { "category": "small-ammo", "typename": "DSparilMed", "tag": "DSparilMed", "pos": ["E2M9",96,2784,96] }
 AP-ITEM { "category": "weapon", "typename": "JadeWand", "tag": "Jade Wand", "pos": ["E2M9",-128,-352,-8] }
