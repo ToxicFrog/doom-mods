@@ -125,7 +125,7 @@ Map packs that use vanilla or lightly-modified monsters, weapons, etc.
 | [1000 Lines]     |   32 |     137 |    458 | basic   | Does not include the two bonus levels. |
 | [1000 Lines II]  |   32 |     116 |    415 | basic   | |
 | [Amalgoom]       |   37 |     244 |   1192 | full    | Must use [RC4](https://www.doomworld.com/forum/topic/152974-amalgoom-rc4-sandy-petersen-interview) version and the [hotfix](https://www.doomworld.com/forum/post/2965170). Details at [#53](https://github.com/ToxicFrog/doom-mods/pull/53). |
-| [Demonfear]      |   32 |      39 |    336 | basic   | |
+| [Demonfear]      |   32 |      39 |    336 | complete | |
 | [MAYhem 2048]    |   34 |     179 |    446 | baic    | |
 | [Scythe]         |   32 |     106 |    457 | basic   | MAP26-MAP30 are much larger than the rest of the wad; consider excluding them in short sync games. |
 | [Scythe 2]       |   32 |     191 |    582 | full    | |
