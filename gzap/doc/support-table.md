@@ -151,7 +151,7 @@ Entire games that replace most or all of the vanilla gameplay.
 | Ashes 2063                 |      |         |        | missing | (1) |
 | Ashes: Afterglow           |      |         |        | missing | (1) |
 | Ashes: Hard Reset          |      |         |        | missing | Still need to play it. |
-| Faithless Trilogy          |   28 |     156 |    440 | partial | Episode 1 fully supported. 2/3 are not yet ready for play. |
+| Faithless Trilogy          |   28 |     156 |    440 | partial | Episodes 1+2 fully supported. Episode 3 pending. |
 | Golden Souls Remastered    |      |         |        | missing | (3) |
 | Golden Souls 2             |      |         |        | missing | (3) |
 | Hedon Bloodrite            |      |         |        | missing | This is going to be a project but I think it would be pretty cool. |

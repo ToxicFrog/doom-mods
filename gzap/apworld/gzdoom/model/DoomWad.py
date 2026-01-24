@@ -230,7 +230,7 @@ class DoomWad:
             for item in items:
                 if dupes:
                     item.disambiguate = True
-                assert item.name() not in all_items,f"Error resolving item name collisions, item f{item} collides with distinct item f{all_items[item.name()]} even after trying to disambiguate."
+                assert item.name() not in all_items,f"Error resolving item name collisions, item {item} collides with distinct item {all_items[item.name()]} even after trying to disambiguate."
                 all_items[item.name()] = item
         self.items_by_name = all_items
         self.items_by_type = { item.typename: item for item in self.items() }
