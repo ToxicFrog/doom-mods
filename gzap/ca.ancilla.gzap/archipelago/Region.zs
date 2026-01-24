@@ -173,6 +173,8 @@ class ::Region play {
   void SortLocations() {
     ++txn;
     // It's small, we just bubble sort.
+    // TODO: ok on some settings it's actually quite large (high hundreds), so
+    // maybe implement a better sort algorithm someday.
     for (int i = self.locations.Size()-1; i > 0; --i) {
       for (int j = 0; j < i; ++j) {
         if (!self.locations[j].Order(self.locations[j+1])) {
@@ -236,6 +238,8 @@ class ::Region play {
     // DEBUG("GetPeek(%s)", location);
     return self.peeks.GetIfExists(location);
   }
+
+  bool HasPeek(string location) const { return self.peeks.CheckKey(location); }
 
   void RegisterKey(::RandoKey key) {
     ++txn;

@@ -12,8 +12,12 @@ To release a new version:
 
 ### scanner
 
+- rescan TNT with the official patch that fixes the yellow key bug
+
 ### generator
 
+- pass through items-included setting to UT and respect it properly so that e.g.
+  small items show up in UT
 - better handling for vanilla/local/pretuning settings
   - need a way to say "this item should be written into the pk3 as if it were randomized, and still used for tuning, but not reported to the server"
 - support `key/*` to mean "any key"
@@ -31,6 +35,11 @@ To release a new version:
   - find N secrets
 
 ### ingame
+
+- sort hints to the start of the check list. This requires moving the is-hinted
+  info into the actual Location rather than maintaining a separate hint array,
+  and updating the protocol to send hints using IDs rather than names, which we
+  should probably do anyways as that makes the messages smaller.
 
 - weapon ownership rework -- remember which weapons the player ended up with when
   we granted them some, and restore them if they go away

@@ -33,6 +33,9 @@ class ::Location {
   string ap_typename;    // Typename name of item randomized into this location
   string ap_name;        // User-facing name of same
   ::LocationFlags flags; // As above
+  // TODO: make this separate "checked locally" and "checked remotely" flags
+  // if checked remotely is set but checked locally isn't, behave based on the
+  // value of ap_allow_collect
   bool checked;       // Has the player already checked it?
   ::Tracking track;   // Tracker status for this location
   Vector3 pos;
