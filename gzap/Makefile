@@ -51,7 +51,7 @@ apworld/zdoom_%/archipelago.json: wads/archipelago.tmpl version apworld/zdoom_%/
 apworld/zdoom_%/__init__.py: wads/__init__.tmpl apworld/zdoom_%/./
 	sed -E "s,__WAD__,$*,; s,__VERSION__,`cat apworld/gzdoom/VERSION`," wads/__init__.tmpl > apworld/zdoom_$*/__init__.py
 
-install: core_apworld addon_apworlds
+install: core_apworld addon_apworlds ${PK3}
 	cp -a ${TOPDIR}/release/gzdoom.apworld ~/.local/share/Archipelago/worlds
 	cp -a ${APWORLDS}/*.apworld ~/.local/share/Archipelago/worlds
 
