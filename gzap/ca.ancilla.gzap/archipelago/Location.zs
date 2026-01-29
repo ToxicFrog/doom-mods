@@ -24,6 +24,13 @@ enum ::LocationFlags {
   AP_IS_SECRET_TRIGGER = 16, // This secret uses a TID rather than a sector ID
 }
 
+// A 'peek' delivered from AP, telling us what is at a given location and who
+// it belongs to.
+class ::Peek play {
+  string player;
+  string item;
+}
+
 // Information about a single check.
 class ::Location {
   uint apid;
@@ -38,6 +45,7 @@ class ::Location {
   // value of ap_allow_collect
   bool checked;       // Has the player already checked it?
   ::Tracking track;   // Tracker status for this location
+  ::Peek peek;
   Vector3 pos;
   bool is_virt;       // Virtual location with no physical position.
   int secret_id;      // Either a sector ID or a TID depending

@@ -185,8 +185,8 @@ class ::IPC {
     } else if (type == "PEEK") {
       if (fields.Size() != 6) return false;
       EventHandler.SendNetworkCommand("ap-ipc:peek",
-        // fields are map name, location name, destination player name, item name
-        NET_STRING, fields[2], NET_STRING, fields[3], NET_STRING, fields[4], NET_STRING, fields[5]);
+        // fields are map name, location ID, destination player name, item name
+        NET_STRING, fields[2], NET_INT, fields[3].ToInt(10), NET_STRING, fields[4], NET_STRING, fields[5]);
       return true;
     } else if (type == "TRACK") {
       if (fields.Size() != 4) return false;

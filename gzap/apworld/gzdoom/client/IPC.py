@@ -263,9 +263,9 @@ class IPC:
     """Send a hint to the game. map is only set if it's a scoped item being hinted."""
     self._enqueue("HINT", map or "", item, ansi_to_gzdoom(player), ansi_to_gzdoom(location))
 
-  def send_peek(self, map: str, location: str, player: str, item: str) -> None:
+  def send_peek(self, map: str, location_id: int, player: str, item: str) -> None:
     """Send a peek to the game."""
-    self._enqueue("PEEK", map, location, ansi_to_gzdoom(player), ansi_to_gzdoom(item))
+    self._enqueue("PEEK", map, location_id, ansi_to_gzdoom(player), ansi_to_gzdoom(item))
 
   def send_death(self, source: str, reason: str) -> None:
     self._enqueue("DEATH", source, reason)

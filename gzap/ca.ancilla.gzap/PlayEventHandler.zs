@@ -323,13 +323,13 @@ class ::PlayEventHandler : StaticEventHandler {
       apstate.RegisterHint(mapname, item, player, location);
     } else if (cmd.command == "ap-ipc:peek") {
       string mapname = cmd.ReadString();
-      string location = cmd.ReadString();
+      int location_id = cmd.ReadInt();
       string player = cmd.ReadString();
       string item = cmd.ReadString();
-      DEBUG("PEEK: %s - %s: %s for %s", mapname, location, item, player);
+      DEBUG("PEEK: %s - %d: %s for %s", mapname, location_id, item, player);
       let region = apstate.GetRegion(mapname);
       if (!region) return; // AP sent us a map name that doesn't exist??
-      region.RegisterPeek(location, player, item);
+      region.RegisterPeek(location_id, player, item);
     } else if (cmd.command == "ap-ipc:track") {
       int apid = cmd.ReadInt();
       string track_type = cmd.ReadString();

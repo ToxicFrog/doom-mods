@@ -46,13 +46,13 @@ class GZDoomHint:
             self.location_name(ctx.jsontotextparser),
         )
 
-    def peek_info(self, ctx) -> Tuple[str, str, str, str]:
+    def peek_info(self, ctx) -> Tuple[str, int, str, str]:
         """
-        Returns [map name, location name, receiving player, item].
+        Returns [map name, location id, receiving player, item].
         """
         (map_name, location_name) = self.location_info(ctx)
         return (
-            map_name, location_name,
+            map_name, self.location,
             self.player_name(ctx.jsontotextparser, self.receiving_player),
             self.item_name(ctx.jsontotextparser),
         )

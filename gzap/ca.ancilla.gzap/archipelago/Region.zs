@@ -18,11 +18,6 @@ class ::Hint play {
   string location;
 }
 
-class ::Peek play {
-  string player;
-  string item;
-}
-
 class ::Region play {
   // Lump name
   string map;
@@ -41,7 +36,6 @@ class ::Region play {
   // Indexes are fully qualified Archipelago names, e.g. "RedCard (MAP01)" or
   // "MAP01 - RocketLauncher".
   Map<string, ::Hint> hints;
-  Map<string, ::Peek> peeks;
   bool access;
   bool automap;
   bool visited;
@@ -76,9 +70,13 @@ class ::Region play {
     foreach (item, hint : self.hints) {
       console.printf("    - %s: %s @ %s", item, hint.player, hint.location);
     }
-    console.printf("    %d peeks", self.peeks.CountUsed());
-    foreach (location, peek : self.peeks) {
-      console.printf("    - %s: %s for %s", location, peek.item, peek.player);
+    int peeks = 0;
+    foreach (location: self.locations) {
+      if (location.peek) ++peeks;
+    }
+    console.printf("    %d peeks", peeks);
+    foreach (location: self.locations) {
+      if (location.peek) console.printf("    - %s: %s for %s", location, location.peek.item, location.peek.player);
     }
   }
 
@@ -224,22 +222,15 @@ class ::Region play {
     return self.hints.GetIfExists(item);
   }
 
-  void RegisterPeek(string location, string player, string item) {
+  void RegisterPeek(int location_id, string player, string item) {
     ++txn;
     let peek = ::Peek(new("::Peek"));
     peek.player = player;
     peek.item = item;
-    self.peeks.Insert(location, peek);
-    DEBUG("RegisterPeek(%s): %s for %s", location, item, player);
+    let loc = self.GetLocation(location_id);
+    DEBUG("RegisterPeek(%s): %s for %s", loc.name, item, player);
+    loc.peek = peek;
   }
-
-  // Like GetHint but takes a location name and returns the peek, if we know one.
-  ::Peek GetPeek(string location) const {
-    // DEBUG("GetPeek(%s)", location);
-    return self.peeks.GetIfExists(location);
-  }
-
-  bool HasPeek(string location) const { return self.peeks.CheckKey(location); }
 
   void RegisterKey(::RandoKey key) {
     ++txn;

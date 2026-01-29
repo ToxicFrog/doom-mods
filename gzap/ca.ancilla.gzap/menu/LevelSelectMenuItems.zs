@@ -224,9 +224,8 @@ class ::LevelSelector : ::KeyValueNetevent {
       }
       buf = buf .. string.format("\n  \c[%s]%s", colour, loc.name);
 
-      let peek = region.GetPeek(loc.name);
-      if (peek) {
-        buf = buf .. string.format("\n  \c-ⓘ %s for %s", peek.item, peek.player);
+      if (loc.peek) {
+        buf = buf .. string.format("\n  \c-ⓘ %s for %s", loc.peek.item, loc.peek.player);
       }
     }
     if (buf != "") {

@@ -4,6 +4,7 @@ class GZAP_HintInfo {
   string item_map;
   string loc_map;
   string loc_name;
+  int loc_id;
 }
 
 class GZAP_DataPackageEventHandler : StaticEventHandler {
@@ -91,7 +92,7 @@ class GZAP_DataPackageEventHandler : StaticEventHandler {
     console.printf("Populating singleplayer hint table.");
       {% for map in maps %}{% for loc in locations(map.map) %}
       {% if item_at(loc.name()) and item_at(loc.name()).map %}
-      PrepareHint("{{escape(item_name_at(loc.name()))}}", "{{item_at(loc.name()).map}}", "{{loc.pos.map}}", "{{escape(loc.name())}}");
+      PrepareHint("{{escape(item_name_at(loc.name()))}}", "{{item_at(loc.name()).map}}", "{{loc.pos.map}}", "{{escape(loc.name())}}", {{loc.id}});
       {% endif %}
       {% endfor %}{% endfor %}
   }
@@ -104,11 +105,12 @@ class GZAP_DataPackageEventHandler : StaticEventHandler {
     {% endfor %}
   }
 
-  void PrepareHint(string item_name, string item_map, string loc_map, string loc_name) {
+  void PrepareHint(string item_name, string item_map, string loc_map, string loc_name, int loc_id) {
     let hint = GZAP_HintInfo(new("GZAP_HintInfo"));
     hint.item_map = item_map;
     hint.loc_map = loc_map;
     hint.loc_name = loc_name;
+    hint.loc_id = loc_id;
     hints.Insert(item_name, hint);
   }
 
@@ -141,7 +143,7 @@ class GZAP_DataPackageEventHandler : StaticEventHandler {
       let nick = apstate.slot_name;
 
       apstate.RegisterHint(hint.item_map, item, nick, hint.loc_name);
-      apstate.GetRegion(hint.loc_map).RegisterPeek(hint.loc_name, nick, item);
+      apstate.GetRegion(hint.loc_map).RegisterPeek(hint.loc_id, nick, item);
     }
   }
 }
