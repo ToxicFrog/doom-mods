@@ -1,4 +1,4 @@
-# Unreleased
+# 0.7.1
 
 - New:
   - `key/*` supported in tuning files to mean "any key in this level".
