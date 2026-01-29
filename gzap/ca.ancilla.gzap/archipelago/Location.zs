@@ -64,7 +64,15 @@ class ::Location {
           || (delta.y == 0 && delta.z == 0));
   }
 
+  // Used when sorting the location list; should return true if self needs to
+  // be ordered before other.
   bool Order(::Location other) {
+    // Peeked locations are ordered before anything else.
+    if (self.peek && !other.peek) {
+      return true;
+    } else if (!self.peek && other.peek) {
+      return false;
+    }
     if (self.track != other.track) {
       // In-logic is always before OOL, which is always before unreachable.
       return self.track > other.track;

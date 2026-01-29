@@ -170,6 +170,7 @@ class ::Region play {
 
   void SortLocations() {
     ++txn;
+    DEBUG("Sorting locations for %s", self.map);
     // It's small, we just bubble sort.
     // TODO: ok on some settings it's actually quite large (high hundreds), so
     // maybe implement a better sort algorithm someday.
@@ -230,6 +231,7 @@ class ::Region play {
     let loc = self.GetLocation(location_id);
     DEBUG("RegisterPeek(%s): %s for %s", loc.name, item, player);
     loc.peek = peek;
+    self.SortLocations();
   }
 
   void RegisterKey(::RandoKey key) {
