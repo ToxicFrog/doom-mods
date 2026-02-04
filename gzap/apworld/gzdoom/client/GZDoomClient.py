@@ -28,6 +28,7 @@ class GZDoomContext(SuperContext):
     want_slot_data = True
     slot_name = None
     tags = {"AP", "DeathLink"}
+    tracker_task = None
 
     def __init__(self, server_address: str, password: str, gzd_dir: str):
         self.found_gzdoom = asyncio.Event()
@@ -44,6 +45,7 @@ class GZDoomContext(SuperContext):
         self.glitched_locations = []
         self.set_callback(self.ut_callback)
         self.set_glitches_callback(self.ut_glitches_callback)
+        self.tracker_task = asyncio.create_task(self._tracker_loop())
 
     def ut_callback(self, locations):
         self.locations_available = locations
@@ -60,11 +62,6 @@ class GZDoomContext(SuperContext):
         self.items_task = asyncio.create_task(self._item_loop())
         self.locations_task = asyncio.create_task(self._location_loop())
         self.hints_task = asyncio.create_task(self._hint_loop())
-        if tracker_loaded:
-            self.init_tracker()
-            self.tracker_task = asyncio.create_task(self._tracker_loop())
-        else:
-            self.tracker_task = None
         print("All tasks started.")
 
     async def send_check(self, id: int):
@@ -287,6 +284,7 @@ def main(*args):
         await ctx.start_tasks()
         if tracker_loaded:
             logger.info("Initializing tracker...")
+            ctx.init_tracker()
             ctx.run_generator()
         if gui_enabled:
             ctx.run_gui()

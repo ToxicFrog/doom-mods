@@ -189,6 +189,8 @@ class GZDoomWorld(World):
             # Clear all starting levels -- UT will work with whatever level
             # access flags it finds in our inventory.
             self.options.starting_levels.value = []
+            # AP would normally call this automatically when validating the yaml.
+            self.options.included_item_categories.build_ratios()
 
         model.get_tuned_wad(self.wad_logic)
         self.spawn_filter = self.options.spawn_filter.value
