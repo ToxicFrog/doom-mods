@@ -212,7 +212,7 @@ class ::LevelSelector : ::KeyValueNetevent {
   string FormatMissingChecksTT(::Region region) {
     string buf = "";
     foreach (loc : region.locations) {
-      if (loc.checked || loc.IsUnreachable()) continue;
+      if (loc.IsChecked() || loc.IsUnreachable()) continue;
 
       string colour;
       if (loc.track == AP_UNREACHABLE) {

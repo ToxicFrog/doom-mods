@@ -349,13 +349,17 @@ class ::RandoState play {
     return regions.GetIfExists(map);
   }
 
-  void MarkLocationChecked(int apid) {
+  // Called when the server (or server stub in SP) reports that a location's
+  // contents have been collected.
+  void MarkLocationCollected(int apid) {
     ++txn;
-    // It's safe to call ClearLocation() on a region that doesn't contain the location.
+    // It's safe to call CollectLocation() on a region that doesn't contain the location.
     foreach (_, region : self.regions) {
-      region.ClearLocation(apid);
+      region.CollectLocation(apid);
     }
-    // UpdateStatus();
+    if (GetCurrentRegion()) {
+      ::PerLevelHandler.Get().UpdateCheckPickups();
+    }
   }
 
   void MarkLocationInLogic(int apid, string type) {
@@ -363,6 +367,7 @@ class ::RandoState play {
     foreach (_, region : self.regions) {
       let loc = region.GetLocation(apid);
       if (loc) {
+        DEBUG("Marking location %s: %s - %s", type, region.map, loc.name);
         if (type == "IL") {
           loc.track = AP_REACHABLE_IL;
         } else if (type == "OOL") {

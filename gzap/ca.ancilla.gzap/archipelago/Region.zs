@@ -55,6 +55,7 @@ class ::Region play {
     exit.secret_id = -1;
     exit.flags = AP_IS_PROGRESSION|AP_IS_USEFUL;
     exit.checked = false;
+    exit.collected = false;
     exit.is_virt = true;
     region.exit_location = exit;
 
@@ -76,7 +77,7 @@ class ::Region play {
     }
     console.printf("    %d peeks", peeks);
     foreach (location: self.locations) {
-      if (location.peek) console.printf("    - %s: %s for %s", location, location.peek.item, location.peek.player);
+      if (location.peek) console.printf("    - %s: %s for %s", location.name, location.peek.item, location.peek.player);
     }
   }
 
@@ -114,6 +115,7 @@ class ::Region play {
     loc.flags = flags;
 
     loc.checked = false;
+    loc.collected  = false;
     loc.is_virt = false;
     loc.secret_id = -1;
 
@@ -132,15 +134,16 @@ class ::Region play {
 
     loc.is_virt = true;
     loc.checked = false;
+    loc.collected  = false;
     locations.push(loc);
     locations_by_id.Insert(loc.apid, loc);
   }
 
-  void ClearLocation(uint apid) {
+  void CollectLocation(uint apid) {
     let loc = GetLocation(apid);
     if (!loc) return;
 
-    loc.checked = true;
+    loc.collected = true;
     ++txn;
   }
 
@@ -155,7 +158,7 @@ class ::Region play {
   uint LocationsChecked() const {
     uint found = 0;
     foreach (loc : locations) {
-      if (loc.checked && !loc.IsUnreachable()) ++found;
+      if (loc.IsChecked() && !loc.IsUnreachable()) ++found;
     }
     return found;
   }

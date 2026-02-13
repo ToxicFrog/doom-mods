@@ -1,8 +1,10 @@
 // Information about a single AP Location.
 //
-// At map load time, a Check is spawned for each Location that the player hasn't
-// checked yet. This class holds out-of-world information about a single Location,
-// sufficient to send and receive messages about it to AP and record its state.
+// This class holds the out-of-world information about the location, sufficient
+// to send and receive messages about it and track its state.
+//
+// At map load time, Locations are used to produce Checks; each Check is aware
+// of the AP ID of its backing Location and derives its behaviour from that.
 
 #namespace GZAP;
 #debug off;
@@ -40,15 +42,23 @@ class ::Location {
   string ap_typename;    // Typename name of item randomized into this location
   string ap_name;        // User-facing name of same
   ::LocationFlags flags; // As above
-  // TODO: make this separate "checked locally" and "checked remotely" flags
-  // if checked remotely is set but checked locally isn't, behave based on the
-  // value of ap_allow_collect
-  bool checked;       // Has the player already checked it?
   ::Tracking track;   // Tracker status for this location
   ::Peek peek;
   Vector3 pos;
   bool is_virt;       // Virtual location with no physical position.
   int secret_id;      // Either a sector ID or a TID depending
+
+  // Flags for whether the check has been found locally and emptied remotely.
+  // If both are false, the check hasn't been interacted with yet. If both are
+  // true, the player has touched it and the server has acknowledged that.
+  // If only checked is true, the player has touched it and we're still waiting
+  // for the server to respond. If it has this state when we enter a level we
+  // clear the checked bit and respawn it, on the assumption that the message
+  // to the server got lost.
+  // If only collected is true, the player hasn't found this check yet but it
+  // was emptied server-side using !collect, so touching it will do nothing.
+  bool checked;   // local
+  bool collected; // remote
 
   // We consider two positions "close enough" to each other iff:
   // - d is less than MAX_DISTANCE, and
@@ -89,6 +99,18 @@ class ::Location {
     let sector = level.PointInSector((self.pos.x, self.pos.y));
     DEBUG("IsSecret(%s): (%d,%d) is=%d was=%d", self.name, self.pos.x, self.pos.y, sector.IsSecret(), sector.WasSecret());
     return sector.IsSecret() || sector.WasSecret();
+  }
+
+  // True if this location has been checked. By default this means *either* the
+  // player has walked up to it and touched it *or* the server has remotely
+  // collected it. Unsetting ap_allow_collect means only the player's actions
+  // will be considered, and not the server.
+  bool IsChecked() {
+    return self.checked || (ap_allow_collect && self.collected);
+  }
+  // True if the location contains an item, according to the host.
+  bool IsEmpty() {
+    return self.collected;
   }
 
   bool IsFiller() { return flags == AP_IS_FILLER; }

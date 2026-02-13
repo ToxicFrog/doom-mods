@@ -1,4 +1,28 @@
 // Classes representing an Archipelago check placeholder.
+//
+// A given check has (up to) four parts:
+// - the CheckMapMarker, which displays the check on the map (if configured)
+// - the CheckLabels, which displays the item in the check and the item the
+//   the location had before randomization (if configured)
+// - and the CheckPickup, which is the thing the player can actually interact
+//   with.
+// Note that not all locations have these; in particular, secrets may have a
+// CheckMapMarker but not any of the others, and aren't guaranteed to even have
+// the map marker.
+//
+// When we first enter a level, the PerLevelHandler starts the Check lifecycle:
+// - a map marker is spawned for every secret sector check
+// - a CheckPickup is spawned for every check that exists in the world;
+//   these CheckPickups are responsible for spawning their own map markers and
+//   item icons
+// - all CheckPickups are told to update themselves based on their backing
+//   location, and the total item count for the level is recomputed.
+//
+// On re-entering a level, due to `load or a levelport with persistence on, we
+// re-do that last step; this has the effect of making sure that the checks are
+// consistent with (our understanding of) the host's view of the game, removing
+// checks that were !collected and respawning checks that we touched but that
+// the server never acked.
 
 #namespace GZAP;
 #debug off;
@@ -31,6 +55,9 @@ mixin class ::ArchipelagoIcon {
     Trap:
       AP00 T 35 BRIGHT;
       GOTO SetProgression;
+    Empty:
+      AP00 E 35 BRIGHT;
+      GOTO SetProgression;
     Unreachable:
       AP00 Z 35 BRIGHT;
       GOTO SetProgression;
@@ -39,28 +66,34 @@ mixin class ::ArchipelagoIcon {
       GOTO SetProgression;
   }
 
-  // True if this location has already been checked, but we respawned it because
-  // it may be an event trigger and the user needs to be able to hit it again.
-  bool is_trigger;
+  // ID of the backing Location.
+  // We only store the ID, not the actual Location object, so that if the player
+  // leaves the level and returns to it, the location doesn't get duplicated
+  // (one in the apstate, one in the Check).
+  uint location_id;
+  ::Location GetLocation() {
+    return ::PlayEventHandler.GetState().GetCurrentRegion().GetLocation(self.location_id);
+  }
+  bool IsChecked() { return GetLocation().IsChecked(); }
 
   void SetProgressionState() {
-    // DEBUG("SetProgressionState(%s) checked=%d display=%d unreachable=%d progression=%d hilight=%d",
-    //   GetLocation().name, IsChecked(),
-    //   ShouldDisplay(), GetLocation().unreachable, GetLocation().progression, ShouldHilight());
-    if (IsChecked()) {
+    DEBUG("SetProgressionState(%d)", self.location_id);
+    DEBUG("  name=%s checked=%d display=%d unreachable=%d progression=%d hilight=%d",
+      GetLocation().name, IsChecked(),
+      ShouldDisplay(), GetLocation().IsUnreachable(), GetLocation().IsProgression(), ShouldHilight());
+
+    let loc = GetLocation();
+
+    if (loc.IsChecked()) {
       A_SetRenderStyle(CVar.FindCVar("ap_collected_alpha").GetFloat(), STYLE_Translucent);
     } else {
       A_SetRenderStyle(CVar.FindCVar("ap_uncollected_alpha").GetFloat(), STYLE_Translucent);
     }
 
-    if (self.is_trigger) {
-      SetStateLabel("Unreachable");
-      return;
-    }
-
-    let loc = GetLocation();
     if (!ShouldDisplay()) {
       SetStateLabel("Hidden");
+    } else if (loc.IsEmpty()) {
+      SetStateLabel("Empty");
     } else if (loc.IsUnreachable()) {
       SetStateLabel("Unreachable");
     } else if (loc.IsProgression() && ShouldHilight()) {
@@ -91,16 +124,12 @@ mixin class ::ArchipelagoIcon {
   // To determine whether to render at all;
   //    abstract bool ShouldHilight() { return true; }
   // To determine whether progression items should be marked as such;
-  //    abstract ::Location GetLocation()
-  // To return the backing ::Location object;
-  //    abstract bool IsChecked()
-  // To return if the location is checked or not.
 }
 
-// An automap marker that follows the corresponding CheckPickup around.
+// An automap marker. This is not tied to a CheckPickup and is used for marking
+// secret sectors.
 class ::CheckMapMarker : MapMarker {
   mixin ::ArchipelagoIcon;
-  ::Location location;
 
   Default {
     Scale 0.25;
@@ -110,10 +139,8 @@ class ::CheckMapMarker : MapMarker {
     // to keep it from clipping into the floor.
   }
 
-  ::Location GetLocation() { return self.location; }
-  bool IsChecked() { return GetLocation().checked; }
-
   bool ShouldDisplay() {
+    // 0 = never, 1 = if you have the automap, 2 = always.
     if (ap_show_checks_on_map <= 0) return false;
     if (ap_show_checks_on_map >= 2) return true;
     return ::PlayEventHandler.GetState().GetCurrentRegion().automap;
@@ -128,6 +155,8 @@ class ::CheckMapMarker : MapMarker {
   }
 }
 
+// An automap marker tied to a CheckPickup. It follows the check around if it
+// gets moved.
 class ::ItemMapMarker : ::CheckMapMarker {
   ::CheckPickup parent;
 
@@ -161,20 +190,18 @@ class ::CheckLabel : Actor {
 // Knows about its backing Location, and thus its name, ID, etc.
 // Automatically creates a map marker on spawn, and deletes it on despawn.
 // When picked up, emits an AP-CHECK event.
+//
+// These are initially created at level entry, one per physical Location. Once
+// created, UpdateFromLocation() is called on each one to set its state based
+// on the state of its backing location.
+// This also happens whenever the level is re-entered, and individual checks
+// will re-run it when the player touches them and they are marked collected.
 class ::CheckPickup : ScoreItem {
   mixin ::ArchipelagoIcon;
 
-  ::Location location;
   ::ItemMapMarker marker;
   ::CheckLabel label;
   ::CheckLabel orig_label;
-
-  // We keep a local "checked" bit so we can set it immediately when the player
-  // picks it up, and not fire a huge number of pickup events.
-  // This is updated from the location every time the level is entered (including
-  // in persistent mode), so if a message gets lost, re-entering the level will
-  // respawn the check.
-  bool checked;
 
   Default {
     Inventory.PickupMessage "";
@@ -198,24 +225,28 @@ class ::CheckPickup : ScoreItem {
 
   static ::CheckPickup Create(::Location location) {
     let thing = ::CheckPickup(Actor.Spawn("::CheckPickup", location.pos));
-    thing.location = location;
+    thing.location_id = location.apid;
     DEBUG("Check initialize: name=%s, ck=%d, flags=%1X",
-      location.name, location.checked, location.flags);
-    if (location.checked) level.found_items++;
+      location.name, location.IsChecked(), location.flags);
     return thing;
   }
 
-  ::Location GetLocation() { return self.location; }
-  bool IsChecked() { return self.checked; }
   bool ShouldDisplay() { return true; }
   bool ShouldHilight() {
     return ap_show_progression > 0;
   }
 
+  // True if this check is associated with an action special or a TID and thus
+  // might do something cool when picked up.
+  // Checks with this property respawn when the level is re-entered (i.e. when
+  // UpdateFromLocation() is called).
+  bool IsTrigger() { return self.special || self.tid; }
+
   //// Initialization ////
 
   override void PostBeginPlay() {
-    if (self.location.IsUnreachable()) self.ClearCounters();
+    // Unreachables don't contribute towards the total check count.
+    if (self.GetLocation().IsUnreachable()) self.ClearCounters();
     UpdateFromLocation();
   }
 
@@ -223,7 +254,7 @@ class ::CheckPickup : ScoreItem {
     // Don't subsume if this is an unreachable check -- leave the original item
     // in place just in case.
     if (GetLocation().IsUnreachable()) return;
-    DEBUG("Check[%s] Subsume", self.location.name);
+    DEBUG("Check[%s] Subsume", self.GetLocation().name);
     Actor closest;
     let it = BlockThingsIterator.Create(self, 32);
     while (it.Next()) {
@@ -231,7 +262,6 @@ class ::CheckPickup : ScoreItem {
       if (thing is "::CheckPickup") continue;
 
       // TODO -- prefer things that match the recorded check category, if possible.
-      // TODO -- don't absorb things like AAS tokens that have no graphics.
       if (::ScannedItem.ItemCategory(thing) == "") {
         // If it's categorized, we skip these checks entirely -- a categorized
         // object is always replaceable.
@@ -245,7 +275,7 @@ class ::CheckPickup : ScoreItem {
 
       if (!closest || Distance3D(thing) < Distance3D(closest)) {
         closest = thing;
-        DEBUG("Check[%s]: closest is %s (d=%f)", self.location.name, closest.GetClassName(), Distance3D(closest));
+        DEBUG("Check[%s]: closest is %s (d=%f)", self.GetLocation().name, closest.GetClassName(), Distance3D(closest));
       }
     }
 
@@ -258,37 +288,25 @@ class ::CheckPickup : ScoreItem {
   }
 
   void NoOriginal() {
-    DEBUG("Check[%s] couldn't find its original, imagining one instead", self.location.name);
-    Class<Actor> cls = self.location.orig_typename;
+    DEBUG("Check[%s] couldn't find its original, imagining one instead", self.GetLocation().name);
+    Class<Actor> cls = self.GetLocation().orig_typename;
     let orig = GetDefaultByType(cls);
     if (!orig) return;
     UpdateFromOriginal(orig);
   }
 
   void UpdateFromLocation() {
-    if (!self.checked && self.location.checked) {
-      level.found_items++;
-    } else if (self.checked && !self.location.checked) {
-      // Very unlikely
-      level.found_items--;
-    }
-    self.checked = self.location.checked;
-    SetTag(self.location.name);
-    if (self.checked) {
-      DEBUG("Check[%s] clearing markers", self.location.name);
+    let location = self.GetLocation();
+    SetTag(location.name);
+    if (self.IsTrigger()) { location.checked = false; }
+    if (location.IsChecked()) {
+      DEBUG("Check[%s] clearing markers", location.name);
       ClearMarkers();
     } else {
-      DEBUG("Check[%s] creating markers", self.location.name);
+      DEBUG("Check[%s] creating markers", location.name);
       CreateMarkers();
     }
     A_SpriteOffset(0, -16);
-
-    if (self.checked && (self.special || self.TID)) {
-      // We've been checked, but the original has an action special or TID associated with it,
-      // which means collecting it may be vital to progress in the game.
-      self.checked = false;
-      self.is_trigger = true;
-    }
   }
 
   void UpdateFromOriginal(readonly<Actor> original) {
@@ -296,17 +314,11 @@ class ::CheckPickup : ScoreItem {
     // TODO: we should set a minimum radius here, to handle things like SCS cats,
     // which have a radius often too small to interact with because you're expected
     // to frob them rather than picking them up.
+    // Alternately, we should allow overriding the radius in the GZAPRC.
     A_SetSize(original.radius, original.height);
     ChangeTID(original.TID);
     A_SetSpecial(original.special, original.args[0], original.args[1], original.args[2], original.args[3], original.args[4]);
     self.bNOGRAVITY = original.bNOGRAVITY;
-
-    if (self.checked && (self.special || self.TID)) {
-      // We've been checked, but the original has an action special or TID associated with it,
-      // which means collecting it may be vital to progress in the game.
-      self.checked = false;
-      self.is_trigger = true;
-    }
   }
 
   //// Label/Marker handling ////
@@ -333,7 +345,7 @@ class ::CheckPickup : ScoreItem {
     // sprite is 0-height.
     Class<Actor> cls = typename;
     if (!cls) return null;
-    DEBUG("Check[%s]: CreateLabel from %s", self.location.name, typename);
+    DEBUG("Check[%s]: CreateLabel from %s", self.GetLocation().name, typename);
 
     let prototype = GetDefaultByType(cls);
     let sprid = prototype.SpawnState.sprite;
@@ -376,7 +388,7 @@ class ::CheckPickup : ScoreItem {
   }
 
   ::CheckLabel CreateIconLabel(string icon) {
-    DEBUG("Check[%s]: CreateIconLabel(%s)", self.location.name, icon);
+    DEBUG("Check[%s]: CreateIconLabel(%s)", self.GetLocation().name, icon);
     // we encode both the sprite name and the frame index into the icon
     // then we get the sprid with GetSpriteIndex()
     // set label.sprite to the sprid
@@ -400,16 +412,16 @@ class ::CheckPickup : ScoreItem {
 
   void CreateMarkers() {
     if (!self.marker) {
-      DEBUG("Check[%s] spawning map marker", self.location.name);
+      DEBUG("Check[%s] spawning map marker", self.GetLocation().name);
       self.marker = ::ItemMapMarker(Spawn("::ItemMapMarker", self.pos));
       self.marker.parent = self;
-      self.marker.location = self.location;
+      self.marker.location_id = self.location_id;
     }
-    if (ap_show_check_contents && !self.label) {
-      self.label = CreateLabel(self.location.ap_typename);
+    if (ap_show_check_contents && !self.label && !self.GetLocation().IsEmpty()) {
+      self.label = CreateLabel(self.GetLocation().ap_typename);
     }
     if (ap_show_check_original && !self.orig_label && !::PlayEventHandler.Get().IsPretuning()) {
-      self.orig_label = CreateLabel(self.location.orig_typename, 34);
+      self.orig_label = CreateLabel(self.GetLocation().orig_typename, 34);
     }
   }
 
@@ -422,18 +434,15 @@ class ::CheckPickup : ScoreItem {
   //// Pickup event handling ////
 
   override bool CanPickup(Actor toucher) {
-    // DEBUG("CanPickup? %s %s %d", self.location.name, toucher.GetTag(), !self.checked);
-    return !self.checked;
+    // DEBUG("CanPickup? %s %s %d", self.GetLocation().name, toucher.GetTag(), !self.IsChecked());
+    return !self.IsChecked();
   }
 
   override bool TryPickup (in out Actor toucher) {
-    DEBUG("TryPickup: %s", self.location.name);
-    if (!self.is_trigger) {
-      ::PlayEventHandler.Get().CheckLocation(self.location);
-    }
-    // It might take the server a moment to respond and set location.checked, so
-    // we force the checked flag locally.
-    self.checked = true;
+    DEBUG("TryPickup: %s", self.GetLocation().name);
+    // This will set the 'checked' flag and also, if necessary, send a message
+    // to the client.
+    ::PlayEventHandler.Get().CheckLocation(self.GetLocation());
     self.SetProgressionState();
     ClearMarkers();
     return true;

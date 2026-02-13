@@ -169,6 +169,7 @@ class ::PlayEventHandler : StaticEventHandler {
   void CheckLocation(::Location loc, bool atexit=false) {
     DEBUG("CheckLocation: %d %s", loc.apid, loc.name);
 
+    loc.checked = true;
     bool unreachable = false;
     if (ap_scan_unreachable) {
       unreachable = true;
@@ -176,6 +177,11 @@ class ::PlayEventHandler : StaticEventHandler {
         cvar.FindCvar("ap_scan_unreachable").SetInt(0);
       }
     }
+
+    // TODO: if the check is already marked collected, e.g. if it's a TID-based
+    // trigger the player is re-collecting, do not IPC; if it's a tuning-only
+    // check, IPC with an invalid ID so that the client doesn't forward it to
+    // the host.
 
     string pos = "";
     if (!loc.is_virt) {
@@ -312,7 +318,7 @@ class ::PlayEventHandler : StaticEventHandler {
       apstate.GrantItem(apid, count);
     } else if (cmd.command == "ap-ipc:checked") {
       int apid = cmd.ReadInt();
-      apstate.MarkLocationChecked(apid);
+      apstate.MarkLocationCollected(apid);
     } else if (cmd.command == "ap-ipc:hint") {
       if (self.IsSingleplayer()) return;
       string mapname = cmd.ReadString();

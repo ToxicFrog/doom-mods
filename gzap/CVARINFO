@@ -66,6 +66,11 @@ server int ap_enable_release_on_level_clear = 0;
 // In multiworld games this can emit a lot of check messages!
 server int ap_release_on_level_clear = 3;
 
+// Whether to allow !collect to empty checks from your world. If false, even if
+// someone collects their items, the checks in your world will remain and can
+// be collected, which will produce tuning file entries (but no items).
+server bool ap_allow_collect = true;
+
 // Deathlink enable bit.
 server bool ap_enable_deathlink = false;
 

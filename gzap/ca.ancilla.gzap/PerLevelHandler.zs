@@ -104,7 +104,7 @@ class ::PerLevelHandler : EventHandler {
     let sector = level.sectors[location.secret_id];
     let marker = ::CheckMapMarker(Actor.Spawn(
       "::CheckMapMarker", (sector.centerspot.x, sector.centerspot.y, 0)));
-    marker.location = location;
+    marker.location_id = location.apid;
     secret_markers.Insert(location.secret_id, marker);
   }
 
@@ -134,19 +134,19 @@ class ::PerLevelHandler : EventHandler {
 
   void SetupSectorSecret(::Location location) {
     let sector = level.sectors[location.secret_id];
-    if (location.checked && sector.IsSecret()) {
+    if (location.IsChecked() && sector.IsSecret()) {
       // Location is checked but sector is still marked undiscovered -- level
       // probably got reset.
       DEBUG("Clearing secret flag on sector %d", location.secret_id);
       UnmarkSecret(location);
       sector.ClearSecret();
       level.found_secrets++;
-    } else if (!location.checked && !sector.IsSecret()) {
+    } else if (!location.IsChecked() && !sector.IsSecret()) {
       // Location isn't marked checked but the corresponding sector has been
       // discovered, so emit a check event for it.
       ::PlayEventHandler.Get().CheckLocation(location);
       UnmarkSecret(location);
-    } else if (!location.checked) {
+    } else if (!location.IsChecked()) {
       // Player hasn't found this yet.
       self.secret_locations.Insert(location.secret_id, location);
       MarkSecret(location);
@@ -155,7 +155,7 @@ class ::PerLevelHandler : EventHandler {
 
   void SetupTriggerSecret(::Location location) {
     let iter = level.CreateActorIterator(location.secret_id, "SecretTrigger");
-    if (location.checked) {
+    if (location.IsChecked()) {
       // Location has already been checked in AP, remove any triggers left in the map.
       foreach (Actor trigger : iter) {
         trigger.Activate(trigger);
@@ -199,6 +199,15 @@ class ::PerLevelHandler : EventHandler {
     }
   }
 
+  void UpdateCheckPickups() {
+    DEBUG("Recomputing item count");
+    level.found_items = 0;
+    foreach (::CheckPickup thing : ThinkerIterator.Create("::CheckPickup", Thinker.STAT_DEFAULT)) {
+      thing.UpdateFromLocation();
+      if (thing.GetLocation().checked) level.found_items++;
+    }
+  }
+
   // TODO: we should investigate the use of a LevelPostProcessor (https://zdoom.org/wiki/LevelPostProcessor)
   // to place checks on level load. Tricky because anything we place needs an
   // ednum, but we could perhaps use this to remove existing stuff that needs
@@ -221,6 +230,7 @@ class ::PerLevelHandler : EventHandler {
       if (location.secret_id >= 0) continue;
       ::CheckPickup.Create(location);
     }
+    UpdateCheckPickups();
     apstate.UpdatePlayerInventory();
 
     if (!region.access) {
@@ -242,6 +252,7 @@ class ::PerLevelHandler : EventHandler {
 
     let region = apstate.GetCurrentRegion();
     SetupSecrets(region);
+    UpdateCheckPickups();
     apstate.UpdatePlayerInventory();
 
     if (!region.access) {
@@ -261,23 +272,7 @@ class ::PerLevelHandler : EventHandler {
 
     let region = apstate.GetCurrentRegion();
     SetupSecrets(region);
-    foreach (::CheckPickup thing : ThinkerIterator.Create("::CheckPickup", Thinker.STAT_DEFAULT)) {
-      // At this point, we may have a divergence, depending on whether the apstate
-      // contained here or in the StaticEventHandler was deemed canonical.
-      // In the latter case, the Location referenced in the actor came from the
-      // save game, while the one in the apstate was carried across the save/load
-      // barrier outside the playsim.
-      // So, we replace the saved one with the real one before evaluating whether
-      // it's been checked.
-      // TODO: we should probably just store the apid in the check and look up
-      // the location that way by asking the eventhandler, rather than baking
-      // the entire location into it, so that this workaround becomes unnecessary
-      // -- it seems like a footgun waiting to happen.
-      DEBUG("CleanupReopened: id %d, matched %d",
-          thing.location.apid, thing.location == region.GetLocation(thing.location.apid));
-      thing.location = region.GetLocation(thing.location.apid);
-      thing.UpdateFromLocation();
-    }
+    UpdateCheckPickups();
   }
 
   int last_secret;
@@ -453,7 +448,7 @@ class ::PerLevelHandler : EventHandler {
   }
 
   bool ShouldAutoReleaseLocation(::Location location) {
-    if (location.checked) return false;
+    if (location.IsChecked()) return false;
     if (location.IsSecret()) {
       return (ap_release_on_level_clear & AP_RELEASE_SECRET) != 0;
     } else {
@@ -492,7 +487,10 @@ class ::PerLevelHandler : EventHandler {
 
     if (ap_scan_unreachable >= 2) {
       foreach (location : region.locations) {
-        if (location.checked) continue;
+        // This will skip collected locations if ap_allow_collect is on.
+        // That's intentional, since we don't want the player to accidentally
+        // mark as unreachable locations that they skipped because of !collect.
+        if (location.IsChecked()) continue;
         DEBUG("Marking %s as unreachable.", location.name);
         ::PlayEventHandler.Get().CheckLocation(location);
       }

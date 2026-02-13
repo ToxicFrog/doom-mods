@@ -1,5 +1,8 @@
 # Unreleased
 
+- New:
+  - New graphics for checks that still exist in the world but have no items in
+    them (e.g. because of quickload or `!collect`).
 - Fixed:
   - UT did not work properly with non-default `included_item_categories`.
   - UT indicators in-game did not work reliably.
