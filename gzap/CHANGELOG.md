@@ -4,6 +4,8 @@
   - UT did not work properly with non-default `included_item_categories`.
   - UT indicators in-game did not work reliably.
   - Signed/unsigned comparison warning at load time.
+  - Documentation now correctly tells the player to start the game and connect
+    to the client *before* connecting to the host.
 
 # 0.7.1
 

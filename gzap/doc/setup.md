@@ -62,15 +62,17 @@ Start up Archipelago and click `GZDoom Client`. This will show you some help
 text, including some extra command line flags for GZDoom. **You must use these
 flags or GZDoom and Archipelago will be unable to communicate**.
 
-Enter the AP host address and click `Connect`. You should see a message
-indicating that it has connected to the server and is awaiting information from
-GZDoom.
-
 Start GZDoom. Select `New Game`, choose a difficulty level matching what you
 selected in the YAML, and once the game loads in you should see a green message
 at the top of the screen saying that the AP connection is working. This should
 be accompanied by messages in the AP client showing that you have joined the
 game.
+
+The AP client should connect automatically (using information in the generated
+pk3). If it doesn't (for example, because the port for your AP room has changed
+since the game was generated), you can manually enter the AP address into the
+client and click `Connect`. You must do this *after* the game starts up and
+connects to the client, so that it knows which WAD you're playing.
 
 If you need to stop playing and resume later, you can save and exit your game as
 normal; when returning to it, restore your save (via `Load Game` in the main
