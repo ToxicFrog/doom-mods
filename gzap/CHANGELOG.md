@@ -3,6 +3,7 @@
 - Fixed:
   - UT did not work properly with non-default `included_item_categories`.
   - UT indicators in-game did not work reliably.
+  - Signed/unsigned comparison warning at load time.
 
 # 0.7.1
 

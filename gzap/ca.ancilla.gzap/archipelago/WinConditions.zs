@@ -2,12 +2,12 @@
 #debug off;
 
 class ::WinConditions play {
-  int nrof_maps;
+  uint nrof_maps;
   Map<string, bool> specific_maps;
 
   bool Victorious(::RandoState apstate) const {
-    int cleared_maps;
-    int cleared_specific_maps;
+    uint cleared_maps;
+    uint cleared_specific_maps;
 
     foreach (region : apstate.regions) {
       if (region.cleared) {
