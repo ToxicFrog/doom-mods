@@ -164,6 +164,7 @@ class IncludedItemCategories(OptionList):
         'key:all',
         'token:all',
         'big:all',
+        'secret:none',
         'medium:none',
         'small:none',
         'tool:none',
