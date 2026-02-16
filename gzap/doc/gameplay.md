@@ -44,7 +44,7 @@ before your first game.
  </tr>
  <tr>
   <td><img src=images/useful-progression.png width=64/></td>
-  <td>An item that is both needed for progression and extra useful.</td>
+  <td>An item that is both needed for progression and particularly useful.</td>
  </tr>
  <tr>
   <td><img src=images/trap.png width=64/></td>
@@ -53,6 +53,10 @@ before your first game.
  <tr>
   <td><img src=images/unreachable.png width=64/></td>
   <td>An unreachable location. Typically, this replaces items that the level designer added for aesthetics but which cannot be picked up, or items that are only reachable in co-op. If you manage to reach it anyways you will get a single point of health.</td>
+ </tr>
+ <tr>
+  <td><img src=images/empty.png width=64/></td>
+  <td>A location containing no item. By default you will see this only for checks where the original item had some sort of special trigger associated with it; in that case, when revisiting the level, the check will respawn empty, so you can trigger it again. If you turn on `Ignore !collect` in the settings, you will also see this for checks that have been emptied out by the host (typically because someone goaled and their items were removed from play).</td>
  </tr>
 </table>
 
