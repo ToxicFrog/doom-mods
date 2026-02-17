@@ -92,11 +92,12 @@ class WadLogicLoader(WadDataLoader):
         self.logic.add_wad(self.wad.name, self.wad)
         return True
 
-    def load_logic(self, file):
-        if self.logic_cache_valid(file):
+    def load_logic(self, files):
+        if self.logic_cache_valid():
             self.wad = self.load_cache()
         else:
-            self.load_records(file)
+            for file in files:
+                self.load_records(file)
             self.save_cache()
 
     def cache_path(self):
@@ -108,26 +109,19 @@ class WadLogicLoader(WadDataLoader):
         apworld_path = re.sub(r'\.apworld.*', '.apworld', str(resources.files(package)))
         return os.path.getmtime(apworld_path)
 
-    def logic_cache_valid(self, file):
+    def logic_cache_valid(self):
         '''
         A logic cache is valid iff:
         - the cache file exists, and
         - the cache file is newer than gzdoom.apworld, and
-        - the cache file is newer than the source logic.
-
-        For the latter, that means the apworld containing it for logic files in
-        apworlds, or the logic file on disk for external files.
+        - the cache file is newer than the wad-specific apworld.
         '''
         if not os.path.exists(self.cache_path()):
             return False
 
-        if self.wad.package:
-            ts = self.package_timestamp(self.wad.package)
-        else:
-            ts = os.path.getmtime(str(file))
         # If the core apworld is more recent, use that ts instead, since it may
         # have changed the internal definition of the DoomWad class.
-        ts = max(ts, self.package_timestamp('worlds.gzdoom'))
+        ts = max(self.package_timestamp(self.wad.package), self.package_timestamp('worlds.gzdoom'))
 
         return os.path.getmtime(self.cache_path()) > ts
 

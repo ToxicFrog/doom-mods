@@ -9,6 +9,8 @@
   - Signed/unsigned comparison warning at load time.
   - Documentation now correctly tells the player to start the game and connect
     to the client *before* connecting to the host.
+  - WAD-specific apworlds with logic split across multiple files did not load
+    correctly.
 
 # 0.7.1
 

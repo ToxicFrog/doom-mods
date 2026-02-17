@@ -80,8 +80,7 @@ def tuning_files(package, wad):
 def init_wad(logic, package, logic_files):
     wadname = logic_files[0].name.split(".")[0]
     with WadLogicLoader(logic, wadname, package) as wadloader:
-        for file in logic_files:
-            wadloader.load_logic(file)
+        wadloader.load_logic(logic_files)
 
 def print_header(package):
     if "GZAP_DEBUG" not in os.environ:
