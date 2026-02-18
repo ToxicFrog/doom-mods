@@ -3,6 +3,8 @@ Location/region access prerequisites.
 
 This library contains functions for turning textual prerequisites like
 'key/RedCard' or 'map/E1M1/belltower' into location access rule functions.
+
+TODO: we should use the new rule builder API in AP 0.6.7 once it's released.
 '''
 
 from typing import FrozenSet
@@ -34,11 +36,11 @@ def string_to_prereq_fn(world, wad, map, string):
     case _:
       raise RuntimeError(f'Unknown prerequisite {string}')
 
-def fqin_prereq(world, wad, map, fqin):
+def fqin_prereq(world, wad, map, fqin, count=1):
   # print(f'    (has "{fqin}")')
-  return lambda state: state.has(fqin, world.player)
+  return lambda state: state.has(fqin, world.player, count)
 
-def item_prereq(world, wad, map, typename):
+def item_prereq(world, wad, map, typename, count=1):
   return fqin_prereq(world, wad, map, wad.items_by_type[typename].name())
 
 def weapon_prereq(world, wad, map, typename, strictness = 'need'):

@@ -87,9 +87,12 @@ absolutely required to reach the check. In practice most things will be `want`,
 but some checks may need rocket jumps, barriers that can only be destroyed with
 certain weapons, etc.
 
+`item`. The `name` is the item typename, e.g. `item/ArtiTorch`. The `qualifier`,
+if present, is the minimum number of that item the player needs to have found.
+
 We may in the future want to add `location`, for "this is not in logic unless
-this specific location is reachable", and `item`, for "this is not in logic
-unless you have found this non-key, non-weapon item somewhere".
+this specific location is reachable". At the moment this is implemented by
+creating a region containing that location and referencing it.
 
 As a special case for backwards compatibility, a completely unqualified name is
 taken as the name of a key in the same scope, i.e. there is an implicit `key/`.

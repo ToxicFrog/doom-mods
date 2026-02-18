@@ -11,6 +11,10 @@
     to the client *before* connecting to the host.
   - WAD-specific apworlds with logic split across multiple files did not load
     correctly.
+- For logic developers:
+  - Tuning files support `item` prerequisites, so you can say "this is not in
+    logic until the player has found this specific item". Unlike `key` this
+    works for any item in the game, and you can specify how many are needed.
 
 # 0.7.1
 
