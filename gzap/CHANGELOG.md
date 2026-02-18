@@ -11,6 +11,7 @@
     to the client *before* connecting to the host.
   - WAD-specific apworlds with logic split across multiple files did not load
     correctly.
+  - Errors in the logic for Faithless episode 2.
 - For logic developers:
   - Tuning files support `item` prerequisites, so you can say "this is not in
     logic until the player has found this specific item". Unlike `key` this

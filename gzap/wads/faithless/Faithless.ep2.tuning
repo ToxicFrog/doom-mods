@@ -81,8 +81,10 @@ AP-REGION { "map": "E2M3", "region": "via-second-floor", "keys": ["map/E2M1/bell
 // Machine room area to the north
 // Accessible either by throwing a switch in M2, or a portal in the M2 vault.
 AP-REGION { "map": "E2M3", "region": "machine-room", "keys": ["map/E2M3/main", "map/E2M2/machine-room-switch"] }
-// FIXME: this creates a circular dependency
-AP-REGION { "map": "E2M3", "region": "machine-room", "keys": ["map/E2M2/vault"] }
+// This creates a circular dependency (vault <-> machine room), so we expand the
+// vault logic definition here.
+// AP-REGION { "map": "E2M3", "region": "machine-room", "keys": ["map/E2M2/vault"] }
+AP-REGION { "map": "E2M3", "region": "machine-room", "keys": ["map/E2M2/mural-room", "map/E2M3/vault-switch"] }
 // Area accessed by inserting all the gears into the mechanism. Unlocks a handful of checks
 // and is a prereq for the green key back in M1.
 AP-REGION { "map": "E2M3", "region": "mechanism", "keys": ["map/E2M3/via-second-floor", "key/HexenPuzzGear1", "key/HexenPuzzGear2", "key/HexenPuzzGear3", "key/HexenPuzzGear4"] }
@@ -106,7 +108,9 @@ AP-REGION { "map": "E2M4", "region": "shrine", "keys": ["map/E2M4/village"] }
 AP-REGION { "map": "E2M4", "region": "north-woods", "keys": ["key/KeyGreen", "map/E2M4/shrine"] }
 // Monastery north of the woods. Requires torches to light the four statues in the woods and open the portcullis.
 // Includes items outside the monastery proper but north of the portcullis that connects it to the woods.
-AP-REGION { "map": "E2M4", "region": "monastery", "keys": ["map/E2M4/north-woods", "item/ArtiTorch/3"] }
+// Ideally we would someday include item/ArtiTorch/3 in the requirements, but as it happens
+// the level is designed to endlessly respawn a torch at the entrance to the forest anyways.
+AP-REGION { "map": "E2M4", "region": "monastery", "keys": ["map/E2M4/north-woods"] }
 // Small caches in the monastery opened by ringing the gong in M5.
 AP-REGION { "map": "E2M4", "region": "monastery-caches", "keys": ["map/E2M4/monastery", "map/E2M5/ring-gong"] }
 // Western area containing portal to M9.
@@ -221,8 +225,8 @@ AP-REGION { "map": "E2M7", "region": "wing-storage", "keys": ["key/KeyBlue", "ma
 AP-REGION { "map": "E2M7", "region": "found-wings", "keys": ["map/E2M7/wing-storage"] }
 
 //////// E2M8: The Rune-Forge
-// The final level of E2, accessible via a pit in the wing spire in M8.
-AP-REGION { "map": "E2M8", "keys": ["map/E2M7/wing-spire"] }
+// The final level of E2, accessible via a pit in the wing spire in M6.
+AP-REGION { "map": "E2M8", "keys": ["map/E2M6/wing-spire"] }
 AP-REGION { "map": "E2M8", "region": "main", "keys": [] }
 
 
