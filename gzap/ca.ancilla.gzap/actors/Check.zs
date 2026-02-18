@@ -76,18 +76,20 @@ mixin class ::ArchipelagoIcon {
   }
   bool IsChecked() { return GetLocation().IsChecked(); }
 
+  // TODO: we should move this into the CheckPickup, and just have it call
+  // SetStateLabel on its map marker if any.
   void SetProgressionState() {
     DEBUG("SetProgressionState(%d)", self.location_id);
-    DEBUG("  name=%s checked=%d display=%d unreachable=%d progression=%d hilight=%d",
-      GetLocation().name, IsChecked(),
-      ShouldDisplay(), GetLocation().IsUnreachable(), GetLocation().IsProgression(), ShouldHilight());
 
     let loc = GetLocation();
+    DEBUG("  name=%s checked=%d (ck=%d cl=%d) display=%d unreachable=%d progression=%d hilight=%d trigger=%d",
+      loc.name, IsChecked(), loc.checked, loc.collected,
+      ShouldDisplay(), loc.IsUnreachable(), loc.IsProgression(), ShouldHilight(), IsTrigger());
 
-    if (loc.IsChecked()) {
-      A_SetRenderStyle(CVar.FindCVar("ap_collected_alpha").GetFloat(), STYLE_Translucent);
-    } else {
+    if (self.IsTrigger() && !loc.checked || !loc.IsChecked()) {
       A_SetRenderStyle(CVar.FindCVar("ap_uncollected_alpha").GetFloat(), STYLE_Translucent);
+    } else {
+      A_SetRenderStyle(CVar.FindCVar("ap_collected_alpha").GetFloat(), STYLE_Translucent);
     }
 
     if (!ShouldDisplay()) {
@@ -124,6 +126,8 @@ mixin class ::ArchipelagoIcon {
   // To determine whether to render at all;
   //    abstract bool ShouldHilight() { return true; }
   // To determine whether progression items should be marked as such;
+  //    abstract bool IsTrigger() { return false; }
+  // To determine if this is a trigger item that needs to be collectable even when empty.
 }
 
 // An automap marker. This is not tied to a CheckPickup and is used for marking
@@ -153,6 +157,8 @@ class ::CheckMapMarker : MapMarker {
     }
     return true;
   }
+
+  bool IsTrigger() { return false; }
 }
 
 // An automap marker tied to a CheckPickup. It follows the check around if it
@@ -298,7 +304,10 @@ class ::CheckPickup : ScoreItem {
   void UpdateFromLocation() {
     let location = self.GetLocation();
     SetTag(location.name);
-    if (self.IsTrigger()) { location.checked = false; }
+    if (self.IsTrigger()) {
+      DEBUG("Check[%s]: is trigger, clearing checked bit", location.name);
+      location.checked = false;
+    }
     if (location.IsChecked()) {
       DEBUG("Check[%s] clearing markers", location.name);
       ClearMarkers();
@@ -434,7 +443,11 @@ class ::CheckPickup : ScoreItem {
   //// Pickup event handling ////
 
   override bool CanPickup(Actor toucher) {
-    // DEBUG("CanPickup? %s %s %d", self.GetLocation().name, toucher.GetTag(), !self.IsChecked());
+    if (self.IsTrigger()) {
+      // If it's a trigger object we always treat it as though ap_allow_collect
+      // were off, to avoid softlocks.
+      return !self.GetLocation().checked;
+    }
     return !self.IsChecked();
   }
 
@@ -443,6 +456,12 @@ class ::CheckPickup : ScoreItem {
     // This will set the 'checked' flag and also, if necessary, send a message
     // to the client.
     ::PlayEventHandler.Get().CheckLocation(self.GetLocation());
+    // Pretend that no item with this TID exists anymore. We'll respawn on level
+    // reload if needed.
+    // This is needed for compatibility with stuff like Square's vending
+    // machines, which will only vend a new powerup if the old one no longer
+    // exists on the map.
+    ChangeTID(0);
     self.SetProgressionState();
     ClearMarkers();
     return true;
