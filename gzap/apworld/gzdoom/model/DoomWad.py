@@ -48,7 +48,7 @@ class DoomWad:
     # Tuning data is being loaded, or has been loaded, for this wad.
     tuned: bool = False
     # Flags passed through from the tuning file
-    flags: FrozenSet[str] = frozenset()
+    flags: Dict[str,Any] = field(default_factory=dict)
     # Implicit and explicit regions. Minimum one per map, but there might be more.
     regions: Dict[str,DoomRegion] = field(default_factory=dict)
 
@@ -59,18 +59,25 @@ class DoomWad:
             3: {},
         }
 
-    def has_flag(self, flag):
-        return flag in self.flags
+    def set_flags(self, flag_strings: List[str]):
+        self.flags = {}
+        for flag in flag_strings:
+            if '=' in flag:
+                (k,v) = flag.split('=')
+                self.flags[k] = v
+            else:
+                self.flags[flag] = True
+
+    def get_flag(self, flag):
+        return self.flags.get(flag, False)
 
     def use_hub_logic(self):
-        return self.has_flag('use_hub_logic')
+        return self.get_flag('use_hub_logic')
 
     def hub_logic_exits(self):
         assert self.use_hub_logic()
         return {
-            map
-            for flag in self.flags if flag.startswith('hub_logic_exits=')
-            for map in flag.split('=')[1].split(',')
+            map for map in self.get_flag('hub_logic_exits').split(',')
         }
 
     def all_locations(self) -> Iterable[DoomLocation]:

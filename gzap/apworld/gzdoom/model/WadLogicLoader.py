@@ -31,7 +31,7 @@ class WadDataLoader:
                 payload = json.loads(payload)
 
                 if evt == "AP-SCAN":
-                    self.wad.flags = frozenset(payload['flags'])
+                    self.wad.set_flags(payload['flags'])
                 elif evt == "AP-MAP":
                     self.wad.new_map(payload)
                 elif evt == "AP-ITEM":
