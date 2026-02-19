@@ -13,7 +13,7 @@
     correctly.
   - Errors in the logic for Faithless episode 2.
   - Checks with a TID associated with them will now clear the TID on collect,
-    allow scripts that check for the item disappearing (e.g. Adventures of
+    allowing scripts that check for the item disappearing (e.g. Adventures of
     Square's fizzopop vendors) to function properly.
 - For logic developers:
   - Tuning files support `item` prerequisites, so you can say "this is not in

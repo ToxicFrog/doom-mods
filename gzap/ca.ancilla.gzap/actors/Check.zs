@@ -224,8 +224,11 @@ class ::CheckPickup : ScoreItem {
       // If we can, Subsume() will jump us straight to SetProgression.
       // Otherwise, NoOriginal will do some setup based on the defaults of the
       // type, if possible.
-      AP00 CCCCCCC 1 Subsume();
-      AP00 C 1 NoOriginal();
+      AP00 EEEEEEE 1 Subsume();
+      AP00 E 1 NoOriginal();
+      GOTO PostSpawn;
+    PostSpawn:
+      AP00 E 0 UpdateFromLocation();
       GOTO SetProgression;
   }
 
@@ -253,7 +256,6 @@ class ::CheckPickup : ScoreItem {
   override void PostBeginPlay() {
     // Unreachables don't contribute towards the total check count.
     if (self.GetLocation().IsUnreachable()) self.ClearCounters();
-    UpdateFromLocation();
   }
 
   void Subsume() {
@@ -289,7 +291,7 @@ class ::CheckPickup : ScoreItem {
     if (Distance3D(closest) < 2.0) {
       UpdateFromOriginal(closest);
       closest.Destroy();
-      SetStateLabel("SetProgression");
+      SetStateLabel("PostSpawn");
     }
   }
 
@@ -327,6 +329,8 @@ class ::CheckPickup : ScoreItem {
     A_SetSize(original.radius, original.height);
     ChangeTID(original.TID);
     A_SetSpecial(original.special, original.args[0], original.args[1], original.args[2], original.args[3], original.args[4]);
+    DEBUG("Check[%s] UpdateFromOriginal[%s] tid=%d special=%d", GetLocation().name,
+      original.GetTag(), original.TID, original.special);
     self.bNOGRAVITY = original.bNOGRAVITY;
   }
 
