@@ -1,3 +1,12 @@
+'''
+This is the "generic" apworld for supporting gzDoom WADs. It contains all of the
+code common to all supported WADs.
+
+Individual WADs have their own apworld, which contains just enough code to
+inherit a WAD-specific world type and load the logic and tuning data for that
+WAD.
+'''
+
 import fnmatch
 from importlib import resources
 import jinja2
@@ -15,20 +24,6 @@ from . import icons, model
 from .model.DoomItem import DoomItem
 from .model.DoomLocation import DoomLocation
 from .model.DoomWad import DoomWad
-
-# Load logic and tuning files.
-#
-# Logic has to be fully loaded before this module finishes initializing (and,
-# more immediately, before we import the options), because AP expects us to have
-# the complete item and location index available at that time. This means we
-# need to load logic for all the wads before we know which wad the player has
-# selected.
-#
-# TODO: benchmark indicates that on a cache miss, tuning data accounts for
-# about a third of loading time, and it's only going to get worse as more things
-# are tuned. This implies we could get some significant savings by deferring
-# tuning file processing until we know what wad the player has selected, and
-# only loading the tuning data for that one.
 
 from .Options import GZDoomOptions
 

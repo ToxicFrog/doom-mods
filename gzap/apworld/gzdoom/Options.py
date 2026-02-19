@@ -65,18 +65,11 @@ class StartingLevels(OptionSet):
     This option supports globbing expressions.
     """
     display_name = "Starting levels"
-    default = ["E?M1", "MAP01", "E?A1"]
+    default = ["(filled in by wad-specific apworlds)"]
 
 class StartWithKeys(Toggle):
     """
-    If enabled, you will start with all the keys for any starting level that has
-    keys.
-
-    This is on by default because turning it off will cause generation failures
-    for newly-scanned wads, or wads where the default starting levels have very
-    restrictive item access. For properly tuned wads where at least some checks
-    are known to be reachable without keys, turning this off will allow the
-    randomizer more freedom in item placement.
+    If enabled, you will start with all the keys for your starting_levels.
     """
     display_name = "Start with keys"
     default = True
