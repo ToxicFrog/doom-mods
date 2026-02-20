@@ -83,6 +83,12 @@ class DoomMap:
             if skill in loc.skill and (not categories or loc.has_category(*categories))
         ]
 
+    def default_enabled_location_count(self, skill: int = 3):
+        return len([
+            loc for loc in self.locations
+            if skill in loc.skill and loc.is_default_enabled()
+        ])
+
     def access_rule(self, world):
         # print(f"access_rule({self.map}) = start={world.is_starting_map(self.map)}, co-guns({world.options.carryover_weapon_bias.value})={self.carryover_gunset}, local-guns({world.options.local_weapon_bias.value})={self.local_gunset}, clears({world.options.level_order_bias.value})={self.prior_clears}")
         prior_maps = [ map for map in world.maps if map.rank < self.rank ]

@@ -20,7 +20,7 @@ class IncludedLevels___WAD__(options.IncludedLevels):
 
 class StartingLevels___WAD__(options.StartingLevels):
   __doc__ = options.StartingLevels.__doc__
-  default = sorted(map.map for map in included_logic.wad.maps.values() if map.rank == 0)
+  default = sorted(included_logic.wad.default_starting_maps())
 
 if included_logic.wad.get_flag('use_hub_logic'):
   class StartWithKeys___WAD__(options.StartWithKeys):

@@ -3,11 +3,13 @@
 - New:
   - New graphics for checks that still exist in the world but have no items in
     them (e.g. because of quickload or `!collect`).
-  - `starting_levels` is automatically populated based on the levels actually
-    in the WAD.
-  - `start_with_keys` is now off by default if the WAD has tuning data.
-  - `start_with_keys` is now forced off for WADs using hub logic, as turning it
-    on will start you with all the keys for the entire episode.
+  - Changes to default yaml settings:
+    - `included_levels` now defaults to all maps in the WAD.
+    - `starting_levels` contains all episode-start maps, but may include additional
+      maps if needed for reliable generation with default settings.
+    - `start_with_keys` is now off by default if the WAD has tuning data.
+    - `start_with_keys` is now forced off for WADs using hub logic, as turning it
+      on will start you with all the keys for the entire episode.
 - Fixed:
   - UT did not work properly with non-default `included_item_categories`.
   - UT indicators in-game did not work reliably.
