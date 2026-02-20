@@ -16,12 +16,13 @@ To release a new version:
 
 ### generator
 
-- pass through items-included setting to UT and respect it properly so that e.g.
-  small items show up in UT
+- treat item/key/weapon requirements as "apworld state has this item" if it's
+  included in randomization at a nonzero rate, and as "location where this item
+  is found would be in logic if it were randomized" if it is not included in
+  randomization.
 - better handling for vanilla/local/pretuning settings
   - need a way to say "this item should be written into the pk3 as if it were randomized, and still used for tuning, but not reported to the server"
-- support `key/*` to mean "any key"
-- test with uzdoom and migrate
+  - also need a local-shuffle option for minor items that doesn't break generation the way AP's builtin force-local setting does
 - region hierarchy refactor
   - a wad contains maps, which contain regions, which contain locations
   - maps/regions/locations are all DoomReachable and form a tree
@@ -36,11 +37,6 @@ To release a new version:
 
 ### ingame
 
-- sort hints to the start of the check list. This requires moving the is-hinted
-  info into the actual Location rather than maintaining a separate hint array,
-  and updating the protocol to send hints using IDs rather than names, which we
-  should probably do anyways as that makes the messages smaller.
-
 - weapon ownership rework -- remember which weapons the player ended up with when
   we granted them some, and restore them if they go away
   - this may fix TT
@@ -51,13 +47,6 @@ To release a new version:
 - If a check gets destroyed (e.g. with thing_remove), we should dispense whatever
   it contained. This would let us (e.g.) reinstate the urns and shields in Faithless
   E1M7 without the risk of making the game unwinnable.
-
-- We should probably delete checks outright when collected so that TID-based stuff
-  works properly, e.g. the fizzopops and fishtanks in AOS.
-
-- bug in item display -- for example, fizzopop factory says 7/232 items collected
-  in the menu (I think from other players using !collect), but says 14/226 items
-  and 0/6 secrets in-level. Cosmetic only, but annoying.
 
 - we need a better region dashboard, probably as a separate menu rather than wired
   into the inventory. List all weapons, all keys relevant to this level, all
