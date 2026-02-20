@@ -20,6 +20,8 @@
   - Checks with a TID associated with them will now clear the TID on collect,
     allowing scripts that check for the item disappearing (e.g. Adventures of
     Square's fizzopop vendors) to function properly.
+  - Some maps in `Legacy of Rust` and `Space Cats Saga` were incorrectly marked
+    as starting maps.
 - For logic developers:
   - Tuning files support `item` prerequisites, so you can say "this is not in
     logic until the player has found this specific item". Unlike `key` this
