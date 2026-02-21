@@ -11,9 +11,9 @@ and can usually be resolved by retrying a few times.
 
 If it happens consistently, you have a few options for reducing constraints on
 the randomizer:
-- Adding more `starting_levels` will give it more places to put early items, as
-  will removing entries from `exclude_locations`
-- Turning on `start_with_keys` will give it fewer mandatory early items to place
+- Adding more `starting_levels` will give it more places to put early items
+- Turning on `start_with_keys` will give it fewer mandatory early items to place,
+  and more reachable early-game locations
 - Turning down `level_order_bias`, `local_weapon_bias`, and `carryover_weapon_bias`
   will let it move more items to later spheres (but also make the game harder)
 - Adding more categories to `included_item_categories` will give it more locations
