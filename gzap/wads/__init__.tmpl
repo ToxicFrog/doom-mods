@@ -12,22 +12,22 @@ model = sys.modules['worlds.gzdoom.model']
 options = sys.modules['worlds.gzdoom.Options']
 
 included_logic = model.init_wads(__package__)
-
+wad = included_logic.wad
 
 class IncludedLevels___WAD__(options.IncludedLevels):
   __doc__ = options.IncludedLevels.__doc__
-  default = sorted(included_logic.wad.maps.keys())
+  default = sorted(wad.maps.keys())
 
 class StartingLevels___WAD__(options.StartingLevels):
   __doc__ = options.StartingLevels.__doc__
-  default = sorted(included_logic.wad.default_starting_maps())
+  default = sorted(wad.default_starting_maps())
 
-if included_logic.wad.get_flag('use_hub_logic'):
+if wad.get_flag('use_hub_logic'):
   class StartWithKeys___WAD__(options.StartWithKeys):
     '''Forced off because this WAD uses hub logic.'''
     default = False
     visibility = Visibility.none
-elif model.tuning_files(included_logic.wad.package, included_logic.wad.name):
+elif model.tuning_files(wad.package, wad.name):
   class StartWithKeys___WAD__(options.StartWithKeys):
     __doc__ = options.StartWithKeys.__doc__
     default = False
@@ -47,10 +47,10 @@ class GZDoomOptions___WAD__(options.GZDoomOptions):
 
 
 class GZDoomWorld___WAD__(gzdoom.GZDoomWorld):
-  game = f"GZDoom ({included_logic.wad.name})"
+  game = f"GZDoom ({wad.name})"
   mod_version = "__VERSION__"
   hidden = False
-  wad_logic = included_logic.wad
+  wad_logic = wad
   options_dataclass = GZDoomOptions___WAD__
   options: GZDoomOptions___WAD__
 
