@@ -298,12 +298,11 @@ class FullPersistence(Toggle):
     """
     If enabled, all levels will be fully persistent, in the same manner as Hexen
     hubclusters. Levels can be reset from the level select menu, but this is all
-    or nothing: there is no way to reset individual levels.
-
-    EXPERIMENTAL FEATURE - HANDLE WITH CARE
+    or nothing: there is no way to reset individual levels. This is generally
+    reliable, but a minority of wads or gameplay mods may break with it.
     """
     display_name = "Persistent Levels"
-    default = False
+    default = True
 
 class PreTuningMode(Toggle):
     """
