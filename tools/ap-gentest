@@ -10,6 +10,7 @@ if [[ $GAME != none ]]; then
   [[ -d ~/Games/Archipelago/Players/${GAME} ]]
   (
     cd ~/Games/Archipelago/Players
+    touch dummy.yaml
     rm -f *.yaml
     cp ${GAME}/*.yaml .
   )
