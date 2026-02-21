@@ -327,6 +327,7 @@ class GZDoomOptions(PerGameCommonOptions):
     # Skill level, WAD, and level selection
     spawn_filter: SpawnFilter
     starting_levels: StartingLevels
+    start_with_keys: StartWithKeys
     included_levels: IncludedLevels
     # Win conditions
     win_map_count: WinMapCount
@@ -335,14 +336,12 @@ class GZDoomOptions(PerGameCommonOptions):
     level_order_bias: LevelOrderBias
     local_weapon_bias: LocalWeaponBias
     carryover_weapon_bias: GlobalWeaponBias
-    # Location pool control
-    included_item_categories: IncludedItemCategories
-    # Item pool control
-    start_with_keys: StartWithKeys
-    max_weapon_copies: MaxWeaponCopies
     # Other settings
     allow_respawn: AllowRespawn
     full_persistence: FullPersistence
     pretuning_mode: PreTuningMode
+    # Location/item pool control
+    max_weapon_copies: MaxWeaponCopies
+    included_item_categories: IncludedItemCategories
     # Stock settings
     start_inventory_from_pool: StartInventoryPool
