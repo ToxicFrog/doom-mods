@@ -94,11 +94,14 @@ class WadLogicLoader(WadDataLoader):
 
     def load_logic(self, files):
         if self.logic_cache_valid():
-            self.wad = self.load_cache()
-        else:
-            for file in files:
-                self.load_records(file)
-            self.save_cache()
+            try:
+                self.wad = self.load_cache()
+                return
+            except:
+                pass
+        for file in files:
+            self.load_records(file)
+        self.save_cache()
 
     def cache_path(self):
         gzd_dir = os.path.join(Utils.user_path(), "gzdoom")
