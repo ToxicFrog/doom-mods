@@ -80,6 +80,18 @@ class DoomWad:
             map for map in self.get_flag('hub_logic_exits').split(',')
         }
 
+    def all_winnable_map_names(self):
+        if self.use_hub_logic():
+            return [map for map in self.hub_logic_exits() if map in self.maps]
+        else:
+            return self.maps.keys()
+
+    def all_boss_map_names(self):
+        if self.use_hub_logic():
+            return self.all_winnable_map_names()
+        max_rank = max(map.rank for map in self.all_maps())
+        return [map.map for map in self.all_maps() if map.rank == max_rank]
+
     def all_locations(self) -> Iterable[DoomLocation]:
         return (loc for map in self.maps.values() for loc in map.locations)
 

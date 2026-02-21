@@ -40,6 +40,17 @@ else:
     '''
     default = True
 
+class WinMapCount___WAD__(options.WinMapCount):
+  __doc__ = options.WinMapCount.__doc__
+  default = len(wad.all_winnable_map_names())
+  range_start = 0
+  range_end = len(wad.all_winnable_map_names())
+
+class WinMapNames___WAD__(options.WinMapNames):
+  __doc__ = options.WinMapNames.__doc__
+  default = sorted([map for map in wad.all_boss_map_names()])
+  valid_keys = sorted([map for map in wad.all_winnable_map_names()])
+
 class MaxWeaponCopies___WAD__(Range):
   __doc__ = options.MaxWeaponCopies.__doc__
   default = math.ceil(len(wad.maps)/8)
@@ -51,6 +62,8 @@ class GZDoomOptions___WAD__(options.GZDoomOptions):
   included_levels: IncludedLevels___WAD__
   starting_levels: StartingLevels___WAD__
   start_with_keys: StartWithKeys___WAD__
+  win_map_count: WinMapCount___WAD__
+  win_map_names: WinMapNames___WAD__
   max_weapon_copies: MaxWeaponCopies___WAD__
 
 class GZDoomWorld___WAD__(gzdoom.GZDoomWorld):

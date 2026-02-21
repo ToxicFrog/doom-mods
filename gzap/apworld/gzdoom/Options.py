@@ -259,69 +259,28 @@ class GlobalWeaponBias(Range):
     range_end = 100
     default = 50
 
-class WinConditions(OptionDict):
+class WinMapCount(Range):
     """
-    Win conditions for the randomized game. If multiple conditions are enabled,
-    the player is required to satisfy all of them!
-
-        nrof-maps: (int, fraction, or "all")
-    Require the player to finish this many levels. If "all", all levels included
-    in randomization must be cleared. If set to an integer >= 1, that many
-    levels must be cleared. If a fraction, that fraction of levels is required,
-    e.g. 0.5 would require you to clear 16 of Doom 2's 32 levels.
-
-        specific-maps: (list of map names)
-    Require the player to finish these specific maps. Globbing expressions are
-    supported, so `maps: ["E1M?" "E?M8"]` would require the player to beat all
-    of episode 1 and all boss maps in Doom 1, for example. Maps listed here that
-    don't exist in the selected WAD are ignored.
+    How many maps you need to clear to win the game. By default this is all maps
+    in the wad.
     """
-    display_name = "Win conditions"
-    default = {
-        "nrof-maps": "all",
-        "specific-maps": [],
-    }
-    valid_keys = {"nrof-maps", "specific-maps"}
-    def get_levels_needed(self, world):
-        levels_needed = self.value.get("nrof-maps", 0)
-        if levels_needed == "all":
-            return len(world.maps)
-        assert levels_needed >= 0,"nrof-maps win condition must be 'all' or a fraction or an integer >= 0"
-        if levels_needed > 0 and levels_needed < 1:
-            return ceil(len(world.maps) * levels_needed)
-        return min(floor(levels_needed), len(world.maps))
+    display_name = "Number of maps to win"
+    # Will be overridden by individual wad apworlds
+    range_start = 0
+    range_end = 999
+    default = 999
 
-    def get_maplist(self, world):
-        return [
-            map for map in world.maps
-            if world.any_glob_matches(self.value.get("specific-maps", []), map.map)
-        ]
-
-    def check_win(self, world, state):
-        won = True
-
-        # TODO: this should be based on clusters/levels, not maps
-        # It works for now because all maps in the cluster share the same
-        # clear_flag_name, so grabbing the clear flag from the real end-of-cluster
-        # map clears the entire cluster.
-        levels_needed = self.get_levels_needed(world)
-        if levels_needed > 0:
-            won = won and levels_needed <= sum([
-                1 for map in world.maps
-                if state.has(map.clear_flag_name(), world.player)
-            ])
-
-        for map in self.get_maplist(world):
-            won = won and state.has(map.clear_flag_name(), world.player)
-
-        return won
-
-    def template_values(self, world):
-        return {
-            # These are 0/empty for some reason
-            'nrof-maps': self.get_levels_needed(world),
-            'specific-maps': [map.map for map in self.get_maplist(world)],
-        }
+class WinMapNames(OptionSet):
+    """
+    Which specific maps you need to clear to win the game (assuming you have
+    changed win_map_count so as not to require all maps). The default is
+    Archipelago's best guess at which maps are end-of-episode or end-of-game
+    levels.
+    """
+    display_name = "Specific maps to win"
+    # Will be overridden by individual wad apworlds
+    default = {}
+    valid_keys = {}
 
 class AllowRespawn(Toggle):
     """
@@ -370,11 +329,13 @@ class GZDoomOptions(PerGameCommonOptions):
     spawn_filter: SpawnFilter
     starting_levels: StartingLevels
     included_levels: IncludedLevels
-    # Ordering and victory control
+    # Win conditions
+    win_map_count: WinMapCount
+    win_map_names: WinMapNames
+    # Combat logic
     level_order_bias: LevelOrderBias
     local_weapon_bias: LocalWeaponBias
     carryover_weapon_bias: GlobalWeaponBias
-    win_conditions: WinConditions
     # Location pool control
     included_item_categories: IncludedItemCategories
     # Item pool control

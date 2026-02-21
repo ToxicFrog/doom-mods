@@ -15,6 +15,7 @@
       default.
     - `max_weapon_copies` is now automatically set based on how many maps are in
       the wad.
+  - `win_conditions` setting split into `win_map_count` and `win_map_names`.
   - `excluded_levels` setting removed. Delete entries from `included_levels` instead.
   - `levels_per_weapon` setting removed. Adjust `max_weapon_copies` instead.
 - Fixed:

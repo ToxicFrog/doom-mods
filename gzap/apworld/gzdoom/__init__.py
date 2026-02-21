@@ -331,7 +331,21 @@ class GZDoomWorld(World):
     def set_rules(self):
         # All region and location access rules were defined in create_regions, so we just need the
         # overall victory condition here.
-        self.multiworld.completion_condition[self.player] = lambda state: self.options.win_conditions.check_win(self, state)
+        self.multiworld.completion_condition[self.player] = self.check_win
+
+    def check_win(self, state):
+        maps_won = {
+            map.map for map in self.maps
+            if map.map in self.wad_logic.all_winnable_map_names()
+            and state.has(map.clear_flag_name(), self.player)
+        }
+        nrof_maps_won = len(maps_won)
+
+        if nrof_maps_won < self.options.win_map_count.value:
+            return False
+        if self.options.win_map_names.value - maps_won:
+            return False
+        return True
 
     def all_placed_item_names(self):
         """
@@ -458,7 +472,8 @@ class GZDoomWorld(World):
             "item_name_at": item_name_at,
             "flags_at": flags_at,
             "escape": escape,
-            "win_conditions": self.options.win_conditions.template_values(self),
+            "win_map_count": self.options.win_map_count.value,
+            "win_map_names": self.options.win_map_names.value,
             "generate_mapinfo": not self.options.pretuning_mode,
         }
 
