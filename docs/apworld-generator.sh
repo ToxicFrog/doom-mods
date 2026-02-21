@@ -1,3 +1,6 @@
+#!/usr/bin/env sh
+
+cat <<EOF
 <!doctype html>
 <html>
   <head>
@@ -108,69 +111,9 @@
 }
       </pre>
       <pre id="init_template">
-import sys
-from dataclasses import dataclass
-
-from worlds.AutoWorld import World
-from Options import PerGameCommonOptions, Toggle, DeathLink, StartInventoryPool, OptionSet, NamedRange, Range, OptionDict, OptionList, OptionError, Visibility
-
-if 'worlds.gzdoom' not in sys.modules:
-  raise RuntimeError(f'Unable to load supporting libraries -- make sure that `gzdoom.apworld` is installed!')
-
-gzdoom = sys.modules['worlds.gzdoom']
-model = sys.modules['worlds.gzdoom.model']
-options = sys.modules['worlds.gzdoom.Options']
-
-included_logic = model.init_wads(__package__)
-
-
-class IncludedLevels___WAD__(options.IncludedLevels):
-  __doc__ = options.IncludedLevels.__doc__
-  default = sorted(included_logic.wad.maps.keys())
-
-class StartingLevels___WAD__(options.StartingLevels):
-  __doc__ = options.StartingLevels.__doc__
-  default = sorted(included_logic.wad.default_starting_maps())
-
-if included_logic.wad.get_flag('use_hub_logic'):
-  class StartWithKeys___WAD__(options.StartWithKeys):
-    '''Forced off because this WAD uses hub logic.'''
-    default = False
-    visibility = Visibility.none
-elif model.tuning_files(included_logic.wad.package, included_logic.wad.name):
-  class StartWithKeys___WAD__(options.StartWithKeys):
-    __doc__ = options.StartWithKeys.__doc__
-    default = False
-else:
-  class StartWithKeys___WAD__(options.StartWithKeys):
-    __doc__ = options.StartWithKeys.__doc__ + '''
-    This WAD lacks tuning data, so setting this to false may cause
-    generation failures, especially in singleplayer.
-    '''
-    default = True
-
-@dataclass
-class GZDoomOptions___WAD__(options.GZDoomOptions):
-  included_levels: IncludedLevels___WAD__
-  starting_levels: StartingLevels___WAD__
-  start_with_keys: StartWithKeys___WAD__
-
-
-class GZDoomWorld___WAD__(gzdoom.GZDoomWorld):
-  game = f"GZDoom ({included_logic.wad.name})"
-  mod_version = "__VERSION__"
-  hidden = False
-  wad_logic = included_logic.wad
-  options_dataclass = GZDoomOptions___WAD__
-  options: GZDoomOptions___WAD__
-
-  # Used by AP itself
-  item_name_to_id = model.unified_item_map(included_logic)
-  item_name_groups = model.unified_item_groups(included_logic)
-  location_name_to_id = model.unified_location_map(included_logic)
-  location_name_groups = model.unified_location_groups(included_logic)
+$(cat wads/__init__.tmpl)
       </pre>
     </div>
   </body>
 </html>
-
+EOF

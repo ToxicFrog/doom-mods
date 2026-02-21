@@ -8,11 +8,12 @@ LIBTTM=${TOPDIR}/libtooltipmenu/ca.ancilla.libtooltipmenu
 LIBTTM_PREFIX=GZAP
 APWORLDS:=${TOPDIR}/release/apworlds
 
-all: version ${PK3} apworlds install
+all: version ${PK3} apworlds apworld_generator install
 
 include ${TOPDIR}/rules.make
 
 apworlds: core_apworld addon_apworlds
+apworld_generator: ${TOPDIR}/docs/apworld-generator.html
 
 core_apworld: version ${TOPDIR}/release/gzdoom.apworld
 addon_apworlds: $(patsubst wads/%/,${APWORLDS}/zdoom_%.apworld,$(wildcard wads/*/))
@@ -37,6 +38,9 @@ ${TOPDIR}/release/gzdoom.apworld: apworld/gzdoom/* apworld/gzdoom/*/*
 ${APWORLDS}/zdoom_%.apworld: apworld/zdoom_%/./ apworld/zdoom_%/archipelago.json apworld/zdoom_%/__init__.py
 	cd apworld && zip -qr9 zdoom_$*.apworld zdoom_$*/
 	mv apworld/zdoom_$*.apworld $@
+
+${TOPDIR}/docs/apworld-generator.html: ${TOPDIR}/docs/apworld-generator.sh wads/__init__.tmpl
+	sh $< > $@
 
 apworld/zdoom_%/./: wads/%/*
 	rm -rf apworld/zdoom_$*/
