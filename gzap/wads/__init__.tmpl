@@ -1,3 +1,4 @@
+import math
 import sys
 from dataclasses import dataclass
 
@@ -39,12 +40,18 @@ else:
     '''
     default = True
 
+class MaxWeaponCopies___WAD__(Range):
+  __doc__ = options.MaxWeaponCopies.__doc__
+  default = math.ceil(len(wad.maps)/8)
+  range_start = 0
+  range_end = 32
+
 @dataclass
 class GZDoomOptions___WAD__(options.GZDoomOptions):
   included_levels: IncludedLevels___WAD__
   starting_levels: StartingLevels___WAD__
   start_with_keys: StartWithKeys___WAD__
-
+  max_weapon_copies: MaxWeaponCopies___WAD__
 
 class GZDoomWorld___WAD__(gzdoom.GZDoomWorld):
   game = f"GZDoom ({wad.name})"

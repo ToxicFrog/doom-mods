@@ -16,19 +16,18 @@ from dataclasses import dataclass
 
 class MaxWeaponCopies(Range):
     """
-    Applies a hard limit to the number of copies of each weapon in the item pool.
+    Applies a limit to the number of copies of each weapon in the item pool.
 
     Lower values mean you may have to wait longer before finding a given weapon,
     but also means more checks will contain health, powerups, etc. rather than
-    duplicates of weapons you already have.
+    duplicates of weapons you already have. A setting of 0 removes this limit
+    entirely.
 
-    Setting to 0 disables the limit entirely.
-
-    How many copies of each weapon end up in the pool is limited by both this and
-    'Levels per weapon copy'; whichever is lower takes precedence. This is an
-    upper bound: it will not add more weapons than actually exist in the WAD.
+    This is an upper bound; it will not add more weapons to the pool than exist
+    in the WAD already. By default it is set to 1 per 8 levels.
     """
     display_name = "Max weapon copies"
+    # Filled in by wad-specific code.
     range_start = 0
     range_end = 32
     default = 4
@@ -57,7 +56,8 @@ class StartingLevels(OptionSet):
     """
     Levels you can access at the start of the game. You will spawn with access
     codes for these levels; if start_with_keys is enabled, you will also spawn
-    with all keys for them.
+    with all keys for them. The default setting tries to include enough levels
+    to generate reliably even in singleplayer with fairly restrictive settings.
 
     If you are playing a multiworld game and want to start with nothing at all
     (i.e. Doom is not playable until another world unlocks it), set this to [].
@@ -76,8 +76,7 @@ class StartWithKeys(Toggle):
 
 class IncludedLevels(OptionSet):
     """
-    Levels to randomize.
-    This is overridden by wad-specific apworlds to list all the levels in the wad.
+    Levels to randomize. By default this is all levels in the wad.
     """
     display_name = "Included levels"
     default = []

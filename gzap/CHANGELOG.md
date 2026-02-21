@@ -13,6 +13,8 @@
       on will start you with all the keys for the entire episode.
     - `included_item_categories` now excludes secrets and items in secrets by
       default.
+    - `max_weapon_copies` is now automatically set based on how many maps are in
+      the wad.
 - Fixed:
   - UT did not work properly with non-default `included_item_categories`.
   - UT indicators in-game did not work reliably.
