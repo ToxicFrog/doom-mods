@@ -15,6 +15,8 @@
       default.
     - `max_weapon_copies` is now automatically set based on how many maps are in
       the wad.
+  - `excluded_levels` setting removed. Delete entries from `included_levels` instead.
+  - `levels_per_weapon` setting removed. Adjust `max_weapon_copies` instead.
 - Fixed:
   - UT did not work properly with non-default `included_item_categories`.
   - UT indicators in-game did not work reliably.

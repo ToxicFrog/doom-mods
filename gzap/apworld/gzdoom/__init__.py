@@ -151,8 +151,6 @@ class GZDoomWorld(World):
     def should_include_map(self, map: str) -> bool:
         if self.options.pretuning_mode:
             return True
-        if self.any_glob_matches(self.options.excluded_levels.value, map):
-            return False
         return self.any_glob_matches(self.options.included_levels.value or {"*"}, map)
 
     def is_starting_map(self, map: str) -> bool:
@@ -161,7 +159,6 @@ class GZDoomWorld(World):
     def setup_pretuning_mode(self):
         print("PRETUNING ENABLED - overriding most settings")
         self.options.included_levels.value = set()
-        self.options.excluded_levels.value = set()
         self.options.level_order_bias.value = 0
         self.options.local_weapon_bias.value = 0
         self.options.carryover_weapon_bias.value = 0

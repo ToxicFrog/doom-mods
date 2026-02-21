@@ -30,27 +30,7 @@ class MaxWeaponCopies(Range):
     # Filled in by wad-specific code.
     range_start = 0
     range_end = 32
-    default = 4
-
-class LevelsPerWeapon(Range):
-    """
-    Applies a scaling limit to the number of copies of each weapon in the item pool
-    based on how many levels are being played.
-
-    The default (8) means that a "standard" 32-level megawad will be limited to
-    at most 4 copies of each weapon. Lower values will increase the limit, higher
-    levels will decrease it.
-
-    Setting to 0 disables the limit entirely.
-
-    How many copies of each weapon end up in the pool is limited by both this and
-    'Max weapon copies'; whichever is lower takes precedence. This is an
-    upper bound: it will not add more weapons than actually exist in the WAD.
-    """
-    display_name = "Levels per weapon copy"
-    range_start = 0
-    range_end = 32
-    default = 8
+    default = 99
 
 class StartingLevels(OptionSet):
     """
@@ -80,15 +60,6 @@ class IncludedLevels(OptionSet):
     """
     display_name = "Included levels"
     default = []
-
-class ExcludedLevels(OptionSet):
-    """
-    Levels not to randomize, even if they are listed in included_levels.
-
-    This option supports globbing expressions.
-    """
-    display_name = "Excluded levels"
-    default = ['TITLEMAP']
 
 class SpawnFilter(NamedRange):
     """
@@ -399,7 +370,6 @@ class GZDoomOptions(PerGameCommonOptions):
     spawn_filter: SpawnFilter
     starting_levels: StartingLevels
     included_levels: IncludedLevels
-    excluded_levels: ExcludedLevels
     # Ordering and victory control
     level_order_bias: LevelOrderBias
     local_weapon_bias: LocalWeaponBias
@@ -410,7 +380,6 @@ class GZDoomOptions(PerGameCommonOptions):
     # Item pool control
     start_with_keys: StartWithKeys
     max_weapon_copies: MaxWeaponCopies
-    levels_per_weapon: LevelsPerWeapon
     # Other settings
     allow_respawn: AllowRespawn
     full_persistence: FullPersistence

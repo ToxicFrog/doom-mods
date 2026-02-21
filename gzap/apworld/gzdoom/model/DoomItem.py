@@ -109,8 +109,6 @@ class DoomItem:
             count = sys.maxsize
             if world.options.max_weapon_copies.value > 0:
                 count = min(count, world.options.max_weapon_copies.value)
-            if world.options.levels_per_weapon.value > 0:
-                count = min(count, max(1, len(world.maps) // world.options.levels_per_weapon.value))
             return (0, count)
 
         # Anything else we just take as many as we find.
