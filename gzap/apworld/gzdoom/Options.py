@@ -126,23 +126,27 @@ class IncludedItemCategories(OptionList):
     e.g. 'secret-health' means all health items that are in secrets.
 
     For each location or item, entries are checked *in order* and the first entry
-    that matches is used. A category of "*" matches everything. Items or locations
+    that matches is used. A category of '*' matches everything. Items or locations
     that don't match any entry are excluded by default.
 
-    Using an item name, e.g. "ArmorBonus:none", is also permitted, and will match
+    Using an item name, e.g. 'ArmorBonus:none', is also permitted, and will match
     that exact item. To avoid ambiguity, you have to use Doom's internal name,
-    e.g. "ClipBox" instead of "Bullets" and "ArtiHealth" instead of "Quartz Flask".
+    e.g. 'ClipBox' instead of 'Bullets' and 'ArtiHealth' instead of 'Quartz Flask'.
+
+    The default settings exclude all items in secrets ('secret:none') as well as
+    the secrets themselves, as depending on the WAD these can be quite difficult
+    to get.
 
     You can also use two special values in place of a percentage:
 
       'vanilla'
-      All items in this category will be "randomized" into their vanilla locations.
-      Use this instead of "none" if you want to play with non-randomized keys or
+      All items in this category will be 'randomized' into their vanilla locations.
+      Use this instead of 'none' if you want to play with non-randomized keys or
       weapons.
 
       'start'
       All items in this category will be placed in your starting inventory instead
-      of in the item pool. Use "key:start", "weapon:start", or "ap_map:start" to
+      of in the item pool. Use 'key:start', 'weapon:start', or 'ap_map:start' to
       start with all keys, weapons, or maps, respectively.
 
     Note that the default settings exclude all small and medium items and all
@@ -153,14 +157,9 @@ class IncludedItemCategories(OptionList):
     """
     display_name = "Included item/location categories"
     default = [
-        'weapon:all',
-        'key:all',
-        'token:all',
-        'big:all',
-        'secret:none',
-        'medium:none',
-        'small:none',
-        'tool:none',
+        'secret-sector:none', 'secret-marker:none', 'secret:none',
+        'weapon:all', 'key:all', 'token:all', 'big:all',
+        'medium:none', 'small:none', 'tool:none',
         '*:all',
     ]
 
