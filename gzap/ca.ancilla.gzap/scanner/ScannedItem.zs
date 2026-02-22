@@ -18,7 +18,7 @@ class ::ScannedItem : ::ScannedLocation {
     // of categories.
     loc.category = ItemCategory(thing);
     loc.typename = thing.GetClassName();
-    loc.tag = thing.GetTag();
+    loc.tag = ::RC.Get().GetTag(thing);
     loc.secret = IsSecret(thing);
     loc.pos = thing.pos;
     loc.tid = thing.tid;

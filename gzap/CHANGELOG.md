@@ -4,6 +4,9 @@
   - New graphics for checks that still exist in the world but have no items in
     them (e.g. because of quickload or `!collect`).
   - `pink`, `gold`, and `silver` are now recognized key colours.
+  - The `GZAPRC` lump can now define tags (user-facing names) for actors that
+    don't have tags in the WAD. This is used to rename some builtin actors (e.g.
+    `RedCard` -> `Red Keycard`).
 - Changed:
   - Changes to default yaml settings:
     - `included_levels` now defaults to all maps in the WAD.

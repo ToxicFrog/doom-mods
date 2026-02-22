@@ -57,6 +57,23 @@
 #
 # Set defaults for the scanner.
 # These are the same as the ap_scan_* CVARs without the ap_scan_ prefix.
+#
+#
+#     cluster <number> <name> ;
+# When scanning maps in this cluster, use <name> as the cluster name rather than
+# the cluster or episode name reported by the WAD. <name> can contain anything
+# except a semicolon, including whitespace, so this is legal:
+#     cluster 66 Knee-Deep in the Dead;
+# This is primarily useful in cases where the cluster/episode autodetection does
+# not produce useful results, or it's desireable to abbreviate the results for
+# Archipelago.
+#
+#
+#     tag <actor> <name> ;
+# Supply a default tag (player-facing name) for the given actor. This will not
+# replace an existing tag but is useful in cases where the developer forgot to
+# give the actor a tag at all, possibly because it was never expected to be
+# directly shown to the user.
 
 #### General Doom/Heretic/Chex item categories ####
 # GZAP has built in heuristics for item categorization: health and armour is
@@ -82,6 +99,20 @@ category medium-ammo:
 # auto-categorized.
 category big-armor-health: Megasphere;
 category powerup-health: Berserk;
+
+# Doom 1/2 keys don't have tags defined! Names like "blue keycard" appear only
+# in pickup messages and aren't associated with the actor itself.
+tag BlueCard Blue Keycard;
+tag YellowCard Yellow Keycard;
+tag RedCard Red Keycard;
+tag BlueSkull Blue Skull;
+tag YellowSkull Yellow Skull;
+tag RedSkull Red Skull;
+
+# Chex is also missing names for these.
+tag BlueFlemKey Blue Flemkey;
+tag YellowFlemKey Yellow Flemkey;
+tag RedFlemKey Red Flemkey;
 
 #### Heretic configuration ####
 # In Heretic, the Firemace is actually placed on the map as a MaceSpawner. When

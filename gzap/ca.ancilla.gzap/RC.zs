@@ -33,6 +33,7 @@ class ::RC : Object play {
 
   Map<string, string> categorizations;
   Map<string, string> typenames;
+  Map<string, string> tags;
   Map<string, string> scanner_settings;
   Map<int, string> cluster_names;
   void merge(::RC other) {
@@ -41,6 +42,9 @@ class ::RC : Object play {
     }
     foreach (k, v : other.typenames) {
       SetTypename(k, v);
+    }
+    foreach (k, v : other.tags) {
+      SetActorTag(k, v);
     }
     foreach (k, v : other.scanner_settings) {
       self.scanner_settings.Insert(k, v);
@@ -83,6 +87,15 @@ class ::RC : Object play {
   string, bool GetTypename(string cls) {
     let [val, ok] = self.typenames.CheckValue(cls);
     return val, ok;
+  }
+
+  void SetActorTag(string cls, string tag) {
+    DEBUG("Set tag for %s to %s", cls, tag);
+    self.tags.insert(cls, tag);
+  }
+
+  string GetTag(Actor act) {
+    return act.GetTag(self.tags.GetIfExists(act.GetClassName()));
   }
 
   void SetClusterName(int cluster, string name) {
@@ -213,10 +226,11 @@ class ::RCParser : Object play {
   bool Statement() {
     if (peek("category")) { return ActorCategory(); }
     if (peek("typename")) { return ActorTypename(); }
+    if (peek("tag")) { return ActorTag(); }
     if (peek("require")) { return Requirements(); }
     if (peek("scanner")) { return ScannerConfig(); }
     if (peek("cluster")) { return ClusterName(); }
-    else { return Error("category or typename directive"); }
+    else { return Error("start of configuration directive"); }
   }
 
   bool ActorCategory() {
@@ -248,6 +262,16 @@ class ::RCParser : Object play {
     foreach (cls : classes) {
       self.rc.SetTypename(cls, types[0]);
     }
+    return true;
+  }
+
+  bool ActorTag() {
+    if (!require("tag")) return false;
+    string actor_type = next("actor type");
+    if (!actor_type) return Error("actor typename");
+    string tag = StringFromTokenList(";", "actor tag");
+    if (tag == "") return Error("non-empty user-facing actor tag");
+    self.rc.SetActorTag(actor_type, tag);
     return true;
   }
 
