@@ -19,6 +19,7 @@
   - `excluded_levels` setting removed. Delete entries from `included_levels` instead.
   - `levels_per_weapon` setting removed. Adjust `max_weapon_copies` instead.
 - Fixed:
+  - In-level check count could diverge significantly from the real check count.
   - UT did not work properly with non-default `included_item_categories`.
   - UT indicators in-game did not work reliably.
   - Signed/unsigned comparison warning at load time.
