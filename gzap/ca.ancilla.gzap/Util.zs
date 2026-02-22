@@ -135,9 +135,13 @@ class ::Util play {
       colours.Insert("squarekey", "purple");
       colours.Insert("cubekey", "purple");
       colours.Insert("diamondrune", "purple");
+      colours.Insert("pink", "purple");
       // Grey
       colours.Insert("floppydisk", "grey");
       colours.Insert("gear", "grey");
+      // Miscellaneous
+      colours.Insert("gold", "gold");
+      colours.Insert("silver", "ice");
     }
 
     foreach (name, colour : colours) {

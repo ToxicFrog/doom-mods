@@ -3,6 +3,7 @@
 - New:
   - New graphics for checks that still exist in the world but have no items in
     them (e.g. because of quickload or `!collect`).
+  - `pink`, `gold`, and `silver` are now recognized key colours.
 - Changed:
   - Changes to default yaml settings:
     - `included_levels` now defaults to all maps in the WAD.
