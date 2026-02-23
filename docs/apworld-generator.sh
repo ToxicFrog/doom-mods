@@ -91,6 +91,7 @@ cat <<EOF
     </script>
   </head>
   <body>
+    <p>⚠️ This is the generator for the <b>unstable</b> version of the apworld. <a href="apworld-generator-0.7.1.html">Click here for latest stable (0.7.1).</a></p>
     <label for="name">WAD name:</label>
     <input type="text" id="name" name="name" required oninput="updateInfo();"/>
     <br/>
