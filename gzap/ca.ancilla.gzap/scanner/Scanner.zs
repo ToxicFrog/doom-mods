@@ -45,7 +45,7 @@ class ::Scanner play {
     prune.Insert(mapname, true);
   }
 
-  bool EnqueueLevel(string mapname, uint rank) {
+  bool EnqueueLevel(string mapname, ::ScannedMap prev) {
     string mapname = mapname.MakeUpper();
 
     if (!LevelInfo.MapExists(mapname)) {
@@ -57,7 +57,7 @@ class ::Scanner play {
       return false;
     }
 
-    let sm = ::ScannedMap.Create(mapname, rank);
+    let sm = ::ScannedMap.Create(mapname, prev);
     sm.skip = self.skip.GetIfExists(mapname);
     sm.prune = self.prune.GetIfExists(mapname);
 
@@ -69,21 +69,21 @@ class ::Scanner play {
 
   // Like EnqueueNext, but takes a cluster number and enqueues all maps in that
   // cluster at the given rank.
-  void EnqueueCluster(int cluster, uint rank) {
+  void EnqueueCluster(int cluster, ::ScannedMap prev) {
     // We do this in reverse so that they get pushed into the front of the queue
     // in the same order they appear in the maplist, which makes the generated
     // logic a bit easier to navigate.
     for (int i = LevelInfo.GetLevelInfoCount()-1; i >= 0; --i) {
       let info = LevelInfo.GetLevelInfo(i);
       if (info.cluster != cluster) continue;
-      EnqueueNext(info.mapname, rank);
+      EnqueueNext(info.mapname, prev);
     }
   }
 
   // Like EnqueueLevel, but places it at the head of the queue, immediately behind
   // the current level, rather than at the end.
-  void EnqueueNext(string mapname, uint rank) {
-    if (!EnqueueLevel(mapname, rank)) return;
+  void EnqueueNext(string mapname, ::ScannedMap prev) {
+    if (!EnqueueLevel(mapname, prev)) return;
     if (queued.Size() <= 2) return;
     // Grab the new map from the end of the queue
     let sm = queued[queued.Size()-1];
@@ -165,13 +165,13 @@ class ::Scanner play {
     if (nextmap.IsScanned()) nextmap.CopyFromLevelLocals(level);
 
     if (clusters && nextmap.hub > 0) {
-      EnqueueCluster(nextmap.hub, nextmap.rank+1);
+      EnqueueCluster(nextmap.hub, nextmap);
     }
 
     if (recurse && !nextmap.prune) {
-      EnqueueLevelports(nextmap.rank + 1);
-      EnqueueNext(level.NextSecretMap, nextmap.rank + 1);
-      EnqueueNext(level.NextMap, nextmap.rank + 1);
+      EnqueueLevelports(nextmap);
+      EnqueueNext(level.NextSecretMap, nextmap);
+      EnqueueNext(level.NextMap, nextmap);
     }
     return ScanNext();
   }
@@ -205,13 +205,13 @@ class ::Scanner play {
     return false;
   }
 
-  void EnqueueLevelports(uint rank) {
+  void EnqueueLevelports(::ScannedMap prev) {
     foreach (line : level.lines) {
       if (line.special != 74) continue; // check for Teleport_NewMap
       let info = LevelInfo.FindLevelByNum(line.args[0]);
       if (!info) continue; // teleport is not hooked up, do not attempt
       console.printf("LEVELPORT: %d (%d - %s)", line.args[0], info.LevelNum, info.MapName);
-      EnqueueNext(info.MapName, rank);
+      EnqueueNext(info.MapName, prev);
     }
   }
 }

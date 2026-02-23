@@ -1,5 +1,13 @@
 # Unreleased
 
+This is a feature release. (It was meant to be a bugfix release but it got away
+from me.)
+
+⚠️ YAML options have changed. You must regenerate your YAML templates.
+🛈 Existing logic and tuning remains compatible, but re-scanning your wads will
+add new information to the logic file which is used to produce better item names
+in some cases.
+
 - New:
   - New graphics for checks that still exist in the world but have no items in
     them (e.g. because of quickload or `!collect`).
@@ -8,6 +16,7 @@
     don't have tags in the WAD. This is used to rename some builtin actors (e.g.
     `RedCard` -> `Red Keycard`).
 - Changed:
+  - Level accesses are now named (e.g.) `MAP01: Entryway`.
   - Changes to default yaml settings:
     - `included_levels` now defaults to all maps in the WAD.
     - `starting_levels` contains all episode-start maps, but may include additional

@@ -9,6 +9,13 @@
 class ::ScannedMap play {
   string name;
   LevelInfo info;
+  // User-facing names, after localization table resolution etc is performed.
+  // levelname and clustername come from LevelLocals. episodename comes from
+  // EpisodeInfo and is inherited from previous maps, since EpisodeInfo only
+  // associates the episode with its first map.
+  string levelname;
+  string episodename;
+  string clustername;
   // Computed rank/sphere of level based on "distance" from initial mapset.
   // TODO: ideally, we'd like to have both "rank" (how far into the game the level is)
   // and "difficulty" (based on enemy heuristics, probably) so that both can be
@@ -31,14 +38,26 @@ class ::ScannedMap play {
   // Cluster ID iff this map belongs to a hubcluster. Else 0.
   int hub;
 
-  static ::ScannedMap Create(string mapname, uint rank) {
+  static ::ScannedMap Create(string mapname, ::ScannedMap prev) {
     let sm = ::ScannedMap(new("::ScannedMap"));
     sm.name = mapname;
     sm.info = LevelInfo.FindLevelInfo(mapname);
     sm.done = false;
     sm.max_skill = 0;
-    sm.rank = rank;
+    sm.rank = prev ? prev.rank+1 : 0;
     sm.hub = 0;
+    // We can't actually use this, because AllEpisodes is not in any released
+    // version of uzdoom.
+    // foreach (e : AllEpisodes) {
+    //   if (e.mEpisodeMap.MakeUpper() == sm.name) {
+    //     sm.episodename = e.mEpisodeName;
+    //   } else if (prev) {
+    //     sm.episodename = prev.episodename;
+    //   } else {
+    //     sm.episodename = "";
+    //   }
+    // }
+    sm.episodename = "";
     return sm;
   }
 
@@ -54,14 +73,17 @@ class ::ScannedMap play {
     // that may have similar issues.
     console.printfEX(PRINT_LOG, "");
 
-    let clustername = ::RC.Get().GetNameForCluster(self.hub);
-    if (clustername != "") {
-      clustername = string.format(" \"clustername\": \"%s\",", clustername);
+    let titles = string.format("\"levelname\": \"%s\", ", self.levelname);
+    if (self.episodename != "") {
+      titles = titles .. string.format("\"episodename\": \"%s\", ", self.episodename);
+    }
+    if (self.clustername != "") {
+      titles = titles .. string.format("\"clustername\": \"%s\", ", self.clustername);
     }
 
     ::Scanner.Output("MAP", string.format(
-      "\"map\": \"%s\", \"checksum\": \"%s\", \"rank\": %d, \"monster_count\": %d,%s \"info\": %s",
-      name, LevelInfo.MapChecksum(name), self.rank, self.monster_count, clustername, GetMapinfoJSON()));
+      "\"map\": \"%s\", %s\"checksum\": \"%s\", \"rank\": %d, \"monster_count\": %d,%s \"info\": %s",
+      name, titles, LevelInfo.MapChecksum(name), self.rank, self.monster_count, clustername, GetMapinfoJSON()));
     foreach (loc : locations) {
       loc.Output();
     }
@@ -91,6 +113,14 @@ class ::ScannedMap play {
   }
 
   void CopyFromLevelLocals(LevelLocals level) {
+    self.levelname = level.LevelName;
+    self.clustername = ::RC.Get().GetNameForCluster(self.hub);
+    if (self.clustername == "") {
+      self.clustername = level.GetClusterName();
+    }
+    // self.episodename is set at construction time because it has to be inherited
+    // from the parent map, we can't trust the one in LevelLocals
+
     foreach (sector : level.sectors) {
       if (sector.IsSecret()) {
         self.secrets.Push(sector.Index());

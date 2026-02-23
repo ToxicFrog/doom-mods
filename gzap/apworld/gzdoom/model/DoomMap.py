@@ -54,11 +54,15 @@ class DoomMap:
     wad: Type['DoomWad']
     # JSON initializer for the mapinfo
     info: InitVar[Dict]
+    # User-readable titles, if available, from LevelLocals
+    # clustername may also be provided by GZAPRC
+    levelname: str | None = None
+    episodename: str | None = None
+    clustername: str | None = None
     monster_count: int = 0
     # Data for the MAPINFO lump
     rank: int = 0
     mapinfo: Optional[MAPINFO] = None
-    clustername: str = ''
     # Key and weapon information for computing access rules
     # Keys in the level
     keyset: Set[DoomKey] = field(default_factory=set)
@@ -155,7 +159,12 @@ class DoomMap:
         return rule
 
     def access_flag_name(self):
-        return f"Level Access ({self.map})"
+        if self.levelname:
+            return f"{self.map}: {self.levelname}"
+        elif self.mapinfo.title and not self.mapinfo.is_lookup:
+            return f"{self.map}: {self.mapinfo.title}"
+        else:
+            return f"Level Access ({self.map})"
 
     def automap_name(self):
         return f"Automap ({self.map})"

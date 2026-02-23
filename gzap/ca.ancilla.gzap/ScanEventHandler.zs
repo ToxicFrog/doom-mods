@@ -67,7 +67,7 @@ class ::ScanEventHandler : StaticEventHandler {
         levels.Clear();
         ap_scan_levels.Split(levels, " ", TOK_SKIPEMPTY);
         foreach (levelname : levels) {
-          scanner.EnqueueLevel(levelname, 0);
+          scanner.EnqueueLevel(levelname, null);
         }
 
         if (scanner.QueueSize() < 1) {
