@@ -1,5 +1,5 @@
 AP-SCAN { "flags": [] }
-AP-MAP { "map": "E1M1", "checksum": "50ea9b01b78ee9c3f29a6f9422a5372e", "rank": 0, "monster_count": 46, "info": { "levelnum": 1, "title": "HUSTR_E1M1", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "$MUSIC_E1M1", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP { "map": "E1M1", "levelname": "Outer Prison", "checksum": "50ea9b01b78ee9c3f29a6f9422a5372e", "rank": 0, "monster_count": 46, "info": { "levelnum": 1, "title": "HUSTR_E1M1", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "$MUSIC_E1M1", "music_track": "0", "cluster": 0, "flags": [] } }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "skill": [1], "pos": ["E1M1",1712,1088,-144] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "skill": [1], "pos": ["E1M1",1664,1040,-144] }
 AP-ITEM { "category": "weapon", "typename": "Chainsaw", "tag": "ripsaw", "pos": ["E1M1",3104,2160,194] }
@@ -7,8 +7,8 @@ AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonu
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "skill": [1], "pos": ["E1M1",1616,1088,-144] }
 AP-ITEM { "category": "big-armor", "typename": "GreenArmor", "tag": "GreenArmor", "pos": ["E1M1",1664,1088,-144] }
 AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "skill": [1], "pos": ["E1M1",320,864,-128] }
-AP-ITEM { "category": "key", "typename": "BlueCard", "tag": "BlueCard", "pos": ["E1M1",2192,576,136] }
-AP-KEY { "tag": "BlueCard", "typename": "BlueCard", "scopename": "E1M1", "cluster": 0, "maps": ["E1M1"] }
+AP-ITEM { "category": "key", "typename": "BlueCard", "tag": "Blue Keycard", "pos": ["E1M1",2192,576,136] }
+AP-KEY { "typename": "BlueCard", "tag": "Blue Keycard", "scopename": "E1M1", "cluster": 0, "maps": ["E1M1"] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E1M1",1888,464,-160] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E1M1",2000,496,24] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E1M1",416,864,-128] }
@@ -100,13 +100,13 @@ AP-SECRET { "pos": ["E1M1","secret","sector",52] }
 AP-SECRET { "pos": ["E1M1","secret","sector",86] }
 AP-SECRET { "pos": ["E1M1","secret","sector",128] }
 AP-SECRET { "pos": ["E1M1","secret","sector",132] }
-AP-MAP { "map": "E1M2", "checksum": "d04cc27ef96be8693d04e8660ebc6a7b", "rank": 1, "monster_count": 123, "info": { "levelnum": 2, "title": "HUSTR_E1M2", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "$MUSIC_E1M2", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP { "map": "E1M2", "levelname": "Communications Center", "checksum": "d04cc27ef96be8693d04e8660ebc6a7b", "rank": 1, "monster_count": 123, "info": { "levelnum": 2, "title": "HUSTR_E1M2", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "$MUSIC_E1M2", "music_track": "0", "cluster": 0, "flags": [] } }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["E1M2",768,-2720,64] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "skill": [1], "pos": ["E1M2",720,-592,-16] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "secret": true, "pos": ["E1M2",972,-1220,24] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E1M2",792,184,0] }
-AP-ITEM { "category": "key", "typename": "BlueCard", "tag": "BlueCard", "pos": ["E1M2",1504,-960,304] }
-AP-KEY { "tag": "BlueCard", "typename": "BlueCard", "scopename": "E1M2", "cluster": 0, "maps": ["E1M2"] }
+AP-ITEM { "category": "key", "typename": "BlueCard", "tag": "Blue Keycard", "pos": ["E1M2",1504,-960,304] }
+AP-KEY { "typename": "BlueCard", "tag": "Blue Keycard", "scopename": "E1M2", "cluster": 0, "maps": ["E1M2"] }
 AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos": ["E1M2",464,-16,0] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["E1M2",1040,-392,0] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["E1M2",992,-392,0] }
@@ -130,8 +130,8 @@ AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonu
 AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos": ["E1M2",528,-1040,16] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E1M2",80,-1376,40] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E1M2",80,-1280,40] }
-AP-ITEM { "category": "key", "typename": "RedCard", "tag": "RedCard", "pos": ["E1M2",672,-2960,96] }
-AP-KEY { "tag": "RedCard", "typename": "RedCard", "scopename": "E1M2", "cluster": 0, "maps": ["E1M2"] }
+AP-ITEM { "category": "key", "typename": "RedCard", "tag": "Red Keycard", "pos": ["E1M2",672,-2960,96] }
+AP-KEY { "typename": "RedCard", "tag": "Red Keycard", "scopename": "E1M2", "cluster": 0, "maps": ["E1M2"] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["E1M2",440,-1768,-16] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["E1M2",488,-1768,-16] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["E1M2",536,-1768,-16] }
@@ -160,8 +160,8 @@ AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonu
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["E1M2",904,-2024,72] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E1M2",1192,-2744,48] }
 AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shotgun Shells", "secret": true, "pos": ["E1M2",1664,-1432,368] }
-AP-ITEM { "category": "key", "typename": "YellowCard", "tag": "YellowCard", "pos": ["E1M2",2272,768,80] }
-AP-KEY { "tag": "YellowCard", "typename": "YellowCard", "scopename": "E1M2", "cluster": 0, "maps": ["E1M2"] }
+AP-ITEM { "category": "key", "typename": "YellowCard", "tag": "Yellow Keycard", "pos": ["E1M2",2272,768,80] }
+AP-KEY { "typename": "YellowCard", "tag": "Yellow Keycard", "scopename": "E1M2", "cluster": 0, "maps": ["E1M2"] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["E1M2",2208,688,-48] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["E1M2",2208,640,-48] }
 AP-ITEM { "category": "big-health", "typename": "Soulsphere", "tag": "Soulsphere", "secret": true, "pos": ["E1M2",2144,832,80] }
@@ -239,9 +239,9 @@ AP-SECRET { "pos": ["E1M2","secret","sector",259] }
 AP-SECRET { "pos": ["E1M2","secret","sector",308] }
 AP-SECRET { "pos": ["E1M2","secret","sector",335] }
 AP-SECRET { "pos": ["E1M2","secret","sector",358] }
-AP-MAP { "map": "E1M3", "checksum": "6562a030d446c18a09e706dfd0dd98d7", "rank": 2, "monster_count": 147, "info": { "levelnum": 3, "title": "HUSTR_E1M3", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "$MUSIC_E1M3", "music_track": "0", "cluster": 0, "flags": [] } }
-AP-ITEM { "category": "key", "typename": "BlueCard", "tag": "BlueCard", "pos": ["E1M3",432,2608,165] }
-AP-KEY { "tag": "BlueCard", "typename": "BlueCard", "scopename": "E1M3", "cluster": 0, "maps": ["E1M3"] }
+AP-MAP { "map": "E1M3", "levelname": "Waste Disposal", "checksum": "6562a030d446c18a09e706dfd0dd98d7", "rank": 2, "monster_count": 147, "info": { "levelnum": 3, "title": "HUSTR_E1M3", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "$MUSIC_E1M3", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-ITEM { "category": "key", "typename": "BlueCard", "tag": "Blue Keycard", "pos": ["E1M3",432,2608,165] }
+AP-KEY { "typename": "BlueCard", "tag": "Blue Keycard", "scopename": "E1M3", "cluster": 0, "maps": ["E1M3"] }
 AP-ITEM { "category": "weapon", "typename": "Chaingun", "tag": "minigun", "pos": ["E1M3",-288,1888,239] }
 AP-ITEM { "category": "big-ammo", "typename": "Backpack", "tag": "Backpack", "secret": true, "pos": ["E1M3",-728,2180,-24] }
 AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E1M3",-1224,1036,-8] }
@@ -414,11 +414,11 @@ AP-SECRET { "pos": ["E1M3","secret","sector",222] }
 AP-SECRET { "pos": ["E1M3","secret","sector",227] }
 AP-SECRET { "pos": ["E1M3","secret","sector",303] }
 AP-SECRET { "pos": ["E1M3","secret","sector",304] }
-AP-MAP { "map": "E1M4", "checksum": "4ef4839906c67c779588f2803ac1cb04", "rank": 3, "monster_count": 164, "info": { "levelnum": 4, "title": "HUSTR_E1M4", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "$MUSIC_E1M4", "music_track": "0", "cluster": 0, "flags": [] } }
-AP-ITEM { "category": "key", "typename": "YellowCard", "tag": "YellowCard", "pos": ["E1M4",-960,640,-40] }
-AP-KEY { "tag": "YellowCard", "typename": "YellowCard", "scopename": "E1M4", "cluster": 0, "maps": ["E1M4"] }
-AP-ITEM { "category": "key", "typename": "BlueCard", "tag": "BlueCard", "pos": ["E1M4",3456,1472,-320] }
-AP-KEY { "tag": "BlueCard", "typename": "BlueCard", "scopename": "E1M4", "cluster": 0, "maps": ["E1M4"] }
+AP-MAP { "map": "E1M4", "levelname": "Supply Depot", "checksum": "4ef4839906c67c779588f2803ac1cb04", "rank": 3, "monster_count": 164, "info": { "levelnum": 4, "title": "HUSTR_E1M4", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "$MUSIC_E1M4", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-ITEM { "category": "key", "typename": "YellowCard", "tag": "Yellow Keycard", "pos": ["E1M4",-960,640,-40] }
+AP-KEY { "typename": "YellowCard", "tag": "Yellow Keycard", "scopename": "E1M4", "cluster": 0, "maps": ["E1M4"] }
+AP-ITEM { "category": "key", "typename": "BlueCard", "tag": "Blue Keycard", "pos": ["E1M4",3456,1472,-320] }
+AP-KEY { "typename": "BlueCard", "tag": "Blue Keycard", "scopename": "E1M4", "cluster": 0, "maps": ["E1M4"] }
 AP-ITEM { "category": "powerup", "typename": "RadSuit", "tag": "RadSuit", "pos": ["E1M4",912,1520,-104] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E1M4",1088,-1376,0] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E1M4",640,-992,0] }
@@ -556,10 +556,10 @@ AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthB
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "skill": [2, 3], "pos": ["E1M4",-960,-224,-256] }
 AP-SECRET { "pos": ["E1M4","secret","sector",36] }
 AP-SECRET { "pos": ["E1M4","secret","sector",70] }
-AP-MAP { "map": "E1M5", "checksum": "1d1ac66fbe9c1ab79d81e6aa2f03c2d9", "rank": 4, "monster_count": 147, "info": { "levelnum": 5, "title": "HUSTR_E1M5", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "$MUSIC_E1M5", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP { "map": "E1M5", "levelname": "Armory", "checksum": "1d1ac66fbe9c1ab79d81e6aa2f03c2d9", "rank": 4, "monster_count": 147, "info": { "levelnum": 5, "title": "HUSTR_E1M5", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "$MUSIC_E1M5", "music_track": "0", "cluster": 0, "flags": [] } }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["E1M5",-832,784,-16] }
-AP-ITEM { "category": "key", "typename": "RedCard", "tag": "RedCard", "pos": ["E1M5",1376,2592,-144] }
-AP-KEY { "tag": "RedCard", "typename": "RedCard", "scopename": "E1M5", "cluster": 0, "maps": ["E1M5"] }
+AP-ITEM { "category": "key", "typename": "RedCard", "tag": "Red Keycard", "pos": ["E1M5",1376,2592,-144] }
+AP-KEY { "typename": "RedCard", "tag": "Red Keycard", "scopename": "E1M5", "cluster": 0, "maps": ["E1M5"] }
 AP-ITEM { "category": "big-ammo", "typename": "Backpack", "tag": "Backpack", "pos": ["E1M5",-4784,1696,-16] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["E1M5",-4032,1760,-16] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["E1M5",-896,848,-16] }
@@ -690,7 +690,7 @@ AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthB
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "skill": [3], "pos": ["E1M5",-3168,1440,-16] }
 AP-SECRET { "pos": ["E1M5","secret","sector",4] }
 AP-SECRET { "pos": ["E1M5","secret","sector",180] }
-AP-MAP { "map": "E1M6", "checksum": "057dd24c779241f02cedacf6cdf953ac", "rank": 5, "monster_count": 273, "info": { "levelnum": 6, "title": "HUSTR_E1M6", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "$MUSIC_E1M6", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP { "map": "E1M6", "levelname": "Training Facility", "checksum": "057dd24c779241f02cedacf6cdf953ac", "rank": 5, "monster_count": 273, "info": { "levelnum": 6, "title": "HUSTR_E1M6", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "$MUSIC_E1M6", "music_track": "0", "cluster": 0, "flags": [] } }
 AP-ITEM { "category": "big-armor", "typename": "GreenArmor", "tag": "GreenArmor", "pos": ["E1M6",-224,800,32] }
 AP-ITEM { "category": "weapon", "typename": "Shotgun", "tag": "pump-action shotgun", "pos": ["E1M6",-48,432,32] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E1M6",-424,568,32] }
@@ -699,12 +699,12 @@ AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos":
 AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos": ["E1M6",-168,168,0] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E1M6",-168,464,32] }
 AP-ITEM { "category": "big-health", "typename": "Soulsphere", "tag": "Soulsphere", "secret": true, "pos": ["E1M6",-672,1184,144] }
-AP-ITEM { "category": "key", "typename": "YellowCard", "tag": "YellowCard", "pos": ["E1M6",144,-480,16] }
-AP-KEY { "tag": "YellowCard", "typename": "YellowCard", "scopename": "E1M6", "cluster": 0, "maps": ["E1M6"] }
-AP-ITEM { "category": "key", "typename": "RedCard", "tag": "RedCard", "pos": ["E1M6",-1600,-1504,-488] }
-AP-KEY { "tag": "RedCard", "typename": "RedCard", "scopename": "E1M6", "cluster": 0, "maps": ["E1M6"] }
-AP-ITEM { "category": "key", "typename": "BlueCard", "tag": "BlueCard", "pos": ["E1M6",-2000,544,240] }
-AP-KEY { "tag": "BlueCard", "typename": "BlueCard", "scopename": "E1M6", "cluster": 0, "maps": ["E1M6"] }
+AP-ITEM { "category": "key", "typename": "YellowCard", "tag": "Yellow Keycard", "pos": ["E1M6",144,-480,16] }
+AP-KEY { "typename": "YellowCard", "tag": "Yellow Keycard", "scopename": "E1M6", "cluster": 0, "maps": ["E1M6"] }
+AP-ITEM { "category": "key", "typename": "RedCard", "tag": "Red Keycard", "pos": ["E1M6",-1600,-1504,-488] }
+AP-KEY { "typename": "RedCard", "tag": "Red Keycard", "scopename": "E1M6", "cluster": 0, "maps": ["E1M6"] }
+AP-ITEM { "category": "key", "typename": "BlueCard", "tag": "Blue Keycard", "pos": ["E1M6",-2000,544,240] }
+AP-KEY { "typename": "BlueCard", "tag": "Blue Keycard", "scopename": "E1M6", "cluster": 0, "maps": ["E1M6"] }
 AP-ITEM { "category": "big-armor", "typename": "GreenArmor", "tag": "GreenArmor", "pos": ["E1M6",244,-524,24] }
 AP-ITEM { "category": "big-ammo", "typename": "Backpack", "tag": "Backpack", "pos": ["E1M6",372,-524,16] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E1M6",320,-524,16] }
@@ -848,9 +848,9 @@ AP-SECRET { "pos": ["E1M6","secret","sector",5] }
 AP-SECRET { "pos": ["E1M6","secret","sector",15] }
 AP-SECRET { "pos": ["E1M6","secret","sector",192] }
 AP-SECRET { "pos": ["E1M6","secret","sector",292] }
-AP-MAP { "map": "E1M7", "checksum": "d7a963eefe6ddd7acd1e06d749508fd0", "rank": 6, "monster_count": 285, "info": { "levelnum": 7, "title": "HUSTR_E1M7", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "$MUSIC_E1M7", "music_track": "0", "cluster": 0, "flags": [] } }
-AP-ITEM { "category": "key", "typename": "RedCard", "tag": "RedCard", "pos": ["E1M7",1344,2456,208] }
-AP-KEY { "tag": "RedCard", "typename": "RedCard", "scopename": "E1M7", "cluster": 0, "maps": ["E1M7"] }
+AP-MAP { "map": "E1M7", "levelname": "Xenobiotic Materials Lab", "checksum": "d7a963eefe6ddd7acd1e06d749508fd0", "rank": 6, "monster_count": 285, "info": { "levelnum": 7, "title": "HUSTR_E1M7", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "$MUSIC_E1M7", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-ITEM { "category": "key", "typename": "RedCard", "tag": "Red Keycard", "pos": ["E1M7",1344,2456,208] }
+AP-KEY { "typename": "RedCard", "tag": "Red Keycard", "scopename": "E1M7", "cluster": 0, "maps": ["E1M7"] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["E1M7",524,600,32] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["E1M7",-544,1248,16] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E1M7",-1048,1344,24] }
@@ -879,8 +879,8 @@ AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos":
 AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos": ["E1M7",3036,1076,160] }
 AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos": ["E1M7",3172,1124,160] }
 AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos": ["E1M7",3172,1076,160] }
-AP-ITEM { "category": "key", "typename": "BlueCard", "tag": "BlueCard", "pos": ["E1M7",3104,992,192] }
-AP-KEY { "tag": "BlueCard", "typename": "BlueCard", "scopename": "E1M7", "cluster": 0, "maps": ["E1M7"] }
+AP-ITEM { "category": "key", "typename": "BlueCard", "tag": "Blue Keycard", "pos": ["E1M7",3104,992,192] }
+AP-KEY { "typename": "BlueCard", "tag": "Blue Keycard", "scopename": "E1M7", "cluster": 0, "maps": ["E1M7"] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E1M7",2960,1384,128] }
 AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos": ["E1M7",2648,1384,128] }
 AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos": ["E1M7",2648,1336,128] }
@@ -913,8 +913,8 @@ AP-ITEM { "category": "weapon", "typename": "Chaingun", "tag": "minigun", "pos":
 AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos": ["E1M7",-320,1672,8] }
 AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos": ["E1M7",-96,1672,8] }
 AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos": ["E1M7",160,1672,8] }
-AP-ITEM { "category": "key", "typename": "YellowCard", "tag": "YellowCard", "pos": ["E1M7",3424,992,156] }
-AP-KEY { "tag": "YellowCard", "typename": "YellowCard", "scopename": "E1M7", "cluster": 0, "maps": ["E1M7"] }
+AP-ITEM { "category": "key", "typename": "YellowCard", "tag": "Yellow Keycard", "pos": ["E1M7",3424,992,156] }
+AP-KEY { "typename": "YellowCard", "tag": "Yellow Keycard", "scopename": "E1M7", "cluster": 0, "maps": ["E1M7"] }
 AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos": ["E1M7",2304,792,-168] }
 AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos": ["E1M7",2320,824,-168] }
 AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos": ["E1M7",2304,936,-168] }
@@ -1097,7 +1097,7 @@ AP-SECRET { "pos": ["E1M7","secret","sector",302] }
 AP-SECRET { "pos": ["E1M7","secret","sector",482] }
 AP-SECRET { "pos": ["E1M7","secret","sector",500] }
 AP-SECRET { "pos": ["E1M7","secret","sector",595] }
-AP-MAP { "map": "E1M8", "checksum": "0c992cdfe6b1aa48fb15f9a0b9877e72", "rank": 7, "monster_count": 4, "info": { "levelnum": 8, "title": "HUSTR_E1M8", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "$MUSIC_E1M8", "music_track": "0", "cluster": 0, "flags": ["specialaction_lowerfloor", "e1m8special"] } }
+AP-MAP { "map": "E1M8", "levelname": "Outpost Quarry", "checksum": "0c992cdfe6b1aa48fb15f9a0b9877e72", "rank": 7, "monster_count": 4, "info": { "levelnum": 8, "title": "HUSTR_E1M8", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "$MUSIC_E1M8", "music_track": "0", "cluster": 0, "flags": ["specialaction_lowerfloor", "e1m8special"] } }
 AP-ITEM { "category": "big-armor", "typename": "GreenArmor", "tag": "GreenArmor", "pos": ["E1M8",2464,-224,16] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E1M8",3200,-144,0] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E1M8",1728,-144,0] }
@@ -1122,7 +1122,7 @@ AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "s
 AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shotgun Shells", "skill": [3], "pos": ["E1M8",3224,-1568,8] }
 AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "skill": [3], "pos": ["E1M8",3200,-232,16] }
 AP-SECRET { "pos": ["E1M8","secret","sector",51] }
-AP-MAP { "map": "E1M9", "checksum": "993c33e8b8f991278944e50ca70cdd97", "rank": 1, "monster_count": 125, "info": { "levelnum": 9, "title": "HUSTR_E1M9", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "$MUSIC_E1M9", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP { "map": "E1M9", "levelname": "Nutrient Recycling", "checksum": "993c33e8b8f991278944e50ca70cdd97", "rank": 1, "monster_count": 125, "info": { "levelnum": 9, "title": "HUSTR_E1M9", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "$MUSIC_E1M9", "music_track": "0", "cluster": 0, "flags": [] } }
 AP-ITEM { "category": "big-ammo", "typename": "Backpack", "tag": "Backpack", "pos": ["E1M9",224,3424,112] }
 AP-ITEM { "category": "weapon", "typename": "Chaingun", "tag": "minigun", "pos": ["E1M9",-416,1952,-16] }
 AP-ITEM { "category": "weapon", "typename": "PlasmaRifle", "tag": "polaric energy weapon", "secret": true, "pos": ["E1M9",1280,1536,-112] }
@@ -1132,16 +1132,16 @@ AP-ITEM { "category": "big-armor", "typename": "BlueArmor", "tag": "BlueArmor", 
 AP-ITEM { "category": "powerup", "typename": "BlurSphere", "tag": "BlurSphere", "secret": true, "pos": ["E1M9",448,3456,16] }
 AP-ITEM { "category": "big-armor", "typename": "BlueArmor", "tag": "BlueArmor", "pos": ["E1M9",2048,3776,-104] }
 AP-ITEM { "category": "powerup", "typename": "RadSuit", "tag": "RadSuit", "pos": ["E1M9",1824,3904,-96] }
-AP-ITEM { "category": "key", "typename": "YellowCard", "tag": "YellowCard", "pos": ["E1M9",1344,3072,24] }
-AP-KEY { "tag": "YellowCard", "typename": "YellowCard", "scopename": "E1M9", "cluster": 0, "maps": ["E1M9"] }
+AP-ITEM { "category": "key", "typename": "YellowCard", "tag": "Yellow Keycard", "pos": ["E1M9",1344,3072,24] }
+AP-KEY { "typename": "YellowCard", "tag": "Yellow Keycard", "scopename": "E1M9", "cluster": 0, "maps": ["E1M9"] }
 AP-ITEM { "category": "powerup", "typename": "RadSuit", "tag": "RadSuit", "pos": ["E1M9",1712,3072,-72] }
 AP-ITEM { "category": "big-health", "typename": "Soulsphere", "tag": "Soulsphere", "secret": true, "pos": ["E1M9",1616,2832,-56] }
 AP-ITEM { "category": "weapon", "typename": "Chainsaw", "tag": "ripsaw", "secret": true, "pos": ["E1M9",-1024,3216,112] }
 AP-ITEM { "category": "weapon", "typename": "RocketLauncher", "tag": "missile launcher", "pos": ["E1M9",-1200,2672,-24] }
 AP-ITEM { "category": "powerup", "typename": "RadSuit", "tag": "RadSuit", "pos": ["E1M9",-1312,2016,136] }
 AP-ITEM { "category": "powerup", "typename": "RadSuit", "tag": "RadSuit", "pos": ["E1M9",-1312,1872,136] }
-AP-ITEM { "category": "key", "typename": "RedCard", "tag": "RedCard", "pos": ["E1M9",1376,2720,32] }
-AP-KEY { "tag": "RedCard", "typename": "RedCard", "scopename": "E1M9", "cluster": 0, "maps": ["E1M9"] }
+AP-ITEM { "category": "key", "typename": "RedCard", "tag": "Red Keycard", "pos": ["E1M9",1376,2720,32] }
+AP-KEY { "typename": "RedCard", "tag": "Red Keycard", "scopename": "E1M9", "cluster": 0, "maps": ["E1M9"] }
 AP-ITEM { "category": "weapon", "typename": "Shotgun", "tag": "pump-action shotgun", "pos": ["E1M9",-768,952,24] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E1M9",-16,848,-72] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E1M9",-16,656,-72] }
@@ -1244,9 +1244,9 @@ AP-SECRET { "pos": ["E1M9","secret","sector",178] }
 AP-SECRET { "pos": ["E1M9","secret","sector",189] }
 AP-SECRET { "pos": ["E1M9","secret","sector",258] }
 AP-SECRET { "pos": ["E1M9","secret","sector",268] }
-AP-MAP { "map": "E2M1", "checksum": "fc00744bf6acd009356e480c2722d397", "rank": 0, "monster_count": 92, "info": { "levelnum": 11, "title": "HUSTR_E2M1", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "$MUSIC_E2M1", "music_track": "0", "cluster": 0, "flags": [] } }
-AP-ITEM { "category": "key", "typename": "YellowCard", "tag": "YellowCard", "pos": ["E2M1",-48,-4848,-644] }
-AP-KEY { "tag": "YellowCard", "typename": "YellowCard", "scopename": "E2M1", "cluster": 0, "maps": ["E2M1"] }
+AP-MAP { "map": "E2M1", "levelname": "Elemental Gate", "checksum": "fc00744bf6acd009356e480c2722d397", "rank": 0, "monster_count": 92, "info": { "levelnum": 11, "title": "HUSTR_E2M1", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "$MUSIC_E2M1", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-ITEM { "category": "key", "typename": "YellowCard", "tag": "Yellow Keycard", "pos": ["E2M1",-48,-4848,-644] }
+AP-KEY { "typename": "YellowCard", "tag": "Yellow Keycard", "scopename": "E2M1", "cluster": 0, "maps": ["E2M1"] }
 AP-ITEM { "category": "powerup", "typename": "RadSuit", "tag": "RadSuit", "pos": ["E2M1",272,-1936,-300] }
 AP-ITEM { "category": "powerup", "typename": "RadSuit", "tag": "RadSuit", "pos": ["E2M1",-288,-1936,-300] }
 AP-ITEM { "category": "weapon", "typename": "Shotgun", "tag": "pump-action shotgun", "skill": [1], "pos": ["E2M1",0,-736,0] }
@@ -1404,14 +1404,14 @@ AP-SECRET { "pos": ["E2M1","secret","sector",235] }
 AP-SECRET { "pos": ["E2M1","secret","sector",236] }
 AP-SECRET { "pos": ["E2M1","secret","sector",246] }
 AP-SECRET { "pos": ["E2M1","secret","sector",254] }
-AP-MAP { "map": "E2M2", "checksum": "6605a51737b2bf1d81f78dadcd928451", "rank": 1, "monster_count": 37, "info": { "levelnum": 12, "title": "HUSTR_E2M2", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "$MUSIC_E2M2", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP { "map": "E2M2", "levelname": "Shifter", "checksum": "6605a51737b2bf1d81f78dadcd928451", "rank": 1, "monster_count": 37, "info": { "levelnum": 12, "title": "HUSTR_E2M2", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "$MUSIC_E2M2", "music_track": "0", "cluster": 0, "flags": [] } }
 AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E2M2",-272,-216,-8] }
-AP-ITEM { "category": "key", "typename": "RedCard", "tag": "RedCard", "pos": ["E2M2",-344,-440,-32] }
-AP-KEY { "tag": "RedCard", "typename": "RedCard", "scopename": "E2M2", "cluster": 0, "maps": ["E2M2"] }
+AP-ITEM { "category": "key", "typename": "RedCard", "tag": "Red Keycard", "pos": ["E2M2",-344,-440,-32] }
+AP-KEY { "typename": "RedCard", "tag": "Red Keycard", "scopename": "E2M2", "cluster": 0, "maps": ["E2M2"] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E2M2",-432,-464,-32] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E2M2",-432,-416,-32] }
-AP-ITEM { "category": "key", "typename": "BlueCard", "tag": "BlueCard", "pos": ["E2M2",544,768,112] }
-AP-KEY { "tag": "BlueCard", "typename": "BlueCard", "scopename": "E2M2", "cluster": 0, "maps": ["E2M2"] }
+AP-ITEM { "category": "key", "typename": "BlueCard", "tag": "Blue Keycard", "pos": ["E2M2",544,768,112] }
+AP-KEY { "typename": "BlueCard", "tag": "Blue Keycard", "scopename": "E2M2", "cluster": 0, "maps": ["E2M2"] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E2M2",-336,-512,-32] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E2M2",-568,312,64] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E2M2",-384,-512,-32] }
@@ -1445,10 +1445,10 @@ AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "p
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E2M2",400,-272,-76] }
 AP-SECRET { "pos": ["E2M2","secret","sector",80] }
 AP-SECRET { "pos": ["E2M2","secret","sector",82] }
-AP-MAP { "map": "E2M3", "checksum": "ad25243b0f2b0b0af79ad73c2c9d09cf", "rank": 2, "monster_count": 95, "info": { "levelnum": 13, "title": "HUSTR_E2M3", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "$MUSIC_E2M3", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP { "map": "E2M3", "levelname": "Reclaimed Facilities", "checksum": "ad25243b0f2b0b0af79ad73c2c9d09cf", "rank": 2, "monster_count": 95, "info": { "levelnum": 13, "title": "HUSTR_E2M3", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "$MUSIC_E2M3", "music_track": "0", "cluster": 0, "flags": [] } }
 AP-ITEM { "category": "big-armor", "typename": "GreenArmor", "tag": "GreenArmor", "pos": ["E2M3",-288,352,-64] }
-AP-ITEM { "category": "key", "typename": "YellowSkull", "tag": "YellowSkull", "pos": ["E2M3",800,1632,-112] }
-AP-KEY { "tag": "YellowSkull", "typename": "YellowSkull", "scopename": "E2M3", "cluster": 0, "maps": ["E2M3"] }
+AP-ITEM { "category": "key", "typename": "YellowSkull", "tag": "Yellow Skull", "pos": ["E2M3",800,1632,-112] }
+AP-KEY { "typename": "YellowSkull", "tag": "Yellow Skull", "scopename": "E2M3", "cluster": 0, "maps": ["E2M3"] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["E2M3",672,1328,-32] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["E2M3",672,1360,-32] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["E2M3",672,1392,-32] }
@@ -1460,8 +1460,8 @@ AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "p
 AP-ITEM { "category": "powerup", "typename": "RadSuit", "tag": "RadSuit", "pos": ["E2M3",1824,1056,-256] }
 AP-ITEM { "category": "big-health", "typename": "Soulsphere", "tag": "Soulsphere", "pos": ["E2M3",416,-288,-128] }
 AP-ITEM { "category": "powerup", "typename": "RadSuit", "tag": "RadSuit", "pos": ["E2M3",2016,1504,-128] }
-AP-ITEM { "category": "key", "typename": "RedCard", "tag": "RedCard", "pos": ["E2M3",704,128,-64] }
-AP-KEY { "tag": "RedCard", "typename": "RedCard", "scopename": "E2M3", "cluster": 0, "maps": ["E2M3"] }
+AP-ITEM { "category": "key", "typename": "RedCard", "tag": "Red Keycard", "pos": ["E2M3",704,128,-64] }
+AP-KEY { "typename": "RedCard", "tag": "Red Keycard", "scopename": "E2M3", "cluster": 0, "maps": ["E2M3"] }
 AP-ITEM { "category": "big-armor", "typename": "BlueArmor", "tag": "BlueArmor", "secret": true, "pos": ["E2M3",108,172,-64] }
 AP-ITEM { "category": "weapon", "typename": "RocketLauncher", "tag": "missile launcher", "secret": true, "pos": ["E2M3",-1152,480,64] }
 AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E2M3",288,32,-128] }
@@ -1501,8 +1501,8 @@ AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonu
 AP-ITEM { "category": "weapon", "typename": "Shotgun", "tag": "pump-action shotgun", "skill": [1], "pos": ["E2M3",-232,-72,0] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "skill": [1, 3], "pos": ["E2M3",-1280,512,-128] }
 AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shotgun Shells", "pos": ["E2M3",992,2176,-64] }
-AP-ITEM { "category": "key", "typename": "BlueCard", "tag": "BlueCard", "pos": ["E2M3",1664,0,-192] }
-AP-KEY { "tag": "BlueCard", "typename": "BlueCard", "scopename": "E2M3", "cluster": 0, "maps": ["E2M3"] }
+AP-ITEM { "category": "key", "typename": "BlueCard", "tag": "Blue Keycard", "pos": ["E2M3",1664,0,-192] }
+AP-KEY { "typename": "BlueCard", "tag": "Blue Keycard", "scopename": "E2M3", "cluster": 0, "maps": ["E2M3"] }
 AP-ITEM { "category": "big-armor", "typename": "GreenArmor", "tag": "GreenArmor", "pos": ["E2M3",2048,600,-256] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E2M3",1112,432,-64] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "skill": [1, 2], "pos": ["E2M3",1696,-184,-208] }
@@ -1534,13 +1534,13 @@ AP-SECRET { "pos": ["E2M3","secret","sector",111] }
 AP-SECRET { "pos": ["E2M3","secret","sector",115] }
 AP-SECRET { "pos": ["E2M3","secret","sector",238] }
 AP-SECRET { "pos": ["E2M3","secret","sector",323] }
-AP-MAP { "map": "E2M4", "checksum": "b4b37ccc40465f8a4d3b93bf99d7aca3", "rank": 3, "monster_count": 150, "info": { "levelnum": 14, "title": "HUSTR_E2M4", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "$MUSIC_E2M4", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP { "map": "E2M4", "levelname": "Flooded Installation", "checksum": "b4b37ccc40465f8a4d3b93bf99d7aca3", "rank": 3, "monster_count": 150, "info": { "levelnum": 14, "title": "HUSTR_E2M4", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "$MUSIC_E2M4", "music_track": "0", "cluster": 0, "flags": [] } }
 AP-ITEM { "category": "big-health", "typename": "Soulsphere", "tag": "Soulsphere", "pos": ["E2M4",-960,1984,-24] }
 AP-ITEM { "category": "weapon", "typename": "RocketLauncher", "tag": "missile launcher", "pos": ["E2M4",-288,-992,72] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["E2M4",-1504,-352,64] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["E2M4",-736,320,0] }
-AP-ITEM { "category": "key", "typename": "RedSkull", "tag": "RedSkull", "pos": ["E2M4",-1216,-1200,64] }
-AP-KEY { "tag": "RedSkull", "typename": "RedSkull", "scopename": "E2M4", "cluster": 0, "maps": ["E2M4"] }
+AP-ITEM { "category": "key", "typename": "RedSkull", "tag": "Red Skull", "pos": ["E2M4",-1216,-1200,64] }
+AP-KEY { "typename": "RedSkull", "tag": "Red Skull", "scopename": "E2M4", "cluster": 0, "maps": ["E2M4"] }
 AP-ITEM { "category": "weapon", "typename": "Shotgun", "tag": "pump-action shotgun", "pos": ["E2M4",-416,-1184,0] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E2M4",-480,-1216,0] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["E2M4",-528,-1056,64] }
@@ -1679,13 +1679,13 @@ AP-SECRET { "pos": ["E2M4","secret","sector",126] }
 AP-SECRET { "pos": ["E2M4","secret","sector",177] }
 AP-SECRET { "pos": ["E2M4","secret","sector",546] }
 AP-SECRET { "pos": ["E2M4","secret","sector",611] }
-AP-MAP { "map": "E2M5", "checksum": "d22197cb8d5341dc9f8841d27f966221", "rank": 4, "monster_count": 184, "info": { "levelnum": 15, "title": "HUSTR_E2M5", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "$MUSIC_E2M5", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP { "map": "E2M5", "levelname": "Underground Hub", "checksum": "d22197cb8d5341dc9f8841d27f966221", "rank": 4, "monster_count": 184, "info": { "levelnum": 15, "title": "HUSTR_E2M5", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "$MUSIC_E2M5", "music_track": "0", "cluster": 0, "flags": [] } }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["E2M5",-176,528,104] }
 AP-ITEM { "category": "weapon", "typename": "Chaingun", "tag": "minigun", "pos": ["E2M5",-384,0,95] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["E2M5",-176,400,104] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E2M5",96,-672,0] }
-AP-ITEM { "category": "key", "typename": "BlueCard", "tag": "BlueCard", "pos": ["E2M5",-1112,928,96] }
-AP-KEY { "tag": "BlueCard", "typename": "BlueCard", "scopename": "E2M5", "cluster": 0, "maps": ["E2M5"] }
+AP-ITEM { "category": "key", "typename": "BlueCard", "tag": "Blue Keycard", "pos": ["E2M5",-1112,928,96] }
+AP-KEY { "typename": "BlueCard", "tag": "Blue Keycard", "scopename": "E2M5", "cluster": 0, "maps": ["E2M5"] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E2M5",-320,928,64] }
 AP-ITEM { "category": "weapon", "typename": "Shotgun", "tag": "pump-action shotgun", "pos": ["E2M5",-1008,-256,32] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["E2M5",-176,496,104] }
@@ -1711,8 +1711,8 @@ AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells"
 AP-ITEM { "category": "big-armor", "typename": "GreenArmor", "tag": "GreenArmor", "pos": ["E2M5",-960,928,64] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E2M5",-960,-1824,48] }
 AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos": ["E2M5",92,-2288,48] }
-AP-ITEM { "category": "key", "typename": "RedCard", "tag": "RedCard", "pos": ["E2M5",-2080,-2144,36] }
-AP-KEY { "tag": "RedCard", "typename": "RedCard", "scopename": "E2M5", "cluster": 0, "maps": ["E2M5"] }
+AP-ITEM { "category": "key", "typename": "RedCard", "tag": "Red Keycard", "pos": ["E2M5",-2080,-2144,36] }
+AP-KEY { "typename": "RedCard", "tag": "Red Keycard", "scopename": "E2M5", "cluster": 0, "maps": ["E2M5"] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "secret": true, "pos": ["E2M5",-48,816,64] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E2M5",552,-184,0] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "secret": true, "pos": ["E2M5",-96,816,64] }
@@ -1779,8 +1779,8 @@ AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", 
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E2M5",-2448,-1192,16] }
 AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos": ["E2M5",192,-1360,8] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E2M5",-2448,-1448,16] }
-AP-ITEM { "category": "key", "typename": "YellowSkull", "tag": "YellowSkull", "pos": ["E2M5",704,-832,8] }
-AP-KEY { "tag": "YellowSkull", "typename": "YellowSkull", "scopename": "E2M5", "cluster": 0, "maps": ["E2M5"] }
+AP-ITEM { "category": "key", "typename": "YellowSkull", "tag": "Yellow Skull", "pos": ["E2M5",704,-832,8] }
+AP-KEY { "typename": "YellowSkull", "tag": "Yellow Skull", "scopename": "E2M5", "cluster": 0, "maps": ["E2M5"] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E2M5",216,-408,0] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "secret": true, "pos": ["E2M5",520,-892,0] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "secret": true, "pos": ["E2M5",632,-892,0] }
@@ -1830,9 +1830,9 @@ AP-SECRET { "pos": ["E2M5","secret","sector",253] }
 AP-SECRET { "pos": ["E2M5","secret","sector",267] }
 AP-SECRET { "pos": ["E2M5","secret","sector",272] }
 AP-SECRET { "pos": ["E2M5","secret","sector",383] }
-AP-MAP { "map": "E2M6", "checksum": "92fc4407cb55a39f9fbeecaf046cdd26", "rank": 5, "monster_count": 157, "info": { "levelnum": 16, "title": "HUSTR_E2M6", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "$MUSIC_E2M6", "music_track": "0", "cluster": 0, "flags": [] } }
-AP-ITEM { "category": "key", "typename": "BlueCard", "tag": "BlueCard", "pos": ["E2M6",0,96,136] }
-AP-KEY { "tag": "BlueCard", "typename": "BlueCard", "scopename": "E2M6", "cluster": 0, "maps": ["E2M6"] }
+AP-MAP { "map": "E2M6", "levelname": "Hidden Sector", "checksum": "92fc4407cb55a39f9fbeecaf046cdd26", "rank": 5, "monster_count": 157, "info": { "levelnum": 16, "title": "HUSTR_E2M6", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "$MUSIC_E2M6", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-ITEM { "category": "key", "typename": "BlueCard", "tag": "Blue Keycard", "pos": ["E2M6",0,96,136] }
+AP-KEY { "typename": "BlueCard", "tag": "Blue Keycard", "scopename": "E2M6", "cluster": 0, "maps": ["E2M6"] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E2M6",-200,136,0] }
 AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos": ["E2M6",200,136,0] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E2M6",664,-1000,104] }
@@ -1857,8 +1857,8 @@ AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthB
 AP-ITEM { "category": "weapon", "typename": "PlasmaRifle", "tag": "polaric energy weapon", "secret": true, "pos": ["E2M6",1944,-360,64] }
 AP-ITEM { "category": "powerup-maprevealer", "typename": "Allmap", "tag": "Allmap", "secret": true, "pos": ["E2M6",520,-1064,40] }
 AP-ITEM { "category": "big-ammo", "typename": "Backpack", "tag": "Backpack", "pos": ["E2M6",416,-672,96] }
-AP-ITEM { "category": "key", "typename": "RedCard", "tag": "RedCard", "pos": ["E2M6",872,-432,120] }
-AP-KEY { "tag": "RedCard", "typename": "RedCard", "scopename": "E2M6", "cluster": 0, "maps": ["E2M6"] }
+AP-ITEM { "category": "key", "typename": "RedCard", "tag": "Red Keycard", "pos": ["E2M6",872,-432,120] }
+AP-KEY { "typename": "RedCard", "tag": "Red Keycard", "scopename": "E2M6", "cluster": 0, "maps": ["E2M6"] }
 AP-ITEM { "category": "big-health", "typename": "Soulsphere", "tag": "Soulsphere", "pos": ["E2M6",-1408,856,0] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["E2M6",-1472,824,0] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["E2M6",-1472,760,0] }
@@ -1872,8 +1872,8 @@ AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonu
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["E2M6",-816,624,112] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["E2M6",-816,592,112] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["E2M6",-816,560,112] }
-AP-ITEM { "category": "key", "typename": "YellowCard", "tag": "YellowCard", "pos": ["E2M6",-840,672,112] }
-AP-KEY { "tag": "YellowCard", "typename": "YellowCard", "scopename": "E2M6", "cluster": 0, "maps": ["E2M6"] }
+AP-ITEM { "category": "key", "typename": "YellowCard", "tag": "Yellow Keycard", "pos": ["E2M6",-840,672,112] }
+AP-KEY { "typename": "YellowCard", "tag": "Yellow Keycard", "scopename": "E2M6", "cluster": 0, "maps": ["E2M6"] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "secret": true, "pos": ["E2M6",-1296,-32,128] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "secret": true, "pos": ["E2M6",-1360,-32,128] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "secret": true, "pos": ["E2M6",-1424,-32,128] }
@@ -1994,7 +1994,7 @@ AP-SECRET { "pos": ["E2M6","secret","sector",159] }
 AP-SECRET { "pos": ["E2M6","secret","sector",213] }
 AP-SECRET { "pos": ["E2M6","secret","sector",223] }
 AP-SECRET { "pos": ["E2M6","secret","sector",365] }
-AP-MAP { "map": "E2M7", "checksum": "01d268bd593b76989010839fe0f286e9", "rank": 6, "monster_count": 256, "info": { "levelnum": 17, "title": "HUSTR_E2M7", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "$MUSIC_E2M7", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP { "map": "E2M7", "levelname": "Control Complex", "checksum": "01d268bd593b76989010839fe0f286e9", "rank": 6, "monster_count": 256, "info": { "levelnum": 17, "title": "HUSTR_E2M7", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "$MUSIC_E2M7", "music_track": "0", "cluster": 0, "flags": [] } }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E2M7",-1772,812,24] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "skill": [1], "pos": ["E2M7",-2432,128,16] }
 AP-ITEM { "category": "weapon", "typename": "Shotgun", "tag": "pump-action shotgun", "pos": ["E2M7",-8,1696,192] }
@@ -2025,16 +2025,16 @@ AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonu
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E2M7",-1580,540,16] }
 AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos": ["E2M7",-1312,-352,4] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E2M7",-1736,288,32] }
-AP-ITEM { "category": "key", "typename": "YellowCard", "tag": "YellowCard", "pos": ["E2M7",-1856,1344,-48] }
-AP-KEY { "tag": "YellowCard", "typename": "YellowCard", "scopename": "E2M7", "cluster": 0, "maps": ["E2M7"] }
+AP-ITEM { "category": "key", "typename": "YellowCard", "tag": "Yellow Keycard", "pos": ["E2M7",-1856,1344,-48] }
+AP-KEY { "typename": "YellowCard", "tag": "Yellow Keycard", "scopename": "E2M7", "cluster": 0, "maps": ["E2M7"] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E2M7",-1344,744,48] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["E2M7",-1136,840,88] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E2M7",-3624,-2144,16] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["E2M7",-952,656,88] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["E2M7",264,1680,184] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["E2M7",240,1704,184] }
-AP-ITEM { "category": "key", "typename": "RedCard", "tag": "RedCard", "pos": ["E2M7",1168,-80,296] }
-AP-KEY { "tag": "RedCard", "typename": "RedCard", "scopename": "E2M7", "cluster": 0, "maps": ["E2M7"] }
+AP-ITEM { "category": "key", "typename": "RedCard", "tag": "Red Keycard", "pos": ["E2M7",1168,-80,296] }
+AP-KEY { "typename": "RedCard", "tag": "Red Keycard", "scopename": "E2M7", "cluster": 0, "maps": ["E2M7"] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E2M7",-1620,556,16] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["E2M7",-1080,-592,16] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "skill": [1], "pos": ["E2M7",-2496,-576,16] }
@@ -2118,8 +2118,8 @@ AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonu
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["E2M7",-4656,-1856,16] }
 AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E2M7",-5016,-1416,16] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E2M7",-4744,-2152,16] }
-AP-ITEM { "category": "key", "typename": "BlueCard", "tag": "BlueCard", "pos": ["E2M7",-3728,-2064,24] }
-AP-KEY { "tag": "BlueCard", "typename": "BlueCard", "scopename": "E2M7", "cluster": 0, "maps": ["E2M7"] }
+AP-ITEM { "category": "key", "typename": "BlueCard", "tag": "Blue Keycard", "pos": ["E2M7",-3728,-2064,24] }
+AP-KEY { "typename": "BlueCard", "tag": "Blue Keycard", "scopename": "E2M7", "cluster": 0, "maps": ["E2M7"] }
 AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E2M7",-3116,-1804,-40] }
 AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos": ["E2M7",-2056,-1056,-16] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E2M7",-4256,-1824,-60] }
@@ -2176,7 +2176,7 @@ AP-SECRET { "pos": ["E2M7","secret","sector",249] }
 AP-SECRET { "pos": ["E2M7","secret","sector",300] }
 AP-SECRET { "pos": ["E2M7","secret","sector",339] }
 AP-SECRET { "pos": ["E2M7","secret","sector",579] }
-AP-MAP { "map": "E2M8", "checksum": "9cad5253b362b24366583e14e814dce4", "rank": 7, "monster_count": 2, "info": { "levelnum": 18, "title": "HUSTR_E2M8", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "$MUSIC_E2M8", "music_track": "0", "cluster": 0, "flags": ["e2m8special"] } }
+AP-MAP { "map": "E2M8", "levelname": "Containment Cell", "checksum": "9cad5253b362b24366583e14e814dce4", "rank": 7, "monster_count": 2, "info": { "levelnum": 18, "title": "HUSTR_E2M8", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "$MUSIC_E2M8", "music_track": "0", "cluster": 0, "flags": ["e2m8special"] } }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E2M8",-136,160,0] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E2M8",-96,200,0] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E2M8",160,200,0] }
@@ -2223,7 +2223,7 @@ AP-ITEM { "category": "big-armor", "typename": "GreenArmor", "tag": "GreenArmor"
 AP-ITEM { "category": "big-armor", "typename": "GreenArmor", "tag": "GreenArmor", "skill": [2, 3], "pos": ["E2M8",-424,-120,0] }
 AP-ITEM { "category": "weapon", "typename": "PlasmaRifle", "tag": "polaric energy weapon", "secret": true, "skill": [2, 3], "pos": ["E2M8",1536,544,96] }
 AP-SECRET { "pos": ["E2M8","secret","sector",46] }
-AP-MAP { "map": "E2M9", "checksum": "0aba415a7f71e1bc673132934594d752", "rank": 1, "monster_count": 200, "info": { "levelnum": 19, "title": "HUSTR_E2M9", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "$MUSIC_E2M9", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP { "map": "E2M9", "levelname": "Fortress 31", "checksum": "0aba415a7f71e1bc673132934594d752", "rank": 1, "monster_count": 200, "info": { "levelnum": 19, "title": "HUSTR_E2M9", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "$MUSIC_E2M9", "music_track": "0", "cluster": 0, "flags": [] } }
 AP-ITEM { "category": "powerup-health", "typename": "Berserk", "tag": "Berserk", "pos": ["E2M9",-196,-348,72] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E2M9",208,40,0] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E2M9",232,16,0] }
@@ -2262,8 +2262,8 @@ AP-ITEM { "category": "big-ammo", "typename": "Backpack", "tag": "Backpack", "po
 AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Energy Cells", "secret": true, "pos": ["E2M9",-1160,-328,40] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E2M9",-692,-1012,-24] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E2M9",-648,-1012,-24] }
-AP-ITEM { "category": "key", "typename": "BlueCard", "tag": "BlueCard", "pos": ["E2M9",-448,-576,56] }
-AP-KEY { "tag": "BlueCard", "typename": "BlueCard", "scopename": "E2M9", "cluster": 0, "maps": ["E2M9"] }
+AP-ITEM { "category": "key", "typename": "BlueCard", "tag": "Blue Keycard", "pos": ["E2M9",-448,-576,56] }
+AP-KEY { "typename": "BlueCard", "tag": "Blue Keycard", "scopename": "E2M9", "cluster": 0, "maps": ["E2M9"] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E2M9",-312,168,40] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E2M9",-312,440,40] }
 AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "pos": ["E2M9",-424,168,40] }
@@ -2411,8 +2411,8 @@ AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonu
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["E2M9",-3264,1536,0] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["E2M9",-3264,1536,0] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E2M9",-2594,2142,-96] }
-AP-ITEM { "category": "key", "typename": "RedCard", "tag": "RedCard", "pos": ["E2M9",-2848,2976,-56] }
-AP-KEY { "tag": "RedCard", "typename": "RedCard", "scopename": "E2M9", "cluster": 0, "maps": ["E2M9"] }
+AP-ITEM { "category": "key", "typename": "RedCard", "tag": "Red Keycard", "pos": ["E2M9",-2848,2976,-56] }
+AP-KEY { "typename": "RedCard", "tag": "Red Keycard", "scopename": "E2M9", "cluster": 0, "maps": ["E2M9"] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E2M9",-1888,1176,0] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["E2M9",-1848,1176,0] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["E2M9",-1928,1176,0] }
@@ -2502,7 +2502,7 @@ AP-SECRET { "pos": ["E2M9","secret","sector",104] }
 AP-SECRET { "pos": ["E2M9","secret","sector",335] }
 AP-SECRET { "pos": ["E2M9","secret","sector",642] }
 AP-SECRET { "pos": ["E2M9","secret","sector",759] }
-AP-MAP { "map": "E3M1", "checksum": "ac93b24fc70c511ee319f0efefe0c0ec", "rank": 0, "monster_count": 28, "info": { "levelnum": 21, "title": "HUSTR_E3M1", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "$MUSIC_E3M1", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP { "map": "E3M1", "levelname": "Land of the Lost", "checksum": "ac93b24fc70c511ee319f0efefe0c0ec", "rank": 0, "monster_count": 28, "info": { "levelnum": 21, "title": "HUSTR_E3M1", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "$MUSIC_E3M1", "music_track": "0", "cluster": 0, "flags": [] } }
 AP-ITEM { "category": "weapon", "typename": "Shotgun", "tag": "pump-action shotgun", "skill": [1], "pos": ["E3M1",-432,48,0] }
 AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E3M1",-256,768,112] }
 AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E3M1",-256,1024,112] }
@@ -2531,13 +2531,13 @@ AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", 
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E3M1",-976,-32,8] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E3M1",-2336,-416,80] }
 AP-SECRET { "pos": ["E3M1","secret","sector",94] }
-AP-MAP { "map": "E3M2", "checksum": "96ca162ccfecae759fa19d488302db9e", "rank": 1, "monster_count": 66, "info": { "levelnum": 22, "title": "HUSTR_E3M2", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "$MUSIC_E3M2", "music_track": "0", "cluster": 0, "flags": [] } }
-AP-ITEM { "category": "key", "typename": "BlueSkull", "tag": "BlueSkull", "pos": ["E3M2",120,768,-80] }
-AP-KEY { "tag": "BlueSkull", "typename": "BlueSkull", "scopename": "E3M2", "cluster": 0, "maps": ["E3M2"] }
-AP-ITEM { "category": "key", "typename": "RedSkull", "tag": "RedSkull", "pos": ["E3M2",1640,-32,-312] }
-AP-KEY { "tag": "RedSkull", "typename": "RedSkull", "scopename": "E3M2", "cluster": 0, "maps": ["E3M2"] }
-AP-ITEM { "category": "key", "typename": "YellowSkull", "tag": "YellowSkull", "pos": ["E3M2",-416,224,128] }
-AP-KEY { "tag": "YellowSkull", "typename": "YellowSkull", "scopename": "E3M2", "cluster": 0, "maps": ["E3M2"] }
+AP-MAP { "map": "E3M2", "levelname": "Geothermal Tunnels", "checksum": "96ca162ccfecae759fa19d488302db9e", "rank": 1, "monster_count": 66, "info": { "levelnum": 22, "title": "HUSTR_E3M2", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "$MUSIC_E3M2", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-ITEM { "category": "key", "typename": "BlueSkull", "tag": "Blue Skull", "pos": ["E3M2",120,768,-80] }
+AP-KEY { "typename": "BlueSkull", "tag": "Blue Skull", "scopename": "E3M2", "cluster": 0, "maps": ["E3M2"] }
+AP-ITEM { "category": "key", "typename": "RedSkull", "tag": "Red Skull", "pos": ["E3M2",1640,-32,-312] }
+AP-KEY { "typename": "RedSkull", "tag": "Red Skull", "scopename": "E3M2", "cluster": 0, "maps": ["E3M2"] }
+AP-ITEM { "category": "key", "typename": "YellowSkull", "tag": "Yellow Skull", "pos": ["E3M2",-416,224,128] }
+AP-KEY { "typename": "YellowSkull", "tag": "Yellow Skull", "scopename": "E3M2", "cluster": 0, "maps": ["E3M2"] }
 AP-ITEM { "category": "weapon", "typename": "RocketLauncher", "tag": "missile launcher", "secret": true, "pos": ["E3M2",48,920,-80] }
 AP-ITEM { "category": "big-health", "typename": "Soulsphere", "tag": "Soulsphere", "secret": true, "pos": ["E3M2",144,-344,0] }
 AP-ITEM { "category": "powerup-maprevealer", "typename": "Allmap", "tag": "Allmap", "secret": true, "pos": ["E3M2",776,424,-64] }
@@ -2636,7 +2636,7 @@ AP-SECRET { "pos": ["E3M2","secret","sector",36] }
 AP-SECRET { "pos": ["E3M2","secret","sector",48] }
 AP-SECRET { "pos": ["E3M2","secret","sector",121] }
 AP-SECRET { "pos": ["E3M2","secret","sector",124] }
-AP-MAP { "map": "E3M3", "checksum": "da05e69e3693f18bd365dd79727c032f", "rank": 2, "monster_count": 174, "info": { "levelnum": 23, "title": "HUSTR_E3M3", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "$MUSIC_E3M3", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP { "map": "E3M3", "levelname": "Sacrificial Bastion", "checksum": "da05e69e3693f18bd365dd79727c032f", "rank": 2, "monster_count": 174, "info": { "levelnum": 23, "title": "HUSTR_E3M3", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "$MUSIC_E3M3", "music_track": "0", "cluster": 0, "flags": [] } }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E3M3",632,-4360,120] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E3M3",632,-4216,120] }
 AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shotgun Shells", "pos": ["E3M3",672,-4288,120] }
@@ -2665,8 +2665,8 @@ AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonu
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "secret": true, "pos": ["E3M3",1840,-4328,0] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "secret": true, "pos": ["E3M3",1840,-4248,0] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "secret": true, "pos": ["E3M3",1840,-4248,0] }
-AP-ITEM { "category": "key", "typename": "YellowSkull", "tag": "YellowSkull", "pos": ["E3M3",928,-7456,336] }
-AP-KEY { "tag": "YellowSkull", "typename": "YellowSkull", "scopename": "E3M3", "cluster": 0, "maps": ["E3M3"] }
+AP-ITEM { "category": "key", "typename": "YellowSkull", "tag": "Yellow Skull", "pos": ["E3M3",928,-7456,336] }
+AP-KEY { "typename": "YellowSkull", "tag": "Yellow Skull", "scopename": "E3M3", "cluster": 0, "maps": ["E3M3"] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E3M3",1464,-4944,136] }
 AP-ITEM { "category": "big-health", "typename": "Soulsphere", "tag": "Soulsphere", "pos": ["E3M3",-416,-6880,7] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "secret": true, "pos": ["E3M3",1192,-6872,-152] }
@@ -2713,12 +2713,12 @@ AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonu
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "secret": true, "pos": ["E3M3",648,-5832,40] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "secret": true, "pos": ["E3M3",648,-5848,40] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["E3M3",1944,-4944,144] }
-AP-ITEM { "category": "key", "typename": "BlueSkull", "tag": "BlueSkull", "pos": ["E3M3",3928,-6736,240] }
-AP-KEY { "tag": "BlueSkull", "typename": "BlueSkull", "scopename": "E3M3", "cluster": 0, "maps": ["E3M3"] }
+AP-ITEM { "category": "key", "typename": "BlueSkull", "tag": "Blue Skull", "pos": ["E3M3",3928,-6736,240] }
+AP-KEY { "typename": "BlueSkull", "tag": "Blue Skull", "scopename": "E3M3", "cluster": 0, "maps": ["E3M3"] }
 AP-ITEM { "category": "big-ammo", "typename": "Backpack", "tag": "Backpack", "secret": true, "pos": ["E3M3",5240,-6936,100] }
 AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "secret": true, "pos": ["E3M3",1816,-4256,0] }
-AP-ITEM { "category": "key", "typename": "RedCard", "tag": "RedCard", "pos": ["E3M3",6544,-6592,200] }
-AP-KEY { "tag": "RedCard", "typename": "RedCard", "scopename": "E3M3", "cluster": 0, "maps": ["E3M3"] }
+AP-ITEM { "category": "key", "typename": "RedCard", "tag": "Red Keycard", "pos": ["E3M3",6544,-6592,200] }
+AP-KEY { "typename": "RedCard", "tag": "Red Keycard", "scopename": "E3M3", "cluster": 0, "maps": ["E3M3"] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E3M3",1640,-4944,136] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "secret": true, "pos": ["E3M3",648,-5816,40] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "secret": true, "pos": ["E3M3",648,-5832,40] }
@@ -2934,7 +2934,7 @@ AP-SECRET { "pos": ["E3M3","secret","sector",409] }
 AP-SECRET { "pos": ["E3M3","secret","sector",471] }
 AP-SECRET { "pos": ["E3M3","secret","sector",630] }
 AP-SECRET { "pos": ["E3M3","secret","sector",713] }
-AP-MAP { "map": "E3M4", "checksum": "3dfccf00df7ebdf7b21fe7d2a087cc65", "rank": 3, "monster_count": 141, "info": { "levelnum": 24, "title": "HUSTR_E3M4", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "$MUSIC_E3M4", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP { "map": "E3M4", "levelname": "Oblation Temple", "checksum": "3dfccf00df7ebdf7b21fe7d2a087cc65", "rank": 3, "monster_count": 141, "info": { "levelnum": 24, "title": "HUSTR_E3M4", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "$MUSIC_E3M4", "music_track": "0", "cluster": 0, "flags": [] } }
 AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E3M4",-920,-2186,80] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E3M4",-416,-1856,80] }
 AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "pos": ["E3M4",-1744,-2192,112] }
@@ -3006,8 +3006,8 @@ AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonu
 AP-ITEM { "category": "big-armor", "typename": "BlueArmor", "tag": "BlueArmor", "secret": true, "pos": ["E3M4",-3696,-1040,96] }
 AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E3M4",-2848,-1792,80] }
 AP-ITEM { "category": "powerup", "typename": "RadSuit", "tag": "RadSuit", "pos": ["E3M4",-2720,-1864,-24] }
-AP-ITEM { "category": "key", "typename": "RedSkull", "tag": "RedSkull", "pos": ["E3M4",-4232,-1088,72] }
-AP-KEY { "tag": "RedSkull", "typename": "RedSkull", "scopename": "E3M4", "cluster": 0, "maps": ["E3M4"] }
+AP-ITEM { "category": "key", "typename": "RedSkull", "tag": "Red Skull", "pos": ["E3M4",-4232,-1088,72] }
+AP-KEY { "typename": "RedSkull", "tag": "Red Skull", "scopename": "E3M4", "cluster": 0, "maps": ["E3M4"] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E3M4",-4032,-1472,-24] }
 AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E3M4",-3960,-2008,96] }
 AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shotgun Shells", "pos": ["E3M4",-2592,-344,16] }
@@ -3015,8 +3015,8 @@ AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells"
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E3M4",-3432,-1320,80] }
 AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E3M4",-4128,-1888,96] }
 AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E3M4",-4120,-2008,96] }
-AP-ITEM { "category": "key", "typename": "YellowSkull", "tag": "YellowSkull", "pos": ["E3M4",-2144,-1952,128] }
-AP-KEY { "tag": "YellowSkull", "typename": "YellowSkull", "scopename": "E3M4", "cluster": 0, "maps": ["E3M4"] }
+AP-ITEM { "category": "key", "typename": "YellowSkull", "tag": "Yellow Skull", "pos": ["E3M4",-2144,-1952,128] }
+AP-KEY { "typename": "YellowSkull", "tag": "Yellow Skull", "scopename": "E3M4", "cluster": 0, "maps": ["E3M4"] }
 AP-ITEM { "category": "big-armor", "typename": "GreenArmor", "tag": "GreenArmor", "pos": ["E3M4",-4040,-1952,96] }
 AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E3M4",-3504,-752,88] }
 AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E3M4",-3504,-656,88] }
@@ -3128,14 +3128,14 @@ AP-SECRET { "pos": ["E3M4","secret","sector",224] }
 AP-SECRET { "pos": ["E3M4","secret","sector",314] }
 AP-SECRET { "pos": ["E3M4","secret","sector",353] }
 AP-SECRET { "pos": ["E3M4","secret","sector",388] }
-AP-MAP { "map": "E3M5", "checksum": "65887f43484f50dfa2d0662a01c2c0c5", "rank": 4, "monster_count": 182, "info": { "levelnum": 25, "title": "HUSTR_E3M5", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "$MUSIC_E3M5", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP { "map": "E3M5", "levelname": "Infernal Hallows", "checksum": "65887f43484f50dfa2d0662a01c2c0c5", "rank": 4, "monster_count": 182, "info": { "levelnum": 25, "title": "HUSTR_E3M5", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "$MUSIC_E3M5", "music_track": "0", "cluster": 0, "flags": [] } }
 AP-ITEM { "category": "big-armor", "typename": "GreenArmor", "tag": "GreenArmor", "pos": ["E3M5",640,1632,-48] }
-AP-ITEM { "category": "key", "typename": "BlueSkull", "tag": "BlueSkull", "pos": ["E3M5",1904,1856,8] }
-AP-KEY { "tag": "BlueSkull", "typename": "BlueSkull", "scopename": "E3M5", "cluster": 0, "maps": ["E3M5"] }
-AP-ITEM { "category": "key", "typename": "YellowSkull", "tag": "YellowSkull", "pos": ["E3M5",736,3728,-120] }
-AP-KEY { "tag": "YellowSkull", "typename": "YellowSkull", "scopename": "E3M5", "cluster": 0, "maps": ["E3M5"] }
-AP-ITEM { "category": "key", "typename": "RedSkull", "tag": "RedSkull", "pos": ["E3M5",2688,-128,64] }
-AP-KEY { "tag": "RedSkull", "typename": "RedSkull", "scopename": "E3M5", "cluster": 0, "maps": ["E3M5"] }
+AP-ITEM { "category": "key", "typename": "BlueSkull", "tag": "Blue Skull", "pos": ["E3M5",1904,1856,8] }
+AP-KEY { "typename": "BlueSkull", "tag": "Blue Skull", "scopename": "E3M5", "cluster": 0, "maps": ["E3M5"] }
+AP-ITEM { "category": "key", "typename": "YellowSkull", "tag": "Yellow Skull", "pos": ["E3M5",736,3728,-120] }
+AP-KEY { "typename": "YellowSkull", "tag": "Yellow Skull", "scopename": "E3M5", "cluster": 0, "maps": ["E3M5"] }
+AP-ITEM { "category": "key", "typename": "RedSkull", "tag": "Red Skull", "pos": ["E3M5",2688,-128,64] }
+AP-KEY { "typename": "RedSkull", "tag": "Red Skull", "scopename": "E3M5", "cluster": 0, "maps": ["E3M5"] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E3M5",-1728,384,128] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E3M5",-1280,384,128] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E3M5",-1504,384,128] }
@@ -3263,19 +3263,19 @@ AP-SECRET { "pos": ["E3M5","secret","sector",63] }
 AP-SECRET { "pos": ["E3M5","secret","sector",135] }
 AP-SECRET { "pos": ["E3M5","secret","sector",318] }
 AP-SECRET { "pos": ["E3M5","secret","sector",347] }
-AP-MAP { "map": "E3M6", "checksum": "33be2c020a7bfb4c81741a8a70d31d3b", "rank": 5, "monster_count": 73, "info": { "levelnum": 26, "title": "HUSTR_E3M6", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "$MUSIC_E3M6", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP { "map": "E3M6", "levelname": "Igneous Intrusion", "checksum": "33be2c020a7bfb4c81741a8a70d31d3b", "rank": 5, "monster_count": 73, "info": { "levelnum": 26, "title": "HUSTR_E3M6", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "$MUSIC_E3M6", "music_track": "0", "cluster": 0, "flags": [] } }
 AP-ITEM { "category": "weapon", "typename": "Shotgun", "tag": "pump-action shotgun", "pos": ["E3M6",64,-64,0] }
 AP-ITEM { "category": "weapon", "typename": "Chaingun", "tag": "minigun", "pos": ["E3M6",96,-32,0] }
 AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E3M6",32,32,0] }
 AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shotgun Shells", "pos": ["E3M6",96,32,0] }
 AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos": ["E3M6",64,32,0] }
-AP-ITEM { "category": "key", "typename": "RedSkull", "tag": "RedSkull", "pos": ["E3M6",1712,1056,80] }
-AP-KEY { "tag": "RedSkull", "typename": "RedSkull", "scopename": "E3M6", "cluster": 0, "maps": ["E3M6"] }
+AP-ITEM { "category": "key", "typename": "RedSkull", "tag": "Red Skull", "pos": ["E3M6",1712,1056,80] }
+AP-KEY { "typename": "RedSkull", "tag": "Red Skull", "scopename": "E3M6", "cluster": 0, "maps": ["E3M6"] }
 AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E3M6",1376,832,0] }
 AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E3M6",1376,800,0] }
 AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E3M6",1376,768,0] }
-AP-ITEM { "category": "key", "typename": "YellowSkull", "tag": "YellowSkull", "pos": ["E3M6",-384,800,120] }
-AP-KEY { "tag": "YellowSkull", "typename": "YellowSkull", "scopename": "E3M6", "cluster": 0, "maps": ["E3M6"] }
+AP-ITEM { "category": "key", "typename": "YellowSkull", "tag": "Yellow Skull", "pos": ["E3M6",-384,800,120] }
+AP-KEY { "typename": "YellowSkull", "tag": "Yellow Skull", "scopename": "E3M6", "cluster": 0, "maps": ["E3M6"] }
 AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E3M6",-1696,704,0] }
 AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E3M6",-1696,640,0] }
 AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shotgun Shells", "pos": ["E3M6",384,736,0] }
@@ -3327,9 +3327,9 @@ AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack",
 AP-SECRET { "pos": ["E3M6","secret","sector",60] }
 AP-SECRET { "pos": ["E3M6","secret","sector",90] }
 AP-SECRET { "pos": ["E3M6","secret","sector",173] }
-AP-MAP { "map": "E3M7", "checksum": "a8d83413f4a90cf3a9e68b20b6d47e4b", "rank": 6, "monster_count": 159, "info": { "levelnum": 27, "title": "HUSTR_E3M7", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "$MUSIC_E3M7", "music_track": "0", "cluster": 0, "flags": [] } }
-AP-ITEM { "category": "key", "typename": "RedSkull", "tag": "RedSkull", "pos": ["E3M7",768,-240,64] }
-AP-KEY { "tag": "RedSkull", "typename": "RedSkull", "scopename": "E3M7", "cluster": 0, "maps": ["E3M7"] }
+AP-MAP { "map": "E3M7", "levelname": "No Regrets", "checksum": "a8d83413f4a90cf3a9e68b20b6d47e4b", "rank": 6, "monster_count": 159, "info": { "levelnum": 27, "title": "HUSTR_E3M7", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "$MUSIC_E3M7", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-ITEM { "category": "key", "typename": "RedSkull", "tag": "Red Skull", "pos": ["E3M7",768,-240,64] }
+AP-KEY { "typename": "RedSkull", "tag": "Red Skull", "scopename": "E3M7", "cluster": 0, "maps": ["E3M7"] }
 AP-ITEM { "category": "big-health", "typename": "Soulsphere", "tag": "Soulsphere", "pos": ["E3M7",0,1568,-12] }
 AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E3M7",-512,2048,-140] }
 AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E3M7",-464,2048,-140] }
@@ -3344,8 +3344,8 @@ AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", 
 AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E3M7",512,2048,-140] }
 AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E3M7",512,2096,-140] }
 AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E3M7",512,2000,-140] }
-AP-ITEM { "category": "key", "typename": "BlueSkull", "tag": "BlueSkull", "pos": ["E3M7",0,2048,-116] }
-AP-KEY { "tag": "BlueSkull", "typename": "BlueSkull", "scopename": "E3M7", "cluster": 0, "maps": ["E3M7"] }
+AP-ITEM { "category": "key", "typename": "BlueSkull", "tag": "Blue Skull", "pos": ["E3M7",0,2048,-116] }
+AP-KEY { "typename": "BlueSkull", "tag": "Blue Skull", "scopename": "E3M7", "cluster": 0, "maps": ["E3M7"] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E3M7",768,8,99] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E3M7",544,-352,56] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E3M7",96,960,-140] }
@@ -3447,8 +3447,8 @@ AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", 
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E3M7",-1888,-288,-443] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E3M7",-1792,-224,-453] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E3M7",-1744,-272,-453] }
-AP-ITEM { "category": "key", "typename": "YellowSkull", "tag": "YellowSkull", "pos": ["E3M7",-2496,320,-246] }
-AP-KEY { "tag": "YellowSkull", "typename": "YellowSkull", "scopename": "E3M7", "cluster": 0, "maps": ["E3M7"] }
+AP-ITEM { "category": "key", "typename": "YellowSkull", "tag": "Yellow Skull", "pos": ["E3M7",-2496,320,-246] }
+AP-KEY { "typename": "YellowSkull", "tag": "Yellow Skull", "scopename": "E3M7", "cluster": 0, "maps": ["E3M7"] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E3M7",-2720,256,-256] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E3M7",-2272,256,-256] }
 AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shotgun Shells", "pos": ["E3M7",-2496,672,-256] }
@@ -3503,7 +3503,7 @@ AP-SECRET { "pos": ["E3M7","secret","sector",87] }
 AP-SECRET { "pos": ["E3M7","secret","sector",140] }
 AP-SECRET { "pos": ["E3M7","secret","sector",177] }
 AP-SECRET { "pos": ["E3M7","secret","sector",247] }
-AP-MAP { "map": "E3M8", "checksum": "2d92e1a30e8003c54e74a1720aba7e66", "rank": 7, "monster_count": 35, "info": { "levelnum": 28, "title": "HUSTR_E3M8", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "$MUSIC_E3M8", "music_track": "0", "cluster": 0, "flags": ["e3m8special"] } }
+AP-MAP { "map": "E3M8", "levelname": "Ancient Lair", "checksum": "2d92e1a30e8003c54e74a1720aba7e66", "rank": 7, "monster_count": 35, "info": { "levelnum": 28, "title": "HUSTR_E3M8", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "$MUSIC_E3M8", "music_track": "0", "cluster": 0, "flags": ["e3m8special"] } }
 AP-ITEM { "category": "weapon", "typename": "Shotgun", "tag": "pump-action shotgun", "pos": ["E3M8",-7488,536,144] }
 AP-ITEM { "category": "weapon", "typename": "Chaingun", "tag": "minigun", "pos": ["E3M8",-7488,248,144] }
 AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos": ["E3M8",-7424,248,144] }
@@ -3574,7 +3574,7 @@ AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", 
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "skill": [3], "pos": ["E3M8",-4912,1024,64] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "skill": [3], "pos": ["E3M8",-4960,1024,64] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "skill": [3], "pos": ["E3M8",-5808,1024,64] }
-AP-MAP { "map": "E3M9", "checksum": "52f47b0c12d5fc54ecb471f9233c2d46", "rank": 1, "monster_count": 170, "info": { "levelnum": 29, "title": "HUSTR_E3M9", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "$MUSIC_E3M9", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP { "map": "E3M9", "levelname": "Acquainted With Grief", "checksum": "52f47b0c12d5fc54ecb471f9233c2d46", "rank": 1, "monster_count": 170, "info": { "levelnum": 29, "title": "HUSTR_E3M9", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "$MUSIC_E3M9", "music_track": "0", "cluster": 0, "flags": [] } }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E3M9",3736,-4272,0] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["E3M9",3800,-3568,-8] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["E3M9",4112,-3712,-8] }
@@ -3587,12 +3587,12 @@ AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack",
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E3M9",3456,-4544,0] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E3M9",3264,-4448,0] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E3M9",3456,-4928,0] }
-AP-ITEM { "category": "key", "typename": "BlueSkull", "tag": "BlueSkull", "pos": ["E3M9",6536,-4456,32] }
-AP-KEY { "tag": "BlueSkull", "typename": "BlueSkull", "scopename": "E3M9", "cluster": 0, "maps": ["E3M9"] }
-AP-ITEM { "category": "key", "typename": "RedSkull", "tag": "RedSkull", "pos": ["E3M9",632,-1376,60] }
-AP-KEY { "tag": "RedSkull", "typename": "RedSkull", "scopename": "E3M9", "cluster": 0, "maps": ["E3M9"] }
-AP-ITEM { "category": "key", "typename": "YellowSkull", "tag": "YellowSkull", "pos": ["E3M9",4248,-792,24] }
-AP-KEY { "tag": "YellowSkull", "typename": "YellowSkull", "scopename": "E3M9", "cluster": 0, "maps": ["E3M9"] }
+AP-ITEM { "category": "key", "typename": "BlueSkull", "tag": "Blue Skull", "pos": ["E3M9",6536,-4456,32] }
+AP-KEY { "typename": "BlueSkull", "tag": "Blue Skull", "scopename": "E3M9", "cluster": 0, "maps": ["E3M9"] }
+AP-ITEM { "category": "key", "typename": "RedSkull", "tag": "Red Skull", "pos": ["E3M9",632,-1376,60] }
+AP-KEY { "typename": "RedSkull", "tag": "Red Skull", "scopename": "E3M9", "cluster": 0, "maps": ["E3M9"] }
+AP-ITEM { "category": "key", "typename": "YellowSkull", "tag": "Yellow Skull", "pos": ["E3M9",4248,-792,24] }
+AP-KEY { "typename": "YellowSkull", "tag": "Yellow Skull", "scopename": "E3M9", "cluster": 0, "maps": ["E3M9"] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["E3M9",3736,-3688,-8] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E3M9",3784,-2824,-32] }
 AP-ITEM { "category": "weapon", "typename": "Shotgun", "tag": "pump-action shotgun", "pos": ["E3M9",3848,-2888,-32] }
@@ -3771,10 +3771,10 @@ AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", 
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "skill": [2], "pos": ["E3M9",7344,-4008,-8] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "skill": [2], "pos": ["E3M9",7584,-3968,-8] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "skill": [2], "pos": ["E3M9",7704,-3880,-8] }
-AP-MAP { "map": "E4M1", "checksum": "93f34da71568c11cef25833d717acb51", "rank": 0, "monster_count": 145, "info": { "levelnum": 31, "title": "HUSTR_E4M1", "is_lookup": true, "sky1": "SKY4", "sky1speed": "0.000000", "sky2": "SKY4", "sky2speed": "0.000000", "music": "$MUSIC_E4M1", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP { "map": "E4M1", "levelname": "Maintenance Area", "checksum": "93f34da71568c11cef25833d717acb51", "rank": 0, "monster_count": 145, "info": { "levelnum": 31, "title": "HUSTR_E4M1", "is_lookup": true, "sky1": "SKY4", "sky1speed": "0.000000", "sky2": "SKY4", "sky2speed": "0.000000", "music": "$MUSIC_E4M1", "music_track": "0", "cluster": 0, "flags": [] } }
 AP-ITEM { "category": "weapon", "typename": "Chaingun", "tag": "minigun", "secret": true, "pos": ["E4M1",1792,-256,80] }
-AP-ITEM { "category": "key", "typename": "RedCard", "tag": "RedCard", "pos": ["E4M1",2048,344,200] }
-AP-KEY { "tag": "RedCard", "typename": "RedCard", "scopename": "E4M1", "cluster": 0, "maps": ["E4M1"] }
+AP-ITEM { "category": "key", "typename": "RedCard", "tag": "Red Keycard", "pos": ["E4M1",2048,344,200] }
+AP-KEY { "typename": "RedCard", "tag": "Red Keycard", "scopename": "E4M1", "cluster": 0, "maps": ["E4M1"] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "secret": true, "pos": ["E4M1",516,724,168] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "secret": true, "pos": ["E4M1",456,676,168] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "secret": true, "skill": [1, 2], "pos": ["E4M1",208,808,168] }
@@ -3823,8 +3823,8 @@ AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonu
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["E4M1",2336,752,200] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["E4M1",2304,752,200] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["E4M1",2432,752,200] }
-AP-ITEM { "category": "key", "typename": "YellowCard", "tag": "YellowCard", "pos": ["E4M1",816,2480,456] }
-AP-KEY { "tag": "YellowCard", "typename": "YellowCard", "scopename": "E4M1", "cluster": 0, "maps": ["E4M1"] }
+AP-ITEM { "category": "key", "typename": "YellowCard", "tag": "Yellow Keycard", "pos": ["E4M1",816,2480,456] }
+AP-KEY { "typename": "YellowCard", "tag": "Yellow Keycard", "scopename": "E4M1", "cluster": 0, "maps": ["E4M1"] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E4M1",688,-368,0] }
 AP-ITEM { "category": "big-armor", "typename": "GreenArmor", "tag": "GreenArmor", "pos": ["E4M1",1040,2240,288] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E4M1",976,2240,288] }
@@ -3876,21 +3876,21 @@ AP-SECRET { "pos": ["E4M1","secret","sector",30] }
 AP-SECRET { "pos": ["E4M1","secret","sector",37] }
 AP-SECRET { "pos": ["E4M1","secret","sector",82] }
 AP-SECRET { "pos": ["E4M1","secret","sector",109] }
-AP-MAP { "map": "E4M2", "checksum": "940e306aecc6277ef9ae2318210b472f", "rank": 1, "monster_count": 438, "info": { "levelnum": 32, "title": "HUSTR_E4M2", "is_lookup": true, "sky1": "SKY4", "sky1speed": "0.000000", "sky2": "SKY4", "sky2speed": "0.000000", "music": "$MUSIC_E4M2", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP { "map": "E4M2", "levelname": "Research Complex", "checksum": "940e306aecc6277ef9ae2318210b472f", "rank": 1, "monster_count": 438, "info": { "levelnum": 32, "title": "HUSTR_E4M2", "is_lookup": true, "sky1": "SKY4", "sky1speed": "0.000000", "sky2": "SKY4", "sky2speed": "0.000000", "music": "$MUSIC_E4M2", "music_track": "0", "cluster": 0, "flags": [] } }
 AP-ITEM { "category": "weapon", "typename": "Chainsaw", "tag": "ripsaw", "pos": ["E4M2",-112,-1136,-72] }
 AP-ITEM { "category": "big-armor", "typename": "GreenArmor", "tag": "GreenArmor", "pos": ["E4M2",160,-1536,-72] }
-AP-ITEM { "category": "key", "typename": "YellowCard", "tag": "YellowCard", "pos": ["E4M2",-1096,-760,24] }
-AP-KEY { "tag": "YellowCard", "typename": "YellowCard", "scopename": "E4M2", "cluster": 0, "maps": ["E4M2"] }
-AP-ITEM { "category": "key", "typename": "RedCard", "tag": "RedCard", "pos": ["E4M2",-1376,1504,88] }
-AP-KEY { "tag": "RedCard", "typename": "RedCard", "scopename": "E4M2", "cluster": 0, "maps": ["E4M2"] }
+AP-ITEM { "category": "key", "typename": "YellowCard", "tag": "Yellow Keycard", "pos": ["E4M2",-1096,-760,24] }
+AP-KEY { "typename": "YellowCard", "tag": "Yellow Keycard", "scopename": "E4M2", "cluster": 0, "maps": ["E4M2"] }
+AP-ITEM { "category": "key", "typename": "RedCard", "tag": "Red Keycard", "pos": ["E4M2",-1376,1504,88] }
+AP-KEY { "typename": "RedCard", "tag": "Red Keycard", "scopename": "E4M2", "cluster": 0, "maps": ["E4M2"] }
 AP-ITEM { "category": "big-health", "typename": "Soulsphere", "tag": "Soulsphere", "pos": ["E4M2",-1608,624,-80] }
 AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E4M2",-1200,352,-64] }
 AP-ITEM { "category": "powerup-health", "typename": "Berserk", "tag": "Berserk", "pos": ["E4M2",888,928,64] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E4M2",1224,824,32] }
 AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "pos": ["E4M2",1288,888,32] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E4M2",1680,-2928,-136] }
-AP-ITEM { "category": "key", "typename": "BlueCard", "tag": "BlueCard", "pos": ["E4M2",3312,-2784,-136] }
-AP-KEY { "tag": "BlueCard", "typename": "BlueCard", "scopename": "E4M2", "cluster": 0, "maps": ["E4M2"] }
+AP-ITEM { "category": "key", "typename": "BlueCard", "tag": "Blue Keycard", "pos": ["E4M2",3312,-2784,-136] }
+AP-KEY { "typename": "BlueCard", "tag": "Blue Keycard", "scopename": "E4M2", "cluster": 0, "maps": ["E4M2"] }
 AP-ITEM { "category": "powerup", "typename": "RadSuit", "tag": "RadSuit", "pos": ["E4M2",2920,-3176,-264] }
 AP-ITEM { "category": "weapon", "typename": "RocketLauncher", "tag": "missile launcher", "pos": ["E4M2",992,-3296,8] }
 AP-ITEM { "category": "big-armor", "typename": "GreenArmor", "tag": "GreenArmor", "pos": ["E4M2",3520,584,392] }
@@ -4124,11 +4124,11 @@ AP-SECRET { "pos": ["E4M2","secret","sector",348] }
 AP-SECRET { "pos": ["E4M2","secret","sector",390] }
 AP-SECRET { "pos": ["E4M2","secret","sector",513] }
 AP-SECRET { "pos": ["E4M2","secret","sector",754] }
-AP-MAP { "map": "E4M3", "checksum": "e287c3e7c02cfc508ae0c99c6aee2e42", "rank": 2, "monster_count": 265, "info": { "levelnum": 33, "title": "HUSTR_E4M3", "is_lookup": true, "sky1": "SKY4", "sky1speed": "0.000000", "sky2": "SKY4", "sky2speed": "0.000000", "music": "$MUSIC_E4M3", "music_track": "0", "cluster": 0, "flags": [] } }
-AP-ITEM { "category": "key", "typename": "YellowCard", "tag": "YellowCard", "pos": ["E4M3",736,960,104] }
-AP-KEY { "tag": "YellowCard", "typename": "YellowCard", "scopename": "E4M3", "cluster": 0, "maps": ["E4M3"] }
-AP-ITEM { "category": "key", "typename": "RedCard", "tag": "RedCard", "pos": ["E4M3",320,-2080,136] }
-AP-KEY { "tag": "RedCard", "typename": "RedCard", "scopename": "E4M3", "cluster": 0, "maps": ["E4M3"] }
+AP-MAP { "map": "E4M3", "levelname": "Central Computing", "checksum": "e287c3e7c02cfc508ae0c99c6aee2e42", "rank": 2, "monster_count": 265, "info": { "levelnum": 33, "title": "HUSTR_E4M3", "is_lookup": true, "sky1": "SKY4", "sky1speed": "0.000000", "sky2": "SKY4", "sky2speed": "0.000000", "music": "$MUSIC_E4M3", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-ITEM { "category": "key", "typename": "YellowCard", "tag": "Yellow Keycard", "pos": ["E4M3",736,960,104] }
+AP-KEY { "typename": "YellowCard", "tag": "Yellow Keycard", "scopename": "E4M3", "cluster": 0, "maps": ["E4M3"] }
+AP-ITEM { "category": "key", "typename": "RedCard", "tag": "Red Keycard", "pos": ["E4M3",320,-2080,136] }
+AP-KEY { "typename": "RedCard", "tag": "Red Keycard", "scopename": "E4M3", "cluster": 0, "maps": ["E4M3"] }
 AP-ITEM { "category": "weapon", "typename": "RocketLauncher", "tag": "missile launcher", "pos": ["E4M3",-512,-576,40] }
 AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E4M3",-480,-640,40] }
 AP-ITEM { "category": "big-armor", "typename": "BlueArmor", "tag": "BlueArmor", "pos": ["E4M3",1600,896,8] }
@@ -4136,8 +4136,8 @@ AP-ITEM { "category": "big-ammo", "typename": "Backpack", "tag": "Backpack", "se
 AP-ITEM { "category": "big-health", "typename": "Soulsphere", "tag": "Soulsphere", "secret": true, "pos": ["E4M3",-48,-520,0] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E4M3",-290,-486,0] }
 AP-ITEM { "category": "weapon", "typename": "PlasmaRifle", "tag": "polaric energy weapon", "pos": ["E4M3",1824,528,120] }
-AP-ITEM { "category": "key", "typename": "BlueCard", "tag": "BlueCard", "pos": ["E4M3",784,2944,-72] }
-AP-KEY { "tag": "BlueCard", "typename": "BlueCard", "scopename": "E4M3", "cluster": 0, "maps": ["E4M3"] }
+AP-ITEM { "category": "key", "typename": "BlueCard", "tag": "Blue Keycard", "pos": ["E4M3",784,2944,-72] }
+AP-KEY { "typename": "BlueCard", "tag": "Blue Keycard", "scopename": "E4M3", "cluster": 0, "maps": ["E4M3"] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "secret": true, "pos": ["E4M3",-144,-1114,192] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "secret": true, "pos": ["E4M3",16,-1114,192] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["E4M3",-104,-1040,192] }
@@ -4305,15 +4305,15 @@ AP-SECRET { "pos": ["E4M3","secret","sector",362] }
 AP-SECRET { "pos": ["E4M3","secret","sector",378] }
 AP-SECRET { "pos": ["E4M3","secret","sector",393] }
 AP-SECRET { "pos": ["E4M3","secret","sector",395] }
-AP-MAP { "map": "E4M4", "checksum": "060e5ab2db01f7d674902e528d5920ea", "rank": 3, "monster_count": 228, "info": { "levelnum": 34, "title": "HUSTR_E4M4", "is_lookup": true, "sky1": "SKY4", "sky1speed": "0.000000", "sky2": "SKY4", "sky2speed": "0.000000", "music": "$MUSIC_E4M4", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP { "map": "E4M4", "levelname": "Hydroponic Facility", "checksum": "060e5ab2db01f7d674902e528d5920ea", "rank": 3, "monster_count": 228, "info": { "levelnum": 34, "title": "HUSTR_E4M4", "is_lookup": true, "sky1": "SKY4", "sky1speed": "0.000000", "sky2": "SKY4", "sky2speed": "0.000000", "music": "$MUSIC_E4M4", "music_track": "0", "cluster": 0, "flags": [] } }
 AP-ITEM { "category": "big-health", "typename": "Soulsphere", "tag": "Soulsphere", "pos": ["E4M4",-544,640,24] }
 AP-ITEM { "category": "big-armor", "typename": "GreenArmor", "tag": "GreenArmor", "pos": ["E4M4",-1760,528,56] }
 AP-ITEM { "category": "powerup", "typename": "RadSuit", "tag": "RadSuit", "pos": ["E4M4",544,864,16] }
 AP-ITEM { "category": "powerup", "typename": "RadSuit", "tag": "RadSuit", "pos": ["E4M4",544,928,16] }
-AP-ITEM { "category": "key", "typename": "BlueCard", "tag": "BlueCard", "pos": ["E4M4",-2440,1048,208] }
-AP-KEY { "tag": "BlueCard", "typename": "BlueCard", "scopename": "E4M4", "cluster": 0, "maps": ["E4M4"] }
-AP-ITEM { "category": "key", "typename": "YellowCard", "tag": "YellowCard", "pos": ["E4M4",96,-476,80] }
-AP-KEY { "tag": "YellowCard", "typename": "YellowCard", "scopename": "E4M4", "cluster": 0, "maps": ["E4M4"] }
+AP-ITEM { "category": "key", "typename": "BlueCard", "tag": "Blue Keycard", "pos": ["E4M4",-2440,1048,208] }
+AP-KEY { "typename": "BlueCard", "tag": "Blue Keycard", "scopename": "E4M4", "cluster": 0, "maps": ["E4M4"] }
+AP-ITEM { "category": "key", "typename": "YellowCard", "tag": "Yellow Keycard", "pos": ["E4M4",96,-476,80] }
+AP-KEY { "typename": "YellowCard", "tag": "Yellow Keycard", "scopename": "E4M4", "cluster": 0, "maps": ["E4M4"] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E4M4",592,-856,96] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E4M4",664,-784,96] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "secret": true, "pos": ["E4M4",-1016,-408,120] }
@@ -4501,9 +4501,9 @@ AP-SECRET { "pos": ["E4M4","secret","sector",221] }
 AP-SECRET { "pos": ["E4M4","secret","sector",236] }
 AP-SECRET { "pos": ["E4M4","secret","sector",296] }
 AP-SECRET { "pos": ["E4M4","secret","sector",350] }
-AP-MAP { "map": "E4M5", "checksum": "f08c8d0eef8fe40b3a0435d8b7f19045", "rank": 4, "monster_count": 247, "info": { "levelnum": 35, "title": "HUSTR_E4M5", "is_lookup": true, "sky1": "SKY4", "sky1speed": "0.000000", "sky2": "SKY4", "sky2speed": "0.000000", "music": "$MUSIC_E4M5", "music_track": "0", "cluster": 0, "flags": [] } }
-AP-ITEM { "category": "key", "typename": "YellowCard", "tag": "YellowCard", "pos": ["E4M5",-288,-160,128] }
-AP-KEY { "tag": "YellowCard", "typename": "YellowCard", "scopename": "E4M5", "cluster": 0, "maps": ["E4M5"] }
+AP-MAP { "map": "E4M5", "levelname": "Engineering Station", "checksum": "f08c8d0eef8fe40b3a0435d8b7f19045", "rank": 4, "monster_count": 247, "info": { "levelnum": 35, "title": "HUSTR_E4M5", "is_lookup": true, "sky1": "SKY4", "sky1speed": "0.000000", "sky2": "SKY4", "sky2speed": "0.000000", "music": "$MUSIC_E4M5", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-ITEM { "category": "key", "typename": "YellowCard", "tag": "Yellow Keycard", "pos": ["E4M5",-288,-160,128] }
+AP-KEY { "typename": "YellowCard", "tag": "Yellow Keycard", "scopename": "E4M5", "cluster": 0, "maps": ["E4M5"] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E4M5",760,1608,208] }
 AP-ITEM { "category": "weapon", "typename": "RocketLauncher", "tag": "missile launcher", "pos": ["E4M5",960,1896,224] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E4M5",904,1896,224] }
@@ -4530,8 +4530,8 @@ AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonu
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["E4M5",496,1136,256] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E4M5",16,1456,-80] }
 AP-ITEM { "category": "big-health", "typename": "Soulsphere", "tag": "Soulsphere", "secret": true, "pos": ["E4M5",-1376,960,32] }
-AP-ITEM { "category": "key", "typename": "RedCard", "tag": "RedCard", "pos": ["E4M5",-1296,1344,216] }
-AP-KEY { "tag": "RedCard", "typename": "RedCard", "scopename": "E4M5", "cluster": 0, "maps": ["E4M5"] }
+AP-ITEM { "category": "key", "typename": "RedCard", "tag": "Red Keycard", "pos": ["E4M5",-1296,1344,216] }
+AP-KEY { "typename": "RedCard", "tag": "Red Keycard", "scopename": "E4M5", "cluster": 0, "maps": ["E4M5"] }
 AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E4M5",-1224,160,32] }
 AP-ITEM { "category": "big-ammo", "typename": "Backpack", "tag": "Backpack", "pos": ["E4M5",-2080,544,128] }
 AP-ITEM { "category": "big-ammo", "typename": "Backpack", "tag": "Backpack", "secret": true, "pos": ["E4M5",944,-616,104] }
@@ -4702,10 +4702,10 @@ AP-SECRET { "pos": ["E4M5","secret","sector",274] }
 AP-SECRET { "pos": ["E4M5","secret","sector",294] }
 AP-SECRET { "pos": ["E4M5","secret","sector",304] }
 AP-SECRET { "pos": ["E4M5","secret","sector",364] }
-AP-MAP { "map": "E4M6", "checksum": "4936163d64afb5efd412831362a6c75b", "rank": 5, "monster_count": 316, "info": { "levelnum": 36, "title": "HUSTR_E4M6", "is_lookup": true, "sky1": "SKY4", "sky1speed": "0.000000", "sky2": "SKY4", "sky2speed": "0.000000", "music": "$MUSIC_E4M6", "music_track": "0", "cluster": 0, "flags": ["specialaction_opendoor", "e4m6special"] } }
+AP-MAP { "map": "E4M6", "levelname": "Command Center", "checksum": "4936163d64afb5efd412831362a6c75b", "rank": 5, "monster_count": 316, "info": { "levelnum": 36, "title": "HUSTR_E4M6", "is_lookup": true, "sky1": "SKY4", "sky1speed": "0.000000", "sky2": "SKY4", "sky2speed": "0.000000", "music": "$MUSIC_E4M6", "music_track": "0", "cluster": 0, "flags": ["specialaction_opendoor", "e4m6special"] } }
 AP-ITEM { "category": "big-armor", "typename": "BlueArmor", "tag": "BlueArmor", "pos": ["E4M6",-32,128,0] }
-AP-ITEM { "category": "key", "typename": "RedCard", "tag": "RedCard", "pos": ["E4M6",-736,672,-32] }
-AP-KEY { "tag": "RedCard", "typename": "RedCard", "scopename": "E4M6", "cluster": 0, "maps": ["E4M6"] }
+AP-ITEM { "category": "key", "typename": "RedCard", "tag": "Red Keycard", "pos": ["E4M6",-736,672,-32] }
+AP-KEY { "typename": "RedCard", "tag": "Red Keycard", "scopename": "E4M6", "cluster": 0, "maps": ["E4M6"] }
 AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E4M6",-576,-536,128] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E4M6",-296,-872,128] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E4M6",-216,-872,128] }
@@ -4745,11 +4745,11 @@ AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonu
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["E4M6",1680,400,0] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["E4M6",1680,432,0] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["E4M6",1680,336,0] }
-AP-ITEM { "category": "key", "typename": "YellowCard", "tag": "YellowCard", "pos": ["E4M6",1120,96,72] }
-AP-KEY { "tag": "YellowCard", "typename": "YellowCard", "scopename": "E4M6", "cluster": 0, "maps": ["E4M6"] }
+AP-ITEM { "category": "key", "typename": "YellowCard", "tag": "Yellow Keycard", "pos": ["E4M6",1120,96,72] }
+AP-KEY { "typename": "YellowCard", "tag": "Yellow Keycard", "scopename": "E4M6", "cluster": 0, "maps": ["E4M6"] }
 AP-ITEM { "category": "powerup", "typename": "BlurSphere", "tag": "BlurSphere", "pos": ["E4M6",-32,1376,-72] }
-AP-ITEM { "category": "key", "typename": "BlueCard", "tag": "BlueCard", "pos": ["E4M6",-448,4640,-24] }
-AP-KEY { "tag": "BlueCard", "typename": "BlueCard", "scopename": "E4M6", "cluster": 0, "maps": ["E4M6"] }
+AP-ITEM { "category": "key", "typename": "BlueCard", "tag": "Blue Keycard", "pos": ["E4M6",-448,4640,-24] }
+AP-KEY { "typename": "BlueCard", "tag": "Blue Keycard", "scopename": "E4M6", "cluster": 0, "maps": ["E4M6"] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E4M6",-168,1512,-72] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E4M6",104,1240,-72] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "secret": true, "pos": ["E4M6",1072,304,-64] }
@@ -4954,7 +4954,7 @@ AP-SECRET { "pos": ["E4M6","secret","sector",268] }
 AP-SECRET { "pos": ["E4M6","secret","sector",270] }
 AP-SECRET { "pos": ["E4M6","secret","sector",372] }
 AP-SECRET { "pos": ["E4M6","secret","sector",432] }
-AP-MAP { "map": "E4M7", "checksum": "2c5f3d054993007e9b8218ed7a0be5f9", "rank": 6, "monster_count": 587, "info": { "levelnum": 37, "title": "HUSTR_E4M7", "is_lookup": true, "sky1": "SKY4", "sky1speed": "0.000000", "sky2": "SKY4", "sky2speed": "0.000000", "music": "$MUSIC_E4M7", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP { "map": "E4M7", "levelname": "Waste Treatment", "checksum": "2c5f3d054993007e9b8218ed7a0be5f9", "rank": 6, "monster_count": 587, "info": { "levelnum": 37, "title": "HUSTR_E4M7", "is_lookup": true, "sky1": "SKY4", "sky1speed": "0.000000", "sky2": "SKY4", "sky2speed": "0.000000", "music": "$MUSIC_E4M7", "music_track": "0", "cluster": 0, "flags": [] } }
 AP-ITEM { "category": "big-armor", "typename": "GreenArmor", "tag": "GreenArmor", "pos": ["E4M7",-416,-160,0] }
 AP-ITEM { "category": "weapon", "typename": "Shotgun", "tag": "pump-action shotgun", "secret": true, "pos": ["E4M7",-456,-160,0] }
 AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos": ["E4M7",-232,-16,0] }
@@ -4962,14 +4962,14 @@ AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos":
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["E4M7",-48,-16,0] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["E4M7",-16,-16,0] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["E4M7",-16,-48,0] }
-AP-ITEM { "category": "key", "typename": "BlueCard", "tag": "BlueCard", "pos": ["E4M7",-2016,-832,120] }
-AP-KEY { "tag": "BlueCard", "typename": "BlueCard", "scopename": "E4M7", "cluster": 0, "maps": ["E4M7"] }
+AP-ITEM { "category": "key", "typename": "BlueCard", "tag": "Blue Keycard", "pos": ["E4M7",-2016,-832,120] }
+AP-KEY { "typename": "BlueCard", "tag": "Blue Keycard", "scopename": "E4M7", "cluster": 0, "maps": ["E4M7"] }
 AP-ITEM { "category": "powerup", "typename": "BlurSphere", "tag": "BlurSphere", "pos": ["E4M7",-1304,-416,64] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E4M7",-1368,-416,64] }
 AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E4M7",-1408,1120,-56] }
 AP-ITEM { "category": "weapon", "typename": "Chaingun", "tag": "minigun", "pos": ["E4M7",-1400,1404,-136] }
-AP-ITEM { "category": "key", "typename": "YellowCard", "tag": "YellowCard", "pos": ["E4M7",808,-2472,48] }
-AP-KEY { "tag": "YellowCard", "typename": "YellowCard", "scopename": "E4M7", "cluster": 0, "maps": ["E4M7"] }
+AP-ITEM { "category": "key", "typename": "YellowCard", "tag": "Yellow Keycard", "pos": ["E4M7",808,-2472,48] }
+AP-KEY { "typename": "YellowCard", "tag": "Yellow Keycard", "scopename": "E4M7", "cluster": 0, "maps": ["E4M7"] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "secret": true, "pos": ["E4M7",-380,776,-72] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "secret": true, "pos": ["E4M7",-1440,-168,56] }
 AP-ITEM { "category": "big-health", "typename": "Soulsphere", "tag": "Soulsphere", "secret": true, "pos": ["E4M7",-1376,-56,56] }
@@ -4978,8 +4978,8 @@ AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "secret": true, "pos": ["E4M7",-3228,-436,288] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "secret": true, "pos": ["E4M7",-2736,-1588,192] }
 AP-ITEM { "category": "weapon", "typename": "PlasmaRifle", "tag": "polaric energy weapon", "pos": ["E4M7",16,1872,-72] }
-AP-ITEM { "category": "key", "typename": "RedCard", "tag": "RedCard", "pos": ["E4M7",-408,3456,-112] }
-AP-KEY { "tag": "RedCard", "typename": "RedCard", "scopename": "E4M7", "cluster": 0, "maps": ["E4M7"] }
+AP-ITEM { "category": "key", "typename": "RedCard", "tag": "Red Keycard", "pos": ["E4M7",-408,3456,-112] }
+AP-KEY { "typename": "RedCard", "tag": "Red Keycard", "scopename": "E4M7", "cluster": 0, "maps": ["E4M7"] }
 AP-ITEM { "category": "big-armor", "typename": "BlueArmor", "tag": "BlueArmor", "pos": ["E4M7",-3424,-160,280] }
 AP-ITEM { "category": "weapon", "typename": "RocketLauncher", "tag": "missile launcher", "pos": ["E4M7",-1280,-160,56] }
 AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E4M7",-1208,136,56] }
@@ -5356,7 +5356,7 @@ AP-SECRET { "pos": ["E4M7","secret","sector",707] }
 AP-SECRET { "pos": ["E4M7","secret","sector",880] }
 AP-SECRET { "pos": ["E4M7","secret","sector",900] }
 AP-SECRET { "pos": ["E4M7","secret","sector",901] }
-AP-MAP { "map": "E4M8", "checksum": "2df7cf4d6b6a8b1e2611bc89ff738614", "rank": 7, "monster_count": 147, "info": { "levelnum": 38, "title": "HUSTR_E4M8", "is_lookup": true, "sky1": "SKY4", "sky1speed": "0.000000", "sky2": "SKY4", "sky2speed": "0.000000", "music": "$MUSIC_E4M8", "music_track": "0", "cluster": 0, "flags": ["specialaction_lowerfloor", "e4m8special"] } }
+AP-MAP { "map": "E4M8", "levelname": "Launch Bay", "checksum": "2df7cf4d6b6a8b1e2611bc89ff738614", "rank": 7, "monster_count": 147, "info": { "levelnum": 38, "title": "HUSTR_E4M8", "is_lookup": true, "sky1": "SKY4", "sky1speed": "0.000000", "sky2": "SKY4", "sky2speed": "0.000000", "music": "$MUSIC_E4M8", "music_track": "0", "cluster": 0, "flags": ["specialaction_lowerfloor", "e4m8special"] } }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E4M8",928,1440,0] }
 AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "skill": [1], "pos": ["E4M8",-1424,160,0] }
 AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "skill": [1], "pos": ["E4M8",-1416,32,0] }
@@ -5549,9 +5549,9 @@ AP-SECRET { "pos": ["E4M8","secret","sector",317] }
 AP-SECRET { "pos": ["E4M8","secret","sector",319] }
 AP-SECRET { "pos": ["E4M8","secret","sector",321] }
 AP-SECRET { "pos": ["E4M8","secret","sector",330] }
-AP-MAP { "map": "E4M9", "checksum": "206fe87016a2aab160cbce940d830636", "rank": 1, "monster_count": 467, "info": { "levelnum": 39, "title": "HUSTR_E4M9", "is_lookup": true, "sky1": "SKY4", "sky1speed": "0.000000", "sky2": "SKY4", "sky2speed": "0.000000", "music": "$MUSIC_E4M9", "music_track": "0", "cluster": 0, "flags": [] } }
-AP-ITEM { "category": "key", "typename": "YellowCard", "tag": "YellowCard", "pos": ["E4M9",2656,192,288] }
-AP-KEY { "tag": "YellowCard", "typename": "YellowCard", "scopename": "E4M9", "cluster": 0, "maps": ["E4M9"] }
+AP-MAP { "map": "E4M9", "levelname": "Operations", "checksum": "206fe87016a2aab160cbce940d830636", "rank": 1, "monster_count": 467, "info": { "levelnum": 39, "title": "HUSTR_E4M9", "is_lookup": true, "sky1": "SKY4", "sky1speed": "0.000000", "sky2": "SKY4", "sky2speed": "0.000000", "music": "$MUSIC_E4M9", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-ITEM { "category": "key", "typename": "YellowCard", "tag": "Yellow Keycard", "pos": ["E4M9",2656,192,288] }
+AP-KEY { "typename": "YellowCard", "tag": "Yellow Keycard", "scopename": "E4M9", "cluster": 0, "maps": ["E4M9"] }
 AP-ITEM { "category": "big-armor", "typename": "GreenArmor", "tag": "GreenArmor", "pos": ["E4M9",-480,992,-72] }
 AP-ITEM { "category": "big-armor", "typename": "BlueArmor", "tag": "BlueArmor", "pos": ["E4M9",-3476,980,-128] }
 AP-ITEM { "category": "powerup", "typename": "RadSuit", "tag": "RadSuit", "secret": true, "pos": ["E4M9",-2240,1192,48] }
@@ -5714,8 +5714,8 @@ AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos":
 AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos": ["E4M9",-808,-1584,0] }
 AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos": ["E4M9",-728,-1584,0] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E4M9",-768,-1616,0] }
-AP-ITEM { "category": "key", "typename": "BlueCard", "tag": "BlueCard", "pos": ["E4M9",-848,100,80] }
-AP-KEY { "tag": "BlueCard", "typename": "BlueCard", "scopename": "E4M9", "cluster": 0, "maps": ["E4M9"] }
+AP-ITEM { "category": "key", "typename": "BlueCard", "tag": "Blue Keycard", "pos": ["E4M9",-848,100,80] }
+AP-KEY { "typename": "BlueCard", "tag": "Blue Keycard", "scopename": "E4M9", "cluster": 0, "maps": ["E4M9"] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E4M9",-1556,460,64] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["E4M9",-960,812,64] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["E4M9",-968,780,64] }
@@ -5775,8 +5775,8 @@ AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonu
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["E4M9",1216,664,16] }
 AP-ITEM { "category": "big-ammo", "typename": "Backpack", "tag": "Backpack", "pos": ["E4M9",-3116,616,0] }
 AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E4M9",1024,872,16] }
-AP-ITEM { "category": "key", "typename": "RedCard", "tag": "RedCard", "pos": ["E4M9",1440,3100,160] }
-AP-KEY { "tag": "RedCard", "typename": "RedCard", "scopename": "E4M9", "cluster": 0, "maps": ["E4M9"] }
+AP-ITEM { "category": "key", "typename": "RedCard", "tag": "Red Keycard", "pos": ["E4M9",1440,3100,160] }
+AP-KEY { "typename": "RedCard", "tag": "Red Keycard", "scopename": "E4M9", "cluster": 0, "maps": ["E4M9"] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "secret": true, "pos": ["E4M9",-2288,1200,48] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "secret": true, "pos": ["E4M9",-2192,1200,48] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "secret": true, "pos": ["E4M9",-2288,1168,48] }

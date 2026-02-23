@@ -2,9 +2,9 @@ AP-SCAN { "flags": [] }
 AP-MAP { "map": "E1M1", "checksum": "943573961606b7342f6a2e97694b1f6d", "rank": 0, "monster_count": 26, "info": { "levelnum": 1, "title": "HUSTR_E1M1", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "D_E1M1", "music_track": "0", "cluster": 0, "flags": [] } }
 AP-ITEM { "category": "weapon", "typename": "RapidZorcher", "tag": "Rapid Zorcher", "pos": ["E1M1",-192,-2016,0] }
 AP-ITEM { "category": "key", "typename": "ChexBlueCard", "tag": "ChexBlueCard", "pos": ["E1M1",-800,-1824,0] }
-AP-KEY { "tag": "ChexBlueCard", "typename": "ChexBlueCard", "scopename": "E1M1", "cluster": 0, "maps": ["E1M1"] }
+AP-KEY { "typename": "ChexBlueCard", "tag": "ChexBlueCard", "scopename": "E1M1", "cluster": 0, "maps": ["E1M1"] }
 AP-ITEM { "category": "key", "typename": "ChexRedCard", "tag": "ChexRedCard", "pos": ["E1M1",800,1056,0] }
-AP-KEY { "tag": "ChexRedCard", "typename": "ChexRedCard", "scopename": "E1M1", "cluster": 0, "maps": ["E1M1"] }
+AP-KEY { "typename": "ChexRedCard", "tag": "ChexRedCard", "scopename": "E1M1", "cluster": 0, "maps": ["E1M1"] }
 AP-ITEM { "category": "medium-health", "typename": "BowlOfVegetables", "tag": "BowlOfVegetables", "secret": true, "pos": ["E1M1",1200,-1128,-64] }
 AP-ITEM { "category": "small-armor", "typename": "SlimeRepellent", "tag": "SlimeRepellent", "pos": ["E1M1",-1760,-1760,0] }
 AP-ITEM { "category": "small-armor", "typename": "SlimeRepellent", "tag": "SlimeRepellent", "pos": ["E1M1",-1664,-1856,0] }
@@ -43,9 +43,9 @@ AP-ITEM { "category": "small-health", "typename": "GlassOfWater", "tag": "GlassO
 AP-ITEM { "category": "medium-ammo", "typename": "LargeZorchPack", "tag": "Large Zorcher Charge", "pos": ["E1M2",512,2880,-228] }
 AP-ITEM { "category": "small-health", "typename": "BowlOfFruit", "tag": "BowlOfFruit", "pos": ["E1M2",768,2880,-228] }
 AP-ITEM { "category": "key", "typename": "ChexYellowCard", "tag": "ChexYellowCard", "pos": ["E1M2",0,-1072,400] }
-AP-KEY { "tag": "ChexYellowCard", "typename": "ChexYellowCard", "scopename": "E1M2", "cluster": 0, "maps": ["E1M2"] }
+AP-KEY { "typename": "ChexYellowCard", "tag": "ChexYellowCard", "scopename": "E1M2", "cluster": 0, "maps": ["E1M2"] }
 AP-ITEM { "category": "key", "typename": "ChexRedCard", "tag": "ChexRedCard", "pos": ["E1M2",2016,2304,600] }
-AP-KEY { "tag": "ChexRedCard", "typename": "ChexRedCard", "scopename": "E1M2", "cluster": 0, "maps": ["E1M2"] }
+AP-KEY { "typename": "ChexRedCard", "tag": "ChexRedCard", "scopename": "E1M2", "cluster": 0, "maps": ["E1M2"] }
 AP-ITEM { "category": "small-armor", "typename": "SlimeRepellent", "tag": "SlimeRepellent", "pos": ["E1M2",-640,1840,-228] }
 AP-ITEM { "category": "weapon", "typename": "RapidZorcher", "tag": "Rapid Zorcher", "pos": ["E1M2",626,2036,-228] }
 AP-ITEM { "category": "medium-ammo", "typename": "MiniZorchPack", "tag": "Mini Zorch Charge", "pos": ["E1M2",608,2432,-228] }
@@ -61,7 +61,7 @@ AP-ITEM { "category": "weapon", "typename": "ZorchPropulsor", "tag": "Zorch Prop
 AP-ITEM { "category": "medium-health", "typename": "BowlOfVegetables", "tag": "BowlOfVegetables", "pos": ["E1M2",2720,1904,600] }
 AP-ITEM { "category": "big-ammo", "typename": "ZorchPack", "tag": "ZorchPack", "pos": ["E1M2",2688,1648,600] }
 AP-ITEM { "category": "key", "typename": "ChexBlueCard", "tag": "ChexBlueCard", "pos": ["E1M2",-2656,1920,600] }
-AP-KEY { "tag": "ChexBlueCard", "typename": "ChexBlueCard", "scopename": "E1M2", "cluster": 0, "maps": ["E1M2"] }
+AP-KEY { "typename": "ChexBlueCard", "tag": "ChexBlueCard", "scopename": "E1M2", "cluster": 0, "maps": ["E1M2"] }
 AP-ITEM { "category": "medium-ammo", "typename": "PhasingZorchPack", "tag": "Phasing Zorcher Charge", "pos": ["E1M2",-1952,2064,600] }
 AP-ITEM { "category": "small-health", "typename": "GlassOfWater", "tag": "GlassOfWater", "pos": ["E1M2",-2608,1216,600] }
 AP-ITEM { "category": "small-health", "typename": "GlassOfWater", "tag": "GlassOfWater", "pos": ["E1M2",-3136,1216,600] }
@@ -121,11 +121,11 @@ AP-SECRET { "pos": ["E1M2","secret","sector",290] }
 AP-SECRET { "pos": ["E1M2","secret","sector",350] }
 AP-MAP { "map": "E1M3", "checksum": "bdc142913023318514c218aba8335c77", "rank": 2, "monster_count": 75, "info": { "levelnum": 3, "title": "HUSTR_E1M3", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "D_E1M3", "music_track": "0", "cluster": 0, "flags": [] } }
 AP-ITEM { "category": "key", "typename": "ChexBlueCard", "tag": "ChexBlueCard", "pos": ["E1M3",376,1880,64] }
-AP-KEY { "tag": "ChexBlueCard", "typename": "ChexBlueCard", "scopename": "E1M3", "cluster": 0, "maps": ["E1M3"] }
+AP-KEY { "typename": "ChexBlueCard", "tag": "ChexBlueCard", "scopename": "E1M3", "cluster": 0, "maps": ["E1M3"] }
 AP-ITEM { "category": "key", "typename": "ChexRedCard", "tag": "ChexRedCard", "pos": ["E1M3",-360,-1632,0] }
-AP-KEY { "tag": "ChexRedCard", "typename": "ChexRedCard", "scopename": "E1M3", "cluster": 0, "maps": ["E1M3"] }
+AP-KEY { "typename": "ChexRedCard", "tag": "ChexRedCard", "scopename": "E1M3", "cluster": 0, "maps": ["E1M3"] }
 AP-ITEM { "category": "key", "typename": "ChexYellowCard", "tag": "ChexYellowCard", "pos": ["E1M3",1336,-576,40] }
-AP-KEY { "tag": "ChexYellowCard", "typename": "ChexYellowCard", "scopename": "E1M3", "cluster": 0, "maps": ["E1M3"] }
+AP-KEY { "typename": "ChexYellowCard", "tag": "ChexYellowCard", "scopename": "E1M3", "cluster": 0, "maps": ["E1M3"] }
 AP-ITEM { "category": "powerup-maprevealer", "typename": "ComputerAreaMap", "tag": "ComputerAreaMap", "pos": ["E1M3",-1152,992,64] }
 AP-ITEM { "category": "small-ammo", "typename": "MiniZorchRecharge", "tag": "Mini Zorch Charge", "pos": ["E1M3",-352,1728,64] }
 AP-ITEM { "category": "small-ammo", "typename": "MiniZorchRecharge", "tag": "Mini Zorch Charge", "pos": ["E1M3",-288,1728,64] }
@@ -183,9 +183,9 @@ AP-SECRET { "pos": ["E1M3","secret","sector",248] }
 AP-MAP { "map": "E1M4", "checksum": "f0101a7ce37654511bcc2092ea33b6e1", "rank": 3, "monster_count": 51, "info": { "levelnum": 4, "title": "HUSTR_E1M4", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "D_E1M4", "music_track": "0", "cluster": 0, "flags": [] } }
 AP-ITEM { "category": "big-ammo", "typename": "ZorchPack", "tag": "ZorchPack", "secret": true, "pos": ["E1M4",224,-272,0] }
 AP-ITEM { "category": "key", "typename": "ChexBlueCard", "tag": "ChexBlueCard", "pos": ["E1M4",1368,-1104,0] }
-AP-KEY { "tag": "ChexBlueCard", "typename": "ChexBlueCard", "scopename": "E1M4", "cluster": 0, "maps": ["E1M4"] }
+AP-KEY { "typename": "ChexBlueCard", "tag": "ChexBlueCard", "scopename": "E1M4", "cluster": 0, "maps": ["E1M4"] }
 AP-ITEM { "category": "key", "typename": "ChexYellowCard", "tag": "ChexYellowCard", "pos": ["E1M4",2176,-320,-192] }
-AP-KEY { "tag": "ChexYellowCard", "typename": "ChexYellowCard", "scopename": "E1M4", "cluster": 0, "maps": ["E1M4"] }
+AP-KEY { "typename": "ChexYellowCard", "tag": "ChexYellowCard", "scopename": "E1M4", "cluster": 0, "maps": ["E1M4"] }
 AP-ITEM { "category": "big-ammo", "typename": "ZorchPack", "tag": "ZorchPack", "pos": ["E1M4",-1456,564,-148] }
 AP-ITEM { "category": "medium-ammo", "typename": "PropulsorZorchPack", "tag": "Propulsor Charge", "pos": ["E1M4",-200,1446,-148] }
 AP-ITEM { "category": "big-health", "typename": "SuperchargeBreakfast", "tag": "SuperchargeBreakfast", "pos": ["E1M4",-1152,1544,-148] }
@@ -242,9 +242,9 @@ AP-ITEM { "category": "small-ammo", "typename": "LargeZorchRecharge", "tag": "La
 AP-ITEM { "category": "small-armor", "typename": "SlimeRepellent", "tag": "SlimeRepellent", "pos": ["E1M5",200,-176,2] }
 AP-ITEM { "category": "small-armor", "typename": "SlimeRepellent", "tag": "SlimeRepellent", "pos": ["E1M5",129,67,10] }
 AP-ITEM { "category": "key", "typename": "ChexBlueCard", "tag": "ChexBlueCard", "pos": ["E1M5",-1568,304,75] }
-AP-KEY { "tag": "ChexBlueCard", "typename": "ChexBlueCard", "scopename": "E1M5", "cluster": 0, "maps": ["E1M5"] }
+AP-KEY { "typename": "ChexBlueCard", "tag": "ChexBlueCard", "scopename": "E1M5", "cluster": 0, "maps": ["E1M5"] }
 AP-ITEM { "category": "key", "typename": "ChexYellowCard", "tag": "ChexYellowCard", "pos": ["E1M5",992,1016,360] }
-AP-KEY { "tag": "ChexYellowCard", "typename": "ChexYellowCard", "scopename": "E1M5", "cluster": 0, "maps": ["E1M5"] }
+AP-KEY { "typename": "ChexYellowCard", "tag": "ChexYellowCard", "scopename": "E1M5", "cluster": 0, "maps": ["E1M5"] }
 AP-ITEM { "category": "medium-health", "typename": "BowlOfVegetables", "tag": "BowlOfVegetables", "pos": ["E1M5",1096,968,360] }
 AP-ITEM { "category": "small-health", "typename": "BowlOfFruit", "tag": "BowlOfFruit", "pos": ["E1M5",1101,1008,360] }
 AP-ITEM { "category": "medium-health", "typename": "BowlOfVegetables", "tag": "BowlOfVegetables", "pos": ["E1M5",2688,-8,60] }
@@ -252,11 +252,11 @@ AP-ITEM { "category": "weapon", "typename": "RapidZorcher", "tag": "Rapid Zorche
 AP-ITEM { "category": "small-health", "typename": "BowlOfFruit", "tag": "BowlOfFruit", "pos": ["E1M5",1276,-800,-200] }
 AP-ITEM { "category": "powerup", "typename": "SlimeProofSuit", "tag": "SlimeProofSuit", "pos": ["E1M5",1000,-800,18] }
 AP-ITEM { "category": "key", "typename": "ChexRedCard", "tag": "ChexRedCard", "pos": ["E1M5",2592,168,60] }
-AP-KEY { "tag": "ChexRedCard", "typename": "ChexRedCard", "scopename": "E1M5", "cluster": 0, "maps": ["E1M5"] }
+AP-KEY { "typename": "ChexRedCard", "tag": "ChexRedCard", "scopename": "E1M5", "cluster": 0, "maps": ["E1M5"] }
 AP-ITEM { "category": "weapon", "typename": "PhasingZorcher", "tag": "Phasing Zorcher", "pos": ["E1M5",2608,352,60] }
 AP-ITEM { "category": "big-armor", "typename": "ChexArmor", "tag": "ChexArmor", "pos": ["E1M5",-1525,253,75] }
 AP-ITEM { "category": "key", "typename": "ChexYellowCard", "tag": "ChexYellowCard", "pos": ["E1M5",-784,792,270] }
-AP-KEY { "tag": "ChexYellowCard", "typename": "ChexYellowCard", "scopename": "E1M5", "cluster": 0, "maps": ["E1M5"] }
+AP-KEY { "typename": "ChexYellowCard", "tag": "ChexYellowCard", "scopename": "E1M5", "cluster": 0, "maps": ["E1M5"] }
 AP-ITEM { "category": "big-ammo", "typename": "ZorchPack", "tag": "ZorchPack", "pos": ["E1M5",4256,-536,150] }
 AP-ITEM { "category": "medium-health", "typename": "BowlOfVegetables", "tag": "BowlOfVegetables", "pos": ["E1M5",3918,2850,-8] }
 AP-ITEM { "category": "medium-health", "typename": "BowlOfVegetables", "tag": "BowlOfVegetables", "pos": ["E1M5",4860,3288,-8] }
@@ -338,14 +338,14 @@ AP-SECRET { "pos": ["E1M5","secret","sector",174] }
 AP-SECRET { "pos": ["E1M5","secret","sector",187] }
 AP-MAP { "map": "E2M1", "checksum": "206a31787ab8b0b197ad9f888d89ff8a", "rank": 0, "monster_count": 41, "info": { "levelnum": 11, "title": "HUSTR_E2M1", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "D_E2M1", "music_track": "0", "cluster": 0, "flags": [] } }
 AP-ITEM { "category": "key", "typename": "ChexRedCard", "tag": "ChexRedCard", "pos": ["E2M1",-674,-480,64] }
-AP-KEY { "tag": "ChexRedCard", "typename": "ChexRedCard", "scopename": "E2M1", "cluster": 0, "maps": ["E2M1"] }
+AP-KEY { "typename": "ChexRedCard", "tag": "ChexRedCard", "scopename": "E2M1", "cluster": 0, "maps": ["E2M1"] }
 AP-ITEM { "category": "big-ammo", "typename": "ZorchPack", "tag": "ZorchPack", "pos": ["E2M1",32,992,8] }
 AP-ITEM { "category": "big-armor", "typename": "SuperChexArmor", "tag": "SuperChexArmor", "secret": true, "pos": ["E2M1",-1696,1952,32] }
 AP-ITEM { "category": "big-health", "typename": "SuperchargeBreakfast", "tag": "SuperchargeBreakfast", "secret": true, "pos": ["E2M1",-1888,1952,32] }
 AP-ITEM { "category": "weapon", "typename": "PhasingZorcher", "tag": "Phasing Zorcher", "secret": true, "pos": ["E2M1",-1824,1920,32] }
 AP-ITEM { "category": "medium-ammo", "typename": "PhasingZorchPack", "tag": "Phasing Zorcher Charge", "secret": true, "pos": ["E2M1",-1760,1920,32] }
 AP-ITEM { "category": "key", "typename": "ChexBlueCard", "tag": "ChexBlueCard", "pos": ["E2M1",-160,2304,24] }
-AP-KEY { "tag": "ChexBlueCard", "typename": "ChexBlueCard", "scopename": "E2M1", "cluster": 0, "maps": ["E2M1"] }
+AP-KEY { "typename": "ChexBlueCard", "tag": "ChexBlueCard", "scopename": "E2M1", "cluster": 0, "maps": ["E2M1"] }
 AP-ITEM { "category": "big-health", "typename": "SuperchargeBreakfast", "tag": "SuperchargeBreakfast", "pos": ["E2M1",832,2816,64] }
 AP-ITEM { "category": "weapon", "typename": "ZorchPropulsor", "tag": "Zorch Propulsor", "pos": ["E2M1",640,2816,64] }
 AP-ITEM { "category": "medium-ammo", "typename": "PropulsorZorchPack", "tag": "Propulsor Charge", "pos": ["E2M1",768,2816,64] }
@@ -377,7 +377,7 @@ AP-SECRET { "pos": ["E2M1","secret","sector",82] }
 AP-SECRET { "pos": ["E2M1","secret","sector",84] }
 AP-MAP { "map": "E2M2", "checksum": "a1bf76ae9a08f022e3b04853e8b15a31", "rank": 1, "monster_count": 65, "info": { "levelnum": 12, "title": "HUSTR_E2M2", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "D_E2M2", "music_track": "0", "cluster": 0, "flags": [] } }
 AP-ITEM { "category": "key", "typename": "ChexRedCard", "tag": "ChexRedCard", "pos": ["E2M2",-8736,-5352,-105] }
-AP-KEY { "tag": "ChexRedCard", "typename": "ChexRedCard", "scopename": "E2M2", "cluster": 0, "maps": ["E2M2"] }
+AP-KEY { "typename": "ChexRedCard", "tag": "ChexRedCard", "scopename": "E2M2", "cluster": 0, "maps": ["E2M2"] }
 AP-ITEM { "category": "small-health", "typename": "BowlOfFruit", "tag": "BowlOfFruit", "pos": ["E2M2",-7536,-5336,0] }
 AP-ITEM { "category": "medium-health", "typename": "BowlOfVegetables", "tag": "BowlOfVegetables", "pos": ["E2M2",-6112,-7008,0] }
 AP-ITEM { "category": "small-armor", "typename": "SlimeRepellent", "tag": "SlimeRepellent", "pos": ["E2M2",-6176,-7008,0] }
@@ -388,9 +388,9 @@ AP-ITEM { "category": "medium-ammo", "typename": "LargeZorchPack", "tag": "Large
 AP-ITEM { "category": "small-health", "typename": "BowlOfFruit", "tag": "BowlOfFruit", "pos": ["E2M2",-7520,-7664,0] }
 AP-ITEM { "category": "medium-ammo", "typename": "MiniZorchPack", "tag": "Mini Zorch Charge", "pos": ["E2M2",-5472,-5600,0] }
 AP-ITEM { "category": "key", "typename": "ChexYellowCard", "tag": "ChexYellowCard", "pos": ["E2M2",-6308,-7168,95] }
-AP-KEY { "tag": "ChexYellowCard", "typename": "ChexYellowCard", "scopename": "E2M2", "cluster": 0, "maps": ["E2M2"] }
+AP-KEY { "typename": "ChexYellowCard", "tag": "ChexYellowCard", "scopename": "E2M2", "cluster": 0, "maps": ["E2M2"] }
 AP-ITEM { "category": "key", "typename": "ChexBlueCard", "tag": "ChexBlueCard", "pos": ["E2M2",-7168,-6496,0] }
-AP-KEY { "tag": "ChexBlueCard", "typename": "ChexBlueCard", "scopename": "E2M2", "cluster": 0, "maps": ["E2M2"] }
+AP-KEY { "typename": "ChexBlueCard", "tag": "ChexBlueCard", "scopename": "E2M2", "cluster": 0, "maps": ["E2M2"] }
 AP-ITEM { "category": "small-ammo", "typename": "MiniZorchRecharge", "tag": "Mini Zorch Charge", "pos": ["E2M2",-8320,-8064,-115] }
 AP-ITEM { "category": "small-ammo", "typename": "MiniZorchRecharge", "tag": "Mini Zorch Charge", "pos": ["E2M2",-8192,-8064,-115] }
 AP-ITEM { "category": "small-ammo", "typename": "MiniZorchRecharge", "tag": "Mini Zorch Charge", "pos": ["E2M2",-8064,-8064,-115] }
@@ -420,12 +420,12 @@ AP-SECRET { "pos": ["E2M2","secret","sector",874] }
 AP-SECRET { "pos": ["E2M2","secret","sector",882] }
 AP-MAP { "map": "E2M3", "checksum": "602f75a3d5b307a25c903f646d29879c", "rank": 2, "monster_count": 57, "info": { "levelnum": 13, "title": "HUSTR_E2M3", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "D_E2M3", "music_track": "0", "cluster": 0, "flags": [] } }
 AP-ITEM { "category": "key", "typename": "ChexBlueCard", "tag": "ChexBlueCard", "pos": ["E2M3",256,320,0] }
-AP-KEY { "tag": "ChexBlueCard", "typename": "ChexBlueCard", "scopename": "E2M3", "cluster": 0, "maps": ["E2M3"] }
+AP-KEY { "typename": "ChexBlueCard", "tag": "ChexBlueCard", "scopename": "E2M3", "cluster": 0, "maps": ["E2M3"] }
 AP-ITEM { "category": "big-health", "typename": "SuperchargeBreakfast", "tag": "SuperchargeBreakfast", "pos": ["E2M3",-1504,-1128,0] }
 AP-ITEM { "category": "key", "typename": "ChexRedCard", "tag": "ChexRedCard", "pos": ["E2M3",-736,-1312,0] }
-AP-KEY { "tag": "ChexRedCard", "typename": "ChexRedCard", "scopename": "E2M3", "cluster": 0, "maps": ["E2M3"] }
+AP-KEY { "typename": "ChexRedCard", "tag": "ChexRedCard", "scopename": "E2M3", "cluster": 0, "maps": ["E2M3"] }
 AP-ITEM { "category": "key", "typename": "ChexYellowCard", "tag": "ChexYellowCard", "pos": ["E2M3",1408,-576,320] }
-AP-KEY { "tag": "ChexYellowCard", "typename": "ChexYellowCard", "scopename": "E2M3", "cluster": 0, "maps": ["E2M3"] }
+AP-KEY { "typename": "ChexYellowCard", "tag": "ChexYellowCard", "scopename": "E2M3", "cluster": 0, "maps": ["E2M3"] }
 AP-ITEM { "category": "weapon", "typename": "LAZDevice", "tag": "LAZ Device", "secret": true, "pos": ["E2M3",-512,-1344,192] }
 AP-ITEM { "category": "big-ammo", "typename": "ZorchPack", "tag": "ZorchPack", "secret": true, "pos": ["E2M3",-1760,-1572,0] }
 AP-ITEM { "category": "weapon", "typename": "LargeZorcher", "tag": "Large Zorcher", "pos": ["E2M3",-440,1704,-256] }
@@ -474,11 +474,11 @@ AP-SECRET { "pos": ["E2M3","secret","sector",69] }
 AP-SECRET { "pos": ["E2M3","secret","sector",121] }
 AP-MAP { "map": "E2M4", "checksum": "a761f10a69fb5490c293b0c406c0d049", "rank": 3, "monster_count": 76, "info": { "levelnum": 14, "title": "HUSTR_E2M4", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "D_E2M4", "music_track": "0", "cluster": 0, "flags": [] } }
 AP-ITEM { "category": "key", "typename": "ChexRedCard", "tag": "ChexRedCard", "pos": ["E2M4",-160,1056,584] }
-AP-KEY { "tag": "ChexRedCard", "typename": "ChexRedCard", "scopename": "E2M4", "cluster": 0, "maps": ["E2M4"] }
+AP-KEY { "typename": "ChexRedCard", "tag": "ChexRedCard", "scopename": "E2M4", "cluster": 0, "maps": ["E2M4"] }
 AP-ITEM { "category": "key", "typename": "ChexBlueCard", "tag": "ChexBlueCard", "pos": ["E2M4",-1928,-1256,32] }
-AP-KEY { "tag": "ChexBlueCard", "typename": "ChexBlueCard", "scopename": "E2M4", "cluster": 0, "maps": ["E2M4"] }
+AP-KEY { "typename": "ChexBlueCard", "tag": "ChexBlueCard", "scopename": "E2M4", "cluster": 0, "maps": ["E2M4"] }
 AP-ITEM { "category": "key", "typename": "ChexYellowCard", "tag": "ChexYellowCard", "pos": ["E2M4",544,480,400] }
-AP-KEY { "tag": "ChexYellowCard", "typename": "ChexYellowCard", "scopename": "E2M4", "cluster": 0, "maps": ["E2M4"] }
+AP-KEY { "typename": "ChexYellowCard", "tag": "ChexYellowCard", "scopename": "E2M4", "cluster": 0, "maps": ["E2M4"] }
 AP-ITEM { "category": "big-ammo", "typename": "ZorchPack", "tag": "ZorchPack", "secret": true, "pos": ["E2M4",480,412,0] }
 AP-ITEM { "category": "weapon", "typename": "ZorchPropulsor", "tag": "Zorch Propulsor", "secret": true, "pos": ["E2M4",-1376,144,128] }
 AP-ITEM { "category": "weapon", "typename": "PhasingZorcher", "tag": "Phasing Zorcher", "pos": ["E2M4",-1836,-4,528] }
@@ -543,9 +543,9 @@ AP-SECRET { "pos": ["E2M4","secret","sector",69] }
 AP-SECRET { "pos": ["E2M4","secret","sector",110] }
 AP-MAP { "map": "E2M5", "checksum": "3ea55e57d9909d51570577ec8ff7d9f9", "rank": 4, "monster_count": 137, "info": { "levelnum": 15, "title": "HUSTR_E2M5", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "D_E2M5", "music_track": "0", "cluster": 0, "flags": [] } }
 AP-ITEM { "category": "key", "typename": "ChexBlueCard", "tag": "ChexBlueCard", "pos": ["E2M5",-1024,-1152,15] }
-AP-KEY { "tag": "ChexBlueCard", "typename": "ChexBlueCard", "scopename": "E2M5", "cluster": 0, "maps": ["E2M5"] }
+AP-KEY { "typename": "ChexBlueCard", "tag": "ChexBlueCard", "scopename": "E2M5", "cluster": 0, "maps": ["E2M5"] }
 AP-ITEM { "category": "key", "typename": "ChexRedCard", "tag": "ChexRedCard", "pos": ["E2M5",2720,-1184,30] }
-AP-KEY { "tag": "ChexRedCard", "typename": "ChexRedCard", "scopename": "E2M5", "cluster": 0, "maps": ["E2M5"] }
+AP-KEY { "typename": "ChexRedCard", "tag": "ChexRedCard", "scopename": "E2M5", "cluster": 0, "maps": ["E2M5"] }
 AP-ITEM { "category": "medium-health", "typename": "BowlOfVegetables", "tag": "BowlOfVegetables", "secret": true, "pos": ["E2M5",3376,-1536,30] }
 AP-ITEM { "category": "weapon", "typename": "RapidZorcher", "tag": "Rapid Zorcher", "pos": ["E2M5",672,-1568,20] }
 AP-ITEM { "category": "big-health", "typename": "SuperchargeBreakfast", "tag": "SuperchargeBreakfast", "secret": true, "pos": ["E2M5",4672,-2628,-100] }
@@ -592,13 +592,13 @@ AP-ITEM { "category": "small-health", "typename": "BowlOfFruit", "tag": "BowlOfF
 AP-ITEM { "category": "medium-health", "typename": "BowlOfVegetables", "tag": "BowlOfVegetables", "pos": ["E2M5",2592,-1472,0] }
 AP-ITEM { "category": "small-health", "typename": "BowlOfFruit", "tag": "BowlOfFruit", "pos": ["E2M5",2080,-2752,0] }
 AP-ITEM { "category": "key", "typename": "ChexYellowCard", "tag": "ChexYellowCard", "pos": ["E2M5",2272,544,30] }
-AP-KEY { "tag": "ChexYellowCard", "typename": "ChexYellowCard", "scopename": "E2M5", "cluster": 0, "maps": ["E2M5"] }
+AP-KEY { "typename": "ChexYellowCard", "tag": "ChexYellowCard", "scopename": "E2M5", "cluster": 0, "maps": ["E2M5"] }
 AP-SECRET { "pos": ["E2M5","secret","sector",129] }
 AP-SECRET { "pos": ["E2M5","secret","sector",189] }
 AP-SECRET { "pos": ["E2M5","secret","sector",219] }
 AP-MAP { "map": "E3M1", "checksum": "6cc2053b05911e97307506392bcd7b8d", "rank": 0, "monster_count": 53, "info": { "levelnum": 21, "title": "HUSTR_E3M1", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "D_E3M1", "music_track": "0", "cluster": 0, "flags": [] } }
 AP-ITEM { "category": "key", "typename": "ChexBlueCard", "tag": "ChexBlueCard", "pos": ["E3M1",-2848,1536,0] }
-AP-KEY { "tag": "ChexBlueCard", "typename": "ChexBlueCard", "scopename": "E3M1", "cluster": 0, "maps": ["E3M1"] }
+AP-KEY { "typename": "ChexBlueCard", "tag": "ChexBlueCard", "scopename": "E3M1", "cluster": 0, "maps": ["E3M1"] }
 AP-ITEM { "category": "small-health", "typename": "GlassOfWater", "tag": "GlassOfWater", "skill": [1, 2], "pos": ["E3M1",-776,2560,0] }
 AP-ITEM { "category": "small-armor", "typename": "SlimeRepellent", "tag": "SlimeRepellent", "skill": [1, 2], "pos": ["E3M1",-2474,-300,100] }
 AP-ITEM { "category": "small-health", "typename": "GlassOfWater", "tag": "GlassOfWater", "skill": [1], "pos": ["E3M1",-2208,-56,100] }
@@ -609,10 +609,10 @@ AP-ITEM { "category": "small-armor", "typename": "SlimeRepellent", "tag": "Slime
 AP-ITEM { "category": "small-armor", "typename": "SlimeRepellent", "tag": "SlimeRepellent", "pos": ["E3M1",-752,1016,180] }
 AP-ITEM { "category": "weapon", "typename": "RapidZorcher", "tag": "Rapid Zorcher", "skill": [1], "pos": ["E3M1",-2176,2360,100] }
 AP-ITEM { "category": "key", "typename": "ChexYellowCard", "tag": "ChexYellowCard", "pos": ["E3M1",-3584,3360,200] }
-AP-KEY { "tag": "ChexYellowCard", "typename": "ChexYellowCard", "scopename": "E3M1", "cluster": 0, "maps": ["E3M1"] }
+AP-KEY { "typename": "ChexYellowCard", "tag": "ChexYellowCard", "scopename": "E3M1", "cluster": 0, "maps": ["E3M1"] }
 AP-ITEM { "category": "big-armor", "typename": "ChexArmor", "tag": "ChexArmor", "secret": true, "pos": ["E3M1",-3184,4064,13] }
 AP-ITEM { "category": "key", "typename": "ChexRedCard", "tag": "ChexRedCard", "pos": ["E3M1",-3354,3646,200] }
-AP-KEY { "tag": "ChexRedCard", "typename": "ChexRedCard", "scopename": "E3M1", "cluster": 0, "maps": ["E3M1"] }
+AP-KEY { "typename": "ChexRedCard", "tag": "ChexRedCard", "scopename": "E3M1", "cluster": 0, "maps": ["E3M1"] }
 AP-ITEM { "category": "small-health", "typename": "GlassOfWater", "tag": "GlassOfWater", "skill": [1, 2], "pos": ["E3M1",-680,2560,0] }
 AP-ITEM { "category": "small-armor", "typename": "SlimeRepellent", "tag": "SlimeRepellent", "pos": ["E3M1",-128,752,180] }
 AP-ITEM { "category": "medium-ammo", "typename": "LargeZorchPack", "tag": "Large Zorcher Charge", "pos": ["E3M1",-1824,3096,0] }
@@ -657,13 +657,13 @@ AP-SECRET { "pos": ["E3M1","secret","sector",130] }
 AP-SECRET { "pos": ["E3M1","secret","sector",210] }
 AP-MAP { "map": "E3M2", "checksum": "fdc7b0dc4df6eb4f88674f8084bb031d", "rank": 1, "monster_count": 133, "info": { "levelnum": 22, "title": "HUSTR_E3M2", "is_lookup": true, "sky1": "CJSKY3A", "sky1speed": "0.000000", "sky2": "CJSKY3A", "sky2speed": "0.000000", "music": "D_E3M2", "music_track": "0", "cluster": 0, "flags": [] } }
 AP-ITEM { "category": "key", "typename": "ChexRedCard", "tag": "ChexRedCard", "pos": ["E3M2",-4320,-7056,128] }
-AP-KEY { "tag": "ChexRedCard", "typename": "ChexRedCard", "scopename": "E3M2", "cluster": 0, "maps": ["E3M2"] }
+AP-KEY { "typename": "ChexRedCard", "tag": "ChexRedCard", "scopename": "E3M2", "cluster": 0, "maps": ["E3M2"] }
 AP-ITEM { "category": "weapon", "typename": "LargeZorcher", "tag": "Large Zorcher", "pos": ["E3M2",-5120,-6208,-13] }
 AP-ITEM { "category": "weapon", "typename": "RapidZorcher", "tag": "Rapid Zorcher", "pos": ["E3M2",-4352,-6208,-13] }
 AP-ITEM { "category": "big-armor", "typename": "ChexArmor", "tag": "ChexArmor", "pos": ["E3M2",-4352,-5696,-13] }
 AP-ITEM { "category": "medium-health", "typename": "BowlOfVegetables", "tag": "BowlOfVegetables", "pos": ["E3M2",-5120,-5696,-13] }
 AP-ITEM { "category": "key", "typename": "ChexBlueCard", "tag": "ChexBlueCard", "pos": ["E3M2",-5204,-4892,20] }
-AP-KEY { "tag": "ChexBlueCard", "typename": "ChexBlueCard", "scopename": "E3M2", "cluster": 0, "maps": ["E3M2"] }
+AP-KEY { "typename": "ChexBlueCard", "tag": "ChexBlueCard", "scopename": "E3M2", "cluster": 0, "maps": ["E3M2"] }
 AP-ITEM { "category": "medium-health", "typename": "BowlOfVegetables", "tag": "BowlOfVegetables", "pos": ["E3M2",-4272,-4896,20] }
 AP-ITEM { "category": "medium-health", "typename": "BowlOfVegetables", "tag": "BowlOfVegetables", "pos": ["E3M2",-2532,-3036,-40] }
 AP-ITEM { "category": "medium-ammo", "typename": "MiniZorchPack", "tag": "Mini Zorch Charge", "pos": ["E3M2",-2474,-3038,-40] }
@@ -676,7 +676,7 @@ AP-ITEM { "category": "small-health", "typename": "BowlOfFruit", "tag": "BowlOfF
 AP-ITEM { "category": "small-ammo", "typename": "LargeZorchRecharge", "tag": "Large Zorcher Charge", "pos": ["E3M2",-3200,-4928,0] }
 AP-ITEM { "category": "small-ammo", "typename": "LargeZorchRecharge", "tag": "Large Zorcher Charge", "pos": ["E3M2",-3264,-4928,0] }
 AP-ITEM { "category": "key", "typename": "ChexYellowCard", "tag": "ChexYellowCard", "pos": ["E3M2",-2560,-4124,0] }
-AP-KEY { "tag": "ChexYellowCard", "typename": "ChexYellowCard", "scopename": "E3M2", "cluster": 0, "maps": ["E3M2"] }
+AP-KEY { "typename": "ChexYellowCard", "tag": "ChexYellowCard", "scopename": "E3M2", "cluster": 0, "maps": ["E3M2"] }
 AP-ITEM { "category": "big-health", "typename": "SuperchargeBreakfast", "tag": "SuperchargeBreakfast", "pos": ["E3M2",-4320,-6976,128] }
 AP-ITEM { "category": "small-armor", "typename": "SlimeRepellent", "tag": "SlimeRepellent", "pos": ["E3M2",-4608,-7184,0] }
 AP-ITEM { "category": "small-armor", "typename": "SlimeRepellent", "tag": "SlimeRepellent", "pos": ["E3M2",-4528,-7184,0] }
@@ -706,16 +706,16 @@ AP-SECRET { "pos": ["E3M2","secret","sector",308] }
 AP-SECRET { "pos": ["E3M2","secret","sector",319] }
 AP-MAP { "map": "E3M3", "checksum": "5c3df0f699d679183c7f218437350b31", "rank": 2, "monster_count": 110, "info": { "levelnum": 23, "title": "HUSTR_E3M3", "is_lookup": true, "sky1": "CJSKY3A", "sky1speed": "0.000000", "sky2": "CJSKY3A", "sky2speed": "0.000000", "music": "D_E3M3", "music_track": "0", "cluster": 0, "flags": [] } }
 AP-ITEM { "category": "key", "typename": "ChexBlueCard", "tag": "ChexBlueCard", "pos": ["E3M3",-1768,-3192,10] }
-AP-KEY { "tag": "ChexBlueCard", "typename": "ChexBlueCard", "scopename": "E3M3", "cluster": 0, "maps": ["E3M3"] }
+AP-KEY { "typename": "ChexBlueCard", "tag": "ChexBlueCard", "scopename": "E3M3", "cluster": 0, "maps": ["E3M3"] }
 AP-ITEM { "category": "small-ammo", "typename": "PropulsorZorch", "tag": "Propulsor Charge", "pos": ["E3M3",2888,-2136,-128] }
 AP-ITEM { "category": "small-ammo", "typename": "PropulsorZorch", "tag": "Propulsor Charge", "pos": ["E3M3",3024,-2168,-128] }
 AP-ITEM { "category": "key", "typename": "ChexRedCard", "tag": "ChexRedCard", "pos": ["E3M3",1504,-1568,140] }
-AP-KEY { "tag": "ChexRedCard", "typename": "ChexRedCard", "scopename": "E3M3", "cluster": 0, "maps": ["E3M3"] }
+AP-KEY { "typename": "ChexRedCard", "tag": "ChexRedCard", "scopename": "E3M3", "cluster": 0, "maps": ["E3M3"] }
 AP-ITEM { "category": "big-armor", "typename": "ChexArmor", "tag": "ChexArmor", "pos": ["E3M3",1504,-1760,140] }
 AP-ITEM { "category": "weapon", "typename": "LAZDevice", "tag": "LAZ Device", "secret": true, "pos": ["E3M3",512,-1248,140] }
 AP-ITEM { "category": "medium-ammo", "typename": "PhasingZorchPack", "tag": "Phasing Zorcher Charge", "secret": true, "pos": ["E3M3",320,-1248,140] }
 AP-ITEM { "category": "key", "typename": "ChexYellowCard", "tag": "ChexYellowCard", "pos": ["E3M3",828,-3048,-90] }
-AP-KEY { "tag": "ChexYellowCard", "typename": "ChexYellowCard", "scopename": "E3M3", "cluster": 0, "maps": ["E3M3"] }
+AP-KEY { "typename": "ChexYellowCard", "tag": "ChexYellowCard", "scopename": "E3M3", "cluster": 0, "maps": ["E3M3"] }
 AP-ITEM { "category": "medium-ammo", "typename": "PhasingZorchPack", "tag": "Phasing Zorcher Charge", "pos": ["E3M3",-1760,-5504,-20] }
 AP-ITEM { "category": "medium-ammo", "typename": "LargeZorchPack", "tag": "Large Zorcher Charge", "pos": ["E3M3",-2400,-5504,-20] }
 AP-ITEM { "category": "weapon", "typename": "LargeZorcher", "tag": "Large Zorcher", "pos": ["E3M3",-2336,-5504,-20] }
@@ -780,7 +780,7 @@ AP-SECRET { "pos": ["E3M3","secret","sector",169] }
 AP-SECRET { "pos": ["E3M3","secret","sector",347] }
 AP-MAP { "map": "E3M4", "checksum": "083e05cacab0e4616e0ea4cf45823c47", "rank": 3, "monster_count": 125, "info": { "levelnum": 24, "title": "HUSTR_E3M4", "is_lookup": true, "sky1": "CJSKY3A", "sky1speed": "0.000000", "sky2": "CJSKY3A", "sky2speed": "0.000000", "music": "D_E3M4", "music_track": "0", "cluster": 0, "flags": [] } }
 AP-ITEM { "category": "key", "typename": "ChexRedCard", "tag": "ChexRedCard", "pos": ["E3M4",-158,102,272] }
-AP-KEY { "tag": "ChexRedCard", "typename": "ChexRedCard", "scopename": "E3M4", "cluster": 0, "maps": ["E3M4"] }
+AP-KEY { "typename": "ChexRedCard", "tag": "ChexRedCard", "scopename": "E3M4", "cluster": 0, "maps": ["E3M4"] }
 AP-ITEM { "category": "big-ammo", "typename": "ZorchPack", "tag": "ZorchPack", "pos": ["E3M4",408,-816,172] }
 AP-ITEM { "category": "medium-ammo", "typename": "MiniZorchPack", "tag": "Mini Zorch Charge", "pos": ["E3M4",504,-816,172] }
 AP-ITEM { "category": "medium-ammo", "typename": "MiniZorchPack", "tag": "Mini Zorch Charge", "pos": ["E3M4",544,-816,172] }
@@ -793,9 +793,9 @@ AP-ITEM { "category": "small-armor", "typename": "SlimeRepellent", "tag": "Slime
 AP-ITEM { "category": "small-armor", "typename": "SlimeRepellent", "tag": "SlimeRepellent", "pos": ["E3M4",2232,-2400,300] }
 AP-ITEM { "category": "small-armor", "typename": "SlimeRepellent", "tag": "SlimeRepellent", "pos": ["E3M4",2296,-2384,300] }
 AP-ITEM { "category": "key", "typename": "ChexBlueCard", "tag": "ChexBlueCard", "pos": ["E3M4",-1728,-2832,0] }
-AP-KEY { "tag": "ChexBlueCard", "typename": "ChexBlueCard", "scopename": "E3M4", "cluster": 0, "maps": ["E3M4"] }
+AP-KEY { "typename": "ChexBlueCard", "tag": "ChexBlueCard", "scopename": "E3M4", "cluster": 0, "maps": ["E3M4"] }
 AP-ITEM { "category": "key", "typename": "ChexYellowCard", "tag": "ChexYellowCard", "pos": ["E3M4",-1924,-1620,380] }
-AP-KEY { "tag": "ChexYellowCard", "typename": "ChexYellowCard", "scopename": "E3M4", "cluster": 0, "maps": ["E3M4"] }
+AP-KEY { "typename": "ChexYellowCard", "tag": "ChexYellowCard", "scopename": "E3M4", "cluster": 0, "maps": ["E3M4"] }
 AP-ITEM { "category": "small-armor", "typename": "SlimeRepellent", "tag": "SlimeRepellent", "secret": true, "pos": ["E3M4",-2104,-2460,245] }
 AP-ITEM { "category": "small-armor", "typename": "SlimeRepellent", "tag": "SlimeRepellent", "secret": true, "pos": ["E3M4",-1984,-2460,245] }
 AP-ITEM { "category": "small-armor", "typename": "SlimeRepellent", "tag": "SlimeRepellent", "secret": true, "pos": ["E3M4",-2108,-2408,245] }
@@ -847,7 +847,7 @@ AP-MAP { "map": "E3M5", "checksum": "a696a8d5a3e2ffeaaa1212ae3b30f970", "rank": 
 AP-ITEM { "category": "small-ammo", "typename": "PhasingZorch", "tag": "Phasing Zorcher Charge", "skill": [1, 2], "pos": ["E3M5",-2416,216,0] }
 AP-ITEM { "category": "small-ammo", "typename": "PhasingZorch", "tag": "Phasing Zorcher Charge", "skill": [1, 2], "pos": ["E3M5",-1872,272,0] }
 AP-ITEM { "category": "key", "typename": "BlueFlemKey", "tag": "BlueFlemKey", "pos": ["E3M5",-1896,1880,300] }
-AP-KEY { "tag": "BlueFlemKey", "typename": "BlueFlemKey", "scopename": "E3M5", "cluster": 0, "maps": ["E3M5"] }
+AP-KEY { "typename": "BlueFlemKey", "tag": "BlueFlemKey", "scopename": "E3M5", "cluster": 0, "maps": ["E3M5"] }
 AP-ITEM { "category": "weapon", "typename": "ZorchPropulsor", "tag": "Zorch Propulsor", "secret": true, "pos": ["E3M5",-1544,1504,390] }
 AP-ITEM { "category": "small-armor", "typename": "SlimeRepellent", "tag": "SlimeRepellent", "secret": true, "pos": ["E3M5",-1520,1464,390] }
 AP-ITEM { "category": "small-armor", "typename": "SlimeRepellent", "tag": "SlimeRepellent", "secret": true, "pos": ["E3M5",-1480,1464,390] }
@@ -862,7 +862,7 @@ AP-ITEM { "category": "small-health", "typename": "GlassOfWater", "tag": "GlassO
 AP-ITEM { "category": "small-health", "typename": "GlassOfWater", "tag": "GlassOfWater", "pos": ["E3M5",-632,2528,0] }
 AP-ITEM { "category": "small-health", "typename": "GlassOfWater", "tag": "GlassOfWater", "pos": ["E3M5",-536,2328,0] }
 AP-ITEM { "category": "key", "typename": "YellowFlemKey", "tag": "YellowFlemKey", "pos": ["E3M5",-1416,3208,0] }
-AP-KEY { "tag": "YellowFlemKey", "typename": "YellowFlemKey", "scopename": "E3M5", "cluster": 0, "maps": ["E3M5"] }
+AP-KEY { "typename": "YellowFlemKey", "tag": "YellowFlemKey", "scopename": "E3M5", "cluster": 0, "maps": ["E3M5"] }
 AP-ITEM { "category": "small-ammo", "typename": "PropulsorZorch", "tag": "Propulsor Charge", "pos": ["E3M5",-1400,3296,0] }
 AP-ITEM { "category": "small-ammo", "typename": "PropulsorZorch", "tag": "Propulsor Charge", "pos": ["E3M5",-1392,3128,0] }
 AP-ITEM { "category": "medium-health", "typename": "BowlOfVegetables", "tag": "BowlOfVegetables", "pos": ["E3M5",-1488,3208,0] }
@@ -884,7 +884,7 @@ AP-ITEM { "category": "small-ammo", "typename": "PhasingZorch", "tag": "Phasing 
 AP-ITEM { "category": "small-ammo", "typename": "PropulsorZorch", "tag": "Propulsor Charge", "pos": ["E3M5",-5864,1360,128] }
 AP-ITEM { "category": "small-ammo", "typename": "PhasingZorch", "tag": "Phasing Zorcher Charge", "pos": ["E3M5",-5768,1384,128] }
 AP-ITEM { "category": "key", "typename": "RedFlemKey", "tag": "RedFlemKey", "pos": ["E3M5",-2956,3836,40] }
-AP-KEY { "tag": "RedFlemKey", "typename": "RedFlemKey", "scopename": "E3M5", "cluster": 0, "maps": ["E3M5"] }
+AP-KEY { "typename": "RedFlemKey", "tag": "RedFlemKey", "scopename": "E3M5", "cluster": 0, "maps": ["E3M5"] }
 AP-ITEM { "category": "weapon", "typename": "PhasingZorcher", "tag": "Phasing Zorcher", "pos": ["E3M5",-2648,1592,300] }
 AP-ITEM { "category": "small-ammo", "typename": "PhasingZorch", "tag": "Phasing Zorcher Charge", "pos": ["E3M5",-2584,1568,300] }
 AP-ITEM { "category": "small-ammo", "typename": "PhasingZorch", "tag": "Phasing Zorcher Charge", "pos": ["E3M5",-2664,1664,300] }
