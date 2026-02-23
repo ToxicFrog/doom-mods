@@ -19,7 +19,7 @@ if [[ $PRUNE ]]; then
 fi
 
 make
-gzdoom \
+uzdoom \
   -iwad /ancilla/installs/games/PC/DOOM/IWAD/${IWAD} \
   -file release/gzArchipelago-latest.pk3 \
   "$@" \

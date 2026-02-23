@@ -9,7 +9,7 @@ IWAD=doom.wad tools/ap-scan "Doom"
 tools/ap-scan "Doom 2"
 IWAD=freedoom1.wad tools/ap-scan "FreeDoom"
 IWAD=freedoom2.wad tools/ap-scan "FreeDoom 2"
-IWAD=heretic.wad tools/ap-scan "Heretic"
+IWAD=heretic.wad PRUNE='E6M1' tools/ap-scan "Heretic"
 IWAD=plutonia.wad tools/ap-scan "Plutonia"
 IWAD=tnt.wad tools/ap-scan "TNT"
 
