@@ -34,8 +34,10 @@ dozens of individual maps.
 
 ## GZAP
 
-Short for gzArchipelago, i.e. Archipelago for gzDoom. `GZAP_` is used as the
-prefix for all gzArchipelago classes to avoid collisions with other mods.
+Short for GZArchipelago, i.e. Archipelago for GZDoom. `GZAP_` is used as the
+prefix for all gzArchipelago classes to avoid collisions with other mods. (The
+mod was originally developed for GZDoom before moving to UZDoom with version
+0.8.0.)
 
 ## In-World
 
@@ -151,4 +153,4 @@ what map-specific items (keys, automap) the player has for it.
 
 A simple zscript preprocessor that handles namespacing and some transformation of
 debug directives. `.zs` files in the repo are inputs; `.zsc` files are what
-actually gets loaded by gzDoom.
+actually gets loaded by UZDoom.

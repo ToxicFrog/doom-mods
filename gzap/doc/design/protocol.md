@@ -1,11 +1,11 @@
 # GZAP Protocol
 
-This file documents the IPC protocol used to communicate between gzDoom and
+This file documents the IPC protocol used to communicate between UZDoom and
 Archipelago. It's used in two places:
-- unidirectionally, when gzDoom produces a logic file that AP reads to prepare
+- unidirectionally, when UZDoom produces a logic file that AP reads to prepare
   the randomizer;
-- and bidirectionally, during actual play, for gzDoom to tell AP what checks
-  you're finding and for AP to tell gzDoom what items you're receiving.
+- and bidirectionally, during actual play, for UZDoom to tell AP what checks
+  you're finding and for AP to tell UZDoom what items you're receiving.
 
 The outgoing (GZ->AP) and incoming (AP->GZ) sides use entirely different formats,
 so they are documented separately.
@@ -13,13 +13,13 @@ so they are documented separately.
 
 ## Overview
 
-Communication takes place over two channels, *outgoing* (from gzdoom to AP) and
-*incoming* (from AP to gzdoom). When doing the initial map scan, only the outgoing
+Communication takes place over two channels, *outgoing* (from uzdoom to AP) and
+*incoming* (from AP to uzdoom). When doing the initial map scan, only the outgoing
 channel is used, and is written to a file for later loading. In play, both channels
 are used.
 
 
-## Outgoing Protocol (gzDoom -> AP)
+## Outgoing Protocol (UZDoom -> AP)
 
 Outgoing messages are written to the game's log file. Each message is a single
 line starting with `AP-$MSG `, where `$MSG` is the name of the message type, e.g.
@@ -71,7 +71,7 @@ Emitted when the scanner has just begun processing a map. `map` is the name of t
 lump being scanned, e.g. `E1M1` or `MAP01`. `info` is an object containing information
 needed to (re)construct the `MAPINFO` entry. It's not documented here as I expect
 it to change rapidly in use as I encounter more edge cases; the canonical form
-of it is the [`MAPINFO` class](../apworld/gzdoom/model/DoomMap.py) in the apworld.
+of it is the [`MAPINFO` class](../apworld/uzdoom/model/DoomMap.py) in the apworld.
 
 `checksum` is the checksum of the map as reported by the chunkloader, and is
 used to check that the correct WAD is loaded at runtime. `rank` is a count of
@@ -93,8 +93,8 @@ Fields:
 - `map`: the map lump name, as above
 - `name`: the human-facing name to assign to the location this item was found at
 - `category`: a guess at the item category
-- `typename`: the gzDoom class name
-- `tag`: the gzDoom human-facing name (if none, duplicates `typename`)
+- `typename`: the UZDoom class name
+- `tag`: the UZDoom human-facing name (if none, duplicates `typename`)
 - `secret`: whether the item is located in a secret sector or not
 - `skill`: a list of skill values (1-3) the item appears on; if omitted, it is available on all skills
 
@@ -169,14 +169,14 @@ size that can be written to it.
 (as a workaround for the difficulty in knowing when to emit `AP-CHAT` messages).
 
 `wad` is the name of the WAD as originally provided to the apworld (not whatever
-gzDoom loaded from disk). This is used to name the generated tuning file.
+UZDoom loaded from disk). This is used to name the generated tuning file.
 
 `slot` and `seed` are information about the generated game: the player's slot name
 and the world seed string. The client uses these when establishing the connection
 to the server.
 
 `server` is optional. If present and nonempty, this is the host:port address of
-the Archipelago server. gzDoom can use this to pass information about the game
+the Archipelago server. UZDoom can use this to pass information about the game
 host to the AP client without user intervention.
 
 #### `AP-ACK { id }`
@@ -262,23 +262,23 @@ describing the cause of death.
 Sent when Doom is shutting down to indicate that the connection is closing and
 no more messages will be processed. A client starting up can look for the presence
 of this in the log to determine if it's a log from a game in progress or an earlier
-play session -- since gzdoom truncates the log file when starting up, it will
+play session -- since uzdoom truncates the log file when starting up, it will
 only contain one of these at most.
 
 
 ## Incoming Protocol
 
 The incoming protocol works by repeatedly rewriting a file on disk, the contents
-of which are read by gzDoom using `wad.ReadLump()`.
+of which are read by UZDoom using `wad.ReadLump()`.
 
 This has two caveats. The first is that the file must be inside a directory which
-is in turn passed to gzDoom using the `-file` flag. Passing the file directly will
+is in turn passed to UZDoom using the `-file` flag. Passing the file directly will
 cause it to be copied into memory at startup, and subsequent changes on disk will
 be ignored.
 
 The second is that the max size is fixed on startup. If the file is subsequently
 extended past that size, the extra bytes will be ignored. So it needs to be
-preallocated to some useful size *before* gzDoom starts up, and must not exceed
+preallocated to some useful size *before* UZDoom starts up, and must not exceed
 that size during play.
 
 ### On-the-wire format
@@ -304,10 +304,10 @@ write messages out of order, although skipping IDs is allowed.
 
 ### Receiver behaviour
 
-On startup, gzDoom reads and discards the file contents to determine the size,
+On startup, UZDoom reads and discards the file contents to determine the size,
 then sends an `AP-XON` message to indicate readiness.
 
-Periodically, gzDoom reads the complete contents of the file. It splits on ETB
+Periodically, UZDoom reads the complete contents of the file. It splits on ETB
 to break it into messages (and discards the last split, which is always either an
 incomplete message or the empty string), then splits each message on US to get
 individual fields.
@@ -338,7 +338,7 @@ messages with ID numbers <= the acked ID, and append any new messages it hadn't
 previously had room for. Use of atomic writes is encouraged.
 
 When not sending messages, it is recommended to fill the file with data that is
-not valid message data (so that the file size remains consistent to gzdoom's
+not valid message data (so that the file size remains consistent to uzdoom's
 view); filling the entire file with null bytes or with `.` suffices.
 
 ### Message types
@@ -347,7 +347,7 @@ view); filling the entire file with null bytes or with `.` suffices.
 
 Displays a message from Archipelago. If it contains colour information it is the
 responsibility of the *sender* to encode that; the colour escape character
-represented as "\c" gzDoom string literals is "\x1C" (FILE SEPARATOR).
+represented as "\c" UZDoom string literals is "\x1C" (FILE SEPARATOR).
 
 #### `ITEM` `id` `count`
 

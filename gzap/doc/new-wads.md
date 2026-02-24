@@ -15,12 +15,12 @@ This file documents how to produce and update these files. It will use Demonfear
 
 The easy way to do it, if you are comfortable in the shell, is to use the
 `tools/ap-scan` script in this repo. If you're not, though, you can do it in
-gzdoom.
+uzdoom.
 
-First, start up gzdoom with your wad (and, ideally, no other mods except GZAP)
+First, start up uzdoom with your wad (and, ideally, no other mods except GZAP)
 loaded:
 
-    gzdoom -iwad doom2.wad -file DMONFEAR.WAD -file gzArchipelago-latest.pk3
+    uzdoom -iwad doom2.wad -file DMONFEAR.WAD -file gzArchipelago-latest.pk3
 
 Then you need to create a logfile. Unfortunately the mod **cannot do this for you**,
 you have to do it yourself. Open the console and:
@@ -79,7 +79,7 @@ will not be searched for exits to other levels.
 
 Some wads contain items that gzArchipelago's automatic item classifier does not
 properly handle. For these, you can write a `GZAPRC` file defining how to handle
-them. All `GZAPRC` files, in any `pk3`, `wad`, or directory passed to gzdoom using
+them. All `GZAPRC` files, in any `pk3`, `wad`, or directory passed to uzdoom using
 `-file`, will be loaded.
 
 It can be used to override how items are classified for randomization (for example,
@@ -129,7 +129,7 @@ files with `.tuning`.
 ## Tuning a logic file
 
 When you play a multiworld game, a tuning file will be automatically created
-in the `gzdoom/tuning` directory in your Archipelago directory, with the same
+in the `uzdoom/tuning` directory in your Archipelago directory, with the same
 name as the wad you're playing. If you play the same wad multiple times, it
 will create multiple, numbered tuning files, all of which will be loaded by the
 apworld.

@@ -12,14 +12,14 @@ Find the additional apworlds for the WADs you want to play in the [support table
 Download and install those as well.
 
 Download the [matching version of the mod](../../release/gzArchipelago-latest.pk3)
-and add it to your gzdoom load order (it doesn't much matter where).
+and add it to your uzdoom load order (it doesn't much matter where).
 
-Start up gzdoom, go into the options menu, and use the `gzArchipelago Options`
+Start up uzdoom, go into the options menu, and use the `gzArchipelago Options`
 to configure the mod to your taste. Make sure to bind keys for `AP level select`
 and `AP inventory`.
 
-If you are new to GZDoom or to GZDoom modding, you may want to read the
-[GZDoom quickstart guide](./gzdoom_newplayers.md), which explains the above in
+If you are new to UZDoom or to UZDoom modding, you may want to read the
+[UZDoom quickstart guide](./gzdoom_newplayers.md), which explains the above in
 more detail.
 
 ## Game Generation
@@ -56,13 +56,13 @@ Once in-game, consult the [gameplay guide](./gameplay.md) for more details.
 ## Multi-world
 
 If you are joining a multiworld game, you will need to start an external client
-to handle communication between GZDoom and the Archipelago host.
+to handle communication between UZDoom and the Archipelago host.
 
-Start up Archipelago and click `GZDoom Client`. This will show you some help
-text, including some extra command line flags for GZDoom. **You must use these
-flags or GZDoom and Archipelago will be unable to communicate**.
+Start up Archipelago and click `UZDoom Client`. This will show you some help
+text, including some extra command line flags for UZDoom. **You must use these
+flags or UZDoom and Archipelago will be unable to communicate**.
 
-Start GZDoom. Select `New Game`, choose a difficulty level matching what you
+Start UZDoom. Select `New Game`, choose a difficulty level matching what you
 selected in the YAML, and once the game loads in you should see a green message
 at the top of the screen saying that the AP connection is working. This should
 be accompanied by messages in the AP client showing that you have joined the

@@ -1,11 +1,11 @@
 # gzArchipelago
 
-This is an implementation of
-[Archipelago Multiworld Randomizer](https://archipelago.gg/)
-support for gzDoom.
+This is an implementation of [Archipelago Multiworld Randomizer](https://archipelago.gg/)
+support for UZDoom. (It also supports GZDoom, although it is likely to stop
+working at some point; LZDoom and legacy ZDoom are not supported.)
 
 Features include:
-- uses zScript and a separate client program to work without modifying gzDoom itself
+- uses zScript and a separate client program to work without modifying UZDoom itself
 - supports single-player, multiplayer synchronous, and multiplayer async play
 - autoscan feature for quickly importing new wads
 - autotune feature for automatically improving wad support based on play

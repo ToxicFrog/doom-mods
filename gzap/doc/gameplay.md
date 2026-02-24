@@ -120,7 +120,7 @@ none while actually playing.
 The automap is capable of displaying check locations; depending on your settings,
 you may need to find the fullmap for the level first, or doing so might reveal
 additional information about the checks. This works both with the full-screen map
-built into GZDoom, and with mod-supplied maps like FlexiHUD.
+built into UZDoom, and with mod-supplied maps like FlexiHUD.
 
 ## Save/load behaviour
 
@@ -130,7 +130,7 @@ checked and does not let you send a duplicate item by checking it again.
 
 ## Respawns
 
-By default, when you die, GZDoom loads your most recent savegame. If you don't
+By default, when you die, UZDoom loads your most recent savegame. If you don't
 have a save, it restarts the level with a basic starting inventory.
 gzArchipelago additionally lets you turn on respawning in the YAML; if this is
 on, then on death you will respawn at the start of the level with full health

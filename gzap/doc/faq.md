@@ -136,7 +136,7 @@ but it should be compatible with both UZ and GZ.
 ### Can I play this singleplayer?
 
 Yes! Generate the game as normal, then load the `.pk3` that Archipelago generates
-as your last mod in gzdoom. All checks will be resolved locally without needing
+as your last mod in uzdoom. All checks will be resolved locally without needing
 a separate game host.
 
 ### Can I play this single-world with netplay?
@@ -151,7 +151,7 @@ multiworld without netplay.
 
 Yes. Once the APWorld is installed, the client will show up in the Archipelago
 launcher. Start the client *first* and it will tell you what extra arguments
-to launch gzdoom with.
+to launch uzdoom with.
 
 ### What megawads does this have builtin support for?
 ### What maps/mods is this compatible with?
@@ -188,7 +188,7 @@ use a separate program to scan the WAD, then compile a custom version of APDoom
 itself incorporating the resulting info.
 
 My goal with gzArchipelago was to make it possible to play Archipelago multiworld
-with gzDoom mods, and make it easy to integrate new WADs via a scanner built into
+with UZDoom mods, and make it easy to integrate new WADs via a scanner built into
 the mod itself.
 
 
