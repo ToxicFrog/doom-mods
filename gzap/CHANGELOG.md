@@ -48,6 +48,7 @@ in some cases.
     as starting maps.
   - Errors loading the logic cache are now treated as cache misses rather than
     crashing the apworld.
+  - MAP14 is excluded from `Legacy of Rust` due to functionality errors.
 - For logic developers:
   - Tuning files support `item` prerequisites, so you can say "this is not in
     logic until the player has found this specific item". Unlike `key` this

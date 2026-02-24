@@ -51,7 +51,7 @@ here may result in glitches.
 | [FreeDoom 2]                |   32 |     135 |    636 | basic | [v0.13.0](https://freedoom.github.io/download.html) |
 | [Heretic]                   |   45 |     116 |   1159 | basic  | v1.3 |
 | Hexen                       |      |         |        | missing | I don't like it, but if someone wants to contribute logic, feel free. |
-| [Legacy of Rust]            |   16 |     212 |    359 | problems | Fully tuned, but MAP14 doesn't fully work because of [this gzdoom limitation](https://github.com/ZDoom/gzdoom/issues/2208); you will need to exclude it or make it optional. |
+| [Legacy of Rust]            |   16 |     212 |    359 | problems | Fully tuned, but MAP14 is excluded until [this feature](https://github.com/UZDoom/UZDoom/issues/184) is implemented. |
 | [Master Levels for Doom II] |   21 |     120 |    483 | full   | |
 | [No Rest for the Living]    |    9 |     141 |    202 | full   | |
 | [Plutonia]                  |   32 |      95 |    509 | full   | v1.9 |
