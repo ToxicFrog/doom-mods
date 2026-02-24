@@ -196,7 +196,7 @@ class DoomWad:
 
     def register_map_flags(self, map: DoomMap):
         # Register 'Health' on all maps since it's used as a placeholder in
-        # pretuning mode. It's one of the gzDoom base classes so we know it'll
+        # pretuning mode. It's one of the UZDoom base classes so we know it'll
         # always be available.
         self.register_item(
             DoomItem(map=None, category="small-health", typename="Health", tag="Health"))

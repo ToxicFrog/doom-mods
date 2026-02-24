@@ -105,7 +105,7 @@ class DoomPool:
             if ratio == 'vanilla':
                 # Locations forced to hold their vanilla items. We add these
                 # to a separate pool so the item/location placement code in
-                # the GZDoomWorld knows what to do with them later.
+                # the UZDoomWorld knows what to do with them later.
                 # print(f'Bucket {bucket} has vanilla items forced.')
                 for loc in locs:
                     if loc.orig_item:

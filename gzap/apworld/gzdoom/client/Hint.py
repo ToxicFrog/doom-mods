@@ -2,7 +2,7 @@
 Tracking of hints and peeks in the client.
 
 AP itself doesn't really have this distinction -- it's all hints. We send them
-to gzDoom differently, so we use the same class for both but the methods draw
+to UZDoom differently, so we use the same class for both but the methods draw
 a distinction between whether it's a hint (one of our items in someone else's
 world) or a peek (someone else's item in our world). A Hint can actually be both --
 one of our items in our world -- in which case it's sent twice, once with HINT

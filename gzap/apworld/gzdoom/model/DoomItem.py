@@ -26,8 +26,8 @@ class DoomItem:
     """
     id: Optional[int] = None    # AP item ID, assigned by the caller
     categories: FrozenSet[str]  # Randomization categories (e.g. key, weapon, big, small)
-    typename: str               # gzDoom class name
-    tag: str                    # User-visible name *in gzDoom*
+    typename: str               # UZDoom class name
+    tag: str                    # User-visible name *in UZDoom*
     map: Optional[str] = None
     disambiguate: bool = False
     virtual: bool = True    # Does't exist in-game, only in AP's internal state

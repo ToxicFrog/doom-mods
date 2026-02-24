@@ -1,5 +1,5 @@
 '''
-Mapping from APDoom AP item names to gzDoom actor names.
+Mapping from APDoom AP item names to UZDoom actor names.
 '''
 
 _APDOOM_ICONS = {

@@ -1,5 +1,5 @@
 '''
-This is the "generic" apworld for supporting gzDoom WADs. It contains all of the
+This is the "generic" apworld for supporting UZDoom WADs. It contains all of the
 code common to all supported WADs.
 
 Individual WADs have their own apworld, which contains just enough code to

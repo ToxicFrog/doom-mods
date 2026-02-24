@@ -1,5 +1,5 @@
 '''
-Mapping from APHeretic AP item names to gzDoom actor names.
+Mapping from APHeretic AP item names to UZDoom actor names.
 '''
 
 _APHERETIC_ICONS = {

@@ -1,12 +1,12 @@
 import re
 
 # TODO: this is a quick hack. Ideally we should replace it with our own subclass
-# ofjsontotextparser that emits gzdoom colour codes directly.
+# ofjsontotextparser that emits uzdoom colour codes directly.
 # Unfortunately a lot of rawjsontotextparser is implemented as module scope functions
 # in NetUtils rather than class members, so it might have complications.
 
 # Mapping from terminal colour codes emitted by rawjsontotextparser, to
-# gzdoom internal colour names.
+# uzdoom internal colour names.
 _TEXTCOLOR_ESCAPE = "\x1C"
 _COLOURTABLE = {
   "0": "-", # reset

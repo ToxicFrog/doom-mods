@@ -55,9 +55,9 @@ def icon_to_frame(icon_name):
 
 def guess_icon(wad, game: str, name: str) -> str:
   '''
-  Try to guess what icon to display in gzDoom based on the name of an item.
+  Try to guess what icon to display in UZDoom based on the name of an item.
 
-  Items native to gzdoom are always displayed as themselves. This guesswork is
+  Items native to uzdoom are always displayed as themselves. This guesswork is
   only for icons from other games. It consists of two parts -- a table joining
   item name regexes with simple icon names, and a table mapping simple icon
   names to GZAP four-letter sprite IDs.

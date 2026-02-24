@@ -1,8 +1,8 @@
 """
-Archipelago-side library for communicating with gzDoom.
+Archipelago-side library for communicating with UZDoom.
 
 This is the mirror of IPC.zs in the pk3; it receives messages by reading JSON
-from the gzDoom log file, and sends messages by writing to the gzDoom IPC lump
+from the UZDoom log file, and sends messages by writing to the UZDoom IPC lump
 file. See doc/protocol.md for the full details.
 """
 
@@ -42,7 +42,7 @@ class IPC:
   ipc_buf: str = ""
   ipc_dir: str = ""
   should_exit: bool = False
-  nick: str = ""  # user's name in gzDoom, used for chat message parsing
+  nick: str = ""  # user's name in UZDoom, used for chat message parsing
 
   def __init__(self, ctx: CommonContext, gzd_dir: str, size: int) -> None:
     self.ctx = ctx
@@ -56,7 +56,7 @@ class IPC:
     # We never await this, since we don't care about its return value, but we do need
     # to hang on to the thread handle for it to actually run.
     self.thread = asyncio.create_task(asyncio.to_thread(self._log_reading_thread, self.gzd_dir, loop))
-    logger.info("Log reader started. Waiting for XON from gzDoom.")
+    logger.info("Log reader started. Waiting for XON from UZDoom.")
 
   # TODO: if there's an existing log file, we (re)process all events from it
   # on startup. This can be annoying if some of them are chat messages or the
@@ -64,7 +64,7 @@ class IPC:
   # message ID, and until we see our first ACK >= that ID, the only message
   # we process is XON.
   def _log_reading_thread(self, ipc_dir: str, loop) -> None:
-    print("Starting gzDoom event loop.")
+    print("Starting UZDoom event loop.")
     try:
       self._log_reading_loop(ipc_dir, loop)
     except Exception as e:
@@ -91,9 +91,9 @@ class IPC:
              # should_exit set, wind down the thread
              return
 
-          # print("[gzdoom]", line)
+          # print("[uzdoom]", line)
           # if the line has the format "<username>: <line of text>", this is a chat message
-          # this needs special handling because there is no OnSayEvent or similar in gzdoom
+          # this needs special handling because there is no OnSayEvent or similar in uzdoom
           if self.nick and line.startswith(self.nick + ": "):
             evt = "AP-CHAT"
             payload = { "msg": line.removeprefix(self.nick + ": ").strip() }
@@ -102,7 +102,7 @@ class IPC:
             try:
               payload = json.loads(payload)
             except json.JSONDecodeError as e:
-              logger.error(f"Error decoding message from gzdoom: {line}")
+              logger.error(f"Error decoding message from uzdoom: {line}")
               logger.error(f"Error reported is: {e}")
               continue
           else:
@@ -122,16 +122,16 @@ class IPC:
 
   def _wait_for_live_log(self, fd) -> None:
     """
-    Wait for the log to be "live", i.e. being written by a running gzdoom process
+    Wait for the log to be "live", i.e. being written by a running uzdoom process
     rather than something left over from an earlier run.
 
     We use a blunt hammer for this: read the logfile contents, and if they don't
     have an XOFF in them we're good to go, and if they do, wait for it to get
-    truncated by a new gzdoom process.
+    truncated by a new uzdoom process.
     """
     if fd.read().find("\nAP-XOFF") >= 0:
       # Dead log, wait for it to be truncated
-      logger.info("Logfile is from a previous run of gzdoom. Waiting for a new one.")
+      logger.info("Logfile is from a previous run of uzdoom. Waiting for a new one.")
       while fd.tell() <= os.stat(fd.fileno()).st_size:
         time.sleep(1)
         if self.should_exit:
@@ -153,7 +153,7 @@ class IPC:
         else:
           continue
 
-      # Log got truncated because gzdoom restarted.
+      # Log got truncated because uzdoom restarted.
       if fd.tell() > os.stat(fd.fileno()).st_size:
         fd.seek(0)
       time.sleep(0.1)
@@ -179,25 +179,25 @@ class IPC:
     self.ctx.awaken()
 
 
-  #### Handlers for events coming from gzdoom. ####
+  #### Handlers for events coming from uzdoom. ####
 
   async def recv_xon(self, lump: str, size: int, nick: str, slot: str, seed: str, wad: str, server: str) -> None:
     """
-    Called when an AP-XON message is received from gzdoom.
+    Called when an AP-XON message is received from uzdoom.
 
-    This indicates that gzdoom is ready to receive messages, so this starts the
+    This indicates that uzdoom is ready to receive messages, so this starts the
     message sending task. Until that point all messages are queued.
     """
-    print("XON received. Opening channels to gzdoom and to AP host.")
+    print("XON received. Opening channels to uzdoom and to AP host.")
     self.ipc_path = os.path.join(self.ipc_dir, lump)
-    assert size == self.ipc_size, "IPC size mismatch between gzdoom and AP -- please exit both, start the client, then gzdoom"
+    assert size == self.ipc_size, "IPC size mismatch between uzdoom and AP -- please exit both, start the client, then uzdoom"
     self.nick = nick
     self.flush()
     await self.ctx.on_xon(wad, slot, seed, server)
 
   async def recv_ack(self, id: int) -> None:
     """
-    Called when an AP-ACK message is received from gzdoom.
+    Called when an AP-ACK message is received from uzdoom.
 
     Clears acknowledged messages from the outgoing queue, and sends pending messages
     if there were any waiting for free space.
@@ -207,7 +207,7 @@ class IPC:
 
   async def recv_check(self, id: int) -> None:
     """
-    Called when an AP-CHECK message is received from gzdoom.
+    Called when an AP-CHECK message is received from uzdoom.
 
     Informs the context manager that we have checked the listed location. It's up
     to it to tell the server.
@@ -216,7 +216,7 @@ class IPC:
 
   async def recv_chat(self, message: str) -> None:
     """
-    Called when an AP-CHAT message is received from gzdoom.
+    Called when an AP-CHAT message is received from uzdoom.
 
     Forwards it to the context manager to deliver to the server.
     """
@@ -249,7 +249,7 @@ class IPC:
   def send_text(self, message: str) -> None:
     """Display the given message to the player."""
     # Prefix here avoids an infinite loop when the client uses the same name in
-    # AP and in their gzdoom config. AP uses the same chat message format as gzd,
+    # AP and in their uzdoom config. AP uses the same chat message format as gzd,
     # so what happens is, the chat message goes to gzd, gets displayed, appears
     # in the log, the client sees it as a new chat message, sends it to the server,
     # which echoes it, etc.
@@ -277,7 +277,7 @@ class IPC:
     # executions, so client restarts don't reset the sequence counter and confuse
     # the game. We drop the bottom two bytes to make it more manageable, which
     # reduces the resolution to about 15k messages/second, which is still way
-    # more than we need (or gzdoom is willing to ingest, since it only processes
+    # more than we need (or uzdoom is willing to ingest, since it only processes
     # the buffer once per second).
     # TODO: we can maybe get away with lowering the resolution further, and/or
     # sleeping briefly after an enqueue. But should we?
@@ -300,13 +300,13 @@ class IPC:
 
   def flush(self) -> None:
     if not self.ipc_path:
-      # Not connected to gzdoom yet
+      # Not connected to uzdoom yet
       return
 
     if not self.nick or not self.ipc_queue:
-      # Either gzdoom has disconnected (after being previously connected) or we
+      # Either uzdoom has disconnected (after being previously connected) or we
       # have no messages for it.
-      # In either case we clear the on-disk buffer so that gzdoom doesn't end
+      # In either case we clear the on-disk buffer so that uzdoom doesn't end
       # up receiving messages before XON next time it connects.
       with open(self.ipc_path, "w") as fd:
         fd.truncate(self.ipc_size)
