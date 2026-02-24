@@ -35,9 +35,9 @@ dozens of individual maps.
 ## GZAP
 
 Short for GZArchipelago, i.e. Archipelago for GZDoom. `GZAP_` is used as the
-prefix for all gzArchipelago classes to avoid collisions with other mods. (The
-mod was originally developed for GZDoom before moving to UZDoom with version
-0.8.0.)
+prefix for all UZArchipelago classes to avoid collisions with other mods. (The
+mod was originally developed for GZDoom before officially moving to UZDoom with
+version 0.8.0.)
 
 ## In-World
 

@@ -26,7 +26,7 @@ class ::PlayEventHandler : StaticEventHandler {
   ::RandoState apstate;
 
   override void OnRegister() {
-    console.printf("Loading gzArchipelago client library version %s", MOD_VERSION());
+    console.printf("Loading UZArchipelago client library version %s", MOD_VERSION());
     apclient = ::IPC(new("::IPC"));
     apstate = ::RandoState.Create();
   }

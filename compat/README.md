@@ -14,7 +14,7 @@ them.
 - `GunBonsai×AngelicAviary-AngelicShards`: replaces the builtin actors for Scavenge Blood and Scavenge Steel with AA's actors. **Optional**.
 - `GunBonsai×WarTrophies-NoDOTKills`: does not record kills made with GB damage-over-time effects in WT. **Optional**.
 
-## For gzArchipelago
+## For UZArchipelago
 
 - `Archipelago×FinalDoomer`: Fixes check spawning and weapon suppression behaviour when Final Doomer is loaded. **Mandatory** unless you play FD with "generic visuals" enabled.
 - `Archipelago×DoomRLArsenal`: Fixes powerup spawners from disappearing without spawning anything. **Mandatory**.

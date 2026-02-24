@@ -1,6 +1,6 @@
 // Loader for the GZAPRC lump, including lump parser. See end of file for the
 // formal grammar, and the included GZAPRC for a working example.
-// This is the file that controls per-wad settings for gzArchipelago. At present
+// This is the file that controls per-wad settings for UZArchipelago. At present
 // this just means the scanner.
 #namespace GZAP;
 #debug off;

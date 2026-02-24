@@ -1,7 +1,7 @@
 # Gameplay Guide
 
 This assumes that you are already familiar with [the basics of Archipelago](https://archipelago.gg/faq/en/),
-and focuses mainly on things specific to gzArchipelago.
+and focuses mainly on things specific to UZArchipelago.
 
 ## Overview
 
@@ -19,7 +19,7 @@ but not progression.
 
 ## Settings
 
-gzArchipelago has a *lot* of settings that can be adjusted in-game rather than
+UZArchipelago has a *lot* of settings that can be adjusted in-game rather than
 via the YAML. I won't try to document them all here, but you can adjust
 inventory behaviour, automap behaviour, deathlink, how weapons found outside of
 AP are handled, how checks are displayed, and more. These settings can generally
@@ -48,7 +48,7 @@ before your first game.
  </tr>
  <tr>
   <td><img src=images/trap.png width=64/></td>
-  <td>A harmful trap. gzArchipelago doesn't have traps (yet), but in a multiworld game you may find traps that get sent to other people. Note that depending on your settings, this might instead show up as a filler or even progression item!</td>
+  <td>A harmful trap. UZArchipelago doesn't have traps (yet), but in a multiworld game you may find traps that get sent to other people. Note that depending on your settings, this might instead show up as a filler or even progression item!</td>
  </tr>
  <tr>
   <td><img src=images/unreachable.png width=64/></td>
@@ -72,7 +72,7 @@ based on the item name.)
 
 ### Level select
 
-Most of the new interface added by gzArchipelago is accessed via the `AP level select`
+Most of the new interface added by UZArchipelago is accessed via the `AP level select`
 keybinding. This brings up the level selector, which also functions as a simple
 in-game tracker:
 
@@ -87,7 +87,7 @@ enabled (or if you are playing solo), you can also press `shift-H` to request an
 appropriate hint; it will first hint the access code the level (if you don't
 already have it or a hint to its location), then any keys you are missing.
 
-At the bottom of the list is a button that will take you back to the gzArchipelago
+At the bottom of the list is a button that will take you back to the UZArchipelago
 intermission level (if you want to leave your current level but not immediately
 start a different one). If persistent mode is on, there will also be an option
 to reset all levels -- unfortunately there is not currently any way to reset
@@ -132,7 +132,7 @@ checked and does not let you send a duplicate item by checking it again.
 
 By default, when you die, UZDoom loads your most recent savegame. If you don't
 have a save, it restarts the level with a basic starting inventory.
-gzArchipelago additionally lets you turn on respawning in the YAML; if this is
+UZArchipelago additionally lets you turn on respawning in the YAML; if this is
 on, then on death you will respawn at the start of the level with full health
 and your inventory otherwise unchanged.
 

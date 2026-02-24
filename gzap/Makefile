@@ -1,4 +1,4 @@
-NAME=gzArchipelago
+NAME=UZArchipelago
 TAGS=gzap-*
 VERSION=0.7.1
 LUMPS=MAPINFO MENUDEF zscript.txt *.md LANGUAGE.csv CVARINFO KEYCONF TEXTURES.txt

@@ -1,4 +1,4 @@
-# gzArchipelago FAQ
+# UZArchipelago FAQ
 
 ## Help!
 
@@ -26,7 +26,7 @@ without `start_with_keys`.
 
 ### The game doesn't start up and I get a huge number of zscript errors!
 
-Make sure that you loaded both `gzArchipelago.pk3` and the `pk3` provided by
+Make sure that you loaded both `UZArchipelago.pk3` and the `pk3` provided by
 the game host, **and** that you loaded the `pk3` from the game host last.
 
 ### I started the game and immediately got a "game/randomizer mismatch" error!
@@ -73,7 +73,7 @@ Did you remember to [bind those controls](./setup.md)?
 
 ## Customization
 
-gzArchipelago has a lot of customization options, most of which are accessible
+UZArchipelago has a lot of customization options, most of which are accessible
 via the Archipelago YAML (and documented in the comments there) or via the in-game
 settings (and documented in tooltips). This section is for "hidden" settings that
 aren't, and non-obvious information.
@@ -187,7 +187,7 @@ On top of that, adding support for *new* WADs to APDoom is difficult: you need t
 use a separate program to scan the WAD, then compile a custom version of APDoom
 itself incorporating the resulting info.
 
-My goal with gzArchipelago was to make it possible to play Archipelago multiworld
+My goal with UZArchipelago was to make it possible to play Archipelago multiworld
 with UZDoom mods, and make it easy to integrate new WADs via a scanner built into
 the mod itself.
 

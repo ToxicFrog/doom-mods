@@ -30,7 +30,7 @@ You should now have directory contents that look something like this:
     AceCorp Launcher.exe
     doom2.wad  [or doom.wad, heretic.wad, etc]
     demonfear.wad  [or whatever PWAD you're playing, if any]
-    gzArchipelago-1.2.3.pk3
+    UZArchipelago-1.2.3.pk3
     [...plus a bunch of other files that came with uzdoom...]
 
 ## Linux Installation
@@ -56,23 +56,23 @@ and mods in order play.
 3. In the Engine dropdown, click the `+` button and select uzdoom.exe.
 4. In the large box under the dropdowns, right click and select Add File, then
    select your downloaded PWAD (if using one).
-5. Do the same to add the gzArchipelago pk3 file.
+5. Do the same to add the UZArchipelago pk3 file.
 
 Click Launch to start the game.
 
 ## In-game configuration
 
-Once in game, you need to configure gzArchipelago. Select the `Options` Menu:
+Once in game, you need to configure UZArchipelago. Select the `Options` Menu:
 
 <img src="images/setup-mainmenu.png" width=400/>
 
 From there, select `Full options menu` to reveal the hidden options, and verify
-that `gzArchipelago Options` appears at the bottom:
+that `UZArchipelago Options` appears at the bottom:
 
 <img valign=top src="images/setup-simpleoptions.png" width=200/>
 <img src="images/setup-fulloptions-enabled.png" width=200/>
 
-Select `gzArchipelago Options` and configure your keybindings for `AP level select`
+Select `UZArchipelago Options` and configure your keybindings for `AP level select`
 and `AP inventory`. The rest of the settings can be adjusted to fit your tastes
 (and have in-game tooltips describing what they do), but those keybindings are
 mandatory.

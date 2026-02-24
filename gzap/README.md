@@ -1,4 +1,4 @@
-# gzArchipelago
+# UZArchipelago
 
 This is an implementation of [Archipelago Multiworld Randomizer](https://archipelago.gg/)
 support for UZDoom. (It also supports GZDoom, although it is likely to stop
@@ -13,8 +13,8 @@ Features include:
 
 You can download the latest stable release from the
 [release page](https://github.com/ToxicFrog/doom-mods/releases/). You can also
-try the development version: [mod](../release/gzArchipelago-latest.pk3),
-[core apworld](../release/gzdoom.apworld), [addon apworlds](../release/apworlds/).
+try the development version: [mod](../release/UZArchipelago-latest.pk3),
+[core apworld](../release/uzdoom.apworld), [addon apworlds](../release/apworlds/).
 
 The documentation is split into multiple files.
 

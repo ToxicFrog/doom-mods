@@ -1,6 +1,6 @@
 # Adding New WADs
 
-Internally, gzArchipelago works by loading a *logic file* for each supported wad.
+Internally, UZArchipelago works by loading a *logic file* for each supported wad.
 This file contains a record of all levels and actors in the wad; optionally, it
 also contains a *tuning journal*, information recorded from actual play that it
 uses to improve the randomizer logic.
@@ -20,7 +20,7 @@ uzdoom.
 First, start up uzdoom with your wad (and, ideally, no other mods except GZAP)
 loaded:
 
-    uzdoom -iwad doom2.wad -file DMONFEAR.WAD -file gzArchipelago-latest.pk3
+    uzdoom -iwad doom2.wad -file DMONFEAR.WAD -file UZArchipelago-latest.pk3
 
 Then you need to create a logfile. Unfortunately the mod **cannot do this for you**,
 you have to do it yourself. Open the console and:
@@ -77,7 +77,7 @@ will not be searched for exits to other levels.
 
 ### Overriding scanner behaviour
 
-Some wads contain items that gzArchipelago's automatic item classifier does not
+Some wads contain items that UZArchipelago's automatic item classifier does not
 properly handle. For these, you can write a `GZAPRC` file defining how to handle
 them. All `GZAPRC` files, in any `pk3`, `wad`, or directory passed to uzdoom using
 `-file`, will be loaded.
@@ -94,7 +94,7 @@ ignored.
 This repo contains a [several examples](../config/) in the config directory.
 
 If you are a mapper, you can include a `GZAPRC` lump in your wad and it will be
-automatically detected and loaded by gzArchipelago.
+automatically detected and loaded by UZArchipelago.
 
 ### Custom location names
 
@@ -114,7 +114,7 @@ Logic for a wad must be published as an apworld. Each apworld contains support
 for one wad.
 
 The easiest way to do this is in your browser, using the
-[gzArchipelago apworld packager](https://toxicfrog.github.io/doom-mods/apworld-generator.html).
+[UZArchipelago apworld packager](https://toxicfrog.github.io/doom-mods/apworld-generator.html).
 Enter a name, select your logic file (and tuning files, if any), and click the
 "generate apworld" button. It will offer you the apworld as a download.
 
@@ -145,7 +145,7 @@ alongside the logic using the instructions above.
 
 Some wads contain keys that are not visible at scan time, because they are
 spawned as enemy drops or via scripts. These will be not be added to the item
-pool, but when picked up normally, gzArchipelago will detect them and emit an
+pool, but when picked up normally, UZArchipelago will detect them and emit an
 appropriate `AP-KEY` message into the tuning file.
 
 Once you finish tuning, you must move these messages from the tuning file to the
