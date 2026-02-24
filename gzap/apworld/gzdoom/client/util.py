@@ -70,8 +70,8 @@ def _convert_sgr_8bpp(sgr: re.Match) -> str:
 
   return _8bpp_to_3bpp(index)
 
-def ansi_to_gzdoom(msg: str) -> str:
-  """Convert ANSI colour escapes in a string into gzDoom colour escapes."""
+def ansi_to_uzdoom(msg: str) -> str:
+  """Convert ANSI colour escapes in a string into UZDoom colour escapes."""
   return re.sub(
       "\x1B\\[38[:;]5[:;]([0-9]+)m", _convert_sgr_8bpp,
       re.sub("\x1B\\[([0-9]+)m", _convert_sgr, msg))

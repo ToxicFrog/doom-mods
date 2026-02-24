@@ -25,28 +25,28 @@ from .model.DoomItem import DoomItem
 from .model.DoomLocation import DoomLocation
 from .model.DoomWad import DoomWad
 
-from .Options import GZDoomOptions
+from .Options import UZDoomOptions
 
-logger = logging.getLogger("gzDoom")
+logger = logging.getLogger("UZDoom")
 
 def launch_client(*args) -> None:
-    from .client.GZDoomClient import main
+    from .client.UZDoomClient import main
     # TODO: use launch() here once it's in main
-    LauncherComponents.launch_subprocess(main, name="GZDoomClient", args=args)
+    LauncherComponents.launch_subprocess(main, name="UZDoomClient", args=args)
 
 
-LauncherComponents.icon_paths["gzdoom_icon"] = f"ap:{__name__}/icon.png"
+LauncherComponents.icon_paths["uzdoom_icon"] = f"ap:{__name__}/icon.png"
 LauncherComponents.components.append(
     LauncherComponents.Component(
-        "GZDoom Client",
+        "UZDoom Client",
         func=launch_client,
         component_type=LauncherComponents.Type.CLIENT,
-        icon="gzdoom_icon",
+        icon="uzdoom_icon",
     )
 )
 
-class GZDoomLocation(Location):
-    game: str = "GZDoom"
+class UZDoomLocation(Location):
+    game: str = "UZDoom"
     doom_location: DoomLocation
 
     def __init__(self, world, loc: DoomLocation, region: Region) -> None:
@@ -71,23 +71,23 @@ class GZDoomLocation(Location):
             flags.append('AP_IS_UNREACHABLE')
         return '|'.join(flags)
 
-class GZDoomItem(Item):
-    game: str = "GZDoom"
+class UZDoomItem(Item):
+    game: str = "UZDoom"
 
     def __init__(self, item: DoomItem, player: int) -> None:
         super().__init__(name=item.name(), classification=item.classification(), code=item.id, player=player)
 
-class GZDoomUTGlitchFlag(Item):
-    game: str = "GZDoom"
+class UZDoomUTGlitchFlag(Item):
+    game: str = "UZDoom"
     FLAG_NAME = "[UT Glitch Logic Flag]"
 
     def __init__(self, player) -> None:
         super().__init__(name=self.FLAG_NAME, classification=ItemClassification.progression, code=None, player=player)
 
-class GZDoomWeb(WebWorld):
+class UZDoomWeb(WebWorld):
     tutorials = [Tutorial(
         "Multiworld Setup Guide",
-        "A guide to setting up the gzDoom randomizer connected to an Archipelago Multiworld",
+        "A guide to setting up the UZDoom randomizer connected to an Archipelago Multiworld",
         "English",
         "setup_en.md",
         "setup/en",
@@ -96,22 +96,22 @@ class GZDoomWeb(WebWorld):
     theme = "dirt"
 
 
-class GZDoomWorld(World):
+class UZDoomWorld(World):
     """
-    gzDoom is an open-source enhanced port of the Doom engine, supporting Doom 1/2, Hexen, Heretic, and Strife, along
+    UZDoom is an open-source enhanced port of the Doom engine, supporting Doom 1/2, Hexen, Heretic, and Strife, along
     with thousands of fan-made maps and mission packs and even a few commercial games like Hedon Bloodrite and Selaco.
 
     This randomizer comes with an automated WAD scanner that makes it easy to add support for new WADs.
     """
-    game = "GZDoom"
-    options_dataclass = GZDoomOptions
-    options: GZDoomOptions
+    game = "UZDoom"
+    options_dataclass = UZDoomOptions
+    options: UZDoomOptions
     topology_present = True
-    web = GZDoomWeb()
+    web = UZDoomWeb()
     required_client_version = (0, 6, 3)
     hidden = True
 
-    # Info fetched from gzDoom; contains item/location ID mappings etc.
+    # Info fetched from UZDoom; contains item/location ID mappings etc.
     wad_logic: DoomWad
     location_count: int = 0
 
@@ -124,7 +124,7 @@ class GZDoomWorld(World):
     location_name_groups: Dict[str,FrozenSet[str]] = {}
 
     # Universal Tracker integration
-    glitches_item_name: str = GZDoomUTGlitchFlag.FLAG_NAME
+    glitches_item_name: str = UZDoomUTGlitchFlag.FLAG_NAME
     ut_can_gen_without_yaml = True
 
 
@@ -132,12 +132,12 @@ class GZDoomWorld(World):
         self.location_count = 0
         super().__init__(multiworld, player)
 
-    def create_item(self, name: str) -> GZDoomItem:
-        if name == GZDoomUTGlitchFlag.FLAG_NAME:
-            return GZDoomUTGlitchFlag(self.player)
+    def create_item(self, name: str) -> UZDoomItem:
+        if name == UZDoomUTGlitchFlag.FLAG_NAME:
+            return UZDoomUTGlitchFlag(self.player)
 
         item = self.wad_logic.items_by_name[name]
-        return GZDoomItem(item, self.player)
+        return UZDoomItem(item, self.player)
 
     def get_filler_item_name(self):
         return self.random.choice(self.pool.filler_items().keys())
@@ -271,7 +271,7 @@ class GZDoomWorld(World):
                     region = regions[f'{map.map}/{loc.region}']
                 else:
                     region = regions[map.map]
-                location = GZDoomLocation(self, loc, region)
+                location = UZDoomLocation(self, loc, region)
                 # Believed-to-be-unreachable locations get a generic health item.
                 if loc.unreachable:
                     location.place_locked_item(self.create_item('Health'))

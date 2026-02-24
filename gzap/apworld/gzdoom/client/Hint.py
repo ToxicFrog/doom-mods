@@ -12,7 +12,7 @@ and once with PEEK.
 import re
 from typing import Tuple
 
-class GZDoomHint:
+class UZDoomHint:
     item: int
     finding_player: int
     receiving_player: int

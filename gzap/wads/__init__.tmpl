@@ -5,12 +5,12 @@ from dataclasses import dataclass
 from worlds.AutoWorld import World
 from Options import PerGameCommonOptions, Toggle, DeathLink, StartInventoryPool, OptionSet, NamedRange, Range, OptionDict, OptionList, OptionError, Visibility
 
-if 'worlds.gzdoom' not in sys.modules:
-  raise RuntimeError(f'Unable to load supporting libraries -- make sure that `gzdoom.apworld` is installed!')
+if 'worlds.uzdoom' not in sys.modules:
+  raise RuntimeError(f'Unable to load supporting libraries -- make sure that `uzdoom.apworld` is installed!')
 
-gzdoom = sys.modules['worlds.gzdoom']
-model = sys.modules['worlds.gzdoom.model']
-options = sys.modules['worlds.gzdoom.Options']
+uzdoom = sys.modules['worlds.uzdoom']
+model = sys.modules['worlds.uzdoom.model']
+options = sys.modules['worlds.uzdoom.Options']
 
 included_logic = model.init_wads(__package__)
 wad = included_logic.wad
@@ -58,7 +58,7 @@ class MaxWeaponCopies___WAD__(Range):
   range_end = 32
 
 @dataclass
-class GZDoomOptions___WAD__(options.GZDoomOptions):
+class UZDoomOptions___WAD__(options.UZDoomOptions):
   included_levels: IncludedLevels___WAD__
   starting_levels: StartingLevels___WAD__
   start_with_keys: StartWithKeys___WAD__
@@ -66,13 +66,13 @@ class GZDoomOptions___WAD__(options.GZDoomOptions):
   win_map_names: WinMapNames___WAD__
   max_weapon_copies: MaxWeaponCopies___WAD__
 
-class GZDoomWorld___WAD__(gzdoom.GZDoomWorld):
-  game = f"GZDoom ({wad.name})"
+class UZDoomWorld___WAD__(uzdoom.UZDoomWorld):
+  game = f"UZDoom ({wad.name})"
   mod_version = "__VERSION__"
   hidden = False
   wad_logic = wad
-  options_dataclass = GZDoomOptions___WAD__
-  options: GZDoomOptions___WAD__
+  options_dataclass = UZDoomOptions___WAD__
+  options: UZDoomOptions___WAD__
 
   # Used by AP itself
   item_name_to_id = model.unified_item_map(included_logic)

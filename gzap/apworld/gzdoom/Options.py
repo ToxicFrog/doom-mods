@@ -323,7 +323,7 @@ class PreTuningMode(Toggle):
     default = False
 
 @dataclass
-class GZDoomOptions(PerGameCommonOptions):
+class UZDoomOptions(PerGameCommonOptions):
     # Skill level, WAD, and level selection
     spawn_filter: SpawnFilter
     starting_levels: StartingLevels

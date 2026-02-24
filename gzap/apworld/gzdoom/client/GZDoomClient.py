@@ -8,7 +8,7 @@ from typing import Any, Dict
 import Utils
 from CommonClient import ClientStatus, get_base_parser, gui_enabled, server_loop, logger
 from .IPC import IPC
-from .Hint import GZDoomHint
+from .Hint import UZDoomHint
 
 tracker_loaded = False
 try:
@@ -22,8 +22,8 @@ except ModuleNotFoundError:
 _IPC_SIZE = 4096
 _GZAP_DEBUG = "GZAP_DEBUG" in os.environ
 
-class GZDoomContext(SuperContext):
-    game = "GZDoom"
+class UZDoomContext(SuperContext):
+    game = "UZDoom"
     items_handling = 0b111  # fully remote
     want_slot_data = True
     slot_name = None
@@ -31,13 +31,13 @@ class GZDoomContext(SuperContext):
     tracker_task = None
 
     def __init__(self, server_address: str, password: str, gzd_dir: str):
-        self.found_gzdoom = asyncio.Event()
+        self.found_uzdoom = asyncio.Event()
         super().__init__(server_address, password)
         self.ipc = IPC(self, gzd_dir, _IPC_SIZE)
 
     def make_gui(self):
         ui = super().make_gui()
-        ui.base_title = "GZDoom Client"
+        ui.base_title = "UZDoom Client"
         return ui
 
     def init_tracker(self):
@@ -75,14 +75,14 @@ class GZDoomContext(SuperContext):
 
     async def get_username(self):
         if not self.auth:
-            print("Getting slot name from gzdoom...")
-            await self.found_gzdoom.wait()
+            print("Getting slot name from uzdoom...")
+            await self.found_uzdoom.wait()
             self.username = self.slot_name
             self.auth = self.username
             print("Got slot name:", self.username)
 
     async def connect(self, server):
-        if self.game == "GZDoom":
+        if self.game == "UZDoom":
             logger.error("No WAD loaded. Start the game and let it connect first.")
             return
         await super().connect(server)
@@ -102,15 +102,15 @@ class GZDoomContext(SuperContext):
         await self.send_connect()
 
     async def on_xon(self, wad: str, slot: str, seed: str, server: str):
-        self.game = f'GZDoom ({wad})'
+        self.game = f'UZDoom ({wad})'
         self.slot_name = slot
         self.seed_name = seed
         self.last_items = {}  # force a re-send of all items
         self.last_locations = set()
         self.last_tracked = set()
         self.last_hints = {}
-        self.found_gzdoom.set()
-        self.ipc.send_text("Archipelago<->GZDoom connection established.")
+        self.found_uzdoom.set()
+        self.ipc.send_text("Archipelago<->UZDoom connection established.")
         if server:
             await self.connect(server)
             # TODO: send a message to the game when the connection to the host is
@@ -120,8 +120,8 @@ class GZDoomContext(SuperContext):
         self.username = None
         self.auth = None
         self.slot_name = None
-        self.found_gzdoom.clear()
-        logger.info("Connection to GZDoom closed.")
+        self.found_uzdoom.clear()
+        logger.info("Connection to UZDoom closed.")
 
     async def on_victory(self):
         self.finished_game = True
@@ -175,9 +175,9 @@ class GZDoomContext(SuperContext):
 
     def pending_hints(self):
         return {
-            hint["item"]: GZDoomHint(**hint)
+            hint["item"]: UZDoomHint(**hint)
             for hint in self.stored_data.get(f"_read_hints_{self.team}_{self.slot}", [])
-            if not hint["found"] and GZDoomHint(**hint).is_relevant(self)
+            if not hint["found"] and UZDoomHint(**hint).is_relevant(self)
         }
 
     async def _item_loop(self):
@@ -257,13 +257,13 @@ class GZDoomContext(SuperContext):
 
 
 def main(*args):
-    Utils.init_logging("GZDoomClient")
+    Utils.init_logging("UZDoomClient")
 
-    # Initialize the gzDoom IPC structures on disk
+    # Initialize the UZDoom IPC structures on disk
     # TODO: do we want to support multiple running instances as the same user?
-    gzd_dir = os.path.join(Utils.user_path(), "gzdoom")
+    gzd_dir = os.path.join(Utils.user_path(), "uzdoom")
     ipc_dir = os.path.join(gzd_dir, "ipc")
-    os.makedirs(ipc_dir, exist_ok=True) # communication with gzdoom
+    os.makedirs(ipc_dir, exist_ok=True) # communication with uzdoom
     os.makedirs(os.path.join(gzd_dir, "logic"), exist_ok=True) # in-dev logic files
     os.makedirs(os.path.join(gzd_dir, "tuning"), exist_ok=True) # in-dev tuning files
 
@@ -273,14 +273,14 @@ def main(*args):
         fd.write('.' * _IPC_SIZE)
 
     # Create empty logfile if it doesn't exist
-    ipc_log = os.path.join(gzd_dir, 'gzdoom.log')
+    ipc_log = os.path.join(gzd_dir, 'uzdoom.log')
     with open(ipc_log, "a"):
         pass
 
-    print(f"GZDoom IPC files created. Host encoding: {locale.getencoding()}. IPC encoding: UTF-8.")
+    print(f"UZDoom IPC files created. Host encoding: {locale.getencoding()}. IPC encoding: UTF-8.")
 
     async def actual_main(args, ipc_dir, ipc_log):
-        ctx = GZDoomContext(args.connect, args.password, gzd_dir)
+        ctx = UZDoomContext(args.connect, args.password, gzd_dir)
         await ctx.start_tasks()
         if tracker_loaded:
             logger.info("Initializing tracker...")
@@ -293,10 +293,10 @@ def main(*args):
         await asyncio.sleep(1)
 
         logger.info("*" * 80)
-        logger.info("Client started. Please start gzDoom with the additional flags:")
+        logger.info("Client started. Please start UZDoom with the additional flags:")
         # Use forward slashes unconditionally here; windows will accept either,
         # but preferentially generates backslashes, which then are treated as
-        # escapes when invoking gzdoom.
+        # escapes when invoking uzdoom.
         logger.info(f"    -file \"{ipc_dir}\" +logfile \"{ipc_log}\"")
         logger.info("*after* any other arguments (e.g. for wad/pk3 loading).")
         logger.info("*" * 80)

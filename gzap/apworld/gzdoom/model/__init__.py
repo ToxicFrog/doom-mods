@@ -34,7 +34,7 @@ def logic_files(package):
     Get a list of logic files contained in an apworld or on disk, sorted by
     name.
 
-    If package is None, looks in $AP/gzdoom/logic. Otherwise, looks in the
+    If package is None, looks in $AP/uzdoom/logic. Otherwise, looks in the
     apworld's /logic directory. The package must be an already-loaded apworld.
 
     File extensions, if present, are ignored; the wad name is everything in the
@@ -46,7 +46,7 @@ def logic_files(package):
         ], key=lambda f: f.name)
     else:
         return sorted([
-            file for file in (Path(Utils.user_path()) / "gzdoom" / "logic").iterdir()
+            file for file in (Path(Utils.user_path()) / "uzdoom" / "logic").iterdir()
             if file.is_file()
         ])
 
@@ -66,7 +66,7 @@ def tuning_files(package, wad):
     if package:
         tuning_dir = resources.files(package).joinpath("tuning")
     else:
-        tuning_dir = Path(Utils.user_path()) / "gzdoom" / "tuning"
+        tuning_dir = Path(Utils.user_path()) / "uzdoom" / "tuning"
 
     if not tuning_dir.is_dir():
         # No tuning data for this wad!
@@ -89,7 +89,7 @@ def print_header(package):
 
 def init_wads(package):
     if not package:
-        gzd_dir = os.path.join(Utils.user_path(), "gzdoom")
+        gzd_dir = os.path.join(Utils.user_path(), "uzdoom")
         print_header(gzd_dir)
         os.makedirs(os.path.join(gzd_dir, "logic"), exist_ok=True) # in-dev logic files
         os.makedirs(os.path.join(gzd_dir, "tuning"), exist_ok=True) # in-dev tuning files
