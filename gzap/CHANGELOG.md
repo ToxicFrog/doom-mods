@@ -4,6 +4,11 @@ This is a feature release. (It was meant to be a bugfix release but it got away
 from me.)
 
 ⚠️ YAML options have changed. You must regenerate your YAML templates.
+
+⚠️ The apworld has been renamed from `gzdoom.apworld` to `uzdoom.apworld`, to
+reflect the fact that all development and testing has moved to UZDoom. Please
+delete your old `gzdoom.apworld`.
+
 🛈 Existing logic and tuning remains compatible, but re-scanning your wads will
 add new information to the logic file which is used to produce better item names
 in some cases.

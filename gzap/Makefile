@@ -15,25 +15,25 @@ include ${TOPDIR}/rules.make
 apworlds: core_apworld addon_apworlds
 apworld_generator: ${TOPDIR}/docs/apworld-generator.html
 
-core_apworld: version ${TOPDIR}/release/gzdoom.apworld
+core_apworld: version ${TOPDIR}/release/uzdoom.apworld
 addon_apworlds: $(patsubst wads/%/,${APWORLDS}/zdoom_%.apworld,$(wildcard wads/*/))
 ${PK3}: sprites/icons
 
-version: apworld/gzdoom/VERSION
+version: apworld/uzdoom/VERSION
 
-apworld/gzdoom/VERSION: ${TOPDIR}/.git/HEAD
-	${TOPDIR}/tools/version-stamp "${TAGS}" apworld/gzdoom/VERSION
+apworld/uzdoom/VERSION: ${TOPDIR}/.git/HEAD
+	${TOPDIR}/tools/version-stamp "${TAGS}" apworld/uzdoom/VERSION
 
-ca.ancilla.gzap/PlayEventHandler.zsc: apworld/gzdoom/VERSION
+ca.ancilla.gzap/PlayEventHandler.zsc: apworld/uzdoom/VERSION
 
-sprites/icons: apworld/gzdoom/icons/__init__.py assets/*.png
+sprites/icons: apworld/uzdoom/icons/__init__.py assets/*.png
 	rm -f sprites/icons/*.png
-	python apworld/gzdoom/icons/__init__.py
+	python apworld/uzdoom/icons/__init__.py
 	touch sprites/icons
 
-${TOPDIR}/release/gzdoom.apworld: apworld/gzdoom/* apworld/gzdoom/*/*
-	cd apworld && zip -qr gzdoom.apworld gzdoom
-	mv apworld/gzdoom.apworld $@
+${TOPDIR}/release/uzdoom.apworld: apworld/uzdoom/* apworld/uzdoom/*/*
+	cd apworld && zip -qr uzdoom.apworld uzdoom
+	mv apworld/uzdoom.apworld $@
 
 ${APWORLDS}/zdoom_%.apworld: apworld/zdoom_%/./ apworld/zdoom_%/archipelago.json apworld/zdoom_%/__init__.py
 	cd apworld && zip -qr9 zdoom_$*.apworld zdoom_$*/
@@ -53,10 +53,10 @@ apworld/zdoom_%/archipelago.json: wads/archipelago.tmpl version apworld/zdoom_%/
 	sed -E "s,__WAD__,$*," wads/archipelago.tmpl > apworld/zdoom_$*/archipelago.json
 
 apworld/zdoom_%/__init__.py: wads/__init__.tmpl apworld/zdoom_%/./
-	sed -E "s,__WAD__,$*,; s,__VERSION__,`cat apworld/gzdoom/VERSION`," wads/__init__.tmpl > apworld/zdoom_$*/__init__.py
+	sed -E "s,__WAD__,$*,; s,__VERSION__,`cat apworld/uzdoom/VERSION`," wads/__init__.tmpl > apworld/zdoom_$*/__init__.py
 
 install: core_apworld addon_apworlds ${PK3}
-	cp -a ${TOPDIR}/release/gzdoom.apworld ~/.local/share/Archipelago/worlds
+	cp -a ${TOPDIR}/release/uzdoom.apworld ~/.local/share/Archipelago/worlds
 	cp -a ${APWORLDS}/*.apworld ~/.local/share/Archipelago/worlds
 
 clean: clean.super

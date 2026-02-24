@@ -3,12 +3,13 @@
 ## gzArchipelago
 
 To release a new version:
+- copy the apworld-generator.html to apworld-generator-<version>.html and update the links therein
 - update the version number in the CHANGELOG and Makefile
 - make
 - commit
 - tag and push the commit
 - make again to bake the release version number into the pk3
-- cut the release on github
+- cut the release on github using the just-generated pk3 and apworld as the binaries
 
 ### scanner
 
