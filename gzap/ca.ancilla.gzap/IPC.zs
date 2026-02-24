@@ -90,7 +90,7 @@ class ::IPC {
 
   // If the pk3 was downloaded from the web host, it'll contain an archipelago.json
   // file that looks something like this:
-  // {"game": "gzDoom", "player": 2, "patch_file_ending": ".pk3", "server": "archipelago.gg:65206"}
+  // {"game": "UZDoom", "player": 2, "patch_file_ending": ".pk3", "server": "archipelago.gg:65206"}
   // We want to extract the "server" field from it.
   string GetArchipelagoServer() {
     int lump = wads.FindLump("ARCHIPEL");

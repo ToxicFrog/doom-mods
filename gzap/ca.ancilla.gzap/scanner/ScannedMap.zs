@@ -215,7 +215,7 @@ class ::ScannedMap play {
     // Note that compat flags are stored in two places: LevelInfo and LevelLocals.
     // The former stores the flags as specified in MAPINFO. The latter stores the
     // flags as actually applied, which combines the MAPINFO flags with ones
-    // hardcoded into gzdoom and settings from IWADINFO.
+    // hardcoded into uzdoom and settings from IWADINFO.
     // The latter two are applied at runtime regardless, so we only care about
     // the MAPINFO flags here.
     flags = AddFlag(flags, info.compatflags, COMPATF_ANYBOSSDEATH, "compat_anybossdeath");

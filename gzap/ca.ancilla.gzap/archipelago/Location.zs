@@ -21,7 +21,7 @@ enum ::LocationFlags {
   AP_IS_PROGRESSION = 1,
   AP_IS_USEFUL = 2,
   AP_IS_TRAP = 4,
-  // These are internal to gzdoom
+  // These are internal to UZAP
   AP_IS_UNREACHABLE = 8,
   AP_IS_SECRET_TRIGGER = 16, // This secret uses a TID rather than a sector ID
 }

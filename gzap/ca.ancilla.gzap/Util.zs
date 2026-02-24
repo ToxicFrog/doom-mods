@@ -55,7 +55,7 @@ class ::Util play {
 
   static clearscope string GetFilterName(int filter) {
     switch (filter) {
-      // Internally, gzdoom distinguishes all five difficulty levels. However,
+      // Internally, uzdoom distinguishes all five difficulty levels. However,
       // in practice, almost no WADs make use of ITYTD or NM for thing placement,
       // so (at least for now) we make the simplifying assumption that ITYTD==HNTR
       // and UV==NM.

@@ -24,7 +24,7 @@ class ::RandoState play {
   int filter;
   // Lump name to Region
   Map<string, ::Region> regions;
-  // AP item ID to gzdoom typename
+  // AP item ID to uzdoom typename
   Map<int, string> item_apids;
   // AP item ID to special ap_flag IDs -- level access flag, automap, clear flag
   Map<int, ::RegionDiff> ap_flags;
