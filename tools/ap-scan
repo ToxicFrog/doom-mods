@@ -21,7 +21,7 @@ fi
 make
 uzdoom \
   -iwad /ancilla/installs/games/PC/DOOM/IWAD/${IWAD} \
-  -file release/gzArchipelago-latest.pk3 \
+  -file release/UZArchipelago-latest.pk3 \
   "$@" \
   -warp 1 -nomusic \
   +"logfile \"$TMPFILE\"; disableautosave 1; wipetype 0; wait 1; noclip; $autoexec netevent ap-scan:start"
