@@ -227,3 +227,33 @@ sectors the player has visited in each map and going "oh, this is the same secto
 as before, so it must be the same region" -- and even that breaks down in cases
 where clever door/elevator tricks mean the same fundamental sector belongs to
 multiple regions that are logically distinct!
+
+### Region control dashboard
+
+Working on the first two episodes of Faithless has made it painfully obvious
+that I need a better UI for region management. This proposed replacement would
+be a separate screen from the inventory, and would need the following elements:
+
+- Current region name, text entry field
+  - auto-clears when you move between maps
+- "clear region" button
+- "require region for pickups" option
+  - if on you can't interact with checks unless you're in a defined region
+- "clear region on keys" option
+  - auto-clears the region whenever you change the keyset from the inventory
+- region prerequisites table, listing:
+  - every key you have;
+  - every weapon you have;
+  - every previously visited map in the same cluster;
+    - and every previously defined region within those maps;
+    - with a hotkey to switch to one of those regions;
+  - plus a text field for entering arbitrary additional requirements.
+
+The APState would remember every region you've defined and what its requirements
+were. Selecting a previously defined region automatically turns on the requirements
+it had before and turns off everything else.
+
+The AP-REGION message is not actually emitted until you manually trigger it.
+This allows for fine-tuning the region prerequisites and then emitting all of
+the regions as a block at the end of the tuning file, allowing them to easily
+be picked up and relocated to the start.

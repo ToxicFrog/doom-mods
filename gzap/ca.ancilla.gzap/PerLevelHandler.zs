@@ -461,9 +461,9 @@ class ::PerLevelHandler : EventHandler {
       is_save, self.early_exit, level.LevelNum, next_map);
 
     let region = apstate.GetRegion(level.MapName);
-    // If this is an "early exit" and persistent mode is on, we should record
-    // the player's location and return them to it when they re-enter.
-    // In hubcluster-based games this might make more sense stored per cluster
+    // TODO: If this is an "early exit" and persistent mode is on, we should
+    // record the player's location and return them to it when they re-enter. In
+    // hubcluster-based games this might make more sense stored per cluster
     // rather than per map?
 
     if (is_save || !region) {
