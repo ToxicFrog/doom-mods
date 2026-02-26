@@ -23,6 +23,7 @@ If you just want to **play a supported wad**:
 - [Gameplay](./doc/gameplay.md)
 - [Supported WAD List](./doc/support-table.md)
 - [FAQ](./doc/faq.md)
+- [Glossary of Terms](./doc/glossary.md)
 
 If you want to **import a new wad**, or **improve support for an existing one**:
 - [Importing and Tuning Wads](./doc/new-wads.md)

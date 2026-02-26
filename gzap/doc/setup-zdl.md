@@ -1,19 +1,18 @@
-# UZDoom Quickstart
+# Setup using ZDL-based launchers
 
-This is a quickstart guide for people new to UZDoom. For complete documentation,
-see [the ZDoom Wiki]((https://zdoom.org/wiki/Main_Page).
-
-If you've never used UZDoom before, you will need to download two things:
-- [UZDoom itself](https://zdoom.org/downloads)
-- A [launcher](https://zdoom.org/wiki/Frontend) to organize your game files
-  (including the AP mods and any other mods you want to play with)
-
-This guide assumes that you are using a [ZDL](https://zdoom.org/wiki/ZDL)-based
+This is a guide for setting up UZDoom using a [ZDL](https://zdoom.org/wiki/ZDL)-based
 launcher -- either AceCorp Launcher on Windows, or QZDL on Linux. Other
 launchers will also work, but the interface won't be the same as what's
 described here.
 
+If you want to use DoomRunner instead, see [the DoomRunner guide](./setup-doomrunner.md).
+
 ## Windows Installation
+
+You will need to download two things:
+- [UZDoom itself](https://zdoom.org/downloads)
+- A [ZDL-style launcher](https://zdoom.org/wiki/ZDL), probably
+  AceCorp Launcher on windows or QZDL on Linux
 
 1. Download UZDoom from the above link and extract it into a folder somewhere on
    your computer.
@@ -70,7 +69,7 @@ From there, select `Full options menu` to reveal the hidden options, and verify
 that `UZArchipelago Options` appears at the bottom:
 
 <img valign=top src="images/setup-simpleoptions.png" width=200/>
-<img src="images/setup-fulloptions-enabled.png" width=200/>
+<img src="images/setup-fulloptions.png" width=200/>
 
 Select `UZArchipelago Options` and configure your keybindings for `AP level select`
 and `AP inventory`. The rest of the settings can be adjusted to fit your tastes
@@ -79,5 +78,5 @@ mandatory.
 
 <img src="images/setup-ap-options.png" width=400/>
 
-Having done this, you're all set up and ready to generate and play a game; see
-the [setup](./setup.md) and [gameplay](./gameplay.md) docs.
+Having done this, you're all set up and ready to generate and play a game;
+continue with [per-game setup](./setup.md#per-game-setup)

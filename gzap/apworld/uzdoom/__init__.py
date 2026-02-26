@@ -17,7 +17,7 @@ from typing import Dict, FrozenSet, Set
 import zipfile
 
 from BaseClasses import CollectionState, Item, ItemClassification, Location, MultiWorld, Region, Tutorial, LocationProgressType
-from worlds.AutoWorld import WebWorld, World
+from worlds.AutoWorld import World
 import worlds.LauncherComponents as LauncherComponents
 
 from . import icons, model
@@ -84,17 +84,6 @@ class UZDoomUTGlitchFlag(Item):
     def __init__(self, player) -> None:
         super().__init__(name=self.FLAG_NAME, classification=ItemClassification.progression, code=None, player=player)
 
-class UZDoomWeb(WebWorld):
-    tutorials = [Tutorial(
-        "Multiworld Setup Guide",
-        "A guide to setting up the UZDoom randomizer connected to an Archipelago Multiworld",
-        "English",
-        "setup_en.md",
-        "setup/en",
-        ["ToxicFrog"]
-    )]
-    theme = "dirt"
-
 
 class UZDoomWorld(World):
     """
@@ -107,7 +96,6 @@ class UZDoomWorld(World):
     options_dataclass = UZDoomOptions
     options: UZDoomOptions
     topology_present = True
-    web = UZDoomWeb()
     required_client_version = (0, 6, 3)
     hidden = True
 

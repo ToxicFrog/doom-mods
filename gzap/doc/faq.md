@@ -26,8 +26,11 @@ without `start_with_keys`.
 
 ### The game doesn't start up and I get a huge number of zscript errors!
 
-Make sure that you loaded both `UZArchipelago.pk3` and the `pk3` provided by
-the game host, **and** that you loaded the `pk3` from the game host last.
+Make sure that:
+- You are loading both `UZArchipelago.pk3` and the patch file provided by the host
+- You are loading `UZArchipelago.pk3` before the patch file
+- The version of the apworld used to generate and the version of `UZArchipelago.pk3`
+  are the same
 
 ### I started the game and immediately got a "game/randomizer mismatch" error!
 
@@ -65,6 +68,12 @@ having hazard suits getting all of them shuffled into other levels.
 
 Note that items created this way are dropped at your feet; you won't pick them
 up until you take a step.
+
+### Some of my checks never got delivered because of network/host issues!
+
+Restart the `UZDoom Client` and `UZDoom`, then connect to the game as normal.
+When you enter a level or load a saved game, it should respawn any checks that
+you previously collected but that the host didn't receive.
 
 ### I can't open the level select or inventory menu!
 

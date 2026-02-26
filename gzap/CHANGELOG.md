@@ -1,7 +1,8 @@
 # Unreleased
 
 This is a feature release. (It was meant to be a bugfix release but it got away
-from me.)
+from me.) The focus is primarily on the out-of-the-box experience, with better
+default yaml options and better documentation.
 
 ⚠️ YAML options have changed. You must regenerate your YAML templates.
 
@@ -21,6 +22,8 @@ in some cases.
     don't have tags in the WAD. This is used to rename some builtin actors (e.g.
     `RedCard` -> `Red Keycard`).
 - Changed:
+  - Complete overhaul of the setup documentation, including screenshotted
+    instructions for setting up DoomRunner.
   - Level accesses are now named (e.g.) `MAP01: Entryway` in wads where map names
     are available.
   - New item categories `ap_progression`, `ap_useful`, `ap_trap`.
@@ -39,6 +42,8 @@ in some cases.
   - `win_conditions` setting split into `win_map_count` and `win_map_names`.
   - `excluded_levels` setting removed. Delete entries from `included_levels` instead.
   - `levels_per_weapon` setting removed. Adjust `max_weapon_copies` instead.
+  - WebWorld removed. If this ever gets merged into mainline AP it can be
+    reinstated with the new documentation.
 - Fixed:
   - In-level check count could diverge significantly from the real check count.
   - UT did not work properly with non-default `included_item_categories`.

@@ -17,6 +17,10 @@ have found that code. These codes, along with keys and weapons, are considered
 progression items. Each level also has a fullmap, which is considered useful,
 but not progression.
 
+By default, level access codes, automaps, keys, weapons, and "big" pickups (e.g.
+blue/green armour, soulspheres/megaspheres, backpacks) are randomized. Options
+in the YAML allow considerable control over this.
+
 ## Settings
 
 UZArchipelago has a *lot* of settings that can be adjusted in-game rather than

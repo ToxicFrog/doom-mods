@@ -1,81 +1,159 @@
-# Game Setup
+# UZArchipelago Setup
 
-This document describes how to get up and running with UZArchipelago, for players
-who just want to play one of the [supported wads](./support-table.md). If you want
-to play an unsupported wad, see [this documentation](./new-wads.md).
+This document describes, in detail, how to set up UZArchipelago. If you are
+already familiar with Archipelago and with playing modded UZDoom, you may want
+to read the [quickstart guide](./quickstart.md) instead.
+
+For information on how gameplay works once set up, see the [gameplay guide](./gameplay.md).
+For a list of supported WADs, see the [support table](./support-table.md). If you
+want to add support for a new WAD, see the [new WADs guide](./new-wads.md), but
+I strongly recommend going through these instructions, and making sure that
+everything is set up properly and the basics work, first.
+
+For troubleshooting information, see [the FAQ](./faq.md).
+
+## Required Software
+
+- **For generating:**
+  - [uzdoom.apworld](../../release/uzdoom.apworld)
+  - Addon apworlds for [any WADs you intend to play](./support-table.md)
+- **For playing:**
+  - apworlds:
+    - [uzdoom.apworld](../../release/uzdoom.apworld)
+    - Addon apworlds for [any WADs you intend to play](./support-table.md)
+    - Optional but recommended: [Universal Tracker](https://github.com/FarisTheAncient/Archipelago/releases)
+  - [UZArchipelago.pk3](../../release/UZArchipelago-latest.pk3)
+    - ⚠️ **It is important that the pk3 version matches the apworld version.**
+  - [UZDoom](https://zdoom.org/downloads)
+    - Optional but recommended: a launcher like [DoomRunner](https://github.com/Youda008/DoomRunner)
+  - The base game data ("IWAD") for the maps you will be playing:
+    - ⚠️ If you are using one of [the rereleases](https://www.gog.com/en/games?developers=id-software-nightdive-studios), make sure you get the version of the WAD from the `base/` directory, not `rerelease/`
+    - For Doom maps:
+      - `DOOM.WAD` from The Ultimate Doom
+      - If you don't have Doom, you can use [FreeDoom](https://freedoom.github.io/download.html) Phase 1 instead
+    - For Doom II maps:
+      - `DOOM2.WAD` from Doom II: Hell on Earth
+      - If you don't have Doom II, you can use [FreeDoom](https://freedoom.github.io/download.html) Phase 2 instead
+    - For Heretic maps:
+      - `HERETIC.WAD` from Heretic or Shadow of the Serpent Riders
+      - If you don't have Heretic, you can use [Blasphemer](https://doomwiki.org/wiki/Blasphemer) instead
+  - The map data ("PWAD") for the maps you will be playing
+    - If you are playing one of the base games (e.g. Doom 1/2, Heretic), everything you need is built into the IWAD, so you can skip this
+    - Otherwise you can usually find download links by searching for your WAD on [the DoomWiki](https://doomwiki.org/)
 
 ## First-time setup
 
-Download the [apworld](../../release/uzdoom.apworld) and add it to Archipelago.
+You will need to do these steps once when first setting up, and after that
+should be able to leave things as-is.
 
-Find the additional apworlds for the WADs you want to play in the [support table](./support-table.md).
-Download and install those as well.
+### Archipelago
 
-Download the [matching version of the mod](../../release/UZArchipelago-latest.pk3)
-and add it to your uzdoom load order (it doesn't much matter where).
+Install the apworlds. Depending on how you installed Archipelago, this may be
+as simple as double-clicking on them, or you may need to manually copy them to
+your `worlds` or `custom_worlds` AP directory.
 
-Start up uzdoom, go into the options menu, and use the `UZArchipelago Options`
-to configure the mod to your taste. Make sure to bind keys for `AP level select`
-and `AP inventory`.
+Start Archipelago and click `Generate Template Options`. It should produce a
+YAML template named `UZDoom (Wad Name).yaml` for every WAD you installed support
+for.
 
-If you are new to UZDoom or to UZDoom modding, you may want to read the
-[UZDoom quickstart guide](./gzdoom_newplayers.md), which explains the above in
-more detail.
+### UZDoom
 
-## Game Generation
+🛈 You can find general documentation about UZDoom on [the ZDoom Wiki](https://zdoom.org/wiki/Main_Page).
 
-This works the same as in any other Archipelago game: `Generate Template Options`
-to get an example YAML file, edit it to your taste, then either `Generate` it
-yourself, or send it to the host who does so. Note that every WAD has a separate
-YAML file!
+🛈 It is highly recommended that you use a launcher program. Most launchers
+should work, but there are dedicated guides to setting up AP with
+[DoomRunner](./setup-doomrunner.md) (the apworld author's favourite) and with
+[QZDL, AceCorp, and other ZDL-based launchers](./setup-zdl.md) (the most popular
+overall). What follows are the generic, launcher-agnostic instructions.
 
-The zip file emitted by the generator will contain, in addition to the AP data
-package and the spoiler log, a `pk3` file with your name on it. Add this to your
-load order *at the end*, or at least, after UZArchipelago.pk3 and after whatever
-wad you're playing. **You must include both UZArchipelago.pk3 and the generated
-pk3 in your load order.**
+Add the `UZArchipelago.pk3` to your mod load order. You will need this loaded for
+every AP game.
 
-If you're using the web host, you can download the pk3 directly using the
-"download patch file" link for your slot.
+Start Archipelago and click `UZDoom Client`. It will display some extra command
+line options to use with UZDoom. Add these to your UZDoom launch configuration;
+you will need them for every AP game (and they will be the same for each game).
+You can click on them in the client, which will hilight them and copy them to
+the clipboard:
 
-## Single-world
+<img src="images/setup-client-flags.png">
 
-UZArchipelago has fully integrated solo-play support; you do not need to host a
-game or start the client. Simply start up the game and begin playing. If you are
-playing across multiple sessions, you can safely save and exit, and resume (via
-`Load Game` in the main menu) later.
+Finally, start up UZDoom, go into the options menu, turn off `Simple Options Menu`
+if it's on, and use the `UZArchipelago Options` to configure the mod to your
+taste. Make sure to bind keys for `AP level select` and `AP inventory`.
 
-If you do want to run the client -- which may be useful, since that provides
-automatic recording of [tuning files](./new-wads.md) and, if
-[Universal Tracker](https://github.com/FarisTheAncient/Archipelago/releases) is
-installed, tracker integration -- follow the same instructions as for multiworld
-play, below.
+## Per-game setup
+
+These are steps you will have to do for each game you want to play.
+
+### Game Generation
+
+Copy the generated YAML from your AP `Players/Templates/` directory to `Players/`.
+Edit it as you see fit -- the defaults should work out of the box, but you may
+want to tweak things and should at least select a player name.
+
+- **If you are generating**: start Archipelago and click `Generate`.
+- **If someone else is generating**: send them your YAML, `uzdoom.apworld`, and the
+  wad-specific apworld for your YAML.
+
+### Patch setup
+
+UZAP requires a per-game patch file that contains information about which items
+were placed where.
+
+- **If the game has a room link**: download the patch by clicking the `Download
+  patch file` link in that room.
+- **If you are hosting**: you can find it inside the `AP_1234.zip` file produced
+  by `Generate`. It will be named something like `AP_1234_P0_PlayerName.WadName.pk3`.
+- **If someone else is hosting**: ask them to send you the patch file.
+
+Once you have the patch file, add it to the end of your UZDoom load order, so
+that it loads after both the WAD you are playing and the main `UZArchipelago.pk3`.
+Also make sure that you have selected the right IWAD and, if applicable, PWAD.
+([DoomRunner example](./setup-doomrunner.md#playing-a-game).)
+
+If there are any in-game settings you want to adjust, such as deathlink, this
+is also a good time to start up UZDoom and do that, before starting the game
+proper.
+
+## Starting the game
+
+### Solo play
+
+UZArchipelago has fully integrated solo-play support that does not require a
+separate Archipelago host. Simply start UZDoom and select `New Game` as normal,
+then choose a difficult setting matching what you configured in your YAML. If
+you need a break, you can save and exit, and resume your saved game later.
+UZDoom will not mind
+
+If you do want to run the client (for the Universal Tracker integration, or
+because you are a logic developer and want it to record [tuning files](./new-wads.md)),
+follow the instructions for multiworld play below.
 
 Once in-game, consult the [gameplay guide](./gameplay.md) for more details.
 
 ## Multi-world
 
-If you are joining a multiworld game, you will need to start an external client
-to handle communication between UZDoom and the Archipelago host.
+UZDoom cannot directly connect to the Archipelago host, so it requires an
+external client program, built into the apworld, to act as a go-between.
 
-Start up Archipelago and click `UZDoom Client`. This will show you some help
-text, including some extra command line flags for UZDoom. **You must use these
-flags or UZDoom and Archipelago will be unable to communicate**.
+Start up Archipelago and click `UZDoom Client`. This should open a new window
+showing you the command line flags you added to UZDoom during the first-time
+setup.
 
-Start UZDoom. Select `New Game`, choose a difficulty level matching what you
-selected in the YAML, and once the game loads in you should see a green message
-at the top of the screen saying that the AP connection is working. This should
-be accompanied by messages in the AP client showing that you have joined the
-game.
+Once that is running, start UZDoom and select `New Game`. Choose a difficulty
+setting matching what you configured in your YAML. The game should load into a
+level select screen and you should shortly see a message at the top of the
+screen saying that the Archipelago connection has been established.
 
-The AP client should connect automatically (using information in the generated
-pk3). If it doesn't (for example, because the port for your AP room has changed
-since the game was generated), you can manually enter the AP address into the
-client and click `Connect`. You must do this *after* the game starts up and
-connects to the client, so that it knows which WAD you're playing.
+Once this happens, the AP client program should connect automatically (using
+information in the patch file). If it doesn't (for example, because the port for
+your AP room has changed since the game was generated), you can manually enter
+the AP address into the client and click `Connect`. You must do this *after* the
+game starts up and connects to the client, so that it knows which WAD you're
+playing.
 
 If you need to stop playing and resume later, you can save and exit your game as
-normal; when returning to it, restore your save (via `Load Game` in the main
+normal. When returning to it, restore your save (via `Load Game` in the main
 menu; **do not** start a new game and then load your game from there) and AP
 will sync any items that you missed while offline.
 
