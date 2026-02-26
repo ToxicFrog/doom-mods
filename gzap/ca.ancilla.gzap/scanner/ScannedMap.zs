@@ -80,6 +80,7 @@ class ::ScannedMap play {
     if (self.clustername != "") {
       titles = titles .. string.format("\"clustername\": \"%s\", ", self.clustername);
     }
+    DEBUG("scanned map titles, level=%s episode=%s cluster=%s", self.levelname, self.episodename, self.clustername);
 
     ::Scanner.Output("MAP", string.format(
       "\"map\": \"%s\", %s\"checksum\": \"%s\", \"rank\": %d, \"monster_count\": %d,%s \"info\": %s",
@@ -114,12 +115,6 @@ class ::ScannedMap play {
 
   void CopyFromLevelLocals(LevelLocals level) {
     self.levelname = level.LevelName;
-    self.clustername = ::RC.Get().GetNameForCluster(self.hub);
-    if (self.clustername == "") {
-      self.clustername = level.GetClusterName();
-    }
-    // self.episodename is set at construction time because it has to be inherited
-    // from the parent map, we can't trust the one in LevelLocals
 
     foreach (sector : level.sectors) {
       if (sector.IsSecret()) {
@@ -133,6 +128,15 @@ class ::ScannedMap play {
     }
     if (level.clusterflags & level.CLUSTER_HUB) {
       self.hub = level.cluster;
+    }
+
+    // self.episodename is set at construction time because it has to be inherited
+    // from the parent map, we can't trust the one in LevelLocals
+    self.clustername = ::RC.Get().GetNameForCluster(self.hub);
+    DEBUG("clustername from RC: %s", self.clustername);
+    if (self.clustername == "") {
+      self.clustername = level.GetClusterName();
+      DEBUG("clustername from mapinfo: %s", self.clustername);
     }
   }
 

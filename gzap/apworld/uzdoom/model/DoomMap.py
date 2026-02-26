@@ -170,7 +170,7 @@ class DoomMap:
         return f"Automap ({self.map})"
 
     def clear_flag_name(self):
-        if self.clustername:
+        if self.clustername and self.wad.use_hub_logic:
             return f'Chapter Clear ({self.clustername})'
         else:
             return f'Level Clear ({self.map})'

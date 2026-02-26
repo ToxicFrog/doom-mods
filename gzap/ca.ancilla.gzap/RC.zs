@@ -99,6 +99,7 @@ class ::RC : Object play {
   }
 
   void SetClusterName(int cluster, string name) {
+    DEBUG("Set cluster name for id %d to %s", cluster, name);
     self.cluster_names.Insert(cluster, name);
   }
 
