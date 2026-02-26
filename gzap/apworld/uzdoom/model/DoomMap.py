@@ -145,14 +145,16 @@ class DoomMap:
                 return False
 
             # We also need to have cleared some number of preceding levels based
-            # on the level_order_bias
-            levels_cleared = {
-                map.clear_flag_name() for map in prior_maps
-                if state.has(map.clear_flag_name(), world.player)
-            }
-            levels_needed = (world.options.level_order_bias.value / 100) * len(prior_maps)
-            if len(levels_cleared) < round(levels_needed):
-                return False
+            # on the level_order_bias. This is disabled for hublogic since only
+            # end-of-chapter maps are really "cleared".
+            if not self.wad.use_hub_logic():
+                levels_cleared = {
+                    map.clear_flag_name() for map in prior_maps
+                    if state.has(map.clear_flag_name(), world.player)
+                }
+                levels_needed = (world.options.level_order_bias.value / 100) * len(prior_maps)
+                if len(levels_cleared) < round(levels_needed):
+                    return False
 
             return True
 

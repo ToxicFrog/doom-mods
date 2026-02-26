@@ -168,6 +168,14 @@ class MaxWeaponCopies___WAD__(Range):
   range_start = 0
   range_end = 32
 
+if wad.get_flag('use_hub_logic'):
+  class LevelOrderBias___WAD__(options.LevelOrderBias):
+    default = 0
+    visibility = Visibility.none
+else:
+  LevelOrderBias___WAD__ = options.LevelOrderBias
+
+
 @dataclass
 class UZDoomOptions___WAD__(options.UZDoomOptions):
   included_levels: IncludedLevels___WAD__
@@ -176,6 +184,7 @@ class UZDoomOptions___WAD__(options.UZDoomOptions):
   win_map_count: WinMapCount___WAD__
   win_map_names: WinMapNames___WAD__
   max_weapon_copies: MaxWeaponCopies___WAD__
+  level_order_bias: LevelOrderBias___WAD__
 
 class UZDoomWorld___WAD__(uzdoom.UZDoomWorld):
   game = f"UZDoom ({wad.name})"

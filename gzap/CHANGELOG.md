@@ -31,6 +31,7 @@ in some cases.
     - `start_with_keys` is now off by default if the WAD has tuning data.
     - `start_with_keys` is now forced off for WADs using hub logic, as turning it
       on will start you with all the keys for the entire episode.
+    - `level_order_bias` is now properly ignored for WADs using hub logic.
     - `included_item_categories` now excludes secrets and items in secrets by
       default.
     - `max_weapon_copies` is now automatically set based on how many maps are in
