@@ -103,9 +103,16 @@ class IncludedItemCategories(OptionList):
     that exact item. To avoid ambiguity, you have to use Doom's internal name,
     e.g. 'ClipBox' instead of 'Bullets' and 'ArtiHealth' instead of 'Quartz Flask'.
 
-    The default settings exclude all items in secrets ('secret:none') as well as
-    the secrets themselves, as depending on the WAD these can be quite difficult
-    to get.
+    The default settings:
+    - exclude all items in secrets and the secrets themselves, as they can be
+      quite difficult to get for inexperienced players depending on the WAD;
+    - include all useful and progression items;
+    - exclude all small and medium items and all Heretic tools (that are neither
+      useful nor progression);
+    - and include everything else by default.
+
+    Turning on medium, small, or tool items can increase the number of checks by
+    10x or more, so be prepared for a grass-rando-like experience if you do that.
 
     You can also use two special values in place of a percentage:
 
@@ -118,17 +125,11 @@ class IncludedItemCategories(OptionList):
       All items in this category will be placed in your starting inventory instead
       of in the item pool. Use 'key:start', 'weapon:start', or 'ap_map:start' to
       start with all keys, weapons, or maps, respectively.
-
-    Note that the default settings exclude all small and medium items and all
-    Heretic tools. Turning on medium items tends to more than double the number
-    of checks, and turning on everying tens to increase it by 10x. Make sure
-    everyone is prepared for a game with thousands or tens of thousands of
-    checks in Doom if you turn those on.
     """
     display_name = "Included item/location categories"
     default = [
         'secret-sector:none', 'secret-marker:none', 'secret:none',
-        'weapon:all', 'key:all', 'token:all', 'big:all',
+        'ap_progression:all', 'ap_useful:all', 'big:all',
         'medium:none', 'small:none', 'tool:none',
         '*:all',
     ]

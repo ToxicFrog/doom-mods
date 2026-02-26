@@ -37,9 +37,14 @@ class DoomItem:
         self.categories = frozenset(category.split('-'))
         self.typename = typename
         self.tag = tag
+        # TODO: Hack for old logic files that don't explicitly set ap_progression/ap_useful
+        if self.has_category('key', 'weapon'):
+            self.categories = self.categories | frozenset(['ap_progression'])
         # TODO: We need a better way of handling scoped items, so that things
         # other than these types can be marked as scoped, so that we can have
-        # non-scoped flags, etc
+        # non-scoped flags, etc. Maybe level-scoped weapons someday so that
+        # rather than finding "the rocket launcher" you find "the ability to
+        # use the rocket launcher in map X".
         if self.has_category('key', 'ap_flag'):
             self.map = map
 
@@ -64,18 +69,20 @@ class DoomItem:
         return self.categories & frozenset(args)
 
     def classification(self) -> ItemClassification:
-        # TODO: now that we can attach multiple categories to items, we should
-        # clean this up some and base these decisions entirely on the categories
-        # and not on the typename, to let us have a "access flag" distinct from
-        # "win flag" etc.
-        if self.has_category('ap_map'):
-            return ItemClassification.useful
-        elif self.has_category('key', 'ap_flag', 'weapon'):
-            return ItemClassification.progression
-        elif self.has_category('upgrade'):
-            return ItemClassification.useful
-        else:
-            return ItemClassification.filler
+        classification = ItemClassification.filler
+        if self.has_category('ap_trap'):
+            classification |= ItemClassification.trap
+        if self.has_category('ap_useful'):
+            classification |= ItemClassification.useful
+        if self.has_category('ap_progression'):
+            classification |= ItemClassification.progression
+        if self.has_category('ap_skip_balancing'):
+            assert ItemClassification.progression in classification, 'ap_skip_balancing is only allowed on progression items'
+            classification |= ItemClassification.skip_balancing
+        if self.has_category('ap_deprioritized'):
+            assert ItemClassification.progression in classification, 'ap_deprioritized is only allowed on progression items'
+            classification |= ItemClassification.deprioritized
+        return classification
 
     def is_progression(self) -> bool:
         return self.classification() == ItemClassification.progression

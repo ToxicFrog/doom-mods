@@ -57,8 +57,8 @@ location.
 In the logic file, categories are stored as hyphen-separated strings for
 historical reasons, e.g. the category string "small-health" denotes an item
 with both the `small` and `health` categories. A logic file can make up any
-categories it wants and the apworld will automatically detect them, but the
-current list of categories used by the wad scanner is:
+categories it wants and the apworld will automatically detect them. Not all of
+these are used in vanilla Doom/Heretic; some only appear in TCs.
 
 - `key`: keycards, skulls, etc; specific to a single level or cluster. Includes
   "key-like quest items" like gears, the stone idol, etc.
@@ -66,6 +66,8 @@ current list of categories used by the wad scanner is:
   the pool but the items themselves are not, since AP handles maps specially.
 - `token`: single-use keys that must be expended in exchange for something.
 - `weapon`: any sort of weapon
+- `upgrade`: permanent powerups (e.g. max HP upgrades). Note that the backpack
+  is presently considered `big-ammo`, not `upgrade`.
 - `powerup`: time-limited or per-level powerups (e.g. radsuits, berserk)
 - `health`: anything that restores health
 - `armor`: anything that restores armour
@@ -73,6 +75,23 @@ current list of categories used by the wad scanner is:
 - `tool`: inventory items that aren't in any other category (e.g. time bombs)
 - `big`, `medium`, `small`: used to differentiate different sizes of health,
   armour, and ammo pickups
+
+There are also categories that correspond to how items are categorized by
+Archipelago itself:
+
+- `ap_progression`: the item is relevant for progression. All `weapon`s and
+  `key`s have this, but depending on the wad, other items might as well.
+- `ap_useful`: the item is considered useful. It will get a special "useful"
+  sprite and the apworld won't change how many there are in the pool based on
+  how many locations are available like it will with filler. AP automaps have
+  this.
+- `ap_skip_balancing`: the item should not be included in progression balancing.
+  Use this for progression items where you need a lot of them to actually affect
+  progression, e.g. souls in The Golden Souls.
+- `ap_deprioritized`: the item should not be preferred for priority locations.
+  Similar to `ap_skip_balancing`, use this for progression items that are needed
+  but not actually immediately useful or exciting to find.
+- `ap_trap`: item is a trap.
 
 In addition, there are some categories not present in the logic file but which
 are used by the apworld:

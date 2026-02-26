@@ -201,11 +201,11 @@ class DoomWad:
         self.register_item(
             DoomItem(map=None, category="small-health", typename="Health", tag="Health"))
         access_flag = self.register_item(
-            DoomFlag(map=map.map, category="ap_flag-ap_level", typename="GZAP_LevelAccess", tag=map.access_flag_name()))
+            DoomFlag(map=map.map, category="ap_flag-ap_progression-ap_level", typename="GZAP_LevelAccess", tag=map.access_flag_name()))
         map.add_loose_item(access_flag.name())
 
         automap_flag = self.register_item(
-            DoomFlag(map=map.map, category="ap_flag-ap_map", typename="GZAP_Automap", tag=map.automap_name()))
+            DoomFlag(map=map.map, category="ap_flag-ap_useful-ap_map", typename="GZAP_Automap", tag=map.automap_name()))
         map.add_loose_item(automap_flag.name())
 
         if self.use_hub_logic():
@@ -214,8 +214,11 @@ class DoomWad:
             if map.map not in self.hub_logic_exits():
                 return
 
+        # TODO: we should make completing the level an AP-internal event flag,
+        # and add the level exit as a default-empty location to the generated
+        # game.
         clear_flag = self.register_item(
-            DoomFlag(map=map.map, category="ap_flag-ap_victory", typename="GZAP_VictoryFlag", tag=map.clear_flag_name()))
+            DoomFlag(map=map.map, category="ap_progression-ap_flag-ap_victory", typename="GZAP_VictoryFlag", tag=map.clear_flag_name()))
         map_exit = DoomLocation(self, item=clear_flag, secret=False, pos=[map.map,'event','exit'])
 
         # TODO: there should be a better way of overriding location names

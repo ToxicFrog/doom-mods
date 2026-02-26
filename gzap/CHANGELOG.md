@@ -21,7 +21,9 @@ in some cases.
     don't have tags in the WAD. This is used to rename some builtin actors (e.g.
     `RedCard` -> `Red Keycard`).
 - Changed:
-  - Level accesses are now named (e.g.) `MAP01: Entryway`.
+  - Level accesses are now named (e.g.) `MAP01: Entryway` in wads where map names
+    are available.
+  - New item categories `ap_progression`, `ap_useful`, `ap_trap`.
   - Changes to default yaml settings:
     - `included_levels` now defaults to all maps in the WAD.
     - `starting_levels` contains all episode-start maps, but may include additional
@@ -61,6 +63,7 @@ in some cases.
     Note however that this will only function correctly if at least one of the
     item in question is randomized; if it's not in `included_item_categories`
     generation will fail.
+  - New item categories `ap_skip_balancing`, `ap_deprioritized`.
 
 # 0.7.1
 
