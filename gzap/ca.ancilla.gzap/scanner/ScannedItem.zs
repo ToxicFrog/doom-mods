@@ -131,8 +131,8 @@ class ::ScannedItem : ::ScannedLocation {
 
     let scopename = ::RC.Get().GetNameForCluster(self.hub);
     ::Scanner.Output("KEY", string.format(
-        "\"tag\": \"%s\", \"typename\": \"%s\", \"scopename\": \"%s\", \"cluster\": %d, \"maps\": [%s]",
-        self.tag, self.typename, scopename, self.hub, map_str));
+        \"typename\": \"%s\", "\"tag\": \"%s\", \"scopename\": \"%s\", \"cluster\": %d, \"maps\": [%s]",
+        self.typename, self.tag, scopename, self.hub, map_str));
   }
 
   static bool IsSecret(Actor thing) {

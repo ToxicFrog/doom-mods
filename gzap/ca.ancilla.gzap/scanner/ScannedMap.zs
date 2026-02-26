@@ -84,8 +84,8 @@ class ::ScannedMap play {
     DEBUG("scanned map titles, level=%s episode=%s cluster=%s", self.levelname, self.episodename, self.clustername);
 
     ::Scanner.Output("MAP", string.format(
-      "\"map\": \"%s\", %s\"checksum\": \"%s\", \"rank\": %d, \"monster_count\": %d,%s \"info\": %s",
-      name, titles, LevelInfo.MapChecksum(name), self.rank, self.monster_count, clustername, GetMapinfoJSON()));
+      "\"map\": \"%s\", %s\"checksum\": \"%s\", \"rank\": %d, \"monster_count\": %d, \"info\": %s",
+      name, titles, LevelInfo.MapChecksum(name), self.rank, self.monster_count, GetMapinfoJSON()));
     foreach (loc : locations) {
       loc.Output();
     }
