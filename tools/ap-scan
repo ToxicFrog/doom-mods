@@ -18,9 +18,13 @@ if [[ $PRUNE ]]; then
   autoexec="$autoexec ap_scan_prune \"${PRUNE}\";"
 fi
 
+if [[ ! -f $IWAD ]]; then
+  IWAD="/ancilla/installs/games/PC/DOOM/IWAD/$IWAD"
+fi
+
 make
 uzdoom \
-  -iwad /ancilla/installs/games/PC/DOOM/IWAD/${IWAD} \
+  -iwad "${IWAD}" \
   -file release/UZArchipelago-latest.pk3 \
   "$@" \
   -warp 1 -nomusic \
