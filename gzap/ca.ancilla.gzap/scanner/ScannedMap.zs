@@ -2,6 +2,7 @@
 // Locations.
 
 #namespace GZAP;
+#debug off;
 
 #include "./ScannedLocation.zsc"
 #include "./ScannedItem.zsc"

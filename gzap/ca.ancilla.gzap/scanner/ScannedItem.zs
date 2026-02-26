@@ -112,7 +112,7 @@ class ::ScannedItem : ::ScannedLocation {
 
     ::Scanner.Output("KEY", string.format(
       "\"typename\": \"%s\", \"tag\": \"%s\", \"scopename\": \"%s\", \"cluster\": %d, \"maps\": [\"%s\"]",
-      self.tag, self.typename, mapname, self.hub, mapname));
+      self.typename, self.tag, mapname, self.hub, mapname));
   }
 
   void OutputHubKeyInfo() {
