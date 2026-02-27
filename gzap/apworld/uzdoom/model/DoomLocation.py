@@ -75,6 +75,8 @@ class DoomLocation(DoomReachable):
         return self.categories & frozenset(args)
 
     def is_default_enabled(self) -> bool:
+        if self.has_category('secret', 'ap_flag'):
+            return False
         if self.has_category('ap_progression', 'ap_useful', 'big'):
             return True
         if self.has_category('medium', 'small', 'tool'):
