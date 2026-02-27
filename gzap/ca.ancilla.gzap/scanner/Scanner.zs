@@ -45,6 +45,12 @@ class ::Scanner play {
     prune.Insert(mapname, true);
   }
 
+  void ForceMapRank(string mapname, uint rank) {
+    let sm = maps_by_name.GetIfExists(mapname.MakeUpper());
+    if (!sm) return;
+    sm.rank = rank;
+  }
+
   bool EnqueueLevel(string mapname, ::ScannedMap prev) {
     string mapname = mapname.MakeUpper();
 
@@ -207,11 +213,23 @@ class ::Scanner play {
 
   void EnqueueLevelports(::ScannedMap prev) {
     foreach (line : level.lines) {
-      if (line.special != 74) continue; // check for Teleport_NewMap
-      let info = LevelInfo.FindLevelByNum(line.args[0]);
-      if (!info) continue; // teleport is not hooked up, do not attempt
-      console.printf("LEVELPORT: %d (%d - %s)", line.args[0], info.LevelNum, info.MapName);
-      EnqueueNext(info.MapName, prev);
+      if (line.special == 74) {
+        // Teleport_NewMap
+        let info = LevelInfo.FindLevelByNum(line.args[0]);
+        if (!info) continue; // teleport is not hooked up, do not attempt
+        console.printf("Teleport_NewMap: %d (%d - %s)", line.args[0], info.LevelNum, info.MapName);
+        EnqueueNext(info.MapName, prev);
+      } else if (line.special == 244) {
+        // Exit_Secret
+        console.printf("Exit_Secret: %s", level.NextSecretMap);
+        EnqueueNext(level.NextSecretMap, prev);
+        // This may already have been enqueued via the MAPINFO, but if so it
+        // is common in a lot of WADs to list the secret map for an episode as
+        // the NextSecretMap for *every* level, whether or not they have an
+        // exit or not, which results in an incorrectly low rank for the map.
+        // So, we correct the rank here if that happened.
+        ForceMapRank(level.NextSecretMap, prev.rank+1);
+      }
     }
   }
 }
