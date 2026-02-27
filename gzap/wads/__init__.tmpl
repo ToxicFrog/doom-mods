@@ -19,9 +19,19 @@ class IncludedLevels___WAD__(options.IncludedLevels):
   __doc__ = options.IncludedLevels.__doc__
   default = sorted(wad.maps.keys())
 
+default_solo_starting_maps = wad.default_solo_starting_maps()
 class StartingLevels___WAD__(options.StartingLevels):
-  __doc__ = options.StartingLevels.__doc__
-  default = sorted(wad.default_starting_maps())
+  __doc__ = options.StartingLevels.__doc__ + (
+    '' if not default_solo_starting_maps
+    else f'''
+    For solo play, to avoid generation failures due to a small sphere 1 in
+    this wad, you may need to either change included_item_categories to enable
+    more item categories, or add more maps here. If doing the latter, the
+    apworld's best guess at what to set this to is:
+    {default_solo_starting_maps}
+    '''
+  )
+  default = sorted(map.map for map in wad.default_starting_maps())
 
 if wad.get_flag('use_hub_logic'):
   class StartWithKeys___WAD__(options.StartWithKeys):

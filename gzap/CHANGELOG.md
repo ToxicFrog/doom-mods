@@ -29,8 +29,8 @@ in some cases.
   - New item categories `ap_progression`, `ap_useful`, `ap_trap`.
   - Changes to default yaml settings:
     - `included_levels` now defaults to all maps in the WAD.
-    - `starting_levels` contains all episode-start maps, but may include additional
-      maps if needed for reliable generation with default settings.
+    - `starting_levels` contains all episode-start maps. Documentation includes
+      a wad-specific recommendation for alternate starting maps for solo play.
     - `start_with_keys` is now off by default if the WAD has tuning data.
     - `start_with_keys` is now forced off for WADs using hub logic, as turning it
       on will start you with all the keys for the entire episode.

@@ -21,14 +21,8 @@
 # to the apworld as is. This can be used to add objects to the scan that would
 # normally be skipped, or change the category of objects.
 #
-# "key", "map", and "weapon" have special handling in the generator:
-# - keys are used in reachability calculations and are, by default, limited to
-#   the level on which they're found (although the logic can indicate that a
-#   key can be carried between levels)
-# - weapons are used for difficulty-based logic, via the weapon_*_bias options;
-#   there is also a limit on how many copies of each weapon can be in the pool
-# - maps are converted into checks, but not placed in the item pool; instead the
-#   pool is populated (or not) with maps based on other settings
+# Some categories have special handling, such as 'key', 'maprevealer', 'weapon',
+# and all 'ap_' categories; see doc/glossary.md for a complete list.
 #
 # A category of "none" will exclude something from the scan entirely, even if it
 # would normally have been included.

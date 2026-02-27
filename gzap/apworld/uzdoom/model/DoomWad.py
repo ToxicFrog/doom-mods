@@ -166,24 +166,42 @@ class DoomWad:
     def default_starting_maps(self) -> List[str]:
         '''
         Returns a list of maps suitable for use as the default value for the
-        starting_levels option in the yaml.
-
-        We unconditionally add all rank 0 maps to this list; we then populate it
-        with maps of increasing rank until either 10% of the maps or 32 checks
-        is available from the start.
+        starting_levels option in the yaml. Currently this is just all rank 0
+        maps.
         '''
-        maps = [map for map in self.all_maps() if map.rank == 0]
+        return [map for map in self.all_maps() if map.rank == 0]
 
+    def default_solo_starting_maps(self) -> List[str]:
+        '''
+        Returns a list of maps to recommend as starting maps for solo play. This
+        may be longer than default_starting_maps because solo play requires us
+        to put enough items for progression in our own sphere 1, rather than
+        offloading them to other games, which is a problem for wads like Doom 2
+        that have extremely restrictive starts with default settings.
+
+        We start with the default_starting_maps, then add additional maps until
+        the average number of locations per map is ≥4, on the grounds that
+        that will usually get us enough locations to make net progress (i.e.
+        access tokens, keys, and any needed weapons).
+
+        TODO: In the future, we should be more sophisticated about this and
+        consider what the weapon logic requirements are, etc.
+        '''
         if self.use_hub_logic():
-            return sorted(map.map for map in maps)
+            # Hub logic is special and we don't have separate starting maps
+            # for it.
+            return None
 
+        maps = self.default_starting_maps()
         maps_left = sorted(
-            [map for map in self.all_maps() if map.rank > 0],
-            key=lambda map: map.rank, reverse=True)
-        def nrof_locs():
-            return sum(map.default_enabled_location_count() for map in maps)
-        while nrof_locs() < 32 and len(maps) < len(self.maps)/10:
+            [map for map in self.all_maps() if map not in maps],
+            key=lambda map: (map.rank, map.map), reverse=True)
+        def locs_per_map():
+            return sum(map.default_enabled_location_count() for map in maps)/len(maps)
+        while locs_per_map() < 4:
             maps.append(maps_left.pop())
+        if len(maps) == len(self.default_starting_maps()):
+            return None
         return sorted(map.map for map in maps)
 
     def new_map(self, json: Dict[str,str]) -> None:

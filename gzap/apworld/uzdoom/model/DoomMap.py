@@ -117,6 +117,9 @@ class DoomMap:
                 return False
 
             # Starting levels are exempt from all balancing checks.
+            # TODO: we should be better about this, exclude rank 0 levels from
+            # carryover checks but still apply them to later starting levels
+            # if possible.
             if world.is_starting_map(self.map):
                 return True
 
