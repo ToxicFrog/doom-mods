@@ -131,7 +131,7 @@ class ::ScannedItem : ::ScannedLocation {
 
     let scopename = ::RC.Get().GetNameForCluster(self.hub);
     ::Scanner.Output("KEY", string.format(
-        \"typename\": \"%s\", "\"tag\": \"%s\", \"scopename\": \"%s\", \"cluster\": %d, \"maps\": [%s]",
+        "\"typename\": \"%s\", \"tag\": \"%s\", \"scopename\": \"%s\", \"cluster\": %d, \"maps\": [%s]",
         self.typename, self.tag, scopename, self.hub, map_str));
   }
 
