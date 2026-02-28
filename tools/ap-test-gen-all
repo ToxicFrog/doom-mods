@@ -5,7 +5,7 @@ cd ~/Games/Archipelago/Players
 touch dummy.yaml; rm *.yaml
 
 DISPLAY= archipelago 'Generate Template Options'
-for i in Templates/GZDoom\ \(*; do
+for i in Templates/UZDoom\ \(*; do
   cp "$i" .
   echo "$i"
   archipelago Generate </dev/null |& sed -n -E '/Traceback/,$ p'
