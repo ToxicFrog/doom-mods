@@ -17,6 +17,12 @@ To release a new version:
 
 ### generator
 
+- rethink how weapon logic works; perhaps:
+  - create a list of weapons ordered by what rank they appear in
+  - later-rank maps have more of the weapons required than earlier-rank ones
+  - e.g. an increase in rank of 1 increases the number of weapons needed by 1
+    - or more if that's needed to pull all the weapons into logic by the end of the game
+  - what does this mean for the bias settings?
 - treat item/key/weapon requirements as "apworld state has this item" if it's
   included in randomization at a nonzero rate, and as "location where this item
   is found would be in logic if it were randomized" if it is not included in

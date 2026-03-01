@@ -95,11 +95,11 @@ class DoomWad:
     def all_locations(self) -> Iterable[DoomLocation]:
         return (loc for map in self.maps.values() for loc in map.locations)
 
-    def locations_for_stats(self, skill: int) -> Iterable[DoomLocation]:
+    def locations_for_stats(self, skill: int, include_secrets: bool = False) -> Iterable[DoomLocation]:
         skill = min(3, max(1, skill)) # clamp ITYTD->HNTR and N!->UV
         return (
             loc for map in self.maps.values() for loc in map.all_locations(skill, {})
-            if loc.is_default_enabled()
+            if loc.is_default_enabled(include_secrets)
         )
 
     def locations_at_position(self, pos: DoomPosition) -> List[DoomLocation]:
@@ -114,9 +114,9 @@ class DoomWad:
             if pos in locs
         ]
 
-    def stats_pool(self, skill):
+    def stats_pool(self, skill: int, include_secrets: bool = False):
         """Returns a DoomPool suitable for reporting stats about the wad."""
-        return DoomPool(self, self.locations_for_stats(skill), None)
+        return DoomPool(self, self.locations_for_stats(skill, include_secrets), None)
 
     def fill_pool(self, world):
         """

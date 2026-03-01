@@ -81,7 +81,7 @@ class DoomPool:
         optionally, to the starting inventory pool.
         '''
         if world is None:
-            self.locations = [loc for loc in all_locations if loc.is_default_enabled()]
+            self.locations = [loc for loc in all_locations]
             self.add_items_to_pool(self.item_counts, self.locations)
             return
 

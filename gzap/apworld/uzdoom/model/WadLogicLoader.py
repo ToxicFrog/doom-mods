@@ -54,7 +54,20 @@ class WadDataLoader:
             except Exception as e:
                 raise ValueError(f"Error loading logic/tuning for {self.wad.name} on line {idx} of {file}:\n{line}") from e
 
+    def print_support_table(self) -> None:
+        pool = self.wad.stats_pool(3) # UV difficulty
+        spool = self.wad.stats_pool(3, True)
+        # name, map count, monsters/map, checks on UV, checks w/secrets, status placeholder, notes placeholder
+        print("| %-32s | %4d | %7d | %6d | %7d |          | |" % (
+            f'[{self.wad.name}]', len(self.wad.all_maps()),
+            sum(map.monster_count for map in self.wad.all_maps())//len(self.wad.all_maps()),
+            len(pool.locations), len(spool.locations),
+        ))
+
     def print_stats(self) -> None:
+        if "GZAP_EXPORT_SUPPORT_TABLE" in os.environ:
+            self.print_support_table()
+            return
         if "GZAP_DEBUG" not in os.environ:
             return
 
@@ -67,12 +80,12 @@ class WadDataLoader:
 
         for sknum, skname in [(3, "UV")]: # [(1, "HNTR"), (2, "HMP"), (3, "UV")]:
             pool = self.wad.stats_pool(sknum)
-            num_items = sum(pool.item_counts.values())
-            num_p = sum(pool.progression_items().values())
-            num_locs = len(pool.locations)
-            num_secrets = len([loc for loc in pool.locations if loc.secret])
-            print("%32s  %4d locs (%3d secret), %4d items (%4d progression)" % (
-                skname, num_locs, num_secrets, num_items, num_p))
+            spool = self.wad.stats_pool(sknum, True)
+            print("%32s  %4d (%4d) locs, %4d (%4d) items (%4d progression)" % (
+                skname,
+                len(pool.locations), len(spool.locations),
+                sum(pool.item_counts.values()), sum(spool.item_counts.values()),
+                sum(pool.progression_items().values())))
 
 class WadLogicLoader(WadDataLoader):
     logic: DoomLogic
