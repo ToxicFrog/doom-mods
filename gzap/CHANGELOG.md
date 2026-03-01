@@ -24,6 +24,7 @@ in some cases.
   - The `GZAPRC` lump can now define tags (user-facing names) for actors that
     don't have tags in the WAD. This is used to rename some builtin actors (e.g.
     `RedCard` -> `Red Keycard`).
+  - Tuning for `Freedoom 2`, by ZAPaDASH04.
 - Changed:
   - Complete overhaul of the setup documentation, including screenshotted
     instructions for setting up DoomRunner and an updated support table.

@@ -51,7 +51,7 @@ here may result in glitches.
 | [Doom]                           |   36 |      90 |    381 |     616 | basic    | Ultimate Doom v1.9ud |
 | [Doom 2]                         |   32 |     116 |    383 |     608 | full     | v1.9 |
 | [FreeDoom]                       |   36 |     176 |    389 |     679 | basic    | [v0.13.0](https://freedoom.github.io/download.html) |
-| [FreeDoom 2]                     |   32 |     135 |    360 |     604 | basic    | [v0.13.0](https://freedoom.github.io/download.html) |
+| [FreeDoom 2]                     |   32 |     135 |    360 |     604 | full     | [v0.13.0](https://freedoom.github.io/download.html) -- tuning only covers UV but is complete for that difficulty. |
 | [Heretic]                        |   45 |     116 |    542 |     814 | basic    | Shadow of the Serpent Riders v1.3 |
 | Hexen                            |      |         |        |         | missing  | Someone else is working on the logic for this. |
 | [Legacy of Rust]                 |   15 |     215 |    199 |     329 | problems | Fully tuned, but MAP14 is excluded until [this feature](https://github.com/UZDoom/UZDoom/issues/184) is implemented. |
