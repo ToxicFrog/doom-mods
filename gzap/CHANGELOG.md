@@ -1,10 +1,13 @@
-# Unreleased
+# 0.8.0
 
 This is a feature release. (It was meant to be a bugfix release but it got away
 from me.) The focus is primarily on the out-of-the-box experience, with better
 default yaml options and better documentation.
 
 ⚠️ YAML options have changed. You must regenerate your YAML templates.
+
+🛈 Secret locations are now off by default. If you enjoy secret hunting, remember
+to turn them back on in the yaml.
 
 ⚠️ The apworld has been renamed from `gzdoom.apworld` to `uzdoom.apworld`, to
 reflect the fact that all development and testing has moved to UZDoom. Please
