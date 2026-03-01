@@ -23,7 +23,7 @@ in some cases.
     `RedCard` -> `Red Keycard`).
 - Changed:
   - Complete overhaul of the setup documentation, including screenshotted
-    instructions for setting up DoomRunner.
+    instructions for setting up DoomRunner and an updated support table.
   - Level accesses are now named (e.g.) `MAP01: Entryway` in wads where map names
     are available.
   - New item categories `ap_progression`, `ap_useful`, `ap_trap`.
@@ -64,6 +64,9 @@ in some cases.
   - MAP14 is excluded from `Legacy of Rust` due to functionality errors.
   - The scanner is now better at guessing rank information for secret levels.
     Logic for several wads has been updated accordingly.
+  - Unreachable checks are now dropped from generation before AP sees them, so
+    they don't count towards the world's total check count and thus don't
+    affect hint cost calculations.
 - For logic developers:
   - Tuning files support `item` prerequisites, so you can say "this is not in
     logic until the player has found this specific item". Unlike `key` this

@@ -81,13 +81,18 @@ class DoomPool:
         optionally, to the starting inventory pool.
         '''
         if world is None:
-            self.locations = [loc for loc in all_locations]
+            self.locations = [loc for loc in all_locations if not loc.unreachable]
             self.add_items_to_pool(self.item_counts, self.locations)
             return
 
         buckets = {}
         for loc in all_locations:
-            if self._skip_in_pretuning(world, loc):
+            # Unreachable locations should be completely dropped from the
+            # location set, as otherwise in a WAD with a large number of
+            # unreachables it affects hint cost calculation badly.
+            # TODO: once we implement tuning-only checks not visible to AP, we
+            # should make unreachables a type of tuning-only check.
+            if self._skip_in_pretuning(world, loc) or loc.unreachable:
                 continue
             bucket = world.options.included_item_categories.bucket_for_location(loc)
             buckets.setdefault(bucket, []).append(loc)
