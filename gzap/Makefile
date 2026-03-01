@@ -21,7 +21,7 @@ ${PK3}: sprites/icons
 
 version: apworld/uzdoom/VERSION
 
-apworld/uzdoom/VERSION: ${TOPDIR}/.git/HEAD
+apworld/uzdoom/VERSION: ${TOPDIR}/.git/refs/heads/main
 	${TOPDIR}/tools/version-stamp "${TAGS}" apworld/uzdoom/VERSION
 
 ca.ancilla.gzap/PlayEventHandler.zsc: apworld/uzdoom/VERSION
