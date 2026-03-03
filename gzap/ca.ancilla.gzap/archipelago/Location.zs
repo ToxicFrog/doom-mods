@@ -21,9 +21,11 @@ enum ::LocationFlags {
   AP_IS_PROGRESSION = 1,
   AP_IS_USEFUL = 2,
   AP_IS_TRAP = 4,
+  AP_ITEMTYPE = 7,
   // These are internal to UZAP
   AP_IS_UNREACHABLE = 8,
   AP_IS_SECRET_TRIGGER = 16, // This secret uses a TID rather than a sector ID
+  AP_IS_LOCAL = 32, // AP server doesn't know about this check
 }
 
 // A 'peek' delivered from AP, telling us what is at a given location and who
@@ -108,12 +110,16 @@ class ::Location {
   bool IsChecked() {
     return self.checked || (ap_allow_collect && self.collected);
   }
-  // True if the location contains an item, according to the host.
-  bool IsEmpty() {
-    return self.collected;
-  }
 
-  bool IsFiller() { return flags == AP_IS_FILLER; }
+  // True if the location's item has been collected by the server.
+  bool IsEmpty() { return self.collected; }
+
+  // True if the location is local-only, i.e. can be collected but should not
+  // be reported to the server.
+  bool IsLocal() { return flags & AP_IS_LOCAL; }
+
+  // Standard AP item categories.
+  bool IsFiller() { return (flags & AP_ITEMTYPE) == AP_IS_FILLER; }
   bool IsProgression() { return flags & AP_IS_PROGRESSION; }
   bool IsTrap() { return flags & AP_IS_TRAP; }
   bool IsUseful() { return flags & AP_IS_USEFUL; }
