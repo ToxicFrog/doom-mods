@@ -121,6 +121,10 @@ class IncludedItemCategories(OptionList):
       Use this instead of 'none' if you want to play with non-randomized keys or
       weapons.
 
+      'shuffle'
+      Items in this category will be randomly shuffled with each other locally.
+      They will not count towards hint cost calculations.
+
       'start'
       All items in this category will be placed in your starting inventory instead
       of in the item pool. Use 'key:start', 'weapon:start', or 'ap_map:start' to
@@ -151,7 +155,7 @@ class IncludedItemCategories(OptionList):
 
         for key in ['ap_map']:
             ratio = self.find_ratio(None, {key})
-            if ratio not in {1.0, 'vanilla', 'start'}:
+            if ratio not in {1.0, 'start'}:
                 raise OptionError(f'Category {key} has invalid setting {ratio}; this category only permits "all" or "start".')
         for key in ['key', 'weapon']:
             ratio = self.find_ratio(None, {key})
@@ -173,7 +177,7 @@ class IncludedItemCategories(OptionList):
             return 1.0
         elif string == 'none':
             return 0.0
-        elif string in {'vanilla', 'start'}:
+        elif string in {'vanilla', 'start', 'shuffle'}:
             return string
         else:
             return int(string)/100.0

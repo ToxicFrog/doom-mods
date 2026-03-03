@@ -17,6 +17,7 @@ import os
 
 from collections import Counter
 from math import ceil
+from random import shuffle
 from typing import List,Dict
 
 class DoomPool:
@@ -107,7 +108,6 @@ class DoomPool:
                 # print('Skipping bucket', bucket)
                 continue
 
-            # TODO: implement local-shuffle similarly, but randomizing the items.
             if ratio == 'vanilla':
                 # Locations forced to hold their vanilla items. We add these
                 # to a separate pool so the item/location placement code in
@@ -122,6 +122,20 @@ class DoomPool:
                 self.local_locations.extend(locs)
                 continue
 
+            if ratio == 'shuffle':
+                # Like vanilla, but we randomly match locations with items rather
+                # than matching each location to its original item.
+                for loc in locs:
+                    assert loc.orig_item, f'shuffle is not allowed on empty locations: {loc.name()}'
+                    assert not loc.has_category('ap_progression'), f'shuffle is not allowed on progression items: {loc.name()}'
+                items = [loc.orig_item for loc in locs]
+                shuffle(items)
+                for loc in locs:
+                    loc.item = items.pop()
+                    self.vanilla_item_counts[loc.item.name()] += 1
+                self.local_locations.extend(locs)
+                continue
+
             if ratio == 'start':
                 # Locations that should have their items moved to the player's
                 # starting inventory (and the locations themselves acting as
@@ -129,6 +143,10 @@ class DoomPool:
                 # also* record the items and locations in the main pool; we do
                 # it this way so that pool limits get applied properly.
                 # print(f'Adding bucket {bucket} to starting inventory.')
+                # TODO: this doesn't work for items that weren't visible to the
+                # logic file, so you can't use this to grant the player starting
+                # items that the scanner doesn't know about, even if they can
+                # be `summoned.
                 self.add_items_to_pool(self.starting_item_counts, locs)
                 ratio = 1.0
 
@@ -173,7 +191,7 @@ class DoomPool:
                     raise RuntimeError(f'AP-generated item {item} from {map.map} has invalid included_item_categories setting of "{ratio}"')
 
         # Apply item lower/upper bounds.
-        # Items set to 'vanilla' skip this.
+        # Items set to 'vanilla' or 'shuffle' skip this.
         for item in self.wad.items():
             if item.name() in self.vanilla_item_counts:
                 continue

@@ -1,3 +1,13 @@
+# Unreleased
+
+- New:
+  - Items set to `vanilla` are no longer reported to Archipelago. This means
+    they won't show up in UT and won't increase the hint cost. In-game they will
+    show up with the same "hollow" AP icon as !collected checks.
+  - `shuffle` option for `included_item_categories`. Items set to `shuffle` will
+    be shuffled among themselves locally. Like `vanilla` they are not reported
+    to AP.
+
 # 0.8.0
 
 This is a feature release. (It was meant to be a bugfix release but it got away
