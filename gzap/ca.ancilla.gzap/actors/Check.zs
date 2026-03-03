@@ -96,6 +96,8 @@ mixin class ::ArchipelagoIcon {
       SetStateLabel("Hidden");
     } else if (loc.IsEmpty()) {
       SetStateLabel("Empty");
+    } else if (loc.IsLocal()) {
+      SetStateLabel("Empty");
     } else if (loc.IsUnreachable()) {
       SetStateLabel("Unreachable");
     } else if (loc.IsProgression() && ShouldHilight()) {
@@ -371,9 +373,10 @@ class ::CheckPickup : ScoreItem {
     if (!rh) return null;
 
     // Scale is computed to make the sprite at most 12px high and will not
-    // exceed 0.5 under any circumstances, except when pretuning.
+    // exceed 0.5 under any circumstances, except when pretuning or drawing
+    // local-only items.
     float scale = min(0.5, 12.0/rh);
-    if (::PlayEventHandler.Get().IsPretuning()) {
+    if (::PlayEventHandler.Get().IsPretuning() || GetLocation().IsLocal()) {
       scale = min(prototype.scale.x, prototype.scale.y);
     }
 
