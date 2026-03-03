@@ -211,8 +211,12 @@ class IPC:
 
     Informs the context manager that we have checked the listed location. It's up
     to it to tell the server.
+
+    An ID of zero, which cannot occur normally, means that this is a local-only
+    check that should be recorded in the tuning file but ignore otherwise.
     """
-    await self.ctx.send_check(id)
+    if id > 0:
+      await self.ctx.send_check(id)
 
   async def recv_chat(self, message: str) -> None:
     """

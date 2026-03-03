@@ -199,24 +199,27 @@ class ::PlayEventHandler : StaticEventHandler {
 
     if (unreachable) {
       // Omit the key field and just mark it unreachable.
-      ::IPC.CheckWithoutTuning(loc.apid, loc.name, pos, true);
+      ::IPC.CheckWithoutTuning(loc, pos, true);
     } else if (atexit) {
       // atexit checks aren't necessarily unreachable but nor can we make any
       // assumptions about their tuning.
-      ::IPC.CheckWithoutTuning(loc.apid, loc.name, pos, false);
+      ::IPC.CheckWithoutTuning(loc, pos, false);
     } else {
       // It's a normally reachable check.
       if (self.subregion == "") {
-        ::IPC.CheckWithKeyTuning(loc.apid, loc.name, pos, apstate.GetCurrentRegion().KeyString());
+        ::IPC.CheckWithKeyTuning(loc, pos, apstate.GetCurrentRegion().KeyString());
       } else {
-        ::IPC.CheckWithRegionTuning(loc.apid, loc.name, pos, self.subregion);
+        ::IPC.CheckWithRegionTuning(loc, pos, self.subregion);
       }
     }
 
-    // In singleplayer, the netevent handler will clear the check for us.
-    // In MP, we don't clear it until we get a reply from the server, and this
-    // message is ignored.
-    EventHandler.SendNetworkEvent("ap-check", loc.apid);
+    // In MP, the above IPC calls will result in the host eventually responding.
+    // In singleplayer, those calls only write to the tuning journal, and all
+    // item granting is handled by a netevent handler in the generated pk3.
+    // The same handler deals with local-only location checks.
+    if (IsSingleplayer() || loc.IsLocal()) {
+      EventHandler.SendNetworkEvent("ap-check", loc.apid);
+    }
 
     // TODO: this crashes if the player goes to start a new game while a game
     // is already in progress. A basic fix for it causes the apstate from the

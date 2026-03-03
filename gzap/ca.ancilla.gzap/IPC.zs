@@ -62,22 +62,24 @@ class ::IPC {
       "{ \"weapons\": { %s } }", ::Util.Join(", ", buf)));
   }
 
-  static void CheckWithoutTuning(int id, string name, string pos_field, bool unreachable) {
+  static void CheckLocation(::Location loc, string pos_field, string tail) {
+    int id = loc.apid;
+    if (loc.IsLocal()) id = 0;
     Send("CHECK",
       string.format("{ \"id\": %d, \"name\": \"%s\"%s%s }",
-        id, name, pos_field, unreachable ? ", \"unreachable\": true" : ""));
+        id, loc.name, pos_field, tail));
   }
 
-  static void CheckWithKeyTuning(int id, string name, string pos_field, string keys) {
-    Send("CHECK",
-      string.format("{ \"id\": %d, \"name\": \"%s\"%s, \"keys\": [%s] }",
-        id, name, pos_field, keys));
+  static void CheckWithoutTuning(::Location loc, string pos_field, bool unreachable) {
+    CheckLocation(loc, pos_field, unreachable ? ", \"unreachable\": true" : "");
   }
 
-  static void CheckWithRegionTuning(int id, string name, string pos_field, string region) {
-    Send("CHECK",
-      string.format("{ \"id\": %d, \"name\": \"%s\"%s, \"region\": \"%s\" }",
-        id, name, pos_field, region));
+  static void CheckWithKeyTuning(::Location loc, string pos_field, string keys) {
+    CheckLocation(loc, pos_field, string.format(", \"keys\": [%s]", keys));
+  }
+
+  static void CheckWithRegionTuning(::Location loc, string pos_field, string region) {
+    CheckLocation(loc, pos_field, string.format(", \"region\": \"%s\"", region));
   }
 
   void Shutdown() {

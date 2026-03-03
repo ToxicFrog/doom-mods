@@ -115,9 +115,8 @@ class GZAP_DataPackageEventHandler : StaticEventHandler {
   }
 
   override void NetworkProcess(ConsoleEvent evt) {
-    // In multiplayer games checks will be processed and items granted by the host,
-    // so only do this in singleplayer mode.
-    if (!peh.IsSingleplayer()) return;
+    // We only get these messages for (a) checks in singleplayer mode, where
+    // there is no host to grant them, and (b) local-only checks.
     if (evt.name == "ap-check") {
       let locid = evt.args[0];
       GZAP_PlayEventHandler.GetState().MarkLocationCollected(locid);
