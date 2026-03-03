@@ -448,10 +448,12 @@ class UZDoomWorld(World):
                 item.code for item in self.multiworld.precollected_items[self.player]
             ],
             "singleplayer_items": {
+                # We get these from AP, so they use the AP location API (address/code)
                 loc.address: loc.item.code
                 for loc in self.multiworld.get_locations(self.player)
                 if loc.item
             },
+            "local_locations": [loc for loc in self.pool.local_locations if loc.item],
             "progression": progression,
             "locations": locations,
             "id": id,

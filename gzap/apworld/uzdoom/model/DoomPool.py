@@ -35,9 +35,9 @@ class DoomPool:
     # the settings in the yaml. These are the locations that will go in the AP
     # location pool, and the AP item pool will be based on (but not necessarily
     # identical to) the items from these locations.
-    # Locations with vanilla placement forced will have their .item field set
-    # accordingly.
     locations: List["DoomLocation"] = None
+    # Locations that should be kept local-only and not reported to the apworld.
+    local_locations: List["DoomLocation"] = None
     # All items in the pool, indexed by name.
     item_counts: Counter[str] = None
     # All starting inventory items, indexed by name.
@@ -49,7 +49,7 @@ class DoomPool:
     def __init__(self, wad, locations, world):
         self.wad = wad
         self.locations = []
-        self.vanilla_locations = []
+        self.local_locations = []
         self.item_counts = Counter()
         self.starting_item_counts = Counter()
         self.vanilla_item_counts = Counter()
@@ -107,6 +107,7 @@ class DoomPool:
                 # print('Skipping bucket', bucket)
                 continue
 
+            # TODO: implement local-shuffle similarly, but randomizing the items.
             if ratio == 'vanilla':
                 # Locations forced to hold their vanilla items. We add these
                 # to a separate pool so the item/location placement code in
@@ -118,7 +119,7 @@ class DoomPool:
                         self.vanilla_item_counts[loc.item.name()] += 1
                     elif world.options.pretuning_mode and not loc.item:
                         loc.item = self.wad.placeholder_item()
-                self.locations.extend(locs)
+                self.local_locations.extend(locs)
                 continue
 
             if ratio == 'start':

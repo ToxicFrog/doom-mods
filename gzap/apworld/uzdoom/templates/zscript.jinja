@@ -31,8 +31,8 @@ class GZAP_DataPackageEventHandler : StaticEventHandler {
     RegisterMaps(apstate);
     RegisterKeys(apstate);
     RegisterItems(apstate);
+    RegisterLocalLocationContents(apstate);
     {% if singleplayer %}
-    RegisterLocationContents(apstate);
     RegisterHints(apstate);
     {% endif %}
     GrantStartingItems(apstate);
@@ -66,6 +66,12 @@ class GZAP_DataPackageEventHandler : StaticEventHandler {
         {% endif %}
       {% endfor %}
     {% endfor %}
+    console.printf("Registering %d local-only checks.", {{local_locations|count}});
+    {% for check in local_locations %}
+      console.printf("{{escape(check.name())}}");
+      apstate.RegisterCheck("{{check.pos.map}}", {{check.id}}, {{check.pos.as_vec3()}}, "{{escape(check.name())}}", "{{check.orig_item.typename}}",
+          "{{escape(check.item.typename)}}", "{{escape(check.item.name())}}", AP_IS_LOCAL);
+    {% endfor %}
   }
 
   void RegisterItems(GZAP_RandoState apstate) {
@@ -80,14 +86,20 @@ class GZAP_DataPackageEventHandler : StaticEventHandler {
     // passed to RegisterMap(), so they aren't listed here.
   }
 
-  {% if singleplayer %}
-  void RegisterLocationContents(GZAP_RandoState apstate) {
+  void RegisterLocalLocationContents(GZAP_RandoState apstate) {
+    {% if singleplayer %}
     console.printf("Populating singleplayer item table.");
       {% for locid, itemid in singleplayer_items.items() %}
       locations_to_items.Insert({{locid}}, {{itemid}});
       {% endfor %}
+    {% endif %}
+    console.printf("Populating local-only item table.");
+      {% for loc in local_locations %}
+      locations_to_items.Insert({{-loc.id}}, {{loc.item.id}});
+      {% endfor %}
   }
 
+  {% if singleplayer %}
   void RegisterHints(GZAP_RandoState apstate) {
     console.printf("Populating singleplayer hint table.");
       {% for map in maps %}{% for loc in locations(map.map) %}
