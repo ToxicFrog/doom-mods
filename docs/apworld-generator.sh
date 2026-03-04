@@ -65,6 +65,7 @@ cat <<EOF
 
         zip.file(getApworldName() + "/archipelago.json", getFileContents("#manifest_template"));
         zip.file(getApworldName() + "/__init__.py", getFileContents("#init_template"));
+        zip.file(getApworldName() + "/Options.py", getFileContents("#options_template"));
 
         let futures = [];
         for (f of files.files) {
@@ -114,6 +115,9 @@ cat <<EOF
       </pre>
       <pre id="init_template">
 $(cat wads/__template__/__init__.py)
+      </pre>
+      <pre id="options_template">
+$(cat wads/__template__/Options.py)
       </pre>
     </div>
   </body>
