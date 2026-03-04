@@ -46,7 +46,7 @@
       }
 
       function getFileContents(selector) {
-        return document.querySelector(selector).innerText.replaceAll("__WAD__", getWadSymbol()).replaceAll("__VERSION__", "gzap-0.8.0-14-g6ec3a47");
+        return document.querySelector(selector).innerText.replaceAll("__WAD__", getWadSymbol()).replaceAll("__VERSION__", "gzap-0.8.0-16-g539d0d8");
       }
 
       function generate() {
@@ -85,7 +85,7 @@
     </script>
   </head>
   <body>
-    <p>⚠️ This is the generator for the <b>unstable</b> version of the apworld (gzap-0.8.0-14-g6ec3a47). <a href="apworld-generator-0.8.0.html">Click here for latest stable (0.8.0).</a></p>
+    <p>⚠️ This is the generator for the <b>unstable</b> version of the apworld (gzap-0.8.0-16-g539d0d8). <a href="apworld-generator-0.8.0.html">Click here for latest stable (0.8.0).</a></p>
     <label for="name">WAD name:</label>
     <input type="text" id="name" name="name" required oninput="updateInfo();"/>
     <br/>
@@ -562,6 +562,21 @@ class UZDoomWeb(WebWorld):
         PreTuningMode, MaxWeaponCopies, IncludedItemCategories,
     ]),
   ]
+
+# Apply custom option adjustments, if the wad has a custom.py
+# Use this by defining a custom_options function in custom.py that takes the
+# UZDoomOptions type as the first argument and any options it wants to modify
+# as trailing keyword arguments; it can then modify the class fields as it sees
+# fit. See wads/the_adventures_of_square/custom.py for a simple example.
+try:
+    from .custom import custom_options
+    custom_options(UZDoomOptions, **{
+        name: field.type for name, field in UZDoomOptions.__dataclass_fields__.items()
+    })
+except ModuleNotFoundError:
+    # It's ok if there's no custom.py. Any other problem loading it is an error.
+    pass
+      </pre>
     </div>
   </body>
 </html>

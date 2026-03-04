@@ -13,6 +13,10 @@
   - The game will attempt to remember what weapons you have (even when weapon
     replacer mods are involved). It will restore any missing weapons when you
     enter a level or load a saved game.
+  - It is now possible for logic developers to manually apply custom tweaks to
+    the default YAML settings on a per-WAD basis. This is now used to force
+    persistent mode off in `Adventures of Square` rather than requiring the user
+    to do it by hand.
 
 # 0.8.0
 

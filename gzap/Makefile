@@ -39,7 +39,7 @@ ${APWORLDS}/zdoom_%.apworld: apworld/zdoom_%/
 	cd apworld && zip -qr9 zdoom_$*.apworld zdoom_$*/
 	mv apworld/zdoom_$*.apworld $@
 
-${TOPDIR}/docs/apworld-generator.html: ${TOPDIR}/docs/apworld-generator.sh wads/__template__/__init__.py
+${TOPDIR}/docs/apworld-generator.html: ${TOPDIR}/docs/apworld-generator.sh wads/__template__/*
 	sh $< > $@
 
 # Prepare a directory for conversion into an apworld by copying the template

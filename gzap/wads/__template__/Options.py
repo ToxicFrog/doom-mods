@@ -423,3 +423,16 @@ class UZDoomWeb(WebWorld):
     ]),
   ]
 
+# Apply custom option adjustments, if the wad has a custom.py
+# Use this by defining a custom_options function in custom.py that takes the
+# UZDoomOptions type as the first argument and any options it wants to modify
+# as trailing keyword arguments; it can then modify the class fields as it sees
+# fit. See wads/the_adventures_of_square/custom.py for a simple example.
+try:
+    from .custom import custom_options
+    custom_options(UZDoomOptions, **{
+        name: field.type for name, field in UZDoomOptions.__dataclass_fields__.items()
+    })
+except ModuleNotFoundError:
+    # It's ok if there's no custom.py. Any other problem loading it is an error.
+    pass
