@@ -2,6 +2,9 @@
 
 set -e
 
+VERSION=$(git describe --tags --match gzap-\*)
+STABLE=$(git describe --tags --match gzap-\* --abbrev=0 | cut -d- -f2)
+
 cat <<EOF
 <!doctype html>
 <html>
@@ -50,12 +53,8 @@ cat <<EOF
         return getApworldName() + ".apworld";
       }
 
-      function mkManifest() {
-        return document.querySelector("#manifest_template").innerText.replaceAll("__WAD__", getWadSymbol());
-      }
-
-      function mkInit() {
-        return document.querySelector("#init_template").innerText.replaceAll("__WAD__", getWadSymbol());
+      function getFileContents(selector) {
+        return document.querySelector(selector).innerText.replaceAll("__WAD__", getWadSymbol()).replaceAll("__VERSION__", "$VERSION");
       }
 
       function generate() {
@@ -64,8 +63,8 @@ cat <<EOF
         let files = document.querySelector("#files");
         let zip = JSZip();
 
-        zip.file(getApworldName() + "/archipelago.json", mkManifest());
-        zip.file(getApworldName() + "/__init__.py", mkInit());
+        zip.file(getApworldName() + "/archipelago.json", getFileContents("#manifest_template"));
+        zip.file(getApworldName() + "/__init__.py", getFileContents("#init_template"));
 
         let futures = [];
         for (f of files.files) {
@@ -93,7 +92,7 @@ cat <<EOF
     </script>
   </head>
   <body>
-    <p>⚠️ This is the generator for the <b>unstable</b> version of the apworld. <a href="apworld-generator-0.8.0.html">Click here for latest stable (0.8.0).</a></p>
+    <p>⚠️ This is the generator for the <b>unstable</b> version of the apworld ($VERSION). <a href="apworld-generator-$STABLE.html">Click here for latest stable ($STABLE).</a></p>
     <label for="name">WAD name:</label>
     <input type="text" id="name" name="name" required oninput="updateInfo();"/>
     <br/>
