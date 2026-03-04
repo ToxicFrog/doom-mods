@@ -35,7 +35,7 @@ ${TOPDIR}/release/uzdoom.apworld: apworld/uzdoom/* apworld/uzdoom/*/*
 	cd apworld && zip -qr uzdoom.apworld uzdoom
 	mv apworld/uzdoom.apworld $@
 
-${APWORLDS}/zdoom_%.apworld: apworld/zdoom_%/./ apworld/zdoom_%/archipelago.json apworld/zdoom_%/__init__.py
+${APWORLDS}/zdoom_%.apworld: apworld/zdoom_%/
 	cd apworld && zip -qr9 zdoom_$*.apworld zdoom_$*/
 	mv apworld/zdoom_$*.apworld $@
 
@@ -45,7 +45,7 @@ ${TOPDIR}/docs/apworld-generator.html: ${TOPDIR}/docs/apworld-generator.sh wads/
 # Prepare a directory for conversion into an apworld by copying the template
 # files into it, evaluating the templates, and then copying the logic, tuning,
 # and customization files into it.
-apworld/zdoom_%/./: wads/%/* wads/__template__/* version
+apworld/zdoom_%/: wads/%/* wads/__template__/* version
 	rm -rf apworld/zdoom_$*/
 	mkdir -p apworld/zdoom_$*
 	cp -a wads/__template__/* apworld/zdoom_$*
