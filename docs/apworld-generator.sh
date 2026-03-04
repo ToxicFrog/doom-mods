@@ -1,5 +1,7 @@
 #!/usr/bin/env sh
 
+set -e
+
 cat <<EOF
 <!doctype html>
 <html>
@@ -91,7 +93,7 @@ cat <<EOF
     </script>
   </head>
   <body>
-    <p>⚠️ This is the generator for the <b>unstable</b> version of the apworld. <a href="apworld-generator-0.7.1.html">Click here for latest stable (0.7.1).</a></p>
+    <p>⚠️ This is the generator for the <b>unstable</b> version of the apworld. <a href="apworld-generator-0.8.0.html">Click here for latest stable (0.8.0).</a></p>
     <label for="name">WAD name:</label>
     <input type="text" id="name" name="name" required oninput="updateInfo();"/>
     <br/>
@@ -112,7 +114,7 @@ cat <<EOF
 }
       </pre>
       <pre id="init_template">
-$(cat wads/__init__.tmpl)
+$(cat wads/__template__/__init__.py)
       </pre>
     </div>
   </body>

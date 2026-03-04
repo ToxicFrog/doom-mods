@@ -39,21 +39,21 @@ ${APWORLDS}/zdoom_%.apworld: apworld/zdoom_%/./ apworld/zdoom_%/archipelago.json
 	cd apworld && zip -qr9 zdoom_$*.apworld zdoom_$*/
 	mv apworld/zdoom_$*.apworld $@
 
-${TOPDIR}/docs/apworld-generator.html: ${TOPDIR}/docs/apworld-generator.sh wads/__init__.tmpl
+${TOPDIR}/docs/apworld-generator.html: ${TOPDIR}/docs/apworld-generator.sh wads/__template__/__init__.py
 	sh $< > $@
 
-apworld/zdoom_%/./: wads/%/*
+# Prepare a directory for conversion into an apworld by copying the template
+# files into it, evaluating the templates, and then copying the logic, tuning,
+# and customization files into it.
+apworld/zdoom_%/./: wads/%/* wads/__template__/* version
 	rm -rf apworld/zdoom_$*/
-	cp -a wads/$* apworld/zdoom_$*
+	mkdir -p apworld/zdoom_$*
+	cp -a wads/__template__/* apworld/zdoom_$*
+	sed -E -i "s,__WAD__,$*,g; s,__VERSION__,`cat apworld/uzdoom/VERSION`,g" apworld/zdoom_$*/*
+	cp -a wads/$*/* apworld/zdoom_$*/
 	mkdir -p apworld/zdoom_$*/logic apworld/zdoom_$*/tuning
 	mv apworld/zdoom_$*/*.logic apworld/zdoom_$*/logic/ || true
 	mv apworld/zdoom_$*/*.tuning apworld/zdoom_$*/tuning/ || true
-
-apworld/zdoom_%/archipelago.json: wads/archipelago.tmpl version apworld/zdoom_%/./
-	sed -E "s,__WAD__,$*," wads/archipelago.tmpl > apworld/zdoom_$*/archipelago.json
-
-apworld/zdoom_%/__init__.py: wads/__init__.tmpl apworld/zdoom_%/./
-	sed -E "s,__WAD__,$*,; s,__VERSION__,`cat apworld/uzdoom/VERSION`," wads/__init__.tmpl > apworld/zdoom_$*/__init__.py
 
 install: core_apworld addon_apworlds ${PK3}
 	cp -a ${TOPDIR}/release/uzdoom.apworld ~/.local/share/Archipelago/worlds
@@ -63,5 +63,5 @@ clean: clean.super
 	rm -rf apworld/zdoom_*
 	rm -rf ${APWORLDS}/zdoom_*
 
-.PHONY: apworld install
+.PHONY: apworld install ${APWORLDS}/zdoom___template__.apworld
 .SECONDARY:

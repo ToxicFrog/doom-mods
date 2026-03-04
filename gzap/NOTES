@@ -4,6 +4,7 @@
 
 To release a new version:
 - copy the apworld-generator.html to apworld-generator-<version>.html and update the links therein
+- update the "latest stable" link in apworld-generator.sh
 - update the version number in the CHANGELOG and Makefile
 - make
 - commit
@@ -94,9 +95,6 @@ We also need to figure out how to use OptionGroup.
 ### Time Tripper
 
 A few things we need to fully support this.
-- if playing with weapon pickup suppression: a way to automatically put Shotgun2
-  and 64Chainsaw in the starting inventory (the latter extra complicated because
-  AP doesn't know it exists)
 - a way to intentionally trigger weapon restoration that's more convenient than
   "quicksave and then quickload" (maybe opening and closing the inventory
   screen?), since some levels like C1M4 don't take your guns away until a little
