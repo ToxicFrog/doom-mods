@@ -213,23 +213,30 @@ class ::RandoState play {
       ::Util.announce("$GZAP_GOT_ITEM", key.FQIN());
       key.MarkHeld(self);
     } else if (item_apids.CheckKey(apid)) {
-      let typename = item_apids.Get(apid);
-      let [idx, item] = FindItem(typename);
-      if (idx < 0) {
-        item = ::RandoItem.Create(typename);
-        self.items.Push(item);
-        self.SortItems();
-      }
-      if (count) {
-        // ITEM message from client, force local count to match server.
-        item.SetTotal(count);
-      } else {
-        // Singleplayer mode, just give them one.
-        ::Util.announce("$GZAP_GOT_ITEM", item.tag);
-        item.Inc();
-      }
+      GrantItemByName(item_apids.Get(apid));
+      return;
     } else {
       console.printf("Unknown item ID from Archipelago: %d", apid);
+    }
+
+    UpdatePlayerInventory();
+    UpdateStatus();
+  }
+
+  void GrantItemByName(string typename, uint count = 0) {
+    let [idx, item] = FindItem(typename);
+    if (idx < 0) {
+      item = ::RandoItem.Create(typename);
+      self.items.Push(item);
+      self.SortItems();
+    }
+    if (count) {
+      // ITEM message from client, force local count to match server.
+      item.SetTotal(count);
+    } else {
+      // Singleplayer mode, just give them one.
+      ::Util.announce("$GZAP_GOT_ITEM", item.tag);
+      item.Inc();
     }
 
     UpdatePlayerInventory();

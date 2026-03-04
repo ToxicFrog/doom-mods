@@ -7,6 +7,9 @@
   - `shuffle` option for `included_item_categories`. Items set to `shuffle` will
     be shuffled among themselves locally. Like `vanilla` they are not reported
     to AP.
+  - The YAML now uses option groups.
+  - The `start_inventory` option can now accept any actor name understood by the
+    game, even if the randomizer doesn't know about it.
 
 # 0.8.0
 

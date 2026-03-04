@@ -445,8 +445,9 @@ class UZDoomWorld(World):
             "maps": self.maps,
             "items": self.pool.all_pool_items(),
             "starting_items": [
-                item.code for item in self.multiworld.precollected_items[self.player]
+                item for item in self.multiworld.precollected_items[self.player]
             ],
+            "local_starting_items": self.options.start_inventory.local_actors,
             "singleplayer_items": {
                 # We get these from AP, so they use the AP location API (address/code)
                 loc.address: loc.item.code

@@ -11,7 +11,7 @@
 
 from math import ceil,floor
 
-from Options import PerGameCommonOptions, Toggle, DeathLink, StartInventoryPool, OptionSet, NamedRange, Range, OptionDict, OptionList, OptionError
+from Options import PerGameCommonOptions, Toggle, DeathLink, StartInventory, StartInventoryPool, OptionSet, NamedRange, Range, OptionDict, OptionList, OptionError
 from dataclasses import dataclass
 
 class MaxWeaponCopies(Range):
@@ -341,6 +341,28 @@ class PreTuningMode(Toggle):
     display_name = "Pretuning Mode"
     default = False
 
+class UZDoomStartInventory(StartInventory):
+    """
+    Start with the specified amount of these items. You can list any valid
+    inventory item from the WAD you are playing, even if the randomizer doesn't
+    know about it, e.g. "BFG9000: 1" will work even if the WAD contains no BFGs.
+    """
+    local_actors: dict = None
+
+    def verify(self, world, player_name, plando_options):
+        self.local_actors = {
+            typename: count
+            for typename, count in self.value.items()
+            if typename not in world.item_names
+        }
+        self.value = {
+            typename: count
+            for typename, count in self.value.items()
+            if typename in world.item_names
+        }
+        super(StartInventory, self).verify(world, player_name, plando_options)
+
+
 @dataclass
 class UZDoomOptions(PerGameCommonOptions):
     # Skill level, WAD, and level selection
@@ -363,4 +385,5 @@ class UZDoomOptions(PerGameCommonOptions):
     max_weapon_copies: MaxWeaponCopies
     included_item_categories: IncludedItemCategories
     # Stock settings
+    start_inventory: UZDoomStartInventory
     start_inventory_from_pool: StartInventoryPool

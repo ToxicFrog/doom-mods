@@ -112,8 +112,11 @@ class GZAP_DataPackageEventHandler : StaticEventHandler {
 
   void GrantStartingItems(GZAP_RandoState apstate) {
     console.printf("Granting starting inventory.");
-    {% for id in starting_items %}
-      apstate.GrantItem({{id}});
+    {% for item in starting_items %}
+      apstate.GrantItem({{item.code}}); // {{item.name}}
+    {% endfor %}
+    {% for typename, count in local_starting_items.items() %}
+      apstate.GrantItemByName("{{typename}}", {{count}});
     {% endfor %}
   }
 
