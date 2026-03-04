@@ -31,6 +31,8 @@ class ::Region play {
   Map<uint, ::Location> locations_by_id;
   // Key typename to key info struct. Only contains keys relevant to this level.
   Map<string, ::RandoKey> keys;
+  // Set of weapons the player should have when in this level.
+  Map<string, bool> weapons;
   // Hints tell you where items relevant to this level are.
   // Peeks tell you what items are contained in this level.
   // Indexes are fully qualified Archipelago names, e.g. "RedCard (MAP01)" or
@@ -149,7 +151,7 @@ class ::Region play {
 
   ::Location GetLocation(uint apid) const {
     if (locations_by_id.CheckKey(apid)) {
-      DEBUG("GetLocation: found %d in %s", apid, map);
+      // DEBUG("GetLocation: found %d in %s", apid, map);
       return locations_by_id.GetIfExists(apid);
     }
     return null;
@@ -285,39 +287,50 @@ class ::Region play {
       mo.GiveInventoryType("MapRevealer");
     }
 
-    Map<string, bool> keys_to_add;
+    Map<string, int> items_to_add;
     foreach (keytype, key : self.keys) {
       if (!key.held || !key.enabled) continue;
       DEBUG("keys_to_add: %s", keytype);
-      keys_to_add.Insert(keytype, true);
+      items_to_add.Insert(keytype, 999);
+    }
+    DEBUG("UpdateInventory: %d items in weapon set", self.weapons.CountUsed());
+    foreach (gun, _ : self.weapons) {
+      DEBUG("weapons_to_add: + %s", gun);
+      items_to_add.Insert(gun, 1);
     }
 
-    Map<string, bool> keys_to_remove;
+    Map<string, bool> items_to_remove;
     readonly<Inventory> item = mo.inv;
     while (item) {
-      if (item is "Key" || item is "PuzzleItem") {
-        if (keys_to_add.CheckKey(item.GetClassName())) {
-          DEBUG("keys_to_add: %s is already present in inventory", item.GetClassName());
-          keys_to_add.Remove(item.GetClassName());
-        } else {
-          DEBUG("keys_to_remove: %s", item.GetClassName());
-          keys_to_remove.Insert(item.GetClassName(), true);
-        }
+      if (items_to_add.CheckKey(item.GetClassName())) {
+        DEBUG("items_to_add: %s is already present in inventory", item.GetClassName());
+        items_to_add.Remove(item.GetClassName());
+      } else if (item is "Key" || item is "PuzzleItem") {
+        // Item should be subject to key management, is in player's inventory,
+        // and should not be present in this map.
+        // TODO: replace this with a more generic "is this item scoped" check.
+        // Some AP items may be scoped but not be Key or PuzzleItem, especially
+        // once we implement map-scoped weapon ownership.
+        DEBUG("items_to_remove: %s", item.GetClassName());
+        items_to_remove.Insert(item.GetClassName(), true);
       }
       item = item.inv;
     }
 
-    foreach (keytype, _ : keys_to_remove) {
-      DEBUG("Removing key: %s", keytype);
-      mo.TakeInventory(keytype, 999);
+    foreach (itype, _ : items_to_remove) {
+      DEBUG("Removing item: %s", itype);
+      mo.TakeInventory(itype, 999);
     }
 
-    foreach (keytype, _ : keys_to_add) {
-      DEBUG("Adding key: %s", keytype);
-      let key_item = Inventory(mo.Spawn(keytype));
-      key_item.amount = 999;
-      key_item.ClearCounters();
-      key_item.CallTryPickup(mo);
+    foreach (itype, count : items_to_add) {
+      DEBUG("Adding item: %s", itype);
+      let item = Inventory(mo.Spawn(itype));
+      if (item is "Weapon") {
+        ::PerLevelHandler.Get().AllowNextWeapon();
+      }
+      item.amount = count;
+      item.ClearCounters();
+      item.CallTryPickup(mo);
     }
   }
 }

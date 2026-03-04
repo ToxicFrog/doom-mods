@@ -10,6 +10,9 @@
   - The YAML now uses option groups.
   - The `start_inventory` option can now accept any actor name understood by the
     game, even if the randomizer doesn't know about it.
+  - The game will attempt to remember what weapons you have (even when weapon
+    replacer mods are involved). It will restore any missing weapons when you
+    enter a level or load a saved game.
 
 # 0.8.0
 

@@ -40,6 +40,7 @@ class ::RandoState play {
   static ::RandoState Create() {
     let apstate = ::RandoState(new("::RandoState"));
     apstate.win_conditions = new("::WinConditions");
+    apstate.weapon_check_counter = -1;
     return apstate;
   }
 
@@ -335,7 +336,37 @@ class ::RandoState play {
     // }
   }
 
+  int weapon_check_counter;
+  void UpdatePlayerWeapons() {
+    if (weapon_check_counter < 0) return;
+    --weapon_check_counter;
+    if (weapon_check_counter == 0) {
+      Map<string, bool> weapons;
+
+      readonly<Inventory> item = players[0].mo.inv;
+      while (item) {
+        if (item is "Weapon") {
+          DEBUG("UpdatePlayerWeapons: adding %s", item.GetClassName());
+          weapons.Insert(item.GetClassName(), true);
+        }
+        item = item.inv;
+      }
+
+      foreach (region : regions) {
+        region.weapons.Clear();
+        foreach (weapon, _ : weapons) {
+          // We should be able to:
+          // region.weapons.Copy(weapons);
+          // but for some reason this results in invalid iterator errors when
+          // attempting to walk it later.
+          region.weapons.Insert(weapon, true);
+        }
+      }
+    }
+  }
+
   void OnTick() {
+    UpdatePlayerWeapons();
     if (!dirty) return;
     if (!GetCurrentRegion()) return;
     // TODO: per-player inventory will let us make this check per-player, for now
@@ -343,7 +374,12 @@ class ::RandoState play {
     if (players[0].mo.vel.Length() == 0) return;
     DEBUG("Flushing pending item grants...");
     foreach (item : self.items) {
-      txn += item.EnforceLimit();
+      int n = item.EnforceLimit();
+      txn += n;
+      if (n && item.IsWeapon()) {
+        DEBUG("Vended a weapon (%s), starting weapon check counter", item.typename);
+        weapon_check_counter = 7;
+      }
     }
     dirty = false;
   }
