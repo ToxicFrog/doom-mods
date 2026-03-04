@@ -121,7 +121,7 @@ if 'worlds.uzdoom' not in sys.modules:
 
 uzdoom = sys.modules['worlds.uzdoom']
 model = sys.modules['worlds.uzdoom.model']
-options = sys.modules['worlds.uzdoom.Options']
+from . import Options as options
 
 included_logic = model.init_wads(__package__)
 wad = included_logic.wad

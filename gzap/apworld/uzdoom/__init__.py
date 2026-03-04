@@ -17,6 +17,7 @@ from typing import Dict, FrozenSet, Set
 import zipfile
 
 from BaseClasses import CollectionState, Item, ItemClassification, Location, MultiWorld, Region, Tutorial, LocationProgressType
+from Options import PerGameCommonOptions
 from worlds.AutoWorld import World
 import worlds.LauncherComponents as LauncherComponents
 
@@ -24,8 +25,6 @@ from . import icons, model
 from .model.DoomItem import DoomItem
 from .model.DoomLocation import DoomLocation
 from .model.DoomWad import DoomWad
-
-from .Options import UZDoomOptions
 
 logger = logging.getLogger("UZDoom")
 
@@ -93,8 +92,9 @@ class UZDoomWorld(World):
     This randomizer comes with an automated WAD scanner that makes it easy to add support for new WADs.
     """
     game = "UZDoom"
-    options_dataclass = UZDoomOptions
-    options: UZDoomOptions
+    # apworld-specific subclasses will define their own option types
+    options_dataclass = PerGameCommonOptions
+    options: PerGameCommonOptions
     topology_present = True
     required_client_version = (0, 6, 3)
     hidden = True
