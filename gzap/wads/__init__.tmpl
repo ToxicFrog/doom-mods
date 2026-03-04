@@ -2,8 +2,8 @@ import math
 import sys
 from dataclasses import dataclass
 
-from worlds.AutoWorld import World
-from Options import PerGameCommonOptions, Toggle, DeathLink, StartInventoryPool, OptionSet, NamedRange, Range, OptionDict, OptionList, OptionError, Visibility
+from worlds.AutoWorld import World, WebWorld
+from Options import PerGameCommonOptions, Toggle, DeathLink, StartInventoryPool, OptionSet, NamedRange, Range, OptionDict, OptionList, OptionError, Visibility, OptionGroup
 
 if 'worlds.uzdoom' not in sys.modules:
   raise RuntimeError(f'Unable to load supporting libraries -- make sure that `uzdoom.apworld` is installed!')
@@ -85,6 +85,25 @@ class UZDoomOptions___WAD__(options.UZDoomOptions):
   max_weapon_copies: MaxWeaponCopies
   level_order_bias: LevelOrderBias
 
+grouped_option_types = [
+  field.type for field in UZDoomOptions___WAD__.__dataclass_fields__.values()
+  if hasattr(field.type, 'group_name')
+]
+
+class UZDoomWeb___WAD__(WebWorld):
+  game = f"UZDoom ({wad.name})"
+  option_groups = [
+    OptionGroup(option_group_name, [
+      option_type for option_type in grouped_option_types
+      if option_type.group_name == option_group_name
+    ])
+    for option_group_name in [
+      "Starting Conditions", "Win Conditions", "Combat Logic",
+      "Gameplay Settings", "Item Randomization"
+    ]
+  ]
+
+
 class UZDoomWorld___WAD__(uzdoom.UZDoomWorld):
   game = f"UZDoom ({wad.name})"
   mod_version = "__VERSION__"
@@ -92,6 +111,7 @@ class UZDoomWorld___WAD__(uzdoom.UZDoomWorld):
   wad_logic = wad
   options_dataclass = UZDoomOptions___WAD__
   options: UZDoomOptions___WAD__
+  web: WebWorld = UZDoomWeb___WAD__()
 
   # Used by AP itself
   item_name_to_id = model.unified_item_map(included_logic)

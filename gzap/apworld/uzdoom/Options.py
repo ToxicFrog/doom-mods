@@ -26,6 +26,7 @@ class MaxWeaponCopies(Range):
     This is an upper bound; it will not add more weapons to the pool than exist
     in the WAD already. By default it is set to 1 per 8 levels.
     """
+    group_name = "Item Randomization"
     display_name = "Max weapon copies"
     # Filled in by wad-specific code.
     range_start = 0
@@ -44,6 +45,7 @@ class StartingLevels(OptionSet):
 
     This option supports globbing expressions.
     """
+    group_name = "Starting Conditions"
     display_name = "Starting levels"
     default = ["(filled in by wad-specific apworlds)"]
 
@@ -51,6 +53,7 @@ class StartWithKeys(Toggle):
     """
     If enabled, you will start with all the keys for your starting_levels.
     """
+    group_name = "Starting Conditions"
     display_name = "Start with keys"
     default = True
 
@@ -58,6 +61,7 @@ class IncludedLevels(OptionSet):
     """
     Levels to randomize. By default this is all levels in the wad.
     """
+    group_name = "Starting Conditions"
     display_name = "Included levels"
     default = []
 
@@ -75,6 +79,7 @@ class SpawnFilter(NamedRange):
     have custom difficulty settings, and it's not always obvious which ones correspond
     to easy/medium/hard.
     """
+    group_name = "Starting Conditions"
     display_name = "Spawn filter"
     range_start = 1
     range_end = 3
@@ -130,6 +135,7 @@ class IncludedItemCategories(OptionList):
       of in the item pool. Use 'key:start', 'weapon:start', or 'ap_map:start' to
       start with all keys, weapons, or maps, respectively.
     """
+    group_name = "Item Randomization"
     display_name = "Included item/location categories"
     default = [
         'secret-sector:none', 'secret-marker:none', 'secret:none',
@@ -218,6 +224,7 @@ class LevelOrderBias(Range):
 
     Starting levels are exempt from this check.
     """
+    group_name = "Combat Logic"
     display_name = "Level order bias"
     range_start = 0
     range_end = 100
@@ -240,6 +247,7 @@ class LocalWeaponBias(Range):
 
     Starting levels are exempt from this check.
     """
+    group_name = "Combat Logic"
     display_name = "In-level weapon bias"
     range_start = 0
     range_end = 100
@@ -259,6 +267,7 @@ class GlobalWeaponBias(Range):
 
     Starting levels are exempt from this check.
     """
+    group_name = "Combat Logic"
     display_name = "Carryover weapon bias"
     range_start = 0
     range_end = 100
@@ -269,6 +278,7 @@ class WinMapCount(Range):
     How many maps you need to clear to win the game. By default this is all maps
     in the wad.
     """
+    group_name = "Win Conditions"
     display_name = "Number of maps to win"
     # Will be overridden by individual wad apworlds
     range_start = 0
@@ -282,6 +292,7 @@ class WinMapNames(OptionSet):
     Archipelago's best guess at which maps are end-of-episode or end-of-game
     levels.
     """
+    group_name = "Win Conditions"
     display_name = "Specific maps to win"
     # Will be overridden by individual wad apworlds
     default = {}
@@ -296,6 +307,7 @@ class AllowRespawn(Toggle):
     state of the randomizer -- checks already collected will remain collected and
     items used from the randomizer inventory will remain used.
     """
+    group_name = "Gameplay Settings"
     display_name = "Allow Respawn"
     default = True
 
@@ -306,6 +318,7 @@ class FullPersistence(Toggle):
     or nothing: there is no way to reset individual levels. This is generally
     reliable, but a minority of wads or gameplay mods may break with it.
     """
+    group_name = "Gameplay Settings"
     display_name = "Persistent Levels"
     default = True
 
@@ -324,6 +337,7 @@ class PreTuningMode(Toggle):
     generation, so the game will retain its original episode divisions,
     intermission text, etc.
     """
+    group_name = "Item Randomization"
     display_name = "Pretuning Mode"
     default = False
 
