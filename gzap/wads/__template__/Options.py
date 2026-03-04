@@ -9,10 +9,17 @@
 #   and/or you need multiple automaps to display everything for a level (say,
 #   one gets you checks, one gets you geometry, one gets you progression hilights)
 
-from math import ceil,floor
-
-from Options import PerGameCommonOptions, Toggle, DeathLink, StartInventory, StartInventoryPool, OptionSet, NamedRange, Range, OptionDict, OptionList, OptionError
 from dataclasses import dataclass
+from math import ceil,floor
+import sys
+
+from Options import PerGameCommonOptions, Toggle, DeathLink, StartInventory, StartInventoryPool, OptionSet, NamedRange, Range, OptionDict, OptionList, OptionError, OptionGroup, Visibility
+from worlds.AutoWorld import WebWorld
+
+uzdoom = sys.modules['worlds.uzdoom']
+model = sys.modules['worlds.uzdoom.model']
+included_logic = model.init_wads(__package__)
+wad = included_logic.wad
 
 class MaxWeaponCopies(Range):
     """
@@ -26,15 +33,13 @@ class MaxWeaponCopies(Range):
     This is an upper bound; it will not add more weapons to the pool than exist
     in the WAD already. By default it is set to 1 per 8 levels.
     """
-    group_name = "Item Randomization"
     display_name = "Max weapon copies"
-    # Filled in by wad-specific code.
     range_start = 0
-    range_end = 32
-    default = 99
+    range_end = len(wad.maps)
+    default = ceil(len(wad.maps)/8)
 
 class StartingLevels(OptionSet):
-    """
+    __doc__ = """
     Levels you can access at the start of the game. You will spawn with access
     codes for these levels; if start_with_keys is enabled, you will also spawn
     with all keys for them. The default setting tries to include enough levels
@@ -43,27 +48,48 @@ class StartingLevels(OptionSet):
     If you are playing a multiworld game and want to start with nothing at all
     (i.e. Doom is not playable until another world unlocks it), set this to [].
 
-    This option supports globbing expressions.
-    """
-    group_name = "Starting Conditions"
-    display_name = "Starting levels"
-    default = ["(filled in by wad-specific apworlds)"]
+    This option supports globbing expressions.""" + (
+    f"""
 
-class StartWithKeys(Toggle):
+    For solo play, to avoid generation failures due to a small sphere 1 in
+    this wad, you may need to either change included_item_categories to enable
+    more item categories, or add more maps here. If doing the latter, the
+    apworld's best guess at what to set this to is:
+    {wad.default_solo_starting_maps()}
     """
-    If enabled, you will start with all the keys for your starting_levels.
-    """
-    group_name = "Starting Conditions"
-    display_name = "Start with keys"
-    default = True
+    if wad.default_solo_starting_maps() else ""
+    )
+    display_name = "Starting levels"
+    default = sorted(map.map for map in wad.default_starting_maps())
+
+
+if wad.get_flag('use_hub_logic'):
+    class StartWithKeys(Toggle):
+        """Forced off because this WAD uses hub logic."""
+        default = False
+        visibility = Visibility.none
+elif model.tuning_files(wad.package, wad.name):
+    class StartWithKeys(Toggle):
+        """
+        If enabled, you will start with all the keys for your starting_levels.
+        """
+        default = False
+else:
+    class StartWithKeys(Toggle):
+        """
+        If enabled, you will start with all the keys for your starting_levels.
+
+        This WAD lacks tuning data, so setting this to false may cause
+        generation failures, especially in singleplayer.
+        """
+        default = True
 
 class IncludedLevels(OptionSet):
     """
     Levels to randomize. By default this is all levels in the wad.
     """
-    group_name = "Starting Conditions"
     display_name = "Included levels"
-    default = []
+    default = sorted(wad.maps.keys())
 
 class SpawnFilter(NamedRange):
     """
@@ -79,7 +105,6 @@ class SpawnFilter(NamedRange):
     have custom difficulty settings, and it's not always obvious which ones correspond
     to easy/medium/hard.
     """
-    group_name = "Starting Conditions"
     display_name = "Spawn filter"
     range_start = 1
     range_end = 3
@@ -135,7 +160,6 @@ class IncludedItemCategories(OptionList):
       of in the item pool. Use 'key:start', 'weapon:start', or 'ap_map:start' to
       start with all keys, weapons, or maps, respectively.
     """
-    group_name = "Item Randomization"
     display_name = "Included item/location categories"
     default = [
         'secret-sector:none', 'secret-marker:none', 'secret:none',
@@ -224,11 +248,11 @@ class LevelOrderBias(Range):
 
     Starting levels are exempt from this check.
     """
-    group_name = "Combat Logic"
     display_name = "Level order bias"
     range_start = 0
     range_end = 100
-    default = 25
+    default = 25 if not wad.use_hub_logic() else 0
+    visibility = Visibility.all if not wad.use_hub_logic() else Visibility.none
 
 class LocalWeaponBias(Range):
     """
@@ -247,7 +271,6 @@ class LocalWeaponBias(Range):
 
     Starting levels are exempt from this check.
     """
-    group_name = "Combat Logic"
     display_name = "In-level weapon bias"
     range_start = 0
     range_end = 100
@@ -267,7 +290,6 @@ class GlobalWeaponBias(Range):
 
     Starting levels are exempt from this check.
     """
-    group_name = "Combat Logic"
     display_name = "Carryover weapon bias"
     range_start = 0
     range_end = 100
@@ -278,12 +300,10 @@ class WinMapCount(Range):
     How many maps you need to clear to win the game. By default this is all maps
     in the wad.
     """
-    group_name = "Win Conditions"
     display_name = "Number of maps to win"
-    # Will be overridden by individual wad apworlds
     range_start = 0
-    range_end = 999
-    default = 999
+    range_end = len(wad.all_winnable_map_names())
+    default = len(wad.all_winnable_map_names())
 
 class WinMapNames(OptionSet):
     """
@@ -292,11 +312,9 @@ class WinMapNames(OptionSet):
     Archipelago's best guess at which maps are end-of-episode or end-of-game
     levels.
     """
-    group_name = "Win Conditions"
     display_name = "Specific maps to win"
-    # Will be overridden by individual wad apworlds
-    default = {}
-    valid_keys = {}
+    default = sorted([map for map in wad.all_boss_map_names()])
+    valid_keys = sorted([map for map in wad.all_winnable_map_names()])
 
 class AllowRespawn(Toggle):
     """
@@ -307,7 +325,6 @@ class AllowRespawn(Toggle):
     state of the randomizer -- checks already collected will remain collected and
     items used from the randomizer inventory will remain used.
     """
-    group_name = "Gameplay Settings"
     display_name = "Allow Respawn"
     default = True
 
@@ -318,7 +335,6 @@ class FullPersistence(Toggle):
     or nothing: there is no way to reset individual levels. This is generally
     reliable, but a minority of wads or gameplay mods may break with it.
     """
-    group_name = "Gameplay Settings"
     display_name = "Persistent Levels"
     default = True
 
@@ -337,7 +353,6 @@ class PreTuningMode(Toggle):
     generation, so the game will retain its original episode divisions,
     intermission text, etc.
     """
-    group_name = "Item Randomization"
     display_name = "Pretuning Mode"
     default = False
 
@@ -387,3 +402,24 @@ class UZDoomOptions(PerGameCommonOptions):
     # Stock settings
     start_inventory: UZDoomStartInventory
     start_inventory_from_pool: StartInventoryPool
+
+class UZDoomWeb(WebWorld):
+  game = f"UZDoom ({wad.name})"
+  option_groups = [
+    OptionGroup("Starting Conditions", [
+        SpawnFilter, StartingLevels, StartWithKeys, IncludedLevels, UZDoomStartInventory,
+    ]),
+    OptionGroup("Win Conditions", [
+        WinMapCount, WinMapNames,
+    ]),
+    OptionGroup("Combat Logic", [
+        LevelOrderBias, LocalWeaponBias, GlobalWeaponBias,
+    ]),
+    OptionGroup("Gameplay Settings", [
+        AllowRespawn, FullPersistence,
+    ]),
+    OptionGroup("Randomization Settings", [
+        PreTuningMode, MaxWeaponCopies, IncludedItemCategories,
+    ]),
+  ]
+
