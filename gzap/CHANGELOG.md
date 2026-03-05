@@ -25,6 +25,7 @@
 - Fixed:
   - The inventory screen now uses Archipelago names for items rather than the
     tag (which was sometimes ambiguous or outright missing).
+  - The link to the `BTSX E1` apworld was missing from the documentation.
 
 # 0.8.0
 

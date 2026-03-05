@@ -106,7 +106,7 @@ These are WADs available throught Night Dive's
 
 [Arrival]: ../../release/apworlds/zdoom_arrival.apworld
 [Base Ganymede]: ../../release/apworlds/zdoom_base_ganymede.apworld
-[BTSX Episode 1]: ../../release/apworlds/zdoom_btsx_e1.apworld
+[BTSX E1]: ../../release/apworlds/zdoom_btsx_e1.apworld
 [Deathless]: ../../release/apworlds/zdoom_deathless.apworld
 [Going Down Turbo]: ../../release/apworlds/zdoom_going_down_turbo.apworld
 [Scientist 2023]: ../../release/apworlds/zdoom_scientist.apworld
