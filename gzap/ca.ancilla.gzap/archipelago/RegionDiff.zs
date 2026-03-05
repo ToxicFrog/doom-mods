@@ -6,7 +6,6 @@
 
 class ::RegionDiff play {
   string map;
-  string key;
   bool access;
   bool automap;
   bool cleared;
@@ -14,12 +13,6 @@ class ::RegionDiff play {
   private static ::RegionDiff CreateEmpty(string map) {
     let diff = ::RegionDiff(new("::RegionDiff"));
     diff.map = map;
-    return diff;
-  }
-
-  static ::RegionDiff CreateKey(string map, string key) {
-    let diff = ::RegionDiff.CreateEmpty(map);
-    diff.key = key;
     return diff;
   }
 
