@@ -24,10 +24,6 @@ class ::RandoState play {
   int filter;
   // Lump name to Region
   Map<string, ::Region> regions;
-  // AP item ID to uzdoom typename
-  Map<int, string> item_apids;
-  // AP item ID to special ap_flag IDs -- level access flag, automap, clear flag
-  Map<int, ::RegionDiff> ap_flags;
   // AP item ID to key information
   Map<int, ::RandoKey> keys;
   // Player inventory granted by the rando. Lives outside the normal in-game
@@ -35,6 +31,11 @@ class ::RandoState play {
   // An array so that (a) we can sort it, and (b) we can refer to entries by
   // index in a netevent.
   Array<::RandoItem> items;
+  // Same inventory, but organized by type name instead of by display order.
+  Map<string, ::RandoItem> items_by_type;
+  // And again by Archipelago ID, so we know what to grant when passed an ID
+  // from the server.
+  Map<uint, ::RandoItem> items_by_apid;
   ::WinConditions win_conditions;
 
   static ::RandoState Create() {
@@ -63,15 +64,8 @@ class ::RandoState play {
     }
   }
 
-  // TODO: We can do better with key/flag management here.
-  // In particular, if we reify all the flags as in-game items, we no longer
-  // need to pass them as extra IDs to RegisterMap. Instead we define a new
-  // RegisterFlag() that behaves similar to RegisterKey, except it spawns
-  // the corresponding flag and sets the map field on it, and on pickup it
-  // sets the requisite flags in the RandoState. This removes a whole bunch of
-  // special cases.
-  void RegisterMap(string map, string checksum, int hub, uint access_apid, uint map_apid, uint clear_apid, uint exit_apid) {
-    DEBUG("Registering map: %s (flags: %d %d %d %d)", map, access_apid, map_apid, clear_apid, exit_apid);
+  void RegisterMap(string map, string checksum, int hub, uint exit_apid) {
+    DEBUG("Registering map: %s (exit: %d)", map, exit_apid);
     if (checksum != LevelInfo.MapChecksum(map)) {
       console.printfEX(PRINT_HIGH, "\c[RED]ERROR:\c- Map %s has checksum \c[RED]%s\c-, but the randomizer expected \c[CYAN]%s\c-.",
         map, LevelInfo.MapChecksum(map), checksum);
@@ -80,11 +74,6 @@ class ::RandoState play {
     }
 
     regions.Insert(map, ::Region.Create(map, hub, exit_apid));
-
-    // We need to bind these to the map name somehow, oops.
-    if (access_apid) ap_flags.Insert(access_apid, ::RegionDiff.CreateFlags(map, true, false, false));
-    if (map_apid) ap_flags.Insert(map_apid, ::RegionDiff.CreateFlags(map, false, true, false));
-    if (clear_apid) ap_flags.Insert(clear_apid, ::RegionDiff.CreateFlags(map, false, false, true));
   }
 
   bool did_warning;
@@ -112,9 +101,16 @@ class ::RandoState play {
     return null;
   }
 
-  void RegisterItem(string typename, uint apid) {
-    DEBUG("RegisterItem: %s %d", typename, apid);
-    item_apids.Insert(apid, typename);
+  ::RandoItem RegisterItem(uint apid, string typename, string ap_name) {
+    DEBUG("RegisterItem: %d [%s] %s", apid, typename, ap_name);
+    let item = ::RandoItem.Create(typename, ap_name);
+    self.items.Push(item);
+    self.items_by_type.Insert(typename, item);
+    if (apid) {
+      self.items_by_apid.Insert(apid, item);
+    }
+    ++txn;
+    return item;
   }
 
   void RegisterCheck(
@@ -170,6 +166,14 @@ class ::RandoState play {
     }
   }
 
+  int CountItem(string typename) {
+    if (self.items_by_type.CheckKey(typename)) {
+      return self.items_by_type.Get(typename).total;
+    } else {
+      return -1;
+    }
+  }
+
   int, ::RandoItem FindItem(string typename) {
     for (int n = 0; n < self.items.Size(); ++n) {
       if (self.items[n].typename == typename) {
@@ -180,11 +184,10 @@ class ::RandoState play {
   }
 
   bool HasWeapon(string typename) {
-    let [count, item] = FindItem(typename);
-    DEBUG("HasWeapon? %s = %d", typename, count);
+    DEBUG("HasWeapon? %s = %d", typename, CountItem(typename));
     // We make the optimistic assumption that, since Replicate() spawns the
     // item for all players, we just need to check player 0 (here and below).
-    return count >= 0 || players[0].mo.FindInventory(typename);
+    return CountItem(typename) >= 0 || players[0].mo.FindInventory(typename);
   }
 
   bool HasWeaponSlot(int query_slot) {
@@ -205,35 +208,34 @@ class ::RandoState play {
   void GrantItem(uint apid, uint count = 0) {
     ++txn;
     DEBUG("GrantItem: %d", apid);
-    if (ap_flags.CheckKey(apid)) {
-      // Count doesn't matter, you either have it or you don't.
-      // TODO: Rework these into real items rather than flags on the Region
-      // somehow -- maybe even generate GZAP_Access_$MAP and GZAP_Automap_$MAP
-      // classes in the zscript.
-      let diff = ap_flags.Get(apid);
-      diff.Apply(GetRegion(diff.map));
-    } else if (keys.CheckKey(apid)) {
+    if (keys.CheckKey(apid)) {
       let key = keys.Get(apid);
       ::Util.announce("$GZAP_GOT_ITEM", key.FQIN());
       key.MarkHeld(self);
-    } else if (item_apids.CheckKey(apid)) {
-      GrantItemByName(item_apids.Get(apid));
-      return;
+      UpdatePlayerInventory();
+      UpdateStatus();
+
+    } else if (items_by_apid.CheckKey(apid)) {
+      UpdateItemCount(items_by_apid.Get(apid), count);
+
     } else {
       console.printf("Unknown item ID from Archipelago: %d", apid);
     }
-
-    UpdatePlayerInventory();
-    UpdateStatus();
   }
 
   void GrantItemByName(string typename, uint count = 0) {
-    let [idx, item] = FindItem(typename);
-    if (idx < 0) {
-      item = ::RandoItem.Create(typename);
-      self.items.Push(item);
+    if (!self.items_by_type.CheckKey(typename)) {
+      // Unknown item type, *but*, that just means AP doesn't know about it so
+      // it's not in our initial item table. It might still exist in the wad,
+      // in which case we can create a table entry for it on the spot.
+      UpdateItemCount(self.RegisterItem(0, typename, ""), count);
       self.SortItems();
+    } else{
+      UpdateItemCount(self.items_by_type.Get(typename), count);
     }
+  }
+
+  void UpdateItemCount(::RandoItem item, uint count = 0) {
     if (count) {
       // ITEM message from client, force local count to match server.
       item.SetTotal(count);

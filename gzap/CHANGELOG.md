@@ -20,6 +20,11 @@
   - In persistent mode, exiting a level via the AP menu remembers your position
     and returns you to it when you return to that map. You can clear the saved
     position with `shift-C`.
+  - Tooltips on the level select screen have been rearranged to be more concise
+    and, hopefully, more useful.
+- Fixed:
+  - The inventory screen now uses Archipelago names for items rather than the
+    tag (which was sometimes ambiguous or outright missing).
 
 # 0.8.0
 

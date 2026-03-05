@@ -29,6 +29,7 @@ class ::InventoryMenu : ::CommonMenu {
     for (int n = 0; n < state.items.Size(); ++n) {
       let item = state.items[n];
       if (item.GetLimit() == 0) continue;
+      if (!item.category) continue; // Internal-only item not for player consumption
       let menu_item = new("::InventoryItem").Init(item);
       mDesc.mItems.Push(menu_item);
       menu_item.tt = PushTooltip(menu_item.FormatTooltip());

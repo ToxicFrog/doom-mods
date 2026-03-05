@@ -12,7 +12,7 @@
 class ::RandoItem play {
   // Class to instantiate
   string typename;
-  // User-facing name
+  // Archipelago name, or Doom tag if no AP name
   string tag;
   // Internal category name
   string category;
@@ -24,7 +24,7 @@ class ::RandoItem play {
   // Number player wants to take out of the backpack.
   int grabbed;
 
-  static ::RandoItem Create(string typename) {
+  static ::RandoItem Create(string typename, string ap_name) {
     Class<Actor> itype = typename;
     if (!itype) {
       console.printf("Invalid item type: '%s'", typename);
@@ -32,7 +32,11 @@ class ::RandoItem play {
     }
     let item = ::RandoItem(new("::RandoItem"));
     item.typename = typename;
-    item.tag = GetDefaultByType(itype).GetTag();
+    if (ap_name) {
+      item.tag = ap_name;
+    } else {
+      item.tag = GetDefaultByType(itype).GetTag();
+    }
     item.category = ::ScannedItem.ItemCategory(GetDefaultByType(itype));
     item.vended = 0;
     item.total = 0;
@@ -41,8 +45,8 @@ class ::RandoItem play {
   }
 
   void DebugPrint() {
-    console.printf("  - %s [category=%s, count=%d/%d, limit=%d]",
-      self.typename, self.category, self.vended, self.total, self.GetLimit());
+    console.printf("  - %s [category=%s, count=%d/%d, limit=%d] (%s)",
+      self.typename, self.category, self.vended, self.total, self.GetLimit(), self.tag);
   }
 
   void MakeCategorySet() {

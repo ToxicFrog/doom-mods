@@ -12,6 +12,7 @@
 
 #include "./Location.zsc"
 #include "./RandoKey.zsc"
+#include "../actors/Tokens.zsc"
 
 class ::Hint play {
   string player;
@@ -38,11 +39,8 @@ class ::Region play {
   // Indexes are fully qualified Archipelago names, e.g. "RedCard (MAP01)" or
   // "MAP01 - RocketLauncher".
   Map<string, ::Hint> hints;
-  // Whether the player has these level-specific flags.
-  bool access;
-  bool automap;
+  // Whether the player has visited the level at any point.
   bool visited;
-  bool cleared;
   // AP location that gets checked when you exit the level.
   // TODO: decouple this from the cleared flag so we can randomize anything we
   // want into it.
@@ -110,13 +108,13 @@ class ::Region play {
   }
 
   bool CanAccess() const {
-    return self.access;
+    return ::PlayEventHandler.GetState().CountItem("GZAP_LevelAccess_"..self.map);
   }
   bool HasAutomap() const {
-    return self.automap;
+    return ::PlayEventHandler.GetState().CountItem("GZAP_Automap_"..self.map);
   }
   bool IsCleared() const {
-    return self.cleared;
+    return ::PlayEventHandler.GetState().CountItem("GZAP_LevelCleared_"..self.map);
   }
 
   void RegisterCheck(
