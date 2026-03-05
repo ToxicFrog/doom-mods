@@ -184,7 +184,7 @@ class ::LevelSelector : ::KeyValueNetevent {
       string buf = StringTable.Localize("$GZAP_MENU_TT_MAP_LOCKED") .. "\n";
       let hint = region.GetHint(region.AccessFlagFQIN());
       if (hint) {
-        buf = buf .. string.format("\c-⌖ %s @ %s\n", hint.player, hint.location);
+        buf = buf .. string.format("\c-%s\n", ::Util.FormatHint(hint.player, hint.location));
       }
       return buf;
     } else if (region.IsCleared()) {
@@ -217,7 +217,7 @@ class ::LevelSelector : ::KeyValueNetevent {
         buf = buf .. string.format("  %s %s\n", FormatKey(v), v.tag);
         let hint = region.GetHint(v.FQIN());
         if (hint) {
-          buf = buf .. string.format("  \c-⌖ %s @ %s\n", hint.player, hint.location);
+          buf = buf .. string.format("  %s\n", ::Util.FormatHint(hint.player, hint.location));
         }
       }
     }
@@ -244,7 +244,7 @@ class ::LevelSelector : ::KeyValueNetevent {
       buf = buf .. string.format("\n  \c[%s]%s", colour, loc.name);
 
       if (loc.peek) {
-        buf = buf .. string.format("\n  \c-ⓘ %s for %s", loc.peek.item, loc.peek.player);
+        buf = buf .. string.format("\n  %s", ::Util.FormatPeek(loc.peek.player, loc.peek.item, loc.flags));
       }
     }
     if (buf != "") {

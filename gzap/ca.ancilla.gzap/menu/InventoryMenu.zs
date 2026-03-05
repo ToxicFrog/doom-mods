@@ -234,7 +234,7 @@ class ::KeyToggle : ::KeyValueSelectable {
     if (!key_info.held) {
       let hint = region.GetHint(key_info.FQIN());
       if (hint) {
-        return string.format("\c[GRAY]ⓘ %s @ %s", hint.player, hint.location);
+        return ::Util.FormatHint(hint.player, hint.location);
       } else {
         return StringTable.Localize("$GZAP_MENU_KEY_MISSING");
       }
