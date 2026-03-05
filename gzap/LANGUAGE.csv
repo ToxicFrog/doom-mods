@@ -70,12 +70,13 @@ A limit of 0 means those items cannot be stored and will be given to you immedia
 Unlimited,GZAP_OPT_SLIDER_UNLIMITED,
 Gameplay,GZAP_OPT_HEADER_GAMEPLAY,Options / Gameplay
 Allow using dropped weapons,GZAP_OPT_NAME_ALLOW_DROPS,
-"
-Whether the player is allowed to pick up weapons dropped by enemies (e.g. shotguns dropped by shotgun zombies), in addition to the weapons granted through Archipelago. Disallowed weapons will be converted into ammo when you pick them up.
+"Whether the player is allowed to pick up weapons dropped by enemies (e.g. shotguns dropped by shotgun zombies), in addition to the weapons granted through Archipelago. Disallowed weapons will be converted into ammo when you pick them up.
 
 ""If already-filled slot"" allows you to pick up weapons if you already have a weapon with the same slot number, e.g. having the SSG will let you pick up normal shotguns. This is generally the most compatible option for weapon-replacing mods.
 
 ""If already-held weapon"" allows you to collect weapons only if they are duplicates of ones you already have. This most closely matches the behaviour of APDoom.",GZAP_OPT_TT_ALLOW_DROPS,
+Disallowed weapon behaviour,GZAP_OPT_NAME_DISALLOWED_WEAPON_BEHAVIOUR,
+"How to handle weapon pickups when ""allow using dropped weapons"" is set to something restrictive.",GZAP_OPT_TT_DISALLOWED_WEAPON_BEHAVIOUR,
 Auto-release on level clear,GZAP_OPT_NAME_ENABLE_RELEASE_ATEXIT,
 "If enabled, will release some or all of the items in a level when you reach the exit. This makes the game more about figuring out when you are in ""go mode"" for each individual level and then just going for it, and less about clearing every check individually. In sync multiworld games this can produce large ""bursts"" of items which some players may find disruptive; check with your teammates before turning it on.",GZAP_OPT_TT_ENABLE_RELEASE_ATEXIT,
 What to release,GZAP_OPT_NAME_RELEASE_ATEXIT,
@@ -124,6 +125,9 @@ Enabled,GZAP_OPT_DROPS_0,
 If already-filled slot,GZAP_OPT_DROPS_1,
 If already-held weapon,GZAP_OPT_DROPS_2,
 Disabled,GZAP_OPT_DROPS_3,
+Leave on floor,GZAP_OPT_DWB_0,
+Turn into ammo,GZAP_OPT_DWB_1,
+Destroy on touch,GZAP_OPT_DWB_2,
 Disabled,GZAP_OPT_ENABLE_RELEASE_0,
 Only if all keys collected,GZAP_OPT_ENABLE_RELEASE_1,
 Always,GZAP_OPT_ENABLE_RELEASE_2,

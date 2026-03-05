@@ -51,6 +51,11 @@ server int ap_bank_other = -1;
 // 2 blocks weapons unless you already have a copy of that weapon
 // 3 blocks weapons unconditionally
 server int ap_suppress_weapon_drops = 1;
+// How to handle supressed weapons.
+// 0 - leave on the ground
+// 1 - turn into ammo
+// 2 - delete outright
+server int ap_disallowed_weapon_behaviour = 1;
 
 // Whether to auto-release all checks in the level when you finish it.
 // Enum:

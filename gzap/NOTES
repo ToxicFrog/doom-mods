@@ -71,24 +71,23 @@ included_item_categories sticks around as item_category_overrides or similar,
 and things are parsed in the order: intrinsics, then overrides, then individual
 options, then fallbacks.
 
-We also need to figure out how to use OptionGroup.
-
 ### ingame
 
 - display weapons in inventory even if you don't have them
 - let you hint weapons from the inventory screen
-- hints section in the inventory screen for hints pointing to the current level
+  - we have a complication for the above in that we now have two sets of weapons:
+    the weapons that AP knows about and the weapons that are in the region's
+    memory of which weapons you should have and are inferred from your inventory.
+  - at the moment per-region weapon data is populated from the latter.
+  - if we want per-region weapons we actually need two separate weapon sets per
+    region, one populated by AP and one holding what those are actually inferred
+    to turn into...eurgh. This needs more thought.
 - hilight a level in silver if
   - when using UT:
     - new checks have entered logic since last time you visited
   - otherwise if:
     - you have received an access key for it and have not visited it yet
     - you have received keys for it since last time you visited
-- level select should use key tag, not key typename, likewise for level access
-  - relatedly, the hint system is emitting the wrong hints for level access because
-    it's hardcoded to "Level Access (%s)" rather than knowing the item name --
-    we might want to just fix this in the general case by stuffing the entire apid
-    to item name mapping into the generated pk3. There usually aren't that many items.
 
 - If a check gets destroyed (e.g. with thing_remove), we should dispense whatever
   it contained. This would let us (e.g.) reinstate the urns and shields in Faithless

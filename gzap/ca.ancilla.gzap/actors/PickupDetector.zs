@@ -85,7 +85,15 @@ class ::PickupDetector : Inventory {
     DEBUG("HandlePickup: player found a %s", item.GetClassName());
     if (!plh.ShouldAllow(Weapon(item))) {
       DEBUG("HandlePickup: suppressing %s", item.GetClassName());
-      plh.ReplaceWithAmmo(item, Weapon(item));
+      if (ap_disallowed_weapon_behaviour == 0) {
+        // Leave it on the floor.
+        return true;
+      }
+      if (ap_disallowed_weapon_behaviour == 1) {
+        // Turn it into ammo. If this branch isn't taken RejectPickup will
+        // still destroy it, just without giving the player anything in return.
+        plh.ReplaceWithAmmo(item, Weapon(item));
+      }
       return RejectPickup(item);
     }
 

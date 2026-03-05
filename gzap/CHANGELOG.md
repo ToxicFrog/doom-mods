@@ -13,6 +13,8 @@
   - In persistent mode, exiting a level via the AP menu remembers your position
     and returns you to it when you return to that map. You can clear the saved
     position with `shift-C`.
+  - In-game option (`ap_disallowed_weapon_behaviour`) to control whether suppressed
+    weapons are left on the ground, converted to ammo, or deleted.
 - Changed:
   - Items set to `vanilla` are no longer reported to Archipelago. This means
     they won't show up in UT and won't increase the hint cost. In-game they will
