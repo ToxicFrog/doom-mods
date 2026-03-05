@@ -12,7 +12,6 @@
 #include "./RandoItem.zsc"
 #include "./RandoKey.zsc"
 #include "./Region.zsc"
-#include "./RegionDiff.zsc"
 #include "./WinConditions.zsc"
 
 class ::RandoState play {
