@@ -207,6 +207,9 @@ class ::RandoState play {
     DEBUG("GrantItem: %d", apid);
     if (ap_flags.CheckKey(apid)) {
       // Count doesn't matter, you either have it or you don't.
+      // TODO: Rework these into real items rather than flags on the Region
+      // somehow -- maybe even generate GZAP_Access_$MAP and GZAP_Automap_$MAP
+      // classes in the zscript.
       let diff = ap_flags.Get(apid);
       diff.Apply(GetRegion(diff.map));
     } else if (keys.CheckKey(apid)) {

@@ -38,11 +38,18 @@ class ::Region play {
   // Indexes are fully qualified Archipelago names, e.g. "RedCard (MAP01)" or
   // "MAP01 - RocketLauncher".
   Map<string, ::Hint> hints;
+  // Whether the player has these level-specific flags.
   bool access;
   bool automap;
   bool visited;
   bool cleared;
+  // AP location that gets checked when you exit the level.
+  // TODO: decouple this from the cleared flag so we can randomize anything we
+  // want into it.
   ::Location exit_location;
+  // The player's last known position in this map. Can be used to return the
+  // player to their saved position when levelporting.
+  Vector3 player_position;
 
   static ::Region Create(string map, int hub, uint exit_id) {
     let region = ::Region(new("::Region"));
@@ -192,6 +199,16 @@ class ::Region play {
 
   string AccessFlagFQIN() const {
     return string.format("Level Access (%s)", self.map);
+  }
+
+  void SavePosition(Vector3 pos) {
+    ++txn;
+    self.player_position = pos;
+  }
+
+  void ClearSavedPosition() {
+    ++txn;
+    self.player_position = (0,0,0);
   }
 
   // Return the name of the next item to hint for that's useful for this level.

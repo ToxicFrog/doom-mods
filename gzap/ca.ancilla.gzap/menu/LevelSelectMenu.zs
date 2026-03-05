@@ -99,6 +99,14 @@ class ::LevelSelectMenu : ::CommonMenu {
         selected.RequestHint();
       }
       return true;
+
+    // 0x43 == 'C'
+    } else if (evt.type == UIEvent.TYPE_CHAR && evt.KeyChar == 0x43) {
+      let selected = ::LevelSelector(mDesc.mItems[mDesc.mSelectedItem]);
+      if (selected) {
+        selected.ClearSavedPosition();
+      }
+      return true;
     }
 
     return super.OnUIEvent(evt);

@@ -13,8 +13,9 @@ Clear,GZAP_MENU_HEADER_STATUS,Map status column. 5 cols.
 Level Status: \c[BLACK]locked,GZAP_MENU_TT_MAP_LOCKED,All the _TT_ entries are used to populate the tooltips in the level selector.
 Level Status: \c[WHITE]unlocked,GZAP_MENU_TT_MAP_OPEN,
 Level Status: \c[GOLD]cleared,GZAP_MENU_TT_MAP_DONE,
-Automap: \c[BLACK]no,GZAP_MENU_TT_AM_NO,
-Automap: \c[GOLD]yes,GZAP_MENU_TT_AM_YES,
+Automap: \c[BLACK]no\c-,GZAP_MENU_TT_AM_NO,
+Automap: \c[GOLD]yes\c-,GZAP_MENU_TT_AM_YES,
+⯐ Saved position [\c[GOLD]shift-C\c- to clear],GZAP_MENU_TT_SAVED_POSITION,
 Missing Keys:,GZAP_MENU_TT_KEYS,Missing keys tooltip header.
 Unchecked Locations:,GZAP_MENU_TT_CHECKS,Unchecked locations tooltip header.
 Next Hint [press \c[GOLD]shift-H\c-]:,GZAP_MENU_TT_HINT,Header for what the next hint you can auto-request is.

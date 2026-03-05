@@ -24,13 +24,16 @@ To release a new version:
   - e.g. an increase in rank of 1 increases the number of weapons needed by 1
     - or more if that's needed to pull all the weapons into logic by the end of the game
   - what does this mean for the bias settings?
+- progressive weapon support
+  - infer the progressive weapon order from the order it appears in the wad
+  - maybe pull it out as a yaml option so it can be customized
+  - max_weapon_copies becomes the number of extras in the pool
+  - getting extras once you have them all gives you copies of random weapons you
+    already have
 - treat item/key/weapon requirements as "apworld state has this item" if it's
   included in randomization at a nonzero rate, and as "location where this item
   is found would be in logic if it were randomized" if it is not included in
   randomization.
-- better handling for vanilla/local/pretuning settings
-  - need a way to say "this item should be written into the pk3 as if it were randomized, and still used for tuning, but not reported to the server"
-  - also need a local-shuffle option for minor items that doesn't break generation the way AP's builtin force-local setting does
 - region hierarchy refactor
   - a wad contains maps, which contain regions, which contain locations
   - maps/regions/locations are all DoomReachable and form a tree
@@ -75,6 +78,17 @@ We also need to figure out how to use OptionGroup.
 - display weapons in inventory even if you don't have them
 - let you hint weapons from the inventory screen
 - hints section in the inventory screen for hints pointing to the current level
+- hilight a level in silver if
+  - when using UT:
+    - new checks have entered logic since last time you visited
+  - otherwise if:
+    - you have received an access key for it and have not visited it yet
+    - you have received keys for it since last time you visited
+- level select should use key tag, not key typename, likewise for level access
+  - relatedly, the hint system is emitting the wrong hints for level access because
+    it's hardcoded to "Level Access (%s)" rather than knowing the item name --
+    we might want to just fix this in the general case by stuffing the entire apid
+    to item name mapping into the generated pk3. There usually aren't that many items.
 
 - If a check gets destroyed (e.g. with thing_remove), we should dispense whatever
   it contained. This would let us (e.g.) reinstate the urns and shields in Faithless
@@ -88,10 +102,6 @@ We also need to figure out how to use OptionGroup.
 
 - if a check is deleted outright without being collected, we should reinstate it if we can.
 
-- New check graphics:
-  - hollow cyan for "check is empty but has a trigger associated with it"
-  - hollow grey? with full size icon for "check is local-only and won't be sent to the server"
-
 ### Time Tripper
 
 A few things we need to fully support this.
@@ -101,8 +111,6 @@ A few things we need to fully support this.
   ways in
 - weapon logic that better understands you need a cell-using weapon for C1M8
   (can be done manually in the tuning file with a region declaration)
-- if playing with persistence: return-to-previous-location, since some levels
-  (C1M4 again) have a non-repeatable intro sequence
 
 ### Faithless
 

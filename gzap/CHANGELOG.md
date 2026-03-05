@@ -17,6 +17,9 @@
     the default YAML settings on a per-WAD basis. This is now used to force
     persistent mode off in `Adventures of Square` rather than requiring the user
     to do it by hand.
+  - In persistent mode, exiting a level via the AP menu remembers your position
+    and returns you to it when you return to that map. You can clear the saved
+    position with `shift-C`.
 
 # 0.8.0
 

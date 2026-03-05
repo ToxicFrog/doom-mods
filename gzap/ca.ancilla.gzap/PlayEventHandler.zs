@@ -351,6 +351,11 @@ class ::PlayEventHandler : StaticEventHandler {
       // Player requested a hint from the level select menu.
       string item = cmd.ReadString();
       ::IPC.Send("CHAT", string.format("{ \"msg\": \"!hint %s\" }", item));
+    } else if (cmd.command == "ap-clear-position") {
+      string mapname = cmd.ReadString();
+      let region = apstate.GetRegion(mapname);
+      if (!region) return;
+      region.ClearSavedPosition();
     } else if (cmd.command == "ap-toggle-key") {
       apstate.ToggleKey(cmd.ReadString());
     } else if (cmd.command == "ap-toggle-visited") {

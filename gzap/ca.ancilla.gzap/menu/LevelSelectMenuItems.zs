@@ -94,6 +94,15 @@ class ::LevelSelector : ::KeyValueNetevent {
     }
   }
 
+  void ClearSavedPosition() {
+    if (self.region.player_position == (0,0,0)) {
+      Menu.MenuSound("menu/invalid");
+    } else {
+      Menu.MenuSound("menu/change");
+      EventHandler.SendNetworkCommand("ap-clear-position", NET_STRING, self.region.map);
+    }
+  }
+
   string FormatLevelKey(LevelInfo info, ::Region region) {
     return string.format("%s (%s)", info.LookupLevelName(), info.MapName);
   }
@@ -160,9 +169,10 @@ class ::LevelSelector : ::KeyValueNetevent {
 
   string FormatTooltip() {
     return string.format(
-      "%s\n%s%s%s%s",
+      "%s\n%s%s%s%s%s",
       FormatLevelStatusTT(region),
       FormatAutomapStatusTT(region),
+      FormatSavedPositionTT(region),
       FormatMissingKeysTT(region),
       FormatMissingChecksTT(region),
       FormatHintReminderTT(region));
@@ -191,11 +201,19 @@ class ::LevelSelector : ::KeyValueNetevent {
     }
   }
 
+  string FormatSavedPositionTT(::Region region) {
+    if (region.player_position != (0,0,0)) {
+      return "\n" .. StringTable.Localize("$GZAP_MENU_TT_SAVED_POSITION");
+    } else {
+      return "";
+    }
+  }
+
   string FormatMissingKeysTT(::Region region) {
     string buf = "";
     foreach (k, v : region.keys) {
       if (!v.held) {
-        buf = buf .. string.format("\n  %s %s", FormatKey(v), v.typename);
+        buf = buf .. string.format("\n  %s %s", FormatKey(v), v.tag);
         let hint = region.GetHint(v.FQIN());
         if (hint) {
           buf = buf .. string.format("\n  \c-ⓘ %s @ %s", hint.player, hint.location);

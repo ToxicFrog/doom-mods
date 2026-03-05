@@ -55,7 +55,7 @@ class ::PerLevelHandler : EventHandler {
     DEBUG("APState conflict resolution: txn[d]=%d txn[p]=%d",
       ::PlayEventHandler.GetState().txn, apstate.txn);
 
-    if (self.apstate.txn >= datastate.txn) {
+    if (self.apstate.txn > datastate.txn) {
       // Our state has a higher txn. This usually means someone started up the
       // game, then loaded a savegame, so we have a fresh apstate in the PEH and
       // the real one in the PLH.
@@ -88,6 +88,12 @@ class ::PerLevelHandler : EventHandler {
 
   override void WorldLoaded(WorldEvent evt) {
     DEBUG("PLH WorldLoaded");
+
+    if (level.MapName == "GZAPRST") {
+      foreach (region : apstate.regions) {
+        region.ClearSavedPosition();
+      }
+    }
 
     if ((level.MapName == "GZAPHUB" || level.MapName == "GZAPRST")
          && ::PlayEventHandler.Get().IsRandomized()) {
@@ -259,9 +265,16 @@ class ::PerLevelHandler : EventHandler {
       EventHandler.SendNetworkEvent("ap-level-select", ::Util.HubIndex());
       return;
     }
+
     // Returning to an earlier level, we should teleport the player to the point
     // they were in when they exited it, if we have one recorded.
     // We also need a way to teleport them back to the level entrance...
+    if (region.player_position != (0,0,0)) {
+      foreach (player : players) {
+        if (!player.mo) continue;
+        player.mo.SetOrigin(region.player_position, false);
+      }
+    }
   }
 
   void OnLoadGame() {
@@ -461,18 +474,23 @@ class ::PerLevelHandler : EventHandler {
       is_save, self.early_exit, level.LevelNum, next_map);
 
     let region = apstate.GetRegion(level.MapName);
-    // TODO: If this is an "early exit" and persistent mode is on, we should
-    // record the player's location and return them to it when they re-enter. In
-    // hubcluster-based games this might make more sense stored per cluster
-    // rather than per map?
 
     if (is_save || !region) {
       cvar.FindCvar("ap_scan_unreachable").SetInt(0);
     }
 
-    // TODO: in hubclusters we should only fire if exit_location is nonzero
-    // *and* we are exiting to another cluster.
     if (!region) return;
+
+    // Save the player's location for later restoration on levelport.
+    // Only enabled in persistent mode, which uses cluster ID 38281.
+    // TODO: make this a flag on the RandoState or PlayEventHandler instead
+    // and pass it through in the generated zscript so that there is no chance
+    // of a false positive.
+    if (self.early_exit && level.cluster == 38281) {
+      region.SavePosition(players[0].mo.pos);
+    } else {
+      region.ClearSavedPosition();
+    }
 
     if (region.hub) {
       // This used to be part of a hubcluster -- this only counts as an exit if
