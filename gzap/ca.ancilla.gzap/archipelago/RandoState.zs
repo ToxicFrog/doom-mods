@@ -173,15 +173,6 @@ class ::RandoState play {
     }
   }
 
-  int, ::RandoItem FindItem(string typename) {
-    for (int n = 0; n < self.items.Size(); ++n) {
-      if (self.items[n].typename == typename) {
-        return n, items[n];
-      }
-    }
-    return -1, null;
-  }
-
   bool HasWeapon(string typename) {
     DEBUG("HasWeapon? %s = %d", typename, CountItem(typename));
     // We make the optimistic assumption that, since Replicate() spawns the
@@ -250,33 +241,28 @@ class ::RandoState play {
 
   // For each item we have, look at the other apstate, and treat its "copies of
   // this item vended" counter for this item as taking precedence over ours.
+  // This is used when reloading an earlier save, so that we remember what items
+  // we have found, but rewind any item grants issued since the save.
   void CopyItemUsesFrom(::RandoState other) {
-    foreach (item : self.items) {
-      let [idx, other_item] = other.FindItem(item.typename);
-      if (idx < 0) {
+    foreach (typename, item : self.items_by_type) {
+      if (other.items_by_type.CheckKey(typename)) {
+        item.vended = other.items_by_type.Get(typename).vended;
+      } else {
         // We hadn't found this yet in the other apstate.
         item.vended = 0;
-      } else {
-        item.vended = other_item.vended;
       }
     }
   }
 
-  void UseItem(uint idx) {
-    ++txn;
-    items[idx].Replicate();
-    // UpdateStatus();
+  void UseItemByName(string typename) {
+    if (!items_by_type.CheckKey(typename)) return;
+    DEBUG("UseItemByName: %s", typename);
+    items_by_type.Get(typename).Replicate();
   }
 
-  void UseItemByName(string name) {
-    let [idx,item] = FindItem(name);
-    DEBUG("UseItemByName: %s -> %d", name, idx);
-    if (idx >= 0) UseItem(idx);
-  }
-
-  void GrabItem(string name, int delta) {
-    let [idx,item] = FindItem(name);
-    if (idx < 0) return;
+  void GrabItem(string typename, int delta) {
+    if (!items_by_type.CheckKey(typename)) return;
+    let item = items_by_type.Get(typename);
     let grabbed = item.grabbed + delta;
     if (grabbed > item.Remaining() || grabbed < 0) return;
     item.grabbed = grabbed;
