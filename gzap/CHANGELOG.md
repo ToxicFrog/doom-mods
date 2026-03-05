@@ -26,6 +26,7 @@
   - The inventory screen now uses Archipelago names for items rather than the
     tag (which was sometimes ambiguous or outright missing).
   - The link to the `BTSX E1` apworld was missing from the documentation.
+  - Hinting a level access token from the level select menu now works again.
 
 # 0.8.0
 

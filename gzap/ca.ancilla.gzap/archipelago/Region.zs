@@ -206,7 +206,11 @@ class ::Region play {
   }
 
   string AccessFlagFQIN() const {
-    return string.format("Level Access (%s)", self.map);
+    return ::PlayEventHandler
+      .GetState()
+      .items_by_type
+      .Get("GZAP_LevelAccess_"..self.map)
+      .tag;
   }
 
   void SavePosition(Vector3 pos) {
