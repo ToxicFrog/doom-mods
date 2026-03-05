@@ -23,6 +23,9 @@
   - Tooltips on the level select screen have been rearranged to be more concise
     and, hopefully, more useful.
   - Hints now use Archipelago text colours.
+  - The inventory screen now displays hints for the current level.
+  - Hints for progression items are now sorted before useful, which are before
+    filler.
 - Fixed:
   - The inventory screen now uses Archipelago names for items rather than the
     tag (which was sometimes ambiguous or outright missing).

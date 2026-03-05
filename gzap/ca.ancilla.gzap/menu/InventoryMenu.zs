@@ -36,6 +36,7 @@ class ::InventoryMenu : ::CommonMenu {
     }
 
     InitKeyDisplay();
+    InitPeekDisplay();
     InitRegionDisplay();
     mDesc.mSelectedItem = -1;
   }
@@ -76,6 +77,25 @@ class ::InventoryMenu : ::CommonMenu {
 
     foreach (_, key : region.keys) {
       mDesc.mItems.Push(new("::KeyToggle").Init(region, key));
+    }
+  }
+
+  void InitPeekDisplay() {
+    let region = ::PlayEventHandler.GetState().GetCurrentRegion();
+    if (!region) return;
+
+    bool did_header = false;
+    foreach (loc : region.locations) {
+      // Peeked locations are always sorted before everything else, so we can
+      // stop as soon as we hit an unpeeked one.
+      if (!loc.peek) break;
+      if (!did_header) {
+        PushText(" ");
+        PushText("$GZAP_MENU_INVENTORY_HINTS");
+        PushText(" ");
+        did_header = true;
+      }
+      PushKeyValueText(loc.name, ::Util.FormatPeek(loc.peek.player, loc.peek.item, loc.flags));
     }
   }
 

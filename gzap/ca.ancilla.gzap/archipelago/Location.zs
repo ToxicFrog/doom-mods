@@ -84,6 +84,11 @@ class ::Location {
       return true;
     } else if (!self.peek && other.peek) {
       return false;
+    } else if (self.peek && other.peek) {
+      // Both peeked? Prioritize progression > useful > everything else.
+      if (self.ItemPriority() != other.ItemPriority()) {
+        return self.ItemPriority() < other.ItemPriority();
+      }
     }
     if (self.track != other.track) {
       // In-logic is always before OOL, which is always before unreachable.
@@ -118,10 +123,27 @@ class ::Location {
   // be reported to the server.
   bool IsLocal() { return flags & AP_IS_LOCAL; }
 
+  // True if the tuning file says this location can't be reached.
+  bool IsUnreachable() { return flags & AP_IS_UNREACHABLE; }
+
   // Standard AP item categories.
   bool IsFiller() { return (flags & AP_ITEMTYPE) == AP_IS_FILLER; }
   bool IsProgression() { return flags & AP_IS_PROGRESSION; }
   bool IsTrap() { return flags & AP_IS_TRAP; }
   bool IsUseful() { return flags & AP_IS_USEFUL; }
-  bool IsUnreachable() { return flags & AP_IS_UNREACHABLE; }
+
+  // Numeric indicator of item category priority, lower == better.
+  int ItemPriority() {
+    if (IsProgression() && IsUseful()) {
+      return 0;
+    } else if (IsProgression()) {
+      return 1;
+    } else if (IsUseful()) {
+      return 2;
+    } else if (!IsTrap()) {
+      return 3;
+    } else {
+      return 4;
+    }
+  }
 }
