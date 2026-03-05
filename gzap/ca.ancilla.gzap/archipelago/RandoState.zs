@@ -430,7 +430,7 @@ class ::RandoState play {
   uint LevelsClear() const {
     uint n = 0;
     foreach (name, region : self.regions) {
-      if (region.cleared) ++n;
+      if (region.IsCleared()) ++n;
     }
     return n;
   }

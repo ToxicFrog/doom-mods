@@ -73,7 +73,7 @@ class ::Region play {
 
   void DebugPrint() {
     console.printf("  - Region: %s%s [access=%d, clear=%d, automap=%d, txn=%d]",
-        self.map, ClusterDesc(), self.access, self.cleared, self.automap, self.txn);
+        self.map, ClusterDesc(), self.CanAccess(), self.IsCleared(), self.HasAutomap(), self.txn);
     console.printf("    %d locations", self.locations.Size());
     console.printf("    %d keys:%s", self.keys.CountUsed(), self.DebugKeyString());
     console.printf("    %d hints", self.hints.CountUsed());
@@ -107,6 +107,16 @@ class ::Region play {
       buf = buf .. " " .. key.typename;
     }
     return buf;
+  }
+
+  bool CanAccess() const {
+    return self.access;
+  }
+  bool HasAutomap() const {
+    return self.automap;
+  }
+  bool IsCleared() const {
+    return self.cleared;
   }
 
   void RegisterCheck(
@@ -216,7 +226,7 @@ class ::Region play {
   // Otherwise, hints for the first key you don't have.
   // If you have access and keys, returns "".
   string NextHint() const {
-    if (!self.access && !self.GetHint(self.AccessFlagFQIN())) {
+    if (!self.CanAccess() && !self.GetHint(self.AccessFlagFQIN())) {
       return self.AccessFlagFQIN();
     }
 
@@ -300,7 +310,7 @@ class ::Region play {
   }
 
   void UpdateInventory(PlayerPawn mo) {
-    if (automap) {
+    if (self.HasAutomap()) {
       mo.GiveInventoryType("MapRevealer");
     }
 

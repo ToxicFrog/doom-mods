@@ -149,13 +149,13 @@ class ::CheckMapMarker : MapMarker {
     // 0 = never, 1 = if you have the automap, 2 = always.
     if (ap_show_checks_on_map <= 0) return false;
     if (ap_show_checks_on_map >= 2) return true;
-    return ::PlayEventHandler.GetState().GetCurrentRegion().automap;
+    return ::PlayEventHandler.GetState().GetCurrentRegion().HasAutomap();
   }
 
   bool ShouldHilight() {
     if (ap_show_progression <= 1) return false; // "never" or "only in person"
     if (ap_show_progression == 2) {
-      return ::PlayEventHandler.GetState().GetCurrentRegion().automap;
+      return ::PlayEventHandler.GetState().GetCurrentRegion().HasAutomap();
     }
     return true;
   }

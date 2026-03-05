@@ -10,7 +10,7 @@ class ::WinConditions play {
     uint cleared_specific_maps;
 
     foreach (region : apstate.regions) {
-      if (region.cleared) {
+      if (region.IsCleared()) {
         ++cleared_maps;
         if (specific_maps.CheckKey(region.map)) ++cleared_specific_maps;
       }

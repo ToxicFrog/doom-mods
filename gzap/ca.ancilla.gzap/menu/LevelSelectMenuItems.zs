@@ -52,10 +52,10 @@ class ::LevelSelector : ::KeyValueNetevent {
   }
 
   void SetColours() {
-    if (region.cleared) {
+    if (region.IsCleared()) {
       self.idle_colour = Font.CR_GOLD;
       self.hot_colour = Font.CR_WHITE;
-    } else if (region.access) {
+    } else if (region.CanAccess()) {
       self.idle_colour = Font.CR_DARKRED;
       self.hot_colour = Font.CR_FIRE;
     } else {
@@ -73,12 +73,11 @@ class ::LevelSelector : ::KeyValueNetevent {
   }
 
   override bool Selectable() {
-    // return region.access;
     return true;
   }
 
   override bool MenuEvent(int key, bool fromController) {
-    if (key == Menu.MKey_Enter && !region.access) {
+    if (key == Menu.MKey_Enter && !region.CanAccess()) {
       Menu.MenuSound("menu/invalid");
       return true;
     }
@@ -132,12 +131,12 @@ class ::LevelSelector : ::KeyValueNetevent {
   }
 
   string FormatLevelValue(LevelInfo info, ::Region region) {
-    if (!region.access) {
+    if (!region.CanAccess()) {
       return string.format(
         "\c[BLACK]%3d/%-3d  %s  \c[BLACK]%s  %s",
         region.LocationsChecked(), region.LocationsTotal(),
         FormatKeyCounter(region, false),
-        region.automap ? " √ " : "   ",
+        region.HasAutomap() ? " √ " : "   ",
         FormatLevelClearMarker(region)
       );
     }
@@ -145,14 +144,14 @@ class ::LevelSelector : ::KeyValueNetevent {
       "%s  %s  %s  %s%s",
       FormatItemCounter(region),
       FormatKeyCounter(region),
-      region.automap ? "\c[GOLD] √ " : "   ",
+      region.HasAutomap() ? "\c[GOLD] √ " : "   ",
       FormatLevelClearColour(region),
       FormatLevelClearMarker(region)
     );
   }
 
   string FormatLevelClearMarker(::Region region) {
-    if (region.cleared)
+    if (region.IsCleared())
       return "  √  ";
     if (::PlayEventHandler.GetState().win_conditions.specific_maps.CheckKey(region.map))
       return "  X  ";
@@ -160,7 +159,7 @@ class ::LevelSelector : ::KeyValueNetevent {
   }
 
   string FormatLevelClearColour(::Region region) {
-    if (region.cleared)
+    if (region.IsCleared())
       return "\c[GOLD]";
     if (::PlayEventHandler.GetState().win_conditions.specific_maps.CheckKey(region.map))
       return "\c[RED]";
@@ -181,14 +180,14 @@ class ::LevelSelector : ::KeyValueNetevent {
   }
 
   string FormatLevelStatusTT(::Region region) {
-    if (!region.access) {
+    if (!region.CanAccess()) {
       string buf = StringTable.Localize("$GZAP_MENU_TT_MAP_LOCKED") .. "\n";
       let hint = region.GetHint(region.AccessFlagFQIN());
       if (hint) {
         buf = buf .. string.format("\c-ⓘ %s @ %s", hint.player, hint.location);
       }
       return buf;
-    } else if (region.cleared) {
+    } else if (region.IsCleared()) {
       return StringTable.Localize("$GZAP_MENU_TT_MAP_DONE") .. "\n";
     } else {
       return "";

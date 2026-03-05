@@ -239,7 +239,7 @@ class ::PerLevelHandler : EventHandler {
     UpdateCheckPickups();
     apstate.UpdatePlayerInventory();
 
-    if (!region.access) {
+    if (!region.CanAccess()) {
       EventHandler.SendNetworkEvent("ap-level-select", ::Util.HubIndex());
       return;
     }
@@ -261,7 +261,7 @@ class ::PerLevelHandler : EventHandler {
     UpdateCheckPickups();
     apstate.UpdatePlayerInventory();
 
-    if (!region.access) {
+    if (!region.CanAccess()) {
       EventHandler.SendNetworkEvent("ap-level-select", ::Util.HubIndex());
       return;
     }
@@ -321,7 +321,7 @@ class ::PerLevelHandler : EventHandler {
     } else if (line.special == 74) {
       let info = LevelInfo.FindLevelByNum(line.args[0]);
       let region = apstate.GetRegion(info.MapName);
-      if (region && !region.access) {
+      if (region && !region.CanAccess()) {
         evt.ShouldActivate = false;
       }
     }
