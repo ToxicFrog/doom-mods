@@ -148,10 +148,13 @@ class GZAP_DataPackageEventHandler : StaticEventHandler {
       // Player requested a hint from the level select menu.
       // In singleplayer mode, the client isn't connected, so we just issue
       // the hint from here.
-      // This is going to be a fully qualified name, e.g. "BlueSkull (MAP02)"
+      // This is going to be a fully qualified name, e.g. "Blue Skull (MAP02)"
       string item = cmd.ReadString();
       let hint = hints.GetIfExists(item);
-      if (!hint) return;
+      if (!hint) {
+        console.printf("No hints available for item: %s", item);
+        return;
+      }
 
       let apstate = peh.GetState();
       let nick = apstate.slot_name;

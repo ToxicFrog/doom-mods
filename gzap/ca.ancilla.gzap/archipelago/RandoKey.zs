@@ -70,7 +70,7 @@ class ::RandoKey play {
   // Underlying type, e.g. RedCard
   string typename;
   // Short scope name, e.g. "MAP01" or "EP1".
-  // FQIN is "$typename ($scopename)"
+  // FQIN is "$tag ($scopename)"
   string scopename;
   // Set of maps this key should exist in.
   Map<string, bool> maps;
