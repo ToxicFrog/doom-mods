@@ -10,8 +10,10 @@ class ::PickupDetector : Inventory {
     Inventory.Amount 1;
     Inventory.MaxAmount 1;
     +INVENTORY.IGNORESKILL;
-    +INVENTORY.UNTOSSABLE;
+    +INVENTORY.PERSISTENTPOWER;
+    +INVENTORY.UNCLEARABLE;
     +INVENTORY.UNDROPPABLE;
+    +INVENTORY.UNTOSSABLE;
     +INVENTORY.QUIET;
   }
 
