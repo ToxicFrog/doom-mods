@@ -71,7 +71,7 @@ class ::InventoryMenu : ::CommonMenu {
     if (region.keys.CountUsed() == 0) return;
 
     PushText(" ");
-    PushText("$GZAP_MENU_HEADER_KEYS", Font.CR_WHITE);
+    PushText("$GZAP_MENU_INVENTORY_KEYS", Font.CR_WHITE);
     PushText(" ");
 
     foreach (_, key : region.keys) {
