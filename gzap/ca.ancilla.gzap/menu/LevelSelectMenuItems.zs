@@ -168,60 +168,62 @@ class ::LevelSelector : ::KeyValueNetevent {
   }
 
   string FormatTooltip() {
+    // The trailing space is intentional so that we never set an empty tooltip,
+    // as doing that causes libTTM to delete the tooltip outright and then we
+    // can't get it back if we want to set it to something nonempty.
     return string.format(
-      "%s\n%s%s%s%s%s",
+      "%s%s%s%s%s ",
       FormatLevelStatusTT(region),
-      FormatAutomapStatusTT(region),
       FormatSavedPositionTT(region),
+      FormatHintReminderTT(region),
       FormatMissingKeysTT(region),
-      FormatMissingChecksTT(region),
-      FormatHintReminderTT(region));
+      FormatMissingChecksTT(region));
   }
 
   string FormatLevelStatusTT(::Region region) {
     if (!region.access) {
-      string buf = StringTable.Localize("$GZAP_MENU_TT_MAP_LOCKED");
+      string buf = StringTable.Localize("$GZAP_MENU_TT_MAP_LOCKED") .. "\n";
       let hint = region.GetHint(region.AccessFlagFQIN());
       if (hint) {
-        buf = buf .. string.format("\n\c-ⓘ %s @ %s", hint.player, hint.location);
+        buf = buf .. string.format("\c-ⓘ %s @ %s", hint.player, hint.location);
       }
       return buf;
-    } else if (!region.cleared) {
-      return StringTable.Localize("$GZAP_MENU_TT_MAP_OPEN");
+    } else if (region.cleared) {
+      return StringTable.Localize("$GZAP_MENU_TT_MAP_DONE") .. "\n";
     } else {
-      return StringTable.Localize("$GZAP_MENU_TT_MAP_DONE");
-    }
-  }
-
-  string FormatAutomapStatusTT(::Region region) {
-    if (!region.automap) {
-      return StringTable.Localize("$GZAP_MENU_TT_AM_NO");
-    } else {
-      return StringTable.Localize("$GZAP_MENU_TT_AM_YES");
+      return "";
     }
   }
 
   string FormatSavedPositionTT(::Region region) {
     if (region.player_position != (0,0,0)) {
-      return "\n" .. StringTable.Localize("$GZAP_MENU_TT_SAVED_POSITION");
+      return StringTable.Localize("$GZAP_MENU_TT_SAVED_POSITION") .. "\n";
     } else {
       return "";
     }
+  }
+
+  string FormatHintReminderTT(::Region region) {
+    let hint = region.NextHint();
+    if (hint == "") {
+      return "";
+    }
+    return string.format("\c-%s\c[DARKGRAY]\n  %s\n", StringTable.Localize("$GZAP_MENU_TT_HINT"), hint);
   }
 
   string FormatMissingKeysTT(::Region region) {
     string buf = "";
     foreach (k, v : region.keys) {
       if (!v.held) {
-        buf = buf .. string.format("\n  %s %s", FormatKey(v), v.tag);
+        buf = buf .. string.format("  %s %s\n", FormatKey(v), v.tag);
         let hint = region.GetHint(v.FQIN());
         if (hint) {
-          buf = buf .. string.format("\n  \c-ⓘ %s @ %s", hint.player, hint.location);
+          buf = buf .. string.format("  \c-ⓘ %s @ %s\n", hint.player, hint.location);
         }
       }
     }
     if (buf != "") {
-      return string.format("\n\c-%s\c[DARKGRAY]%s", StringTable.Localize("$GZAP_MENU_TT_KEYS"), buf);
+      return string.format("\c-%s\c[DARKGRAY]\n%s", StringTable.Localize("$GZAP_MENU_TT_KEYS"), buf);
     } else {
       return buf;
     }
@@ -247,7 +249,7 @@ class ::LevelSelector : ::KeyValueNetevent {
       }
     }
     if (buf != "") {
-      return string.format("\n\c-%s%s", StringTable.Localize("$GZAP_MENU_TT_CHECKS"), buf);
+      return string.format("\c-%s%s", StringTable.Localize("$GZAP_MENU_TT_CHECKS"), buf);
     } else {
       return buf;
     }
@@ -272,14 +274,6 @@ class ::LevelSelector : ::KeyValueNetevent {
 
     string buf = "\c[" .. ::Util.GetKeyColour(key, "white") .."]" .. icon;
     return buf.filter();
-  }
-
-  string FormatHintReminderTT(::Region region) {
-    let hint = region.NextHint();
-    if (hint == "") {
-      return "";
-    }
-    return string.format("\n\c-%s\c[DARKGRAY]\n  %s", StringTable.Localize("$GZAP_MENU_TT_HINT"), hint);
   }
 }
 
