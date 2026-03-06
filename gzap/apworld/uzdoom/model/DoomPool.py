@@ -101,8 +101,6 @@ class DoomPool:
         for bucket,locs in buckets.items():
             ratio = world.options.included_item_categories.ratio_for_bucket(bucket)
             # print(f'Considering bucket {bucket} with {len(locs)} locations and configured ratio {ratio}')
-            if world.options.pretuning_mode:
-                ratio = 'vanilla'
 
             if ratio == 0:
                 # print('Skipping bucket', bucket)
@@ -119,7 +117,7 @@ class DoomPool:
                         self.vanilla_item_counts[loc.item.name()] += 1
                     elif world.options.pretuning_mode and not loc.item:
                         loc.item = self.wad.placeholder_item()
-                self.local_locations.extend(locs)
+                self.locations.extend(locs)
                 continue
 
             if ratio == 'shuffle':

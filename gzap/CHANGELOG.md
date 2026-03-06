@@ -2,7 +2,8 @@
 
 - New:
   - `shuffle` option for `included_item_categories`. Items set to `shuffle` will
-    be shuffled among themselves locally and not reported to AP.
+    be shuffled among themselves locally and not reported to AP (and thus not
+    factor into hint cost or generated text client messages).
   - The game will attempt to remember what weapons you have (even when weapon
     replacer mods are involved). It will restore any missing weapons when you
     enter a level or load a saved game.
@@ -16,9 +17,6 @@
   - In-game option (`ap_disallowed_weapon_behaviour`) to control whether suppressed
     weapons are left on the ground, converted to ammo, or deleted.
 - Changed:
-  - Items set to `vanilla` are no longer reported to Archipelago. This means
-    they won't show up in UT and won't increase the hint cost. In-game they will
-    show up with the same "hollow" AP icon as !collected checks.
   - The YAML now uses option groups.
   - The `start_inventory` option can now accept any actor name understood by the
     game, even if the randomizer doesn't know about it.

@@ -149,11 +149,12 @@ class IncludedItemCategories(OptionList):
       'vanilla'
       All items in this category will be 'randomized' into their vanilla locations.
       Use this instead of 'none' if you want to play with non-randomized keys or
-      weapons.
+      weapons. They will still count towards hint cost calculations.
 
       'shuffle'
       Items in this category will be randomly shuffled with each other locally.
-      They will not count towards hint cost calculations.
+      They will not count towards hint cost calculations. You cannot use this
+      on progression items.
 
       'start'
       All items in this category will be placed in your starting inventory instead
