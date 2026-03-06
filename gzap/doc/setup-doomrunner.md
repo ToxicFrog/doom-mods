@@ -8,12 +8,20 @@ If you want to use a ZDL-style launcher instead, see [the ZDL guide](./setup-zdl
 
 ## Windows Installation
 
+Note: the choice of directory for the UZDoom installation, IWADs, PWADs, and mods is arbitrary. These
+instructions model them after the setup of the one who wrote this section, but you can put them somewhere else
+if doing so is more convenient for you.
+
 You will need to download two things:
 - [UZDoom itself](https://zdoom.org/downloads)
 - [DoomRunner](https://github.com/Youda008/DoomRunner/releases)
 
-[the rest of this to be written by someone who understands windows. It's probably
-just unpacking UZD and DR into `C:/Games/UZDoom` or something.]
+1. Unzip the downloaded UZDoom zip file and place its contents in a folder named UZDoom. This folder can be just about anywhere, such as on the Desktop, or in Documents.
+2. Unzip the downloaded DoomRunner zip file. Inside it should be a single .exe file. Place this file in your UZDoom folder.
+3. Inside the UZDoom folder, create three folders named `iwads`, `maps`, and `mods`.
+4. Copy your IWADs (e.g. `doom.wad`, `heretic.wad`) into the `iwads` folder you have just created.
+5. Download your map PWADs (e.g. `dmonfear.wad`, `adventures of square.pk3`) and put them into the `maps` folder.
+6. Download `UZArchipelago.pk3` and put it in the `mods` folder.
 
 ## Linux Installation
 
