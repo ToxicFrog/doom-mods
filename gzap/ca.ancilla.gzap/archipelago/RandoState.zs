@@ -179,7 +179,7 @@ class ::RandoState play {
     DEBUG("HasWeapon? %s = %d", typename, CountItem(typename));
     // We make the optimistic assumption that, since Replicate() spawns the
     // item for all players, we just need to check player 0 (here and below).
-    return CountItem(typename) >= 0 || players[0].mo.FindInventory(typename);
+    return CountItem(typename) > 0 || players[0].mo.FindInventory(typename);
   }
 
   bool HasWeaponSlot(int query_slot) {
