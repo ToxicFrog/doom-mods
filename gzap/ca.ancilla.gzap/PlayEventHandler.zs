@@ -157,15 +157,6 @@ class ::PlayEventHandler : StaticEventHandler {
     apclient.ReportWeapons(weapons);
   }
 
-  void RedefineSubregion() {
-    if (self.subregion == "") return;
-    let region = apstate.GetCurrentRegion();
-    if (!region) return;
-    Array<string> prereqs;
-    apstate.FillRegionPrereqs(prereqs);
-    ::IPC.DefineRegion(region.map, self.subregion, prereqs);
-  }
-
   void CheckLocation(::Location loc, bool atexit=false) {
     DEBUG("CheckLocation: %d %s", loc.apid, loc.name);
 
@@ -293,8 +284,9 @@ class ::PlayEventHandler : StaticEventHandler {
       let typename = evt.name.Mid(12);
       apstate.UseItemByName(typename);
     } else if (evt.name.IndexOf("ap-region/") == 0) {
-      self.subregion = evt.name.Mid(10);
-      RedefineSubregion();
+      apstate.DefineOrActivateSubregion(evt.name.Mid(10));
+    } else if (evt.name.IndexOf("ap-region-output") == 0) {
+      apstate.OutputSubregions();
     } else if (evt.name == "ap-did-warning") {
       apstate.did_warning = true;
     } else if (evt.name == "ap-debug") {
@@ -358,9 +350,6 @@ class ::PlayEventHandler : StaticEventHandler {
       region.ClearSavedPosition();
     } else if (cmd.command == "ap-toggle-key") {
       apstate.ToggleKey(cmd.ReadString());
-    } else if (cmd.command == "ap-toggle-visited") {
-      apstate.ToggleRegionVisited(cmd.ReadString());
-      ReportVisitStateChange();
     } else if (cmd.command == "ap-inv-grab-commit") {
       apstate.CommitItemGrabs();
     } else if (cmd.command == "ap-inv-grab-cancel") {

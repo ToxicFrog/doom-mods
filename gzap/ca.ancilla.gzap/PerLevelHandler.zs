@@ -34,7 +34,7 @@ class ::PerLevelHandler : EventHandler {
     return ::PerLevelHandler(Find("::PerLevelHandler"));
   }
 
-  void InitRandoState(bool restore_items) {
+  void InitRandoState(bool is_savegame) {
     let datastate = ::PlayEventHandler.GetState();
 
     if (self.apstate == null) {
@@ -73,9 +73,17 @@ class ::PerLevelHandler : EventHandler {
       // saves, picks up a weapon, it vends, and then they load their game and
       // the weapon is gone forever.
       DEBUG("Using state from datascope.");
-      if (restore_items) {
+      if (is_savegame) {
         DEBUG("Restoring items from playscope first.");
         datastate.CopyItemUsesFrom(self.apstate);
+        // We also want to use the subregion from the restored state (i.e. our
+        // state), since we know that was valid at the position the game was
+        // saved in, and any changes to it since should be rolled back.
+        if (self.apstate.subregion) {
+          datastate.DefineOrActivateSubregion(self.apstate.subregion.name);
+        } else {
+          datastate.ClearSubregion();
+        }
       }
       self.apstate = datastate;
     }
@@ -225,6 +233,7 @@ class ::PerLevelHandler : EventHandler {
   void OnNewMap() {
     DEBUG("PLH OnNewMap");
     InitRandoState(false);
+    apstate.ClearSubregion();
     early_exit = false;
     line_exit_normal = false;
     line_exit_secret = false;
@@ -252,6 +261,7 @@ class ::PerLevelHandler : EventHandler {
   void OnReopen() {
     DEBUG("PLH OnReopen");
     InitRandoState(false);
+    apstate.ClearSubregion();
     early_exit = false;
     line_exit_normal = false;
     line_exit_secret = false;

@@ -12,6 +12,7 @@
 
 #include "./Location.zsc"
 #include "./RandoKey.zsc"
+#include "./Subregion.zsc"
 #include "../actors/Tokens.zsc"
 
 class ::Hint play {
@@ -48,6 +49,8 @@ class ::Region play {
   // The player's last known position in this map. Can be used to return the
   // player to their saved position when levelporting.
   Vector3 player_position;
+  // Subregions defined in this region using ap-region. Used for logic development.
+  Map<string, ::Subregion> subregions;
 
   static ::Region Create(string map, int hub, uint exit_id) {
     let region = ::Region(new("::Region"));

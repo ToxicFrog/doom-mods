@@ -23,6 +23,8 @@ class ::RandoState play {
   int filter;
   // Lump name to Region
   Map<string, ::Region> regions;
+  // Currently active subregion, if any
+  ::Subregion subregion;
   // AP item ID to key information
   Map<int, ::RandoKey> keys;
   // Player inventory granted by the rando. Lives outside the normal in-game
@@ -300,32 +302,6 @@ class ::RandoState play {
     GetCurrentRegion().ToggleKey(keytype);
   }
 
-  void ToggleRegionVisited(string map) {
-    let region = GetRegion(map);
-    if (!region) return;
-    region.visited = !region.visited;
-  }
-
-  void FillRegionPrereqs(Array<string> prereqs) {
-    prereqs.Clear();
-    foreach (k, v : GetCurrentRegion().keys) {
-      if (v.held && v.enabled) {
-        prereqs.Push("key/" .. v.typename);
-      }
-    }
-    let region = GetCurrentRegion();
-    foreach (k, v : self.regions) {
-      if (v.visited && v != region) {
-        prereqs.Push("map/" .. k);
-      }
-    }
-    // foreach (item : self.items) {
-    //   if (item.IsWeapon() && item.vended > 0) {
-    //     prereqs.Push("weapon/" .. item.typename .. "/want");
-    //   }
-    // }
-  }
-
   int weapon_check_counter;
   void UpdatePlayerWeapons() {
     if (weapon_check_counter < 0) return;
@@ -380,6 +356,28 @@ class ::RandoState play {
 
   ::Region GetRegion(string map) const {
     return regions.GetIfExists(map);
+  }
+
+  void DefineOrActivateSubregion(string name) {
+    let region = GetCurrentRegion();
+    if (!region) return;
+    let subregion = region.subregions.GetIfExists(name);
+    if (!subregion) {
+      subregion = ::Subregion.Create(name, region);
+    }
+    self.subregion = subregion;
+  }
+
+  void ClearSubregion() {
+    self.subregion = null;
+  }
+
+  void OutputSubregions() {
+    foreach (region : self.regions) {
+      foreach (name, subregion : region.subregions) {
+        subregion.Output();
+      }
+    }
   }
 
   // Called when the server (or server stub in SP) reports that a location's
