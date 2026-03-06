@@ -46,7 +46,7 @@
       }
 
       function getFileContents(selector) {
-        return document.querySelector(selector).innerText.replaceAll("__WAD__", getWadSymbol()).replaceAll("__VERSION__", "gzap-0.8.0-16-g539d0d8");
+        return document.querySelector(selector).innerText.replaceAll("__WAD__", getWadSymbol()).replaceAll("__VERSION__", "gzap-0.8.0-35-gad090b7");
       }
 
       function generate() {
@@ -85,7 +85,7 @@
     </script>
   </head>
   <body>
-    <p>⚠️ This is the generator for the <b>unstable</b> version of the apworld (gzap-0.8.0-16-g539d0d8). <a href="apworld-generator-0.8.0.html">Click here for latest stable (0.8.0).</a></p>
+    <p>⚠️ This is the generator for the <b>unstable</b> version of the apworld (gzap-0.8.0-35-gad090b7). <a href="apworld-generator-0.8.0.html">Click here for latest stable (0.8.0).</a></p>
     <label for="name">WAD name:</label>
     <input type="text" id="name" name="name" required oninput="updateInfo();"/>
     <br/>
@@ -289,11 +289,12 @@ class IncludedItemCategories(OptionList):
       'vanilla'
       All items in this category will be 'randomized' into their vanilla locations.
       Use this instead of 'none' if you want to play with non-randomized keys or
-      weapons.
+      weapons. They will still count towards hint cost calculations.
 
       'shuffle'
       Items in this category will be randomly shuffled with each other locally.
-      They will not count towards hint cost calculations.
+      They will not count towards hint cost calculations. You cannot use this
+      on progression items.
 
       'start'
       All items in this category will be placed in your starting inventory instead
