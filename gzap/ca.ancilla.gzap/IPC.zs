@@ -78,8 +78,8 @@ class ::IPC {
     CheckLocation(loc, pos_field, string.format(", \"keys\": [%s]", keys));
   }
 
-  static void CheckWithRegionTuning(::Location loc, string pos_field, string region) {
-    CheckLocation(loc, pos_field, string.format(", \"region\": \"%s\"", region));
+  static void CheckWithRegionTuning(::Location loc, string pos_field, string subregion) {
+    CheckLocation(loc, pos_field, string.format(", \"region\": \"%s\"", subregion));
   }
 
   void Shutdown() {

@@ -29,6 +29,26 @@ class ::Subregion play {
     }
   }
 
+  bool HasPrereq(string prereq) const {
+    return self.prereqs.CheckKey(prereq);
+  }
+
+  void TogglePrereq(string prereq) {
+    if (self.HasPrereq(prereq)) {
+      self.prereqs.Remove(prereq);
+    } else {
+      self.prereqs.Insert(prereq, true);
+    }
+  }
+
+  string PrereqsAsString() const {
+    string buf = "";
+    foreach (k,v : self.prereqs) {
+      buf.AppendFormat("%s%s", buf ? " " : "", k);
+    }
+    return buf;
+  }
+
   void Output() {
     Array<string> prereq_list;
     foreach (k,v : self.prereqs) prereq_list.Push(k);

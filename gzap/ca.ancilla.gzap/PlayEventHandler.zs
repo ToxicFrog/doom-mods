@@ -17,7 +17,6 @@
 class ::PlayEventHandler : StaticEventHandler {
   string seed;
   string wadname;
-  string subregion;  // Current level subregion when pretuning
   bool singleplayer;
   bool pretuning;
   // IPC stub for communication with Archipelago.
@@ -197,10 +196,10 @@ class ::PlayEventHandler : StaticEventHandler {
       ::IPC.CheckWithoutTuning(loc, pos, false);
     } else {
       // It's a normally reachable check.
-      if (self.subregion == "") {
-        ::IPC.CheckWithKeyTuning(loc, pos, apstate.GetCurrentRegion().KeyString());
+      if (self.apstate.subregion) {
+        ::IPC.CheckWithRegionTuning(loc, pos, self.apstate.subregion.name);
       } else {
-        ::IPC.CheckWithRegionTuning(loc, pos, self.subregion);
+        ::IPC.CheckWithKeyTuning(loc, pos, apstate.GetCurrentRegion().KeyString());
       }
     }
 
@@ -283,7 +282,18 @@ class ::PlayEventHandler : StaticEventHandler {
     } else if (evt.name.IndexOf("ap-use-item:") == 0) {
       let typename = evt.name.Mid(12);
       apstate.UseItemByName(typename);
+    } else if (evt.name == "ap-logic-menu") {
+      // We use netevents for this rather than just calling Menu.SetMenu() at the
+      // event source, because calling SetMenu() while already inside the same
+      // menu doesn't properly redraw it.
+      Menu.SetMenu("ArchipelagoLogicMenu");
+    } else if (evt.name == "ap-region-menu") {
+      Menu.SetMenu("ArchipelagoRegionDefinitionMenu");
+    } else if (evt.name == "ap-region-clear") {
+      apstate.ClearSubregion();
     } else if (evt.name.IndexOf("ap-region/") == 0) {
+      // This is handled here in this somewhat awkward way so that we can define
+      // regions from the console with netevent "ap-region/some region name"
       apstate.DefineOrActivateSubregion(evt.name.Mid(10));
     } else if (evt.name.IndexOf("ap-region-output") == 0) {
       apstate.OutputSubregions();
@@ -350,6 +360,9 @@ class ::PlayEventHandler : StaticEventHandler {
       region.ClearSavedPosition();
     } else if (cmd.command == "ap-toggle-key") {
       apstate.ToggleKey(cmd.ReadString());
+    } else if (cmd.command == "ap-toggle-prereq") {
+      if (!apstate.subregion) return;
+      apstate.subregion.TogglePrereq(cmd.ReadString());
     } else if (cmd.command == "ap-inv-grab-commit") {
       apstate.CommitItemGrabs();
     } else if (cmd.command == "ap-inv-grab-cancel") {

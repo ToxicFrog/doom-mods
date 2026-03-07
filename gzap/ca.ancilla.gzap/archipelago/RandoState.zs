@@ -364,15 +364,22 @@ class ::RandoState play {
     let subregion = region.subregions.GetIfExists(name);
     if (!subregion) {
       subregion = ::Subregion.Create(name, region);
+      console.printf("Defined new subregion %s/%s [%s]", region.map, name, subregion.PrereqsAsString());
+    } else {
+      console.printf("Activated existing subregion %s/%s [%s]", region.map, name, subregion.PrereqsAsString());
     }
     self.subregion = subregion;
   }
 
   void ClearSubregion() {
-    self.subregion = null;
+    if (self.subregion) {
+      console.printf("Deactivated subregion %s", self.subregion.name);
+      self.subregion = null;
+    }
   }
 
   void OutputSubregions() {
+    console.printf("Writing all subregions in all levels to log...");
     foreach (region : self.regions) {
       foreach (name, subregion : region.subregions) {
         subregion.Output();

@@ -2,7 +2,7 @@
 // randomizer and lets them summon them.
 
 #namespace GZAP;
-#debug on;
+#debug off;
 
 #include "../archipelago/RandoState.zsc"
 #include "./CommonMenu.zsc"
@@ -37,7 +37,6 @@ class ::InventoryMenu : ::CommonMenu {
 
     InitKeyDisplay();
     InitPeekDisplay();
-    InitRegionDisplay();
     mDesc.mSelectedItem = -1;
   }
 
@@ -97,40 +96,6 @@ class ::InventoryMenu : ::CommonMenu {
       }
       PushKeyValueText(loc.name, ::Util.FormatPeek(loc.peek.player, loc.peek.item, loc.flags));
     }
-  }
-
-  void InitRegionDisplay() {
-    // Do not allow the player to directly wiggle this when not in pretuning mode.
-    if (!::PlayEventHandler.Get().IsPretuning()) return;
-
-    let this_region = ::PlayEventHandler.GetState().GetCurrentRegion();
-    if (!this_region) return;
-    if (!this_region.hub) return; // Only meaningful in a hubcluster
-
-    Array<::Region> regions;
-    for (int i = 0; i < LevelInfo.GetLevelInfoCount(); ++i) {
-      let info = LevelInfo.GetLevelInfo(i);
-      // Sometimes we get MAPINFO entries that don't actually exist.
-      if (!info || !LevelInfo.MapExists(info.MapName)) continue;
-
-      let region = ::PlayEventHandler.GetState().GetRegion(info.MapName);
-      if (!region) continue;
-      if (region.hub != this_region.hub) continue;
-
-      regions.push(region);
-    }
-
-    if (regions.Size() <= 1) return;
-
-    PushText(" ");
-    PushText("Pretuning region console");
-    PushText(" ");
-
-    mDesc.mItems.Push(new("::RegionNameEntry").Init("Subregion Name"));
-
-    // foreach (region : regions) {
-    //   mDesc.mItems.Push(new("::RegionToggle").Init(region));
-    // }
   }
 }
 
@@ -242,7 +207,7 @@ class ::KeyToggle : ::KeyValueSelectable {
     return super.MenuEvent(key, fromController);
   }
 
-  string FormatKeyName() {
+  virtual string FormatKeyName() {
     if (key_info.held) {
       return "\c[" .. ::Util.GetKeyColour(key_info.typename, "gray") .."]" .. key_info.tag;
     } else {
@@ -250,7 +215,7 @@ class ::KeyToggle : ::KeyValueSelectable {
     }
   }
 
-  string FormatKeyStatus() {
+  virtual string FormatKeyStatus() {
     if (!key_info.held) {
       let hint = region.GetHint(key_info.FQIN());
       if (hint) {
@@ -262,71 +227,6 @@ class ::KeyToggle : ::KeyValueSelectable {
       return StringTable.Localize("$GZAP_MENU_KEY_ON");
     } else {
       return StringTable.Localize("$GZAP_MENU_KEY_OFF");
-    }
-  }
-}
-
-class ::RegionNameEntry : OptionMenuItemTextField
-{
-	OptionMenuItemTextField Init(string label) {
-    super.Init(label, "", null);
-    mEnter = null;
-    return self;
-  }
-
-  override bool,string GetString(int i) {
-    if (i == 0) {
-      return true,::PlayEventHandler.Get().subregion;
-    } else {
-      return false,"";
-    }
-  }
-
-	override bool SetString(int i, string s) {
-		if (i == 0) {
-      if (s != "-") EventHandler.SendNetworkEvent("ap-region/"..s, 0);
-      return true;
-    } else {
-      return false;
-    }
-  }
-}
-
-class ::RegionToggle : ::KeyValueSelectable {
-  ::Region region;
-  LevelInfo info;
-
-  ::RegionToggle Init(::Region region) {
-    self.region = region;
-    self.info = LevelInfo.FindLevelInfo(region.map);
-    super.Init(FormatRegionName(), FormatRegionStatus());
-    return self;
-  }
-
-  override void Ticker() {
-    self.value = FormatRegionStatus();
-    super.Ticker();
-  }
-
-  override bool MenuEvent(int key, bool fromController) {
-    if (key == Menu.MKey_Enter) {
-      EventHandler.SendNetworkCommand("ap-toggle-visited", NET_STRING, region.map);
-      Menu.MenuSound("menu/change");
-      return true;
-    }
-
-    return super.MenuEvent(key, fromController);
-  }
-
-  string FormatRegionName() {
-    return string.format("%s (%s)", info.LookupLevelName(), region.map);
-  }
-
-  string FormatRegionStatus() {
-    if (!region.visited) {
-      return "\c[GRAY][UNVISITED]\c-";
-    } else {
-      return "\c[GREEN][VISITED]\c-";
     }
   }
 }

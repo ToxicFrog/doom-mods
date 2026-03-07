@@ -8,4 +8,8 @@ alias ap-inventory "openmenu ArchipelagoInventoryMenu"
   addmenukey "$GZAP_OPT_NAME_INVENTORY" ap-inventory
   defaultbind I ap-inventory
 
+alias ap-logic-dashboard "openmenu ArchipelagoLogicMenu"
+  addmenukey "$GZAP_OPT_NAME_LOGIC" ap-logic-dashboard
+  defaultbind L ap-logic-dashboard
+
 alias ap-debug "netevent ap-debug"

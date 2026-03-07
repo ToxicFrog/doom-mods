@@ -8,6 +8,16 @@ OptionMenu "ArchipelagoInventoryMenu"
   class GZAP_InventoryMenu
 }
 
+OptionMenu "ArchipelagoLogicMenu"
+{
+  class GZAP_LogicMenu
+}
+
+OptionMenu "ArchipelagoRegionDefinitionMenu"
+{
+  class GZAP_RegionDefinitionMenu
+}
+
 AddOptionMenu "OptionsMenu"
 {
   Submenu "$GZAP_OPT_TITLE", "ArchipelagoOptions"
@@ -29,6 +39,8 @@ OptionMenu "ArchipelagoOptions"
   GZAP_Tooltip "$GZAP_OPT_TT_LEVELSELECT"
   Control "$GZAP_OPT_NAME_INVENTORY", "ap-inventory"
   GZAP_Tooltip "$GZAP_OPT_TT_INVENTORY"
+  Control "$GZAP_OPT_NAME_LOGIC_DASHBOARD", "ap-logic-dashboard"
+  GZAP_Tooltip "$GZAP_OPT_TT_LOGIC_DASHBOARD"
 
   StaticText ""
   StaticText "$GZAP_OPT_HEADER_GAMEPLAY", CYAN

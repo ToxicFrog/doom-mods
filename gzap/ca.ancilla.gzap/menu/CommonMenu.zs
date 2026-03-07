@@ -20,8 +20,10 @@ class ::CommonMenu : ::TooltipOptionMenu {
     mDesc.mItems.Push(new("::KeyValueNetevent").Init(key, value, command, index, idle, hot));
   }
 
-  void PushKeyValueText(string key, string value, uint colour = Font.CR_DARKRED) {
-    mDesc.mItems.Push(new("::KeyValueText").Init(key, value, colour));
+  ::KeyValueText PushKeyValueText(string key, string value, uint colour = Font.CR_DARKRED) {
+    let kvt = new("::KeyValueText").Init(key, value, colour);
+    mDesc.mItems.Push(kvt);
+    return kvt;
   }
 }
 

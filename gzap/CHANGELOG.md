@@ -7,15 +7,16 @@
   - The game will attempt to remember what weapons you have (even when weapon
     replacer mods are involved). It will restore any missing weapons when you
     enter a level or load a saved game.
-  - It is now possible for logic developers to manually apply custom tweaks to
-    the default YAML settings on a per-WAD basis. This is now used to force
-    persistent mode off in `Adventures of Square` rather than requiring the user
-    to do it by hand.
   - In persistent mode, exiting a level via the AP menu remembers your position
     and returns you to it when you return to that map. You can clear the saved
     position with `shift-C`.
   - In-game option (`ap_disallowed_weapon_behaviour`) to control whether suppressed
     weapons are left on the ground, converted to ammo, or deleted.
+- For logic develpers:
+  - In-game logic dashboard, accessed with `L` (by default). Allows defining
+    map regions and their logical requirements without leaving the game.
+  - You can now manually apply tweaks to the default YAML settings on a per-WAD
+    basis. See `wads/the_adventures_of_square/custom.py` for an example.
 - Changed:
   - The YAML now uses option groups.
   - The `start_inventory` option can now accept any actor name understood by the
