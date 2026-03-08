@@ -17,6 +17,8 @@
     map regions and their logical requirements without leaving the game.
   - You can now manually apply tweaks to the default YAML settings on a per-WAD
     basis. See `wads/the_adventures_of_square/custom.py` for an example.
+  - Locations inside a defined region will use that region's name as part of the
+    location name.
 - Changed:
   - The YAML now uses option groups.
   - The `start_inventory` option can now accept any actor name understood by the

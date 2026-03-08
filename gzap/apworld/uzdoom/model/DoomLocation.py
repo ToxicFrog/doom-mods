@@ -61,7 +61,10 @@ class DoomLocation(DoomReachable):
     __repr__ = __str__
 
     def name(self) -> str:
-        name = f"{self.pos.map} - {self.custom_name or self.item_name}"
+        if self.region:
+            name = f"{self.pos.map} {self.region} - {self.custom_name or self.item_name}"
+        else:
+            name = f"{self.pos.map} - {self.custom_name or self.item_name}"
         if self.disambiguation:
             name += f" [{self.disambiguation}]"
         return name
