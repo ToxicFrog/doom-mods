@@ -45,8 +45,7 @@ class ::RegionDefinitionMenu : ::CommonMenu {
   // displays regions from the same map.
   void InitSubregionDisplay(::RandoState apstate, ::Region current_region) {
     foreach (name, subregion : current_region.subregions) {
-      if (subregion == apstate.subregion) continue;
-      mDesc.mItems.Push(new("::ActivateRegionButton").Init(subregion.name));
+      mDesc.mItems.Push(new("::ActivateRegionButton").Init(subregion.name, subregion.PrereqsAsString()));
     }
   }
 }
@@ -78,10 +77,16 @@ class ::RegionNameEntry : OptionMenuItemTextField {
 class ::ActivateRegionButton : ::KeyValueNetevent {
   string region_name;
 
-  ::ActivateRegionButton Init(string name) {
+  ::ActivateRegionButton Init(string name, string desc) {
     self.region_name = name;
-    super.Init(name, "", "ap-logic-menu", 0);
+    super.Init(name, desc, "ap-logic-menu", 0);
     return self;
+  }
+
+  override bool Selectable() {
+    let sr = ::PlayEventHandler.GetState().subregion;
+    if (sr && sr.name == self.region_name) return false;
+    return true;
   }
 
   override bool MenuEvent(int key, bool fromController) {
