@@ -344,10 +344,11 @@ class FullPersistence(Toggle):
 
 class PreTuningMode(Toggle):
     """
-    This setting is for logic developers. If enabled, most other options are
-    overridden; only selected_wad and spawn_filter remain functional. All checks
-    contain their original items (i.e. there is no randomization) and you start
-    with access to all levels, all automaps, and no keys.
+    This setting is for logic developers. If enabled, all other options are
+    overridden. All checks contain their original items (i.e. there is no
+    randomization) and you start with access to all levels, all automaps, and no
+    keys. Checks for all difficulties are spawned regardless of what difficulty
+    you play on.
 
     The intent of this mode is to let you play through the game, or specific
     levels, "normally", to generate a tuning file, even in cases where the

@@ -19,6 +19,8 @@
     basis. See `wads/the_adventures_of_square/custom.py` for an example.
   - Locations inside a defined region will use that region's name as part of the
     location name.
+  - Pretuning mode now includes locations from all difficulties so that they can
+    all be tuned at once.
 - Changed:
   - The YAML now uses option groups.
   - The `start_inventory` option can now accept any actor name understood by the
