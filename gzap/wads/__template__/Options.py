@@ -98,7 +98,7 @@ class SpawnFilter(NamedRange):
 
     You need to pick a setting here that matches the difficulty you will be playing
     on. In unmodified games filters 1 through 5 correspond to the five difficulty
-    levels, ITYTD through Nightmare -- almost in most WADs 1/2 and 4/5 use the
+    levels, ITYTD through Nightmare -- although in most WADs 1/2 and 4/5 use the
     same spawns.
 
     Some mods implement custom difficulty levels that use different spawn filters

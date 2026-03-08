@@ -98,21 +98,11 @@ options, then fallbacks.
   it contained. This would let us (e.g.) reinstate the urns and shields in Faithless
   E1M7 without the risk of making the game unwinnable.
 
-- we need a better region dashboard, probably as a separate menu rather than wired
-  into the inventory. List all weapons, all keys relevant to this level, all
-  regions and maps in the cluster, and let them be toggled individually, along
-  with a region name field, and then separate "commit region" and "no region"
-  buttons.
-
 - if a check is deleted outright without being collected, we should reinstate it if we can.
 
 ### Time Tripper
 
 A few things we need to fully support this.
-- a way to intentionally trigger weapon restoration that's more convenient than
-  "quicksave and then quickload" (maybe opening and closing the inventory
-  screen?), since some levels like C1M4 don't take your guns away until a little
-  ways in
 - weapon logic that better understands you need a cell-using weapon for C1M8
   (can be done manually in the tuning file with a region declaration)
 

@@ -42,6 +42,7 @@
   - Hinting a level access token from the level select menu now works again.
   - Duplicate items at the same point in the map no longer produce duplicate
     entries in the logic file.
+  - Windows setup instructions for DoomRunner, by ChromaNyan.
 
 # 0.8.0
 
