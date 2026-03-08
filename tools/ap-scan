@@ -23,6 +23,7 @@ if [[ ! -f $IWAD ]]; then
 fi
 
 make
+set +e # sometimes uzdoom crashes on exit
 uzdoom \
   -iwad "${IWAD}" \
   -file release/UZArchipelago-latest.pk3 \
