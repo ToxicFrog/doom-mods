@@ -97,22 +97,25 @@ class SpawnFilter(NamedRange):
     spawn in each map) the game will use.
 
     You need to pick a setting here that matches the difficulty you will be playing
-    on. In stock Doom, ITYTD and HNTR use "easy" spawns, HMP uses "medium", and
-    UV and NM use "hard".
+    on. In unmodified games filters 1 through 5 correspond to the five difficulty
+    levels, ITYTD through Nightmare -- almost in most WADs 1/2 and 4/5 use the
+    same spawns.
 
-    If you are playing with a mod that changes this, make sure that you choose the
-    filter appropriate to the difficulty level you are selecting. Many gameplay mods
-    have custom difficulty settings, and it's not always obvious which ones correspond
-    to easy/medium/hard.
+    Some mods implement custom difficulty levels that use different spawn filters
+    than the original game, so make sure you choose a filter that matches the
+    difficulty you are actually playing. If you get it wrong, you will get a
+    warning on entering the game.
     """
     display_name = "Spawn filter"
     range_start = 1
-    range_end = 3
-    default = 2
+    range_end = 8
+    default = 3
     special_range_names = {
-        "easy": 1,
-        "medium": 2,
-        "hard": 3
+        "itytd": 1,
+        "hntr": 2,
+        "hmp": 3,
+        "uv": 4,
+        "nm": 5,
     }
 
 class IncludedItemCategories(OptionList):

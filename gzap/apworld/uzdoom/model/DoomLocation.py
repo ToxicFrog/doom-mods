@@ -37,7 +37,7 @@ class DoomLocation(DoomReachable):
     orig_item = None
     disambiguation: str = None
     custom_name: str = None
-    skill: Set[int]
+    spawn_filter: int = 0
     secret: bool = False
     secret_id: int = 0  # used for sector IDs and TIDs
 
@@ -52,7 +52,6 @@ class DoomLocation(DoomReachable):
             self.categories |= item.categories
             self.orig_item = item
             self.item_name = item.tag
-        self.skill = set()
         self.secret = secret
         self.pos = to_position(*pos)
 

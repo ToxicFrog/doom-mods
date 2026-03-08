@@ -15,6 +15,8 @@ To release a new version:
 ### scanner
 
 - rescan TNT with the official patch that fixes the yellow key bug
+- once UZDoom releases with support for AllSkills, scan that array and use it to
+  determine which spawn filters correspond to which skills.
 
 ### generator
 
@@ -45,6 +47,9 @@ To release a new version:
 - alternate win conditions:
   - find N victory tokens
   - find N secrets
+- Pass through region information in the generated pk3 (in pretuning mode or
+  perhaps unconditionally) so that the region dashboard remembers its contents
+  across runs even without a save file.
 
 #### included_item_categories rework
 

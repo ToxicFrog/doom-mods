@@ -80,17 +80,20 @@ class DoomMap:
     def __post_init__(self, info):
         self.mapinfo = MAPINFO(**info)
 
-    def all_locations(self, skill: int, categories: Set[str]) -> List[DoomLocation]:
-        skill = min(3, max(1, skill)) # clamp ITYTD->HNTR and N!->UV
+    def all_locations(self, spawn_filter: int, categories: Set[str]) -> List[DoomLocation]:
+        if not spawn_filter:
+            # Return all locations regardless of filter.
+            return [loc for loc in self.locations if not categories or loc.has_category(*categories)]
+
         return [
             loc for loc in self.locations
-            if skill in loc.skill and (not categories or loc.has_category(*categories))
+            if spawn_filter & loc.spawn_filter and (not categories or loc.has_category(*categories))
         ]
 
-    def default_enabled_location_count(self, skill: int = 3):
+    def default_enabled_location_count(self, spawn_filter: int = 0x08):
         return len([
             loc for loc in self.locations
-            if skill in loc.skill and loc.is_default_enabled()
+            if spawn_filter & loc.spawn_filter and loc.is_default_enabled()
         ])
 
     def access_rule(self, world):

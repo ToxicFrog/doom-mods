@@ -41,7 +41,9 @@ class DoomWad:
     maps: Dict[str,DoomMap] = field(default_factory=dict)
     items_by_name: Dict[str,DoomItem] = field(default_factory=dict) # Indexed by FQIN
     items_by_type: Dict[str,DoomItem] = field(default_factory=dict) # Indexed by typename
-    # Map of skill -> position -> location used while importing locations.
+    # Map of spawn filter -> position -> location used while importing locations.
+    # Each entry is a filter index, not a bit or a bitmask, so something with a filter
+    # of 0b00000101 will have entries 1 and 3.
     locations_by_pos: Dict[int,Dict[DoomPosition,DoomLocation]] = field(default_factory=dict)
     # Map of FQIN -> key record
     keys_by_name: Dict[str,DoomKey] = field(default_factory=dict)
@@ -53,11 +55,7 @@ class DoomWad:
     regions: Dict[str,DoomRegion] = field(default_factory=dict)
 
     def __post_init__(self):
-        self.locations_by_pos = {
-            1: {},
-            2: {},
-            3: {},
-        }
+        self.locations_by_pos = { bit+1: {} for bit in range(0,16) }
 
     def set_flags(self, flag_strings: List[str]):
         self.flags = {}
@@ -95,10 +93,9 @@ class DoomWad:
     def all_locations(self) -> Iterable[DoomLocation]:
         return (loc for map in self.maps.values() for loc in map.locations)
 
-    def locations_for_stats(self, skill: int, include_secrets: bool = False) -> Iterable[DoomLocation]:
-        skill = min(3, max(1, skill)) # clamp ITYTD->HNTR and N!->UV
+    def locations_for_stats(self, spawn_filter: int, include_secrets: bool = False) -> Iterable[DoomLocation]:
         return (
-            loc for map in self.maps.values() for loc in map.all_locations(skill, {})
+            loc for map in self.maps.values() for loc in map.all_locations(spawn_filter, {})
             if loc.is_default_enabled(include_secrets)
         )
 
@@ -114,9 +111,9 @@ class DoomWad:
             if pos in locs
         ]
 
-    def stats_pool(self, skill: int, include_secrets: bool = False):
+    def stats_pool(self, spawn_filter: int, include_secrets: bool = False):
         """Returns a DoomPool suitable for reporting stats about the wad."""
-        return DoomPool(self, self.locations_for_stats(skill, include_secrets), None)
+        return DoomPool(self, self.locations_for_stats(spawn_filter, include_secrets), None)
 
     def fill_pool(self, world):
         """
@@ -255,7 +252,24 @@ class DoomWad:
         map_exit.item_name = "Exit"
         map_exit.item = clear_flag
         map_exit.orig_item = None
-        self.register_location(map_exit, {1,2,3})
+        self.register_location(map_exit, 0xFF)
+
+    def filter_from_json(self, json: Dict[str,str]) -> int:
+        assert not ("skill" in json and "filter" in json), "Logic entry found with both `skill` and `filter` fields"
+        if "filter" in json:
+            return json.pop("filter")
+        elif "skill" in json:
+            skill = json.pop("skill")
+            filter = 0
+            if 1 in skill:
+                filter |= 0x03 # ITYTD and HNTR
+            if 2 in skill:
+                filter |= 0x04 # HMP
+            if 3 in skill:
+                filter |= 0x18 # UV and NM
+            return filter
+        else:
+            return 0xFF
 
     def new_item(self, json: Dict[str,str]) -> None:
         """
@@ -267,7 +281,7 @@ class DoomWad:
         """
         # Extract the position information for addition to the location table.
         pos = json.pop("pos")
-        skill = set(json.pop("skill", [1,2,3]))
+        spawn_filter = self.filter_from_json(json)
         secret = json.pop("secret", False)
         name = json.pop("name", None)
         tid = json.pop("tid", None)
@@ -276,7 +290,7 @@ class DoomWad:
         # necessarily be used in randomization, but we need to do this at load
         # time, before we know what item categories the user has requested.
         item = self.register_item(DoomItem(pos[0], **json))
-        self.new_location(item, secret, skill, pos, name)
+        self.new_location(item, secret, spawn_filter, pos, name)
 
     def register_item(self, item: DoomItem) -> DoomItem:
         assert not self.tuned, f"AP-ITEM found in tuning data for {self.name} -- make sure you don't have a logic file mixed in with the tuning."
@@ -320,25 +334,28 @@ class DoomWad:
     def regions_in_map(self, map: str):
         return (r for r in self.regions.values() if r.map == map)
 
-    def new_location(self, item: DoomItem, secret: bool, skill: Set[int], pos: List[Any], name: str) -> None:
+    def new_location(self, item: DoomItem, secret: bool, spawn_filter: int, pos: List[Any], name: str) -> None:
         """
         Add a new location to the location pool.
 
         Items are uniquely identified by their position (xyz coordinates, or
-        sector, TID, or event association) and skill level. If multiple
+        sector, TID, or event association) and spawn_filter. If multiple
         locations have the same position (i.e. the mapper placed multiple items
         exactly on top of each other) they will be coalesced into a single
         position, and if they have different items in them it is unspecified
         which one "wins".
         """
         location = DoomLocation(self, item, secret, pos, name)
-        self.register_location(location, skill)
+        self.register_location(location, spawn_filter)
 
-    def register_location(self, location: DoomLocation, skill: Set[int]) -> None:
+    def register_location(self, location: DoomLocation, spawn_filter: int) -> None:
         assert not self.tuned, f"AP-LOCATION found in tuning data for {self.name} -- make sure you don't have a logic file mixed in with the tuning."
 
-        for sk in skill:
-            locs_by_pos = self.locations_by_pos[sk]
+        for bit in range(0,15):
+            if not spawn_filter & 2**bit:
+                continue
+            filter = bit+1  # filter IDs are 1-indexed in UDMF
+            locs_by_pos = self.locations_by_pos[filter]
             if location.pos in locs_by_pos:
                 # We already have a location registered at these coordinates for
                 # this skill.
@@ -347,7 +364,7 @@ class DoomWad:
             # Don't do name disambiguation or register it with the top-level
             # logic yet -- we'll do both of those things after we've ingested
             # the entire wad and can scan the whole thing for name collisions.
-            location.skill.add(sk)
+            location.spawn_filter |= 2**bit
             locs_by_pos[location.pos] = location
             self.maps[location.pos.map].register_location(location)
 
@@ -361,8 +378,8 @@ class DoomWad:
             location.item_name = f"Secret T{location.pos.secret_id}"
             location.categories = frozenset({'secret', 'marker'})
 
-        skill = set(json.pop("skill", [1,2,3]))
-        self.register_location(location, skill)
+        spawn_filter = self.filter_from_json(json)
+        self.register_location(location, spawn_filter)
 
     def new_key(self, tag: str, typename: str, scopename: str, cluster: int, maps: List[str]) -> None:
         """

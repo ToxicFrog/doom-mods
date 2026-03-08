@@ -84,7 +84,7 @@ names (typically from `MAPINFO`) for the level and its containing episode and
 cluster. These are not guaranteed to exist and, if present, are not guaranteed
 to be unique, not even the `levelname`.
 
-#### `AP-ITEM { map, name, category, typename, tag, secret, skill, pos }`
+#### `AP-ITEM { map, name, category, typename, tag, secret, skill, filter, pos }`
 
 Emitted for each item the scanner finds. Note that this is *everything*; the randomizer
 makes decisions about which items to randomize and which not to.
@@ -96,7 +96,12 @@ Fields:
 - `typename`: the UZDoom class name
 - `tag`: the UZDoom human-facing name (if none, duplicates `typename`)
 - `secret`: whether the item is located in a secret sector or not
-- `skill`: a list of skill values (1-3) the item appears on; if omitted, it is available on all skills
+- `skill`: a list of skill levels, 1-3, that this location exists on.
+- `filter`: a bitmask for which spawn filters this location exists on.
+
+`skill` is a legacy field retained for backwards compatibility; internally values
+of 1, 2, or 3 in this list are mapped to `filter` values of 0x03, 0x04, and 0x18,
+and its absence is mapped to 0x00FF.
 
 `category` is an internal category used for item classification, and is finer-
 grained than the (progression, useful, filler, trap) categories used by AP. The

@@ -160,6 +160,12 @@ class UZDoomWorld(World):
         ]
         self.options.included_item_categories.build_ratios()
 
+    def spawn_filter_name(self, spawn_filter: int) -> str:
+        return [
+            "ITYTD", "HNTR", "HMP", "Ultraviolence", "Nightmare",
+            "Filter6", "Filter7", "Filter8",
+        ][spawn_filter]
+
     def generate_early(self) -> None:
         ut_config = getattr(self.multiworld, "re_gen_passthrough", {}).get(self.game, None)
         if ut_config:
@@ -173,10 +179,9 @@ class UZDoomWorld(World):
             self.options.included_item_categories.build_ratios()
 
         model.get_tuned_wad(self.wad_logic)
-        self.spawn_filter = self.options.spawn_filter.value
-        skill_name = { 1: "easy", 2: "medium", 3: "hard" }[self.spawn_filter]
+        self.spawn_filter = 2**(self.options.spawn_filter.value-1)
         print(f"Selected WAD: {self.wad_logic.name}")
-        print(f"Selected spawns: {skill_name} ({self.options.spawn_filter.value})")
+        print(f"Selected spawns: {self.spawn_filter_name(self.options.spawn_filter.value)} ({self.options.spawn_filter.value})")
 
         self.maps = [
             map for map in self.wad_logic.maps.values()
@@ -437,7 +442,7 @@ class UZDoomWorld(World):
             "mod_version": self.mod_version,
             "player": self.multiworld.player_name[self.player],
             "slot_number": self.player,
-            "spawn_filter": self.spawn_filter,
+            "spawn_filter": self.options.spawn_filter.value,
             "persistence": self.options.full_persistence.value,
             "respawn": self.options.allow_respawn.value,
             "wad": self.wad_logic.name,
