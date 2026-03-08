@@ -29,16 +29,6 @@ class ::IPC {
       slot_name, seed, wadname, server));
   }
 
-  static void ReportVisited(Array<string> visited) {
-    return;
-    if (visited.Size() == 0) {
-      Send("VISITED", "{ \"visited\": [] }");
-    } else {
-      Send("VISITED", string.format(
-        "{ \"visited\": [ \"%s\" ] }", ::Util.Join("\", \"", visited)));
-    }
-  }
-
   static void DefineRegion(string map, string name, Array<string> prereqs) {
     string prereq_str = "";
     if (prereqs.Size() > 0) {
@@ -48,18 +38,6 @@ class ::IPC {
     Send("REGION", string.format(
       "{ \"map\": \"%s\", \"region\": \"%s\", \"keys\": [%s] }",
       map, name, prereq_str));
-  }
-
-  static void ReportWeapons(Map<string, int> weapons) {
-    return;
-    Array<string> buf;
-    MapIterator<string, int> iter;
-    iter.Init(weapons);
-    foreach (weapon, count : iter) {
-      buf.Push(string.format("\"%s\": %d", weapon, count));
-    }
-    Send("WEAPONS", string.format(
-      "{ \"weapons\": { %s } }", ::Util.Join(", ", buf)));
   }
 
   static void CheckLocation(::Location loc, string pos_field, string tail) {

@@ -189,21 +189,6 @@ host to the AP client without user intervention.
 Tells the client that we have read messages it sent up to the given `id`, and
 it can overwrite them with new messages if needed.
 
-#### `AP-VISITED { maps: [ ... ] }`
-
-Emitted whenever the set of visited levels changes. This is only used when
-playing a wad that uses hubclusters; standalone maps do not produce this and
-thus it will be absent from most tuning files. `maps` is a list of map lump
-names.
-
-In normal play this will only ever be added to, but in pretuning mode the player
-may temporarily disable maps to generate more accurate tuning.
-
-#### `AP-WEAPONS { weapons: { ... } }`
-
-Emitted whenever the player receives a new weapon via AP. `weapons` is a map
-from weapon name to weapon count. Used for fine-tuning weapon logic.
-
 #### `AP-REGION { map, region, keys: [ ... ] }`
 
 Emitted, at the direction of the player, to define a new subregion of a map.
@@ -269,6 +254,13 @@ no more messages will be processed. A client starting up can look for the presen
 of this in the log to determine if it's a log from a game in progress or an earlier
 play session -- since uzdoom truncates the log file when starting up, it will
 only contain one of these at most.
+
+#### `AP-VISITED { maps: [ ... ] }`
+#### `AP-WEAPONS { weapons: { ... } }`
+
+These now-obsolete messages were used as part of an experiment in smarter
+automated tuning that has been superseded by the region definition tools. They
+should be ignored if seen.
 
 
 ## Incoming Protocol

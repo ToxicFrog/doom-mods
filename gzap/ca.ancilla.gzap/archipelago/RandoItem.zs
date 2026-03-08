@@ -141,9 +141,6 @@ class ::RandoItem play {
       let thing = players[p].mo.Spawn(self.typename, players[p].mo.pos, ALLOW_REPLACE);
       thing.ClearCounters();
     }
-    if (IsWeapon()) {
-      ::PlayEventHandler.Get().ReportWeaponStateChange();
-    }
   }
 
   // Used for sorting. Returns true if this item should be sorted before the
