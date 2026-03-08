@@ -7,34 +7,27 @@ class ::ScannedLocation abstract play {
   string mapname;
   Vector3 pos;
   string typename;
-  // Which skills this location is valid on.
-  // Since skill 0 (ITYTD) uses the same actor placement as HNTR, and likewise
-  // for NM! and UV, the only skills we track are 1 (HNTR), 2 (HMP), and 3 (UV).
-  Array<int> skill;
+  // Spawn filter for this location. Bitmask.
+  uint filter;
 
-  abstract void Output();
+  abstract void Output(int spawn_filter);
 
   string OutputPosition() {
     return string.format("\"pos\": [\"%s\",%d,%d,%d]",
       mapname, round(pos.x), round(pos.y), round(pos.z));
   }
 
-  string OutputSkill() {
+  string OutputSkill(int spawn_filter) {
     // Omit field entirely for "available on all skills".
-    if (HasSkill(1) && HasSkill(2) && HasSkill(3)) return "";
-    string buf = "";
-    foreach (sk : skill) {
-      buf = string.format("%s%s%d", buf, buf == "" ? "" : ", ", sk);
-    }
-    return string.format("\"skill\": [%s], ", buf);
+    if (spawn_filter == self.filter) return "";
+    return string.format("\"filter\": %d, ", self.filter);
   }
 
-  bool HasSkill(int sk) {
-    return skill.Find(sk) != skill.Size();
+  bool HasSkill(int sf) {
+    return (sf & self.filter) != 0;
   }
 
-  void AddSkill(int sk) {
-    if (HasSkill(sk)) return;
-    skill.Push(sk);
+  void AddSkill(int sf) {
+    self.filter |= sf;
   }
 }

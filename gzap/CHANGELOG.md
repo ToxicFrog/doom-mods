@@ -31,6 +31,10 @@
   - The inventory screen now displays hints for the current level.
   - Hints for progression items are now sorted before useful, which are before
     filler.
+  - The scanner now fully supports spawn filters rather than using skill levels.
+    This fixes a number of problems with wads that use custom skill levels. Wads
+    need to be rescanned to use this data, but old logic files using skill levels
+    are still supported and will still function properly if they did before.
 - Fixed:
   - The inventory screen now uses Archipelago names for items rather than the
     tag (which was sometimes ambiguous or outright missing).

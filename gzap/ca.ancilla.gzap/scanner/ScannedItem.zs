@@ -48,7 +48,7 @@ class ::ScannedItem : ::ScannedLocation {
     return level.cluster;
   }
 
-  override void Output() {
+  override void Output(int spawn_filter) {
     // HACK HACK HACK
     // If the category is .replaceonly, do not emit it into the logic file,
     // but since it has a non-empty category, it can still be replaced at runtime.
@@ -83,7 +83,7 @@ class ::ScannedItem : ::ScannedLocation {
     ::Scanner.Output("ITEM", string.format(
       "\"category\": \"%s\", \"typename\": \"%s\", \"tag\": \"%s\", %s%s%s%s",
       category, typename, tag, secret_str, tid_str,
-      OutputSkill(), OutputPosition()));
+      OutputSkill(spawn_filter), OutputPosition()));
 
     if (self.category == "key") {
       OutputKeyInfo();

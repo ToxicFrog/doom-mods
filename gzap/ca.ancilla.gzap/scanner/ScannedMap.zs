@@ -26,11 +26,11 @@ class ::ScannedMap play {
   Array<int> secrets;
   int monster_count;
   // Highest skill we've completed a scan on.
-  // We don't track 0 (ITYTD) or 4 (NM) because they have the same actor placement
-  // as 1 and 3, so 0 means we have scanned nothing and 3 means we've scanned
-  // all the skill levels we care about.
-  int max_skill;
-  bool done;
+  // The scanner uses this to find the next skill that will produce a different
+  // spawn filter and thus a productive scan.
+  int last_skill;
+  // Bitmask of spawn filters we've examined.
+  uint filters;
   // Set if this map should be used for exit searching but not included in the
   // logic file.
   bool skip;
@@ -43,8 +43,7 @@ class ::ScannedMap play {
     let sm = ::ScannedMap(new("::ScannedMap"));
     sm.name = mapname;
     sm.info = LevelInfo.FindLevelInfo(mapname);
-    sm.done = false;
-    sm.max_skill = 0;
+    sm.last_skill = -1;
     sm.rank = prev ? prev.rank+1 : 0;
     sm.hub = 0;
     // We can't actually use this, because AllEpisodes is not in any released
@@ -62,7 +61,7 @@ class ::ScannedMap play {
     return sm;
   }
 
-  void Output() {
+  void Output(int spawn_filter) {
     DEBUG("ScannedMap::Output: skip=%d, locs=%d", self.skip, self.locations.Size());
     if (self.skip || self.prune) return;
     // Do not include maps with nothing to randomize.
@@ -87,7 +86,7 @@ class ::ScannedMap play {
       "\"map\": \"%s\", %s\"checksum\": \"%s\", \"rank\": %d, \"monster_count\": %d, \"info\": %s",
       name, titles, LevelInfo.MapChecksum(name), self.rank, self.monster_count, GetMapinfoJSON()));
     foreach (loc : locations) {
-      loc.Output();
+      loc.Output(spawn_filter);
     }
     foreach (sector : secrets) {
       ::Scanner.Output("SECRET", string.format(
@@ -95,23 +94,10 @@ class ::ScannedMap play {
     }
   }
 
-  void MarkDone() {
-    self.max_skill = ::Util.GetSkill();
-  }
-
-  bool IsScanned() {
-    // Skipped levels are considered "done" as soon as they've been scanned at
-    // least once and thus we know exit capture has occurred.
-    if (self.skip || self.prune) return self.max_skill > 0;
-    return self.max_skill == 3;
-  }
-
-  bool IsCurrentLevel() {
-    return name == level.mapname.MakeUpper() && self.max_skill+1 == ::Util.GetSkill();
-  }
-
-  int NextSkill() {
-    return self.max_skill+1;
+  // Called at the end of each scanning pass (i.e. once per skill level scanned).
+  void FinalizeSkill() {
+    self.filters = self.filters | ::Util.GetSpawnFilter();
+    self.last_skill = ::Util.GetSkill();
   }
 
   void CopyFromLevelLocals(LevelLocals level) {
@@ -152,10 +138,10 @@ class ::ScannedMap play {
       if (!::Location.IsCloseEnough(loc.pos, newloc.pos)) continue;
       if (loc.typename != newloc.typename) continue;
       if (loc.HasSkill(::Util.GetSkill())) continue;
-      loc.AddSkill(::Util.GetSkill());
+      loc.AddSkill(::Util.GetSpawnFilter());
       return;
     }
-    newloc.AddSkill(::Util.GetSkill());
+    newloc.AddSkill(::Util.GetSpawnFilter());
     locations.Push(newloc);
   }
 

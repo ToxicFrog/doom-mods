@@ -3,7 +3,7 @@
 // on netevents and level entry events.
 
 #namespace GZAP;
-#debug off;
+#debug on;
 
 #include "../actors/DehackedPickupProber.zsc"
 #include "./ScannedMap.zsc"
@@ -13,6 +13,12 @@ class ::Scanner play {
   Map<string, ::ScannedMap> maps_by_name;
   Map<string, bool> skip;
   Map<string, bool> prune;
+  // TODO: when the next version adds AddSkills to the globals we can do away
+  // with all of this and just read that array.
+  int target_skill; // Skill we expect ChangeLevel to place us at
+  int max_skill; // Max skill level available
+  uint all_filters;
+  Array<int> filters_by_skill;
 
   static void Output(string type, string payload) {
     ::IPC.Send(type, string.format("{ %s }", payload));
@@ -20,6 +26,10 @@ class ::Scanner play {
 
   void Init() {
     ::Util.printf("$GZAP_SCAN_STARTING");
+    self.target_skill = 0;
+    self.max_skill = -1;
+    self.all_filters = 0;
+    self.filters_by_skill.Clear();
 
     if (ap_scan_logic_flags == "") {
       // TODO: perhaps additional info here like wad name?
@@ -102,6 +112,42 @@ class ::Scanner play {
     queued[1] = sm;
   }
 
+  bool MapFullyScanned(::ScannedMap map) {
+    if (map.skip) {
+      // A skipped map is considered done as soon as we've completed at least
+      // one scanning pass on it and thus captured any exits from it.
+      return map.filters > 0;
+    } else if (self.max_skill < 0) {
+      // Not done evaluating different skill levels yet.
+      return false;
+    }
+    DEBUG("MapFullyScanned? %02X / %02X", map.filters, self.all_filters);
+    return map.filters == self.all_filters;
+  }
+
+  // Return the next skill we should be scanning, that is to say, the lowest
+  // skill greater than the current one that will introduce a new spawn filter.
+  // This is a bit of a delicate dance. This is only called if MapFullyScanned()
+  // returns false, which for all maps except the first means that there is at
+  // least one skill that satisfies this requirement. On the first map, however,
+  // we don't yet know how many skill levels or spawn filters are available.
+  int NextSkill(::ScannedMap map) {
+    if (self.max_skill < 0) {
+      // Still determining what skill levels are available. Blindly assume that
+      // the skill level one higher than the last one scanned is the next one.
+      return map.last_skill+1;
+    }
+
+    // Find the lowest skill that adds a new filter to the bitmask.
+    for (int i = map.last_skill+1; i < self.filters_by_skill.Size(); ++i) {
+      if (self.filters_by_skill[i] & map.filters == 0) {
+        return i;
+      }
+    }
+    float f = 1; float g = 0; f = f/g; // die -- should never happen
+    return -1;
+  }
+
   // Initiate a scan of the next map in the queue.
   // Returns true if one was initiated (and calls level.ChangeLevel()), false if
   // there are no more maps left to scan.
@@ -113,23 +159,25 @@ class ::Scanner play {
         queued.Delete(0);
         continue;
       }
-      // If we're done scanning this map, move it to the "finished" list and try again.
-      if (nextmap.IsScanned()) {
+      // If we're done scanning this map, output the results and move on to the next.
+      if (MapFullyScanned(nextmap)) {
         DEBUG("Head map is done, moving on");
         ::Util.printf("$GZAP_SCAN_MAP_DONE", level.MapName);
-        nextmap.Output();
+        nextmap.Output(self.all_filters);
         queued.Delete(0);
         continue;
       }
       // Otherwise, we need to change to it and let the ScanEventHandler kick off
-      // the scan.
-      DEBUG("Changing to %s", nextmap.name);
+      // the scan. Note that we need to do this to change the skill level even
+      // if is the same map we're currently on.
+      self.target_skill = NextSkill(nextmap);
+      DEBUG("Changing to %s at skill %d", nextmap.name, self.target_skill);
       if (level.ClusterFlags & level.CLUSTER_HUB) {
         // If it's a hubcluster level, blip us back to the GZAPHUB for a moment
         // to reset its state.
-        level.ChangeLevel("GZAPHUB", 0, CHANGELEVEL_NOINTERMISSION, nextmap.NextSkill());
+        level.ChangeLevel("GZAPHUB", 0, CHANGELEVEL_NOINTERMISSION, self.target_skill);
       }
-      level.ChangeLevel(nextmap.name, 0, CHANGELEVEL_NOINTERMISSION, nextmap.NextSkill());
+      level.ChangeLevel(nextmap.name, 0, CHANGELEVEL_NOINTERMISSION, self.target_skill);
       return true;
     }
     // Queue is empty! We're done scanning for now.
@@ -155,30 +203,45 @@ class ::Scanner play {
   // It is responsible for ingesting level information not related to actors,
   // and populating the queue with other levels reachable from this one.
   // Returns true if scanning is continuing, false otherwise.
+  // Called once per pass, i.e. multiple times per map.
   bool FinalizeLevel(bool recurse, bool clusters) {
     DEBUG("FinalizeLevel: %d remaining", queued.Size());
-    if (queued.Size() == 0) return false;
-
     let nextmap = queued[0];
-    if (nextmap.IsScanned() || !nextmap.IsCurrentLevel()) {
-      DEBUG("ScanNext()");
-      return ScanNext();
+
+    DEBUG("filter=%d, all_filters=%02X, skill=%d", ::Util.GetSpawnFilter(), self.all_filters, ::Util.GetSkill());
+    nextmap.FinalizeSkill();
+
+    // Update information about skill levels and their corresponding spawn filters.
+    if (self.target_skill > nextmap.last_skill) {
+      // Did we find the last skill?
+      DEBUG("Looks like the highest available skill is %d", nextmap.last_skill);
+      self.max_skill = nextmap.last_skill;
+    } else if (nextmap.last_skill >= self.filters_by_skill.Size()) {
+      // If not, is this a new skill level?
+      DEBUG("Inserting spawn filter %d for skill %d", ::Util.GetSpawnFilter(), nextmap.last_skill);
+      self.filters_by_skill.Push(::Util.GetSpawnFilter());
+      self.all_filters |= ::Util.GetSpawnFilter();
     }
 
-    ::Util.printf("$GZAP_SCAN_MAP_STARTED", level.MapName, ::Util.GetSkillName());
+    // If this was the last skill to scan, get all the stuff from LevelLocals,
+    // and scan for exits.
+    if (MapFullyScanned(nextmap)) {
+      nextmap.CopyFromLevelLocals(level);
 
-    nextmap.MarkDone();
-    if (nextmap.IsScanned()) nextmap.CopyFromLevelLocals(level);
+      if (clusters && nextmap.hub > 0) {
+        EnqueueCluster(nextmap.hub, nextmap);
+      }
 
-    if (clusters && nextmap.hub > 0) {
-      EnqueueCluster(nextmap.hub, nextmap);
+      if (recurse && !nextmap.prune) {
+        EnqueueLevelports(nextmap);
+        EnqueueNext(level.NextSecretMap, nextmap);
+        EnqueueNext(level.NextMap, nextmap);
+      }
     }
 
-    if (recurse && !nextmap.prune) {
-      EnqueueLevelports(nextmap);
-      EnqueueNext(level.NextSecretMap, nextmap);
-      EnqueueNext(level.NextMap, nextmap);
-    }
+    // This will either select a new skill level for this map and start an
+    // additional scanning pass, or it will flush this map and pick a new one
+    // from the queue, depending on if it's fully scanned or not.
     return ScanNext();
   }
 

@@ -21,9 +21,7 @@ class ::ScanEventHandler : StaticEventHandler {
 
   override void WorldLoaded(WorldEvent evt) {
     if (!scan_enabled) return;
-    // As soon as we load into a new map, queue up a scan.
-    // We can't do it immediately by calling ScanLevel() or things break?
-    // EventHandler.SendNetworkEvent("ap-scan:continue", 0, 0, 0);
+    ::Util.printf("$GZAP_SCAN_MAP_STARTED", level.MapName, ::Util.GetSkillName());
   }
 
   override void WorldThingSpawned(WorldEvent evt) {
