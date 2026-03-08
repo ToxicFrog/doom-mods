@@ -115,11 +115,6 @@ class ::InventoryItem : ::KeyValueSelectable {
     super.Ticker();
   }
 
-  override int GetColour(bool selected) {
-    if (!self.Selectable()) return font.CR_BLACK;
-    return super.GetColour(selected);
-  }
-
   string FormatValue() {
     if (item.grabbed > 0) {
       return string.format("%3d -> %d", item.Remaining() - item.grabbed, item.grabbed);

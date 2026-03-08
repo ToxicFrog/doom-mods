@@ -64,6 +64,7 @@ class ::KeyValueSelectable : ::KeyValueText {
   override bool Selectable() { return true; }
 
   virtual int GetColour(bool selected) {
+    if (!Selectable()) return Font.CR_BLACK;
     return selected ? self.hot_colour : self.idle_colour;
   }
 

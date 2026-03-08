@@ -157,10 +157,6 @@ class ::RegionClearButton : ::KeyValueNetevent {
 
   override bool Selectable() { return !!apstate.subregion; }
 
-  override int GetColour(bool selected) {
-    return Selectable() ? super.GetColour(selected) : Font.CR_BLACK;
-  }
-
   override bool MenuEvent(int key, bool fromController) {
     if (key == Menu.MKey_Enter)
       EventHandler.SendNetworkEvent("ap-region-clear");
