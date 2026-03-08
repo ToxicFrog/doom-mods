@@ -87,7 +87,11 @@ def print_header(package):
         return
     print('%32s \x1B[4m[ logic from %s ]\x1B[0m' % ('', package))
 
+_LOGIC = {}
 def init_wads(package):
+    global _LOGIC
+    if package in _LOGIC:
+        return _LOGIC[package]
     if not package:
         gzd_dir = os.path.join(Utils.user_path(), "uzdoom")
         print_header(gzd_dir)
@@ -105,6 +109,7 @@ def init_wads(package):
     if 'GZAP_LOAD_ALL_TUNING' in os.environ:
         get_tuned_wad(logic.wad)
 
+    _LOGIC[package] = logic
     return logic
 
 def all_map_names(logic) -> Set[str]:
