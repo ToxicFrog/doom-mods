@@ -90,7 +90,7 @@ class ::LogicMenu : ::CommonMenu {
 
     foreach (item : apstate.items) {
       if (item.IsWeapon()) {
-        mDesc.mItems.Push(new("::ItemPrereqToggle").Init(apstate.subregion, item));
+        mDesc.mItems.Push(new("::ItemPrereqToggle").Init(apstate.subregion, "weapon", item));
       }
     }
   }
@@ -236,11 +236,12 @@ class ::KeyPrereqToggle : ::PrereqToggle {
 }
 
 class ::ItemPrereqToggle : ::PrereqToggle {
+  string prefix;
   ::RandoItem item;
 
-  ::ItemPrereqToggle Init(::Subregion subregion, ::RandoItem item) {
+  ::ItemPrereqToggle Init(::Subregion subregion, string prefix, ::RandoItem item) {
     self.item = item;
-    super.Init(subregion, item.tag, "item/"..item.typename);
+    super.Init(subregion, item.tag, prefix.."/"..item.typename);
     return self;
   }
 
