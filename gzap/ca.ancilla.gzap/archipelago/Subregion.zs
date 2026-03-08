@@ -22,9 +22,17 @@ class ::Subregion play {
   }
 
   void FillStartingPrereqs(::Region region) {
-    foreach (k, v : ::PlayEventHandler.GetState().GetCurrentRegion().keys) {
+    let apstate = ::PlayEventHandler.GetState();
+    foreach (k, v : apstate.GetCurrentRegion().keys) {
       if (v.held && v.enabled) {
         self.prereqs.Insert("key/" .. v.typename, true);
+      }
+    }
+    // Also copy any weapon prereqs, etc from the currently active subregion,
+    // if any.
+    if (apstate.subregion) {
+      foreach (k, v : apstate.subregion.prereqs) {
+        self.prereqs.Insert(k, v);
       }
     }
   }
