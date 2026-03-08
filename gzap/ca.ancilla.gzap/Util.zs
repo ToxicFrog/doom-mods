@@ -45,30 +45,43 @@ class ::Util play {
       case 2: return "HMP";
       case 3: return "UV";
       case 4: return "NM!";
-      default: return "???";
+      default: return string.format("?%d?", sk);
     }
   }
 
-  static clearscope int GetCurrentFilter() {
+  static clearscope int GetSpawnFilter() {
     return G_SkillPropertyInt(SKILLP_SpawnFilter);
   }
 
-  static clearscope string GetFilterName(int filter) {
-    switch (filter) {
-      // Internally, uzdoom distinguishes all five difficulty levels. However,
-      // in practice, almost no WADs make use of ITYTD or NM for thing placement,
-      // so (at least for now) we make the simplifying assumption that ITYTD==HNTR
-      // and UV==NM.
-      case 1:
-      case 2:
-        return "easy";
-      case 4:
-        return "medium";
-      case 8:
-      case 16:
-        return "hard";
+  static clearscope int GetSpawnFilterIndex() {
+    // The filter is stored as a bitmask; in play exactly one bit will be set
+    // so it can be &ed with the bitmasks in the map data. The filter index is
+    // the *1-indexed* position of the set bit.
+    switch (GetSpawnFilter()) {
+      case 1: return 1;
+      case 2: return 2;
+      case 4: return 3;
+      case 8: return 4;
+      case 16: return 5;
+      case 32: return 6;
+      case 64: return 7;
+      case 128: return 8;
+      default: return -1;
+    }
+  }
+
+  static clearscope string GetFilterName(int filter_index) {
+    switch (filter_index) {
+      case 1: return "ITYTD";
+      case 2: return "HNTR";
+      case 3: return "HMP";
+      case 4: return "UV";
+      case 5: return "NM";
+      case 6: return "skill6";
+      case 7: return "skill7";
+      case 8: return "skill8";
       default:
-        return string.format("unknown (0x%02X)", filter);
+        return string.format("unknown (0x%02X)", filter_index);
     }
   }
 

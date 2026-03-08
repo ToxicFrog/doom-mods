@@ -130,11 +130,13 @@ class ::LevelSelectMenu : ::CommonMenu {
   }
 
   string GetFilterWarning(::RandoState state) {
-    let ap_filter_name = ::Util.GetFilterName(state.filter);
-    let game_filter_name = ::Util.GetFilterName(::Util.GetCurrentFilter());
+    if (::PlayEventHandler.Get().IsPretuning()) return "";
+    let ap_filter_name = ::Util.GetFilterName(state.filter_index);
+    let game_filter_name = ::Util.GetFilterName(::Util.GetSpawnFilterIndex());
     if (ap_filter_name == game_filter_name) return "";
     return string.format(
       StringTable.Localize("$GZAP_MENU_WARNING_SPAWNS"),
-      ap_filter_name, game_filter_name);
+      state.filter_index, ap_filter_name,
+      ::Util.GetSpawnFilterIndex(), game_filter_name);
   }
 }

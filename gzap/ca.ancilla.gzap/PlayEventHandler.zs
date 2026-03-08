@@ -34,17 +34,16 @@ class ::PlayEventHandler : StaticEventHandler {
     apclient.Shutdown();
   }
 
-  void RegisterGameInfo(string slot_name, string seed, string wadname, int filter, bool singleplayer) {
-    let filter = 1 << filter;
+  void RegisterGameInfo(string slot_name, string seed, string wadname, int filter_index, bool singleplayer) {
     console.printf("Archipelago game generated from seed %s for %s playing %s.", seed, slot_name, wadname);
-    console.printf("Item/enemy layout: %s. Singleplayer: %s.", ::Util.GetFilterName(filter), singleplayer ? "yes" : "no");
+    console.printf("Item/enemy layout: %s. Singleplayer: %s.", ::Util.GetFilterName(filter_index), singleplayer ? "yes" : "no");
     // Save this information because we need all of it later. Some is sent in
     // XON so the client can get configuration info, some is used in gameplay.
     self.apstate.slot_name = slot_name;
     self.seed = seed;
     self.wadname = wadname;
     self.singleplayer = singleplayer;
-    self.apstate.filter = filter;
+    self.apstate.filter_index = filter_index;
   }
 
   bool IsRandomized() {

@@ -20,7 +20,7 @@ class ::RandoState play {
   // instances of the state when a savegame is loaded.
   int txn;
   int checksum_errors;
-  int filter;
+  int filter_index;
   // Lump name to Region
   Map<string, ::Region> regions;
   // Currently active subregion, if any
@@ -47,7 +47,7 @@ class ::RandoState play {
   }
 
   void DebugPrint() {
-    console.printf("AP State [txn=%d, filter=%d]", self.txn, self.filter);
+    console.printf("AP State [txn=%d, filter_index=%d]", self.txn, self.filter_index);
 
     console.printf("  %d regions", self.regions.CountUsed());
     foreach (name, region : self.regions) {
@@ -83,7 +83,7 @@ class ::RandoState play {
     // Kind of a gross hack to handle the fact that ITYTD/NM have different filter
     // IDs even if they result in the same actor placement.
     return (checksum_errors > 0)
-      || (::Util.GetFilterName(::Util.GetCurrentFilter()) != ::Util.GetFilterName(filter));
+      || (::Util.GetSpawnFilterIndex() != self.filter_index);
   }
 
   ::RandoKey RegisterKey(string scope, string tag, string typename, uint apid) {
