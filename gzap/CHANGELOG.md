@@ -40,6 +40,8 @@
     tag (which was sometimes ambiguous or outright missing).
   - The link to the `BTSX E1` apworld was missing from the documentation.
   - Hinting a level access token from the level select menu now works again.
+  - Duplicate items at the same point in the map no longer produce duplicate
+    entries in the logic file.
 
 # 0.8.0
 

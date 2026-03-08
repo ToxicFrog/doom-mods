@@ -132,12 +132,10 @@ class ::ScannedMap play {
   // just adds the current difficulty to it.
   void AddLocation(::ScannedLocation newloc) {
     // See if there's an existing location we should merge this one with.
-    // A location qualifies for merge if it has the same position and typename,
-    // but does not have the current difficulty bit set.
+    // A location qualifies for merge if it has the same position and typename.
     foreach (loc : locations) {
       if (!::Location.IsCloseEnough(loc.pos, newloc.pos)) continue;
       if (loc.typename != newloc.typename) continue;
-      if (loc.HasSkill(::Util.GetSkill())) continue;
       loc.AddSkill(::Util.GetSpawnFilter());
       return;
     }
