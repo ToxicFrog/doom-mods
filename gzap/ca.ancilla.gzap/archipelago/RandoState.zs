@@ -80,6 +80,7 @@ class ::RandoState play {
   bool did_warning;
   bool ShouldWarn() const {
     if (did_warning) return false;
+    if (::PlayEventHandler.Get().IsPretuning()) return false;
     // Kind of a gross hack to handle the fact that ITYTD/NM have different filter
     // IDs even if they result in the same actor placement.
     return (checksum_errors > 0)
