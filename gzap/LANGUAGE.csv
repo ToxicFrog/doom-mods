@@ -112,12 +112,18 @@ Initial levels to scan,GZAP_OPT_NAME_SCAN_LEVELS,
 "Levels to scan, space-separated (e.g. ""E1M1 E2M1 E3M1"").
 
 For most Doom 2 style wads, you can just set this to MAP01 and make sure recursion is on and it will scan the entire WAD. For games separated into episodes, like Doom 1 or Heretic, you probably need to list every episode start here.",GZAP_OPT_TT_SCAN_LEVELS,
-Levels to ignore,GZAP_OPT_NAME_SCAN_SKIP,
-"A space-separated list of levels that the scanner will ignore if it finds them. Deathmatch maps, end-of-episode cutscenes, and credit maps are typical things to list here.",GZAP_OPT_TT_SCAN_SKIP,
+Levels to ignore apart from exits,GZAP_OPT_NAME_SCAN_PRUNE,
+"A space-separated list of levels that the scanner will find exits in, but ignore otherwise; they will be used to find other levels to randomize but not included in randomization themselves. Use this for mid-episode cutscenes and similar.",GZAP_OPT_TT_SCAN_PRUNE,
+Levels to ignore completely,GZAP_OPT_NAME_SCAN_SKIP,
+"A space-separated list of levels that the scanner will ignore completely if it finds them. Deathmatch maps, end-of-episode cutscenes, and credit maps are typical things to list here.",GZAP_OPT_TT_SCAN_SKIP,
+Extra logic flags,GZAP_OPT_NAME_SCAN_LOGIC_FLAGS,
+"Special settings to include in the logic file. Currently these are only needed for hub-based games; see the wad scanning documentation for details.",GZAP_OPT_TT_SCAN_LOGIC_FLAGS,
 Recursive scanning,GZAP_OPT_NAME_SCAN_RECURSE,
 "If on, after scanning a level, it will also scan the NextMap/NextSecretMap listed for that level in MAPINFO.
 
 In most wads, you can use this to scan entire episodes or the entire wad at a time. In some cases it may end up scanning levels it shouldn't, e.g. if a level has a NextSecretMap but no actual exit to the secret level, it will scan the secret level anyways. But usually you want to try with this on first.",GZAP_OPT_TT_SCAN_RECURSE,
+Cluster scanning,GZAP_OPT_NAME_SCAN_CLUSTERS,
+"After scanning a level, scan all other levels in the same cluster. This is usually only needed in wads that use script triggers to create exits from scratch during gameplay (rather than revealing exits that already exist), which is quite rare.",GZAP_OPT_TT_SCAN_CLUSTERS
 Begin scanning,GZAP_OPT_NAME_SCAN_BEGIN,
 "This will begin a scan of the WAD. It will automatically skip through levels until it has no more to scan. You will be responsible for exiting out of cutscenes, if any.
 

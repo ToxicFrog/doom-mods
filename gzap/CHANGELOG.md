@@ -43,6 +43,7 @@
   - Duplicate items at the same point in the map no longer produce duplicate
     entries in the logic file.
   - Windows setup instructions for DoomRunner, by ChromaNyan.
+  - Some scanner settings were not properly exposed in the menu.
 
 # 0.8.0
 
