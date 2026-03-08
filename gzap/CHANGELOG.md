@@ -6,7 +6,7 @@
     factor into hint cost or generated text client messages).
   - The game will attempt to remember what weapons you have (even when weapon
     replacer mods are involved). It will restore any missing weapons when you
-    enter a level or load a saved game.
+    enter a level or load a saved game. This feature is disabled in pretuning.
   - In persistent mode, exiting a level via the AP menu remembers your position
     and returns you to it when you return to that map. You can clear the saved
     position with `shift-C`.

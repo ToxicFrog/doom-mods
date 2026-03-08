@@ -325,10 +325,16 @@ class ::Region play {
       DEBUG("keys_to_add: %s", keytype);
       items_to_add.Insert(keytype, 999);
     }
-    DEBUG("UpdateInventory: %d items in weapon set", self.weapons.CountUsed());
-    foreach (gun, _ : self.weapons) {
-      DEBUG("weapons_to_add: + %s", gun);
-      items_to_add.Insert(gun, 1);
+
+    // Only do weapon restoration when not in pretuning mode. In pretuning mode,
+    // if the game takes away the player's guns, we want to account for that in
+    // the resulting logic!
+    if (!::PlayEventHandler.Get().IsPretuning()) {
+      DEBUG("UpdateInventory: %d items in weapon set", self.weapons.CountUsed());
+      foreach (gun, _ : self.weapons) {
+        DEBUG("weapons_to_add: + %s", gun);
+        items_to_add.Insert(gun, 1);
+      }
     }
 
     Map<string, bool> items_to_remove;
