@@ -46,7 +46,7 @@
       }
 
       function getFileContents(selector) {
-        return document.querySelector(selector).innerText.replaceAll("__WAD__", getWadSymbol()).replaceAll("__VERSION__", "gzap-0.8.0-35-gad090b7");
+        return document.querySelector(selector).innerText.replaceAll("__WAD__", getWadSymbol()).replaceAll("__VERSION__", "gzap-0.8.0-49-g49ead75");
       }
 
       function generate() {
@@ -85,7 +85,7 @@
     </script>
   </head>
   <body>
-    <p>⚠️ This is the generator for the <b>unstable</b> version of the apworld (gzap-0.8.0-35-gad090b7). <a href="apworld-generator-0.8.0.html">Click here for latest stable (0.8.0).</a></p>
+    <p>⚠️ This is the generator for the <b>unstable</b> version of the apworld (gzap-0.8.0-49-g49ead75). <a href="apworld-generator-0.8.0.html">Click here for latest stable (0.8.0).</a></p>
     <label for="name">WAD name:</label>
     <input type="text" id="name" name="name" required oninput="updateInfo();"/>
     <br/>
@@ -237,22 +237,25 @@ class SpawnFilter(NamedRange):
     spawn in each map) the game will use.
 
     You need to pick a setting here that matches the difficulty you will be playing
-    on. In stock Doom, ITYTD and HNTR use "easy" spawns, HMP uses "medium", and
-    UV and NM use "hard".
+    on. In unmodified games filters 1 through 5 correspond to the five difficulty
+    levels, ITYTD through Nightmare -- almost in most WADs 1/2 and 4/5 use the
+    same spawns.
 
-    If you are playing with a mod that changes this, make sure that you choose the
-    filter appropriate to the difficulty level you are selecting. Many gameplay mods
-    have custom difficulty settings, and it's not always obvious which ones correspond
-    to easy/medium/hard.
+    Some mods implement custom difficulty levels that use different spawn filters
+    than the original game, so make sure you choose a filter that matches the
+    difficulty you are actually playing. If you get it wrong, you will get a
+    warning on entering the game.
     """
     display_name = "Spawn filter"
     range_start = 1
-    range_end = 3
-    default = 2
+    range_end = 8
+    default = 3
     special_range_names = {
-        "easy": 1,
-        "medium": 2,
-        "hard": 3
+        "itytd": 1,
+        "hntr": 2,
+        "hmp": 3,
+        "uv": 4,
+        "nm": 5,
     }
 
 class IncludedItemCategories(OptionList):
@@ -481,10 +484,11 @@ class FullPersistence(Toggle):
 
 class PreTuningMode(Toggle):
     """
-    This setting is for logic developers. If enabled, most other options are
-    overridden; only selected_wad and spawn_filter remain functional. All checks
-    contain their original items (i.e. there is no randomization) and you start
-    with access to all levels, all automaps, and no keys.
+    This setting is for logic developers. If enabled, all other options are
+    overridden. All checks contain their original items (i.e. there is no
+    randomization) and you start with access to all levels, all automaps, and no
+    keys. Checks for all difficulties are spawned regardless of what difficulty
+    you play on.
 
     The intent of this mode is to let you play through the game, or specific
     levels, "normally", to generate a tuning file, even in cases where the
