@@ -191,12 +191,19 @@ subregion from the same level to switch to, or enter a name to create a new subr
 Once you have defined a subregion, all checks you collect will be assigned to
 that subregion. By default, the subregion's logical requirements are just
 whatever keys you had active when you defined it; however, you can use the logic
-dashboard to manually select key requirements, as well as adding specific
-weapons or other subregions to the requirements. (In the latter case, a "can the
-player reach this other subregion" requirement will be added.) Changes to the
-requirements apply to *all* checks in that subregion, even if they are already
-collected, so if two checks have different logical requirements they **must** be
-in different subregions.
+dashboard to manually change the prerequisites.
+
+- Keys are either optional (`-`) or required (`+`).
+- Weapons are optional, required, or wanted (`?`). Currently "wanted" is the
+  same as "optional", but in the future it will interoperate with weapon logic.
+  "Required" imposes a hard requirement that the player have that weapon.
+- Other maps and subregions are, like keys, either optional or required; a
+  requirement means that the player needs to be able to reach that subregion
+  or map before this one is in logic.
+
+Changes to the requirements apply to *all* checks in that subregion, even if
+they are already collected, so if two checks have different logical requirements
+they **must** be in different subregions.
 
 Once you are done with your pretuning run, select `Save Subregions to Tuning File`
 from the logic dashboard in order to actually record them -- if you don't do this

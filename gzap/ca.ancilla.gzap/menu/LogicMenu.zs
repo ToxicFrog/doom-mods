@@ -90,7 +90,7 @@ class ::LogicMenu : ::CommonMenu {
 
     foreach (item : apstate.items) {
       if (item.IsWeapon()) {
-        mDesc.mItems.Push(new("::ItemPrereqToggle").Init(apstate.subregion, "weapon", item));
+        mDesc.mItems.Push(new("::WeaponPrereqToggle").Init(apstate.subregion, item));
       }
     }
   }
@@ -246,4 +246,52 @@ class ::ItemPrereqToggle : ::PrereqToggle {
   }
 
   override bool Enabled() { return item.total > 0; }
+}
+
+// A tri-state toggle for weapons between ignored, preferred, required.
+// Preferred incorporates it into weapon logic for this area.
+// Required makes it a hard requirement that cannot be turned off.
+class ::WeaponPrereqToggle : ::PrereqToggle {
+  ::RandoItem weapon;
+
+  ::WeaponPrereqToggle Init(::Subregion subregion, ::RandoItem weapon) {
+    self.weapon = weapon;
+    super.Init(subregion, weapon.tag, "weapon/"..self.weapon.typename);
+    return self;
+  }
+
+  override bool Enabled() { return self.weapon.total > 0; }
+  string WantPrereq() { return string.format("weapon/%s/want", self.weapon.typename); }
+  string NeedPrereq() { return string.format("weapon/%s/need", self.weapon.typename); }
+  bool IsWanted() { return subregion.HasPrereq(WantPrereq()); }
+  bool IsNeeded() { return subregion.HasPrereq(NeedPrereq()); }
+
+  override string FormatStatus() {
+    if (!self.Enabled()) {
+      return "\c[BLACK]X\c-";
+    } else if (IsWanted()) {
+      return "\c[YELLOW]?\c-";
+    } else if (IsNeeded()) {
+      return "\c[GREEN]+\c-";
+    } else {
+      return "\c[RED]-\c-";
+    }
+  }
+
+  override bool MenuEvent(int key, bool fromController) {
+    if (key == Menu.MKey_Enter) {
+      if (IsWanted()) {
+        EventHandler.SendNetworkCommand("ap-toggle-prereq", NET_STRING, WantPrereq());
+        EventHandler.SendNetworkCommand("ap-toggle-prereq", NET_STRING, NeedPrereq());
+      } else if (IsNeeded()) {
+        EventHandler.SendNetworkCommand("ap-toggle-prereq", NET_STRING, NeedPrereq());
+      } else {
+        EventHandler.SendNetworkCommand("ap-toggle-prereq", NET_STRING, WantPrereq());
+      }
+      Menu.MenuSound("menu/change");
+      return true;
+    }
+
+    return super.MenuEvent(key, fromController);
+  }
 }
