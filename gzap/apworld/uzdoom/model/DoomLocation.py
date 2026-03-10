@@ -6,7 +6,7 @@ from typing import NamedTuple, Optional, Set, List, FrozenSet, Collection, Seque
 
 from .DoomItem import DoomItem
 from .DoomReachable import DoomReachable
-from .DoomPosition import DoomPosition, to_position
+from .DoomPosition import DoomPosition, DoomEventPosition, to_position
 
 class DoomLocation(DoomReachable):
     """
@@ -61,7 +61,10 @@ class DoomLocation(DoomReachable):
     __repr__ = __str__
 
     def name(self) -> str:
-        if self.region:
+        # HACK HACK HACK: an Exit has an EventPosition and its enclosing map is
+        # hardcoded to name it "LUMP - Exit", so we can't include the region
+        # name here or generation will fail.
+        if self.region and not isinstance(self.pos, DoomEventPosition):
             name = f"{self.pos.map} {self.region} - {self.custom_name or self.item_name}"
         else:
             name = f"{self.pos.map} - {self.custom_name or self.item_name}"
