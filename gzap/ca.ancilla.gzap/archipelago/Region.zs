@@ -111,13 +111,13 @@ class ::Region play {
   }
 
   bool CanAccess() const {
-    return ::PlayEventHandler.GetState().CountItem("GZAP_LevelAccess_"..self.map);
+    return ::PlayEventHandler.GetState().CountItem("GZAP_LevelAccess_"..self.map) > 0;
   }
   bool HasAutomap() const {
-    return ::PlayEventHandler.GetState().CountItem("GZAP_Automap_"..self.map);
+    return ::PlayEventHandler.GetState().CountItem("GZAP_Automap_"..self.map) > 0;
   }
   bool IsCleared() const {
-    return ::PlayEventHandler.GetState().CountItem("GZAP_LevelCleared_"..self.map);
+    return ::PlayEventHandler.GetState().CountItem("GZAP_LevelCleared_"..self.map) > 0;
   }
 
   void RegisterCheck(
