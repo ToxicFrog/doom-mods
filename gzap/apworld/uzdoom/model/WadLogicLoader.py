@@ -100,6 +100,7 @@ class WadLogicLoader(WadDataLoader):
         if err_type is not None:
             return False
 
+        self.save_cache()
         self.wad.finalize_logic(self.logic)
         self.print_stats()
         self.logic.add_wad(self.wad.name, self.wad)
