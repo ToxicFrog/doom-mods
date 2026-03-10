@@ -11,13 +11,12 @@ This file documents how to produce and update these files. It will use Demonfear
 ⚠️ In a few wads, this process produces rapid screen flashing.
 
 
-## Generating a new logic file
+## Generating a basic logic file
 
-The easy way to do it, if you are comfortable in the shell, is to use the
-`tools/ap-scan` script in this repo. If you're not, though, you can do it in
-uzdoom.
+The basic logic is the catalogue of all maps in the wad and what items and
+secrets they contain. In most wads, this is all that's needed to be playable.
 
-First, start up uzdoom with your wad (and, ideally, no other mods except GZAP)
+First, start up uzdoom with your wad (and, ideally, no other mods except UZAP)
 loaded:
 
     uzdoom -iwad doom2.wad -file DMONFEAR.WAD -file UZArchipelago-latest.pk3
@@ -33,47 +32,48 @@ go a lot faster. (Don't forget to change them back later!)
     disableautosave 1
     wipetype 0
 
-From here, you can go into the mod options and use the controls there to start
-a scan, or you can do it, too, from the console:
+Having done this, open the `UZArchipelago Options` from the options menu, and
+scroll down to the `WAD Import Scanner` section at the bottom. Here you can set
+up the scanner configuration. In most cases, setting `Levels to Scan` to a list
+of all start-of-episode maps (all the `E?M1` maps for Doom and Heretic WADs,
+`MAP01` for Doom 2) and leaving the other settings at default is sufficient.
 
-    ap_scan_levels MAP01
-    ap_scan_recurse 1
-    netevent ap-scan:start
+Once set up, click `Begin Scanning` and wait for the process to complete. If
+there are any text cutscenes, you will be required to advance through them, but
+everything else should happen automatically.
 
-In either case, it will start the scan. If it encounters any cutscenes, you may
-need to fast forward through them for it. When it finishes, quit and the scan
-results will be in the `Demonfear.logic` file (or whatever filename you passed
-to the `logfile` command).
+If that worked, you can now [fine-tune the logic](#refining-your-logic) and
+[publish the logic](#publishing-your-logic). If not, see the sections below.
 
-### Multiple episodes and standalone maps
+### Hub-based wads
 
-Some WADs are divided into episodes or have maps that aren't reachable from the
-normal set of levels. For these, you can specify multiple starting levels. For
-example, to scan Doom 1:
+Support for these is still being tested, and full documentation is yet to be
+written. The short explanation is:
 
-    ap_scan_levels "E1M1 E2M1 E3M1 E4M1"
-    ap_scan_recurse 1
-    netevent ap-scan:start
+- Set `extra flags` to `use_hub_logic hub_logic_exits=X,Y,Z`, where `X`, `Y`,
+  and `Z` are the end-of-hub maps
+- Possibly turn off recursive scanning and turn on cluster scanning, depending
+  on the wad
+- After scanning, you *must* do a [pretuning run](#pretuning) using the
+  [subregion editor](#defining-subregions)
 
-Note that the quotes around the map names are mandatory in the console, and should
-be omitted if scanning from the GUI.
+See the [GZAPRC](../config/GZAPRC.faithless) and [logic](../wads/faithless/) for
+an example.
 
-### Skipping levels
+### Skipping maps
 
-There are two cvars that control this.
+You may end up with maps in the output that you did not want to include,
+typically as a result of the WAD including an exit to one of the stock maps
+(e.g. a WAD containing MAP01-MAP10 where MAP10 includes an exit to the Doom 2
+MAP11), or because the WAD includes cutscene or credits maps that don't make
+sense to include in randomization.
 
-Levels listed in `ap_scan_skip` (which has the same format as `ap_scan_levels`)
-will be used to find other levels, but will not themselves be included in the
-logic. This is useful for cutscenes, interstitial hubs, etc that are not meant
-to be included in the randomizer but have exits leading to other levels that
-are.
+For cutscene maps and similar, listing them under `ignore apart from exits` will
+cause the scanner to check them for exits to other maps (and then scan those maps),
+but not include them in the logic output.
 
-    ap_scan_skip "E1END E2END CREDITS"
-
-Levels listed in `ap_scan_prune` will be excised from the scan entirely, and
-will not be searched for exits to other levels.
-
-    ap_scan_prune "MAP31 MAP32"
+Maps listed under `ignore completely` will be entirely skipped without checking
+them for exits; the scanner will pretend they don't exist.
 
 ### Overriding scanner behaviour
 
@@ -96,16 +96,113 @@ This repo contains a [several examples](../config/) in the config directory.
 If you are a mapper, you can include a `GZAPRC` lump in your wad and it will be
 automatically detected and loaded by UZArchipelago.
 
+
+## Refining your logic
+
+The scanner produces "basic" logic, with one sphere per map. The result is
+playable, but a bit of extra work can make it much more closely reflect the
+actual structure of the WAD, and produce a better experience for players.
+
 ### Custom location names
 
-You can define custom names for locations that are more descriptive than the
-default item-and-coordinate based ones, like "Stimpack in GreenArmor secret" or
-"Megasphere near blue key". To do this, find the `AP-ITEM` or `AP-SECRET` entry
-for the location you want to rename in the logic file, and add a `"name":` key
-to it. See the Doom 2 logic for an example.
+If a location needs a hand-crafted name, and naming [the area it's in](#defining-regions)
+isn't sufficient, you can do this by editing the logic file directly. Find the
+`AP-ITEM` or `AP-SECRET` line corresponding to the location you want to rename,
+and add `"name": "my custom name"` to it.
 
 Names do not have to be unique; the randomizer will add a unique suffix if there
 are duplicate location names in the logic.
+
+### Autotuning
+
+Playing through a randomized game produces a *tuning journal*, a record of which
+locations you checked in what order and what keys you had when you did so. The
+randomizer can use this to refine the logic. So, simply playing through the WAD
+several times -- as long as you grab items whenever you can reach them, and not
+just when they are in logic -- will produce improvements.
+
+If you are playing with the AP client running, tuning journals will be written
+to the `uzdoom/tuning/` directory in your AP directory. If not, you can use the
+`logfile` command in-game and use the resulting log file. Just remember to copy
+it to safety after each game session; it is overwritten whenever uzdoom starts.
+
+Tuning files need to be bundled with the logic file to function; see
+[publishing your logic](#publishing-your-logic).
+
+#### Dynamically-spawned keys
+
+Some WADs contain keys that do not exist when the map is scanned, and only appear
+later (e.g. spawned by ACS or dropped by a boss). The first time you pick up one
+of these keys, an `AP-KEY` message will be emitted into the journal. Once you
+finish your playthrough, you must move this message from the tuning file to the
+logic file emitted by the scanner for apworld to function correctly.
+
+#### Unreachable checks
+
+You may encounter checks that are unreachable in normal play. For example, Doom
+2 MAP07 (`Dead Simple`) contains a BFG in a hidden room that can only be opened
+in multiplayer.
+
+You can mark these checks *unreachable* in the tuning journal, which will prevent
+them from being included in the pool in future games. At the moment this is only
+possible from the console:
+
+- Mark the next check unreachable: `ap_scan_unreachable 1`
+- Mark all checks unreachable until you exit the level: `ap_scan_unreachable 2`
+
+In the latter case, you don't need to touch every check by hand; exiting the
+level will mark all remaining checks as unreachable.
+
+### Pretuning
+
+Pretuning mode is a way to generate a tuning journal that describes all checks
+in the game via a single playthrough. To use it, turn it on in your YAML file
+and generate a singleplayer game (it is not suitable for multiworld play).
+
+In pretuning mode, all checks spawn, regardless of item pool or difficulty
+settings. Furthermore, keys, when picked up, are not automatically granted to
+you; you must instead turn them on manually from the inventory screen (`I`). In
+general, in each level, you will want to follow a procedure like:
+
+- Collect every check you can reach without turning on any keys.
+- Turn on one key.
+- Collect every check you can reach with just that key.
+- Repeat turning on keys and collecting new checks until you have collected
+  every check and finished the level.
+
+You can also turn keys back *off*, to correctly handle maps like `Tricks and Traps`
+where there are a number of branching paths that each only need one key to unlock.
+Make sure when doing this that there is a path from the level entrance to wherever
+you are that doesn't require the keys you just disabled, or you can produce
+impossible logic.
+
+#### Defining subregions
+
+Subregions let you group together checks that have the same logical access
+requirements. This requires a bit more attention from the logic developer, but
+also lets you manually adjust the logical requirements for large numbers of
+checks at once, and give them more descriptive names than the auto-generated ones
+without manually assigning a name to every single check.
+
+To define a subregion, press `L` to open the logic dashboard and select
+`Create/Activate Subregion`. The screen that opens will let you select an existing
+subregion from the same level to switch to, or enter a name to create a new subregion.
+
+Once you have defined a subregion, all checks you collect will be assigned to
+that subregion. By default, the subregion's logical requirements are just
+whatever keys you had active when you defined it; however, you can use the logic
+dashboard to manually select key requirements, as well as adding specific
+weapons or other subregions to the requirements. (In the latter case, a "can the
+player reach this other subregion" requirement will be added.) Changes to the
+requirements apply to *all* checks in that subregion, even if they are already
+collected, so if two checks have different logical requirements they **must** be
+in different subregions.
+
+Once you are done with your pretuning run, select `Save Subregions to Tuning File`
+from the logic dashboard in order to actually record them -- if you don't do this
+they won't be saved and the tuning journal will be unusable! This will result in
+a batch of `AP-REGION` messages at the end of the tuning journal. You must manually
+move them to the start of the tuning journal before publishing it.
 
 
 ## Publishing your logic
@@ -123,75 +220,5 @@ files with `.tuning`.
 
 ### Loading files without packaging them
 
-(This feature is currently unavailable.)
-
-
-## Tuning a logic file
-
-When you play a multiworld game, a tuning file will be automatically created
-in the `uzdoom/tuning` directory in your Archipelago directory, with the same
-name as the wad you're playing. If you play the same wad multiple times, it
-will create multiple, numbered tuning files, all of which will be loaded by the
-apworld.
-
-When you play single-world, you can accomplish the same thing with the `logfile`
-console command. (Or you can just leave the AP client running in the background,
-without connecting to a host.)
-
-Once you've generated the tuning files, you can package them into an apworld
-alongside the logic using the instructions above.
-
-### Keys not detected by the scanner
-
-Some wads contain keys that are not visible at scan time, because they are
-spawned as enemy drops or via scripts. These will be not be added to the item
-pool, but when picked up normally, UZArchipelago will detect them and emit an
-appropriate `AP-KEY` message into the tuning file.
-
-Once you finish tuning, you must move these messages from the tuning file to the
-logic file; to function properly they *must* be in the main logic file, and
-failure to do so will prevent the apworld from initializing.
-
-### Tuning without randomizing
-
-The randomizer supports a "pretuning mode" which can be used to perform tuning
-using the original item locations from the wad. To enable this, just set
-`pretuning_mode` to `true` in your YAML. This will override most other settings,
-and give you a game with the original item placements, all levels unlocked and
-mapped from the start, and no starting keys.
-
-Additionally, when picking up a key in pretuning mode, it will be considered
-"disabled": it will not be placed in your inventory and will not be recorded in
-the tuning data when picking up items. This allows you to continue collecting
-things until you have fully exhausted all items reachable without the key. At
-that point, you can open the AP inventory menu and toggle the key on, then
-continue playing.
-
-Note that while you can toggle keys back off, doing so makes it *very easy* to
-create invalid logic; it is recommended that you not do this unless you really
-know what you're doing.
-
-### Unreachable checks
-
-You may encounter checks that are unreachable in normal play. For example, Doom
-2 MAP07 ("Dead Simple") contains a BFG in a hidden room that can only be opened
-in multiplayer.
-
-If you encounter one of these, you can mark it unreachable using the `ap_scan_unreachable`
-cvar. You can mark the next check you touch unreachable (and then use `noclip` to
-actually reach it):
-
-    ap_scan_unreachable 1
-
-Alternately, you can mark every check you touch for the rest of the level:
-
-    ap_scan_unreachable 2
-
-In the latter case, it will mark all remaining checks when you exit the level,
-so you don't need to run around noclipping to all of them -- just set it to 2
-and touch the exit.
-
-On future runs, unreachable checks will still be present in the world, but will
-be hard-coded to contain a 1-point health restore filler item; they will never
-contain progression items or items from someone else's game. They will also be
-displayed with a greyscale icon.
+This feature was available in earlier versions, but had to be removed when the
+project was split into multiple apworlds, and is unlikely to return.
