@@ -79,12 +79,12 @@ mixin class ::ArchipelagoIcon {
   // TODO: we should move this into the CheckPickup, and just have it call
   // SetStateLabel on its map marker if any.
   void SetProgressionState() {
-    DEBUG("SetProgressionState(%d)", self.location_id);
+    // DEBUG("SetProgressionState(%d)", self.location_id);
 
     let loc = GetLocation();
-    DEBUG("  name=%s checked=%d (ck=%d cl=%d) display=%d unreachable=%d progression=%d hilight=%d trigger=%d",
-      loc.name, IsChecked(), loc.checked, loc.collected,
-      ShouldDisplay(), loc.IsUnreachable(), loc.IsProgression(), ShouldHilight(), IsTrigger());
+    // DEBUG("  name=%s checked=%d (ck=%d cl=%d) display=%d unreachable=%d progression=%d hilight=%d trigger=%d",
+    //   loc.name, IsChecked(), loc.checked, loc.collected,
+    //   ShouldDisplay(), loc.IsUnreachable(), loc.IsProgression(), ShouldHilight(), IsTrigger());
 
     if (self.IsTrigger() && !loc.checked || !loc.IsChecked()) {
       A_SetRenderStyle(CVar.FindCVar("ap_uncollected_alpha").GetFloat(), STYLE_Translucent);
@@ -478,5 +478,9 @@ class ::CheckPickup : ScoreItem {
 
   override void OnDestroy() {
     ClearMarkers();
+    if (::PerLevelHandler.Get().is_exiting) return;
+    if (!self.GetLocation().checked) {
+      ::PlayEventHandler.Get().CheckLocation(self.GetLocation());
+    }
   }
 }

@@ -44,6 +44,7 @@
     entries in the logic file.
   - Windows setup instructions for DoomRunner, by ChromaNyan.
   - Some scanner settings were not properly exposed in the menu.
+  - Destroying a check is now treated the same as collecting it normally.
 
 # 0.8.0
 

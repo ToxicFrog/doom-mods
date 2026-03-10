@@ -93,12 +93,9 @@ options, then fallbacks.
   - otherwise if:
     - you have received an access key for it and have not visited it yet
     - you have received keys for it since last time you visited
+- In randomized mode, Faithless starts out listing all non-end-of-chapter levels
+  as already won.
 
-- If a check gets destroyed (e.g. with thing_remove), we should dispense whatever
-  it contained. This would let us (e.g.) reinstate the urns and shields in Faithless
-  E1M7 without the risk of making the game unwinnable.
-
-- if a check is deleted outright without being collected, we should reinstate it if we can.
 
 ### Time Tripper
 

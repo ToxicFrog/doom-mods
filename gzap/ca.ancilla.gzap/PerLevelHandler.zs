@@ -29,6 +29,11 @@ class ::PerLevelHandler : EventHandler {
   // an exit when they respawn.
   bool line_exit_normal;
   bool line_exit_secret;
+  // Flag set when the level exit handler runs and unset when the level entry
+  // handler runs. Used by CheckPickups to tell the difference between being
+  // destroyed by action specials and being destroyed because the level is
+  // being unloaded.
+  bool is_exiting;
 
   static clearscope ::PerLevelHandler Get() {
     return ::PerLevelHandler(Find("::PerLevelHandler"));
@@ -96,6 +101,7 @@ class ::PerLevelHandler : EventHandler {
 
   override void WorldLoaded(WorldEvent evt) {
     DEBUG("PLH WorldLoaded");
+    is_exiting = false;
 
     if (level.MapName == "GZAPRST") {
       foreach (region : apstate.regions) {
@@ -482,6 +488,7 @@ class ::PerLevelHandler : EventHandler {
   void OnLevelExit(bool is_save, string next_map) {
     DEBUG("PLH WorldUnloaded: save=%d warp=%d lnum=%d next=%s",
       is_save, self.early_exit, level.LevelNum, next_map);
+    is_exiting = true;
 
     let region = apstate.GetRegion(level.MapName);
 

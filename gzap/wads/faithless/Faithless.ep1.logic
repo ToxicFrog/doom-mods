@@ -711,16 +711,14 @@ AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orb
 AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo2", "tag": "Claw Orbs", "pos": ["E1M7",-704,-320,32] }
 AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "skill": [2, 3], "pos": ["E1M7",-2336,2304,160] }
 AP-ITEM { "category": "tool", "typename": "ArtiTimeBomb2", "tag": "Time Bomb of the Ancients", "skill": [2, 3], "pos": ["E1M7",-864,2304,160] }
-// TODO: the items in these secrets are not indexed, because there are three copies of each one, and only one of them can
-// be picked up -- the other two are deleted when you collect it. The secrets themselves are still indexed.
 AP-SECRET { "pos": ["E1M7","secret","sector",10], "name": "Urn secret" }
 AP-SECRET { "pos": ["E1M7","secret","sector",78], "name": "Shield secret" }
-// AP-ITEM { "category": "big-armor", "typename": "SilverShield", "tag": "Enchanted Shield", "secret": true, "tid": 21, "pos": ["E1M7",224,1952,336] }
-// AP-ITEM { "category": "big-armor", "typename": "SilverShield", "tag": "Enchanted Shield", "secret": true, "tid": 21, "pos": ["E1M7",1888,2976,336] }
-// AP-ITEM { "category": "big-armor", "typename": "SilverShield", "tag": "Enchanted Shield", "secret": true, "tid": 21, "pos": ["E1M7",-1376,2976,336] }
-// AP-ITEM { "category": "big-health-tool", "typename": "ArtiSuperHealth", "tag": "Mystic Urn", "secret": true, "tid": 20, "pos": ["E1M7",-224,1952,336] }
-// AP-ITEM { "category": "big-health-tool", "typename": "ArtiSuperHealth", "tag": "Mystic Urn", "secret": true, "tid": 20, "pos": ["E1M7",-1824,2976,336] }
-// AP-ITEM { "category": "big-health-tool", "typename": "ArtiSuperHealth", "tag": "Mystic Urn", "secret": true, "tid": 20, "pos": ["E1M7",1440,2976,336] }
+AP-ITEM { "category": "big-armor", "typename": "SilverShield", "tag": "Enchanted Shield", "secret": true, "tid": 21, "pos": ["E1M7",224,1952,336] }
+AP-ITEM { "category": "big-armor", "typename": "SilverShield", "tag": "Enchanted Shield", "secret": true, "tid": 21, "pos": ["E1M7",1888,2976,336] }
+AP-ITEM { "category": "big-armor", "typename": "SilverShield", "tag": "Enchanted Shield", "secret": true, "tid": 21, "pos": ["E1M7",-1376,2976,336] }
+AP-ITEM { "category": "big-health-tool", "typename": "ArtiSuperHealth", "tag": "Mystic Urn", "secret": true, "tid": 20, "pos": ["E1M7",-224,1952,336] }
+AP-ITEM { "category": "big-health-tool", "typename": "ArtiSuperHealth", "tag": "Mystic Urn", "secret": true, "tid": 20, "pos": ["E1M7",-1824,2976,336] }
+AP-ITEM { "category": "big-health-tool", "typename": "ArtiSuperHealth", "tag": "Mystic Urn", "secret": true, "tid": 20, "pos": ["E1M7",1440,2976,336] }
 AP-MAP { "map": "E1M8", "levelname": "Ironclad", "checksum": "c149969843e7091f55f6801a66a85eb3", "rank": 5, "monster_count": 93, "clustername": "Faithless", "info": { "levelnum": 8, "title": "FAITH_E1M8", "is_lookup": true, "sky1": "HSKY1", "sky1speed": "0.003500", "sky2": "HSKY1", "sky2speed": "0.000000", "music": "$MUSIC_FAITH_8", "music_track": "0", "cluster": 66, "flags": [] } }
 AP-ITEM { "category": "big-ammo", "typename": "BagOfHolding", "tag": "Bag of Holding", "pos": ["E1M8",-96,-1120,-8] }
 AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo2", "tag": "Ethereal Arrows", "pos": ["E1M8",-320,-1408,-8] }
