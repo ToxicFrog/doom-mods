@@ -81,6 +81,7 @@ def init_wad(logic, package, logic_files):
     wadname = logic_files[0].name.split(".")[0]
     with WadLogicLoader(logic, wadname, package) as wadloader:
         wadloader.load_logic(logic_files)
+        get_tuned_wad(wadloader.wad)
 
 def print_header(package):
     if "GZAP_DEBUG" not in os.environ:
@@ -105,9 +106,6 @@ def init_wads(package):
     files = logic_files(package)
     assert len(files) > 0, f'Package {package} contains no logic files'
     init_wad(logic, package, files)
-
-    if 'GZAP_LOAD_ALL_TUNING' in os.environ:
-        get_tuned_wad(logic.wad)
 
     _LOGIC[package] = logic
     return logic

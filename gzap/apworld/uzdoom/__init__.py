@@ -178,7 +178,6 @@ class UZDoomWorld(World):
             # AP would normally call this automatically when validating the yaml.
             self.options.included_item_categories.build_ratios()
 
-        model.get_tuned_wad(self.wad_logic)
         self.spawn_filter = 2**(self.options.spawn_filter.value-1)
         print(f"Selected WAD: {self.wad_logic.name}")
         print(f"Selected spawns: {self.spawn_filter_name(self.options.spawn_filter.value)} ({self.options.spawn_filter.value})")
