@@ -52,6 +52,7 @@ class ::Subregion play {
   string PrereqsAsString() const {
     string buf = "";
     foreach (k,v : self.prereqs) {
+      if (HasPrereq("key/*") && k != "key/*" && k.Left(4) == "key/") continue;
       buf.AppendFormat("%s%s", buf ? " " : "", k);
     }
     return buf;

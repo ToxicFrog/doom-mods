@@ -96,6 +96,8 @@ class ::LogicMenu : ::CommonMenu {
     foreach (_, key : region.keys) {
       mDesc.mItems.Push(new("::KeyPrereqToggle").Init(subregion, key));
     }
+    PushPrereqToggle(subregion, "$GZAP_MENU_LOGIC_ANYKEY", "key/*");
+    PushTooltip("$GZAP_MENU_LOGIC_TT_ANYKEY");
   }
 
   void InitWeaponDisplay(::RandoState apstate) {
