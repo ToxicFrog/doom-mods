@@ -164,7 +164,7 @@ class ::PerLevelHandler : EventHandler {
     } else if (!location.IsChecked() && !sector.IsSecret()) {
       // Location isn't marked checked but the corresponding sector has been
       // discovered, so emit a check event for it.
-      ::PlayEventHandler.Get().CheckLocation(location);
+      ::PlayEventHandler.Get().CheckLocation(location, "sector already discovered");
       UnmarkSecret(location);
     } else if (!location.IsChecked()) {
       // Player hasn't found this yet.
@@ -193,7 +193,7 @@ class ::PerLevelHandler : EventHandler {
     // Location not marked checked, but the trigger is gone, so the player must
     // have found it and we just didn't notice.
     DEBUG("%s has been checked, marking it off", location.ap_name);
-    ::PlayEventHandler.Get().CheckLocation(location);
+    ::PlayEventHandler.Get().CheckLocation(location, "trigger already discovered");
   }
 
   void UpdateSecrets() {
@@ -202,14 +202,14 @@ class ::PerLevelHandler : EventHandler {
         let iter = level.CreateActorIterator(location.secret_id, "SecretTrigger");
         if (iter.Next() == null) {
           DEBUG("%s has been checked, marking it off", location.ap_name);
-          ::PlayEventHandler.Get().CheckLocation(location);
+          ::PlayEventHandler.Get().CheckLocation(location, "trigger discovered");
           self.secret_locations.Remove(secret_id);
           return;
         }
       } else {
         if (!level.sectors[secret_id].IsSecret()) {
           DEBUG("%s has been checked, marking it off", location.ap_name);
-          ::PlayEventHandler.Get().CheckLocation(location);
+          ::PlayEventHandler.Get().CheckLocation(location, "sector discovered");
           UnmarkSecret(location);
           // Only process one so we don't modify secret_locations while iterating it.
           self.secret_locations.Remove(secret_id);
@@ -527,19 +527,19 @@ class ::PerLevelHandler : EventHandler {
         // mark as unreachable locations that they skipped because of !collect.
         if (location.IsChecked()) continue;
         DEBUG("Marking %s as unreachable.", location.name);
-        ::PlayEventHandler.Get().CheckLocation(location);
+        ::PlayEventHandler.Get().CheckLocation(location, "map exit, unreachable");
       }
     }
     cvar.FindCvar("ap_scan_unreachable").SetInt(0);
 
-    ::PlayEventHandler.Get().CheckLocation(region.exit_location);
+    ::PlayEventHandler.Get().CheckLocation(region.exit_location, "map exit");
 
     if (ShouldAutoRelease(region)) {
       DEBUG("AutoRelease enabled");
       foreach (location : region.locations) {
         if (ShouldAutoReleaseLocation(location)) {
           DEBUG("Collecting %s on level exit.", location.name);
-          ::PlayEventHandler.Get().CheckLocation(location, true);
+          ::PlayEventHandler.Get().CheckLocation(location, "map exit, autorelease", true);
         }
       }
     }

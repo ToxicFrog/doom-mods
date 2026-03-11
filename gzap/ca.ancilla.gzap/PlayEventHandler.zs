@@ -124,8 +124,8 @@ class ::PlayEventHandler : StaticEventHandler {
     players[p].mo.GiveInventoryType("::PickupDetector");
   }
 
-  void CheckLocation(::Location loc, bool atexit=false) {
-    DEBUG("CheckLocation: %d %s", loc.apid, loc.name);
+  void CheckLocation(::Location loc, string reason="", bool atexit=false) {
+    DEBUG("CheckLocation[%s]: %d %s", reason, loc.apid, loc.name);
 
     loc.checked = true;
     bool unreachable = false;

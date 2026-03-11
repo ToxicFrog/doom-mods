@@ -462,7 +462,7 @@ class ::CheckPickup : ScoreItem {
     DEBUG("TryPickup: %s", self.GetLocation().name);
     // This will set the 'checked' flag and also, if necessary, send a message
     // to the client.
-    ::PlayEventHandler.Get().CheckLocation(self.GetLocation());
+    ::PlayEventHandler.Get().CheckLocation(self.GetLocation(), "touched");
     // Pretend that no item with this TID exists anymore. We'll respawn on level
     // reload if needed.
     // This is needed for compatibility with stuff like Square's vending
@@ -480,7 +480,7 @@ class ::CheckPickup : ScoreItem {
     ClearMarkers();
     if (::PerLevelHandler.Get().is_exiting) return;
     if (!self.GetLocation().checked) {
-      ::PlayEventHandler.Get().CheckLocation(self.GetLocation());
+      ::PlayEventHandler.Get().CheckLocation(self.GetLocation(), "destroyed");
     }
   }
 }
