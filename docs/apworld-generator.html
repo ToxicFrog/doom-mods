@@ -46,7 +46,7 @@
       }
 
       function getFileContents(selector) {
-        return document.querySelector(selector).innerText.replaceAll("__WAD__", getWadSymbol()).replaceAll("__VERSION__", "gzap-0.8.0-49-g49ead75");
+        return document.querySelector(selector).innerText.replaceAll("__WAD__", getWadSymbol()).replaceAll("__VERSION__", "gzap-0.8.0-51-gfbe2652");
       }
 
       function generate() {
@@ -85,7 +85,7 @@
     </script>
   </head>
   <body>
-    <p>⚠️ This is the generator for the <b>unstable</b> version of the apworld (gzap-0.8.0-49-g49ead75). <a href="apworld-generator-0.8.0.html">Click here for latest stable (0.8.0).</a></p>
+    <p>⚠️ This is the generator for the <b>unstable</b> version of the apworld (gzap-0.8.0-51-gfbe2652). <a href="apworld-generator-0.8.0.html">Click here for latest stable (0.8.0).</a></p>
     <label for="name">WAD name:</label>
     <input type="text" id="name" name="name" required oninput="updateInfo();"/>
     <br/>
@@ -238,7 +238,7 @@ class SpawnFilter(NamedRange):
 
     You need to pick a setting here that matches the difficulty you will be playing
     on. In unmodified games filters 1 through 5 correspond to the five difficulty
-    levels, ITYTD through Nightmare -- almost in most WADs 1/2 and 4/5 use the
+    levels, ITYTD through Nightmare -- although in most WADs 1/2 and 4/5 use the
     same spawns.
 
     Some mods implement custom difficulty levels that use different spawn filters
