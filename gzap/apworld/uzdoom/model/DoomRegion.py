@@ -7,6 +7,7 @@ class DoomRegion(DoomReachable):
   def __init__(self, map, subregion):
     self.map = map
     self.subregion = subregion
+    self.debug_name = f'map/{self.map}/{self.subregion}'
     super().__init__()
 
   def record_tuning(self, keys):

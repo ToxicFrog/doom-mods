@@ -79,6 +79,7 @@ class DoomMap:
 
     def __post_init__(self, info):
         self.mapinfo = MAPINFO(**info)
+        self.debug_name = f'map/{self.map}'
 
     def all_locations(self, spawn_filter: int, categories: Set[str]) -> List[DoomLocation]:
         if not spawn_filter:

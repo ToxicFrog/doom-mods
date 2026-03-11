@@ -21,9 +21,14 @@ class DoomReachable:
     tuning: List[FrozenSet[str]]
     # Unreachability flag.
     unreachable: bool = False
+    # For debugging
+    debug_name: str = '<unknown reachable>'
 
     def __init__(self):
         self.tuning = []
+
+    def name(self):
+        return self.debug_name
 
     def record_tuning(self, keys: List[str] | None, unreachable: bool = None):
         """
