@@ -334,6 +334,10 @@ class ::CheckPickup : ScoreItem {
     DEBUG("Check[%s] UpdateFromOriginal[%s] tid=%d special=%d", GetLocation().name,
       original.GetTag(), original.TID, original.special);
     self.bNOGRAVITY = original.bNOGRAVITY;
+    // Clear the specials on the original so that they don't trigger anything
+    // when we destroy them.
+    original.ChangeTID(0);
+    original.A_SetSpecial(0);
   }
 
   //// Label/Marker handling ////
