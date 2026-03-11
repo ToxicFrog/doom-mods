@@ -71,6 +71,21 @@ class ::LogicMenu : ::CommonMenu {
     super.Ticker();
   }
 
+  void PushPrereqToggle(::Subregion subregion, string name, string prereq) {
+    mDesc.mItems.Push(new("::PrereqToggle").Init(subregion, name, prereq));
+  }
+
+  void InitFlagDisplay(::Subregion subregion) {
+    PushText(" ");
+    PushText("$GZAP_MENU_LOGIC_FLAGS", Font.CR_SAPPHIRE);
+    PushText(" ");
+
+    PushPrereqToggle(subregion, "$GZAP_MENU_LOGIC_SECRET", "flag/secret");
+    PushTooltip("$GZAP_MENU_LOGIC_TT_SECRET");
+    PushPrereqToggle(subregion, "$GZAP_MENU_LOGIC_UNREACHABLE", "flag/unreachable");
+    PushTooltip("$GZAP_MENU_LOGIC_TT_UNREACHABLE");
+  }
+
   void InitKeyDisplay(::Region region, ::Subregion subregion) {
     if (region.keys.CountUsed() == 0) return;
 
@@ -103,9 +118,9 @@ class ::LogicMenu : ::CommonMenu {
       PushText(" ");
       foreach (name, subregion : current_region.subregions) {
         if (subregion == apstate.subregion) continue;
-        mDesc.mItems.Push(new("::PrereqToggle").Init(
+        PushPrereqToggle(
           apstate.subregion, subregion.name,
-          "map/"..current_region.map.."/"..subregion.name));
+          "map/"..current_region.map.."/"..subregion.name);
       }
     } else {
       // Hub logic is in effect, so display all visited regions from the same
@@ -115,11 +130,11 @@ class ::LogicMenu : ::CommonMenu {
       PushText(" ");
       foreach (map,region : apstate.regions) {
         if (region.hub != current_region.hub || !region.visited) continue;
-        mDesc.mItems.Push(new("::PrereqToggle").Init(
-          apstate.subregion, "\c[SILVER]"..region.AccessFlagFQIN().."\c-", "map/"..region.map));
+        PushPrereqToggle(apstate.subregion,
+          "\c[SILVER]"..region.AccessFlagFQIN().."\c-", "map/"..region.map);
         foreach (name, subregion : region.subregions) {
           if (subregion == apstate.subregion) continue;
-          mDesc.mItems.Push(new("::PrereqToggle").Init(apstate.subregion, subregion.name, "map/"..region.map.."/"..subregion.name));
+          PushPrereqToggle(apstate.subregion, subregion.name, "map/"..region.map.."/"..subregion.name);
         }
       }
     }
