@@ -30,6 +30,12 @@ class DoomReachable:
     def name(self):
         return self.debug_name
 
+    def has_flag(self, flag):
+        for tuning in self.tuning:
+            if 'flag/'+flag in tuning:
+                return True
+        return False
+
     def record_tuning(self, keys: List[str] | None, unreachable: bool = None):
         """
         Record a single tuning record for this location. This won't be turned into

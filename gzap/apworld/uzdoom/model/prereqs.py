@@ -33,6 +33,10 @@ def string_to_prereq_fn(world, wad, map, string):
       return region_prereq(world, wad, map, *fields[1:])
     case 'weapon':
       return weapon_prereq(world, wad, map, *fields[1:])
+    case 'flag':
+      # Flags don't impose prerequisites but instead change other things about
+      # the region or location.
+      return lambda state: True
     case _:
       raise RuntimeError(f'Unknown prerequisite {string}')
 

@@ -43,9 +43,11 @@ class ::LogicMenu : ::CommonMenu {
     mDesc.mItems.Push(new("::RegionDefineButton").Init());
     mDesc.mItems.Push(new("::RegionClearButton").Init(apstate));
     // PushKeyValueText("Custom Prereqs", "PLACEHOLDER");
-    PushKeyValueNetevent("Save subregions to tuning file", "[all subregions, all maps]", "ap-region-output", 0);
+    PushKeyValueNetevent("$GZAP_MENU_LOGIC_SAVE_SUBREGIONS", "", "ap-region-output", 0);
+    PushTooltip("$GZAP_MENU_LOGIC_TT_SAVE_SUBREGIONS");
 
     if (apstate.subregion) {
+      InitFlagDisplay(apstate.subregion);
       InitKeyDisplay(region, apstate.subregion);
       InitWeaponDisplay(apstate);
       InitSubregionDisplay(apstate, region);

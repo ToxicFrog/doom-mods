@@ -522,7 +522,7 @@ class DoomWad:
         Do postprocessing after all events have been ingested, including tuning.
         """
         for loc in self.all_locations():
-            loc.finalize_tuning()
+            loc.finalize_tuning(self.regions.get(f'{loc.pos.map}/{loc.region}', None))
         for name,region in self.regions.items():
             region.finalize_tuning(default=[])
         for map in self.maps.values():

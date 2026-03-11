@@ -193,6 +193,8 @@ that subregion. By default, the subregion's logical requirements are just
 whatever keys you had active when you defined it; however, you can use the logic
 dashboard to manually change the prerequisites.
 
+- Flags do not act as logical requirements but instead change other properties,
+  documented in the tooltips, of all locations in the region.
 - Keys are either optional (`-`) or required (`+`).
 - Weapons are optional, required, or wanted (`?`). Currently "wanted" is the
   same as "optional", but in the future it will interoperate with weapon logic.

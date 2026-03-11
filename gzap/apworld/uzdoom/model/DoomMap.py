@@ -221,5 +221,5 @@ class DoomMap:
         return {
             loc.orig_item.name()
             for loc in self.locations
-            if not loc.secret and not loc.unreachable and loc.has_category('weapon')
+            if not loc.has_category('secret') and not loc.unreachable and loc.has_category('weapon')
         }

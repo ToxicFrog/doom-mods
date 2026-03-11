@@ -38,7 +38,6 @@ class DoomLocation(DoomReachable):
     disambiguation: str = None
     custom_name: str = None
     spawn_filter: int = 0
-    secret: bool = False
     secret_id: int = 0  # used for sector IDs and TIDs
 
     def __init__(self, parent, item: DoomItem, secret: bool, pos: Sequence[Any], custom_name: str | None = None):
@@ -52,7 +51,6 @@ class DoomLocation(DoomReachable):
             self.categories |= item.categories
             self.orig_item = item
             self.item_name = item.tag
-        self.secret = secret
         self.pos = to_position(*pos)
 
     def __str__(self) -> str:
@@ -118,15 +116,20 @@ class DoomLocation(DoomReachable):
             and self.has_category('key')
             and self.parent.get_map(self.pos.map).has_one_key(self.orig_item.name()))
 
-    def finalize_tuning(self):
+    def finalize_tuning(self, region):
         # If we have tuning data for this location it will have either a tuning
         # set or a region affiliation (or both) and those will provide the logic.
         # If not, we have to autogenerate pessimistic logic for it that assumes
         # we need every key in the level in order to reach it.
-        if self.region:
+        if region:
             # If we have a region defined, our default tuning is empty, since the
             # enclosing region will provide reachability constraints.
             super().finalize_tuning(default=[])
+            if region.has_flag('secret'):
+                self.categories |= {'secret'}
+            if region.has_flag('unreachable'):
+                self.unreachable = True
+
         elif self.assume_key_reachable():
             super().finalize_tuning(default=[frozenset()])
         else:
