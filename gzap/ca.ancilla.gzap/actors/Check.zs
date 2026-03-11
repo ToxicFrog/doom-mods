@@ -478,7 +478,12 @@ class ::CheckPickup : ScoreItem {
 
   override void OnDestroy() {
     ClearMarkers();
-    if (::PerLevelHandler.Get().is_exiting) return;
+    if (::PlayEventHandler.Get().is_exiting) return;
+    // Bit of a hack here -- we assume that if the player has no pawn, even if
+    // is_exiting is false, we're being destroyed because the game is being
+    // unloaded. In particular this happens on `quit which doesn't trigger
+    // WorldUnloaded but does destroy the universe.
+    if (!players[0].mo) return;
     if (!self.GetLocation().checked) {
       ::PlayEventHandler.Get().CheckLocation(self.GetLocation(), "destroyed");
     }

@@ -23,11 +23,16 @@ class ::PlayEventHandler : StaticEventHandler {
   ::IPC apclient;
   // Archipelago state manager.
   ::RandoState apstate;
+  // Set if we are currently in the process of leaving a level. Used to distinguish
+  // checks being destroyed by level scripting from checks being destroyed because
+  // the whole map is being unloaded.
+  bool is_exiting;
 
   override void OnRegister() {
     console.printf("Loading UZArchipelago client library version %s", MOD_VERSION());
     apclient = ::IPC(new("::IPC"));
     apstate = ::RandoState.Create();
+    is_exiting = false;
   }
 
   override void OnUnregister() {
@@ -74,6 +79,7 @@ class ::PlayEventHandler : StaticEventHandler {
   override void WorldLoaded(WorldEvent evt) {
     DEBUG("PEH WorldLoaded: %s", level.MapName);
     let region = apstate.GetCurrentRegion();
+    is_exiting = false;
 
     // Don't initialize IPC until after we're in-game; otherwise
     // NetworkCommandProcess doesn't get called and we end up missing events.
@@ -106,6 +112,7 @@ class ::PlayEventHandler : StaticEventHandler {
   }
 
   override void WorldUnloaded(WorldEvent evt) {
+    is_exiting = true;
     let plh = ::PerLevelHandler.Get();
     if (!plh || !evt) return; // Can happen if exiting to new game
     // NextMap might be the GZAPHUB, or, failing that, another level in the same
