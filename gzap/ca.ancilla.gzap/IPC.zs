@@ -35,9 +35,15 @@ class ::IPC {
       prereq_str = "\"" .. ::Util.join("\", \"", prereqs) .. "\"";
     }
 
-    Send("REGION", string.format(
-      "{ \"map\": \"%s\", \"region\": \"%s\", \"keys\": [%s] }",
-      map, name, prereq_str));
+    if (name != "") {
+      Send("REGION", string.format(
+        "{ \"map\": \"%s\", \"region\": \"%s\", \"keys\": [%s] }",
+        map, name, prereq_str));
+    } else {
+      Send("REGION", string.format(
+        "{ \"map\": \"%s\", \"keys\": [%s] }",
+        map, name, prereq_str));
+    }
   }
 
   static void CheckLocation(::Location loc, string pos_field, string tail) {

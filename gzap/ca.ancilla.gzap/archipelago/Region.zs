@@ -78,6 +78,9 @@ class ::Region play {
     console.printf("    %d locations", self.locations.Size());
     console.printf("    %d keys:%s", self.keys.CountUsed(), self.DebugKeyString());
     console.printf("    %d hints", self.hints.CountUsed());
+    foreach (name, subregion: self.subregions) {
+      console.printf("    - %s/%s: %s", self.map, name, subregion.PrereqsAsString());
+    }
     foreach (item, hint : self.hints) {
       console.printf("    - %s: %s @ %s", item, hint.player, hint.location);
     }
