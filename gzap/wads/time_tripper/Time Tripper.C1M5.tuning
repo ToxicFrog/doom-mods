@@ -1,0 +1,58 @@
+; LIMINAL SPACE II [all overflowing]
+
+; The map also contains a soulstaff, but it spawns in directly (so the scanner
+; doesn't find it) and doesn't come with a great deal of ammo in any case.
+
+; Main area featuring most of the enemies.
+AP-REGION { "map": "C1M5", "region": "Main", "keys": ["weapon/64Chaingun"] }
+; Baron of Hell cage that opens up once you kill all the imps and pinkies.
+; Also includes level exit.
+AP-REGION { "map": "C1M5", "region": "Baron Cage", "keys": ["weapon/RocketLauncher2", "weapon/64Chaingun"] }
+
+
+AP-CHECK { "id": 574, "name": "C1M5 - Bullets [2336,112]", "pos": ["C1M5",2336,112,-16], "region": "Main" }
+AP-CHECK { "id": 614, "name": "C1M5 - Stimpack [2272,112]", "pos": ["C1M5",2272,112,-16], "region": "Main" }
+AP-CHECK { "id": 583, "name": "C1M5 - GreenArmor", "pos": ["C1M5",2272,112,-16], "region": "Main" }
+AP-CHECK { "id": 573, "name": "C1M5 - Chaingun", "pos": ["C1M5",2208,112,-16], "region": "Main" }
+AP-CHECK { "id": 598, "name": "C1M5 - ArmorBonus [1796,104]", "pos": ["C1M5",1796,104,-16], "region": "Main" }
+AP-CHECK { "id": 599, "name": "C1M5 - ArmorBonus [1780,88]", "pos": ["C1M5",1780,88,-16], "region": "Main" }
+AP-CHECK { "id": 596, "name": "C1M5 - ArmorBonus [1780,120]", "pos": ["C1M5",1780,120,-16], "region": "Main" }
+AP-CHECK { "id": 597, "name": "C1M5 - ArmorBonus [1764,104]", "pos": ["C1M5",1764,104,-16], "region": "Main" }
+AP-CHECK { "id": 592, "name": "C1M5 - Shotgun Shells [3424,1472]", "pos": ["C1M5",3424,1472,-16], "region": "Main" }
+AP-CHECK { "id": 594, "name": "C1M5 - Bullets [3440,1456]", "pos": ["C1M5",3440,1456,-16], "region": "Main" }
+AP-CHECK { "id": 593, "name": "C1M5 - Bullets [3408,1456]", "pos": ["C1M5",3408,1456,-16], "region": "Main" }
+AP-CHECK { "id": 595, "name": "C1M5 - Shotgun Shells [3424,1440]", "pos": ["C1M5",3424,1440,-16], "region": "Main" }
+AP-CHECK { "id": 608, "name": "C1M5 - ArmorBonus [3216,1188]", "pos": ["C1M5",3216,1188,-16], "region": "Main" }
+AP-CHECK { "id": 581, "name": "C1M5 - ArmorBonus [3232,1172]", "pos": ["C1M5",3232,1172,-16], "region": "Main" }
+AP-CHECK { "id": 580, "name": "C1M5 - ArmorBonus [3216,1156]", "pos": ["C1M5",3216,1156,-16], "region": "Main" }
+AP-CHECK { "id": 609, "name": "C1M5 - ArmorBonus [3200,1172]", "pos": ["C1M5",3200,1172,-16], "region": "Main" }
+AP-CHECK { "id": 582, "name": "C1M5 - Stimpack [2928,832]", "pos": ["C1M5",2928,832,-16], "region": "Main" }
+AP-CHECK { "id": 611, "name": "C1M5 - Shotgun Shells [2448,1120]", "pos": ["C1M5",2448,1120,-16], "region": "Main" }
+AP-CHECK { "id": 610, "name": "C1M5 - Shotgun", "pos": ["C1M5",2368,1120,-16], "region": "Main" }
+AP-CHECK { "id": 612, "name": "C1M5 - Shotgun Shells [2288,1120]", "pos": ["C1M5",2288,1120,-16], "region": "Main" }
+AP-CHECK { "id": 576, "name": "C1M5 - Stimpack [1872,1216]", "pos": ["C1M5",1872,1216,-16], "region": "Main" }
+AP-CHECK { "id": 578, "name": "C1M5 - Stimpack [1480,1528]", "pos": ["C1M5",1480,1528,-16], "region": "Main" }
+AP-CHECK { "id": 600, "name": "C1M5 - Shotgun Shells [1816,672]", "pos": ["C1M5",1816,672,-16], "region": "Main" }
+AP-CHECK { "id": 601, "name": "C1M5 - Bullets [1800,656]", "pos": ["C1M5",1800,656,-16], "region": "Main" }
+AP-CHECK { "id": 602, "name": "C1M5 - Bullets [1832,656]", "pos": ["C1M5",1832,656,-16], "region": "Main" }
+AP-CHECK { "id": 603, "name": "C1M5 - Shotgun Shells [1816,640]", "pos": ["C1M5",1816,640,-16], "region": "Main" }
+AP-CHECK { "id": 587, "name": "C1M5 - Shotgun Shells [1616,2000]", "pos": ["C1M5",1616,2000,-16], "region": "Main" }
+AP-CHECK { "id": 586, "name": "C1M5 - Bullets [1632,2016]", "pos": ["C1M5",1632,2016,-16], "region": "Main" }
+AP-CHECK { "id": 585, "name": "C1M5 - Bullets [1600,2016]", "pos": ["C1M5",1600,2016,-16], "region": "Main" }
+AP-CHECK { "id": 584, "name": "C1M5 - Shotgun Shells [1616,2032]", "pos": ["C1M5",1616,2032,-16], "region": "Main" }
+AP-CHECK { "id": 579, "name": "C1M5 - Stimpack [3328,2156]", "pos": ["C1M5",3328,2156,-16], "region": "Main" }
+AP-CHECK { "id": 575, "name": "C1M5 - Stimpack [2432,800]", "pos": ["C1M5",2432,800,-16], "region": "Main" }
+AP-CHECK { "id": 577, "name": "C1M5 - Stimpack [2820,1988]", "pos": ["C1M5",2820,1988,-16], "region": "Main" }
+AP-CHECK { "id": 590, "name": "C1M5 - ArmorBonus [2448,1792]", "pos": ["C1M5",2448,1792,-16], "region": "Main" }
+AP-CHECK { "id": 588, "name": "C1M5 - ArmorBonus [2432,1808]", "pos": ["C1M5",2432,1808,-16], "region": "Main" }
+AP-CHECK { "id": 591, "name": "C1M5 - ArmorBonus [2432,1776]", "pos": ["C1M5",2432,1776,-16], "region": "Main" }
+AP-CHECK { "id": 589, "name": "C1M5 - ArmorBonus [2416,1792]", "pos": ["C1M5",2416,1792,-16], "region": "Main" }
+AP-CHECK { "id": 606, "name": "C1M5 - ArmorBonus [2528,1544]", "pos": ["C1M5",2528,1544,-16], "region": "Main" }
+AP-CHECK { "id": 604, "name": "C1M5 - ArmorBonus [2512,1560]", "pos": ["C1M5",2512,1560,-16], "region": "Main" }
+AP-CHECK { "id": 607, "name": "C1M5 - ArmorBonus [2512,1528]", "pos": ["C1M5",2512,1528,-16], "region": "Main" }
+AP-CHECK { "id": 605, "name": "C1M5 - ArmorBonus [2496,1544]", "pos": ["C1M5",2496,1544,-16], "region": "Main" }
+AP-CHECK { "id": 616, "name": "C1M5 - Rockets [2100,1924]", "pos": ["C1M5",2100,1924,-16], "region": "Baron Cage" }
+AP-CHECK { "id": 613, "name": "C1M5 - Rockets [2064,2036]", "pos": ["C1M5",2064,2036,-16], "region": "Baron Cage" }
+AP-CHECK { "id": 615, "name": "C1M5 - Rockets [2108,2196]", "pos": ["C1M5",2108,2196,-16], "region": "Baron Cage" }
+AP-CHECK { "id": 617, "name": "C1M5 - Rockets [2168,2160]", "pos": ["C1M5",2168,2160,-16], "region": "Baron Cage" }
+AP-CHECK { "id": 572, "name": "C1M5 - Exit", "pos": ["C1M5","event","exit"], "region": "Baron Cage" }

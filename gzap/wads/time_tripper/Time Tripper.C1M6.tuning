@@ -1,0 +1,189 @@
+; NONSENSE CODON [time tripping]
+
+; Entrance area
+AP-REGION { "map": "C1M6", "region": "Gazebo", "keys": [] }
+; Short path leading to south building, not really a part of the gazebo but not
+; part of the building either
+AP-REGION { "map": "C1M6", "region": "South Path", "keys": [] }
+; Secret reachable by hopping off the south path stairs over the wall and looping
+; around the back of the building
+AP-REGION { "map": "C1M6", "region": "South Secret", "keys": ["flag/secret"] }
+; Same as south secret but head north around the gazebo area to the north side
+; of the garden hedge, where the switch to open the secret exit is.
+AP-REGION { "map": "C1M6", "region": "North Secret", "keys": ["flag/secret"] }
+; All the items initially accessible in the north garden.
+AP-REGION { "map": "C1M6", "region": "North Garden", "keys": ["weapon/64Chaingun/want", "weapon/SuperShotgun2/want"] }
+; All the items that become available as enemies are spawning in.
+AP-REGION { "map": "C1M6", "region": "North Garden Battle", "keys": ["weapon/RocketLauncher2/want", "weapon/64Chaingun/want", "weapon/SuperShotgun2/want"] }
+; Items in the south building before you trigger the fight.
+AP-REGION { "map": "C1M6", "region": "South Building", "keys": ["weapon/SkullStaff/want", "weapon/SuperShotgun2/want", "weapon/64Chaingun/want"] }
+; Items in the south building after you win the fight.
+AP-REGION { "map": "C1M6", "region": "South Building Reward", "keys": ["weapon/SkullStaff/want", "weapon/SuperShotgun2/want", "weapon/64Chaingun/want"] }
+; Items in the blue key arena reachable by teleport after clearing the north
+; and south areas.
+AP-REGION { "map": "C1M6", "region": "Blue Key Arena", "keys": ["weapon/SkullStaff/want", "weapon/RocketLauncher2/want", "weapon/64PlasmaRifle/want", "weapon/64Chaingun/want", "weapon/SuperShotgun2/want"] }
+; Exit reachable immediately from the gazebo once you have all keys.
+AP-REGION { "map": "C1M6", "region": "Exit", "keys": ["key/BlueSkull", "key/YellowSkull", "key/RedSkull"] }
+
+
+AP-CHECK { "id": 750, "name": "C1M6 - Medikit [1440,672]", "pos": ["C1M6",1440,672,-16], "region": "Gazebo" }
+AP-CHECK { "id": 663, "name": "C1M6 - Super Shotgun", "pos": ["C1M6",2236,912,-7], "region": "Gazebo" }
+AP-CHECK { "id": 666, "name": "C1M6 - Shotgun Shells [2268,976]", "pos": ["C1M6",2268,976,-7], "region": "Gazebo" }
+AP-CHECK { "id": 668, "name": "C1M6 - Shotgun Shells [2312,1040]", "pos": ["C1M6",2312,1040,-7], "region": "Gazebo" }
+AP-CHECK { "id": 670, "name": "C1M6 - Shotgun Shells [2356,1096]", "pos": ["C1M6",2356,1096,-7], "region": "Gazebo" }
+AP-CHECK { "id": 669, "name": "C1M6 - Rockets [2412,1140]", "pos": ["C1M6",2412,1140,-7], "region": "Gazebo" }
+AP-CHECK { "id": 667, "name": "C1M6 - Rockets [2476,1184]", "pos": ["C1M6",2476,1184,-7], "region": "Gazebo" }
+AP-CHECK { "id": 664, "name": "C1M6 - Rockets [2540,1216]", "pos": ["C1M6",2540,1216,-7], "region": "Gazebo" }
+AP-CHECK { "id": 665, "name": "C1M6 - Energy Cells [3328,432]", "pos": ["C1M6",3328,432,-7], "region": "Gazebo" }
+AP-CHECK { "id": 673, "name": "C1M6 - Energy Cells [3300,372]", "pos": ["C1M6",3300,372,-7], "region": "Gazebo" }
+AP-CHECK { "id": 620, "name": "C1M6 - Energy Cells [3260,308]", "pos": ["C1M6",3260,308,-7], "region": "Gazebo" }
+AP-CHECK { "id": 671, "name": "C1M6 - Bullets [3212,252]", "pos": ["C1M6",3212,252,-7], "region": "Gazebo" }
+AP-CHECK { "id": 621, "name": "C1M6 - Bullets [3152,204]", "pos": ["C1M6",3152,204,-7], "region": "Gazebo" }
+AP-CHECK { "id": 674, "name": "C1M6 - Bullets [3088,160]", "pos": ["C1M6",3088,160,-7], "region": "Gazebo" }
+AP-CHECK { "id": 672, "name": "C1M6 - Chaingun", "pos": ["C1M6",3024,128,-7], "region": "Gazebo" }
+AP-CHECK { "id": 751, "name": "C1M6 - Medikit [2632,-1308]", "pos": ["C1M6",2632,-1308,-8], "region": "South Path" }
+AP-CHECK { "id": 778, "name": "C1M6 - Secret 4", "pos": ["C1M6","secret","sector",4], "region": "South Secret" }
+AP-CHECK { "id": 732, "name": "C1M6 - DogBall", "pos": ["C1M6",2784,-3360,-16], "region": "South Secret" }
+AP-CHECK { "id": 779, "name": "C1M6 - Secret 5", "pos": ["C1M6","secret","sector",5], "region": "North Secret" }
+AP-CHECK { "id": 642, "name": "C1M6 - HealthBonus [3384,4150]", "pos": ["C1M6",3384,4150,-16], "region": "North Garden" }
+AP-CHECK { "id": 653, "name": "C1M6 - HealthBonus [3488,4078]", "pos": ["C1M6",3488,4078,-16], "region": "North Garden" }
+AP-CHECK { "id": 643, "name": "C1M6 - ArmorBonus [3568,3998]", "pos": ["C1M6",3568,3998,-16], "region": "North Garden" }
+AP-CHECK { "id": 644, "name": "C1M6 - ArmorBonus [3648,3910]", "pos": ["C1M6",3648,3910,-16], "region": "North Garden" }
+AP-CHECK { "id": 645, "name": "C1M6 - ArmorBonus [3712,3798]", "pos": ["C1M6",3712,3798,-16], "region": "North Garden" }
+AP-CHECK { "id": 646, "name": "C1M6 - ArmorBonus [3752,3670]", "pos": ["C1M6",3752,3670,-16], "region": "North Garden" }
+AP-CHECK { "id": 647, "name": "C1M6 - ArmorBonus [3776,3558]", "pos": ["C1M6",3776,3558,-16], "region": "North Garden" }
+AP-CHECK { "id": 648, "name": "C1M6 - ArmorBonus [3768,3422]", "pos": ["C1M6",3768,3422,-16], "region": "North Garden" }
+AP-CHECK { "id": 649, "name": "C1M6 - ArmorBonus [3760,3302]", "pos": ["C1M6",3760,3302,-16], "region": "North Garden" }
+AP-CHECK { "id": 650, "name": "C1M6 - ArmorBonus [3712,3182]", "pos": ["C1M6",3712,3182,-16], "region": "North Garden" }
+AP-CHECK { "id": 651, "name": "C1M6 - ArmorBonus [3640,3054]", "pos": ["C1M6",3640,3054,-16], "region": "North Garden" }
+AP-CHECK { "id": 652, "name": "C1M6 - ArmorBonus [3560,2966]", "pos": ["C1M6",3560,2966,-16], "region": "North Garden" }
+AP-CHECK { "id": 641, "name": "C1M6 - ArmorBonus [3480,2886]", "pos": ["C1M6",3480,2886,-16], "region": "North Garden" }
+AP-CHECK { "id": 654, "name": "C1M6 - HealthBonus [2810,2734]", "pos": ["C1M6",2810,2734,0], "region": "North Garden" }
+AP-CHECK { "id": 656, "name": "C1M6 - HealthBonus [2774,2734]", "pos": ["C1M6",2774,2734,0], "region": "North Garden" }
+AP-CHECK { "id": 655, "name": "C1M6 - HealthBonus [2774,2768]", "pos": ["C1M6",2774,2768,0], "region": "North Garden" }
+AP-CHECK { "id": 625, "name": "C1M6 - Stimpack [2840,3174]", "pos": ["C1M6",2840,3174,-16], "region": "North Garden" }
+AP-CHECK { "id": 624, "name": "C1M6 - Stimpack [2840,3318]", "pos": ["C1M6",2840,3318,-16], "region": "North Garden" }
+AP-CHECK { "id": 633, "name": "C1M6 - HealthBonus [2472,3630]", "pos": ["C1M6",2472,3630,-16], "region": "North Garden" }
+AP-CHECK { "id": 631, "name": "C1M6 - HealthBonus [2504,3742]", "pos": ["C1M6",2504,3742,-16], "region": "North Garden" }
+AP-CHECK { "id": 632, "name": "C1M6 - HealthBonus [2544,3854]", "pos": ["C1M6",2544,3854,-16], "region": "North Garden" }
+AP-CHECK { "id": 634, "name": "C1M6 - HealthBonus [2624,3958]", "pos": ["C1M6",2624,3958,-16], "region": "North Garden" }
+AP-CHECK { "id": 635, "name": "C1M6 - HealthBonus [2696,4054]", "pos": ["C1M6",2696,4054,-16], "region": "North Garden" }
+AP-CHECK { "id": 636, "name": "C1M6 - HealthBonus [2808,4118]", "pos": ["C1M6",2808,4118,-16], "region": "North Garden" }
+AP-CHECK { "id": 637, "name": "C1M6 - HealthBonus [2912,4182]", "pos": ["C1M6",2912,4182,-16], "region": "North Garden" }
+AP-CHECK { "id": 638, "name": "C1M6 - HealthBonus [3032,4206]", "pos": ["C1M6",3032,4206,-16], "region": "North Garden" }
+AP-CHECK { "id": 639, "name": "C1M6 - HealthBonus [3152,4214]", "pos": ["C1M6",3152,4214,-16], "region": "North Garden" }
+AP-CHECK { "id": 640, "name": "C1M6 - HealthBonus [3264,4190]", "pos": ["C1M6",3264,4190,-16], "region": "North Garden" }
+AP-CHECK { "id": 630, "name": "C1M6 - GreenArmor", "pos": ["C1M6",3242,3870,24], "region": "North Garden" }
+AP-CHECK { "id": 622, "name": "C1M6 - Stimpack [3384,3318]", "pos": ["C1M6",3384,3318,-16], "region": "North Garden" }
+AP-CHECK { "id": 623, "name": "C1M6 - Stimpack [3384,3174]", "pos": ["C1M6",3384,3174,-16], "region": "North Garden" }
+AP-CHECK { "id": 749, "name": "C1M6 - Rockets [3152,3248]", "pos": ["C1M6",3152,3248,-14], "region": "North Garden" }
+AP-CHECK { "id": 748, "name": "C1M6 - Rockets [3072,3248]", "pos": ["C1M6",3072,3248,-14], "region": "North Garden" }
+AP-CHECK { "id": 629, "name": "C1M6 - Medikit [2808,3884]", "pos": ["C1M6",2808,3884,8], "region": "North Garden" }
+AP-CHECK { "id": 626, "name": "C1M6 - HealthBonus [2624,3716]", "pos": ["C1M6",2624,3716,8], "region": "North Garden" }
+AP-CHECK { "id": 627, "name": "C1M6 - HealthBonus [2624,3676]", "pos": ["C1M6",2624,3676,8], "region": "North Garden" }
+AP-CHECK { "id": 628, "name": "C1M6 - HealthBonus [2664,3676]", "pos": ["C1M6",2664,3676,8], "region": "North Garden" }
+AP-CHECK { "id": 658, "name": "C1M6 - Rocket Launcher", "pos": ["C1M6",2676,3732,96], "region": "North Garden" }
+AP-CHECK { "id": 735, "name": "C1M6 - Rockets [3032,4004]", "pos": ["C1M6",3032,4004,-16], "region": "North Garden Battle" }
+AP-CHECK { "id": 745, "name": "C1M6 - Rockets [3064,4036]", "pos": ["C1M6",3064,4036,-16], "region": "North Garden Battle" }
+AP-CHECK { "id": 737, "name": "C1M6 - Stimpack [3032,4036]", "pos": ["C1M6",3032,4036,-16], "region": "North Garden Battle" }
+AP-CHECK { "id": 743, "name": "C1M6 - Rockets [3032,4072]", "pos": ["C1M6",3032,4072,-16], "region": "North Garden Battle" }
+AP-CHECK { "id": 738, "name": "C1M6 - Rockets [3000,4036]", "pos": ["C1M6",3000,4036,-16], "region": "North Garden Battle" }
+AP-CHECK { "id": 741, "name": "C1M6 - Rockets [2776,3032]", "pos": ["C1M6",2776,3032,-16], "region": "North Garden Battle" }
+AP-CHECK { "id": 742, "name": "C1M6 - Stimpack [2776,2996]", "pos": ["C1M6",2776,2996,-16], "region": "North Garden Battle" }
+AP-CHECK { "id": 739, "name": "C1M6 - Rockets [2808,2996]", "pos": ["C1M6",2808,2996,-16], "region": "North Garden Battle" }
+AP-CHECK { "id": 736, "name": "C1M6 - Rockets [2776,2964]", "pos": ["C1M6",2776,2964,-16], "region": "North Garden Battle" }
+AP-CHECK { "id": 733, "name": "C1M6 - Rockets [3560,3348]", "pos": ["C1M6",3560,3348,-16], "region": "North Garden Battle" }
+AP-CHECK { "id": 744, "name": "C1M6 - Rockets [3592,3380]", "pos": ["C1M6",3592,3380,-16], "region": "North Garden Battle" }
+AP-CHECK { "id": 734, "name": "C1M6 - Medikit [3560,3380]", "pos": ["C1M6",3560,3380,-16], "region": "North Garden Battle" }
+AP-CHECK { "id": 747, "name": "C1M6 - Rockets [3528,3380]", "pos": ["C1M6",3528,3380,-16], "region": "North Garden Battle" }
+AP-CHECK { "id": 746, "name": "C1M6 - Rockets [3560,3416]", "pos": ["C1M6",3560,3416,-16], "region": "North Garden Battle" }
+AP-CHECK { "id": 740, "name": "C1M6 - Rockets [2744,2996]", "pos": ["C1M6",2744,2996,-16], "region": "North Garden Battle" }
+AP-CHECK { "id": 681, "name": "C1M6 - SkullStaff", "pos": ["C1M6",2784,-2304,64], "region": "South Building" }
+AP-CHECK { "id": 675, "name": "C1M6 - SpiritAmmo [3016,-2272]", "pos": ["C1M6",3016,-2272,64], "region": "South Building" }
+AP-CHECK { "id": 677, "name": "C1M6 - SpiritAmmo [3096,-2232]", "pos": ["C1M6",3096,-2232,64], "region": "South Building" }
+AP-CHECK { "id": 679, "name": "C1M6 - Stimpack [3376,-2208]", "pos": ["C1M6",3376,-2208,223], "region": "South Building" }
+AP-CHECK { "id": 657, "name": "C1M6 - SpiritAmmo [2552,-2272]", "pos": ["C1M6",2552,-2272,64], "region": "South Building" }
+AP-CHECK { "id": 659, "name": "C1M6 - SpiritAmmo [2472,-2232]", "pos": ["C1M6",2472,-2232,64], "region": "South Building" }
+AP-CHECK { "id": 678, "name": "C1M6 - Stimpack [2192,-2208]", "pos": ["C1M6",2192,-2208,224], "region": "South Building" }
+AP-CHECK { "id": 728, "name": "C1M6 - Rockets [2328,-2520]", "pos": ["C1M6",2328,-2520,64], "region": "South Building" }
+AP-CHECK { "id": 722, "name": "C1M6 - Rockets [2280,-2520]", "pos": ["C1M6",2280,-2520,64], "region": "South Building" }
+AP-CHECK { "id": 727, "name": "C1M6 - Rockets [2280,-2568]", "pos": ["C1M6",2280,-2568,64], "region": "South Building" }
+AP-CHECK { "id": 661, "name": "C1M6 - Medikit [2496,-2720]", "pos": ["C1M6",2496,-2720,64], "region": "South Building" }
+AP-CHECK { "id": 662, "name": "C1M6 - Medikit [3072,-2720]", "pos": ["C1M6",3072,-2720,64], "region": "South Building" }
+AP-CHECK { "id": 730, "name": "C1M6 - Rockets [3248,-2520]", "pos": ["C1M6",3248,-2520,64], "region": "South Building" }
+AP-CHECK { "id": 729, "name": "C1M6 - Rockets [3296,-2520]", "pos": ["C1M6",3296,-2520,64], "region": "South Building" }
+AP-CHECK { "id": 731, "name": "C1M6 - Rockets [3296,-2568]", "pos": ["C1M6",3296,-2568,64], "region": "South Building" }
+AP-CHECK { "id": 660, "name": "C1M6 - Plasma Rifle", "pos": ["C1M6",2880,-3184,192], "region": "South Building Reward" }
+AP-CHECK { "id": 680, "name": "C1M6 - Red Skull", "pos": ["C1M6",2784,-3184,192], "region": "South Building Reward" }
+AP-CHECK { "id": 774, "name": "C1M6 - Medikit [2700,-3196]", "pos": ["C1M6",2700,-3196,192], "region": "South Building Reward" }
+AP-CHECK { "id": 676, "name": "C1M6 - Soulsphere", "pos": ["C1M6",2688,-3184,192], "region": "South Building Reward" }
+AP-CHECK { "id": 773, "name": "C1M6 - Medikit [2676,-3172]", "pos": ["C1M6",2676,-3172,192], "region": "South Building Reward" }
+AP-CHECK { "id": 683, "name": "C1M6 - Bullets [-2128,-1180]", "pos": ["C1M6",-2128,-1180,64], "region": "Blue Key Arena" }
+AP-CHECK { "id": 754, "name": "C1M6 - Energy Cells [-1984,-944]", "pos": ["C1M6",-1984,-944,64], "region": "Blue Key Arena" }
+AP-CHECK { "id": 688, "name": "C1M6 - HealthBonus [-1888,-288]", "pos": ["C1M6",-1888,-288,64], "region": "Blue Key Arena" }
+AP-CHECK { "id": 687, "name": "C1M6 - HealthBonus [-1888,-224]", "pos": ["C1M6",-1888,-224,64], "region": "Blue Key Arena" }
+AP-CHECK { "id": 686, "name": "C1M6 - HealthBonus [-1888,-160]", "pos": ["C1M6",-1888,-160,64], "region": "Blue Key Arena" }
+AP-CHECK { "id": 685, "name": "C1M6 - HealthBonus [-1888,-96]", "pos": ["C1M6",-1888,-96,64], "region": "Blue Key Arena" }
+AP-CHECK { "id": 684, "name": "C1M6 - HealthBonus [-1888,-32]", "pos": ["C1M6",-1888,-32,64], "region": "Blue Key Arena" }
+AP-CHECK { "id": 720, "name": "C1M6 - ArmorBonus [-1136,-112]", "pos": ["C1M6",-1136,-112,192], "region": "Blue Key Arena" }
+AP-CHECK { "id": 717, "name": "C1M6 - ArmorBonus [-1072,-112]", "pos": ["C1M6",-1072,-112,192], "region": "Blue Key Arena" }
+AP-CHECK { "id": 716, "name": "C1M6 - ArmorBonus [-1008,-112]", "pos": ["C1M6",-1008,-112,192], "region": "Blue Key Arena" }
+AP-CHECK { "id": 718, "name": "C1M6 - ArmorBonus [-1008,-176]", "pos": ["C1M6",-1008,-176,192], "region": "Blue Key Arena" }
+AP-CHECK { "id": 719, "name": "C1M6 - ArmorBonus [-1008,-240]", "pos": ["C1M6",-1008,-240,192], "region": "Blue Key Arena" }
+AP-CHECK { "id": 693, "name": "C1M6 - HealthBonus [-896,688]", "pos": ["C1M6",-896,688,16], "region": "Blue Key Arena" }
+AP-CHECK { "id": 692, "name": "C1M6 - HealthBonus [-960,688]", "pos": ["C1M6",-960,688,16], "region": "Blue Key Arena" }
+AP-CHECK { "id": 691, "name": "C1M6 - HealthBonus [-1024,688]", "pos": ["C1M6",-1024,688,16], "region": "Blue Key Arena" }
+AP-CHECK { "id": 690, "name": "C1M6 - HealthBonus [-1088,688]", "pos": ["C1M6",-1088,688,16], "region": "Blue Key Arena" }
+AP-CHECK { "id": 689, "name": "C1M6 - HealthBonus [-1152,688]", "pos": ["C1M6",-1152,688,16], "region": "Blue Key Arena" }
+AP-CHECK { "id": 752, "name": "C1M6 - Energy Cells [-1888,-848]", "pos": ["C1M6",-1888,-848,64], "region": "Blue Key Arena" }
+AP-CHECK { "id": 753, "name": "C1M6 - Energy Cells [-1936,-896]", "pos": ["C1M6",-1936,-896,64], "region": "Blue Key Arena" }
+AP-CHECK { "id": 710, "name": "C1M6 - ArmorBonus [-1664,-1584]", "pos": ["C1M6",-1664,-1584,64], "region": "Blue Key Arena" }
+AP-CHECK { "id": 709, "name": "C1M6 - ArmorBonus [-1600,-1584]", "pos": ["C1M6",-1600,-1584,64], "region": "Blue Key Arena" }
+AP-CHECK { "id": 708, "name": "C1M6 - ArmorBonus [-1536,-1584]", "pos": ["C1M6",-1536,-1584,64], "region": "Blue Key Arena" }
+AP-CHECK { "id": 682, "name": "C1M6 - Energy Cells [-2016,-1308]", "pos": ["C1M6",-2016,-1308,64], "region": "Blue Key Arena" }
+AP-CHECK { "id": 707, "name": "C1M6 - ArmorBonus [-1536,-1520]", "pos": ["C1M6",-1536,-1520,64], "region": "Blue Key Arena" }
+AP-CHECK { "id": 703, "name": "C1M6 - ArmorBonus [-1536,-1456]", "pos": ["C1M6",-1536,-1456,64], "region": "Blue Key Arena" }
+AP-CHECK { "id": 765, "name": "C1M6 - Shotgun Shells [-1256,-1352]", "pos": ["C1M6",-1256,-1352,64], "region": "Blue Key Arena" }
+AP-CHECK { "id": 764, "name": "C1M6 - Shotgun Shells [-1184,-1304]", "pos": ["C1M6",-1184,-1304,64], "region": "Blue Key Arena" }
+AP-CHECK { "id": 763, "name": "C1M6 - Shotgun Shells [-1120,-1368]", "pos": ["C1M6",-1120,-1368,64], "region": "Blue Key Arena" }
+AP-CHECK { "id": 758, "name": "C1M6 - Energy Cells [-240,-1232]", "pos": ["C1M6",-240,-1232,0], "region": "Blue Key Arena" }
+AP-CHECK { "id": 757, "name": "C1M6 - Energy Cells [-192,-1232]", "pos": ["C1M6",-192,-1232,-2], "region": "Blue Key Arena" }
+AP-CHECK { "id": 759, "name": "C1M6 - Energy Cells [-192,-1280]", "pos": ["C1M6",-192,-1280,0], "region": "Blue Key Arena" }
+AP-CHECK { "id": 761, "name": "C1M6 - Energy Cells [-192,-1728]", "pos": ["C1M6",-192,-1728,0], "region": "Blue Key Arena" }
+AP-CHECK { "id": 762, "name": "C1M6 - Energy Cells [-240,-1776]", "pos": ["C1M6",-240,-1776,0], "region": "Blue Key Arena" }
+AP-CHECK { "id": 760, "name": "C1M6 - Energy Cells [-192,-1776]", "pos": ["C1M6",-192,-1776,0], "region": "Blue Key Arena" }
+AP-CHECK { "id": 768, "name": "C1M6 - Rockets [-288,640]", "pos": ["C1M6",-288,640,16], "region": "Blue Key Arena" }
+AP-CHECK { "id": 770, "name": "C1M6 - Rockets [-288,704]", "pos": ["C1M6",-288,704,16], "region": "Blue Key Arena" }
+AP-CHECK { "id": 767, "name": "C1M6 - Rockets [-288,768]", "pos": ["C1M6",-288,768,14], "region": "Blue Key Arena" }
+AP-CHECK { "id": 721, "name": "C1M6 - Blue Skull", "pos": ["C1M6",-288,848,30], "region": "Blue Key Arena" }
+AP-CHECK { "id": 766, "name": "C1M6 - Rockets [-368,848]", "pos": ["C1M6",-368,848,14], "region": "Blue Key Arena" }
+AP-CHECK { "id": 769, "name": "C1M6 - Rockets [-432,848]", "pos": ["C1M6",-432,848,16], "region": "Blue Key Arena" }
+AP-CHECK { "id": 771, "name": "C1M6 - Rockets [-496,848]", "pos": ["C1M6",-496,848,16], "region": "Blue Key Arena" }
+AP-CHECK { "id": 711, "name": "C1M6 - ArmorBonus [-1344,144]", "pos": ["C1M6",-1344,144,16], "region": "Blue Key Arena" }
+AP-CHECK { "id": 712, "name": "C1M6 - ArmorBonus [-1344,80]", "pos": ["C1M6",-1344,80,16], "region": "Blue Key Arena" }
+AP-CHECK { "id": 713, "name": "C1M6 - ArmorBonus [-1344,16]", "pos": ["C1M6",-1344,16,16], "region": "Blue Key Arena" }
+AP-CHECK { "id": 714, "name": "C1M6 - ArmorBonus [-1280,16]", "pos": ["C1M6",-1280,16,16], "region": "Blue Key Arena" }
+AP-CHECK { "id": 715, "name": "C1M6 - ArmorBonus [-1216,16]", "pos": ["C1M6",-1216,16,16], "region": "Blue Key Arena" }
+AP-CHECK { "id": 702, "name": "C1M6 - HealthBonus [-1760,-368]", "pos": ["C1M6",-1760,-368,192], "region": "Blue Key Arena" }
+AP-CHECK { "id": 701, "name": "C1M6 - HealthBonus [-1760,-432]", "pos": ["C1M6",-1760,-432,192], "region": "Blue Key Arena" }
+AP-CHECK { "id": 700, "name": "C1M6 - HealthBonus [-1760,-496]", "pos": ["C1M6",-1760,-496,192], "region": "Blue Key Arena" }
+AP-CHECK { "id": 699, "name": "C1M6 - HealthBonus [-1760,-560]", "pos": ["C1M6",-1760,-560,192], "region": "Blue Key Arena" }
+AP-CHECK { "id": 698, "name": "C1M6 - HealthBonus [-1760,-624]", "pos": ["C1M6",-1760,-624,192], "region": "Blue Key Arena" }
+AP-CHECK { "id": 772, "name": "C1M6 - Rockets [-1536,-1016]", "pos": ["C1M6",-1536,-1016,192], "region": "Blue Key Arena" }
+AP-CHECK { "id": 755, "name": "C1M6 - Energy Cells [-1216,-784]", "pos": ["C1M6",-1216,-784,288], "region": "Blue Key Arena" }
+AP-CHECK { "id": 756, "name": "C1M6 - Energy Cells [-1168,-720]", "pos": ["C1M6",-1168,-720,288], "region": "Blue Key Arena" }
+AP-CHECK { "id": 723, "name": "C1M6 - Rockets [-992,-688]", "pos": ["C1M6",-992,-688,288], "region": "Blue Key Arena" }
+AP-CHECK { "id": 724, "name": "C1M6 - Rockets [-992,-736]", "pos": ["C1M6",-992,-736,288], "region": "Blue Key Arena" }
+AP-CHECK { "id": 725, "name": "C1M6 - Rockets [-992,-784]", "pos": ["C1M6",-992,-784,288], "region": "Blue Key Arena" }
+AP-CHECK { "id": 726, "name": "C1M6 - Rockets [-992,-832]", "pos": ["C1M6",-992,-832,288], "region": "Blue Key Arena" }
+AP-CHECK { "id": 697, "name": "C1M6 - HealthBonus [-672,-1196]", "pos": ["C1M6",-672,-1196,288], "region": "Blue Key Arena" }
+AP-CHECK { "id": 696, "name": "C1M6 - HealthBonus [-736,-1196]", "pos": ["C1M6",-736,-1196,288], "region": "Blue Key Arena" }
+AP-CHECK { "id": 695, "name": "C1M6 - HealthBonus [-800,-1196]", "pos": ["C1M6",-800,-1196,288], "region": "Blue Key Arena" }
+AP-CHECK { "id": 694, "name": "C1M6 - HealthBonus [-864,-1196]", "pos": ["C1M6",-864,-1196,286], "region": "Blue Key Arena" }
+AP-CHECK { "id": 706, "name": "C1M6 - Rockets [-1072,-1984]", "pos": ["C1M6",-1072,-1984,192], "region": "Blue Key Arena" }
+AP-CHECK { "id": 776, "name": "C1M6 - Medikit [-1200,-1936]", "pos": ["C1M6",-1200,-1936,192], "region": "Blue Key Arena" }
+AP-CHECK { "id": 704, "name": "C1M6 - BlueArmor", "pos": ["C1M6",-1232,-1936,192], "region": "Blue Key Arena" }
+AP-CHECK { "id": 775, "name": "C1M6 - Medikit [-1264,-1936]", "pos": ["C1M6",-1264,-1936,192], "region": "Blue Key Arena" }
+AP-CHECK { "id": 705, "name": "C1M6 - Rockets [-1376,-1984]", "pos": ["C1M6",-1376,-1984,192], "region": "Blue Key Arena" }
+AP-CHECK { "id": 777, "name": "C1M6 - Bullets [0,0]", "pos": ["C1M6",0,0,0], "unreachable": true }
+AP-CHECK { "id": 619, "name": "C1M6 - Exit", "pos": ["C1M6","event","exit"], "region": "Exit" }

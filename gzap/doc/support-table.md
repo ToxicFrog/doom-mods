@@ -163,6 +163,7 @@ Entire games that replace most or all of the vanilla gameplay.
 | Golden Souls 2                   |      |         |        |         | missing | (3) |
 | Hedon Bloodrite                  |      |         |        |         | missing | This is going to be a project but I think it would be pretty cool. |
 | [Space Cats Saga]                |   40 |     433 |    786 |     888 | partial  | Episode 1 has complete logic, other episodes only basic. Checks that replace pettable cats may sometimes require noclipping to touch even if they look reachable. |
+| [Time Tripper]                   |    9 |      88 |     61 |      84 | complete | |
 
 (1) Requires progressive item support in the logic engine.
 (3) Requires support for "stacking" keys that open more things the more you have.
@@ -170,6 +171,7 @@ Entire games that replace most or all of the vanilla gameplay.
 [The Adventures of Square]: ../../release/apworlds/zdoom_the_adventures_of_square.apworld
 [Faithless]: ../../release/apworlds/zdoom_faithless.apworld
 [Space Cats Saga]: ../../release/apworlds/zdoom_space_cats_saga.apworld
+[Time Tripper]: ../../release/apworlds/time_tripper.apworld
 
 ### Fan-Games for Other IPs
 

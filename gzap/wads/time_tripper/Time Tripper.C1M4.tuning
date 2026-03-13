@@ -1,0 +1,139 @@
+; THE RESTLESS, THE TENDER [the forever plane]
+
+; Dogball secret accessible by dodging around the archviles at the very start
+; of the level and opening the back wall.
+AP-REGION { "map": "C1M4", "region": "Archvile Closet Secret", "keys": [] }
+; Main arena that you arrive at from the starting halls.
+AP-REGION { "map": "C1M4", "region": "West Arena", "keys": ["weapon/64Chaingun"] }
+; Secret compartment inside the fancy arch in the west arena.
+AP-REGION { "map": "C1M4", "region": "Arch Secret", "keys": ["weapon/64Chaingun"] }
+; Bridge connecting the two arenas.
+AP-REGION { "map": "C1M4", "region": "Bridge", "keys": ["weapon/64Chaingun"] }
+; East arena with mini-cyberdemon and yellow key.
+AP-REGION { "map": "C1M4", "region": "East Arena", "keys": ["weapon/Shotgun2", "weapon/64Chaingun"] }
+; Weapon and ammo stockpile in the archvile cage. Can be claimed without releasing them.
+AP-REGION { "map": "C1M4", "region": "Archvile Cage", "keys": ["key/YellowCard", "weapon/64Chaingun"] }
+; Final battle against the archviles. Only contains the level exit.
+AP-REGION { "map": "C1M4", "region": "Last Dance", "keys": ["weapon/SuperShotgun2", "weapon/RocketLauncher2", "weapon/64PlasmaRifle", "key/YellowCard", "weapon/64Chaingun"] }
+
+AP-CHECK { "id": 571, "name": "C1M4 - Secret 798", "pos": ["C1M4","secret","sector",798], "region": "Archvile Closet Secret" }
+AP-CHECK { "id": 537, "name": "C1M4 - DogBall", "pos": ["C1M4",-132,7192,114], "region": "Archvile Closet Secret" }
+AP-CHECK { "id": 535, "name": "C1M4 - DogBallAmmo [-132,7160]", "pos": ["C1M4",-132,7160,102], "region": "Archvile Closet Secret" }
+AP-CHECK { "id": 538, "name": "C1M4 - DogBallAmmo [-100,7192]", "pos": ["C1M4",-100,7192,102], "region": "Archvile Closet Secret" }
+AP-CHECK { "id": 534, "name": "C1M4 - DogBallAmmo [-132,7224]", "pos": ["C1M4",-132,7224,102], "region": "Archvile Closet Secret" }
+AP-CHECK { "id": 539, "name": "C1M4 - DogBallAmmo [-164,7192]", "pos": ["C1M4",-164,7192,102], "region": "Archvile Closet Secret" }
+AP-CHECK { "id": 536, "name": "C1M4 - Megasphere [NW]", "pos": ["C1M4",-132,7472,92], "region": "Archvile Closet Secret" }
+AP-CHECK { "id": 554, "name": "C1M4 - Bullets [4168,1296]", "pos": ["C1M4",4168,1296,144], "region": "West Arena" }
+AP-CHECK { "id": 555, "name": "C1M4 - Bullets [4168,1256]", "pos": ["C1M4",4168,1256,144], "region": "West Arena" }
+AP-CHECK { "id": 556, "name": "C1M4 - Bullets [4168,1216]", "pos": ["C1M4",4168,1216,144], "region": "West Arena" }
+AP-CHECK { "id": 557, "name": "C1M4 - Bullets [4168,1120]", "pos": ["C1M4",4168,1120,144], "region": "West Arena" }
+AP-CHECK { "id": 459, "name": "C1M4 - Bullets [4168,1080]", "pos": ["C1M4",4168,1080,144], "region": "West Arena" }
+AP-CHECK { "id": 463, "name": "C1M4 - Bullets [4168,1040]", "pos": ["C1M4",4168,1040,144], "region": "West Arena" }
+AP-CHECK { "id": 475, "name": "C1M4 - Medikit [4160,576]", "pos": ["C1M4",4160,576,128], "region": "West Arena" }
+AP-CHECK { "id": 465, "name": "C1M4 - Bullets [5160,616]", "pos": ["C1M4",5160,616,128], "region": "West Arena" }
+AP-CHECK { "id": 533, "name": "C1M4 - ArmorBonus [5504,576]", "pos": ["C1M4",5504,576,128], "region": "West Arena" }
+AP-CHECK { "id": 532, "name": "C1M4 - ArmorBonus [5552,576]", "pos": ["C1M4",5552,576,128], "region": "West Arena" }
+AP-CHECK { "id": 529, "name": "C1M4 - ArmorBonus [5600,576]", "pos": ["C1M4",5600,576,128], "region": "West Arena" }
+AP-CHECK { "id": 530, "name": "C1M4 - ArmorBonus [5600,624]", "pos": ["C1M4",5600,624,128], "region": "West Arena" }
+AP-CHECK { "id": 531, "name": "C1M4 - ArmorBonus [5600,672]", "pos": ["C1M4",5600,672,128], "region": "West Arena" }
+AP-CHECK { "id": 526, "name": "C1M4 - ArmorBonus [5600,1184]", "pos": ["C1M4",5600,1184,128], "region": "West Arena" }
+AP-CHECK { "id": 523, "name": "C1M4 - ArmorBonus [5552,1280]", "pos": ["C1M4",5552,1280,128], "region": "West Arena" }
+AP-CHECK { "id": 525, "name": "C1M4 - ArmorBonus [5504,1280]", "pos": ["C1M4",5504,1280,128], "region": "West Arena" }
+AP-CHECK { "id": 517, "name": "C1M4 - ArmorBonus [5600,2144]", "pos": ["C1M4",5600,2144,128], "region": "West Arena" }
+AP-CHECK { "id": 516, "name": "C1M4 - ArmorBonus [5600,2192]", "pos": ["C1M4",5600,2192,128], "region": "West Arena" }
+AP-CHECK { "id": 515, "name": "C1M4 - ArmorBonus [5600,2240]", "pos": ["C1M4",5600,2240,128], "region": "West Arena" }
+AP-CHECK { "id": 519, "name": "C1M4 - ArmorBonus [5552,2240]", "pos": ["C1M4",5552,2240,128], "region": "West Arena" }
+AP-CHECK { "id": 520, "name": "C1M4 - ArmorBonus [5504,2240]", "pos": ["C1M4",5504,2240,128], "region": "West Arena" }
+AP-CHECK { "id": 544, "name": "C1M4 - Bullets [5368,2232]", "pos": ["C1M4",5368,2232,144], "region": "West Arena" }
+AP-CHECK { "id": 458, "name": "C1M4 - Bullets [5328,2232]", "pos": ["C1M4",5328,2232,144], "region": "West Arena" }
+AP-CHECK { "id": 460, "name": "C1M4 - Bullets [5288,2232]", "pos": ["C1M4",5288,2232,144], "region": "West Arena" }
+AP-CHECK { "id": 466, "name": "C1M4 - Medikit [4372,2028]", "pos": ["C1M4",4372,2028,128], "region": "West Arena" }
+AP-CHECK { "id": 563, "name": "C1M4 - Chaingun [SE]", "pos": ["C1M4",4448,1952,136], "region": "West Arena" }
+AP-CHECK { "id": 546, "name": "C1M4 - Bullets [4672,928]", "pos": ["C1M4",4672,928,128], "region": "West Arena" }
+AP-CHECK { "id": 547, "name": "C1M4 - Bullets [4720,928]", "pos": ["C1M4",4720,928,128], "region": "West Arena" }
+AP-CHECK { "id": 548, "name": "C1M4 - Bullets [4768,928]", "pos": ["C1M4",4768,928,128], "region": "West Arena" }
+AP-CHECK { "id": 549, "name": "C1M4 - Bullets [4816,928]", "pos": ["C1M4",4816,928,128], "region": "West Arena" }
+AP-CHECK { "id": 543, "name": "C1M4 - Stimpack [4576,1040]", "pos": ["C1M4",4576,1040,128], "region": "West Arena" }
+AP-CHECK { "id": 461, "name": "C1M4 - Bullets [5112,2232]", "pos": ["C1M4",5112,2232,144], "region": "West Arena" }
+AP-CHECK { "id": 464, "name": "C1M4 - Bullets [5152,2232]", "pos": ["C1M4",5152,2232,144], "region": "West Arena" }
+AP-CHECK { "id": 462, "name": "C1M4 - Bullets [5192,2232]", "pos": ["C1M4",5192,2232,144], "region": "West Arena" }
+AP-CHECK { "id": 521, "name": "C1M4 - ArmorBonus [5600,1632]", "pos": ["C1M4",5600,1632,128], "region": "West Arena" }
+AP-CHECK { "id": 518, "name": "C1M4 - ArmorBonus [5600,1584]", "pos": ["C1M4",5600,1584,128], "region": "West Arena" }
+AP-CHECK { "id": 476, "name": "C1M4 - ArmorBonus [5600,1536]", "pos": ["C1M4",5600,1536,128], "region": "West Arena" }
+AP-CHECK { "id": 528, "name": "C1M4 - ArmorBonus [5552,1536]", "pos": ["C1M4",5552,1536,128], "region": "West Arena" }
+AP-CHECK { "id": 527, "name": "C1M4 - ArmorBonus [5504,1536]", "pos": ["C1M4",5504,1536,128], "region": "West Arena" }
+AP-CHECK { "id": 542, "name": "C1M4 - Medikit [5168,1248]", "pos": ["C1M4",5168,1248,128], "region": "West Arena" }
+AP-CHECK { "id": 545, "name": "C1M4 - Medikit [4896,1880]", "pos": ["C1M4",4896,1880,126], "region": "West Arena" }
+AP-CHECK { "id": 551, "name": "C1M4 - Bullets [5024,928]", "pos": ["C1M4",5024,928,128], "region": "West Arena" }
+AP-CHECK { "id": 552, "name": "C1M4 - Bullets [5072,928]", "pos": ["C1M4",5072,928,128], "region": "West Arena" }
+AP-CHECK { "id": 553, "name": "C1M4 - Bullets [5120,928]", "pos": ["C1M4",5120,928,128], "region": "West Arena" }
+AP-CHECK { "id": 550, "name": "C1M4 - Bullets [4976,928]", "pos": ["C1M4",4976,928,128], "region": "West Arena" }
+AP-CHECK { "id": 524, "name": "C1M4 - ArmorBonus [5600,1232]", "pos": ["C1M4",5600,1232,128], "region": "West Arena" }
+AP-CHECK { "id": 522, "name": "C1M4 - ArmorBonus [5600,1280]", "pos": ["C1M4",5600,1280,128], "region": "West Arena" }
+AP-CHECK { "id": 457, "name": "C1M4 - Stimpack [5792,1436]", "pos": ["C1M4",5792,1436,176], "region": "Bridge" }
+AP-CHECK { "id": 486, "name": "C1M4 - Stimpack [5904,1408]", "pos": ["C1M4",5904,1408,176], "region": "Bridge" }
+AP-CHECK { "id": 456, "name": "C1M4 - Stimpack [6016,1380]", "pos": ["C1M4",6016,1380,176], "region": "Bridge" }
+AP-CHECK { "id": 559, "name": "C1M4 - Shotgun Shells [6492,1536]", "pos": ["C1M4",6492,1536,128], "region": "East Arena" }
+AP-CHECK { "id": 490, "name": "C1M4 - HealthBonus [6320,1984]", "pos": ["C1M4",6320,1984,128], "region": "East Arena" }
+AP-CHECK { "id": 540, "name": "C1M4 - Rockets [6224,2224]", "pos": ["C1M4",6224,2224,128], "region": "East Arena" }
+AP-CHECK { "id": 541, "name": "C1M4 - Rockets [6280,2224]", "pos": ["C1M4",6280,2224,128], "region": "East Arena" }
+AP-CHECK { "id": 470, "name": "C1M4 - Rockets [6336,2224]", "pos": ["C1M4",6336,2224,128], "region": "East Arena" }
+AP-CHECK { "id": 500, "name": "C1M4 - HealthBonus [6368,1984]", "pos": ["C1M4",6368,1984,128], "region": "East Arena" }
+AP-CHECK { "id": 491, "name": "C1M4 - HealthBonus [6416,1984]", "pos": ["C1M4",6416,1984,128], "region": "East Arena" }
+AP-CHECK { "id": 488, "name": "C1M4 - HealthBonus [6416,2160]", "pos": ["C1M4",6416,2160,128], "region": "East Arena" }
+AP-CHECK { "id": 487, "name": "C1M4 - HealthBonus [6464,2160]", "pos": ["C1M4",6464,2160,128], "region": "East Arena" }
+AP-CHECK { "id": 489, "name": "C1M4 - HealthBonus [6512,2160]", "pos": ["C1M4",6512,2160,128], "region": "East Arena" }
+AP-CHECK { "id": 477, "name": "C1M4 - Medikit [6208,1536]", "pos": ["C1M4",6208,1536,128], "region": "East Arena" }
+AP-CHECK { "id": 501, "name": "C1M4 - HealthBonus [6592,1488]", "pos": ["C1M4",6592,1488,128], "region": "East Arena" }
+AP-CHECK { "id": 502, "name": "C1M4 - HealthBonus [6592,1434]", "pos": ["C1M4",6592,1434,128], "region": "East Arena" }
+AP-CHECK { "id": 503, "name": "C1M4 - HealthBonus [6592,1382]", "pos": ["C1M4",6592,1382,128], "region": "East Arena" }
+AP-CHECK { "id": 504, "name": "C1M4 - HealthBonus [6592,1328]", "pos": ["C1M4",6592,1328,128], "region": "East Arena" }
+AP-CHECK { "id": 497, "name": "C1M4 - HealthBonus [6560,1040]", "pos": ["C1M4",6560,1040,128], "region": "East Arena" }
+AP-CHECK { "id": 499, "name": "C1M4 - HealthBonus [6560,992]", "pos": ["C1M4",6560,992,128], "region": "East Arena" }
+AP-CHECK { "id": 498, "name": "C1M4 - HealthBonus [6560,944]", "pos": ["C1M4",6560,944,128], "region": "East Arena" }
+AP-CHECK { "id": 474, "name": "C1M4 - Bullets [6480,592]", "pos": ["C1M4",6480,592,128], "region": "East Arena" }
+AP-CHECK { "id": 472, "name": "C1M4 - Shotgun Shells [6864,592]", "pos": ["C1M4",6864,592,128], "region": "East Arena" }
+AP-CHECK { "id": 505, "name": "C1M4 - HealthBonus [6928,832]", "pos": ["C1M4",6928,832,128], "region": "East Arena" }
+AP-CHECK { "id": 507, "name": "C1M4 - HealthBonus [6976,832]", "pos": ["C1M4",6976,832,128], "region": "East Arena" }
+AP-CHECK { "id": 506, "name": "C1M4 - HealthBonus [7024,832]", "pos": ["C1M4",7024,832,128], "region": "East Arena" }
+AP-CHECK { "id": 558, "name": "C1M4 - Bullets [7096,592]", "pos": ["C1M4",7096,592,128], "region": "East Arena" }
+AP-CHECK { "id": 471, "name": "C1M4 - Rockets [7032,1096]", "pos": ["C1M4",7032,1096,128], "region": "East Arena" }
+AP-CHECK { "id": 454, "name": "C1M4 - Rockets [7032,1152]", "pos": ["C1M4",7032,1152,128], "region": "East Arena" }
+AP-CHECK { "id": 455, "name": "C1M4 - Rockets [7032,1208]", "pos": ["C1M4",7032,1208,128], "region": "East Arena" }
+AP-CHECK { "id": 478, "name": "C1M4 - Medikit [6784,1344]", "pos": ["C1M4",6784,1344,128], "region": "East Arena" }
+AP-CHECK { "id": 492, "name": "C1M4 - HealthBonus [6976,1408]", "pos": ["C1M4",6976,1408,128], "region": "East Arena" }
+AP-CHECK { "id": 493, "name": "C1M4 - HealthBonus [7024,1408]", "pos": ["C1M4",7024,1408,128], "region": "East Arena" }
+AP-CHECK { "id": 494, "name": "C1M4 - HealthBonus [7072,1408]", "pos": ["C1M4",7072,1408,128], "region": "East Arena" }
+AP-CHECK { "id": 495, "name": "C1M4 - HealthBonus [7120,1408]", "pos": ["C1M4",7120,1408,128], "region": "East Arena" }
+AP-CHECK { "id": 496, "name": "C1M4 - HealthBonus [7168,1408]", "pos": ["C1M4",7168,1408,128], "region": "East Arena" }
+AP-CHECK { "id": 469, "name": "C1M4 - Shotgun Shells [7216,1744]", "pos": ["C1M4",7216,1744,128], "region": "East Arena" }
+AP-CHECK { "id": 508, "name": "C1M4 - HealthBonus [6656,1984]", "pos": ["C1M4",6656,1984,128], "region": "East Arena" }
+AP-CHECK { "id": 509, "name": "C1M4 - HealthBonus [6704,1984]", "pos": ["C1M4",6704,1984,128], "region": "East Arena" }
+AP-CHECK { "id": 510, "name": "C1M4 - HealthBonus [6752,1984]", "pos": ["C1M4",6752,1984,128], "region": "East Arena" }
+AP-CHECK { "id": 512, "name": "C1M4 - HealthBonus [6800,1984]", "pos": ["C1M4",6800,1984,128], "region": "East Arena" }
+AP-CHECK { "id": 511, "name": "C1M4 - HealthBonus [6848,1984]", "pos": ["C1M4",6848,1984,128], "region": "East Arena" }
+AP-CHECK { "id": 513, "name": "C1M4 - HealthBonus [6896,1984]", "pos": ["C1M4",6896,1984,128], "region": "East Arena" }
+AP-CHECK { "id": 514, "name": "C1M4 - HealthBonus [6944,1984]", "pos": ["C1M4",6944,1984,128], "region": "East Arena" }
+AP-CHECK { "id": 479, "name": "C1M4 - Medikit [7008,1856]", "pos": ["C1M4",7008,1856,128], "region": "East Arena" }
+AP-CHECK { "id": 468, "name": "C1M4 - Shotgun Shells [7240,2200]", "pos": ["C1M4",7240,2200,192], "region": "East Arena" }
+AP-CHECK { "id": 467, "name": "C1M4 - Shotgun", "pos": ["C1M4",7240,2248,192], "region": "East Arena" }
+AP-CHECK { "id": 473, "name": "C1M4 - Yellow Keycard", "pos": ["C1M4",5908,540,-544], "region": "East Arena" }
+AP-CHECK { "id": 567, "name": "C1M4 - Shotgun Shells [4728,456]", "pos": ["C1M4",4728,456,144], "region": "Archvile Cage" }
+AP-CHECK { "id": 562, "name": "C1M4 - Shotgun Shells [4732,460]", "pos": ["C1M4",4732,460,144], "region": "Archvile Cage" }
+AP-CHECK { "id": 482, "name": "C1M4 - Shotgun Shells [4724,452]", "pos": ["C1M4",4724,452,144], "region": "Archvile Cage" }
+AP-CHECK { "id": 564, "name": "C1M4 - Bullets [4732,404]", "pos": ["C1M4",4732,404,144], "region": "Archvile Cage" }
+AP-CHECK { "id": 569, "name": "C1M4 - Bullets [4728,400]", "pos": ["C1M4",4728,400,144], "region": "Archvile Cage" }
+AP-CHECK { "id": 565, "name": "C1M4 - Bullets [4724,396]", "pos": ["C1M4",4724,396,144], "region": "Archvile Cage" }
+AP-CHECK { "id": 561, "name": "C1M4 - Rockets [4732,348]", "pos": ["C1M4",4732,348,144], "region": "Archvile Cage" }
+AP-CHECK { "id": 568, "name": "C1M4 - Rockets [4728,344]", "pos": ["C1M4",4728,344,144], "region": "Archvile Cage" }
+AP-CHECK { "id": 483, "name": "C1M4 - Rockets [4724,340]", "pos": ["C1M4",4724,340,144], "region": "Archvile Cage" }
+AP-CHECK { "id": 560, "name": "C1M4 - Energy Cells [4732,292]", "pos": ["C1M4",4732,292,144], "region": "Archvile Cage" }
+AP-CHECK { "id": 566, "name": "C1M4 - Energy Cells [4728,288]", "pos": ["C1M4",4728,288,144], "region": "Archvile Cage" }
+AP-CHECK { "id": 481, "name": "C1M4 - Energy Cells [4724,284]", "pos": ["C1M4",4724,284,144], "region": "Archvile Cage" }
+AP-CHECK { "id": 484, "name": "C1M4 - Super Shotgun", "pos": ["C1M4",4856,456,144], "region": "Archvile Cage" }
+AP-CHECK { "id": 452, "name": "C1M4 - Chaingun [S]", "pos": ["C1M4",4856,400,144], "region": "Archvile Cage" }
+AP-CHECK { "id": 485, "name": "C1M4 - Rocket Launcher", "pos": ["C1M4",4856,344,144], "region": "Archvile Cage" }
+AP-CHECK { "id": 480, "name": "C1M4 - Plasma Rifle", "pos": ["C1M4",4856,288,144], "region": "Archvile Cage" }
+AP-CHECK { "id": 453, "name": "C1M4 - Megasphere [SE]", "pos": ["C1M4",5280,928,128], "region": "Arch Secret" }
+AP-CHECK { "id": 570, "name": "C1M4 - Secret 414", "pos": ["C1M4","secret","sector",414], "region": "Arch Secret" }
+AP-CHECK { "id": 451, "name": "C1M4 - Exit", "pos": ["C1M4","event","exit"], "region": "Last Dance" }

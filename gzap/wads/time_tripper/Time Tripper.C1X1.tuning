@@ -1,0 +1,51 @@
+; FIRST ATTEMPT [dark halls rmx]
+; Secret level reachable from C1M6
+
+AP-REGION { "map": "C1X1", "region": "Entrance", "keys": [] }
+AP-REGION { "map": "C1X1", "region": "Junction", "keys": [] }
+AP-REGION { "map": "C1X1", "region": "Junction Secret", "keys": ["flag/secret"] }
+AP-REGION { "map": "C1X1", "region": "Chaingun Room", "keys": ["weapon/64Chaingun/want", "weapon/SuperShotgun2/want"] }
+AP-REGION { "map": "C1X1", "region": "Red Hall", "keys": ["key/RedCard", "weapon/64Chaingun/want", "weapon/SuperShotgun2/want"] }
+AP-REGION { "map": "C1X1", "region": "Flesh Room", "keys": ["map/C1X1/Red Hall"] }
+AP-REGION { "map": "C1X1", "region": "Junction Mancubus Trap", "keys": ["map/C1X1/Chaingun Room"] }
+AP-REGION { "map": "C1X1", "region": "Yellow Hall", "keys": ["key/YellowCard"] }
+
+AP-CHECK { "id": 1176, "name": "C1X1 - Shotgun Shells [0,0]", "pos": ["C1X1",0,0,0], "region": "Entrance" }
+AP-CHECK { "id": 1140, "name": "C1X1 - Shotgun", "pos": ["C1X1",-256,160,0], "region": "Entrance" }
+AP-CHECK { "id": 1142, "name": "C1X1 - Shotgun Shells [-96,560]", "pos": ["C1X1",-96,560,0], "region": "Entrance" }
+AP-CHECK { "id": 1141, "name": "C1X1 - Shotgun Shells [-416,560]", "pos": ["C1X1",-416,560,0], "region": "Entrance" }
+AP-CHECK { "id": 1147, "name": "C1X1 - Bullets [-256,832]", "pos": ["C1X1",-256,832,0], "region": "Junction" }
+AP-CHECK { "id": 1139, "name": "C1X1 - Super Shotgun", "pos": ["C1X1",-256,632,0], "region": "Junction Secret" }
+AP-CHECK { "id": 1146, "name": "C1X1 - Shotgun Shells [-288,608]", "pos": ["C1X1",-288,608,0], "region": "Junction Secret" }
+AP-CHECK { "id": 1155, "name": "C1X1 - Shotgun Shells [-224,608]", "pos": ["C1X1",-224,608,0], "region": "Junction Secret" }
+AP-CHECK { "id": 1175, "name": "C1X1 - Chaingun", "pos": ["C1X1",-256,1472,-80], "region": "Chaingun Room" }
+AP-CHECK { "id": 1158, "name": "C1X1 - Medikit", "pos": ["C1X1",-784,1440,-80], "region": "Chaingun Room" }
+AP-CHECK { "id": 1144, "name": "C1X1 - Bullets [-48,1752]", "pos": ["C1X1",-48,1752,-64], "region": "Chaingun Room" }
+AP-CHECK { "id": 1153, "name": "C1X1 - Bullets [-48,1800]", "pos": ["C1X1",-48,1800,-64], "region": "Chaingun Room" }
+AP-CHECK { "id": 1143, "name": "C1X1 - Stimpack [-48,1848]", "pos": ["C1X1",-48,1848,-64], "region": "Chaingun Room" }
+AP-CHECK { "id": 1145, "name": "C1X1 - Red Keycard", "pos": ["C1X1",-48,1896,-64], "region": "Chaingun Room" }
+AP-CHECK { "id": 1149, "name": "C1X1 - Shotgun Shells [-16,1104]", "pos": ["C1X1",-16,1104,0], "region": "Junction Mancubus Trap" }
+AP-CHECK { "id": 1150, "name": "C1X1 - Shotgun Shells [24,1104]", "pos": ["C1X1",24,1104,0], "region": "Junction Mancubus Trap" }
+AP-CHECK { "id": 1151, "name": "C1X1 - Shotgun Shells [-56,1104]", "pos": ["C1X1",-56,1104,0], "region": "Junction Mancubus Trap" }
+AP-CHECK { "id": 1154, "name": "C1X1 - Shotgun Shells [-456,1104]", "pos": ["C1X1",-456,1104,0], "region": "Junction Mancubus Trap" }
+AP-CHECK { "id": 1152, "name": "C1X1 - GreenArmor", "pos": ["C1X1",-496,1104,0], "region": "Junction Mancubus Trap" }
+AP-CHECK { "id": 1148, "name": "C1X1 - Shotgun Shells [-536,1104]", "pos": ["C1X1",-536,1104,0], "region": "Junction Mancubus Trap" }
+AP-CHECK { "id": 1156, "name": "C1X1 - Backpack", "pos": ["C1X1",376,776,0], "region": "Red Hall" }
+AP-CHECK { "id": 1170, "name": "C1X1 - Stimpack [608,800]", "pos": ["C1X1",608,800,0], "region": "Red Hall" }
+AP-CHECK { "id": 1157, "name": "C1X1 - Shotgun Shells [516,640]", "pos": ["C1X1",516,640,0], "region": "Red Hall" }
+AP-CHECK { "id": 1163, "name": "C1X1 - HealthBonus [1280,592]", "pos": ["C1X1",1280,592,2], "region": "Flesh Room" }
+AP-CHECK { "id": 1161, "name": "C1X1 - HealthBonus [1328,576]", "pos": ["C1X1",1328,576,2], "region": "Flesh Room" }
+AP-CHECK { "id": 1171, "name": "C1X1 - Bullets [1552,704]", "pos": ["C1X1",1552,704,2], "region": "Flesh Room" }
+AP-CHECK { "id": 1160, "name": "C1X1 - Stimpack [1136,1104]", "pos": ["C1X1",1136,1104,16], "region": "Flesh Room" }
+AP-CHECK { "id": 1159, "name": "C1X1 - Stimpack [1088,1136]", "pos": ["C1X1",1088,1136,16], "region": "Flesh Room" }
+AP-CHECK { "id": 1168, "name": "C1X1 - HealthBonus [976,1168]", "pos": ["C1X1",976,1168,2], "region": "Flesh Room" }
+AP-CHECK { "id": 1172, "name": "C1X1 - Bullets [1584,832]", "pos": ["C1X1",1584,832,2], "region": "Flesh Room" }
+AP-CHECK { "id": 1166, "name": "C1X1 - HealthBonus [1616,1056]", "pos": ["C1X1",1616,1056,2], "region": "Flesh Room" }
+AP-CHECK { "id": 1167, "name": "C1X1 - HealthBonus [1632,1120]", "pos": ["C1X1",1632,1120,2], "region": "Flesh Room" }
+AP-CHECK { "id": 1165, "name": "C1X1 - HealthBonus [1728,1328]", "pos": ["C1X1",1728,1328,2], "region": "Flesh Room" }
+AP-CHECK { "id": 1162, "name": "C1X1 - HealthBonus [1712,1376]", "pos": ["C1X1",1712,1376,2], "region": "Flesh Room" }
+AP-CHECK { "id": 1164, "name": "C1X1 - HealthBonus [1680,1424]", "pos": ["C1X1",1680,1424,2], "region": "Flesh Room" }
+AP-CHECK { "id": 1169, "name": "C1X1 - Plasma Rifle", "pos": ["C1X1",1520,1568,2], "region": "Flesh Room" }
+AP-CHECK { "id": 1174, "name": "C1X1 - Energy Cells", "pos": ["C1X1",1376,1820,2], "region": "Flesh Room" }
+AP-CHECK { "id": 1173, "name": "C1X1 - Yellow Keycard", "pos": ["C1X1",960,1720,-6], "region": "Flesh Room" }
+AP-CHECK { "id": 1138, "name": "C1X1 - Exit", "pos": ["C1X1","event","exit"], "region": "Yellow Hall" }

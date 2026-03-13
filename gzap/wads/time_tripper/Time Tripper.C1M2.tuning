@@ -1,0 +1,31 @@
+; LIMINAL SPACE [the binding]
+
+; No internal region divisions. You are expected to fight most enemies using the
+; shotgun, lowering the platform where the rocket launcher is and letting you
+; use it for the final wave of enemies, which unlocks the exit when defeated.
+;
+; Accordingly, the exit is marked as requiring the RL, but nothing else is.
+
+AP-CHECK { "id": 268, "name": "C1M2 - Stimpack [-960,-1248]", "pos": ["C1M2",-960,-1248,56], "keys": [] }
+AP-CHECK { "id": 259, "name": "C1M2 - Medikit [-960,-1248]", "pos": ["C1M2",-960,-1248,56], "keys": [] }
+AP-CHECK { "id": 270, "name": "C1M2 - Stimpack [-1328,-1456]", "pos": ["C1M2",-1328,-1456,56], "keys": [] }
+AP-CHECK { "id": 263, "name": "C1M2 - Medikit [-1328,-1456]", "pos": ["C1M2",-1328,-1456,56], "keys": [] }
+AP-CHECK { "id": 269, "name": "C1M2 - Stimpack [448,-1248]", "pos": ["C1M2",448,-1248,56], "keys": [] }
+AP-CHECK { "id": 261, "name": "C1M2 - Medikit [448,-1248]", "pos": ["C1M2",448,-1248,56], "keys": [] }
+AP-CHECK { "id": 271, "name": "C1M2 - Stimpack [816,-1456]", "pos": ["C1M2",816,-1456,56], "keys": [] }
+AP-CHECK { "id": 264, "name": "C1M2 - Medikit [816,-1456]", "pos": ["C1M2",816,-1456,56], "keys": [] }
+AP-CHECK { "id": 251, "name": "C1M2 - Shotgun Shells [-192,-880]", "pos": ["C1M2",-192,-880,56], "keys": [] }
+AP-CHECK { "id": 250, "name": "C1M2 - Shotgun Shells [-320,-880]", "pos": ["C1M2",-320,-880,56], "keys": [] }
+AP-CHECK { "id": 265, "name": "C1M2 - Shotgun Shells [0,0]", "pos": ["C1M2",0,0,0], "keys": [] }
+AP-CHECK { "id": 267, "name": "C1M2 - Stimpack [-400,-256]", "pos": ["C1M2",-400,-256,56], "keys": [] }
+AP-CHECK { "id": 256, "name": "C1M2 - Medikit [-400,-256]", "pos": ["C1M2",-400,-256,56], "keys": [] }
+AP-CHECK { "id": 266, "name": "C1M2 - Stimpack [-112,-256]", "pos": ["C1M2",-112,-256,56], "keys": [] }
+AP-CHECK { "id": 257, "name": "C1M2 - Medikit [-112,-256]", "pos": ["C1M2",-112,-256,56], "keys": [] }
+AP-CHECK { "id": 254, "name": "C1M2 - Bullets [NW]", "pos": ["C1M2",-1072,-240,160], "keys": [] }
+AP-CHECK { "id": 260, "name": "C1M2 - Shotgun Shells [-1024,-240]", "pos": ["C1M2",-1024,-240,160], "keys": [] }
+AP-CHECK { "id": 255, "name": "C1M2 - Bullets [NE]", "pos": ["C1M2",560,-240,160], "keys": [] }
+AP-CHECK { "id": 258, "name": "C1M2 - Shotgun Shells [512,-240]", "pos": ["C1M2",512,-240,160], "keys": [] }
+AP-CHECK { "id": 262, "name": "C1M2 - Rockets [-832,-32]", "pos": ["C1M2",-832,-32,216], "keys": [] }
+AP-CHECK { "id": 252, "name": "C1M2 - Rockets [-800,0]", "pos": ["C1M2",-800,0,216], "keys": [] }
+AP-CHECK { "id": 253, "name": "C1M2 - Rocket Launcher", "pos": ["C1M2",304,-16,216], "keys": [] }
+AP-CHECK { "id": 249, "name": "C1M2 - Exit", "pos": ["C1M2","event","exit"], "keys": ["weapon/RocketLauncher2"] }

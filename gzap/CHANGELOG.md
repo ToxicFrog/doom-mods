@@ -12,6 +12,7 @@
     position with `shift-C`.
   - In-game option (`ap_disallowed_weapon_behaviour`) to control whether suppressed
     weapons are left on the ground, converted to ammo, or deleted.
+  - Complete logic for `Time Tripper`.
 - For logic develpers:
   - In-game logic dashboard, accessed with `L` (by default). Allows defining
     map regions and their logical requirements without leaving the game.

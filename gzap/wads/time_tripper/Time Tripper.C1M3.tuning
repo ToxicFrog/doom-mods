@@ -1,0 +1,206 @@
+; HEAVENS GUIDE ME [umbra's warm bosom]
+
+; Initial entry hallway. Does not include the backpack because you're locked into
+; the stained glass fight as soon as you approach it, so it's logically part of
+; the stained glass room.
+AP-REGION { "map": "C1M3", "region": "Entrance", "keys": [] }
+; Secret reachable by shooting the explosive barrels through the window.
+AP-REGION { "map": "C1M3", "region": "Entrance Secret", "keys": [] }
+; Large room full of chaingunners and cultists.
+AP-REGION { "map": "C1M3", "region": "Stained Glass Hall", "keys": ["weapon/SuperShotgun2"] }
+; Area with rocket launcher and switch north of stained glass room.
+AP-REGION { "map": "C1M3", "region": "Archvile Conveyor", "keys": ["weapon/RocketLauncher2", "weapon/SuperShotgun2"] }
+; Exterior courtyard east of stained glass room.
+; Interesting in that all the items are reachable without fighting anything (the
+; enemies spawn when you grab the rocket launcher), so you can always grab everything
+; and then levelport out. In vanilla play this is needed to get the yellow key
+; but in AP you can just leave.
+AP-REGION { "map": "C1M3", "region": "Courtyard", "keys": ["weapon/SuperShotgun2"] }
+; This region is only meaningful on the hardest difficulties; it's an item in one
+; of the ambush rooms that opens when you finish the courtyard battle.
+AP-REGION { "map": "C1M3", "region": "Yellow Door Ambush", "keys": ["weapon/SuperShotgun2", "weapon/RocketLauncher2", "weapon/64Chaingun"] }
+; Small staircase and freezer reachable from entrance with yellow key.
+AP-REGION { "map": "C1M3", "region": "Small Freezer", "keys": ["weapon/SuperShotgun2", "key/YellowSkull"] }
+; Big freezer with revenant fight.
+AP-REGION { "map": "C1M3", "region": "Big Freezer", "keys": ["weapon/SuperShotgun2", "key/YellowSkull"] }
+
+AP-CHECK { "id": 447, "name": "C1M3 - Super Shotgun [SW]", "pos": ["C1M3",1664,768,-19], "region": "Entrance" }
+AP-CHECK { "id": 284, "name": "C1M3 - Stimpack [1796,474]", "pos": ["C1M3",1796,474,-3], "region": "Entrance" }
+AP-CHECK { "id": 283, "name": "C1M3 - Stimpack [1796,534]", "pos": ["C1M3",1796,534,-3], "region": "Entrance" }
+AP-CHECK { "id": 273, "name": "C1M3 - GreenArmor", "pos": ["C1M3",1532,506,-3], "region": "Entrance" }
+AP-CHECK { "id": 274, "name": "C1M3 - Stimpack [1532,462]", "pos": ["C1M3",1532,462,-3], "region": "Entrance" }
+AP-CHECK { "id": 450, "name": "C1M3 - Secret 240", "pos": ["C1M3","secret","sector",240], "region": "Entrance Secret" }
+AP-CHECK { "id": 292, "name": "C1M3 - Rockets [1964,312]", "pos": ["C1M3",1964,312,-63], "region": "Entrance Secret" }
+AP-CHECK { "id": 337, "name": "C1M3 - Rockets [1964,360]", "pos": ["C1M3",1964,360,-63], "region": "Entrance Secret" }
+AP-CHECK { "id": 363, "name": "C1M3 - SpiritAmmo [1872,120]", "pos": ["C1M3",1872,120,-96], "region": "Entrance Secret" }
+AP-CHECK { "id": 364, "name": "C1M3 - SpiritAmmo [1872,80]", "pos": ["C1M3",1872,80,-96], "region": "Entrance Secret" }
+AP-CHECK { "id": 294, "name": "C1M3 - ShieldSphere", "pos": ["C1M3",2206,350,-128], "region": "Entrance Secret" }
+AP-CHECK { "id": 279, "name": "C1M3 - Bullets [1744,1104]", "pos": ["C1M3",1744,1104,8], "region": "Entrance" }
+AP-CHECK { "id": 280, "name": "C1M3 - Shotgun Shells [1744,976]", "pos": ["C1M3",1744,976,8], "region": "Entrance" }
+AP-CHECK { "id": 293, "name": "C1M3 - Shotgun Shells [1744,1232]", "pos": ["C1M3",1744,1232,8], "region": "Entrance" }
+AP-CHECK { "id": 282, "name": "C1M3 - Backpack", "pos": ["C1M3",1664,1456,-15], "region": "Stained Glass Hall" }
+AP-CHECK { "id": 298, "name": "C1M3 - HealthBonus [1664,1632]", "pos": ["C1M3",1664,1632,-15], "region": "Stained Glass Hall" }
+AP-CHECK { "id": 402, "name": "C1M3 - HealthBonus [1591,1639]", "pos": ["C1M3",1591,1639,-15], "region": "Stained Glass Hall" }
+AP-CHECK { "id": 394, "name": "C1M3 - HealthBonus [1517,1662]", "pos": ["C1M3",1517,1662,-15], "region": "Stained Glass Hall" }
+AP-CHECK { "id": 361, "name": "C1M3 - HealthBonus [1452,1696]", "pos": ["C1M3",1452,1696,-15], "region": "Stained Glass Hall" }
+AP-CHECK { "id": 390, "name": "C1M3 - HealthBonus [1392,1744]", "pos": ["C1M3",1392,1744,-15], "region": "Stained Glass Hall" }
+AP-CHECK { "id": 406, "name": "C1M3 - HealthBonus [1346,1801]", "pos": ["C1M3",1346,1801,-15], "region": "Stained Glass Hall" }
+AP-CHECK { "id": 398, "name": "C1M3 - HealthBonus [1310,1870]", "pos": ["C1M3",1310,1870,-15], "region": "Stained Glass Hall" }
+AP-CHECK { "id": 386, "name": "C1M3 - HealthBonus [1288,1940]", "pos": ["C1M3",1288,1940,-15], "region": "Stained Glass Hall" }
+AP-CHECK { "id": 297, "name": "C1M3 - HealthBonus [1280,2016]", "pos": ["C1M3",1280,2016,-15], "region": "Stained Glass Hall" }
+AP-CHECK { "id": 401, "name": "C1M3 - HealthBonus [1287,2089]", "pos": ["C1M3",1287,2089,-15], "region": "Stained Glass Hall" }
+AP-CHECK { "id": 393, "name": "C1M3 - HealthBonus [1310,2164]", "pos": ["C1M3",1310,2164,-15], "region": "Stained Glass Hall" }
+AP-CHECK { "id": 385, "name": "C1M3 - HealthBonus [1345,2229]", "pos": ["C1M3",1345,2229,-15], "region": "Stained Glass Hall" }
+AP-CHECK { "id": 399, "name": "C1M3 - HealthBonus [1737,2393]", "pos": ["C1M3",1737,2393,-15], "region": "Stained Glass Hall" }
+AP-CHECK { "id": 391, "name": "C1M3 - HealthBonus [1812,2371]", "pos": ["C1M3",1812,2371,-15], "region": "Stained Glass Hall" }
+AP-CHECK { "id": 407, "name": "C1M3 - HealthBonus [1877,2336]", "pos": ["C1M3",1877,2336,-15], "region": "Stained Glass Hall" }
+AP-CHECK { "id": 387, "name": "C1M3 - HealthBonus [1936,2288]", "pos": ["C1M3",1936,2288,-15], "region": "Stained Glass Hall" }
+AP-CHECK { "id": 403, "name": "C1M3 - HealthBonus [1982,2231]", "pos": ["C1M3",1982,2231,-15], "region": "Stained Glass Hall" }
+AP-CHECK { "id": 395, "name": "C1M3 - HealthBonus [2019,2163]", "pos": ["C1M3",2019,2163,-15], "region": "Stained Glass Hall" }
+AP-CHECK { "id": 362, "name": "C1M3 - HealthBonus [2041,2093]", "pos": ["C1M3",2041,2093,-15], "region": "Stained Glass Hall" }
+AP-CHECK { "id": 296, "name": "C1M3 - HealthBonus [2048,2016]", "pos": ["C1M3",2048,2016,-15], "region": "Stained Glass Hall" }
+AP-CHECK { "id": 400, "name": "C1M3 - HealthBonus [2041,1943]", "pos": ["C1M3",2041,1943,-15], "region": "Stained Glass Hall" }
+AP-CHECK { "id": 392, "name": "C1M3 - HealthBonus [2019,1869]", "pos": ["C1M3",2019,1869,-15], "region": "Stained Glass Hall" }
+AP-CHECK { "id": 408, "name": "C1M3 - HealthBonus [1985,1804]", "pos": ["C1M3",1985,1804,-15], "region": "Stained Glass Hall" }
+AP-CHECK { "id": 388, "name": "C1M3 - HealthBonus [1936,1744]", "pos": ["C1M3",1936,1744,-15], "region": "Stained Glass Hall" }
+AP-CHECK { "id": 404, "name": "C1M3 - HealthBonus [1879,1698]", "pos": ["C1M3",1879,1698,-15], "region": "Stained Glass Hall" }
+AP-CHECK { "id": 396, "name": "C1M3 - HealthBonus [1811,1662]", "pos": ["C1M3",1811,1662,-15], "region": "Stained Glass Hall" }
+AP-CHECK { "id": 360, "name": "C1M3 - HealthBonus [1741,1640]", "pos": ["C1M3",1741,1640,-15], "region": "Stained Glass Hall" }
+AP-CHECK { "id": 295, "name": "C1M3 - HealthBonus [1664,2400]", "pos": ["C1M3",1664,2400,-15], "region": "Stained Glass Hall" }
+AP-CHECK { "id": 359, "name": "C1M3 - HealthBonus [1588,2393]", "pos": ["C1M3",1588,2393,-15], "region": "Stained Glass Hall" }
+AP-CHECK { "id": 397, "name": "C1M3 - HealthBonus [1518,2371]", "pos": ["C1M3",1518,2371,-15], "region": "Stained Glass Hall" }
+AP-CHECK { "id": 405, "name": "C1M3 - HealthBonus [1449,2334]", "pos": ["C1M3",1449,2334,-15], "region": "Stained Glass Hall" }
+AP-CHECK { "id": 389, "name": "C1M3 - HealthBonus [1392,2288]", "pos": ["C1M3",1392,2288,-15], "region": "Stained Glass Hall" }
+AP-CHECK { "id": 437, "name": "C1M3 - Stimpack [1216,2328]", "pos": ["C1M3",1216,2328,-16], "region": "Stained Glass Hall" }
+AP-CHECK { "id": 413, "name": "C1M3 - Bullets [1224,2256]", "pos": ["C1M3",1224,2256,-3], "region": "Stained Glass Hall" }
+AP-CHECK { "id": 412, "name": "C1M3 - Bullets [1224,2212]", "pos": ["C1M3",1224,2212,-3], "region": "Stained Glass Hall" }
+AP-CHECK { "id": 410, "name": "C1M3 - Shotgun Shells [1224,2016]", "pos": ["C1M3",1224,2016,-3], "region": "Stained Glass Hall" }
+AP-CHECK { "id": 299, "name": "C1M3 - Medikit [1440,1600]", "pos": ["C1M3",1440,1600,-16], "region": "Stained Glass Hall" }
+AP-CHECK { "id": 281, "name": "C1M3 - Medikit [1888,1600]", "pos": ["C1M3",1888,1600,-16], "region": "Stained Glass Hall" }
+AP-CHECK { "id": 411, "name": "C1M3 - Shotgun Shells [2104,1816]", "pos": ["C1M3",2104,1816,-3], "region": "Stained Glass Hall" }
+AP-CHECK { "id": 409, "name": "C1M3 - Bullets [2104,2256]", "pos": ["C1M3",2104,2256,-3], "region": "Stained Glass Hall" }
+AP-CHECK { "id": 436, "name": "C1M3 - Stimpack [2112,2328]", "pos": ["C1M3",2112,2328,-16], "region": "Stained Glass Hall" }
+AP-CHECK { "id": 415, "name": "C1M3 - HealthBonus [2480,3088]", "pos": ["C1M3",2480,3088,-144], "region": "Archvile Conveyor" }
+AP-CHECK { "id": 416, "name": "C1M3 - HealthBonus [2544,3088]", "pos": ["C1M3",2544,3088,-144], "region": "Archvile Conveyor" }
+AP-CHECK { "id": 417, "name": "C1M3 - HealthBonus [2608,3088]", "pos": ["C1M3",2608,3088,-144], "region": "Archvile Conveyor" }
+AP-CHECK { "id": 418, "name": "C1M3 - HealthBonus [2672,3088]", "pos": ["C1M3",2672,3088,-144], "region": "Archvile Conveyor" }
+AP-CHECK { "id": 419, "name": "C1M3 - HealthBonus [2736,3088]", "pos": ["C1M3",2736,3088,-144], "region": "Archvile Conveyor" }
+AP-CHECK { "id": 421, "name": "C1M3 - HealthBonus [2864,2928]", "pos": ["C1M3",2864,2928,-144], "region": "Archvile Conveyor" }
+AP-CHECK { "id": 422, "name": "C1M3 - HealthBonus [2928,2928]", "pos": ["C1M3",2928,2928,-144], "region": "Archvile Conveyor" }
+AP-CHECK { "id": 423, "name": "C1M3 - HealthBonus [2992,2928]", "pos": ["C1M3",2992,2928,-144], "region": "Archvile Conveyor" }
+AP-CHECK { "id": 424, "name": "C1M3 - HealthBonus [3056,2928]", "pos": ["C1M3",3056,2928,-144], "region": "Archvile Conveyor" }
+AP-CHECK { "id": 420, "name": "C1M3 - HealthBonus [2800,2928]", "pos": ["C1M3",2800,2928,-144], "region": "Archvile Conveyor" }
+AP-CHECK { "id": 446, "name": "C1M3 - Medikit [2400,3008]", "pos": ["C1M3",2400,3008,-144], "region": "Archvile Conveyor" }
+AP-CHECK { "id": 425, "name": "C1M3 - HealthBonus [3120,3088]", "pos": ["C1M3",3120,3088,-144], "region": "Archvile Conveyor" }
+AP-CHECK { "id": 426, "name": "C1M3 - HealthBonus [3184,3088]", "pos": ["C1M3",3184,3088,-144], "region": "Archvile Conveyor" }
+AP-CHECK { "id": 427, "name": "C1M3 - HealthBonus [3248,3088]", "pos": ["C1M3",3248,3088,-144], "region": "Archvile Conveyor" }
+AP-CHECK { "id": 428, "name": "C1M3 - HealthBonus [3312,3088]", "pos": ["C1M3",3312,3088,-144], "region": "Archvile Conveyor" }
+AP-CHECK { "id": 429, "name": "C1M3 - HealthBonus [3376,3088]", "pos": ["C1M3",3376,3088,-144], "region": "Archvile Conveyor" }
+AP-CHECK { "id": 430, "name": "C1M3 - HealthBonus [3440,2928]", "pos": ["C1M3",3440,2928,-144], "region": "Archvile Conveyor" }
+AP-CHECK { "id": 431, "name": "C1M3 - HealthBonus [3504,2928]", "pos": ["C1M3",3504,2928,-144], "region": "Archvile Conveyor" }
+AP-CHECK { "id": 432, "name": "C1M3 - HealthBonus [3568,2928]", "pos": ["C1M3",3568,2928,-144], "region": "Archvile Conveyor" }
+AP-CHECK { "id": 433, "name": "C1M3 - HealthBonus [3632,2928]", "pos": ["C1M3",3632,2928,-144], "region": "Archvile Conveyor" }
+AP-CHECK { "id": 434, "name": "C1M3 - HealthBonus [3696,2928]", "pos": ["C1M3",3696,2928,-144], "region": "Archvile Conveyor" }
+AP-CHECK { "id": 439, "name": "C1M3 - Shotgun Shells [3920,2944]", "pos": ["C1M3",3920,2944,-142], "region": "Archvile Conveyor" }
+AP-CHECK { "id": 286, "name": "C1M3 - Rockets [3920,2944]", "pos": ["C1M3",3920,2944,-142], "region": "Archvile Conveyor" }
+AP-CHECK { "id": 435, "name": "C1M3 - Super Shotgun [NE]", "pos": ["C1M3",3872,3008,-142], "region": "Archvile Conveyor" }
+AP-CHECK { "id": 300, "name": "C1M3 - Rocket Launcher [NE]", "pos": ["C1M3",3872,3008,-142], "region": "Archvile Conveyor" }
+AP-CHECK { "id": 448, "name": "C1M3 - Medikit [3872,3008]", "pos": ["C1M3",3872,3008,-142], "region": "Archvile Conveyor" }
+AP-CHECK { "id": 438, "name": "C1M3 - Shotgun Shells [3920,3072]", "pos": ["C1M3",3920,3072,-142], "region": "Archvile Conveyor" }
+AP-CHECK { "id": 285, "name": "C1M3 - Rockets [3920,3072]", "pos": ["C1M3",3920,3072,-142], "region": "Archvile Conveyor" }
+AP-CHECK { "id": 307, "name": "C1M3 - Chaingun", "pos": ["C1M3",2412,2014,-32], "region": "Courtyard" }
+AP-CHECK { "id": 339, "name": "C1M3 - Shotgun Shells [2508,2040]", "pos": ["C1M3",2508,2040,-32], "region": "Courtyard" }
+AP-CHECK { "id": 309, "name": "C1M3 - Shotgun Shells [2492,2236]", "pos": ["C1M3",2492,2236,-44], "region": "Courtyard" }
+AP-CHECK { "id": 444, "name": "C1M3 - Stimpack [2488,2400]", "pos": ["C1M3",2488,2400,-48], "region": "Courtyard" }
+AP-CHECK { "id": 384, "name": "C1M3 - Rockets [2396,2344]", "pos": ["C1M3",2396,2344,-35], "region": "Courtyard" }
+AP-CHECK { "id": 383, "name": "C1M3 - Rockets [2352,2348]", "pos": ["C1M3",2352,2348,-35], "region": "Courtyard" }
+AP-CHECK { "id": 382, "name": "C1M3 - Rockets [2308,2352]", "pos": ["C1M3",2308,2352,-35], "region": "Courtyard" }
+AP-CHECK { "id": 310, "name": "C1M3 - Bullets [2460,1816]", "pos": ["C1M3",2460,1816,-43], "region": "Courtyard" }
+AP-CHECK { "id": 325, "name": "C1M3 - ArmorBonus [2338,1588]", "pos": ["C1M3",2338,1588,-48], "region": "Courtyard" }
+AP-CHECK { "id": 323, "name": "C1M3 - ArmorBonus [2366,1571]", "pos": ["C1M3",2366,1571,-48], "region": "Courtyard" }
+AP-CHECK { "id": 365, "name": "C1M3 - ArmorBonus [2384,1508]", "pos": ["C1M3",2384,1508,-48], "region": "Courtyard" }
+AP-CHECK { "id": 367, "name": "C1M3 - ArmorBonus [2368,1480]", "pos": ["C1M3",2368,1480,-48], "region": "Courtyard" }
+AP-CHECK { "id": 368, "name": "C1M3 - ArmorBonus [2442,1528]", "pos": ["C1M3",2442,1528,-48], "region": "Courtyard" }
+AP-CHECK { "id": 335, "name": "C1M3 - ArmorBonus [2470,1511]", "pos": ["C1M3",2470,1511,-48], "region": "Courtyard" }
+AP-CHECK { "id": 369, "name": "C1M3 - ArmorBonus [2428,1584]", "pos": ["C1M3",2428,1584,-48], "region": "Courtyard" }
+AP-CHECK { "id": 371, "name": "C1M3 - ArmorBonus [2444,1612]", "pos": ["C1M3",2444,1612,-48], "region": "Courtyard" }
+AP-CHECK { "id": 306, "name": "C1M3 - Rockets [2316,1372]", "pos": ["C1M3",2316,1372,-48], "region": "Courtyard" }
+AP-CHECK { "id": 334, "name": "C1M3 - Rockets [2352,1356]", "pos": ["C1M3",2352,1356,-48], "region": "Courtyard" }
+AP-CHECK { "id": 305, "name": "C1M3 - Rockets [2292,1344]", "pos": ["C1M3",2292,1344,-48], "region": "Courtyard" }
+AP-CHECK { "id": 373, "name": "C1M3 - Rockets [2620,1632]", "pos": ["C1M3",2620,1632,-48], "region": "Courtyard" }
+AP-CHECK { "id": 308, "name": "C1M3 - Rockets [2620,1664]", "pos": ["C1M3",2620,1664,-48], "region": "Courtyard" }
+AP-CHECK { "id": 381, "name": "C1M3 - Rockets [2696,1904]", "pos": ["C1M3",2696,1904,-40], "region": "Courtyard" }
+AP-CHECK { "id": 278, "name": "C1M3 - Bullets [2580,1944]", "pos": ["C1M3",2580,1944,-32], "region": "Courtyard" }
+AP-CHECK { "id": 380, "name": "C1M3 - Rockets [2868,1960]", "pos": ["C1M3",2868,1960,-32], "region": "Courtyard" }
+AP-CHECK { "id": 287, "name": "C1M3 - Rockets [2996,1984]", "pos": ["C1M3",2996,1984,-48], "region": "Courtyard" }
+AP-CHECK { "id": 302, "name": "C1M3 - Rockets [3044,2032]", "pos": ["C1M3",3044,2032,-48], "region": "Courtyard" }
+AP-CHECK { "id": 303, "name": "C1M3 - Rockets [3092,1984]", "pos": ["C1M3",3092,1984,-48], "region": "Courtyard" }
+AP-CHECK { "id": 301, "name": "C1M3 - Rockets [3044,1936]", "pos": ["C1M3",3044,1936,-48], "region": "Courtyard" }
+AP-CHECK { "id": 313, "name": "C1M3 - HealthBonus [3408,2252]", "pos": ["C1M3",3408,2252,-48], "region": "Courtyard" }
+AP-CHECK { "id": 314, "name": "C1M3 - HealthBonus [3392,2280]", "pos": ["C1M3",3392,2280,-48], "region": "Courtyard" }
+AP-CHECK { "id": 319, "name": "C1M3 - HealthBonus [3404,2340]", "pos": ["C1M3",3404,2340,-48], "region": "Courtyard" }
+AP-CHECK { "id": 318, "name": "C1M3 - HealthBonus [3432,2356]", "pos": ["C1M3",3432,2356,-48], "region": "Courtyard" }
+AP-CHECK { "id": 312, "name": "C1M3 - HealthBonus [3348,2356]", "pos": ["C1M3",3348,2356,-48], "region": "Courtyard" }
+AP-CHECK { "id": 311, "name": "C1M3 - HealthBonus [3332,2384]", "pos": ["C1M3",3332,2384,-48], "region": "Courtyard" }
+AP-CHECK { "id": 316, "name": "C1M3 - HealthBonus [3328,2296]", "pos": ["C1M3",3328,2296,-48], "region": "Courtyard" }
+AP-CHECK { "id": 315, "name": "C1M3 - HealthBonus [3300,2280]", "pos": ["C1M3",3300,2280,-48], "region": "Courtyard" }
+AP-CHECK { "id": 324, "name": "C1M3 - ArmorBonus [3467,1884]", "pos": ["C1M3",3467,1884,-48], "region": "Courtyard" }
+AP-CHECK { "id": 326, "name": "C1M3 - ArmorBonus [3436,1876]", "pos": ["C1M3",3436,1876,-48], "region": "Courtyard" }
+AP-CHECK { "id": 328, "name": "C1M3 - ArmorBonus [3414,1795]", "pos": ["C1M3",3414,1795,-48], "region": "Courtyard" }
+AP-CHECK { "id": 329, "name": "C1M3 - ArmorBonus [3406,1826]", "pos": ["C1M3",3406,1826,-48], "region": "Courtyard" }
+AP-CHECK { "id": 327, "name": "C1M3 - ArmorBonus [3351,1853]", "pos": ["C1M3",3351,1853,-48], "region": "Courtyard" }
+AP-CHECK { "id": 330, "name": "C1M3 - ArmorBonus [3320,1845]", "pos": ["C1M3",3320,1845,-48], "region": "Courtyard" }
+AP-CHECK { "id": 331, "name": "C1M3 - ArmorBonus [3383,1911]", "pos": ["C1M3",3383,1911,-48], "region": "Courtyard" }
+AP-CHECK { "id": 332, "name": "C1M3 - ArmorBonus [3375,1942]", "pos": ["C1M3",3375,1942,-48], "region": "Courtyard" }
+AP-CHECK { "id": 445, "name": "C1M3 - Stimpack [3316,1528]", "pos": ["C1M3",3316,1528,-48], "region": "Courtyard" }
+AP-CHECK { "id": 370, "name": "C1M3 - Medikit [3248,1264]", "pos": ["C1M3",3248,1264,-48], "region": "Courtyard" }
+AP-CHECK { "id": 289, "name": "C1M3 - Rockets [3196,1456]", "pos": ["C1M3",3196,1456,-48], "region": "Courtyard" }
+AP-CHECK { "id": 288, "name": "C1M3 - Rockets [3220,1484]", "pos": ["C1M3",3220,1484,-48], "region": "Courtyard" }
+AP-CHECK { "id": 290, "name": "C1M3 - Rockets [3244,1512]", "pos": ["C1M3",3244,1512,-48], "region": "Courtyard" }
+AP-CHECK { "id": 366, "name": "C1M3 - Medikit [3036,1732]", "pos": ["C1M3",3036,1732,-48], "region": "Courtyard" }
+AP-CHECK { "id": 322, "name": "C1M3 - HealthBonus [2860,1328]", "pos": ["C1M3",2860,1328,-48], "region": "Courtyard" }
+AP-CHECK { "id": 333, "name": "C1M3 - HealthBonus [2844,1356]", "pos": ["C1M3",2844,1356,-48], "region": "Courtyard" }
+AP-CHECK { "id": 372, "name": "C1M3 - HealthBonus [2780,1372]", "pos": ["C1M3",2780,1372,-48], "region": "Courtyard" }
+AP-CHECK { "id": 320, "name": "C1M3 - HealthBonus [2784,1460]", "pos": ["C1M3",2784,1460,-48], "region": "Courtyard" }
+AP-CHECK { "id": 321, "name": "C1M3 - HealthBonus [2800,1432]", "pos": ["C1M3",2800,1432,-48], "region": "Courtyard" }
+AP-CHECK { "id": 317, "name": "C1M3 - HealthBonus [2856,1416]", "pos": ["C1M3",2856,1416,-48], "region": "Courtyard" }
+AP-CHECK { "id": 304, "name": "C1M3 - Rockets [2652,1664]", "pos": ["C1M3",2652,1664,-48], "region": "Courtyard" }
+AP-CHECK { "id": 277, "name": "C1M3 - Super Shotgun [E]", "pos": ["C1M3",2848,1760,-45], "region": "Courtyard" }
+AP-CHECK { "id": 440, "name": "C1M3 - Rocket Launcher [E]", "pos": ["C1M3",2848,1760,-45], "region": "Courtyard" }
+AP-CHECK { "id": 449, "name": "C1M3 - Medikit [1416,808]", "pos": ["C1M3",1416,808,-16], "region": "Yellow Door Ambush" }
+AP-CHECK { "id": 378, "name": "C1M3 - Medikit [1216,704]", "pos": ["C1M3",1216,704,-56], "region": "Small Freezer" }
+AP-CHECK { "id": 414, "name": "C1M3 - Rockets [1168,704]", "pos": ["C1M3",1168,704,-24], "region": "Small Freezer" }
+AP-CHECK { "id": 443, "name": "C1M3 - Shotgun Shells [1168,688]", "pos": ["C1M3",1168,688,-24], "region": "Small Freezer" }
+AP-CHECK { "id": 442, "name": "C1M3 - Shotgun Shells [1168,720]", "pos": ["C1M3",1168,720,-24], "region": "Small Freezer" }
+AP-CHECK { "id": 276, "name": "C1M3 - Shotgun Shells [1392,1288]", "pos": ["C1M3",1392,1288,-96], "region": "Small Freezer" }
+AP-CHECK { "id": 441, "name": "C1M3 - Rockets [1392,1304]", "pos": ["C1M3",1392,1304,-96], "region": "Small Freezer" }
+AP-CHECK { "id": 275, "name": "C1M3 - Shotgun Shells [1392,1320]", "pos": ["C1M3",1392,1320,-96], "region": "Small Freezer" }
+AP-CHECK { "id": 377, "name": "C1M3 - Rockets [1000,1312]", "pos": ["C1M3",1000,1312,-80], "region": "Small Freezer" }
+AP-CHECK { "id": 374, "name": "C1M3 - Rockets [776,1120]", "pos": ["C1M3",776,1120,-80], "region": "Small Freezer" }
+AP-CHECK { "id": 375, "name": "C1M3 - Stimpack [872,1296]", "pos": ["C1M3",872,1296,-48], "region": "Small Freezer" }
+AP-CHECK { "id": 291, "name": "C1M3 - Rockets [912,1276]", "pos": ["C1M3",912,1276,-48], "region": "Small Freezer" }
+AP-CHECK { "id": 336, "name": "C1M3 - Rockets [924,1298]", "pos": ["C1M3",924,1298,-48], "region": "Small Freezer" }
+AP-CHECK { "id": 379, "name": "C1M3 - Rockets [936,1280]", "pos": ["C1M3",936,1280,-48], "region": "Small Freezer" }
+AP-CHECK { "id": 376, "name": "C1M3 - Rockets [950,1292]", "pos": ["C1M3",950,1292,-48], "region": "Small Freezer" }
+AP-CHECK { "id": 347, "name": "C1M3 - HealthBonus [672,1648]", "pos": ["C1M3",672,1648,-100], "region": "Big Freezer" }
+AP-CHECK { "id": 348, "name": "C1M3 - HealthBonus [728,1704]", "pos": ["C1M3",728,1704,-100], "region": "Big Freezer" }
+AP-CHECK { "id": 345, "name": "C1M3 - HealthBonus [672,1760]", "pos": ["C1M3",672,1760,-100], "region": "Big Freezer" }
+AP-CHECK { "id": 338, "name": "C1M3 - ArmorBonus [672,2016]", "pos": ["C1M3",672,2016,-100], "region": "Big Freezer" }
+AP-CHECK { "id": 340, "name": "C1M3 - ArmorBonus [728,2072]", "pos": ["C1M3",728,2072,-100], "region": "Big Freezer" }
+AP-CHECK { "id": 343, "name": "C1M3 - HealthBonus [360,2072]", "pos": ["C1M3",360,2072,-100], "region": "Big Freezer" }
+AP-CHECK { "id": 341, "name": "C1M3 - HealthBonus [304,2128]", "pos": ["C1M3",304,2128,-100], "region": "Big Freezer" }
+AP-CHECK { "id": 342, "name": "C1M3 - HealthBonus [248,2072]", "pos": ["C1M3",248,2072,-100], "region": "Big Freezer" }
+AP-CHECK { "id": 344, "name": "C1M3 - HealthBonus [304,2016]", "pos": ["C1M3",304,2016,-100], "region": "Big Freezer" }
+AP-CHECK { "id": 357, "name": "C1M3 - ArmorBonus [616,2072]", "pos": ["C1M3",616,2072,-100], "region": "Big Freezer" }
+AP-CHECK { "id": 358, "name": "C1M3 - ArmorBonus [672,2128]", "pos": ["C1M3",672,2128,-100], "region": "Big Freezer" }
+AP-CHECK { "id": 346, "name": "C1M3 - HealthBonus [616,1704]", "pos": ["C1M3",616,1704,-100], "region": "Big Freezer" }
+AP-CHECK { "id": 356, "name": "C1M3 - ArmorBonus [360,1704]", "pos": ["C1M3",360,1704,-100], "region": "Big Freezer" }
+AP-CHECK { "id": 355, "name": "C1M3 - ArmorBonus [304,1648]", "pos": ["C1M3",304,1648,-100], "region": "Big Freezer" }
+AP-CHECK { "id": 354, "name": "C1M3 - ArmorBonus [248,1704]", "pos": ["C1M3",248,1704,-100], "region": "Big Freezer" }
+AP-CHECK { "id": 353, "name": "C1M3 - ArmorBonus [304,1760]", "pos": ["C1M3",304,1760,-100], "region": "Big Freezer" }
+AP-CHECK { "id": 351, "name": "C1M3 - HealthBonus [488,1832]", "pos": ["C1M3",488,1832,-100], "region": "Big Freezer" }
+AP-CHECK { "id": 352, "name": "C1M3 - HealthBonus [544,1888]", "pos": ["C1M3",544,1888,-100], "region": "Big Freezer" }
+AP-CHECK { "id": 349, "name": "C1M3 - HealthBonus [488,1944]", "pos": ["C1M3",488,1944,-100], "region": "Big Freezer" }
+AP-CHECK { "id": 350, "name": "C1M3 - HealthBonus [432,1888]", "pos": ["C1M3",432,1888,-100], "region": "Big Freezer" }
+AP-CHECK { "id": 272, "name": "C1M3 - Exit", "pos": ["C1M3","event","exit"], "region": "Big Freezer" }
+AP-XOFF {}

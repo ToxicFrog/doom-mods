@@ -1,0 +1,296 @@
+; A KISS FROM GAIA [to gently cradle]
+
+; Subway platform at the start of the level
+AP-REGION { "map": "C1M7", "region": "Platform", "keys": ["weapon/SuperShotgun2/want"] }
+; Subway cars while it's waiting at the platform.
+AP-REGION { "map": "C1M7", "region": "Front Subway Car", "keys": ["weapon/SuperShotgun2/want"] }
+AP-REGION { "map": "C1M7", "region": "Middle Subway Car", "keys": ["weapon/SuperShotgun2/want"] }
+AP-REGION { "map": "C1M7", "region": "Rear Subway Car", "keys": ["weapon/SuperShotgun2/want"] }
+; Subway after starting it moving.
+AP-REGION { "map": "C1M7", "region": "Moving Subway", "keys": ["weapon/SuperShotgun2/want", "weapon/64Chaingun/want"] }
+; Car at the back of the moving subway with the archvile ambush and yellow keys.
+AP-REGION { "map": "C1M7", "region": "Archvile Car", "keys": ["weapon/SkullStaff/want", "weapon/RocketLauncher2/want", "weapon/SuperShotgun2/want", "weapon/64Chaingun/want"] }
+AP-REGION { "map": "C1M7", "region": "Archvile Jump Secret", "keys": ["flag/secret", "map/C1M7/Archvile Car", "weapon/RocketLauncher2/need"] }
+; Floating platform area accessed from AV car using yellow key.
+AP-REGION { "map": "C1M7", "region": "Floating Platforms", "keys": ["weapon/SkullStaff/want", "weapon/SuperShotgun2/want", "weapon/64Chaingun/want", "key/YellowCard", "weapon/RocketLauncher2/want"] }
+AP-REGION { "map": "C1M7", "region": "Revenant Secret", "keys": ["map/C1M7/Floating Platforms", "flag/secret"] }
+AP-REGION { "map": "C1M7", "region": "Tree Island Secret", "keys": ["map/C1M7/Floating Platforms", "flag/secret"] }
+AP-REGION { "map": "C1M7", "region": "Abyss Island Secret", "keys": ["map/C1M7/Floating Platforms", "key/YellowCard", "flag/secret"] }
+; Arena accessed from floating platform area
+AP-REGION { "map": "C1M7", "region": "Arena", "keys": ["weapon/SkullStaff/want", "map/C1M7/Floating Platforms", "weapon/RocketLauncher2/want", "weapon/SuperShotgun2/want", "weapon/BFG90002/want", "weapon/64Chaingun/want", "weapon/64PlasmaRifle/want"] }
+; Blue key unlocked by clearing all of floating platforms + arena
+AP-REGION { "map": "C1M7", "region": "Key Platform", "keys": ["map/C1M7/Arena", "map/C1M7/Floating Platforms"] }
+; Partially collapsed tracks visible from starting platform but only reachable via
+; blue key door at the end of the level.
+AP-REGION { "map": "C1M7", "region": "Broken Tracks", "keys": ["key/BlueCard", "map/C1M7/Archvile Car"] }
+
+
+AP-CHECK { "id": 1032, "name": "C1M7 - Shotgun Shells [0,0]", "pos": ["C1M7",0,0,0], "region": "Platform" }
+AP-CHECK { "id": 783, "name": "C1M7 - Super Shotgun [-112,1424]", "pos": ["C1M7",-112,1424,-256], "region": "Platform" }
+AP-CHECK { "id": 865, "name": "C1M7 - Shotgun Shells [104,1688]", "pos": ["C1M7",104,1688,-240], "region": "Platform" }
+AP-CHECK { "id": 863, "name": "C1M7 - HealthBonus [-168,1768]", "pos": ["C1M7",-168,1768,-240], "region": "Platform" }
+AP-CHECK { "id": 864, "name": "C1M7 - HealthBonus [-168,1728]", "pos": ["C1M7",-168,1728,-240], "region": "Platform" }
+AP-CHECK { "id": 868, "name": "C1M7 - Shotgun Shells [-168,2240]", "pos": ["C1M7",-168,2240,-240], "region": "Platform" }
+AP-CHECK { "id": 866, "name": "C1M7 - Bullets [-168,2280]", "pos": ["C1M7",-168,2280,-240], "region": "Platform" }
+AP-CHECK { "id": 867, "name": "C1M7 - Bullets [104,2200]", "pos": ["C1M7",104,2200,-240], "region": "Platform" }
+AP-CHECK { "id": 870, "name": "C1M7 - Medikit [104,3664]", "pos": ["C1M7",104,3664,-16], "region": "Platform" }
+AP-CHECK { "id": 869, "name": "C1M7 - Medikit [-168,3664]", "pos": ["C1M7",-168,3664,-16], "region": "Platform" }
+AP-CHECK { "id": 1038, "name": "C1M7 - Super Shotgun [456,1736]", "pos": ["C1M7",456,1736,-256], "region": "Rear Subway Car" }
+AP-CHECK { "id": 797, "name": "C1M7 - ArmorBonus [384,1776]", "pos": ["C1M7",384,1776,-240], "region": "Rear Subway Car" }
+AP-CHECK { "id": 805, "name": "C1M7 - HealthBonus [384,1712]", "pos": ["C1M7",384,1712,-240], "region": "Rear Subway Car" }
+AP-CHECK { "id": 784, "name": "C1M7 - Shotgun Shells [536,1712]", "pos": ["C1M7",536,1712,-256], "region": "Rear Subway Car" }
+AP-CHECK { "id": 794, "name": "C1M7 - ArmorBonus [624,1688]", "pos": ["C1M7",624,1688,-240], "region": "Rear Subway Car" }
+AP-CHECK { "id": 795, "name": "C1M7 - ArmorBonus [624,1656]", "pos": ["C1M7",624,1656,-240], "region": "Rear Subway Car" }
+AP-CHECK { "id": 804, "name": "C1M7 - HealthBonus [624,1776]", "pos": ["C1M7",624,1776,-240], "region": "Rear Subway Car" }
+AP-CHECK { "id": 796, "name": "C1M7 - ArmorBonus [352,1776]", "pos": ["C1M7",352,1776,-240], "region": "Rear Subway Car" }
+AP-CHECK { "id": 788, "name": "C1M7 - Bullets [448,2144]", "pos": ["C1M7",448,2144,-256], "region": "Middle Subway Car" }
+AP-CHECK { "id": 786, "name": "C1M7 - Chaingun", "pos": ["C1M7",432,2088,-256], "region": "Middle Subway Car" }
+AP-CHECK { "id": 793, "name": "C1M7 - ArmorBonus [384,2096]", "pos": ["C1M7",384,2096,-240], "region": "Middle Subway Car" }
+AP-CHECK { "id": 792, "name": "C1M7 - ArmorBonus [352,2096]", "pos": ["C1M7",352,2096,-240], "region": "Middle Subway Car" }
+AP-CHECK { "id": 803, "name": "C1M7 - HealthBonus [384,2032]", "pos": ["C1M7",384,2032,-240], "region": "Middle Subway Car" }
+AP-CHECK { "id": 787, "name": "C1M7 - Bullets [528,2112]", "pos": ["C1M7",528,2112,-256], "region": "Middle Subway Car" }
+AP-CHECK { "id": 789, "name": "C1M7 - ArmorBonus [624,2160]", "pos": ["C1M7",624,2160,-240], "region": "Middle Subway Car" }
+AP-CHECK { "id": 790, "name": "C1M7 - ArmorBonus [624,2128]", "pos": ["C1M7",624,2128,-240], "region": "Middle Subway Car" }
+AP-CHECK { "id": 791, "name": "C1M7 - ArmorBonus [624,2072]", "pos": ["C1M7",624,2072,-240], "region": "Middle Subway Car" }
+AP-CHECK { "id": 801, "name": "C1M7 - HealthBonus [352,2544]", "pos": ["C1M7",352,2544,-240], "region": "Front Subway Car" }
+AP-CHECK { "id": 802, "name": "C1M7 - HealthBonus [384,2480]", "pos": ["C1M7",384,2480,-240], "region": "Front Subway Car" }
+AP-CHECK { "id": 798, "name": "C1M7 - ArmorBonus [384,2416]", "pos": ["C1M7",384,2416,-240], "region": "Front Subway Car" }
+AP-CHECK { "id": 800, "name": "C1M7 - ArmorBonus [624,2456]", "pos": ["C1M7",624,2456,-240], "region": "Front Subway Car" }
+AP-CHECK { "id": 799, "name": "C1M7 - ArmorBonus [624,2424]", "pos": ["C1M7",624,2424,-240], "region": "Front Subway Car" }
+AP-CHECK { "id": 813, "name": "C1M7 - Shotgun Shells [1872,2072]", "pos": ["C1M7",1872,2072,-240], "region": "Moving Subway" }
+AP-CHECK { "id": 806, "name": "C1M7 - Shotgun Shells [1872,1712]", "pos": ["C1M7",1872,1712,-240], "region": "Moving Subway" }
+AP-CHECK { "id": 807, "name": "C1M7 - Shotgun Shells [1872,1688]", "pos": ["C1M7",1872,1688,-240], "region": "Moving Subway" }
+AP-CHECK { "id": 810, "name": "C1M7 - Stimpack [1632,1712]", "pos": ["C1M7",1632,1712,-240], "region": "Moving Subway" }
+AP-CHECK { "id": 809, "name": "C1M7 - Bullets [1632,1648]", "pos": ["C1M7",1632,1648,-240], "region": "Moving Subway" }
+AP-CHECK { "id": 808, "name": "C1M7 - Bullets [1600,1648]", "pos": ["C1M7",1600,1648,-240], "region": "Moving Subway" }
+AP-CHECK { "id": 811, "name": "C1M7 - Bullets [1632,1320]", "pos": ["C1M7",1632,1320,-256], "region": "Moving Subway" }
+AP-CHECK { "id": 812, "name": "C1M7 - Bullets [1632,1288]", "pos": ["C1M7",1632,1288,-256], "region": "Moving Subway" }
+AP-CHECK { "id": 814, "name": "C1M7 - Shotgun Shells [1680,864]", "pos": ["C1M7",1680,864,-224], "region": "Moving Subway" }
+AP-CHECK { "id": 815, "name": "C1M7 - Medikit [1864,932]", "pos": ["C1M7",1864,932,-224], "region": "Moving Subway" }
+AP-CHECK { "id": 817, "name": "C1M7 - SkullStaff [S]", "pos": ["C1M7",1736,624,-256], "region": "Moving Subway" }
+AP-CHECK { "id": 1035, "name": "C1M7 - Rocket Launcher [S]", "pos": ["C1M7",1736,624,-256], "region": "Moving Subway" }
+AP-CHECK { "id": 785, "name": "C1M7 - SpiritAmmo [1784,576]", "pos": ["C1M7",1784,576,-256], "region": "Moving Subway" }
+AP-CHECK { "id": 1037, "name": "C1M7 - Rockets [1784,576]", "pos": ["C1M7",1784,576,-256], "region": "Moving Subway" }
+AP-CHECK { "id": 782, "name": "C1M7 - SpiritAmmo [1688,576]", "pos": ["C1M7",1688,576,-256], "region": "Moving Subway" }
+AP-CHECK { "id": 1036, "name": "C1M7 - Rockets [1688,576]", "pos": ["C1M7",1688,576,-256], "region": "Moving Subway" }
+AP-CHECK { "id": 816, "name": "C1M7 - Shotgun Shells [1736,528]", "pos": ["C1M7",1736,528,-256], "region": "Moving Subway" }
+AP-CHECK { "id": 819, "name": "C1M7 - Rockets [4920,128]", "pos": ["C1M7",4920,128,-254], "region": "Archvile Car" }
+AP-CHECK { "id": 824, "name": "C1M7 - Stimpack [4832,-56]", "pos": ["C1M7",4832,-56,-254], "region": "Archvile Car" }
+AP-CHECK { "id": 828, "name": "C1M7 - GreenArmor [SE]", "pos": ["C1M7",5024,-288,-254], "region": "Archvile Car" }
+AP-CHECK { "id": 821, "name": "C1M7 - Stimpack [4824,-352]", "pos": ["C1M7",4824,-352,-256], "region": "Archvile Car" }
+AP-CHECK { "id": 825, "name": "C1M7 - Stimpack [4896,-184]", "pos": ["C1M7",4896,-184,-256], "region": "Archvile Car" }
+AP-CHECK { "id": 827, "name": "C1M7 - Yellow Keycard [SE]", "pos": ["C1M7",4752,304,-160], "region": "Archvile Car" }
+AP-CHECK { "id": 838, "name": "C1M7 - Rockets [4824,488]", "pos": ["C1M7",4824,488,-258], "region": "Floating Platforms" }
+AP-CHECK { "id": 837, "name": "C1M7 - Rockets [4760,616]", "pos": ["C1M7",4760,616,-258], "region": "Floating Platforms" }
+AP-CHECK { "id": 839, "name": "C1M7 - Rockets [4760,672]", "pos": ["C1M7",4760,672,-258], "region": "Floating Platforms" }
+AP-CHECK { "id": 836, "name": "C1M7 - Rockets [4760,728]", "pos": ["C1M7",4760,728,-258], "region": "Floating Platforms" }
+AP-CHECK { "id": 856, "name": "C1M7 - Stimpack [5064,616]", "pos": ["C1M7",5064,616,-258], "region": "Floating Platforms" }
+AP-CHECK { "id": 835, "name": "C1M7 - Rockets [5128,680]", "pos": ["C1M7",5128,680,-258], "region": "Floating Platforms" }
+AP-CHECK { "id": 834, "name": "C1M7 - Rockets [5128,728]", "pos": ["C1M7",5128,728,-258], "region": "Floating Platforms" }
+AP-CHECK { "id": 832, "name": "C1M7 - Rockets [5000,792]", "pos": ["C1M7",5000,792,-258], "region": "Floating Platforms" }
+AP-CHECK { "id": 833, "name": "C1M7 - Rockets [4888,792]", "pos": ["C1M7",4888,792,-258], "region": "Floating Platforms" }
+AP-CHECK { "id": 840, "name": "C1M7 - Rockets [5096,824]", "pos": ["C1M7",5096,824,-274], "region": "Floating Platforms" }
+AP-CHECK { "id": 841, "name": "C1M7 - Rockets [5160,824]", "pos": ["C1M7",5160,824,-274], "region": "Floating Platforms" }
+AP-CHECK { "id": 859, "name": "C1M7 - Stimpack [5160,952]", "pos": ["C1M7",5160,952,-274], "region": "Floating Platforms" }
+AP-CHECK { "id": 842, "name": "C1M7 - Rockets [4936,888]", "pos": ["C1M7",4936,888,-274], "region": "Floating Platforms" }
+AP-CHECK { "id": 830, "name": "C1M7 - Plasma Rifle [4920,1096]", "pos": ["C1M7",4920,1096,-290], "region": "Floating Platforms" }
+AP-CHECK { "id": 846, "name": "C1M7 - Rockets [5016,1048]", "pos": ["C1M7",5016,1048,-290], "region": "Floating Platforms" }
+AP-CHECK { "id": 845, "name": "C1M7 - Rockets [5016,1128]", "pos": ["C1M7",5016,1128,-290], "region": "Floating Platforms" }
+AP-CHECK { "id": 847, "name": "C1M7 - Energy Cells [5112,1144]", "pos": ["C1M7",5112,1144,-306], "region": "Floating Platforms" }
+AP-CHECK { "id": 848, "name": "C1M7 - Energy Cells [5000,1224]", "pos": ["C1M7",5000,1224,-306], "region": "Floating Platforms" }
+AP-CHECK { "id": 849, "name": "C1M7 - Energy Cells [4936,1352]", "pos": ["C1M7",4936,1352,-306], "region": "Floating Platforms" }
+AP-CHECK { "id": 1034, "name": "C1M7 - Plasma Rifle [4784,1368]", "pos": ["C1M7",4784,1368,-322], "region": "Floating Platforms" }
+AP-CHECK { "id": 858, "name": "C1M7 - Stimpack [4656,1288]", "pos": ["C1M7",4656,1288,-322], "region": "Floating Platforms" }
+AP-CHECK { "id": 851, "name": "C1M7 - Energy Cells [4656,1448]", "pos": ["C1M7",4656,1448,-322], "region": "Floating Platforms" }
+AP-CHECK { "id": 850, "name": "C1M7 - Energy Cells [5032,1384]", "pos": ["C1M7",5032,1384,-306], "region": "Floating Platforms" }
+AP-CHECK { "id": 844, "name": "C1M7 - Rockets [4904,1192]", "pos": ["C1M7",4904,1192,-290], "region": "Floating Platforms" }
+AP-CHECK { "id": 853, "name": "C1M7 - Energy Cells [4856,1528]", "pos": ["C1M7",4856,1528,-322], "region": "Floating Platforms" }
+AP-CHECK { "id": 852, "name": "C1M7 - Energy Cells [4936,1560]", "pos": ["C1M7",4936,1560,-322], "region": "Floating Platforms" }
+AP-CHECK { "id": 860, "name": "C1M7 - Stimpack [5000,1560]", "pos": ["C1M7",5000,1560,-322], "region": "Floating Platforms" }
+AP-CHECK { "id": 854, "name": "C1M7 - Energy Cells [4984,1656]", "pos": ["C1M7",4984,1656,-338], "region": "Floating Platforms" }
+AP-CHECK { "id": 855, "name": "C1M7 - Energy Cells [4904,1800]", "pos": ["C1M7",4904,1800,-354], "region": "Floating Platforms" }
+AP-CHECK { "id": 857, "name": "C1M7 - Stimpack [4968,1928]", "pos": ["C1M7",4968,1928,-370], "region": "Floating Platforms" }
+AP-CHECK { "id": 990, "name": "C1M7 - Rocket Launcher [SE]", "pos": ["C1M7",4992,2096,-378], "region": "Floating Platforms" }
+AP-CHECK { "id": 920, "name": "C1M7 - Shotgun Shells [4752,2712]", "pos": ["C1M7",4752,2712,-316], "region": "Floating Platforms" }
+AP-CHECK { "id": 1006, "name": "C1M7 - Shotgun Shells [4024,2522]", "pos": ["C1M7",4024,2522,-332], "region": "Floating Platforms" }
+AP-CHECK { "id": 1008, "name": "C1M7 - Rockets [4232,2200]", "pos": ["C1M7",4232,2200,-332], "region": "Floating Platforms" }
+AP-CHECK { "id": 919, "name": "C1M7 - Shotgun Shells [4296,2200]", "pos": ["C1M7",4296,2200,-332], "region": "Floating Platforms" }
+AP-CHECK { "id": 918, "name": "C1M7 - Shotgun Shells [3568,2000]", "pos": ["C1M7",3568,2000,-276], "region": "Floating Platforms" }
+AP-CHECK { "id": 917, "name": "C1M7 - Shotgun Shells [3520,2032]", "pos": ["C1M7",3520,2032,-276], "region": "Floating Platforms" }
+AP-CHECK { "id": 1007, "name": "C1M7 - Rockets [3504,1824]", "pos": ["C1M7",3504,1824,-316], "region": "Floating Platforms" }
+AP-CHECK { "id": 831, "name": "C1M7 - Stimpack [3242,1738]", "pos": ["C1M7",3242,1738,-316], "region": "Floating Platforms" }
+AP-CHECK { "id": 861, "name": "C1M7 - BFG 9000", "pos": ["C1M7",3552,1192,-588], "region": "Tree Island Secret" }
+AP-CHECK { "id": 1047, "name": "C1M7 - Secret 784", "pos": ["C1M7","secret","sector",784], "region": "Tree Island Secret" }
+AP-CHECK { "id": 1046, "name": "C1M7 - Secret 731", "pos": ["C1M7","secret","sector",731], "region": "Abyss Island Secret" }
+AP-CHECK { "id": 862, "name": "C1M7 - Soulsphere", "pos": ["C1M7",5946,1534,-4096], "region": "Abyss Island Secret" }
+AP-CHECK { "id": 909, "name": "C1M7 - Energy Cells [5216,3136]", "pos": ["C1M7",5216,3136,-300], "region": "Floating Platforms" }
+AP-CHECK { "id": 1040, "name": "C1M7 - Stimpack [5296,3136]", "pos": ["C1M7",5296,3136,-300], "region": "Floating Platforms" }
+AP-CHECK { "id": 890, "name": "C1M7 - ArmorBonus [5184,3648]", "pos": ["C1M7",5184,3648,-300], "region": "Floating Platforms" }
+AP-CHECK { "id": 891, "name": "C1M7 - ArmorBonus [5144,3688]", "pos": ["C1M7",5144,3688,-300], "region": "Floating Platforms" }
+AP-CHECK { "id": 889, "name": "C1M7 - ArmorBonus [5184,3728]", "pos": ["C1M7",5184,3728,-300], "region": "Floating Platforms" }
+AP-CHECK { "id": 888, "name": "C1M7 - ArmorBonus [5224,3688]", "pos": ["C1M7",5224,3688,-300], "region": "Floating Platforms" }
+AP-CHECK { "id": 899, "name": "C1M7 - HealthBonus [5568,3384]", "pos": ["C1M7",5568,3384,-300], "region": "Floating Platforms" }
+AP-CHECK { "id": 898, "name": "C1M7 - HealthBonus [5624,3440]", "pos": ["C1M7",5624,3440,-300], "region": "Floating Platforms" }
+AP-CHECK { "id": 896, "name": "C1M7 - HealthBonus [5568,3496]", "pos": ["C1M7",5568,3496,-300], "region": "Floating Platforms" }
+AP-CHECK { "id": 897, "name": "C1M7 - HealthBonus [5512,3440]", "pos": ["C1M7",5512,3440,-300], "region": "Floating Platforms" }
+AP-CHECK { "id": 892, "name": "C1M7 - ArmorBonus [5528,3688]", "pos": ["C1M7",5528,3688,-300], "region": "Floating Platforms" }
+AP-CHECK { "id": 895, "name": "C1M7 - ArmorBonus [5568,3728]", "pos": ["C1M7",5568,3728,-300], "region": "Floating Platforms" }
+AP-CHECK { "id": 893, "name": "C1M7 - ArmorBonus [5608,3688]", "pos": ["C1M7",5608,3688,-300], "region": "Floating Platforms" }
+AP-CHECK { "id": 894, "name": "C1M7 - ArmorBonus [5568,3648]", "pos": ["C1M7",5568,3648,-300], "region": "Floating Platforms" }
+AP-CHECK { "id": 872, "name": "C1M7 - Rockets [5792,3728]", "pos": ["C1M7",5792,3728,-301], "region": "Floating Platforms" }
+AP-CHECK { "id": 873, "name": "C1M7 - Rockets [5888,3728]", "pos": ["C1M7",5888,3728,-284], "region": "Floating Platforms" }
+AP-CHECK { "id": 874, "name": "C1M7 - Rockets [5984,3728]", "pos": ["C1M7",5984,3728,-268], "region": "Floating Platforms" }
+AP-CHECK { "id": 875, "name": "C1M7 - Rockets [6080,3728]", "pos": ["C1M7",6080,3728,-252], "region": "Floating Platforms" }
+AP-CHECK { "id": 876, "name": "C1M7 - Rockets [6544,3328]", "pos": ["C1M7",6544,3328,-236], "region": "Floating Platforms" }
+AP-CHECK { "id": 877, "name": "C1M7 - Rockets [6544,3232]", "pos": ["C1M7",6544,3232,-220], "region": "Floating Platforms" }
+AP-CHECK { "id": 878, "name": "C1M7 - Rockets [6544,3136]", "pos": ["C1M7",6544,3136,-204], "region": "Floating Platforms" }
+AP-CHECK { "id": 912, "name": "C1M7 - Rockets [5984,3344]", "pos": ["C1M7",5984,3344,-268], "region": "Floating Platforms" }
+AP-CHECK { "id": 911, "name": "C1M7 - Rockets [5888,3344]", "pos": ["C1M7",5888,3344,-284], "region": "Floating Platforms" }
+AP-CHECK { "id": 910, "name": "C1M7 - Rockets [5792,3344]", "pos": ["C1M7",5792,3344,-300], "region": "Floating Platforms" }
+AP-CHECK { "id": 913, "name": "C1M7 - Rockets [6080,3344]", "pos": ["C1M7",6080,3344,-252], "region": "Floating Platforms" }
+AP-CHECK { "id": 914, "name": "C1M7 - Rockets [6224,3328]", "pos": ["C1M7",6224,3328,-236], "region": "Floating Platforms" }
+AP-CHECK { "id": 915, "name": "C1M7 - Rockets [6224,3232]", "pos": ["C1M7",6224,3232,-220], "region": "Floating Platforms" }
+AP-CHECK { "id": 916, "name": "C1M7 - Rockets [6224,3136]", "pos": ["C1M7",6224,3136,-204], "region": "Floating Platforms" }
+AP-CHECK { "id": 907, "name": "C1M7 - HealthBonus [6208,2816]", "pos": ["C1M7",6208,2816,-188], "region": "Floating Platforms" }
+AP-CHECK { "id": 905, "name": "C1M7 - HealthBonus [6184,2792]", "pos": ["C1M7",6184,2792,-188], "region": "Floating Platforms" }
+AP-CHECK { "id": 906, "name": "C1M7 - HealthBonus [6112,2720]", "pos": ["C1M7",6112,2720,-188], "region": "Floating Platforms" }
+AP-CHECK { "id": 904, "name": "C1M7 - HealthBonus [6136,2744]", "pos": ["C1M7",6136,2744,-188], "region": "Floating Platforms" }
+AP-CHECK { "id": 902, "name": "C1M7 - HealthBonus [5856,2720]", "pos": ["C1M7",5856,2720,-188], "region": "Floating Platforms" }
+AP-CHECK { "id": 900, "name": "C1M7 - HealthBonus [5832,2744]", "pos": ["C1M7",5832,2744,-188], "region": "Floating Platforms" }
+AP-CHECK { "id": 887, "name": "C1M7 - HealthBonus [5728,2592]", "pos": ["C1M7",5728,2592,-188], "region": "Floating Platforms" }
+AP-CHECK { "id": 885, "name": "C1M7 - HealthBonus [5680,2592]", "pos": ["C1M7",5680,2592,-188], "region": "Floating Platforms" }
+AP-CHECK { "id": 884, "name": "C1M7 - HealthBonus [5632,2592]", "pos": ["C1M7",5632,2592,-188], "region": "Floating Platforms" }
+AP-CHECK { "id": 883, "name": "C1M7 - HealthBonus [5584,2592]", "pos": ["C1M7",5584,2592,-188], "region": "Floating Platforms" }
+AP-CHECK { "id": 1039, "name": "C1M7 - Stimpack [5536,2592]", "pos": ["C1M7",5536,2592,-188], "region": "Floating Platforms" }
+AP-CHECK { "id": 879, "name": "C1M7 - Medikit [5536,2592]", "pos": ["C1M7",5536,2592,-188], "region": "Floating Platforms" }
+AP-CHECK { "id": 880, "name": "C1M7 - HealthBonus [5536,2640]", "pos": ["C1M7",5536,2640,-188], "region": "Floating Platforms" }
+AP-CHECK { "id": 881, "name": "C1M7 - HealthBonus [5536,2688]", "pos": ["C1M7",5536,2688,-188], "region": "Floating Platforms" }
+AP-CHECK { "id": 882, "name": "C1M7 - HealthBonus [5536,2736]", "pos": ["C1M7",5536,2736,-188], "region": "Floating Platforms" }
+AP-CHECK { "id": 886, "name": "C1M7 - HealthBonus [5536,2784]", "pos": ["C1M7",5536,2784,-188], "region": "Floating Platforms" }
+AP-CHECK { "id": 903, "name": "C1M7 - HealthBonus [5760,2816]", "pos": ["C1M7",5760,2816,-188], "region": "Floating Platforms" }
+AP-CHECK { "id": 901, "name": "C1M7 - HealthBonus [5784,2792]", "pos": ["C1M7",5784,2792,-188], "region": "Floating Platforms" }
+AP-CHECK { "id": 1009, "name": "C1M7 - Rockets [5770,3146]", "pos": ["C1M7",5770,3146,-188], "region": "Floating Platforms" }
+AP-CHECK { "id": 843, "name": "C1M7 - BlueArmor", "pos": ["C1M7",4020,3363,-372], "region": "Floating Platforms" }
+AP-CHECK { "id": 908, "name": "C1M7 - Energy Cells [3564,3052]", "pos": ["C1M7",3564,3052,-252], "region": "Floating Platforms" }
+AP-CHECK { "id": 921, "name": "C1M7 - Stimpack [3480,3168]", "pos": ["C1M7",3480,3168,-244], "region": "Floating Platforms" }
+AP-CHECK { "id": 923, "name": "C1M7 - Medikit [4680,4176]", "pos": ["C1M7",4680,4176,-260], "region": "Floating Platforms" }
+AP-CHECK { "id": 922, "name": "C1M7 - Medikit [4608,4176]", "pos": ["C1M7",4608,4176,-260], "region": "Floating Platforms" }
+AP-CHECK { "id": 1011, "name": "C1M7 - Stimpack [4752,5024]", "pos": ["C1M7",4752,5024,-260], "region": "Floating Platforms" }
+AP-CHECK { "id": 1010, "name": "C1M7 - Stimpack [4528,5024]", "pos": ["C1M7",4528,5024,-260], "region": "Floating Platforms" }
+AP-CHECK { "id": 871, "name": "C1M7 - Megasphere [Center]", "pos": ["C1M7",4164,4668,-182], "region": "Revenant Secret" }
+AP-CHECK { "id": 1048, "name": "C1M7 - Secret 1343", "pos": ["C1M7","secret","sector",1343], "region": "Revenant Secret" }
+AP-CHECK { "id": 1013, "name": "C1M7 - Rockets [5180,6212]", "pos": ["C1M7",5180,6212,-180], "region": "Arena" }
+AP-CHECK { "id": 1014, "name": "C1M7 - Rockets [5192,6160]", "pos": ["C1M7",5192,6160,-172], "region": "Arena" }
+AP-CHECK { "id": 1015, "name": "C1M7 - Rockets [5196,6100]", "pos": ["C1M7",5196,6100,-164], "region": "Arena" }
+AP-CHECK { "id": 991, "name": "C1M7 - Rockets [5180,6048]", "pos": ["C1M7",5180,6048,-156], "region": "Arena" }
+AP-CHECK { "id": 992, "name": "C1M7 - Rockets [5164,5992]", "pos": ["C1M7",5164,5992,-148], "region": "Arena" }
+AP-CHECK { "id": 926, "name": "C1M7 - Medikit [5120,5912]", "pos": ["C1M7",5120,5912,-140], "region": "Arena" }
+AP-CHECK { "id": 928, "name": "C1M7 - Shotgun Shells [4312,6080]", "pos": ["C1M7",4312,6080,-268], "region": "Arena" }
+AP-CHECK { "id": 993, "name": "C1M7 - Rockets [4104,6212]", "pos": ["C1M7",4104,6212,-180], "region": "Arena" }
+AP-CHECK { "id": 994, "name": "C1M7 - Rockets [4092,6160]", "pos": ["C1M7",4092,6160,-172], "region": "Arena" }
+AP-CHECK { "id": 1018, "name": "C1M7 - Rockets [4088,6100]", "pos": ["C1M7",4088,6100,-164], "region": "Arena" }
+AP-CHECK { "id": 1017, "name": "C1M7 - Rockets [4104,6048]", "pos": ["C1M7",4104,6048,-156], "region": "Arena" }
+AP-CHECK { "id": 1016, "name": "C1M7 - Rockets [4120,5992]", "pos": ["C1M7",4120,5992,-148], "region": "Arena" }
+AP-CHECK { "id": 925, "name": "C1M7 - Medikit [4160,5912]", "pos": ["C1M7",4160,5912,-140], "region": "Arena" }
+AP-CHECK { "id": 1004, "name": "C1M7 - Energy Cells [5328,7256]", "pos": ["C1M7",5328,7256,-260], "region": "Arena" }
+AP-CHECK { "id": 1001, "name": "C1M7 - Medikit [5184,7392]", "pos": ["C1M7",5184,7392,-260], "region": "Arena" }
+AP-CHECK { "id": 996, "name": "C1M7 - Rockets [5184,7504]", "pos": ["C1M7",5184,7504,-260], "region": "Arena" }
+AP-CHECK { "id": 1012, "name": "C1M7 - Rockets [4096,7504]", "pos": ["C1M7",4096,7504,-260], "region": "Arena" }
+AP-CHECK { "id": 1025, "name": "C1M7 - Rockets [4096,7456]", "pos": ["C1M7",4096,7456,-260], "region": "Arena" }
+AP-CHECK { "id": 1003, "name": "C1M7 - Medikit [4096,7392]", "pos": ["C1M7",4096,7392,-260], "region": "Arena" }
+AP-CHECK { "id": 998, "name": "C1M7 - Energy Cells [3952,7264]", "pos": ["C1M7",3952,7264,-260], "region": "Arena" }
+AP-CHECK { "id": 995, "name": "C1M7 - Rockets [4572,6544]", "pos": ["C1M7",4572,6544,-268], "region": "Arena" }
+AP-CHECK { "id": 924, "name": "C1M7 - Stimpack [4640,6528]", "pos": ["C1M7",4640,6528,-264], "region": "Arena" }
+AP-CHECK { "id": 1005, "name": "C1M7 - Rockets [4708,6544]", "pos": ["C1M7",4708,6544,-268], "region": "Arena" }
+AP-CHECK { "id": 930, "name": "C1M7 - Shotgun Shells [4896,6152]", "pos": ["C1M7",4896,6152,-268], "region": "Arena" }
+AP-CHECK { "id": 929, "name": "C1M7 - Shotgun Shells [4968,6080]", "pos": ["C1M7",4968,6080,-268], "region": "Arena" }
+AP-CHECK { "id": 935, "name": "C1M7 - Rockets [4720,6080]", "pos": ["C1M7",4720,6080,-268], "region": "Arena" }
+AP-CHECK { "id": 938, "name": "C1M7 - Rockets [4668,6080]", "pos": ["C1M7",4668,6080,-268], "region": "Arena" }
+AP-CHECK { "id": 937, "name": "C1M7 - Rockets [4612,6080]", "pos": ["C1M7",4612,6080,-268], "region": "Arena" }
+AP-CHECK { "id": 936, "name": "C1M7 - Rockets [4560,6080]", "pos": ["C1M7",4560,6080,-268], "region": "Arena" }
+AP-CHECK { "id": 932, "name": "C1M7 - Rockets [4508,6080]", "pos": ["C1M7",4508,6080,-268], "region": "Arena" }
+AP-CHECK { "id": 927, "name": "C1M7 - Shotgun Shells [4384,6152]", "pos": ["C1M7",4384,6152,-268], "region": "Arena" }
+AP-CHECK { "id": 931, "name": "C1M7 - Rockets [4456,6080]", "pos": ["C1M7",4456,6080,-268], "region": "Arena" }
+AP-CHECK { "id": 934, "name": "C1M7 - Rockets [4772,6080]", "pos": ["C1M7",4772,6080,-268], "region": "Arena" }
+AP-CHECK { "id": 933, "name": "C1M7 - Rockets [4824,6080]", "pos": ["C1M7",4824,6080,-268], "region": "Arena" }
+AP-CHECK { "id": 1002, "name": "C1M7 - Energy Cells [5040,7256]", "pos": ["C1M7",5040,7256,-260], "region": "Arena" }
+AP-CHECK { "id": 1043, "name": "C1M7 - SpiritAmmo [4736,7536]", "pos": ["C1M7",4736,7536,-260], "region": "Arena" }
+AP-CHECK { "id": 999, "name": "C1M7 - Medikit [4640,7600]", "pos": ["C1M7",4640,7600,-260], "region": "Arena" }
+AP-CHECK { "id": 1044, "name": "C1M7 - SpiritAmmo [4640,7568]", "pos": ["C1M7",4640,7568,-260], "region": "Arena" }
+AP-CHECK { "id": 1041, "name": "C1M7 - SkullStaff [NE]", "pos": ["C1M7",4640,7632,-260], "region": "Arena" }
+AP-CHECK { "id": 959, "name": "C1M7 - ArmorBonus [5040,6968]", "pos": ["C1M7",5040,6968,-268], "region": "Arena" }
+AP-CHECK { "id": 952, "name": "C1M7 - ArmorBonus [4336,6744]", "pos": ["C1M7",4336,6744,-268], "region": "Arena" }
+AP-CHECK { "id": 955, "name": "C1M7 - ArmorBonus [4384,6760]", "pos": ["C1M7",4384,6760,-268], "region": "Arena" }
+AP-CHECK { "id": 951, "name": "C1M7 - ArmorBonus [4288,6736]", "pos": ["C1M7",4288,6736,-268], "region": "Arena" }
+AP-CHECK { "id": 953, "name": "C1M7 - ArmorBonus [4240,6744]", "pos": ["C1M7",4240,6744,-268], "region": "Arena" }
+AP-CHECK { "id": 1042, "name": "C1M7 - SpiritAmmo [4544,7536]", "pos": ["C1M7",4544,7536,-260], "region": "Arena" }
+AP-CHECK { "id": 1000, "name": "C1M7 - Energy Cells [4240,7264]", "pos": ["C1M7",4240,7264,-260], "region": "Arena" }
+AP-CHECK { "id": 944, "name": "C1M7 - ArmorBonus [4240,6968]", "pos": ["C1M7",4240,6968,-268], "region": "Arena" }
+AP-CHECK { "id": 957, "name": "C1M7 - ArmorBonus [4192,6952]", "pos": ["C1M7",4192,6952,-268], "region": "Arena" }
+AP-CHECK { "id": 949, "name": "C1M7 - ArmorBonus [4176,6904]", "pos": ["C1M7",4176,6904,-268], "region": "Arena" }
+AP-CHECK { "id": 948, "name": "C1M7 - ArmorBonus [4168,6856]", "pos": ["C1M7",4168,6856,-268], "region": "Arena" }
+AP-CHECK { "id": 950, "name": "C1M7 - ArmorBonus [4176,6808]", "pos": ["C1M7",4176,6808,-268], "region": "Arena" }
+AP-CHECK { "id": 954, "name": "C1M7 - ArmorBonus [4192,6760]", "pos": ["C1M7",4192,6760,-268], "region": "Arena" }
+AP-CHECK { "id": 941, "name": "C1M7 - GreenArmor [NE]", "pos": ["C1M7",4960,6624,-275], "region": "Arena" }
+AP-CHECK { "id": 968, "name": "C1M7 - ArmorBonus [5040,6744]", "pos": ["C1M7",5040,6744,-268], "region": "Arena" }
+AP-CHECK { "id": 967, "name": "C1M7 - ArmorBonus [4992,6736]", "pos": ["C1M7",4992,6736,-268], "region": "Arena" }
+AP-CHECK { "id": 971, "name": "C1M7 - ArmorBonus [5088,6760]", "pos": ["C1M7",5088,6760,-268], "region": "Arena" }
+AP-CHECK { "id": 963, "name": "C1M7 - ArmorBonus [5104,6808]", "pos": ["C1M7",5104,6808,-268], "region": "Arena" }
+AP-CHECK { "id": 961, "name": "C1M7 - ArmorBonus [5112,6856]", "pos": ["C1M7",5112,6856,-268], "region": "Arena" }
+AP-CHECK { "id": 969, "name": "C1M7 - ArmorBonus [4944,6744]", "pos": ["C1M7",4944,6744,-268], "region": "Arena" }
+AP-CHECK { "id": 970, "name": "C1M7 - ArmorBonus [4896,6760]", "pos": ["C1M7",4896,6760,-268], "region": "Arena" }
+AP-CHECK { "id": 966, "name": "C1M7 - ArmorBonus [4880,6808]", "pos": ["C1M7",4880,6808,-268], "region": "Arena" }
+AP-CHECK { "id": 964, "name": "C1M7 - ArmorBonus [4872,6856]", "pos": ["C1M7",4872,6856,-268], "region": "Arena" }
+AP-CHECK { "id": 973, "name": "C1M7 - ArmorBonus [4896,6952]", "pos": ["C1M7",4896,6952,-268], "region": "Arena" }
+AP-CHECK { "id": 960, "name": "C1M7 - ArmorBonus [4944,6968]", "pos": ["C1M7",4944,6968,-268], "region": "Arena" }
+AP-CHECK { "id": 958, "name": "C1M7 - ArmorBonus [4992,6976]", "pos": ["C1M7",4992,6976,-268], "region": "Arena" }
+AP-CHECK { "id": 972, "name": "C1M7 - ArmorBonus [5088,6952]", "pos": ["C1M7",5088,6952,-268], "region": "Arena" }
+AP-CHECK { "id": 962, "name": "C1M7 - ArmorBonus [5104,6904]", "pos": ["C1M7",5104,6904,-268], "region": "Arena" }
+AP-CHECK { "id": 987, "name": "C1M7 - HealthBonus [4736,6928]", "pos": ["C1M7",4736,6928,-268], "region": "Arena" }
+AP-CHECK { "id": 979, "name": "C1M7 - HealthBonus [4752,6976]", "pos": ["C1M7",4752,6976,-268], "region": "Arena" }
+AP-CHECK { "id": 940, "name": "C1M7 - Bullets [4640,6992]", "pos": ["C1M7",4640,6992,-100], "region": "Arena" }
+AP-CHECK { "id": 939, "name": "C1M7 - Bullets [4640,7056]", "pos": ["C1M7",4640,7056,-100], "region": "Arena" }
+AP-CHECK { "id": 976, "name": "C1M7 - HealthBonus [4592,7136]", "pos": ["C1M7",4592,7136,-268], "region": "Arena" }
+AP-CHECK { "id": 989, "name": "C1M7 - HealthBonus [4544,7120]", "pos": ["C1M7",4544,7120,-268], "region": "Arena" }
+AP-CHECK { "id": 974, "name": "C1M7 - HealthBonus [4640,7144]", "pos": ["C1M7",4640,7144,-268], "region": "Arena" }
+AP-CHECK { "id": 975, "name": "C1M7 - HealthBonus [4688,7136]", "pos": ["C1M7",4688,7136,-268], "region": "Arena" }
+AP-CHECK { "id": 988, "name": "C1M7 - HealthBonus [4736,7120]", "pos": ["C1M7",4736,7120,-268], "region": "Arena" }
+AP-CHECK { "id": 978, "name": "C1M7 - HealthBonus [4752,7072]", "pos": ["C1M7",4752,7072,-268], "region": "Arena" }
+AP-CHECK { "id": 977, "name": "C1M7 - HealthBonus [4760,7024]", "pos": ["C1M7",4760,7024,-268], "region": "Arena" }
+AP-CHECK { "id": 984, "name": "C1M7 - HealthBonus [4688,6912]", "pos": ["C1M7",4688,6912,-268], "region": "Arena" }
+AP-CHECK { "id": 983, "name": "C1M7 - HealthBonus [4640,6904]", "pos": ["C1M7",4640,6904,-268], "region": "Arena" }
+AP-CHECK { "id": 985, "name": "C1M7 - HealthBonus [4592,6912]", "pos": ["C1M7",4592,6912,-268], "region": "Arena" }
+AP-CHECK { "id": 986, "name": "C1M7 - HealthBonus [4544,6928]", "pos": ["C1M7",4544,6928,-268], "region": "Arena" }
+AP-CHECK { "id": 982, "name": "C1M7 - HealthBonus [4528,6976]", "pos": ["C1M7",4528,6976,-268], "region": "Arena" }
+AP-CHECK { "id": 980, "name": "C1M7 - HealthBonus [4520,7024]", "pos": ["C1M7",4520,7024,-268], "region": "Arena" }
+AP-CHECK { "id": 981, "name": "C1M7 - HealthBonus [4528,7072]", "pos": ["C1M7",4528,7072,-268], "region": "Arena" }
+AP-CHECK { "id": 942, "name": "C1M7 - ArmorBonus [4288,6976]", "pos": ["C1M7",4288,6976,-268], "region": "Arena" }
+AP-CHECK { "id": 943, "name": "C1M7 - ArmorBonus [4336,6968]", "pos": ["C1M7",4336,6968,-268], "region": "Arena" }
+AP-CHECK { "id": 956, "name": "C1M7 - ArmorBonus [4384,6952]", "pos": ["C1M7",4384,6952,-268], "region": "Arena" }
+AP-CHECK { "id": 946, "name": "C1M7 - ArmorBonus [4400,6904]", "pos": ["C1M7",4400,6904,-268], "region": "Arena" }
+AP-CHECK { "id": 945, "name": "C1M7 - ArmorBonus [4408,6856]", "pos": ["C1M7",4408,6856,-268], "region": "Arena" }
+AP-CHECK { "id": 947, "name": "C1M7 - ArmorBonus [4400,6808]", "pos": ["C1M7",4400,6808,-268], "region": "Arena" }
+AP-CHECK { "id": 1029, "name": "C1M7 - Rockets [4288,6824]", "pos": ["C1M7",4288,6824,-100], "region": "Arena" }
+AP-CHECK { "id": 1028, "name": "C1M7 - Rockets [4288,6888]", "pos": ["C1M7",4288,6888,-100], "region": "Arena" }
+AP-CHECK { "id": 965, "name": "C1M7 - ArmorBonus [4880,6904]", "pos": ["C1M7",4880,6904,-268], "region": "Arena" }
+AP-CHECK { "id": 1030, "name": "C1M7 - Rockets [4992,6888]", "pos": ["C1M7",4992,6888,-100], "region": "Arena" }
+AP-CHECK { "id": 1031, "name": "C1M7 - Rockets [4992,6824]", "pos": ["C1M7",4992,6824,-100], "region": "Arena" }
+AP-CHECK { "id": 818, "name": "C1M7 - Megasphere [SE]", "pos": ["C1M7",4920,192,-192], "region": "Archvile Jump Secret" }
+AP-CHECK { "id": 1045, "name": "C1M7 - Secret 616", "pos": ["C1M7","secret","sector",616], "region": "Archvile Jump Secret" }
+AP-CHECK { "id": 997, "name": "C1M7 - Blue Keycard", "pos": ["C1M7",5736,892,-166], "region": "Key Platform" }
+AP-CHECK { "id": 1020, "name": "C1M7 - Shotgun Shells [-500,3632]", "pos": ["C1M7",-500,3632,-272], "region": "Broken Tracks" }
+AP-CHECK { "id": 1021, "name": "C1M7 - Shotgun Shells [-528,3600]", "pos": ["C1M7",-528,3600,-288], "region": "Broken Tracks" }
+AP-CHECK { "id": 1022, "name": "C1M7 - Stimpack [-588,3484]", "pos": ["C1M7",-588,3484,-296], "region": "Broken Tracks" }
+AP-CHECK { "id": 1019, "name": "C1M7 - Rockets [-588,3076]", "pos": ["C1M7",-588,3076,-296], "region": "Broken Tracks" }
+AP-CHECK { "id": 1023, "name": "C1M7 - Rockets [-448,2828]", "pos": ["C1M7",-448,2828,-296], "region": "Broken Tracks" }
+AP-CHECK { "id": 1033, "name": "C1M7 - Stimpack [-496,2688]", "pos": ["C1M7",-496,2688,-293], "region": "Broken Tracks" }
+AP-CHECK { "id": 1027, "name": "C1M7 - Rockets [-576,2584]", "pos": ["C1M7",-576,2584,-296], "region": "Broken Tracks" }
+AP-CHECK { "id": 1026, "name": "C1M7 - Shotgun Shells [-464,2648]", "pos": ["C1M7",-464,2648,-282], "region": "Broken Tracks" }
+AP-CHECK { "id": 1024, "name": "C1M7 - Shotgun Shells [-432,2688]", "pos": ["C1M7",-432,2688,-272], "region": "Broken Tracks" }
+; Decorative checks in fake version of archvile car
+AP-CHECK { "id": 829, "name": "C1M7 - GreenArmor [S]", "pos": ["C1M7",1832,-288,-254], "unreachable": true }
+AP-CHECK { "id": 826, "name": "C1M7 - Megasphere [S]", "pos": ["C1M7",1728,192,-192], "unreachable": true }
+AP-CHECK { "id": 822, "name": "C1M7 - Rockets [1728,128]", "pos": ["C1M7",1728,128,-254], "unreachable": true }
+AP-CHECK { "id": 823, "name": "C1M7 - Stimpack [1640,-56]", "pos": ["C1M7",1640,-56,-254], "unreachable": true }
+AP-CHECK { "id": 820, "name": "C1M7 - Yellow Keycard [SW]", "pos": ["C1M7",1560,304,-160], "unreachable": true }
+AP-CHECK { "id": 781, "name": "C1M7 - Exit", "pos": ["C1M7","event","exit"], "region": "Broken Tracks" }

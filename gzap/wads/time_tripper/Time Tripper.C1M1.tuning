@@ -1,0 +1,217 @@
+; IN TOO DEEP [living to see it]
+
+; N.b. throughout all levels we assume the player has the shotgun and the chainsaw,
+; since the TT default config starts you off with them and all levels are designed
+; around the assumption that you spawn with them.
+
+; Outer stone area with archvile watchtower
+AP-REGION { "map": "C1M1", "region": "Exterior", "keys": [] }
+; Interior hallway with L1, L2, L3 exits
+AP-REGION { "map": "C1M1", "region": "Main Hall", "keys": [] }
+; Left hand basement area with switch to open L3 door
+AP-REGION { "map": "C1M1", "region": "L2 Basement", "keys": [] }
+; Teleport to blue key area
+AP-REGION { "map": "C1M1", "region": "L3 Teleport", "keys": [] }
+; Blue key area, includes items in pillars that open when you collect the key
+AP-REGION { "map": "C1M1", "region": "Blue Key Room", "keys": [] }
+; NE area that opens when you collect the blue key
+AP-REGION { "map": "C1M1", "region": "NE Arena Inner", "keys": ["weapon/SuperShotgun2"] }
+; Accessible from main hall once you have the blue key
+AP-REGION { "map": "C1M1", "region": "L1 Basement", "keys": ["key/BlueSkull", "weapon/SuperShotgun2"] }
+AP-REGION { "map": "C1M1", "region": "Sewers", "keys": ["key/BlueSkull", "weapon/SuperShotgun2"] }
+; Accessible from sewers after flipping the switch
+AP-REGION { "map": "C1M1", "region": "Arena Elevator", "keys": ["key/BlueSkull", "weapon/SuperShotgun2"] }
+; Outer ring of NE arena that opens once you arrive via the elevator
+AP-REGION { "map": "C1M1", "region": "NE Arena Outer", "keys": ["key/BlueSkull", "weapon/SuperShotgun2", "weapon/64PlasmaRifle"] }
+; Southern arena with cyberdemon in it
+AP-REGION { "map": "C1M1", "region": "SE Arena", "keys": ["key/BlueSkull", "weapon/SuperShotgun2", "weapon/64PlasmaRifle"] }
+; Clifftop areas reachable by teleporter after using the yellow switch
+AP-REGION { "map": "C1M1", "region": "Cliffs", "keys": ["key/YellowCard"] }
+; Ammo closets in main hall opened by secret switch on the cliffs
+AP-REGION { "map": "C1M1", "region": "Main Hall Closets", "keys": ["key/YellowCard", "flag/secret"] }
+; Final arena fight with loads of imps
+AP-REGION { "map": "C1M1", "region": "Exit Arena", "keys": ["key/YellowCard", "weapon/SuperShotgun2", "weapon/RocketLauncher2", "weapon/64PlasmaRifle"] }
+
+AP-CHECK { "id": 201, "name": "C1M1 - ArmorBonus [-1784,-336]", "pos": ["C1M1",-1784,-336,152], "region": "Exterior" }
+AP-CHECK { "id": 202, "name": "C1M1 - ArmorBonus [-1776,-384]", "pos": ["C1M1",-1776,-384,152], "region": "Exterior" }
+AP-CHECK { "id": 200, "name": "C1M1 - ArmorBonus [-1600,320]", "pos": ["C1M1",-1600,320,64], "region": "Exterior" }
+AP-CHECK { "id": 198, "name": "C1M1 - ArmorBonus [-1560,336]", "pos": ["C1M1",-1560,336,64], "region": "Exterior" }
+AP-CHECK { "id": 199, "name": "C1M1 - ArmorBonus [-1560,304]", "pos": ["C1M1",-1560,304,64], "region": "Exterior" }
+AP-CHECK { "id": 74, "name": "C1M1 - Rockets [-2016,680]", "pos": ["C1M1",-2016,680,96], "region": "Exterior" }
+AP-CHECK { "id": 79, "name": "C1M1 - Rockets [-2064,696]", "pos": ["C1M1",-2064,696,96], "region": "Exterior" }
+AP-CHECK { "id": 81, "name": "C1M1 - Rockets [-2060,648]", "pos": ["C1M1",-2060,648,96], "region": "Exterior" }
+AP-CHECK { "id": 80, "name": "C1M1 - Rockets [-2112,656]", "pos": ["C1M1",-2112,656,96], "region": "Exterior" }
+AP-CHECK { "id": 82, "name": "C1M1 - Rockets [-2096,608]", "pos": ["C1M1",-2096,608,96], "region": "Exterior" }
+AP-CHECK { "id": 196, "name": "C1M1 - Rockets [-408,568]", "pos": ["C1M1",-408,568,0], "region": "Exterior" }
+AP-CHECK { "id": 195, "name": "C1M1 - Rockets [-340,544]", "pos": ["C1M1",-340,544,0], "region": "Exterior" }
+AP-CHECK { "id": 194, "name": "C1M1 - Rockets [-304,484]", "pos": ["C1M1",-304,484,0], "region": "Exterior" }
+AP-CHECK { "id": 205, "name": "C1M1 - ArmorBonus [-1392,-776]", "pos": ["C1M1",-1392,-776,32], "region": "Exterior" }
+AP-CHECK { "id": 206, "name": "C1M1 - ArmorBonus [-1384,-808]", "pos": ["C1M1",-1384,-808,24], "region": "Exterior" }
+AP-CHECK { "id": 204, "name": "C1M1 - ArmorBonus [-1440,-888]", "pos": ["C1M1",-1440,-888,16], "region": "Exterior" }
+AP-CHECK { "id": 203, "name": "C1M1 - ArmorBonus [-1480,-880]", "pos": ["C1M1",-1480,-880,16], "region": "Exterior" }
+AP-CHECK { "id": 174, "name": "C1M1 - Rockets [-360,-1052]", "pos": ["C1M1",-360,-1052,0], "region": "Exterior" }
+AP-CHECK { "id": 175, "name": "C1M1 - Rockets [-308,-1000]", "pos": ["C1M1",-308,-1000,0], "region": "Exterior" }
+AP-CHECK { "id": 176, "name": "C1M1 - Rockets [-284,-932]", "pos": ["C1M1",-284,-932,0], "region": "Exterior" }
+AP-CHECK { "id": 207, "name": "C1M1 - Bullets [-1232,-336]", "pos": ["C1M1",-1232,-336,0], "region": "Exterior" }
+AP-CHECK { "id": 208, "name": "C1M1 - Bullets [-1232,-384]", "pos": ["C1M1",-1232,-384,0], "region": "Exterior" }
+AP-CHECK { "id": 210, "name": "C1M1 - Rockets [-704,-544]", "pos": ["C1M1",-704,-544,0], "region": "Exterior" }
+AP-CHECK { "id": 177, "name": "C1M1 - Shotgun Shells [-688,-256]", "pos": ["C1M1",-688,-256,0], "region": "Exterior" }
+AP-CHECK { "id": 209, "name": "C1M1 - Rockets [-704,96]", "pos": ["C1M1",-704,96,0], "region": "Exterior" }
+AP-CHECK { "id": 237, "name": "C1M1 - HealthBonus [-392,-64]", "pos": ["C1M1",-392,-64,96], "region": "Main Hall" }
+AP-CHECK { "id": 236, "name": "C1M1 - HealthBonus [-392,-24]", "pos": ["C1M1",-392,-24,96], "region": "Main Hall" }
+AP-CHECK { "id": 234, "name": "C1M1 - HealthBonus [-392,88]", "pos": ["C1M1",-392,88,96], "region": "Main Hall" }
+AP-CHECK { "id": 233, "name": "C1M1 - HealthBonus [-392,128]", "pos": ["C1M1",-392,128,96], "region": "Main Hall" }
+AP-CHECK { "id": 92, "name": "C1M1 - Stimpack [-392,168]", "pos": ["C1M1",-392,168,96], "region": "Main Hall" }
+AP-CHECK { "id": 238, "name": "C1M1 - HealthBonus [-392,-104]", "pos": ["C1M1",-392,-104,96], "region": "Main Hall" }
+AP-CHECK { "id": 222, "name": "C1M1 - HealthBonus [-392,-352]", "pos": ["C1M1",-392,-352,96], "region": "Main Hall" }
+AP-CHECK { "id": 239, "name": "C1M1 - HealthBonus [-392,-444]", "pos": ["C1M1",-392,-444,96], "region": "Main Hall" }
+AP-CHECK { "id": 240, "name": "C1M1 - HealthBonus [-392,-480]", "pos": ["C1M1",-392,-480,96], "region": "Main Hall" }
+AP-CHECK { "id": 235, "name": "C1M1 - HealthBonus [-392,-516]", "pos": ["C1M1",-392,-516,96], "region": "Main Hall" }
+AP-CHECK { "id": 93, "name": "C1M1 - Stimpack [-392,-616]", "pos": ["C1M1",-392,-616,96], "region": "Main Hall" }
+AP-CHECK { "id": 69, "name": "C1M1 - Shotgun Shells [240,752]", "pos": ["C1M1",240,752,32], "region": "L2 Basement" }
+AP-CHECK { "id": 70, "name": "C1M1 - Shotgun Shells [216,752]", "pos": ["C1M1",216,752,32], "region": "L2 Basement" }
+AP-CHECK { "id": 68, "name": "C1M1 - Shotgun Shells [104,752]", "pos": ["C1M1",104,752,32], "region": "L2 Basement" }
+AP-CHECK { "id": 73, "name": "C1M1 - Soulsphere [Center]", "pos": ["C1M1",480,816,16], "region": "L2 Basement" }
+AP-CHECK { "id": 244, "name": "C1M1 - Secret 146", "pos": ["C1M1","secret","sector",146], "region": "L2 Basement" }
+AP-CHECK { "id": 94, "name": "C1M1 - Bullets [-256,368]", "pos": ["C1M1",-256,368,96], "region": "Main Hall" }
+AP-CHECK { "id": 197, "name": "C1M1 - Bullets [-256,-816]", "pos": ["C1M1",-256,-816,96], "region": "Main Hall" }
+AP-CHECK { "id": 87, "name": "C1M1 - Stimpack [-104,-744]", "pos": ["C1M1",-104,-744,104], "region": "Main Hall" }
+AP-CHECK { "id": 72, "name": "C1M1 - Stimpack [32,-156]", "pos": ["C1M1",32,-156,80], "region": "L3 Teleport" }
+AP-CHECK { "id": 71, "name": "C1M1 - Stimpack [32,-292]", "pos": ["C1M1",32,-292,80], "region": "L3 Teleport" }
+AP-CHECK { "id": 75, "name": "C1M1 - Shotgun Shells [2000,-232]", "pos": ["C1M1",2000,-232,-2], "region": "Blue Key Room" }
+AP-CHECK { "id": 83, "name": "C1M1 - Shotgun Shells [2032,-240]", "pos": ["C1M1",2032,-240,0], "region": "Blue Key Room" }
+AP-CHECK { "id": 101, "name": "C1M1 - HealthBonus [2176,32]", "pos": ["C1M1",2176,32,0], "region": "Blue Key Room" }
+AP-CHECK { "id": 102, "name": "C1M1 - HealthBonus [2240,32]", "pos": ["C1M1",2240,32,0], "region": "Blue Key Room" }
+AP-CHECK { "id": 106, "name": "C1M1 - HealthBonus [2176,-480]", "pos": ["C1M1",2176,-480,0], "region": "Blue Key Room" }
+AP-CHECK { "id": 107, "name": "C1M1 - HealthBonus [2240,-480]", "pos": ["C1M1",2240,-480,0], "region": "Blue Key Room" }
+AP-CHECK { "id": 108, "name": "C1M1 - HealthBonus [2304,-480]", "pos": ["C1M1",2304,-480,0], "region": "Blue Key Room" }
+AP-CHECK { "id": 103, "name": "C1M1 - HealthBonus [2304,32]", "pos": ["C1M1",2304,32,0], "region": "Blue Key Room" }
+AP-CHECK { "id": 104, "name": "C1M1 - HealthBonus [2368,32]", "pos": ["C1M1",2368,32,0], "region": "Blue Key Room" }
+AP-CHECK { "id": 105, "name": "C1M1 - HealthBonus [2432,32]", "pos": ["C1M1",2432,32,0], "region": "Blue Key Room" }
+AP-CHECK { "id": 109, "name": "C1M1 - HealthBonus [2368,-480]", "pos": ["C1M1",2368,-480,0], "region": "Blue Key Room" }
+AP-CHECK { "id": 110, "name": "C1M1 - HealthBonus [2432,-480]", "pos": ["C1M1",2432,-480,0], "region": "Blue Key Room" }
+AP-CHECK { "id": 76, "name": "C1M1 - Blue Skull", "pos": ["C1M1",2640,-224,64], "region": "Blue Key Room" }
+AP-CHECK { "id": 84, "name": "C1M1 - Super Shotgun", "pos": ["C1M1",2168,-368,16], "region": "Blue Key Room" }
+AP-CHECK { "id": 85, "name": "C1M1 - GreenArmor", "pos": ["C1M1",2168,-80,16], "region": "Blue Key Room" }
+AP-CHECK { "id": 225, "name": "C1M1 - Stimpack [2768,200]", "pos": ["C1M1",2768,200,0], "region": "NE Arena Inner" }
+AP-CHECK { "id": 224, "name": "C1M1 - Stimpack [2760,1040]", "pos": ["C1M1",2760,1040,0], "region": "NE Arena Inner" }
+AP-CHECK { "id": 223, "name": "C1M1 - Stimpack [1864,1040]", "pos": ["C1M1",1864,1040,0], "region": "NE Arena Inner" }
+AP-CHECK { "id": 226, "name": "C1M1 - Stimpack [1856,200]", "pos": ["C1M1",1856,200,0], "region": "NE Arena Inner" }
+AP-CHECK { "id": 90, "name": "C1M1 - Medikit [2200,664]", "pos": ["C1M1",2200,664,0], "region": "NE Arena Inner" }
+AP-CHECK { "id": 228, "name": "C1M1 - Bullets [2208,640]", "pos": ["C1M1",2208,640,0], "region": "NE Arena Inner" }
+AP-CHECK { "id": 91, "name": "C1M1 - Medikit [2200,616]", "pos": ["C1M1",2200,616,0], "region": "NE Arena Inner" }
+AP-CHECK { "id": 229, "name": "C1M1 - Bullets [2312,536]", "pos": ["C1M1",2312,536,0], "region": "NE Arena Inner" }
+AP-CHECK { "id": 86, "name": "C1M1 - Bullets [2424,592]", "pos": ["C1M1",2424,592,0], "region": "NE Arena Inner" }
+AP-CHECK { "id": 89, "name": "C1M1 - Bullets [2424,640]", "pos": ["C1M1",2424,640,0], "region": "NE Arena Inner" }
+AP-CHECK { "id": 227, "name": "C1M1 - Bullets [2416,640]", "pos": ["C1M1",2416,640,0], "region": "NE Arena Inner" }
+AP-CHECK { "id": 88, "name": "C1M1 - Bullets [2424,688]", "pos": ["C1M1",2424,688,0], "region": "NE Arena Inner" }
+AP-CHECK { "id": 220, "name": "C1M1 - Shotgun Shells [0,-528]", "pos": ["C1M1",0,-528,80], "region": "L1 Basement" }
+AP-CHECK { "id": 230, "name": "C1M1 - Stimpack [32,-528]", "pos": ["C1M1",32,-528,80], "region": "L1 Basement" }
+AP-CHECK { "id": 99, "name": "C1M1 - Medikit [32,-528]", "pos": ["C1M1",32,-528,80], "region": "L1 Basement" }
+AP-CHECK { "id": 221, "name": "C1M1 - Shotgun Shells [64,-528]", "pos": ["C1M1",64,-528,80], "region": "L1 Basement" }
+AP-CHECK { "id": 96, "name": "C1M1 - Rockets [912,-376]", "pos": ["C1M1",912,-376,-448], "region": "L1 Basement" }
+AP-CHECK { "id": 98, "name": "C1M1 - Rockets [952,-416]", "pos": ["C1M1",952,-416,-448], "region": "L1 Basement" }
+AP-CHECK { "id": 97, "name": "C1M1 - Rockets [952,-376]", "pos": ["C1M1",952,-376,-448], "region": "L1 Basement" }
+AP-CHECK { "id": 95, "name": "C1M1 - Shotgun Shells [920,-816]", "pos": ["C1M1",920,-816,-448], "region": "L1 Basement" }
+AP-CHECK { "id": 231, "name": "C1M1 - Stimpack [916,-860]", "pos": ["C1M1",916,-860,-440], "region": "L1 Basement" }
+AP-CHECK { "id": 122, "name": "C1M1 - Rockets [312,-1200]", "pos": ["C1M1",312,-1200,-448], "region": "L1 Basement" }
+AP-CHECK { "id": 123, "name": "C1M1 - Rockets [312,-1240]", "pos": ["C1M1",312,-1240,-448], "region": "L1 Basement" }
+AP-CHECK { "id": 121, "name": "C1M1 - Rockets [352,-1240]", "pos": ["C1M1",352,-1240,-448], "region": "L1 Basement" }
+AP-CHECK { "id": 161, "name": "C1M1 - Stimpack [960,-1248]", "pos": ["C1M1",960,-1248,-432], "region": "L1 Basement" }
+AP-CHECK { "id": 138, "name": "C1M1 - Rocket Launcher [S]", "pos": ["C1M1",520,-240,-472], "region": "Sewers" }
+AP-CHECK { "id": 124, "name": "C1M1 - HealthBonus [468,-240]", "pos": ["C1M1",468,-240,-472], "region": "Sewers" }
+AP-CHECK { "id": 125, "name": "C1M1 - HealthBonus [468,-208]", "pos": ["C1M1",468,-208,-472], "region": "Sewers" }
+AP-CHECK { "id": 126, "name": "C1M1 - HealthBonus [468,-176]", "pos": ["C1M1",468,-176,-472], "region": "Sewers" }
+AP-CHECK { "id": 127, "name": "C1M1 - HealthBonus [468,-148]", "pos": ["C1M1",468,-148,-472], "region": "Sewers" }
+AP-CHECK { "id": 128, "name": "C1M1 - HealthBonus [468,-116]", "pos": ["C1M1",468,-116,-472], "region": "Sewers" }
+AP-CHECK { "id": 129, "name": "C1M1 - HealthBonus [468,-84]", "pos": ["C1M1",468,-84,-472], "region": "Sewers" }
+AP-CHECK { "id": 130, "name": "C1M1 - HealthBonus [468,-52]", "pos": ["C1M1",468,-52,-472], "region": "Sewers" }
+AP-CHECK { "id": 131, "name": "C1M1 - HealthBonus [468,-20]", "pos": ["C1M1",468,-20,-472], "region": "Sewers" }
+AP-CHECK { "id": 132, "name": "C1M1 - HealthBonus [468,12]", "pos": ["C1M1",468,12,-472], "region": "Sewers" }
+AP-CHECK { "id": 117, "name": "C1M1 - HealthBonus [944,480]", "pos": ["C1M1",944,480,-472], "region": "Sewers" }
+AP-CHECK { "id": 114, "name": "C1M1 - HealthBonus [944,528]", "pos": ["C1M1",944,528,-472], "region": "Sewers" }
+AP-CHECK { "id": 113, "name": "C1M1 - HealthBonus [912,560]", "pos": ["C1M1",912,560,-472], "region": "Sewers" }
+AP-CHECK { "id": 111, "name": "C1M1 - HealthBonus [864,576]", "pos": ["C1M1",864,576,-472], "region": "Sewers" }
+AP-CHECK { "id": 112, "name": "C1M1 - HealthBonus [816,560]", "pos": ["C1M1",816,560,-472], "region": "Sewers" }
+AP-CHECK { "id": 115, "name": "C1M1 - HealthBonus [784,528]", "pos": ["C1M1",784,528,-472], "region": "Sewers" }
+AP-CHECK { "id": 116, "name": "C1M1 - HealthBonus [784,480]", "pos": ["C1M1",784,480,-472], "region": "Sewers" }
+AP-CHECK { "id": 118, "name": "C1M1 - HealthBonus [816,448]", "pos": ["C1M1",816,448,-472], "region": "Sewers" }
+AP-CHECK { "id": 119, "name": "C1M1 - HealthBonus [864,432]", "pos": ["C1M1",864,432,-472], "region": "Sewers" }
+AP-CHECK { "id": 120, "name": "C1M1 - HealthBonus [912,448]", "pos": ["C1M1",912,448,-472], "region": "Sewers" }
+AP-CHECK { "id": 214, "name": "C1M1 - Yellow Keycard", "pos": ["C1M1",916,812,-446], "region": "Sewers" }
+AP-CHECK { "id": 165, "name": "C1M1 - Stimpack [834,812]", "pos": ["C1M1",834,812,-448], "region": "Sewers" }
+AP-CHECK { "id": 144, "name": "C1M1 - Shotgun Shells [532,496]", "pos": ["C1M1",532,496,-456], "region": "Sewers" }
+AP-CHECK { "id": 143, "name": "C1M1 - Shotgun Shells [532,460]", "pos": ["C1M1",532,460,-456], "region": "Sewers" }
+AP-CHECK { "id": 145, "name": "C1M1 - Bullets [532,424]", "pos": ["C1M1",532,424,-456], "region": "Sewers" }
+AP-CHECK { "id": 179, "name": "C1M1 - Medikit [1368,-78]", "pos": ["C1M1",1368,-78,-449], "region": "Sewers" }
+AP-CHECK { "id": 242, "name": "C1M1 - Rocket Launcher [Center]", "pos": ["C1M1",864,-32,-448], "region": "Sewers" }
+AP-CHECK { "id": 215, "name": "C1M1 - Megasphere", "pos": ["C1M1",864,-32,-448], "region": "Sewers" }
+AP-CHECK { "id": 245, "name": "C1M1 - Secret 538", "pos": ["C1M1","secret","sector",538], "region": "Sewers" }
+AP-CHECK { "id": 146, "name": "C1M1 - Medikit [1400,736]", "pos": ["C1M1",1400,736,-472], "region": "Arena Elevator" }
+AP-CHECK { "id": 147, "name": "C1M1 - Medikit [1400,528]", "pos": ["C1M1",1400,528,-472], "region": "Arena Elevator" }
+AP-CHECK { "id": 152, "name": "C1M1 - Plasma Rifle", "pos": ["C1M1",1688,632,2], "region": "Arena Elevator" }
+AP-CHECK { "id": 158, "name": "C1M1 - Stimpack [3080,1000]", "pos": ["C1M1",3080,1000,0], "region": "NE Arena Outer" }
+AP-CHECK { "id": 157, "name": "C1M1 - Stimpack [2784,1304]", "pos": ["C1M1",2784,1304,0], "region": "NE Arena Outer" }
+AP-CHECK { "id": 153, "name": "C1M1 - Energy Cells [2312,1304]", "pos": ["C1M1",2312,1304,0], "region": "NE Arena Outer" }
+AP-CHECK { "id": 155, "name": "C1M1 - Stimpack [1824,1296]", "pos": ["C1M1",1824,1296,0], "region": "NE Arena Outer" }
+AP-CHECK { "id": 156, "name": "C1M1 - Stimpack [1528,1000]", "pos": ["C1M1",1528,1000,0], "region": "NE Arena Outer" }
+AP-CHECK { "id": 154, "name": "C1M1 - Energy Cells [3088,640]", "pos": ["C1M1",3088,640,0], "region": "NE Arena Outer" }
+AP-CHECK { "id": 187, "name": "C1M1 - HealthBonus [2720,1184]", "pos": ["C1M1",2720,1184,0], "region": "NE Arena Outer" }
+AP-CHECK { "id": 191, "name": "C1M1 - HealthBonus [2656,1184]", "pos": ["C1M1",2656,1184,0], "region": "NE Arena Outer" }
+AP-CHECK { "id": 189, "name": "C1M1 - HealthBonus [2592,1184]", "pos": ["C1M1",2592,1184,0], "region": "NE Arena Outer" }
+AP-CHECK { "id": 190, "name": "C1M1 - HealthBonus [2016,1184]", "pos": ["C1M1",2016,1184,0], "region": "NE Arena Outer" }
+AP-CHECK { "id": 188, "name": "C1M1 - HealthBonus [1952,1184]", "pos": ["C1M1",1952,1184,0], "region": "NE Arena Outer" }
+AP-CHECK { "id": 186, "name": "C1M1 - HealthBonus [1888,1184]", "pos": ["C1M1",1888,1184,0], "region": "NE Arena Outer" }
+AP-CHECK { "id": 159, "name": "C1M1 - BlueArmor", "pos": ["C1M1",2312,676,8], "region": "NE Arena Outer" }
+AP-CHECK { "id": 160, "name": "C1M1 - Shotgun Shells [2276,604]", "pos": ["C1M1",2276,604,8], "region": "NE Arena Outer" }
+AP-CHECK { "id": 100, "name": "C1M1 - Shotgun Shells [2348,604]", "pos": ["C1M1",2348,604,8], "region": "NE Arena Outer" }
+AP-CHECK { "id": 149, "name": "C1M1 - Stimpack [1824,-706]", "pos": ["C1M1",1824,-706,0], "region": "SE Arena" }
+AP-CHECK { "id": 218, "name": "C1M1 - Rockets [1888,-856]", "pos": ["C1M1",1888,-856,3], "region": "SE Arena" }
+AP-CHECK { "id": 180, "name": "C1M1 - HealthBonus [1872,-1052]", "pos": ["C1M1",1872,-1052,0], "region": "SE Arena" }
+AP-CHECK { "id": 181, "name": "C1M1 - HealthBonus [1896,-1088]", "pos": ["C1M1",1896,-1088,0], "region": "SE Arena" }
+AP-CHECK { "id": 182, "name": "C1M1 - HealthBonus [1916,-1124]", "pos": ["C1M1",1916,-1124,0], "region": "SE Arena" }
+AP-CHECK { "id": 217, "name": "C1M1 - Energy Cells [1952,-1240]", "pos": ["C1M1",1952,-1240,3], "region": "SE Arena" }
+AP-CHECK { "id": 150, "name": "C1M1 - Stimpack [1840,-1458]", "pos": ["C1M1",1840,-1458,0], "region": "SE Arena" }
+AP-CHECK { "id": 148, "name": "C1M1 - Stimpack [2800,-1426]", "pos": ["C1M1",2800,-1426,0], "region": "SE Arena" }
+AP-CHECK { "id": 185, "name": "C1M1 - HealthBonus [2664,-1124]", "pos": ["C1M1",2664,-1124,0], "region": "SE Arena" }
+AP-CHECK { "id": 184, "name": "C1M1 - HealthBonus [2624,-1114]", "pos": ["C1M1",2624,-1114,0], "region": "SE Arena" }
+AP-CHECK { "id": 183, "name": "C1M1 - HealthBonus [2584,-1104]", "pos": ["C1M1",2584,-1104,0], "region": "SE Arena" }
+AP-CHECK { "id": 216, "name": "C1M1 - Rockets [2720,-856]", "pos": ["C1M1",2720,-856,3], "region": "SE Arena" }
+AP-CHECK { "id": 151, "name": "C1M1 - Stimpack [2768,-658]", "pos": ["C1M1",2768,-658,0], "region": "SE Arena" }
+AP-CHECK { "id": 219, "name": "C1M1 - Energy Cells [2392,-944]", "pos": ["C1M1",2392,-944,3], "region": "SE Arena" }
+AP-CHECK { "id": 246, "name": "C1M1 - Secret 577", "pos": ["C1M1","secret","sector",577], "region": "SE Arena" }
+AP-CHECK { "id": 212, "name": "C1M1 - Rockets [1949,-1033]", "pos": ["C1M1",1949,-1033,8], "region": "SE Arena" }
+AP-CHECK { "id": 173, "name": "C1M1 - Energy Cells [1969,-1070]", "pos": ["C1M1",1969,-1070,8], "region": "SE Arena" }
+AP-CHECK { "id": 213, "name": "C1M1 - Energy Cells [1986,-1015]", "pos": ["C1M1",1986,-1015,8], "region": "SE Arena" }
+AP-CHECK { "id": 211, "name": "C1M1 - Rockets [2004,-1048]", "pos": ["C1M1",2004,-1048,8], "region": "SE Arena" }
+AP-CHECK { "id": 137, "name": "C1M1 - Rockets [-120,-1096]", "pos": ["C1M1",-120,-1096,232], "region": "Cliffs" }
+AP-CHECK { "id": 136, "name": "C1M1 - Rockets [-72,-1064]", "pos": ["C1M1",-72,-1064,232], "region": "Cliffs" }
+AP-CHECK { "id": 247, "name": "C1M1 - Secret 804", "pos": ["C1M1","secret","sector",804], "region": "Cliffs" }
+AP-CHECK { "id": 193, "name": "C1M1 - Rockets [-520,-696]", "pos": ["C1M1",-520,-696,64], "region": "Main Hall Closets" }
+AP-CHECK { "id": 241, "name": "C1M1 - BFG 9000", "pos": ["C1M1",-520,-736,64], "region": "Main Hall Closets" }
+AP-CHECK { "id": 67, "name": "C1M1 - Rockets [-520,-776]", "pos": ["C1M1",-520,-776,64], "region": "Main Hall Closets" }
+AP-CHECK { "id": 243, "name": "C1M1 - Secret 14", "pos": ["C1M1","secret","sector",14], "region": "Main Hall Closets" }
+AP-CHECK { "id": 77, "name": "C1M1 - Energy Cells [-520,256]", "pos": ["C1M1",-520,256,64], "region": "Main Hall Closets" }
+AP-CHECK { "id": 78, "name": "C1M1 - Energy Cells [-520,320]", "pos": ["C1M1",-520,320,64], "region": "Main Hall Closets" }
+AP-CHECK { "id": 139, "name": "C1M1 - ArmorBonus [-1100,696]", "pos": ["C1M1",-1100,696,224], "region": "Cliffs" }
+AP-CHECK { "id": 133, "name": "C1M1 - HealthBonus [-1148,680]", "pos": ["C1M1",-1148,680,224], "region": "Cliffs" }
+AP-CHECK { "id": 140, "name": "C1M1 - ArmorBonus [-1192,688]", "pos": ["C1M1",-1192,688,220], "region": "Cliffs" }
+AP-CHECK { "id": 134, "name": "C1M1 - HealthBonus [-1236,708]", "pos": ["C1M1",-1236,708,216], "region": "Cliffs" }
+AP-CHECK { "id": 141, "name": "C1M1 - ArmorBonus [-1232,764]", "pos": ["C1M1",-1232,764,216], "region": "Cliffs" }
+AP-CHECK { "id": 135, "name": "C1M1 - HealthBonus [-1240,824]", "pos": ["C1M1",-1240,824,216], "region": "Cliffs" }
+AP-CHECK { "id": 142, "name": "C1M1 - ArmorBonus [-1280,900]", "pos": ["C1M1",-1280,900,208], "region": "Cliffs" }
+AP-CHECK { "id": 178, "name": "C1M1 - Stimpack [-1844,1168]", "pos": ["C1M1",-1844,1168,176], "region": "Cliffs" }
+AP-CHECK { "id": 248, "name": "C1M1 - Secret 961", "pos": ["C1M1","secret","sector",961], "region": "Cliffs" }
+AP-CHECK { "id": 232, "name": "C1M1 - Soulsphere [NW]", "pos": ["C1M1",-944,1584,168], "region": "Cliffs" }
+AP-CHECK { "id": 192, "name": "C1M1 - ShieldSphere", "pos": ["C1M1",-944,1584,168], "region": "Cliffs" }
+AP-CHECK { "id": 162, "name": "C1M1 - Bullets [-1495,2319]", "pos": ["C1M1",-1495,2319,164], "region": "Exit Arena" }
+AP-CHECK { "id": 163, "name": "C1M1 - Bullets [-1359,2319]", "pos": ["C1M1",-1359,2319,164], "region": "Exit Arena" }
+AP-CHECK { "id": 168, "name": "C1M1 - Shotgun Shells [-2016,2528]", "pos": ["C1M1",-2016,2528,175], "region": "Exit Arena" }
+AP-CHECK { "id": 169, "name": "C1M1 - Energy Cells [-2016,2592]", "pos": ["C1M1",-2016,2592,175], "region": "Exit Arena" }
+AP-CHECK { "id": 164, "name": "C1M1 - Shotgun Shells [-1427,2319]", "pos": ["C1M1",-1427,2319,164], "region": "Exit Arena" }
+AP-CHECK { "id": 166, "name": "C1M1 - Shotgun Shells [-864,2528]", "pos": ["C1M1",-864,2528,175], "region": "Exit Arena" }
+AP-CHECK { "id": 167, "name": "C1M1 - Energy Cells [-864,2592]", "pos": ["C1M1",-864,2592,175], "region": "Exit Arena" }
+AP-CHECK { "id": 170, "name": "C1M1 - Stimpack [-864,3072]", "pos": ["C1M1",-864,3072,175], "region": "Exit Arena" }
+AP-CHECK { "id": 172, "name": "C1M1 - Medikit [-1440,3048]", "pos": ["C1M1",-1440,3048,175], "region": "Exit Arena" }
+AP-CHECK { "id": 171, "name": "C1M1 - Stimpack [-2016,3072]", "pos": ["C1M1",-2016,3072,175], "region": "Exit Arena" }
+AP-CHECK { "id": 66, "name": "C1M1 - Exit", "pos": ["C1M1","event","exit"], "region": "Exit Arena" }
