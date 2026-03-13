@@ -3,7 +3,7 @@
 // on netevents and level entry events.
 
 #namespace GZAP;
-#debug on;
+#debug off;
 
 #include "../actors/DehackedPickupProber.zsc"
 #include "./ScannedMap.zsc"
