@@ -28,7 +28,7 @@
     game, even if the randomizer doesn't know about it.
   - Tooltips on the level select screen have been rearranged to be more concise
     and, hopefully, more useful.
-  - Hints now use Archipelago text colours.
+  - Hints and peeks now use Archipelago text colours.
   - The inventory screen now displays hints for the current level.
   - Hints for progression items are now sorted before useful, which are before
     filler.
@@ -46,6 +46,7 @@
   - Windows setup instructions for DoomRunner, by ChromaNyan.
   - Some scanner settings were not properly exposed in the menu.
   - Destroying a check is now treated the same as collecting it normally.
+  - Improvements to colour matching with AP.
 
 # 0.8.0
 
