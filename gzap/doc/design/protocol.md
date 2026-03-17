@@ -166,15 +166,16 @@ logic file to improve the logic.
 
 #### `AP-XON { lump, size, nick, wad, slot, seed, server }`
 
-Tells the client that it is ready to receive messages. `lump` is the name of the
-lump it's using as the IPC connector, and `size` is the maximum message buffer
-size that can be written to it.
+Tells the client that the game is ready to receive messages. `lump` is the name
+of the lump it's using as the IPC connector, and `size` is the maximum message
+buffer size that can be written to it.
 
 `nick` is the player's in-game name, used to extract chat messages from the log
 (as a workaround for the difficulty in knowing when to emit `AP-CHAT` messages).
 
 `wad` is the name of the WAD as originally provided to the apworld (not whatever
-UZDoom loaded from disk). This is used to name the generated tuning file.
+UZDoom loaded from disk). This is used to name the generated tuning file, and
+load information about items and locations.
 
 `slot` and `seed` are information about the generated game: the player's slot name
 and the world seed string. The client uses these when establishing the connection
@@ -210,8 +211,9 @@ Emitted when the player checks a location. The fields have the following meaning
 - `region`: the name of the check's enclosing region; optional
 - `unreachable`: a boolean; optional
 
-In multiworld play, only `id` is used; the rest are stored for use in the
-tuning file.
+In multiworld play, only `id` is used; the rest are stored for use in the tuning
+file. An `id` of zero means that the record should be used for tuning but not
+forwarded to the Archipelago host.
 
 `keys` lists all prerequisites in the format described in [regions.md](./regions.md#extended-keylist-format).
 In normal play this is just a list of all keys held by the player, but can be
@@ -391,10 +393,10 @@ Frog Concert.
 
 In-game, this is used to display the hints on the level select screen.
 
-#### `PEEK` `map` `location` `player` `item`
+#### `PEEK` `map` `location_id` `player` `item`
 
 Tells the game that we have received a hint for the contents of one of our
-locations. `map` and `location` identify the location, `player` is the player
+locations. `map` and `location_id` identify the location, `player` is the player
 whose item it is (which may be us!) and `item` is the item name. Unlike `HINT`,
 none of these fields can be empty. These are used by the level select screen to
 display information about what's located where.
