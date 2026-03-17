@@ -89,6 +89,7 @@ class UZDoomHint:
             "type": "item_id",
             "text": self.item,
             "player": self.receiving_player,
+            "flags": ctx.wad_logic.item(item_name).classification(),
         })
 
     def location_name(self, ctx):

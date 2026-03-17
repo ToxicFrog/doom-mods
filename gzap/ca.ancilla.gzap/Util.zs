@@ -176,26 +176,11 @@ class ::Util play {
 
   static clearscope string FormatHint(string player, string location) {
     let slot_name = ::PlayEventHandler.GetState().slot_name;
-    return string.format("\c-⌖ \c[%s]%s\c- @ \c[GREEN]%s\c-",
-      player == slot_name ? "PURPLE" : "TAN", player, location);
-  }
-
-  static clearscope string ColourForFlags(uint flags) {
-    if (flags & AP_IS_PROGRESSION) {
-      return "VIOLET";
-    } else if (flags & AP_IS_USEFUL) {
-      return "BLUE";
-    } else if (flags & AP_IS_TRAP) {
-      return "RED";
-    } else {
-      return "CYAN";
-    }
+    return string.format("\c-⌖ %s @ %s", player, location);
   }
 
   static clearscope string FormatPeek(string player, string item, uint flags) {
     let slot_name = ::PlayEventHandler.GetState().slot_name;
-    return string.format("\c-ⓘ \c[%s]%s\c- for \c[%s]%s\c-",
-      ColourForFlags(flags), item,
-      player == slot_name ? "PURPLE" : "TAN", player);
+    return string.format("\c-ⓘ %s for %s", item, player);
   }
 }
