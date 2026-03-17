@@ -10,6 +10,7 @@ import Utils
 from CommonClient import ClientStatus, get_base_parser, gui_enabled, server_loop, logger
 from .IPC import IPC
 from .Hint import UZDoomHint
+from .util import JSONToZDoomTextParser
 
 tracker_loaded = False
 try:
@@ -34,6 +35,7 @@ class UZDoomContext(SuperContext):
     def __init__(self, server_address: str, password: str, gzd_dir: str):
         self.found_uzdoom = asyncio.Event()
         super().__init__(server_address, password)
+        self.jsontozdoomtextparser = JSONToZDoomTextParser(self)
         self.ipc = IPC(self, gzd_dir, _IPC_SIZE)
 
     def make_gui(self):
@@ -180,7 +182,7 @@ class UZDoomContext(SuperContext):
         super().on_print_json(args)
         if not self._is_relevant(**args):
             return
-        text = self.jsontotextparser(copy.deepcopy(args["data"]))
+        text = self.jsontozdoomtextparser(copy.deepcopy(args["data"]))
         self.ipc.send_text(text)
 
     def pending_hints(self):

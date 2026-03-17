@@ -1,77 +1,37 @@
 import re
 
-# TODO: this is a quick hack. Ideally we should replace it with our own subclass
-# ofjsontotextparser that emits uzdoom colour codes directly.
-# Unfortunately a lot of rawjsontotextparser is implemented as module scope functions
-# in NetUtils rather than class members, so it might have complications.
+from NetUtils import JSONtoTextParser, JSONMessagePart
 
-# Mapping from terminal colour codes emitted by rawjsontotextparser, to
-# uzdoom internal colour names.
-_TEXTCOLOR_ESCAPE = "\x1C"
+class JSONToZDoomTextParser(JSONtoTextParser):
+  def _handle_item_name(self, node):
+    print(node)
+    return super()._handle_item_name(node)
+
+  def _handle_color(self, node: JSONMessagePart):
+    codes = node['color'].split(';')
+    buffer = ''.join(color_code(code) for code in codes if code in _COLOURTABLE)
+    return buffer + self._handle_text(node) + color_code('reset')
+
+def color_code(code):
+  return f'{_TEXTCOLOR_ESCAPE}{_COLOURTABLE[code]}'
+
+_TEXTCOLOR_ESCAPE = '\x1C'
 _COLOURTABLE = {
-  "0": "-", # reset
-  # 1bpp ANSI palette
-  "30": "[BLACK]",
-  "31": "[RED]",  # also salmon
-  "32": "[GREEN]",
-  "33": "[YELLOW]",
-  "34": "[BLUE]",  # also slateblue
-  "35": "[PURPLE]",  # also magenta, plum
-  "36": "[CYAN]",
-  "37": "[WHITE]",
-  # AIXTerm palette -- these should be brighter than the ANSI ones but we just
-  # map them to the same colours.
-  "90": "[BLACK]",
-  "91": "[RED]",  # also salmon
-  "92": "[GREEN]",
-  "93": "[YELLOW]",
-  "94": "[BLUE]",  # also slateblue
-  "95": "[PURPLE]",  # also magenta, plum
-  "96": "[CYAN]",
-  "97": "[WHITE]",
+  # Specials
+  # No support for bold/underline
+  'reset': '-',
+  # 3-bit (1bpp) colours
+  'black': '[BLACK]',
+  'red': '[RED]',
+  'green': '[GREEN]',
+  'yellow': '[TAN]',  # A somewhat more pastel colour that more closes matches the AP UI
+  'blue': '[BLUE]',
+  'magenta': '[PURPLE]',  # ZD purple is a lot closer to magenta in practice
+  'cyan': '[CYAN]',
+  'white': '[WHITE]',
+  # Extra colours
+  'plum': '[VIOLET]',  # Used for progression items; defined in TEXTCOLO
+  'slateblue': '[BLUE]',  # Used for useful items
+  'salmon': '[RED]',  # Used for traps
+  # No support for background colours
 }
-
-def _gzd_escape(colour):
-  return f"{_TEXTCOLOR_ESCAPE}{colour}"
-
-def _convert_sgr(sgr: re.Match) -> str:
-  sgr = sgr.group(1)
-  if sgr in _COLOURTABLE:
-    return _gzd_escape(_COLOURTABLE[sgr])
-  else:
-    return ""
-
-def _8bpp_to_3bpp(index):
-  index = index - 16
-  blue = (index % 6) // 3
-  green = ((index // 6) % 6) // 3
-  red = ((index // 36) % 6) // 3
-  sgr = "3%d" % (red + 2*green + 4*blue)
-  return _gzd_escape(_COLOURTABLE[sgr])
-
-def _convert_sgr_8bpp(sgr: re.Match) -> str:
-  index = int(sgr.group(1))
-  # 1bpp range
-  if index < 16:
-    sgr = "3%d" % (index % 8)
-    return _gzd_escape(_COLOURTABLE[sgr])
-
-  # greyscale range
-  if index >= 232:
-    index -= 232
-    if index < 6:
-      return _gzd_escape("[BLACK]")
-    elif index < 12:
-      return _gzd_escape("[DARKGRAY]")
-    elif index < 18:
-      return _gzd_escape("[GRAY]")
-    else:
-      return _gzd_escape("[WHITE]")
-
-  return _8bpp_to_3bpp(index)
-
-def ansi_to_uzdoom(msg: str) -> str:
-  """Convert ANSI colour escapes in a string into UZDoom colour escapes."""
-  return re.sub(
-      "\x1B\\[38[:;]5[:;]([0-9]+)m", _convert_sgr_8bpp,
-      re.sub("\x1B\\[([0-9]+)m", _convert_sgr, msg))

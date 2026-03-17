@@ -42,8 +42,8 @@ class UZDoomHint:
         (map_name, item_name) = self.item_info(ctx)
         return (
             map_name, item_name,
-            self.player_name(ctx.jsontotextparser, self.finding_player),
-            self.location_name(ctx.jsontotextparser),
+            self.player_name(ctx, self.finding_player),
+            self.location_name(ctx),
         )
 
     def peek_info(self, ctx) -> Tuple[str, int, str, str]:
@@ -53,8 +53,8 @@ class UZDoomHint:
         (map_name, location_name) = self.location_info(ctx)
         return (
             map_name, self.location,
-            self.player_name(ctx.jsontotextparser, self.receiving_player),
-            self.item_name(ctx.jsontotextparser),
+            self.player_name(ctx, self.receiving_player),
+            self.item_name(ctx),
         )
 
     def item_info(self, ctx) -> Tuple[str, str]:
@@ -77,21 +77,22 @@ class UZDoomHint:
         assert loc_name == loc.name(), f"Location name mismatch: {loc_name} from AP doesn't match {loc.name()} from WAD"
         return (loc.pos.map, loc_name)
 
-    def player_name(self, parser, id):
-        return parser.handle_node({
+    def player_name(self, ctx, id):
+        return ctx.jsontozdoomtextparser.handle_node({
             "type": "player_id",
             "text": id,
         })
 
-    def item_name(self, parser):
-        return parser.handle_node({
+    def item_name(self, ctx):
+        item_name = ctx.item_names.lookup_in_slot(self.item, ctx.slot)
+        return ctx.jsontozdoomtextparser.handle_node({
             "type": "item_id",
             "text": self.item,
             "player": self.receiving_player,
         })
 
-    def location_name(self, parser):
-        return parser.handle_node({
+    def location_name(self, ctx):
+        return ctx.jsontozdoomtextparser.handle_node({
             "type": "location_id",
             "text": self.location,
             "player": self.finding_player,

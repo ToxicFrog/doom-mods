@@ -16,7 +16,6 @@ from threading import Thread
 from typing import Any, Dict, List, Optional
 
 from CommonClient import CommonContext, logger
-from .util import ansi_to_uzdoom
 
 class IPCMessage:
   id: int = -1
@@ -257,7 +256,7 @@ class IPC:
     # so what happens is, the chat message goes to gzd, gets displayed, appears
     # in the log, the client sees it as a new chat message, sends it to the server,
     # which echoes it, etc.
-    self._enqueue("TEXT", "[AP]"+ansi_to_uzdoom(message))
+    self._enqueue("TEXT", "[AP]"+message)
 
   def send_track(self, id: int, track_type: str) -> None:
     """Tell the game that the tracker thinks this location is in logic now."""
@@ -265,11 +264,11 @@ class IPC:
 
   def send_hint(self, map: Optional[str], item: str, player: str, location: str) -> None:
     """Send a hint to the game. map is only set if it's a scoped item being hinted."""
-    self._enqueue("HINT", map or "", item, ansi_to_uzdoom(player), ansi_to_uzdoom(location))
+    self._enqueue("HINT", map or "", item, player, location)
 
   def send_peek(self, map: str, location_id: int, player: str, item: str) -> None:
     """Send a peek to the game."""
-    self._enqueue("PEEK", map, location_id, ansi_to_uzdoom(player), ansi_to_uzdoom(item))
+    self._enqueue("PEEK", map, location_id, player, item)
 
   def send_death(self, source: str, reason: str) -> None:
     self._enqueue("DEATH", source, reason)
