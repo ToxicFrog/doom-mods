@@ -3,6 +3,7 @@ import copy
 import locale
 import os
 import os.path
+import sys
 from typing import Any, Dict
 
 import Utils
@@ -55,6 +56,14 @@ class UZDoomContext(SuperContext):
         self.glitched_locations = locations
         return True
 
+    def load_wad_logic(self, wad_name: str):
+        for name,module in sys.modules.items():
+            if name.count('.') == 1 and name.startswith('worlds.zdoom_'):
+                if module.wad.name == wad_name:
+                    logger.info(f"Loaded logic for {wad_name} from {name}: {len(module.wad.items_by_name)} items, {len(module.wad.locations_by_name)} locations.")
+                    return module.wad
+        raise RuntimeError(f"Couldn't find an apworld for the WAD '{wad_name}'. Make sure you have the right apworld (probably called 'zdoom_{wad_name.lower().replace(' ', '_')}.apworld' installed.)")
+
     async def start_tasks(self) -> None:
         print("Starting log reader")
         self.ipc.start_log_reader()
@@ -103,6 +112,7 @@ class UZDoomContext(SuperContext):
 
     async def on_xon(self, wad: str, slot: str, seed: str, server: str):
         self.game = f'UZDoom ({wad})'
+        self.wad_logic = self.load_wad_logic(wad)
         self.slot_name = slot
         self.seed_name = seed
         self.last_items = {}  # force a re-send of all items

@@ -64,18 +64,18 @@ class UZDoomHint:
         Map name may be None if it's not a scoped item.
         """
         item_name = ctx.item_names.lookup_in_slot(self.item, ctx.slot)
-        match = re.match(r"^.+ \((.*)\)$", item_name)
-        if match:
-            return (match.group(1), item_name)
-        else:
-            return (None, item_name)
+        item = ctx.wad_logic.item(item_name)
+        assert item_name == item.name(), f"Item name mismatch: {item_name} from AP doesn't match {item.name()} from WAD"
+        return (item.map, item_name)
 
     def location_info(self, ctx) -> Tuple[str, str]:
         """
         Returns the [map name, location name] for this hint.
         """
         loc_name = ctx.location_names.lookup_in_slot(self.location, ctx.slot)
-        return (loc_name.split(" - ", 1)[0], loc_name)
+        loc = ctx.wad_logic.location_named(loc_name)
+        assert loc_name == loc.name(), f"Location name mismatch: {loc_name} from AP doesn't match {loc.name()} from WAD"
+        return (loc.pos.map, loc_name)
 
     def player_name(self, parser, id):
         return parser.handle_node({

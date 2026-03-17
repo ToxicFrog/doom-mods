@@ -41,6 +41,8 @@
     tag (which was sometimes ambiguous or outright missing).
   - The link to the `BTSX E1` apworld was missing from the documentation.
   - Hinting a level access token from the level select menu now works again.
+  - The game now properly recognizes when you have hinted a level access token
+    and will move on to the next hint.
   - Duplicate items at the same point in the map no longer produce duplicate
     entries in the logic file.
   - Windows setup instructions for DoomRunner, by ChromaNyan.

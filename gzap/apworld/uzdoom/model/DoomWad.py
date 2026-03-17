@@ -45,6 +45,10 @@ class DoomWad:
     # Each entry is a filter index, not a bit or a bitmask, so something with a filter
     # of 0b00000101 will have entries 1 and 3.
     locations_by_pos: Dict[int,Dict[DoomPosition,DoomLocation]] = field(default_factory=dict)
+    # Map of location name -> location used at runtime. We don't need this for
+    # generation (we just filter over all locations in all maps), but the client
+    # needs it for decomposing AP names into map/location data at play time.
+    locations_by_name: Dict[str, DoomLocation] = field(default_factory=dict)
     # Map of FQIN -> key record
     keys_by_name: Dict[str,DoomKey] = field(default_factory=dict)
     # Tuning data is being loaded, or has been loaded, for this wad.
@@ -98,6 +102,9 @@ class DoomWad:
             loc for map in self.maps.values() for loc in map.all_locations(spawn_filter, {})
             if loc.is_default_enabled(include_secrets)
         )
+
+    def location_named(self, name: str) -> DoomLocation:
+        return self.locations_by_name[name]
 
     def locations_at_position(self, pos: DoomPosition) -> List[DoomLocation]:
         """
@@ -527,6 +534,8 @@ class DoomWad:
             region.finalize_tuning(default=[])
         for map in self.maps.values():
             map.extra_rules.finalize_tuning(default=[])
+        for loc in self.all_locations():
+            self.locations_by_name[loc.name()] = loc
 
     def finalize_key_items(self):
         """
