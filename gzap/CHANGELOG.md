@@ -56,6 +56,8 @@ the use of the logic dashboard to produce better location names.
   - Destroying a check is now treated the same as collecting it normally.
   - Improvements to colour matching with AP.
   - Fix crash on game start when some maps were excluded from randomization.
+  - Some impossible yaml settings will now error out early in the generation
+    process rather than failing at the end with "game appears unbeatable".
 
 # 0.8.0
 

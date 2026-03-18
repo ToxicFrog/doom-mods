@@ -197,6 +197,10 @@ class UZDoomWorld(World):
 
         self.pool = self.wad_logic.fill_pool(self)
 
+        assert self.options.win_map_count.value <= len(self.maps), f"Your yaml requires you to clear {self.options.win_map_count.value} maps to win, but you have only included {len(self.maps)} maps in the game."
+        missing_target_maps = self.options.win_map_names.value - {map.map for map in self.maps}
+        assert not missing_target_maps, f"Your yaml lists the following maps as win conditions, but they are not included in randomization: {missing_target_maps}"
+
         starting_maps = sorted([
                 map.map for map in self.maps
                 if self.is_starting_map(map.map)])
