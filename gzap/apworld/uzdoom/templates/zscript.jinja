@@ -7,7 +7,10 @@ class GZAP_HintInfo {
   int loc_id;
 }
 
-{% for map in maps %}
+// We reify the tokens for all maps in the wad here, not just maps included in
+// the rando, so that we don't need to worry about excluding the right things
+// from RegisterItems() below.
+{% for map in wad.all_maps() %}
 class GZAP_LevelAccess_{{map.map}} : GZAP_LevelAccess { Default { GZAP_InventoryToken.Map "{{map.map}}"; } }
 class GZAP_Automap_{{map.map}} : GZAP_Automap { Default { GZAP_InventoryToken.Map "{{map.map}}"; } }
 class GZAP_LevelCleared_{{map.map}} : GZAP_LevelCleared { Default { GZAP_InventoryToken.Map "{{map.map}}"; } }
@@ -24,7 +27,7 @@ class GZAP_DataPackageEventHandler : StaticEventHandler {
     peh = GZAP_PlayEventHandler.Get();
     let apstate = GZAP_PlayEventHandler.GetState();
 
-    peh.RegisterGameInfo("{{player}}", "{{seed}}", "{{wad}}", {{spawn_filter}}, {{singleplayer}});
+    peh.RegisterGameInfo("{{player}}", "{{seed}}", "{{wad.name}}", {{spawn_filter}}, {{singleplayer}});
     {% if pretuning %}
     peh.pretuning = true;
     {% endif %}

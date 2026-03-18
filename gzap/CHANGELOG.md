@@ -1,5 +1,11 @@
 # Unreleased
 
+This is primarily a bugfixing and polish release, and in particular, fixes some
+things that were broken by 0.8.0. The headline features, however, are an in-game
+logic dashboard for logic developers who want more control than just playing the
+game in pretuning mode offers, and complete logic for Time Tripper, demonstrating
+the use of the logic dashboard to produce better location names.
+
 - New:
   - `shuffle` option for `included_item_categories`. Items set to `shuffle` will
     be shuffled among themselves locally and not reported to AP (and thus not
@@ -49,6 +55,7 @@
   - Some scanner settings were not properly exposed in the menu.
   - Destroying a check is now treated the same as collecting it normally.
   - Improvements to colour matching with AP.
+  - Fix crash on game start when some maps were excluded from randomization.
 
 # 0.8.0
 

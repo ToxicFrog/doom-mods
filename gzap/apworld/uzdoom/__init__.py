@@ -444,7 +444,7 @@ class UZDoomWorld(World):
             "spawn_filter": self.options.spawn_filter.value,
             "persistence": self.options.full_persistence.value,
             "respawn": self.options.allow_respawn.value,
-            "wad": self.wad_logic.name,
+            "wad": self.wad_logic,
             "keys": self.keys_in_pool(),
             "maps": self.maps,
             "items": self.pool.all_pool_items(),
