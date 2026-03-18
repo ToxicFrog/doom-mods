@@ -46,7 +46,7 @@
       }
 
       function getFileContents(selector) {
-        return document.querySelector(selector).innerText.replaceAll("__WAD__", getWadSymbol()).replaceAll("__VERSION__", "gzap-0.8.0-51-gfbe2652");
+        return document.querySelector(selector).innerText.replaceAll("__WAD__", getWadSymbol());
       }
 
       function generate() {
@@ -58,6 +58,7 @@
         zip.file(getApworldName() + "/archipelago.json", getFileContents("#manifest_template"));
         zip.file(getApworldName() + "/__init__.py", getFileContents("#init_template"));
         zip.file(getApworldName() + "/Options.py", getFileContents("#options_template"));
+        zip.file(getApworldName() + "/VERSION", "gzap-0.8.0-91-g1c0e4d9");
 
         let futures = [];
         for (f of files.files) {
@@ -85,7 +86,7 @@
     </script>
   </head>
   <body>
-    <p>⚠️ This is the generator for the <b>unstable</b> version of the apworld (gzap-0.8.0-51-gfbe2652). <a href="apworld-generator-0.8.0.html">Click here for latest stable (0.8.0).</a></p>
+    <p>⚠️ This is the generator for the <b>unstable</b> version of the apworld (gzap-0.8.0-91-g1c0e4d9). <a href="apworld-generator-0.8.0.html">Click here for latest stable (0.8.0).</a></p>
     <label for="name">WAD name:</label>
     <input type="text" id="name" name="name" required oninput="updateInfo();"/>
     <br/>
@@ -109,8 +110,12 @@
 import math
 import sys
 from dataclasses import dataclass
+from importlib import resources
 
 from worlds.AutoWorld import World, WebWorld
+
+VERSION = resources.read_text(__package__, "VERSION").strip()
+# print(f"{__package__}: UZArchipelago wad apworld version {VERSION}")
 
 if 'worlds.uzdoom' not in sys.modules:
   raise RuntimeError(f'Unable to load supporting libraries -- make sure that `uzdoom.apworld` is installed!')
@@ -122,9 +127,12 @@ wad = included_logic.wad
 
 from .Options import UZDoomOptions, UZDoomWeb
 
+if uzdoom.VERSION != VERSION:
+  print(f"Warning: {__package__}: version mismatch between core apworld ({uzdoom.VERSION}) and wad apworld ({VERSION})")
+
 class UZDoomWorld___WAD__(uzdoom.UZDoomWorld):
   game = f"UZDoom ({wad.name})"
-  mod_version = "__VERSION__"
+  mod_version = VERSION
   hidden = False
   wad_logic = wad
   options_dataclass = UZDoomOptions
