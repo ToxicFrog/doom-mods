@@ -1,8 +1,12 @@
 import math
 import sys
 from dataclasses import dataclass
+from importlib import resources
 
 from worlds.AutoWorld import World, WebWorld
+
+VERSION = resources.read_text(__package__, "VERSION").strip()
+# print(f"{__package__}: UZArchipelago wad apworld version {VERSION}")
 
 if 'worlds.uzdoom' not in sys.modules:
   raise RuntimeError(f'Unable to load supporting libraries -- make sure that `uzdoom.apworld` is installed!')
@@ -14,9 +18,12 @@ wad = included_logic.wad
 
 from .Options import UZDoomOptions, UZDoomWeb
 
+if uzdoom.VERSION != VERSION:
+  print(f"Warning: {__package__}: version mismatch between core apworld ({uzdoom.VERSION}) and wad apworld ({VERSION})")
+
 class UZDoomWorld___WAD__(uzdoom.UZDoomWorld):
   game = f"UZDoom ({wad.name})"
-  mod_version = "__VERSION__"
+  mod_version = VERSION
   hidden = False
   wad_logic = wad
   options_dataclass = UZDoomOptions

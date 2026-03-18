@@ -49,7 +49,8 @@ apworld/zdoom_%/: wads/%/* wads/__template__/* version
 	rm -rf apworld/zdoom_$*/
 	mkdir -p apworld/zdoom_$*
 	cp -a wads/__template__/* apworld/zdoom_$*
-	sed -E -i "s,__WAD__,$*,g; s,__VERSION__,`cat apworld/uzdoom/VERSION`,g" apworld/zdoom_$*/*
+	sed -E -i "s,__WAD__,$*,g" apworld/zdoom_$*/*
+	cp -a apworld/uzdoom/VERSION apworld/zdoom_$*
 	cp -a wads/$*/* apworld/zdoom_$*/
 	mkdir -p apworld/zdoom_$*/logic apworld/zdoom_$*/tuning
 	mv apworld/zdoom_$*/*.logic apworld/zdoom_$*/logic/ || true

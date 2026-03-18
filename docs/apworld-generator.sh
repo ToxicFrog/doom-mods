@@ -54,7 +54,7 @@ cat <<EOF
       }
 
       function getFileContents(selector) {
-        return document.querySelector(selector).innerText.replaceAll("__WAD__", getWadSymbol()).replaceAll("__VERSION__", "$VERSION");
+        return document.querySelector(selector).innerText.replaceAll("__WAD__", getWadSymbol());
       }
 
       function generate() {
@@ -66,6 +66,7 @@ cat <<EOF
         zip.file(getApworldName() + "/archipelago.json", getFileContents("#manifest_template"));
         zip.file(getApworldName() + "/__init__.py", getFileContents("#init_template"));
         zip.file(getApworldName() + "/Options.py", getFileContents("#options_template"));
+        zip.file(getApworldName() + "/VERSION", "$VERSION");
 
         let futures = [];
         for (f of files.files) {
