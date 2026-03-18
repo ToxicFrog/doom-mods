@@ -26,6 +26,9 @@ from .model.DoomItem import DoomItem
 from .model.DoomLocation import DoomLocation
 from .model.DoomWad import DoomWad
 
+VERSION = resources.read_text(__package__, "VERSION").strip()
+print(f"UZArchipelago core apworld version {VERSION}")
+
 logger = logging.getLogger("UZDoom")
 
 def launch_client(*args) -> None:
