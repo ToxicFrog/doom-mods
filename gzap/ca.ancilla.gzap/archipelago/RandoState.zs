@@ -209,7 +209,15 @@ class ::RandoState play {
       UpdateStatus();
 
     } else if (items_by_apid.CheckKey(apid)) {
-      UpdateItemCount(items_by_apid.Get(apid), count);
+      let item = items_by_apid.Get(apid);
+      UpdateItemCount(item, count);
+      // If the item is a map-scoped inventory token, update the txn for the
+      // corresponding map region so that the level select screen knows to update.
+      Class<::InventoryToken> itype = item.typename;
+      if (itype) {
+        let region = self.GetRegion(GetDefaultByType(itype).map);
+        if (region) region.txn++;
+      }
 
     } else {
       console.printf("Unknown item ID from Archipelago: %d", apid);

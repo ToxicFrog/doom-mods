@@ -8,9 +8,9 @@ class GZAP_HintInfo {
 }
 
 {% for map in maps %}
-class GZAP_LevelAccess_{{map.map}} : GZAP_LevelAccess {}
-class GZAP_Automap_{{map.map}} : GZAP_Automap {}
-class GZAP_LevelCleared_{{map.map}} : GZAP_LevelCleared {}
+class GZAP_LevelAccess_{{map.map}} : GZAP_LevelAccess { Default { GZAP_InventoryToken.Map "{{map.map}}"; } }
+class GZAP_Automap_{{map.map}} : GZAP_Automap { Default { GZAP_InventoryToken.Map "{{map.map}}"; } }
+class GZAP_LevelCleared_{{map.map}} : GZAP_LevelCleared { Default { GZAP_InventoryToken.Map "{{map.map}}"; } }
 {% endfor %}
 
 class GZAP_DataPackageEventHandler : StaticEventHandler {

@@ -12,6 +12,8 @@
 #namespace GZAP;
 
 class ::InventoryToken : Inventory {
+  string map;
+  property Map: map;
   Default {
     Inventory.Amount 1;
     Inventory.MaxAmount 1;
