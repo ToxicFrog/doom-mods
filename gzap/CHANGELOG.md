@@ -21,6 +21,7 @@ the use of the logic dashboard to produce better location names.
   - Complete logic for `Time Tripper`.
   - Complete logic for `Sigil`, by Xindage.
   - Complete logic for `Overboard`, by j-palomo.
+  - Complete logic for `Doom`, by Tarlach.
 - For logic develpers:
   - In-game logic dashboard, accessed with `L` (by default). Allows defining
     map regions and their logical requirements without leaving the game.

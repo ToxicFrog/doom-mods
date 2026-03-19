@@ -48,7 +48,7 @@ here may result in glitches.
 | WAD                              | Maps | Mon/Lvl | Checks | +secret |   Status | Notes |
 | -------------------------------- | ---- | ------- | ------ | ------- | -------- | ----- |
 | [Chex Quest 3]                   |   15 |      83 |    143 |     227 | complete | [v1.4](https://www.chexquest3.com/downloads/); v2.0-prerelease is not yet supported. |
-| [Doom]                           |   36 |      90 |    381 |     616 | basic    | Ultimate Doom v1.9ud |
+| [Doom]                           |   36 |      90 |    381 |     616 | complete | Ultimate Doom v1.9ud |
 | [Doom 2]                         |   32 |     116 |    383 |     608 | full     | v1.9 |
 | [FreeDoom]                       |   36 |     176 |    389 |     679 | basic    | [v0.13.0](https://freedoom.github.io/download.html) |
 | [FreeDoom 2]                     |   32 |     135 |    360 |     604 | full     | [v0.13.0](https://freedoom.github.io/download.html) -- tuning only covers UV but is complete for that difficulty. |
