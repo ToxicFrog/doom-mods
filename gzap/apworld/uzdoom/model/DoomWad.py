@@ -118,6 +118,23 @@ class DoomWad:
             if pos in locs
         ]
 
+    def sphere_count(self) -> int:
+        """
+        Estimate the number of distinct spheres in the wad to assess whether
+        tuning data is present and functioning. A sphere is defined here as a
+        set of locations that share the same prerequisites.
+        """
+        spheres = set()
+        for loc in self.all_locations():
+            if loc.region:
+                spheres.add((f"map/{loc.pos.map}", self.regions[f"{loc.pos.map}/{loc.region}"].prereqs))
+            elif loc.tuning:
+                spheres.add((f"map/{loc.pos.map}", loc.prereqs))
+            else:
+                spheres.add((f"map/{loc.pos.map}",))
+        # print(spheres)
+        return len(spheres)
+
     def stats_pool(self, spawn_filter: int, include_secrets: bool = False):
         """Returns a DoomPool suitable for reporting stats about the wad."""
         return DoomPool(self, self.locations_for_stats(spawn_filter, include_secrets), None)
