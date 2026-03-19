@@ -58,7 +58,7 @@ here may result in glitches.
 | [Master Levels for Doom II]      |   21 |     120 |    369 |     462 | full     | |
 | [No Rest for the Living]         |    9 |     141 |    102 |     193 | full     | |
 | [Plutonia]                       |   32 |      95 |    338 |     477 | full     | v1.9 |
-| SIGIL                            |      |         |        |         | missing  | |
+| [SIGIL]                          |    9 |      91 |     75 |     147 | complete | [v1.23](https://romero.com/s/SIGIL_V1_23-8fh4.zip) Fully featured with use of regions.|
 | SIGIL II                         |      |         |        |         | missing  | |
 | Strife                           |      |         |        |         | missing  | |
 | [TNT]                            |   32 |     152 |    429 |     609 | basic    | |
@@ -74,6 +74,7 @@ here may result in glitches.
 [Master Levels for Doom II]: ../../release/apworlds/zdoom_master_levels_for_doom_ii.apworld
 [No Rest for the Living]: ../../release/apworlds/zdoom_no_rest_for_the_living.apworld
 [Plutonia]: ../../release/apworlds/zdoom_plutonia.apworld
+[Sigil]: ../../release/apworlds/zdoom_sigil.apworld
 [TNT]: ../../release/apworlds/zdoom_tnt.apworld
 
 ### Featured WADs
