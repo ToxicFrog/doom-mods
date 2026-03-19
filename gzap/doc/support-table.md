@@ -12,8 +12,8 @@ Support is classified as:
   placement and many things you can easily reach will be considered out of logic.
 - **partial**: tuning data (i.e. detailed logic) is present for at least one
   episode's worth of levels.
-- **full**: tuning data is present for all levels. A small number of individual
-  items may still be using basic logic.
+- **full**: tuning data is present for all levels and all default-randomized
+  items. Other items (e.g. small/medium health and ammo) may lack tuning.
 - **complete**: tuning data is present for all items in all levels. The logic is
   believed to be an accurate and complete description of the game.
 - **problems**: testing has revealed that changes to the scanner, randomizer,
@@ -133,6 +133,7 @@ Map packs that use vanilla or lightly-modified monsters, weapons, etc.
 | [Eviternity]                     |   32 |     297 |    577 |     755 | complete | |
 | [Eviternity II]                  |   36 |     470 |    700 |     894 | complete | |
 | [MAYhem 2048]                    |   34 |     179 |    303 |     412 | basic    | |
+| [Overboard]                      |   13 |     290 |    218 |     249 | complete | |
 | [Scythe]                         |   32 |     106 |    321 |     425 | basic    | MAP26-MAP30 are much larger than the rest of the wad; consider excluding them in short sync games. |
 | [Scythe 2]                       |   32 |     191 |    424 |     550 | full     | |
 | [Zone 300]                       |   32 |      61 |    252 |     360 | partial  | |
@@ -144,6 +145,7 @@ Map packs that use vanilla or lightly-modified monsters, weapons, etc.
 [Eviternity]: ../../release/apworlds/zdoom_eviternity.apworld
 [Eviternity II]: ../../release/apworlds/zdoom_eviternity_ii.apworld
 [MAYhem 2048]: ../../release/apworlds/zdoom_mayhem_2048.apworld
+[Overboard]: ../../release/apworlds/zdoom_overboard.apworld
 [Scythe]: ../../release/apworlds/zdoom_scythe.apworld
 [Scythe 2]: ../../release/apworlds/zdoom_scythe_2.apworld
 [Zone 300]: ../../release/apworlds/zdoom_zone_300.apworld

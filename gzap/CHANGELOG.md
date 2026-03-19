@@ -19,6 +19,8 @@ the use of the logic dashboard to produce better location names.
   - In-game option (`ap_disallowed_weapon_behaviour`) to control whether suppressed
     weapons are left on the ground, converted to ammo, or deleted.
   - Complete logic for `Time Tripper`.
+  - Complete logic for `Sigil`, by Xindage.
+  - Complete logic for `Overboard`, by j-palomo.
 - For logic develpers:
   - In-game logic dashboard, accessed with `L` (by default). Allows defining
     map regions and their logical requirements without leaving the game.
@@ -43,6 +45,8 @@ the use of the logic dashboard to produce better location names.
     need to be rescanned to use this data, but old logic files using skill levels
     are still supported and will still function properly if they did before.
   - The core apworld (`uzdoom.apworld`) now prints its version on startup.
+  - Wad-specific apworlds will report their version as well if it doesn't match
+    the core.
 - Fixed:
   - The inventory screen now uses Archipelago names for items rather than the
     tag (which was sometimes ambiguous or outright missing).
