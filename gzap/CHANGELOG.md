@@ -5,6 +5,7 @@ This is a bugfix release.
 - Fixed:
   - Patch file manifest now contains WAD name again rather than 20MB of debug
     output.
+  - Scanner no longer properly handled some WADs with clusters.
 
 # 0.8.1
 

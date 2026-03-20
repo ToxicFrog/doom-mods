@@ -65,11 +65,13 @@ class ::Scanner play {
     string mapname = mapname.MakeUpper();
 
     if (!LevelInfo.MapExists(mapname)) {
+      DEBUG("Skipping enqueue of %s because it doesn't exist.", mapname);
       return false;
     }
 
     if (maps_by_name.CheckKey(mapname)) {
       // Already enqueued or scanned, do nothing.
+      DEBUG("Skipping enqueue of %s because it's already in the queue.", mapname);
       return false;
     }
 
@@ -92,6 +94,7 @@ class ::Scanner play {
     for (int i = LevelInfo.GetLevelInfoCount()-1; i >= 0; --i) {
       let info = LevelInfo.GetLevelInfo(i);
       if (info.cluster != cluster) continue;
+      DEBUG("Cluster scan found %s in cluster %d", info.mapname, cluster);
       EnqueueNext(info.mapname, prev);
     }
   }
