@@ -40,7 +40,7 @@ ${APWORLDS}/zdoom_%.apworld: apworld/zdoom_%/
 	mv apworld/zdoom_$*.apworld $@
 
 ${TOPDIR}/docs/apworld-generator.html: ${TOPDIR}/docs/apworld-generator.sh wads/__template__/*
-	sh $< > $@
+	STABLE=${VERSION} sh $< > $@
 
 # Prepare a directory for conversion into an apworld by copying the template
 # files into it, evaluating the templates, and then copying the logic, tuning,

@@ -3,7 +3,6 @@
 set -e
 
 VERSION=$(git describe --tags --match gzap-\*)
-STABLE=$(git describe --tags --match gzap-\* --abbrev=0 | cut -d- -f2)
 
 cat <<EOF
 <!doctype html>
@@ -95,6 +94,9 @@ cat <<EOF
   </head>
   <body>
     <p>⚠️ This is the generator for the <b>unstable</b> version of the apworld ($VERSION). <a href="apworld-generator-$STABLE.html">Click here for latest stable ($STABLE).</a></p>
+    <!--
+    <p>🛈 This is the generator for version $STABLE of the apworld.</p>
+    -->
     <label for="name">WAD name:</label>
     <input type="text" id="name" name="name" required oninput="updateInfo();"/>
     <br/>
