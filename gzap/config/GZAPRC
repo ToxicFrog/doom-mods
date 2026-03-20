@@ -64,10 +64,8 @@
 #
 #
 #     tag <actor> <name> ;
-# Supply a default tag (player-facing name) for the given actor. This will not
-# replace an existing tag but is useful in cases where the developer forgot to
-# give the actor a tag at all, possibly because it was never expected to be
-# directly shown to the user.
+# Supply a tag (player-facing name) for the given actor. This will override the
+# developer-provided tag the actor has, if any.
 
 #### General Doom/Heretic/Chex item categories ####
 # GZAP has built in heuristics for item categorization: health and armour is

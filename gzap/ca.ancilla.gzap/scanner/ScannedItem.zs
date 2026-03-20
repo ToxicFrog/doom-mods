@@ -32,7 +32,7 @@ class ::ScannedItem : ::ScannedLocation {
     if (ok) {
       class<Actor> cls = newtype;
       loc.typename = newtype;
-      loc.tag = GetDefaultByType(cls).GetTag();
+      loc.tag = ::RC.Get().GetTag(GetDefaultByType(cls));
     }
 
     return loc;

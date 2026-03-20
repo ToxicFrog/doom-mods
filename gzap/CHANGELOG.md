@@ -1,3 +1,8 @@
+# Unreleased
+
+- Changed:
+  - `tag` directives in the `GZAPRC` lump now override builtin tags.
+
 # 0.8.2
 
 This is a bugfix release.

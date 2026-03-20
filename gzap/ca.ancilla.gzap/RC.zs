@@ -94,8 +94,10 @@ class ::RC : Object play {
     self.tags.insert(cls, tag);
   }
 
-  string GetTag(Actor act) {
-    return act.GetTag(self.tags.GetIfExists(act.GetClassName()));
+  string GetTag(readonly<Actor> act) {
+    let tag = self.tags.GetIfExists(act.GetClassName());
+    if (tag) return tag;
+    return act.GetTag();
   }
 
   void SetClusterName(int cluster, string name) {
