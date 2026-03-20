@@ -72,7 +72,6 @@ class IPC:
       # even get to see the error until I kill it. :(
       # TODO: fix this
       logger.error(e)
-      sys.exit(1)
 
   def _tuning_file_path(self, ipc_dir: str, wadname: str) -> str:
     return os.path.join(
