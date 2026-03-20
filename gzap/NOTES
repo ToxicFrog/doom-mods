@@ -9,7 +9,7 @@ To release a new version:
 - make
 - commit
 - tag and push the commit
-- rm -rf gzap/apworld/zdoom_* && make
+- rm -rf release/apworlds/zdoom_* && make
   (this generates binaries with the right version number baked in)
 - cut the release on github using the just-generated pk3 and apworld as the binaries
 
