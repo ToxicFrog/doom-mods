@@ -2,7 +2,7 @@
 
 set -e
 
-VERSION=$(git describe --tags --match gzap-\*)
+VERSION=$(cat apworld/uzdoom/VERSION)
 
 cat <<EOF
 <!doctype html>

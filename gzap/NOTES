@@ -7,7 +7,7 @@ To release a new version:
 - cat the new version into gzap/apworld/uzdoom/VERSION
   (autodetection will instead detect it as <prevision version>-<build number>-<commit>,
   since we haven't tagged yet)
-- rm -rf release/apworlds/zdoom_* && touch docs/apworld-generator.sh && make
+- rm -rf release/apworlds/zdoom_* apworld/zdoom_* && touch docs/apworld-generator.sh && make
   (this generates binaries with the right version number baked in)
 - copy the apworld-generator.html to apworld-generator-<version>.html and update the links therein
 - commit

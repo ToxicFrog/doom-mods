@@ -1,4 +1,4 @@
-# Unreleased
+# 0.8.2
 
 This is a bugfix release.
 

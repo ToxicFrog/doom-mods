@@ -1,6 +1,6 @@
 NAME=UZArchipelago
 TAGS=gzap-*
-VERSION=0.8.1
+VERSION=0.8.2
 LUMPS=MAPINFO MENUDEF zscript.txt *.md LANGUAGE.csv CVARINFO KEYCONF TEXTURES.txt TEXTCOLO
 LUMPS+=sprites textures maps patches config/*
 ZSDIR=ca.ancilla.gzap
