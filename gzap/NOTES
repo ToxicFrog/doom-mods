@@ -4,13 +4,14 @@
 
 To release a new version:
 - update the version number in the CHANGELOG and Makefile
-- touch docs/apworld-generator.sh && make
+- cat the new version into gzap/apworld/uzdoom/VERSION
+  (autodetection will instead detect it as <prevision version>-<build number>-<commit>,
+  since we haven't tagged yet)
+- rm -rf release/apworlds/zdoom_* && touch docs/apworld-generator.sh && make
+  (this generates binaries with the right version number baked in)
 - copy the apworld-generator.html to apworld-generator-<version>.html and update the links therein
-- make
 - commit
 - tag and push the commit
-- rm -rf release/apworlds/zdoom_* && make
-  (this generates binaries with the right version number baked in)
 - cut the release on github using the just-generated pk3 and apworld as the binaries
 
 ### scanner
@@ -108,6 +109,20 @@ Acid Trap, slowly lose armour
 Warp Trap, teleports you to the level start
 Barrel Trap, spawns exploding barrels
 Alarm Trap, activates all enemies on the level
+
+### Hedon
+
+Hellclaw appears only as an enemy drop in episode 1. In episode 2 it appears as
+a normal weapon.
+
+There are a lot of quest items that don't appear in the scan because they're
+spawned by ACS. Logic may find it useful to define event regions, e.g. a "player has gear"
+event region with prerequisites of access to the smelter and caster, having the right number
+of metal bars, and having the mold.
+
+There are a lot of quest items with a nonzero InterHubAmount. Can we pick up a
+pickaxe in map01 and then be required to use it in map02? or, worse, map03, which
+doesn't have a pickaxe of its own?
 
 ### Faithless
 

@@ -1,3 +1,11 @@
+# Unreleased
+
+This is a bugfix release.
+
+- Fixed:
+  - Patch file manifest now contains WAD name again rather than 20MB of debug
+    output.
+
 # 0.8.1
 
 The main focus of this release is fixes and polish, and most of the changes are
