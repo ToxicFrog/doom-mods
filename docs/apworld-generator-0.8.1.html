@@ -58,7 +58,7 @@
         zip.file(getApworldName() + "/archipelago.json", getFileContents("#manifest_template"));
         zip.file(getApworldName() + "/__init__.py", getFileContents("#init_template"));
         zip.file(getApworldName() + "/Options.py", getFileContents("#options_template"));
-        zip.file(getApworldName() + "/VERSION", "gzap-0.8.0-103-g355d96c");
+        zip.file(getApworldName() + "/VERSION", "gzap-0.8.1");
 
         let futures = [];
         for (f of files.files) {
@@ -86,10 +86,7 @@
     </script>
   </head>
   <body>
-    <p>⚠️ This is the generator for the <b>unstable</b> version of the apworld (gzap-0.8.0-103-g355d96c). <a href="apworld-generator-0.8.1.html">Click here for latest stable (0.8.1).</a></p>
-    <!--
     <p>🛈 This is the generator for version 0.8.1 of the apworld.</p>
-    -->
     <label for="name">WAD name:</label>
     <input type="text" id="name" name="name" required oninput="updateInfo();"/>
     <br/>

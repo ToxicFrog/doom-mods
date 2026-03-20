@@ -1,10 +1,16 @@
-# Unreleased
+# 0.8.1
 
-This is primarily a bugfixing and polish release, and in particular, fixes some
-things that were broken by 0.8.0. The headline features, however, are an in-game
-logic dashboard for logic developers who want more control than just playing the
-game in pretuning mode offers, and complete logic for Time Tripper, demonstrating
-the use of the logic dashboard to produce better location names.
+The main focus of this release is fixes and polish, and most of the changes are
+either fixes for bugs in 0.8.0 or improvements to the user-facing experience
+like option groups and the in-game hint display. However, it does contain a few
+new features, of which the most notable are the in-game logic editor and the
+ability to return to your previous location when re-entering a level.
+
+It also adds complete support for three new wads -- `Time Tripper`, `Sigil`, and
+`Overboard` -- and upgrades the logic from the original `Doom` with complete
+tuning data. `Sigil` and `Time Tripper` both make use of the new logic editing
+features to give locations more descriptive names, an improvement that is likely
+to gradually get applied to other wads over the next several releases.
 
 - New:
   - `shuffle` option for `included_item_categories`. Items set to `shuffle` will
