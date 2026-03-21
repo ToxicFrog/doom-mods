@@ -22,12 +22,7 @@ To release a new version:
 
 ### generator
 
-- rethink how weapon logic works; perhaps:
-  - create a list of weapons ordered by what rank they appear in
-  - later-rank maps have more of the weapons required than earlier-rank ones
-  - e.g. an increase in rank of 1 increases the number of weapons needed by 1
-    - or more if that's needed to pull all the weapons into logic by the end of the game
-  - what does this mean for the bias settings?
+- rethink how weapon logic works; see design/weapons.md
 - progressive weapon support
   - infer the progressive weapon order from the order it appears in the wad
   - maybe pull it out as a yaml option so it can be customized
@@ -123,6 +118,15 @@ of metal bars, and having the mold.
 There are a lot of quest items with a nonzero InterHubAmount. Can we pick up a
 pickaxe in map01 and then be required to use it in map02? or, worse, map03, which
 doesn't have a pickaxe of its own?
+
+Bearzerk Mode sets up a bunch of actor replacements. Some of these are randomized,
+e.g. a bolt mag will randomly turn into any of three different potions, a ring,
+a time shard, or an armour crystal. This means we get different results each time
+we scan. But, if we skip scanning that skill entirely, we miss out on any bearserk-specific
+spawns!
+
+Ideally, what we want is to, on non-Bearserk skills, scan normally, and on Bearserk,
+pick up the actual replacments, e.g. `BearzerkBoltmag` in place of `Boltmag`.
 
 ### Faithless
 
