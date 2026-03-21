@@ -177,10 +177,11 @@ class ::Scanner play {
       DEBUG("Changing to %s at skill %d", nextmap.name, self.target_skill);
       if (level.ClusterFlags & level.CLUSTER_HUB) {
         // If it's a hubcluster level, blip us back to the GZAPHUB for a moment
-        // to reset its state.
+        // to reset its state. The ScanEventHandler will send us back here.
         level.ChangeLevel("GZAPHUB", 0, CHANGELEVEL_NOINTERMISSION, self.target_skill);
+      } else {
+        level.ChangeLevel(nextmap.name, 0, CHANGELEVEL_NOINTERMISSION, self.target_skill);
       }
-      level.ChangeLevel(nextmap.name, 0, CHANGELEVEL_NOINTERMISSION, self.target_skill);
       return true;
     }
     // Queue is empty! We're done scanning for now.
