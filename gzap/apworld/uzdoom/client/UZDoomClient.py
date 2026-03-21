@@ -258,6 +258,9 @@ class UZDoomContext(SuperContext):
             # print(f"in hint loop, old={self.last_hints.keys()}, cur={hints.keys()}, new={new_hint_ids}")
             for id in new_hint_ids:
                 hint = hints[id]
+                if not hint.is_valid(self):
+                    print('Warning: invalid hint:', hint)
+                    continue
                 if hint.is_hint(self):
                     # print("sending hint:", hint.hint_info(self))
                     self.ipc.send_hint(*hint.hint_info(self))

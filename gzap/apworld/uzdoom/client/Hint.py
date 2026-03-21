@@ -74,6 +74,21 @@ class UZDoomHint:
         assert item_name == item.name(), f"Item name mismatch: {item_name} from AP doesn't match {item.name()} from WAD"
         return (item.map, item_name)
 
+    def is_valid(self, ctx):
+        if self.is_hint(ctx) and ctx.item_names.lookup_in_slot(self.item, ctx.slot) not in ctx.wad_logic.items_by_name:
+            # A hint contains information about an item for us, in someone else's world.
+            # This means that the item must be one we can identify.
+            print('Not in item name table:', ctx.item_names.lookup_in_slot(self.item, ctx.slot))
+            return False
+
+        if self.is_peek(ctx) and ctx.location_names.lookup_in_slot(self.location, ctx.slot) not in ctx.wad_logic.locations_by_name:
+            # A peek contains information about an item for someone else, in a location
+            # in our world. So we need to know the location.
+            print('Not in location name table:', ctx.location_names.lookup_in_slot(self.location, ctx.slot))
+            return False
+
+        return True
+
     def location_info(self, ctx) -> Tuple[str, str]:
         """
         Returns the [map name, location name] for this hint.

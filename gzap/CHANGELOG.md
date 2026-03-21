@@ -7,6 +7,8 @@
   - Location name table was not properly initialized in the client, which meant
     that receiving hints or peeks for some locations could also crash the client
     no matter who owned the items they contained.
+  - Errors of the above type that aren't fixed (hopefully none) should now result
+    in warning messages rather than crashes.
 
 # 0.8.2
 
