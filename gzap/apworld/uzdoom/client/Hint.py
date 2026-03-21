@@ -17,12 +17,17 @@ class UZDoomHint:
     finding_player: int
     receiving_player: int
     location: int
+    item_flags: int
 
-    def __init__(self, item, finding_player, receiving_player, location, **json):
+    def __init__(self, item, finding_player, receiving_player, location, item_flags, **json):
         self.item = item
         self.finding_player = finding_player
         self.receiving_player = receiving_player
         self.location = location
+        self.item_flags = item_flags
+
+    def __str__(self):
+        return f'Hint(item={self.item}, finder={self.finding_player}, receiver={self.receiving_player}, loc={self.location})'
 
     def is_relevant(self, ctx) -> bool:
         return self.is_hint(ctx) or self.is_peek(ctx)
@@ -61,7 +66,8 @@ class UZDoomHint:
         """
         Returns the [map name, item name] of the item.
 
-        Map name may be None if it's not a scoped item.
+        Map name may be None if it's not a scoped item. Only called for hints,
+        i.e. information about items that belong to us.
         """
         item_name = ctx.item_names.lookup_in_slot(self.item, ctx.slot)
         item = ctx.wad_logic.item(item_name)
@@ -71,6 +77,9 @@ class UZDoomHint:
     def location_info(self, ctx) -> Tuple[str, str]:
         """
         Returns the [map name, location name] for this hint.
+
+        Only called for peeks, i.e. information about locations that belong
+        to us.
         """
         loc_name = ctx.location_names.lookup_in_slot(self.location, ctx.slot)
         loc = ctx.wad_logic.location_named(loc_name)
@@ -89,7 +98,7 @@ class UZDoomHint:
             "type": "item_id",
             "text": self.item,
             "player": self.receiving_player,
-            "flags": ctx.wad_logic.item(item_name).classification(),
+            "flags": self.item_flags,
         })
 
     def location_name(self, ctx):

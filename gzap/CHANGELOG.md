@@ -2,6 +2,8 @@
 
 - Changed:
   - `tag` directives in the `GZAPRC` lump now override builtin tags.
+- Fixed:
+  - Receiving peeks for items owned by other players could crash the client.
 
 # 0.8.2
 
