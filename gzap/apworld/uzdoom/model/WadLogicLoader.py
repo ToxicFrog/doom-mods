@@ -7,6 +7,7 @@ import Utils
 from .DoomLogic import *
 
 class WadDataLoader:
+    logic: DoomLogic
     wad: DoomWad
 
     def __enter__(self):
@@ -91,9 +92,6 @@ class WadDataLoader:
                 sum(pool.progression_items().values())))
 
 class WadLogicLoader(WadDataLoader):
-    logic: DoomLogic
-    wad: DoomWad
-
     def __init__(self, logic: DoomLogic, name: str, package: str):
         self.logic = logic
         self.wad = DoomWad(name, package)
@@ -156,8 +154,9 @@ class WadLogicLoader(WadDataLoader):
             pickle.dump(self.wad, fd)
 
 class WadTuningLoader(WadDataLoader):
-    def __init__(self, wad: DoomWad):
-        self.wad = wad
+    def __init__(self, logic: DoomLogic):
+        self.logic = logic
+        self.wad = logic.wad
 
     def __exit__(self, err_type, err_value, err_stack):
         return err_type is None
@@ -165,4 +164,4 @@ class WadTuningLoader(WadDataLoader):
     def load_tuning(self, files):
         for file in files:
             self.load_records(file)
-        self.wad.finalize_tuning()
+        self.wad.finalize_tuning(self.logic)

@@ -4,6 +4,9 @@
   - `tag` directives in the `GZAPRC` lump now override builtin tags.
 - Fixed:
   - Receiving peeks for items owned by other players could crash the client.
+  - Location name table was not properly initialized in the client, which meant
+    that receiving hints or peeks for some locations could also crash the client
+    no matter who owned the items they contained.
 
 # 0.8.2
 

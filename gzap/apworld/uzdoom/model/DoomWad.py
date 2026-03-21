@@ -539,9 +539,8 @@ class DoomWad:
         self.disambiguate_duplicate_items()
         self.disambiguate_duplicate_locations()
         self.finalize_key_items()
-        self.finalize_ids(logic)
 
-    def finalize_tuning(self) -> None:
+    def finalize_tuning(self, logic) -> None:
         """
         Do postprocessing after all events have been ingested, including tuning.
         """
@@ -553,6 +552,7 @@ class DoomWad:
             map.extra_rules.finalize_tuning(default=[])
         for loc in self.all_locations():
             self.locations_by_name[loc.name()] = loc
+        self.finalize_ids(logic)
 
     def finalize_key_items(self):
         """

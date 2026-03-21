@@ -21,13 +21,13 @@ from .DoomLogic import *
 from .WadLogicLoader import *
 
 
-def get_tuned_wad(wad: DoomWad) -> DoomWad:
-    if wad.tuned:
-        return wad
-    with WadTuningLoader(wad) as wadloader:
-        wad.tuned = True
-        wadloader.load_tuning(tuning_files(wad.package, wad.name))
-    return wad
+def get_tuned_wad(logic: DoomLogic) -> DoomWad:
+    if logic.wad.tuned:
+        return logic.wad
+    with WadTuningLoader(logic) as wadloader:
+        logic.wad.tuned = True
+        wadloader.load_tuning(tuning_files(logic.wad.package, logic.wad.name))
+    return logic.wad
 
 def logic_files(package):
     """
@@ -105,7 +105,7 @@ def init_wads(package):
     files = logic_files(package)
     assert len(files) > 0, f'Package {package} contains no logic files'
     init_wad(logic, package, files)
-    get_tuned_wad(logic.wad)
+    get_tuned_wad(logic)
 
     _LOGIC[package] = logic
     return logic
