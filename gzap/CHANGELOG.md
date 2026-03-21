@@ -1,4 +1,9 @@
-# Unreleased
+# 0.8.3
+
+This is a bugfix release. It fixes some client-crash errors that affected 0.8.1
+and 0.8.2, so updating is strongly recommended. If you have a game in progress,
+you can safely update from 0.8.1 or 0.8.2 to 0.8.3 without interrupting your
+game.
 
 - Changed:
   - `tag` directives in the `GZAPRC` lump now override builtin tags.
