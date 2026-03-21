@@ -9,6 +9,7 @@
   - Other classes of mishandled hints and peeks (hopefully none, now) will result
     in warning messages rather than crashes or garbage data.
   - Logic errors in E1M7 and E2M7 of `Doom`.
+  - Logic errors in C1M1 of `Time Tripper`.
 
 # 0.8.2
 

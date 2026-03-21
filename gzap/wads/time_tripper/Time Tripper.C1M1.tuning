@@ -27,6 +27,8 @@ AP-REGION { "map": "C1M1", "region": "NE Arena Outer", "keys": ["key/BlueSkull",
 AP-REGION { "map": "C1M1", "region": "SE Arena", "keys": ["key/BlueSkull", "weapon/SuperShotgun2", "weapon/64PlasmaRifle"] }
 ; Clifftop areas reachable by teleporter after using the yellow switch
 AP-REGION { "map": "C1M1", "region": "Cliffs", "keys": ["key/YellowCard"] }
+; Secret area behind waterfall as you approach the final arena
+AP-REGION { "map": "C1M1", "region": "Waterfall Secret", "keys": ["map/C1M1/Cliffs", "flag/secret"] }
 ; Ammo closets in main hall opened by secret switch on the cliffs
 AP-REGION { "map": "C1M1", "region": "Main Hall Closets", "keys": ["key/YellowCard", "flag/secret"] }
 ; Final arena fight with loads of imps
@@ -201,9 +203,9 @@ AP-CHECK { "id": 141, "name": "C1M1 - ArmorBonus [-1232,764]", "pos": ["C1M1",-1
 AP-CHECK { "id": 135, "name": "C1M1 - HealthBonus [-1240,824]", "pos": ["C1M1",-1240,824,216], "region": "Cliffs" }
 AP-CHECK { "id": 142, "name": "C1M1 - ArmorBonus [-1280,900]", "pos": ["C1M1",-1280,900,208], "region": "Cliffs" }
 AP-CHECK { "id": 178, "name": "C1M1 - Stimpack [-1844,1168]", "pos": ["C1M1",-1844,1168,176], "region": "Cliffs" }
-AP-CHECK { "id": 248, "name": "C1M1 - Secret 961", "pos": ["C1M1","secret","sector",961], "region": "Cliffs" }
-AP-CHECK { "id": 232, "name": "C1M1 - Soulsphere [NW]", "pos": ["C1M1",-944,1584,168], "region": "Cliffs" }
-AP-CHECK { "id": 192, "name": "C1M1 - ShieldSphere", "pos": ["C1M1",-944,1584,168], "region": "Cliffs" }
+AP-CHECK { "id": 248, "name": "C1M1 - Secret 961", "pos": ["C1M1","secret","sector",961], "region": "Waterfall Secret" }
+AP-CHECK { "id": 232, "name": "C1M1 - Soulsphere [NW]", "pos": ["C1M1",-944,1584,168], "region": "Waterfall Secret" }
+AP-CHECK { "id": 192, "name": "C1M1 - ShieldSphere", "pos": ["C1M1",-944,1584,168], "region": "Waterfall Secret" }
 AP-CHECK { "id": 162, "name": "C1M1 - Bullets [-1495,2319]", "pos": ["C1M1",-1495,2319,164], "region": "Exit Arena" }
 AP-CHECK { "id": 163, "name": "C1M1 - Bullets [-1359,2319]", "pos": ["C1M1",-1359,2319,164], "region": "Exit Arena" }
 AP-CHECK { "id": 168, "name": "C1M1 - Shotgun Shells [-2016,2528]", "pos": ["C1M1",-2016,2528,175], "region": "Exit Arena" }
