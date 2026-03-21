@@ -3,12 +3,12 @@
 - Changed:
   - `tag` directives in the `GZAPRC` lump now override builtin tags.
 - Fixed:
-  - Receiving peeks for items owned by other players could crash the client.
-  - Location name table was not properly initialized in the client, which meant
-    that receiving hints or peeks for some locations could also crash the client
-    no matter who owned the items they contained.
-  - Errors of the above type that aren't fixed (hopefully none) should now result
-    in warning messages rather than crashes.
+  - Receiving peeks for specific locations could crash the client.
+  - Receiving peeks for items owned by other players could crash the client or
+    display incorrect peek data.
+  - Other classes of mishandled hints and peeks (hopefully none, now) will result
+    in warning messages rather than crashes or garbage data.
+  - Logic errors in E1M7 and E2M7 of `Doom`.
 
 # 0.8.2
 
@@ -17,7 +17,7 @@ This is a bugfix release.
 - Fixed:
   - Patch file manifest now contains WAD name again rather than 20MB of debug
     output.
-  - Scanner no longer properly handled some WADs with clusters.
+  - Scanner properly handles clusters again.
 
 # 0.8.1
 
