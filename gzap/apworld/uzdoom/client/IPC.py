@@ -296,7 +296,7 @@ class IPC:
 
   def _enqueue(self, *args) -> None:
     id = self._get_id()
-    # print("Enqueue:", id, *args)
+    print("<<", id, *args)
     msg = IPCMessage(id, *args)
     self.ipc_queue.append(msg)
 
