@@ -259,7 +259,7 @@ class ::Region play {
   // If we remember a hint for the item with the given FQIN, returns it.
   // Otherwise returns null.
   ::Hint GetHint(string item) const {
-    DEBUG("[%s] GetHint(%s) -> %d", self.map, item, self.hints.CheckKey(item));
+    // DEBUG("[%s] GetHint(%s) -> %d", self.map, item, self.hints.CheckKey(item));
     return self.hints.GetIfExists(item);
   }
 
@@ -282,6 +282,7 @@ class ::Region play {
   uint KeysFound() const {
     uint found = 0;
     foreach (_, v : keys) {
+      // TODO: does not take into account stacking for multikeys.
       if (v.held) ++found;
     }
     return found;
@@ -326,7 +327,7 @@ class ::Region play {
     foreach (keytype, key : self.keys) {
       if (!key.held || !key.enabled) continue;
       DEBUG("keys_to_add: %s", keytype);
-      items_to_add.Insert(keytype, 999);
+      items_to_add.Insert(keytype, key.held);
     }
 
     // Only do weapon restoration when not in pretuning mode. In pretuning mode,
@@ -364,7 +365,7 @@ class ::Region play {
     }
 
     foreach (itype, count : items_to_add) {
-      DEBUG("Adding item: %s", itype);
+      DEBUG("Adding item: %s x %d", itype, count);
       let item = Inventory(mo.Spawn(itype));
       if (item is "Weapon") {
         ::PerLevelHandler.Get().AllowNextWeapon();

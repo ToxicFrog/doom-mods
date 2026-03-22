@@ -57,7 +57,7 @@ class ::PickupDetector : Inventory {
       }
 
       // Tell the state that we are allowed to manifest this key.
-      key.MarkHeld(apstate);
+      key.Increment(apstate);
     }
 
     // At this point the apstate knows about this key. We permit it to be picked

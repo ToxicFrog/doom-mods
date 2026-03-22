@@ -204,7 +204,7 @@ class ::RandoState play {
     if (keys.CheckKey(apid)) {
       let key = keys.Get(apid);
       ::Util.announce("$GZAP_GOT_ITEM", key.FQIN());
-      key.MarkHeld(self);
+      key.Increment(self);
       UpdatePlayerInventory();
       UpdateStatus();
 

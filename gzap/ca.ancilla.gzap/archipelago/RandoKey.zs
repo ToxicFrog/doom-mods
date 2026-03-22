@@ -64,6 +64,10 @@
 #namespace GZAP;
 #debug off;
 
+// TODO: reify each key as a GZAP_Key_$SCOPE_$TYPENAME class inheriting from
+// RandoKey and put them in the normal inventory array along with everything
+// else, rather than special-casing so much key handling.
+
 class ::RandoKey play {
   // Name tag.
   string tag;
@@ -74,8 +78,8 @@ class ::RandoKey play {
   string scopename;
   // Set of maps this key should exist in.
   Map<string, bool> maps;
-  // Whether or not the player has this key.
-  bool held;
+  // How many of these the player has received.
+  int held;
   // Whether the player has enabled this key. Keys can be temporarily turned
   // off from the inventory to aid in tuning.
   bool enabled;
@@ -86,7 +90,7 @@ class ::RandoKey play {
     key.tag = tag;
     key.typename = typename;
     key.scopename = scope;
-    key.held = false;
+    key.held = 0;
     key.enabled = !::PlayEventHandler.Get().IsPretuning();
     return key;
   }
@@ -101,8 +105,8 @@ class ::RandoKey play {
     return self;
   }
 
-  void MarkHeld(::RandoState apstate) {
-    self.held = true;
+  void Increment(::RandoState apstate) {
+    self.held++;
     // The internal state of the affected regions hasn't changed, but we still
     // bump their TXNs so that the menu drawing code can see that something
     // about them has changed and redraw their entries.
