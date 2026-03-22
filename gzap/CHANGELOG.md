@@ -1,3 +1,8 @@
+# Unreleased
+
+- Fixed:
+  - Typenames in `GZAPRC` are no longer case sensitive.
+
 # 0.8.3
 
 This is a bugfix release. It fixes some client-crash errors that affected 0.8.1

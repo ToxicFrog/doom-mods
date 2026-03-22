@@ -71,31 +71,32 @@ class ::RC : Object play {
   void SetCategory(string cls, string category) {
     if (category == "none") category = "";
     DEBUG("Set category for %s to %s", cls, category);
-    self.categorizations.Insert(cls, category);
+    self.categorizations.Insert(cls.MakeLower(), category);
   }
 
   string, bool GetCategory(string cls) {
-    let [val, ok] = self.categorizations.CheckValue(cls);
+    let [val, ok] = self.categorizations.CheckValue(cls.MakeLower());
     return val, ok;
   }
 
   void SetTypename(string cls, string typename) {
     DEBUG("Set typename for %s to %s", cls, typename);
-    self.typenames.Insert(cls, typename);
+    self.typenames.Insert(cls.MakeLower(), typename);
   }
 
   string, bool GetTypename(string cls) {
-    let [val, ok] = self.typenames.CheckValue(cls);
+    let [val, ok] = self.typenames.CheckValue(cls.MakeLower());
     return val, ok;
   }
 
   void SetActorTag(string cls, string tag) {
     DEBUG("Set tag for %s to %s", cls, tag);
-    self.tags.insert(cls, tag);
+    self.tags.insert(cls.MakeLower(), tag);
   }
 
   string GetTag(readonly<Actor> act) {
-    let tag = self.tags.GetIfExists(act.GetClassName());
+    string cls = act.GetClassName();
+    let tag = self.tags.GetIfExists(cls.MakeLower());
     if (tag) return tag;
     return act.GetTag();
   }
