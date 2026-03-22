@@ -491,8 +491,16 @@ class UZDoomWorld(World):
             path,
             f"{self.multiworld.get_out_file_name_base(self.player)}.{self.wad_logic.name.replace(' ', '_')}.pk3")
 
+        def include_if_present(path):
+            if resources.is_resource(self.__module__, path):
+                zip.writestr(path, resources.read_text(self.__module__, path))
+            else:
+                zip.writestr(path, "")
+
         with zipfile.ZipFile(pk3_path, mode="w", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as zip:
             zip.writestr("archipelago.json", env.get_template("manifest.jinja").render(**data))
             zip.writestr("ZSCRIPT", env.get_template("zscript.jinja").render(**data))
             zip.writestr("MAPINFO", env.get_template("mapinfo.jinja").render(**data))
             zip.writestr("VERSION", self.mod_version)
+            include_if_present("ap_scripts.zs")
+            include_if_present("ap_mapinfo.txt")
