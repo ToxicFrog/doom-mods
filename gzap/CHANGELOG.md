@@ -16,6 +16,7 @@
     activate when you defined it, rather than copying all of the prereqs from
     that subregion.
   - Subregions are now emitted in the log in the same order they were defined.
+  - Subregions are displayed in the menu most-recently-defined-first.
 
 # 0.8.3
 

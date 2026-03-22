@@ -123,27 +123,36 @@ class ::LogicMenu : ::CommonMenu {
       PushText(" ");
       PushText("$GZAP_MENU_LOGIC_REGIONS_IN_MAP", Font.CR_ICE);
       PushText(" ");
-      foreach (name, subregion : current_region.subregions) {
-        if (subregion == apstate.subregion) continue;
-        PushPrereqToggle(
-          apstate.subregion, subregion.name,
-          "map/"..current_region.map.."/"..subregion.name);
-      }
+      PushTogglesForSubregions(current_region, apstate.subregion);
     } else {
       // Hub logic is in effect, so display all visited regions from the same
       // hubcluster as the current map.
       PushText(" ");
       PushText("$GZAP_MENU_LOGIC_REGIONS_IN_CLUSTER", Font.CR_ICE);
       PushText(" ");
+      // First all regions from the current map, most recently defined first
+      PushTogglesForSubregions(current_region, apstate.subregion);
       foreach (map,region : apstate.regions) {
+        if (region == current_region) continue;
         if (region.hub != current_region.hub || !region.visited) continue;
+        // Then other maps in this hub in arbitrary order (but most-recent-first
+        // within each map).
         PushPrereqToggle(apstate.subregion,
           "\c[SILVER]"..region.AccessFlagFQIN().."\c-", "map/"..region.map);
-        foreach (name, subregion : region.subregions) {
-          if (subregion == apstate.subregion) continue;
-          PushPrereqToggle(apstate.subregion, subregion.name, "map/"..region.map.."/"..subregion.name);
-        }
+        PushTogglesForSubregions(region, apstate.subregion);
       }
+    }
+  }
+
+  // Display all subregion toggles in ascending order by age, so that more
+  // recently defined ones show up earlier in the list.
+  void PushTogglesForSubregions(::Region region, ::Subregion current_subregion) {
+    for (int i = region.subregion_names.Size()-1; i >= 0; --i) {
+      let name = region.subregion_names[i];
+      let subregion = region.subregions.GetIfExists(name);
+      if (subregion == current_subregion) continue;
+      PushPrereqToggle(
+        current_subregion, name, "map/"..region.map.."/"..name);
     }
   }
 }

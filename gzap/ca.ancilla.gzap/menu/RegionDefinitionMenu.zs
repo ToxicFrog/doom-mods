@@ -41,10 +41,13 @@ class ::RegionDefinitionMenu : ::CommonMenu {
     mDesc.mSelectedItem = 3; // region name entry
   }
 
-  // Largely copied from LogicMenu, but creates different entry types and only
-  // displays regions from the same map.
-  void InitSubregionDisplay(::RandoState apstate, ::Region current_region) {
-    foreach (name, subregion : current_region.subregions) {
+  // Similar to LogicMenu, but creates different entry types and only displays
+  // regions from the same map. Like LogicMenu, displays regions in order from
+  // most to least recently defined.
+  void InitSubregionDisplay(::RandoState apstate, ::Region region) {
+    for (int i = region.subregion_names.Size()-1; i >= 0; --i) {
+      let name = region.subregion_names[i];
+      let subregion = region.subregions.GetIfExists(name);
       mDesc.mItems.Push(new("::ActivateRegionButton").Init(subregion.name, subregion.PrereqsAsString()));
     }
   }
