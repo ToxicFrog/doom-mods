@@ -55,6 +55,7 @@ class ::LogicMenu : ::CommonMenu {
       InitSubregionDisplay(apstate, region);
     }
     mDesc.mSelectedItem = 7; // region define button
+    mDesc.mScrollPos = 0;
   }
 
   override void Ticker() {
