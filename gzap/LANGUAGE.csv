@@ -31,8 +31,9 @@ Current Subregion,GZAP_MENU_LOGIC_CURRENT_SUBREGION,
 Subregion Prereqs,GZAP_MENU_LOGIC_SUBREGION_PREREQS,
 Create/Activate Subregion,GZAP_MENU_LOGIC_CREATE_SUBREGION,
 Clear Subregion,GZAP_MENU_LOGIC_CLEAR_SUBREGION,
-Save subregions to tuning file,GZAP_MENU_LOGIC_SAVE_SUBREGIONS
-"Write all subregion definitions (for all maps in the wad, not just this one) to the end of the tuning file. You must then edit the file to move them to the start before it can be used.",GZAP_MENU_LOGIC_TT_SAVE_SUBREGIONS,
+Save to tuning file (this map),GZAP_MENU_LOGIC_SAVE_LOCAL_SUBREGIONS
+Save to tuning file (all maps),GZAP_MENU_LOGIC_SAVE_ALL_SUBREGIONS
+"Write subregion definitions to the tuning file (either for this map or for the entire wad). You must then edit the file to move them to the start before it can be used.",GZAP_MENU_LOGIC_TT_SAVE_SUBREGIONS,
 Flags,GZAP_MENU_LOGIC_FLAGS
 Secret,GZAP_MENU_LOGIC_SECRET
 "Marks all locations in this region as secret, even if they are not inside a secret sector. Useful for items that require passing through a secret sector to find but aren't themselves in the sector.",GZAP_MENU_LOGIC_TT_SECRET

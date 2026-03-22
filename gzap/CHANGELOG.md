@@ -14,6 +14,7 @@
   - Defining a new subregion inserts a dependency on the subregion that was
     activate when you defined it, rather than copying all of the prereqs from
     that subregion.
+  - Subregions are now emitted in the log in the same order they were defined.
 
 # 0.8.3
 

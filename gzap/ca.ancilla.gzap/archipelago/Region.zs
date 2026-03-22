@@ -51,6 +51,7 @@ class ::Region play {
   Vector3 player_position;
   // Subregions defined in this region using ap-region. Used for logic development.
   Map<string, ::Subregion> subregions;
+  Array<string> subregion_names;
 
   static ::Region Create(string map, int hub, uint exit_id) {
     let region = ::Region(new("::Region"));
@@ -91,6 +92,12 @@ class ::Region play {
     console.printf("    %d peeks", peeks);
     foreach (location: self.locations) {
       if (location.peek) console.printf("    - %s: %s for %s", location.name, location.peek.item, location.peek.player);
+    }
+  }
+
+  void OutputSubregions() {
+    foreach (name : self.subregion_names) {
+      self.subregions.Get(name).Output();
     }
   }
 

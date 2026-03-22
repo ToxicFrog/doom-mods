@@ -18,6 +18,7 @@ class ::Subregion play {
     subregion.name = name;
     subregion.FillStartingPrereqs(region);
     region.subregions.Insert(name, subregion);
+    region.subregion_names.Push(name);
     return subregion;
   }
 

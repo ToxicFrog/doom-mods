@@ -387,12 +387,20 @@ class ::RandoState play {
     }
   }
 
-  void OutputSubregions() {
-    console.printf("Writing all subregions in all levels to log...");
-    foreach (region : self.regions) {
-      foreach (name, subregion : region.subregions) {
-        subregion.Output();
+  void OutputSubregions(bool all_maps) {
+    if (all_maps) {
+      console.printf("Writing all subregions of all maps to log...");
+      foreach (region : self.regions) {
+        region.OutputSubregions();
       }
+    } else {
+      let region = GetCurrentRegion();
+      if (!region) {
+        console.printf("Can't save subregions for a map that isn't randomized!");
+        return;
+      }
+      console.printf("Saving all subregions for %s to log...", region.map);
+      region.OutputSubregions();
     }
   }
 

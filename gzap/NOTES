@@ -128,69 +128,9 @@ spawns!
 Ideally, what we want is to, on non-Bearserk skills, scan normally, and on Bearserk,
 pick up the actual replacments, e.g. `BearzerkBoltmag` in place of `Boltmag`.
 
-MAP01 logic notes.
-Spawn in hell area. Basically linear, explore to the top of the falls to get the
-bloody axe key, open the axe door, go through the dream to arrive in the power
-core room, get the power core, use it to power the cannon, exit to the west caves.
-
-Note that the key is optional -- if you have the core you can skip most of this area.
-
-Then the intended route is:
-- explore the west caves, find the iron key door and broken elevator, get the iron key
-- go through the iron key door, explore northwest caves, find a power core
-- use it to repair the elevator and explore the barracks
-- exit NE from barracks to the pond, which also opens another door letting you exit NE from pond, getting the stone key
-  - collecting the scroll in the room with the stone key also opens a secret room to the north
-- stone key back at the barracks lets you grab a pickaxe from the storage room
-- pickaxe lets you break a bunch of walls, including one with a power core behind it
-- power core lets you repair the SE exit from the barracks and go to the rest of the map
-
-However!
-- If you have the power core, you can skip the iron key entirely, exit from the barracks into the pond which also lets you access the whole behind-the-iron-key area
-- If you have the iron key, you can access the north central barracks room (but not the rest of the barracks, there's a latched door!) via a secret from the pond.
-
-So probably we do up the reachability graph vanilla-intended, but make sure that:
-- barracks central north room is a separate region reachable either from main barracks, or from (secret-flagged) west pond secret
-- northwest caves has a reachability link from E barracks
-
-Setting those aside, our tree looks something like:
-- west caves
-  - [s] entrance secret
-  - [s] tutorial skip secret
-  - [pickaxe] power core nook
-  - moss room
-    - [s] moss room secret
-  - [iron key] NW caves
-    - rat room
-    - [pickaxe] south time shard nook
-    - [pickaxe] north time shard nook
-    - NW bedroom
-      - [s] NW bedroom secret
-    - NW storage
-    - NW gardens
-      - NW gardener's hut
-    - pond
-      - [s] west pond secret
-      - [s] east pond secret
-  - [power core] barracks (probably divided into rooms)
-    - north barracks bedroom
-    - pond gardens (technically connected to pond, but only really reachable by exiting from barracks NE)
-    - [s] gardener secret
-    - [power core] battlefield
-
-And insert additional links from W pond secret -> north barracks bedroom and from NE barracks -> NW caves.
-
-Then from the battlefield we have:
-- long cave
-  - cramped caves
-  - statue room
-  - forest
-  - forest village (divided into rooms)
-  - [event] [moondrop flower] trigger moondrop secret
-    - [s] moondrop secret
-    - [s] secret forest
-    - [s] bathhouse
-  - level exit
+Hanging foods appears on the floor when randomized. The reference item has
++SPAWNCEILING +NOGRAVITY. Time shards have +NOGRAVITY +FLOATBOB. The stew on
+the table has +NOGRAVITY.
 
 ### Faithless
 
