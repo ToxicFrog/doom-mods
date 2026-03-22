@@ -7,6 +7,9 @@
   - AP can now put multiple copies of a `key` in the pool and keep track of how
     many the player has collected.
   - `key/` prerequisites can now include a count, e.g. `key/PowerCore/3`.
+  - Defining a new subregion inserts a dependency on the subregion that was
+    activate when you defined it, rather than copying all of the prereqs from
+    that subregion.
 
 # 0.8.3
 

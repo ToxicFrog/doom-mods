@@ -28,12 +28,9 @@ class ::Subregion play {
         self.prereqs.Insert("key/" .. v.typename, true);
       }
     }
-    // Also copy any weapon prereqs, etc from the currently active subregion,
-    // if any.
+    // Also insert a dependency on the currently active subregion, if any.
     if (apstate.subregion) {
-      foreach (k, v : apstate.subregion.prereqs) {
-        self.prereqs.Insert(k, v);
-      }
+      self.prereqs.Insert("map/"..apstate.subregion.map.."/"..apstate.subregion.name, true);
     }
   }
 
@@ -53,7 +50,7 @@ class ::Subregion play {
     string buf = "";
     foreach (k,v : self.prereqs) {
       if (HasPrereq("key/*") && k != "key/*" && k.Left(4) == "key/") continue;
-      buf.AppendFormat("%s%s", buf ? " " : "", k);
+      buf.AppendFormat("%s%s", buf ? " ∧ " : "", k);
     }
     return buf;
   }
