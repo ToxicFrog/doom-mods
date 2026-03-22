@@ -54,6 +54,7 @@
 #
 #
 #     cluster <number> <name> ;
+#
 # When scanning maps in this cluster, use <name> as the cluster name rather than
 # the cluster or episode name reported by the WAD. <name> can contain anything
 # except a semicolon, including whitespace, so this is legal:
@@ -64,8 +65,17 @@
 #
 #
 #     tag <actor> <name> ;
+#
 # Supply a tag (player-facing name) for the given actor. This will override the
 # developer-provided tag the actor has, if any.
+#
+#
+#     destroy-on-spawn <actor list> ;
+#
+# The listed actors will be scanned as normal, but will then be destroyed before
+# they can execute any states. This is primarily useful for actors that randomly
+# replace or delete themselves or spawn additional actors around them that should
+# not be included in the scan.
 
 #### General Doom/Heretic/Chex item categories ####
 # GZAP has built in heuristics for item categorization: health and armour is

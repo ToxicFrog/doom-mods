@@ -33,6 +33,7 @@ class ::RC : Object play {
 
   Map<string, string> categorizations;
   Map<string, string> typenames;
+  Map<string, bool> destroy_on_spawn;
   Map<string, string> tags;
   Map<string, string> scanner_settings;
   Map<int, string> cluster_names;
@@ -42,6 +43,9 @@ class ::RC : Object play {
     }
     foreach (k, v : other.typenames) {
       SetTypename(k, v);
+    }
+    foreach (k, v : other.destroy_on_spawn) {
+      SetDestroyOnSpawn(k);
     }
     foreach (k, v : other.tags) {
       SetActorTag(k, v);
@@ -87,6 +91,14 @@ class ::RC : Object play {
   string, bool GetTypename(string cls) {
     let [val, ok] = self.typenames.CheckValue(cls.MakeLower());
     return val, ok;
+  }
+
+  void SetDestroyOnSpawn(string cls) {
+    self.destroy_on_spawn.Insert(cls.MakeLower(), true);
+  }
+
+  bool GetDestroyOnSpawn(string cls) {
+    return self.destroy_on_spawn.CheckKey(cls.MakeLower());
   }
 
   void SetActorTag(string cls, string tag) {
@@ -230,6 +242,7 @@ class ::RCParser : Object play {
   bool Statement() {
     if (peek("category")) { return ActorCategory(); }
     if (peek("typename")) { return ActorTypename(); }
+    if (peek("destroy-on-spawn")) { return ActorDestroyOnSpawn(); }
     if (peek("tag")) { return ActorTag(); }
     if (peek("require")) { return Requirements(); }
     if (peek("scanner")) { return ScannerConfig(); }
@@ -266,6 +279,19 @@ class ::RCParser : Object play {
     foreach (cls : classes) {
       self.rc.SetTypename(cls, types[0]);
     }
+    return true;
+  }
+
+  bool ActorDestroyOnSpawn() {
+    require("destroy-on-spawn");
+    Array<string> classes;
+    if (!ClassList(classes, ";")) return false;
+    if (classes.size() == 0) return Error("one or more typenames");
+
+    foreach (cls : classes) {
+      self.rc.SetDestroyOnSpawn(cls);
+    }
+
     return true;
   }
 

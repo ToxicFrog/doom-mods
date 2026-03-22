@@ -2,6 +2,8 @@
 
 - Fixed:
   - Typenames in `GZAPRC` are no longer case sensitive.
+- For logic developers:
+  - `destroy-on-spawn` directive in `GZAPRC`.
 
 # 0.8.3
 

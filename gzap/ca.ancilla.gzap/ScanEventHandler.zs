@@ -43,6 +43,10 @@ class ::ScanEventHandler : StaticEventHandler {
     if (!thing) return;
     // DEBUG("WTS: %s", thing.GetTag());
     if (scanner.ScanActor(thing)) timer = 0;
+    if (::RC.Get().GetDestroyOnSpawn(thing.GetClassName())) {
+      DEBUG("Destroying %s because of noreplace directive", thing.GetClassName());
+      thing.Destroy();
+    }
   }
 
   override void WorldTick() {
