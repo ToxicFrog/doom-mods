@@ -2,6 +2,7 @@
 
 - Fixed:
   - Typenames in `GZAPRC` are no longer case sensitive.
+  - The `typename` directive in `GZAPRC` now properly affects category assignment.
 - For logic developers:
   - `destroy-on-spawn` directive in `GZAPRC`.
   - AP can now put multiple copies of a `key` in the pool and keep track of how

@@ -28,11 +28,14 @@ class ::ScannedItem : ::ScannedLocation {
       loc.hub = ::ScannedItem.GetHubClusterID(Inventory(thing));
     }
 
+    DEBUG("Scanned item %s [%s] with category %s", loc.tag, loc.typename, loc.category);
+
     let [newtype, ok] = ::RC.Get().GetTypename(loc.typename);
     if (ok) {
       class<Actor> cls = newtype;
       loc.typename = newtype;
       loc.tag = ::RC.Get().GetTag(GetDefaultByType(cls));
+      DEBUG("-> retagging as %s [%s] because of RC directives", loc.tag, loc.typename);
     }
 
     return loc;
@@ -170,6 +173,14 @@ class ::ScannedItem : ::ScannedLocation {
     // Categories set in GZAPRC take precedence over everything else.
     let [category, ok] = ::RC.Get().GetCategory(thing.GetClassName());
     if (ok) return category;
+
+    // If the item type is remapped in the RC, analyze it based on the type it
+    // got remapped to.
+    let [newtype, t_ok] = ::RC.Get().GetTypename(thing.GetClassName());
+    if (t_ok) {
+      class<Actor> cls = newtype;
+      return ItemCategory(GetDefaultByType(cls));
+    }
 
     // Hardcoded categories or category sets.
     // TODO: if we can get GZAPRC to check any-subclass-of rather than exact
