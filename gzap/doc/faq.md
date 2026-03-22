@@ -2,6 +2,20 @@
 
 ## Help!
 
+### It won't generate a template YAML!
+
+First of all, did you make sure to download and install *both* `uzdoom.apworld`
+*and* the WAD-specific apworlds for the wads you want to play?
+
+Secondly, did you make sure that you downloaded the *same version* of the
+apworlds, and aren't mixing different releases, or stable and unstable builds?
+
+If all of that checks out, but `Generate Template Options` still isn't
+generating yamls for UZDoom, that probably means one of the apworlds failed to
+load. Get debug logs (by running `archipelago` from the terminal in linux, or
+by running `ArchipelagoLauncherDebug` on windows) and see if there is an obvious
+and easily fixed error message. If not, report the error on discord or github.
+
 ### World generation says "no more spots to place items"!
 
 This means the generator got into a state where it couldn't figure out where to
