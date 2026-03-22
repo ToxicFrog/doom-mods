@@ -102,7 +102,7 @@ class DoomItem:
         # Each key in this WAD must be included exactly once.
         if self.has_category('key'):
             if world.key_in_world(self.name()):
-                return (1,1)
+                return (1,world.key_in_world(self.name()).count)
             else:
                 return (0,0)
 

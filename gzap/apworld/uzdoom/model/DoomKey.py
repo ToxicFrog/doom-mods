@@ -32,6 +32,7 @@ class DoomKey(NamedTuple):
     scopename: str  # Usually map name; hub/episode name for multimap keys
     cluster: int    # Cluster ID, 0 if no cluster
     maps: Set[str]  # Set of map names this key belongs to
+    count: int = 1  # Number of copies of this key the player can find, max
 
     def __str__(self):
         if len(self.maps) > 1:

@@ -23,17 +23,17 @@ def string_to_prereq_fn(world, wad, map, string):
   fields = string.split('/')
 
   match fields[0]:
-    case 'fqin':
+    case 'fqin':  # fqin/ITEMNAME[/COUNT]
       return fqin_prereq(world, wad, map, *fields[1:])
-    case 'key':
+    case 'key':  # key/TYPENAME[/COUNT]
       return key_prereq(world, wad, map, *fields[1:])
-    case 'item':
+    case 'item':  # item/TYPENAME[/COUNT]
       return item_prereq(world, wad, map, *fields[1:])
-    case 'map':
+    case 'map':  # map/MAP[/SUBREGION]
       return region_prereq(world, wad, map, *fields[1:])
-    case 'weapon':
+    case 'weapon':  # weapon/TYPENAME/{want,need}
       return weapon_prereq(world, wad, map, *fields[1:])
-    case 'flag':
+    case 'flag':  # flag/FLAGNAME
       # Flags don't impose prerequisites but instead change other things about
       # the region or location.
       return lambda state: True
@@ -55,7 +55,7 @@ def weapon_prereq(world, wad, map, typename, strictness = 'need'):
     # print('    (constantly true)')
     return lambda state: True
 
-def key_prereq(world, wad, map, typename):
+def key_prereq(world, wad, map, typename, count=1):
   if typename == '*':
     # match any key in cluster
     prereqs = [
@@ -64,7 +64,7 @@ def key_prereq(world, wad, map, typename):
     ]
     return lambda state: sum(p(state) for p in prereqs) > 0
   else:
-    return fqin_prereq(world, wad, map, map.key_by_type(typename).fqin())
+    return fqin_prereq(world, wad, map, map.key_by_type(typename).fqin(), count)
 
 def region_prereq(world, wad, map, mapname, subregion = None):
   # In the above, 'map' is the map this prereq is evaluated in the context of,

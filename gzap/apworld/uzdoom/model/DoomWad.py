@@ -416,7 +416,11 @@ class DoomWad:
         """
         assert not self.tuned, f"AP-KEY found in tuning data for {self.name}. If this is a legitimate tuning file, this usually means tuning found keys that the scanner missed -- please find the AP-KEY messages in the tuning file and move them to the matching logic file."
         key = DoomKey(tag, typename, scopename, cluster, frozenset(maps))
-        self.keys_by_name.setdefault(key.fqin(), key)
+        old_key = self.keys_by_name.get(key.fqin(), None)
+        if old_key:
+            self.keys_by_name[key.fqin()] = DoomKey(tag, typename, scopename, cluster, frozenset(maps), old_key.count+1)
+        else:
+            self.keys_by_name[key.fqin()] = key
 
     def keys_for_map(self, mapname):
         return frozenset(

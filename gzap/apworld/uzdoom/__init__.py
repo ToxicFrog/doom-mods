@@ -368,7 +368,10 @@ class UZDoomWorld(World):
         }, key=lambda k: f'{k.scopename} {k.tag}')
 
     def key_in_world(self, keyname):
-        return keyname in {key.fqin() for key in self.keys_in_pool()}
+        for key in self.keys_in_pool():
+            if keyname == key.fqin():
+                return key
+        return None
 
     def fill_slot_data(self):
         return self.options.as_dict(

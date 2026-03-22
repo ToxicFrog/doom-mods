@@ -4,6 +4,9 @@
   - Typenames in `GZAPRC` are no longer case sensitive.
 - For logic developers:
   - `destroy-on-spawn` directive in `GZAPRC`.
+  - AP can now put multiple copies of a `key` in the pool and keep track of how
+    many the player has collected.
+  - `key/` prerequisites can now include a count, e.g. `key/PowerCore/3`.
 
 # 0.8.3
 
