@@ -347,7 +347,8 @@ class ::Region play {
       if (items_to_add.CheckKey(item.GetClassName())) {
         DEBUG("items_to_add: %s is already present in inventory", item.GetClassName());
         items_to_add.Remove(item.GetClassName());
-      } else if (item is "Key" || item is "PuzzleItem") {
+        // TODO: this will fail if the category is key-somethingelse
+      } else if (::ScannedItem.ItemCategory(item) == "key") {
         // Item should be subject to key management, is in player's inventory,
         // and should not be present in this map.
         // TODO: replace this with a more generic "is this item scoped" check.
