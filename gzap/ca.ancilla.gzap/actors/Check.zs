@@ -217,6 +217,7 @@ class ::CheckPickup : ScoreItem {
     +BRIGHT;
     +MOVEWITHSECTOR;
     +DONTGIB;
+    +NOGRAVITY;
     Height 10;
   }
 
