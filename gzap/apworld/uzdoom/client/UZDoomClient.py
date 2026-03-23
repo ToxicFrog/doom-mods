@@ -11,6 +11,7 @@ from CommonClient import ClientStatus, get_base_parser, gui_enabled, server_loop
 from .IPC import IPC
 from .Hint import UZDoomHint
 from .util import JSONToZDoomTextParser
+from worlds.uzdoom.model.DoomLogic import DoomLogic
 
 tracker_loaded = False
 try:
@@ -31,12 +32,14 @@ class UZDoomContext(SuperContext):
     slot_name = None
     tags = {"AP", "DeathLink"}
     tracker_task = None
+    wad_logic: DoomLogic
 
     def __init__(self, server_address: str, password: str, gzd_dir: str):
         self.found_uzdoom = asyncio.Event()
         super().__init__(server_address, password)
         self.jsontozdoomtextparser = JSONToZDoomTextParser(self)
         self.ipc = IPC(self, gzd_dir, _IPC_SIZE)
+        self.wad_logic = None
 
     def make_gui(self):
         ui = super().make_gui()
@@ -112,7 +115,33 @@ class UZDoomContext(SuperContext):
         await self.get_username()
         await self.send_connect()
 
+    def is_same_game(self, wad: str, slot: str, seed: str):
+        """
+        We make the simplifying assumption here that same wad, same slot name,
+        and same seed means the same game (and that changes in host address are
+        due to room changes and not because someone generated multiple games with
+        the same seed).
+        """
+        return (
+            self.wad_logic and self.wad_logic.name == wad
+            and self.slot_name == slot
+            and self.seed_name == seed
+        )
+
     async def on_xon(self, wad: str, slot: str, seed: str, server: str):
+        if not self.is_same_game(wad, slot, seed):
+            # User has probably restarted doom with a different wad without
+            # restarting the client. Clear our local understanding of what items
+            # the player has and what checks they should send out, as otherwise
+            # we will re-send them on connect and end up releasing checks from
+            # the wrong wad.
+            logger.info("New game detected. Clearing saved info from previous game.")
+            logger.info(f"Saved address: {self.server_address}; new: {server}")
+            self.items_received = []
+            self.locations_checked = set()
+            self.locations_scouted = set()
+        else:
+            logger.info(f"Not a new game: {wad}, {slot}, {seed}")
         self.game = f'UZDoom ({wad})'
         self.wad_logic = self.load_wad_logic(wad)
         self.slot_name = slot
@@ -123,8 +152,8 @@ class UZDoomContext(SuperContext):
         self.last_hints = {}
         self.found_uzdoom.set()
         self.ipc.send_text("Archipelago<->UZDoom connection established.")
-        if server:
-            await self.connect(server)
+        if server or self.server_address:
+            await self.connect(server or self.server_address)
             # TODO: send a message to the game when the connection to the host is
             # opened or closed.
 
