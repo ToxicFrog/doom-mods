@@ -270,10 +270,10 @@ class ::PlayEventHandler : StaticEventHandler {
       // This is handled here in this somewhat awkward way so that we can define
       // regions from the console with netevent "ap-region/some region name"
       apstate.DefineOrActivateSubregion(evt.name.Mid(10));
-    } else if (evt.name.IndexOf("ap-region-output") == 0) {
-      apstate.OutputSubregions(false);
-    } else if (evt.name.IndexOf("ap-region-output-all") == 0) {
+    } else if (evt.name == "ap-region-output-all") {
       apstate.OutputSubregions(true);
+    } else if (evt.name == "ap-region-output") {
+      apstate.OutputSubregions(false);
     } else if (evt.name == "ap-did-warning") {
       apstate.did_warning = true;
     } else if (evt.name == "ap-debug") {

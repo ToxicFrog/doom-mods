@@ -26,6 +26,7 @@
     that subregion.
   - Subregions are now emitted in the log in the same order they were defined.
   - Subregions are displayed in the menu most-recently-defined-first.
+  - You can now output either all regions in the game or just the current map.
 
 # 0.8.3
 
