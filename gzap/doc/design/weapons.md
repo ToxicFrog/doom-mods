@@ -96,3 +96,19 @@ logic; a weapon doesn't count as available in weapon logic unless you have the
 weapon *and* a sufficiency of ammo for it (if ammo is randomized). This also
 means that we can make smarter decisions about which guns are expected to be
 used by the player in which maps by looking at *what ammo is in that map*.
+
+More thoughts about weapon logic -- having regions lets us be more rigorous
+about this.
+
+So if you turn on local weapon logic, each region has added to its prerequisites
+all weapons that exist inside it. This also makes them prerequisites of all
+regions downstream of that one! But that doesn't work for leaf nodes, e.g. if a
+region is Big Arena and has guns in Big Arena North Closet, Big Arena isn't
+considered to have those guns. Hmm.
+
+/want weapon markers work around this, although it does mean weapons from leaf
+secrets won't be collected when secrets are enabled.
+
+If you turn on global weapon logic, each level has added to its prerequisites
+all weapons that exist in earlier levels. (Ideally we should have something
+smarter than rank for this; E1M3 shouldn't depend on E4M2's weapons).
