@@ -16,6 +16,10 @@
   - When replacing items with checks, AP now tries to replace an actor of the
     expected type, or failing that, the expected logic category, rather than
     just picking anything vaguely plausible at the right coordinates.
+  - Multiple items placed at the same coordinates are now considered multiple
+    checks, *if* they are different actor types. (So, e.g., two backpacks are
+    one check, but a backpack and a megasphere are two checks.) This adds 10-15
+    locations to most wads.
 - For logic developers:
   - `destroy-on-spawn` directive in `GZAPRC`.
   - AP can now put multiple copies of a `key` in the pool and keep track of how

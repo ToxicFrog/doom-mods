@@ -47,21 +47,21 @@ here may result in glitches.
 
 | WAD                              | Maps | Mon/Lvl | Checks | +secret |   Status | Notes |
 | -------------------------------- | ---- | ------- | ------ | ------- | -------- | ----- |
-| [Chex Quest 3]                   |   15 |      83 |    143 |     227 | complete | [v1.4](https://www.chexquest3.com/downloads/); v2.0-prerelease is not yet supported. |
-| [Doom]                           |   36 |      90 |    381 |     616 | complete | Ultimate Doom v1.9ud |
-| [Doom 2]                         |   32 |     116 |    383 |     608 | full     | v1.9 |
-| [FreeDoom]                       |   36 |     176 |    389 |     679 | basic    | [v0.13.0](https://freedoom.github.io/download.html) |
-| [FreeDoom 2]                     |   32 |     135 |    360 |     604 | full     | [v0.13.0](https://freedoom.github.io/download.html) -- tuning only covers UV but is complete for that difficulty. |
-| [Heretic]                        |   45 |     116 |    542 |     814 | basic    | Shadow of the Serpent Riders v1.3 |
+| [Chex Quest 3]                   |   15 |      83 |    145 |     229 | complete | [v1.4](https://www.chexquest3.com/downloads/); v2.0-prerelease is not yet supported. |
+| [Doom]                           |   36 |      90 |    394 |     629 | complete | Ultimate Doom v1.9ud |
+| [Doom 2]                         |   32 |     116 |    392 |     616 | full     | v1.9 |
+| [FreeDoom]                       |   36 |     176 |    404 |     694 | basic    | [v0.13.0](https://freedoom.github.io/download.html) |
+| [FreeDoom 2]                     |   32 |     135 |    405 |     653 | full     | [v0.13.0](https://freedoom.github.io/download.html) -- tuning only covers UV but is complete for that difficulty. |
+| [Heretic]                        |   45 |     116 |    556 |     832 | basic    | Shadow of the Serpent Riders v1.3 |
 | Hexen                            |      |         |        |         | missing  | Someone else is working on the logic for this. |
-| [Legacy of Rust]                 |   15 |     215 |    199 |     329 | problems | Fully tuned, but MAP14 is excluded until [this feature](https://github.com/UZDoom/UZDoom/issues/184) is implemented. |
-| [Master Levels for Doom II]      |   21 |     120 |    369 |     462 | full     | |
-| [No Rest for the Living]         |    9 |     141 |    102 |     193 | full     | |
-| [Plutonia]                       |   32 |      95 |    338 |     477 | full     | v1.9 |
-| [SIGIL]                          |    9 |      91 |     75 |     147 | complete | [v1.23](https://romero.com/s/SIGIL_V1_23-8fh4.zip) Fully featured with use of regions.|
+| [Legacy of Rust]                 |   15 |     215 |    219 |     351 | problems | Fully tuned, but MAP14 is excluded until [this feature](https://github.com/UZDoom/UZDoom/issues/184) is implemented. |
+| [Master Levels for Doom II]      |   21 |     120 |    362 |     452 | full     | |
+| [No Rest for the Living]         |    9 |     141 |    103 |     195 | full     | |
+| [Plutonia]                       |   32 |      95 |    346 |     484 | full     | v1.9 |
+| [SIGIL]                          |    9 |      91 |     87 |     149 | complete | [v1.23](https://romero.com/s/SIGIL_V1_23-8fh4.zip) Fully featured with use of regions.|
 | SIGIL II                         |      |         |        |         | missing  | |
 | Strife                           |      |         |        |         | missing  | |
-| [TNT]                            |   32 |     152 |    429 |     609 | basic    | |
+| [TNT]                            |   32 |     152 |    436 |     619 | basic    | |
 | WadFusion                        |varies|  varies | varies |  varies | missing  | A [tool](https://github.com/Owlet7/wadfusion) for combining official WADs into one game. See https://github.com/ToxicFrog/doom-mods/pull/38 for progress of support. |
 
 [Chex Quest 3]: ../../release/apworlds/zdoom_chex_quest_3.apworld
@@ -85,22 +85,22 @@ These are WADs available throught Night Dive's
 
 | WAD                              | Maps | Mon/Lvl | Checks | +secret |   Status | Notes |
 | -------------------------------- | ---- | ------- | ------ | ------- | -------- | ----- |
-| [Arrival]                        |   11 |     250 |    262 |     298 | basic    | |
+| [Arrival]                        |   11 |     250 |    270 |     306 | basic    | |
 | Anomaly Report                   |      |         |        |         | missing  | |
-| [Base Ganymede]                  |   27 |     149 |    268 |     317 | basic    | |
-| [BTSX E1]                        |   23 |     254 |    408 |     531 | complete | |
+| [Base Ganymede]                  |   27 |     149 |    276 |     325 | basic    | |
+| [BTSX E1]                        |   23 |     254 |    447 |     574 | complete | |
 | BTSX Episode 2                   |      |         |        |         | missing  | |
-| [Deathless]                      |   36 |      65 |    261 |     396 | basic    | |
+| [Deathless]                      |   36 |      65 |    278 |     416 | basic    | |
 | Doom Zero                        |      |         |        |         | missing  | |
 | Double Impact                    |      |         |        |         | missing  | |
 | Earthless: Prelude               |      |         |        |         | missing  | |
 | Going Down                       |      |         |        |         | missing  | |
-| [Going Down Turbo]               |   32 |     163 |    406 |     454 | partial  | |
+| [Going Down Turbo]               |   32 |     163 |    425 |     474 | partial  | |
 | Harmony                          |      |         |        |         | missing  | |
 | No End In Sight                  |      |         |        |         | missing  | |
 | REKKR                            |      |         |        |         | missing  | |
 | Revolution!                      |      |         |        |         | missing  | |
-| [Scientist]                      |   20 |     118 |    236 |     345 | basic    | |
+| [Scientist]                      |   20 |     118 |    237 |     346 | basic    | |
 | Syringe                          |      |         |        |         | missing  | |
 | Tetanus                          |      |         |        |         | missing  | |
 | Trooper's Playground             |      |         |        |         | missing  | |
@@ -126,16 +126,16 @@ Map packs that use vanilla or lightly-modified monsters, weapons, etc.
 
 | WAD                              | Maps | Mon/Lvl | Checks | +secret |   Status | Notes |
 | -------------------------------- | ---- | ------- | ------ | ------- | -------- | ----- |
-| [1000 Lines]                     |   32 |     137 |    315 |     426 | basic    | Does not include the two bonus levels. |
-| [1000 Lines II]                  |   30 |     151 |    305 |     385 | basic    | |
-| [Amalgoom]                       |   37 |     244 |    810 |    1155 | full     | Must use [RC4](https://www.doomworld.com/forum/topic/152974-amalgoom-rc4-sandy-petersen-interview) version and the [hotfix](https://www.doomworld.com/forum/post/2965170). Details at [#53](https://github.com/ToxicFrog/doom-mods/pull/53). |
-| [Demonfear]                      |   32 |      39 |    240 |     304 | complete | |
-| [Eviternity]                     |   32 |     297 |    577 |     755 | complete | |
-| [Eviternity II]                  |   36 |     470 |    700 |     894 | complete | |
-| [MAYhem 2048]                    |   34 |     179 |    303 |     412 | basic    | |
-| [Overboard]                      |   13 |     290 |    218 |     249 | complete | |
-| [Scythe]                         |   32 |     106 |    321 |     425 | basic    | MAP26-MAP30 are much larger than the rest of the wad; consider excluding them in short sync games. |
-| [Scythe 2]                       |   32 |     191 |    424 |     550 | full     | |
+| [1000 Lines]                     |   32 |     137 |    327 |     437 | basic    | Does not include the two bonus levels. |
+| [1000 Lines II]                  |   30 |     151 |    315 |     396 | basic    | |
+| [Amalgoom]                       |   37 |     244 |    848 |    1191 | full     | Must use [RC4](https://www.doomworld.com/forum/topic/152974-amalgoom-rc4-sandy-petersen-interview) version and the [hotfix](https://www.doomworld.com/forum/post/2965170). Details at [#53](https://github.com/ToxicFrog/doom-mods/pull/53). |
+| [Demonfear]                      |   32 |      39 |    271 |     335 | complete | |
+| [Eviternity]                     |   32 |     297 |    592 |     771 | complete | |
+| [Eviternity II]                  |   36 |     470 |    724 |     920 | complete | |
+| [MAYhem 2048]                    |   34 |     179 |    307 |     416 | basic    | |
+| [Overboard]                      |   13 |     290 |    222 |     253 | complete | |
+| [Scythe]                         |   32 |     106 |    363 |     468 | basic    | MAP26-MAP30 are much larger than the rest of the wad; consider excluding them in short sync games. |
+| [Scythe 2]                       |   32 |     191 |    478 |     604 | full     | |
 | [Zone 300]                       |   32 |      61 |    252 |     360 | partial  | |
 
 [1000 Lines]: ../../release/apworlds/zdoom_1000_lines.apworld
@@ -157,16 +157,16 @@ Entire games that replace most or all of the vanilla gameplay.
 
 | Game                             | Maps | Mon/Lvl | Checks | +secret |   Status | Notes |
 | -------------------------------- | ---- | ------- | ------ | ------- | -------- | ----- |
-| [The Adventures of Square]       |   22 |     256 |    569 |     773 | problems | Not compatible with persistent mode, but otherwise complete. Checks that require explosives can be reached with either the hellshell launcher or TNT crates. |
+| [The Adventures of Square]       |   22 |     256 |    589 |     793 | problems | Not compatible with persistent mode, but otherwise complete. Checks that require explosives can be reached with either the hellshell launcher or TNT crates. |
 | Ashes 2063                       |      |         |        |         | missing  | (1) |
 | Ashes: Afterglow                 |      |         |        |         | missing  | (1) |
 | Ashes: Hard Reset                |      |         |        |         | missing  | Still need to play it. |
-| [Faithless]                      |   19 |     168 |    153 |     249 | partial  | Episodes 1 and 2 have complete support. Logic development is ongoing for episode 3. |
+| [Faithless]                      |   19 |     168 |    160 |     261 | partial  | Episodes 1 and 2 have complete support. Logic development is ongoing for episode 3. |
 | Golden Souls Remastered          |      |         |        |         | missing | (3) |
 | Golden Souls 2                   |      |         |        |         | missing | (3) |
-| Hedon Bloodrite                  |      |         |        |         | missing | This is going to be a project but I think it would be pretty cool. |
-| [Space Cats Saga]                |   40 |     433 |    786 |     888 | partial  | Episode 1 has complete logic, other episodes only basic. Checks that replace pettable cats may sometimes require noclipping to touch even if they look reachable. |
-| [Time Tripper]                   |    9 |      88 |     61 |      84 | complete | |
+| Hedon Bloodrite                  |   22 |     205 |   1273 |    1404 | missing | This is going to be a project but I think it would be pretty cool. |
+| [Space Cats Saga]                |   40 |     433 |    794 |     896 | partial  | Episode 1 has complete logic, other episodes only basic. Checks that replace pettable cats may sometimes require noclipping to touch even if they look reachable. |
+| [Time Tripper]                   |    9 |      88 |     66 |      87 | complete | |
 
 (1) Requires progressive item support in the logic engine.
 (3) Requires support for "stacking" keys that open more things the more you have.

@@ -40,10 +40,11 @@ class DoomLocation(DoomReachable):
     spawn_filter: int = 0
     secret_id: int = 0  # used for sector IDs and TIDs
 
-    def __init__(self, parent, item: DoomItem, secret: bool, pos: Sequence[Any], custom_name: str | None = None):
+    def __init__(self, parent, item: DoomItem, secret: bool, pos: Sequence[Any], spawn_filter: int = 0xFF, custom_name: str | None = None):
         super().__init__()
         self.parent = parent
         self.categories = frozenset(['secret']) if secret else frozenset()
+        self.spawn_filter = spawn_filter
         self.custom_name = custom_name
         if item:
             # If created without an item it is the caller's responsibility to fill

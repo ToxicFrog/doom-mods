@@ -41,10 +41,9 @@ class DoomWad:
     maps: Dict[str,DoomMap] = field(default_factory=dict)
     items_by_name: Dict[str,DoomItem] = field(default_factory=dict) # Indexed by FQIN
     items_by_type: Dict[str,DoomItem] = field(default_factory=dict) # Indexed by typename
-    # Map of spawn filter -> position -> location used while importing locations.
-    # Each entry is a filter index, not a bit or a bitmask, so something with a filter
-    # of 0b00000101 will have entries 1 and 3.
-    locations_by_pos: Dict[int,Dict[DoomPosition,DoomLocation]] = field(default_factory=dict)
+    # Map from position -> list of locations at that position.
+    # Locations with separate typenames get separate entries in the list.
+    locations_by_pos: Dict[DoomPosition,List[DoomLocation]] = field(default_factory=dict)
     # Map of location name -> location used at runtime. We don't need this for
     # generation (we just filter over all locations in all maps), but the client
     # needs it for decomposing AP names into map/location data at play time.
@@ -57,9 +56,6 @@ class DoomWad:
     flags: Dict[str,Any] = field(default_factory=dict)
     # Implicit and explicit regions. Minimum one per map, but there might be more.
     regions: Dict[str,DoomRegion] = field(default_factory=dict)
-
-    def __post_init__(self):
-        self.locations_by_pos = { bit+1: {} for bit in range(0,16) }
 
     def set_flags(self, flag_strings: List[str]):
         self.flags = {}
@@ -112,11 +108,7 @@ class DoomWad:
         no locations there; if there's a different item there on every difficulty,
         it could be as many as three different locations.
         """
-        return [
-            locs[pos]
-            for locs in self.locations_by_pos.values()
-            if pos in locs
-        ]
+        return self.locations_by_pos.get(pos, [])
 
     def sphere_count(self) -> int:
         """
@@ -273,13 +265,13 @@ class DoomWad:
                 category="ap_progression-ap_flag-ap_victory",
                 typename=f"GZAP_LevelCleared_{map.map}",
                 tag=map.clear_flag_name()))
-        map_exit = DoomLocation(self, item=clear_flag, secret=False, pos=[map.map,'event','exit'])
+        map_exit = DoomLocation(self, item=clear_flag, secret=False, pos=[map.map,'event','exit'], spawn_filter=0xFF)
 
         # TODO: there should be a better way of overriding location names
         map_exit.item_name = "Exit"
         map_exit.item = clear_flag
         map_exit.orig_item = None
-        self.register_location(map_exit, 0xFF)
+        self.register_location(map_exit)
 
     def filter_from_json(self, json: Dict[str,str]) -> int:
         assert not ("skill" in json and "filter" in json), "Logic entry found with both `skill` and `filter` fields"
@@ -372,32 +364,33 @@ class DoomWad:
         position, and if they have different items in them it is unspecified
         which one "wins".
         """
-        location = DoomLocation(self, item, secret, pos, name)
-        self.register_location(location, spawn_filter)
+        location = DoomLocation(self, item, secret, pos, spawn_filter, name)
+        self.register_location(location)
 
-    def register_location(self, location: DoomLocation, spawn_filter: int) -> None:
+    def register_location(self, location: DoomLocation) -> None:
         assert not self.tuned, f"AP-LOCATION found in tuning data for {self.name} -- make sure you don't have a logic file mixed in with the tuning."
 
-        for bit in range(0,15):
-            if not spawn_filter & 2**bit:
-                continue
-            filter = bit+1  # filter IDs are 1-indexed in UDMF
-            locs_by_pos = self.locations_by_pos[filter]
-            if location.pos in locs_by_pos:
-                # We already have a location registered at these coordinates for
-                # this skill.
-                continue
+        # If there's an existing location at these coordinates containing the
+        # same actor type, just update the spawn_filter of the existing one.
+        # (The scanner should do this automatically but some older logic files
+        # may have multiple entries for the same (type,pos) that need to be
+        # merged post hoc).
+        for loc in self.locations_at_position(location.pos):
+            if loc.orig_item.typename == location.orig_item.typename:
+                # Same position, same typename. Merge this item with the other
+                # one by updating its spawn_filter.
+                loc.spawn_filter |= location.spawn_filter
+                return
 
-            # Don't do name disambiguation or register it with the top-level
-            # logic yet -- we'll do both of those things after we've ingested
-            # the entire wad and can scan the whole thing for name collisions.
-            location.spawn_filter |= 2**bit
-            locs_by_pos[location.pos] = location
-            self.maps[location.pos.map].register_location(location)
+        # Otherwise, either this is the first location at that position, or it's
+        # the first one at that position holding this actor type.
+        self.locations_by_pos.setdefault(location.pos, []).append(location)
+        self.maps[location.pos.map].register_location(location)
 
     def new_secret(self, json: Dict[str, Any]) -> None:
         assert not self.tuned, f"AP-SECRET found in tuning data for {self.name} -- make sure you don't have a logic file mixed in with the tuning."
-        location = DoomLocation(self, item=None, secret=True, pos=json['pos'], custom_name=json.get('name', None))
+        spawn_filter = self.filter_from_json(json)
+        location = DoomLocation(self, item=None, secret=True, pos=json['pos'], spawn_filter=spawn_filter, custom_name=json.get('name', None))
         if location.pos.secret_type == 'sector':
             location.item_name = f"Secret {location.pos.secret_id}"
             location.categories = frozenset({'secret', 'sector'})
@@ -405,8 +398,7 @@ class DoomWad:
             location.item_name = f"Secret T{location.pos.secret_id}"
             location.categories = frozenset({'secret', 'marker'})
 
-        spawn_filter = self.filter_from_json(json)
-        self.register_location(location, spawn_filter)
+        self.register_location(location)
 
     def new_key(self, tag: str, typename: str, scopename: str, cluster: int, maps: List[str]) -> None:
         """
