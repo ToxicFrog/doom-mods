@@ -8,6 +8,9 @@
   - Checks that replace floating items no longer fall to the floor.
   - Logic menu now always opens scrolled to the top.
   - Keybinding name for `open logic dashboard` wasn't properly displayed.
+  - If more progression items exist than free locations, it will skip filler
+    placement (rather than crashing), since generation may still succeed in
+    multiworld where the extra items can be displace filler from other worlds.
 - For logic developers:
   - `destroy-on-spawn` directive in `GZAPRC`.
   - AP can now put multiple copies of a `key` in the pool and keep track of how

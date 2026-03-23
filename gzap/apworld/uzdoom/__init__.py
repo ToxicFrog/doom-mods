@@ -299,10 +299,14 @@ class UZDoomWorld(World):
             self.multiworld.itempool.append(self.create_item(item))
             slots_left -= 1
 
+        if slots_left < 0:
+            print("Warning: more mandatory progression items in the pool than free locations in this wad.")
+            return
+
         # TODO: when generating a game where all small/medium items are vanilla,
         # this should result in no small/medium items in randomized filler in
         # other worlds. In practice this does not seem to be the case for some
-        # reason.
+        # reason. Perhaps they leave slots open and AP asks us for random filler?
 
         # compare slots_left to total count of filler_items, then scale filler_items
         # based on the difference.
