@@ -261,6 +261,59 @@ class ::CheckPickup : ScoreItem {
     if (self.GetLocation().IsUnreachable()) self.ClearCounters();
   }
 
+  // Returns true if new is considered a better original actor for this location
+  // than old.
+  // The basic rules for "better" are:
+  // - if only has a typename matching the location, that one is better
+  // - if only one has a scanner category matching the location, that one is better
+  // - if neither of the above apply, the closer one is better
+  bool BetterOriginal(Actor old, Actor new) {
+    // Never replace other checks.
+    if (new is "::CheckPickup") return false;
+    // Don't replace anything more than 2wu away from the nominal coordinates.
+    if (Distance3D(new) > 2.0) return false;
+
+    // Skip anything that's not interactable, is a monster, or is not a subtype
+    // of Inventory, unless it has a scanner category (presumably via GZAPRC).
+    if (::ScannedItem.ItemCategory(new) == "") {
+      if (new.bNOSECTOR || new.bNOINTERACTION || new.bISMONSTER) return false;
+      if (!(new is "Inventory")) return false;
+    }
+
+    // Don't eat invisible things. They're probably tokens created by something
+    // like Intelligent Supplies or AutoAutoSave.
+    if (new.CurState.Sprite == 0) return false;
+
+    // new is valid, and there is no old, so we trivially consider an item that
+    // exists to be better than one that doesn't.
+    if (!old) return true;
+
+    let loc = GetLocation();
+    if (old.GetClassName() == loc.orig_typename) {
+      // If old is already the right type, prefer new only if it's the
+      // same type *and* is closer to the right coordinates.
+      return new.GetClassName() == loc.orig_typename && Distance3D(new) < Distance3D(old);
+
+    } else if (new.GetClassName() == loc.orig_typename) {
+      // If old isn't the right type, but new is, always prefer new.
+      return true;
+    }
+
+    // If neither are the right type, but only one of them is the right *category*,
+    // prefer that one.
+    let loc_category = ::ScannedItem.ItemCategoryByType(loc.orig_typename);
+    if (::ScannedItem.ItemCategory(old) == loc_category) {
+      return ::ScannedItem.ItemCategory(new) == loc_category && Distance3D(new) < Distance3D(old);
+    } else if (::ScannedItem.ItemCategory(new) == loc_category) {
+      return true;
+    }
+
+    // Neither of them has the right type or the right scanner category, but
+    // that might just mean replacer mods are in effect, so pick whichever is
+    // closer.
+    return Distance3D(new) < Distance3D(old);
+  }
+
   void Subsume() {
     // Don't subsume if this is an unreachable check -- leave the original item
     // in place just in case.
@@ -270,32 +323,16 @@ class ::CheckPickup : ScoreItem {
     let it = BlockThingsIterator.Create(self, 32);
     while (it.Next()) {
       Actor thing = it.thing;
-      if (thing is "::CheckPickup") continue;
-
-      // TODO -- prefer things that match the recorded check category, if possible.
-      if (::ScannedItem.ItemCategory(thing) == "") {
-        // If it's categorized, we skip these checks entirely -- a categorized
-        // object is always replaceable.
-        if (thing.bNOSECTOR || thing.bNOINTERACTION || thing.bISMONSTER) continue;
-        if (!(thing is "Inventory")) continue;
-      }
-
-      // Don't eat invisible things. They're probably tokens created by something
-      // like Intelligent Supplies or AutoAutoSave.
-      if (thing.CurState.Sprite == 0) continue;
-
-      if (!closest || Distance3D(thing) < Distance3D(closest)) {
+      if (BetterOriginal(closest, thing)) {
         closest = thing;
         DEBUG("Check[%s]: closest is %s (d=%f)", self.GetLocation().name, closest.GetClassName(), Distance3D(closest));
       }
     }
 
     if (!closest) return;
-    if (Distance3D(closest) < 2.0) {
-      UpdateFromOriginal(closest);
-      closest.Destroy();
-      SetStateLabel("PostSpawn");
-    }
+    UpdateFromOriginal(closest);
+    closest.Destroy();
+    SetStateLabel("PostSpawn");
   }
 
   void NoOriginal() {

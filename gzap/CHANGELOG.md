@@ -13,6 +13,9 @@
     multiworld where the extra items can be displace filler from other worlds.
   - Restarting uzdoom to load a different game while leaving the client open no
     longer sends out checks from the previous game.
+  - When replacing items with checks, AP now tries to replace an actor of the
+    expected type, or failing that, the expected logic category, rather than
+    just picking anything vaguely plausible at the right coordinates.
 - For logic developers:
   - `destroy-on-spawn` directive in `GZAPRC`.
   - AP can now put multiple copies of a `key` in the pool and keep track of how

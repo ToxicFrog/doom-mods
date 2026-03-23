@@ -244,4 +244,9 @@ class ::ScannedItem : ::ScannedLocation {
 
     return ::Util.join("-", categories);
   }
+
+  static string ItemCategoryByType(string typename) {
+    Class<Actor> cls = typename;
+    return ItemCategory(GetDefaultByType(cls));
+  }
 }
