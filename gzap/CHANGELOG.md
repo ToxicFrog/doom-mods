@@ -1,4 +1,9 @@
-# Unreleased
+# 0.8.4
+
+This is a bugfix release. The most notable changes are that it is now safe to
+restart uzdoom and load a different wad and game without restarting the client,
+and that different items at the same location are now considered different
+checks, a change that has added 10-15 checks to most wads.
 
 - Fixed:
   - Typenames in `GZAPRC` are no longer case sensitive.
