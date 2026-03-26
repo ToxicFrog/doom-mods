@@ -131,14 +131,11 @@ class ::RandoItem play {
     DEBUG("Replicating %s", self.typename);
     if (self.vended >= self.total) return;
     self.vended++;
-    if (self.category == "weapon") {
-      ::PerLevelHandler.Get().AllowNextWeapon();
-    }
     for (int p = 0; p < MAXPLAYERS; ++p) {
       if (!playeringame[p]) continue;
       if (!players[p].mo) continue;
 
-      let thing = players[p].mo.Spawn(self.typename, players[p].mo.pos, ALLOW_REPLACE);
+      let thing = ::Util.SpawnUnrestricted(players[p].mo, self.typename, ALLOW_REPLACE);
       thing.ClearCounters();
     }
   }

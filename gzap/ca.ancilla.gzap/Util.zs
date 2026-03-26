@@ -183,4 +183,17 @@ class ::Util play {
     let slot_name = ::PlayEventHandler.GetState().slot_name;
     return string.format("\c-ⓘ %s for %s", item, player);
   }
+
+  static Actor SpawnUnrestricted(readonly<Actor> parent, class<Actor> typename, int flags) {
+    Actor child;
+    let plh = ::PerLevelHandler.Get();
+    if (plh.disable_actor_replacement) {
+      child = parent.Spawn(typename, parent.pos, flags);
+    } else {
+      plh.DisableActorReplacement();
+      child = parent.Spawn(typename, parent.pos, flags);
+      plh.EnableActorReplacement();
+    }
+    return child;
+  }
 }

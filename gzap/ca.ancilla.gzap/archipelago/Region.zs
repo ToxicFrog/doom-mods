@@ -374,10 +374,7 @@ class ::Region play {
 
     foreach (itype, count : items_to_add) {
       DEBUG("Adding item: %s x %d", itype, count);
-      let item = Inventory(mo.Spawn(itype));
-      if (item is "Weapon") {
-        ::PerLevelHandler.Get().AllowNextWeapon();
-      }
+      let item = Inventory(::Util.SpawnUnrestricted(mo, itype, NO_REPLACE));
       item.amount = count;
       item.ClearCounters();
       item.CallTryPickup(mo);

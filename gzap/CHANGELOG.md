@@ -1,4 +1,13 @@
+# Unreleased
+
+- Changed:
+  - Redesign of the weapon suppression system. It should now be much more
+    reliable, both at blocking weapons you shouldn't have and at permitting
+    weapons you should.
+
 # 0.8.5
+
+This is a bugfix release.
 
 - Fixed:
   - Locations in Eviternity II MAP32 no longer require a Yellow Skull to reach
@@ -15,6 +24,10 @@ This is a bugfix release. The most notable changes are that it is now safe to
 restart uzdoom and load a different wad and game without restarting the client,
 and that different items at the same location are now considered different
 checks, a change that has added 10-15 checks to most wads.
+
+Existing logic and tuning data remains compatible; there is no need to re-scan
+your wads, and tuning for existing checks will automatically apply to new checks
+at the same positions.
 
 - Fixed:
   - Typenames in `GZAPRC` are no longer case sensitive.

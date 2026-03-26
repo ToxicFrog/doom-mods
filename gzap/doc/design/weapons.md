@@ -112,3 +112,44 @@ secrets won't be collected when secrets are enabled.
 If you turn on global weapon logic, each level has added to its prerequisites
 all weapons that exist in earlier levels. (Ideally we should have something
 smarter than rank for this; E1M3 shouldn't depend on E4M2's weapons).
+
+## Weapon Suppression
+
+The basic idea of weapon suppression is: prevent the player from picking up
+weapons that they haven't unlocked through Archipelago.
+
+Doing this is, in the general case, hard, because when a weapon spawns it could
+set off an arbitrarily complicated chain of replacements using `X replaces Y`,
+`CheckReplacement`, `SpawnItemEx`, etc, and when the player touches it it can
+also use things like `GiveInventory`. So we don't try to deal with any of that!
+
+Instead, in `CheckReplacement`, we encase the weapon in an AP token before it can
+be replaced with anything. When the player touches it, we then take action based
+on the weapon suppression configuration, either rejecting the interaction
+entirely, or deleting the token and spawning the original weapon or ammo for it
+in its place.
+
+Making that decision can be tricky, because in two of the operating modes it
+needs to decide based on what weapons the player is carrying, looking for either
+a matching weapon or a weapon of the same slot. We have a choice here of using
+the player's inventory, the AP inventory, or both.
+
+The slot check is actually comparatively safe; we get the slot of the encased
+weapon, iterate the weapon slot data, and see if any of the weapons using that
+slot are represented in either the AP inventory or the player's inventory.
+
+For the identical weapon check, similarly, we can just walk the AP inventory
+and/or player inventory, but this gets trickier when replacements are in effect
+during the scan. Consider Time Tripper:
+
+- the *map data* contains a `Chaingun`
+- the *DECORATE* defines `class 64Chaingun : Chaingun replaces Chaingun`
+- the scanner sees `64Chaingun`
+- at runtime, `CheckReplacement` sees a `Chaingun`, which doesn't match the
+  contents of the AP or player inventory
+
+To handle that, we check for both the original weapon and the current
+replacement. This should handle pretty much every case except the case where one
+set of replacements was in effect during the scan, and a *different* set is in
+effect at runtime, e.g. if you were playing Time Tripper with Rust'n'Bones
+loaded or something.

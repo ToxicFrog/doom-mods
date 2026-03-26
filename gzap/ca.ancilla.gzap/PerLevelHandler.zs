@@ -6,6 +6,8 @@
 #namespace GZAP;
 #debug off;
 
+#include "./actors/Weapons.zsc"
+
 // Release-on-exit enablement enums
 const AP_RELEASE_NEVER = 0;
 const AP_RELEASE_IF_KEYS = 1;
@@ -29,6 +31,17 @@ class ::PerLevelHandler : EventHandler {
   // an exit when they respawn.
   bool line_exit_normal;
   bool line_exit_secret;
+  // Handling for actor replacement.
+  // Disable flag is a countdown timer so we can set it at level load and have
+  // it expire automatically.
+  // last_replaced lets newly spawned replacement tokens know what they replaced.
+  int disable_actor_replacement;
+  Class<Actor> last_replaced_actor;
+
+  override void OnRegister() {
+    console.printf("Disabling weapon replacement for 2 ticks");
+    self.disable_actor_replacement = 2;
+  }
 
   static clearscope ::PerLevelHandler Get() {
     return ::PerLevelHandler(Find("::PerLevelHandler"));
@@ -302,6 +315,8 @@ class ::PerLevelHandler : EventHandler {
   override void WorldTick() {
     apstate.OnTick();
 
+    if (disable_actor_replacement > 0) --disable_actor_replacement;
+
     if (last_secret != level.found_secrets) {
       UpdateSecrets();
       last_secret = level.found_secrets;
@@ -355,86 +370,29 @@ class ::PerLevelHandler : EventHandler {
     }
   }
 
-  // How many tics to allow drops for.
-  // We set this to a nonzero value when replicating items so that they don't
-  // get culled.
-  // This does mean that enemy drops that happen at the same time as replication
-  // may get through, but I have yet to come up with a better solution.
-  // We could in principle replicate and then hand the spawned item to the handler
-  // to say "allow this item, specifically", but that breaks for chains like
-  // Shotgun replaced with Spawner which produces ModdedShotgun -- we end up
-  // allowing the Spawner but not the ModdedShotgun.
-  int allow_weapons;
-  void AllowNextWeapon() {
-    DEBUG("Permitting next weapon pickup.");
-    allow_weapons += 1;
-  }
-
-  bool ShouldAllow(Weapon thing) {
-    if (!thing) return true;
+  // Special handling for weapons. We use this to replace weapons that we weren't
+  // responsible for spawning, so we can decide later if the player is allowed
+  // to pick them up.
+  override void CheckReplacement(ReplaceEvent evt) {
+    if (self.disable_actor_replacement > 0) return;
     // What happens outside the randomizer stays outside the randomizer.
-    // This includes GZAPHUB and GZAPRST, so the player's starting inventory
-    // (including fists/pistol) won't get suppressed on game start.
-    if (!apstate.GetCurrentRegion()) return true;
+    if (!apstate) return;
+    if (!apstate.GetCurrentRegion()) return;
 
-    DEBUG("Checking pickup of %s (allow=%d)", thing.GetTag(), allow_weapons);
-    if (self.allow_weapons) {
-      self.allow_weapons -= 1;
-      return true;
+    if (IsAPManagedWeapon(evt.replacee)) {
+      self.last_replaced_actor = evt.replacee;
+      evt.replacement = "::LockedWeapon";
     }
-    if (ap_suppress_weapon_drops == 0) return true;
-
-    let cls = thing.GetClass();
-    if (cls is "WeaponGiver") {
-      // WeaponGivers are required to have exactly one DropItem
-      cls = thing.GetDropItems().Name;
-      if (!cls) return true;
-    }
-
-    // Allow only if same slot in inventory
-    if (ap_suppress_weapon_drops == 1) {
-      // Make the simplifying assumption that all players have the same slots.
-      let [assigned,slot,idx] = players[0].weapons.LocateWeapon(cls);
-      DEBUG("Checking based on slot: assigned=%d slot=%d", assigned, slot);
-      if (!assigned) return true; // I guess???
-      return apstate.HasWeaponSlot(slot);
-    }
-
-    // Allow only if same weapon in inventory
-    if (ap_suppress_weapon_drops == 2) {
-      DEBUG("Checking based on class: %s", cls.GetClassName());
-      return apstate.HasWeapon(cls.GetClassName());
-    }
-
-    DEBUG("Unconditionally blocking weapon pickup.");
-    return false;
   }
 
-  void ReplaceWithAmmo(readonly<Actor> spawner, readonly<Weapon> thing) {
-    if (!spawner || !thing) return;
-
-    if (thing is "WeaponGiver") {
-      string name = thing.GetDropItems().Name;
-      Class<Weapon> cls = name;
-      if (!cls) return;
-      ReplaceWithAmmo(thing, GetDefaultByType(cls));
-      return;
-    }
-
-    DEBUG("ReplaceWithAmmo: %s", thing.GetTag());
-    SpawnAmmo(spawner, thing.AmmoType1, thing.AmmoGive1);
-    SpawnAmmo(spawner, thing.AmmoType2, thing.AmmoGive2);
+  bool IsAPManagedWeapon(class<Actor> cls) {
+    if (!cls) return false;
+    let item = self.apstate.FindItem(cls.GetClassName());
+    return item && item.IsWeapon();
   }
 
-  void SpawnAmmo(readonly<Actor> thing, Class<Ammo> cls, int amount) {
-    if (!cls || !amount) return;
-    DEBUG("SpawnAmmo: %d of %s", amount, cls.GetClassName());
-    let ammo = Inventory(thing.Spawn(cls, thing.pos, ALLOW_REPLACE));
-    if (!ammo) return;
-    DEBUG("Spawned: %s", ammo.GetTag());
-    ammo.ClearCounters();
-    ammo.amount = amount;
-  }
+  void DisableActorReplacement() { self.disable_actor_replacement = 999; }
+  void EnableActorReplacement() { self.disable_actor_replacement = 0; }
 
   //// Handling for player death. ////
   // At the moment we make no attempt to retrieve the obituary, because GetObituary()
