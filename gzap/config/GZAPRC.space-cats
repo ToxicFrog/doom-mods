@@ -7,6 +7,11 @@ scanner {
   recurse true;
 }
 
+# Powerup categories.
+category big-health-armor: SCSMegasphere;
+category medium-health-attack: SCSBerserk;
+category big-defence: SCSInvulnerabilitySphere;
+
 # The various SpaceCat actors are secrets, and spawn something else when found
 # and petted.
 # N.b. the weapon spawns (SC3 and SC4) may turn into ammo instead on some levels,
