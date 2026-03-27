@@ -97,10 +97,15 @@ category medium-ammo:
   BlasterHefty CrossbowHefty GoldWandHefty MaceHefty PhoenixRodHefty SkullRodHefty
   LargeZorchPack MiniZorchPack PhasingZorchPack PropulsorZorchPack;
 
-# These use CustomInventory to implement special handling and thus can't be
-# auto-categorized.
+#### Doom 1/2 configuration ####
+
+# Various powerups that cannot be automatically analyzed.
 category big-armor-health: Megasphere;
-category powerup-health: Berserk;
+category big-defence: InvulnerabilitySphere;
+category medium-health-attack: Berserk;
+category medium-tool: RadSuit;
+category small-tool: Infrared;
+category small-defence: BlurSphere;
 
 # Doom 1/2 keys don't have tags defined! Names like "blue keycard" appear only
 # in pickup messages and aren't associated with the actor itself.
@@ -111,12 +116,15 @@ tag BlueSkull Blue Skull;
 tag YellowSkull Yellow Skull;
 tag RedSkull Red Skull;
 
-# Chex is also missing names for these.
-tag BlueFlemKey Blue Flemkey;
-tag YellowFlemKey Yellow Flemkey;
-tag RedFlemKey Red Flemkey;
-
 #### Heretic configuration ####
+
+# Heretic has a bunch of tools/devices that need to be manually classified.
+category big-defence: ArtiInvulnerability;
+category medium-attack: ArtiTomeOfPower;
+category small-defence: ArtiInvisibility;
+category small-attack: ArtiEgg ArtiTimeBomb;
+category small-tool: ArtiTorch ArtiTeleport;
+
 # In Heretic, the Firemace is actually placed on the map as a MaceSpawner. When
 # playing, there is a random chance for the Firemace to appear at each spawner.
 # For rando purposes, we want to replace each spawner with a check, whether or
@@ -140,3 +148,13 @@ category none: Mace;
 # Also ignore the Wings of Wrath since they are often needed for level
 # progression and the logic doesn't presently understand that.
 category none: ArtiFly;
+
+#### Chex configuration ####
+
+category medium-tool: SlimeProofSuit;
+category small-tool: UltraGoggles;
+
+# Chex is also missing names for these.
+tag BlueFlemKey Blue Flemkey;
+tag YellowFlemKey Yellow Flemkey;
+tag RedFlemKey Red Flemkey;

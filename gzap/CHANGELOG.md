@@ -4,6 +4,15 @@
   - Redesign of the weapon suppression system. It should now be much more
     reliable, both at blocking weapons you shouldn't have and at permitting
     weapons you should.
+  - Major overhaul of item categorization. Filler should now all have a size
+    (`big`, `medium`, or `small`), and one or more kinds (`health`, `armor`,
+    `ammo`, `attack`, `defence`, or `tool`). See [categories.md](doc/categories.md)
+    for details.
+  - As a result of the above, many item categories have changed. `medium-armor`
+    is now actually used, and many things previously considered `powerup` or
+    `tool` now have proper sizing and more specific categories.
+- Fixed:
+  - MAP31 and MAP32 were incorrectly excluded from 1000 Lines 2.
 
 # 0.8.5
 
