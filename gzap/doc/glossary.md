@@ -39,80 +39,34 @@ prefix for all UZArchipelago classes to avoid collisions with other mods. (The
 mod was originally developed for GZDoom before officially moving to UZDoom with
 version 0.8.0.)
 
+## GZAPRC
+
+Short for GZArchipelago Runtime Configuration. A special lump that wad developers
+can include to control how the wad scanner behaviours. UZAP contains several of
+these containing configurations for various supported games and wads.
+
 ## In-World
 
 Objects that exist in the level somewhere, such as the player and *Check* actors.
 
 ## Item Categories
 
-The scanner assigns one or more categories to each item (and its associated
-location). These are used by the randomizer to make decisions about which items
-to replace with checks and how to classify them in AP. Randomization can be
-controlled on a per-category basis in the yaml.
+The scanner assigns one or more categories to each item. These are used by the
+randomizer to make decisions about which items to replace with checks and how to
+classify them in AP. Locations also have categories, which are based on the
+categories of the items they contain when not randomized.
 
-Locations that originally contained items inherit the categories of their items.
-Locations without items have categories assigned based on the nature of the
-location.
+Wad authors and logic developers can override the categories assigned by the
+scanner using the `GZAPRC` lump. Players can control which items are randomized
+by adjusting category-specific settings in the yaml.
 
-In the logic file, categories are stored as hyphen-separated strings for
-historical reasons, e.g. the category string "small-health" denotes an item
-with both the `small` and `health` categories. A logic file can make up any
-categories it wants and the apworld will automatically detect them. Not all of
-these are used in vanilla Doom/Heretic; some only appear in TCs.
+A logic file can contain *any* categories, and UZAP will automatically detect
+them; however, there are some categories that receive special handling, and some
+that do not but are considered more "official". For a complete list of these and
+how they are used, see [categories.md](./categories.md).
 
-- `key`: keycards, skulls, etc; specific to a single level or cluster. Includes
-  "key-like quest items" like gears, the stone idol, etc.
-- `maprevealer`: computer area maps and similar. These locations are added to
-  the pool but the items themselves are not, since AP handles maps specially.
-- `token`: single-use keys that must be expended in exchange for something.
-- `weapon`: any sort of weapon
-- `upgrade`: permanent powerups (e.g. max HP upgrades). Note that the backpack
-  is presently considered `big-ammo`, not `upgrade`.
-- `powerup`: time-limited or per-level powerups (e.g. radsuits, berserk)
-- `health`: anything that restores health
-- `armor`: anything that restores armour
-- `ammo`: anything that refills ammo
-- `tool`: inventory items that aren't in any other category (e.g. time bombs)
-- `big`, `medium`, `small`: used to differentiate different sizes of health,
-  armour, and ammo pickups
-
-There are also categories that correspond to how items are categorized by
-Archipelago itself:
-
-- `ap_progression`: the item is relevant for progression. All `weapon`s and
-  `key`s have this, but depending on the wad, other items might as well.
-- `ap_useful`: the item is considered useful. It will get a special "useful"
-  sprite and the apworld won't change how many there are in the pool based on
-  how many locations are available like it will with filler. AP automaps have
-  this.
-- `ap_skip_balancing`: the item should not be included in progression balancing.
-  Use this for progression items where you need a lot of them to actually affect
-  progression, e.g. souls in The Golden Souls.
-- `ap_deprioritized`: the item should not be preferred for priority locations.
-  Similar to `ap_skip_balancing`, use this for progression items that are needed
-  but not actually immediately useful or exciting to find.
-- `ap_trap`: item is a trap.
-
-In addition, there are some categories not present in the logic file but which
-are used by the apworld:
-
-- `ap_map`: Archipelago automaps (grant map view + check information).
-- `ap_flag`: Archipelago internal; do not use.
-- `secret`: for items, means the item is located in a secret sector. For
-  locations, means the location is checked by discovering a secret in-game.
-- `sector`: `secret` locations only. Means the secret is a map sector.
-- `marker`: `secret` locations only. Means the sector is an item or scripted trigger.
-
-Some items will have multiple categories from this list, e.g. a Megasphere is
-`big`, `health`, and `armor`, and also `secret` if it's found in a secret sector.
-
-Health and armour is considered `big` if it restores 100 points or more, `small`
-if it restores less than 25, and `medium` otherwise.
-
-Ammo from Id games is considered `big` if it's a backpack, otherwise `medium` if
-it's a larger ammo pickup and `small` otherwise. Unrecognized ammo (e.g. from
-total conversions) is considered `medium` if it refills at least 20% of your
-carrying capacity, and `small` otherwise.
+(Since an item or location can have several categories, "tags" might be a better
+term; however, "tag" [already means something else in Doom modding](#tag).)
 
 ## Level Rank
 
@@ -154,12 +108,22 @@ Some *Locations* are marked "virtual", meaning they exist for the purposes of th
 randomizer but don't have a fixed position in the world, and are "visited" by
 other means (such as finishing a level).
 
+## Tag
+
+An item's player-visible name, which is not always the same as the name the
+engine uses, and not guaranteed to be unique. For example, the `Cell` and
+`CellPack` in Doom both have a tag of "Energy Cells".
+
 ## Tuning
 
 A process of automatically improving the randomizer logic for a given WAD by
 analyzing playthrough records. When you first import a WAD the logic is fairly
 rough because it can't tell what keys you need to reach which items; by observing
 actual play, it can improve the logic and produce more varied randomizations.
+
+## UZAP
+
+Short for UZArchipelago.
 
 ## Region
 

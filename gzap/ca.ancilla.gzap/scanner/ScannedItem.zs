@@ -142,20 +142,15 @@ class ::ScannedItem : ::ScannedLocation {
     return (thing.cursector.IsSecret() || thing.cursector.WasSecret() || thing is "SecretTrigger");
   }
 
-  static bool IsTool(readonly<Inventory> thing) {
-    if (!thing) return false;
-    return thing.bINVBAR && !thing.bAUTOACTIVATE;
-  }
-
   static string HealthSize(int amount) {
     if (amount >= 100) return "big";
     if (amount >= 25) return "medium";
     return "small";
   }
 
-  static string ArmourSize(int amount) {
-    if (amount >= 100) return "big";
-    if (amount >= 25) return "medium";
+  static string ArmourSize(int amount, double save) {
+    if ((save*amount) >= 100) return "big";
+    if ((save*amount) >= 25) return "medium";
     return "small";
   }
 
@@ -192,7 +187,7 @@ class ::ScannedItem : ::ScannedLocation {
     } else if (thing is "BackpackItem") {
       return "big-ammo";
     } else if (thing is "MapRevealer") {
-      return "powerup-maprevealer";
+      return "maprevealer";
     } else if (thing is "SecretTrigger") {
       return "secret-marker";
     }
@@ -202,25 +197,31 @@ class ::ScannedItem : ::ScannedLocation {
 
     // Composite categories.
     Array<string> categories;
+    // Whether a size has been assigned.
+    bool has_size = false;
 
     // Things that restore health.
     if (inv is "Health") {
       categories.Push(HealthSize(Health(inv).Amount));
       categories.Push("health");
+      has_size = true;
     } else if (inv is "HealthPickup") {
       categories.Push(HealthSize(HealthPickup(inv).Health));
       categories.Push("health");
+      has_size = true;
     } else if (inv.bISHEALTH) {
       categories.Push("health");
     }
 
     // Things that restore armour.
     if (inv is "BasicArmorPickup") {
-      categories.Push(ArmourSize(BasicArmorPickup(inv).SaveAmount));
+      categories.Push(ArmourSize(BasicArmorPickup(inv).SaveAmount, BasicArmorPickup(inv).SavePercent/100.0));
       categories.push("armor");
+      has_size = true;
     } else if (inv is "BasicArmorBonus") {
-      categories.Push(ArmourSize(BasicArmorBonus(inv).SaveAmount));
+      categories.Push(ArmourSize(BasicArmorBonus(inv).SaveAmount, BasicArmorBonus(inv).SavePercent/100.0));
       categories.push("armor");
+      has_size = true;
     } else if (inv.bISARMOR) {
       categories.push("armor");
     }
@@ -230,17 +231,17 @@ class ::ScannedItem : ::ScannedLocation {
       let a = Ammo(inv);
       categories.Push(AmmoSize(a.Amount, a.MaxAmount));
       categories.Push("ammo");
+      has_size = true;
     }
 
-    // Buffs and whatnot.
-    if (inv is "PowerupGiver") {
-      categories.Push("powerup");
-    }
+    // Powerups and tools do a lot of different things and we cannot reliably
+    // identify them by inspection, so we require the logic developer to write
+    // GZAPRC entries for them.
+    if (categories.Size() == 0) categories.Push("unknown_kind");
 
-    // Things that can be picked up and carried around and used later.
-    if (IsTool(inv)) {
-      categories.Push("tool");
-    }
+    // Similarly, we want an explicit size for anything that isn't a weapon,
+    // key, or maprevealer.
+    if (!has_size) categories.Push("unknown_size");
 
     return ::Util.join("-", categories);
   }
