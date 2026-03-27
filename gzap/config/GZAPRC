@@ -42,11 +42,11 @@
 #
 #
 #     scanner {
-#       maps = list of maps to start scanning at;
-#       skip = list of maps to skip;
-#       prune = list of maps to prune;
-#       recurse = true|false;
-#       clusters = true|false;
+#       maps <list of maps to start scanning at>;
+#       skip <list of maps to skip>;
+#       prune <list of maps to prune entirely>;
+#       recurse <true|false>;
+#       clusters <true|false>;
 #     }
 #
 # Set defaults for the scanner.
@@ -116,6 +116,12 @@ tag BlueSkull Blue Skull;
 tag YellowSkull Yellow Skull;
 tag RedSkull Red Skull;
 
+# Ammo does have tags defined, but they overlap.
+tag ClipBox Bullet Box;
+tag ShellBox Shell Box;
+tag RocketBox Rocket Box;
+tag CellPack Cell Pack;
+
 #### Heretic configuration ####
 
 # Heretic has a bunch of tools/devices that need to be manually classified.
@@ -149,10 +155,25 @@ category none: Mace;
 # progression and the logic doesn't presently understand that.
 category none: ArtiFly;
 
+# Tags for overlapping ammo and armour names. Based on the Heretic pickup messages.
+tag SilverShield Silver Shield;
+tag GoldWandHefty Crystal Geode;
+tag CrossbowHefty Quiver of Ethereal Arrows;
+tag BlasterHefty Energy Orb;
+tag PhoenixRodHefty Inferno Orb;
+tag SkullRodHefty Greater Runes;
+tag MaceHefty Pile of Mace Spheres;
+
 #### Chex configuration ####
 
 category medium-tool: SlimeProofSuit;
 category small-tool: UltraGoggles;
+
+# Overlapping ammo.
+tag LargeZorchPack Large Zorcher Pack;
+tag MiniZorchPack Mini Zorch Pack;
+tag PhasingZorchPack Phasing Zorcher Pack;
+tag PropulsorZorchPack Propulsor Pack;
 
 # Chex is also missing names for these.
 tag BlueFlemKey Blue Flemkey;

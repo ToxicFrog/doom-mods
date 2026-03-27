@@ -37,8 +37,8 @@ AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonu
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["E1M1",-352,1408,0] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["E1M1",-320,1408,0] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["E1M1",-288,1408,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "secret": true, "pos": ["E1M1",-128,832,80] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E1M1",568,1088,96] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "secret": true, "pos": ["E1M1",-128,832,80] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E1M1",568,1088,96] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E1M1",568,1056,96] }
 AP-SECRET { "pos": ["E1M1","secret","sector",54] }
 AP-SECRET { "pos": ["E1M1","secret","sector",55] }
@@ -67,7 +67,7 @@ AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthB
 AP-ITEM { "category": "weapon", "typename": "Chaingun", "tag": "Chaingun", "secret": true, "pos": ["E1M2",480,1056,64] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E1M2",640,-2144,56] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E1M2",768,-2112,56] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shotgun Shells", "secret": true, "pos": ["E1M2",652,348,48] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "secret": true, "pos": ["E1M2",652,348,48] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E1M2",1088,64,64] }
 AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos": ["E1M2",1088,0,64] }
 AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos": ["E1M2",1088,128,64] }
@@ -79,7 +79,7 @@ AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthB
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["E1M2",820,32,48] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["E1M2",820,0,48] }
 AP-ITEM { "category": "medium-health-attack", "typename": "Berserk", "tag": "Berserk", "pos": ["E1M2",1120,960,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E1M2",416,-2016,-8] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E1M2",416,-2016,-8] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E1M2",480,1312,0] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "skill": [2, 3], "pos": ["E1M2",-368,-384,8] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "skill": [2, 3], "pos": ["E1M2",-368,-416,8] }
@@ -110,10 +110,10 @@ AP-ITEM { "category": "key", "typename": "RedCard", "tag": "Red Keycard", "pos":
 AP-KEY { "typename": "RedCard", "tag": "Red Keycard", "scopename": "E1M3", "cluster": 0, "maps": ["E1M3"] }
 AP-ITEM { "category": "weapon", "typename": "Chaingun", "tag": "Chaingun", "pos": ["E1M3",-1120,-224,-64] }
 AP-ITEM { "category": "big-ammo", "typename": "Backpack", "tag": "Backpack", "secret": true, "pos": ["E1M3",-384,64,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E1M3",-64,-608,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E1M3",-64,-608,0] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E1M3",64,-608,0] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E1M3",-832,128,-64] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E1M3",160,1600,-112] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E1M3",160,1600,-112] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E1M3",368,1120,-112] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E1M3",352,64,48] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E1M3",-224,672,-16] }
@@ -135,7 +135,7 @@ AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", 
 AP-ITEM { "category": "medium-armor", "typename": "GreenArmor", "tag": "GreenArmor", "pos": ["E1M3",544,1824,-112] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E1M3",640,1824,-112] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E1M3",544,1744,-112] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E1M3",1184,-224,56] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E1M3",1184,-224,56] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E1M3",256,1952,-16] }
 AP-ITEM { "category": "weapon", "typename": "RocketLauncher", "tag": "Rocket Launcher", "secret": true, "pos": ["E1M3",1488,1824,-32] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["E1M3",704,1664,-112] }
@@ -186,12 +186,12 @@ AP-ITEM { "category": "weapon", "typename": "Shotgun", "tag": "Shotgun", "pos": 
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E1M4",-576,-992,0] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E1M4",-992,-288,64] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E1M4",-992,-608,64] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E1M4",960,-576,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shotgun Shells", "pos": ["E1M4",960,-288,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E1M4",960,-576,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "pos": ["E1M4",960,-288,0] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E1M4",960,0,0] }
 AP-ITEM { "category": "medium-armor", "typename": "GreenArmor", "tag": "GreenArmor", "pos": ["E1M4",-704,1056,24] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E1M4",-928,1056,24] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E1M4",-1152,1056,24] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E1M4",-1152,1056,24] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E1M4",-160,-416,0] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E1M4",32,96,0] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E1M4",128,-32,0] }
@@ -205,13 +205,13 @@ AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack",
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E1M4",512,-1344,64] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E1M4",192,-1344,64] }
 AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos": ["E1M4",512,-1216,64] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E1M4",832,-976,64] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E1M4",512,-976,64] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E1M4",832,-976,64] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E1M4",512,-976,64] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E1M4",224,768,-56] }
 AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos": ["E1M4",-224,-1568,64] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E1M4",992,800,-32] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E1M4",-928,352,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E1M4",-928,288,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E1M4",-928,288,0] }
 AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos": ["E1M4",-128,576,0] }
 AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos": ["E1M4",912,336,-32] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E1M4",1056,800,-32] }
@@ -273,7 +273,7 @@ AP-ITEM { "category": "weapon", "typename": "Chaingun", "tag": "Chaingun", "pos"
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E1M5",832,-608,-8] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E1M5",-312,544,72] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E1M5",1568,288,16] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E1M5",1568,160,16] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E1M5",1568,160,16] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E1M5",1248,-704,0] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E1M5",792,392,128] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E1M5",2016,-1248,0] }
@@ -322,7 +322,7 @@ AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthB
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["E1M5",1384,808,0] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E1M5",960,808,0] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "secret": true, "pos": ["E1M5",656,496,128] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "secret": true, "pos": ["E1M5",688,640,128] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "secret": true, "pos": ["E1M5",688,640,128] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "secret": true, "pos": ["E1M5",688,448,128] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "secret": true, "pos": ["E1M5",656,592,128] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "secret": true, "pos": ["E1M5",688,592,128] }
@@ -395,8 +395,8 @@ AP-ITEM { "category": "big-ammo", "typename": "Backpack", "tag": "Backpack", "se
 AP-ITEM { "category": "big-ammo", "typename": "Backpack", "tag": "Backpack", "secret": true, "skill": [1, 2], "pos": ["E1M6",-2160,-224,0] }
 AP-ITEM { "category": "maprevealer", "typename": "Allmap", "tag": "Allmap", "pos": ["E1M6",-992,1376,64] }
 AP-ITEM { "category": "big-health", "typename": "Soulsphere", "tag": "Soulsphere", "pos": ["E1M6",-1760,608,24] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E1M6",-1568,800,72] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E1M6",-1568,672,72] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E1M6",-1568,800,72] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E1M6",-1568,672,72] }
 AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos": ["E1M6",-1568,608,72] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E1M6",-1568,736,72] }
 AP-ITEM { "category": "medium-armor", "typename": "GreenArmor", "tag": "GreenArmor", "pos": ["E1M6",688,1088,0] }
@@ -413,7 +413,7 @@ AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonu
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["E1M6",704,1008,32] }
 AP-ITEM { "category": "weapon", "typename": "RocketLauncher", "tag": "Rocket Launcher", "pos": ["E1M6",704,864,0] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E1M6",-352,-1120,72] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shotgun Shells", "pos": ["E1M6",-352,-1184,72] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "pos": ["E1M6",-352,-1184,72] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E1M6",-512,256,-16] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E1M6",-704,256,-16] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E1M6",-704,0,-16] }
@@ -441,11 +441,11 @@ AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthB
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["E1M6",96,1360,0] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["E1M6",96,1328,0] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["E1M6",96,1296,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E1M6",-1200,1360,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E1M6",-1200,1360,0] }
 AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos": ["E1M6",-384,960,48] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E1M6",-256,960,32] }
 AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos": ["E1M6",-128,960,16] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E1M6",-192,-992,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E1M6",-192,-992,0] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E1M6",672,0,-8] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E1M6",96,0,-16] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E1M6",-512,512,0] }
@@ -510,26 +510,26 @@ AP-ITEM { "category": "big-armor", "typename": "BlueArmor", "tag": "BlueArmor", 
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E1M7",-1008,-1392,104] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E1M7",-1008,-1840,104] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E1M7",-1056,-1776,104] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E1M7",-1056,-1456,104] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E1M7",672,-1312,-32] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E1M7",-128,-832,-32] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E1M7",-1056,-1456,104] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E1M7",672,-1312,-32] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E1M7",-128,-832,-32] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E1M7",-320,-1152,32] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shotgun Shells", "pos": ["E1M7",-48,-1248,-120] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "pos": ["E1M7",-48,-1248,-120] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E1M7",-688,736,64] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E1M7",-688,304,64] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E1M7",992,992,0] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E1M7",32,-704,-16] }
 AP-ITEM { "category": "weapon", "typename": "Chaingun", "tag": "Chaingun", "pos": ["E1M7",-896,512,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E1M7",-192,0,32] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E1M7",-192,0,32] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E1M7",-288,-288,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E1M7",-224,-288,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E1M7",-224,-288,0] }
 AP-ITEM { "category": "medium-armor", "typename": "GreenArmor", "tag": "GreenArmor", "pos": ["E1M7",-800,0,32] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E1M7",96,-224,-32] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E1M7",-1120,672,0] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E1M7",-864,-992,32] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E1M7",-512,848,32] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E1M7",-736,1072,-16] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E1M7",992,800,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E1M7",-736,1072,-16] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E1M7",992,800,0] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E1M7",256,320,-24] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E1M7",736,-1280,-32] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E1M7",864,-1216,-48] }
@@ -580,12 +580,12 @@ AP-SECRET { "pos": ["E1M7","secret","sector",156] }
 AP-SECRET { "pos": ["E1M7","secret","sector",165] }
 AP-MAP { "map": "E1M8", "levelname": "Embolon", "checksum": "518ae12ad2b22fe73bf0016b28f41a3d", "rank": 7, "monster_count": 36, "info": { "levelnum": 8, "title": "HUSTR_E1M8", "is_lookup": true, "sky1": "SKY1FIX", "sky1speed": "0.000000", "sky2": "SKY1FIX", "sky2speed": "0.000000", "music": "$MUSIC_E1M8", "music_track": "0", "cluster": 0, "flags": ["specialaction_lowerfloor", "baronspecial"] } }
 AP-ITEM { "category": "big-health", "typename": "Soulsphere", "tag": "Soulsphere", "pos": ["E1M8",800,0,16] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E1M8",-32,-448,16] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E1M8",-32,-448,16] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E1M8",-32,-320,16] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E1M8",-32,320,16] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shotgun Shells", "pos": ["E1M8",-32,448,16] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "pos": ["E1M8",-32,448,16] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E1M8",-1072,0,-64] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E1M8",-832,0,-56] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E1M8",-832,0,-56] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E1M8",-704,-64,-48] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E1M8",-384,64,-32] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E1M8",-128,64,-16] }
@@ -596,16 +596,16 @@ AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack",
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E1M8",-832,-704,-80] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E1M8",-640,-768,-80] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E1M8",-512,-704,-80] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E1M8",-768,704,-80] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E1M8",-768,704,-80] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E1M8",-672,736,-80] }
 AP-ITEM { "category": "weapon", "typename": "Shotgun", "tag": "Shotgun", "pos": ["E1M8",-160,544,-40] }
 AP-ITEM { "category": "weapon", "typename": "Chaingun", "tag": "Chaingun", "pos": ["E1M8",-160,-544,-40] }
 AP-ITEM { "category": "weapon", "typename": "RocketLauncher", "tag": "Rocket Launcher", "pos": ["E1M8",32,0,-16] }
 AP-ITEM { "category": "weapon", "typename": "Chainsaw", "tag": "Chainsaw", "pos": ["E1M8",-1184,0,-64] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E1M8",-512,448,-88] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E1M8",-512,-448,-88] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E1M8",1136,192,32] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E1M8",1136,-192,32] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E1M8",-512,448,-88] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E1M8",-512,-448,-88] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E1M8",1136,192,32] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E1M8",1136,-192,32] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E1M8",-32,544,0] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["E1M8",-1280,288,-64] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["E1M8",-992,512,-80] }
@@ -629,10 +629,10 @@ AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonu
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["E1M8",-1280,352,-64] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["E1M8",-1280,416,-64] }
 AP-MAP { "map": "E1M9", "levelname": "Gods", "checksum": "b9b03416da6b8cb70cd2c79e25797336", "rank": 3, "monster_count": 15, "info": { "levelnum": 9, "title": "HUSTR_E1M9", "is_lookup": true, "sky1": "SKY1FIX", "sky1speed": "0.000000", "sky2": "SKY1FIX", "sky2speed": "0.000000", "music": "$MUSIC_E1M9", "music_track": "0", "cluster": 0, "flags": [] } }
-AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Energy Cells", "secret": true, "pos": ["E1M9",-80,-3216,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Cell Pack", "secret": true, "pos": ["E1M9",-80,-3216,0] }
 AP-ITEM { "category": "big-ammo", "typename": "Backpack", "tag": "Backpack", "secret": true, "pos": ["E1M9",80,-3216,0] }
 AP-ITEM { "category": "medium-armor", "typename": "GreenArmor", "tag": "GreenArmor", "pos": ["E1M9",-128,-3024,16] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E1M9",-1120,-1504,-8] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E1M9",-1120,-1504,-8] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "secret": true, "pos": ["E1M9",128,-3008,0] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "secret": true, "pos": ["E1M9",128,-3072,0] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "secret": true, "pos": ["E1M9",96,-3136,0] }
@@ -640,9 +640,9 @@ AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", 
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E1M9",-88,-3000,16] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E1M9",-160,-2400,8] }
 AP-ITEM { "category": "weapon", "typename": "RocketLauncher", "tag": "Rocket Launcher", "pos": ["E1M9",160,-2400,8] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E1M9",192,-1888,-8] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E1M9",320,-1888,-8] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E1M9",448,-1888,-8] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E1M9",192,-1888,-8] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E1M9",320,-1888,-8] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E1M9",448,-1888,-8] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E1M9",-448,-1888,-8] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E1M9",-320,-1888,-8] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E1M9",-192,-1888,-8] }
@@ -650,9 +650,9 @@ AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", 
 AP-ITEM { "category": "big-health", "typename": "Soulsphere", "tag": "Soulsphere", "pos": ["E1M9",-592,-1408,64] }
 AP-ITEM { "category": "big-armor", "typename": "BlueArmor", "tag": "BlueArmor", "pos": ["E1M9",544,-1344,64] }
 AP-ITEM { "category": "weapon", "typename": "PlasmaRifle", "tag": "Plasma Rifle", "skill": [1, 2], "pos": ["E1M9",0,-736,-8] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E1M9",1120,-1184,-8] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E1M9",1120,-1504,-8] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E1M9",-1120,-1184,-8] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E1M9",1120,-1184,-8] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E1M9",1120,-1504,-8] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E1M9",-1120,-1184,-8] }
 AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "pos": ["E1M9",-448,-800,-8] }
 AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "pos": ["E1M9",-320,-800,-8] }
 AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "pos": ["E1M9",-192,-800,-8] }
@@ -669,7 +669,7 @@ AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonu
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["E1M9",224,-3072,0] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["E1M9",208,-3120,0] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["E1M9",176,-3168,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shotgun Shells", "pos": ["E1M9",0,-304,-8] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "pos": ["E1M9",0,-304,-8] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "skill": [1, 2], "pos": ["E1M9",-32,24,24] }
 AP-ITEM { "category": "weapon", "typename": "PlasmaRifle", "tag": "Plasma Rifle", "skill": [3], "pos": ["E1M9",0,-688,120] }
 AP-SECRET { "pos": ["E1M9","secret","sector",14] }
@@ -693,7 +693,7 @@ AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells"
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E2M1",704,-800,48] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E2M1",-96,-160,0] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E2M1",160,-160,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E2M1",32,-160,16] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E2M1",32,-160,16] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E2M1",-416,-288,0] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E2M1",640,-608,0] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["E2M1",-96,544,-16] }
@@ -753,7 +753,7 @@ AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos":
 AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos": ["E2M2",-1216,544,-8] }
 AP-ITEM { "category": "small-defence", "typename": "BlurSphere", "tag": "BlurSphere", "secret": true, "pos": ["E2M2",240,-896,64] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E2M2",-352,256,-8] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E2M2",-160,576,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E2M2",-160,576,0] }
 AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos": ["E2M2",-1120,672,-8] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E2M2",-1120,352,-8] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E2M2",-784,-864,0] }
@@ -813,10 +813,10 @@ AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthB
 AP-ITEM { "category": "big-ammo", "typename": "Backpack", "tag": "Backpack", "skill": [1], "pos": ["E2M2",496,1296,0] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E2M2",-112,768,0] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E2M2",-304,304,-8] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E2M2",-1280,-416,-8] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E2M2",-1280,-416,-8] }
 AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos": ["E2M2",-144,816,0] }
 AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos": ["E2M2",-48,752,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E2M2",1152,32,80] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E2M2",1152,32,80] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["E2M2",-1360,1328,0] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["E2M2",-1376,1296,0] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["E2M2",-1328,1360,0] }
@@ -847,7 +847,7 @@ AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", 
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E2M3",-608,64,8] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E2M3",-576,64,8] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E2M3",-1184,0,8] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E2M3",-1184,-64,8] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E2M3",-1184,-64,8] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E2M3",-736,64,0] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E2M3",1232,272,0] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E2M3",1200,224,0] }
@@ -859,18 +859,18 @@ AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells"
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E2M3",-600,-864,0] }
 AP-ITEM { "category": "weapon", "typename": "Shotgun", "tag": "Shotgun", "pos": ["E2M3",-32,-208,0] }
 AP-ITEM { "category": "weapon", "typename": "Chaingun", "tag": "Chaingun", "pos": ["E2M3",-736,928,8] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E2M3",-736,864,8] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E2M3",-736,864,8] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E2M3",-480,992,0] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E2M3",448,320,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E2M3",448,128,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E2M3",448,128,0] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E2M3",-96,992,0] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E2M3",32,992,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E2M3",448,672,-16] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E2M3",448,672,-16] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E2M3",672,928,-8] }
 AP-ITEM { "category": "medium-armor", "typename": "GreenArmor", "tag": "GreenArmor", "pos": ["E2M3",-384,896,-16] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E2M3",-192,1024,-8] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E2M3",-832,96,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E2M3",608,480,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E2M3",-832,96,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E2M3",608,480,0] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E2M3",672,552,0] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E2M3",992,0,0] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E2M3",672,0,0] }
@@ -894,7 +894,7 @@ AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthB
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["E2M3",-448,-256,-48] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["E2M3",-352,-288,-48] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["E2M3",-256,-352,-48] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "skill": [1, 2], "pos": ["E2M3",-736,-32,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [1, 2], "pos": ["E2M3",-736,-32,0] }
 AP-SECRET { "pos": ["E2M3","secret","sector",96] }
 AP-MAP { "map": "E2M4", "levelname": "Virulent", "checksum": "d08f57a176681ebf9568f0e7d50926a8", "rank": 3, "monster_count": 68, "info": { "levelnum": 14, "title": "HUSTR_E2M4", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "$MUSIC_E2M4", "music_track": "0", "cluster": 0, "flags": [] } }
 AP-ITEM { "category": "key", "typename": "YellowSkull", "tag": "Yellow Skull", "pos": ["E2M4",320,-160,112] }
@@ -902,19 +902,19 @@ AP-KEY { "typename": "YellowSkull", "tag": "Yellow Skull", "scopename": "E2M4", 
 AP-ITEM { "category": "key", "typename": "RedSkull", "tag": "Red Skull", "pos": ["E2M4",-1576,-960,24] }
 AP-KEY { "typename": "RedSkull", "tag": "Red Skull", "scopename": "E2M4", "cluster": 0, "maps": ["E2M4"] }
 AP-ITEM { "category": "big-armor", "typename": "BlueArmor", "tag": "BlueArmor", "pos": ["E2M4",-224,-1648,64] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shotgun Shells", "pos": ["E2M4",320,192,96] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "pos": ["E2M4",320,192,96] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E2M4",-992,-1120,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E2M4",-352,-608,104] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E2M4",-352,-608,104] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E2M4",-352,-672,104] }
 AP-ITEM { "category": "weapon", "typename": "RocketLauncher", "tag": "Rocket Launcher", "pos": ["E2M4",144,288,96] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E2M4",-160,-800,96] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E2M4",-160,-800,96] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E2M4",96,-544,96] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E2M4",256,-416,96] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E2M4",320,-416,96] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E2M4",416,-864,8] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E2M4",480,-800,8] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E2M4",-352,-928,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shotgun Shells", "pos": ["E2M4",-352,-992,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E2M4",-352,-928,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "pos": ["E2M4",-352,-992,0] }
 AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos": ["E2M4",624,-560,0] }
 AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos": ["E2M4",784,-592,0] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E2M4",-32,-928,80] }
@@ -925,7 +925,7 @@ AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack",
 AP-ITEM { "category": "medium-armor", "typename": "GreenArmor", "tag": "GreenArmor", "pos": ["E2M4",-336,544,96] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E2M4",-800,288,96] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E2M4",-992,-800,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E2M4",864,-1184,-8] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E2M4",864,-1184,-8] }
 AP-ITEM { "category": "medium-health-attack", "typename": "Berserk", "tag": "Berserk", "pos": ["E2M4",1168,-384,-8] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E2M4",864,-1344,-8] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E2M4",864,-1312,-8] }
@@ -965,7 +965,7 @@ AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthB
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["E2M4",472,-2216,64] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["E2M4",424,-2216,64] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["E2M4",664,-2216,64] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "skill": [1, 2], "pos": ["E2M4",-640,-704,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [1, 2], "pos": ["E2M4",-640,-704,0] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "skill": [3], "pos": ["E2M4",32,608,96] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "skill": [3], "pos": ["E2M4",224,608,96] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "skill": [3], "pos": ["E2M4",32,0,96] }
@@ -978,9 +978,9 @@ AP-ITEM { "category": "medium-armor", "typename": "GreenArmor", "tag": "GreenArm
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E2M5",352,-544,0] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E2M5",288,-544,0] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E2M5",416,-544,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E2M5",608,592,8] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E2M5",608,592,8] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E2M5",608,640,8] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E2M5",608,544,8] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E2M5",608,544,8] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E2M5",416,560,0] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E2M5",496,480,0] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E2M5",352,768,-16] }
@@ -990,11 +990,11 @@ AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", 
 AP-ITEM { "category": "weapon", "typename": "Chaingun", "tag": "Chaingun", "pos": ["E2M5",96,0,0] }
 AP-ITEM { "category": "weapon", "typename": "Shotgun", "tag": "Shotgun", "pos": ["E2M5",0,-608,0] }
 AP-ITEM { "category": "weapon", "typename": "RocketLauncher", "tag": "Rocket Launcher", "pos": ["E2M5",1120,96,64] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E2M5",1152,-576,64] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E2M5",1152,-576,64] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E2M5",-480,-352,-16] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E2M5",-864,-768,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E2M5",-128,96,-16] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E2M5",-128,-96,-16] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E2M5",-128,96,-16] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E2M5",-128,-96,-16] }
 AP-ITEM { "category": "big-ammo", "typename": "Backpack", "tag": "Backpack", "secret": true, "pos": ["E2M5",352,-672,0] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["E2M5",304,-944,0] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["E2M5",320,-1008,0] }
@@ -1033,11 +1033,11 @@ AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthB
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E2M5",-992,288,0] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E2M5",-800,-160,80] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E2M5",-736,-160,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E2M5",-352,768,-16] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E2M5",0,1056,-16] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E2M5",352,672,-16] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E2M5",-736,-416,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E2M5",1056,-224,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E2M5",-352,768,-16] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E2M5",0,1056,-16] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E2M5",352,672,-16] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E2M5",-736,-416,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E2M5",1056,-224,0] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E2M5",992,-480,0] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E2M5",-224,352,0] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["E2M5",-96,1184,96] }
@@ -1067,19 +1067,19 @@ AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E2M6",48,912,128] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E2M6",224,1504,96] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E2M6",-160,1792,80] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E2M6",-848,2016,128] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E2M6",-688,2016,128] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E2M6",-848,2016,128] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E2M6",-688,2016,128] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E2M6",-864,224,128] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E2M6",608,1568,80] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E2M6",800,-416,96] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E2M6",-928,-448,0] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E2M6",576,-160,64] }
 AP-ITEM { "category": "medium-armor", "typename": "GreenArmor", "tag": "GreenArmor", "pos": ["E2M6",512,-672,152] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E2M6",-1152,-320,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E2M6",-1152,-320,0] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E2M6",-1024,-320,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E2M6",-1248,-32,64] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E2M6",-1248,-32,64] }
 AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "pos": ["E2M6",-1248,-96,64] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E2M6",0,-480,64] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E2M6",0,-480,64] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E2M6",-288,-512,64] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E2M6",-288,-416,64] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E2M6",288,-416,64] }
@@ -1087,15 +1087,15 @@ AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack",
 AP-ITEM { "category": "medium-health-attack", "typename": "Berserk", "tag": "Berserk", "pos": ["E2M6",0,544,128] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E2M6",1248,224,128] }
 AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "pos": ["E2M6",944,544,136] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E2M6",1104,544,136] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E2M6",1104,544,136] }
 AP-ITEM { "category": "weapon", "typename": "RocketLauncher", "tag": "Rocket Launcher", "pos": ["E2M6",1024,480,136] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E2M6",-352,1632,0] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E2M6",-416,672,64] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E2M6",-768,1152,64] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E2M6",-768,1152,64] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E2M6",352,-672,64] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E2M6",352,-800,64] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E2M6",576,32,64] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E2M6",0,288,64] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E2M6",576,32,64] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E2M6",0,288,64] }
 AP-ITEM { "category": "big-health", "typename": "Soulsphere", "tag": "Soulsphere", "secret": true, "pos": ["E2M6",1376,-288,96] }
 AP-ITEM { "category": "big-armor", "typename": "BlueArmor", "tag": "BlueArmor", "secret": true, "pos": ["E2M6",1008,1712,128] }
 AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "pos": ["E2M6",-704,-448,0] }
@@ -1104,7 +1104,7 @@ AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "
 AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "pos": ["E2M6",-896,1808,48] }
 AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "pos": ["E2M6",-480,160,64] }
 AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "pos": ["E2M6",1152,-800,-48] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E2M6",0,1440,-16] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E2M6",0,1440,-16] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E2M6",464,-752,128] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E2M6",800,1696,80] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E2M6",992,1504,80] }
@@ -1165,21 +1165,21 @@ AP-ITEM { "category": "weapon", "typename": "Chaingun", "tag": "Chaingun", "pos"
 AP-ITEM { "category": "weapon", "typename": "Shotgun", "tag": "Shotgun", "pos": ["E2M7",1024,-32,-8] }
 AP-ITEM { "category": "weapon", "typename": "PlasmaRifle", "tag": "Plasma Rifle", "pos": ["E2M7",-1184,-1376,-8] }
 AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "pos": ["E2M7",-704,512,128] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E2M7",-704,448,128] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E2M7",-704,448,128] }
 AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "pos": ["E2M7",-704,384,128] }
 AP-ITEM { "category": "medium-armor", "typename": "GreenArmor", "tag": "GreenArmor", "pos": ["E2M7",576,-672,40] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E2M7",1152,1152,64] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E2M7",0,1728,128] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E2M7",-640,1824,176] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E2M7",-576,1824,176] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E2M7",768,-352,128] }
-AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Energy Cells", "pos": ["E2M7",768,-416,128] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E2M7",-576,1824,176] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E2M7",768,-352,128] }
+AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Cell Pack", "pos": ["E2M7",768,-416,128] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E2M7",672,-928,128] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E2M7",848,-352,80] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E2M7",-608,864,120] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shotgun Shells", "pos": ["E2M7",-128,640,176] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E2M7",224,352,176] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E2M7",768,672,64] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "pos": ["E2M7",-128,640,176] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E2M7",224,352,176] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E2M7",768,672,64] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E2M7",896,672,64] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E2M7",1504,736,192] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E2M7",1504,544,192] }
@@ -1190,7 +1190,7 @@ AP-ITEM { "category": "medium-armor", "typename": "GreenArmor", "tag": "GreenArm
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E2M7",736,-1120,-8] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E2M7",736,-1216,-8] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E2M7",736,-1312,-8] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E2M7",-344,1728,176] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E2M7",-344,1728,176] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E2M7",-992,1880,8] }
 AP-ITEM { "category": "weapon", "typename": "RocketLauncher", "tag": "Rocket Launcher", "pos": ["E2M7",912,1344,0] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E2M7",864,1408,0] }
@@ -1204,7 +1204,7 @@ AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "
 AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "pos": ["E2M7",416,-704,128] }
 AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "pos": ["E2M7",960,-544,16] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E2M7",1120,-992,128] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E2M7",864,-992,128] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E2M7",864,-992,128] }
 AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "pos": ["E2M7",992,-992,128] }
 AP-ITEM { "category": "big-defence", "typename": "InvulnerabilitySphere", "tag": "InvulnerabilitySphere", "secret": true, "pos": ["E2M7",-688,288,64] }
 AP-ITEM { "category": "small-defence", "typename": "BlurSphere", "tag": "BlurSphere", "secret": true, "pos": ["E2M7",960,224,64] }
@@ -1212,8 +1212,8 @@ AP-ITEM { "category": "big-ammo", "typename": "Backpack", "tag": "Backpack", "po
 AP-ITEM { "category": "big-ammo", "typename": "Backpack", "tag": "Backpack", "pos": ["E2M7",-48,-48,-8] }
 AP-ITEM { "category": "big-ammo", "typename": "Backpack", "tag": "Backpack", "pos": ["E2M7",48,-48,-8] }
 AP-ITEM { "category": "big-ammo", "typename": "Backpack", "tag": "Backpack", "pos": ["E2M7",48,48,-8] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E2M7",-576,-320,128] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E2M7",224,928,176] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E2M7",-576,-320,128] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E2M7",224,928,176] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E2M7",-1184,1888,8] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E2M7",-704,2048,8] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E2M7",104,1112,-8] }
@@ -1224,9 +1224,9 @@ AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", 
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E2M7",24,1112,-8] }
 AP-ITEM { "category": "maprevealer", "typename": "Allmap", "tag": "Allmap", "pos": ["E2M7",-1088,2064,24] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E2M7",752,1184,64] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shotgun Shells", "pos": ["E2M7",832,-256,16] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E2M7",1504,928,192] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E2M7",1504,352,192] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "pos": ["E2M7",832,-256,16] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E2M7",1504,928,192] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E2M7",1504,352,192] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["E2M7",800,-832,128] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["E2M7",848,-832,128] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["E2M7",896,-832,128] }
@@ -1296,27 +1296,27 @@ AP-ITEM { "category": "big-armor", "typename": "BlueArmor", "tag": "BlueArmor", 
 AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "pos": ["E2M8",-672,-544,0] }
 AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "pos": ["E2M8",-608,-448,0] }
 AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "pos": ["E2M8",-544,-352,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E2M8",-544,-672,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E2M8",-416,-608,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E2M8",-288,-544,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E2M8",-544,-672,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E2M8",-416,-608,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E2M8",-288,-544,0] }
 AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "pos": ["E2M8",672,-544,0] }
 AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "pos": ["E2M8",608,-448,0] }
 AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "pos": ["E2M8",544,-352,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E2M8",544,-672,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E2M8",416,-608,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E2M8",288,-544,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E2M8",544,-672,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E2M8",416,-608,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E2M8",288,-544,0] }
 AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "pos": ["E2M8",-672,544,0] }
 AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "pos": ["E2M8",-608,448,0] }
 AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "pos": ["E2M8",-544,352,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E2M8",-544,672,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E2M8",-416,608,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E2M8",-288,544,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E2M8",-544,672,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E2M8",-416,608,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E2M8",-288,544,0] }
 AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "pos": ["E2M8",672,544,0] }
 AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "pos": ["E2M8",608,448,0] }
 AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "pos": ["E2M8",544,352,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E2M8",544,672,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E2M8",416,608,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E2M8",288,544,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E2M8",544,672,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E2M8",416,608,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E2M8",288,544,0] }
 AP-ITEM { "category": "big-ammo", "typename": "Backpack", "tag": "Backpack", "pos": ["E2M8",0,96,32] }
 AP-ITEM { "category": "weapon", "typename": "BFG9000", "tag": "BFG 9000", "skill": [1], "pos": ["E2M8",0,32,16] }
 AP-MAP { "map": "E2M9", "levelname": "Slain", "checksum": "efa1743fc41180ced701d505b73981fd", "rank": 5, "monster_count": 44, "info": { "levelnum": 19, "title": "HUSTR_E2M9", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "$MUSIC_E2M9", "music_track": "0", "cluster": 0, "flags": [] } }
@@ -1329,22 +1329,22 @@ AP-ITEM { "category": "key", "typename": "RedSkull", "tag": "Red Skull", "pos": 
 AP-KEY { "typename": "RedSkull", "tag": "Red Skull", "scopename": "E2M9", "cluster": 0, "maps": ["E2M9"] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E2M9",1152,1088,48] }
 AP-ITEM { "category": "small-defence", "typename": "BlurSphere", "tag": "BlurSphere", "pos": ["E2M9",736,-992,-112] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E2M9",-1024,-72,8] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shotgun Shells", "pos": ["E2M9",-1024,8,8] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E2M9",-1024,-72,8] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "pos": ["E2M9",-1024,8,8] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E2M9",-832,8,8] }
 AP-ITEM { "category": "medium-tool", "typename": "RadSuit", "tag": "RadSuit", "pos": ["E2M9",-752,-160,-128] }
-AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Energy Cells", "pos": ["E2M9",32,-96,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Cell Pack", "pos": ["E2M9",32,-96,0] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E2M9",1248,1088,48] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shotgun Shells", "pos": ["E2M9",1624,-32,96] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "pos": ["E2M9",1624,-32,96] }
 AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "pos": ["E2M9",1744,112,96] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E2M9",1568,-88,96] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E2M9",1568,24,96] }
 AP-ITEM { "category": "weapon", "typename": "PlasmaRifle", "tag": "Plasma Rifle", "pos": ["E2M9",1512,-32,96] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E2M9",-96,-96,0] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E2M9",32,32,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Energy Cells", "pos": ["E2M9",-96,32,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Energy Cells", "pos": ["E2M9",192,320,-128] }
-AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Energy Cells", "pos": ["E2M9",-256,-384,-128] }
+AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Cell Pack", "pos": ["E2M9",-96,32,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Cell Pack", "pos": ["E2M9",192,320,-128] }
+AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Cell Pack", "pos": ["E2M9",-256,-384,-128] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E2M9",480,416,0] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E2M9",-544,-480,0] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E2M9",96,-736,0] }
@@ -1370,19 +1370,19 @@ AP-ITEM { "category": "key", "typename": "RedSkull", "tag": "Red Skull", "pos": 
 AP-KEY { "typename": "RedSkull", "tag": "Red Skull", "scopename": "E3M1", "cluster": 0, "maps": ["E3M1"] }
 AP-ITEM { "category": "medium-health-attack", "typename": "Berserk", "tag": "Berserk", "secret": true, "pos": ["E3M1",-488,152,16] }
 AP-ITEM { "category": "weapon", "typename": "Shotgun", "tag": "Shotgun", "pos": ["E3M1",32,-224,-48] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shotgun Shells", "pos": ["E3M1",0,736,-8] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "pos": ["E3M1",0,736,-8] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E3M1",480,-368,-32] }
 AP-ITEM { "category": "medium-armor", "typename": "GreenArmor", "tag": "GreenArmor", "pos": ["E3M1",560,64,-32] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E3M1",-512,64,-32] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E3M1",-512,-448,-32] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E3M1",-512,-448,-32] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E3M1",480,160,-32] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E3M1",-288,1504,64] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E3M1",192,1824,128] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E3M1",672,1184,0] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E3M1",352,2048,56] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E3M1",-400,2032,-16] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E3M1",-848,1776,-16] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shotgun Shells", "pos": ["E3M1",-944,1744,-16] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E3M1",-848,1776,-16] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "pos": ["E3M1",-944,1744,-16] }
 AP-ITEM { "category": "weapon", "typename": "Chainsaw", "tag": "Chainsaw", "secret": true, "pos": ["E3M1",-1072,1396,-16] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E3M1",-64,1472,-8] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E3M1",64,1344,-8] }
@@ -1395,7 +1395,7 @@ AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells"
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E3M1",352,1952,56] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E3M1",352,2144,56] }
 AP-ITEM { "category": "weapon", "typename": "Chaingun", "tag": "Chaingun", "pos": ["E3M1",1120,1248,-16] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E3M1",528,-400,-32] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E3M1",528,-400,-32] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["E3M1",-384,480,96] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["E3M1",-384,544,96] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["E3M1",-384,608,88] }
@@ -1446,16 +1446,16 @@ AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack",
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E3M2",96,144,32] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E3M2",160,256,32] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E3M2",224,256,32] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shotgun Shells", "pos": ["E3M2",192,256,32] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shotgun Shells", "pos": ["E3M2",-1376,-160,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E3M2",-1120,-352,-8] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "pos": ["E3M2",192,256,32] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "pos": ["E3M2",-1376,-160,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E3M2",-1120,-352,-8] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E3M2",1280,1344,-64] }
 AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos": ["E3M2",-1088,960,56] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E3M2",-128,1040,56] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E3M2",232,664,-48] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E3M2",-128,1040,56] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E3M2",232,664,-48] }
 AP-ITEM { "category": "medium-armor", "typename": "GreenArmor", "tag": "GreenArmor", "pos": ["E3M2",-1184,-704,-24] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shotgun Shells", "pos": ["E3M2",152,664,-48] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E3M2",96,352,-48] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "pos": ["E3M2",152,664,-48] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E3M2",96,352,-48] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E3M2",-752,976,56] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E3M2",-384,1008,56] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E3M2",96,-864,0] }
@@ -1467,12 +1467,12 @@ AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells"
 AP-ITEM { "category": "weapon", "typename": "Chaingun", "tag": "Chaingun", "pos": ["E3M2",720,432,-56] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E3M2",736,1248,-64] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E3M2",672,1152,-64] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E3M2",1184,1408,-64] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E3M2",1184,1408,-64] }
 AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos": ["E3M2",-1024,960,56] }
 AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos": ["E3M2",-1120,896,56] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E3M2",480,-864,0] }
 AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos": ["E3M2",720,-800,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "secret": true, "pos": ["E3M2",24,352,128] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "secret": true, "pos": ["E3M2",24,352,128] }
 AP-ITEM { "category": "weapon", "typename": "RocketLauncher", "tag": "Rocket Launcher", "secret": true, "pos": ["E3M2",-1240,352,128] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E3M2",800,-288,-48] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E3M2",1696,96,64] }
@@ -1539,11 +1539,11 @@ AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", 
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E3M3",-944,848,-48] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E3M3",-944,784,-48] }
 AP-ITEM { "category": "weapon", "typename": "Chaingun", "tag": "Chaingun", "pos": ["E3M3",-320,0,-48] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E3M3",-480,352,-104] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E3M3",-480,352,-104] }
 AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos": ["E3M3",-280,40,-48] }
 AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos": ["E3M3",-360,-40,-48] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E3M3",-1024,992,-48] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E3M3",-1824,608,-48] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E3M3",-1024,992,-48] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E3M3",-1824,608,-48] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E3M3",-1568,1088,-48] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E3M3",-992,288,-48] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E3M3",48,752,0] }
@@ -1554,7 +1554,7 @@ AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack",
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E3M3",-1952,-160,-48] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E3M3",-1952,352,-48] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E3M3",-1536,608,-48] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E3M3",1280,-832,-72] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E3M3",1280,-832,-72] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E3M3",-32,-512,-8] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E3M3",96,-512,-8] }
 AP-ITEM { "category": "weapon", "typename": "RocketLauncher", "tag": "Rocket Launcher", "pos": ["E3M3",-880,784,-48] }
@@ -1604,7 +1604,7 @@ AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonu
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["E3M3",-2152,232,-48] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["E3M3",-2112,232,-48] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["E3M3",-2152,272,-48] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shotgun Shells", "skill": [2, 3], "pos": ["E3M3",-320,-416,-64] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "skill": [2, 3], "pos": ["E3M3",-320,-416,-64] }
 AP-SECRET { "pos": ["E3M3","secret","sector",40] }
 AP-SECRET { "pos": ["E3M3","secret","sector",119] }
 AP-MAP { "map": "E3M4", "levelname": "Vestibule", "checksum": "25f0b1187b35b733d20743a64a00844d", "rank": 3, "monster_count": 72, "info": { "levelnum": 24, "title": "HUSTR_E3M4", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "$MUSIC_E3M4", "music_track": "0", "cluster": 0, "flags": [] } }
@@ -1612,32 +1612,32 @@ AP-ITEM { "category": "key", "typename": "YellowSkull", "tag": "Yellow Skull", "
 AP-KEY { "typename": "YellowSkull", "tag": "Yellow Skull", "scopename": "E3M4", "cluster": 0, "maps": ["E3M4"] }
 AP-ITEM { "category": "weapon", "typename": "Chainsaw", "tag": "Chainsaw", "pos": ["E3M4",64,-1280,-8] }
 AP-ITEM { "category": "big-armor", "typename": "BlueArmor", "tag": "BlueArmor", "secret": true, "pos": ["E3M4",784,-368,64] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E3M4",64,-1152,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E3M4",64,-1152,0] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E3M4",200,-32,64] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E3M4",328,-32,64] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E3M4",328,-32,64] }
 AP-ITEM { "category": "weapon", "typename": "RocketLauncher", "tag": "Rocket Launcher", "pos": ["E3M4",-32,-32,72] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E3M4",32,-32,72] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E3M4",32,-32,72] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E3M4",-96,-576,-64] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E3M4",480,224,64] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E3M4",1632,-1024,-48] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E3M4",1600,256,40] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E3M4",736,-864,0] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E3M4",1120,-864,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E3M4",1536,-256,-72] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E3M4",1088,32,-72] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E3M4",1152,-544,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E3M4",1536,-256,-72] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E3M4",1088,32,-72] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E3M4",1152,-544,0] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E3M4",512,-960,0] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E3M4",640,-960,0] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E3M4",928,-768,0] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E3M4",864,-864,0] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E3M4",992,-864,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "secret": true, "pos": ["E3M4",832,-384,64] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E3M4",288,-960,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "secret": true, "pos": ["E3M4",832,-384,64] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E3M4",288,-960,0] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E3M4",512,-544,0] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E3M4",784,-640,0] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E3M4",784,-544,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shotgun Shells", "pos": ["E3M4",-320,-1152,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E3M4",-704,-896,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "pos": ["E3M4",-320,-1152,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E3M4",-704,-896,0] }
 AP-ITEM { "category": "medium-armor", "typename": "GreenArmor", "tag": "GreenArmor", "pos": ["E3M4",-688,-1216,0] }
 AP-ITEM { "category": "medium-tool", "typename": "RadSuit", "tag": "RadSuit", "skill": [1], "pos": ["E3M4",328,-96,64] }
 AP-ITEM { "category": "weapon", "typename": "PlasmaRifle", "tag": "Plasma Rifle", "secret": true, "pos": ["E3M4",48,-256,40] }
@@ -1683,8 +1683,8 @@ AP-ITEM { "category": "weapon", "typename": "BFG9000", "tag": "BFG 9000", "pos":
 AP-ITEM { "category": "weapon", "typename": "PlasmaRifle", "tag": "Plasma Rifle", "pos": ["E3M5",-496,1488,64] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E3M5",1216,1152,64] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E3M5",1408,1152,64] }
-AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Energy Cells", "pos": ["E3M5",-128,640,64] }
-AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Energy Cells", "pos": ["E3M5",128,640,64] }
+AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Cell Pack", "pos": ["E3M5",-128,640,64] }
+AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Cell Pack", "pos": ["E3M5",128,640,64] }
 AP-ITEM { "category": "big-armor", "typename": "BlueArmor", "tag": "BlueArmor", "pos": ["E3M5",0,416,64] }
 AP-ITEM { "category": "weapon", "typename": "Chaingun", "tag": "Chaingun", "pos": ["E3M5",-128,-1088,0] }
 AP-ITEM { "category": "weapon", "typename": "RocketLauncher", "tag": "Rocket Launcher", "pos": ["E3M5",768,-288,64] }
@@ -1694,16 +1694,16 @@ AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", 
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E3M5",736,-320,64] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E3M5",800,-224,64] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E3M5",352,672,48] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E3M5",544,960,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E3M5",544,896,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E3M5",544,960,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E3M5",544,896,0] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E3M5",-640,800,48] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E3M5",-560,800,48] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E3M5",-480,800,48] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E3M5",-96,864,64] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E3M5",96,864,64] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E3M5",1024,0,64] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E3M5",-64,-1088,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E3M5",-608,-992,-16] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E3M5",-64,-1088,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E3M5",-608,-992,-16] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E3M5",-608,-928,-16] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E3M5",352,-1184,-16] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E3M5",-608,-672,64] }
@@ -1713,15 +1713,15 @@ AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", 
 AP-ITEM { "category": "medium-armor", "typename": "GreenArmor", "tag": "GreenArmor", "pos": ["E3M5",128,-544,0] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E3M5",896,128,64] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E3M5",-288,-1184,-16] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shotgun Shells", "pos": ["E3M5",-576,1344,64] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E3M5",1056,1184,64] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E3M5",1056,672,64] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E3M5",-384,1024,64] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E3M5",-736,1024,64] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E3M5",-1024,864,64] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "pos": ["E3M5",-576,1344,64] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E3M5",1056,1184,64] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E3M5",1056,672,64] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E3M5",-384,1024,64] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E3M5",-736,1024,64] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E3M5",-1024,864,64] }
 AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "pos": ["E3M5",-1024,928,64] }
 AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "pos": ["E3M5",-1024,800,64] }
-AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Energy Cells", "pos": ["E3M5",1312,1184,64] }
+AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Cell Pack", "pos": ["E3M5",1312,1184,64] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E3M5",1248,1184,64] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E3M5",1376,1184,64] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E3M5",672,1056,0] }
@@ -1742,7 +1742,7 @@ AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells"
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E3M5",-168,1016,-8] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E3M5",1216,352,56] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E3M5",1472,352,56] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shotgun Shells", "pos": ["E3M5",1344,280,56] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "pos": ["E3M5",1344,280,56] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["E3M5",32,-480,-64] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["E3M5",64,-480,-64] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["E3M5",96,-480,-64] }
@@ -1788,7 +1788,7 @@ AP-ITEM { "category": "medium-health-attack", "typename": "Berserk", "tag": "Ber
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E3M6",192,192,-16] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E3M6",-1440,1584,32] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E3M6",-1376,1664,32] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E3M6",-1264,1632,32] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E3M6",-1264,1632,32] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E3M6",-1760,864,-24] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E3M6",224,-288,-64] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E3M6",224,-864,-64] }
@@ -1796,9 +1796,9 @@ AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", 
 AP-ITEM { "category": "medium-armor", "typename": "GreenArmor", "tag": "GreenArmor", "pos": ["E3M6",544,-288,-64] }
 AP-ITEM { "category": "medium-armor", "typename": "GreenArmor", "tag": "GreenArmor", "pos": ["E3M6",-384,-96,64] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E3M6",-544,-352,64] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shotgun Shells", "pos": ["E3M6",-480,-96,64] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E3M6",-336,-96,64] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E3M6",-288,-96,64] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "pos": ["E3M6",-480,-96,64] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E3M6",-336,-96,64] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E3M6",-288,-96,64] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E3M6",-880,-1152,0] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E3M6",-816,-1232,0] }
 AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "secret": true, "pos": ["E3M6",-848,-1024,56] }
@@ -1814,14 +1814,14 @@ AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", 
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E3M6",-16,464,0] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E3M6",16,400,0] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E3M6",-1664,576,64] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E3M6",-1664,720,64] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E3M6",-1664,720,64] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E3M6",160,1376,-16] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E3M6",160,1136,-16] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E3M6",-96,-224,-56] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E3M6",32,-224,-56] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E3M6",416,-352,-64] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E3M6",416,-800,-64] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E3M6",768,-384,-64] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E3M6",416,-352,-64] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E3M6",416,-800,-64] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E3M6",768,-384,-64] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E3M6",640,-544,-64] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E3M6",640,-352,-64] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E3M6",896,-352,-64] }
@@ -1832,7 +1832,7 @@ AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack",
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E3M6",-544,-1120,64] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E3M6",-1056,-1376,0] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E3M6",-1248,-1120,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shotgun Shells", "pos": ["E3M6",-944,624,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "pos": ["E3M6",-944,624,0] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E3M6",0,624,-120] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E3M6",1072,1024,-120] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E3M6",1152,1024,-120] }
@@ -1874,27 +1874,27 @@ AP-ITEM { "category": "key", "typename": "RedSkull", "tag": "Red Skull", "pos": 
 AP-KEY { "typename": "RedSkull", "tag": "Red Skull", "scopename": "E3M7", "cluster": 0, "maps": ["E3M7"] }
 AP-ITEM { "category": "key", "typename": "YellowSkull", "tag": "Yellow Skull", "pos": ["E3M7",256,352,104] }
 AP-KEY { "typename": "YellowSkull", "tag": "Yellow Skull", "scopename": "E3M7", "cluster": 0, "maps": ["E3M7"] }
-AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Energy Cells", "pos": ["E3M7",-160,736,128] }
-AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Energy Cells", "pos": ["E3M7",160,736,128] }
+AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Cell Pack", "pos": ["E3M7",-160,736,128] }
+AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Cell Pack", "pos": ["E3M7",160,736,128] }
 AP-ITEM { "category": "weapon", "typename": "Chaingun", "tag": "Chaingun", "pos": ["E3M7",0,0,0] }
 AP-ITEM { "category": "weapon", "typename": "Shotgun", "tag": "Shotgun", "pos": ["E3M7",0,-1568,8] }
 AP-ITEM { "category": "weapon", "typename": "RocketLauncher", "tag": "Rocket Launcher", "pos": ["E3M7",-832,336,8] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["E3M7",1408,-96,-72] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["E3M7",1184,-544,-72] }
 AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos": ["E3M7",-160,-32,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E3M7",0,-224,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E3M7",0,-224,0] }
 AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos": ["E3M7",160,224,0] }
 AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos": ["E3M7",0,352,0] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E3M7",-160,224,0] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E3M7",160,-32,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E3M7",-576,-128,72] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E3M7",-576,-128,72] }
 AP-ITEM { "category": "weapon", "typename": "PlasmaRifle", "tag": "Plasma Rifle", "pos": ["E3M7",0,736,96] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E3M7",-640,32,-24] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E3M7",-640,32,-24] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E3M7",-1120,736,-32] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E3M7",-864,1248,48] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E3M7",-416,864,128] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E3M7",-1088,-32,-48] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E3M7",-832,-32,-48] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E3M7",-1088,-32,-48] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E3M7",-832,-32,-48] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E3M7",1360,448,-88] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E3M7",-1248,288,0] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E3M7",-592,864,0] }
@@ -1911,13 +1911,13 @@ AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "
 AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "pos": ["E3M7",1600,96,-24] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E3M7",1648,192,-24] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E3M7",1184,224,-8] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shotgun Shells", "pos": ["E3M7",-192,-1504,16] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E3M7",192,-1504,16] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E3M7",224,-896,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E3M7",736,-480,-72] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shotgun Shells", "pos": ["E3M7",1088,-864,-72] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E3M7",1504,-352,-72] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E3M7",1312,-544,-72] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "pos": ["E3M7",-192,-1504,16] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E3M7",192,-1504,16] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E3M7",224,-896,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E3M7",736,-480,-72] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "pos": ["E3M7",1088,-864,-72] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E3M7",1504,-352,-72] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E3M7",1312,-544,-72] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E3M7",-736,1248,-48] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E3M7",-848,288,8] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E3M7",-1376,96,80] }
@@ -1930,8 +1930,8 @@ AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", 
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E3M7",-640,208,-8] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E3M7",-1472,640,80] }
 AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos": ["E3M7",-1216,-896,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E3M7",-160,544,128] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E3M7",160,544,128] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E3M7",-160,544,128] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E3M7",160,544,128] }
 AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "pos": ["E3M7",1064,992,-8] }
 AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "pos": ["E3M7",1064,864,-8] }
 AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "pos": ["E3M7",1104,64,-8] }
@@ -1942,19 +1942,19 @@ AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "
 AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "pos": ["E3M7",96,928,96] }
 AP-ITEM { "category": "medium-armor", "typename": "GreenArmor", "tag": "GreenArmor", "pos": ["E3M7",416,-256,0] }
 AP-ITEM { "category": "big-armor", "typename": "BlueArmor", "tag": "BlueArmor", "pos": ["E3M7",-1632,-1152,-56] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E3M7",-1632,-1088,-56] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E3M7",1472,544,-80] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E3M7",-1632,-1088,-56] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E3M7",1472,544,-80] }
 AP-ITEM { "category": "big-health", "typename": "Soulsphere", "tag": "Soulsphere", "pos": ["E3M7",1472,624,-80] }
 AP-ITEM { "category": "medium-health-attack", "typename": "Berserk", "tag": "Berserk", "pos": ["E3M7",480,-1296,-32] }
 AP-ITEM { "category": "big-ammo", "typename": "Backpack", "tag": "Backpack", "pos": ["E3M7",0,608,0] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E3M7",0,992,96] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E3M7",592,1520,128] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E3M7",592,1520,128] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["E3M7",-784,-528,0] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["E3M7",-832,-624,0] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["E3M7",736,-256,-72] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["E3M7",1312,-352,-72] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["E3M7",960,-352,-72] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E3M7",576,-128,72] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E3M7",576,-128,72] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["E3M7",-784,-576,0] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["E3M7",-832,-528,0] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E3M7",-1120,-992,0] }
@@ -1998,32 +1998,32 @@ AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells"
 AP-SECRET { "pos": ["E3M7","secret","sector",119] }
 AP-SECRET { "pos": ["E3M7","secret","sector",121] }
 AP-MAP { "map": "E3M8", "levelname": "Ire", "checksum": "3f4fe26482423c20319497ff0faad57c", "rank": 7, "monster_count": 21, "info": { "levelnum": 28, "title": "HUSTR_E3M8", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "$MUSIC_E3M8", "music_track": "0", "cluster": 0, "flags": ["spidermastermindspecial"] } }
-AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Energy Cells", "pos": ["E3M8",-672,96,-8] }
-AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Energy Cells", "pos": ["E3M8",-1280,-896,80] }
-AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Energy Cells", "pos": ["E3M8",832,-1088,-32] }
+AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Cell Pack", "pos": ["E3M8",-672,96,-8] }
+AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Cell Pack", "pos": ["E3M8",-1280,-896,80] }
+AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Cell Pack", "pos": ["E3M8",832,-1088,-32] }
 AP-ITEM { "category": "big-health", "typename": "Soulsphere", "tag": "Soulsphere", "pos": ["E3M8",-832,-896,80] }
 AP-ITEM { "category": "big-armor", "typename": "BlueArmor", "tag": "BlueArmor", "pos": ["E3M8",832,-1184,-16] }
 AP-ITEM { "category": "big-health", "typename": "Soulsphere", "tag": "Soulsphere", "pos": ["E3M8",0,384,-16] }
-AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Energy Cells", "pos": ["E3M8",672,96,-8] }
+AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Cell Pack", "pos": ["E3M8",672,96,-8] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E3M8",-64,576,-8] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E3M8",64,576,-8] }
 AP-ITEM { "category": "weapon", "typename": "PlasmaRifle", "tag": "Plasma Rifle", "pos": ["E3M8",0,-896,8] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E3M8",-64,-512,-16] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E3M8",64,-512,-16] }
-AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Energy Cells", "secret": true, "pos": ["E3M8",-32,768,-8] }
-AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Energy Cells", "secret": true, "pos": ["E3M8",-32,704,-8] }
-AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Energy Cells", "secret": true, "pos": ["E3M8",32,704,-8] }
-AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Energy Cells", "secret": true, "pos": ["E3M8",32,768,-8] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E3M8",-1728,-832,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E3M8",-1792,-832,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E3M8",-1792,-896,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E3M8",-1792,-960,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E3M8",-1728,-960,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E3M8",-1728,-896,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shotgun Shells", "pos": ["E3M8",-384,-736,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shotgun Shells", "pos": ["E3M8",-384,-800,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E3M8",-384,-992,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E3M8",-384,-1056,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Cell Pack", "secret": true, "pos": ["E3M8",-32,768,-8] }
+AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Cell Pack", "secret": true, "pos": ["E3M8",-32,704,-8] }
+AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Cell Pack", "secret": true, "pos": ["E3M8",32,704,-8] }
+AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Cell Pack", "secret": true, "pos": ["E3M8",32,768,-8] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E3M8",-1728,-832,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E3M8",-1792,-832,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E3M8",-1792,-896,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E3M8",-1792,-960,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E3M8",-1728,-960,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E3M8",-1728,-896,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "pos": ["E3M8",-384,-736,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "pos": ["E3M8",-384,-800,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E3M8",-384,-992,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E3M8",-384,-1056,0] }
 AP-ITEM { "category": "weapon", "typename": "BFG9000", "tag": "BFG 9000", "skill": [1], "pos": ["E3M8",0,464,-16] }
 AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "pos": ["E3M8",-32,-592,0] }
 AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "pos": ["E3M8",32,-592,0] }
@@ -2040,27 +2040,27 @@ AP-ITEM { "category": "key", "typename": "RedSkull", "tag": "Red Skull", "pos": 
 AP-KEY { "typename": "RedSkull", "tag": "Red Skull", "scopename": "E3M9", "cluster": 0, "maps": ["E3M9"] }
 AP-ITEM { "category": "key", "typename": "BlueSkull", "tag": "Blue Skull", "pos": ["E3M9",-640,-288,32] }
 AP-KEY { "typename": "BlueSkull", "tag": "Blue Skull", "scopename": "E3M9", "cluster": 0, "maps": ["E3M9"] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shotgun Shells", "secret": true, "pos": ["E3M9",-1280,-1376,-16] }
-AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Energy Cells", "secret": true, "pos": ["E3M9",-1184,-1376,-16] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "secret": true, "pos": ["E3M9",-1088,-1376,-16] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "secret": true, "pos": ["E3M9",-1280,-1376,-16] }
+AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Cell Pack", "secret": true, "pos": ["E3M9",-1184,-1376,-16] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "secret": true, "pos": ["E3M9",-1088,-1376,-16] }
 AP-ITEM { "category": "weapon", "typename": "Shotgun", "tag": "Shotgun", "pos": ["E3M9",-1184,768,0] }
 AP-ITEM { "category": "big-armor", "typename": "BlueArmor", "tag": "BlueArmor", "pos": ["E3M9",416,-32,-64] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E3M9",416,128,-64] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E3M9",-1184,240,-64] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shotgun Shells", "pos": ["E3M9",-1408,672,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "pos": ["E3M9",-1408,672,0] }
 AP-ITEM { "category": "medium-armor", "typename": "GreenArmor", "tag": "GreenArmor", "pos": ["E3M9",-1440,800,-64] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E3M9",-1376,800,-64] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E3M9",-992,800,-64] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E3M9",-928,800,-64] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E3M9",-352,1088,-64] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E3M9",-352,1088,-64] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E3M9",32,1088,-64] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E3M9",160,672,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E3M9",288,672,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shotgun Shells", "pos": ["E3M9",480,928,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E3M9",288,672,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "pos": ["E3M9",480,928,0] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E3M9",1088,-960,-48] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E3M9",1088,-864,-48] }
 AP-ITEM { "category": "weapon", "typename": "RocketLauncher", "tag": "Rocket Launcher", "pos": ["E3M9",992,-544,-56] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shotgun Shells", "pos": ["E3M9",-96,-448,-48] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "pos": ["E3M9",-96,-448,-48] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E3M9",-128,-176,-64] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E3M9",-32,-176,-64] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E3M9",64,-176,-64] }
@@ -2071,10 +2071,10 @@ AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack",
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E3M9",-512,16,0] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E3M9",-848,304,-64] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E3M9",-1568,144,32] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E3M9",-1504,144,32] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E3M9",416,80,-64] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E3M9",-1504,144,32] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E3M9",416,80,-64] }
 AP-ITEM { "category": "medium-tool", "typename": "RadSuit", "tag": "RadSuit", "pos": ["E3M9",1504,-352,-40] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E3M9",-1184,-192,32] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E3M9",-1184,-192,32] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E3M9",-912,128,0] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E3M9",608,-448,-48] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E3M9",752,-80,-64] }
@@ -2083,23 +2083,23 @@ AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "
 AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "pos": ["E3M9",-528,704,-64] }
 AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "pos": ["E3M9",1440,224,16] }
 AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "pos": ["E3M9",1440,-32,16] }
-AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Energy Cells", "pos": ["E3M9",1088,-912,-48] }
+AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Cell Pack", "pos": ["E3M9",1088,-912,-48] }
 AP-ITEM { "category": "weapon", "typename": "Chaingun", "tag": "Chaingun", "pos": ["E3M9",-1568,544,0] }
 AP-ITEM { "category": "big-ammo", "typename": "Backpack", "tag": "Backpack", "pos": ["E3M9",352,-32,-64] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shotgun Shells", "pos": ["E3M9",-352,464,-64] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "pos": ["E3M9",-352,464,-64] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E3M9",32,992,-64] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E3M9",-432,736,-64] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E3M9",0,896,-64] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E3M9",-1568,80,32] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E3M9",-864,160,0] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E3M9",-800,-288,32] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E3M9",608,-576,-48] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E3M9",368,848,-8] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E3M9",1008,848,-8] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E3M9",608,-576,-48] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E3M9",368,848,-8] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E3M9",1008,848,-8] }
 AP-ITEM { "category": "weapon", "typename": "PlasmaRifle", "tag": "Plasma Rifle", "pos": ["E3M9",-640,-192,32] }
-AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Energy Cells", "skill": [3], "pos": ["E3M9",848,448,-8] }
-AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Energy Cells", "skill": [3], "pos": ["E3M9",224,672,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Energy Cells", "skill": [3], "pos": ["E3M9",1120,608,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Cell Pack", "skill": [3], "pos": ["E3M9",848,448,-8] }
+AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Cell Pack", "skill": [3], "pos": ["E3M9",224,672,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Cell Pack", "skill": [3], "pos": ["E3M9",1120,608,0] }
 AP-SECRET { "pos": ["E3M9","secret","sector",18] }
 AP-SECRET { "pos": ["E3M9","secret","sector",28] }
 AP-SECRET { "pos": ["E3M9","secret","sector",124] }
@@ -2121,7 +2121,7 @@ AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthB
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["E4M1",-192,0,-8] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["E4M1",-288,32,-8] }
 AP-ITEM { "category": "small-defence", "typename": "BlurSphere", "tag": "BlurSphere", "secret": true, "pos": ["E4M1",1056,64,-104] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "skill": [3], "pos": ["E4M1",272,80,-104] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [3], "pos": ["E4M1",272,80,-104] }
 AP-SECRET { "pos": ["E4M1","secret","sector",35] }
 AP-SECRET { "pos": ["E4M1","secret","sector",69] }
 AP-SECRET { "pos": ["E4M1","secret","sector",85] }
@@ -2158,7 +2158,7 @@ AP-ITEM { "category": "medium-tool", "typename": "RadSuit", "tag": "RadSuit", "p
 AP-ITEM { "category": "weapon", "typename": "Shotgun", "tag": "Shotgun", "pos": ["E4M3",0,16,8] }
 AP-ITEM { "category": "medium-tool", "typename": "RadSuit", "tag": "RadSuit", "pos": ["E4M3",608,-1184,16] }
 AP-ITEM { "category": "weapon", "typename": "Chaingun", "tag": "Chaingun", "pos": ["E4M3",352,0,80] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E4M3",-32,-640,112] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E4M3",-32,-640,112] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E4M3",608,-224,80] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E4M3",672,480,16] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E4M3",672,736,16] }
@@ -2209,7 +2209,7 @@ AP-ITEM { "category": "weapon", "typename": "Shotgun", "tag": "Shotgun", "pos": 
 AP-ITEM { "category": "key", "typename": "BlueSkull", "tag": "Blue Skull", "pos": ["E4M4",736,-352,152] }
 AP-KEY { "typename": "BlueSkull", "tag": "Blue Skull", "scopename": "E4M4", "cluster": 0, "maps": ["E4M4"] }
 AP-ITEM { "category": "weapon", "typename": "RocketLauncher", "tag": "Rocket Launcher", "pos": ["E4M4",96,288,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E4M4",128,1280,16] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E4M4",128,1280,16] }
 AP-ITEM { "category": "weapon", "typename": "Chaingun", "tag": "Chaingun", "pos": ["E4M4",-1120,-992,-8] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E4M4",-224,-96,-64] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E4M4",-480,928,-64] }
@@ -2225,8 +2225,8 @@ AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack",
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E4M4",352,-160,24] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E4M4",768,240,32] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E4M4",416,608,16] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shotgun Shells", "pos": ["E4M4",0,64,-64] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E4M4",32,800,-64] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "pos": ["E4M4",0,64,-64] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E4M4",32,800,-64] }
 AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos": ["E4M4",32,736,-64] }
 AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos": ["E4M4",32,672,-64] }
 AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos": ["E4M4",-288,928,16] }
@@ -2234,9 +2234,9 @@ AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos":
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E4M4",-192,928,16] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E4M4",-448,288,-64] }
 AP-ITEM { "category": "big-armor", "typename": "BlueArmor", "tag": "BlueArmor", "skill": [1], "pos": ["E4M4",-288,608,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E4M4",672,-416,24] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E4M4",800,-288,24] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E4M4",-1024,-992,-16] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E4M4",672,-416,24] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E4M4",800,-288,24] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E4M4",-1024,-992,-16] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E4M4",-800,-672,-16] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E4M4",-800,-800,-16] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E4M4",-800,-1184,-16] }
@@ -2253,16 +2253,16 @@ AP-ITEM { "category": "key", "typename": "YellowSkull", "tag": "Yellow Skull", "
 AP-KEY { "typename": "YellowSkull", "tag": "Yellow Skull", "scopename": "E4M5", "cluster": 0, "maps": ["E4M5"] }
 AP-ITEM { "category": "weapon", "typename": "BFG9000", "tag": "BFG 9000", "secret": true, "pos": ["E4M5",-992,1184,104] }
 AP-ITEM { "category": "big-health", "typename": "Soulsphere", "tag": "Soulsphere", "pos": ["E4M5",-1632,1376,80] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E4M5",-1408,1312,88] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shotgun Shells", "pos": ["E4M5",-896,1536,64] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E4M5",-1408,1312,88] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "pos": ["E4M5",-896,1536,64] }
 AP-ITEM { "category": "weapon", "typename": "RocketLauncher", "tag": "Rocket Launcher", "pos": ["E4M5",512,-544,168] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E4M5",512,-480,168] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E4M5",512,-608,168] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E4M5",512,-480,168] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E4M5",512,-608,168] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E4M5",-352,-1376,104] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E4M5",-464,-1184,104] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E4M5",-240,-1184,104] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E4M5",-352,-1120,104] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E4M5",480,416,168] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E4M5",480,416,168] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E4M5",-32,672,88] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E4M5",800,736,-8] }
 AP-ITEM { "category": "medium-armor", "typename": "GreenArmor", "tag": "GreenArmor", "pos": ["E4M5",-1440,672,-16] }
@@ -2272,18 +2272,18 @@ AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack",
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E4M5",-736,-928,88] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E4M5",608,1248,168] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E4M5",-224,1248,168] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E4M5",-1088,1536,64] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shotgun Shells", "pos": ["E4M5",-1344,-448,8] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E4M5",-1088,1536,64] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "pos": ["E4M5",-1344,-448,8] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E4M5",-1344,-832,56] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E4M5",-1344,-960,56] }
 AP-ITEM { "category": "weapon", "typename": "Chaingun", "tag": "Chaingun", "pos": ["E4M5",-1440,-896,64] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E4M5",-1248,-896,64] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shotgun Shells", "pos": ["E4M5",352,608,72] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E4M5",-288,-544,-24] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E4M5",-1248,-896,64] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "pos": ["E4M5",352,608,72] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E4M5",-288,-544,-24] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E4M5",-416,-544,-24] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shotgun Shells", "pos": ["E4M5",96,-544,-24] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "pos": ["E4M5",96,-544,-24] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E4M5",224,-544,-24] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E4M5",160,-1184,-8] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E4M5",160,-1184,-8] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E4M5",288,-1248,-8] }
 AP-ITEM { "category": "medium-armor", "typename": "GreenArmor", "tag": "GreenArmor", "skill": [1, 2], "pos": ["E4M5",-224,1120,168] }
 AP-ITEM { "category": "big-armor", "typename": "BlueArmor", "tag": "BlueArmor", "skill": [1, 2], "pos": ["E4M5",736,-736,232] }
@@ -2294,9 +2294,9 @@ AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells"
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E4M5",640,-480,152] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E4M5",640,-608,152] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E4M5",800,-736,232] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E4M5",-480,128,80] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E4M5",-320,736,104] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E4M5",608,416,168] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E4M5",-480,128,80] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E4M5",-320,736,104] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E4M5",608,416,168] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E4M5",-320,416,64] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E4M5",-256,384,64] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E4M5",-488,992,-24] }
@@ -2320,7 +2320,7 @@ AP-SECRET { "pos": ["E4M5","secret","sector",106] }
 AP-MAP { "map": "E4M6", "levelname": "Vertigo", "checksum": "a36ab4fba81f3f3c7d72058f7c7de0b6", "rank": 5, "monster_count": 61, "info": { "levelnum": 36, "title": "HUSTR_E4M6", "is_lookup": true, "sky1": "SKY4", "sky1speed": "0.000000", "sky2": "SKY4", "sky2speed": "0.000000", "music": "$MUSIC_E2M4", "music_track": "0", "cluster": 0, "flags": ["specialaction_opendoor", "cyberdemonspecial"] } }
 AP-ITEM { "category": "key", "typename": "BlueSkull", "tag": "Blue Skull", "pos": ["E4M6",-64,-144,304] }
 AP-KEY { "typename": "BlueSkull", "tag": "Blue Skull", "scopename": "E4M6", "cluster": 0, "maps": ["E4M6"] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E4M6",-688,-1248,208] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E4M6",-688,-1248,208] }
 AP-ITEM { "category": "medium-armor", "typename": "GreenArmor", "tag": "GreenArmor", "pos": ["E4M6",-544,-160,136] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E4M6",416,-160,136] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E4M6",-64,432,144] }
@@ -2330,17 +2330,17 @@ AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack",
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E4M6",-480,64,224] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E4M6",1776,-16,160] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E4M6",1776,-1072,160] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shotgun Shells", "pos": ["E4M6",736,-544,144] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shotgun Shells", "pos": ["E4M6",192,-352,128] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E4M6",-64,672,208] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "pos": ["E4M6",736,-544,144] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "pos": ["E4M6",192,-352,128] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E4M6",-64,672,208] }
 AP-ITEM { "category": "weapon", "typename": "Chaingun", "tag": "Chaingun", "pos": ["E4M6",-64,128,272] }
 AP-ITEM { "category": "weapon", "typename": "Shotgun", "tag": "Shotgun", "pos": ["E4M6",-112,-1136,-112] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E4M6",-32,-1136,-112] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E4M6",48,-1136,-112] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shotgun Shells", "pos": ["E4M6",1120,-448,160] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E4M6",1120,-640,160] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E4M6",416,-96,136] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E4M6",416,-224,136] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "pos": ["E4M6",1120,-448,160] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E4M6",1120,-640,160] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E4M6",416,-96,136] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E4M6",416,-224,136] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E4M6",112,-1024,64] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E4M6",-928,-1120,208] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E4M6",1312,-736,224] }
@@ -2349,14 +2349,14 @@ AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", 
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E4M6",-480,544,128] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E4M6",-400,592,136] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E4M6",-192,528,208] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E4M6",-64,528,208] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E4M6",-64,528,208] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E4M6",64,528,208] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E4M6",-1120,-224,224] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E4M6",-992,-672,224] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E4M6",928,-224,224] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E4M6",928,-352,224] }
 AP-ITEM { "category": "weapon", "typename": "RocketLauncher", "tag": "Rocket Launcher", "pos": ["E4M6",1312,-544,160] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E4M6",1632,-544,160] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E4M6",1632,-544,160] }
 AP-ITEM { "category": "medium-health-attack", "typename": "Berserk", "tag": "Berserk", "secret": true, "pos": ["E4M6",-32,-1568,32] }
 AP-ITEM { "category": "weapon", "typename": "PlasmaRifle", "tag": "Plasma Rifle", "pos": ["E4M6",1376,64,240] }
 AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "pos": ["E4M6",1056,-32,240] }
@@ -2364,7 +2364,7 @@ AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E4M6",1088,304,240] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E4M6",1216,304,240] }
 AP-ITEM { "category": "big-armor", "typename": "BlueArmor", "tag": "BlueArmor", "secret": true, "pos": ["E4M6",416,384,272] }
-AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Energy Cells", "secret": true, "pos": ["E4M6",480,384,272] }
+AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Cell Pack", "secret": true, "pos": ["E4M6",480,384,272] }
 AP-ITEM { "category": "weapon", "typename": "RocketLauncher", "tag": "Rocket Launcher", "pos": ["E4M6",-928,-576,352] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E4M6",-832,-416,352] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E4M6",-928,-1168,208] }
@@ -2385,10 +2385,10 @@ AP-ITEM { "category": "big-armor", "typename": "BlueArmor", "tag": "BlueArmor", 
 AP-ITEM { "category": "big-ammo", "typename": "Backpack", "tag": "Backpack", "secret": true, "pos": ["E4M7",-704,1888,16] }
 AP-ITEM { "category": "weapon", "typename": "Shotgun", "tag": "Shotgun", "pos": ["E4M7",1072,-1536,16] }
 AP-ITEM { "category": "weapon", "typename": "Chaingun", "tag": "Chaingun", "pos": ["E4M7",-112,-640,80] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E4M7",-304,-640,80] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E4M7",80,-640,80] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E4M7",-192,320,128] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E4M7",-192,-192,128] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E4M7",-304,-640,80] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E4M7",80,-640,80] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E4M7",-192,320,128] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E4M7",-192,-192,128] }
 AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "pos": ["E4M7",64,-192,128] }
 AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "pos": ["E4M7",64,320,128] }
 AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "pos": ["E4M7",1440,384,128] }
@@ -2403,8 +2403,8 @@ AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", 
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E4M7",-1152,992,16] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E4M7",320,1056,128] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E4M7",-448,1120,16] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E4M7",-768,992,16] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E4M7",-960,608,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E4M7",-768,992,16] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E4M7",-960,608,0] }
 AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "pos": ["E4M7",-1760,0,80] }
 AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "pos": ["E4M7",-1600,-160,80] }
 AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "pos": ["E4M7",-1456,0,80] }
@@ -2434,7 +2434,7 @@ AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "
 AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "pos": ["E4M7",1088,-1600,16] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E4M7",1152,-1568,16] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E4M7",1216,1120,128] }
-AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Energy Cells", "pos": ["E4M7",256,1120,128] }
+AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Cell Pack", "pos": ["E4M7",256,1120,128] }
 AP-ITEM { "category": "big-defence", "typename": "InvulnerabilitySphere", "tag": "InvulnerabilitySphere", "secret": true, "pos": ["E4M7",-1600,-224,8] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["E4M7",-320,144,128] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["E4M7",-288,224,128] }
@@ -2461,18 +2461,18 @@ AP-SECRET { "pos": ["E4M7","secret","sector",143] }
 AP-SECRET { "pos": ["E4M7","secret","sector",145] }
 AP-MAP { "map": "E4M8", "levelname": "Desecrators", "checksum": "9f03de5fda09bbb41676bde435929103", "rank": 7, "monster_count": 13, "info": { "levelnum": 38, "title": "HUSTR_E4M8", "is_lookup": true, "sky1": "SKY4", "sky1speed": "0.000000", "sky2": "SKY4", "sky2speed": "0.000000", "music": "D_E4M8", "music_track": "0", "cluster": 0, "flags": ["specialaction_lowerfloor", "spidermastermindspecial"] } }
 AP-ITEM { "category": "weapon", "typename": "PlasmaRifle", "tag": "Plasma Rifle", "pos": ["E4M8",0,-1888,24] }
-AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Energy Cells", "pos": ["E4M8",-48,-1904,24] }
-AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Energy Cells", "pos": ["E4M8",0,-544,144] }
-AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Energy Cells", "pos": ["E4M8",-192,-544,16] }
-AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Energy Cells", "pos": ["E4M8",192,-544,16] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E4M8",-736,-544,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E4M8",736,-544,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Cell Pack", "pos": ["E4M8",-48,-1904,24] }
+AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Cell Pack", "pos": ["E4M8",0,-544,144] }
+AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Cell Pack", "pos": ["E4M8",-192,-544,16] }
+AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Cell Pack", "pos": ["E4M8",192,-544,16] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E4M8",-736,-544,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E4M8",736,-544,0] }
 AP-ITEM { "category": "big-armor", "typename": "BlueArmor", "tag": "BlueArmor", "skill": [1, 2], "pos": ["E4M8",0,-1488,-128] }
 AP-ITEM { "category": "medium-armor", "typename": "GreenArmor", "tag": "GreenArmor", "pos": ["E4M8",48,-1904,24] }
 AP-ITEM { "category": "big-health", "typename": "Soulsphere", "tag": "Soulsphere", "skill": [1], "pos": ["E4M8",-64,-1216,32] }
 AP-ITEM { "category": "big-health", "typename": "Soulsphere", "tag": "Soulsphere", "skill": [1], "pos": ["E4M8",64,-1216,32] }
-AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Energy Cells", "skill": [1], "pos": ["E4M8",848,-512,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Energy Cells", "skill": [1], "pos": ["E4M8",-848,-512,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Cell Pack", "skill": [1], "pos": ["E4M8",848,-512,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Cell Pack", "skill": [1], "pos": ["E4M8",-848,-512,0] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "skill": [1], "pos": ["E4M8",-800,-608,0] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "skill": [1], "pos": ["E4M8",-800,-736,0] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "skill": [1], "pos": ["E4M8",-672,-736,0] }
@@ -2484,15 +2484,15 @@ AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", 
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "skill": [1], "pos": ["E4M8",-128,-1376,0] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "skill": [1], "pos": ["E4M8",128,-1376,0] }
 AP-ITEM { "category": "weapon", "typename": "RocketLauncher", "tag": "Rocket Launcher", "pos": ["E4M8",0,-1400,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Energy Cells", "pos": ["E4M8",-48,-320,16] }
-AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Energy Cells", "pos": ["E4M8",48,-320,16] }
+AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Cell Pack", "pos": ["E4M8",-48,-320,16] }
+AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Cell Pack", "pos": ["E4M8",48,-320,16] }
 AP-ITEM { "category": "big-health", "typename": "Soulsphere", "tag": "Soulsphere", "pos": ["E4M8",0,-768,144] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "skill": [1], "pos": ["E4M8",-128,-1696,0] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "skill": [1], "pos": ["E4M8",128,-1696,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E4M8",-96,-1312,16] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E4M8",-32,-1312,16] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E4M8",32,-1312,16] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E4M8",96,-1312,16] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E4M8",-96,-1312,16] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E4M8",-32,-1312,16] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E4M8",32,-1312,16] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E4M8",96,-1312,16] }
 AP-ITEM { "category": "big-defence", "typename": "InvulnerabilitySphere", "tag": "InvulnerabilitySphere", "secret": true, "pos": ["E4M8",-160,-1888,-120] }
 AP-ITEM { "category": "big-health", "typename": "Soulsphere", "tag": "Soulsphere", "skill": [2, 3], "pos": ["E4M8",0,-1216,32] }
 AP-ITEM { "category": "medium-armor", "typename": "GreenArmor", "tag": "GreenArmor", "skill": [3], "pos": ["E4M8",0,-1488,-128] }
@@ -2512,8 +2512,8 @@ AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", 
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E4M9",-928,-800,-72] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E4M9",-448,256,-16] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E4M9",-96,864,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullets", "pos": ["E4M9",-160,-736,32] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shotgun Shells", "pos": ["E4M9",-32,-480,32] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E4M9",-160,-736,32] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "pos": ["E4M9",-32,-480,32] }
 AP-ITEM { "category": "weapon", "typename": "PlasmaRifle", "tag": "Plasma Rifle", "pos": ["E4M9",-416,-1312,-80] }
 AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "pos": ["E4M9",-416,-1248,-88] }
 AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "pos": ["E4M9",-352,-1312,-88] }
@@ -2554,7 +2554,7 @@ AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthB
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["E4M9",-1104,-672,-80] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["E4M9",-1104,-704,-80] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["E4M9",-1104,-736,-80] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shotgun Shells", "pos": ["E4M9",0,352,48] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "pos": ["E4M9",0,352,48] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["E4M9",160,704,0] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["E4M9",208,704,0] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["E4M9",256,704,0] }
@@ -2563,10 +2563,10 @@ AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonu
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["E4M9",480,-960,32] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["E4M9",480,-1024,32] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E4M9",608,-1104,32] }
-AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Energy Cells", "pos": ["E4M9",608,-656,32] }
+AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Cell Pack", "pos": ["E4M9",608,-656,32] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E4M9",704,-656,32] }
 AP-ITEM { "category": "weapon", "typename": "RocketLauncher", "tag": "Rocket Launcher", "pos": ["E4M9",-608,-1024,-80] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rockets", "pos": ["E4M9",640,-816,32] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E4M9",640,-816,32] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E4M9",-672,192,-24] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E4M9",1376,352,80] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["E4M9",224,-1280,-24] }
