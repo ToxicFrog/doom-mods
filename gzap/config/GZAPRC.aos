@@ -27,15 +27,19 @@ typename HellShellLauncher: HellShellLauncherVO;
 typename Goonades: GoonadesVO;
 typename Sceptre: SceptreVO;
 
-# SillySphere is basically the equivalent of Megasphere
-category big-armor-health: SillySphere;
-
-# Powerups that are implemented as CustomInventory
-category powerup: HolySphere HotSauce;
-category powerup-maprevealer: Locationator;
+# Custom powerups and whatnot
+# The "NotItem" version is -COUNTITEM but otherwise identical.
+category big-armor-health: SillySphere SillySphereNotItem;
+category big-defence: HolySphere;
+category big-defence-attack: HotSauce;
+category medium-attack: DevilSphere;
+category medium-tool: Powerzade EnviroSuit FishTank;
+category maprevealer: Locationator;
 
 # Fishtank spawners are needed for progression in some levels and shouldn't be
-# replaced. Same deal with EnviroSpawners.
+# replaced. Same deal with EnviroSpawners. The actual suits and tanks they spawn
+# are up for grabs, though -- collect the check and it'll respawn as a normal
+# item after a bit.
 category none: FishTankSpawner EnviroSpawner;
 
 # Keys need proper names.

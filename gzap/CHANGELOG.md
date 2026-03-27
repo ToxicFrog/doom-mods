@@ -13,6 +13,9 @@
     `tool` now have proper sizing and more specific categories.
 - Fixed:
   - MAP31 and MAP32 were incorrectly excluded from 1000 Lines 2.
+  - Adventures of Square logic is now aware of the previously-missing "Totally
+    Square" and "Cubular" difficulty levels. Checks that exist only on those
+    difficulties may lack tuning data.
 
 # 0.8.5
 
