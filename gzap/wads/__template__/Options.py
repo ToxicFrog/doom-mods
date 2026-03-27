@@ -21,22 +21,37 @@ model = sys.modules['worlds.uzdoom.model']
 included_logic = model.init_wads(__package__)
 wad = included_logic.wad
 
-class MaxWeaponCopies(Range):
-    """
-    Applies a limit to the number of copies of each weapon in the item pool.
 
-    Lower values mean you may have to wait longer before finding a given weapon,
-    but also means more checks will contain health, powerups, etc. rather than
-    duplicates of weapons you already have. A setting of 0 removes this limit
-    entirely.
+###############################################################################
+# Initial conditions
+###############################################################################
 
-    This is an upper bound; it will not add more weapons to the pool than exist
-    in the WAD already. By default it is set to 1 per 8 levels.
+class SpawnFilter(NamedRange):
     """
-    display_name = "Max weapon copies"
-    range_start = 0
-    range_end = len(wad.maps)
-    default = ceil(len(wad.maps)/8)
+    Tell the generator which spawn filter (information about what items and enemies
+    spawn in each map) the game will use.
+
+    You need to pick a setting here that matches the difficulty you will be playing
+    on. In unmodified games filters 1 through 5 correspond to the five difficulty
+    levels, ITYTD through Nightmare -- although in most WADs 1/2 and 4/5 use the
+    same spawns.
+
+    Some mods implement custom difficulty levels that use different spawn filters
+    than the original game, so make sure you choose a filter that matches the
+    difficulty you are actually playing. If you get it wrong, you will get a
+    warning on entering the game.
+    """
+    display_name = "Spawn filter"
+    range_start = 1
+    range_end = 8
+    default = 3
+    special_range_names = {
+        "itytd": 1,
+        "hntr": 2,
+        "hmp": 3,
+        "uv": 4,
+        "nm": 5,
+    }
 
 class StartingLevels(OptionSet):
     __doc__ = """
@@ -91,32 +106,166 @@ class IncludedLevels(OptionSet):
     display_name = "Included levels"
     default = sorted(wad.maps.keys())
 
-class SpawnFilter(NamedRange):
+class UZDoomStartInventory(StartInventory):
     """
-    Tell the generator which spawn filter (information about what items and enemies
-    spawn in each map) the game will use.
-
-    You need to pick a setting here that matches the difficulty you will be playing
-    on. In unmodified games filters 1 through 5 correspond to the five difficulty
-    levels, ITYTD through Nightmare -- although in most WADs 1/2 and 4/5 use the
-    same spawns.
-
-    Some mods implement custom difficulty levels that use different spawn filters
-    than the original game, so make sure you choose a filter that matches the
-    difficulty you are actually playing. If you get it wrong, you will get a
-    warning on entering the game.
+    Start with the specified amount of these items. You can list any valid
+    inventory item from the WAD you are playing, even if the randomizer doesn't
+    know about it, e.g. "BFG9000: 1" will work even if the WAD contains no BFGs.
     """
-    display_name = "Spawn filter"
-    range_start = 1
-    range_end = 8
-    default = 3
-    special_range_names = {
-        "itytd": 1,
-        "hntr": 2,
-        "hmp": 3,
-        "uv": 4,
-        "nm": 5,
-    }
+    local_actors: dict = None
+
+    def verify(self, world, player_name, plando_options):
+        self.local_actors = {
+            typename: count
+            for typename, count in self.value.items()
+            if typename not in world.item_names
+        }
+        self.value = {
+            typename: count
+            for typename, count in self.value.items()
+            if typename in world.item_names
+        }
+        super(StartInventory, self).verify(world, player_name, plando_options)
+
+
+###############################################################################
+# Win conditions
+###############################################################################
+
+class WinMapCount(Range):
+    """
+    How many maps you need to clear to win the game. By default this is all maps
+    in the wad.
+    """
+    display_name = "Number of maps to win"
+    range_start = 0
+    range_end = len(wad.all_winnable_map_names())
+    default = len(wad.all_winnable_map_names())
+
+class WinMapNames(OptionSet):
+    """
+    Which specific maps you need to clear to win the game (assuming you have
+    changed win_map_count so as not to require all maps). The default is
+    Archipelago's best guess at which maps are end-of-episode or end-of-game
+    levels.
+    """
+    display_name = "Specific maps to win"
+    default = sorted([map for map in wad.all_boss_map_names()])
+    valid_keys = sorted([map for map in wad.all_winnable_map_names()])
+
+
+###############################################################################
+# Combat logic
+###############################################################################
+
+class LevelOrderBias(Range):
+    """
+    How closely the randomizer tries to follow the original level order of the
+    WAD. Internally, this is the % of earlier levels you need to be able to beat
+    before it will consider later levels in logic. This is primarily useful for
+    enforcing at least a bit of difficulty progression rather than being dumped
+    straight from MAP01 to MAP30.
+
+    The default setting of 25% means it won't require you to go to (e.g.) MAP08
+    until after beating two of the preceding levels.
+
+    Starting levels are exempt from this check.
+    """
+    display_name = "Level order bias"
+    range_start = 0
+    range_end = 100
+    default = 25 if not wad.use_hub_logic() else 0
+    visibility = Visibility.all if not wad.use_hub_logic() else Visibility.none
+
+class LocalWeaponBias(Range):
+    """
+    How much the randomizer cares about making sure you have access to the
+    weapons in a level before it considers that level to be in logic. Most Doom
+    levels are possible to beat from a pistol start by finding weapons in the
+    level itself, but in the randomizer there is no guarantee the level contains
+    any weapons at all; this setting makes the randomizer ensure that some of
+    the weapons you would normally find in the level are accessible before you
+    enter it.
+
+    The setting is a percentage; higher values mean the randomizer will try to
+    make more of the weapons accessible before you need to enter the level. At
+    100% it will not consider a level to be in logic until all of the weapons
+    normally found in it are accessible to you elsewhere.
+
+    Starting levels are exempt from this check.
+    """
+    display_name = "In-level weapon bias"
+    range_start = 0
+    range_end = 100
+    default = 0
+
+class GlobalWeaponBias(Range):
+    """
+    How much the randomizer cares about making sure you have access to the weapons
+    you'd start a level with when not pistol-starting (i.e. weapons you'd carry
+    over from earlier levels). This setting is somewhat conservative in that it
+    doesn't take into account death exits.
+
+    The setting is a percentage; higher values mean the randomizer will try to
+    make more of the weapons accessible before you need to enter the level. At
+    100% it will not consider a level to be in logic until all of the weapons
+    normally found before entering it are availalble to you elsewhere.
+
+    Starting levels are exempt from this check.
+    """
+    display_name = "Carryover weapon bias"
+    range_start = 0
+    range_end = 100
+    default = 50
+
+
+###############################################################################
+# Gameplay settings
+###############################################################################
+
+class AllowRespawn(Toggle):
+    """
+    If enabled, the player will respawn at the start of the level on death. If
+    disabled they must restore from an earlier save.
+
+    NOTE: restoring from a save will restore the state of the world, but NOT the
+    state of the randomizer -- checks already collected will remain collected and
+    items used from the randomizer inventory will remain used.
+    """
+    display_name = "Allow Respawn"
+    default = True
+
+class FullPersistence(Toggle):
+    """
+    If enabled, all levels will be fully persistent, in the same manner as Hexen
+    hubclusters. Levels can be reset from the level select menu, but this is all
+    or nothing: there is no way to reset individual levels. This is generally
+    reliable, but a minority of wads or gameplay mods may break with it.
+    """
+    display_name = "Persistent Levels"
+    default = True
+
+
+###############################################################################
+# Rando settings
+###############################################################################
+
+class MaxWeaponCopies(Range):
+    """
+    Applies a limit to the number of copies of each weapon in the item pool.
+
+    Lower values mean you may have to wait longer before finding a given weapon,
+    but also means more checks will contain health, powerups, etc. rather than
+    duplicates of weapons you already have. A setting of 0 removes this limit
+    entirely.
+
+    This is an upper bound; it will not add more weapons to the pool than exist
+    in the WAD already. By default it is set to 1 per 8 levels.
+    """
+    display_name = "Max weapon copies"
+    range_start = 0
+    range_end = len(wad.maps)
+    default = ceil(len(wad.maps)/8)
 
 class IncludedItemCategories(OptionList):
     """
@@ -239,109 +388,6 @@ class IncludedItemCategories(OptionList):
         else:
             return self.find_bucket(None, loc.categories)
 
-class LevelOrderBias(Range):
-    """
-    How closely the randomizer tries to follow the original level order of the
-    WAD. Internally, this is the % of earlier levels you need to be able to beat
-    before it will consider later levels in logic. This is primarily useful for
-    enforcing at least a bit of difficulty progression rather than being dumped
-    straight from MAP01 to MAP30.
-
-    The default setting of 25% means it won't require you to go to (e.g.) MAP08
-    until after beating two of the preceding levels.
-
-    Starting levels are exempt from this check.
-    """
-    display_name = "Level order bias"
-    range_start = 0
-    range_end = 100
-    default = 25 if not wad.use_hub_logic() else 0
-    visibility = Visibility.all if not wad.use_hub_logic() else Visibility.none
-
-class LocalWeaponBias(Range):
-    """
-    How much the randomizer cares about making sure you have access to the
-    weapons in a level before it considers that level to be in logic. Most Doom
-    levels are possible to beat from a pistol start by finding weapons in the
-    level itself, but in the randomizer there is no guarantee the level contains
-    any weapons at all; this setting makes the randomizer ensure that some of
-    the weapons you would normally find in the level are accessible before you
-    enter it.
-
-    The setting is a percentage; higher values mean the randomizer will try to
-    make more of the weapons accessible before you need to enter the level. At
-    100% it will not consider a level to be in logic until all of the weapons
-    normally found in it are accessible to you elsewhere.
-
-    Starting levels are exempt from this check.
-    """
-    display_name = "In-level weapon bias"
-    range_start = 0
-    range_end = 100
-    default = 0
-
-class GlobalWeaponBias(Range):
-    """
-    How much the randomizer cares about making sure you have access to the weapons
-    you'd start a level with when not pistol-starting (i.e. weapons you'd carry
-    over from earlier levels). This setting is somewhat conservative in that it
-    doesn't take into account death exits.
-
-    The setting is a percentage; higher values mean the randomizer will try to
-    make more of the weapons accessible before you need to enter the level. At
-    100% it will not consider a level to be in logic until all of the weapons
-    normally found before entering it are availalble to you elsewhere.
-
-    Starting levels are exempt from this check.
-    """
-    display_name = "Carryover weapon bias"
-    range_start = 0
-    range_end = 100
-    default = 50
-
-class WinMapCount(Range):
-    """
-    How many maps you need to clear to win the game. By default this is all maps
-    in the wad.
-    """
-    display_name = "Number of maps to win"
-    range_start = 0
-    range_end = len(wad.all_winnable_map_names())
-    default = len(wad.all_winnable_map_names())
-
-class WinMapNames(OptionSet):
-    """
-    Which specific maps you need to clear to win the game (assuming you have
-    changed win_map_count so as not to require all maps). The default is
-    Archipelago's best guess at which maps are end-of-episode or end-of-game
-    levels.
-    """
-    display_name = "Specific maps to win"
-    default = sorted([map for map in wad.all_boss_map_names()])
-    valid_keys = sorted([map for map in wad.all_winnable_map_names()])
-
-class AllowRespawn(Toggle):
-    """
-    If enabled, the player will respawn at the start of the level on death. If
-    disabled they must restore from an earlier save.
-
-    NOTE: restoring from a save will restore the state of the world, but NOT the
-    state of the randomizer -- checks already collected will remain collected and
-    items used from the randomizer inventory will remain used.
-    """
-    display_name = "Allow Respawn"
-    default = True
-
-class FullPersistence(Toggle):
-    """
-    If enabled, all levels will be fully persistent, in the same manner as Hexen
-    hubclusters. Levels can be reset from the level select menu, but this is all
-    or nothing: there is no way to reset individual levels. This is generally
-    reliable, but a minority of wads or gameplay mods may break with it.
-    """
-    display_name = "Persistent Levels"
-    default = True
-
 class PreTuningMode(Toggle):
     """
     This setting is for logic developers. If enabled, all other options are
@@ -361,35 +407,16 @@ class PreTuningMode(Toggle):
     display_name = "Pretuning Mode"
     default = False
 
-class UZDoomStartInventory(StartInventory):
-    """
-    Start with the specified amount of these items. You can list any valid
-    inventory item from the WAD you are playing, even if the randomizer doesn't
-    know about it, e.g. "BFG9000: 1" will work even if the WAD contains no BFGs.
-    """
-    local_actors: dict = None
-
-    def verify(self, world, player_name, plando_options):
-        self.local_actors = {
-            typename: count
-            for typename, count in self.value.items()
-            if typename not in world.item_names
-        }
-        self.value = {
-            typename: count
-            for typename, count in self.value.items()
-            if typename in world.item_names
-        }
-        super(StartInventory, self).verify(world, player_name, plando_options)
 
 
 @dataclass
 class UZDoomOptions(PerGameCommonOptions):
-    # Skill level, WAD, and level selection
+    # Start conditions
     spawn_filter: SpawnFilter
     starting_levels: StartingLevels
     start_with_keys: StartWithKeys
     included_levels: IncludedLevels
+    start_inventory: UZDoomStartInventory  # replaces stock start_inventory
     # Win conditions
     win_map_count: WinMapCount
     win_map_names: WinMapNames
@@ -397,15 +424,14 @@ class UZDoomOptions(PerGameCommonOptions):
     level_order_bias: LevelOrderBias
     local_weapon_bias: LocalWeaponBias
     carryover_weapon_bias: GlobalWeaponBias
-    # Other settings
+    # Gameplay
     allow_respawn: AllowRespawn
     full_persistence: FullPersistence
-    pretuning_mode: PreTuningMode
     # Location/item pool control
     max_weapon_copies: MaxWeaponCopies
     included_item_categories: IncludedItemCategories
+    pretuning_mode: PreTuningMode
     # Stock settings
-    start_inventory: UZDoomStartInventory
     start_inventory_from_pool: StartInventoryPool
 
 class UZDoomWeb(WebWorld):
@@ -424,7 +450,7 @@ class UZDoomWeb(WebWorld):
         AllowRespawn, FullPersistence,
     ]),
     OptionGroup("Randomization Settings", [
-        PreTuningMode, MaxWeaponCopies, IncludedItemCategories,
+        MaxWeaponCopies, IncludedItemCategories, PreTuningMode,
     ]),
   ]
 
