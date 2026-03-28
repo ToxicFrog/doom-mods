@@ -56,12 +56,17 @@ class DoomItem:
     def __eq__(self, other) -> bool:
         return self.typename == other.typename and self.map == other.map
 
-    def name(self) -> str:
-        """Returns the user-facing Archipelago name for this item."""
+    def name(self, with_scope: bool = True) -> str:
+        """
+        Returns the user-facing Archipelago name for this item.
+
+        If with_scope is False, returns a version without the (MAP01) suffix
+        used for e.g. keys, suitable for use as part of a location name.
+        """
         name = self.tag
         if self.disambiguate:
             name += f" [{self.typename}]"
-        if self.map:
+        if self.map and with_scope:
             name += f" ({self.map})"
         return name
 

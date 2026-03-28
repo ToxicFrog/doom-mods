@@ -267,8 +267,7 @@ class DoomWad:
                 tag=map.clear_flag_name()))
         map_exit = DoomLocation(self, item=clear_flag, secret=False, pos=[map.map,'event','exit'], spawn_filter=0xFF)
 
-        # TODO: there should be a better way of overriding location names
-        map_exit.item_name = "Exit"
+        map_exit.custom_name = "Exit"
         map_exit.item = clear_flag
         map_exit.orig_item = None
         self.register_location(map_exit)
@@ -392,10 +391,10 @@ class DoomWad:
         spawn_filter = self.filter_from_json(json)
         location = DoomLocation(self, item=None, secret=True, pos=json['pos'], spawn_filter=spawn_filter, custom_name=json.get('name', None))
         if location.pos.secret_type == 'sector':
-            location.item_name = f"Secret {location.pos.secret_id}"
+            location.custom_name = f"Secret {location.pos.secret_id}"
             location.categories = frozenset({'secret', 'sector'})
         else:
-            location.item_name = f"Secret T{location.pos.secret_id}"
+            location.custom_name = f"Secret T{location.pos.secret_id}"
             location.categories = frozenset({'secret', 'marker'})
 
         self.register_location(location)

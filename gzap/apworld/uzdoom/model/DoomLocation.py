@@ -51,7 +51,6 @@ class DoomLocation(DoomReachable):
             # in these fields post hoc.
             self.categories |= item.categories
             self.orig_item = item
-            self.item_name = item.tag
         self.pos = to_position(*pos)
 
     def __str__(self) -> str:
@@ -60,13 +59,22 @@ class DoomLocation(DoomReachable):
     __repr__ = __str__
 
     def name(self) -> str:
-        # HACK HACK HACK: an Exit has an EventPosition and its enclosing map is
-        # hardcoded to name it "LUMP - Exit", so we can't include the region
-        # name here or generation will fail.
+        # We use the non-map-qualified-name of the enclosing item here, so that
+        # if we have multiple locations with the same coordinates containing items
+        # with different types but the same tag, it will automatically differentiate
+        # them by type.
+        # This will not work in the case where they have different FQINs but the
+        # same coordinates and unqualified name, e.g. if you have a "Blue Key" that
+        # is a key and a "Blue Key" that is not a key at the same coordinates.
+        # I suspect this will never arise in practice.
+        # If it does, future me, I am sorry, but also, wtf?
         if self.region and not isinstance(self.pos, DoomEventPosition):
-            name = f"{self.pos.map} {self.region} - {self.custom_name or self.item_name}"
+            # HACK HACK HACK: an Exit has an EventPosition and its enclosing map is
+            # hardcoded to name it "LUMP - Exit", so we can't include the region
+            # name here or generation will fail.
+            name = f"{self.pos.map} {self.region} - {self.custom_name or self.orig_item.name(False)}"
         else:
-            name = f"{self.pos.map} - {self.custom_name or self.item_name}"
+            name = f"{self.pos.map} - {self.custom_name or self.orig_item.name(False)}"
         if self.disambiguation:
             name += f" [{self.disambiguation}]"
         return name
