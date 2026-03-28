@@ -18,6 +18,8 @@
     difficulties may lack tuning data.
   - Doom 1/2, Heretic, Chex Quest, and Faithless no longer have ammo pickups
     with duplicate names.
+  - Logical prerequisites requiring a specific number of items now actually
+    work rather than crashing the generator.
 
 # 0.8.5
 
