@@ -218,10 +218,17 @@ class ::KeyToggle : ::KeyValueSelectable {
       } else {
         return StringTable.Localize("$GZAP_MENU_KEY_MISSING");
       }
-    } else if (key_info.enabled) {
-      return StringTable.Localize("$GZAP_MENU_KEY_ON");
+    }
+
+    let suffix = "";
+    if (key_info.held > 1) {
+      suffix = string.format(" \c-(x%d)", key_info.held);
+    }
+
+    if (key_info.enabled) {
+      return StringTable.Localize("$GZAP_MENU_KEY_ON") .. suffix;
     } else {
-      return StringTable.Localize("$GZAP_MENU_KEY_OFF");
+      return StringTable.Localize("$GZAP_MENU_KEY_OFF") .. suffix;
     }
   }
 }
