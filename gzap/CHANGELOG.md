@@ -20,6 +20,8 @@
     with duplicate names.
   - Logical prerequisites requiring a specific number of items now actually
     work rather than crashing the generator.
+  - Locations in Eviternity II MAP32 no longer require a Yellow Skull to reach
+    that doesn't actually exist.
 
 # 0.8.5
 
