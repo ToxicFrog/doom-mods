@@ -12,9 +12,62 @@ scanner {
   logic_flags use_hub_logic hub_logic_exits=E1M8,E2M8,E3M8;
 }
 
-# Custom healing items.
-category medium-health-tool: ArtiRegenPotion;
-category big-health-tool: ArtiMiraclePotion;
+# Custom items.
+category big-health: ArtiMiraclePotion;
+category big-attack: ArtiBagOfPlenty;
+category big-defence: ArtiInvuln2;
+category medium-health: ArtiRegenPotion;
+category medium-tool: ArtiEmerald ArtiHorn;
+category medium-defence: ArtiIceBoots;
+category small-attack: ArtiTimeBomb2 ArtiEgg2 ArtiPodEgg ArtiPhoenixEssence ArtiMaceSphere ArtiWendigoBreath;
+category small-defence: ArtiInvisibility2 HexenArtiBlastRadius;
+category small-tool: ArtiTeleport2;
+
+# Overlapping names. Faithless adds a bunch of variants of the standard Heretic
+# ammo types. Names are taken from the pickup messages or comments in the
+# DECORATE code.
+# It also introduces a bunch of "med" ammo types that are between the small and
+# medium sizes. TODO: do we need to manually reclassify these?
+tag FlameShield Flame Shield;
+
+tag GoldWandAmmo2 Gold Crystal;
+tag GoldWandHefty2 Gold Geode;
+tag GoldWandMed Gold Gem;
+
+tag CrossbowAmmo2 Ethereal Bolts;
+tag CrossbowHefty2 Quiver of Ethereal Bolts;
+tag CrossbowMed Bundle of Ethereal Bolts;
+
+tag BlasterAmmo2 Dragon Orb;
+tag BlasterHefty50 Energized Dragon Orb;
+tag BlasterMed Greater Dragon Orb;
+
+tag SkullRodAmmo2 Lesser Hell Rune;
+tag SkullRodHefty2 Greater Hell Rune;
+tag SkullRodMed Hell Rune;
+
+tag PhoenixRodAmmo2 Phoenix Orb;
+tag PhoenixRodHefty2 Inferno Orb;
+tag PhoenixRodMed Blaze Orb;
+
+tag MaceAmmo Mace Spheres;
+tag MaceHefty Pile of Greater Spheres;
+tag MaceMed Greater Sphere;
+
+tag JadeAmmo Jade Fragment;
+tag JadeMed Jade Ingot;
+tag JadeHefty Jade Core;
+
+tag DsparilAmmo Chaos Rune;
+tag DsparilMed Chaos Sigil;
+tag DsparilHefty Chaos Talisman;
+
+tag SoulvergePiece1 Soulverge Segment 1;
+tag SoulvergePiece2 Soulverge Segment 2;
+tag SoulvergePiece3 Soulverge Segment 3;
+tag SoulAmmo Soul Mana;
+tag SoulMed Soul Cube;
+tag SoulHefty Soul Container;
 
 # Missing names.
 tag KeyRed Red Key;

@@ -16,8 +16,8 @@
   - Adventures of Square logic is now aware of the previously-missing "Totally
     Square" and "Cubular" difficulty levels. Checks that exist only on those
     difficulties may lack tuning data.
-  - Doom 1/2, Heretic, and Chex Quest no longer have ammo pickups with duplicate
-    names.
+  - Doom 1/2, Heretic, Chex Quest, and Faithless no longer have ammo pickups
+    with duplicate names.
 
 # 0.8.5
 
