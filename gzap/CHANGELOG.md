@@ -1,4 +1,4 @@
-# Unreleased
+# 0.8.5
 
 - Fixed:
   - Locations in Eviternity II MAP32 no longer require a Yellow Skull to reach
