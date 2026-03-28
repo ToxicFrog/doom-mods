@@ -13,7 +13,7 @@ from dataclasses import dataclass
 from math import ceil,floor
 import sys
 
-from Options import PerGameCommonOptions, Toggle, DeathLink, StartInventory, StartInventoryPool, OptionSet, NamedRange, Range, OptionDict, OptionList, OptionError, OptionGroup, Visibility
+from Options import PerGameCommonOptions, Toggle, DeathLink, StartInventory, StartInventoryPool, OptionSet, NamedRange, Range, OptionDict, OptionList, OptionError, OptionGroup, Visibility, TextChoice, Choice
 from worlds.AutoWorld import WebWorld
 
 uzdoom = sys.modules['worlds.uzdoom']
@@ -66,17 +66,20 @@ class StartingLevels(OptionSet):
     This option supports globbing expressions.""" + (
     f"""
 
-    For solo play, to avoid generation failures due to a small sphere 1 in
-    this wad, you may need to either change included_item_categories to enable
-    more item categories, or add more maps here. If doing the latter, the
-    apworld's best guess at what to set this to is:
+    This wad has a small sphere 1 with default settings.. To avoid generation
+    failures in solo play, you may need to do one or more of:
+    - enable `secrets`;
+    - turn up `medium_items` and/or `small_items`;
+    - enable `start_with_keys`; or
+    - add more starting maps here.
+
+    If doing the latter, the apworld's best guess at what to set this to is:
     {wad.default_solo_starting_maps()}
     """
     if wad.default_solo_starting_maps() else ""
     )
     display_name = "Starting levels"
     default = sorted(map.map for map in wad.default_starting_maps())
-
 
 if wad.get_flag('use_hub_logic'):
     class StartWithKeys(Toggle):
@@ -106,11 +109,20 @@ class IncludedLevels(OptionSet):
     display_name = "Included levels"
     default = sorted(wad.maps.keys())
 
+class StartWithAllMaps(Toggle):
+    """
+    Whether to start with automaps for all included levels. If off they will be
+    added to the pool instead.
+    """
+    display_name = "Start with all automaps"
+    default = True
+
 class UZDoomStartInventory(StartInventory):
     """
     Start with the specified amount of these items. You can list any valid
-    inventory item from the WAD you are playing, even if the randomizer doesn't
-    know about it, e.g. "BFG9000: 1" will work even if the WAD contains no BFGs.
+    inventory item that the game engine understands, even if the randomizer
+    doesn't know about it, e.g. "BFG9000: 1" will work even if none of the
+    randomized maps contain BFGs.
     """
     local_actors: dict = None
 
@@ -250,6 +262,171 @@ class FullPersistence(Toggle):
 # Rando settings
 ###############################################################################
 
+def items(*categories):
+    return {
+        name for category in categories
+        for name in included_logic.item_categories_to_names.get(category, [])
+    }
+
+def locations(*categories):
+    return {
+        name for category in categories
+        for name in included_logic.location_categories_to_names.get(category, [])
+    }
+
+def nrof(*categories):
+    return len(locations(*categories))
+
+def names(*categories):
+    return ', '.join(sorted(items(*categories)))
+
+def vis(*categories):
+    return Visibility.none if not nrof(*categories) else Visibility.all
+
+def size_docs(size):
+    return f"""
+What percentage of {size} items will be randomized.
+
+This wad contains {nrof(size)} {size} items ({nrof(size+'-secret')} in secrets):
+{names(size)}.
+"""
+
+def sized_names(size, category):
+    # We do this rather than using nrof/names because the categories_to_names
+    # maps are very particular about what order you put the category names in
+    # when constructing composite keys.
+    fqins = items(size) & items(category)
+    nlocs = len(locations(size) & locations(category))
+    return f'{size} ({nlocs}): {', '.join(sorted(fqins))}.\n' if len(fqins) else ''
+
+def kind_docs(kind):
+    return f"""
+Whether to include {kind} items in the pool. If off, items of this kind will
+not be randomized. If on, they will be, subject to the size settings above.
+
+This wad contains {nrof(kind)} {kind} items ({nrof(kind+'-secret')} in secrets):
+{sized_names('big', kind)}{sized_names('medium', kind)}{sized_names('small', kind)}
+"""
+
+# Top-level toggle for whether secrets should be excluded.
+class IncludeSecrets(Choice):
+    __doc__ = f"""
+    Whether secret locations are eligible for randomization.
+
+    If off, neither secrets themselves nor the items in them will be randomized.
+
+    If set to `items_only`, items located in secrets will be randomized, but the
+    secrets themselves will not be checks.
+
+    If set to `items_and_secrets`, items located in secrets will be randomized,
+    and finding the secret itself will also count as a check.
+
+    This wad contains {nrof('secret-sector', 'secret-marker')} secrets and {nrof('secret') - nrof('secret-sector', 'secret-marker')} secret items.
+    """
+    display_name = "Secrets"
+    default = 0
+    option_excluded = 0
+    option_items_only = 1
+    option_items_and_secrets = 2
+
+class IncludeItemAmount(NamedRange):
+    range_start = 0
+    range_end = 100
+    special_range_names = {
+        "all": 100,
+        "none": 0,
+        "shuffle": -1,
+        "vanilla": -2,
+    }
+
+class IncludeBigItems(IncludeItemAmount):
+    __doc__ = f"""{size_docs('big')}
+    This option, and the ones below, supports some special values:
+
+    'shuffle' will randomize these items among themselves within your game,
+    without adding them to the pool. Unlike using plando to force these items
+    local, this will also not generate client messages when collecting them.
+    (Tuning data, however, will still be recorded.)
+
+    'vanilla' is similar to 'shuffle', except that each item will be placed at
+    its original vanilla location. It is primarily useful to logic developers.
+    """
+    display_name = "Big items"
+    default = 100
+    visibility = vis('big')
+
+class IncludeMediumItems(IncludeItemAmount):
+    __doc__ = size_docs('medium')
+    display_name = "Medium items"
+    default = -1
+    visibility = vis('medium')
+
+class IncludeSmallItems(IncludeItemAmount):
+    __doc__ = size_docs('small')
+    display_name = "Small items"
+    default = -1
+    visibility = vis('small')
+
+class IncludeUnknownSizeItems(IncludeItemAmount):
+    __doc__ = f"""
+    The logic for this wad contains items of unknown size. Report this to the
+    logic developer as a bug.
+
+    This wad contains {nrof('unknown_size')} unknown_size items:
+    {names('unknown_size')}.
+    """
+    display_name = "Unknown-size items"
+    default = 100
+    visibility = vis('unknown_size')
+
+class IncludeHealthItems(Toggle):
+    __doc__ = kind_docs('health')
+    display_name = "Health items"
+    default = True
+    visibility = vis('health')
+
+class IncludeArmorItems(Toggle):
+    __doc__ = kind_docs('armor')
+    display_name = "Armour items"
+    default = True
+    visibility = vis('armor')
+
+class IncludeAmmoItems(Toggle):
+    __doc__ = kind_docs('ammo')
+    display_name = "Ammo items"
+    default = True
+    visibility = vis('ammo')
+
+class IncludeAttackItems(Toggle):
+    __doc__ = kind_docs('attack')
+    display_name = "Attack items"
+    default = True
+    visibility = vis('attack')
+
+class IncludeDefenceItems(Toggle):
+    __doc__ = kind_docs('defence')
+    display_name = "Defence items"
+    default = True
+    visibility = vis('defence')
+
+class IncludeToolItems(Toggle):
+    __doc__ = kind_docs('tool')
+    display_name = "Tool items"
+    default = True
+    visibility = vis('tool')
+
+class IncludeUnknownKindItems(Toggle):
+    __doc__ = f"""
+    The logic for this wad contains items of unknown kind. Report this to the
+    logic developer as a bug.
+
+    This wad contains {nrof('unknown_kind')} unknown_kind items:
+    {names('unknown_kind')}.
+    """
+    display_name = "Unknown-kind items"
+    default = True
+    visibility = vis('unknown_kind')
+
 class MaxWeaponCopies(Range):
     """
     Applies a limit to the number of copies of each weapon in the item pool.
@@ -269,57 +446,40 @@ class MaxWeaponCopies(Range):
 
 class IncludedItemCategories(OptionList):
     """
-    Which item categories to include in randomization. This controls both which
-    items are replaced with checks, and what the item pool contains.
+    This is a setting that offers low-level control over what locations get
+    randomized, for situations where the above settings do not suffice.
 
-    Each entry has the format 'categories:percent'. You can use 'all' or 'none'
-    as aliases for '100' or '0'. See doc/glossary.md for an explanation of
-    what item categories are available. Categories can be combined using '-',
-    e.g. 'secret-health' means all health items that are in secrets.
+    Each entry is a category (like 'health' or 'secret-big-armor'), followed by
+    ':' and a percentage, e.g. 'health:50' to randomize 50% of all health items.
+    See doc/categories.md for a detailed explanation of officially supported
+    categories.
 
-    For each location or item, entries are checked *in order* and the first entry
-    that matches is used. A category of '*' matches everything. Items or locations
-    that don't match any entry are excluded by default.
+    Using an item name, e.g. 'ArmorBonus:none', is also permitted, and will
+    match that exact item. To avoid ambiguity, you have to use Doom's internal
+    name, e.g. 'ClipBox' instead of 'Bullets' and 'ArtiHealth' instead of
+    'Quartz Flask'.
 
-    Using an item name, e.g. 'ArmorBonus:none', is also permitted, and will match
-    that exact item. To avoid ambiguity, you have to use Doom's internal name,
-    e.g. 'ClipBox' instead of 'Bullets' and 'ArtiHealth' instead of 'Quartz Flask'.
+    Instead of a percentage, you can also use 'all', 'none', 'shuffle', or
+    'vanilla', with the same meanings as above; or 'start' to place the matching
+    items directly into the player's starting inventory, although
+    start_inventory_from_pool is preferred for that.
 
-    The default settings:
-    - exclude all items in secrets and the secrets themselves, as they can be
-      quite difficult to get for inexperienced players depending on the WAD;
-    - include all useful and progression items;
-    - exclude all small and medium items and all Heretic tools (that are neither
-      useful nor progression);
-    - and include everything else by default.
+    Entries are checked left to right, with earlier ones taking precedence over
+    later ones; locations that match multiple entries will only affected by the
+    first one. So, for example, this setting:
 
-    Turning on medium, small, or tool items can increase the number of checks by
-    10x or more, so be prepared for a grass-rando-like experience if you do that.
+        ['health:none', 'small:all', 'ammo:50']
 
-    You can also use two special values in place of a percentage:
+    Would randomize no health of any size, all big items, and 50% of whatever
+    ammo is left.
 
-      'vanilla'
-      All items in this category will be 'randomized' into their vanilla locations.
-      Use this instead of 'none' if you want to play with non-randomized keys or
-      weapons. They will still count towards hint cost calculations.
-
-      'shuffle'
-      Items in this category will be randomly shuffled with each other locally.
-      They will not count towards hint cost calculations. You cannot use this
-      on progression items.
-
-      'start'
-      All items in this category will be placed in your starting inventory instead
-      of in the item pool. Use 'key:start', 'weapon:start', or 'ap_map:start' to
-      start with all keys, weapons, or maps, respectively.
+    On a technical level, this setting is checked before anything else,
+    including UZArchipelago's built in baseline settings and the toggles above,
+    so it offers significant control over how the item and location pools are
+    populated, but also makes it easy to write settings that cannot generate.
     """
     display_name = "Included item/location categories"
-    default = [
-        'secret-sector:none', 'secret-marker:none', 'secret:none',
-        'ap_progression:all', 'ap_useful:all', 'big:all',
-        'medium:none', 'small:none', 'tool:none',
-        '*:all',
-    ]
+    default = []
 
     def verify(self, world, player_name, plando_options):
         super(OptionList, self).verify(world, player_name, plando_options)
@@ -335,15 +495,6 @@ class IncludedItemCategories(OptionList):
                 raise OptionError(f'Duplicate entry {key} in included_item_categories')
             self.ratios[key] = self.ratio_value(ratio)
             self.bucket_list.append((frozenset(key.split('-')), key))
-
-        for key in ['ap_map']:
-            ratio = self.find_ratio(None, {key})
-            if ratio not in {1.0, 'start'}:
-                raise OptionError(f'Category {key} has invalid setting {ratio}; this category only permits "all" or "start".')
-        for key in ['key', 'weapon']:
-            ratio = self.find_ratio(None, {key})
-            if ratio not in {1.0, 'vanilla', 'start'}:
-                raise OptionError(f'Category {key} has invalid setting {ratio}; this category only permits "all", "vanilla", or "start".')
 
         # Convenience field used later by the location access logic.
         self.all_keys_are_vanilla = self.find_ratio(None, {'key'}) == 'vanilla'
@@ -416,6 +567,7 @@ class UZDoomOptions(PerGameCommonOptions):
     starting_levels: StartingLevels
     start_with_keys: StartWithKeys
     included_levels: IncludedLevels
+    start_with_all_maps: StartWithAllMaps
     start_inventory: UZDoomStartInventory  # replaces stock start_inventory
     # Win conditions
     win_map_count: WinMapCount
@@ -428,6 +580,18 @@ class UZDoomOptions(PerGameCommonOptions):
     allow_respawn: AllowRespawn
     full_persistence: FullPersistence
     # Location/item pool control
+    secrets: IncludeSecrets
+    big_items: IncludeBigItems
+    medium_items: IncludeMediumItems
+    small_items: IncludeSmallItems
+    unknown_size_items: IncludeUnknownSizeItems
+    health_items: IncludeHealthItems
+    armor_items: IncludeArmorItems
+    ammo_items: IncludeAmmoItems
+    attack_items: IncludeAttackItems
+    defence_items: IncludeDefenceItems
+    tool_items: IncludeToolItems
+    unknown_kind_items: IncludeUnknownKindItems
     max_weapon_copies: MaxWeaponCopies
     included_item_categories: IncludedItemCategories
     pretuning_mode: PreTuningMode
@@ -438,7 +602,7 @@ class UZDoomWeb(WebWorld):
   game = f"UZDoom ({wad.name})"
   option_groups = [
     OptionGroup("Starting Conditions", [
-        SpawnFilter, StartingLevels, StartWithKeys, IncludedLevels, UZDoomStartInventory,
+        SpawnFilter, StartingLevels, StartWithKeys, IncludedLevels, StartWithAllMaps, UZDoomStartInventory,
     ]),
     OptionGroup("Win Conditions", [
         WinMapCount, WinMapNames,
@@ -450,6 +614,9 @@ class UZDoomWeb(WebWorld):
         AllowRespawn, FullPersistence,
     ]),
     OptionGroup("Randomization Settings", [
+        IncludeSecrets, IncludeBigItems, IncludeMediumItems, IncludeSmallItems,
+        IncludeHealthItems, IncludeArmorItems, IncludeAmmoItems,
+        IncludeAttackItems, IncludeDefenceItems, IncludeToolItems,
         MaxWeaponCopies, IncludedItemCategories, PreTuningMode,
     ]),
   ]

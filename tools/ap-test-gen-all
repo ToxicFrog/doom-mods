@@ -7,7 +7,7 @@ touch dummy.yaml; rm *.yaml
 DISPLAY= archipelago 'Generate Template Options'
 for i in Templates/UZDoom\ \(*; do
   cp "$i" .
-  echo "$i"
+  printf '\x1B[1m%s\x1B[0m\n' "$i"
   archipelago Generate </dev/null |& sed -n -E '/Traceback/,$ p'
   rm *.yaml
 done

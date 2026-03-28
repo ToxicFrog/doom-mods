@@ -48,31 +48,6 @@ To release a new version:
   perhaps unconditionally) so that the region dashboard remembers its contents
   across runs even without a save file.
 
-#### included_item_categories rework
-
-Split it into a bunch of different options. These can use NamedRange with
-something like:
-
-    range_start = 0
-    range_end = 100
-    special_range_names = { 'none': 0, 'all': 100, 'vanilla': -1, 'shuffle': -2, 'start': -3 }
-
-And then we have the following options:
-
-    key_rando - all
-    weapon_rando - all
-    secret_sector_rando - none
-    secret_item_rando - none
-    big_item_rando - all
-    medium_item_rando - shuffle
-    small_item_rando - shuffle
-    tool_rando - shuffle
-    custom_item_rando - replaces included_item_categories
-
-included_item_categories sticks around as item_category_overrides or similar,
-and things are parsed in the order: intrinsics, then overrides, then individual
-options, then fallbacks.
-
 ### ingame
 
 - display weapons in inventory even if you don't have them

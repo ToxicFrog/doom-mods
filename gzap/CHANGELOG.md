@@ -1,16 +1,32 @@
 # Unreleased
 
+This is a feature release. It brings significant changes to how the YAML is
+organized and how item classification works.
+
+⚠️ YAML options have changed. You must regenerate your YAML templates.
+
+⚠️ Item categorization rules and the included scanner configurations have
+changed. Rescanning your wads is not *mandatory* but is *strongly recommended*.
+
 - Changed:
-  - Redesign of the weapon suppression system. It should now be much more
-    reliable, both at blocking weapons you shouldn't have and at permitting
-    weapons you should.
+  - Major overhaul of the yaml options.
+    - Many settings that previously had to be controlled by editing the
+      `included_item_categories` are now their own toggles or sliders.
+    - `included_item_categories` is still present to support less common use
+      cases not covered by the separate options.
+    - Item-related settings now tell you how many checks turning a category on
+      or off will add or remove, along with what items belong to that category
+      in the current wad.
   - Major overhaul of item categorization. Filler should now all have a size
     (`big`, `medium`, or `small`), and one or more kinds (`health`, `armor`,
     `ammo`, `attack`, `defence`, or `tool`). See [categories.md](doc/categories.md)
     for details.
-  - As a result of the above, many item categories have changed. `medium-armor`
-    is now actually used, and many things previously considered `powerup` or
-    `tool` now have proper sizing and more specific categories.
+    - As a result of the above, many item categories have changed. `medium-armor`
+      is now actually used, and many things previously considered `powerup` or
+      `tool` now have proper sizing and more specific categories.
+  - Redesign of the weapon suppression system. It should now be much more
+    reliable, both at blocking weapons you shouldn't have and at permitting
+    weapons you should.
 - Fixed:
   - MAP31 and MAP32 were incorrectly excluded from 1000 Lines 2.
   - Adventures of Square logic is now aware of the previously-missing "Totally
@@ -18,10 +34,6 @@
     difficulties may lack tuning data.
   - Doom 1/2, Heretic, Chex Quest, and Faithless no longer have ammo pickups
     with duplicate names.
-  - Logical prerequisites requiring a specific number of items now actually
-    work rather than crashing the generator.
-  - Locations in Eviternity II MAP32 no longer require a Yellow Skull to reach
-    that doesn't actually exist.
 
 # 0.8.5
 

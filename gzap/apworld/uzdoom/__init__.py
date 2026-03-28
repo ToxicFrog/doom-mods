@@ -147,6 +147,42 @@ class UZDoomWorld(World):
     def is_starting_map(self, map: str) -> bool:
         return self.any_glob_matches(self.options.starting_levels.value, map)
 
+    def setup_item_categories(self):
+        # Populate included_item_categories based on the user-friendly yaml settings.
+        cats = self.options.included_item_categories.value
+
+        # Exclude secret areas/items if configured.
+        if self.options.secrets == 'excluded':
+            cats += ['secret:none']
+        elif self.options.secrets == 'items_only':
+            cats += ['secret-sector:none', 'secret-marker:none']
+
+        # Baseline config: always include weapons, keys, and other progression items.
+        cats += ['weapon:all', 'key:all', 'ap_progression:all']
+
+        if self.options.start_with_all_maps:
+            cats += ['ap_map:start']
+        else:
+            cats += ['ap_map:all']
+
+        # Item-kind and item-size based filler pool population.
+        for kind in ['health', 'armor', 'ammo', 'attack', 'defence', 'tool', 'unknown_kind']:
+            if not getattr(self.options, f'{kind}_items').value:
+                cats += [f'{kind}:none']
+        for size in ['big', 'medium', 'small', 'unknown_size']:
+            val = getattr(self.options, f'{size}_items').value
+            val = { -1: 'shuffle', -2: 'vanilla' }.get(val, val)
+            cats += [f'{size}:{val}']
+
+        # Anything not covered by the above is not a weapon, key, or map, and
+        # does not have a size or kind category, even the unknown ones, which
+        # probably means someone is playing silly games with GZAPRC. Include
+        # all such items.
+        cats += ['*:all']
+        print('Computed item dispositions: ', cats)
+        self.options.included_item_categories.value = cats
+        self.options.included_item_categories.build_ratios()
+
     def setup_pretuning_mode(self):
         print("PRETUNING ENABLED - overriding most settings")
         self.options.included_levels.value = set()
@@ -197,6 +233,8 @@ class UZDoomWorld(World):
         # has a special exception for pretuning mode.
         if self.options.pretuning_mode:
             self.setup_pretuning_mode()
+        else:
+            self.setup_item_categories()
 
         self.pool = self.wad_logic.fill_pool(self)
 
