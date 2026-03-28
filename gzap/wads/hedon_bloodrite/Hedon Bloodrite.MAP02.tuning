@@ -1,0 +1,365 @@
+; MAP02: Plaza
+
+; Mortar of Earth Pigment and Bowl of Scribe Embers are used in this map to
+; scribe helpful but optional scrolls. Assuming they aren't needed for anything
+; important in other maps, we should make them ephemeral (and once we have support
+; for runtime item spawning, we should make the scrolls they spawn checks).
+
+; TOOD: the fight in the west plaza that triggers when you enter carrying the
+; stone key is a potential softlock, because once that happens you can't get
+; back into the park without at least one of:
+; - vine key to enter through alchemist's shop;
+; - axe key to access caves from the north
+; - iron key + pickaxe to access caves from the south
+; We can probably fix this by making the switch that opens the park repeatable
+; (it's line 208), and ideally the one for the central gate as well (it's 4126).
+
+; Entry area encompassing the south and west plazas.
+AP-REGION { "map": "MAP02", "region": "[south]", "keys": ["weapon/Axe/want", "weapon/FragfireGun/want", "weapon/SpikeGun/want"] }
+AP-REGION { "map": "MAP02", "region": "S Guardhouse", "keys": ["map/MAP02/[south]"] }
+AP-REGION { "map": "MAP02", "region": "S Plaza", "keys": ["map/MAP02/S Guardhouse"] }
+; Areas immediately reachable from the south plaza.
+AP-REGION { "map": "MAP02", "region": "Stables", "keys": ["map/MAP02/S Plaza"] }
+AP-REGION { "map": "MAP02", "region": "Gatehouse", "keys": ["map/MAP02/S Plaza"] }
+AP-REGION { "map": "MAP02", "region": "General Store", "keys": ["map/MAP02/S Plaza"] }
+AP-REGION { "map": "MAP02", "region": "Inn", "keys": ["map/MAP02/S Plaza"] }
+; Areas reachable once you return with the iron key.
+AP-REGION { "map": "MAP02", "region": "(s guardhouse switches flipped)", "keys": ["key/IronKey", "map/MAP02/S Guardhouse"] }
+AP-REGION { "map": "MAP02", "region": "S Guardhouse Armoury", "keys": ["map/MAP02/S Guardhouse", "map/MAP02/(s guardhouse switches flipped)"] }
+AP-REGION { "map": "MAP02", "region": "S Guardhouse Cells", "keys": ["map/MAP02/S Guardhouse", "map/MAP02/(s guardhouse switches flipped)"] }
+; Areas reachable once you return with the vine key.
+AP-REGION { "map": "MAP02", "region": "General Store Closet", "keys": ["map/MAP02/General Store", "key/VineKey"] }
+AP-REGION { "map": "MAP02", "region": "Inn Backrooms", "keys": ["key/VineKey", "map/MAP02/Inn"] }
+AP-REGION { "map": "MAP02", "region": "Inn Cellar Secret", "keys": ["flag/secret", "map/MAP02/Inn Backrooms"] }
+
+; Reachable from the south plaza by flipping a switch in the gatehouse.
+; N.b. if you enter this area carrying the stone key, it will trigger a fight and
+; the door connecting the south and west plazas will close behind you. To get
+; back to the south plaza, go north (through the doors that open once the fight
+; is over) and climb through the back window of the inn.
+AP-REGION { "map": "MAP02", "region": "W Plaza", "keys": ["map/MAP02/S Plaza"] }
+AP-REGION { "map": "MAP02", "region": "Equipment Shop", "keys": ["map/MAP02/W Plaza"] }
+AP-REGION { "map": "MAP02", "region": "W Exit Door", "keys": ["map/MAP02/Equipment Shop"] }
+AP-REGION { "map": "MAP02", "region": "NW Shrine", "keys": ["map/MAP02/Equipment Shop"] }
+; Reachable once you use the iron key to access the control room in the south
+; guardhouse.
+AP-REGION { "map": "MAP02", "region": "Park", "keys": ["map/MAP02/(s guardhouse switches flipped)", "map/MAP02/W Plaza"] }
+AP-REGION { "map": "MAP02", "region": "Library", "keys": ["map/MAP02/Park"] }
+AP-REGION { "map": "MAP02", "region": "Library Balcony", "keys": ["map/MAP02/Library"] }
+; Reachable with the vine key. Note that you can get into the park without the
+; iron key by leaping off the alchemist's balcony.
+AP-REGION { "map": "MAP02", "region": "Alchemist", "keys": ["key/VineKey", "map/MAP02/W Plaza"] }
+AP-REGION { "map": "MAP02", "region": "Alchemist Bedroom Secret", "keys": ["map/MAP02/Alchemist", "flag/secret"] }
+AP-REGION { "map": "MAP02", "region": "Park", "keys": ["map/MAP02/Alchemist"] }
+; Reachable with the axe key.
+AP-REGION { "map": "MAP02", "region": "Crystal Shop 1F", "keys": ["map/MAP02/W Plaza", "key/AxeKey"] }
+; Once you have the ingredients and access to the alchemist's workshop you can
+; make a scroll of dispel magic.
+AP-REGION { "map": "MAP02", "region": "(purple ink brewed)", "keys": ["key/InventoryRedCrystal", "map/MAP02/Alchemist", "key/InventoryPurpleRoot", "key/InventoryBowlOfFaeDust"] }
+AP-REGION { "map": "MAP02", "region": "(dispel magic scribed)", "keys": ["map/MAP02/Library", "map/MAP02/(purple ink brewed)"] }
+AP-REGION { "map": "MAP02", "region": "Crystal Shop 2F", "keys": ["map/MAP02/Library Balcony", "map/MAP02/(dispel magic scribed)"] }
+
+; Zone containing the eastern caves and waterways (including the north caves
+; connected to them).
+; Intended path is via the cells using a pickaxe, but you can also reach them
+; via a secret door in the inn cellar, or by using the axe key to access the
+; forge in the north plaza and then jumping into the well.
+AP-REGION { "map": "MAP02", "region": "[east]", "keys": ["map/MAP02/S Guardhouse Cells", "key/InventoryPickAxe"] }
+AP-REGION { "map": "MAP02", "region": "[east]", "keys": ["map/MAP02/Inn Cellar Secret"] }
+AP-REGION { "map": "MAP02", "region": "[east]", "keys": ["map/MAP02/N Plaza", "key/AxeKey"] }
+; Caves accessible via cells
+AP-REGION { "map": "MAP02", "region": "S Caves", "keys": ["map/MAP02/[east]"] }
+AP-REGION { "map": "MAP02", "region": "S Caves Tunnel Secret", "keys": ["flag/secret", "map/MAP02/S Caves"] }
+; East river
+AP-REGION { "map": "MAP02", "region": "River", "keys": ["map/MAP02/S Caves"] }
+AP-REGION { "map": "MAP02", "region": "Shark Hot Tub Secret", "keys": ["map/MAP02/River", "flag/secret"] }
+; North caves
+AP-REGION { "map": "MAP02", "region": "N Caves", "keys": ["map/MAP02/[east]"] }
+AP-REGION { "map": "MAP02", "region": "Secret Forge", "keys": ["flag/secret", "map/MAP02/N Caves"] }
+AP-REGION { "map": "MAP02", "region": "N Caves Worm Nest", "keys": ["map/MAP02/N Caves"] }
+AP-REGION { "map": "MAP02", "region": "N Caves Below Well", "keys": ["map/MAP02/N Caves"] }
+; Area above well
+AP-REGION { "map": "MAP02", "region": "N Caves Above Well, Closet", "keys": ["map/MAP02/N Caves Below Well"] }
+AP-REGION { "map": "MAP02", "region": "N Caves Above Well, Bedroom", "keys": ["map/MAP02/N Caves Below Well"] }
+AP-REGION { "map": "MAP02", "region": "N Caves Above Well, Forge", "keys": ["map/MAP02/N Caves Below Well"] }
+
+; Northwest area containing the north plaza and stuff directly connected to it.
+; Reachable using the axe key (from the inn or the forge, but inn is in logic
+; from the start so we just list that), or by carrying the stone key into the
+; west plaza to trigger the big fight.
+AP-REGION { "map": "MAP02", "region": "[northwest]", "keys": ["key/AxeKey", "map/MAP02/Inn"] }
+AP-REGION { "map": "MAP02", "region": "[northwest]", "keys": ["key/StoneKey", "map/MAP02/W Plaza"] }
+AP-REGION { "map": "MAP02", "region": "N Plaza", "keys": ["map/MAP02/[northwest]"] }
+AP-REGION { "map": "MAP02", "region": "N Guardhouse", "keys": ["key/StoneKey", "map/MAP02/N Plaza"] }
+AP-REGION { "map": "MAP02", "region": "(n guardhouse switches flipped)", "keys": ["map/MAP02/N Guardhouse"] }
+AP-REGION { "map": "MAP02", "region": "Dwarf Bedroom Secret", "keys": ["map/MAP02/N Plaza", "flag/secret"] }
+AP-REGION { "map": "MAP02", "region": "W Exit", "keys": ["map/MAP02/W Exit Door", "map/MAP02/(n guardhouse switches flipped)"] }
+
+
+AP-XON { "lump": "GZAPIPC", "size": 0, "nick": "Player", "slot": "Player1", "seed": "26082669245932770815", "wad": "Hedon Bloodrite", "server": "" }
+AP-CHECK { "id": 546, "name": "MAP02 - Spike Bundle [-332,424]", "pos": ["MAP02",-332,424,44], "region": "S Guardhouse" }
+AP-CHECK { "id": 718, "name": "MAP02 - Spike Mag [-195,460]", "pos": ["MAP02",-195,460,26], "region": "S Guardhouse" }
+AP-CHECK { "id": 662, "name": "MAP02 - Potion of Minor Healing [162,251]", "pos": ["MAP02",162,251,0], "region": "S Guardhouse" }
+AP-CHECK { "id": 793, "name": "MAP02 - Bearzerker Axe [283,1916]", "pos": ["MAP02",283,1916,6], "region": "Stables" }
+AP-CHECK { "id": 542, "name": "MAP02 - Axe [283,1916]", "pos": ["MAP02",283,1916,6], "region": "Stables" }
+AP-CHECK { "id": 560, "name": "MAP02 - Spike Bundle [88,1964]", "pos": ["MAP02",88,1964,14], "region": "Stables" }
+AP-CHECK { "id": 708, "name": "MAP02 - Potion of Minor Healing [-372,1235]", "pos": ["MAP02",-372,1235,-7], "region": "S Plaza" }
+AP-CHECK { "id": 694, "name": "MAP02 - Light Armor Crystal", "pos": ["MAP02",-1269,759,-24], "region": "S Plaza" }
+AP-CHECK { "id": 682, "name": "MAP02 - Spike Mag [-1329,1228]", "pos": ["MAP02",-1329,1228,-23], "region": "S Plaza" }
+AP-CHECK { "id": 702, "name": "MAP02 - Cream Fungus [1884,1400]", "pos": ["MAP02",1884,1400,96], "region": "S Plaza" }
+AP-CHECK { "id": 686, "name": "MAP02 - Cream Fungus [1866,1429]", "pos": ["MAP02",1866,1429,96], "region": "S Plaza" }
+AP-CHECK { "id": 658, "name": "MAP02 - Cream Fungus [1455,1531]", "pos": ["MAP02",1455,1531,-23], "region": "S Plaza" }
+AP-CHECK { "id": 687, "name": "MAP02 - Cream Fungus [1438,1522]", "pos": ["MAP02",1438,1522,-23], "region": "S Plaza" }
+AP-CHECK { "id": 569, "name": "MAP02 - Potion of Minor Healing [1097,1792]", "pos": ["MAP02",1097,1792,30], "region": "Gatehouse" }
+AP-CHECK { "id": 564, "name": "MAP02 - Spike Mag [1400,2284]", "pos": ["MAP02",1400,2284,129], "region": "Gatehouse" }
+AP-CHECK { "id": 571, "name": "MAP02 - Spike Bundle [1396,2280]", "pos": ["MAP02",1396,2280,128], "region": "Gatehouse" }
+AP-CHECK { "id": 563, "name": "MAP02 - Spike Gun [1284,1952]", "pos": ["MAP02",1284,1952,136], "region": "Gatehouse" }
+AP-CHECK { "id": 566, "name": "MAP02 - Salted Meat [E]", "pos": ["MAP02",1089,2063,128], "region": "Gatehouse" }
+AP-CHECK { "id": 565, "name": "MAP02 - Pint of Mead", "pos": ["MAP02",1135,2108,128], "region": "Gatehouse" }
+AP-CHECK { "id": 568, "name": "MAP02 - Bread [1066,2071]", "pos": ["MAP02",1066,2071,128], "region": "Gatehouse" }
+AP-CHECK { "id": 567, "name": "MAP02 - Spike Bundle [2276,1392]", "pos": ["MAP02",2276,1392,124], "region": "Gatehouse" }
+AP-CHECK { "id": 570, "name": "MAP02 - Spike Bundle [2277,1416]", "pos": ["MAP02",2277,1416,124], "region": "Gatehouse" }
+AP-CHECK { "id": 602, "name": "MAP02 - Fixer's Goggles", "pos": ["MAP02",-1137,35,66], "region": "General Store" }
+AP-CHECK { "id": 601, "name": "MAP02 - Spike Bundle [-923,38]", "pos": ["MAP02",-923,38,66], "region": "General Store" }
+AP-CHECK { "id": 716, "name": "MAP02 - Spike Mag [-709,156]", "pos": ["MAP02",-709,156,25], "region": "General Store" }
+AP-CHECK { "id": 717, "name": "MAP02 - Fragfire Can [-712,94]", "pos": ["MAP02",-712,94,25], "region": "General Store" }
+AP-CHECK { "id": 715, "name": "MAP02 - Spike Mag [-710,225]", "pos": ["MAP02",-710,225,25], "region": "General Store" }
+AP-CHECK { "id": 597, "name": "MAP02 - Cheese [-825,422]", "pos": ["MAP02",-825,422,66], "region": "General Store" }
+AP-CHECK { "id": 598, "name": "MAP02 - Cheese [-804,420]", "pos": ["MAP02",-804,420,66], "region": "General Store" }
+AP-CHECK { "id": 596, "name": "MAP02 - Bread [-823,428]", "pos": ["MAP02",-823,428,24], "region": "General Store" }
+AP-CHECK { "id": 595, "name": "MAP02 - Bread [-903,427]", "pos": ["MAP02",-903,427,24], "region": "General Store" }
+AP-CHECK { "id": 599, "name": "MAP02 - Jug of Wine", "pos": ["MAP02",-926,422,66], "region": "General Store" }
+AP-CHECK { "id": 594, "name": "MAP02 - Bread [-934,426]", "pos": ["MAP02",-934,426,24], "region": "General Store" }
+AP-CHECK { "id": 561, "name": "MAP02 - Fragfire Gun [Center]", "pos": ["MAP02",-592,1949,-8], "region": "Inn" }
+AP-CHECK { "id": 679, "name": "MAP02 - Fragfire Can [-592,1987]", "pos": ["MAP02",-592,1987,-8], "region": "Inn" }
+AP-CHECK { "id": 618, "name": "MAP02 - Vial of Healing [-646,2530]", "pos": ["MAP02",-646,2530,-24], "region": "Inn" }
+AP-CHECK { "id": 619, "name": "MAP02 - Polenta [-859,2612]", "pos": ["MAP02",-859,2612,28], "region": "Inn" }
+AP-CHECK { "id": 723, "name": "MAP02 - Fragfire Can [-333,1789]", "pos": ["MAP02",-333,1789,-8], "region": "Inn" }
+AP-CHECK { "id": 617, "name": "MAP02 - Cider [-183,1777]", "pos": ["MAP02",-183,1777,-8], "region": "Inn" }
+AP-CHECK { "id": 659, "name": "MAP02 - Spike Bundle [-242,1760]", "pos": ["MAP02",-242,1760,119], "region": "Inn" }
+AP-CHECK { "id": 622, "name": "MAP02 - Spike Bundle [-228,1774]", "pos": ["MAP02",-228,1774,120], "region": "Inn" }
+AP-CHECK { "id": 623, "name": "MAP02 - Spike Bundle [-196,1772]", "pos": ["MAP02",-196,1772,120], "region": "Inn" }
+AP-CHECK { "id": 620, "name": "MAP02 - Plum Brandy [-582,2394]", "pos": ["MAP02",-582,2394,152], "region": "Inn" }
+AP-CHECK { "id": 621, "name": "MAP02 - Salted Meat [Center]", "pos": ["MAP02",-565,2374,151], "region": "Inn" }
+AP-CHECK { "id": 551, "name": "MAP02 - Spike Mag [-747,1749]", "pos": ["MAP02",-747,1749,112], "region": "Inn" }
+AP-CHECK { "id": 550, "name": "MAP02 - Half-Empty Fragfire Can [-761,1749]", "pos": ["MAP02",-761,1749,112], "region": "Inn" }
+AP-CHECK { "id": 692, "name": "MAP02 - Potion of Minor Healing [-880,3152]", "pos": ["MAP02",-880,3152,175], "region": "Inn" }
+AP-CHECK { "id": 678, "name": "MAP02 - Fragfire Can [-2153,555]", "pos": ["MAP02",-2153,555,-24], "region": "W Plaza" }
+AP-CHECK { "id": 649, "name": "MAP02 - Spike Bundle [-2327,525]", "pos": ["MAP02",-2327,525,-24], "region": "W Plaza" }
+AP-CHECK { "id": 648, "name": "MAP02 - Spike Bundle [-2384,560]", "pos": ["MAP02",-2384,560,-24], "region": "W Plaza" }
+AP-CHECK { "id": 787, "name": "MAP02 - Potion of Greater Healing [SW]", "pos": ["MAP02",-3032,1035,-24], "region": "W Plaza" }
+AP-CHECK { "id": 722, "name": "MAP02 - Fragfire Can [-3809,824]", "pos": ["MAP02",-3809,824,-16], "region": "W Plaza" }
+AP-CHECK { "id": 707, "name": "MAP02 - Potion of Minor Healing [-3817,860]", "pos": ["MAP02",-3817,860,-16], "region": "W Plaza" }
+AP-CHECK { "id": 650, "name": "MAP02 - Apple [-2071,1167]", "pos": ["MAP02",-2071,1167,-23], "region": "W Plaza" }
+AP-CHECK { "id": 651, "name": "MAP02 - Apple [-2080,1298]", "pos": ["MAP02",-2080,1298,16], "region": "W Plaza" }
+AP-CHECK { "id": 652, "name": "MAP02 - Apple [-2005,1294]", "pos": ["MAP02",-2005,1294,72], "region": "W Plaza" }
+AP-CHECK { "id": 711, "name": "MAP02 - Power Shard [-4265,1428]", "pos": ["MAP02",-4265,1428,-1], "region": "Equipment Shop" }
+AP-CHECK { "id": 712, "name": "MAP02 - Power Shard [-4260,1465]", "pos": ["MAP02",-4260,1465,-1], "region": "Equipment Shop" }
+AP-CHECK { "id": 784, "name": "MAP02 - Boltmag [-4205,1391]", "pos": ["MAP02",-4205,1391,31], "region": "Equipment Shop" }
+AP-CHECK { "id": 628, "name": "MAP02 - Spike Mag [-4206,1424]", "pos": ["MAP02",-4206,1424,31], "region": "Equipment Shop" }
+AP-CHECK { "id": 720, "name": "MAP02 - Fragfire Can [-4233,1368]", "pos": ["MAP02",-4233,1368,31], "region": "Equipment Shop" }
+AP-CHECK { "id": 627, "name": "MAP02 - Fragfire Can [-4287,1368]", "pos": ["MAP02",-4287,1368,31], "region": "Equipment Shop" }
+AP-CHECK { "id": 626, "name": "MAP02 - Fragfire Gun [SW]", "pos": ["MAP02",-4473,957,31], "region": "Equipment Shop" }
+AP-CHECK { "id": 625, "name": "MAP02 - Spike Gun [-4306,958]", "pos": ["MAP02",-4306,958,31], "region": "Equipment Shop" }
+AP-CHECK { "id": 783, "name": "MAP02 - Crushbow", "pos": ["MAP02",-4305,960,31], "region": "Equipment Shop" }
+AP-CHECK { "id": 624, "name": "MAP02 - Spike Gun [-4139,962]", "pos": ["MAP02",-4139,962,31], "region": "Equipment Shop" }
+AP-CHECK { "id": 766, "name": "MAP02 - Power Shard [-4792,3585]", "pos": ["MAP02",-4792,3585,91], "region": "NW Shrine" }
+AP-CHECK { "id": 772, "name": "MAP02 - Power Shard [-4812,3757]", "pos": ["MAP02",-4812,3757,91], "region": "NW Shrine" }
+AP-CHECK { "id": 765, "name": "MAP02 - Power Shard [-4956,3873]", "pos": ["MAP02",-4956,3873,91], "region": "NW Shrine" }
+AP-CHECK { "id": 768, "name": "MAP02 - Power Shard [-5234,3736]", "pos": ["MAP02",-5234,3736,91], "region": "NW Shrine" }
+AP-CHECK { "id": 771, "name": "MAP02 - Power Shard [-5228,3587]", "pos": ["MAP02",-5228,3587,91], "region": "NW Shrine" }
+AP-CHECK { "id": 767, "name": "MAP02 - Power Shard [-5123,3466]", "pos": ["MAP02",-5123,3466,91], "region": "NW Shrine" }
+AP-CHECK { "id": 629, "name": "MAP02 - Iron Key", "pos": ["MAP02",-5016,3640,111], "region": "NW Shrine" }
+AP-CHECK { "id": 709, "name": "MAP02 - Potion of Minor Healing [-4969,1965]", "pos": ["MAP02",-4969,1965,96], "region": "W Exit Door" }
+AP-CHECK { "id": 544, "name": "MAP02 - Half-Empty Fragfire Can [-312,152]", "pos": ["MAP02",-312,152,20], "region": "S Guardhouse Armoury" }
+AP-CHECK { "id": 543, "name": "MAP02 - Fragfire Can [-312,180]", "pos": ["MAP02",-312,180,20], "region": "S Guardhouse Armoury" }
+AP-CHECK { "id": 545, "name": "MAP02 - Spike Mag [-308,110]", "pos": ["MAP02",-308,110,20], "region": "S Guardhouse Armoury" }
+AP-CHECK { "id": 541, "name": "MAP02 - Spike Gun [-302,70]", "pos": ["MAP02",-302,70,20], "region": "S Guardhouse Armoury" }
+AP-CHECK { "id": 798, "name": "MAP02 - Vial of Healing [-306,42]", "pos": ["MAP02",-306,42,20], "region": "S Guardhouse Armoury" }
+AP-CHECK { "id": 799, "name": "MAP02 - Vial of Healing [-306,22]", "pos": ["MAP02",-306,22,20], "region": "S Guardhouse Armoury" }
+AP-CHECK { "id": 800, "name": "MAP02 - Vial of Healing [-290,18]", "pos": ["MAP02",-290,18,20], "region": "S Guardhouse Armoury" }
+AP-CHECK { "id": 719, "name": "MAP02 - Spike Mag [-267,20]", "pos": ["MAP02",-267,20,20], "region": "S Guardhouse Armoury" }
+AP-CHECK { "id": 691, "name": "MAP02 - Potion of Healing [-218,16]", "pos": ["MAP02",-218,16,20], "region": "S Guardhouse Armoury" }
+AP-CHECK { "id": 736, "name": "MAP02 - Power Shard [230,463]", "pos": ["MAP02",230,463,0], "region": "S Guardhouse Cells" }
+AP-CHECK { "id": 737, "name": "MAP02 - Power Shard [278,456]", "pos": ["MAP02",278,456,0], "region": "S Guardhouse Cells" }
+AP-CHECK { "id": 756, "name": "MAP02 - Iron pickaxe", "pos": ["MAP02",303,442,8], "region": "S Guardhouse Cells" }
+AP-CHECK { "id": 738, "name": "MAP02 - Potion of Healing [328,456]", "pos": ["MAP02",328,456,0], "region": "S Guardhouse Cells" }
+AP-CHECK { "id": 727, "name": "MAP02 - Vial of Healing [339,504]", "pos": ["MAP02",339,504,0], "region": "S Guardhouse Cells" }
+AP-CHECK { "id": 755, "name": "MAP02 - Apple [-2991,-603]", "pos": ["MAP02",-2991,-603,-24], "region": "Park" }
+AP-CHECK { "id": 647, "name": "MAP02 - Apple [-2955,-660]", "pos": ["MAP02",-2955,-660,-24], "region": "Park" }
+AP-CHECK { "id": 733, "name": "MAP02 - Power Shard [-3627,-608]", "pos": ["MAP02",-3627,-608,-24], "region": "Park" }
+AP-CHECK { "id": 732, "name": "MAP02 - Power Shard [-3667,-633]", "pos": ["MAP02",-3667,-633,-24], "region": "Park" }
+AP-CHECK { "id": 731, "name": "MAP02 - Power Shard [-3710,-645]", "pos": ["MAP02",-3710,-645,-24], "region": "Park" }
+AP-CHECK { "id": 557, "name": "MAP02 - Bowl of Fae Dust", "pos": ["MAP02",-3764,-653,-8], "region": "Park" }
+AP-CHECK { "id": 633, "name": "MAP02 - Scroll of Magma Ball [-1946,-428]", "pos": ["MAP02",-1946,-428,40], "region": "Library" }
+AP-CHECK { "id": 634, "name": "MAP02 - Scroll of Magma Ball [-1965,-424]", "pos": ["MAP02",-1965,-424,40], "region": "Library" }
+AP-CHECK { "id": 631, "name": "MAP02 - Scroll of Magma Ball [-1916,-423]", "pos": ["MAP02",-1916,-423,40], "region": "Library" }
+AP-CHECK { "id": 630, "name": "MAP02 - Scroll of Wizard's Eye", "pos": ["MAP02",-1826,-339,189], "region": "Library" }
+AP-CHECK { "id": 637, "name": "MAP02 - Spike Bundle [-1716,-776]", "pos": ["MAP02",-1716,-776,32], "region": "Library" }
+AP-CHECK { "id": 636, "name": "MAP02 - Spike Bundle [-1699,-776]", "pos": ["MAP02",-1699,-776,32], "region": "Library" }
+AP-CHECK { "id": 632, "name": "MAP02 - Mortar of Earth Pigment [S]", "pos": ["MAP02",-1672,-777,32], "region": "Library" }
+AP-CHECK { "id": 635, "name": "MAP02 - Spike Bundle [-1620,-751]", "pos": ["MAP02",-1620,-751,31], "region": "Library" }
+AP-CHECK { "id": 660, "name": "MAP02 - Vine Key", "pos": ["MAP02",-1532,-877,122], "region": "Library" }
+AP-CHECK { "id": 749, "name": "MAP02 - Nourish", "pos": ["MAP02",-2105,6,108], "region": "Library Balcony" }
+AP-CHECK { "id": 688, "name": "MAP02 - Power Shard [-2002,104]", "pos": ["MAP02",-2002,104,124], "region": "Library Balcony" }
+AP-CHECK { "id": 689, "name": "MAP02 - Power Shard [-1963,99]", "pos": ["MAP02",-1963,99,124], "region": "Library Balcony" }
+AP-CHECK { "id": 690, "name": "MAP02 - Potion of Minor Healing [-1926,100]", "pos": ["MAP02",-1926,100,124], "region": "Library Balcony" }
+AP-CHECK { "id": 779, "name": "MAP02 - Time Shard [-1882,105]", "pos": ["MAP02",-1882,105,164], "region": "Library Balcony" }
+AP-CHECK { "id": 645, "name": "MAP02 - Cream Fungus [-3211,614]", "pos": ["MAP02",-3211,614,2], "region": "Alchemist" }
+AP-CHECK { "id": 644, "name": "MAP02 - Cream Fungus [-3241,610]", "pos": ["MAP02",-3241,610,2], "region": "Alchemist" }
+AP-CHECK { "id": 643, "name": "MAP02 - Cream Fungus [-3249,597]", "pos": ["MAP02",-3249,597,2], "region": "Alchemist" }
+AP-CHECK { "id": 642, "name": "MAP02 - Cream Fungus [-3260,617]", "pos": ["MAP02",-3260,617,2], "region": "Alchemist" }
+AP-CHECK { "id": 750, "name": "MAP02 - Bowl of Scribe Embers [SW]", "pos": ["MAP02",-3340,532,24], "region": "Alchemist" }
+AP-CHECK { "id": 600, "name": "MAP02 - Potion of Minor Healing [-3311,462]", "pos": ["MAP02",-3311,462,24], "region": "Alchemist" }
+AP-CHECK { "id": 706, "name": "MAP02 - Potion of Minor Healing [-3311,430]", "pos": ["MAP02",-3311,430,24], "region": "Alchemist" }
+AP-CHECK { "id": 777, "name": "MAP02 - Potion of Might", "pos": ["MAP02",-3314,428,24], "region": "Alchemist" }
+AP-CHECK { "id": 730, "name": "MAP02 - Purple Root [SW]", "pos": ["MAP02",-3119,274,24], "region": "Alchemist" }
+AP-CHECK { "id": 641, "name": "MAP02 - Leek [-3049,280]", "pos": ["MAP02",-3049,280,70], "region": "Alchemist" }
+AP-CHECK { "id": 639, "name": "MAP02 - Leek [-3030,280]", "pos": ["MAP02",-3030,280,70], "region": "Alchemist" }
+AP-CHECK { "id": 638, "name": "MAP02 - Apple [-3092,181]", "pos": ["MAP02",-3092,181,88], "region": "Alchemist" }
+AP-CHECK { "id": 549, "name": "MAP02 - Vial of Healing [-2626,37]", "pos": ["MAP02",-2626,37,86], "region": "Alchemist" }
+AP-CHECK { "id": 774, "name": "MAP02 - Box of Acid Potions [SW]", "pos": ["MAP02",-2530,173,56], "region": "Alchemist" }
+AP-CHECK { "id": 773, "name": "MAP02 - Potion Launcher", "pos": ["MAP02",-2557,210,56], "region": "Alchemist" }
+AP-CHECK { "id": 785, "name": "MAP02 - Box of Acid Potions [S]", "pos": ["MAP02",-550,608,-8], "region": "General Store Closet" }
+AP-CHECK { "id": 696, "name": "MAP02 - Cider [-530,622]", "pos": ["MAP02",-530,622,46], "region": "General Store Closet" }
+AP-CHECK { "id": 697, "name": "MAP02 - Cider [-577,619]", "pos": ["MAP02",-577,619,46], "region": "General Store Closet" }
+AP-CHECK { "id": 786, "name": "MAP02 - Box of Toxic Potions", "pos": ["MAP02",-604,606,-8], "region": "General Store Closet" }
+AP-CHECK { "id": 726, "name": "MAP02 - Half-Empty Fragfire Can [-672,620]", "pos": ["MAP02",-672,620,46], "region": "General Store Closet" }
+AP-CHECK { "id": 725, "name": "MAP02 - Fragfire Can [-702,622]", "pos": ["MAP02",-702,622,46], "region": "General Store Closet" }
+AP-CHECK { "id": 612, "name": "MAP02 - Purple Root [S]", "pos": ["MAP02",-797,577,46], "region": "General Store Closet" }
+AP-CHECK { "id": 559, "name": "MAP02 - Fragfire Can [694,1751]", "pos": ["MAP02",694,1751,-16], "region": "Stables" }
+AP-CHECK { "id": 677, "name": "MAP02 - Purple Root [Center]", "pos": ["MAP02",-15,2247,-9], "region": "Inn Backrooms" }
+AP-CHECK { "id": 721, "name": "MAP02 - Fragfire Can [39,2363]", "pos": ["MAP02",39,2363,23], "region": "Inn Backrooms" }
+AP-CHECK { "id": 610, "name": "MAP02 - Polenta [-88,2576]", "pos": ["MAP02",-88,2576,23], "region": "Inn Backrooms" }
+AP-CHECK { "id": 611, "name": "MAP02 - Leek [-89,2614]", "pos": ["MAP02",-89,2614,23], "region": "Inn Backrooms" }
+AP-CHECK { "id": 603, "name": "MAP02 - Cheese [93,2658]", "pos": ["MAP02",93,2658,24], "region": "Inn Backrooms" }
+AP-CHECK { "id": 562, "name": "MAP02 - Baked Potato", "pos": ["MAP02",111,2660,23], "region": "Inn Backrooms" }
+AP-CHECK { "id": 701, "name": "MAP02 - Tomato [140,2656]", "pos": ["MAP02",140,2656,23], "region": "Inn Backrooms" }
+AP-CHECK { "id": 703, "name": "MAP02 - Tomato [145,2660]", "pos": ["MAP02",145,2660,23], "region": "Inn Backrooms" }
+AP-CHECK { "id": 646, "name": "MAP02 - SmokedHam", "pos": ["MAP02",-92,2226,37], "region": "Inn Backrooms" }
+AP-CHECK { "id": 790, "name": "MAP02 - Vial of Healing [362,2588]", "pos": ["MAP02",362,2588,-9], "region": "Inn Backrooms" }
+AP-CHECK { "id": 789, "name": "MAP02 - Vial of Healing [361,2552]", "pos": ["MAP02",361,2552,-9], "region": "Inn Backrooms" }
+AP-CHECK { "id": 801, "name": "MAP02 - Secret 1164", "pos": ["MAP02","secret","sector",1164], "region": "Inn Cellar Secret" }
+AP-CHECK { "id": 583, "name": "MAP02 - Potion of Minor Healing [128,2772]", "pos": ["MAP02",128,2772,-56], "region": "Inn Cellar Secret" }
+AP-CHECK { "id": 698, "name": "MAP02 - Plum Brandy [273,3155]", "pos": ["MAP02",273,3155,-56], "region": "Inn Cellar Secret" }
+AP-CHECK { "id": 582, "name": "MAP02 - Plum Brandy [264,3192]", "pos": ["MAP02",264,3192,-56], "region": "Inn Cellar Secret" }
+AP-CHECK { "id": 548, "name": "MAP02 - Plum Brandy [51,2779]", "pos": ["MAP02",51,2779,-56], "region": "Inn Cellar Secret" }
+AP-CHECK { "id": 581, "name": "MAP02 - Potion of Minor Healing [17,2770]", "pos": ["MAP02",17,2770,-56], "region": "Inn Cellar Secret" }
+AP-CHECK { "id": 724, "name": "MAP02 - Potion of Haste [Center]", "pos": ["MAP02",-80,2778,-56], "region": "Inn Cellar Secret" }
+AP-CHECK { "id": 728, "name": "MAP02 - Cheese [60,3197]", "pos": ["MAP02",60,3197,-56], "region": "Inn Cellar Secret" }
+AP-CHECK { "id": 584, "name": "MAP02 - Potion of Healing [-84,3180]", "pos": ["MAP02",-84,3180,-56], "region": "Inn Cellar Secret" }
+AP-CHECK { "id": 792, "name": "MAP02 - Vial of Healing [6,3384]", "pos": ["MAP02",6,3384,-16], "region": "Secret Forge" }
+AP-CHECK { "id": 577, "name": "MAP02 - Half-Empty Fragfire Can [8,3484]", "pos": ["MAP02",8,3484,-16], "region": "Secret Forge" }
+AP-CHECK { "id": 578, "name": "MAP02 - Spike Bundle [8,3588]", "pos": ["MAP02",8,3588,-16], "region": "Secret Forge" }
+AP-CHECK { "id": 579, "name": "MAP02 - Spike Bundle [8,3692]", "pos": ["MAP02",8,3692,-16], "region": "Secret Forge" }
+AP-CHECK { "id": 580, "name": "MAP02 - Spike Bundle [8,3716]", "pos": ["MAP02",8,3716,-16], "region": "Secret Forge" }
+AP-CHECK { "id": 802, "name": "MAP02 - Secret 1251", "pos": ["MAP02","secret","sector",1251], "region": "Secret Forge" }
+AP-CHECK { "id": 593, "name": "MAP02 - Bowl of Scribe Embers [NE]", "pos": ["MAP02",-80,4024,-52], "region": "Secret Forge" }
+AP-CHECK { "id": 589, "name": "MAP02 - Spike Bundle [74,3822]", "pos": ["MAP02",74,3822,-34], "region": "Secret Forge" }
+AP-CHECK { "id": 590, "name": "MAP02 - Spike Bundle [196,3827]", "pos": ["MAP02",196,3827,-24], "region": "Secret Forge" }
+AP-CHECK { "id": 585, "name": "MAP02 - Spike Bundle [180,3826]", "pos": ["MAP02",180,3826,-24], "region": "Secret Forge" }
+AP-CHECK { "id": 592, "name": "MAP02 - Spike Mag [377,3838]", "pos": ["MAP02",377,3838,-24], "region": "Secret Forge" }
+AP-CHECK { "id": 588, "name": "MAP02 - Spike Bundle [370,3984]", "pos": ["MAP02",370,3984,-24], "region": "Secret Forge" }
+AP-CHECK { "id": 591, "name": "MAP02 - Spike Bundle [364,4004]", "pos": ["MAP02",364,4004,-24], "region": "Secret Forge" }
+AP-CHECK { "id": 587, "name": "MAP02 - Spike Bundle [369,4020]", "pos": ["MAP02",369,4020,-24], "region": "Secret Forge" }
+AP-CHECK { "id": 586, "name": "MAP02 - Spike Bundle [370,4042]", "pos": ["MAP02",370,4042,-24], "region": "Secret Forge" }
+AP-CHECK { "id": 780, "name": "MAP02 - Boltmag [373,4073]", "pos": ["MAP02",373,4073,-24], "region": "Secret Forge" }
+AP-CHECK { "id": 572, "name": "MAP02 - Axe Key", "pos": ["MAP02",-1,4283,-34], "region": "N Caves" }
+AP-CHECK { "id": 573, "name": "MAP02 - Potion of Minor Healing [721,4213]", "pos": ["MAP02",721,4213,-64], "region": "N Caves" }
+AP-CHECK { "id": 609, "name": "MAP02 - Cream Fungus [80,4716]", "pos": ["MAP02",80,4716,-71], "region": "N Caves" }
+AP-CHECK { "id": 700, "name": "MAP02 - Cream Fungus [62,4749]", "pos": ["MAP02",62,4749,-71], "region": "N Caves" }
+AP-CHECK { "id": 575, "name": "MAP02 - Cream Fungus [352,5476]", "pos": ["MAP02",352,5476,-80], "region": "N Caves" }
+AP-CHECK { "id": 574, "name": "MAP02 - Cream Fungus [352,5492]", "pos": ["MAP02",352,5492,-80], "region": "N Caves" }
+AP-CHECK { "id": 576, "name": "MAP02 - Cream Fungus [648,5688]", "pos": ["MAP02",648,5688,-88], "region": "N Caves" }
+AP-CHECK { "id": 655, "name": "MAP02 - Cream Fungus [-556,6196]", "pos": ["MAP02",-556,6196,-128], "region": "N Caves Worm Nest" }
+AP-CHECK { "id": 657, "name": "MAP02 - Cream Fungus [-572,6170]", "pos": ["MAP02",-572,6170,-128], "region": "N Caves Worm Nest" }
+AP-CHECK { "id": 656, "name": "MAP02 - Cream Fungus [-587,6237]", "pos": ["MAP02",-587,6237,-120], "region": "N Caves Worm Nest" }
+AP-CHECK { "id": 735, "name": "MAP02 - Power Shard [-607,5183]", "pos": ["MAP02",-607,5183,-161], "region": "N Caves Below Well" }
+AP-CHECK { "id": 734, "name": "MAP02 - Power Shard [-552,5153]", "pos": ["MAP02",-552,5153,-161], "region": "N Caves Below Well" }
+AP-CHECK { "id": 729, "name": "MAP02 - Time Shard [-501,5264]", "pos": ["MAP02",-501,5264,-41], "region": "N Caves Below Well" }
+AP-CHECK { "id": 558, "name": "MAP02 - Red Crystal", "pos": ["MAP02",-1631,1178,25], "region": "Crystal Shop 1F" }
+AP-CHECK { "id": 604, "name": "MAP02 - Enchanted Purple Ink Recipe", "pos": ["MAP02",-2586,259,89], "region": "Alchemist" }
+AP-CHECK { "id": 776, "name": "MAP02 - Vial of Healing [-2871,294]", "pos": ["MAP02",-2871,294,80], "region": "Alchemist Bedroom Secret" }
+AP-CHECK { "id": 775, "name": "MAP02 - Vial of Healing [-2869,296]", "pos": ["MAP02",-2869,296,80], "region": "Alchemist Bedroom Secret" }
+AP-CHECK { "id": 704, "name": "MAP02 - Vial of Healing [-2877,289]", "pos": ["MAP02",-2877,289,80], "region": "Alchemist Bedroom Secret" }
+AP-CHECK { "id": 705, "name": "MAP02 - Vial of Healing [-2879,286]", "pos": ["MAP02",-2879,286,80], "region": "Alchemist Bedroom Secret" }
+AP-CHECK { "id": 640, "name": "MAP02 - Potion of Stoneskin", "pos": ["MAP02",-2865,308,80], "region": "Alchemist Bedroom Secret" }
+AP-CHECK { "id": 804, "name": "MAP02 - Secret 2809", "pos": ["MAP02","secret","sector",2809], "region": "Alchemist Bedroom Secret" }
+AP-CHECK { "id": 699, "name": "MAP02 - Potion of Minor Healing [-1725,1050]", "pos": ["MAP02",-1725,1050,105], "region": "Crystal Shop 2F" }
+AP-CHECK { "id": 794, "name": "MAP02 - Force Pike", "pos": ["MAP02",-1754,1039,105], "region": "Crystal Shop 2F" }
+AP-CHECK { "id": 788, "name": "MAP02 - Boltmag [-1671,1112]", "pos": ["MAP02",-1671,1112,105], "region": "Crystal Shop 2F" }
+AP-CHECK { "id": 605, "name": "MAP02 - Time Shard [-1814,1624]", "pos": ["MAP02",-1814,1624,166], "region": "Crystal Shop 2F" }
+AP-CHECK { "id": 676, "name": "MAP02 - Potion of Minor Healing [-1658,1364]", "pos": ["MAP02",-1658,1364,113], "region": "Crystal Shop 2F" }
+AP-CHECK { "id": 606, "name": "MAP02 - Medium Armor Crystal", "pos": ["MAP02",-1717,1542,113], "region": "Crystal Shop 2F" }
+AP-CHECK { "id": 714, "name": "MAP02 - Power Shard [-1676,1570]", "pos": ["MAP02",-1676,1570,113], "region": "Crystal Shop 2F" }
+AP-CHECK { "id": 693, "name": "MAP02 - Power Shard [-1699,1589]", "pos": ["MAP02",-1699,1589,113], "region": "Crystal Shop 2F" }
+AP-CHECK { "id": 608, "name": "MAP02 - Power Shard [-1671,1592]", "pos": ["MAP02",-1671,1592,113], "region": "Crystal Shop 2F" }
+AP-CHECK { "id": 607, "name": "MAP02 - Power Shard [-1677,1610]", "pos": ["MAP02",-1677,1610,113], "region": "Crystal Shop 2F" }
+AP-CHECK { "id": 713, "name": "MAP02 - Power Shard [-1703,1613]", "pos": ["MAP02",-1703,1613,113], "region": "Crystal Shop 2F" }
+AP-CHECK { "id": 547, "name": "MAP02 - Stone Key", "pos": ["MAP02",-1603,1657,153], "region": "Crystal Shop 2F" }
+AP-CHECK { "id": 685, "name": "MAP02 - Potion of Healing [-3297,3640]", "pos": ["MAP02",-3297,3640,88], "region": "N Plaza" }
+AP-CHECK { "id": 683, "name": "MAP02 - Spike Mag [-3342,3212]", "pos": ["MAP02",-3342,3212,88], "region": "N Plaza" }
+AP-CHECK { "id": 684, "name": "MAP02 - Fragfire Can [-3317,3154]", "pos": ["MAP02",-3317,3154,88], "region": "N Plaza" }
+AP-CHECK { "id": 669, "name": "MAP02 - Apple [-1873,4087]", "pos": ["MAP02",-1873,4087,88], "region": "N Plaza" }
+AP-CHECK { "id": 670, "name": "MAP02 - Apple [-1735,4178]", "pos": ["MAP02",-1735,4178,96], "region": "N Plaza" }
+AP-CHECK { "id": 710, "name": "MAP02 - Potion of Healing [-1403,4129]", "pos": ["MAP02",-1403,4129,87], "region": "N Plaza" }
+AP-CHECK { "id": 673, "name": "MAP02 - Half-Empty Fragfire Can [-2878,3081]", "pos": ["MAP02",-2878,3081,136], "region": "N Guardhouse" }
+AP-CHECK { "id": 674, "name": "MAP02 - Half-Empty Fragfire Can [-2867,3100]", "pos": ["MAP02",-2867,3100,136], "region": "N Guardhouse" }
+AP-CHECK { "id": 672, "name": "MAP02 - Fragfire Can [-2852,3144]", "pos": ["MAP02",-2852,3144,136], "region": "N Guardhouse" }
+AP-CHECK { "id": 671, "name": "MAP02 - Fragfire Gun [W]", "pos": ["MAP02",-2834,3182,136], "region": "N Guardhouse" }
+AP-CHECK { "id": 675, "name": "MAP02 - Spike Gun [-2694,3207]", "pos": ["MAP02",-2694,3207,104], "region": "N Guardhouse" }
+AP-CHECK { "id": 681, "name": "MAP02 - Potion of Healing [-2360,3204]", "pos": ["MAP02",-2360,3204,136], "region": "N Guardhouse" }
+AP-CHECK { "id": 803, "name": "MAP02 - Secret 1655", "pos": ["MAP02","secret","sector",1655], "region": "Dwarf Bedroom Secret" }
+AP-CHECK { "id": 795, "name": "MAP02 - Fire Hammer", "pos": ["MAP02",-750,3291,168], "region": "Dwarf Bedroom Secret" }
+AP-CHECK { "id": 778, "name": "MAP02 - Boltmag [-744,3233]", "pos": ["MAP02",-744,3233,151], "region": "Dwarf Bedroom Secret" }
+AP-CHECK { "id": 791, "name": "MAP02 - Boltmag [-744,3200]", "pos": ["MAP02",-744,3200,151], "region": "Dwarf Bedroom Secret" }
+AP-CHECK { "id": 613, "name": "MAP02 - Elemental Ring", "pos": ["MAP02",-656,3083,174], "region": "Dwarf Bedroom Secret" }
+AP-CHECK { "id": 616, "name": "MAP02 - Potion of Healing [-523,3105]", "pos": ["MAP02",-523,3105,151], "region": "Dwarf Bedroom Secret" }
+AP-CHECK { "id": 614, "name": "MAP02 - Fragfire Can [-527,3215]", "pos": ["MAP02",-527,3215,151], "region": "Dwarf Bedroom Secret" }
+AP-CHECK { "id": 615, "name": "MAP02 - Fragfire Can [-525,3230]", "pos": ["MAP02",-525,3230,151], "region": "Dwarf Bedroom Secret" }
+AP-CHECK { "id": 759, "name": "MAP02 - Cream Fungus [1278,-173]", "pos": ["MAP02",1278,-173,3], "region": "S Caves" }
+AP-CHECK { "id": 758, "name": "MAP02 - Cream Fungus [1238,-216]", "pos": ["MAP02",1238,-216,0], "region": "S Caves" }
+AP-CHECK { "id": 761, "name": "MAP02 - Cream Fungus [1083,-452]", "pos": ["MAP02",1083,-452,0], "region": "S Caves" }
+AP-CHECK { "id": 762, "name": "MAP02 - Cream Fungus [1088,-476]", "pos": ["MAP02",1088,-476,0], "region": "S Caves" }
+AP-CHECK { "id": 760, "name": "MAP02 - Cream Fungus [1058,-469]", "pos": ["MAP02",1058,-469,0], "region": "S Caves" }
+AP-CHECK { "id": 752, "name": "MAP02 - Cream Fungus [840,-440]", "pos": ["MAP02",840,-440,15], "region": "S Caves" }
+AP-CHECK { "id": 751, "name": "MAP02 - Cream Fungus [828,-432]", "pos": ["MAP02",828,-432,18], "region": "S Caves" }
+AP-CHECK { "id": 763, "name": "MAP02 - Time Shard [1050,-258]", "pos": ["MAP02",1050,-258,72], "region": "S Caves" }
+AP-CHECK { "id": 757, "name": "MAP02 - Cream Fungus [1272,-269]", "pos": ["MAP02",1272,-269,0], "region": "S Caves" }
+AP-CHECK { "id": 745, "name": "MAP02 - Power Shard [-87,-740]", "pos": ["MAP02",-87,-740,-120], "region": "S Caves Tunnel Secret" }
+AP-CHECK { "id": 746, "name": "MAP02 - Time Shard [-106,-747]", "pos": ["MAP02",-106,-747,-72], "region": "S Caves Tunnel Secret" }
+AP-CHECK { "id": 744, "name": "MAP02 - Power Shard [-100,-760]", "pos": ["MAP02",-100,-760,-120], "region": "S Caves Tunnel Secret" }
+AP-CHECK { "id": 743, "name": "MAP02 - Power Shard [-113,-738]", "pos": ["MAP02",-113,-738,-120], "region": "S Caves Tunnel Secret" }
+AP-CHECK { "id": 805, "name": "MAP02 - Secret 3938", "pos": ["MAP02","secret","sector",3938], "region": "S Caves Tunnel Secret" }
+AP-CHECK { "id": 747, "name": "MAP02 - Bowl of Scribe Embers [S]", "pos": ["MAP02",-1184,-1061,249], "region": "S Caves Tunnel Secret" }
+AP-CHECK { "id": 654, "name": "MAP02 - Cream Fungus [2647,700]", "pos": ["MAP02",2647,700,-16], "region": "River" }
+AP-CHECK { "id": 653, "name": "MAP02 - Cream Fungus [2667,783]", "pos": ["MAP02",2667,783,-16], "region": "River" }
+AP-CHECK { "id": 552, "name": "MAP02 - Cream Fungus [2600,1266]", "pos": ["MAP02",2600,1266,-16], "region": "River" }
+AP-CHECK { "id": 554, "name": "MAP02 - Cream Fungus [2476,1366]", "pos": ["MAP02",2476,1366,-16], "region": "River" }
+AP-CHECK { "id": 553, "name": "MAP02 - Cream Fungus [2488,1388]", "pos": ["MAP02",2488,1388,-16], "region": "River" }
+AP-CHECK { "id": 742, "name": "MAP02 - Power Shard [2874,1803]", "pos": ["MAP02",2874,1803,-209], "region": "River" }
+AP-CHECK { "id": 753, "name": "MAP02 - Power Shard [3010,1669]", "pos": ["MAP02",3010,1669,-209], "region": "River" }
+AP-CHECK { "id": 739, "name": "MAP02 - Power Shard [2948,588]", "pos": ["MAP02",2948,588,-209], "region": "River" }
+AP-CHECK { "id": 741, "name": "MAP02 - Power Shard [3018,364]", "pos": ["MAP02",3018,364,-257], "region": "River" }
+AP-CHECK { "id": 740, "name": "MAP02 - Power Shard [3113,274]", "pos": ["MAP02",3113,274,-209], "region": "River" }
+AP-CHECK { "id": 770, "name": "MAP02 - Vial of Healing [1885,-28]", "pos": ["MAP02",1885,-28,-64], "region": "Shark Hot Tub Secret" }
+AP-CHECK { "id": 769, "name": "MAP02 - Potion of Greater Healing [SE]", "pos": ["MAP02",1884,-9,-64], "region": "Shark Hot Tub Secret" }
+AP-CHECK { "id": 555, "name": "MAP02 - Power Shard [1555,4019]", "pos": ["MAP02",1555,4019,-200], "region": "Shark Hot Tub Secret" }
+AP-CHECK { "id": 556, "name": "MAP02 - Power Shard [1507,4034]", "pos": ["MAP02",1507,4034,-200], "region": "Shark Hot Tub Secret" }
+AP-CHECK { "id": 781, "name": "MAP02 - Potion of Haste [NE]", "pos": ["MAP02",-161,4548,103], "region": "N Caves Above Well, Closet" }
+AP-CHECK { "id": 695, "name": "MAP02 - Vial of Healing [-192,4500]", "pos": ["MAP02",-192,4500,103], "region": "N Caves Above Well, Closet" }
+AP-CHECK { "id": 748, "name": "MAP02 - Mortar of Earth Pigment [NE]", "pos": ["MAP02",-64,4598,103], "region": "N Caves Above Well, Closet" }
+AP-CHECK { "id": 661, "name": "MAP02 - Potion of Healing [-992,5759]", "pos": ["MAP02",-992,5759,127], "region": "N Caves Above Well, Bedroom" }
+AP-CHECK { "id": 764, "name": "MAP02 - Boltmag [-985,5518]", "pos": ["MAP02",-985,5518,127], "region": "N Caves Above Well, Bedroom" }
+AP-CHECK { "id": 754, "name": "MAP02 - Half-Empty Fragfire Can [-922,5475]", "pos": ["MAP02",-922,5475,95], "region": "N Caves Above Well, Bedroom" }
+AP-CHECK { "id": 664, "name": "MAP02 - Half-Empty Fragfire Can [-390,4331]", "pos": ["MAP02",-390,4331,103], "region": "N Caves Above Well, Forge" }
+AP-CHECK { "id": 668, "name": "MAP02 - Spike Bundle [-534,4372]", "pos": ["MAP02",-534,4372,101], "region": "N Caves Above Well, Forge" }
+AP-CHECK { "id": 680, "name": "MAP02 - Fragfire Can [-558,4368]", "pos": ["MAP02",-558,4368,103], "region": "N Caves Above Well, Forge" }
+AP-CHECK { "id": 782, "name": "MAP02 - Fragfire Can [-601,4359]", "pos": ["MAP02",-601,4359,103], "region": "N Caves Above Well, Forge" }
+AP-CHECK { "id": 666, "name": "MAP02 - Spike Bundle [-598,4333]", "pos": ["MAP02",-598,4333,101], "region": "N Caves Above Well, Forge" }
+AP-CHECK { "id": 667, "name": "MAP02 - Spike Bundle [-631,4329]", "pos": ["MAP02",-631,4329,101], "region": "N Caves Above Well, Forge" }
+AP-CHECK { "id": 797, "name": "MAP02 - Bearzerker Axe [-928,4469]", "pos": ["MAP02",-928,4469,135], "region": "N Caves Above Well, Forge" }
+AP-CHECK { "id": 665, "name": "MAP02 - Axe [-928,4469]", "pos": ["MAP02",-928,4469,135], "region": "N Caves Above Well, Forge" }
+AP-CHECK { "id": 796, "name": "MAP02 - Bearzerker Axe [-921,4563]", "pos": ["MAP02",-921,4563,135], "region": "N Caves Above Well, Forge" }
+AP-CHECK { "id": 663, "name": "MAP02 - Axe [-921,4563]", "pos": ["MAP02",-921,4563,135], "region": "N Caves Above Well, Forge" }
+AP-CHECK { "id": 540, "name": "MAP02 - Exit", "pos": ["MAP02","event","exit"], "region": "W Exit" }

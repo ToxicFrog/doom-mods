@@ -1,0 +1,431 @@
+#### Hedon Bloodrite configuration ####
+require MAP01 f5a88e5eb33109c5ea424099f4625181;
+
+cluster 13 Besieged; # maps 13-14-15: Besieged, Brazen Bull, and Deep Calls
+cluster 18 Paradise Lost; # maps 18-19-20: Paradise Lost, Place Afoul, and Salt and Blood
+cluster 21 Blood Rite; # maps 21-22: Blood Rite and Buried
+
+# We need to do something here because Hedon is a mix of hublogic and non-hublogic maps.
+# In particular, cluster 13 is a 3-map cluster that is completed by exiting from
+# Besieged into MAP16 Port to Hell;
+# cluster 18 is a 3-map cluster that is completed by exiting from Salt and Blood
+# (I think) to MAP21 Blood Rite
+# And cluster 21 is completed by traveling to map 22 (Buried) and killing the Baron.
+# So really we want hublogic for those maps (and exits) and none of the others,
+# which are standalone.
+scanner {
+  levels MAP01 MAP11;
+  prune MAP31;
+  recurse true;
+  clusters true;
+  # logic_flags use_hub_logic hub_logic_exits=MAP15,MAP20,MAP22;
+}
+
+# CustomInventory items.
+# Same as SpikeMag, but different name and graphics.
+category small-ammo: AmmoCultistSpike;
+
+# Restores 3 AC.
+category small-armor: PowerShard;
+
+# Restores 20/40 HP.
+category small-health: HealthGreenCrystal;
+category medium-health: HealthGreenCrystalCouple;
+
+# Custom tools.
+category small-health-tool: InventoryVialOfHealing;
+category powerup-tool:
+  InventoryAmuletOfShadows InventoryBootsOfJourney InventoryBracerOfTheRevenant
+  InventoryChokerofTheBeast InventoryElementalRing InventoryFixerGoggles
+  InventoryPotionofHaste InventoryPotionOfMight InventoryPotionOfStoneskin
+  InventoryRingOfTheRedMonk InventoryScrollAirWizardsEye
+  InventoryScrollEarthNourish InventoryScrollFireInferno
+  InventoryScrollFireMagmaBall InventorySentryGun InventoryTimeShard;
+
+# Randomly either gives you:
+# - heavy armour, might, power of the beast
+# - light armour, health, timeshard, haste, and shadows
+# - medium armour, stoneskin, elemental force
+category medium-health-armor-powerup-tool: InventoryMysteryPotion;
+
+# Guns. The potion launcher is special; "acid potion launcher" and "toxic potion
+# launcher" are entirely distinct weapons internally. Both exist in various
+# maps. The SpecialPotionBox is basically a reskinned acid launcher. the
+# plain PotionLauncher gives you both when picked up.
+# TODO: we may want to just treat the acid and toxic variants as "potion launcher"
+# and collapse them into the merged weapon; or, alternatively, exclude the merged
+# weapon and require the player to find them both separately.
+typename PotionLauncherAcid: SpecialPotionBox;
+category weapon: PotionLauncher;
+
+# TODO: figure out if these are plot-relevant or just hints you can carry with you.
+#category tool:
+#  InventoryDampNote
+#  InventoryEnchantedPurpleInkRecipe -- definitely just a hint
+#  InventoryGreatForgeInstructions
+#  InventoryJournal
+#  InventoryMansionSketch
+
+# Money, used only in episode 2; may need to be marked as progression if it's
+# needed to buy some quest items?
+# category token-ap_skip_balancing-ap_progression:
+category token:
+  InventoryGoldCoin1 InventoryGoldCoin10 InventoryGoldCoin25 InventoryGoldCoin50;
+
+# Hedon quest items. These are just generic "inventory" and mostly scan as Tool
+# (since they have +INVBAR) rather than as Key.
+# A bunch of these don't appear in the scanner. Instead, they are received in-game
+# in exchange for other things.
+
+# Singleton quest items -- you either have them or you don't.
+# These are the ones that exist in the logic file.
+category key:
+  InventoryAirFigurine
+  InventoryAirFragment
+  InventoryAncientDictionary
+  InventoryAnointedPhylactery
+  InventoryArcaneSalts
+  InventoryBagOfYeast
+  InventoryBodyGem
+  InventoryBookOfEarth
+  InventoryBowlOfFaeDust
+  InventoryCursedChalice
+  InventoryDwarvenLockbox
+  InventoryDwarvenMask
+  InventoryEarthFigurine
+  InventoryEarthFragment
+  InventoryElixirOfLife
+  InventoryEmptyDwarvenTank
+  InventoryEmptyPotionBottle
+  InventoryFireFigurine
+  InventoryFireFragment
+  InventoryFireOil
+  InventoryGearMouldEmpty
+  InventoryGiantRuby
+  InventoryHogLiver
+  InventoryHunkOfFlesh
+  InventoryIntelScroll
+  InventoryIronBoundTome
+  InventoryJarOfCorrosiveAcid
+  InventoryKegOfDragonbrew
+  InventoryLargeShellCasing
+  InventoryLargeShellWarhead
+  InventoryManaPotion
+  InventoryMindGem
+  InventoryMoondropFlower
+  InventoryMysteriousRecipe
+  InventoryOrcDoll
+  InventoryPasswordScroll
+  InventoryPendantOfTrueSightRebel
+  InventoryPendantOfTrueSight
+  InventoryPickAxe
+  InventoryPrimarchAvatar
+  InventoryPsishroom
+  InventoryRitualDagger
+  InventorySacrificialSword
+  InventoryScrollCase
+  InventoryScrollSpiritEnchantTrinket
+  InventorySeedOfCorruption
+  InventoryShovelB
+  InventoryShovel
+  InventorySledgehammer
+  InventoryToolkit
+  InventoryVine
+  InventoryWaterFigurine
+  InventoryWaterFragment
+  InventoryWinchWheel
+  InventoryWoodenPlank
+  ;
+
+# And the ones that can stack:
+# We have a problem here: we may need multikey support.
+# For an example, MAP01 contains three power cores.
+# The first one is needed to exit from the Dream of Hell into Cold Rock caves.
+# The second one is needed to activate the elevator and reach the barracks.
+# The third is needed to open the door leading to the woods.
+# (There are actually two more in a secret developer-only room, for a total of five.)
+# So, logically, if you have zero, hell is in logic
+# If you have one, hell and the caves are
+# Two, hell, the caves, and the barracks
+# Three+, the entire level (barring other item requirements)
+# For an added complication, tokens are not map scoped.
+# So, for example, having one power core means it could be used in MAP01 to fire
+# the cannon and leave the dream, or in MAP04 for something else. Which means we
+# need key logic for them. Argh. And we need to tell if the game has removed them
+# from the player's inventory or something and reinstate them, but only if they
+# weren't expended "properly"...argh.
+# I think for now we just treat these as keys, and revisit the problem later.
+# We may also want to split the "is this map- or cluster-scoped" bit into a
+# new category, e.g. ap_map_scope and ap_cluster_scope; key implies it but we
+# can set it manually on other things. This will also help for per-level weapon
+# grants!
+category key:
+  InventoryBowlOfScribeEmbers
+  InventoryCrimsonSaltRock
+  InventoryCyanCrystal
+  InventoryDarkIronOre
+  InventoryDwarvenSuit
+  InventoryIronBar
+  InventoryIronLever
+  InventoryIronOre
+  InventoryMithrilOre
+  InventoryMortarOfEarthPigment
+  InventoryPowerCore
+  InventoryPurpleRoot
+  InventoryRedCrystal
+  InventorySoulKeyFragment
+  InventorySpiritGem
+  ;
+
+# These are the ones that are spawned mid-game and don't exist in the tuning file.
+# TODO: Ideally we would add these to the logic and make the actions that normally
+# obtain them into checks.
+#category key:
+#  InventoryAngelFeather
+#  InventoryBowlofPigment
+#  InventoryCanofEnchantedPurpleInk
+#  InventoryChaoticDevice
+#  InventoryChargedChaoticDevice
+#  InventoryCrimsonSaltStatue
+#  InventoryCursedChaliceBlood
+#  InventoryCursedChaliceMana
+#  InventoryCursedChaliceOil
+#  InventoryDeadlyPoison
+#  InventoryDepletedArmorAmulet
+#  InventoryDwarvenTank
+#  InventoryElixirOfDeath
+#  InventoryGearMouldFilled
+#  InventoryHotIron
+#  InventoryLargeShell
+#  InventoryLockOfHair
+#  InventoryMithrilBar
+#  InventoryMithrilChisel
+#  InventoryMithrilGear
+#  InventoryMortarOfEarthPigment
+#  InventoryPendantOfTrueSightServant
+#  InventoryPieceOfPerfumedCloth
+#  InventoryPitLordHead
+#  InventoryPsiCrown
+#  InventoryScrollSpiritDispelMagic
+#  InventorySleepingPotion
+#  InventorySoulStone
+#  InventorySpecialContainmentJar
+#  InventorySquirmingSandNut
+#  ;
+
+# Custom tags.
+# Hedon puts the entire description in the tag field, so they scan as things like
+# "Iron pickaxe - A simple iron pickaxe used for mining.   (Quest Item)"
+# rather than just "Iron Pickaxe".
+
+# Keys:
+tag AxeKey Axe Key;
+tag BloodKey Blood Key;
+tag BloodyAxeKey Bloody Axe Key;
+tag CopperKey Copper Key;
+tag CrystalKey Crystal Key;
+tag DarkKey Dark Key;
+tag EarthKey Earth Key;
+tag GoldenKey Golden Key;
+tag IronKey Iron Key;
+tag StoneKey Stone Key;
+tag VineKey Vine Key;
+tag WitheredVineKey Withered Vine Key;
+
+# Quest items:
+tag InventoryAirFigurine Air Figurine;
+tag InventoryAirFragment Air Fragment;
+tag InventoryAncientDictionary Ancient Dictionary;
+tag InventoryAnointedPhylactery Anointed Phylactery;
+tag InventoryArcaneSalts Arcane Salts;
+tag InventoryBagOfYeast Bag of Yeast;
+tag InventoryBodyGem Body Gem;
+tag InventoryBookOfEarth Book of Earth;
+tag InventoryBowlOfFaeDust Bowl of Fae Dust;
+tag InventoryCursedChalice Cursed Chalice;
+tag InventoryDwarvenLockbox Dwarven Lockbox;
+tag InventoryDwarvenMask Dwarven Mask;
+tag InventoryEarthFigurine Earth Figurine;
+tag InventoryEarthFragment Earth Fragment;
+tag InventoryElixirOfLife Elixir of Life;
+tag InventoryEmptyDwarvenTank Empty Dwarven Tank;
+tag InventoryEmptyPotionBottle Empty Potion Bottle;
+tag InventoryFireFigurine Fire Figurine;
+tag InventoryFireFragment Fire Fragment;
+tag InventoryFireOil Fire Oil;
+tag InventoryGearMouldEmpty Empty Gear Mould;
+tag InventoryGiantRuby Giant Ruby;
+tag InventoryHogLiver Hog Liver;
+tag InventoryHunkOfFlesh Hunk of Flesh;
+tag InventoryIntelScroll Intel Scroll;
+tag InventoryIronBoundTome Iron-Bound Tome;
+tag InventoryJarOfCorrosiveAcid Jar of Corrosive Acid;
+tag InventoryKegOfDragonbrew Keg of Dragonbrew;
+tag InventoryLargeShellCasing Large Shell Casing;
+tag InventoryLargeShellWarhead Large Shell Warhead;
+tag InventoryManaPotion Mana Potion;
+tag InventoryMindGem Mind Gem;
+tag InventoryMoondropFlower Moondrop Flower;
+tag InventoryMysteriousRecipe Mysterious Recipe;
+tag InventoryOrcDoll Orc Doll;
+tag InventoryPasswordScroll Password Scroll;
+tag InventoryPendantOfTrueSightRebel Pendant of True Sight (Rebel);
+tag InventoryPendantOfTrueSight Pendant of True Sight;
+tag InventoryPickAxe Iron pickaxe;
+tag InventoryPrimarchAvatar Primarch Avatar;
+tag InventoryPsishroom Psishroom;
+tag InventoryRitualDagger Ritual Dagger;
+tag InventorySacrificialSword Sacrificial Sword;
+tag InventoryScrollCase Scroll Case;
+tag InventoryScrollSpiritEnchantTrinket Scroll of Enchant Trinket;
+tag InventorySeedOfCorruption Seed of Corruption;
+tag InventoryShovelB Crude Shovel;
+tag InventoryShovel Shovel;
+tag InventorySledgehammer Sledgehammer;
+tag InventoryToolkit Toolkit;
+tag InventoryVine Vine;
+tag InventoryWaterFigurine Water Figurine;
+tag InventoryWaterFragment Water Fragment;
+tag InventoryWinchWheel Winch Wheel;
+tag InventoryWoodenPlank Wooden Plank;
+
+# Stacking quest items:
+tag InventoryBowlOfScribeEmbers Bowl of Scribe Embers;
+tag InventoryCrimsonSaltRock Crimson Salt Rock;
+tag InventoryCyanCrystal Cyan Crystal;
+tag InventoryDarkIronOre Dark Iron Ore;
+tag InventoryDwarvenSuit Dwarven Suit;
+tag InventoryGoldCoin10 10gp;
+tag InventoryGoldCoin1 1gp;
+tag InventoryGoldCoin25 25gp;
+tag InventoryGoldCoin50 50gp;
+tag InventoryIronBar Iron Ingot;
+tag InventoryIronLever Iron Lever;
+tag InventoryIronOre Iron Ore;
+tag InventoryMithrilOre Mithril Ore;
+tag InventoryMortarOfEarthPigment Mortar of Earth Pigment;
+tag InventoryPowerCore Power Core;
+tag InventoryPurpleRoot Purple Root;
+tag InventoryRedCrystal Red Crystal;
+tag InventorySoulKeyFragment Soul Key Fragment;
+tag InventorySpiritGem Spirit Gem;
+
+# Non-quest items that still have long descriptions or lack useful tags entirely:
+tag AmmoBelt Ammo Belt;
+tag AmmoBox Ammo Box;
+tag AmmoBullet Bullet;
+tag AmmoCultistSpike Spike Bundle;
+tag BearzerkAxe Bearzerker Axe;
+tag FireHammer Fire Hammer;
+tag ForcePike Force Pike;
+tag FragfireCanHalf Half-Empty Fragfire Can;
+tag FragfireCan Fragfire Can;
+tag FragfireGun Fragfire Gun;
+tag GreatAxe Great Axe;
+tag HatchetAndShield Hatchet and Shield;
+tag HealthAle Ale;
+tag HealthApple Apple;
+tag HealthBakedPotato Baked Potato;
+tag HealthBread Bread;
+tag HealthCheese Cheese;
+tag HealthCider Cider;
+tag HealthCreamFungus Cream Fungus;
+tag HealthFriedDuck FriedDuck;
+tag HealthGrapes Grapes;
+tag HealthGreenCrystal Green Crystal;
+tag HealthGreenCrystalCouple Green Crystals;
+tag HealthLeek Leek;
+tag HealthMeadPint Pint of Mead;
+tag HealthPlumBrandy Plum Brandy;
+tag HealthPolenta Polenta;
+tag HealthPotionOfGreaterHealing Potion of Greater Healing;
+tag HealthPotionOfHealing Potion of Healing;
+tag HealthPotionOfMinorHealing Potion of Minor Healing;
+tag HealthSaltedMeat Salted Meat;
+tag HealthSausage Sausage;
+tag HealthSmokedHam SmokedHam;
+tag HealthStew Stew;
+tag HealthTomato Tomato;
+tag HealthWater Water;
+tag HealthWineBottle Bottle of Wine;
+tag HealthWineJug Jug of Wine;
+tag HeavyArmorCrystal Heavy Armor Crystal;
+tag InventoryAmuletOfShadows Amulet of Shadows;
+tag InventoryBagOfHolding Bag of Holding;
+tag InventoryBootsOfJourney Boots of Journey;
+tag InventoryBracerOfTheRevenant Bracer of the Revenant;
+tag InventoryChokerofTheBeast Choker of the Beast;
+tag InventoryDampNote Damp Note;
+tag InventoryElementalRing Elemental Ring;
+tag InventoryEnchantedPurpleInkRecipe Enchanted Purple Ink Recipe;
+tag InventoryFixerGoggles Fixer's Goggles;
+tag InventoryGreatForgeInstructions Great Forge Instructions;
+tag InventoryJournal Zan's Journal;
+tag InventoryMansionSketch Mansion Sketch;
+tag InventoryPotionofHaste Potion of Haste;
+tag InventoryPotionOfMight Potion of Might;
+tag InventoryPotionOfStoneskin Potion of Stoneskin;
+tag InventoryScrollAirWizardsEye Scroll of Wizard's Eye;
+tag InventoryScrollEarthNourish Nourish;
+tag InventoryScrollFireInferno Scroll of Inferno;
+tag InventoryScrollFireMagmaBall Scroll of Magma Ball;
+tag InventorySentryGun Sentry Gun;
+tag InventoryTimeShard Time Shard;
+tag InventoryVialOfHealing Vial of Healing;
+tag LightArmorCrystal Light Armor Crystal;
+tag MediumArmorCrystal Medium Armor Crystal;
+tag OverchargedArmorCrystal Overcharged Armor Crystal;
+tag PotionBoxAcid Box of Acid Potions;
+tag PotionBoxToxic Box of Toxic Potions;
+tag PotionLauncher Potion Launcher;
+tag PotionLauncherAcid Potion Launcher [Acid];
+tag PotionLauncherToxic Potion Launcher [Toxic];
+tag PowerShard Power Shard;
+tag SpecialPotionBox Boxed Potion Launcher;
+tag SpikeGun Spike Gun;
+tag SpikeMag Spike Mag;
+tag StormStaff Storm Staff;
+tag VoidhWineJug Void Wine;
+tag VoidMeadPint Void Mead;
+tag VoidPlumBrandy Void Brandy;
+tag VoidStew Void Stew;
+
+# Special handling for Bearzerker Mode. In addition to using its own spawnfilter
+# (#6, which is mostly but not entirely the same as #5), it has a bunch of actor
+# replacements. Axes are replaced with the bearzerker version (which lets you
+# carry more for throwing but is otherwise identical), other weapons are replaced
+# with nonfunctional versions of themselves, and most ammo is *randomly* either
+# deleted or replaced with health, armour, or buff items.
+# We handle this, at least for now, by scanning the Bearzerker random replacements
+# as if they were their originals. This does mean that when playing Bearzerker
+# AP will send you ammo, but when spawned in it will randomly turn into BZ items
+# as normal, and you get the full set of small/medium checks (if enabled) rather
+# than the random ~5% subset you would normally get.
+# Things that we don't remap:
+# - Axe is always replaced with BearzerkAxe, which stacks more
+# - AmmoBullet and all other weapons are replaced with nothing
+# - SpecialPotionBox is only ever spawned at runtime
+typename AmmoBox: BearzerkAmmoBox;
+typename AmmoBelt: BearzerkAmmoBelt;
+typename AmmoCultistSpike: BearzerkAmmoCultistSpike;
+typename Boltmag: BearzerkBoltmag;
+typename FragfireCan: BearzerkFragfireCan;
+typename FragfireCanHalf: BearzerkFragfireCanHalf;
+typename PotionBoxAcid: BearzerkPotionBoxAcid;
+typename PotionBoxToxic: BearzerkPotionBoxToxic;
+typename SpikeMag: BearzerkSpikeMag;
+
+# We also need to destroy the bearzerk spawners before their state machines run,
+# as that will cause them to randomly be replaced with other items and/or deleted,
+# and in the latter case that will confuse the scanner.
+destroy-on-spawn
+  BearzerkAmmoBelt
+  BearzerkAmmoBox
+  BearzerkAmmoCultistSpike
+  BearzerkBoltmag
+  BearzerkFragfireCan
+  BearzerkFragfireCanHalf
+  BearzerkPotionBoxAcid
+  BearzerkPotionBoxToxic
+  BearzerkSpikeMag
+  ;

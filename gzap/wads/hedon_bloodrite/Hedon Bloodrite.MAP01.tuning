@@ -1,0 +1,345 @@
+; MAP01: Cold Rock
+
+; Initial dream of hell.
+AP-REGION { "map": "MAP01", "region": "Hell Entry", "keys": ["weapon/Axe/want", "weapon/BearzerkAxe/want"] }
+; TODO: adjust weapon logic here -- spike gun will also do fine and is what the rest of the map expects
+AP-REGION { "map": "MAP01", "region": "Hell Cavern", "keys": ["weapon/Axe/want", "map/MAP01/Hell Entry", "weapon/HatchetAndShield/want", "weapon/FragfireGun/want", "weapon/Hellclaw/want", "weapon/BearzerkAxe/want"] }
+AP-REGION { "map": "MAP01", "region": "Hell Water Cave", "keys": ["map/MAP01/Hell Cavern"] }
+AP-REGION { "map": "MAP01", "region": "Hell Lavafall", "keys": ["map/MAP01/Hell Water Cave"] }
+; Access from cavern via dream sequence behind locked door.
+AP-REGION { "map": "MAP01", "region": "Hell Power Core Hall", "keys": ["map/MAP01/Hell Cavern", "key/BloodyAxeKey"] }
+; Exit hell and begin the level proper by firing the cannon using a power core.
+AP-REGION { "map": "MAP01", "region": "(fired cannon)", "keys": ["map/MAP01/Hell Cavern", "key/InventoryPowerCore"] }
+
+; Area where you wake up after firing the cannon.
+AP-REGION { "map": "MAP01", "region": "Caves W", "keys": ["map/MAP01/(fired cannon)"] }
+; Small nook just east of where you awaken.
+AP-REGION { "map": "MAP01", "region": "Caves W Entrance Secret", "keys": ["map/MAP01/Caves W", "flag/secret"] }
+; Room with two power cores. From where you arrive, turn right at the first junction, then before exiting
+; to the elevator room, punch the glowing spirals to your left and crawl through the wall to your right.
+AP-REGION { "map": "MAP01", "region": "Caves W Tutorial Skip Secret", "keys": ["map/MAP01/Caves W", "flag/secret"] }
+AP-REGION { "map": "MAP01", "region": "Caves W Mushroom Cave", "keys": ["map/MAP01/Caves W"] }
+; Ledge reachable with a jump from near where the iron key is.
+AP-REGION { "map": "MAP01", "region": "Caves W Mushroom Cave Secret", "keys": ["map/MAP01/Caves W Mushroom Cave", "flag/secret"] }
+; Reachable only once you have the pickaxe. North of elevator room.
+AP-REGION { "map": "MAP01", "region": "Power Core Sealed Cave", "keys": ["key/InventoryPickAxe", "map/MAP01/Caves W"] }
+
+; Northwest cave area reachable using iron key.
+; Alternately, if you have access to the outpost already, you can exit to the pond using the NE timed gate,
+; which gives you access to this whole area.
+AP-REGION { "map": "MAP01", "region": "Caves NW", "keys": ["key/IronKey", "map/MAP01/Caves W"] }
+AP-REGION { "map": "MAP01", "region": "Caves NW", "keys": ["map/MAP01/Outpost Hub"] }
+AP-REGION { "map": "MAP01", "region": "Rat Room", "keys": ["map/MAP01/Caves NW"] }
+AP-REGION { "map": "MAP01", "region": "Dura's Office", "keys": ["map/MAP01/Caves NW"] }
+; Behind the bookshelf in Dura's office.
+AP-REGION { "map": "MAP01", "region": "Dura's Stash", "keys": ["map/MAP01/Dura's Office", "flag/secret"] }
+AP-REGION { "map": "MAP01", "region": "Power Core Storeroom", "keys": ["map/MAP01/Caves W"] }
+; Dive into the pool at the northwesternmost part of the caves.
+AP-REGION { "map": "MAP01", "region": "NW Underwater", "keys": ["map/MAP01/Caves NW"] }
+; Garden and gardener's hut. No access via vine doors from here regardless of items,
+; you have to approach from the south and break the scroll powering them.
+AP-REGION { "map": "MAP01", "region": "Caves Garden", "keys": ["map/MAP01/Caves NW"] }
+; Optional areas that need the pickaxe.
+AP-REGION { "map": "MAP01", "region": "Sealed Cave Near Pool", "keys": ["key/InventoryPickAxe", "map/MAP01/Caves NW"] }
+AP-REGION { "map": "MAP01", "region": "Sealed Cave Near Rat", "keys": ["key/InventoryPickAxe", "map/MAP01/Caves NW"] }
+; Accessible from near Dura's, or via underwater tunnel (or via outpost hub, but we connect that
+; to Caves NW above).
+AP-REGION { "map": "MAP01", "region": "Pond", "keys": ["map/MAP01/Caves Garden"] }
+; Northwest underwater tunnel
+AP-REGION { "map": "MAP01", "region": "Pond Tunnel Secret", "keys": ["map/MAP01/Pond", "flag/secret"] }
+; Northeast waterfall
+AP-REGION { "map": "MAP01", "region": "Pond Waterfall Secret", "keys": ["map/MAP01/Pond", "flag/secret"] }
+
+; Outpost area reachable once you repair the elevator with a power core.
+; We require two power cores here, enforced by the ap_scripts.zs.
+AP-REGION { "map": "MAP01", "region": "(repaired elevator)", "keys": ["map/MAP01/Caves W", "key/InventoryPowerCore/2"] }
+AP-REGION { "map": "MAP01", "region": "Outpost Mess Hall", "keys": ["map/MAP01/(repaired elevator)"] }
+; Also accessible from the pond secret (but you can't get into the rest of the barracks that way
+; because the door is latched.)
+AP-REGION { "map": "MAP01", "region": "Outpost Barracks", "keys": ["map/MAP01/Outpost Mess Hall"] }
+AP-REGION { "map": "MAP01", "region": "Outpost Barracks", "keys": ["map/MAP01/Pond Tunnel Secret"] }
+; Main room connecting to the pond (one-way), mess hall, mushroom cave, and gatehouse. Also includes the bathroom.
+AP-REGION { "map": "MAP01", "region": "Outpost Hub", "keys": ["map/MAP01/Outpost Mess Hall"] }
+AP-REGION { "map": "MAP01", "region": "Outpost Gatehouse", "keys": ["map/MAP01/Outpost Hub"] }
+; Contains the pickaxe.
+AP-REGION { "map": "MAP01", "region": "Outpost Storage", "keys": ["key/StoneKey", "map/MAP01/Outpost Mess Hall"] }
+; Contains the stone key. Opened by flipping a switch in the hub, and if you have access
+; to the hub you can just exit into the pond (and thence to the garden) directly.
+AP-REGION { "map": "MAP01", "region": "Worm Garden", "keys": ["map/MAP01/Outpost Hub"] }
+AP-REGION { "map": "MAP01", "region": "Gardener's Bedroom", "keys": ["map/MAP01/Worm Garden", "flag/secret"] }
+
+; Eastern exit from the outpost leading the last third of the level.
+AP-REGION { "map": "MAP01", "region": "(repaired gate)", "keys": ["map/MAP01/Outpost Gatehouse", "key/InventoryPowerCore/3"] }
+AP-REGION { "map": "MAP01", "region": "Outpost Airlock", "keys": ["map/MAP01/(repaired gate)"] }
+; First encounter with cultists. Includes the wide tunnels leading to and from the outdoor battlefield.
+AP-REGION { "map": "MAP01", "region": "Battlefield", "keys": ["weapon/Axe/want", "map/MAP01/Outpost Airlock", "weapon/SpikeGun/want", "weapon/BearzerkAxe/want"] }
+AP-REGION { "map": "MAP01", "region": "Shrine", "keys": ["map/MAP01/Battlefield"] }
+; Technically reachable without going through the shrine, but it's all logically equivalent...
+AP-REGION { "map": "MAP01", "region": "Cramped Tunnels", "keys": ["map/MAP01/Shrine"] }
+AP-REGION { "map": "MAP01", "region": "Forest", "keys": ["map/MAP01/Cramped Tunnels"] }
+AP-REGION { "map": "MAP01", "region": "Village", "keys": ["map/MAP01/Forest"] }
+AP-REGION { "map": "MAP01", "region": "Village Well", "keys": ["map/MAP01/Village"] }
+AP-REGION { "map": "MAP01", "region": "Village House E", "keys": ["map/MAP01/Village Well"] }
+AP-REGION { "map": "MAP01", "region": "Village House E Secret", "keys": ["flag/secret", "map/MAP01/Village House E"] }
+AP-REGION { "map": "MAP01", "region": "Village House N", "keys": ["map/MAP01/Village"] }
+
+; Moonflower sidequest. Offering the flower at the shrine immediately gives you a secret
+; in the shrine itself, but also opens up a hidden area reachable via the forest.
+AP-REGION { "map": "MAP01", "region": "(offered moonflower)", "keys": ["key/InventoryMoondropFlower", "map/MAP01/Shrine"] }
+AP-REGION { "map": "MAP01", "region": "Shrine Secret", "keys": ["key/InventoryMoondropFlower", "map/MAP01/(offered moonflower)", "flag/secret"] }
+AP-REGION { "map": "MAP01", "region": "Hidden Waterway", "keys": ["map/MAP01/(offered moonflower)", "map/MAP01/Forest"] }
+AP-REGION { "map": "MAP01", "region": "Hidden Baths", "keys": ["map/MAP01/Hidden Waterway", "flag/secret"] }
+
+
+AP-CHECK { "id": 466, "name": "MAP01 - Axe [-15484,10294]", "pos": ["MAP01",-15484,10294,-196], "region": "Hell Entry" }
+AP-CHECK { "id": 528, "name": "MAP01 - Hatchet and Shield [W]", "pos": ["MAP01",-15484,10294,-196], "region": "Hell Entry" }
+AP-CHECK { "id": 468, "name": "MAP01 - Potion of Healing [-14956,10344]", "pos": ["MAP01",-14956,10344,-196], "region": "Hell Entry" }
+AP-CHECK { "id": 467, "name": "MAP01 - Potion of Healing [-14956,10584]", "pos": ["MAP01",-14956,10584,-196], "region": "Hell Entry" }
+AP-CHECK { "id": 471, "name": "MAP01 - Potion of Minor Healing [-13648,10384]", "pos": ["MAP01",-13648,10384,-188], "region": "Hell Entry" }
+AP-CHECK { "id": 530, "name": "MAP01 - Bearzerker Axe [-13655,10464]", "pos": ["MAP01",-13655,10464,-188], "region": "Hell Entry" }
+AP-CHECK { "id": 472, "name": "MAP01 - Hellclaw", "pos": ["MAP01",-13656,10464,-188], "region": "Hell Entry" }
+AP-CHECK { "id": 469, "name": "MAP01 - Potion of Minor Healing [-13648,10544]", "pos": ["MAP01",-13648,10544,-188], "region": "Hell Entry" }
+AP-CHECK { "id": 489, "name": "MAP01 - Potion of Healing [-14961,11049]", "pos": ["MAP01",-14961,11049,-164], "region": "Hell Cavern" }
+AP-CHECK { "id": 490, "name": "MAP01 - Fragfire Gun [-15153,11080]", "pos": ["MAP01",-15153,11080,-196], "region": "Hell Cavern" }
+AP-CHECK { "id": 492, "name": "MAP01 - Half-Empty Fragfire Can", "pos": ["MAP01",-15193,10940,-196], "region": "Hell Cavern" }
+AP-CHECK { "id": 516, "name": "MAP01 - Boltmag [-15352,10884]", "pos": ["MAP01",-15352,10884,-204], "region": "Hell Cavern" }
+AP-CHECK { "id": 517, "name": "MAP01 - Crushbow [NW]", "pos": ["MAP01",-15412,10892,-204], "region": "Hell Cavern" }
+AP-CHECK { "id": 529, "name": "MAP01 - Bearzerker Axe [-15373,10980]", "pos": ["MAP01",-15373,10980,-204], "region": "Hell Cavern" }
+AP-CHECK { "id": 491, "name": "MAP01 - Axe [-15373,10980]", "pos": ["MAP01",-15373,10980,-204], "region": "Hell Cavern" }
+AP-CHECK { "id": 487, "name": "MAP01 - Light Armor Crystal [NW]", "pos": ["MAP01",-14380,12412,-316], "region": "Hell Cavern" }
+AP-CHECK { "id": 333, "name": "MAP01 - Potion of Minor Healing [-13929,13486]", "pos": ["MAP01",-13929,13486,-289], "region": "Hell Cavern" }
+AP-CHECK { "id": 486, "name": "MAP01 - Fragfire Gun [-14009,13503]", "pos": ["MAP01",-14009,13503,-300], "region": "Hell Cavern" }
+AP-CHECK { "id": 488, "name": "MAP01 - Fragfire Can [-14047,13534]", "pos": ["MAP01",-14047,13534,-312], "region": "Hell Cavern" }
+AP-CHECK { "id": 485, "name": "MAP01 - Fragfire Can [-13964,13644]", "pos": ["MAP01",-13964,13644,-289], "region": "Hell Cavern" }
+AP-CHECK { "id": 482, "name": "MAP01 - Cream Fungus [-16623,11992]", "pos": ["MAP01",-16623,11992,28], "region": "Hell Water Cave" }
+AP-CHECK { "id": 484, "name": "MAP01 - Cream Fungus [-16666,11973]", "pos": ["MAP01",-16666,11973,28], "region": "Hell Water Cave" }
+AP-CHECK { "id": 483, "name": "MAP01 - Cream Fungus [-16687,11998]", "pos": ["MAP01",-16687,11998,28], "region": "Hell Water Cave" }
+AP-CHECK { "id": 481, "name": "MAP01 - Bloody Axe Key", "pos": ["MAP01",-16180,11280,87], "region": "Hell Lavafall" }
+AP-CHECK { "id": 473, "name": "MAP01 - Power Core [-12030,12128]", "pos": ["MAP01",-12030,12128,-220], "region": "Hell Power Core Hall" }
+AP-CHECK { "id": 474, "name": "MAP01 - Potion of Healing [-12320,12384]", "pos": ["MAP01",-12320,12384,-268], "region": "Hell Power Core Hall" }
+AP-CHECK { "id": 475, "name": "MAP01 - Potion of Healing [-12320,11872]", "pos": ["MAP01",-12320,11872,-268], "region": "Hell Power Core Hall" }
+AP-CHECK { "id": 470, "name": "MAP01 - Potion of Minor Healing [-12576,11672]", "pos": ["MAP01",-12576,11672,-264], "region": "Hell Power Core Hall" }
+AP-CHECK { "id": 480, "name": "MAP01 - Potion of Minor Healing [-12576,12584]", "pos": ["MAP01",-12576,12584,-264], "region": "Hell Power Core Hall" }
+AP-CHECK { "id": 478, "name": "MAP01 - Potion of Minor Healing [-12832,12584]", "pos": ["MAP01",-12832,12584,-264], "region": "Hell Power Core Hall" }
+AP-CHECK { "id": 477, "name": "MAP01 - Potion of Healing [-13088,12384]", "pos": ["MAP01",-13088,12384,-268], "region": "Hell Power Core Hall" }
+AP-CHECK { "id": 476, "name": "MAP01 - Potion of Healing [-13088,11872]", "pos": ["MAP01",-13088,11872,-268], "region": "Hell Power Core Hall" }
+AP-CHECK { "id": 479, "name": "MAP01 - Potion of Minor Healing [-12832,11672]", "pos": ["MAP01",-12832,11672,-264], "region": "Hell Power Core Hall" }
+AP-CHECK { "id": 525, "name": "MAP01 - Hatchet and Shield [S]", "pos": ["MAP01",1124,-1780,128], "region": "Caves W" }
+AP-CHECK { "id": 297, "name": "MAP01 - Cream Fungus [2357,-2337]", "pos": ["MAP01",2357,-2337,104], "region": "Caves W" }
+AP-CHECK { "id": 292, "name": "MAP01 - Cream Fungus [2496,-2906]", "pos": ["MAP01",2496,-2906,104], "region": "Caves W" }
+AP-CHECK { "id": 301, "name": "MAP01 - Cream Fungus [2725,-2893]", "pos": ["MAP01",2725,-2893,104], "region": "Caves W" }
+AP-CHECK { "id": 405, "name": "MAP01 - Cream Fungus [4622,-2927]", "pos": ["MAP01",4622,-2927,56], "region": "Caves W Mushroom Cave" }
+AP-CHECK { "id": 300, "name": "MAP01 - Cream Fungus [4075,-3083]", "pos": ["MAP01",4075,-3083,176], "region": "Caves W Mushroom Cave" }
+AP-CHECK { "id": 395, "name": "MAP01 - Cream Fungus [3919,-2669]", "pos": ["MAP01",3919,-2669,80], "region": "Caves W Mushroom Cave" }
+AP-CHECK { "id": 290, "name": "MAP01 - Cream Fungus [3928,-2651]", "pos": ["MAP01",3928,-2651,80], "region": "Caves W Mushroom Cave" }
+AP-CHECK { "id": 296, "name": "MAP01 - Cream Fungus [3875,-2474]", "pos": ["MAP01",3875,-2474,56], "region": "Caves W Mushroom Cave" }
+AP-CHECK { "id": 295, "name": "MAP01 - Potion of Minor Healing [4095,-2418]", "pos": ["MAP01",4095,-2418,56], "region": "Caves W Mushroom Cave" }
+AP-CHECK { "id": 298, "name": "MAP01 - Cream Fungus [4229,-2644]", "pos": ["MAP01",4229,-2644,80], "region": "Caves W Mushroom Cave" }
+AP-CHECK { "id": 343, "name": "MAP01 - Cream Fungus [4268,-2699]", "pos": ["MAP01",4268,-2699,136], "region": "Caves W Mushroom Cave" }
+AP-CHECK { "id": 317, "name": "MAP01 - Iron Key", "pos": ["MAP01",4768,-2533,238], "region": "Caves W Mushroom Cave" }
+AP-CHECK { "id": 533, "name": "MAP01 - Secret 1899", "pos": ["MAP01","secret","sector",1899], "region": "Caves W Mushroom Cave Secret" }
+AP-CHECK { "id": 310, "name": "MAP01 - Vial of Healing [4032,-2276]", "pos": ["MAP01",4032,-2276,184], "region": "Caves W Mushroom Cave Secret" }
+AP-CHECK { "id": 514, "name": "MAP01 - Potion of Might", "pos": ["MAP01",4004,-2256,184], "region": "Caves W Mushroom Cave Secret" }
+AP-CHECK { "id": 291, "name": "MAP01 - Cream Fungus [4021,-2199]", "pos": ["MAP01",4021,-2199,194], "region": "Caves W Mushroom Cave Secret" }
+AP-CHECK { "id": 293, "name": "MAP01 - Cream Fungus [3966,-2222]", "pos": ["MAP01",3966,-2222,186], "region": "Caves W Mushroom Cave Secret" }
+AP-CHECK { "id": 294, "name": "MAP01 - Cream Fungus [3982,-2232]", "pos": ["MAP01",3982,-2232,184], "region": "Caves W Mushroom Cave Secret" }
+AP-CHECK { "id": 531, "name": "MAP01 - Secret 261", "pos": ["MAP01","secret","sector",261], "region": "Caves W Entrance Secret" }
+AP-CHECK { "id": 524, "name": "MAP01 - Bearzerker Axe [1570,-2081]", "pos": ["MAP01",1570,-2081,152], "region": "Caves W Entrance Secret" }
+AP-CHECK { "id": 509, "name": "MAP01 - Axe [1570,-2081]", "pos": ["MAP01",1570,-2081,152], "region": "Caves W Entrance Secret" }
+AP-CHECK { "id": 432, "name": "MAP01 - Cream Fungus [1542,-2066]", "pos": ["MAP01",1542,-2066,152], "region": "Caves W Entrance Secret" }
+AP-CHECK { "id": 299, "name": "MAP01 - Cream Fungus [1558,-2112]", "pos": ["MAP01",1558,-2112,152], "region": "Caves W Entrance Secret" }
+AP-CHECK { "id": 445, "name": "MAP01 - Cream Fungus [1590,-2106]", "pos": ["MAP01",1590,-2106,152], "region": "Caves W Entrance Secret" }
+AP-CHECK { "id": 302, "name": "MAP01 - Cream Fungus [1606,-2095]", "pos": ["MAP01",1606,-2095,152], "region": "Caves W Entrance Secret" }
+AP-CHECK { "id": 303, "name": "MAP01 - Cream Fungus [1599,-2073]", "pos": ["MAP01",1599,-2073,152], "region": "Caves W Entrance Secret" }
+AP-CHECK { "id": 419, "name": "MAP01 - Power Core [2035,-2778]", "pos": ["MAP01",2035,-2778,112], "region": "Caves W Tutorial Skip Secret" }
+AP-CHECK { "id": 386, "name": "MAP01 - Power Core [2035,-2851]", "pos": ["MAP01",2035,-2851,112], "region": "Caves W Tutorial Skip Secret" }
+
+AP-CHECK { "id": 312, "name": "MAP01 - Cream Fungus [2724,-374]", "pos": ["MAP01",2724,-374,264], "region": "Rat Room" }
+AP-CHECK { "id": 311, "name": "MAP01 - Cream Fungus [2672,-441]", "pos": ["MAP01",2672,-441,264], "region": "Rat Room" }
+AP-CHECK { "id": 348, "name": "MAP01 - Fixer's Goggles [3966,-545]", "pos": ["MAP01",3966,-545,240], "region": "Dura's Office" }
+AP-CHECK { "id": 326, "name": "MAP01 - Vial of Healing [3967,-584]", "pos": ["MAP01",3967,-584,240], "region": "Dura's Office" }
+AP-CHECK { "id": 513, "name": "MAP01 - Crushbow [SE]", "pos": ["MAP01",4124,-748,208], "region": "Dura's Stash" }
+AP-CHECK { "id": 309, "name": "MAP01 - Power Shard [4062,-762]", "pos": ["MAP01",4062,-762,238], "region": "Dura's Stash" }
+AP-CHECK { "id": 308, "name": "MAP01 - Power Shard [4083,-784]", "pos": ["MAP01",4083,-784,238], "region": "Dura's Stash" }
+AP-CHECK { "id": 428, "name": "MAP01 - Spike Gun [4104,-814]", "pos": ["MAP01",4104,-814,238], "region": "Dura's Stash" }
+AP-CHECK { "id": 429, "name": "MAP01 - Spike Mag [4126,-839]", "pos": ["MAP01",4126,-839,238], "region": "Dura's Stash" }
+AP-CHECK { "id": 306, "name": "MAP01 - SmokedHam [4118,-795]", "pos": ["MAP01",4118,-795,244], "region": "Dura's Stash" }
+AP-CHECK { "id": 520, "name": "MAP01 - Vial of Healing [4164,-792]", "pos": ["MAP01",4164,-792,208], "region": "Dura's Stash" }
+AP-CHECK { "id": 307, "name": "MAP01 - Jug of Wine [4180,-761]", "pos": ["MAP01",4180,-761,208], "region": "Dura's Stash" }
+AP-CHECK { "id": 532, "name": "MAP01 - Secret 1198", "pos": ["MAP01","secret","sector",1198], "region": "Dura's Stash" }
+AP-CHECK { "id": 336, "name": "MAP01 - Power Core [4249,-681]", "pos": ["MAP01",4249,-681,208], "region": "Power Core Storeroom" }
+AP-CHECK { "id": 332, "name": "MAP01 - Cream Fungus [4715,-890]", "pos": ["MAP01",4715,-890,208], "region": "Caves NW" }
+AP-CHECK { "id": 331, "name": "MAP01 - Cream Fungus [4728,-909]", "pos": ["MAP01",4728,-909,208], "region": "Caves NW" }
+AP-CHECK { "id": 399, "name": "MAP01 - Light Armor Crystal [Center]", "pos": ["MAP01",3556,808,240], "region": "Caves NW" }
+AP-CHECK { "id": 316, "name": "MAP01 - Power Shard [3712,597]", "pos": ["MAP01",3712,597,208], "region": "Caves NW" }
+AP-CHECK { "id": 450, "name": "MAP01 - Power Shard [4135,977]", "pos": ["MAP01",4135,977,120], "region": "NW Underwater" }
+AP-CHECK { "id": 318, "name": "MAP01 - Power Shard [4196,987]", "pos": ["MAP01",4196,987,121], "region": "NW Underwater" }
+AP-CHECK { "id": 355, "name": "MAP01 - Cream Fungus [5290,-321]", "pos": ["MAP01",5290,-321,208], "region": "Caves NW" }
+AP-CHECK { "id": 354, "name": "MAP01 - Cream Fungus [5238,-311]", "pos": ["MAP01",5238,-311,208], "region": "Caves NW" }
+AP-CHECK { "id": 304, "name": "MAP01 - Cream Fungus [5228,-326]", "pos": ["MAP01",5228,-326,208], "region": "Caves NW" }
+AP-CHECK { "id": 502, "name": "MAP01 - Tomato [5616,-160]", "pos": ["MAP01",5616,-160,65], "region": "Caves Garden" }
+AP-CHECK { "id": 504, "name": "MAP01 - Grapes [SE]", "pos": ["MAP01",5560,-200,61], "region": "Caves Garden" }
+AP-CHECK { "id": 503, "name": "MAP01 - Tomato [5675,-193]", "pos": ["MAP01",5675,-193,65], "region": "Caves Garden" }
+AP-CHECK { "id": 320, "name": "MAP01 - Potion of Minor Healing [4750,-1096]", "pos": ["MAP01",4750,-1096,234], "region": "Pond" }
+AP-CHECK { "id": 500, "name": "MAP01 - Power Shard [4488,-1656]", "pos": ["MAP01",4488,-1656,24], "region": "Pond" }
+AP-CHECK { "id": 501, "name": "MAP01 - Power Shard [4472,-1424]", "pos": ["MAP01",4472,-1424,24], "region": "Pond" }
+AP-CHECK { "id": 499, "name": "MAP01 - Power Shard [4612,-1180]", "pos": ["MAP01",4612,-1180,40], "region": "Pond" }
+AP-CHECK { "id": 339, "name": "MAP01 - Cream Fungus [4551,-1754]", "pos": ["MAP01",4551,-1754,144], "region": "Pond" }
+AP-CHECK { "id": 338, "name": "MAP01 - Cream Fungus [5859,-1286]", "pos": ["MAP01",5859,-1286,120], "region": "Pond" }
+AP-CHECK { "id": 357, "name": "MAP01 - Power Shard [5247,-791]", "pos": ["MAP01",5247,-791,24], "region": "Pond" }
+AP-CHECK { "id": 356, "name": "MAP01 - Power Shard [5168,-562]", "pos": ["MAP01",5168,-562,24], "region": "Pond" }
+AP-CHECK { "id": 325, "name": "MAP01 - Power Shard [5476,-929]", "pos": ["MAP01",5476,-929,24], "region": "Pond" }
+AP-CHECK { "id": 534, "name": "MAP01 - Secret 2110", "pos": ["MAP01","secret","sector",2110], "region": "Pond Waterfall Secret" }
+AP-CHECK { "id": 511, "name": "MAP01 - Boltmag [5560,-1016]", "pos": ["MAP01",5560,-1016,152], "region": "Pond Waterfall Secret" }
+AP-CHECK { "id": 394, "name": "MAP01 - Spike Mag [5580,-978]", "pos": ["MAP01",5580,-978,152], "region": "Pond Waterfall Secret" }
+AP-CHECK { "id": 322, "name": "MAP01 - Potion of Healing [5545,-966]", "pos": ["MAP01",5545,-966,152], "region": "Pond Waterfall Secret" }
+AP-CHECK { "id": 323, "name": "MAP01 - Spike Mag [5652,-1026]", "pos": ["MAP01",5652,-1026,152], "region": "Pond Waterfall Secret" }
+AP-CHECK { "id": 538, "name": "MAP01 - Secret 10941", "pos": ["MAP01","secret","sector",10941], "region": "Pond Tunnel Secret" }
+AP-CHECK { "id": 496, "name": "MAP01 - Potion of Healing [4151,-1327]", "pos": ["MAP01",4151,-1327,184], "region": "Pond Tunnel Secret" }
+AP-CHECK { "id": 497, "name": "MAP01 - Vial of Healing [4140,-1329]", "pos": ["MAP01",4140,-1329,184], "region": "Pond Tunnel Secret" }
+AP-CHECK { "id": 498, "name": "MAP01 - Vial of Healing [4120,-1331]", "pos": ["MAP01",4120,-1331,184], "region": "Pond Tunnel Secret" }
+AP-CHECK { "id": 319, "name": "MAP01 - Pint of Mead", "pos": ["MAP01",4399,-2284,223], "region": "Outpost Mess Hall" }
+AP-CHECK { "id": 448, "name": "MAP01 - Jug of Wine [4556,-2286]", "pos": ["MAP01",4556,-2286,227], "region": "Outpost Mess Hall" }
+AP-CHECK { "id": 327, "name": "MAP01 - Stew", "pos": ["MAP01",4244,-1972,220], "region": "Outpost Mess Hall" }
+AP-CHECK { "id": 495, "name": "MAP01 - Spike Bundle [4341,-1485]", "pos": ["MAP01",4341,-1485,192], "region": "Outpost Barracks" }
+AP-CHECK { "id": 494, "name": "MAP01 - Fixer's Goggles [4176,-1508]", "pos": ["MAP01",4176,-1508,192], "region": "Outpost Barracks" }
+AP-CHECK { "id": 493, "name": "MAP01 - Jug of Wine [4576,-1888]", "pos": ["MAP01",4576,-1888,192], "region": "Outpost Barracks" }
+AP-CHECK { "id": 521, "name": "MAP01 - Bearzerker Axe [4816,-1896]", "pos": ["MAP01",4816,-1896,216], "region": "Outpost Hub" }
+AP-CHECK { "id": 315, "name": "MAP01 - Axe [4816,-1896]", "pos": ["MAP01",4816,-1896,216], "region": "Outpost Hub" }
+AP-CHECK { "id": 340, "name": "MAP01 - Vial of Healing [5202,-2162]", "pos": ["MAP01",5202,-2162,204], "region": "Outpost Hub" }
+AP-CHECK { "id": 443, "name": "MAP01 - Vial of Healing [5092,-2592]", "pos": ["MAP01",5092,-2592,231], "region": "Outpost Gatehouse" }
+AP-CHECK { "id": 438, "name": "MAP01 - Vial of Healing [5088,-2608]", "pos": ["MAP01",5088,-2608,231], "region": "Outpost Gatehouse" }
+AP-CHECK { "id": 439, "name": "MAP01 - Vial of Healing [5080,-2596]", "pos": ["MAP01",5080,-2596,231], "region": "Outpost Gatehouse" }
+AP-CHECK { "id": 519, "name": "MAP01 - Bearzerker Axe [5540,-2468]", "pos": ["MAP01",5540,-2468,256], "region": "Outpost Gatehouse" }
+AP-CHECK { "id": 305, "name": "MAP01 - Axe [5540,-2468]", "pos": ["MAP01",5540,-2468,256], "region": "Outpost Gatehouse" }
+AP-CHECK { "id": 341, "name": "MAP01 - Potion of Minor Healing [5244,-2602]", "pos": ["MAP01",5244,-2602,248], "region": "Outpost Gatehouse" }
+AP-CHECK { "id": 430, "name": "MAP01 - Power Shard [5842,-1066]", "pos": ["MAP01",5842,-1066,17], "region": "Worm Garden" }
+AP-CHECK { "id": 420, "name": "MAP01 - Power Shard [5785,-1052]", "pos": ["MAP01",5785,-1052,15], "region": "Worm Garden" }
+AP-CHECK { "id": 328, "name": "MAP01 - Cream Fungus [6020,-1199]", "pos": ["MAP01",6020,-1199,72], "region": "Worm Garden" }
+AP-CHECK { "id": 330, "name": "MAP01 - Cream Fungus [6608,-672]", "pos": ["MAP01",6608,-672,72], "region": "Worm Garden" }
+AP-CHECK { "id": 507, "name": "MAP01 - Potion of Minor Healing [6121,-508]", "pos": ["MAP01",6121,-508,80], "region": "Worm Garden" }
+AP-CHECK { "id": 422, "name": "MAP01 - Potion of Healing [6124,-504]", "pos": ["MAP01",6124,-504,80], "region": "Worm Garden" }
+AP-CHECK { "id": 505, "name": "MAP01 - Stone Key", "pos": ["MAP01",5880,-512,109], "region": "Worm Garden" }
+AP-CHECK { "id": 539, "name": "MAP01 - Secret 11350", "pos": ["MAP01","secret","sector",11350], "region": "Gardener's Bedroom" }
+AP-CHECK { "id": 358, "name": "MAP01 - Potion of Minor Healing [5916,78]", "pos": ["MAP01",5916,78,79], "region": "Gardener's Bedroom" }
+AP-CHECK { "id": 506, "name": "MAP01 - Fragfire Can [5938,80]", "pos": ["MAP01",5938,80,79], "region": "Gardener's Bedroom" }
+AP-CHECK { "id": 407, "name": "MAP01 - Vial of Healing [4294,-2194]", "pos": ["MAP01",4294,-2194,225], "region": "Outpost Storage" }
+AP-CHECK { "id": 335, "name": "MAP01 - Iron pickaxe", "pos": ["MAP01",4214,-2266,192], "region": "Outpost Storage" }
+AP-CHECK { "id": 337, "name": "MAP01 - Power Core [3714,-1836]", "pos": ["MAP01",3714,-1836,120], "region": "Power Core Sealed Cave" }
+AP-CHECK { "id": 314, "name": "MAP01 - Power Shard [3177,-796]", "pos": ["MAP01",3177,-796,224], "region": "Sealed Cave Near Rat" }
+AP-CHECK { "id": 440, "name": "MAP01 - Time Shard [3096,-800]", "pos": ["MAP01",3096,-800,248], "region": "Sealed Cave Near Rat" }
+AP-CHECK { "id": 329, "name": "MAP01 - Cream Fungus [3099,-746]", "pos": ["MAP01",3099,-746,224], "region": "Sealed Cave Near Rat" }
+AP-CHECK { "id": 313, "name": "MAP01 - Power Shard [3035,-811]", "pos": ["MAP01",3035,-811,224], "region": "Sealed Cave Near Rat" }
+AP-CHECK { "id": 321, "name": "MAP01 - Power Shard [3659,1111]", "pos": ["MAP01",3659,1111,208], "region": "Sealed Cave Near Pool" }
+AP-CHECK { "id": 324, "name": "MAP01 - Power Shard [3695,1207]", "pos": ["MAP01",3695,1207,208], "region": "Sealed Cave Near Pool" }
+AP-CHECK { "id": 449, "name": "MAP01 - Time Shard [3739,1140]", "pos": ["MAP01",3739,1140,240], "region": "Sealed Cave Near Pool" }
+AP-CHECK { "id": 409, "name": "MAP01 - Power Shard [3800,1136]", "pos": ["MAP01",3800,1136,208], "region": "Sealed Cave Near Pool" }
+AP-CHECK { "id": 431, "name": "MAP01 - Power Shard [3791,1093]", "pos": ["MAP01",3791,1093,210], "region": "Sealed Cave Near Pool" }
+AP-CHECK { "id": 344, "name": "MAP01 - Potion of Healing [6004,-2802]", "pos": ["MAP01",6004,-2802,248], "region": "Outpost Airlock" }
+AP-CHECK { "id": 434, "name": "MAP01 - Spike Gun [6448,-2692]", "pos": ["MAP01",6448,-2692,210], "region": "Battlefield" }
+AP-CHECK { "id": 401, "name": "MAP01 - Potion of Minor Healing [6484,-2624]", "pos": ["MAP01",6484,-2624,210], "region": "Battlefield" }
+AP-CHECK { "id": 441, "name": "MAP01 - Spike Gun [7016,-2652]", "pos": ["MAP01",7016,-2652,210], "region": "Battlefield" }
+AP-CHECK { "id": 347, "name": "MAP01 - Cream Fungus [8154,-3067]", "pos": ["MAP01",8154,-3067,226], "region": "Battlefield" }
+AP-CHECK { "id": 345, "name": "MAP01 - Cream Fungus [8576,-3215]", "pos": ["MAP01",8576,-3215,226], "region": "Battlefield" }
+AP-CHECK { "id": 442, "name": "MAP01 - Spike Gun [9120,-2980]", "pos": ["MAP01",9120,-2980,210], "region": "Battlefield" }
+AP-CHECK { "id": 342, "name": "MAP01 - Time Shard [9027,-2767]", "pos": ["MAP01",9027,-2767,258], "region": "Battlefield" }
+AP-CHECK { "id": 522, "name": "MAP01 - Bearzerker Axe [8768,-2560]", "pos": ["MAP01",8768,-2560,210], "region": "Battlefield" }
+AP-CHECK { "id": 334, "name": "MAP01 - Axe [8768,-2560]", "pos": ["MAP01",8768,-2560,210], "region": "Battlefield" }
+AP-CHECK { "id": 346, "name": "MAP01 - Cream Fungus [7944,-2395]", "pos": ["MAP01",7944,-2395,210], "region": "Battlefield" }
+AP-CHECK { "id": 349, "name": "MAP01 - Potion of Minor Healing [12644,-4648]", "pos": ["MAP01",12644,-4648,210], "region": "Battlefield" }
+AP-CHECK { "id": 350, "name": "MAP01 - Cream Fungus [11360,-3880]", "pos": ["MAP01",11360,-3880,226], "region": "Shrine" }
+AP-CHECK { "id": 352, "name": "MAP01 - Cream Fungus [12364,-3976]", "pos": ["MAP01",12364,-3976,194], "region": "Shrine" }
+AP-CHECK { "id": 351, "name": "MAP01 - Cream Fungus [12360,-3404]", "pos": ["MAP01",12360,-3404,210], "region": "Shrine" }
+AP-CHECK { "id": 404, "name": "MAP01 - Power Shard [11149,-2896]", "pos": ["MAP01",11149,-2896,314], "region": "Cramped Tunnels" }
+AP-CHECK { "id": 359, "name": "MAP01 - Power Shard [10805,-3097]", "pos": ["MAP01",10805,-3097,306], "region": "Cramped Tunnels" }
+AP-CHECK { "id": 363, "name": "MAP01 - Cream Fungus [10928,-3136]", "pos": ["MAP01",10928,-3136,314], "region": "Cramped Tunnels" }
+AP-CHECK { "id": 360, "name": "MAP01 - Cream Fungus [10528,-3360]", "pos": ["MAP01",10528,-3360,290], "region": "Cramped Tunnels" }
+AP-CHECK { "id": 361, "name": "MAP01 - Cream Fungus [10480,-3584]", "pos": ["MAP01",10480,-3584,290], "region": "Cramped Tunnels" }
+AP-CHECK { "id": 433, "name": "MAP01 - Spike Mag [10920,-3628]", "pos": ["MAP01",10920,-3628,258], "region": "Cramped Tunnels" }
+AP-CHECK { "id": 446, "name": "MAP01 - Spike Bundle [10923,-3667]", "pos": ["MAP01",10923,-3667,258], "region": "Cramped Tunnels" }
+AP-CHECK { "id": 444, "name": "MAP01 - Spike Mag [10948,-3616]", "pos": ["MAP01",10948,-3616,258], "region": "Cramped Tunnels" }
+AP-CHECK { "id": 364, "name": "MAP01 - Spike Gun [10960,-3656]", "pos": ["MAP01",10960,-3656,258], "region": "Cramped Tunnels" }
+AP-CHECK { "id": 447, "name": "MAP01 - Spike Bundle [10937,-3687]", "pos": ["MAP01",10937,-3687,258], "region": "Cramped Tunnels" }
+AP-CHECK { "id": 408, "name": "MAP01 - Fixer's Goggles [10936,-3776]", "pos": ["MAP01",10936,-3776,258], "region": "Cramped Tunnels" }
+AP-CHECK { "id": 362, "name": "MAP01 - Cream Fungus [10720,-3944]", "pos": ["MAP01",10720,-3944,266], "region": "Cramped Tunnels" }
+AP-CHECK { "id": 403, "name": "MAP01 - Power Shard [11328,-1932]", "pos": ["MAP01",11328,-1932,370], "region": "Forest" }
+AP-CHECK { "id": 402, "name": "MAP01 - Water", "pos": ["MAP01",11301,-1963,395], "region": "Forest" }
+AP-CHECK { "id": 417, "name": "MAP01 - Potion of Minor Healing [11339,-1874]", "pos": ["MAP01",11339,-1874,370], "region": "Forest" }
+AP-CHECK { "id": 368, "name": "MAP01 - Cream Fungus [11182,-443]", "pos": ["MAP01",11182,-443,381], "region": "Forest" }
+AP-CHECK { "id": 367, "name": "MAP01 - Cream Fungus [11132,374]", "pos": ["MAP01",11132,374,370], "region": "Forest" }
+AP-CHECK { "id": 366, "name": "MAP01 - Cream Fungus [11337,342]", "pos": ["MAP01",11337,342,370], "region": "Forest" }
+AP-CHECK { "id": 376, "name": "MAP01 - Power Shard [12203,2797]", "pos": ["MAP01",12203,2797,370], "region": "Forest" }
+AP-CHECK { "id": 381, "name": "MAP01 - Cream Fungus [11934,3364]", "pos": ["MAP01",11934,3364,370], "region": "Forest" }
+AP-CHECK { "id": 365, "name": "MAP01 - Moondrop Flower", "pos": ["MAP01",11684,3760,370], "region": "Forest" }
+AP-CHECK { "id": 378, "name": "MAP01 - Cream Fungus [10993,3417]", "pos": ["MAP01",10993,3417,370], "region": "Forest" }
+AP-CHECK { "id": 382, "name": "MAP01 - Cream Fungus [11016,3372]", "pos": ["MAP01",11016,3372,370], "region": "Forest" }
+AP-CHECK { "id": 380, "name": "MAP01 - Cream Fungus [12390,1823]", "pos": ["MAP01",12390,1823,370], "region": "Forest" }
+AP-CHECK { "id": 379, "name": "MAP01 - Power Shard [12846,2541]", "pos": ["MAP01",12846,2541,370], "region": "Forest" }
+AP-CHECK { "id": 416, "name": "MAP01 - Power Shard [9742,1487]", "pos": ["MAP01",9742,1487,370], "region": "Forest" }
+AP-CHECK { "id": 383, "name": "MAP01 - Cream Fungus [9878,1562]", "pos": ["MAP01",9878,1562,376], "region": "Forest" }
+AP-CHECK { "id": 523, "name": "MAP01 - Bearzerker Axe [9919,2716]", "pos": ["MAP01",9919,2716,370], "region": "Forest" }
+AP-CHECK { "id": 374, "name": "MAP01 - Axe [9919,2716]", "pos": ["MAP01",9919,2716,370], "region": "Forest" }
+AP-CHECK { "id": 372, "name": "MAP01 - Jug of Wine [10033,2641]", "pos": ["MAP01",10033,2641,386], "region": "Forest" }
+AP-CHECK { "id": 373, "name": "MAP01 - Cream Fungus [9919,2571]", "pos": ["MAP01",9919,2571,376], "region": "Forest" }
+AP-CHECK { "id": 377, "name": "MAP01 - Cream Fungus [9585,2938]", "pos": ["MAP01",9585,2938,373], "region": "Forest" }
+AP-CHECK { "id": 375, "name": "MAP01 - Spike Gun [10077,3994]", "pos": ["MAP01",10077,3994,370], "region": "Forest" }
+AP-CHECK { "id": 512, "name": "MAP01 - Spike Mag [10024,3965]", "pos": ["MAP01",10024,3965,370], "region": "Forest" }
+AP-CHECK { "id": 406, "name": "MAP01 - Spike Bundle [9883,4226]", "pos": ["MAP01",9883,4226,370], "region": "Forest" }
+AP-CHECK { "id": 418, "name": "MAP01 - Power Shard [9434,4498]", "pos": ["MAP01",9434,4498,426], "region": "Forest" }
+AP-CHECK { "id": 370, "name": "MAP01 - Cream Fungus [12337,4896]", "pos": ["MAP01",12337,4896,442], "region": "Village" }
+AP-CHECK { "id": 384, "name": "MAP01 - Spike Mag [12824,4011]", "pos": ["MAP01",12824,4011,450], "region": "Village" }
+AP-CHECK { "id": 371, "name": "MAP01 - Cream Fungus [12991,3877]", "pos": ["MAP01",12991,3877,370], "region": "Village" }
+AP-CHECK { "id": 385, "name": "MAP01 - Cream Fungus [13450,4220]", "pos": ["MAP01",13450,4220,370], "region": "Village" }
+AP-CHECK { "id": 437, "name": "MAP01 - Power Shard [12916,4540]", "pos": ["MAP01",12916,4540,130], "region": "Village Well" }
+AP-CHECK { "id": 369, "name": "MAP01 - Power Shard [12899,4517]", "pos": ["MAP01",12899,4517,130], "region": "Village Well" }
+AP-CHECK { "id": 435, "name": "MAP01 - Power Shard [12884,4544]", "pos": ["MAP01",12884,4544,130], "region": "Village Well" }
+AP-CHECK { "id": 436, "name": "MAP01 - Spike Mag [13604,4508]", "pos": ["MAP01",13604,4508,434], "region": "Village House E" }
+AP-CHECK { "id": 398, "name": "MAP01 - Bread [13628,4509]", "pos": ["MAP01",13628,4509,433], "region": "Village House E" }
+AP-CHECK { "id": 536, "name": "MAP01 - Secret 3742", "pos": ["MAP01","secret","sector",3742], "region": "Village House E Secret" }
+AP-CHECK { "id": 510, "name": "MAP01 - Boltmag [13968,4724]", "pos": ["MAP01",13968,4724,394], "region": "Village House E Secret" }
+AP-CHECK { "id": 527, "name": "MAP01 - Vial of Healing [14015,4721]", "pos": ["MAP01",14015,4721,394], "region": "Village House E Secret" }
+AP-CHECK { "id": 390, "name": "MAP01 - Spike Mag [13983,4853]", "pos": ["MAP01",13983,4853,418], "region": "Village House E Secret" }
+AP-CHECK { "id": 388, "name": "MAP01 - Jug of Wine [14028,4855]", "pos": ["MAP01",14028,4855,418], "region": "Village House E Secret" }
+AP-CHECK { "id": 387, "name": "MAP01 - Jug of Wine [14004,4856]", "pos": ["MAP01",14004,4856,418], "region": "Village House E Secret" }
+AP-CHECK { "id": 389, "name": "MAP01 - Spike Mag [13957,4854]", "pos": ["MAP01",13957,4854,418], "region": "Village House E Secret" }
+AP-CHECK { "id": 391, "name": "MAP01 - Spike Mag [13931,4854]", "pos": ["MAP01",13931,4854,418], "region": "Village House E Secret" }
+AP-CHECK { "id": 396, "name": "MAP01 - Bread [13039,5084]", "pos": ["MAP01",13039,5084,374], "region": "Village House N" }
+AP-CHECK { "id": 393, "name": "MAP01 - Power Shard [12689,5303]", "pos": ["MAP01",12689,5303,399], "region": "Village House N" }
+AP-CHECK { "id": 421, "name": "MAP01 - Potion of Minor Healing [12660,5308]", "pos": ["MAP01",12660,5308,399], "region": "Village House N" }
+AP-CHECK { "id": 397, "name": "MAP01 - Vial of Healing [12457,5321]", "pos": ["MAP01",12457,5321,375], "region": "Village House N" }
+AP-CHECK { "id": 508, "name": "MAP01 - Scroll of Magma Ball", "pos": ["MAP01",13383,5428,502], "region": "Village House N" }
+AP-CHECK { "id": 400, "name": "MAP01 - Time Shard [13759,5429]", "pos": ["MAP01",13759,5429,519], "region": "Village House N" }
+AP-CHECK { "id": 392, "name": "MAP01 - Potion of Healing [13588,5308]", "pos": ["MAP01",13588,5308,501], "region": "Village House N" }
+AP-CHECK { "id": 414, "name": "MAP01 - Power Shard [12616,-3932]", "pos": ["MAP01",12616,-3932,282], "region": "Shrine Secret" }
+AP-CHECK { "id": 426, "name": "MAP01 - Power Shard [12616,-3928]", "pos": ["MAP01",12616,-3928,282], "region": "Shrine Secret" }
+AP-CHECK { "id": 423, "name": "MAP01 - Power Shard [12616,-3908]", "pos": ["MAP01",12616,-3908,282], "region": "Shrine Secret" }
+AP-CHECK { "id": 413, "name": "MAP01 - Power Shard [12610,-3917]", "pos": ["MAP01",12610,-3917,282], "region": "Shrine Secret" }
+AP-CHECK { "id": 412, "name": "MAP01 - Power Shard [12624,-3904]", "pos": ["MAP01",12624,-3904,282], "region": "Shrine Secret" }
+AP-CHECK { "id": 425, "name": "MAP01 - Power Shard [12630,-3938]", "pos": ["MAP01",12630,-3938,282], "region": "Shrine Secret" }
+AP-CHECK { "id": 353, "name": "MAP01 - Amulet of Shadows", "pos": ["MAP01",12632,-3920,282], "region": "Shrine Secret" }
+AP-CHECK { "id": 415, "name": "MAP01 - Power Shard [12640,-3936]", "pos": ["MAP01",12640,-3936,282], "region": "Shrine Secret" }
+AP-CHECK { "id": 424, "name": "MAP01 - Power Shard [12638,-3902]", "pos": ["MAP01",12638,-3902,282], "region": "Shrine Secret" }
+AP-CHECK { "id": 411, "name": "MAP01 - Power Shard [12644,-3908]", "pos": ["MAP01",12644,-3908,282], "region": "Shrine Secret" }
+AP-CHECK { "id": 410, "name": "MAP01 - Power Shard [12649,-3920]", "pos": ["MAP01",12649,-3920,282], "region": "Shrine Secret" }
+AP-CHECK { "id": 427, "name": "MAP01 - Power Shard [12648,-3928]", "pos": ["MAP01",12648,-3928,282], "region": "Shrine Secret" }
+AP-CHECK { "id": 535, "name": "MAP01 - Secret 2852", "pos": ["MAP01","secret","sector",2852], "region": "Shrine Secret" }
+AP-CHECK { "id": 462, "name": "MAP01 - Cream Fungus [10133,767]", "pos": ["MAP01",10133,767,370], "region": "Hidden Waterway" }
+AP-CHECK { "id": 461, "name": "MAP01 - Cream Fungus [10126,737]", "pos": ["MAP01",10126,737,370], "region": "Hidden Waterway" }
+AP-CHECK { "id": 463, "name": "MAP01 - Cream Fungus [10093,765]", "pos": ["MAP01",10093,765,370], "region": "Hidden Waterway" }
+AP-CHECK { "id": 464, "name": "MAP01 - SmokedHam [7576,-204]", "pos": ["MAP01",7576,-204,653], "region": "Hidden Baths" }
+AP-CHECK { "id": 465, "name": "MAP01 - SmokedHam [7578,-224]", "pos": ["MAP01",7578,-224,644], "region": "Hidden Baths" }
+AP-CHECK { "id": 451, "name": "MAP01 - Tomato [7484,-361]", "pos": ["MAP01",7484,-361,619], "region": "Hidden Baths" }
+AP-CHECK { "id": 537, "name": "MAP01 - Secret 4187", "pos": ["MAP01","secret","sector",4187], "region": "Hidden Baths" }
+AP-CHECK { "id": 454, "name": "MAP01 - Grapes [E]", "pos": ["MAP01",7992,984,639], "region": "Hidden Baths" }
+AP-CHECK { "id": 453, "name": "MAP01 - Apple", "pos": ["MAP01",7977,978,639], "region": "Hidden Baths" }
+AP-CHECK { "id": 452, "name": "MAP01 - Jug of Wine [8024,1002]", "pos": ["MAP01",8024,1002,638], "region": "Hidden Baths" }
+AP-CHECK { "id": 459, "name": "MAP01 - Power Shard [8006,1902]", "pos": ["MAP01",8006,1902,666], "region": "Hidden Baths" }
+AP-CHECK { "id": 460, "name": "MAP01 - Power Shard [8058,1902]", "pos": ["MAP01",8058,1902,666], "region": "Hidden Baths" }
+AP-CHECK { "id": 518, "name": "MAP01 - Boltmag [7050,115]", "pos": ["MAP01",7050,115,634], "region": "Hidden Baths" }
+AP-CHECK { "id": 515, "name": "MAP01 - Fragfire Can [7000,259]", "pos": ["MAP01",7000,259,596], "region": "Hidden Baths" }
+AP-CHECK { "id": 455, "name": "MAP01 - Fragfire Can [7000,279]", "pos": ["MAP01",7000,279,596], "region": "Hidden Baths" }
+AP-CHECK { "id": 456, "name": "MAP01 - Fragfire Gun [7002,375]", "pos": ["MAP01",7002,375,611], "region": "Hidden Baths" }
+AP-CHECK { "id": 526, "name": "MAP01 - Force Pike", "pos": ["MAP01",7296,1743,626], "region": "Hidden Baths" }
+AP-CHECK { "id": 457, "name": "MAP01 - Vial of Healing [7260,1752]", "pos": ["MAP01",7260,1752,626], "region": "Hidden Baths" }
+AP-CHECK { "id": 458, "name": "MAP01 - Potion of Healing [7316,1760]", "pos": ["MAP01",7316,1760,626], "region": "Hidden Baths" }
+AP-CHECK { "id": 289, "name": "MAP01 - Exit", "pos": ["MAP01","event","exit"], "region": "Village House N" }
