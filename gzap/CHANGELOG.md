@@ -3,6 +3,11 @@
 - Fixed:
   - Locations in Eviternity II MAP32 no longer require a Yellow Skull to reach
     that doesn't actually exist.
+  - Logical prerequisites requiring a specific number of items now actually
+    work rather than crashing the generator.
+  - Locations with identical positions, identical tags, and distinct typenames
+    no longer crash the generator when the yaml settings require both locations
+    to be randomized.
 
 # 0.8.4
 

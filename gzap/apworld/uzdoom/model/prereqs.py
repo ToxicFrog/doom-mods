@@ -41,8 +41,7 @@ def string_to_prereq_fn(world, wad, map, string):
       raise RuntimeError(f'Unknown prerequisite {string}')
 
 def fqin_prereq(world, wad, map, fqin, count=1):
-  # print(f'    (has "{fqin}")')
-  return lambda state: state.has(fqin, world.player, count)
+  return lambda state: state.has(fqin, world.player, int(count))
 
 def item_prereq(world, wad, map, typename, count=1):
   return fqin_prereq(world, wad, map, wad.items_by_type[typename].name())
