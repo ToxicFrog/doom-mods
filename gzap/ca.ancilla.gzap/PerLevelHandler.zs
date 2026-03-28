@@ -39,7 +39,6 @@ class ::PerLevelHandler : EventHandler {
   Class<Actor> last_replaced_actor;
 
   override void OnRegister() {
-    console.printf("Disabling weapon replacement for 2 ticks");
     self.disable_actor_replacement = 2;
   }
 

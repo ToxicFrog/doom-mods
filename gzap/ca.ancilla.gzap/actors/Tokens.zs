@@ -11,9 +11,7 @@
 
 #namespace GZAP;
 
-class ::InventoryToken : Inventory {
-  string map;
-  property Map: map;
+class ::Token : Inventory {
   Default {
     Inventory.Amount 1;
     Inventory.MaxAmount 1;
@@ -27,6 +25,11 @@ class ::InventoryToken : Inventory {
       TNT1 A -1;
       STOP;
   }
+}
+
+class ::InventoryToken : ::Token {
+  string map;
+  property Map: map;
 }
 
 class ::LevelAccess : ::InventoryToken {

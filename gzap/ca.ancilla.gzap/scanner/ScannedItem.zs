@@ -165,6 +165,9 @@ class ::ScannedItem : ::ScannedLocation {
   // .COUNTITEM - counts towards the % items collected stat
   // there's also sv_unlimited_pickup to remove all limits on ammo capacity(!)
   static string ItemCategory(readonly<Actor> thing) {
+    // Internal bookkeeping tokens.
+    if (thing is "::Token") return "";
+
     // Categories set in GZAPRC take precedence over everything else.
     let [category, ok] = ::RC.Get().GetCategory(thing.GetClassName());
     if (ok) return category;
