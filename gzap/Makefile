@@ -53,8 +53,8 @@ apworld/zdoom_%/: wads/%/* wads/__template__/*
 	cp -a apworld/uzdoom/VERSION apworld/zdoom_$*
 	cp -a wads/$*/* apworld/zdoom_$*/
 	mkdir -p apworld/zdoom_$*/logic apworld/zdoom_$*/tuning
-	mv apworld/zdoom_$*/*.logic apworld/zdoom_$*/logic/ || true
-	mv apworld/zdoom_$*/*.tuning apworld/zdoom_$*/tuning/ || true
+	mv apworld/zdoom_$*/*.logic* apworld/zdoom_$*/logic/ || true
+	mv apworld/zdoom_$*/*.tuning* apworld/zdoom_$*/tuning/ || true
 
 install: core_apworld addon_apworlds ${PK3}
 	cp -a ${TOPDIR}/release/uzdoom.apworld ~/.local/share/Archipelago/worlds
