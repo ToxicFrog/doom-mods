@@ -23,7 +23,7 @@ class ::RC : Object play {
       } else if (tmp.has_requirements && tmp.should_skip) {
         console.printf("[AP] Skipping config file %s#%d (wrong megawad).", wads.GetLumpFullName(lump), lump);
       } else {
-        console.printf("[AP] Loaded config file %s#%d.", wads.GetLumpFullName(lump), lump);
+        console.printf("\c[CYAN][AP] Loaded config file %s#%d.", wads.GetLumpFullName(lump), lump);
         rc.merge(tmp);
       }
       lump = wads.FindLump(lumpname, lump+1, wads.AnyNamespace);
