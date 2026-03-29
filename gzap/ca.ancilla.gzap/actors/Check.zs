@@ -72,7 +72,7 @@ mixin class ::ArchipelagoIcon {
   // (one in the apstate, one in the Check).
   uint location_id;
   ::Location GetLocation() {
-    return ::PlayEventHandler.GetState().GetCurrentRegion().GetLocation(self.location_id);
+    return ::RandoState.Get().GetCurrentRegion().GetLocation(self.location_id);
   }
   bool IsChecked() { return GetLocation().IsChecked(); }
 
@@ -149,13 +149,13 @@ class ::CheckMapMarker : MapMarker {
     // 0 = never, 1 = if you have the automap, 2 = always.
     if (ap_show_checks_on_map <= 0) return false;
     if (ap_show_checks_on_map >= 2) return true;
-    return ::PlayEventHandler.GetState().GetCurrentRegion().HasAutomap();
+    return ::RandoState.Get().GetCurrentRegion().HasAutomap();
   }
 
   bool ShouldHilight() {
     if (ap_show_progression <= 1) return false; // "never" or "only in person"
     if (ap_show_progression == 2) {
-      return ::PlayEventHandler.GetState().GetCurrentRegion().HasAutomap();
+      return ::RandoState.Get().GetCurrentRegion().HasAutomap();
     }
     return true;
   }

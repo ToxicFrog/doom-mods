@@ -69,12 +69,6 @@ class ::PlayEventHandler : StaticEventHandler {
     return ::PlayEventHandler(Find("::PlayEventHandler"));
   }
 
-  static clearscope ::RandoState GetState() {
-    let peh = ::PlayEventHandler.Get();
-    if (!peh) return null;
-    return peh.apstate;
-  }
-
   bool initialized;
   override void WorldLoaded(WorldEvent evt) {
     DEBUG("PEH WorldLoaded: %s", level.MapName);

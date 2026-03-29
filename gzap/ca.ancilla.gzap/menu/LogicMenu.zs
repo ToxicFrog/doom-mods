@@ -17,7 +17,7 @@ class ::LogicMenu : ::CommonMenu {
     TooltipGeometry(0.0, 0.5, 0.2, 1.0, 0.5);
     TooltipAppearance("", "", "tfttbg");
 
-    let apstate = ::PlayEventHandler.GetState();
+    let apstate = ::RandoState.Get();
     if (!apstate) {
       console.printf("%s", StringTable.Localize("$GZAP_MENU_ERROR_NOT_IN_GAME"));
       return;
@@ -59,7 +59,7 @@ class ::LogicMenu : ::CommonMenu {
   }
 
   override void Ticker() {
-    let apstate = ::PlayEventHandler.GetState();
+    let apstate = ::RandoState.Get();
     if (!apstate) {
       Close();
       return;

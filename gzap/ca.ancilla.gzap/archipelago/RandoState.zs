@@ -46,6 +46,10 @@ class ::RandoState play {
     return apstate;
   }
 
+  static clearscope ::RandoState Get() {
+    return ::PlayEventHandler.Get().apstate;
+  }
+
   void DebugPrint() {
     console.printf("AP State [txn=%d, filter_index=%d]", self.txn, self.filter_index);
 

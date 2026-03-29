@@ -17,7 +17,7 @@ class ::LevelSelectMenu : ::CommonMenu {
     TooltipGeometry(0.0, 0.5, 0.25, 1.0, 0.5);
     TooltipAppearance("", "", "tfttbg");
 
-    if (!::PlayEventHandler.GetState()) {
+    if (!::RandoState.Get()) {
       console.printf("%s", StringTable.Localize("$GZAP_MENU_ERROR_NOT_IN_GAME"));
       return;
     }
@@ -25,7 +25,7 @@ class ::LevelSelectMenu : ::CommonMenu {
     PushText(" ");
     PushText("$GZAP_MENU_LEVEL_SELECT_TITLE", Font.CR_WHITE);
     let progress_indicator = new("::ProgressIndicator");
-    progress_indicator.apstate = ::PlayEventHandler.GetState();
+    progress_indicator.apstate = ::RandoState.Get();
     mDesc.mItems.Push(progress_indicator.InitDirect("", Font.CR_CYAN));
     PushText(" ");
 
@@ -42,7 +42,7 @@ class ::LevelSelectMenu : ::CommonMenu {
       // Sometimes we get MAPINFO entries that don't actually exist.
       if (!info || !LevelInfo.MapExists(info.MapName)) continue;
 
-      let region = ::PlayEventHandler.GetState().GetRegion(info.MapName);
+      let region = ::RandoState.Get().GetRegion(info.MapName);
       // Skip any levels not listed in the data package and initialized with
       // RegisterMap().
       if (!region) continue;
@@ -76,7 +76,7 @@ class ::LevelSelectMenu : ::CommonMenu {
   }
 
   override void Ticker() {
-    let state = ::PlayEventHandler.GetState();
+    let state = ::RandoState.Get();
     if (!state) {
       Close();
       return;
@@ -86,7 +86,7 @@ class ::LevelSelectMenu : ::CommonMenu {
     if (!state.ShouldWarn()) return;
 
     EventHandler.SendNetworkEvent("ap-did-warning");
-    DisplayWarning(::PlayEventHandler.GetState());
+    DisplayWarning(::RandoState.Get());
   }
 
 	override bool OnUIEvent(UIEvent evt) {

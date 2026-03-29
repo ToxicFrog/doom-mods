@@ -71,7 +71,7 @@ class ::LockedWeapon : CustomInventory {
       return true;
     }
 
-    let apstate = ::PlayEventHandler.GetState();
+    let apstate = ::RandoState.Get();
 
     // Allow if the player already has a weapon of the same slot.
     if (ap_suppress_weapon_drops == AP_ALLOW_WEAPONS_IF_SIBLING) {

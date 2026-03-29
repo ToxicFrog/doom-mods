@@ -27,7 +27,7 @@ class GZAP_DataPackageEventHandler : StaticEventHandler {
   override void OnRegister() {
     console.printf("Initializing Archipelago data package from apworld version %s", "{{mod_version}}");
     peh = GZAP_PlayEventHandler.Get();
-    let apstate = GZAP_PlayEventHandler.GetState();
+    let apstate = GZAP_RandoState.Get();
 
     peh.RegisterGameInfo("{{player}}", "{{seed}}", "{{wad.name}}", {{spawn_filter}}, {{singleplayer}});
     {% if pretuning %}
@@ -143,10 +143,10 @@ class GZAP_DataPackageEventHandler : StaticEventHandler {
     // there is no host to grant them, and (b) local-only checks.
     if (evt.name == "ap-check") {
       let locid = evt.args[0];
-      GZAP_PlayEventHandler.GetState().MarkLocationCollected(locid);
+      GZAP_RandoState.Get().MarkLocationCollected(locid);
       let itemid = locations_to_items.Get(locid);
       if (itemid) {
-        GZAP_PlayEventHandler.GetState().GrantItem(itemid);
+        GZAP_RandoState.Get().GrantItem(itemid);
       }
     }
   }
@@ -165,7 +165,7 @@ class GZAP_DataPackageEventHandler : StaticEventHandler {
         return;
       }
 
-      let apstate = peh.GetState();
+      let apstate = GZAP_RandoState.Get();
       let nick = apstate.slot_name;
 
       apstate.RegisterHint(hint.item_map, item, nick, hint.loc_name);

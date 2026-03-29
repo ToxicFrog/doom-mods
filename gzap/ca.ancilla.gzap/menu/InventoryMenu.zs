@@ -16,7 +16,7 @@ class ::InventoryMenu : ::CommonMenu {
     TooltipGeometry(0.0, 0.5, 0.2, 1.0, 0.5);
     TooltipAppearance("", "", "tfttbg");
 
-    if (!::PlayEventHandler.GetState()) {
+    if (!::RandoState.Get()) {
       console.printf("%s", StringTable.Localize("$GZAP_MENU_ERROR_NOT_IN_GAME"));
       return;
     }
@@ -25,7 +25,7 @@ class ::InventoryMenu : ::CommonMenu {
     PushText("$GZAP_MENU_INVENTORY_TITLE", Font.CR_WHITE);
     PushText(" ");
 
-    let state = ::PlayEventHandler.GetState();
+    let state = ::RandoState.Get();
     for (int n = 0; n < state.items.Size(); ++n) {
       let item = state.items[n];
       if (item.GetLimit() == 0) continue;
@@ -41,7 +41,7 @@ class ::InventoryMenu : ::CommonMenu {
   }
 
   override void Ticker() {
-    let state = ::PlayEventHandler.GetState();
+    let state = ::RandoState.Get();
     if (!state) {
       Close();
       return;
@@ -66,7 +66,7 @@ class ::InventoryMenu : ::CommonMenu {
   }
 
   void InitKeyDisplay() {
-    let region = ::PlayEventHandler.GetState().GetCurrentRegion();
+    let region = ::RandoState.Get().GetCurrentRegion();
     if (!region) return;
     if (region.keys.CountUsed() == 0) return;
 
@@ -80,7 +80,7 @@ class ::InventoryMenu : ::CommonMenu {
   }
 
   void InitPeekDisplay() {
-    let region = ::PlayEventHandler.GetState().GetCurrentRegion();
+    let region = ::RandoState.Get().GetCurrentRegion();
     if (!region) return;
 
     bool did_header = false;
@@ -133,7 +133,7 @@ class ::InventoryItem : ::KeyValueSelectable {
 
   override bool MenuEvent(int key, bool fromController) {
     if (key == Menu.MKey_Enter) {
-      let state = ::PlayEventHandler.GetState();
+      let state = ::RandoState.Get();
       int total = 0;
       for (int n = 0; n < state.items.Size(); ++n) {
         total += state.items[n].grabbed;

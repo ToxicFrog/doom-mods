@@ -175,12 +175,12 @@ class ::Util play {
   }
 
   static clearscope string FormatHint(string player, string location) {
-    let slot_name = ::PlayEventHandler.GetState().slot_name;
+    let slot_name = ::RandoState.Get().slot_name;
     return string.format("\c-⌖ %s @ %s", player, location);
   }
 
   static clearscope string FormatPeek(string player, string item, uint flags) {
-    let slot_name = ::PlayEventHandler.GetState().slot_name;
+    let slot_name = ::RandoState.Get().slot_name;
     return string.format("\c-ⓘ %s for %s", item, player);
   }
 

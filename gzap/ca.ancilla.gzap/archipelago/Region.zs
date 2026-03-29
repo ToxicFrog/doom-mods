@@ -121,13 +121,13 @@ class ::Region play {
   }
 
   bool CanAccess() const {
-    return ::PlayEventHandler.GetState().CountItem("GZAP_LevelAccess_"..self.map) > 0;
+    return ::RandoState.Get().CountItem("GZAP_LevelAccess_"..self.map) > 0;
   }
   bool HasAutomap() const {
-    return ::PlayEventHandler.GetState().CountItem("GZAP_Automap_"..self.map) > 0;
+    return ::RandoState.Get().CountItem("GZAP_Automap_"..self.map) > 0;
   }
   bool IsCleared() const {
-    return ::PlayEventHandler.GetState().CountItem("GZAP_LevelCleared_"..self.map) > 0;
+    return ::RandoState.Get().CountItem("GZAP_LevelCleared_"..self.map) > 0;
   }
 
   void RegisterCheck(
@@ -219,11 +219,7 @@ class ::Region play {
   }
 
   string AccessFlagFQIN() const {
-    return ::PlayEventHandler
-      .GetState()
-      .items_by_type
-      .Get("GZAP_LevelAccess_"..self.map)
-      .tag;
+    return ::RandoState.Get().items_by_type.Get("GZAP_LevelAccess_"..self.map).tag;
   }
 
   void SavePosition(Vector3 pos) {
@@ -322,7 +318,7 @@ class ::Region play {
       return;
     }
     key.enabled = !key.enabled;
-    ::PlayEventHandler.GetState().UpdatePlayerInventory();
+    ::RandoState.Get().UpdatePlayerInventory();
   }
 
   void UpdateInventory(PlayerPawn mo) {

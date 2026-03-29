@@ -23,7 +23,7 @@ class ::Subregion play {
   }
 
   void FillStartingPrereqs(::Region region) {
-    let apstate = ::PlayEventHandler.GetState();
+    let apstate = ::RandoState.Get();
     foreach (k, v : apstate.GetCurrentRegion().keys) {
       if (v.held && v.enabled) {
         self.prereqs.Insert("key/" .. v.typename, true);

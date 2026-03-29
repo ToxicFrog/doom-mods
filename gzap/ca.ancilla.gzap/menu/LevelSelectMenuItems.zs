@@ -153,7 +153,7 @@ class ::LevelSelector : ::KeyValueNetevent {
   string FormatLevelClearMarker(::Region region) {
     if (region.IsCleared())
       return "  √  ";
-    if (::PlayEventHandler.GetState().win_conditions.specific_maps.CheckKey(region.map))
+    if (::RandoState.Get().win_conditions.specific_maps.CheckKey(region.map))
       return "  X  ";
     return "      ";
   }
@@ -161,7 +161,7 @@ class ::LevelSelector : ::KeyValueNetevent {
   string FormatLevelClearColour(::Region region) {
     if (region.IsCleared())
       return "\c[GOLD]";
-    if (::PlayEventHandler.GetState().win_conditions.specific_maps.CheckKey(region.map))
+    if (::RandoState.Get().win_conditions.specific_maps.CheckKey(region.map))
       return "\c[RED]";
     return "";
   }

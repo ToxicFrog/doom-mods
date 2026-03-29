@@ -47,7 +47,7 @@ class ::PerLevelHandler : EventHandler {
   }
 
   void InitRandoState(bool is_savegame) {
-    let datastate = ::PlayEventHandler.GetState();
+    let datastate = ::RandoState.Get();
 
     if (self.apstate == null) {
       // Newly initialized, use the one from the PlayEventHandler.
@@ -65,7 +65,7 @@ class ::PerLevelHandler : EventHandler {
     // the datastate will be whatever the game-wide state was just before the
     // game was loaded.
     DEBUG("APState conflict resolution: txn[d]=%d txn[p]=%d",
-      ::PlayEventHandler.GetState().txn, apstate.txn);
+      ::RandoState.Get().txn, apstate.txn);
 
     if (self.apstate.txn > datastate.txn) {
       // Our state has a higher txn. This usually means someone started up the
