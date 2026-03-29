@@ -30,7 +30,6 @@ class DoomItem:
     tag: str                    # User-visible name *in UZDoom*
     map: Optional[str] = None
     disambiguate: bool = False
-    virtual: bool = True    # Does't exist in-game, only in AP's internal state
 
     def __init__(self, map, category, typename, tag):
         # 'category' comes from the logic file and is a hyphen-separated string
@@ -69,6 +68,9 @@ class DoomItem:
         if self.map and with_scope:
             name += f" ({self.map})"
         return name
+
+    def typename_for_icon(self):
+        return self.typename
 
     def has_category(self, *args):
         return self.categories & frozenset(args)

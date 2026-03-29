@@ -467,7 +467,7 @@ class UZDoomWorld(World):
         def item_type_at(name: str) -> str:
             loc = self.get_location(name)
             if loc.item and loc.item.name in self.wad_logic.items_by_name:
-                return self.wad_logic.items_by_name[loc.item.name].typename
+                return self.wad_logic.items_by_name[loc.item.name].typename_for_icon()
             return (icons.guess_icon(self.wad_logic, loc.item.game, loc.item.name)
                 or f"NONE:{loc.item.game}:{loc.item.name}")
 
