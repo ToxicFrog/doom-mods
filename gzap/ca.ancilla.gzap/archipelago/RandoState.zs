@@ -136,6 +136,11 @@ class ::RandoState play {
   ::RandoItem RegisterItem(uint apid, string typename, string ap_name) {
     DEBUG("RegisterItem: %d [%s] %s", apid, typename, ap_name);
     let item = ::RandoItem.Create(typename, ap_name);
+    if (!item) {
+      console.printf("\c[RED]Error creating item table entry for item %d: %s ('%s')", apid, typename, ap_name);
+      console.printf("\c[RED]This means the generated game uses items the game engine doesn't know about -- are you sure you have the right IWAD loaded?");
+      item.DebugPrint(); // crash
+    }
     self.items.Push(item);
     self.items_by_type.Insert(typename, item);
     if (apid) {

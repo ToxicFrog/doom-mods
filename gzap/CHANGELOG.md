@@ -42,6 +42,9 @@ changed. Rescanning your wads is not *mandatory* but is *strongly recommended*.
     difficulties may lack tuning data.
   - Doom 1/2, Heretic, Chex Quest, and Faithless no longer have ammo pickups
     with duplicate names.
+  - If the apworld generates a pk3 that requires items the engine doesn't know
+    about, it will now crash on startup with an explanatory message rather than
+    crashing confusingly later.
 
 # 0.8.5
 
