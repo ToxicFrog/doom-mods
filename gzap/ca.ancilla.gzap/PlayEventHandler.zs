@@ -83,6 +83,7 @@ class ::PlayEventHandler : StaticEventHandler {
     // sync with the client.
     if (!initialized && (region || level.MapName == "GZAPHUB")) {
       initialized = true;
+      apstate.ReadStartingInventory();
       apclient.Init(self.apstate.slot_name, self.seed, self.wadname);
     }
 

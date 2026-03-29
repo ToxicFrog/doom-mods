@@ -49,3 +49,8 @@ class ::Automap : ::InventoryToken {
 }
 
 class ::LevelCleared : ::InventoryToken {}
+
+class ::WeaponToken : ::InventoryToken {
+  string typename;
+  property Typename: typename;
+}

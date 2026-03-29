@@ -70,12 +70,29 @@ class ::PickupDetector : Inventory {
     }
   }
 
+  bool HandleWeapon(::RandoState apstate, Weapon item) {
+    // If the player is picking up a weapon, it's either because we intentionally
+    // spawned one for her, or because weapon usage suppression decided it was
+    // ok to do so. In either case she should get to *keep* this weapon, so we
+    // generate a weapon capability based on it scoped to this level.
+    DEBUG("HandleWeapon: %s", item.GetClassName());
+    let region = apstate.GetCurrentRegion();
+    if (!region) return false;
+    let wcaps = apstate.wcaps;
+    wcaps.AddScopedRealCap(region.map, item);
+    return false;
+  }
+
   override bool HandlePickup(Inventory item) {
     let plh = ::PerLevelHandler.Get();
 
     // Handle keys.
     if (::ScannedItem.ItemCategory(item) == "key") {
       return HandleKey(plh.apstate, item);
+    }
+
+    if (item is "Weapon") {
+      return HandleWeapon(plh.apstate, Weapon(item));
     }
 
     return false;

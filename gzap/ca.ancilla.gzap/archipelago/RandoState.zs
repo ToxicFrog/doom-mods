@@ -12,6 +12,7 @@
 #include "./RandoItem.zsc"
 #include "./RandoKey.zsc"
 #include "./Region.zsc"
+#include "./Weapons.zsc"
 #include "./WinConditions.zsc"
 
 class ::RandoState play {
@@ -38,11 +39,12 @@ class ::RandoState play {
   // from the server.
   Map<uint, ::RandoItem> items_by_apid;
   ::WinConditions win_conditions;
+  // Information about weapon capabilities.
+  ::WeaponCapabilities wcaps;
 
   static ::RandoState Create() {
     let apstate = ::RandoState(new("::RandoState"));
     apstate.win_conditions = new("::WinConditions");
-    apstate.weapon_check_counter = -1;
     return apstate;
   }
 
@@ -53,7 +55,23 @@ class ::RandoState play {
   // Called immediately after the AP datapackage has finished registering items,
   // maps, etc.
   void PostInit() {
+    self.wcaps = ::WeaponCapabilities.Create(self);
     SortLocations();
+  }
+
+  // Called just before IPC initialization, after loading into a map. Used to
+  // generate capabilities from the player's starting inventory so that we don't
+  // e.g. delete their fists.
+  void ReadStartingInventory() {
+    // Optimistically assume all players have the same starting inventory,
+    // since we don't track items/caps/etc per-player yet...
+    Inventory thing = players[0].mo.inv;
+    while (thing) {
+      if (thing.GetClass() is "Weapon") {
+        self.wcaps.AddGlobalRealCap(Weapon(thing));
+      }
+      thing = thing.inv;
+    }
   }
 
   void DebugPrint() {
@@ -258,6 +276,20 @@ class ::RandoState play {
       item.Inc();
     }
 
+    // Turn weapons and weapon grant tokens into pending weapon capabilities.
+    if (item.IsWeapon()) {
+      while (item.vended < item.total) {
+        self.wcaps.AddGlobalCap(item.typename);
+        item.vended++;
+      }
+    } else if (item.IsWeaponGrant()) {
+      while (item.vended < item.total) {
+        let [scope,typename] = item.WeaponGrantInfo();
+        self.wcaps.AddScopedCap(scope, typename);
+        item.vended++;
+      }
+    }
+
     UpdatePlayerInventory();
     UpdateStatus();
   }
@@ -312,7 +344,6 @@ class ::RandoState play {
     for (int p = 0; p < MAXPLAYERS; ++p) {
       if (!playeringame[p]) continue;
       if (!players[p].mo) continue;
-
       GetCurrentRegion().UpdateInventory(players[p].mo);
     }
     dirty = true;
@@ -323,39 +354,11 @@ class ::RandoState play {
     GetCurrentRegion().ToggleKey(keytype);
   }
 
-  int weapon_check_counter;
-  void UpdatePlayerWeapons() {
-    if (weapon_check_counter < 0) return;
-    --weapon_check_counter;
-    if (weapon_check_counter == 0) {
-      Map<string, bool> weapons;
-
-      readonly<Inventory> item = players[0].mo.inv;
-      while (item) {
-        if (item is "Weapon") {
-          DEBUG("UpdatePlayerWeapons: adding %s", item.GetClassName());
-          weapons.Insert(item.GetClassName(), true);
-        }
-        item = item.inv;
-      }
-
-      foreach (region : regions) {
-        region.weapons.Clear();
-        foreach (weapon, _ : weapons) {
-          // We should be able to:
-          // region.weapons.Copy(weapons);
-          // but for some reason this results in invalid iterator errors when
-          // attempting to walk it later.
-          region.weapons.Insert(weapon, true);
-        }
-      }
-    }
-  }
-
   void OnTick() {
-    UpdatePlayerWeapons();
     if (!dirty) return;
-    if (!GetCurrentRegion()) return;
+    let region = GetCurrentRegion();
+    if (!region) return;
+
     // TODO: per-player inventory will let us make this check per-player, for now
     // we just watch player[0].
     if (players[0].mo.vel.Length() == 0) return;
@@ -363,11 +366,14 @@ class ::RandoState play {
     foreach (item : self.items) {
       int n = item.EnforceLimit();
       txn += n;
-      if (n && item.IsWeapon()) {
-        DEBUG("Vended a weapon (%s), starting weapon check counter", item.typename);
-        weapon_check_counter = 7;
-      }
     }
+    // We apply pending caps first because pending caps corresponding to items
+    // the player already has will be converted directly into real caps, saving
+    // us an item spawn and the player losing and then immediately regaining a
+    // weapon. Of course this only really works right when weapon replacements
+    // aren't in effect.
+    self.wcaps.ApplyPendingCaps(region.map);
+    self.wcaps.ApplyRealCaps(region.map);
     dirty = false;
   }
 

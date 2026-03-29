@@ -33,8 +33,6 @@ class ::Region play {
   Map<uint, ::Location> locations_by_id;
   // Key typename to key info struct. Only contains keys relevant to this level.
   Map<string, ::RandoKey> keys;
-  // Set of weapons the player should have when in this level.
-  Map<string, bool> weapons;
   // Hints tell you where items relevant to this level are.
   // Peeks tell you what items are contained in this level.
   // Indexes are fully qualified Archipelago names, e.g. "RedCard (MAP01)" or
@@ -331,17 +329,6 @@ class ::Region play {
       if (!key.held || !key.enabled) continue;
       DEBUG("keys_to_add: %s", keytype);
       items_to_add.Insert(keytype, key.held);
-    }
-
-    // Only do weapon restoration when not in pretuning mode. In pretuning mode,
-    // if the game takes away the player's guns, we want to account for that in
-    // the resulting logic!
-    if (!::PlayEventHandler.Get().IsPretuning()) {
-      DEBUG("UpdateInventory: %d items in weapon set", self.weapons.CountUsed());
-      foreach (gun, _ : self.weapons) {
-        DEBUG("weapons_to_add: + %s", gun);
-        items_to_add.Insert(gun, 1);
-      }
     }
 
     Map<string, bool> items_to_remove;

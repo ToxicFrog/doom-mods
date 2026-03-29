@@ -118,6 +118,19 @@ class ::RandoItem play {
     return self.category_set.CheckKey("weapon");
   }
 
+  bool IsWeaponGrant() const {
+    Class<Actor> cls = self.typename;
+    return cls is "::WeaponToken";
+  }
+
+  string,string WeaponGrantInfo() const {
+    if (!IsWeaponGrant()) return "","";
+    Class<Actor> cls = self.typename;
+    let thing = ::WeaponToken(GetDefaultByType(cls));
+    if (!thing) return "","";
+    return thing.map, thing.typename;
+  }
+
   int GetLimit() const {
     if (::PlayEventHandler.Get().IsPretuning()) return 0;
 

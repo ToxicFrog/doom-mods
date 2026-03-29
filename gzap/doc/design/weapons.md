@@ -3,58 +3,86 @@
 This document describes the intended design for weapon handling, hopefully to be
 deployed in 0.9.0.
 
-## Weapon Tracking
+## Weapon tracking
 
-We replace the current set of weapon typenames in the Regions with a set of
-actual `Weapon` references. In global weapon mode we simply populate all of these
-with the same weapons from the RandoState. In per-level weapon mode we populate
-only the one for the current map.
+The core idea is that of a *weapon capability* or wcap. This is associated with
+a weapon and a scope (probably either a single map or the entire game) and grants
+you use of that weapon within that scope.
 
-On reconcilation, we sweep the player's inventory, deleting all Weapons that do
-not appear in that table, and inserting all Weapons that appear in the table but
-not in the player's inventory. This does mean that on game load we may end up in
-a state where weapons are duplicated between between the RS and the player, but
-this is probably fine, the player-side ones will get discarded and replaced.
+Conceptually, this is easy and lets us handle them like keys: whenever we do a
+weapon update (e.g. on level entry or when receiving a new wcap), we:
+- remove all weapons from the player's inventory;
+- add to the player's inventory all weapons they have valid wcaps for.
 
-This does require that at runtime the state be aware of whether we are running
-in per-level or game-wide mode. Open question: can we make this more elegant
-such that it works the same in either mode?
+Unfortunately, there are complications.
 
-## Weapon Granting
+The first is starting inventory. In a typical game of Doom the scanner never
+sees the fists or pistol, they just manifest in the player's inventory on game
+start. A naiive implementation of the above would revoke those weapons when
+doing a weapon update.
 
-In per-level mode, we reify the weapon grants as GZAP_Weapon_$TYPE_$MAP classes,
-with Default parameters naming the weapon and map, similar to how level access
-tokens are currently handled.
+The other problem is replacers. Take, for example, Traiblazer, which may replace
+the rocket launcher with either the grenade launcher or the revolver at random.
+This means that every time we do a weapon update, we'll think that the player is
+missing the rocket launcher, take away the GL or revolver, and give them a new
+one, which may interrupt their attacks or randomly flop them between weapons.
 
-Option one: when granted one of these, we run over to the corresponding Region
-and record the granted weapon RandoItems in its granted-weapon set. On entering
-the level or otherwise triggering reconcilation, we dispense any weapons listed
-there where num_vended < num_received.
+So, we need a way to turn *speculative* weapon capabilities into *actual* weapon
+capabilities.
 
-Option two: we don't have a separate data structure for this at all. We just
-sweep the AP inventory and look for all RandoItems that are subtypes of GZAP_WeaponToken
-where the Map is the enclosing region and there are still some un-vended.
+We define a new type for storing speculative wcaps (s-wcaps) and actual wcaps
+(a-wcaps), and create a set for each, initially empty. These are stored per
+region.
 
-So, the game flow looks something like this:
-- when receiving a weapon, just put it in the item table
-- when entering a level, or if we just received a weapon for the current level,
-  trigger reconcilation:
-  - remove all weapons not in the weaponlist
-  - add all weapons in the weaponlist but not in inventory
-  - spawn all not-yet-granted weapons
-- after spawning a weapon, update the weaponlist for that map
+Every weapon AP knows about is turned into a *weapon grant* type, parameterized
+by scope and by weapon typename. Upon receiving a weapon grant, we immediately
+mark it as dispensed, and create an s-wcap for it -- in its corresponding region
+if scoped, in every region if not. The s-wcap is marked *pending*.
 
-For game-wide mode...the main differences are:
-- the weaponlist is the same across all maps
-- we trigger reconcilation upon receiving a weapon regardless of what map we're in
+When doing a weapon update, we:
+- remove all weapons the player is carrying but does not have a-wcaps for
+- add all weapons the player has a-wcaps for but is not carrying
+  - we can probably do this directly (`A_GiveInventory`) since we know a-wcaps will not be further replaced
+  - we may be able to store an actual Weapon actor in the wcap, not just a typename
+- for each pending s-wcap:
+  - spawn the corresponding weapon
+  - mark the wcap as completed
+- when the player picks up a weapon (via the pickup detector), create an s-wcap for it
+  - we will need a global flag for whether weapon grants are scoped
+  - if they are, the new caps are scoped to the current level
+  - if not, they are scoped to the entire game, and replicated to all regions
 
-Maybe we put these behaviour differences in the tokens? If we are doing per-map
-stuff, we have per-map tokens, GetDefaultByType() returns something that knows
-about both the weapon and the map, we call OnGrant() on it and it bumps the txn
-on that region and marks the apstate dirty if that is the current region.
+### Native starting inventory
 
-If we're not, we have game-wide tokens, GetDefaultByType() returns something
-that doesn't know about maps, OnGrant() marks the apstate unconditionally dirty.
+To handle starting inventory (e.g. pistol and fists) properly, we introduce the
+conception of an *initial weapon update*. To do this, we simply wait for the
+player to finish spawning in and then infer new a-wcaps for every weapon in
+their inventory, scoped to the entire game. We do not initialize IPC until
+*after* doing this, as otherwise it might get mixed up with weapons granted in
+the initial communication with AP.
+
+### AP starting inventory
+
+This happens in `OnRegister`, so it will definitely be complete by the time we
+load into a map. If these are actual weapon grants, they will be handled
+normally by the machinery above. However, it is possible for the starting
+inventory to include items AP doesn't know about but the engine does, which
+means it can contain an actual `Weapon`.
+
+In that case -- or whenever we receive a `Weapon` rather than a weapon grant
+from AP in general -- we immediately mark it dispensed, as if it were a grant,
+and invent an s-wcap for it containing the named weapon type and with a scope
+of the entire game.
+
+### Out-of-band weapons
+
+If the player has weapon suppression set to 2 or 3 this is a non-issue. On lower
+levels they may pick up weapons outside the weapon capabilities system that they
+will want to keep.
+
+I think the proposed design above handles this automatically -- if they are
+permitted to pick up the weapon in the first place, the pickup detector will
+automatically create either a global or map-scoped capability for them.
 
 ### For later investigation
 
