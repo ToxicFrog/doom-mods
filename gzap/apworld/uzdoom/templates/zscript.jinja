@@ -47,6 +47,7 @@ class GZAP_DataPackageEventHandler : StaticEventHandler {
     RegisterHints(apstate);
     {% endif %}
     GrantStartingItems(apstate);
+    apstate.PostInit();
 
     console.printf("Archipelago data package initialized.");
   }

@@ -84,7 +84,6 @@ class ::PlayEventHandler : StaticEventHandler {
     if (!initialized && (region || level.MapName == "GZAPHUB")) {
       initialized = true;
       apclient.Init(self.apstate.slot_name, self.seed, self.wadname);
-      apstate.SortLocations();
     }
 
     // Don't run on-level-entry handlers for levels that aren't part of the AP

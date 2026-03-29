@@ -50,6 +50,12 @@ class ::RandoState play {
     return ::PlayEventHandler.Get().apstate;
   }
 
+  // Called immediately after the AP datapackage has finished registering items,
+  // maps, etc.
+  void PostInit() {
+    SortLocations();
+  }
+
   void DebugPrint() {
     console.printf("AP State [txn=%d, filter_index=%d]", self.txn, self.filter_index);
 
