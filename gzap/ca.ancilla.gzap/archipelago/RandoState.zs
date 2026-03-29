@@ -231,7 +231,7 @@ class ::RandoState play {
       // Unknown item type, *but*, that just means AP doesn't know about it so
       // it's not in our initial item table. It might still exist in the wad,
       // in which case we can create a table entry for it on the spot.
-      UpdateItemCount(self.RegisterItem(0, typename, ""), count);
+      UpdateItemCount(self.RegisterItem(0, typename, "*"..typename), count);
       self.SortItems();
     } else{
       UpdateItemCount(self.items_by_type.Get(typename), count);
