@@ -79,6 +79,8 @@ class ::PickupDetector : Inventory {
     let region = apstate.GetCurrentRegion();
     if (!region) return false;
     let wcaps = apstate.wcaps;
+    // If per-weapon capabilities are off this will be automatically promoted
+    // to a global capability.
     wcaps.AddScopedRealCap(region.map, item);
     return false;
   }

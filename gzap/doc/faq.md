@@ -46,6 +46,11 @@ Make sure that:
 - The version of the apworld used to generate and the version of `UZArchipelago.pk3`
   are the same
 
+### I started the game and I'm at the main menu, but it won't connect!
+
+It won't connect to AP until you are actually loaded into a map -- start a new
+game or load an existing game from the menu and it should connect.
+
 ### I started the game and immediately got a "game/randomizer mismatch" error!
 
 If it says that *every* level is wrong, you probably loaded the wrong WAD, e.g.

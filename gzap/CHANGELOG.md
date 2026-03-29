@@ -27,6 +27,10 @@ changed. Rescanning your wads is not *mandatory* but is *strongly recommended*.
   - Redesign of the weapon suppression system. It should now be much more
     reliable, both at blocking weapons you shouldn't have and at permitting
     weapons you should.
+  - Redesign of how weapons are granted to you by AP. Once you receive a weapon
+    it will try very hard to make sure you always have it. If you have a weapon
+    replacer mod loaded it will remember whatever the weapon turned into and
+    keep that in your inventory instead.
 - Fixed:
   - MAP31 and MAP32 were incorrectly excluded from 1000 Lines 2.
   - Adventures of Square logic is now aware of the previously-missing "Totally

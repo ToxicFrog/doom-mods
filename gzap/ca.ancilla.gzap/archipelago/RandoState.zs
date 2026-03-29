@@ -68,6 +68,8 @@ class ::RandoState play {
     Inventory thing = players[0].mo.inv;
     while (thing) {
       if (thing.GetClass() is "Weapon") {
+        // Grant the player a real capability on their starting weapons that is
+        // valid across all maps.
         self.wcaps.AddGlobalRealCap(Weapon(thing));
       }
       thing = thing.inv;
@@ -279,6 +281,9 @@ class ::RandoState play {
     // Turn weapons and weapon grant tokens into pending weapon capabilities.
     if (item.IsWeapon()) {
       while (item.vended < item.total) {
+        // Plain weapons are treated like global weapon grants. In per-map mode
+        // this will create a separate pending cap for the weapon in each map.
+        // Otherwise it will just create a single cap valid for the entire game.
         self.wcaps.AddGlobalCap(item.typename);
         item.vended++;
       }

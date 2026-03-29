@@ -27,11 +27,11 @@ This means that every time we do a weapon update, we'll think that the player is
 missing the rocket launcher, take away the GL or revolver, and give them a new
 one, which may interrupt their attacks or randomly flop them between weapons.
 
-So, we need a way to turn *speculative* weapon capabilities into *actual* weapon
+So, we need a way to turn *speculative* weapon capabilities into *real* weapon
 capabilities.
 
-We define a new type for storing speculative wcaps (s-wcaps) and actual wcaps
-(a-wcaps), and create a set for each, initially empty. These are stored per
+We define a new type for storing speculative wcaps (s-wcaps) and real wcaps
+(r-wcaps), and create a set for each, initially empty. These are stored per
 region.
 
 Every weapon AP knows about is turned into a *weapon grant* type, parameterized
@@ -40,10 +40,9 @@ mark it as dispensed, and create an s-wcap for it -- in its corresponding region
 if scoped, in every region if not. The s-wcap is marked *pending*.
 
 When doing a weapon update, we:
-- remove all weapons the player is carrying but does not have a-wcaps for
-- add all weapons the player has a-wcaps for but is not carrying
-  - we can probably do this directly (`A_GiveInventory`) since we know a-wcaps will not be further replaced
-  - we may be able to store an actual Weapon actor in the wcap, not just a typename
+- remove all weapons the player is carrying but does not have r-wcaps for
+- add all weapons the player has r-wcaps for but is not carrying
+  - we can probably do this directly (`A_GiveInventory`) since we know r-wcaps will not be further replaced
 - for each pending s-wcap:
   - spawn the corresponding weapon
   - mark the wcap as completed
@@ -56,7 +55,7 @@ When doing a weapon update, we:
 
 To handle starting inventory (e.g. pistol and fists) properly, we introduce the
 conception of an *initial weapon update*. To do this, we simply wait for the
-player to finish spawning in and then infer new a-wcaps for every weapon in
+player to finish spawning in and then infer new r-wcaps for every weapon in
 their inventory, scoped to the entire game. We do not initialize IPC until
 *after* doing this, as otherwise it might get mixed up with weapons granted in
 the initial communication with AP.
@@ -83,6 +82,67 @@ will want to keep.
 I think the proposed design above handles this automatically -- if they are
 permitted to pick up the weapon in the first place, the pickup detector will
 automatically create either a global or map-scoped capability for them.
+
+### Local vs. global capabilities
+
+The easiest way to implement this is only to have local wcaps, and granting the
+player a global wcap actually grants them a local one on all maps. However, this
+causes some UX weirdness; in particular, if replacers are involved, we get
+situations like:
+
+- player is given a SuperShotgun globally
+  - this is converted into a pending SuperShotgun wcap on each map
+- in the current map this turns into a ChromeJustice
+  - this produces a real wcap *for this map only* for ChromeJustice
+- the player changes maps
+- they don't have a real wcap for ChromeJustice so it gets revoked
+- the pending wcap for SuperShotgun turns into an Eliminator this time
+- now the player has been given a global SuperShotgun cap, but on MAP01 that
+  means a ChromeJustice and on MAP02 it means an Eliminator
+
+This isn't awful, but ideally I'd like that to only happen when per-level scopes
+are enabled in the config. And do this we need a distinction between global and
+local caps, which we accomplish simply by defining a special global scope named
+`*`.
+
+When playing without per-level scopes, this is easy. We set the all_caps_global
+bit in the wcaps structure, any capability that gets added is automatically a
+global cap when this is set (`scope` is always treated as `*` no matter what the
+caller asked for). This applies to both pending and real caps.
+
+When playing with, it gets trickier, because need to concern ourselves with:
+- starting inventory (this is handled with `AddGlobalRealCap()` which does the
+  right thing)
+- weapon grants from AP (these are handled normally)
+- starting weapon grants from AP (handled as above)
+- starting raw weapons from AP (hmm)
+
+The last one is the trickiest and, in particular, shows up in Time Tripper, where
+our forced starting inventory is `Shotgun2` (which AP knows about and can turn
+into a weapon grant) and `64Chainsaw` (which AP does *not* know about and must
+spawn blindly using `GrantItemByName`). Both of these should be global weapon
+capabilities even if per-level weapons are on!
+
+So. I think, on the generator side, we stop understanding "naked" weapons at all
+-- all weapons in the logic file manifest as weapon *grants*, scoped or
+unscoped.
+
+If the player asks for weapon *grants* in their starting inventory, this is
+handled normally, and the grants are either scoped or unscoped depending on what
+the player asked for. (This does mean we need an AP name for global weapon
+grants that doesn't overlap with the plain typename. `Shotgun (MAP01)` vs.
+`Shotgun (everywhere)` perhaps. Or `Universal Shotgun`.)
+
+If the player asks for a *plain weapon*, this turns into a pending global wcap
+if per-map caps are off, and is copied to all levels if per-map caps are on.
+
+In the time tripper case, this means that:
+- if per-map weapons are off, the starting `Shotgun2` and `64Chainsaw` turn into
+  global pending wcaps, which vend, which produce weapons, which turn into global
+  real wcaps
+- if per-map weapons are on, the starting `Shotgun2` and `64Chainsaw` turn into
+  per-map wcaps on every map, which turn into real wcaps on each map entry
+and we're safe.
 
 ### For later investigation
 
