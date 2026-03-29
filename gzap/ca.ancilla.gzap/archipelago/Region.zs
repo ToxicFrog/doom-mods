@@ -130,7 +130,7 @@ class ::Region play {
 
   void RegisterCheck(
       uint apid, Vector3 pos, string name,
-      string orig_typename, string ap_typename, string ap_name, uint flags) {
+      string orig_typename, string ap_typename_for_label, string ap_name, uint flags) {
     ++txn;
     let loc = ::Location(new("::Location"));
     loc.mapname = self.map;
@@ -138,7 +138,7 @@ class ::Region play {
     loc.pos = pos;
     loc.name = name;
     loc.orig_typename = orig_typename;
-    loc.ap_typename = ap_typename;
+    loc.ap_typename = ap_typename_for_label;
     loc.ap_name = ap_name;
     loc.flags = flags;
 

@@ -120,13 +120,13 @@ class ::RandoItem play {
 
   bool IsWeaponGrant() const {
     Class<Actor> cls = self.typename;
-    return cls is "::WeaponToken";
+    return cls is "::WeaponGrant";
   }
 
   string,string WeaponGrantInfo() const {
     if (!IsWeaponGrant()) return "","";
     Class<Actor> cls = self.typename;
-    let thing = ::WeaponToken(GetDefaultByType(cls));
+    let thing = ::WeaponGrant(GetDefaultByType(cls));
     if (!thing) return "","";
     return thing.map, thing.typename;
   }

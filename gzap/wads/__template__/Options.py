@@ -170,6 +170,32 @@ class WinMapNames(OptionSet):
 # Combat logic
 ###############################################################################
 
+def nrof_global_weapons(wad):
+    return len({
+        item.name() for item in wad.items()
+        if item.has_category('weapon') and not item.map})
+
+def nrof_local_weapons(wad):
+    return len({
+        item.name() for item in wad.items()
+        if item.has_category('weapon') and item.map})
+
+class PerMapWeaponUnlocks(Toggle):
+    __doc__ = f"""
+    Make weapon unlocks per-map instead of global. For example, a shotgun that
+    works on MAP01 and a shotgun that works on MAP02 will now be distinct items
+    in the pool.
+
+    The `max_weapon_copies` setting is ignored when this is enabled. There will
+    always be one copy of each weapon per map.
+
+    In this wad, with default settings, this will add {nrof_local_weapons(wad) - nrof_global_weapons(wad)} progression items to
+    the pool. If turning it on, you may need to add additional locations by
+    enabling small or medium items, unless you are playing in a multiworld with
+    other games that can absorb extra progression items.
+    """
+    default = False
+
 class LevelOrderBias(Range):
     """
     How closely the randomizer tries to follow the original level order of the
@@ -573,6 +599,7 @@ class UZDoomOptions(PerGameCommonOptions):
     win_map_count: WinMapCount
     win_map_names: WinMapNames
     # Combat logic
+    per_map_weapons: PerMapWeaponUnlocks
     level_order_bias: LevelOrderBias
     local_weapon_bias: LocalWeaponBias
     carryover_weapon_bias: GlobalWeaponBias
@@ -608,7 +635,7 @@ class UZDoomWeb(WebWorld):
         WinMapCount, WinMapNames,
     ]),
     OptionGroup("Combat Logic", [
-        LevelOrderBias, LocalWeaponBias, GlobalWeaponBias,
+        PerMapWeaponUnlocks, LevelOrderBias, LocalWeaponBias, GlobalWeaponBias,
     ]),
     OptionGroup("Gameplay Settings", [
         AllowRespawn, FullPersistence,

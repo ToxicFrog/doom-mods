@@ -13,6 +13,7 @@ from typing import Dict, List, NamedTuple, Optional, Set, Type
 from .DoomLocation import DoomLocation
 from .DoomKey import DoomKey
 from .DoomReachable import DoomReachable
+from .prereqs import weapon_prereq
 
 
 class MAPINFO(NamedTuple):
@@ -104,6 +105,13 @@ class DoomMap:
         carryover_guns = set()
         for map in prior_maps:
             carryover_guns |= map.local_guns()
+
+        if world.options.per_map_weapons:
+            local_guns = { self.wad.weapon_capability(gun, self.map) for gun in local_guns }
+            carryover_guns = { self.wad.weapon_capability(gun, self.map) for gun in carryover_guns }
+        else:
+            local_guns = { self.wad.weapon_capability(gun) for gun in local_guns }
+            carryover_guns = { self.wad.weapon_capability(gun) for gun in carryover_guns }
 
         if self.extra_rules.prereqs:
             extra_rule = self.extra_rules.access_rule(world, self.wad, self)
@@ -219,7 +227,7 @@ class DoomMap:
 
     def local_guns(self):
         return {
-            loc.orig_item.name()
+            loc.orig_item.typename
             for loc in self.locations
             if not loc.has_category('secret') and not loc.unreachable and loc.has_category('weapon')
         }

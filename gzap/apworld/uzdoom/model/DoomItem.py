@@ -120,9 +120,14 @@ class DoomItem:
 
         # Weapons have an upper bound that depends on settings.
         if self.has_category('weapon'):
+            if self.map:
+                return (1,1) if world.options.per_map_weapons else (0,0)
+
             count = sys.maxsize
             if world.options.max_weapon_copies.value > 0:
                 count = min(count, world.options.max_weapon_copies.value)
+            if world.options.per_map_weapons:
+                count = 0
             return (0, count)
 
         # Anything else we just take as many as we find.
@@ -137,3 +142,17 @@ class DoomFlag(DoomItem):
     """
     def name(self) -> str:
         return self.tag
+
+class DoomWeaponGrant(DoomFlag):
+    """
+    A flag that holds a weapon grant.
+    """
+    # Typename of the underlying weapon.
+    weapon: str
+
+    def __init__(self, weapon: str = None, **kwargs):
+        super().__init__(**kwargs)
+        self.weapon = weapon
+
+    def typename_for_icon(self):
+        return self.weapon

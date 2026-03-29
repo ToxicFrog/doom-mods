@@ -62,9 +62,9 @@ class ::WeaponCapabilities play {
   // This always starts disabled (
   bool use_per_map_caps;
 
-  static ::WeaponCapabilities Create(::RandoState apstate) {
+  static ::WeaponCapabilities Create(::RandoState apstate, bool per_map_weapons) {
     ::WeaponCapabilities caps = new("::WeaponCapabilities");
-    caps.use_per_map_caps = false;
+    caps.use_per_map_caps = per_map_weapons;
     // Global scope. Only meaningful for pending caps -- "global" real caps are
     // implemented by mirroring the same capability to every scope.
     caps.pending.Insert("*", new("::PendingCaps"));

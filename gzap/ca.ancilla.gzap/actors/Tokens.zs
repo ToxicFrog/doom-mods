@@ -50,7 +50,7 @@ class ::Automap : ::InventoryToken {
 
 class ::LevelCleared : ::InventoryToken {}
 
-class ::WeaponToken : ::InventoryToken {
+class ::WeaponGrant : ::InventoryToken {
   string typename;
   property Typename: typename;
 }

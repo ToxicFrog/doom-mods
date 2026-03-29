@@ -494,6 +494,7 @@ class UZDoomWorld(World):
             "player": self.multiworld.player_name[self.player],
             "slot_number": self.player,
             "spawn_filter": self.options.spawn_filter.value,
+            "per_map_weapons": self.options.per_map_weapons and "true" or "false",
             "persistence": self.options.full_persistence.value,
             "respawn": self.options.allow_respawn.value,
             "wad": self.wad_logic,

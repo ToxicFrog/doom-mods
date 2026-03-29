@@ -18,7 +18,7 @@ from typing import Any, Dict, List, Set, FrozenSet, Tuple, Iterable
 
 from .BoundingBox import BoundingBox
 from .DoomPool import DoomPool
-from .DoomItem import DoomItem, DoomFlag
+from .DoomItem import DoomItem, DoomFlag, DoomWeaponGrant
 from .DoomLocation import DoomLocation
 from .DoomPosition import DoomPosition, DoomCoordPosition, to_position
 from .DoomMap import DoomMap
@@ -150,7 +150,13 @@ class DoomWad:
         return pool
 
     def items(self) -> List[DoomItem]:
-        return self.items_by_name.values()
+        # items_by_name and items_by_type may contain duplicate entries, since
+        # e.g. key remapping may result in the "Blue Keycard (E1M1)" and the
+        # "Blue Keycard (Episode 1)" being the same underlying item. So first
+        # we uniq the names (as reported by the items themselves, *not* the
+        # keyspace of this map), then return the corresponding items.
+        unique_names = { item.name() for item in self.items_by_name.values() }
+        return [ self.items_by_name[name] for name in unique_names ]
 
     def item(self, name: str) -> DoomItem:
         return self.items_by_name[name]
@@ -534,6 +540,7 @@ class DoomWad:
         self.disambiguate_duplicate_items()
         self.disambiguate_duplicate_locations()
         self.finalize_key_items()
+        self.finalize_weapons()
 
     def finalize_tuning(self, logic) -> None:
         """
@@ -581,6 +588,64 @@ class DoomWad:
                 keyname = f"{key.tag} ({mapname})"
                 if keyname in self.items_by_name:
                     self.items_by_name[keyname] = key_item
+
+    def weapon_capability(self, weapon, map=None):
+        """
+        Given a weapon typename, return the AP name of the item that grants the
+        capability for that weapon. If a map is specified, returns the
+        capability for that scope specifically, otherwise the name of the global
+        capability.
+        """
+        if map:
+            return self.items_by_type[f'GZAP_WeaponGrant_{weapon}_{map}'].name()
+        else:
+            return self.items_by_type[f'GZAP_WeaponGrant_{weapon}'].name()
+
+    def finalize_weapons(self):
+        """
+        Turn the raw weapons found in the logic file into weapon grant tokens.
+
+        For each weapon, we produce both a global grant token and per-map
+        grants; which ones we actually need are determined by the yaml.
+        """
+        all_weapons = []
+        # Collect all weapons that we've seen and remove from the item table,
+        # since we're about to replace them with weapon grant tokens.
+        for name,item in self.items_by_name.items():
+            if item.has_category('weapon'):
+                all_weapons.append(item)
+
+        def register(**kwargs):
+            flag = DoomWeaponGrant(**kwargs)
+            self.items_by_name[flag.name()] = flag
+            self.items_by_type[flag.typename] = flag
+            return flag
+
+        for weapon in all_weapons:
+            # First create the global weapon grant
+            flag = register(
+                weapon=weapon.typename,
+                map=None,
+                category="ap_flag-ap_progression-weapon",
+                typename=f"GZAP_WeaponGrant_{weapon.typename}",
+                tag=f"Universal {weapon.name()}")
+            # Remap the original entries to point to the global weapon grant.
+            # When populating the pool, locations that previously held the real
+            # weapon will instead cause this flag to be added.
+            self.items_by_name[weapon.name()] = flag
+            self.items_by_type[weapon.typename] = flag
+            # print(f'Converting weapon({weapon.name()}) of type {weapon.typename} into flag({flag.name()}) of type {flag.typename}')
+
+            # Now create a per-level version for each map we know about.
+            for map in self.all_maps():
+                flag = register(
+                    weapon=weapon.typename,
+                    map = map.map,
+                    category="ap_flag-ap_progression-weapon",
+                    typename=f"GZAP_WeaponGrant_{weapon.typename}_{map.map}",
+                    tag=f"{weapon.name()} ({map.map})")
+                map.add_loose_item(flag.name())
+                # print(f'Creating per-level flag({flag.name()}) of type {flag.typename}')
 
     def finalize_ids(self, logic):
         for item in self.items_by_name.values():

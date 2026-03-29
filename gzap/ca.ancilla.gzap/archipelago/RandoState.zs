@@ -54,8 +54,8 @@ class ::RandoState play {
 
   // Called immediately after the AP datapackage has finished registering items,
   // maps, etc.
-  void PostInit() {
-    self.wcaps = ::WeaponCapabilities.Create(self);
+  void PostInit(bool per_map_weapons) {
+    self.wcaps = ::WeaponCapabilities.Create(self, per_map_weapons);
     SortLocations();
   }
 
@@ -149,8 +149,8 @@ class ::RandoState play {
       // Information about the location
       string map, uint apid, Vector3 pos, string name, string orig_typename,
       // Information about the item it contains
-      string ap_typename, string ap_name, uint flags) {
-    GetRegion(map).RegisterCheck(apid, pos, name, orig_typename, ap_typename, ap_name, flags);
+      string ap_typename_for_label, string ap_name, uint flags) {
+    GetRegion(map).RegisterCheck(apid, pos, name, orig_typename, ap_typename_for_label, ap_name, flags);
   }
 
   void RegisterSecretCheck(string map, uint apid, string name, int secret_id, uint flags) {

@@ -48,7 +48,9 @@ def item_prereq(world, wad, map, typename, count=1):
 
 def weapon_prereq(world, wad, map, typename, strictness = 'need'):
   if strictness == 'need':
-    return item_prereq(world, wad, map, typename)
+    has_global_cap = fqin_prereq(world, wad, map, wad.weapon_capability(typename))
+    has_local_cap = fqin_prereq(world, wad, map, wad.weapon_capability(typename, map))
+    return lambda state: has_global_cap(state) or has_local_cap(state)
   else:
     # TODO: use this for more sophisticated weapon logic
     # print('    (constantly true)')

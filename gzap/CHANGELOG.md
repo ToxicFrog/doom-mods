@@ -8,6 +8,10 @@ organized and how item classification works.
 ⚠️ Item categorization rules and the included scanner configurations have
 changed. Rescanning your wads is not *mandatory* but is *strongly recommended*.
 
+- New:
+  - `per_map_weapons` yaml setting. If enabled, a different copy of each weapon
+    is added to the pool for each map. To use a weapon on a given map you need
+    to find the corresponding version of it in the pool first.
 - Changed:
   - Major overhaul of the yaml options.
     - Many settings that previously had to be controlled by editing the

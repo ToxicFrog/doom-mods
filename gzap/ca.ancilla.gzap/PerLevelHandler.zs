@@ -386,8 +386,10 @@ class ::PerLevelHandler : EventHandler {
 
   bool IsAPManagedWeapon(class<Actor> cls) {
     if (!cls) return false;
-    let item = self.apstate.FindItem(cls.GetClassName());
-    return item && item.IsWeapon();
+    let name = cls.GetClassName();
+    let item = self.apstate.FindItem(name);
+    if (item) return item.IsWeapon();
+    return self.apstate.FindItem("::WeaponGrant_"..name) != null;
   }
 
   void DisableActorReplacement() { self.disable_actor_replacement = 999; }
