@@ -211,7 +211,13 @@ class ::WeaponCapabilities play {
     }
     foreach (typename, _ : to_add) {
       DEBUG("adding: %s", typename);
-      mo.GiveInventory(typename, 1);
+      let item = Weapon(::Util.SpawnUnrestricted(mo, typename, NO_REPLACE));
+      // Clear ammogive counters here as otherwise each time a weapon is granted
+      // the player gets some extra ammo.
+      item.ammogive1 = 0;
+      item.ammogive2 = 0;
+      item.ClearCounters();
+      item.CallTryPickup(mo);
     }
   }
 }
