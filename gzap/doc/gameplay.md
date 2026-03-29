@@ -18,8 +18,8 @@ progression items. Each level also has a fullmap, which is considered useful,
 but not progression.
 
 By default, level access codes, automaps, keys, weapons, and "big" pickups (e.g.
-blue/green armour, soulspheres/megaspheres, backpacks) are randomized. Options
-in the YAML allow considerable control over this.
+blue armour, soulspheres/megaspheres, backpacks) are randomized. Options in the
+YAML allow considerable control over this.
 
 ## Settings
 
