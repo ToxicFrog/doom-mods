@@ -12,7 +12,7 @@ class UZAP_Hedon_EventHandler : EventHandler {
     let line = e.ActivatedLine.Index();
     if (line == 2111) {
       // Elevator switch in west caves
-      let region = GZAP_PlayEventHandler.GetState().GetCurrentRegion();
+      let region = GZAP_RandoState.Get().GetCurrentRegion();
       if (!region) return;
       let key = region.GetKey("InventoryPowerCore");
       if (!key) return;
@@ -22,7 +22,7 @@ class UZAP_Hedon_EventHandler : EventHandler {
       }
     } else if (line == 6617) {
       // Main gate switch in cold rock
-      let region = GZAP_PlayEventHandler.GetState().GetCurrentRegion();
+      let region = GZAP_RandoState.Get().GetCurrentRegion();
       if (!region) return;
       let key = region.GetKey("InventoryPowerCore");
       if (!key) return;

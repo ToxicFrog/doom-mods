@@ -21,32 +21,43 @@ scanner {
   # logic_flags use_hub_logic hub_logic_exits=MAP15,MAP20,MAP22;
 }
 
-# CustomInventory items.
-# Same as SpikeMag, but different name and graphics.
-category small-ammo: AmmoCultistSpike;
 
-# Restores 3 AC.
-category small-armor: PowerShard;
+# Custom item categories.
+category small-ammo: AmmoCultistSpike;  # Same as a small spike bundle
+category small-armor: PowerShard;  # restores 3 AC
+category small-health: HealthGreenCrystal InventoryVialOfHealing;
+category medium-health: HealthGreenCrystalCouple InventoryScrollEarthNourish;
 
-# Restores 20/40 HP.
-category small-health: HealthGreenCrystal;
-category medium-health: HealthGreenCrystalCouple;
+category medium-tool: InventoryTimeShard;
+category small-tool: InventoryFixerGoggles;
 
-# Custom tools.
-category small-health-tool: InventoryVialOfHealing;
-category powerup-tool:
-  InventoryAmuletOfShadows InventoryBootsOfJourney InventoryBracerOfTheRevenant
-  InventoryChokerofTheBeast InventoryElementalRing InventoryFixerGoggles
-  InventoryPotionofHaste InventoryPotionOfMight InventoryPotionOfStoneskin
-  InventoryRingOfTheRedMonk InventoryScrollAirWizardsEye
-  InventoryScrollEarthNourish InventoryScrollFireInferno
-  InventoryScrollFireMagmaBall InventorySentryGun InventoryTimeShard;
+category small-attack: InventoryScrollFireInferno InventoryScrollFireMagmaBall;
+
+# These don't actually do anything, they're just clues you can carry in your
+# inventory and read whenever.
+category small-clue:
+  InventoryMansionSketch
+  InventoryJournal
+  InventoryGreatForgeInstructions
+  InventoryEnchantedPurpleInkRecipe
+  InventoryDampNote;
+
+category medium-attack: InventoryPotionofHaste; # double firing rate
+category medium-defence: InventoryPotionOfStoneskin; # resist physical
+category medium-health-attack: InventoryPotionOfMight; # regen + berserk, half ranged damage
+category medium-defence-tool: InventoryElementalRing; # resist magical + water breathing
+category medium-attack: InventoryBracerOfTheRevenant; # axe ice mode, also a little bit of ice resist
+category small-defence: InventoryAmuletOfShadows; # blursphere + jammer + ghost
+category small-defence: InventoryChokerOfTheBeast; # fear aura + lifeleech
+category medium-tool: InventorySentryGun;
+category big-tool: InventoryBootsOfJourney; # permanent speed boost when equipped!
+category maprevealer: InventoryScrollAirWizardsEye;
 
 # Randomly either gives you:
 # - heavy armour, might, power of the beast
 # - light armour, health, timeshard, haste, and shadows
 # - medium armour, stoneskin, elemental force
-category medium-health-armor-powerup-tool: InventoryMysteryPotion;
+category medium-health-armor-attack-defence-tool: InventoryMysteryPotion;
 
 # Guns. The potion launcher is special; "acid potion launcher" and "toxic potion
 # launcher" are entirely distinct weapons internally. Both exist in various
@@ -58,22 +69,18 @@ category medium-health-armor-powerup-tool: InventoryMysteryPotion;
 typename PotionLauncherAcid: SpecialPotionBox;
 category weapon: PotionLauncher;
 
-# TODO: figure out if these are plot-relevant or just hints you can carry with you.
-#category tool:
-#  InventoryDampNote
-#  InventoryEnchantedPurpleInkRecipe -- definitely just a hint
-#  InventoryGreatForgeInstructions
-#  InventoryJournal
-#  InventoryMansionSketch
+# Can be used at a scribe's table to make scrolls.
+category medium-token:
+  InventoryBowlOfScribeEmbers
+  InventoryMortarOfEarthPigment;
 
 # Money, used only in episode 2; may need to be marked as progression if it's
 # needed to buy some quest items?
 # category token-ap_skip_balancing-ap_progression:
-category token:
-  InventoryGoldCoin1 InventoryGoldCoin10 InventoryGoldCoin25 InventoryGoldCoin50;
+category small-token: InventoryGoldCoin1 InventoryGoldCoin10;
+category medium-token: InventoryGoldCoin25 InventoryGoldCoin50;
 
-# Hedon quest items. These are just generic "inventory" and mostly scan as Tool
-# (since they have +INVBAR) rather than as Key.
+# Hedon quest items. These are just generic "inventory" and thus don't scan as keys automatically.
 # A bunch of these don't appear in the scanner. Instead, they are received in-game
 # in exchange for other things.
 
@@ -138,29 +145,7 @@ category key:
   ;
 
 # And the ones that can stack:
-# We have a problem here: we may need multikey support.
-# For an example, MAP01 contains three power cores.
-# The first one is needed to exit from the Dream of Hell into Cold Rock caves.
-# The second one is needed to activate the elevator and reach the barracks.
-# The third is needed to open the door leading to the woods.
-# (There are actually two more in a secret developer-only room, for a total of five.)
-# So, logically, if you have zero, hell is in logic
-# If you have one, hell and the caves are
-# Two, hell, the caves, and the barracks
-# Three+, the entire level (barring other item requirements)
-# For an added complication, tokens are not map scoped.
-# So, for example, having one power core means it could be used in MAP01 to fire
-# the cannon and leave the dream, or in MAP04 for something else. Which means we
-# need key logic for them. Argh. And we need to tell if the game has removed them
-# from the player's inventory or something and reinstate them, but only if they
-# weren't expended "properly"...argh.
-# I think for now we just treat these as keys, and revisit the problem later.
-# We may also want to split the "is this map- or cluster-scoped" bit into a
-# new category, e.g. ap_map_scope and ap_cluster_scope; key implies it but we
-# can set it manually on other things. This will also help for per-level weapon
-# grants!
 category key:
-  InventoryBowlOfScribeEmbers
   InventoryCrimsonSaltRock
   InventoryCyanCrystal
   InventoryDarkIronOre
@@ -169,7 +154,6 @@ category key:
   InventoryIronLever
   InventoryIronOre
   InventoryMithrilOre
-  InventoryMortarOfEarthPigment
   InventoryPowerCore
   InventoryPurpleRoot
   InventoryRedCrystal
