@@ -27,6 +27,9 @@ class ::LevelSelectMenu : ::CommonMenu {
     let progress_indicator = new("::ProgressIndicator");
     progress_indicator.apstate = ::RandoState.Get();
     mDesc.mItems.Push(progress_indicator.InitDirect("", Font.CR_CYAN));
+    let weapon_indicator = new("::WeaponIndicator");
+    mDesc.mItems.Push(weapon_indicator.Init(::RandoState.Get()));
+    weapon_indicator.tt = PushTooltip("[placeholder]");
     PushText(" ");
 
     PushKeyValueText(

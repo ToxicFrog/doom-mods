@@ -33,6 +33,131 @@ class ::ProgressIndicator : OptionMenuItemStaticText {
   }
 }
 
+class ::WeaponSlotInfo {
+  int slot;
+  int total;
+  int found;
+  Array<string> weapon_types;
+  Map<string, bool> weapons_held;
+}
+
+class ::WeaponGrantInfo {
+  Array<::WeaponSlotInfo> slot_info;
+  string scope;
+
+  string MakeWeaponList(string head_format, string rest_format) {
+    let buf = "";
+    int last_key = -1;
+
+    for (int slot = 1; slot <= 10; ++slot) {
+      let key = slot%10;
+      let info = self.slot_info[key];
+      if (info.total == 0) continue;
+
+      foreach (weapon : info.weapon_types) {
+        Class<Weapon> cls = weapon;
+        let held = info.weapons_held.CheckKey(weapon);
+        let tag = ::RC.Get().GetTag(GetDefaultByType(cls));
+        if (last_key != key) {
+          buf.AppendFormat(head_format, held ? "FIRE" : "DARKGRAY", key, tag);
+          last_key = key;
+        } else {
+          buf.AppendFormat(rest_format, held ? "FIRE" : "DARKGRAY", tag);
+        }
+      }
+    }
+
+    return buf;
+  }
+
+  string ShortWeaponList() {
+    return MakeWeaponList("\c[%s]%d", "\c[%s]+");
+  }
+
+  string LongWeaponList() {
+    return MakeWeaponList("\n\c[%s]  [%d] %s", "\n\c[%s]   +  %s");
+    let buf = "";
+    int last_key = -1;
+    for (int slot = 1; slot <= 10; ++slot) {
+      let key = slot%10;
+      let info = self.slot_info[key];
+      foreach (weapon : info.weapon_types) {
+        Class<Weapon> cls = weapon;
+        let held = info.weapons_held.CheckKey(cls.GetClassName());
+        if (last_key != key) {
+          buf.AppendFormat("\n\c[%s]  [%d] %s", held ? "FIRE" : "DARKGRAY", key, GetDefaultByType(cls).GetTag());
+          last_key = key;
+        } else {
+          buf.AppendFormat("\n\c[%s]   +  %s", held ? "FIRE" : "DARKGRAY", GetDefaultByType(cls).GetTag());
+        }
+      }
+    }
+    return buf;
+  }
+
+  void UpdateWeaponInfo(::RandoState apstate) {
+    self.slot_info.Clear();
+    let slots = players[0].weapons;
+
+    for (int slot = 0; slot < 10; ++slot) {
+      ::WeaponSlotInfo info = new("::WeaponSlotInfo");
+      info.slot = slot;
+      info.total = info.found = 0;
+
+      for (int n = 0; n < slots.SlotSize(slot); ++n) {
+        let cls = slots.GetWeapon(slot, n);
+        let count = apstate.CountItem("::WeaponGrant_"..cls.GetClassName()..self.scope);
+        if (count == -1) continue; // Weapon not known to AP
+        info.total++;
+        info.weapon_types.Push(cls.GetClassName());
+        if (count > 0) {
+          info.weapons_held.Insert(cls.GetClassName(), true);
+          info.found++;
+        }
+      }
+      self.slot_info.Push(info);
+    }
+  }
+}
+
+class ::WeaponIndicator : ::KeyValueText {
+  ::Tooltip tt;
+  ::RandoState apstate;
+  ::WeaponGrantInfo weapon_info;
+  uint txn;
+
+  ::WeaponIndicator Init(::RandoState apstate) {
+    self.apstate = apstate;
+    self.txn = 0;
+    self.weapon_info = new("::WeaponGrantInfo");
+    weapon_info.UpdateWeaponInfo(apstate);
+    super.Init("\c[CYAN]Weapons", "", Font.CR_CYAN);
+    return self;
+  }
+
+  override void Ticker() {
+    if (txn == self.apstate.txn) return;
+    self.weapon_info.UpdateWeaponInfo(self.apstate);
+    self.value = self.weapon_info.ShortWeaponList();
+    self.tt.text = TooltipHeader() .. self.weapon_info.LongWeaponList() .. TooltipFooter();
+    self.txn = self.apstate.txn;
+  }
+
+  override bool Selectable() { return true; }
+
+  string TooltipHeader() {
+    return "\c-Weapons available via Archipelago:\nⅢⅧ";
+  }
+
+  string TooltipFooter() {
+    if (self.apstate.wcaps.use_per_map_caps) {
+      return "\n\c-This game is using per-map weapon unlocks, so this is just here to tell you which slots correspond to which weapons. Look at individual levels to see which weapons are unlocked for them.";
+    } else {
+      return "\n\c-This game is using global weapon unlocks, so any weapon unlocked here is available in all levels.";
+    }
+  }
+}
+
 class ::LevelSelector : ::KeyValueNetevent {
   LevelInfo info;
   ::Region region;
