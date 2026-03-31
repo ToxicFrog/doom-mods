@@ -203,9 +203,9 @@ class ::RandoState play {
     }
   }
 
-  int CountItem(string typename) {
+  int CountItem(string typename) const {
     if (self.items_by_type.CheckKey(typename)) {
-      return self.items_by_type.Get(typename).total;
+      return self.items_by_type.GetIfExists(typename).total;
     } else {
       return -1;
     }
