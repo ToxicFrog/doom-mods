@@ -138,7 +138,7 @@ class ::LogicMenu : ::CommonMenu {
         // Then other maps in this hub in arbitrary order (but most-recent-first
         // within each map).
         PushPrereqToggle(apstate.subregion,
-          "\c[SILVER]"..region.AccessFlagFQIN().."\c-", "map/"..region.map);
+          "\c[ICE]"..region.AccessFlagFQIN().."\c-", "map/"..region.map);
         PushTogglesForSubregions(region, apstate.subregion);
       }
     }
