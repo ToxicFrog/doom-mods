@@ -5,7 +5,7 @@
 #namespace GZAP;
 #debug off;
 
-class ::RC : Object play {
+class ::RC {
   static ::RC Get() {
     let seh = ::ScanEventHandler(StaticEventHandler.Find("::ScanEventHandler"));
     if (!seh) return null;
@@ -139,7 +139,7 @@ class ::RC : Object play {
   }
 }
 
-class ::RCParser : Object play {
+class ::RCParser {
   ::RC rc;
   array<string> lines; int line;
   array<string> tokens; int token;

@@ -1,6 +1,4 @@
-# Roadmap
-
-## UZArchipelago
+## Releasing
 
 To release a new version:
 - update the version number in the CHANGELOG and Makefile
@@ -13,6 +11,35 @@ To release a new version:
 - commit
 - tag and push the commit
 - cut the release on github using the just-generated pk3 and apworld as the binaries
+
+## Roadmap
+
+0.9.0
+[X] YAML overhaul
+[X] Weapon locking system
+[X] Per-level weapon unlocks
+  [X] Weapon capability system
+  [X] Weapon cap support in the apworld
+  [X] YAML options
+  [ ] Top-level weapon display in the level select menu
+  [ ] Per-level weapon display likewise
+[ ] GZAPRC improvements
+  [ ] Move key shape definitions into GZAPRC
+  [ ] Move key colour definitions into GZAPRC
+[ ] Weapon logic overhaul
+  [/] Design
+  [ ] YAML options for no vs. manual vs. automatic logic
+  [ ] YAML options for autopopulation sources
+  [ ] Autopopulate regions or levels using new algo
+[ ] Event-based locations
+  [/] Design
+  [ ] Convert maps, secrets into proper EBLs
+  [ ] Spawn event locations
+  [ ] Add spawn events for Hedon MAP02
+[ ] Separate exit locations from clear tokens
+  [ ] Set the clear bit on the Region rather than granting an item
+  [ ] Send a message to the apworld when this happens, make AP-STATUS less frequent
+  [ ] Allow randomizing items into the exit events
 
 ### scanner
 

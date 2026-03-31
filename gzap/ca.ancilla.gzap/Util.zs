@@ -111,7 +111,7 @@ class ::Util play {
     }
   }
 
-  // TODO: move this into python?
+  // TODO: move this into python? or GZAPRC?
   static clearscope string GetKeyColour(string keyname, string backup) {
     string keyname = keyname.MakeLower();
 

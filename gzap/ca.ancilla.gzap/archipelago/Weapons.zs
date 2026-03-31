@@ -59,7 +59,6 @@ class ::WeaponCapabilities play {
   // treat all capabilities as global.
   // If on, per-map weapon capabilities are enabled, and adding a "global"
   // capability actually adds a local capabilty to each map.
-  // This always starts disabled (
   bool use_per_map_caps;
 
   static ::WeaponCapabilities Create(::RandoState apstate, bool per_map_weapons) {
