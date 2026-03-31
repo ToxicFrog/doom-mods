@@ -369,6 +369,13 @@ class ::RandoState play {
     let region = GetCurrentRegion();
     if (!region) return;
 
+    // If there are no pending caps, apply real caps immediately so the player
+    // gets their level-specific guns as soon as they gate in rather than
+    // needing to move first.
+    if (!self.wcaps.HasPendingCaps(region.map)) {
+      self.wcaps.ApplyRealCaps(region.map);
+    }
+
     // TODO: per-player inventory will let us make this check per-player, for now
     // we just watch player[0].
     if (players[0].mo.vel.Length() == 0) return;

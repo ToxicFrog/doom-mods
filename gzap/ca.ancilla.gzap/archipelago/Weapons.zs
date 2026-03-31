@@ -75,6 +75,10 @@ class ::WeaponCapabilities play {
     return caps;
   }
 
+  bool HasPendingCaps(string map) const {
+    return (self.pending.GetIfExists("*").typenames.Size() + self.pending.GetIfExists(map).typenames.Size()) > 0;
+  }
+
   // Add a pending global capability. In per-map mode this turns into a separate
   // pending wcap on every map (to ensure it properly gets translated into a
   // real cap on each map). In global mode we just store it as a global pending
