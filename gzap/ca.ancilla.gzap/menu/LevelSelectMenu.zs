@@ -17,7 +17,8 @@ class ::LevelSelectMenu : ::CommonMenu {
     TooltipGeometry(0.0, 0.5, 0.25, 1.0, 0.5);
     TooltipAppearance("", "", "tfttbg");
 
-    if (!::RandoState.Get()) {
+    let apstate = ::RandoState.Get();
+    if (!apstate) {
       console.printf("%s", StringTable.Localize("$GZAP_MENU_ERROR_NOT_IN_GAME"));
       return;
     }
@@ -25,18 +26,21 @@ class ::LevelSelectMenu : ::CommonMenu {
     PushText(" ");
     PushText("$GZAP_MENU_LEVEL_SELECT_TITLE", Font.CR_WHITE);
     let progress_indicator = new("::ProgressIndicator");
-    progress_indicator.apstate = ::RandoState.Get();
+    progress_indicator.apstate = apstate;
     mDesc.mItems.Push(progress_indicator.InitDirect("", Font.CR_CYAN));
     let weapon_indicator = new("::WeaponIndicator");
     mDesc.mItems.Push(weapon_indicator.Init(::RandoState.Get()));
     weapon_indicator.tt = PushTooltip("[placeholder]");
     PushText(" ");
 
+    bool pmw = apstate.IsPerMapWeapons();
+
     PushKeyValueText(
       "$GZAP_MENU_HEADER_LEVEL",
-      string.format("%7s  %7s  %3s  %5s",
+      string.format("%7s  %7s  %s%3s  %5s",
           StringTable.Localize("$GZAP_MENU_HEADER_ITEMS"),
           StringTable.Localize("$GZAP_MENU_HEADER_KEYS"),
+          pmw ? StringTable.Localize("$GZAP_MENU_HEADER_WEAPONS") : "",
           StringTable.Localize("$GZAP_MENU_HEADER_AM"),
           StringTable.Localize("$GZAP_MENU_HEADER_STATUS")));
 
@@ -45,12 +49,12 @@ class ::LevelSelectMenu : ::CommonMenu {
       // Sometimes we get MAPINFO entries that don't actually exist.
       if (!info || !LevelInfo.MapExists(info.MapName)) continue;
 
-      let region = ::RandoState.Get().GetRegion(info.MapName);
+      let region = apstate.GetRegion(info.MapName);
       // Skip any levels not listed in the data package and initialized with
       // RegisterMap().
       if (!region) continue;
 
-      PushLevelSelector(i, info, region);
+      PushLevelSelector(i, info, apstate, region);
     }
 
     PushText(" ");
@@ -72,8 +76,8 @@ class ::LevelSelectMenu : ::CommonMenu {
     return 0;
   }
 
-  void PushLevelSelector(int idx, LevelInfo info, ::Region region) {
-    let item = new("::LevelSelector").Init(idx, info, region);
+  void PushLevelSelector(int idx, LevelInfo info, ::RandoState apstate, ::Region region) {
+    let item = new("::LevelSelector").Init(idx, info, apstate, region);
     mDesc.mItems.Push(item);
     item.tt = PushTooltip(item.FormatTooltip());
   }

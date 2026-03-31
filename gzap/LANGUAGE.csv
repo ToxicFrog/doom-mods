@@ -9,6 +9,10 @@ Return to Hub,GZAP_MENU_LEVEL_SELECT_RETURN,
 Level,GZAP_MENU_HEADER_LEVEL,"Level name column. Column contends are (e.g.) ""Underhalls (MAP02)""."
 " Items ",GZAP_MENU_HEADER_ITEMS,Items collected/total column. Needs to be 7 cols long.
 " Keys  ",GZAP_MENU_HEADER_KEYS,Keys collected/total column. Likewise.
+"Weapons  ",GZAP_MENU_HEADER_WEAPONS,Weapons unlocked column. Only shows up when per-map weapons are on.
+\c-Weapons available via Archipelago:,GZAP_MENU_TT_WEAPONLIST_PROLOGUE
+"This game is using per-map weapon unlocks, so this is just here to tell you which slots correspond to which weapons. Look at individual levels to see which weapons are unlocked for them.",GZAP_MENU_TT_WEAPONLIST_EPILOGUE_PERMAP
+"This game is using global weapon unlocks, so any weapon unlocked here is available in all levels.",GZAP_MENU_TT_WEAPONLIST_EPILOGUE
 Map,GZAP_MENU_HEADER_AM,Automap column. 3 cols.
 Clear,GZAP_MENU_HEADER_STATUS,Map status column. 5 cols.
 \c[RED]⚠ Level locked\c-,GZAP_MENU_TT_MAP_LOCKED,All the _TT_ entries are used to populate the tooltips in the level selector.

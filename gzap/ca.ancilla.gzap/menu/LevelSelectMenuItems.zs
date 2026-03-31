@@ -146,28 +146,34 @@ class ::WeaponIndicator : ::KeyValueText {
   override bool Selectable() { return true; }
 
   string TooltipHeader() {
-    return "\c-Weapons available via Archipelago:\nⅢⅧ";
+    return "\c-"..StringTable.Localize("$GZAP_MENU_TT_WEAPONLIST_PROLOGUE");
   }
 
   string TooltipFooter() {
     if (self.apstate.wcaps.use_per_map_caps) {
-      return "\n\c-This game is using per-map weapon unlocks, so this is just here to tell you which slots correspond to which weapons. Look at individual levels to see which weapons are unlocked for them.";
+      return "\n\c-"..StringTable.Localize("$GZAP_MENU_TT_WEAPONLIST_EPILOGUE_PERMAP");
     } else {
-      return "\n\c-This game is using global weapon unlocks, so any weapon unlocked here is available in all levels.";
+      return "\n\c-"..StringTable.Localize("$GZAP_MENU_TT_WEAPONLIST_EPILOGUE_PERMAP");
     }
   }
 }
 
 class ::LevelSelector : ::KeyValueNetevent {
   LevelInfo info;
+  ::RandoState apstate;
   ::Region region;
+  ::WeaponGrantInfo weapon_info;
   ::Tooltip tt;
   uint txn;
 
-  ::LevelSelector Init(int idx, LevelInfo info, ::Region region) {
+  ::LevelSelector Init(int idx, LevelInfo info, ::RandoState apstate, ::Region region) {
     self.info = info;
+    self.apstate = apstate;
     self.region = region;
+    self.weapon_info = new("::WeaponGrantInfo");
+    self.weapon_info.scope = "_"..region.map;
     self.txn = 0;
+    self.weapon_info.UpdateWeaponInfo(apstate);
     super.Init(
       FormatLevelKey(info, region),
       FormatLevelValue(info, region),
@@ -192,6 +198,7 @@ class ::LevelSelector : ::KeyValueNetevent {
   override void Ticker() {
     if (txn == region.txn) return;
     SetColours();
+    self.weapon_info.UpdateWeaponInfo(apstate);
     self.value = FormatLevelValue(info, region);
     self.tt.text = self.FormatTooltip();
     self.txn = region.txn;
@@ -255,20 +262,27 @@ class ::LevelSelector : ::KeyValueNetevent {
     return buf;
   }
 
+  string FormatWeaponInfo() {
+    if (!self.apstate.IsPerMapWeapons()) return "";
+    return "  " .. self.weapon_info.ShortWeaponList();
+  }
+
   string FormatLevelValue(LevelInfo info, ::Region region) {
     if (!region.CanAccess()) {
       return string.format(
-        "\c[BLACK]%3d/%-3d  %s  \c[BLACK]%s  %s",
+        "\c[BLACK]%3d/%-3d  %s%s  \c[BLACK]%s  %s",
         region.LocationsChecked(), region.LocationsTotal(),
         FormatKeyCounter(region, false),
+        FormatWeaponInfo(),
         region.HasAutomap() ? " √ " : "   ",
         FormatLevelClearMarker(region)
       );
     }
     return string.format(
-      "%s  %s  %s  %s%s",
+      "%s  %s%s  %s  %s%s",
       FormatItemCounter(region),
       FormatKeyCounter(region),
+      FormatWeaponInfo(),
       region.HasAutomap() ? "\c[GOLD] √ " : "   ",
       FormatLevelClearColour(region),
       FormatLevelClearMarker(region)

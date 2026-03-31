@@ -12,6 +12,8 @@ changed. Rescanning your wads is not *mandatory* but is *strongly recommended*.
   - `per_map_weapons` yaml setting. If enabled, a different copy of each weapon
     is added to the pool for each map. To use a weapon on a given map you need
     to find the corresponding version of it in the pool first.
+    - If this is enabled, the level select screen will show you which weapons
+      have been unlocked in each map.
 - Changed:
   - Major overhaul of the yaml options.
     - Many settings that previously had to be controlled by editing the

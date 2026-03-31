@@ -59,6 +59,10 @@ class ::RandoState play {
     SortLocations();
   }
 
+  bool IsPerMapWeapons() const {
+    return self.wcaps.use_per_map_caps;
+  }
+
   // Called just before IPC initialization, after loading into a map. Used to
   // generate capabilities from the player's starting inventory so that we don't
   // e.g. delete their fists.
@@ -297,6 +301,9 @@ class ::RandoState play {
         let [scope,typename] = item.WeaponGrantInfo();
         self.wcaps.AddScopedCap(scope, typename);
         item.vended++;
+        if (scope != "*") {
+          GetRegion(scope).txn++;
+        }
       }
     }
 
