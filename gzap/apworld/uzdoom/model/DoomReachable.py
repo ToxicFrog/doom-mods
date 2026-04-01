@@ -69,6 +69,12 @@ class DoomReachable:
         # print(f'Tuning {self}: optimizing {self.tuning} -> {keysets}')
         self.prereqs = frozenset(keysets)
 
+    def has_combat_logic_hints(self) -> bool:
+        for prereq in self.prereqs:
+            if any(prereqs.is_combat_logic_hint(term) for term in prereq):
+                return True
+        return False
+
     def access_rule(self, world, wad, map):
         """
         Convert the string-based requirements in self.keys into a callable rule

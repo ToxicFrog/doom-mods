@@ -37,6 +37,8 @@ changed. Rescanning your wads is not *mandatory* but is *strongly recommended*.
     it will try very hard to make sure you always have it. If you have a weapon
     replacer mod loaded it will remember whatever the weapon turned into and
     keep that in your inventory instead.
+  - Redesign of weapon logic. It is now deterministic. This is still a work in
+    progress.
 - Fixed:
   - MAP31 and MAP32 were incorrectly excluded from 1000 Lines 2.
   - Adventures of Square logic is now aware of the previously-missing "Totally

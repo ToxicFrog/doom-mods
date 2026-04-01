@@ -179,6 +179,12 @@ class DoomWad:
             'ArtiTomeOfPower' in types
             or 'GoldWandHefty' in types)
 
+    def has_combat_logic_hints(self) -> bool:
+        for map in self.all_maps():
+            if map.extra_rules.has_combat_logic_hints():
+                return True
+        return any(r.has_combat_logic_hints() for r in self.regions.values())
+
     def all_maps(self) -> List[DoomMap]:
         return self.maps.values()
 

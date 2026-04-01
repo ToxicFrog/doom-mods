@@ -161,14 +161,88 @@ in the level or in earlier levels.
 
 *Needed* weapons are hard requirements.
 
-*Wanted* weapons are trickier. The "require a percentage of these weapons" setting
-in current versions doesn't actually work that great.
+*Wanted* weapons are trickier. The "require a percentage of these weapons"
+setting in current versions doesn't actually work that great. This describes the
+proposed replacement.
 
-My inclination is to have a bunch of individual toggles here:
-- weapon logic enable (if set wanted weapons are required, if not they are ignored)
-- weapon logic populate from same map (weapons in the enclosing level are considered wanted)
-- weapon logic populate from preceding maps (weapons in the preceding levels are considered wanted)
-- weapon logic include secrets (if unset weapons marked secret are not counted)
+### YAML settings
+
+#### weapon_logic
+
+- off: only `need` requirements from the tuning file are used
+- manual: `need` and `want` requirements from the tuning file are used
+- auto: as `manual` + automatic weapon logic per below
+
+With `auto`, we automatically compute a set of desired weapons for each level
+and the settings below control exactly what goes into it.
+
+We could autopopulate by region, but I am optimistically assuming here that any
+map that has regions defined also has weapon logic annotations.
+
+#### auto_weapon_logic_pistol_start
+
+On/off. In "pistol start" mode, only weapons present in a level will be
+considered. Otherwise, weapons in preceding levels will be considered as well.
+
+We might combine this with the above, so that it's `weapon_logic_mode` and the
+options are off, manual, auto_per_level, and auto_per_episode.
+
+#### auto_weapon_logic_secrets
+
+On/off. If on, weapons in secrets will be considered. If off, they will not be.
+
+#### auto_weapon_logic_difficulty
+
+Threshold for adding weapons to the weapon set.
+
+This is defined as a percentage of the most popular weapon. If set to 100, only
+the most popular weapon (or weapons, if there is a tie) will be required. If set
+to 0, any weapon the player could have access to will be. Intermediate values
+set a cutoff based on the most popular weapon, so if have a weapon catalogue
+like:
+
+    1 chainsaw
+    3 shotgun
+    3 super shotgun
+    1 chaingun
+    2 rocket launcher
+    1 plasma rifle
+
+The most popular weapon is 3, so the breakpoints are 100 (gets you both
+shotguns), 66 (also gets you the rocket launcher), and 33 (gets you everything).
+
+TODO: do we want a hard threshold for "if this weapon appears more than this
+many times we include it regardless"? Ideally I think we want it so that by the
+end of the game every weapon is considered logically required.
+
+### Implementation
+
+For explicit weapon prerequisites, we just check the value of the option when
+compiling them and if weapon logic is enabled, include all `want` prereqs.
+
+For automatic ones, we move the current code into separate functions (so that
+we can also use it to determine weapon categorization). The basic concept
+(populate a desired weapon set based on weapons in this and/or previous levels)
+is the same. Unlike the existing code, however, we use a Counter, so we can
+keep track not just of which weapons but *how many*.
+
+If auto weapon logic is off, this is empty.
+
+If it's on, this is all weapons in the current level (in pistol start mode) or
+the current and all preceding levels (in episodic mode), possibly including
+secret weapons depending on settings.
+
+Finally, we deterministically choose the actual weapons we expect based on the
+difficulty.
+
+If per-map weapons are off, we assume that all weapons are progression items
+even if none of them are ever logically required.
+
+If per-map weapons are on, when creating items, we query each map and see which
+weapons are logically required, mark them as progression, and mark the rest as
+useful.
+
+### Future work
 
 We could be smarter about this if the scanner included weapon data (e.g. an AP-WEAPON
 record every time the scanner finds a new weapon type). For starters, that would
@@ -184,22 +258,6 @@ logic; a weapon doesn't count as available in weapon logic unless you have the
 weapon *and* a sufficiency of ammo for it (if ammo is randomized). This also
 means that we can make smarter decisions about which guns are expected to be
 used by the player in which maps by looking at *what ammo is in that map*.
-
-More thoughts about weapon logic -- having regions lets us be more rigorous
-about this.
-
-So if you turn on local weapon logic, each region has added to its prerequisites
-all weapons that exist inside it. This also makes them prerequisites of all
-regions downstream of that one! But that doesn't work for leaf nodes, e.g. if a
-region is Big Arena and has guns in Big Arena North Closet, Big Arena isn't
-considered to have those guns. Hmm.
-
-/want weapon markers work around this, although it does mean weapons from leaf
-secrets won't be collected when secrets are enabled.
-
-If you turn on global weapon logic, each level has added to its prerequisites
-all weapons that exist in earlier levels. (Ideally we should have something
-smarter than rank for this; E1M3 shouldn't depend on E4M2's weapons).
 
 ## Weapon Suppression
 

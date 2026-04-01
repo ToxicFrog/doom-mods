@@ -6,6 +6,7 @@ are for the items that grant map-specific items (access codes, the automap, etc)
 for the purpose of reachability information, it also needs to know what keys and
 weapons it contains.
 """
+from collections import Counter
 from dataclasses import dataclass, field, InitVar
 from math import ceil
 from typing import Dict, List, NamedTuple, Optional, Set, Type
@@ -13,7 +14,7 @@ from typing import Dict, List, NamedTuple, Optional, Set, Type
 from .DoomLocation import DoomLocation
 from .DoomKey import DoomKey
 from .DoomReachable import DoomReachable
-from .prereqs import weapon_prereq
+from .prereqs import weapon_prereq, strings_to_prereq_fn
 
 
 class MAPINFO(NamedTuple):
@@ -100,18 +101,8 @@ class DoomMap:
 
     def access_rule(self, world):
         # print(f"access_rule({self.map}) = start={world.is_starting_map(self.map)}, co-guns({world.options.carryover_weapon_bias.value})={self.carryover_gunset}, local-guns({world.options.local_weapon_bias.value})={self.local_gunset}, clears({world.options.level_order_bias.value})={self.prior_clears}")
-        prior_maps = [ map for map in world.maps if map.rank < self.rank ]
-        local_guns = self.local_guns()
-        carryover_guns = set()
-        for map in prior_maps:
-            carryover_guns |= map.local_guns()
-
-        if world.options.per_map_weapons:
-            local_guns = { self.wad.weapon_capability(gun, self.map) for gun in local_guns }
-            carryover_guns = { self.wad.weapon_capability(gun, self.map) for gun in carryover_guns }
-        else:
-            local_guns = { self.wad.weapon_capability(gun) for gun in local_guns }
-            carryover_guns = { self.wad.weapon_capability(gun) for gun in carryover_guns }
+        combat_logic_weapons = self.combat_logic_weapons(world)
+        combat_logic_rule = strings_to_prereq_fn(world, world.wad_logic, self, combat_logic_weapons)
 
         if self.extra_rules.prereqs:
             extra_rule = self.extra_rules.access_rule(world, self.wad, self)
@@ -145,31 +136,8 @@ class DoomMap:
             if self.wad.use_hub_logic():
                 return True
 
-            # Check requirement for guns the player would normally carryover
-            # from earlier levels.
-            player_guns = { gun for gun in carryover_guns if state.has(gun, world.player) }
-            guns_needed = (world.options.carryover_weapon_bias.value / 100) * len(carryover_guns)
-            if len(player_guns) < round(guns_needed):
+            if not combat_logic_rule(state):
                 return False
-
-            # Check requirement for guns the player would normally find in this
-            # level when pistol-starting.
-            player_guns = { gun for gun in local_guns if state.has(gun, world.player) }
-            guns_needed = (world.options.local_weapon_bias.value / 100) * len(local_guns)
-            if len(player_guns) < round(guns_needed):
-                return False
-
-            # We also need to have cleared some number of preceding levels based
-            # on the level_order_bias. This is disabled for hublogic since only
-            # end-of-chapter maps are really "cleared".
-            if not self.wad.use_hub_logic():
-                levels_cleared = {
-                    map.clear_flag_name() for map in prior_maps
-                    if state.has(map.clear_flag_name(), world.player)
-                }
-                levels_needed = (world.options.level_order_bias.value / 100) * len(prior_maps)
-                if len(levels_cleared) < round(levels_needed):
-                    return False
 
             return True
 
@@ -225,9 +193,52 @@ class DoomMap:
                 return key
         raise RuntimeError(f"Couldn't find key of type {typename} in map {self.map} with keys {self.keyset}")
 
-    def local_guns(self):
-        return {
+    def should_include_weapon(self, world, loc) -> bool:
+        return (
+            loc.has_category('weapon') and not loc.unreachable
+            and (not loc.has_category('secret') or world.options.combat_logic_secrets))
+
+    def local_weapons(self, world) -> Counter[str]:
+        return Counter(
             loc.orig_item.typename
             for loc in self.locations
-            if not loc.has_category('secret') and not loc.unreachable and loc.has_category('weapon')
-        }
+            if self.should_include_weapon(world, loc))
+
+    def prior_weapons(self, world) -> Counter[str]:
+        weapons = Counter()
+        for map in self.prior_maps(world):
+            weapons += map.local_weapons(world)
+        return weapons
+
+    def combat_logic_weapons(self, world):
+        if world.options.combat_logic_mode == 'auto_per_episode':
+            return frozenset(
+                f'weapon/{weapon}/need'
+                for weapon in (self.local_weapons(world) + self.prior_weapons(world)).keys()
+            )
+        elif world.options.combat_logic_mode == 'auto_per_level':
+            return frozenset(f'weapon/{weapon}/need' for weapon in self.local_weapons(world))
+        else:
+            return frozenset()
+
+    def is_same_episode(self, other) -> bool:
+        # This is a bit of a hack: assume that something is in the same episode
+        # if its map lumpname starts with the same two characters.
+        # This will work for Doom 1 and Heretic style wads, and it works
+        # trivially for Doom 2 wads that don't divide things into episodes
+        # It will not work for e.g. Space Cats Saga or Hedon Bloodrite that
+        # use Doom 2 map naming conventions but have distinct episodes that
+        # are each meant to be played separately.
+        # We also look at the episodename field, but this isn't set for any
+        # current logic files and probably won't be reliably populated until
+        # the next uzdoom release adds EpisodeData to the API.
+        if self.episodename:
+            return self.episodename == other.episodename
+        else:
+            return other.map.startswith(self.map[0:2])
+
+    def prior_maps(self, world):
+        return sorted([
+            map for map in world.maps
+            if map.rank < self.rank and self.is_same_episode(map)
+        ], key=lambda m: m.rank)

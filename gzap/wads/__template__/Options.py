@@ -196,6 +196,54 @@ class PerMapWeaponUnlocks(Toggle):
     """
     default = False
 
+if wad.has_combat_logic_hints():
+    class CombatLogicMode(Choice):
+        """
+        How the combat logic system works.
+
+        - off: no combat logic. Logic may still require certain weapons for
+          certain checks (e.g. rocket launcher for icon of sin).
+        - manual: the logic author for this wad has included combat logic data.
+          This setting will enable the use of it.
+        - auto_per_level: in addition to the manually authored combat logic,
+          this will consider weapons logically required for a level if they are
+          available anywhere in that level.
+        - auto_per_episode: as above, but considers weapons required if they are
+          available in a level or any of the preceding levels.
+        """
+        display_name = "Combat logic mode"
+        default = 1
+        option_off = 0
+        option_manual = 1
+        option_auto_per_level = 2
+        option_auto_per_episode = 3
+else:
+    class CombatLogicMode(Choice):
+        """
+        How the combat logic system works.
+
+        - off: no combat logic. Logic may still require certain weapons for
+          certain checks (e.g. rocket launcher for icon of sin).
+        - auto_per_level: this will consider weapons logically required for a
+          level if they are available anywhere in that level.
+        - auto_per_episode: as above, but considers weapons required if they are
+          available in a level or any of the preceding levels.
+        """
+        display_name = "Combat logic mode"
+        default = 2
+        option_off = 0
+        option_auto_per_level = 2
+        option_auto_per_episode = 3
+
+class CombatLogicSecrets(Toggle):
+    """
+    Whether to consider secrets in auto combat logic. If this is off, weapons
+    will not be considered logically required unless there is a non-secret way
+    to get them.
+    """
+    display_name = "Auto combat logic uses secrets"
+    default = False
+
 class LevelOrderBias(Range):
     """
     How closely the randomizer tries to follow the original level order of the
@@ -600,9 +648,8 @@ class UZDoomOptions(PerGameCommonOptions):
     win_map_names: WinMapNames
     # Combat logic
     per_map_weapons: PerMapWeaponUnlocks
-    level_order_bias: LevelOrderBias
-    local_weapon_bias: LocalWeaponBias
-    carryover_weapon_bias: GlobalWeaponBias
+    combat_logic_mode: CombatLogicMode
+    combat_logic_secrets: CombatLogicSecrets
     # Gameplay
     allow_respawn: AllowRespawn
     full_persistence: FullPersistence
@@ -635,7 +682,7 @@ class UZDoomWeb(WebWorld):
         WinMapCount, WinMapNames,
     ]),
     OptionGroup("Combat Logic", [
-        PerMapWeaponUnlocks, LevelOrderBias, LocalWeaponBias, GlobalWeaponBias,
+        PerMapWeaponUnlocks, CombatLogicMode, CombatLogicSecrets
     ]),
     OptionGroup("Gameplay Settings", [
         AllowRespawn, FullPersistence,

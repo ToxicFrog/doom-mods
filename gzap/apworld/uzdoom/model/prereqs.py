@@ -11,12 +11,7 @@ from typing import FrozenSet
 
 def strings_to_prereq_fn(world, wad, map, xs):
   rules = [string_to_prereq_fn(world, wad, map, x) for x in xs]
-  def prereq(state):
-    for rule in rules:
-      if not rule(state):
-        return False
-    return True
-  return prereq
+  return lambda state: all(rule(state) for rule in rules)
 
 def string_to_prereq_fn(world, wad, map, string):
   # print('string_to_prereq', wad.name, map.map, string)
@@ -49,12 +44,15 @@ def item_prereq(world, wad, map, typename, count=1):
 def weapon_prereq(world, wad, map, typename, strictness = 'need'):
   if strictness == 'need':
     has_global_cap = fqin_prereq(world, wad, map, wad.weapon_capability(typename))
-    has_local_cap = fqin_prereq(world, wad, map, wad.weapon_capability(typename, map))
+    has_local_cap = fqin_prereq(world, wad, map, wad.weapon_capability(typename, map.map))
     return lambda state: has_global_cap(state) or has_local_cap(state)
   else:
     # TODO: use this for more sophisticated weapon logic
     # print('    (constantly true)')
     return lambda state: True
+
+def is_combat_logic_hint(prereq):
+  return prereq.startswith('weapon/') and prereq.endswith('/want')
 
 def key_prereq(world, wad, map, typename, count=1):
   if typename == '*':
