@@ -46,10 +46,13 @@ def weapon_prereq(world, wad, map, typename, strictness = 'need'):
     has_global_cap = fqin_prereq(world, wad, map, wad.weapon_capability(typename))
     has_local_cap = fqin_prereq(world, wad, map, wad.weapon_capability(typename, map.map))
     return lambda state: has_global_cap(state) or has_local_cap(state)
+  elif strictness == 'want':
+    if world.options.combat_logic_mode == 0:
+      return lambda _: True
+    else:
+      return weapon_prereq(world, wad, map, typename, 'need')
   else:
-    # TODO: use this for more sophisticated weapon logic
-    # print('    (constantly true)')
-    return lambda state: True
+    assert False, f'Unknown strictness in weapon prereq weapon/{typename}/{strictness}'
 
 def is_combat_logic_hint(prereq):
   return prereq.startswith('weapon/') and prereq.endswith('/want')

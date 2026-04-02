@@ -52,7 +52,7 @@ class DoomReachable:
 
     def finalize_tuning(self, default):
         """
-        Compute the minimal version of the tuning data and store it in self.keys.
+        Compute the minimal version of the tuning data and store it in self.prereqs.
 
         If there is no tuning data, use default.
         """
