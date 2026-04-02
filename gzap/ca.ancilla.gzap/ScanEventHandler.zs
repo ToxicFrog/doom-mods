@@ -71,6 +71,7 @@ class ::ScanEventHandler : StaticEventHandler {
         // Do ap_scan_skip first, so that if levels appear in both they are
         // properly flagged as "to skip" and will be used as search roots but
         // not emitted into the logic file.
+        scanner.Init();
         Array<string> levels;
         ap_scan_skip.Split(levels, " ", TOK_SKIPEMPTY);
         foreach (levelname : levels) {
@@ -93,7 +94,6 @@ class ::ScanEventHandler : StaticEventHandler {
           ::Util.printf("$GZAP_SCAN_EMPTY");
           return;
         }
-        scanner.Init();
         scan_enabled = scanner.ScanNext();
         // EventHandler.SendNetworkEvent("ap-scan:continue", 0, 0, 0);
       }
