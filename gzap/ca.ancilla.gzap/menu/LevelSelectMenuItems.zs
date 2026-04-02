@@ -38,7 +38,13 @@ class ::WeaponSlotInfo {
   int total;
   int found;
   Array<string> weapon_types;
-  Map<string, bool> weapons_held;
+  ::StringSet weapons_held;
+
+  static ::WeaponSlotInfo Create() {
+    ::WeaponSlotInfo info = new("::WeaponSlotInfo");
+    info.weapons_held = ::StringSet.Create();
+    return info;
+  }
 }
 
 class ::WeaponGrantInfo {
@@ -56,7 +62,7 @@ class ::WeaponGrantInfo {
 
       foreach (weapon : info.weapon_types) {
         Class<Weapon> cls = weapon;
-        let held = info.weapons_held.CheckKey(weapon);
+        let held = info.weapons_held.Contains(weapon);
         let tag = ::RC.Get().GetTag(GetDefaultByType(cls));
         if (last_key != key) {
           buf.AppendFormat(head_format, held ? "FIRE" : "DARKGRAY", key, tag);
@@ -83,7 +89,7 @@ class ::WeaponGrantInfo {
       let info = self.slot_info[key];
       foreach (weapon : info.weapon_types) {
         Class<Weapon> cls = weapon;
-        let held = info.weapons_held.CheckKey(cls.GetClassName());
+        let held = info.weapons_held.Contains(cls.GetClassName());
         if (last_key != key) {
           buf.AppendFormat("\n\c[%s]  [%d] %s", held ? "FIRE" : "DARKGRAY", key, GetDefaultByType(cls).GetTag());
           last_key = key;
@@ -100,7 +106,7 @@ class ::WeaponGrantInfo {
     let slots = players[0].weapons;
 
     for (int slot = 0; slot < 10; ++slot) {
-      ::WeaponSlotInfo info = new("::WeaponSlotInfo");
+      let info = ::WeaponSlotInfo.Create();
       info.slot = slot;
       info.total = info.found = 0;
 
@@ -111,7 +117,7 @@ class ::WeaponGrantInfo {
         info.total++;
         info.weapon_types.Push(cls.GetClassName());
         if (count > 0) {
-          info.weapons_held.Insert(cls.GetClassName(), true);
+          info.weapons_held.Insert(cls.GetClassName());
           info.found++;
         }
       }

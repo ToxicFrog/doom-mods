@@ -12,8 +12,14 @@ class ::RC {
     return seh.rc;
   }
 
-  static ::RC LoadAll(string lumpname) {
+  static ::RC Create() {
     let rc = ::RC(new("::RC"));
+    rc.destroy_on_spawn = ::StringSet.Create();
+    return rc;
+  }
+
+  static ::RC LoadAll(string lumpname) {
+    let rc = ::RC.Create();
     let parser = ::RCParser(new("::RCParser"));
     int lump = wads.FindLump(lumpname, 0, wads.AnyNamespace);
     while (lump >= 0) {
@@ -33,7 +39,7 @@ class ::RC {
 
   Map<string, string> categorizations;
   Map<string, string> typenames;
-  Map<string, bool> destroy_on_spawn;
+  ::StringSet destroy_on_spawn;
   Map<string, string> tags;
   Map<string, string> scanner_settings;
   Map<int, string> cluster_names;
@@ -44,7 +50,7 @@ class ::RC {
     foreach (k, v : other.typenames) {
       SetTypename(k, v);
     }
-    foreach (k, v : other.destroy_on_spawn) {
+    foreach (k : other.destroy_on_spawn.contents) {
       SetDestroyOnSpawn(k);
     }
     foreach (k, v : other.tags) {
@@ -94,11 +100,11 @@ class ::RC {
   }
 
   void SetDestroyOnSpawn(string cls) {
-    self.destroy_on_spawn.Insert(cls.MakeLower(), true);
+    self.destroy_on_spawn.Insert(cls.MakeLower());
   }
 
   bool GetDestroyOnSpawn(string cls) {
-    return self.destroy_on_spawn.CheckKey(cls.MakeLower());
+    return self.destroy_on_spawn.Contains(cls.MakeLower());
   }
 
   void SetActorTag(string cls, string tag) {
@@ -145,7 +151,7 @@ class ::RCParser {
   array<string> tokens; int token;
 
   ::RC Parse(string lump) {
-    self.rc = ::RC(new("::RC"));
+    self.rc = ::RC.Create();
     lines.clear(); tokens.clear();
     lump.split(lines, "\n", true);
     line = 0; token = 0;

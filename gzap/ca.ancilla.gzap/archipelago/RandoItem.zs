@@ -16,7 +16,7 @@ class ::RandoItem play {
   string tag;
   // Internal category name
   string category;
-  Map<string, bool> category_set;
+  ::StringSet category_set;
   // Number vended, must be <= total
   int vended;
   // Number received from randomizer
@@ -38,6 +38,7 @@ class ::RandoItem play {
       item.tag = GetDefaultByType(itype).GetTag();
     }
     item.category = ::ScannedItem.ItemCategory(GetDefaultByType(itype));
+    item.category_set = ::StringSet.Create();
     item.vended = 0;
     item.total = 0;
     item.MakeCategorySet();
@@ -53,7 +54,7 @@ class ::RandoItem play {
     Array<string> category_tokens;
     self.category.Split(category_tokens, "-", TOK_SKIPEMPTY);
     foreach (token : category_tokens) {
-      self.category_set.Insert(token, true);
+      self.category_set.Insert(token);
     }
   }
 
@@ -91,7 +92,7 @@ class ::RandoItem play {
     pattern.Split(pattern_tokens, "-", TOK_SKIPEMPTY);
 
     foreach (token : pattern_tokens) {
-      if (!self.category_set.CheckKey(token)) return false;
+      if (!self.category_set.Contains(token)) return false;
     }
     return true;
   }
@@ -115,7 +116,7 @@ class ::RandoItem play {
   }
 
   bool IsWeapon() const {
-    return self.category_set.CheckKey("weapon");
+    return self.category_set.Contains("weapon");
   }
 
   bool IsWeaponGrant() const {

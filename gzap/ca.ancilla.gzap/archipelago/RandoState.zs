@@ -175,7 +175,7 @@ class ::RandoState play {
   void RegisterHint(string scope, string fqin, string player, string location) {
     let key = FindKeyByFQIN(fqin);
     if (key) {
-      foreach (map, _ : key.maps) {
+      foreach (map : key.maps.contents) {
         let region = self.GetRegion(map);
         if (!region) continue;
         region.RegisterHint(fqin, player, location);

@@ -43,9 +43,7 @@ class ::PendingCaps play {
   Array<string> typenames;
 }
 
-class ::RealCaps play {
-  Map<string, bool> weapons;
-}
+class ::RealCaps : ::StringSet {}
 
 class ::WeaponCapabilities play {
   // Speculative weapon capabilities containing typenames sent to us from AP.
@@ -112,7 +110,7 @@ class ::WeaponCapabilities play {
   void AddGlobalRealCap(Weapon thing) {
     DEBUG("adding real weapon capability (*,%s)", thing.GetClassName());
     foreach (name,region : ::RandoState.Get().regions) {
-      self.real.GetIfExists(name).weapons.Insert(thing.GetClassName(), true);
+      self.real.GetIfExists(name).Insert(thing.GetClassName());
     }
   }
 
@@ -121,7 +119,7 @@ class ::WeaponCapabilities play {
   void AddScopedRealCap(string scope, Weapon thing) {
     if (self.use_per_map_caps) {
       DEBUG("adding real weapon capability (%s,%s)", scope, thing.GetClassName());
-      self.real.GetIfExists(scope).weapons.Insert(thing.GetClassName(), true);
+      self.real.GetIfExists(scope).Insert(thing.GetClassName());
     } else {
       DEBUG("promoting real cap (%s,%s) to mirrored", scope, thing.GetClassName());
       AddGlobalRealCap(thing);
@@ -155,7 +153,7 @@ class ::WeaponCapabilities play {
     // deal with it in a moment and we can just do nothing. This only really
     // works when replacements are off, as otherwise the real cap won't have a
     // typename matching the speculative one.
-    if (self.real.GetIfExists(scope).weapons.CheckKey(typename)) {
+    if (self.real.GetIfExists(scope).Contains(typename)) {
       return;
     }
 
@@ -185,34 +183,34 @@ class ::WeaponCapabilities play {
   void ApplyRealCapsToPawn(::RealCaps caps, PlayerPawn mo) {
     DEBUG("ApplyRealCapsToPawn(%s)", mo.GetTag());
 
-    Map<string,bool> to_remove;
+    let to_remove = ::StringSet.Create();
     let thing = mo.inv;
     while (thing) {
       let cls = thing.GetClass();
       if (cls is "Weapon") {
         DEBUG(" - %s", thing.GetClassName());
-        to_remove.Insert(thing.GetClassName(), true);
+        to_remove.Insert(thing.GetClassName());
       }
       thing = thing.inv;
     }
 
-    Map<string,bool> to_add;
-    foreach (typename, _ : caps.weapons) {
-      if (to_remove.CheckKey(typename)) {
+    let to_add = ::StringSet.Create();
+    foreach (typename : caps.contents) {
+      if (to_remove.Contains(typename)) {
         // Player already has this weapon in their inventory.
         DEBUG(" = %s", typename);
         to_remove.Remove(typename);
       } else {
         DEBUG(" + %s", typename);
-        to_add.Insert(typename, true);
+        to_add.Insert(typename);
       }
     }
 
-    foreach (typename, _ : to_remove) {
+    foreach (typename : to_remove.contents) {
       DEBUG("removing: %s", typename);
       mo.TakeInventory(typename, 9999);
     }
-    foreach (typename, _ : to_add) {
+    foreach (typename : to_add.contents) {
       DEBUG("adding: %s", typename);
       let item = Weapon(::Util.SpawnUnrestricted(mo, typename, NO_REPLACE));
       // Clear ammogive counters here as otherwise each time a weapon is granted

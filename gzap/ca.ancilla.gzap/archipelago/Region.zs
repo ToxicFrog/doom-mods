@@ -331,7 +331,7 @@ class ::Region play {
       items_to_add.Insert(keytype, key.held);
     }
 
-    Map<string, bool> items_to_remove;
+    let items_to_remove = ::StringSet.Create();
     readonly<Inventory> item = mo.inv;
     while (item) {
       if (items_to_add.CheckKey(item.GetClassName())) {
@@ -345,12 +345,12 @@ class ::Region play {
         // Some AP items may be scoped but not be Key or PuzzleItem, especially
         // once we implement map-scoped weapon ownership.
         DEBUG("items_to_remove: %s", item.GetClassName());
-        items_to_remove.Insert(item.GetClassName(), true);
+        items_to_remove.Insert(item.GetClassName());
       }
       item = item.inv;
     }
 
-    foreach (itype, _ : items_to_remove) {
+    foreach (itype : items_to_remove.contents) {
       DEBUG("Removing item: %s", itype);
       mo.TakeInventory(itype, 999);
     }

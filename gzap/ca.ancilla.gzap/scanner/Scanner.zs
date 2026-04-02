@@ -11,8 +11,8 @@
 class ::Scanner play {
   Array<::ScannedMap> queued;
   Map<string, ::ScannedMap> maps_by_name;
-  Map<string, bool> skip;
-  Map<string, bool> prune;
+  ::StringSet skip;
+  ::StringSet prune;
   // TODO: when the next version adds AddSkills to the globals we can do away
   // with all of this and just read that array.
   int target_skill; // Skill we expect ChangeLevel to place us at
@@ -30,6 +30,8 @@ class ::Scanner play {
     self.max_skill = -1;
     self.all_filters = 0;
     self.filters_by_skill.Clear();
+    self.skip = ::StringSet.Create();
+    self.prune = ::StringSet.Create();
 
     if (ap_scan_logic_flags == "") {
       // TODO: perhaps additional info here like wad name?
@@ -47,12 +49,12 @@ class ::Scanner play {
 
   void SkipLevel(string mapname) {
     string mapname = mapname.MakeUpper();
-    skip.Insert(mapname, true);
+    skip.Insert(mapname);
   }
 
   void PruneLevel(string mapname) {
     string mapname = mapname.MakeUpper();
-    prune.Insert(mapname, true);
+    prune.Insert(mapname);
   }
 
   void ForceMapRank(string mapname, uint rank) {
@@ -76,8 +78,8 @@ class ::Scanner play {
     }
 
     let sm = ::ScannedMap.Create(mapname, prev);
-    sm.skip = self.skip.GetIfExists(mapname);
-    sm.prune = self.prune.GetIfExists(mapname);
+    sm.skip = self.skip.Contains(mapname);
+    sm.prune = self.prune.Contains(mapname);
 
     maps_by_name.Insert(mapname, sm);
     queued.Push(sm);

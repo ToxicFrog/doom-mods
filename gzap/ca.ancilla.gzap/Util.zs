@@ -1,5 +1,29 @@
 #namespace GZAP;
 
+class ::StringSet {
+  // We make it a map of items to themselves, because iterating over it like
+  // foreach (k : contents) returns the values, not the keys.
+  Map<string, string> contents;
+
+  static ::StringSet Create() {
+    return new("::StringSet");
+  }
+
+  void Insert(string item) { self.contents.Insert(item, item); }
+  void Remove(string item) { self.contents.Remove(item); }
+  void Clear() { self.contents.Clear(); }
+  bool Contains(string item) { return self.contents.CheckKey(item); }
+  bool Size() { return self.contents.CountUsed(); }
+  string Join(string sep) {
+    if (self.Size() == 0) return "";
+    string buf = "";
+    foreach (k : self.contents) {
+      buf.AppendFormat("%s%s", buf == "" ? "" : sep, k);
+    }
+    return buf;
+  }
+}
+
 class ::Util play {
   // Eurgh this is gross, but zscript doesn't let us have va_list so...
   static void printf(string msg, string arg1 = "", string arg2 = "", string arg3 = "") {

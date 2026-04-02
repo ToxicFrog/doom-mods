@@ -77,7 +77,7 @@ class ::RandoKey play {
   // FQIN is "$tag ($scopename)"
   string scopename;
   // Set of maps this key should exist in.
-  Map<string, bool> maps;
+  ::StringSet maps;
   // How many of these the player has received.
   int held;
   // Whether the player has enabled this key. Keys can be temporarily turned
@@ -90,6 +90,7 @@ class ::RandoKey play {
     key.tag = tag;
     key.typename = typename;
     key.scopename = scope;
+    key.maps = ::StringSet.Create();
     key.held = 0;
     key.enabled = !::PlayEventHandler.Get().IsPretuning();
     return key;
@@ -100,7 +101,7 @@ class ::RandoKey play {
     if (!region) return self;
 
     DEBUG("  Update key: %s (%s) +%s", self.tag, self.scopename, map);
-    self.maps.Insert(map, true);
+    self.maps.Insert(map);
     region.RegisterKey(self);
     return self;
   }
@@ -110,7 +111,7 @@ class ::RandoKey play {
     // The internal state of the affected regions hasn't changed, but we still
     // bump their TXNs so that the menu drawing code can see that something
     // about them has changed and redraw their entries.
-    foreach (map, _ : self.maps) {
+    foreach (map : self.maps.contents) {
       let region = apstate.GetRegion(map);
       if (!region) continue;
       region.txn++;
@@ -123,11 +124,7 @@ class ::RandoKey play {
   }
 
   string DebugMapString() {
-    string buf;
-    foreach (map, _ : self.maps) {
-      buf = buf .. " " .. map;
-    }
-    return buf;
+    return self.maps.Join(" ");
   }
 
   string FQIN() const {
