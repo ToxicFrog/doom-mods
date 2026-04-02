@@ -75,6 +75,16 @@ class DoomReachable:
                 return True
         return False
 
+    def requires_weapon(self, weapon, include_want) -> bool:
+        terms = { f'weapon/{weapon}', 'f/weapon/{weapon}/need' }
+        if include_want:
+            terms |= { f'weapon/{weapon}/want' }
+
+        for prereq in self.prereqs:
+            if terms & prereq:
+                return True
+        return False
+
     def access_rule(self, world, wad, map):
         """
         Convert the string-based requirements in self.keys into a callable rule

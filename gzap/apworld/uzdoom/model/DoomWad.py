@@ -180,10 +180,10 @@ class DoomWad:
             or 'GoldWandHefty' in types)
 
     def has_combat_logic_hints(self) -> bool:
-        for map in self.all_maps():
-            if map.extra_rules.has_combat_logic_hints():
-                return True
-        return any(r.has_combat_logic_hints() for r in self.regions.values())
+        return any(
+            r.has_combat_logic_hints()
+            for map in self.maps.keys()
+            for r in self.regions_in_map(map, True))
 
     def all_maps(self) -> List[DoomMap]:
         return self.maps.values()
@@ -361,8 +361,10 @@ class DoomWad:
             name = f'{map}/{region}'
             self.regions.setdefault(name, DoomRegion(map, region)).record_tuning(keys)
 
-    def regions_in_map(self, map: str):
-        return (r for r in self.regions.values() if r.map == map)
+    def regions_in_map(self, map: str, include_root: bool = False):
+        if include_root:
+            yield self.get_map(map).extra_rules
+        yield from (r for r in self.regions.values() if r.map == map)
 
     def new_location(self, item: DoomItem, secret: bool, spawn_filter: int, pos: List[Any], name: str) -> None:
         """

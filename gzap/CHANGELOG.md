@@ -39,6 +39,8 @@ changed. Rescanning your wads is not *mandatory* but is *strongly recommended*.
     keep that in your inventory instead.
   - Redesign of weapon logic. It is now deterministic. This is still a work in
     progress.
+  - If per-map weapons are enabled, only those weapons required for combat logic
+    (or explicitly in the logic) are Progression; other weapons are Useful.
 - Fixed:
   - MAP31 and MAP32 were incorrectly excluded from 1000 Lines 2.
   - Adventures of Square logic is now aware of the previously-missing "Totally

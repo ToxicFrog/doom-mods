@@ -102,7 +102,9 @@ class DoomMap:
     def access_rule(self, world):
         # print(f"access_rule({self.map}) = start={world.is_starting_map(self.map)}, co-guns({world.options.carryover_weapon_bias.value})={self.carryover_gunset}, local-guns({world.options.local_weapon_bias.value})={self.local_gunset}, clears({world.options.level_order_bias.value})={self.prior_clears}")
         combat_logic_weapons = self.combat_logic_weapons(world)
-        combat_logic_rule = strings_to_prereq_fn(world, world.wad_logic, self, combat_logic_weapons)
+        combat_logic_rule = strings_to_prereq_fn(
+            world, world.wad_logic, self,
+            [f'weapon/{weapon}/need' for weapon in combat_logic_weapons])
 
         if self.extra_rules.prereqs:
             extra_rule = self.extra_rules.access_rule(world, self.wad, self)
@@ -213,11 +215,11 @@ class DoomMap:
     def combat_logic_weapons(self, world):
         if world.options.combat_logic_mode == 'auto_per_episode':
             return frozenset(
-                f'weapon/{weapon}/need'
+                weapon
                 for weapon in (self.local_weapons(world) + self.prior_weapons(world)).keys()
             )
         elif world.options.combat_logic_mode == 'auto_per_level':
-            return frozenset(f'weapon/{weapon}/need' for weapon in self.local_weapons(world))
+            return frozenset(weapon for weapon in self.local_weapons(world))
         else:
             return frozenset()
 

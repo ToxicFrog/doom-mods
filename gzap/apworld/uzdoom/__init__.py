@@ -76,8 +76,8 @@ class UZDoomLocation(Location):
 class UZDoomItem(Item):
     game: str = "UZDoom"
 
-    def __init__(self, item: DoomItem, player: int) -> None:
-        super().__init__(name=item.name(), classification=item.classification(), code=item.id, player=player)
+    def __init__(self, world, item: DoomItem, player: int) -> None:
+        super().__init__(name=item.name(), classification=item.classification(world), code=item.id, player=player)
 
 class UZDoomUTGlitchFlag(Item):
     game: str = "UZDoom"
@@ -128,7 +128,7 @@ class UZDoomWorld(World):
             return UZDoomUTGlitchFlag(self.player)
 
         item = self.wad_logic.items_by_name[name]
-        return UZDoomItem(item, self.player)
+        return UZDoomItem(self, item, self.player)
 
     def get_filler_item_name(self):
         return self.random.choice(self.pool.filler_items().keys())
