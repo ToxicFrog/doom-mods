@@ -34,6 +34,7 @@ class ::RC {
       }
       lump = wads.FindLump(lumpname, lump+1, wads.AnyNamespace);
     }
+    // rc.DebugPrint();
     return rc;
   }
 
@@ -71,6 +72,44 @@ class ::RC {
     }
   }
 
+  void DebugPrint() {
+    console.printf("Parsed GZAPRC contents:");
+    if (self.scanner_settings.CountUsed() > 0) {
+      console.printf("  scanner {");
+      foreach (k,v : self.scanner_settings) {
+        console.printf("    %s %s;", k, v);
+      }
+      console.printf("  }");
+    }
+    if (self.destroy_on_spawn.Size() > 0) {
+      console.printf("  destroy-on-spawn %s;", self.destroy_on_spawn.Join(" "));
+    }
+    if (self.prereqs.CountUsed() > 0) {
+      console.printf("  prereqs {");
+      foreach (k,v : self.prereqs) {
+        if (k == "*") {
+          console.printf("    all: %s;", v.Join(" "));
+        } else if (k.Left(4) == "map/") {
+          console.printf("    %s: %s;", k.Mid(4), v.Join(" "));
+        } else {
+          console.printf("    %s: %s;", k.Mid(6), v.Join(" "));
+        }
+      }
+      console.printf("  }");
+    }
+    foreach (k,v : self.cluster_names) {
+      console.printf("  cluster %d %s;", k, v);
+    }
+    foreach (k,v : self.categorizations) {
+      console.printf("  category %s: %s;", v == "" ? "none" : v, k);
+    }
+    foreach (k,v : self.typenames) {
+      console.printf("  typename %s: %s;", v, k);
+    }
+    foreach (k,v : self.tags) {
+      console.printf("  tag %s %s;", k, v);
+    }
+  }
 
   ::StringSet PrereqsFor(string k) {
     if (self.prereqs.CheckKey(k)) {
