@@ -43,6 +43,7 @@ class ::RC {
   Map<string, string> tags;
   Map<string, string> scanner_settings;
   Map<int, string> cluster_names;
+  Map<string, ::StringSet> prereqs;
   void merge(::RC other) {
     foreach (k, v : other.categorizations) {
       SetCategory(k, v);
@@ -61,6 +62,23 @@ class ::RC {
     }
     foreach (k, v : other.cluster_names) {
       self.SetClusterName(k, v);
+    }
+    foreach (k, v : other.prereqs) {
+      let prereq_set = PrereqsFor(k);
+      foreach (prereq : v.contents) {
+        prereq_set.Insert(prereq);
+      }
+    }
+  }
+
+
+  ::StringSet PrereqsFor(string k) {
+    if (self.prereqs.CheckKey(k)) {
+      return self.prereqs.Get(k);
+    } else {
+      let sset = ::StringSet.Create();
+      self.prereqs.Insert(k, sset);
+      return sset;
     }
   }
 
@@ -142,6 +160,28 @@ class ::RC {
     if (LevelInfo.MapChecksum(mapname) == checksum) {
       self.should_skip = false;
     }
+  }
+
+  ::StringSet GetPrereqsForMap(string map, Map<string, int> actors) {
+    let sset = ::StringSet.Create();
+    if (self.prereqs.CheckKey("*")) {
+      sset.UnionFrom(self.prereqs.Get("*"));
+    }
+    if (self.prereqs.CheckKey("map/"..map)) {
+      sset.UnionFrom(self.prereqs.Get("map/"..map));
+    }
+    // There is an infelicity in zscript here: if the map is local or an instance
+    // variable, we can foreach on the map directly, but if it is a function
+    // argument, it has type pointer<map<K,V>> and we need to manually construct
+    // the MapIterator.
+    MapIterator<string, int> it;
+    it.Init(actors);
+    foreach (typename, count : it) {
+      if (self.prereqs.CheckKey("actor/"..typename)) {
+        sset.UnionFrom(self.prereqs.Get("actor/"..typename));
+      }
+    }
+    return sset;
   }
 }
 
@@ -253,6 +293,7 @@ class ::RCParser {
     if (peek("require")) { return Requirements(); }
     if (peek("scanner")) { return ScannerConfig(); }
     if (peek("cluster")) { return ClusterName(); }
+    if (peek("prereqs")) { return PrereqRules(); }
     else { return Error("start of configuration directive"); }
   }
 
@@ -359,6 +400,74 @@ class ::RCParser {
     string name = StringFromTokenList(";", "cluster name");
     if (name == "") return Error("non-empty cluster name");
     self.rc.SetClusterName(cluster, name);
+    return true;
+  }
+
+  bool PrereqRules() {
+    if (!require("prereqs") || !require("{")) return false;
+    while (!peek("}")) {
+      if (peek("all")) {
+        if (!PrereqsForAll()) return false;
+      } else if (peek("map")) {
+        if (!PrereqsForMaps()) return false;
+      } else if (peek("actor")) {
+        if (!PrereqsForActors()) return false;
+      } else {
+        return Error("'actor', 'map', or 'all'");
+      }
+    }
+    return require("}");
+  }
+
+  void InsertPrereqs(string scope, Array<string> prereqs) {
+    let prereq_set = self.rc.PrereqsFor(scope);
+    foreach (prereq : prereqs) {
+      prereq_set.Insert(prereq);
+    }
+  }
+
+  bool PrereqsForAll() {
+    if (!require("all") || !require(":")) return false;
+
+    Array<string> prereqs;
+    if (!TokenList(prereqs, ";", "non-empty prereq list")) return false;
+    if (prereqs.size() == 0) return Error("non-empty prereq list");
+
+    InsertPrereqs("*", prereqs);
+    return true;
+  }
+
+  bool PrereqsForMaps() {
+    if (!require("map")) return false;
+
+    Array<string> maps;
+    if (!TokenList(maps, ":", "non-empty list of maps")) return false;
+    if (maps.size() == 0) return Error("non-empty list of maps");
+
+    Array<string> prereqs;
+    if (!TokenList(prereqs, ";", "non-empty prereq list")) return false;
+    if (prereqs.size() == 0) return Error("non-empty prereq list");
+
+    foreach (map : maps) {
+      InsertPrereqs("map/"..map, prereqs);
+    }
+    return true;
+  }
+
+  bool PrereqsForActors() {
+    if (!require("actor")) return false;
+
+    Array<string> types;
+    if (!ClassList(types, ":")) return false;
+    if (types.size() == 0) return Error("non-empty list of actor types");
+
+    Array<string> prereqs;
+    if (!TokenList(prereqs, ";", "non-empty prereq list")) return false;
+    if (prereqs.size() == 0) return Error("non-empty prereq list");
+
+    foreach (type : types) {
+      InsertPrereqs("actor/"..type, prereqs);
+    }
     return true;
   }
 

@@ -22,6 +22,11 @@ class ::StringSet {
     }
     return buf;
   }
+  void UnionFrom(::StringSet other) {
+    foreach (k : other.contents) {
+      Insert(k);
+    }
+  }
 }
 
 class ::Util play {

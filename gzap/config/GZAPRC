@@ -53,6 +53,20 @@
 # These are the same as the ap_scan_* CVARs without the ap_scan_ prefix.
 #
 #
+#    prereqs {
+#      all: <prereqs for all maps>;
+#      actor <ActorType> ...: <prereqs for maps with those actors>;
+#      map <MAPxx> ...: <prereqs for those maps>
+#    }
+#
+# Add custom logical access prerequisites, on a per-level basis, either to all
+# levels, to specific named levels, or to levels containing certain actors. This
+# is a convenient way to, e.g., declare that if a level contains shotgunners,
+# the shotgun is expected by combat logic, but any valid prerequisite (as
+# described in doc/design/regions.md or emitted by the in-game logic editor)
+# can be used here.
+#
+#
 #     cluster <number> <name> ;
 #
 # When scanning maps in this cluster, use <name> as the cluster name rather than
@@ -98,6 +112,13 @@ category medium-ammo:
   LargeZorchPack MiniZorchPack PhasingZorchPack PropulsorZorchPack;
 
 #### Doom 1/2 configuration ####
+
+# Shotgunners and chaingunners imply a need for that weapon if weapon logic is
+# turned on.
+prereqs {
+  actor ShotgunGuy: weapon/Shotgun/want;
+  actor ChaingunGuy: weapon/Chaingun/want;
+}
 
 # Various powerups that cannot be automatically analyzed.
 category big-armor-health: Megasphere;
