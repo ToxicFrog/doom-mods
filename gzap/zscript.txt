@@ -1,6 +1,10 @@
 // Needed for SendNetworkCommand
 version "4.12.0"
 
+// Version check sentinel. The patch will try to reference this and produce a suitable
+// error message if it disagrees on what it's named.
+const VERSION_MISMATCH__APWORLD_0_8_5_UNSTABLE_52__DOES_NOT_MATCH_PK3_VERSION = 0;
+
 #include "ca.ancilla.gzap/libtooltipmenu/Tooltips.zsc"
 #include "ca.ancilla.gzap/libtooltipmenu/TooltipOptionMenu.zsc"
 

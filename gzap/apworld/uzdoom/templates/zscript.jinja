@@ -185,3 +185,11 @@ class GZAP_DataPackageEventHandler : StaticEventHandler {
     }
   }
 }
+
+// Version mismatch sentinel. If the API version has changed between the generating
+// apworld and the pk3, this will not resolve and will result in an error.
+class GZAP_VERSION_MISMATCH_CHECKER {
+  void Init() {
+    let VERSION_MISMATCH = VERSION_MISMATCH__APWORLD_0_8_5_UNSTABLE_52__DOES_NOT_MATCH_PK3_VERSION;
+  }
+}

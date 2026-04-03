@@ -14,6 +14,9 @@ changed. Rescanning your wads is not *mandatory* but is *strongly recommended*.
     to find the corresponding version of it in the pool first.
     - If this is enabled, the level select screen will show you which weapons
       have been unlocked in each map.
+  - Errors caused by mismatches between the generating apworld and the pk3
+    loaded during play should now produce a slightly more obvious error at game
+    startup.
 - Changed:
   - Major overhaul of the yaml options.
     - Many settings that previously had to be controlled by editing the
