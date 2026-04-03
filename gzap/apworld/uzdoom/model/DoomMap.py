@@ -14,8 +14,7 @@ from typing import Dict, List, NamedTuple, Optional, Set, Type
 from .DoomLocation import DoomLocation
 from .DoomKey import DoomKey
 from .DoomReachable import DoomReachable
-from .prereqs import weapon_prereq, strings_to_prereq_fn
-
+from .prereqs import weapon_prereq, strings_to_prereq_fn, weapon_from_hint, is_combat_logic_hint
 
 class MAPINFO(NamedTuple):
     """
@@ -87,6 +86,10 @@ class DoomMap:
     def __post_init__(self, info):
         self.mapinfo = MAPINFO(**info)
         self.debug_name = f'map/{self.map}'
+
+    def finalize_tuning(self):
+        self.extra_rules.finalize_tuning(default=[])
+        self.extra_rules.add_universal_prereqs(self.prereqs)
 
     def all_locations(self, spawn_filter: int, categories: Set[str]) -> List[DoomLocation]:
         if not spawn_filter:
@@ -209,7 +212,12 @@ class DoomMap:
         return Counter(
             loc.orig_item.typename
             for loc in self.locations
-            if self.should_include_weapon(world, loc))
+            if self.should_include_weapon(world, loc)
+        ) + Counter(
+            weapon_from_hint(prereq)
+            for prereq in self.prereqs
+            if is_combat_logic_hint(prereq)
+        )
 
     def prior_weapons(self, world) -> Counter[str]:
         weapons = Counter()

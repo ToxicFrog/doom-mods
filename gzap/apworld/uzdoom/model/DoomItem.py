@@ -173,7 +173,7 @@ class DoomWeaponGrant(DoomFlag):
         # combat logic is enabled in any sense.
         map = world.wad_logic.get_map(self.map)
         for region in world.wad_logic.regions_in_map(map.map, True):
-            if region.requires_weapon(self.weapon, world.options.combat_logic_mode > 0):
+            if region.requires_weapon(self.weapon, world.options.combat_logic_mode):
                 return ItemClassification.progression
 
         # If auto combat logic is enabled, it's required if the automatic combat

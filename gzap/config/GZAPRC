@@ -116,8 +116,8 @@ category medium-ammo:
 # Shotgunners and chaingunners imply a need for that weapon if weapon logic is
 # turned on.
 prereqs {
-  actor ShotgunGuy: weapon/Shotgun/want;
-  actor ChaingunGuy: weapon/Chaingun/want;
+  actor ShotgunGuy: weapon/Shotgun/auto;
+  actor ChaingunGuy: weapon/Chaingun/auto;
 }
 
 # Various powerups that cannot be automatically analyzed.

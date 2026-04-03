@@ -69,16 +69,27 @@ class DoomReachable:
         # print(f'Tuning {self}: optimizing {self.tuning} -> {keysets}')
         self.prereqs = frozenset(keysets)
 
+    def add_universal_prereqs(self, prereqs):
+        if not self.prereqs:
+            self.prereqs = frozenset([frozenset(prereqs)])
+        else:
+            self.prereqs = frozenset(
+                frozenset(keyset | frozenset(prereqs))
+                for keyset in self.prereqs
+            )
+
     def has_combat_logic_hints(self) -> bool:
         for prereq in self.prereqs:
             if any(prereqs.is_combat_logic_hint(term) for term in prereq):
                 return True
         return False
 
-    def requires_weapon(self, weapon, include_want) -> bool:
-        terms = { f'weapon/{weapon}', 'f/weapon/{weapon}/need' }
-        if include_want:
+    def requires_weapon(self, weapon, weapon_logic_mode) -> bool:
+        terms = { f'weapon/{weapon}', f'/weapon/{weapon}/need' }
+        if weapon_logic_mode.is_enabled():
             terms |= { f'weapon/{weapon}/want' }
+        if weapon_logic_mode.is_auto():
+            terms |= { f'weapon/{weapon}/auto' }
 
         for prereq in self.prereqs:
             if terms & prereq:

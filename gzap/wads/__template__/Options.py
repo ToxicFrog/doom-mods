@@ -217,6 +217,13 @@ if wad.has_combat_logic_hints():
         option_manual = 1
         option_auto_per_level = 2
         option_auto_per_episode = 3
+
+        def is_disabled(self):
+            return self.value == 0
+        def is_enabled(self):
+            return not self.is_disabled()
+        def is_auto(self):
+            return self.value >= 2
 else:
     class CombatLogicMode(Choice):
         """
@@ -234,6 +241,13 @@ else:
         option_off = 0
         option_auto_per_level = 2
         option_auto_per_episode = 3
+
+        def is_disabled(self):
+            return self.value == 0
+        def is_enabled(self):
+            return not self.is_disabled()
+        def is_auto(self):
+            return self.value >= 2
 
 class CombatLogicSecrets(Toggle):
     """

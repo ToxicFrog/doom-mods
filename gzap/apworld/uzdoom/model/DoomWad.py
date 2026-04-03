@@ -559,7 +559,7 @@ class DoomWad:
         for name,region in self.regions.items():
             region.finalize_tuning(default=[])
         for map in self.maps.values():
-            map.extra_rules.finalize_tuning(default=[])
+            map.finalize_tuning()
         for loc in self.all_locations():
             self.locations_by_name[loc.name()] = loc
         self.finalize_ids(logic)
