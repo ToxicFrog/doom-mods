@@ -61,7 +61,12 @@ class DoomMap:
     levelname: str | None = None
     episodename: str | None = None
     clustername: str | None = None
+    # Total monster count
     monster_count: int = 0
+    # Monster count by typename
+    monsters: Dict[str,int] = field(default_factory=dict)
+    # Extra prereqs defined in GZAPRC that apply to the whole map
+    prereqs: List[str] = field(default_factory=list)
     # Data for the MAPINFO lump
     rank: int = 0
     mapinfo: Optional[MAPINFO] = None

@@ -24,7 +24,9 @@ class ::ScannedMap play {
   uint rank;
   Array<::ScannedLocation> locations;
   Array<int> secrets;
+  // Actors broken down by type.
   int monster_count;
+  Map<string, int> actors;
   // Highest skill we've completed a scan on.
   // The scanner uses this to find the next skill that will produce a different
   // spawn filter and thus a productive scan.
@@ -73,21 +75,31 @@ class ::ScannedMap play {
     // that may have similar issues.
     console.printfEX(PRINT_LOG, "");
 
-    let titles = string.format("\"levelname\": \"%s\", ", self.levelname);
+    let titles = string.format(" \"levelname\": \"%s\",", self.levelname);
     if (self.episodename != "") {
-      titles = titles .. string.format("\"episodename\": \"%s\", ", self.episodename);
+      titles.AppendFormat(" \"episodename\": \"%s\",", self.episodename);
     }
     if (self.clustername != "") {
-      titles = titles .. string.format("\"clustername\": \"%s\", ", self.clustername);
+      titles.AppendFormat(" \"clustername\": \"%s\",", self.clustername);
     }
     DEBUG("scanned map titles, level=%s episode=%s cluster=%s", self.levelname, self.episodename, self.clustername);
 
     ::Scanner.Output("MAP", string.format(
-      "\"map\": \"%s\", %s\"checksum\": \"%s\", \"rank\": %d, \"monster_count\": %d, \"info\": %s",
-      name, titles, LevelInfo.MapChecksum(name), self.rank, self.monster_count, GetMapinfoJSON()));
+      "\n  \"map\": \"%s\",%s\n"
+      "  \"checksum\": \"%s\", \"rank\": %d, \"monster_count\": %d,\n"
+      "  \"info\": %s,\n"
+      "  \"monsters\": { %s },\n"
+      "  \"prereqs\": [ %s ]\n",
+      name, titles,
+      LevelInfo.MapChecksum(name), self.rank, self.monster_count,
+      GetMapinfoJSON(),
+      GetMonsterCountJSON(),
+      GetPrereqs()));
+
     foreach (loc : locations) {
       loc.Output(spawn_filter);
     }
+
     foreach (sector : secrets) {
       ::Scanner.Output("SECRET", string.format(
         "\"pos\": [\"%s\",\"secret\",\"sector\",%d]", name, sector));
@@ -100,6 +112,11 @@ class ::ScannedMap play {
     self.last_skill = ::Util.GetSkill();
   }
 
+  bool IsMonster(class<Actor> cls) {
+    let thing = GetDefaultByType(cls);
+    return thing.bISMONSTER && !thing.bCORPSE;
+  }
+
   void CopyFromLevelLocals(LevelLocals level) {
     self.levelname = level.LevelName;
 
@@ -108,11 +125,13 @@ class ::ScannedMap play {
         self.secrets.Push(sector.Index());
       }
     }
+
     foreach (Actor thing : ThinkerIterator.Create("Actor", Thinker.STAT_DEFAULT)) {
-      if (thing.bISMONSTER && !thing.bCORPSE) {
-        self.monster_count++;
-      }
+      if (thing.bISMONSTER && !thing.bCORPSE) self.monster_count++;
+      let count = self.actors.GetIfExists(thing.GetClassName());
+      self.actors.Insert(thing.GetClassName(), count+1);
     }
+
     if (level.clusterflags & level.CLUSTER_HUB) {
       self.hub = level.cluster;
     }
@@ -229,5 +248,20 @@ class ::ScannedMap play {
       return string.format("%s%s\"%s\"", buf, buf == "" ? "" : ", ", flagname);
     }
     return buf;
+  }
+
+  string GetMonsterCountJSON() {
+    string buf = "";
+    foreach (typename, count : self.actors) {
+      if (!IsMonster(typename)) continue;
+      buf.AppendFormat("%s\"%s\": %d", buf == "" ? "" : ", ", typename, count);
+    }
+    return buf;
+  }
+
+  string GetPrereqs() {
+    let prereqs = ::RC.Get().GetPrereqsForMap(self.name, self.actors);
+    if (prereqs.Size() == 0) return "";
+    return string.format("\"%s\"", prereqs.Join("\", \""));
   }
 }

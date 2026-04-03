@@ -21,7 +21,11 @@ class ::Scanner play {
   Array<int> filters_by_skill;
 
   static void Output(string type, string payload) {
-    ::IPC.Send(type, string.format("{ %s }", payload));
+    if (payload.Left(1) == "\n") {
+      ::IPC.Send(type, string.format("{%s}", payload));
+    } else {
+      ::IPC.Send(type, string.format("{ %s }", payload));
+    }
   }
 
   void Init() {
