@@ -21,6 +21,10 @@ scanner {
   # logic_flags use_hub_logic hub_logic_exits=MAP15,MAP20,MAP22;
 }
 
+prereqs {
+  all: weapon/Axe/need;
+  actor Hellblaze: weapon/Hellclaw/auto;
+}
 
 # Custom item categories.
 category small-ammo: AmmoCultistSpike;  # Same as a small spike bundle

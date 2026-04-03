@@ -1,6 +1,11 @@
 AP-SCAN { "flags": [] }
-AP-MAP { "map": "MAP01", "levelname": "Cold Rock", "checksum": "f5a88e5eb33109c5ea424099f4625181", "rank": 0, "monster_count": 108, "info": { "levelnum": 1, "title": "Cold Rock", "is_lookup": false, "sky1": "sky10", "sky1speed": "0.000000", "sky2": "sky10", "sky2speed": "0.000000", "music": "", "music_track": "0", "cluster": 0, "flags": [] } }
-AP-MONSTERS { "map": "MAP01", "monsters": { "Warlock": 1, "Conscript": 28, "ShadowAbhaothLevitating": 1, "Hellblaze": 7, "IDBearWarriorStationary": 1, "SniperCultist": 10, "Crawler": 13, "CritterPraak": 2, "IronMaiden": 1, "CritterChick": 3, "ForgeElemental": 3, "CritterCandlefly": 7, "ShadowAbhaothStanding": 4, "Cultist": 18, "IDReaverStationary": 1, "Initiate": 2, "CritterGhostEel": 6 } }
+AP-MAP {
+  "map": "MAP01", "levelname": "Cold Rock",
+  "checksum": "f5a88e5eb33109c5ea424099f4625181", "rank": 0, "monster_count": 108,
+  "info": { "levelnum": 1, "title": "Cold Rock", "is_lookup": false, "sky1": "sky10", "sky1speed": "0.000000", "sky2": "sky10", "sky2speed": "0.000000", "music": "", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "ShadowAbhaothStanding": 4, "SniperCultist": 10, "IDReaverStationary": 1, "CritterChick": 3, "ForgeElemental": 3, "CritterGhostEel": 6, "Cultist": 18, "Crawler": 13, "CritterPraak": 2, "Warlock": 1, "Hellblaze": 7, "CritterCandlefly": 7, "IDBearWarriorStationary": 1, "IronMaiden": 1, "Conscript": 28, "ShadowAbhaothLevitating": 1, "Initiate": 2 },
+  "prereqs": [ "weapon/Hellclaw/auto", "weapon/Axe/need" ]
+}
 AP-ITEM { "category": "small-health", "typename": "HealthCreamFungus", "tag": "Cream Fungus", "pos": ["MAP01",3928,-2651,80] }
 AP-ITEM { "category": "small-health", "typename": "HealthCreamFungus", "tag": "Cream Fungus", "pos": ["MAP01",4021,-2199,194] }
 AP-ITEM { "category": "small-health", "typename": "HealthCreamFungus", "tag": "Cream Fungus", "pos": ["MAP01",2496,-2906,104] }
@@ -261,8 +266,13 @@ AP-SECRET { "pos": ["MAP01","secret","sector",3742] }
 AP-SECRET { "pos": ["MAP01","secret","sector",4187] }
 AP-SECRET { "pos": ["MAP01","secret","sector",10941] }
 AP-SECRET { "pos": ["MAP01","secret","sector",11350] }
-AP-MAP { "map": "MAP02", "levelname": "Plaza", "checksum": "e5cf9d7f7841f45eaace94ca65b42418", "rank": 1, "monster_count": 157, "info": { "levelnum": 2, "title": "Plaza", "is_lookup": false, "sky1": "sky10", "sky1speed": "0.000000", "sky2": "sky10", "sky2speed": "0.000000", "music": "", "music_track": "0", "cluster": 0, "flags": [] } }
-AP-MONSTERS { "map": "MAP02", "monsters": { "Cerberus": 10, "Crawler": 30, "Conscript": 29, "ShadowAbhaothLevitating": 2, "CritterPraak": 2, "IronMaiden": 3, "CritterCandlefly": 3, "CritterGhostEel": 3, "JunkPoop": 2, "SniperCultist": 11, "Cultist": 26, "ShadowAbhaothStanding": 2, "Initiate": 33, "ForgeElemental": 1 } }
+AP-MAP {
+  "map": "MAP02", "levelname": "Plaza",
+  "checksum": "e5cf9d7f7841f45eaace94ca65b42418", "rank": 1, "monster_count": 157,
+  "info": { "levelnum": 2, "title": "Plaza", "is_lookup": false, "sky1": "sky10", "sky1speed": "0.000000", "sky2": "sky10", "sky2speed": "0.000000", "music": "", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "SniperCultist": 11, "Initiate": 33, "ForgeElemental": 1, "CritterGhostEel": 3, "Cultist": 26, "Crawler": 30, "CritterPraak": 2, "JunkPoop": 2, "CritterCandlefly": 3, "IronMaiden": 3, "ShadowAbhaothStanding": 2, "Cerberus": 10, "Conscript": 29, "ShadowAbhaothLevitating": 2 },
+  "prereqs": [ "weapon/Axe/need" ]
+}
 AP-ITEM { "category": "weapon", "typename": "SpikeGun", "tag": "Spike Gun", "filter": 31, "pos": ["MAP02",-302,70,20] }
 AP-ITEM { "category": "weapon", "typename": "Axe", "tag": "Axe", "filter": 31, "pos": ["MAP02",283,1916,6] }
 AP-ITEM { "category": "small-ammo", "typename": "FragfireCan", "tag": "Fragfire Can", "filter": 55, "pos": ["MAP02",-312,180,20] }
@@ -538,8 +548,13 @@ AP-SECRET { "pos": ["MAP02","secret","sector",1251] }
 AP-SECRET { "pos": ["MAP02","secret","sector",1655] }
 AP-SECRET { "pos": ["MAP02","secret","sector",2809] }
 AP-SECRET { "pos": ["MAP02","secret","sector",3938] }
-AP-MAP { "map": "MAP03", "levelname": "Barracks", "checksum": "cf689ca532e1d748dff4654a7dd923ac", "rank": 2, "monster_count": 130, "info": { "levelnum": 3, "title": "Barracks", "is_lookup": false, "sky1": "sky10", "sky1speed": "0.000000", "sky2": "sky10", "sky2speed": "0.000000", "music": "", "music_track": "0", "cluster": 0, "flags": [] } }
-AP-MONSTERS { "map": "MAP03", "monsters": { "Initiate": 40, "Crawler": 12, "Conscript": 19, "ShadowAbhaothLevitating": 1, "IDBearWarriorRecruitable": 1, "IronMaiden": 3, "CritterPraak": 1, "Warlock": 3, "SniperCultist": 18, "Cultist": 19, "ShadowAbhaothStanding": 3, "ShieldWallIronMaiden": 1, "Cerberus": 9 } }
+AP-MAP {
+  "map": "MAP03", "levelname": "Barracks",
+  "checksum": "cf689ca532e1d748dff4654a7dd923ac", "rank": 2, "monster_count": 130,
+  "info": { "levelnum": 3, "title": "Barracks", "is_lookup": false, "sky1": "sky10", "sky1speed": "0.000000", "sky2": "sky10", "sky2speed": "0.000000", "music": "", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "IDBearWarriorRecruitable": 1, "SniperCultist": 18, "Initiate": 40, "Cerberus": 9, "Cultist": 19, "CritterPraak": 1, "Warlock": 3, "ShieldWallIronMaiden": 1, "IronMaiden": 3, "ShadowAbhaothLevitating": 1, "Conscript": 19, "ShadowAbhaothStanding": 3, "Crawler": 12 },
+  "prereqs": [ "weapon/Axe/need" ]
+}
 AP-ITEM { "category": "small-ammo", "typename": "FragfireCanHalf", "tag": "Half-Empty Fragfire Can", "pos": ["MAP03",-573,-167,48] }
 AP-ITEM { "category": "small-ammo", "typename": "AmmoCultistSpike", "tag": "Spike Bundle", "pos": ["MAP03",-594,-166,48] }
 AP-ITEM { "category": "small-ammo", "typename": "AmmoCultistSpike", "tag": "Spike Bundle", "pos": ["MAP03",-618,-174,48] }
@@ -733,8 +748,13 @@ AP-SECRET { "pos": ["MAP03","secret","sector",188] }
 AP-SECRET { "pos": ["MAP03","secret","sector",1839] }
 AP-SECRET { "pos": ["MAP03","secret","sector",1999] }
 AP-SECRET { "pos": ["MAP03","secret","sector",2435] }
-AP-MAP { "map": "MAP04", "levelname": "Technical Space", "checksum": "7dbcdac3529490802d20ce9ea50e2a6f", "rank": 3, "monster_count": 188, "info": { "levelnum": 4, "title": "Technical Space", "is_lookup": false, "sky1": "sky10", "sky1speed": "0.000000", "sky2": "sky10", "sky2speed": "0.000000", "music": "", "music_track": "0", "cluster": 0, "flags": [] } }
-AP-MONSTERS { "map": "MAP04", "monsters": { "Initiate": 49, "CritterCandlefly": 5, "Warlock": 2, "Crawler": 33, "Conscript": 25, "NPCTheForgottenOne": 1, "CritterPraak": 1, "IronMaiden": 4, "ShadowAbhaothStanding": 2, "NPCTiatiRegular": 1, "Cerberus": 21, "IDSentry": 2, "Cultist": 19, "IronUrchin": 9, "SniperCultist": 7, "ForgeElemental": 7 } }
+AP-MAP {
+  "map": "MAP04", "levelname": "Technical Space",
+  "checksum": "7dbcdac3529490802d20ce9ea50e2a6f", "rank": 3, "monster_count": 188,
+  "info": { "levelnum": 4, "title": "Technical Space", "is_lookup": false, "sky1": "sky10", "sky1speed": "0.000000", "sky2": "sky10", "sky2speed": "0.000000", "music": "", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "SniperCultist": 7, "ForgeElemental": 7, "NPCTheForgottenOne": 1, "Cultist": 19, "Crawler": 33, "CritterPraak": 1, "IronUrchin": 9, "NPCTiatiRegular": 1, "IDSentry": 2, "Warlock": 2, "CritterCandlefly": 5, "IronMaiden": 4, "Initiate": 49, "Cerberus": 21, "Conscript": 25, "ShadowAbhaothStanding": 2 },
+  "prereqs": [ "weapon/Axe/need" ]
+}
 AP-ITEM { "category": "key", "typename": "InventoryPowerCore", "tag": "Power Core", "pos": ["MAP04",-3548,-3050,-377] }
 AP-KEY { "typename": "InventoryPowerCore", "tag": "Power Core", "scopename": "MAP04", "cluster": 0, "maps": ["MAP04"] }
 AP-ITEM { "category": "small-health", "typename": "HealthPotionOfMinorHealing", "tag": "Potion of Minor Healing", "pos": ["MAP04",-3560,-2336,-457] }
@@ -1016,8 +1036,13 @@ AP-SECRET { "pos": ["MAP04","secret","sector",3164] }
 AP-SECRET { "pos": ["MAP04","secret","sector",4364] }
 AP-SECRET { "pos": ["MAP04","secret","sector",4695] }
 AP-SECRET { "pos": ["MAP04","secret","sector",5459] }
-AP-MAP { "map": "MAP05", "levelname": "Grove", "checksum": "02a98dfa9ad52d41021b4d5ba9c90407", "rank": 4, "monster_count": 237, "info": { "levelnum": 5, "title": "Grove", "is_lookup": false, "sky1": "sky10", "sky1speed": "0.000000", "sky2": "sky10", "sky2speed": "0.000000", "music": "", "music_track": "0", "cluster": 0, "flags": [] } }
-AP-MONSTERS { "map": "MAP05", "monsters": { "Initiate": 71, "Cerberus": 12, "CritterChick": 4, "Crawler": 18, "Conscript": 9, "Warlock": 3, "CritterPraak": 1, "IronMaiden": 22, "ForgeElemental": 1, "CritterCandlefly": 16, "SniperCultist": 30, "CritterChickNest": 1, "Cultist": 32, "IronUrchin": 4, "ShieldWallIronMaiden": 4, "CritterGhostEel": 9 } }
+AP-MAP {
+  "map": "MAP05", "levelname": "Grove",
+  "checksum": "02a98dfa9ad52d41021b4d5ba9c90407", "rank": 4, "monster_count": 237,
+  "info": { "levelnum": 5, "title": "Grove", "is_lookup": false, "sky1": "sky10", "sky1speed": "0.000000", "sky2": "sky10", "sky2speed": "0.000000", "music": "", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "SniperCultist": 30, "Initiate": 71, "CritterChick": 4, "ForgeElemental": 1, "CritterGhostEel": 9, "Cultist": 32, "Crawler": 18, "CritterPraak": 1, "IronUrchin": 4, "Warlock": 3, "CritterCandlefly": 16, "CritterChickNest": 1, "IronMaiden": 22, "Conscript": 9, "Cerberus": 12, "ShieldWallIronMaiden": 4 },
+  "prereqs": [ "weapon/Axe/need" ]
+}
 AP-ITEM { "category": "small-health", "typename": "HealthApple", "tag": "Apple", "pos": ["MAP05",-3646,-706,-24] }
 AP-ITEM { "category": "small-health", "typename": "HealthApple", "tag": "Apple", "pos": ["MAP05",-3702,-555,-24] }
 AP-ITEM { "category": "small-ammo", "typename": "AmmoCultistSpike", "tag": "Spike Bundle", "pos": ["MAP05",-1962,-434,36] }
@@ -1274,8 +1299,13 @@ AP-SECRET { "pos": ["MAP05","secret","sector",2834] }
 AP-SECRET { "pos": ["MAP05","secret","sector",3180] }
 AP-SECRET { "pos": ["MAP05","secret","sector",4361] }
 AP-SECRET { "pos": ["MAP05","secret","sector",6332] }
-AP-MAP { "map": "MAP06", "levelname": "Errant Signal", "checksum": "b1002107af16e4bf7d6a0d79f765cebc", "rank": 5, "monster_count": 104, "info": { "levelnum": 6, "title": "Errant Signal", "is_lookup": false, "sky1": "sky11", "sky1speed": "0.001400", "sky2": "sky11", "sky2speed": "0.000000", "music": "", "music_track": "0", "cluster": 0, "flags": [] } }
-AP-MONSTERS { "map": "MAP06", "monsters": { "Cerberus": 11, "Crawler": 1, "Conscript": 10, "BlindNithriel": 12, "VoidUnconsciousZan": 2, "Warlock": 3, "GiantNithriel": 1, "NPCTiatiRegular": 1, "ShadowAbhaothStanding": 7, "Initiate": 48, "ForgeElemental": 8 } }
+AP-MAP {
+  "map": "MAP06", "levelname": "Errant Signal",
+  "checksum": "b1002107af16e4bf7d6a0d79f765cebc", "rank": 5, "monster_count": 104,
+  "info": { "levelnum": 6, "title": "Errant Signal", "is_lookup": false, "sky1": "sky11", "sky1speed": "0.001400", "sky2": "sky11", "sky2speed": "0.000000", "music": "", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "BlindNithriel": 12, "VoidUnconsciousZan": 2, "ForgeElemental": 8, "Cerberus": 11, "Warlock": 3, "Crawler": 1, "Initiate": 48, "GiantNithriel": 1, "NPCTiatiRegular": 1, "ShadowAbhaothStanding": 7, "Conscript": 10 },
+  "prereqs": [ "weapon/Axe/need" ]
+}
 AP-ITEM { "category": "key", "typename": "VineKey", "tag": "Vine Key", "pos": ["MAP06",1320,401,244] }
 AP-KEY { "typename": "VineKey", "tag": "Vine Key", "scopename": "MAP06", "cluster": 0, "maps": ["MAP06"] }
 AP-ITEM { "category": "small-health", "typename": "HealthCreamFungus", "tag": "Cream Fungus", "pos": ["MAP06",321,2705,178] }
@@ -1480,8 +1510,13 @@ AP-ITEM { "category": "weapon", "typename": "HatchetAndShield", "tag": "Hatchet 
 AP-ITEM { "category": "weapon", "typename": "ForcePike", "tag": "Force Pike", "filter": 32, "pos": ["MAP06",2744,-7968,1360] }
 AP-ITEM { "category": "weapon", "typename": "GreatAxe", "tag": "Great Axe", "filter": 32, "pos": ["MAP06",248,-5984,1360] }
 AP-ITEM { "category": "weapon", "typename": "GreatAxe", "tag": "Great Axe", "filter": 32, "pos": ["MAP06",5888,-5848,1360] }
-AP-MAP { "map": "MAP07", "levelname": "Parapet", "checksum": "5364c0f67a1e7fd474f2ae898ba139da", "rank": 6, "monster_count": 138, "info": { "levelnum": 7, "title": "Parapet", "is_lookup": false, "sky1": "sky13", "sky1speed": "0.000000", "sky2": "sky13", "sky2speed": "0.000000", "music": "", "music_track": "0", "cluster": 0, "flags": [] } }
-AP-MONSTERS { "map": "MAP07", "monsters": { "Warlock": 6, "Crawler": 6, "Conscript": 23, "CritterPraak": 2, "IronMaiden": 4, "CritterChick": 1, "SniperCultist": 9, "Cerberus": 20, "Cultist": 15, "IronUrchin": 13, "Initiate": 38, "ForgeElemental": 1 } }
+AP-MAP {
+  "map": "MAP07", "levelname": "Parapet",
+  "checksum": "5364c0f67a1e7fd474f2ae898ba139da", "rank": 6, "monster_count": 138,
+  "info": { "levelnum": 7, "title": "Parapet", "is_lookup": false, "sky1": "sky13", "sky1speed": "0.000000", "sky2": "sky13", "sky2speed": "0.000000", "music": "", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "SniperCultist": 9, "CritterChick": 1, "ForgeElemental": 1, "Cultist": 15, "CritterPraak": 2, "IronUrchin": 13, "Warlock": 6, "IronMaiden": 4, "Cerberus": 20, "Conscript": 23, "Initiate": 38, "Crawler": 6 },
+  "prereqs": [ "weapon/Axe/need" ]
+}
 AP-ITEM { "category": "small-health", "typename": "HealthCreamFungus", "tag": "Cream Fungus", "pos": ["MAP07",-14316,5816,0] }
 AP-ITEM { "category": "small-health", "typename": "HealthCreamFungus", "tag": "Cream Fungus", "pos": ["MAP07",-14288,5784,0] }
 AP-ITEM { "category": "small-health", "typename": "HealthCreamFungus", "tag": "Cream Fungus", "pos": ["MAP07",-14328,5792,0] }
@@ -1728,8 +1763,13 @@ AP-SECRET { "pos": ["MAP07","secret","sector",1865] }
 AP-SECRET { "pos": ["MAP07","secret","sector",1876] }
 AP-SECRET { "pos": ["MAP07","secret","sector",2761] }
 AP-SECRET { "pos": ["MAP07","secret","sector",5392] }
-AP-MAP { "map": "MAP08", "levelname": "Pale Wind", "checksum": "e324ff2f8cdd480dff5f1113c4e6e31b", "rank": 7, "monster_count": 111, "info": { "levelnum": 8, "title": "Pale Wind", "is_lookup": false, "sky1": "White", "sky1speed": "0.000000", "sky2": "White", "sky2speed": "0.000000", "music": "", "music_track": "0", "cluster": 0, "flags": [] } }
-AP-MONSTERS { "map": "MAP08", "monsters": { "Initiate": 23, "Crawler": 10, "Conscript": 9, "SniperCultist": 17, "CritterPraak": 1, "IronMaiden": 5, "Cerberus": 9, "NPCAndrikSick": 1, "JunkPoop": 1, "Warlock": 5, "Cultist": 12, "IronUrchin": 8, "ShieldWallIronMaiden": 9, "ForgeElemental": 1 } }
+AP-MAP {
+  "map": "MAP08", "levelname": "Pale Wind",
+  "checksum": "e324ff2f8cdd480dff5f1113c4e6e31b", "rank": 7, "monster_count": 111,
+  "info": { "levelnum": 8, "title": "Pale Wind", "is_lookup": false, "sky1": "White", "sky1speed": "0.000000", "sky2": "White", "sky2speed": "0.000000", "music": "", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "SniperCultist": 17, "Initiate": 23, "ForgeElemental": 1, "Cerberus": 9, "Cultist": 12, "Crawler": 10, "CritterPraak": 1, "IronUrchin": 8, "Warlock": 5, "NPCAndrikSick": 1, "JunkPoop": 1, "IronMaiden": 5, "ShieldWallIronMaiden": 9, "Conscript": 9 },
+  "prereqs": [ "weapon/Axe/need" ]
+}
 AP-ITEM { "category": "weapon", "typename": "Crylance", "tag": "Crylance", "secret": true, "tid": 260, "filter": 31, "pos": ["MAP08",-4362,-9552,1724] }
 AP-ITEM { "category": "small-health", "typename": "HealthCheese", "tag": "Cheese", "pos": ["MAP08",-251,-1628,1631] }
 AP-ITEM { "category": "small-health", "typename": "HealthTomato", "tag": "Tomato", "pos": ["MAP08",-253,-1574,1631] }
@@ -1905,8 +1945,13 @@ AP-SECRET { "pos": ["MAP08","secret","sector",40] }
 AP-SECRET { "pos": ["MAP08","secret","sector",292] }
 AP-SECRET { "pos": ["MAP08","secret","sector",3370] }
 AP-SECRET { "pos": ["MAP08","secret","sector",5041] }
-AP-MAP { "map": "MAP09", "levelname": "Research and Decay", "checksum": "edddd392d35becb5ba7e2fd213465ab3", "rank": 8, "monster_count": 80, "info": { "levelnum": 9, "title": "Research and Decay", "is_lookup": false, "sky1": "sky11", "sky1speed": "0.000000", "sky2": "sky11", "sky2speed": "0.000000", "music": "", "music_track": "0", "cluster": 0, "flags": [] } }
-AP-MONSTERS { "map": "MAP09", "monsters": { "BileBlister": 9, "NPCLithRegular": 4, "Golem": 4, "ShadowAbhaothLevitating": 1, "CritterPraak": 2, "IronMaiden": 7, "CritterGrobbog": 3, "CritterGhostEel": 3, "Cultist": 16, "NPCZuraUnconscious": 1, "Initiate": 25, "Cerberus": 1, "ForgeElemental": 4 } }
+AP-MAP {
+  "map": "MAP09", "levelname": "Research and Decay",
+  "checksum": "edddd392d35becb5ba7e2fd213465ab3", "rank": 8, "monster_count": 80,
+  "info": { "levelnum": 9, "title": "Research and Decay", "is_lookup": false, "sky1": "sky11", "sky1speed": "0.000000", "sky2": "sky11", "sky2speed": "0.000000", "music": "", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Initiate": 25, "NPCLithRegular": 4, "ForgeElemental": 4, "Cerberus": 1, "CritterGrobbog": 3, "Golem": 4, "CritterGhostEel": 3, "Cultist": 16, "CritterPraak": 2, "NPCZuraUnconscious": 1, "ShadowAbhaothLevitating": 1, "IronMaiden": 7, "BileBlister": 9 },
+  "prereqs": [ "weapon/Axe/need" ]
+}
 AP-ITEM { "category": "small-health", "typename": "HealthCreamFungus", "tag": "Cream Fungus", "pos": ["MAP09",-4312,-79,-546] }
 AP-ITEM { "category": "small-health", "typename": "HealthCreamFungus", "tag": "Cream Fungus", "pos": ["MAP09",-4319,-104,-546] }
 AP-ITEM { "category": "small-health", "typename": "HealthCreamFungus", "tag": "Cream Fungus", "pos": ["MAP09",-4312,-145,-546] }
@@ -2052,8 +2097,13 @@ AP-SECRET { "pos": ["MAP09","secret","sector",2635] }
 AP-SECRET { "pos": ["MAP09","secret","sector",4834] }
 AP-SECRET { "pos": ["MAP09","secret","sector",4836] }
 AP-SECRET { "pos": ["MAP09","secret","sector",5129] }
-AP-MAP { "map": "MAP10", "levelname": "Crystal Heart", "checksum": "ff52f494c59f964d86f4a511d52166f6", "rank": 9, "monster_count": 644, "info": { "levelnum": 10, "title": "Crystal Heart", "is_lookup": false, "sky1": "sky14", "sky1speed": "0.000000", "sky2": "sky14", "sky2speed": "0.000000", "music": "", "music_track": "0", "cluster": 0, "flags": [] } }
-AP-MONSTERS { "map": "MAP10", "monsters": { "Warlock": 48, "NPCWoundedShieldguard": 1, "IDFixerStationary": 1, "NPCDendraRegular": 2, "IDBearWarriorRecruitable": 1, "IronUrchin": 24, "NPCDuraRegular": 2, "IDBearWarriorStationary": 9, "CinematicNithriel": 1, "IDWitchStationary": 1, "NPCWoundedWitch": 1, "IDReaverRecruitable": 1, "Cultist": 47, "Initiate": 158, "NPCAndrikBroom": 1, "NPCLithRegular": 1, "Conscript": 56, "ShadowAbhaothLevitating": 1, "BlindNithriel": 1, "NPCWoundedFixer": 1, "DwarfShieldguard": 1, "MinotaurAxeman": 1, "NPCZuraWriting": 1, "IDLancerStationary": 3, "ForgeElemental": 18, "CritterCandlefly": 4, "NPCWoundedEarthMotherHealing": 1, "NPCZuraRecovering": 1, "Crawler": 61, "Golem": 53, "NPCTiatiWounded": 1, "CritterPraak": 1, "CritterGhostEel": 10, "SniperCultist": 27, "PitLord": 13, "Cerberus": 51, "IronMaiden": 27, "NPCWoundedEarthMother": 1, "IDReaverStationary": 8, "PitLordAlphaCinematic": 1, "IDSentry": 2 } }
+AP-MAP {
+  "map": "MAP10", "levelname": "Crystal Heart",
+  "checksum": "ff52f494c59f964d86f4a511d52166f6", "rank": 9, "monster_count": 644,
+  "info": { "levelnum": 10, "title": "Crystal Heart", "is_lookup": false, "sky1": "sky14", "sky1speed": "0.000000", "sky2": "sky14", "sky2speed": "0.000000", "music": "", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "NPCZuraRecovering": 1, "SniperCultist": 27, "IDReaverStationary": 8, "CinematicNithriel": 1, "NPCLithRegular": 1, "NPCWoundedFixer": 1, "ForgeElemental": 18, "Cerberus": 51, "IDFixerStationary": 1, "IDReaverRecruitable": 1, "CritterGhostEel": 10, "NPCDendraRegular": 2, "NPCZuraWriting": 1, "Cultist": 47, "PitLordAlphaCinematic": 1, "NPCWoundedEarthMother": 1, "CritterPraak": 1, "IronUrchin": 24, "NPCWoundedWitch": 1, "DwarfShieldguard": 1, "MinotaurAxeman": 1, "BlindNithriel": 1, "IDSentry": 2, "Warlock": 48, "IDWitchStationary": 1, "NPCDuraRegular": 2, "NPCTiatiWounded": 1, "CritterCandlefly": 4, "Initiate": 158, "PitLord": 13, "IDLancerStationary": 3, "IronMaiden": 27, "NPCAndrikBroom": 1, "ShadowAbhaothLevitating": 1, "NPCWoundedEarthMotherHealing": 1, "NPCWoundedShieldguard": 1, "Crawler": 61, "Golem": 53, "Conscript": 56, "IDBearWarriorStationary": 9, "IDBearWarriorRecruitable": 1 },
+  "prereqs": [ "weapon/Axe/need" ]
+}
 AP-ITEM { "category": "small-health", "typename": "HealthApple", "tag": "Apple", "pos": ["MAP10",-2532,-6188,-590] }
 AP-ITEM { "category": "small-health", "typename": "HealthApple", "tag": "Apple", "pos": ["MAP10",-2596,-6272,-606] }
 AP-ITEM { "category": "small-health", "typename": "HealthApple", "tag": "Apple", "tid": 11, "pos": ["MAP10",-2476,-6304,-606] }
@@ -2708,8 +2758,13 @@ AP-ITEM { "category": "big-ammo", "typename": "InventoryBagOfHolding", "tag": "B
 AP-SECRET { "pos": ["MAP10","secret","sector",1200] }
 AP-SECRET { "pos": ["MAP10","secret","sector",1479] }
 AP-SECRET { "pos": ["MAP10","secret","sector",8278] }
-AP-MAP { "map": "MAP11", "levelname": "Deep Chill", "checksum": "198e2c80f02fa5a4b5f065b786263610", "rank": 0, "monster_count": 107, "info": { "levelnum": 11, "title": "Deep Chill", "is_lookup": false, "sky1": "sky14", "sky1speed": "0.000000", "sky2": "sky14", "sky2speed": "0.000000", "music": "", "music_track": "0", "cluster": 0, "flags": [] } }
-AP-MONSTERS { "map": "MAP11", "monsters": { "Warlock": 5, "Conscript": 12, "BlindNithriel": 1, "JunkPoop": 4, "Hellblaze": 7, "ForgeElemental": 2, "CritterCandlefly": 2, "Crawler": 4, "Golem": 3, "CritterPraak": 1, "IronMaiden": 7, "PitLord": 3, "Initiate": 20, "Cultist": 7, "IronUrchin": 10, "SniperCultist": 14, "Cerberus": 5 } }
+AP-MAP {
+  "map": "MAP11", "levelname": "Deep Chill",
+  "checksum": "198e2c80f02fa5a4b5f065b786263610", "rank": 0, "monster_count": 107,
+  "info": { "levelnum": 11, "title": "Deep Chill", "is_lookup": false, "sky1": "sky14", "sky1speed": "0.000000", "sky2": "sky14", "sky2speed": "0.000000", "music": "", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "ForgeElemental": 2, "Cerberus": 5, "Cultist": 7, "CritterPraak": 1, "IronUrchin": 10, "BlindNithriel": 1, "JunkPoop": 4, "CritterCandlefly": 2, "PitLord": 3, "IronMaiden": 7, "Golem": 3, "Crawler": 4, "Hellblaze": 7, "Warlock": 5, "SniperCultist": 14, "Conscript": 12, "Initiate": 20 },
+  "prereqs": [ "weapon/Hellclaw/auto", "weapon/Axe/need" ]
+}
 AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag": "Vial of Healing", "pos": ["MAP11",1812,-3780,456] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "pos": ["MAP11",264,-5664,488] }
 AP-ITEM { "category": "small-health", "typename": "HealthCreamFungus", "tag": "Cream Fungus", "pos": ["MAP11",1193,-9762,296] }
@@ -2927,8 +2982,13 @@ AP-SECRET { "pos": ["MAP11","secret","sector",7671] }
 AP-SECRET { "pos": ["MAP11","secret","sector",9546] }
 AP-SECRET { "pos": ["MAP11","secret","sector",10304] }
 AP-SECRET { "pos": ["MAP11","secret","sector",10552] }
-AP-MAP { "map": "MAP12", "levelname": "Mansion", "checksum": "d464edde35e22fddedccce6aea94f6a7", "rank": 1, "monster_count": 304, "info": { "levelnum": 12, "title": "Mansion", "is_lookup": false, "sky1": "sky14", "sky1speed": "0.000000", "sky2": "sky14", "sky2speed": "0.000000", "music": "", "music_track": "0", "cluster": 0, "flags": [] } }
-AP-MONSTERS { "map": "MAP12", "monsters": { "Initiate": 58, "Mentalist": 52, "Conscript": 35, "JunkPoop": 1, "CultSoulStonePuzzle": 1, "Hellblaze": 14, "IDBearWarriorStationary": 6, "SniperCultist": 36, "Crawler": 6, "Golem": 4, "CritterChick": 6, "CritterPraak": 3, "IronMaiden": 19, "Warlock": 5, "PitLord": 14, "ForgeElemental": 1, "Cerberus": 15, "CritterShadowleech": 7, "IDReaverStationary": 3, "Cultist": 17, "CritterGhostEel": 1 } }
+AP-MAP {
+  "map": "MAP12", "levelname": "Mansion",
+  "checksum": "d464edde35e22fddedccce6aea94f6a7", "rank": 1, "monster_count": 304,
+  "info": { "levelnum": 12, "title": "Mansion", "is_lookup": false, "sky1": "sky14", "sky1speed": "0.000000", "sky2": "sky14", "sky2speed": "0.000000", "music": "", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Mentalist": 52, "IDReaverStationary": 3, "Initiate": 58, "CritterChick": 6, "ForgeElemental": 1, "Cerberus": 15, "IDBearWarriorStationary": 6, "CritterGhostEel": 1, "Cultist": 17, "CritterPraak": 3, "JunkPoop": 1, "Hellblaze": 14, "Golem": 4, "Warlock": 5, "PitLord": 14, "Crawler": 6, "IronMaiden": 19, "CultSoulStonePuzzle": 1, "Conscript": 35, "CritterShadowleech": 7, "SniperCultist": 36 },
+  "prereqs": [ "weapon/Hellclaw/auto", "weapon/Axe/need" ]
+}
 AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "filter": 49, "pos": ["MAP12",-4792,-12084,-600] }
 AP-ITEM { "category": "weapon", "typename": "Axe", "tag": "Axe", "filter": 31, "pos": ["MAP12",-1229,-4100,-232] }
 AP-ITEM { "category": "small-health", "typename": "HealthPotionOfMinorHealing", "tag": "Potion of Minor Healing", "pos": ["MAP12",-5668,-9824,-416] }
@@ -3215,8 +3275,13 @@ AP-SECRET { "pos": ["MAP12","secret","sector",8322] }
 AP-SECRET { "pos": ["MAP12","secret","sector",9010] }
 AP-SECRET { "pos": ["MAP12","secret","sector",10806] }
 AP-SECRET { "pos": ["MAP12","secret","sector",10827] }
-AP-MAP { "map": "MAP13", "levelname": "Besieged", "clustername": "Besieged", "checksum": "9d2b17952e852d9939f61dcf1a274004", "rank": 2, "monster_count": 299, "info": { "levelnum": 13, "title": "Besieged", "is_lookup": false, "sky1": "sky14", "sky1speed": "0.000000", "sky2": "sky14", "sky2speed": "0.000000", "music": "", "music_track": "0", "cluster": 13, "flags": [] } }
-AP-MONSTERS { "map": "MAP13", "monsters": { "Warlock": 3, "Mentalist": 12, "IDFixerStationary": 4, "NPCGrundWarg": 1, "DwarfMilitia": 1, "JunkPoop": 2, "NPCReaverDrinker": 1, "Hellblaze": 21, "ShieldWallIronMaiden": 5, "IDBearWarriorStationary": 7, "NPCEraantheRegular": 2, "NPCBearWarriorDrinker": 1, "IronMaiden": 13, "NPCLadyIngrimTavernkeep": 1, "PitLordCommander": 1, "PsiDemon": 1, "Hellion": 3, "Cultist": 14, "IronUrchin": 17, "ShadowAbhaothSitting": 1, "MinotaurAxeman": 1, "Initiate": 22, "PitLord": 8, "NPCMurguthRegular": 2, "NPCJaromirRegular": 2, "Conscript": 29, "ShadowAbhaothLevitating": 1, "BlindNithriel": 8, "DemonFlameTurret": 2, "ForgeElemental": 5, "MinotaurPyromancer": 1, "DwarfShieldguard": 1, "NPCBendiRegular": 1, "NPCWitchBrewer": 1, "ShadowAbhaothStanding": 10, "NPCGrundRegular": 3, "NPCEarthMotherChanneling": 3, "Cerberus": 25, "NPCWorkshopBoss": 1, "NPCHectusSmithing": 1, "Crawler": 17, "Golem": 4, "NPCShadyFixer": 1, "CritterPraak": 1, "NPCMaidWorking": 1, "CritterGhostEel": 2, "NPCTiatiResting": 1, "SniperCultist": 18, "NPCAdvisorRegular": 1, "CritterShadowleech": 4, "IDReaverStationary": 3, "NPCBreazaRegular": 1, "IDSentry": 7 } }
+AP-MAP {
+  "map": "MAP13", "levelname": "Besieged", "clustername": "Besieged",
+  "checksum": "9d2b17952e852d9939f61dcf1a274004", "rank": 2, "monster_count": 299,
+  "info": { "levelnum": 13, "title": "Besieged", "is_lookup": false, "sky1": "sky14", "sky1speed": "0.000000", "sky2": "sky14", "sky2speed": "0.000000", "music": "", "music_track": "0", "cluster": 13, "flags": [] },
+  "monsters": { "NPCWitchBrewer": 1, "NPCBendiRegular": 1, "Initiate": 22, "NPCJaromirRegular": 2, "NPCGrundRegular": 3, "ForgeElemental": 5, "Hellion": 3, "IDBearWarriorStationary": 7, "NPCMaidWorking": 1, "NPCTiatiResting": 1, "Cultist": 14, "DwarfShieldguard": 1, "Crawler": 17, "NPCShadyFixer": 1, "CritterPraak": 1, "IDSentry": 7, "Warlock": 3, "JunkPoop": 2, "PitLord": 8, "NPCEarthMotherChanneling": 3, "NPCBearWarriorDrinker": 1, "SniperCultist": 18, "IDReaverStationary": 3, "Cerberus": 25, "NPCBreazaRegular": 1, "ShadowAbhaothSitting": 1, "NPCMurguthRegular": 2, "Golem": 4, "NPCAdvisorRegular": 1, "DemonFlameTurret": 2, "NPCReaverDrinker": 1, "IronUrchin": 17, "BlindNithriel": 8, "NPCWorkshopBoss": 1, "NPCLadyIngrimTavernkeep": 1, "ShieldWallIronMaiden": 5, "CritterShadowleech": 4, "ShadowAbhaothStanding": 10, "IDFixerStationary": 4, "MinotaurAxeman": 1, "NPCHectusSmithing": 1, "NPCGrundWarg": 1, "NPCEraantheRegular": 2, "IronMaiden": 13, "Mentalist": 12, "ShadowAbhaothLevitating": 1, "DwarfMilitia": 1, "Hellblaze": 21, "Conscript": 29, "CritterGhostEel": 2, "PitLordCommander": 1, "MinotaurPyromancer": 1, "PsiDemon": 1 },
+  "prereqs": [ "weapon/Hellclaw/auto", "weapon/Axe/need" ]
+}
 AP-ITEM { "category": "weapon", "typename": "Axe", "tag": "Axe", "filter": 31, "pos": ["MAP13",-8520,-14744,-272] }
 AP-ITEM { "category": "small-ammo", "typename": "Boltmag", "tag": "Boltmag", "filter": 55, "pos": ["MAP13",-8096,-14944,-266] }
 AP-ITEM { "category": "small-health", "typename": "HealthWineJug", "tag": "Jug of Wine", "pos": ["MAP13",-7904,-14880,-264] }
@@ -3709,8 +3774,13 @@ AP-SECRET { "pos": ["MAP13","secret","sector",13479] }
 AP-SECRET { "pos": ["MAP13","secret","sector",16049] }
 AP-SECRET { "pos": ["MAP13","secret","sector",17774] }
 AP-SECRET { "pos": ["MAP13","secret","sector",17852] }
-AP-MAP { "map": "MAP16", "levelname": "Port to Hell", "checksum": "3f930a86e2d01dad7a0cbe0de707f5ce", "rank": 3, "monster_count": 616, "info": { "levelnum": 16, "title": "Port to Hell", "is_lookup": false, "sky1": "sky17", "sky1speed": "0.000000", "sky2": "sky17", "sky2speed": "0.000000", "music": "", "music_track": "0", "cluster": 0, "flags": [] } }
-AP-MONSTERS { "map": "MAP16", "monsters": { "Initiate": 56, "SniperHellion": 19, "Mentalist": 19, "GiantCerberus": 1, "Conscript": 237, "IDBearWarriorRecruitable": 2, "NPCWoundedFixer": 1, "Warlock": 6, "IronUrchin": 26, "Cerberus": 38, "Hellblaze": 7, "NPCDuraRegular": 1, "IDBearWarriorStationary": 2, "SniperCultist": 16, "PitLord": 9, "Hellion": 3, "PitLordCommander": 2, "Golem": 13, "BlueBaronCinematic": 3, "IDWitchStationary": 1, "NPCWoundedWitch": 1, "ForgeElemental": 1, "IDEarthMotherStationary": 1, "Glutton": 16, "PsiDemon": 3, "Cultist": 6, "ShieldWallIronMaiden": 12, "NPCEraantheRegular": 1, "IronMaiden": 113 } }
+AP-MAP {
+  "map": "MAP16", "levelname": "Port to Hell",
+  "checksum": "3f930a86e2d01dad7a0cbe0de707f5ce", "rank": 3, "monster_count": 616,
+  "info": { "levelnum": 16, "title": "Port to Hell", "is_lookup": false, "sky1": "sky17", "sky1speed": "0.000000", "sky2": "sky17", "sky2speed": "0.000000", "music": "", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Mentalist": 19, "GiantCerberus": 1, "Initiate": 56, "NPCWoundedFixer": 1, "ForgeElemental": 1, "IDBearWarriorStationary": 2, "BlueBaronCinematic": 3, "Golem": 13, "Cultist": 6, "IronUrchin": 26, "NPCWoundedWitch": 1, "ShieldWallIronMaiden": 12, "IDWitchStationary": 1, "PitLord": 9, "IDBearWarriorRecruitable": 2, "Warlock": 6, "Cerberus": 38, "Hellblaze": 7, "NPCEraantheRegular": 1, "Hellion": 3, "Glutton": 16, "IronMaiden": 113, "SniperCultist": 16, "SniperHellion": 19, "Conscript": 237, "IDEarthMotherStationary": 1, "PitLordCommander": 2, "NPCDuraRegular": 1, "PsiDemon": 3 },
+  "prereqs": [ "weapon/Hellclaw/auto", "weapon/Axe/need" ]
+}
 AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag": "Vial of Healing", "pos": ["MAP16",128,2848,-494] }
 AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag": "Vial of Healing", "filter": 49, "pos": ["MAP16",384,2848,-494] }
 AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag": "Vial of Healing", "filter": 55, "pos": ["MAP16",640,2848,-494] }
@@ -4204,8 +4274,13 @@ AP-SECRET { "pos": ["MAP16","secret","sector",4036] }
 AP-SECRET { "pos": ["MAP16","secret","sector",5078] }
 AP-SECRET { "pos": ["MAP16","secret","sector",7974] }
 AP-SECRET { "pos": ["MAP16","secret","sector",18569] }
-AP-MAP { "map": "MAP17", "levelname": "Hellscape", "checksum": "b0a3c4aef4d3acd05477ed7799c35f90", "rank": 4, "monster_count": 143, "info": { "levelnum": 17, "title": "Hellscape", "is_lookup": false, "sky1": "sky17", "sky1speed": "0.000000", "sky2": "sky17", "sky2speed": "0.000000", "music": "", "music_track": "0", "cluster": 0, "flags": [] } }
-AP-MONSTERS { "map": "MAP17", "monsters": { "Warlock": 4, "SniperHellion": 7, "Mentalist": 6, "Conscript": 19, "JunkPoop": 1, "NPCTiatiControlled": 1, "ForgeElemental": 1, "NPCEraantheRegular": 1, "CinematicNithriel": 1, "Golem": 7, "PsiDemon": 1, "BlueBaronCinematic": 1, "IronMaiden": 5, "Hellblaze": 11, "Glutton": 5, "IronUrchin": 8, "SniperCultist": 12, "Cultist": 17, "PitLord": 5, "Cerberus": 6, "Initiate": 24 } }
+AP-MAP {
+  "map": "MAP17", "levelname": "Hellscape",
+  "checksum": "b0a3c4aef4d3acd05477ed7799c35f90", "rank": 4, "monster_count": 143,
+  "info": { "levelnum": 17, "title": "Hellscape", "is_lookup": false, "sky1": "sky17", "sky1speed": "0.000000", "sky2": "sky17", "sky2speed": "0.000000", "music": "", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Mentalist": 6, "IronUrchin": 8, "SniperCultist": 12, "JunkPoop": 1, "Hellblaze": 11, "CinematicNithriel": 1, "Initiate": 24, "ForgeElemental": 1, "Cerberus": 6, "PitLord": 5, "NPCEraantheRegular": 1, "IronMaiden": 5, "BlueBaronCinematic": 1, "SniperHellion": 7, "Cultist": 17, "Conscript": 19, "Warlock": 4, "NPCTiatiControlled": 1, "Golem": 7, "Glutton": 5, "PsiDemon": 1 },
+  "prereqs": [ "weapon/Hellclaw/auto", "weapon/Axe/need" ]
+}
 AP-ITEM { "category": "small-ammo", "typename": "PotionBoxAcid", "tag": "Box of Acid Potions", "tid": 600, "pos": ["MAP17",-28296,-28060,40] }
 AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "tid": 600, "pos": ["MAP17",-28152,-27884,72] }
 AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfHealing", "tag": "Potion of Healing", "tid": 600, "pos": ["MAP17",-28172,-28060,8] }
@@ -4431,8 +4506,13 @@ AP-ITEM { "category": "weapon", "typename": "FireHammer", "tag": "Fire Hammer", 
 AP-ITEM { "category": "weapon", "typename": "BearzerkAxe", "tag": "Bearzerker Axe", "tid": 600, "filter": 32, "pos": ["MAP17",-16816,-28884,64] }
 AP-SECRET { "pos": ["MAP17","secret","sector",298] }
 AP-SECRET { "pos": ["MAP17","secret","sector",921] }
-AP-MAP { "map": "MAP18", "levelname": "Paradise Lost", "clustername": "Paradise Lost", "checksum": "097a4f37798e865c35d481bf20315847", "rank": 5, "monster_count": 207, "info": { "levelnum": 18, "title": "Paradise Lost", "is_lookup": false, "sky1": "sky17", "sky1speed": "0.000000", "sky2": "sky17", "sky2speed": "0.000000", "music": "", "music_track": "0", "cluster": 18, "flags": [] } }
-AP-MONSTERS { "map": "MAP18", "monsters": { "Warlock": 5, "SniperHellion": 3, "NPCWoundedShieldguard": 1, "NPCWorkshopBoss": 1, "CritterGrobbog": 17, "DemonStatuettePuzzle": 4, "NPCBendiRegular": 1, "IronUrchin": 5, "NPCDuraRegular": 1, "IDBearWarriorStationary": 6, "NPCEraantheRegular": 1, "IDWitchStationary": 2, "IronMaiden": 11, "Cultist": 3, "Initiate": 28, "NPCDwarfMilitiaDrinker": 1, "Genius": 5, "NPCJaromirRegular": 1, "Conscript": 39, "NPCWoundedBearWarrior": 1, "DemonFlameTurret": 1, "PitLordCommander": 1, "Hellion": 1, "NPCWoundedFixer": 1, "NPCGrundWargGuarding": 1, "MinotaurPyromancer": 1, "NPCWitchBrewer": 1, "NPCTiatiCaged": 1, "NPCGrundRegular": 1, "NPCEarthMotherChanneling": 2, "Cerberus": 12, "NPCMurguthRegular": 2, "NPCHectusSmithing": 1, "MinotaurAxeman": 3, "Mentalist": 8, "ForgeElemental": 4, "CritterPraak": 2, "NPCMaidWorking": 1, "NPCMinotaurMiner": 1, "Glutton": 3, "NPCLadyIngrimTavernkeep": 2, "NPCAdvisorRegular": 1, "CritterShadowleech": 6, "IDReaverStationary": 2, "NPCBreazaRegular": 1, "DemonHellMine": 11 } }
+AP-MAP {
+  "map": "MAP18", "levelname": "Paradise Lost", "clustername": "Paradise Lost",
+  "checksum": "097a4f37798e865c35d481bf20315847", "rank": 5, "monster_count": 207,
+  "info": { "levelnum": 18, "title": "Paradise Lost", "is_lookup": false, "sky1": "sky17", "sky1speed": "0.000000", "sky2": "sky17", "sky2speed": "0.000000", "music": "", "music_track": "0", "cluster": 18, "flags": [] },
+  "monsters": { "NPCWitchBrewer": 1, "NPCBendiRegular": 1, "NPCWoundedShieldguard": 1, "NPCGrundWargGuarding": 1, "Initiate": 28, "NPCJaromirRegular": 1, "NPCWoundedFixer": 1, "ForgeElemental": 4, "NPCBreazaRegular": 1, "Genius": 5, "CritterGrobbog": 17, "IDBearWarriorStationary": 6, "NPCHectusSmithing": 1, "Cerberus": 12, "Hellion": 1, "SniperHellion": 3, "DemonFlameTurret": 1, "DemonHellMine": 11, "CritterShadowleech": 6, "CritterPraak": 2, "Glutton": 3, "NPCMaidWorking": 1, "NPCWoundedBearWarrior": 1, "MinotaurPyromancer": 1, "NPCDuraRegular": 1, "NPCTiatiCaged": 1, "IronUrchin": 5, "NPCAdvisorRegular": 1, "NPCGrundRegular": 1, "NPCDwarfMilitiaDrinker": 1, "Mentalist": 8, "IDReaverStationary": 2, "IDWitchStationary": 2, "NPCMinotaurMiner": 1, "NPCLadyIngrimTavernkeep": 2, "MinotaurAxeman": 3, "NPCWorkshopBoss": 1, "NPCMurguthRegular": 2, "NPCEraantheRegular": 1, "IronMaiden": 11, "NPCEarthMotherChanneling": 2, "Cultist": 3, "Conscript": 39, "PitLordCommander": 1, "Warlock": 5, "DemonStatuettePuzzle": 4 },
+  "prereqs": [ "weapon/Axe/need" ]
+}
 AP-ITEM { "category": "small-token", "typename": "InventoryGoldCoin1", "tag": "1gp", "pos": ["MAP18",-5808,3668,288] }
 AP-ITEM { "category": "weapon", "typename": "Hellclaw", "tag": "Hellclaw", "filter": 31, "pos": ["MAP18",-6284,3680,288] }
 AP-ITEM { "category": "medium-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "pos": ["MAP18",-5812,3676,304] }
@@ -4999,8 +5079,13 @@ AP-SECRET { "pos": ["MAP18","secret","sector",15472] }
 AP-SECRET { "pos": ["MAP18","secret","sector",16697] }
 AP-SECRET { "pos": ["MAP18","secret","sector",20991] }
 AP-SECRET { "pos": ["MAP18","secret","sector",24645] }
-AP-MAP { "map": "MAP21", "levelname": "Blood Rite", "clustername": "Blood Rite", "checksum": "cc9ef4aefbd8e65fe7976d675ee37d1f", "rank": 6, "monster_count": 185, "info": { "levelnum": 21, "title": "Blood Rite", "is_lookup": false, "sky1": "sky17", "sky1speed": "0.000000", "sky2": "sky17", "sky2speed": "0.000000", "music": "", "music_track": "0", "cluster": 21, "flags": [] } }
-AP-MONSTERS { "map": "MAP21", "monsters": { "Warlock": 3, "SniperHellion": 6, "NPCWorkshopBoss": 2, "NPCDendraRegular": 4, "JunkPoop": 5, "StatueGenius": 4, "NPCBendiRegular": 2, "Hellblaze": 2, "ShieldWallIronMaiden": 29, "IDBearWarriorStationary": 3, "NPCEraantheRegular": 1, "NPCGrundWarg": 1, "CritterPraak": 1, "NPCWitchBrewer": 1, "IDWitchStationary": 1, "CritterCandlefly": 1, "NPCBearWarriorDrinker": 2, "NPCGrundWargGuarding": 1, "Glutton": 3, "IDEarthMotherStationary": 2, "NPCDuraRegular": 3, "NPCGrundRegular": 2, "NPCFixerHammering": 1, "NPCLadyIngrimRegular": 1, "ShadowAbhaothSitting": 1, "NPCLadyIngrimsBaby": 1, "NPCMurguthRegular": 2, "NPCDwarfMilitiaDrinker": 1, "NPCZanVictoryRun": 1, "NPCJaromirRegular": 2, "NPCCerberusChariot": 3, "NPCScrawnShovel": 1, "NPCReaverDrinker": 2, "MinotaurPyromancer": 3, "NPCZanAxePosing": 2, "NPCOldOrcRegular": 1, "DwarfShieldguard": 13, "NPCAbedunFarming": 1, "NPCLadyIngrimTavernkeep": 1, "Hellion": 9, "IDLancerStationary": 5, "PitLordCommander": 1, "Cerberus": 15, "BlueBaronCinematic": 1, "NPCHectusSmithing": 1, "MinotaurAxeman": 3, "PsiDemon": 4, "NPCShadyFixer": 2, "NPCForgeElementalHauler": 1, "PitLord": 4, "NPCMinotaurMiner": 2, "NPCTiatiResting": 2, "NPCZuraRegular": 3, "NPCAdvisorRegular": 4, "CritterShadowleech": 5, "IDFixerStationary": 2, "NPCBreazaRegular": 3, "NPCMaidIdle": 2 } }
+AP-MAP {
+  "map": "MAP21", "levelname": "Blood Rite", "clustername": "Blood Rite",
+  "checksum": "cc9ef4aefbd8e65fe7976d675ee37d1f", "rank": 6, "monster_count": 185,
+  "info": { "levelnum": 21, "title": "Blood Rite", "is_lookup": false, "sky1": "sky17", "sky1speed": "0.000000", "sky2": "sky17", "sky2speed": "0.000000", "music": "", "music_track": "0", "cluster": 21, "flags": [] },
+  "monsters": { "NPCBearWarriorDrinker": 2, "IDLancerStationary": 5, "MinotaurAxeman": 3, "CritterShadowleech": 5, "NPCBendiRegular": 2, "NPCJaromirRegular": 2, "NPCGrundRegular": 2, "MinotaurPyromancer": 3, "NPCForgeElementalHauler": 1, "NPCBreazaRegular": 3, "NPCCerberusChariot": 3, "Hellion": 9, "IDBearWarriorStationary": 3, "ShadowAbhaothSitting": 1, "NPCMurguthRegular": 2, "BlueBaronCinematic": 1, "NPCAbedunFarming": 1, "NPCHectusSmithing": 1, "NPCTiatiResting": 2, "NPCAdvisorRegular": 4, "NPCDendraRegular": 4, "NPCLadyIngrimRegular": 1, "CritterPraak": 1, "Glutton": 3, "NPCOldOrcRegular": 1, "NPCReaverDrinker": 2, "NPCWorkshopBoss": 2, "JunkPoop": 5, "NPCDuraRegular": 3, "IDWitchStationary": 1, "NPCZanVictoryRun": 1, "NPCScrawnShovel": 1, "NPCLadyIngrimTavernkeep": 1, "CritterCandlefly": 1, "NPCMinotaurMiner": 2, "PitLord": 4, "NPCZuraRegular": 3, "NPCGrundWarg": 1, "DwarfShieldguard": 13, "Warlock": 3, "NPCEraantheRegular": 1, "NPCWitchBrewer": 1, "NPCShadyFixer": 2, "Cerberus": 15, "NPCZanAxePosing": 2, "SniperHellion": 6, "NPCDwarfMilitiaDrinker": 1, "StatueGenius": 4, "Hellblaze": 2, "ShieldWallIronMaiden": 29, "NPCFixerHammering": 1, "IDEarthMotherStationary": 2, "NPCGrundWargGuarding": 1, "IDFixerStationary": 2, "PitLordCommander": 1, "NPCMaidIdle": 2, "PsiDemon": 4, "NPCLadyIngrimsBaby": 1 },
+  "prereqs": [ "weapon/Hellclaw/auto", "weapon/Axe/need" ]
+}
 AP-ITEM { "category": "medium-ammo", "typename": "AmmoBox", "tag": "Ammo Box", "pos": ["MAP21",-1416,272,648] }
 AP-ITEM { "category": "small-ammo", "typename": "PotionBoxAcid", "tag": "Box of Acid Potions", "pos": ["MAP21",-1500,228,608] }
 AP-ITEM { "category": "small-ammo", "typename": "AmmoBelt", "tag": "Ammo Belt", "pos": ["MAP21",-1388,244,640] }
@@ -5187,8 +5272,13 @@ AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Sha
 AP-ITEM { "category": "weapon", "typename": "FireHammer", "tag": "Fire Hammer", "filter": 32, "pos": ["MAP21",-1476,1752,357] }
 AP-ITEM { "category": "weapon", "typename": "BearzerkAxe", "tag": "Bearzerker Axe", "filter": 32, "pos": ["MAP21",-1153,2382,224] }
 AP-SECRET { "pos": ["MAP21","secret","sector",15830] }
-AP-MAP { "map": "MAP22", "levelname": "Buried", "clustername": "Blood Rite", "checksum": "f94f5db1b118a37805851b91877dd547", "rank": 7, "monster_count": 111, "info": { "levelnum": 22, "title": "Buried", "is_lookup": false, "sky1": "sky11", "sky1speed": "0.000000", "sky2": "sky11", "sky2speed": "0.000000", "music": "", "music_track": "0", "cluster": 21, "flags": [] } }
-AP-MONSTERS { "map": "MAP22", "monsters": { "BlueBaronEthereal": 1, "SniperHellion": 1, "IDFixerStationary": 1, "NPCDendraRegular": 1, "ShadowAbhaothLevitating": 1, "NPCAbhaothRegular": 1, "Cerberus": 4, "Warlock": 1, "Hellblaze": 2, "IDLancerStationary": 1, "IDBearWarriorStationary": 2, "BileBlister": 28, "Glutton": 2, "PitLordCommander": 1, "Crawler": 34, "Golem": 4, "PitLord": 4, "IDWitchStationary": 1, "IronMaiden": 10, "Initiate": 1, "IDEarthMotherStationary": 1, "NPCEraantheDefeated": 1, "NPCAdvisorRegular": 1, "PsiDemon": 2, "IDReaverStationary": 2, "NPCBreazaRegular": 1, "BlueBaronCinematic": 2 } }
+AP-MAP {
+  "map": "MAP22", "levelname": "Buried", "clustername": "Blood Rite",
+  "checksum": "f94f5db1b118a37805851b91877dd547", "rank": 7, "monster_count": 111,
+  "info": { "levelnum": 22, "title": "Buried", "is_lookup": false, "sky1": "sky11", "sky1speed": "0.000000", "sky2": "sky11", "sky2speed": "0.000000", "music": "", "music_track": "0", "cluster": 21, "flags": [] },
+  "monsters": { "IDLancerStationary": 1, "Initiate": 1, "Cerberus": 4, "NPCBreazaRegular": 1, "IDFixerStationary": 1, "IDBearWarriorStationary": 2, "BlueBaronCinematic": 2, "Golem": 4, "NPCDendraRegular": 1, "BlueBaronEthereal": 1, "Crawler": 34, "Glutton": 2, "IDEarthMotherStationary": 1, "BileBlister": 28, "IDWitchStationary": 1, "PitLord": 4, "IronMaiden": 10, "NPCEraantheDefeated": 1, "ShadowAbhaothLevitating": 1, "Hellblaze": 2, "PitLordCommander": 1, "SniperHellion": 1, "IDReaverStationary": 2, "NPCAbhaothRegular": 1, "NPCAdvisorRegular": 1, "Warlock": 1, "PsiDemon": 2 },
+  "prereqs": [ "weapon/Hellclaw/auto", "weapon/Axe/need" ]
+}
 AP-ITEM { "category": "small-ammo", "typename": "PotionBoxAcid", "tag": "Box of Acid Potions", "pos": ["MAP22",-4295,-15322,329] }
 AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "pos": ["MAP22",-5115,28245,752] }
 AP-ITEM { "category": "small-ammo", "typename": "SpikeMag", "tag": "Spike Mag", "pos": ["MAP22",-7344,24992,524] }
@@ -5701,8 +5791,13 @@ AP-ITEM { "category": "weapon", "typename": "BearzerkAxe", "tag": "Bearzerker Ax
 AP-ITEM { "category": "weapon", "typename": "BearzerkAxe", "tag": "Bearzerker Axe", "filter": 32, "pos": ["MAP22",3212,13912,-2850] }
 AP-ITEM { "category": "weapon", "typename": "FireHammer", "tag": "Fire Hammer", "filter": 32, "pos": ["MAP22",3004,14832,-2653] }
 AP-ITEM { "category": "medium-health-attack", "typename": "InventoryPotionOfMight", "tag": "Potion of Might", "filter": 32, "pos": ["MAP22",-5092,-11265,-27] }
-AP-MAP { "map": "MAP19", "levelname": "Place Afoul", "clustername": "Paradise Lost", "checksum": "90b40b1c1e8c103db86f6e050eb119f6", "rank": 6, "monster_count": 185, "info": { "levelnum": 19, "title": "Place Afoul", "is_lookup": false, "sky1": "sky17", "sky1speed": "0.000000", "sky2": "sky17", "sky2speed": "0.000000", "music": "", "music_track": "0", "cluster": 18, "flags": [] } }
-AP-MONSTERS { "map": "MAP19", "monsters": { "Initiate": 26, "Mentalist": 7, "Conscript": 21, "CritterGrobbog": 1, "JunkPoop": 1, "DemonFlameTurret": 1, "Hellblaze": 2, "IDLancerStationary": 1, "ForgeElemental": 1, "SniperCultist": 2, "CritterChick": 3, "Warlock": 4, "Crawler": 13, "Golem": 9, "NPCShadyFixer": 1, "Genius": 2, "IronMaiden": 11, "Cerberus": 8, "StatueGenius": 59, "Cultist": 3, "CritterChickNest": 1, "PsiDemon": 2, "VoidEvilZanReflection": 1, "CritterShadowleech": 1, "CritterGhostEel": 4 } }
+AP-MAP {
+  "map": "MAP19", "levelname": "Place Afoul", "clustername": "Paradise Lost",
+  "checksum": "90b40b1c1e8c103db86f6e050eb119f6", "rank": 6, "monster_count": 185,
+  "info": { "levelnum": 19, "title": "Place Afoul", "is_lookup": false, "sky1": "sky17", "sky1speed": "0.000000", "sky2": "sky17", "sky2speed": "0.000000", "music": "", "music_track": "0", "cluster": 18, "flags": [] },
+  "monsters": { "IDLancerStationary": 1, "SniperCultist": 2, "CritterShadowleech": 1, "StatueGenius": 59, "Initiate": 26, "CritterChick": 3, "ForgeElemental": 1, "Cerberus": 8, "CritterGrobbog": 1, "VoidEvilZanReflection": 1, "CritterGhostEel": 4, "DemonFlameTurret": 1, "NPCShadyFixer": 1, "JunkPoop": 1, "Warlock": 4, "Hellblaze": 2, "Genius": 2, "CritterChickNest": 1, "Cultist": 3, "IronMaiden": 11, "Crawler": 13, "Mentalist": 7, "Golem": 9, "Conscript": 21, "PsiDemon": 2 },
+  "prereqs": [ "weapon/Hellclaw/auto", "weapon/Axe/need" ]
+}
 AP-ITEM { "category": "medium-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "pos": ["MAP19",2048,13888,784] }
 AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag": "Vial of Healing", "pos": ["MAP19",-1328,13888,528] }
 AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "pos": ["MAP19",-276,13292,528] }
@@ -6247,8 +6342,13 @@ AP-SECRET { "pos": ["MAP19","secret","sector",7739] }
 AP-SECRET { "pos": ["MAP19","secret","sector",8226] }
 AP-SECRET { "pos": ["MAP19","secret","sector",9823] }
 AP-SECRET { "pos": ["MAP19","secret","sector",14130] }
-AP-MAP { "map": "MAP20", "levelname": "Salt and Blood", "clustername": "Paradise Lost", "checksum": "e4eb514c91033c0e0380db48458152b5", "rank": 6, "monster_count": 227, "info": { "levelnum": 20, "title": "Salt and Blood", "is_lookup": false, "sky1": "sky17", "sky1speed": "0.000000", "sky2": "sky17", "sky2speed": "0.000000", "music": "", "music_track": "0", "cluster": 18, "flags": [] } }
-AP-MONSTERS { "map": "MAP20", "monsters": { "Initiate": 20, "SniperHellion": 7, "Mentalist": 12, "GiantCerberus": 2, "Conscript": 76, "ShadowAbhaothLevitating": 1, "NPCAbedunRegular": 2, "NPCGrundWargGuarding": 1, "PitLordAlpha": 1, "IronUrchin": 3, "Hellion": 2, "IDBearWarriorStationary": 5, "SniperCultist": 1, "NPCScrawnRegular": 2, "Crawler": 10, "Golem": 3, "CritterCandlefly": 6, "NPCGrundRegular": 1, "NPCOldOrcRegular": 2, "ShieldWallIronMaiden": 4, "Glutton": 7, "Genius": 7, "Hellblaze": 5, "Cultist": 20, "CritterShadowleech": 6, "StatueGenius": 17, "Warlock": 4 } }
+AP-MAP {
+  "map": "MAP20", "levelname": "Salt and Blood", "clustername": "Paradise Lost",
+  "checksum": "e4eb514c91033c0e0380db48458152b5", "rank": 6, "monster_count": 227,
+  "info": { "levelnum": 20, "title": "Salt and Blood", "is_lookup": false, "sky1": "sky17", "sky1speed": "0.000000", "sky2": "sky17", "sky2speed": "0.000000", "music": "", "music_track": "0", "cluster": 18, "flags": [] },
+  "monsters": { "GiantCerberus": 2, "SniperCultist": 1, "CritterShadowleech": 6, "StatueGenius": 17, "Initiate": 20, "IDBearWarriorStationary": 5, "Golem": 3, "Cultist": 20, "Crawler": 10, "NPCOldOrcRegular": 2, "IronUrchin": 3, "NPCScrawnRegular": 2, "Warlock": 4, "NPCAbedunRegular": 2, "Hellblaze": 5, "PitLordAlpha": 1, "CritterCandlefly": 6, "NPCGrundRegular": 1, "ShadowAbhaothLevitating": 1, "Mentalist": 12, "Glutton": 7, "Genius": 7, "SniperHellion": 7, "Conscript": 76, "NPCGrundWargGuarding": 1, "Hellion": 2, "ShieldWallIronMaiden": 4 },
+  "prereqs": [ "weapon/Hellclaw/auto", "weapon/Axe/need" ]
+}
 AP-ITEM { "category": "medium-token", "typename": "InventoryGoldCoin25", "tag": "25gp", "pos": ["MAP20",5385,10158,-851] }
 AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag": "Vial of Healing", "pos": ["MAP20",3504,8472,-273] }
 AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfHealing", "tag": "Potion of Healing", "pos": ["MAP20",5732,8032,-689] }
@@ -6596,8 +6696,13 @@ AP-SECRET { "pos": ["MAP20","secret","sector",1901] }
 AP-SECRET { "pos": ["MAP20","secret","sector",2617] }
 AP-SECRET { "pos": ["MAP20","secret","sector",2850] }
 AP-SECRET { "pos": ["MAP20","secret","sector",4335] }
-AP-MAP { "map": "MAP14", "levelname": "Brazen Bull", "clustername": "Besieged", "checksum": "6ebebf45fb670912b4d372ea416e9d56", "rank": 3, "monster_count": 138, "info": { "levelnum": 14, "title": "Brazen Bull", "is_lookup": false, "sky1": "sky14", "sky1speed": "0.000000", "sky2": "sky14", "sky2speed": "0.000000", "music": "", "music_track": "0", "cluster": 13, "flags": [] } }
-AP-MONSTERS { "map": "MAP14", "monsters": { "Initiate": 14, "Mentalist": 7, "Conscript": 27, "Hellblaze": 8, "Hellion": 12, "ForgeElemental": 3, "SniperCultist": 10, "Crawler": 5, "Golem": 5, "IronMaiden": 7, "CritterShadowleech": 6, "PitLord": 5, "Warlock": 3, "PitLordCommander": 1, "Cultist": 10, "IronUrchin": 6, "DemonFlameTurret": 2, "Cerberus": 7 } }
+AP-MAP {
+  "map": "MAP14", "levelname": "Brazen Bull", "clustername": "Besieged",
+  "checksum": "6ebebf45fb670912b4d372ea416e9d56", "rank": 3, "monster_count": 138,
+  "info": { "levelnum": 14, "title": "Brazen Bull", "is_lookup": false, "sky1": "sky14", "sky1speed": "0.000000", "sky2": "sky14", "sky2speed": "0.000000", "music": "", "music_track": "0", "cluster": 13, "flags": [] },
+  "monsters": { "Mentalist": 7, "SniperCultist": 10, "Initiate": 14, "ForgeElemental": 3, "Cerberus": 7, "Hellion": 12, "DemonFlameTurret": 2, "IronUrchin": 6, "Warlock": 3, "Hellblaze": 8, "PitLord": 5, "IronMaiden": 7, "Crawler": 5, "CritterShadowleech": 6, "Cultist": 10, "Golem": 5, "Conscript": 27, "PitLordCommander": 1 },
+  "prereqs": [ "weapon/Hellclaw/auto", "weapon/Axe/need" ]
+}
 AP-ITEM { "category": "small-token", "typename": "InventoryGoldCoin10", "tag": "10gp", "secret": true, "pos": ["MAP14",-7623,-2147,-724] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "pos": ["MAP14",-11314,-3124,-692] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "pos": ["MAP14",-11303,-3127,-692] }
@@ -6916,8 +7021,13 @@ AP-SECRET { "pos": ["MAP14","secret","sector",1062] }
 AP-SECRET { "pos": ["MAP14","secret","sector",1401] }
 AP-SECRET { "pos": ["MAP14","secret","sector",6137] }
 AP-SECRET { "pos": ["MAP14","secret","sector",7181] }
-AP-MAP { "map": "MAP15", "levelname": "Deep Calls", "clustername": "Besieged", "checksum": "13db6c1a69bc1d0c69be79fb6103a7a0", "rank": 3, "monster_count": 108, "info": { "levelnum": 15, "title": "Deep Calls", "is_lookup": false, "sky1": "sky16", "sky1speed": "0.000000", "sky2": "sky16", "sky2speed": "0.000000", "music": "", "music_track": "0", "cluster": 13, "flags": [] } }
-AP-MONSTERS { "map": "MAP15", "monsters": { "Initiate": 7, "BlueBaronCinematic": 1, "Mentalist": 11, "Conscript": 7, "NPCJaromirBattle": 1, "ShieldWallIronMaiden": 1, "SniperCultist": 7, "Crawler": 7, "Golem": 1, "PsiDemon": 2, "CritterPraak": 1, "IronMaiden": 4, "Warlock": 16, "PitLord": 2, "Hellblaze": 3, "Hellion": 3, "Cultist": 7, "ShadowAbhaothStanding": 1, "Cerberus": 1, "CritterGhostEel": 25 } }
+AP-MAP {
+  "map": "MAP15", "levelname": "Deep Calls", "clustername": "Besieged",
+  "checksum": "13db6c1a69bc1d0c69be79fb6103a7a0", "rank": 3, "monster_count": 108,
+  "info": { "levelnum": 15, "title": "Deep Calls", "is_lookup": false, "sky1": "sky16", "sky1speed": "0.000000", "sky2": "sky16", "sky2speed": "0.000000", "music": "", "music_track": "0", "cluster": 13, "flags": [] },
+  "monsters": { "Mentalist": 11, "ShadowAbhaothStanding": 1, "Initiate": 7, "Hellblaze": 3, "ShieldWallIronMaiden": 1, "Warlock": 16, "Golem": 1, "PitLord": 2, "Crawler": 7, "Hellion": 3, "Cerberus": 1, "BlueBaronCinematic": 1, "CritterGhostEel": 25, "IronMaiden": 4, "SniperCultist": 7, "Cultist": 7, "Conscript": 7, "NPCJaromirBattle": 1, "CritterPraak": 1, "PsiDemon": 2 },
+  "prereqs": [ "weapon/Hellclaw/auto", "weapon/Axe/need" ]
+}
 AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfHealing", "tag": "Potion of Healing", "filter": 55, "pos": ["MAP15",-485,-24742,-64] }
 AP-ITEM { "category": "small-ammo", "typename": "AmmoCultistSpike", "tag": "Spike Bundle", "tid": 42, "pos": ["MAP15",327,-25203,-256] }
 AP-ITEM { "category": "weapon", "typename": "Axe", "tag": "Axe", "filter": 31, "pos": ["MAP15",-640,-25935,-234] }
