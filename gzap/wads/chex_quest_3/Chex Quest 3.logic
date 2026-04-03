@@ -1,5 +1,11 @@
 AP-SCAN { "flags": [] }
-AP-MAP { "map": "E1M1", "levelname": "Landing Zone", "checksum": "943573961606b7342f6a2e97694b1f6d", "rank": 0, "monster_count": 26, "info": { "levelnum": 1, "title": "HUSTR_E1M1", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "D_E1M1", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "E1M1", "levelname": "Landing Zone",
+  "checksum": "943573961606b7342f6a2e97694b1f6d", "rank": 0, "monster_count": 26,
+  "info": { "levelnum": 1, "title": "HUSTR_E1M1", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "D_E1M1", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "FlemoidusCycloptisCommonusV3": 1, "FlemoidusBipedicusV3": 3, "FlemoidusCommonusV3": 22 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "weapon", "typename": "RapidZorcher", "tag": "Rapid Zorcher", "pos": ["E1M1",-192,-2016,0] }
 AP-ITEM { "category": "key", "typename": "ChexBlueCard", "tag": "ChexBlueCard", "pos": ["E1M1",-800,-1824,0] }
 AP-KEY { "typename": "ChexBlueCard", "tag": "ChexBlueCard", "scopename": "E1M1", "cluster": 0, "maps": ["E1M1"] }
@@ -36,7 +42,13 @@ AP-ITEM { "category": "small-ammo", "typename": "MiniZorchRecharge", "tag": "Min
 AP-SECRET { "pos": ["E1M1","secret","sector",10] }
 AP-SECRET { "pos": ["E1M1","secret","sector",115] }
 AP-SECRET { "pos": ["E1M1","secret","sector",125] }
-AP-MAP { "map": "E1M2", "levelname": "Storage Facility", "checksum": "54cc17b61ad15d6009b0e825a408076f", "rank": 1, "monster_count": 85, "info": { "levelnum": 2, "title": "HUSTR_E1M2", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "D_E1M2", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "E1M2", "levelname": "Storage Facility",
+  "checksum": "54cc17b61ad15d6009b0e825a408076f", "rank": 1, "monster_count": 85,
+  "info": { "levelnum": 2, "title": "HUSTR_E1M2", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "D_E1M2", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "FlemoidusBipedicusV3": 20, "FlemoidusCommonusV3": 48, "FlemoidusCycloptisCommonusV3": 12, "ArmoredFlemoidusBipedicusV3": 5 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "big-ammo", "typename": "ZorchPack", "tag": "ZorchPack", "pos": ["E1M2",-768,2880,-228] }
 AP-ITEM { "category": "small-health", "typename": "GlassOfWater", "tag": "GlassOfWater", "pos": ["E1M2",-512,2896,-228] }
 AP-ITEM { "category": "small-health", "typename": "GlassOfWater", "tag": "GlassOfWater", "pos": ["E1M2",-512,2864,-228] }
@@ -119,7 +131,13 @@ AP-SECRET { "pos": ["E1M2","secret","sector",269] }
 AP-SECRET { "pos": ["E1M2","secret","sector",275] }
 AP-SECRET { "pos": ["E1M2","secret","sector",290] }
 AP-SECRET { "pos": ["E1M2","secret","sector",350] }
-AP-MAP { "map": "E1M3", "levelname": "Laboratory", "checksum": "bdc142913023318514c218aba8335c77", "rank": 2, "monster_count": 75, "info": { "levelnum": 3, "title": "HUSTR_E1M3", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "D_E1M3", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "E1M3", "levelname": "Laboratory",
+  "checksum": "bdc142913023318514c218aba8335c77", "rank": 2, "monster_count": 75,
+  "info": { "levelnum": 3, "title": "HUSTR_E1M3", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "D_E1M3", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "FlemoidusBipedicusV3": 30, "ArmoredFlemoidusBipedicusV3": 4, "FlemoidusCommonusV3": 32, "FlemoidusCycloptisCommonusV3": 9 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "key", "typename": "ChexBlueCard", "tag": "ChexBlueCard", "pos": ["E1M3",376,1880,64] }
 AP-KEY { "typename": "ChexBlueCard", "tag": "ChexBlueCard", "scopename": "E1M3", "cluster": 0, "maps": ["E1M3"] }
 AP-ITEM { "category": "key", "typename": "ChexRedCard", "tag": "ChexRedCard", "pos": ["E1M3",-360,-1632,0] }
@@ -180,7 +198,13 @@ AP-SECRET { "pos": ["E1M3","secret","sector",119] }
 AP-SECRET { "pos": ["E1M3","secret","sector",196] }
 AP-SECRET { "pos": ["E1M3","secret","sector",223] }
 AP-SECRET { "pos": ["E1M3","secret","sector",248] }
-AP-MAP { "map": "E1M4", "levelname": "Arboretum", "checksum": "f0101a7ce37654511bcc2092ea33b6e1", "rank": 3, "monster_count": 51, "info": { "levelnum": 4, "title": "HUSTR_E1M4", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "D_E1M4", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "E1M4", "levelname": "Arboretum",
+  "checksum": "f0101a7ce37654511bcc2092ea33b6e1", "rank": 3, "monster_count": 51,
+  "info": { "levelnum": 4, "title": "HUSTR_E1M4", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "D_E1M4", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "FlemoidusCycloptisCommonusV3": 3, "FlemoidusCommonusV3": 20, "FlemoidusBipedicusV3": 20, "ArmoredFlemoidusBipedicusV3": 8 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "big-ammo", "typename": "ZorchPack", "tag": "ZorchPack", "secret": true, "pos": ["E1M4",224,-272,0] }
 AP-ITEM { "category": "key", "typename": "ChexBlueCard", "tag": "ChexBlueCard", "pos": ["E1M4",1368,-1104,0] }
 AP-KEY { "typename": "ChexBlueCard", "tag": "ChexBlueCard", "scopename": "E1M4", "cluster": 0, "maps": ["E1M4"] }
@@ -228,7 +252,13 @@ AP-ITEM { "category": "small-ammo", "typename": "MiniZorchRecharge", "tag": "Min
 AP-SECRET { "pos": ["E1M4","secret","sector",38] }
 AP-SECRET { "pos": ["E1M4","secret","sector",139] }
 AP-SECRET { "pos": ["E1M4","secret","sector",195] }
-AP-MAP { "map": "E1M5", "levelname": "Caverns of Bazoik", "checksum": "38560df8a51e0b06c67e3900040ce472", "rank": 4, "monster_count": 76, "info": { "levelnum": 5, "title": "HUSTR_E1M5", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "D_E1M5", "music_track": "0", "cluster": 0, "flags": ["specialaction_lowerfloor"] } }
+AP-MAP {
+  "map": "E1M5", "levelname": "Caverns of Bazoik",
+  "checksum": "38560df8a51e0b06c67e3900040ce472", "rank": 4, "monster_count": 76,
+  "info": { "levelnum": 5, "title": "HUSTR_E1M5", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "D_E1M5", "music_track": "0", "cluster": 0, "flags": ["specialaction_lowerfloor"] },
+  "monsters": { "FlemoidusBipedicusV3": 9, "FlembraneV3": 1, "FlemoidusCommonusV3": 29, "FlemoidusCycloptisCommonusV3": 10, "ArmoredFlemoidusBipedicusV3": 27 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "medium-health", "typename": "BowlOfVegetables", "tag": "BowlOfVegetables", "pos": ["E1M5",-2048,-448,2] }
 AP-ITEM { "category": "small-health", "typename": "GlassOfWater", "tag": "GlassOfWater", "pos": ["E1M5",-1856,-128,10] }
 AP-ITEM { "category": "small-health", "typename": "BowlOfFruit", "tag": "BowlOfFruit", "pos": ["E1M5",-2304,-448,2] }
@@ -336,7 +366,13 @@ AP-SECRET { "pos": ["E1M5","secret","sector",84] }
 AP-SECRET { "pos": ["E1M5","secret","sector",88] }
 AP-SECRET { "pos": ["E1M5","secret","sector",174] }
 AP-SECRET { "pos": ["E1M5","secret","sector",187] }
-AP-MAP { "map": "E2M1", "levelname": "Spaceport", "checksum": "206a31787ab8b0b197ad9f888d89ff8a", "rank": 0, "monster_count": 41, "info": { "levelnum": 11, "title": "HUSTR_E2M1", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "D_E2M1", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "E2M1", "levelname": "Spaceport",
+  "checksum": "206a31787ab8b0b197ad9f888d89ff8a", "rank": 0, "monster_count": 41,
+  "info": { "levelnum": 11, "title": "HUSTR_E2M1", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "D_E2M1", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "FlemoidusBipedicusV3": 7, "Larva": 2, "Quadrumpus": 2, "FlemoidusCommonusV3": 30 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "key", "typename": "ChexRedCard", "tag": "ChexRedCard", "pos": ["E2M1",-674,-480,64] }
 AP-KEY { "typename": "ChexRedCard", "tag": "ChexRedCard", "scopename": "E2M1", "cluster": 0, "maps": ["E2M1"] }
 AP-ITEM { "category": "big-ammo", "typename": "ZorchPack", "tag": "ZorchPack", "pos": ["E2M1",32,992,8] }
@@ -375,7 +411,13 @@ AP-ITEM { "category": "small-health", "typename": "GlassOfWater", "tag": "GlassO
 AP-SECRET { "pos": ["E2M1","secret","sector",50] }
 AP-SECRET { "pos": ["E2M1","secret","sector",82] }
 AP-SECRET { "pos": ["E2M1","secret","sector",84] }
-AP-MAP { "map": "E2M2", "levelname": "Cinema", "checksum": "a1bf76ae9a08f022e3b04853e8b15a31", "rank": 1, "monster_count": 65, "info": { "levelnum": 12, "title": "HUSTR_E2M2", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "D_E2M2", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "E2M2", "levelname": "Cinema",
+  "checksum": "a1bf76ae9a08f022e3b04853e8b15a31", "rank": 1, "monster_count": 65,
+  "info": { "levelnum": 12, "title": "HUSTR_E2M2", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "D_E2M2", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Larva": 2, "Quadrumpus": 4, "FlemoidusBipedicusV3": 15, "ArmoredFlemoidusBipedicusV3": 8, "FlemoidusCommonusV3": 36 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "key", "typename": "ChexRedCard", "tag": "ChexRedCard", "pos": ["E2M2",-8736,-5352,-105] }
 AP-KEY { "typename": "ChexRedCard", "tag": "ChexRedCard", "scopename": "E2M2", "cluster": 0, "maps": ["E2M2"] }
 AP-ITEM { "category": "small-health", "typename": "BowlOfFruit", "tag": "BowlOfFruit", "pos": ["E2M2",-7536,-5336,0] }
@@ -418,7 +460,13 @@ AP-ITEM { "category": "weapon", "typename": "PhasingZorcher", "tag": "Phasing Zo
 AP-SECRET { "pos": ["E2M2","secret","sector",29] }
 AP-SECRET { "pos": ["E2M2","secret","sector",874] }
 AP-SECRET { "pos": ["E2M2","secret","sector",882] }
-AP-MAP { "map": "E2M3", "levelname": "Chex Museum", "checksum": "602f75a3d5b307a25c903f646d29879c", "rank": 2, "monster_count": 57, "info": { "levelnum": 13, "title": "HUSTR_E2M3", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "D_E2M3", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "E2M3", "levelname": "Chex Museum",
+  "checksum": "602f75a3d5b307a25c903f646d29879c", "rank": 2, "monster_count": 57,
+  "info": { "levelnum": 13, "title": "HUSTR_E2M3", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "D_E2M3", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "FlemoidusBipedicusV3": 16, "Larva": 9, "Quadrumpus": 6, "FlemoidusCommonusV3": 26 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "key", "typename": "ChexBlueCard", "tag": "ChexBlueCard", "pos": ["E2M3",256,320,0] }
 AP-KEY { "typename": "ChexBlueCard", "tag": "ChexBlueCard", "scopename": "E2M3", "cluster": 0, "maps": ["E2M3"] }
 AP-ITEM { "category": "big-health", "typename": "SuperchargeBreakfast", "tag": "SuperchargeBreakfast", "pos": ["E2M3",-1504,-1128,0] }
@@ -472,7 +520,13 @@ AP-ITEM { "category": "small-ammo", "typename": "MiniZorchRecharge", "tag": "Min
 AP-ITEM { "category": "small-ammo", "typename": "MiniZorchRecharge", "tag": "Mini Zorch Charge", "pos": ["E2M3",-64,-1184,192] }
 AP-SECRET { "pos": ["E2M3","secret","sector",69] }
 AP-SECRET { "pos": ["E2M3","secret","sector",121] }
-AP-MAP { "map": "E2M4", "levelname": "City Streets", "checksum": "a761f10a69fb5490c293b0c406c0d049", "rank": 3, "monster_count": 76, "info": { "levelnum": 14, "title": "HUSTR_E2M4", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "D_E2M4", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "E2M4", "levelname": "City Streets",
+  "checksum": "a761f10a69fb5490c293b0c406c0d049", "rank": 3, "monster_count": 76,
+  "info": { "levelnum": 14, "title": "HUSTR_E2M4", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "D_E2M4", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Larva": 11, "Quadrumpus": 6, "FlemoidusBipedicusV3": 13, "FlemoidusCommonusV3": 44, "FlemoidusCycloptisCommonusV3": 2 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "key", "typename": "ChexRedCard", "tag": "ChexRedCard", "pos": ["E2M4",-160,1056,584] }
 AP-KEY { "typename": "ChexRedCard", "tag": "ChexRedCard", "scopename": "E2M4", "cluster": 0, "maps": ["E2M4"] }
 AP-ITEM { "category": "key", "typename": "ChexBlueCard", "tag": "ChexBlueCard", "pos": ["E2M4",-1928,-1256,32] }
@@ -541,7 +595,13 @@ AP-ITEM { "category": "maprevealer", "typename": "ComputerAreaMap", "tag": "Comp
 AP-SECRET { "pos": ["E2M4","secret","sector",15] }
 AP-SECRET { "pos": ["E2M4","secret","sector",69] }
 AP-SECRET { "pos": ["E2M4","secret","sector",110] }
-AP-MAP { "map": "E2M5", "levelname": "Sewer System", "checksum": "3ea55e57d9909d51570577ec8ff7d9f9", "rank": 4, "monster_count": 137, "info": { "levelnum": 15, "title": "HUSTR_E2M5", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "D_E2M5", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "E2M5", "levelname": "Sewer System",
+  "checksum": "3ea55e57d9909d51570577ec8ff7d9f9", "rank": 4, "monster_count": 137,
+  "info": { "levelnum": 15, "title": "HUSTR_E2M5", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "D_E2M5", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Larva": 15, "FlemoidusBipedicusV3": 57, "FlemoidusCommonusV3": 44, "FlemoidusMaximus": 2, "Quadrumpus": 19 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "key", "typename": "ChexBlueCard", "tag": "ChexBlueCard", "pos": ["E2M5",-1024,-1152,15] }
 AP-KEY { "typename": "ChexBlueCard", "tag": "ChexBlueCard", "scopename": "E2M5", "cluster": 0, "maps": ["E2M5"] }
 AP-ITEM { "category": "key", "typename": "ChexRedCard", "tag": "ChexRedCard", "pos": ["E2M5",2720,-1184,30] }
@@ -596,7 +656,13 @@ AP-KEY { "typename": "ChexYellowCard", "tag": "ChexYellowCard", "scopename": "E2
 AP-SECRET { "pos": ["E2M5","secret","sector",129] }
 AP-SECRET { "pos": ["E2M5","secret","sector",189] }
 AP-SECRET { "pos": ["E2M5","secret","sector",219] }
-AP-MAP { "map": "E3M1", "levelname": "Central Command", "checksum": "6cc2053b05911e97307506392bcd7b8d", "rank": 0, "monster_count": 53, "info": { "levelnum": 21, "title": "HUSTR_E3M1", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "D_E3M1", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "E3M1", "levelname": "Central Command",
+  "checksum": "6cc2053b05911e97307506392bcd7b8d", "rank": 0, "monster_count": 53,
+  "info": { "levelnum": 21, "title": "HUSTR_E3M1", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "D_E3M1", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "FlemoidusBipedicusV3": 17, "ArmoredFlemoidusBipedicusV3": 6, "SuperCycloptis": 1, "FlemoidusCommonusV3": 29 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "key", "typename": "ChexBlueCard", "tag": "ChexBlueCard", "pos": ["E3M1",-2848,1536,0] }
 AP-KEY { "typename": "ChexBlueCard", "tag": "ChexBlueCard", "scopename": "E3M1", "cluster": 0, "maps": ["E3M1"] }
 AP-ITEM { "category": "small-health", "typename": "GlassOfWater", "tag": "GlassOfWater", "filter": 7, "pos": ["E3M1",-776,2560,0] }
@@ -655,7 +721,13 @@ AP-ITEM { "category": "big-ammo", "typename": "ZorchPack", "tag": "ZorchPack", "
 AP-SECRET { "pos": ["E3M1","secret","sector",0] }
 AP-SECRET { "pos": ["E3M1","secret","sector",130] }
 AP-SECRET { "pos": ["E3M1","secret","sector",210] }
-AP-MAP { "map": "E3M2", "levelname": "United Cereals", "checksum": "fdc7b0dc4df6eb4f88674f8084bb031d", "rank": 1, "monster_count": 133, "info": { "levelnum": 22, "title": "HUSTR_E3M2", "is_lookup": true, "sky1": "CJSKY3A", "sky1speed": "0.000000", "sky2": "CJSKY3A", "sky2speed": "0.000000", "music": "D_E3M2", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "E3M2", "levelname": "United Cereals",
+  "checksum": "fdc7b0dc4df6eb4f88674f8084bb031d", "rank": 1, "monster_count": 133,
+  "info": { "levelnum": 22, "title": "HUSTR_E3M2", "is_lookup": true, "sky1": "CJSKY3A", "sky1speed": "0.000000", "sky2": "CJSKY3A", "sky2speed": "0.000000", "music": "D_E3M2", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "FlemoidusCycloptisCommonusV3": 7, "FlemoidusBipedicusV3": 45, "ArmoredFlemoidusBipedicusV3": 21, "SuperCycloptis": 1, "FlemoidusCommonusV3": 59 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "key", "typename": "ChexRedCard", "tag": "ChexRedCard", "pos": ["E3M2",-4320,-7056,128] }
 AP-KEY { "typename": "ChexRedCard", "tag": "ChexRedCard", "scopename": "E3M2", "cluster": 0, "maps": ["E3M2"] }
 AP-ITEM { "category": "weapon", "typename": "LargeZorcher", "tag": "Large Zorcher", "pos": ["E3M2",-5120,-6208,-13] }
@@ -704,7 +776,13 @@ AP-ITEM { "category": "small-ammo", "typename": "LargeZorchRecharge", "tag": "La
 AP-ITEM { "category": "big-health", "typename": "SuperchargeBreakfast", "tag": "SuperchargeBreakfast", "filter": 7, "pos": ["E3M2",-3552,-4256,-10] }
 AP-SECRET { "pos": ["E3M2","secret","sector",308] }
 AP-SECRET { "pos": ["E3M2","secret","sector",319] }
-AP-MAP { "map": "E3M3", "levelname": "Villa Chex", "checksum": "5c3df0f699d679183c7f218437350b31", "rank": 2, "monster_count": 110, "info": { "levelnum": 23, "title": "HUSTR_E3M3", "is_lookup": true, "sky1": "CJSKY3A", "sky1speed": "0.000000", "sky2": "CJSKY3A", "sky2speed": "0.000000", "music": "D_E3M3", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "E3M3", "levelname": "Villa Chex",
+  "checksum": "5c3df0f699d679183c7f218437350b31", "rank": 2, "monster_count": 110,
+  "info": { "levelnum": 23, "title": "HUSTR_E3M3", "is_lookup": true, "sky1": "CJSKY3A", "sky1speed": "0.000000", "sky2": "CJSKY3A", "sky2speed": "0.000000", "music": "D_E3M3", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "FlemoidusCycloptisCommonusV3": 5, "FlemoidusBipedicusV3": 40, "FlemoidusStridicus": 9, "Flembomination": 1, "ArmoredFlemoidusBipedicusV3": 13, "SuperCycloptis": 4, "FlemoidusCommonusV3": 38 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "key", "typename": "ChexBlueCard", "tag": "ChexBlueCard", "pos": ["E3M3",-1768,-3192,10] }
 AP-KEY { "typename": "ChexBlueCard", "tag": "ChexBlueCard", "scopename": "E3M3", "cluster": 0, "maps": ["E3M3"] }
 AP-ITEM { "category": "small-ammo", "typename": "PropulsorZorch", "tag": "Propulsor Charge", "pos": ["E3M3",2888,-2136,-128] }
@@ -778,7 +856,13 @@ AP-ITEM { "category": "small-ammo", "typename": "MiniZorchRecharge", "tag": "Min
 AP-ITEM { "category": "small-ammo", "typename": "MiniZorchRecharge", "tag": "Mini Zorch Charge", "filter": 24, "pos": ["E3M3",576,-4704,10] }
 AP-SECRET { "pos": ["E3M3","secret","sector",169] }
 AP-SECRET { "pos": ["E3M3","secret","sector",347] }
-AP-MAP { "map": "E3M4", "levelname": "Provincial Park", "checksum": "083e05cacab0e4616e0ea4cf45823c47", "rank": 3, "monster_count": 125, "info": { "levelnum": 24, "title": "HUSTR_E3M4", "is_lookup": true, "sky1": "CJSKY3A", "sky1speed": "0.000000", "sky2": "CJSKY3A", "sky2speed": "0.000000", "music": "D_E3M4", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "E3M4", "levelname": "Provincial Park",
+  "checksum": "083e05cacab0e4616e0ea4cf45823c47", "rank": 3, "monster_count": 125,
+  "info": { "levelnum": 24, "title": "HUSTR_E3M4", "is_lookup": true, "sky1": "CJSKY3A", "sky1speed": "0.000000", "sky2": "CJSKY3A", "sky2speed": "0.000000", "music": "D_E3M4", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "FlemoidusStridicus": 21, "FlemMine": 37, "Larva": 12, "ArmoredFlemoidusBipedicusV3": 16, "SuperCycloptis": 4, "FlemoidusCommonusV3": 24, "FlemoidusBipedicusV3": 11 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "key", "typename": "ChexRedCard", "tag": "ChexRedCard", "pos": ["E3M4",-158,102,272] }
 AP-KEY { "typename": "ChexRedCard", "tag": "ChexRedCard", "scopename": "E3M4", "cluster": 0, "maps": ["E3M4"] }
 AP-ITEM { "category": "big-ammo", "typename": "ZorchPack", "tag": "ZorchPack", "pos": ["E3M4",408,-816,172] }
@@ -843,7 +927,13 @@ AP-SECRET { "pos": ["E3M4","secret","sector",118] }
 AP-SECRET { "pos": ["E3M4","secret","sector",142] }
 AP-SECRET { "pos": ["E3M4","secret","sector",232] }
 AP-SECRET { "pos": ["E3M4","secret","sector",247] }
-AP-MAP { "map": "E3M5", "levelname": "Meteor Spaceship", "checksum": "a696a8d5a3e2ffeaaa1212ae3b30f970", "rank": 4, "monster_count": 147, "info": { "levelnum": 25, "title": "HUSTR_E3M5", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "D_E3M5", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "E3M5", "levelname": "Meteor Spaceship",
+  "checksum": "a696a8d5a3e2ffeaaa1212ae3b30f970", "rank": 4, "monster_count": 147,
+  "info": { "levelnum": 25, "title": "HUSTR_E3M5", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "D_E3M5", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "FlemoidusBipedicusV3": 42, "FlemoidusStridicus": 3, "FlemoidusMaximus": 1, "FlemMine": 4, "Larva": 8, "Quadrumpus": 4, "ArmoredFlemoidusBipedicusV3": 13, "SuperCycloptis": 5, "FlemoidusCommonusV3": 62, "FlemoidusCycloptisCommonusV3": 4, "Snotfolus": 1 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "small-ammo", "typename": "PhasingZorch", "tag": "Phasing Zorcher Charge", "filter": 7, "pos": ["E3M5",-2416,216,0] }
 AP-ITEM { "category": "small-ammo", "typename": "PhasingZorch", "tag": "Phasing Zorcher Charge", "filter": 7, "pos": ["E3M5",-1872,272,0] }
 AP-ITEM { "category": "key", "typename": "BlueFlemKey", "tag": "Blue Flemkey", "pos": ["E3M5",-1896,1880,300] }

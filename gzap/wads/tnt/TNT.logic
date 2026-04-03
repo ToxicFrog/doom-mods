@@ -1,5 +1,11 @@
 AP-SCAN { "flags": [] }
-AP-MAP { "map": "MAP01", "levelname": "System Control", "checksum": "8391b0eb996c55b5ed4343d18b8ad2c8", "rank": 0, "monster_count": 36, "info": { "levelnum": 1, "title": "THUSTR_1", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "$MUSIC_RUNNIN", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "MAP01", "levelname": "System Control",
+  "checksum": "8391b0eb996c55b5ed4343d18b8ad2c8", "rank": 0, "monster_count": 36,
+  "info": { "levelnum": 1, "title": "THUSTR_1", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "$MUSIC_RUNNIN", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Demon": 1, "ShotgunGuy": 2, "ChaingunGuy": 4, "Zombieman": 11, "DoomImp": 18 },
+  "prereqs": [ "weapon/Shotgun/auto", "weapon/Chaingun/auto" ]
+}
 AP-ITEM { "category": "medium-armor", "typename": "GreenArmor", "tag": "GreenArmor", "pos": ["MAP01",160,456,66] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["MAP01",96,360,0] }
 AP-ITEM { "category": "medium-health-attack", "typename": "Berserk", "tag": "Berserk", "pos": ["MAP01",-348,35,10] }
@@ -24,7 +30,13 @@ AP-ITEM { "category": "big-armor", "typename": "BlueArmor", "tag": "BlueArmor", 
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "filter": 28, "pos": ["MAP01",-604,670,0] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "filter": 28, "pos": ["MAP01",-680,672,0] }
 AP-SECRET { "pos": ["MAP01","secret","sector",52] }
-AP-MAP { "map": "MAP02", "levelname": "Human BBQ", "checksum": "ba0f19e30dc166573e5b58a4efcb4d45", "rank": 1, "monster_count": 87, "info": { "levelnum": 2, "title": "THUSTR_2", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "$MUSIC_STALKS", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "MAP02", "levelname": "Human BBQ",
+  "checksum": "ba0f19e30dc166573e5b58a4efcb4d45", "rank": 1, "monster_count": 87,
+  "info": { "levelnum": 2, "title": "THUSTR_2", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "$MUSIC_STALKS", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Revenant": 1, "BaronOfHell": 3, "DoomImp": 22, "Zombieman": 7, "Spectre": 6, "Cacodemon": 2, "HellKnight": 5, "LostSoul": 2, "PainElemental": 1, "ChaingunGuy": 10, "ShotgunGuy": 21, "Demon": 7 },
+  "prereqs": [ "weapon/Chaingun/auto", "weapon/Shotgun/auto" ]
+}
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["MAP02",71,-20,0] }
 AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "pos": ["MAP02",-267,488,0] }
 AP-ITEM { "category": "key", "typename": "RedCard", "tag": "Red Keycard", "pos": ["MAP02",120,1170,0] }
@@ -82,7 +94,13 @@ AP-SECRET { "pos": ["MAP02","secret","sector",66] }
 AP-SECRET { "pos": ["MAP02","secret","sector",114] }
 AP-SECRET { "pos": ["MAP02","secret","sector",126] }
 AP-SECRET { "pos": ["MAP02","secret","sector",153] }
-AP-MAP { "map": "MAP03", "levelname": "Power Control", "checksum": "875aef88a5443843761bfbd386500c7b", "rank": 2, "monster_count": 103, "info": { "levelnum": 3, "title": "THUSTR_3", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "$MUSIC_COUNTD", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "MAP03", "levelname": "Power Control",
+  "checksum": "875aef88a5443843761bfbd386500c7b", "rank": 2, "monster_count": 103,
+  "info": { "levelnum": 3, "title": "THUSTR_3", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "$MUSIC_COUNTD", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "DoomImp": 24, "ChaingunGuy": 14, "Fatso": 3, "Spectre": 14, "Cacodemon": 2, "LostSoul": 6, "Demon": 3, "Revenant": 5, "Archvile": 1, "ShotgunGuy": 25, "Zombieman": 6 },
+  "prereqs": [ "weapon/Chaingun/auto", "weapon/Shotgun/auto" ]
+}
 AP-ITEM { "category": "key", "typename": "RedCard", "tag": "Red Keycard", "pos": ["MAP03",0,0,87] }
 AP-KEY { "typename": "RedCard", "tag": "Red Keycard", "scopename": "MAP03", "cluster": 0, "maps": ["MAP03"] }
 AP-ITEM { "category": "key", "typename": "YellowCard", "tag": "Yellow Keycard", "pos": ["MAP03",256,1984,0] }
@@ -140,7 +158,13 @@ AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack",
 AP-SECRET { "pos": ["MAP03","secret","sector",228] }
 AP-SECRET { "pos": ["MAP03","secret","sector",230] }
 AP-SECRET { "pos": ["MAP03","secret","sector",278] }
-AP-MAP { "map": "MAP04", "levelname": "Wormhole", "checksum": "36f32ed4632e036bde6471162e966031", "rank": 3, "monster_count": 173, "info": { "levelnum": 4, "title": "THUSTR_4", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "$MUSIC_BETWEE", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "MAP04", "levelname": "Wormhole",
+  "checksum": "36f32ed4632e036bde6471162e966031", "rank": 3, "monster_count": 173,
+  "info": { "levelnum": 4, "title": "THUSTR_4", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "$MUSIC_BETWEE", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Archvile": 1, "ChaingunGuy": 16, "Fatso": 3, "Cacodemon": 4, "HellKnight": 7, "LostSoul": 24, "Demon": 21, "Arachnotron": 1, "Spectre": 17, "ShotgunGuy": 12, "DoomImp": 60, "Revenant": 7 },
+  "prereqs": [ "weapon/Chaingun/auto", "weapon/Shotgun/auto" ]
+}
 AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "pos": ["MAP04",-544,160,0] }
 AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["MAP04",-224,1120,0] }
 AP-ITEM { "category": "weapon", "typename": "Shotgun", "tag": "Shotgun", "pos": ["MAP04",-160,-64,0] }
@@ -246,7 +270,13 @@ AP-SECRET { "pos": ["MAP04","secret","sector",164] }
 AP-SECRET { "pos": ["MAP04","secret","sector",165] }
 AP-SECRET { "pos": ["MAP04","secret","sector",168] }
 AP-SECRET { "pos": ["MAP04","secret","sector",335] }
-AP-MAP { "map": "MAP05", "levelname": "Hanger", "checksum": "4596ec72ef76a3e8c97a9e2179bb81d7", "rank": 4, "monster_count": 110, "info": { "levelnum": 5, "title": "THUSTR_5", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "$MUSIC_DOOM", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "MAP05", "levelname": "Hanger",
+  "checksum": "4596ec72ef76a3e8c97a9e2179bb81d7", "rank": 4, "monster_count": 110,
+  "info": { "levelnum": 5, "title": "THUSTR_5", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "$MUSIC_DOOM", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "BaronOfHell": 4, "DoomImp": 41, "Zombieman": 5, "Spectre": 2, "Cacodemon": 3, "Revenant": 4, "Demon": 2, "ChaingunGuy": 22, "ShotgunGuy": 27 },
+  "prereqs": [ "weapon/Chaingun/auto", "weapon/Shotgun/auto" ]
+}
 AP-ITEM { "category": "medium-armor", "typename": "GreenArmor", "tag": "GreenArmor", "secret": true, "pos": ["MAP05",384,512,56] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["MAP05",128,632,80] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["MAP05",168,632,80] }
@@ -350,7 +380,13 @@ AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack",
 AP-SECRET { "pos": ["MAP05","secret","sector",91] }
 AP-SECRET { "pos": ["MAP05","secret","sector",106] }
 AP-SECRET { "pos": ["MAP05","secret","sector",169] }
-AP-MAP { "map": "MAP06", "levelname": "Open Season", "checksum": "214beb43049644432b10dafa88b184b6", "rank": 5, "monster_count": 79, "info": { "levelnum": 6, "title": "THUSTR_6", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "$MUSIC_THE_DA", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "MAP06", "levelname": "Open Season",
+  "checksum": "214beb43049644432b10dafa88b184b6", "rank": 5, "monster_count": 79,
+  "info": { "levelnum": 6, "title": "THUSTR_6", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "$MUSIC_THE_DA", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Fatso": 1, "Cacodemon": 6, "HellKnight": 2, "LostSoul": 5, "Revenant": 3, "Archvile": 1, "Demon": 6, "ShotgunGuy": 19, "Zombieman": 6, "DoomImp": 17, "ChaingunGuy": 13 },
+  "prereqs": [ "weapon/Shotgun/auto", "weapon/Chaingun/auto" ]
+}
 AP-ITEM { "category": "medium-tool", "typename": "RadSuit", "tag": "RadSuit", "pos": ["MAP06",1024,448,-128] }
 AP-ITEM { "category": "key", "typename": "BlueCard", "tag": "Blue Keycard", "pos": ["MAP06",816,544,0] }
 AP-KEY { "typename": "BlueCard", "tag": "Blue Keycard", "scopename": "MAP06", "cluster": 0, "maps": ["MAP06"] }
@@ -401,7 +437,13 @@ AP-ITEM { "category": "weapon", "typename": "SuperShotgun", "tag": "Super Shotgu
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["MAP06",-1424,-1006,-192] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["MAP06",-1424,-1099,-192] }
 AP-SECRET { "pos": ["MAP06","secret","sector",98] }
-AP-MAP { "map": "MAP07", "levelname": "Prison", "checksum": "0f898f0688aecd42f2cd102fae06f271", "rank": 6, "monster_count": 203, "info": { "levelnum": 7, "title": "THUSTR_7", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "$MUSIC_SHAWN", "music_track": "0", "cluster": 0, "flags": ["map07special"] } }
+AP-MAP {
+  "map": "MAP07", "levelname": "Prison",
+  "checksum": "0f898f0688aecd42f2cd102fae06f271", "rank": 6, "monster_count": 203,
+  "info": { "levelnum": 7, "title": "THUSTR_7", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "$MUSIC_SHAWN", "music_track": "0", "cluster": 0, "flags": ["map07special"] },
+  "monsters": { "Revenant": 4, "BaronOfHell": 8, "DoomImp": 76, "ChaingunGuy": 12, "Fatso": 1, "HellKnight": 7, "LostSoul": 8, "Demon": 7, "PainElemental": 1, "Cacodemon": 6, "Zombieman": 16, "ShotgunGuy": 33, "Spectre": 24 },
+  "prereqs": [ "weapon/Chaingun/auto", "weapon/Shotgun/auto" ]
+}
 AP-ITEM { "category": "small-tool", "typename": "Infrared", "tag": "Infrared", "filter": 7, "pos": ["MAP07",532,592,0] }
 AP-ITEM { "category": "big-defence", "typename": "InvulnerabilitySphere", "tag": "InvulnerabilitySphere", "pos": ["MAP07",32,-928,176] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["MAP07",-2327,25,-20] }
@@ -558,7 +600,13 @@ AP-SECRET { "pos": ["MAP07","secret","sector",51] }
 AP-SECRET { "pos": ["MAP07","secret","sector",115] }
 AP-SECRET { "pos": ["MAP07","secret","sector",142] }
 AP-SECRET { "pos": ["MAP07","secret","sector",151] }
-AP-MAP { "map": "MAP08", "levelname": "Metal", "checksum": "1e785e841a5247b6223c042ec712ebb3", "rank": 7, "monster_count": 195, "info": { "levelnum": 8, "title": "THUSTR_8", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "$MUSIC_DDTBLU", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "MAP08", "levelname": "Metal",
+  "checksum": "1e785e841a5247b6223c042ec712ebb3", "rank": 7, "monster_count": 195,
+  "info": { "levelnum": 8, "title": "THUSTR_8", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "$MUSIC_DDTBLU", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "DoomImp": 53, "Zombieman": 11, "Cacodemon": 2, "ChaingunGuy": 26, "Demon": 6, "Spectre": 11, "LostSoul": 6, "Arachnotron": 2, "ShotgunGuy": 78 },
+  "prereqs": [ "weapon/Chaingun/auto", "weapon/Shotgun/auto" ]
+}
 AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos": ["MAP08",29,-352,0] }
 AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos": ["MAP08",159,-352,0] }
 AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos": ["MAP08",285,-352,0] }
@@ -679,7 +727,13 @@ AP-SECRET { "pos": ["MAP08","secret","sector",115] }
 AP-SECRET { "pos": ["MAP08","secret","sector",121] }
 AP-SECRET { "pos": ["MAP08","secret","sector",145] }
 AP-SECRET { "pos": ["MAP08","secret","sector",305] }
-AP-MAP { "map": "MAP09", "levelname": "Stronghold", "checksum": "5f8027c2a807bba0f479e25a585addc3", "rank": 8, "monster_count": 297, "info": { "levelnum": 9, "title": "THUSTR_9", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "$MUSIC_IN_CIT", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "MAP09", "levelname": "Stronghold",
+  "checksum": "5f8027c2a807bba0f479e25a585addc3", "rank": 8, "monster_count": 297,
+  "info": { "levelnum": 9, "title": "THUSTR_9", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "$MUSIC_IN_CIT", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Zombieman": 45, "Demon": 1, "DoomImp": 86, "ChaingunGuy": 68, "ShotgunGuy": 97 },
+  "prereqs": [ "weapon/Chaingun/auto", "weapon/Shotgun/auto" ]
+}
 AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["MAP09",704,-176,-96] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["MAP09",400,160,-96] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["MAP09",848,224,-96] }
@@ -809,7 +863,13 @@ AP-SECRET { "pos": ["MAP09","secret","sector",269] }
 AP-SECRET { "pos": ["MAP09","secret","sector",383] }
 AP-SECRET { "pos": ["MAP09","secret","sector",401] }
 AP-SECRET { "pos": ["MAP09","secret","sector",404] }
-AP-MAP { "map": "MAP10", "levelname": "Redemption", "checksum": "ae65b69d0ce7fa99f105861882d2de87", "rank": 9, "monster_count": 88, "info": { "levelnum": 10, "title": "THUSTR_10", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "$MUSIC_DEAD", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "MAP10", "levelname": "Redemption",
+  "checksum": "ae65b69d0ce7fa99f105861882d2de87", "rank": 9, "monster_count": 88,
+  "info": { "levelnum": 10, "title": "THUSTR_10", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "$MUSIC_DEAD", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Fatso": 3, "Cacodemon": 4, "HellKnight": 2, "PainElemental": 2, "Revenant": 4, "Spectre": 2, "BaronOfHell": 1, "DoomImp": 32, "ChaingunGuy": 11, "Arachnotron": 2, "ShotgunGuy": 11, "Demon": 12, "Zombieman": 2 },
+  "prereqs": [ "weapon/Chaingun/auto", "weapon/Shotgun/auto" ]
+}
 AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "pos": ["MAP10",160,-160,0] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["MAP10",474,508,0] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["MAP10",474,-184,0] }
@@ -860,7 +920,13 @@ AP-SECRET { "pos": ["MAP10","secret","sector",57] }
 AP-SECRET { "pos": ["MAP10","secret","sector",58] }
 AP-SECRET { "pos": ["MAP10","secret","sector",59] }
 AP-SECRET { "pos": ["MAP10","secret","sector",61] }
-AP-MAP { "map": "MAP11", "levelname": "Storage Facility", "checksum": "92125345fff3309ebcc9b2f7e064d67c", "rank": 10, "monster_count": 142, "info": { "levelnum": 11, "title": "THUSTR_11", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "$MUSIC_STLKS2", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "MAP11", "levelname": "Storage Facility",
+  "checksum": "92125345fff3309ebcc9b2f7e064d67c", "rank": 10, "monster_count": 142,
+  "info": { "levelnum": 11, "title": "THUSTR_11", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "$MUSIC_STLKS2", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "DoomImp": 30, "Zombieman": 39, "Fatso": 2, "Archvile": 2, "Spectre": 4, "ChaingunGuy": 12, "Revenant": 5, "ShotgunGuy": 48 },
+  "prereqs": [ "weapon/Chaingun/auto", "weapon/Shotgun/auto" ]
+}
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["MAP11",112,1200,128] }
 AP-ITEM { "category": "big-health", "typename": "Soulsphere", "tag": "Soulsphere", "pos": ["MAP11",992,1056,128] }
 AP-ITEM { "category": "weapon", "typename": "Chainsaw", "tag": "Chainsaw", "pos": ["MAP11",800,1184,96] }
@@ -968,7 +1034,13 @@ AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack",
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "filter": 28, "pos": ["MAP11",464,1632,0] }
 AP-SECRET { "pos": ["MAP11","secret","sector",153] }
 AP-SECRET { "pos": ["MAP11","secret","sector",154] }
-AP-MAP { "map": "MAP12", "levelname": "Crater", "checksum": "0907599466da895ce8b3b2508cc4f7ab", "rank": 11, "monster_count": 135, "info": { "levelnum": 12, "title": "THUSTR_12", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "$MUSIC_THEDA2", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "MAP12", "levelname": "Crater",
+  "checksum": "0907599466da895ce8b3b2508cc4f7ab", "rank": 11, "monster_count": 135,
+  "info": { "levelnum": 12, "title": "THUSTR_12", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "$MUSIC_THEDA2", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Revenant": 4, "BaronOfHell": 4, "DoomImp": 47, "ChaingunGuy": 17, "Fatso": 3, "Demon": 8, "Spectre": 7, "ShotgunGuy": 17, "Arachnotron": 6, "Zombieman": 21, "Archvile": 1 },
+  "prereqs": [ "weapon/Chaingun/auto", "weapon/Shotgun/auto" ]
+}
 AP-ITEM { "category": "weapon", "typename": "SuperShotgun", "tag": "Super Shotgun", "pos": ["MAP12",-352,1024,0] }
 AP-ITEM { "category": "key", "typename": "BlueCard", "tag": "Blue Keycard", "pos": ["MAP12",-608,-256,0] }
 AP-KEY { "typename": "BlueCard", "tag": "Blue Keycard", "scopename": "MAP12", "cluster": 0, "maps": ["MAP12"] }
@@ -1021,7 +1093,13 @@ AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells"
 AP-ITEM { "category": "big-ammo", "typename": "Backpack", "tag": "Backpack", "pos": ["MAP12",-736,-1760,0] }
 AP-SECRET { "pos": ["MAP12","secret","sector",213] }
 AP-SECRET { "pos": ["MAP12","secret","sector",214] }
-AP-MAP { "map": "MAP13", "levelname": "Nukage Processing", "checksum": "18e6ad88b7df0e27cb20d76f82fcd299", "rank": 12, "monster_count": 145, "info": { "levelnum": 13, "title": "THUSTR_13", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "$MUSIC_DOOM2", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "MAP13", "levelname": "Nukage Processing",
+  "checksum": "18e6ad88b7df0e27cb20d76f82fcd299", "rank": 12, "monster_count": 145,
+  "info": { "levelnum": 13, "title": "THUSTR_13", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "$MUSIC_DOOM2", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "BaronOfHell": 2, "DoomImp": 27, "ChaingunGuy": 17, "Fatso": 3, "Cyberdemon": 1, "HellKnight": 5, "Spectre": 3, "Demon": 9, "ShotgunGuy": 48, "PainElemental": 1, "Zombieman": 24, "Revenant": 5 },
+  "prereqs": [ "weapon/Chaingun/auto", "weapon/Shotgun/auto" ]
+}
 AP-ITEM { "category": "key", "typename": "YellowCard", "tag": "Yellow Keycard", "pos": ["MAP13",3296,2624,0] }
 AP-KEY { "typename": "YellowCard", "tag": "Yellow Keycard", "scopename": "MAP13", "cluster": 0, "maps": ["MAP13"] }
 AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["MAP13",3232,2784,0] }
@@ -1092,7 +1170,13 @@ AP-SECRET { "pos": ["MAP13","secret","sector",201] }
 AP-SECRET { "pos": ["MAP13","secret","sector",210] }
 AP-SECRET { "pos": ["MAP13","secret","sector",215] }
 AP-SECRET { "pos": ["MAP13","secret","sector",233] }
-AP-MAP { "map": "MAP14", "levelname": "Steel Works", "checksum": "1cd346aaf457e4a963c0fa68b72b24bb", "rank": 13, "monster_count": 208, "info": { "levelnum": 14, "title": "THUSTR_14", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "$MUSIC_DDTBL2", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "MAP14", "levelname": "Steel Works",
+  "checksum": "1cd346aaf457e4a963c0fa68b72b24bb", "rank": 13, "monster_count": 208,
+  "info": { "levelnum": 14, "title": "THUSTR_14", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "$MUSIC_DDTBL2", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "DoomImp": 15, "ChaingunGuy": 15, "Demon": 2, "ShotgunGuy": 24, "Zombieman": 137, "SpiderMastermind": 1, "PainElemental": 2, "LostSoul": 7, "Spectre": 5 },
+  "prereqs": [ "weapon/Chaingun/auto", "weapon/Shotgun/auto" ]
+}
 AP-ITEM { "category": "key", "typename": "RedCard", "tag": "Red Keycard", "pos": ["MAP14",-960,320,160] }
 AP-KEY { "typename": "RedCard", "tag": "Red Keycard", "scopename": "MAP14", "cluster": 0, "maps": ["MAP14"] }
 AP-ITEM { "category": "key", "typename": "BlueCard", "tag": "Blue Keycard", "pos": ["MAP14",464,688,-32] }
@@ -1225,7 +1309,13 @@ AP-SECRET { "pos": ["MAP14","secret","sector",58] }
 AP-SECRET { "pos": ["MAP14","secret","sector",89] }
 AP-SECRET { "pos": ["MAP14","secret","sector",223] }
 AP-SECRET { "pos": ["MAP14","secret","sector",276] }
-AP-MAP { "map": "MAP15", "levelname": "Dead Zone", "checksum": "dfc18b92bf3e8142b8684ecd8bd2ef06", "rank": 14, "monster_count": 100, "info": { "levelnum": 15, "title": "THUSTR_15", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "$MUSIC_RUNNI2", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "MAP15", "levelname": "Dead Zone",
+  "checksum": "dfc18b92bf3e8142b8684ecd8bd2ef06", "rank": 14, "monster_count": 100,
+  "info": { "levelnum": 15, "title": "THUSTR_15", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "$MUSIC_RUNNI2", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Archvile": 2, "BaronOfHell": 1, "DoomImp": 41, "ChaingunGuy": 10, "Fatso": 1, "Spectre": 13, "Cacodemon": 5, "LostSoul": 4, "ShotgunGuy": 5, "PainElemental": 2, "Revenant": 3, "Demon": 10, "Zombieman": 3 },
+  "prereqs": [ "weapon/Chaingun/auto", "weapon/Shotgun/auto" ]
+}
 AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "filter": 3, "pos": ["MAP15",2272,3736,88] }
 AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "pos": ["MAP15",1984,1328,128] }
 AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "pos": ["MAP15",2356,4484,0] }
@@ -1336,7 +1426,13 @@ AP-SECRET { "pos": ["MAP15","secret","sector",223] }
 AP-SECRET { "pos": ["MAP15","secret","sector",240] }
 AP-SECRET { "pos": ["MAP15","secret","sector",292] }
 AP-SECRET { "pos": ["MAP15","secret","sector",305] }
-AP-MAP { "map": "MAP16", "levelname": "Deepest Reaches", "checksum": "43c1f1e68b3c4bdf9412f7a1335b5ec1", "rank": 15, "monster_count": 137, "info": { "levelnum": 16, "title": "THUSTR_16", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "$MUSIC_DEAD2", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "MAP16", "levelname": "Deepest Reaches",
+  "checksum": "43c1f1e68b3c4bdf9412f7a1335b5ec1", "rank": 15, "monster_count": 137,
+  "info": { "levelnum": 16, "title": "THUSTR_16", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "$MUSIC_DEAD2", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Revenant": 6, "DoomImp": 47, "ChaingunGuy": 12, "Spectre": 10, "Fatso": 4, "BaronOfHell": 2, "Cacodemon": 5, "HellKnight": 1, "PainElemental": 1, "LostSoul": 12, "Zombieman": 12, "Demon": 10, "ShotgunGuy": 15 },
+  "prereqs": [ "weapon/Chaingun/auto", "weapon/Shotgun/auto" ]
+}
 AP-ITEM { "category": "weapon", "typename": "SuperShotgun", "tag": "Super Shotgun", "pos": ["MAP16",-928,16,-160] }
 AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "pos": ["MAP16",-928,-80,-176] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["MAP16",-864,1216,-176] }
@@ -1449,7 +1545,13 @@ AP-SECRET { "pos": ["MAP16","secret","sector",25] }
 AP-SECRET { "pos": ["MAP16","secret","sector",32] }
 AP-SECRET { "pos": ["MAP16","secret","sector",156] }
 AP-SECRET { "pos": ["MAP16","secret","sector",172] }
-AP-MAP { "map": "MAP17", "levelname": "Processing Area", "checksum": "8d59f49ecdbfc95a1b857dd541c98b22", "rank": 16, "monster_count": 104, "info": { "levelnum": 17, "title": "THUSTR_17", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "$MUSIC_STLKS3", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "MAP17", "levelname": "Processing Area",
+  "checksum": "8d59f49ecdbfc95a1b857dd541c98b22", "rank": 16, "monster_count": 104,
+  "info": { "levelnum": 17, "title": "THUSTR_17", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "$MUSIC_STLKS3", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Revenant": 6, "DoomImp": 28, "Zombieman": 8, "Fatso": 1, "Cacodemon": 1, "HellKnight": 1, "LostSoul": 2, "Demon": 9, "PainElemental": 2, "ShotgunGuy": 22, "Archvile": 2, "Arachnotron": 1, "Spectre": 3, "ChaingunGuy": 18 },
+  "prereqs": [ "weapon/Shotgun/auto", "weapon/Chaingun/auto" ]
+}
 AP-ITEM { "category": "weapon", "typename": "SuperShotgun", "tag": "Super Shotgun", "secret": true, "pos": ["MAP17",-544,-1360,40] }
 AP-ITEM { "category": "big-armor-health", "typename": "Megasphere", "tag": "Megasphere", "secret": true, "filter": 3, "pos": ["MAP17",1741,-176,250] }
 AP-ITEM { "category": "key", "typename": "BlueCard", "tag": "Blue Keycard", "pos": ["MAP17",2224,-912,10] }
@@ -1529,7 +1631,13 @@ AP-SECRET { "pos": ["MAP17","secret","sector",59] }
 AP-SECRET { "pos": ["MAP17","secret","sector",115] }
 AP-SECRET { "pos": ["MAP17","secret","sector",167] }
 AP-SECRET { "pos": ["MAP17","secret","sector",188] }
-AP-MAP { "map": "MAP18", "levelname": "Mill", "checksum": "c4f0e8897b7dded102edb0d81d53227a", "rank": 17, "monster_count": 184, "info": { "levelnum": 18, "title": "THUSTR_18", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "$MUSIC_ROMERO", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "MAP18", "levelname": "Mill",
+  "checksum": "c4f0e8897b7dded102edb0d81d53227a", "rank": 17, "monster_count": 184,
+  "info": { "levelnum": 18, "title": "THUSTR_18", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "$MUSIC_ROMERO", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Revenant": 14, "DoomImp": 8, "ChaingunGuy": 37, "PainElemental": 2, "Cacodemon": 5, "Fatso": 1, "Cyberdemon": 1, "HellKnight": 21, "Spectre": 7, "LostSoul": 20, "Demon": 1, "Archvile": 2, "ShotgunGuy": 47, "Arachnotron": 7, "Zombieman": 1, "BaronOfHell": 10 },
+  "prereqs": [ "weapon/Chaingun/auto", "weapon/Shotgun/auto" ]
+}
 AP-ITEM { "category": "weapon", "typename": "SuperShotgun", "tag": "Super Shotgun", "pos": ["MAP18",-704,448,114] }
 AP-ITEM { "category": "weapon", "typename": "RocketLauncher", "tag": "Rocket Launcher", "pos": ["MAP18",-704,-192,114] }
 AP-ITEM { "category": "key", "typename": "BlueCard", "tag": "Blue Keycard", "pos": ["MAP18",3104,224,0] }
@@ -1641,7 +1749,13 @@ AP-SECRET { "pos": ["MAP18","secret","sector",209] }
 AP-SECRET { "pos": ["MAP18","secret","sector",271] }
 AP-SECRET { "pos": ["MAP18","secret","sector",308] }
 AP-SECRET { "pos": ["MAP18","secret","sector",342] }
-AP-MAP { "map": "MAP19", "levelname": "Shipping/respawning", "checksum": "6c735d5a4efb205c012e24491462eb43", "rank": 18, "monster_count": 157, "info": { "levelnum": 19, "title": "THUSTR_19", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "$MUSIC_SHAWN2", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "MAP19", "levelname": "Shipping/respawning",
+  "checksum": "6c735d5a4efb205c012e24491462eb43", "rank": 18, "monster_count": 157,
+  "info": { "levelnum": 19, "title": "THUSTR_19", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "$MUSIC_SHAWN2", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Revenant": 3, "DoomImp": 37, "Zombieman": 11, "Fatso": 4, "Cacodemon": 4, "HellKnight": 1, "Demon": 12, "PainElemental": 1, "ShotgunGuy": 47, "ChaingunGuy": 34, "Spectre": 2, "Archvile": 1 },
+  "prereqs": [ "weapon/Shotgun/auto", "weapon/Chaingun/auto" ]
+}
 AP-ITEM { "category": "big-armor-health", "typename": "Megasphere", "tag": "Megasphere", "pos": ["MAP19",-2320,-2640,224] }
 AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "pos": ["MAP19",-1472,-3136,64] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["MAP19",-1456,-96,96] }
@@ -1703,7 +1817,13 @@ AP-SECRET { "pos": ["MAP19","secret","sector",35] }
 AP-SECRET { "pos": ["MAP19","secret","sector",142] }
 AP-SECRET { "pos": ["MAP19","secret","sector",393] }
 AP-SECRET { "pos": ["MAP19","secret","sector",416] }
-AP-MAP { "map": "MAP20", "levelname": "Central Processing", "checksum": "a119c0b1e5fe7e2eb069deca3fd3ba46", "rank": 19, "monster_count": 265, "info": { "levelnum": 20, "title": "THUSTR_20", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "$MUSIC_MESSAG", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "MAP20", "levelname": "Central Processing",
+  "checksum": "a119c0b1e5fe7e2eb069deca3fd3ba46", "rank": 19, "monster_count": 265,
+  "info": { "levelnum": 20, "title": "THUSTR_20", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "$MUSIC_MESSAG", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Archvile": 2, "Fatso": 3, "Cacodemon": 5, "HellKnight": 2, "Demon": 13, "Revenant": 11, "DoomImp": 116, "Zombieman": 3, "ChaingunGuy": 48, "LostSoul": 7, "SpiderMastermind": 1, "ShotgunGuy": 27, "Spectre": 12, "BaronOfHell": 2, "PainElemental": 7, "Arachnotron": 6 },
+  "prereqs": [ "weapon/Chaingun/auto", "weapon/Shotgun/auto" ]
+}
 AP-ITEM { "category": "key", "typename": "RedSkull", "tag": "Red Skull", "pos": ["MAP20",136,-2624,528] }
 AP-KEY { "typename": "RedSkull", "tag": "Red Skull", "scopename": "MAP20", "cluster": 0, "maps": ["MAP20"] }
 AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "pos": ["MAP20",1812,1198,32] }
@@ -1898,7 +2018,13 @@ AP-SECRET { "pos": ["MAP20","secret","sector",235] }
 AP-SECRET { "pos": ["MAP20","secret","sector",269] }
 AP-SECRET { "pos": ["MAP20","secret","sector",270] }
 AP-SECRET { "pos": ["MAP20","secret","sector",284] }
-AP-MAP { "map": "MAP21", "levelname": "Administration Center", "checksum": "55c8da7b531ae47014ad73fff4687a36", "rank": 20, "monster_count": 278, "info": { "levelnum": 21, "title": "THUSTR_21", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "$MUSIC_COUNT2", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "MAP21", "levelname": "Administration Center",
+  "checksum": "55c8da7b531ae47014ad73fff4687a36", "rank": 20, "monster_count": 278,
+  "info": { "levelnum": 21, "title": "THUSTR_21", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "$MUSIC_COUNT2", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Archvile": 1, "Fatso": 5, "Cacodemon": 2, "HellKnight": 18, "Revenant": 12, "DoomImp": 157, "ChaingunGuy": 28, "Spectre": 13, "LostSoul": 4, "ShotgunGuy": 30, "Cyberdemon": 1, "PainElemental": 1, "Arachnotron": 3, "Zombieman": 1, "BaronOfHell": 2 },
+  "prereqs": [ "weapon/Chaingun/auto", "weapon/Shotgun/auto" ]
+}
 AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "pos": ["MAP21",-521,-1493,0] }
 AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "pos": ["MAP21",-1376,-1120,128] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["MAP21",-1887,-1301,32] }
@@ -2027,7 +2153,13 @@ AP-SECRET { "pos": ["MAP21","secret","sector",49] }
 AP-SECRET { "pos": ["MAP21","secret","sector",246] }
 AP-SECRET { "pos": ["MAP21","secret","sector",326] }
 AP-SECRET { "pos": ["MAP21","secret","sector",337] }
-AP-MAP { "map": "MAP22", "levelname": "Habitat", "checksum": "f89d8aa656ce772b3ac7f0d17193dd58", "rank": 21, "monster_count": 167, "info": { "levelnum": 22, "title": "THUSTR_22", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "$MUSIC_DDTBL3", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "MAP22", "levelname": "Habitat",
+  "checksum": "f89d8aa656ce772b3ac7f0d17193dd58", "rank": 21, "monster_count": 167,
+  "info": { "levelnum": 22, "title": "THUSTR_22", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "$MUSIC_DDTBL3", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Revenant": 3, "DoomImp": 41, "ChaingunGuy": 4, "Fatso": 4, "HellKnight": 2, "LostSoul": 5, "Archvile": 3, "Demon": 10, "Zombieman": 20, "BaronOfHell": 3, "Spectre": 23, "ShotgunGuy": 48, "PainElemental": 1 },
+  "prereqs": [ "weapon/Chaingun/auto", "weapon/Shotgun/auto" ]
+}
 AP-ITEM { "category": "key", "typename": "BlueCard", "tag": "Blue Keycard", "pos": ["MAP22",-4024,-1080,0] }
 AP-KEY { "typename": "BlueCard", "tag": "Blue Keycard", "scopename": "MAP22", "cluster": 0, "maps": ["MAP22"] }
 AP-ITEM { "category": "weapon", "typename": "PlasmaRifle", "tag": "Plasma Rifle", "pos": ["MAP22",-1316,-1048,0] }
@@ -2133,7 +2265,13 @@ AP-SECRET { "pos": ["MAP22","secret","sector",372] }
 AP-SECRET { "pos": ["MAP22","secret","sector",374] }
 AP-SECRET { "pos": ["MAP22","secret","sector",378] }
 AP-SECRET { "pos": ["MAP22","secret","sector",379] }
-AP-MAP { "map": "MAP23", "levelname": "Lunar Mining Project", "checksum": "fc02516ee32c991542e3fd92dae7420b", "rank": 22, "monster_count": 118, "info": { "levelnum": 23, "title": "THUSTR_23", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "$MUSIC_AMPIE", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "MAP23", "levelname": "Lunar Mining Project",
+  "checksum": "fc02516ee32c991542e3fd92dae7420b", "rank": 22, "monster_count": 118,
+  "info": { "levelnum": 23, "title": "THUSTR_23", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "$MUSIC_AMPIE", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Spectre": 1, "Archvile": 1, "BaronOfHell": 3, "LostSoul": 14, "Revenant": 4, "ShotgunGuy": 33, "ChaingunGuy": 21, "Zombieman": 24, "DoomImp": 17 },
+  "prereqs": [ "weapon/Shotgun/auto", "weapon/Chaingun/auto" ]
+}
 AP-ITEM { "category": "weapon", "typename": "RocketLauncher", "tag": "Rocket Launcher", "pos": ["MAP23",-8,-520,128] }
 AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["MAP23",64,-528,128] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["MAP23",800,-1128,-8] }
@@ -2195,7 +2333,13 @@ AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box",
 AP-SECRET { "pos": ["MAP23","secret","sector",235] }
 AP-SECRET { "pos": ["MAP23","secret","sector",271] }
 AP-SECRET { "pos": ["MAP23","secret","sector",293] }
-AP-MAP { "map": "MAP24", "levelname": "Quarry", "checksum": "82c1907a76479d94a4ff8869d492b266", "rank": 23, "monster_count": 59, "info": { "levelnum": 24, "title": "THUSTR_24", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "$MUSIC_THEDA3", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "MAP24", "levelname": "Quarry",
+  "checksum": "82c1907a76479d94a4ff8869d492b266", "rank": 23, "monster_count": 59,
+  "info": { "levelnum": 24, "title": "THUSTR_24", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "$MUSIC_THEDA3", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "DoomImp": 20, "ChaingunGuy": 6, "Spectre": 2, "HellKnight": 1, "ShotgunGuy": 22, "Zombieman": 4, "Revenant": 4 },
+  "prereqs": [ "weapon/Chaingun/auto", "weapon/Shotgun/auto" ]
+}
 AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["MAP24",-592,112,232] }
 AP-ITEM { "category": "weapon", "typename": "RocketLauncher", "tag": "Rocket Launcher", "pos": ["MAP24",576,0,184] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["MAP24",512,-848,0] }
@@ -2288,7 +2432,13 @@ AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box",
 AP-SECRET { "pos": ["MAP24","secret","sector",6] }
 AP-SECRET { "pos": ["MAP24","secret","sector",28] }
 AP-SECRET { "pos": ["MAP24","secret","sector",30] }
-AP-MAP { "map": "MAP25", "levelname": "Baron's Den", "checksum": "1d01e5f4a316d723eee7d9d3e620cb80", "rank": 24, "monster_count": 134, "info": { "levelnum": 25, "title": "THUSTR_25", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "$MUSIC_ADRIAN", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "MAP25", "levelname": "Baron's Den",
+  "checksum": "1d01e5f4a316d723eee7d9d3e620cb80", "rank": 24, "monster_count": 134,
+  "info": { "levelnum": 25, "title": "THUSTR_25", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "$MUSIC_ADRIAN", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Revenant": 6, "DoomImp": 22, "ChaingunGuy": 14, "Fatso": 3, "Spectre": 8, "Cacodemon": 7, "Archvile": 1, "LostSoul": 8, "Demon": 2, "PainElemental": 4, "Arachnotron": 6, "ShotgunGuy": 45, "BaronOfHell": 8 },
+  "prereqs": [ "weapon/Chaingun/auto", "weapon/Shotgun/auto" ]
+}
 AP-ITEM { "category": "key", "typename": "RedSkull", "tag": "Red Skull", "pos": ["MAP25",3392,216,-48] }
 AP-KEY { "typename": "RedSkull", "tag": "Red Skull", "scopename": "MAP25", "cluster": 0, "maps": ["MAP25"] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["MAP25",3624,1544,0] }
@@ -2420,7 +2570,13 @@ AP-SECRET { "pos": ["MAP25","secret","sector",151] }
 AP-SECRET { "pos": ["MAP25","secret","sector",163] }
 AP-SECRET { "pos": ["MAP25","secret","sector",202] }
 AP-SECRET { "pos": ["MAP25","secret","sector",316] }
-AP-MAP { "map": "MAP26", "levelname": "Ballistyx", "checksum": "e7b4e2612cbf804f8e8bd292ca4fa926", "rank": 25, "monster_count": 153, "info": { "levelnum": 26, "title": "THUSTR_26", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "$MUSIC_MESSG2", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "MAP26", "levelname": "Ballistyx",
+  "checksum": "e7b4e2612cbf804f8e8bd292ca4fa926", "rank": 25, "monster_count": 153,
+  "info": { "levelnum": 26, "title": "THUSTR_26", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "$MUSIC_MESSG2", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Revenant": 6, "DoomImp": 62, "ChaingunGuy": 9, "Fatso": 3, "Cacodemon": 3, "HellKnight": 6, "Archvile": 1, "LostSoul": 3, "Demon": 6, "ShotgunGuy": 32, "Spectre": 13, "Zombieman": 9 },
+  "prereqs": [ "weapon/Chaingun/auto", "weapon/Shotgun/auto" ]
+}
 AP-ITEM { "category": "key", "typename": "BlueSkull", "tag": "Blue Skull", "pos": ["MAP26",-1760,-504,-34] }
 AP-KEY { "typename": "BlueSkull", "tag": "Blue Skull", "scopename": "MAP26", "cluster": 0, "maps": ["MAP26"] }
 AP-ITEM { "category": "medium-armor", "typename": "GreenArmor", "tag": "GreenArmor", "pos": ["MAP26",-1152,1616,10] }
@@ -2487,7 +2643,13 @@ AP-ITEM { "category": "big-health", "typename": "Soulsphere", "tag": "Soulsphere
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "filter": 24, "pos": ["MAP26",-1392,1068,-32] }
 AP-SECRET { "pos": ["MAP26","secret","sector",77] }
 AP-SECRET { "pos": ["MAP26","secret","sector",317] }
-AP-MAP { "map": "MAP27", "levelname": "Mount Pain", "checksum": "603032bbf28c9347784536022b3c5cbe", "rank": 26, "monster_count": 332, "info": { "levelnum": 27, "title": "THUSTR_27", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "$MUSIC_ROMER2", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "MAP27", "levelname": "Mount Pain",
+  "checksum": "603032bbf28c9347784536022b3c5cbe", "rank": 26, "monster_count": 332,
+  "info": { "levelnum": 27, "title": "THUSTR_27", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "$MUSIC_ROMER2", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Revenant": 18, "DoomImp": 154, "Zombieman": 3, "Archvile": 1, "Spectre": 2, "Fatso": 3, "Cacodemon": 9, "ChaingunGuy": 34, "HellKnight": 1, "LostSoul": 42, "Demon": 8, "Arachnotron": 4, "ShotgunGuy": 53 },
+  "prereqs": [ "weapon/Chaingun/auto", "weapon/Shotgun/auto" ]
+}
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["MAP27",-276,595,0] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "filter": 3, "pos": ["MAP27",-273,-1345,0] }
 AP-ITEM { "category": "key", "typename": "YellowCard", "tag": "Yellow Keycard", "pos": ["MAP27",1776,-400,32] }
@@ -2624,7 +2786,13 @@ AP-ITEM { "category": "small-defence", "typename": "BlurSphere", "tag": "BlurSph
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "filter": 24, "pos": ["MAP27",-508,-232,-16] }
 AP-SECRET { "pos": ["MAP27","secret","sector",69] }
 AP-SECRET { "pos": ["MAP27","secret","sector",218] }
-AP-MAP { "map": "MAP28", "levelname": "Heck", "checksum": "344bdbde689b2e726de5790dd7c84bca", "rank": 27, "monster_count": 149, "info": { "levelnum": 28, "title": "THUSTR_28", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "$MUSIC_TENSE", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "MAP28", "levelname": "Heck",
+  "checksum": "344bdbde689b2e726de5790dd7c84bca", "rank": 27, "monster_count": 149,
+  "info": { "levelnum": 28, "title": "THUSTR_28", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "$MUSIC_TENSE", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Revenant": 29, "Archvile": 4, "BaronOfHell": 1, "DoomImp": 17, "ChaingunGuy": 7, "Fatso": 3, "HellKnight": 5, "Demon": 20, "PainElemental": 5, "LostSoul": 33, "Arachnotron": 1, "ShotgunGuy": 24 },
+  "prereqs": [ "weapon/Chaingun/auto", "weapon/Shotgun/auto" ]
+}
 AP-ITEM { "category": "big-armor-health", "typename": "Megasphere", "tag": "Megasphere", "pos": ["MAP28",-288,-1184,0] }
 AP-ITEM { "category": "big-armor", "typename": "BlueArmor", "tag": "BlueArmor", "pos": ["MAP28",-288,-712,25] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["MAP28",-1248,416,0] }
@@ -2706,7 +2874,13 @@ AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "
 AP-ITEM { "category": "big-ammo", "typename": "Backpack", "tag": "Backpack", "pos": ["MAP28",-288,224,30] }
 AP-SECRET { "pos": ["MAP28","secret","sector",45] }
 AP-SECRET { "pos": ["MAP28","secret","sector",51] }
-AP-MAP { "map": "MAP29", "levelname": "River Styx", "checksum": "2c4a3356c5eb3526d2c72a4aa4b18a36", "rank": 28, "monster_count": 150, "info": { "levelnum": 29, "title": "THUSTR_29", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "$MUSIC_SHAWN3", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "MAP29", "levelname": "River Styx",
+  "checksum": "2c4a3356c5eb3526d2c72a4aa4b18a36", "rank": 28, "monster_count": 150,
+  "info": { "levelnum": 29, "title": "THUSTR_29", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "$MUSIC_SHAWN3", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Revenant": 14, "Archvile": 4, "ChaingunGuy": 16, "Fatso": 5, "Cacodemon": 9, "HellKnight": 7, "PainElemental": 1, "ShotgunGuy": 16, "SpiderMastermind": 1, "BaronOfHell": 1, "DoomImp": 16, "Demon": 21, "LostSoul": 38, "Arachnotron": 1 },
+  "prereqs": [ "weapon/Chaingun/auto", "weapon/Shotgun/auto" ]
+}
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["MAP29",-736,2176,-64] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["MAP29",-800,2176,-64] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["MAP29",-560,288,0] }
@@ -2848,7 +3022,13 @@ AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", 
 AP-SECRET { "pos": ["MAP29","secret","sector",20] }
 AP-SECRET { "pos": ["MAP29","secret","sector",91] }
 AP-SECRET { "pos": ["MAP29","secret","sector",474] }
-AP-MAP { "map": "MAP30", "levelname": "Last Call", "checksum": "42b68b84ff8e55f264c31e6f4cfea82d", "rank": 29, "monster_count": 74, "info": { "levelnum": 30, "title": "THUSTR_30", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "$MUSIC_OPENIN", "music_track": "0", "cluster": 0, "flags": ["allowmonstertelefrags"] } }
+AP-MAP {
+  "map": "MAP30", "levelname": "Last Call",
+  "checksum": "42b68b84ff8e55f264c31e6f4cfea82d", "rank": 29, "monster_count": 74,
+  "info": { "levelnum": 30, "title": "THUSTR_30", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "$MUSIC_OPENIN", "music_track": "0", "cluster": 0, "flags": ["allowmonstertelefrags"] },
+  "monsters": { "Revenant": 12, "BaronOfHell": 4, "DoomImp": 5, "ChaingunGuy": 8, "Fatso": 2, "Spectre": 1, "Cacodemon": 5, "HellKnight": 2, "LostSoul": 14, "Demon": 9, "Arachnotron": 5, "Cyberdemon": 1, "ShotgunGuy": 6 },
+  "prereqs": [ "weapon/Chaingun/auto", "weapon/Shotgun/auto" ]
+}
 AP-ITEM { "category": "weapon", "typename": "RocketLauncher", "tag": "Rocket Launcher", "pos": ["MAP30",3056,48,32] }
 AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "secret": true, "pos": ["MAP30",3520,-864,0] }
 AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "secret": true, "pos": ["MAP30",2592,-864,0] }
@@ -2919,7 +3099,13 @@ AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box
 AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["MAP30",1232,-1616,64] }
 AP-ITEM { "category": "big-defence", "typename": "InvulnerabilitySphere", "tag": "InvulnerabilitySphere", "filter": 3, "pos": ["MAP30",-1664,32,-128] }
 AP-SECRET { "pos": ["MAP30","secret","sector",51] }
-AP-MAP { "map": "MAP31", "levelname": "Pharaoh", "checksum": "a53ae580a4af2b5d0b0893f86914781e", "rank": 15, "monster_count": 165, "info": { "levelnum": 31, "title": "THUSTR_31", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "$MUSIC_EVIL", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "MAP31", "levelname": "Pharaoh",
+  "checksum": "a53ae580a4af2b5d0b0893f86914781e", "rank": 15, "monster_count": 165,
+  "info": { "levelnum": 31, "title": "THUSTR_31", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "$MUSIC_EVIL", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Cyberdemon": 1, "Revenant": 10, "DoomImp": 9, "ChaingunGuy": 3, "Fatso": 8, "Spectre": 14, "Cacodemon": 10, "HellKnight": 5, "Archvile": 4, "PainElemental": 3, "ShotgunGuy": 76, "Zombieman": 11, "Arachnotron": 11 },
+  "prereqs": [ "weapon/Chaingun/auto", "weapon/Shotgun/auto" ]
+}
 AP-ITEM { "category": "weapon", "typename": "SuperShotgun", "tag": "Super Shotgun", "pos": ["MAP31",-1120,-4704,16] }
 AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "pos": ["MAP31",-1120,-4768,16] }
 AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "pos": ["MAP31",-1120,-4736,16] }
@@ -3126,7 +3312,13 @@ AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", 
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "filter": 28, "pos": ["MAP31",480,-3200,-256] }
 AP-SECRET { "pos": ["MAP31","secret","sector",191] }
 AP-SECRET { "pos": ["MAP31","secret","sector",208] }
-AP-MAP { "map": "MAP32", "levelname": "Caribbean", "checksum": "d99ad22ff21a41b4eecdb3a7c803d75e", "rank": 16, "monster_count": 153, "info": { "levelnum": 32, "title": "THUSTR_32", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "$MUSIC_ULTIMA", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "MAP32", "levelname": "Caribbean",
+  "checksum": "d99ad22ff21a41b4eecdb3a7c803d75e", "rank": 16, "monster_count": 153,
+  "info": { "levelnum": 32, "title": "THUSTR_32", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "$MUSIC_ULTIMA", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Revenant": 30, "Archvile": 3, "BaronOfHell": 2, "Zombieman": 3, "Fatso": 15, "HellKnight": 9, "Cyberdemon": 1, "Spectre": 5, "PainElemental": 3, "Demon": 3, "DoomImp": 12, "Arachnotron": 1, "ChaingunGuy": 35, "ShotgunGuy": 31 },
+  "prereqs": [ "weapon/Chaingun/auto", "weapon/Shotgun/auto" ]
+}
 AP-ITEM { "category": "weapon", "typename": "SuperShotgun", "tag": "Super Shotgun", "pos": ["MAP32",32,-800,16] }
 AP-ITEM { "category": "big-ammo", "typename": "Backpack", "tag": "Backpack", "pos": ["MAP32",360,648,0] }
 AP-ITEM { "category": "key", "typename": "BlueSkull", "tag": "Blue Skull", "pos": ["MAP32",560,1200,0] }

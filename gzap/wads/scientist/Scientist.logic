@@ -1,5 +1,11 @@
 AP-SCAN { "flags": [] }
-AP-MAP { "map": "MAP01", "levelname": "the scientist", "checksum": "ac1595a4ae4a557a3400602d6bf473bb", "rank": 0, "monster_count": 82, "info": { "levelnum": 1, "title": "HUSTR_1", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "$MUSIC_RUNNIN", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "MAP01", "levelname": "the scientist",
+  "checksum": "ac1595a4ae4a557a3400602d6bf473bb", "rank": 0, "monster_count": 82,
+  "info": { "levelnum": 1, "title": "HUSTR_1", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "$MUSIC_RUNNIN", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "LostSoul": 18, "Demon": 8, "DoomImp": 22, "Zombieman": 18, "WolfensteinSS": 1, "ShotgunGuy": 15 },
+  "prereqs": [ "weapon/Shotgun/auto" ]
+}
 AP-ITEM { "category": "weapon", "typename": "Chaingun", "tag": "Chaingun", "pos": ["MAP01",-1136,2288,0] }
 AP-ITEM { "category": "key", "typename": "RedCard", "tag": "Red Keycard", "pos": ["MAP01",-64,1856,136] }
 AP-KEY { "typename": "RedCard", "tag": "Red Keycard", "scopename": "MAP01", "cluster": 0, "maps": ["MAP01"] }
@@ -10,7 +16,7 @@ AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells"
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["MAP01",256,1408,72] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["MAP01",-384,1408,72] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["MAP01",-32,1760,96] }
-AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "skill": [1], "pos": ["MAP01",-1536,1568,56] }
+AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "filter": 3, "pos": ["MAP01",-1536,1568,56] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["MAP01",-192,1856,72] }
 AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "pos": ["MAP01",-704,2320,0] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["MAP01",-1824,1152,56] }
@@ -36,7 +42,7 @@ AP-ITEM { "category": "maprevealer", "typename": "Allmap", "tag": "Allmap", "sec
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["MAP01",-592,-304,136] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["MAP01",-2080,160,64] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["MAP01",-256,448,128] }
-AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "skill": [1], "pos": ["MAP01",-1576,64,64] }
+AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "filter": 3, "pos": ["MAP01",-1576,64,64] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["MAP01",-1536,1408,56] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["MAP01",-1616,1824,56] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["MAP01",-704,1920,32] }
@@ -54,12 +60,18 @@ AP-ITEM { "category": "weapon", "typename": "Shotgun", "tag": "Shotgun", "pos": 
 AP-ITEM { "category": "weapon", "typename": "Shotgun", "tag": "Shotgun", "pos": ["MAP01",-768,2336,0] }
 AP-ITEM { "category": "weapon", "typename": "Shotgun", "tag": "Shotgun", "pos": ["MAP01",-1536,1824,56] }
 AP-ITEM { "category": "weapon", "typename": "Shotgun", "tag": "Shotgun", "pos": ["MAP01",-480,-480,128] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [2, 3], "pos": ["MAP01",304,-528,128] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 28, "pos": ["MAP01",304,-528,128] }
 AP-SECRET { "pos": ["MAP01","secret","sector",76] }
 AP-SECRET { "pos": ["MAP01","secret","sector",95] }
 AP-SECRET { "pos": ["MAP01","secret","sector",113] }
 AP-SECRET { "pos": ["MAP01","secret","sector",129] }
-AP-MAP { "map": "MAP02", "levelname": "kapital", "checksum": "52fcb3e9345637b78c7d2eed2208cc79", "rank": 1, "monster_count": 135, "info": { "levelnum": 2, "title": "HUSTR_2", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "$MUSIC_STALKS", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "MAP02", "levelname": "kapital",
+  "checksum": "52fcb3e9345637b78c7d2eed2208cc79", "rank": 1, "monster_count": 135,
+  "info": { "levelnum": 2, "title": "HUSTR_2", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "$MUSIC_STALKS", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "DoomImp": 55, "ChaingunGuy": 8, "Fatso": 4, "Cacodemon": 5, "LostSoul": 2, "SpiderMastermind": 1, "Revenant": 1, "Zombieman": 6, "Spectre": 9, "Demon": 16, "ShotgunGuy": 26, "Arachnotron": 2 },
+  "prereqs": [ "weapon/Chaingun/auto", "weapon/Shotgun/auto" ]
+}
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["MAP02",-1696,1248,-16] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["MAP02",-992,1248,-16] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["MAP02",-1184,864,0] }
@@ -84,11 +96,11 @@ AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", 
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["MAP02",-2720,3808,0] }
 AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["MAP02",-608,1568,0] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["MAP02",-2848,1504,0] }
-AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "skill": [1, 2], "pos": ["MAP02",-4928,-192,4] }
+AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "filter": 7, "pos": ["MAP02",-4928,-192,4] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["MAP02",-5888,960,48] }
 AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos": ["MAP02",-3304,3768,15] }
 AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "pos": ["MAP02",-3360,-128,0] }
-AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "skill": [1, 2], "pos": ["MAP02",-2176,2944,192] }
+AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "filter": 7, "pos": ["MAP02",-2176,2944,192] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["MAP02",-2176,3040,192] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["MAP02",-5744,2256,48] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["MAP02",-6432,896,48] }
@@ -168,8 +180,8 @@ AP-ITEM { "category": "weapon", "typename": "Chaingun", "tag": "Chaingun", "pos"
 AP-ITEM { "category": "weapon", "typename": "Chaingun", "tag": "Chaingun", "secret": true, "pos": ["MAP02",-2596,2208,162] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "secret": true, "pos": ["MAP02",-2688,2304,162] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["MAP02",-2080,2496,192] }
-AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "skill": [1], "pos": ["MAP02",-3408,3984,32] }
-AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "skill": [1], "pos": ["MAP02",-3408,3600,32] }
+AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "filter": 3, "pos": ["MAP02",-3408,3984,32] }
+AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "filter": 3, "pos": ["MAP02",-3408,3600,32] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["MAP02",-3696,1544,-12] }
 AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["MAP02",-2816,3968,0] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["MAP02",-4112,896,-16] }
@@ -184,7 +196,7 @@ AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack",
 AP-ITEM { "category": "weapon", "typename": "Chainsaw", "tag": "Chainsaw", "secret": true, "pos": ["MAP02",-1756,2004,0] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["MAP02",-3296,832,-16] }
 AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos": ["MAP02",-1332,1116,-64] }
-AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "skill": [1], "pos": ["MAP02",-2576,1328,0] }
+AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "filter": 3, "pos": ["MAP02",-2576,1328,0] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["MAP02",-2504,1536,32] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["MAP02",-1344,1888,-16] }
 AP-ITEM { "category": "weapon", "typename": "PlasmaRifle", "tag": "Plasma Rifle", "pos": ["MAP02",-928,2152,48] }
@@ -198,17 +210,23 @@ AP-ITEM { "category": "weapon", "typename": "Shotgun", "tag": "Shotgun", "pos": 
 AP-ITEM { "category": "weapon", "typename": "Shotgun", "tag": "Shotgun", "pos": ["MAP02",-2880,4512,0] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["MAP02",-2304,3072,192] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["MAP02",-2336,3040,192] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [2, 3], "pos": ["MAP02",-4896,1664,0] }
-AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "skill": [2, 3], "pos": ["MAP02",-2912,1504,0] }
-AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "skill": [3], "pos": ["MAP02",-6272,-384,8] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "skill": [3], "pos": ["MAP02",-4736,-192,4] }
-AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "skill": [3], "pos": ["MAP02",-4160,-192,4] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [3], "pos": ["MAP02",-6160,816,48] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 28, "pos": ["MAP02",-4896,1664,0] }
+AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "filter": 28, "pos": ["MAP02",-2912,1504,0] }
+AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "filter": 24, "pos": ["MAP02",-6272,-384,8] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "filter": 24, "pos": ["MAP02",-4736,-192,4] }
+AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "filter": 24, "pos": ["MAP02",-4160,-192,4] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 24, "pos": ["MAP02",-6160,816,48] }
 AP-SECRET { "pos": ["MAP02","secret","sector",166] }
 AP-SECRET { "pos": ["MAP02","secret","sector",289] }
 AP-SECRET { "pos": ["MAP02","secret","sector",374] }
 AP-SECRET { "pos": ["MAP02","secret","sector",407] }
-AP-MAP { "map": "MAP03", "levelname": "prosperity", "checksum": "efb3ef4e341018e44d4e515ce80b0ffd", "rank": 2, "monster_count": 114, "info": { "levelnum": 3, "title": "HUSTR_3", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "$MUSIC_COUNTD", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "MAP03", "levelname": "prosperity",
+  "checksum": "efb3ef4e341018e44d4e515ce80b0ffd", "rank": 2, "monster_count": 114,
+  "info": { "levelnum": 3, "title": "HUSTR_3", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "$MUSIC_COUNTD", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Revenant": 4, "DoomImp": 55, "Zombieman": 9, "Fatso": 2, "Cacodemon": 7, "HellKnight": 1, "ShotgunGuy": 12, "Demon": 11, "ChaingunGuy": 6, "Arachnotron": 1, "Spectre": 6 },
+  "prereqs": [ "weapon/Shotgun/auto", "weapon/Chaingun/auto" ]
+}
 AP-ITEM { "category": "weapon", "typename": "Chainsaw", "tag": "Chainsaw", "pos": ["MAP03",1664,640,2] }
 AP-ITEM { "category": "weapon", "typename": "Shotgun", "tag": "Shotgun", "pos": ["MAP03",-488,-416,10] }
 AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "pos": ["MAP03",-224,-920,0] }
@@ -241,9 +259,6 @@ AP-KEY { "typename": "RedCard", "tag": "Red Keycard", "scopename": "MAP03", "clu
 AP-ITEM { "category": "weapon", "typename": "RocketLauncher", "tag": "Rocket Launcher", "pos": ["MAP03",-1508,-420,54] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "secret": true, "pos": ["MAP03",-944,-1104,-8] }
 AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "secret": true, "pos": ["MAP03",-1008,-1104,-8] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "secret": true, "pos": ["MAP03",-1008,-1104,-8] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "secret": true, "pos": ["MAP03",-1008,-1104,-8] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "secret": true, "pos": ["MAP03",-1008,-1104,-8] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["MAP03",-1632,608,0] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["MAP03",1536,80,175] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["MAP03",-928,-224,125] }
@@ -257,10 +272,7 @@ AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells"
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["MAP03",1792,192,2] }
 AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos": ["MAP03",1504,864,2] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["MAP03",968,-312,0] }
-AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos": ["MAP03",1744,560,0] }
-AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos": ["MAP03",1744,560,0] }
-AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos": ["MAP03",1744,560,0] }
-AP-ITEM { "category": "weapon", "typename": "Shotgun", "tag": "Shotgun", "skill": [1], "pos": ["MAP03",-96,-1120,-72] }
+AP-ITEM { "category": "weapon", "typename": "Shotgun", "tag": "Shotgun", "filter": 3, "pos": ["MAP03",-96,-1120,-72] }
 AP-ITEM { "category": "weapon", "typename": "Chaingun", "tag": "Chaingun", "secret": true, "pos": ["MAP03",-1824,-352,192] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["MAP03",-544,-736,0] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["MAP03",608,-968,128] }
@@ -316,18 +328,24 @@ AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonu
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["MAP03",-496,2096,32] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["MAP03",-848,2064,32] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["MAP03",-384,832,0] }
-AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "skill": [1, 2], "pos": ["MAP03",-192,896,0] }
+AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "filter": 7, "pos": ["MAP03",-192,896,0] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["MAP03",1584,272,175] }
 AP-ITEM { "category": "weapon", "typename": "Shotgun", "tag": "Shotgun", "pos": ["MAP03",352,-608,-10] }
 AP-ITEM { "category": "weapon", "typename": "Shotgun", "tag": "Shotgun", "pos": ["MAP03",976,752,0] }
 AP-ITEM { "category": "weapon", "typename": "Shotgun", "tag": "Shotgun", "pos": ["MAP03",-1376,560,-14] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["MAP03",-288,416,-10] }
-AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "skill": [3], "pos": ["MAP03",864,256,0] }
+AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "filter": 24, "pos": ["MAP03",864,256,0] }
 AP-SECRET { "pos": ["MAP03","secret","sector",23] }
 AP-SECRET { "pos": ["MAP03","secret","sector",46] }
 AP-SECRET { "pos": ["MAP03","secret","sector",112] }
 AP-SECRET { "pos": ["MAP03","secret","sector",114] }
-AP-MAP { "map": "MAP04", "levelname": "refinery", "checksum": "520d352237ecbde62f017dd7e7f82f19", "rank": 3, "monster_count": 101, "info": { "levelnum": 4, "title": "HUSTR_4", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "$MUSIC_BETWEE", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "MAP04", "levelname": "refinery",
+  "checksum": "520d352237ecbde62f017dd7e7f82f19", "rank": 3, "monster_count": 101,
+  "info": { "levelnum": 4, "title": "HUSTR_4", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "$MUSIC_BETWEE", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Revenant": 4, "BaronOfHell": 2, "DoomImp": 34, "ChaingunGuy": 5, "Cacodemon": 8, "Demon": 5, "Spectre": 3, "ShotgunGuy": 17, "Zombieman": 23 },
+  "prereqs": [ "weapon/Chaingun/auto", "weapon/Shotgun/auto" ]
+}
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["MAP04",192,128,-100] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["MAP04",592,1160,0] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["MAP04",-448,128,-100] }
@@ -413,13 +431,19 @@ AP-ITEM { "category": "weapon", "typename": "Shotgun", "tag": "Shotgun", "pos": 
 AP-ITEM { "category": "weapon", "typename": "Shotgun", "tag": "Shotgun", "pos": ["MAP04",528,984,-16] }
 AP-ITEM { "category": "weapon", "typename": "Shotgun", "tag": "Shotgun", "pos": ["MAP04",616,40,0] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["MAP04",656,640,49] }
-AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "skill": [2, 3], "pos": ["MAP04",400,1728,20] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "skill": [3], "pos": ["MAP04",1200,352,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [3], "pos": ["MAP04",528,208,0] }
+AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "filter": 28, "pos": ["MAP04",400,1728,20] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "filter": 24, "pos": ["MAP04",1200,352,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 24, "pos": ["MAP04",528,208,0] }
 AP-SECRET { "pos": ["MAP04","secret","sector",24] }
 AP-SECRET { "pos": ["MAP04","secret","sector",92] }
 AP-SECRET { "pos": ["MAP04","secret","sector",158] }
-AP-MAP { "map": "MAP05", "levelname": "reservoir", "checksum": "bddeb9d31aaea6c0d665f6451d66a8eb", "rank": 4, "monster_count": 125, "info": { "levelnum": 5, "title": "HUSTR_5", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "$MUSIC_DOOM", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "MAP05", "levelname": "reservoir",
+  "checksum": "bddeb9d31aaea6c0d665f6451d66a8eb", "rank": 4, "monster_count": 125,
+  "info": { "levelnum": 5, "title": "HUSTR_5", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "$MUSIC_DOOM", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Revenant": 1, "DoomImp": 46, "Zombieman": 3, "Spectre": 8, "Cacodemon": 11, "HellKnight": 7, "LostSoul": 6, "Demon": 15, "ShotgunGuy": 13, "ChaingunGuy": 8, "Arachnotron": 3, "Fatso": 4 },
+  "prereqs": [ "weapon/Shotgun/auto", "weapon/Chaingun/auto" ]
+}
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["MAP05",48,-912,0] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["MAP05",-304,-912,0] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["MAP05",-256,832,24] }
@@ -440,7 +464,7 @@ AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells"
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["MAP05",2368,-2880,-73] }
 AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["MAP05",576,448,0] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["MAP05",-248,3504,8] }
-AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "skill": [1, 2], "pos": ["MAP05",0,3504,8] }
+AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "filter": 7, "pos": ["MAP05",0,3504,8] }
 AP-ITEM { "category": "weapon", "typename": "Chainsaw", "tag": "Chainsaw", "secret": true, "pos": ["MAP05",-1664,-672,-64] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["MAP05",3024,1072,0] }
 AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["MAP05",-128,-736,0] }
@@ -517,17 +541,23 @@ AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack",
 AP-ITEM { "category": "weapon", "typename": "Shotgun", "tag": "Shotgun", "pos": ["MAP05",-956,-2112,0] }
 AP-ITEM { "category": "weapon", "typename": "Shotgun", "tag": "Shotgun", "pos": ["MAP05",1472,-656,0] }
 AP-ITEM { "category": "weapon", "typename": "Shotgun", "tag": "Shotgun", "pos": ["MAP05",616,-1984,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [2, 3], "pos": ["MAP05",2624,-2880,-73] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [2, 3], "pos": ["MAP05",-448,-608,-32] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [2, 3], "pos": ["MAP05",-96,2272,-300] }
-AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "skill": [2, 3], "pos": ["MAP05",128,-2184,25] }
-AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "skill": [2, 3], "pos": ["MAP05",32,-2184,25] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [2, 3], "pos": ["MAP05",496,-1984,160] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "skill": [3], "pos": ["MAP05",960,-1984,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 28, "pos": ["MAP05",2624,-2880,-73] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 28, "pos": ["MAP05",-448,-608,-32] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 28, "pos": ["MAP05",-96,2272,-300] }
+AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "filter": 28, "pos": ["MAP05",128,-2184,25] }
+AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "filter": 28, "pos": ["MAP05",32,-2184,25] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 28, "pos": ["MAP05",496,-1984,160] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "filter": 24, "pos": ["MAP05",960,-1984,0] }
 AP-SECRET { "pos": ["MAP05","secret","sector",57] }
 AP-SECRET { "pos": ["MAP05","secret","sector",61] }
 AP-SECRET { "pos": ["MAP05","secret","sector",176] }
-AP-MAP { "map": "MAP06", "levelname": "shotgun sequencing", "checksum": "5bc383625e605e4cb16ddebaffd085a3", "rank": 5, "monster_count": 104, "info": { "levelnum": 6, "title": "HUSTR_6", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "$MUSIC_THE_DA", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "MAP06", "levelname": "shotgun sequencing",
+  "checksum": "5bc383625e605e4cb16ddebaffd085a3", "rank": 5, "monster_count": 104,
+  "info": { "levelnum": 6, "title": "HUSTR_6", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "$MUSIC_THE_DA", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "ShotgunGuy": 104 },
+  "prereqs": [ "weapon/Shotgun/auto" ]
+}
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["MAP06",-32,1168,58] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["MAP06",-672,448,64] }
 AP-ITEM { "category": "weapon", "typename": "SuperShotgun", "tag": "Super Shotgun", "pos": ["MAP06",464,784,60] }
@@ -574,7 +604,13 @@ AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonu
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["MAP06",832,736,0] }
 AP-SECRET { "pos": ["MAP06","secret","sector",85] }
 AP-SECRET { "pos": ["MAP06","secret","sector",165] }
-AP-MAP { "map": "MAP07", "levelname": "dark and cold", "checksum": "7c2a016406575e416ad7993793ec1a07", "rank": 6, "monster_count": 149, "info": { "levelnum": 7, "title": "HUSTR_7", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "$MUSIC_SHAWN", "music_track": "0", "cluster": 0, "flags": ["map07special"] } }
+AP-MAP {
+  "map": "MAP07", "levelname": "dark and cold",
+  "checksum": "7c2a016406575e416ad7993793ec1a07", "rank": 6, "monster_count": 149,
+  "info": { "levelnum": 7, "title": "HUSTR_7", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "$MUSIC_SHAWN", "music_track": "0", "cluster": 0, "flags": ["map07special"] },
+  "monsters": { "Revenant": 4, "DoomImp": 77, "ChaingunGuy": 7, "Fatso": 4, "Spectre": 6, "Cacodemon": 18, "Zombieman": 1, "ShotgunGuy": 3, "Demon": 29 },
+  "prereqs": [ "weapon/Chaingun/auto", "weapon/Shotgun/auto" ]
+}
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["MAP07",-480,-1408,180] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["MAP07",-4,-1360,180] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["MAP07",-72,-1324,180] }
@@ -637,21 +673,27 @@ AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box",
 AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "pos": ["MAP07",-2624,-1496,0] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["MAP07",-2528,-2592,0] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["MAP07",-3040,-376,80] }
-AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "skill": [2], "pos": ["MAP07",-1456,-1952,312] }
-AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "skill": [2, 3], "pos": ["MAP07",-1952,-32,-8] }
-AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Cell Pack", "skill": [2, 3], "pos": ["MAP07",-2528,-1640,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "skill": [2, 3], "pos": ["MAP07",-1200,-2404,308] }
-AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "skill": [2, 3], "pos": ["MAP07",336,-1440,180] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [2, 3], "pos": ["MAP07",-1064,-1776,180] }
-AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "skill": [2, 3], "pos": ["MAP07",-1144,-1996,180] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [2, 3], "pos": ["MAP07",640,-2528,180] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "skill": [3], "pos": ["MAP07",-1456,-1952,312] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [3], "pos": ["MAP07",496,-984,168] }
-AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "skill": [3], "pos": ["MAP07",-2144,160,-8] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "skill": [3], "pos": ["MAP07",704,-2464,180] }
+AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "filter": 4, "pos": ["MAP07",-1456,-1952,312] }
+AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "filter": 28, "pos": ["MAP07",-1952,-32,-8] }
+AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Cell Pack", "filter": 28, "pos": ["MAP07",-2528,-1640,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "filter": 28, "pos": ["MAP07",-1200,-2404,308] }
+AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "filter": 28, "pos": ["MAP07",336,-1440,180] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 28, "pos": ["MAP07",-1064,-1776,180] }
+AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "filter": 28, "pos": ["MAP07",-1144,-1996,180] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 28, "pos": ["MAP07",640,-2528,180] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "filter": 24, "pos": ["MAP07",-1456,-1952,312] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 24, "pos": ["MAP07",496,-984,168] }
+AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "filter": 24, "pos": ["MAP07",-2144,160,-8] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "filter": 24, "pos": ["MAP07",704,-2464,180] }
 AP-SECRET { "pos": ["MAP07","secret","sector",23] }
 AP-SECRET { "pos": ["MAP07","secret","sector",30] }
-AP-MAP { "map": "MAP08", "levelname": "frostbite", "checksum": "ff292037da9872c94b21ca0d1d9bfa02", "rank": 7, "monster_count": 171, "info": { "levelnum": 8, "title": "HUSTR_8", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "$MUSIC_DDTBLU", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "MAP08", "levelname": "frostbite",
+  "checksum": "ff292037da9872c94b21ca0d1d9bfa02", "rank": 7, "monster_count": 171,
+  "info": { "levelnum": 8, "title": "HUSTR_8", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "$MUSIC_DDTBLU", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Fatso": 3, "HellKnight": 1, "Demon": 13, "WolfensteinSS": 1, "Revenant": 7, "DoomImp": 52, "Zombieman": 21, "Archvile": 1, "LostSoul": 5, "Cacodemon": 3, "Spectre": 20, "ShotgunGuy": 22, "SpiderMastermind": 1, "PainElemental": 1, "ChaingunGuy": 16, "Arachnotron": 4 },
+  "prereqs": [ "weapon/Shotgun/auto", "weapon/Chaingun/auto" ]
+}
 AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "pos": ["MAP08",-2328,-208,20] }
 AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Cell Pack", "pos": ["MAP08",2064,560,-80] }
 AP-ITEM { "category": "weapon", "typename": "PlasmaRifle", "tag": "Plasma Rifle", "pos": ["MAP08",-56,192,-50] }
@@ -817,12 +859,18 @@ AP-ITEM { "category": "weapon", "typename": "Shotgun", "tag": "Shotgun", "pos": 
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["MAP08",1488,1536,-256] }
 AP-ITEM { "category": "weapon", "typename": "Shotgun", "tag": "Shotgun", "pos": ["MAP08",2248,2560,128] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["MAP08",-288,3680,25] }
-AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Cell Pack", "skill": [2, 3], "pos": ["MAP08",2000,496,-80] }
+AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Cell Pack", "filter": 28, "pos": ["MAP08",2000,496,-80] }
 AP-SECRET { "pos": ["MAP08","secret","sector",7] }
 AP-SECRET { "pos": ["MAP08","secret","sector",70] }
 AP-SECRET { "pos": ["MAP08","secret","sector",115] }
 AP-SECRET { "pos": ["MAP08","secret","sector",313] }
-AP-MAP { "map": "MAP09", "levelname": "bio lab", "checksum": "436555813317129295f2eb35bd8b10d0", "rank": 8, "monster_count": 129, "info": { "levelnum": 9, "title": "HUSTR_9", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "$MUSIC_IN_CIT", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "MAP09", "levelname": "bio lab",
+  "checksum": "436555813317129295f2eb35bd8b10d0", "rank": 8, "monster_count": 129,
+  "info": { "levelnum": 9, "title": "HUSTR_9", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "$MUSIC_IN_CIT", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Revenant": 2, "ChaingunGuy": 17, "Cacodemon": 13, "HellKnight": 3, "Demon": 12, "ShotgunGuy": 28, "Zombieman": 2, "Arachnotron": 3, "DoomImp": 44, "Spectre": 5 },
+  "prereqs": [ "weapon/Chaingun/auto", "weapon/Shotgun/auto" ]
+}
 AP-ITEM { "category": "weapon", "typename": "PlasmaRifle", "tag": "Plasma Rifle", "pos": ["MAP09",448,1216,24] }
 AP-ITEM { "category": "weapon", "typename": "Chainsaw", "tag": "Chainsaw", "pos": ["MAP09",-640,64,0] }
 AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["MAP09",-64,224,0] }
@@ -939,14 +987,20 @@ AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonu
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["MAP09",1484,2892,128] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["MAP09",1388,2868,128] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["MAP09",1088,2704,128] }
-AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "skill": [2, 3], "pos": ["MAP09",576,32,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "skill": [2, 3], "pos": ["MAP09",200,1448,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "skill": [2, 3], "pos": ["MAP09",1824,1408,64] }
-AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "skill": [2, 3], "pos": ["MAP09",656,1792,0] }
+AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "filter": 28, "pos": ["MAP09",576,32,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "filter": 28, "pos": ["MAP09",200,1448,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "filter": 28, "pos": ["MAP09",1824,1408,64] }
+AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "filter": 28, "pos": ["MAP09",656,1792,0] }
 AP-SECRET { "pos": ["MAP09","secret","sector",20] }
 AP-SECRET { "pos": ["MAP09","secret","sector",149] }
 AP-SECRET { "pos": ["MAP09","secret","sector",293] }
-AP-MAP { "map": "MAP10", "levelname": "frozen with fear", "checksum": "ca579b10cd1d958cf7c287927308e9f9", "rank": 9, "monster_count": 144, "info": { "levelnum": 10, "title": "HUSTR_10", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "$MUSIC_DEAD", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "MAP10", "levelname": "frozen with fear",
+  "checksum": "ca579b10cd1d958cf7c287927308e9f9", "rank": 9, "monster_count": 144,
+  "info": { "levelnum": 10, "title": "HUSTR_10", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "$MUSIC_DEAD", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "ChaingunGuy": 5, "Cacodemon": 6, "PainElemental": 3, "LostSoul": 2, "Zombieman": 3, "DoomImp": 77, "Spectre": 8, "Demon": 15, "ShotgunGuy": 15, "Revenant": 10 },
+  "prereqs": [ "weapon/Chaingun/auto", "weapon/Shotgun/auto" ]
+}
 AP-ITEM { "category": "key", "typename": "BlueCard", "tag": "Blue Keycard", "pos": ["MAP10",-32,480,14] }
 AP-KEY { "typename": "BlueCard", "tag": "Blue Keycard", "scopename": "MAP10", "cluster": 0, "maps": ["MAP10"] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["MAP10",1952,-352,0] }
@@ -1013,8 +1067,6 @@ AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonu
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "secret": true, "pos": ["MAP10",2208,-160,64] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "secret": true, "pos": ["MAP10",2144,-160,64] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "secret": true, "pos": ["MAP10",2208,-288,64] }
-AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "secret": true, "pos": ["MAP10",2144,-288,64] }
-AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "secret": true, "pos": ["MAP10",2144,-224,64] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["MAP10",-416,3040,-470] }
 AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["MAP10",-800,968,-512] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["MAP10",128,688,72] }
@@ -1031,13 +1083,6 @@ AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonu
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["MAP10",-1288,976,-512] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["MAP10",-128,3168,-380] }
 AP-ITEM { "category": "weapon", "typename": "SuperShotgun", "tag": "Super Shotgun", "pos": ["MAP10",80,368,64] }
-AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "secret": true, "pos": ["MAP10",2208,-288,64] }
-AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "secret": true, "pos": ["MAP10",2144,-288,64] }
-AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "secret": true, "pos": ["MAP10",2144,-224,64] }
-AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "secret": true, "pos": ["MAP10",2208,-224,64] }
-AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "secret": true, "pos": ["MAP10",2208,-160,64] }
-AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "secret": true, "pos": ["MAP10",2144,-160,64] }
-AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "secret": true, "pos": ["MAP10",2208,-288,64] }
 AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["MAP10",-960,2304,-480] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["MAP10",-496,1792,-455] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["MAP10",-496,1920,-455] }
@@ -1062,36 +1107,32 @@ AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack",
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["MAP10",-1072,2560,-455] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["MAP10",-912,2560,-455] }
 AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["MAP10",-992,2784,-480] }
-AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "secret": true, "pos": ["MAP10",2144,-160,64] }
-AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "secret": true, "pos": ["MAP10",2208,-160,64] }
-AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "secret": true, "pos": ["MAP10",2208,-224,64] }
-AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "secret": true, "pos": ["MAP10",2144,-224,64] }
-AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "secret": true, "pos": ["MAP10",2144,-288,64] }
-AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "secret": true, "pos": ["MAP10",2208,-288,64] }
-AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "secret": true, "pos": ["MAP10",2144,-160,64] }
-AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "secret": true, "pos": ["MAP10",2208,-160,64] }
-AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "secret": true, "pos": ["MAP10",2208,-224,64] }
 AP-ITEM { "category": "weapon", "typename": "Shotgun", "tag": "Shotgun", "pos": ["MAP10",1488,1216,-140] }
 AP-ITEM { "category": "weapon", "typename": "Shotgun", "tag": "Shotgun", "pos": ["MAP10",688,1408,100] }
 AP-ITEM { "category": "weapon", "typename": "Shotgun", "tag": "Shotgun", "pos": ["MAP10",2208,1344,0] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["MAP10",-1728,1216,-512] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["MAP10",1920,456,-24] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["MAP10",464,2864,-380] }
-AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "skill": [2, 3], "pos": ["MAP10",1312,96,0] }
-AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "skill": [2, 3], "pos": ["MAP10",544,-288,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "skill": [2, 3], "pos": ["MAP10",-784,-64,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "skill": [2, 3], "pos": ["MAP10",2080,736,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "skill": [2, 3], "pos": ["MAP10",480,992,40] }
-AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "skill": [2, 3], "pos": ["MAP10",-672,3776,-400] }
-AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "skill": [2, 3], "pos": ["MAP10",-672,3712,-400] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "skill": [2, 3], "pos": ["MAP10",592,1712,-380] }
-AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "skill": [3], "pos": ["MAP10",-1144,1008,-512] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "skill": [3], "pos": ["MAP10",-832,1440,-512] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [3], "pos": ["MAP10",-992,2784,-480] }
+AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "filter": 28, "pos": ["MAP10",1312,96,0] }
+AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "filter": 28, "pos": ["MAP10",544,-288,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "filter": 28, "pos": ["MAP10",-784,-64,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "filter": 28, "pos": ["MAP10",2080,736,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "filter": 28, "pos": ["MAP10",480,992,40] }
+AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "filter": 28, "pos": ["MAP10",-672,3776,-400] }
+AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "filter": 28, "pos": ["MAP10",-672,3712,-400] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "filter": 28, "pos": ["MAP10",592,1712,-380] }
+AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "filter": 24, "pos": ["MAP10",-1144,1008,-512] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "filter": 24, "pos": ["MAP10",-832,1440,-512] }
 AP-SECRET { "pos": ["MAP10","secret","sector",22] }
 AP-SECRET { "pos": ["MAP10","secret","sector",85] }
 AP-SECRET { "pos": ["MAP10","secret","sector",86] }
-AP-MAP { "map": "MAP11", "levelname": "pure as snow", "checksum": "bb615f9635a0347e2ece2665ddebbd67", "rank": 10, "monster_count": 112, "info": { "levelnum": 11, "title": "HUSTR_11", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "$MUSIC_STLKS2", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "MAP11", "levelname": "pure as snow",
+  "checksum": "bb615f9635a0347e2ece2665ddebbd67", "rank": 10, "monster_count": 112,
+  "info": { "levelnum": 11, "title": "HUSTR_11", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "$MUSIC_STLKS2", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Revenant": 6, "DoomImp": 40, "ChaingunGuy": 24, "Fatso": 4, "Cacodemon": 7, "HellKnight": 2, "Spectre": 1, "Demon": 8, "ShotgunGuy": 3, "Arachnotron": 2, "Archvile": 4, "BaronOfHell": 2, "WolfensteinSS": 9 },
+  "prereqs": [ "weapon/Chaingun/auto", "weapon/Shotgun/auto" ]
+}
 AP-ITEM { "category": "weapon", "typename": "SuperShotgun", "tag": "Super Shotgun", "pos": ["MAP11",-264,824,68] }
 AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "pos": ["MAP11",-576,608,0] }
 AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "pos": ["MAP11",-752,952,0] }
@@ -1175,22 +1216,28 @@ AP-ITEM { "category": "weapon", "typename": "Shotgun", "tag": "Shotgun", "pos": 
 AP-ITEM { "category": "weapon", "typename": "Shotgun", "tag": "Shotgun", "pos": ["MAP11",-832,288,24] }
 AP-ITEM { "category": "weapon", "typename": "Shotgun", "tag": "Shotgun", "pos": ["MAP11",-1072,2240,80] }
 AP-ITEM { "category": "weapon", "typename": "Shotgun", "tag": "Shotgun", "pos": ["MAP11",-880,1456,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "skill": [2, 3], "pos": ["MAP11",624,1040,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "skill": [2, 3], "pos": ["MAP11",512,1040,0] }
-AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "skill": [2, 3], "pos": ["MAP11",-432,3168,64] }
-AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "skill": [2, 3], "pos": ["MAP11",-400,3440,64] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [2, 3], "pos": ["MAP11",-560,1184,0] }
-AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "skill": [2, 3], "pos": ["MAP11",-736,1088,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [2, 3], "pos": ["MAP11",-720,336,12] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "skill": [2, 3], "pos": ["MAP11",744,2400,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [2, 3], "pos": ["MAP11",768,2784,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "skill": [3], "pos": ["MAP11",400,1040,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "skill": [3], "pos": ["MAP11",656,2872,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "skill": [3], "pos": ["MAP11",-1280,2128,80] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "filter": 28, "pos": ["MAP11",624,1040,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "filter": 28, "pos": ["MAP11",512,1040,0] }
+AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "filter": 28, "pos": ["MAP11",-432,3168,64] }
+AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "filter": 28, "pos": ["MAP11",-400,3440,64] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 28, "pos": ["MAP11",-560,1184,0] }
+AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "filter": 28, "pos": ["MAP11",-736,1088,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 28, "pos": ["MAP11",-720,336,12] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "filter": 28, "pos": ["MAP11",744,2400,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 28, "pos": ["MAP11",768,2784,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "filter": 24, "pos": ["MAP11",400,1040,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "filter": 24, "pos": ["MAP11",656,2872,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "filter": 24, "pos": ["MAP11",-1280,2128,80] }
 AP-SECRET { "pos": ["MAP11","secret","sector",16] }
 AP-SECRET { "pos": ["MAP11","secret","sector",113] }
 AP-SECRET { "pos": ["MAP11","secret","sector",284] }
-AP-MAP { "map": "MAP12", "levelname": "crown of thorns", "checksum": "a2cfe5f20052ff98052475843d9ba0ae", "rank": 11, "monster_count": 85, "info": { "levelnum": 12, "title": "HUSTR_12", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "$MUSIC_THEDA2", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "MAP12", "levelname": "crown of thorns",
+  "checksum": "a2cfe5f20052ff98052475843d9ba0ae", "rank": 11, "monster_count": 85,
+  "info": { "levelnum": 12, "title": "HUSTR_12", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "$MUSIC_THEDA2", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Revenant": 4, "BaronOfHell": 2, "DoomImp": 25, "Zombieman": 4, "Fatso": 4, "Cacodemon": 5, "HellKnight": 2, "WolfensteinSS": 1, "ChaingunGuy": 13, "Spectre": 3, "Demon": 8, "ShotgunGuy": 10, "Archvile": 1, "Arachnotron": 1, "PainElemental": 2 },
+  "prereqs": [ "weapon/Chaingun/auto", "weapon/Shotgun/auto" ]
+}
 AP-ITEM { "category": "weapon", "typename": "SuperShotgun", "tag": "Super Shotgun", "pos": ["MAP12",1088,800,-128] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["MAP12",264,184,-128] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["MAP12",-64,512,-128] }
@@ -1249,33 +1296,39 @@ AP-ITEM { "category": "maprevealer", "typename": "Allmap", "tag": "Allmap", "sec
 AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos": ["MAP12",1368,3048,-432] }
 AP-ITEM { "category": "medium-armor", "typename": "GreenArmor", "tag": "GreenArmor", "secret": true, "pos": ["MAP12",1088,2816,-110] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["MAP12",3584,2368,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "skill": [1], "pos": ["MAP12",1888,2944,-448] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "filter": 3, "pos": ["MAP12",1888,2944,-448] }
 AP-ITEM { "category": "weapon", "typename": "Chainsaw", "tag": "Chainsaw", "pos": ["MAP12",1536,1504,-128] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["MAP12",1952,2112,-112] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["MAP12",2944,3136,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "skill": [2, 3], "pos": ["MAP12",2016,1184,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [2, 3], "pos": ["MAP12",1120,1728,-112] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [2, 3], "pos": ["MAP12",-256,2176,-128] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "skill": [2, 3], "pos": ["MAP12",64,1376,-208] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "skill": [2, 3], "pos": ["MAP12",1520,2848,-448] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [2, 3], "pos": ["MAP12",2144,2064,-96] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "skill": [2, 3], "pos": ["MAP12",3072,2656,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [2, 3], "pos": ["MAP12",2160,2304,-448] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "skill": [2, 3], "pos": ["MAP12",1312,1568,-112] }
-AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "skill": [2, 3], "pos": ["MAP12",1504,1728,-112] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [2, 3], "pos": ["MAP12",832,1888,-208] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "skill": [2, 3], "pos": ["MAP12",40,2584,-160] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [2, 3], "pos": ["MAP12",224,2912,-160] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [2, 3], "pos": ["MAP12",1376,3624,-448] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "skill": [2, 3], "pos": ["MAP12",1672,3752,-448] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "skill": [2, 3], "pos": ["MAP12",1952,2400,-424] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "skill": [2, 3], "pos": ["MAP12",3456,2624,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "skill": [2, 3], "pos": ["MAP12",3392,2560,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "filter": 28, "pos": ["MAP12",2016,1184,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 28, "pos": ["MAP12",1120,1728,-112] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 28, "pos": ["MAP12",-256,2176,-128] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "filter": 28, "pos": ["MAP12",64,1376,-208] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "filter": 28, "pos": ["MAP12",1520,2848,-448] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 28, "pos": ["MAP12",2144,2064,-96] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "filter": 28, "pos": ["MAP12",3072,2656,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 28, "pos": ["MAP12",2160,2304,-448] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "filter": 28, "pos": ["MAP12",1312,1568,-112] }
+AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "filter": 28, "pos": ["MAP12",1504,1728,-112] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 28, "pos": ["MAP12",832,1888,-208] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "filter": 28, "pos": ["MAP12",40,2584,-160] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 28, "pos": ["MAP12",224,2912,-160] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 28, "pos": ["MAP12",1376,3624,-448] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "filter": 28, "pos": ["MAP12",1672,3752,-448] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "filter": 28, "pos": ["MAP12",1952,2400,-424] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "filter": 28, "pos": ["MAP12",3456,2624,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "filter": 28, "pos": ["MAP12",3392,2560,0] }
 AP-SECRET { "pos": ["MAP12","secret","sector",45] }
 AP-SECRET { "pos": ["MAP12","secret","sector",237] }
 AP-SECRET { "pos": ["MAP12","secret","sector",367] }
 AP-SECRET { "pos": ["MAP12","secret","sector",396] }
-AP-MAP { "map": "MAP13", "levelname": "scorpio", "checksum": "05d40065f4fd413ac3603ddf62b685ef", "rank": 12, "monster_count": 65, "info": { "levelnum": 13, "title": "HUSTR_13", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "$MUSIC_DOOM2", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "MAP13", "levelname": "scorpio",
+  "checksum": "05d40065f4fd413ac3603ddf62b685ef", "rank": 12, "monster_count": 65,
+  "info": { "levelnum": 13, "title": "HUSTR_13", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "$MUSIC_DOOM2", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Revenant": 9, "BaronOfHell": 2, "DoomImp": 1, "ChaingunGuy": 11, "Fatso": 1, "Cacodemon": 11, "PainElemental": 1, "Demon": 11, "Zombieman": 3, "Arachnotron": 1, "ShotgunGuy": 11, "WolfensteinSS": 1, "Spectre": 2 },
+  "prereqs": [ "weapon/Chaingun/auto", "weapon/Shotgun/auto" ]
+}
 AP-ITEM { "category": "weapon", "typename": "SuperShotgun", "tag": "Super Shotgun", "pos": ["MAP13",-400,344,32] }
 AP-ITEM { "category": "big-health", "typename": "Soulsphere", "tag": "Soulsphere", "pos": ["MAP13",944,536,0] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["MAP13",-368,336,-8] }
@@ -1308,23 +1361,29 @@ AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box",
 AP-ITEM { "category": "big-ammo", "typename": "Backpack", "tag": "Backpack", "secret": true, "pos": ["MAP13",-632,1008,48] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["MAP13",112,336,64] }
 AP-ITEM { "category": "small-defence", "typename": "BlurSphere", "tag": "BlurSphere", "secret": true, "pos": ["MAP13",544,1476,128] }
-AP-ITEM { "category": "medium-health-attack", "typename": "Berserk", "tag": "Berserk", "skill": [1, 2], "pos": ["MAP13",384,1152,-64] }
+AP-ITEM { "category": "medium-health-attack", "typename": "Berserk", "tag": "Berserk", "filter": 7, "pos": ["MAP13",384,1152,-64] }
 AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["MAP13",1888,800,0] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["MAP13",224,-576,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [2, 3], "pos": ["MAP13",-960,256,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "skill": [2, 3], "pos": ["MAP13",352,672,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [2, 3], "pos": ["MAP13",1024,1472,0] }
-AP-ITEM { "category": "big-ammo", "typename": "Backpack", "tag": "Backpack", "skill": [2, 3], "pos": ["MAP13",-640,1504,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "skill": [2, 3], "pos": ["MAP13",1216,-384,4] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "skill": [2, 3], "pos": ["MAP13",416,544,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [2, 3], "pos": ["MAP13",608,544,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Cell Pack", "skill": [2, 3], "pos": ["MAP13",224,1200,-64] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [2, 3], "pos": ["MAP13",-640,608,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [2, 3], "pos": ["MAP13",224,960,-65] }
-AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "skill": [2, 3], "pos": ["MAP13",336,336,64] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 28, "pos": ["MAP13",-960,256,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "filter": 28, "pos": ["MAP13",352,672,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 28, "pos": ["MAP13",1024,1472,0] }
+AP-ITEM { "category": "big-ammo", "typename": "Backpack", "tag": "Backpack", "filter": 28, "pos": ["MAP13",-640,1504,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "filter": 28, "pos": ["MAP13",1216,-384,4] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "filter": 28, "pos": ["MAP13",416,544,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 28, "pos": ["MAP13",608,544,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Cell Pack", "filter": 28, "pos": ["MAP13",224,1200,-64] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 28, "pos": ["MAP13",-640,608,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 28, "pos": ["MAP13",224,960,-65] }
+AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "filter": 28, "pos": ["MAP13",336,336,64] }
 AP-SECRET { "pos": ["MAP13","secret","sector",248] }
 AP-SECRET { "pos": ["MAP13","secret","sector",278] }
-AP-MAP { "map": "MAP14", "levelname": "scientific heresy", "checksum": "51cafee8d06f5c06a0d7994451d51615", "rank": 13, "monster_count": 120, "info": { "levelnum": 14, "title": "HUSTR_14", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "$MUSIC_DDTBL2", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "MAP14", "levelname": "scientific heresy",
+  "checksum": "51cafee8d06f5c06a0d7994451d51615", "rank": 13, "monster_count": 120,
+  "info": { "levelnum": 14, "title": "HUSTR_14", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "$MUSIC_DDTBL2", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "ChaingunGuy": 23, "Spectre": 1, "Fatso": 11, "Cacodemon": 4, "Revenant": 6, "HellKnight": 5, "LostSoul": 2, "SpiderMastermind": 1, "PainElemental": 3, "Archvile": 1, "Demon": 8, "ShotgunGuy": 15, "DoomImp": 24, "Zombieman": 11, "Arachnotron": 5 },
+  "prereqs": [ "weapon/Chaingun/auto", "weapon/Shotgun/auto" ]
+}
 AP-ITEM { "category": "big-health", "typename": "Soulsphere", "tag": "Soulsphere", "secret": true, "pos": ["MAP14",-1320,-208,112] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["MAP14",2048,428,128] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["MAP14",2000,380,128] }
@@ -1347,7 +1406,7 @@ AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos":
 AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos": ["MAP14",-816,608,8] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["MAP14",-1664,-48,192] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["MAP14",-368,-1808,0] }
-AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "skill": [1, 2], "pos": ["MAP14",3040,-224,96] }
+AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "filter": 7, "pos": ["MAP14",3040,-224,96] }
 AP-ITEM { "category": "weapon", "typename": "BFG9000", "tag": "BFG 9000", "pos": ["MAP14",496,40,192] }
 AP-ITEM { "category": "key", "typename": "RedSkull", "tag": "Red Skull", "pos": ["MAP14",500,-756,96] }
 AP-KEY { "typename": "RedSkull", "tag": "Red Skull", "scopename": "MAP14", "cluster": 0, "maps": ["MAP14"] }
@@ -1398,34 +1457,40 @@ AP-ITEM { "category": "big-ammo", "typename": "Backpack", "tag": "Backpack", "se
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "secret": true, "pos": ["MAP14",1440,-1120,96] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["MAP14",-2344,-256,-48] }
 AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "pos": ["MAP14",608,-256,64] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [2, 3], "pos": ["MAP14",2168,-976,128] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [2, 3], "pos": ["MAP14",-640,-1552,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "skill": [2, 3], "pos": ["MAP14",-1536,-48,192] }
-AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "skill": [2, 3], "pos": ["MAP14",-640,800,8] }
-AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "skill": [2, 3], "pos": ["MAP14",-768,800,8] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "skill": [2, 3], "pos": ["MAP14",-1040,-1808,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [2, 3], "pos": ["MAP14",-880,-1184,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [2, 3], "pos": ["MAP14",-528,-1184,0] }
-AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "skill": [2, 3], "pos": ["MAP14",-752,-1424,0] }
-AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "skill": [2, 3], "pos": ["MAP14",-656,-1424,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "skill": [2, 3], "pos": ["MAP14",1120,-448,46] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "skill": [2, 3], "pos": ["MAP14",2528,-768,96] }
-AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "skill": [2, 3], "pos": ["MAP14",2528,416,96] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "skill": [2, 3], "pos": ["MAP14",-1664,-1024,-48] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "skill": [2, 3], "pos": ["MAP14",-704,-1248,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "skill": [2, 3], "pos": ["MAP14",992,-928,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "skill": [2, 3], "pos": ["MAP14",1632,-416,128] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "skill": [2, 3], "pos": ["MAP14",2784,-800,96] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [2, 3], "pos": ["MAP14",2496,-1856,80] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [2, 3], "pos": ["MAP14",2880,-1504,80] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [2, 3], "pos": ["MAP14",-2200,-512,-16] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [2, 3], "pos": ["MAP14",1024,-736,48] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "skill": [2, 3], "pos": ["MAP14",1984,128,96] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "skill": [2, 3], "pos": ["MAP14",3040,96,96] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 28, "pos": ["MAP14",2168,-976,128] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 28, "pos": ["MAP14",-640,-1552,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "filter": 28, "pos": ["MAP14",-1536,-48,192] }
+AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "filter": 28, "pos": ["MAP14",-640,800,8] }
+AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "filter": 28, "pos": ["MAP14",-768,800,8] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "filter": 28, "pos": ["MAP14",-1040,-1808,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 28, "pos": ["MAP14",-880,-1184,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 28, "pos": ["MAP14",-528,-1184,0] }
+AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "filter": 28, "pos": ["MAP14",-752,-1424,0] }
+AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "filter": 28, "pos": ["MAP14",-656,-1424,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "filter": 28, "pos": ["MAP14",1120,-448,46] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "filter": 28, "pos": ["MAP14",2528,-768,96] }
+AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "filter": 28, "pos": ["MAP14",2528,416,96] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "filter": 28, "pos": ["MAP14",-1664,-1024,-48] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "filter": 28, "pos": ["MAP14",-704,-1248,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "filter": 28, "pos": ["MAP14",992,-928,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "filter": 28, "pos": ["MAP14",1632,-416,128] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "filter": 28, "pos": ["MAP14",2784,-800,96] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 28, "pos": ["MAP14",2496,-1856,80] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 28, "pos": ["MAP14",2880,-1504,80] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 28, "pos": ["MAP14",-2200,-512,-16] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 28, "pos": ["MAP14",1024,-736,48] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "filter": 28, "pos": ["MAP14",1984,128,96] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "filter": 28, "pos": ["MAP14",3040,96,96] }
 AP-SECRET { "pos": ["MAP14","secret","sector",111] }
 AP-SECRET { "pos": ["MAP14","secret","sector",305] }
 AP-SECRET { "pos": ["MAP14","secret","sector",345] }
-AP-MAP { "map": "MAP15", "levelname": "forbidden knowledge", "checksum": "5a540d690fdd6801ff9fd7b257e64c03", "rank": 14, "monster_count": 129, "info": { "levelnum": 15, "title": "HUSTR_15", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "$MUSIC_RUNNI2", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "MAP15", "levelname": "forbidden knowledge",
+  "checksum": "5a540d690fdd6801ff9fd7b257e64c03", "rank": 14, "monster_count": 129,
+  "info": { "levelnum": 15, "title": "HUSTR_15", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "$MUSIC_RUNNI2", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Revenant": 4, "DoomImp": 26, "Zombieman": 13, "Fatso": 3, "Spectre": 2, "Cacodemon": 10, "ShotgunGuy": 18, "HellKnight": 1, "LostSoul": 3, "Archvile": 2, "Demon": 28, "ChaingunGuy": 10, "PainElemental": 2, "BaronOfHell": 4, "Arachnotron": 1, "WolfensteinSS": 2 },
+  "prereqs": [ "weapon/Shotgun/auto", "weapon/Chaingun/auto" ]
+}
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["MAP15",-1932,-1340,48] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["MAP15",-1935,2400,-32] }
 AP-ITEM { "category": "key", "typename": "RedSkull", "tag": "Red Skull", "pos": ["MAP15",-3168,2780,64] }
@@ -1509,27 +1574,33 @@ AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells"
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["MAP15",-1984,-880,16] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["MAP15",-3168,1940,20] }
 AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["MAP15",-2528,2208,1] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [2, 3], "pos": ["MAP15",-192,-1056,32] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [2, 3], "pos": ["MAP15",-1968,-1200,48] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "skill": [2, 3], "pos": ["MAP15",-2608,-1200,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Cell Pack", "skill": [2, 3], "pos": ["MAP15",-3456,320,-64] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "skill": [2, 3], "pos": ["MAP15",-3312,2832,48] }
-AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "skill": [2, 3], "pos": ["MAP15",-976,2072,25] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "skill": [2, 3], "pos": ["MAP15",-896,3728,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [2, 3], "pos": ["MAP15",-1200,3264,16] }
-AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "skill": [2, 3], "pos": ["MAP15",-2432,-768,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [2, 3], "pos": ["MAP15",-2384,-1280,0] }
-AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "skill": [2, 3], "pos": ["MAP15",-3408,64,-96] }
-AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Cell Pack", "skill": [2, 3], "pos": ["MAP15",-3168,2976,48] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "skill": [2, 3], "pos": ["MAP15",-2112,2144,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [2, 3], "pos": ["MAP15",-2208,2688,-32] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "skill": [2, 3], "pos": ["MAP15",-1344,3728,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [2, 3], "pos": ["MAP15",-1408,-1168,48] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "skill": [2, 3], "pos": ["MAP15",-3360,-128,-96] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [2, 3], "pos": ["MAP15",-736,3328,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 28, "pos": ["MAP15",-192,-1056,32] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 28, "pos": ["MAP15",-1968,-1200,48] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "filter": 28, "pos": ["MAP15",-2608,-1200,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Cell Pack", "filter": 28, "pos": ["MAP15",-3456,320,-64] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "filter": 28, "pos": ["MAP15",-3312,2832,48] }
+AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "filter": 28, "pos": ["MAP15",-976,2072,25] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "filter": 28, "pos": ["MAP15",-896,3728,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 28, "pos": ["MAP15",-1200,3264,16] }
+AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "filter": 28, "pos": ["MAP15",-2432,-768,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 28, "pos": ["MAP15",-2384,-1280,0] }
+AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "filter": 28, "pos": ["MAP15",-3408,64,-96] }
+AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Cell Pack", "filter": 28, "pos": ["MAP15",-3168,2976,48] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "filter": 28, "pos": ["MAP15",-2112,2144,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 28, "pos": ["MAP15",-2208,2688,-32] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "filter": 28, "pos": ["MAP15",-1344,3728,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 28, "pos": ["MAP15",-1408,-1168,48] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "filter": 28, "pos": ["MAP15",-3360,-128,-96] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 28, "pos": ["MAP15",-736,3328,0] }
 AP-SECRET { "pos": ["MAP15","secret","sector",200] }
 AP-SECRET { "pos": ["MAP15","secret","sector",241] }
-AP-MAP { "map": "MAP16", "levelname": "price/progress", "checksum": "bbceaaca9b0faf3a71067ad938aeec1d", "rank": 15, "monster_count": 97, "info": { "levelnum": 16, "title": "HUSTR_16", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "$MUSIC_DEAD2", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "MAP16", "levelname": "price/progress",
+  "checksum": "bbceaaca9b0faf3a71067ad938aeec1d", "rank": 15, "monster_count": 97,
+  "info": { "levelnum": 16, "title": "HUSTR_16", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "$MUSIC_DEAD2", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Revenant": 7, "DoomImp": 26, "Zombieman": 11, "Fatso": 1, "Cacodemon": 2, "LostSoul": 1, "BaronOfHell": 1, "ShotgunGuy": 7, "Archvile": 1, "ChaingunGuy": 16, "Arachnotron": 6, "Demon": 18 },
+  "prereqs": [ "weapon/Shotgun/auto", "weapon/Chaingun/auto" ]
+}
 AP-ITEM { "category": "weapon", "typename": "PlasmaRifle", "tag": "Plasma Rifle", "pos": ["MAP16",896,-264,-64] }
 AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Cell Pack", "secret": true, "pos": ["MAP16",1312,344,0] }
 AP-ITEM { "category": "weapon", "typename": "BFG9000", "tag": "BFG 9000", "pos": ["MAP16",624,272,0] }
@@ -1590,7 +1661,7 @@ AP-ITEM { "category": "maprevealer", "typename": "Allmap", "tag": "Allmap", "sec
 AP-ITEM { "category": "small-defence", "typename": "BlurSphere", "tag": "BlurSphere", "secret": true, "pos": ["MAP16",1768,-888,4] }
 AP-ITEM { "category": "key", "typename": "YellowSkull", "tag": "Yellow Skull", "pos": ["MAP16",-640,-832,24] }
 AP-KEY { "typename": "YellowSkull", "tag": "Yellow Skull", "scopename": "MAP16", "cluster": 0, "maps": ["MAP16"] }
-AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "skill": [1, 2], "pos": ["MAP16",1472,-864,0] }
+AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "filter": 7, "pos": ["MAP16",1472,-864,0] }
 AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "pos": ["MAP16",-496,-944,0] }
 AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["MAP16",-784,-720,0] }
 AP-ITEM { "category": "weapon", "typename": "Chainsaw", "tag": "Chainsaw", "pos": ["MAP16",1744,-688,4] }
@@ -1600,18 +1671,24 @@ AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonu
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["MAP16",-928,-1600,104] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["MAP16",-608,-1600,104] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["MAP16",-288,-1600,104] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "skill": [2, 3], "pos": ["MAP16",2160,-896,0] }
-AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "skill": [2, 3], "pos": ["MAP16",1328,208,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "skill": [2, 3], "pos": ["MAP16",895,62,0] }
-AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "skill": [2, 3], "pos": ["MAP16",1232,-560,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "skill": [2, 3], "pos": ["MAP16",1600,928,-48] }
-AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "skill": [2, 3], "pos": ["MAP16",920,-720,0] }
-AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "skill": [2, 3], "pos": ["MAP16",776,-816,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "skill": [2, 3], "pos": ["MAP16",-128,-1408,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "filter": 28, "pos": ["MAP16",2160,-896,0] }
+AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "filter": 28, "pos": ["MAP16",1328,208,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "filter": 28, "pos": ["MAP16",895,62,0] }
+AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "filter": 28, "pos": ["MAP16",1232,-560,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "filter": 28, "pos": ["MAP16",1600,928,-48] }
+AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "filter": 28, "pos": ["MAP16",920,-720,0] }
+AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "filter": 28, "pos": ["MAP16",776,-816,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "filter": 28, "pos": ["MAP16",-128,-1408,0] }
 AP-SECRET { "pos": ["MAP16","secret","sector",44] }
 AP-SECRET { "pos": ["MAP16","secret","sector",159] }
 AP-SECRET { "pos": ["MAP16","secret","sector",209] }
-AP-MAP { "map": "MAP17", "levelname": "alchemical war", "checksum": "17bcb2893a55f2df5934d4dec54a7f24", "rank": 16, "monster_count": 138, "info": { "levelnum": 17, "title": "HUSTR_17", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "$MUSIC_STLKS3", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "MAP17", "levelname": "alchemical war",
+  "checksum": "17bcb2893a55f2df5934d4dec54a7f24", "rank": 16, "monster_count": 138,
+  "info": { "levelnum": 17, "title": "HUSTR_17", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "$MUSIC_STLKS3", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Revenant": 8, "BaronOfHell": 1, "DoomImp": 33, "Zombieman": 7, "Fatso": 2, "Cacodemon": 10, "HellKnight": 9, "LostSoul": 2, "Spectre": 2, "Archvile": 3, "Demon": 16, "PainElemental": 4, "ShotgunGuy": 15, "ChaingunGuy": 19, "Arachnotron": 7 },
+  "prereqs": [ "weapon/Shotgun/auto", "weapon/Chaingun/auto" ]
+}
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["MAP17",-2832,2968,2] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["MAP17",-2560,2864,0] }
 AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos": ["MAP17",-2896,2480,0] }
@@ -1687,9 +1764,9 @@ AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonu
 AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "pos": ["MAP17",-432,-944,0] }
 AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["MAP17",-352,1440,-80] }
 AP-ITEM { "category": "big-armor", "typename": "BlueArmor", "tag": "BlueArmor", "secret": true, "pos": ["MAP17",144,-1984,48] }
-AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "skill": [1], "pos": ["MAP17",-528,-16,20] }
-AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "skill": [1], "pos": ["MAP17",432,1792,48] }
-AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "skill": [1], "pos": ["MAP17",432,1696,48] }
+AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "filter": 3, "pos": ["MAP17",-528,-16,20] }
+AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "filter": 3, "pos": ["MAP17",432,1792,48] }
+AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "filter": 3, "pos": ["MAP17",432,1696,48] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["MAP17",-440,912,96] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["MAP17",-416,416,0] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["MAP17",-864,-608,0] }
@@ -1702,23 +1779,29 @@ AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack",
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["MAP17",992,744,64] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["MAP17",-80,592,64] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["MAP17",-3224,1336,48] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [2, 3], "pos": ["MAP17",192,-96,0] }
-AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "skill": [2, 3], "pos": ["MAP17",320,640,48] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "skill": [2, 3], "pos": ["MAP17",-512,1824,96] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [2, 3], "pos": ["MAP17",-112,1984,96] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "skill": [2, 3], "pos": ["MAP17",-528,-16,20] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [2, 3], "pos": ["MAP17",-112,368,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [2, 3], "pos": ["MAP17",320,-160,64] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "skill": [2, 3], "pos": ["MAP17",320,512,48] }
-AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "skill": [2, 3], "pos": ["MAP17",1472,1952,-512] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "skill": [2, 3], "pos": ["MAP17",1232,1824,-480] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [2, 3], "pos": ["MAP17",-720,2176,88] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "skill": [2, 3], "pos": ["MAP17",-8,-600,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [2, 3], "pos": ["MAP17",-3280,1824,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "skill": [2, 3], "pos": ["MAP17",-1856,1152,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 28, "pos": ["MAP17",192,-96,0] }
+AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "filter": 28, "pos": ["MAP17",320,640,48] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "filter": 28, "pos": ["MAP17",-512,1824,96] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 28, "pos": ["MAP17",-112,1984,96] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "filter": 28, "pos": ["MAP17",-528,-16,20] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 28, "pos": ["MAP17",-112,368,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 28, "pos": ["MAP17",320,-160,64] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "filter": 28, "pos": ["MAP17",320,512,48] }
+AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "filter": 28, "pos": ["MAP17",1472,1952,-512] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "filter": 28, "pos": ["MAP17",1232,1824,-480] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 28, "pos": ["MAP17",-720,2176,88] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "filter": 28, "pos": ["MAP17",-8,-600,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 28, "pos": ["MAP17",-3280,1824,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "filter": 28, "pos": ["MAP17",-1856,1152,0] }
 AP-SECRET { "pos": ["MAP17","secret","sector",131] }
 AP-SECRET { "pos": ["MAP17","secret","sector",286] }
-AP-MAP { "map": "MAP18", "levelname": "army of the undead", "checksum": "7e0c27679c280f2036bef8b71709dd90", "rank": 17, "monster_count": 145, "info": { "levelnum": 18, "title": "HUSTR_18", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "$MUSIC_ROMERO", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "MAP18", "levelname": "army of the undead",
+  "checksum": "7e0c27679c280f2036bef8b71709dd90", "rank": 17, "monster_count": 145,
+  "info": { "levelnum": 18, "title": "HUSTR_18", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "$MUSIC_ROMERO", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "ChaingunGuy": 6, "Zombieman": 6, "Fatso": 6, "Spectre": 1, "Cacodemon": 14, "BaronOfHell": 1, "PainElemental": 2, "HellKnight": 4, "LostSoul": 37, "DoomImp": 33, "Demon": 11, "Revenant": 8, "ShotgunGuy": 11, "Archvile": 2, "Arachnotron": 3 },
+  "prereqs": [ "weapon/Chaingun/auto", "weapon/Shotgun/auto" ]
+}
 AP-ITEM { "category": "big-armor", "typename": "BlueArmor", "tag": "BlueArmor", "pos": ["MAP18",2400,1888,0] }
 AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["MAP18",-1888,-4000,-64] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["MAP18",-1280,-4000,-68] }
@@ -1810,30 +1893,36 @@ AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack",
 AP-ITEM { "category": "small-defence", "typename": "BlurSphere", "tag": "BlurSphere", "pos": ["MAP18",-2232,-3464,248] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["MAP18",-1568,-672,-48] }
 AP-ITEM { "category": "weapon", "typename": "Shotgun", "tag": "Shotgun", "pos": ["MAP18",-2912,-1120,0] }
-AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "skill": [2, 3], "pos": ["MAP18",-2816,-1152,80] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [2, 3], "pos": ["MAP18",-2496,-3376,248] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "skill": [2, 3], "pos": ["MAP18",-1152,2080,64] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "skill": [2, 3], "pos": ["MAP18",1728,2784,32] }
-AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Cell Pack", "skill": [2, 3], "pos": ["MAP18",-272,1024,80] }
-AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "skill": [2, 3], "pos": ["MAP18",552,144,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "skill": [2, 3], "pos": ["MAP18",-1680,-16,64] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [2, 3], "pos": ["MAP18",-2240,-4000,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "skill": [2, 3], "pos": ["MAP18",-2176,-1376,-48] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [2, 3], "pos": ["MAP18",-2272,512,64] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "skill": [2, 3], "pos": ["MAP18",480,-416,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "skill": [2, 3], "pos": ["MAP18",1952,2304,-32] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [2, 3], "pos": ["MAP18",224,1824,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [2, 3], "pos": ["MAP18",-832,1728,64] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [2, 3], "pos": ["MAP18",2240,1696,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "skill": [2, 3], "pos": ["MAP18",956,2114,-32] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "skill": [2, 3], "pos": ["MAP18",-192,1856,8] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [2, 3], "pos": ["MAP18",-160,1952,8] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [2, 3], "pos": ["MAP18",-160,1088,80] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [2, 3], "pos": ["MAP18",-1792,896,64] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [3], "pos": ["MAP18",-1856,-3904,-64] }
+AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "filter": 28, "pos": ["MAP18",-2816,-1152,80] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 28, "pos": ["MAP18",-2496,-3376,248] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "filter": 28, "pos": ["MAP18",-1152,2080,64] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "filter": 28, "pos": ["MAP18",1728,2784,32] }
+AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Cell Pack", "filter": 28, "pos": ["MAP18",-272,1024,80] }
+AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "filter": 28, "pos": ["MAP18",552,144,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "filter": 28, "pos": ["MAP18",-1680,-16,64] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 28, "pos": ["MAP18",-2240,-4000,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "filter": 28, "pos": ["MAP18",-2176,-1376,-48] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 28, "pos": ["MAP18",-2272,512,64] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "filter": 28, "pos": ["MAP18",480,-416,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "filter": 28, "pos": ["MAP18",1952,2304,-32] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 28, "pos": ["MAP18",224,1824,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 28, "pos": ["MAP18",-832,1728,64] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 28, "pos": ["MAP18",2240,1696,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "filter": 28, "pos": ["MAP18",956,2114,-32] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "filter": 28, "pos": ["MAP18",-192,1856,8] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 28, "pos": ["MAP18",-160,1952,8] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 28, "pos": ["MAP18",-160,1088,80] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 28, "pos": ["MAP18",-1792,896,64] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 24, "pos": ["MAP18",-1856,-3904,-64] }
 AP-SECRET { "pos": ["MAP18","secret","sector",28] }
 AP-SECRET { "pos": ["MAP18","secret","sector",48] }
-AP-MAP { "map": "MAP19", "levelname": "crown of creation", "checksum": "0b6b23e1462a4089dd95aca2f005e440", "rank": 18, "monster_count": 160, "info": { "levelnum": 19, "title": "HUSTR_19", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "$MUSIC_SHAWN2", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "MAP19", "levelname": "crown of creation",
+  "checksum": "0b6b23e1462a4089dd95aca2f005e440", "rank": 18, "monster_count": 160,
+  "info": { "levelnum": 19, "title": "HUSTR_19", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "$MUSIC_SHAWN2", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Revenant": 8, "DoomImp": 18, "Zombieman": 6, "Fatso": 10, "Cacodemon": 18, "PainElemental": 2, "Spectre": 5, "HellKnight": 6, "BaronOfHell": 3, "LostSoul": 1, "SpiderMastermind": 3, "Demon": 29, "Archvile": 3, "ShotgunGuy": 11, "ChaingunGuy": 24, "Arachnotron": 13 },
+  "prereqs": [ "weapon/Shotgun/auto", "weapon/Chaingun/auto" ]
+}
 AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["MAP19",2432,64,-48] }
 AP-ITEM { "category": "key", "typename": "RedSkull", "tag": "Red Skull", "pos": ["MAP19",-2384,-256,112] }
 AP-KEY { "typename": "RedSkull", "tag": "Red Skull", "scopename": "MAP19", "cluster": 0, "maps": ["MAP19"] }
@@ -1957,43 +2046,49 @@ AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", 
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["MAP19",1664,-208,0] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["MAP19",1696,-272,0] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["MAP19",1632,-144,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "skill": [2, 3], "pos": ["MAP19",-384,2304,-152] }
-AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "skill": [2, 3], "pos": ["MAP19",-2400,-352,80] }
-AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "skill": [2, 3], "pos": ["MAP19",-2400,-96,0] }
-AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "skill": [2, 3], "pos": ["MAP19",-2720,-352,80] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [2, 3], "pos": ["MAP19",-3104,-192,80] }
-AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "skill": [2, 3], "pos": ["MAP19",-2720,-96,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "skill": [2, 3], "pos": ["MAP19",-1520,-1952,48] }
-AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Cell Pack", "skill": [2, 3], "pos": ["MAP19",-1184,-1968,0] }
-AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "skill": [2, 3], "pos": ["MAP19",-1552,-1296,96] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "skill": [2, 3], "pos": ["MAP19",1776,-2784,160] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [2, 3], "pos": ["MAP19",3296,-1760,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [2, 3], "pos": ["MAP19",2720,512,-48] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "skill": [2, 3], "pos": ["MAP19",2112,512,-48] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "skill": [2, 3], "pos": ["MAP19",-976,3024,-88] }
-AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Cell Pack", "skill": [2, 3], "pos": ["MAP19",2592,-2208,64] }
-AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "skill": [2, 3], "pos": ["MAP19",1232,1584,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [2, 3], "pos": ["MAP19",3136,384,128] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "skill": [2, 3], "pos": ["MAP19",1472,1024,-48] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [2, 3], "pos": ["MAP19",1696,1024,-48] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [2, 3], "pos": ["MAP19",1664,896,-48] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "skill": [2, 3], "pos": ["MAP19",1504,896,-48] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "skill": [2, 3], "pos": ["MAP19",784,1472,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "skill": [2, 3], "pos": ["MAP19",1072,2280,16] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "skill": [2, 3], "pos": ["MAP19",944,2976,80] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "skill": [2, 3], "pos": ["MAP19",-672,1072,-48] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [2, 3], "pos": ["MAP19",-576,1792,-48] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [2, 3], "pos": ["MAP19",384,1328,-152] }
-AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "skill": [2, 3], "pos": ["MAP19",0,1296,-144] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [2, 3], "pos": ["MAP19",640,-2128,72] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "skill": [2, 3], "pos": ["MAP19",304,-2240,100] }
-AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "skill": [2, 3], "pos": ["MAP19",1072,1040,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [2, 3], "pos": ["MAP19",-2976,-64,0] }
-AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "skill": [2, 3], "pos": ["MAP19",-1856,-448,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "filter": 28, "pos": ["MAP19",-384,2304,-152] }
+AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "filter": 28, "pos": ["MAP19",-2400,-352,80] }
+AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "filter": 28, "pos": ["MAP19",-2400,-96,0] }
+AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "filter": 28, "pos": ["MAP19",-2720,-352,80] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 28, "pos": ["MAP19",-3104,-192,80] }
+AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "filter": 28, "pos": ["MAP19",-2720,-96,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "filter": 28, "pos": ["MAP19",-1520,-1952,48] }
+AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Cell Pack", "filter": 28, "pos": ["MAP19",-1184,-1968,0] }
+AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "filter": 28, "pos": ["MAP19",-1552,-1296,96] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "filter": 28, "pos": ["MAP19",1776,-2784,160] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 28, "pos": ["MAP19",3296,-1760,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 28, "pos": ["MAP19",2720,512,-48] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "filter": 28, "pos": ["MAP19",2112,512,-48] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "filter": 28, "pos": ["MAP19",-976,3024,-88] }
+AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Cell Pack", "filter": 28, "pos": ["MAP19",2592,-2208,64] }
+AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "filter": 28, "pos": ["MAP19",1232,1584,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 28, "pos": ["MAP19",3136,384,128] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "filter": 28, "pos": ["MAP19",1472,1024,-48] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 28, "pos": ["MAP19",1696,1024,-48] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 28, "pos": ["MAP19",1664,896,-48] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "filter": 28, "pos": ["MAP19",1504,896,-48] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "filter": 28, "pos": ["MAP19",784,1472,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "filter": 28, "pos": ["MAP19",1072,2280,16] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "filter": 28, "pos": ["MAP19",944,2976,80] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "filter": 28, "pos": ["MAP19",-672,1072,-48] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 28, "pos": ["MAP19",-576,1792,-48] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 28, "pos": ["MAP19",384,1328,-152] }
+AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "filter": 28, "pos": ["MAP19",0,1296,-144] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 28, "pos": ["MAP19",640,-2128,72] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "filter": 28, "pos": ["MAP19",304,-2240,100] }
+AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "filter": 28, "pos": ["MAP19",1072,1040,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 28, "pos": ["MAP19",-2976,-64,0] }
+AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "filter": 28, "pos": ["MAP19",-1856,-448,0] }
 AP-SECRET { "pos": ["MAP19","secret","sector",218] }
 AP-SECRET { "pos": ["MAP19","secret","sector",662] }
 AP-SECRET { "pos": ["MAP19","secret","sector",674] }
-AP-MAP { "map": "MAP20", "levelname": "scientist doom", "checksum": "17e391ac31c22a4fd49584c7a107d6aa", "rank": 19, "monster_count": 70, "info": { "levelnum": 20, "title": "HUSTR_20", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "$MUSIC_MESSAG", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "MAP20", "levelname": "scientist doom",
+  "checksum": "17e391ac31c22a4fd49584c7a107d6aa", "rank": 19, "monster_count": 70,
+  "info": { "levelnum": 20, "title": "HUSTR_20", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "$MUSIC_MESSAG", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Cyberdemon": 1, "Revenant": 2, "BaronOfHell": 1, "DoomImp": 9, "Zombieman": 2, "Fatso": 2, "Cacodemon": 8, "HellKnight": 5, "Spectre": 2, "Demon": 17, "ShotgunGuy": 6, "PainElemental": 1, "ChaingunGuy": 13, "Arachnotron": 1 },
+  "prereqs": [ "weapon/Shotgun/auto", "weapon/Chaingun/auto" ]
+}
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["MAP20",-1536,2848,-4] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["MAP20",-936,2624,-16] }
 AP-ITEM { "category": "big-ammo", "typename": "Backpack", "tag": "Backpack", "secret": true, "pos": ["MAP20",-2144,1200,24] }
@@ -2017,10 +2112,10 @@ AP-ITEM { "category": "weapon", "typename": "RocketLauncher", "tag": "Rocket Lau
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["MAP20",-2400,2976,48] }
 AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["MAP20",-2592,3200,0] }
 AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["MAP20",-4608,1712,0] }
-AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "skill": [1], "pos": ["MAP20",-3056,2624,-1] }
-AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "skill": [1], "pos": ["MAP20",-3712,2016,0] }
+AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "filter": 3, "pos": ["MAP20",-3056,2624,-1] }
+AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "filter": 3, "pos": ["MAP20",-3712,2016,0] }
 AP-ITEM { "category": "big-health", "typename": "Soulsphere", "tag": "Soulsphere", "pos": ["MAP20",-3488,112,8] }
-AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "skill": [1], "pos": ["MAP20",-3616,1920,0] }
+AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "filter": 3, "pos": ["MAP20",-3616,1920,0] }
 AP-ITEM { "category": "weapon", "typename": "PlasmaRifle", "tag": "Plasma Rifle", "pos": ["MAP20",-4736,848,0] }
 AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Cell Pack", "pos": ["MAP20",-4736,656,6] }
 AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Cell Pack", "pos": ["MAP20",-4736,544,6] }
@@ -2029,10 +2124,10 @@ AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Cell Pack",
 AP-ITEM { "category": "big-health", "typename": "Soulsphere", "tag": "Soulsphere", "pos": ["MAP20",-1249,1584,-32] }
 AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Cell Pack", "pos": ["MAP20",-1249,640,-1280] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["MAP20",-929,144,0] }
-AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "skill": [1], "pos": ["MAP20",-1569,144,0] }
+AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "filter": 3, "pos": ["MAP20",-1569,144,0] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["MAP20",-1569,784,0] }
-AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "skill": [1], "pos": ["MAP20",-929,784,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [1], "pos": ["MAP20",-977,144,0] }
+AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "filter": 3, "pos": ["MAP20",-929,784,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 3, "pos": ["MAP20",-977,144,0] }
 AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["MAP20",-1521,768,0] }
 AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Cell Pack", "pos": ["MAP20",-1233,1024,0] }
 AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Cell Pack", "pos": ["MAP20",-1281,1232,0] }
@@ -2051,8 +2146,8 @@ AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", 
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["MAP20",-4768,1568,-48] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["MAP20",-4704,1536,-48] }
 AP-ITEM { "category": "weapon", "typename": "Chainsaw", "tag": "Chainsaw", "pos": ["MAP20",-4288,-64,8] }
-AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "skill": [1], "pos": ["MAP20",-3968,1568,0] }
-AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "skill": [1], "pos": ["MAP20",-2848,2048,16] }
+AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "filter": 3, "pos": ["MAP20",-3968,1568,0] }
+AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "filter": 3, "pos": ["MAP20",-2848,2048,16] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["MAP20",-4832,1104,-114] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["MAP20",-832,3008,-4] }
 AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "pos": ["MAP20",-1664,3008,-4] }
@@ -2075,15 +2170,15 @@ AP-ITEM { "category": "big-armor-health", "typename": "Megasphere", "tag": "Mega
 AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["MAP20",-3456,32,8] }
 AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "pos": ["MAP20",-3392,192,8] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["MAP20",-2432,1104,16] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [2, 3], "pos": ["MAP20",-2880,1600,16] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [2, 3], "pos": ["MAP20",-3136,2240,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "skill": [2, 3], "pos": ["MAP20",-3936,1760,0] }
-AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Cell Pack", "skill": [2, 3], "pos": ["MAP20",-1249,440,8] }
-AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "skill": [2, 3], "pos": ["MAP20",-2704,320,96] }
-AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "skill": [2, 3], "pos": ["MAP20",-2528,2432,-32] }
-AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "skill": [2, 3], "pos": ["MAP20",-5088,1536,-48] }
-AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "skill": [2, 3], "pos": ["MAP20",-4896,1568,-48] }
-AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "skill": [2, 3], "pos": ["MAP20",-4832,1536,-48] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 28, "pos": ["MAP20",-2880,1600,16] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 28, "pos": ["MAP20",-3136,2240,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 28, "pos": ["MAP20",-3936,1760,0] }
+AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Cell Pack", "filter": 28, "pos": ["MAP20",-1249,440,8] }
+AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "filter": 28, "pos": ["MAP20",-2704,320,96] }
+AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "filter": 28, "pos": ["MAP20",-2528,2432,-32] }
+AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "filter": 28, "pos": ["MAP20",-5088,1536,-48] }
+AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "filter": 28, "pos": ["MAP20",-4896,1568,-48] }
+AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", "filter": 28, "pos": ["MAP20",-4832,1536,-48] }
 AP-SECRET { "pos": ["MAP20","secret","sector",4] }
 AP-SECRET { "pos": ["MAP20","secret","sector",23] }
 AP-SECRET { "pos": ["MAP20","secret","sector",153] }

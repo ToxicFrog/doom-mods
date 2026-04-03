@@ -1,5 +1,11 @@
 AP-SCAN { "flags": [] }
-AP-MAP { "map": "E1A1", "levelname": "Welcome to Squaresville", "checksum": "d14b8a6c9df6b8192a55d7cb7b8f52b8", "rank": 0, "monster_count": 131, "info": { "levelnum": 101, "title": "SQHUSTR_E1A1", "is_lookup": true, "sky1": "SKY0", "sky1speed": "0.000000", "sky2": "SKY0", "sky2speed": "0.000000", "music": "D_E1A1", "music_track": "0", "cluster": 0, "flags": ["useplayerstartz"] } }
+AP-MAP {
+  "map": "E1A1", "levelname": "Welcome to Squaresville",
+  "checksum": "d14b8a6c9df6b8192a55d7cb7b8f52b8", "rank": 0, "monster_count": 131,
+  "info": { "levelnum": 101, "title": "SQHUSTR_E1A1", "is_lookup": true, "sky1": "SKY0", "sky1speed": "0.000000", "sky2": "SKY0", "sky2speed": "0.000000", "music": "D_E1A1", "music_track": "0", "cluster": 0, "flags": ["useplayerstartz"] },
+  "monsters": { "PaintJerk": 56, "CannonJerk": 22, "Cow": 3, "FriendlySquare": 5, "Ovolt": 2, "Rectangolier": 4, "FrightenedSquare": 2, "KnifeJerk": 36, "Revolt": 1 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "small-ammo", "typename": "ShotboltAmmo2", "tag": "ShotboltAmmo2", "filter": 1, "pos": ["E1A1",640,3872,232] }
 AP-ITEM { "category": "small-ammo", "typename": "ShotboltAmmo2", "tag": "ShotboltAmmo2", "filter": 1, "pos": ["E1A1",640,3808,232] }
 AP-ITEM { "category": "small-ammo", "typename": "ShotboltAmmo2", "tag": "ShotboltAmmo2", "filter": 1, "pos": ["E1A1",-315,3495,104] }
@@ -244,7 +250,13 @@ AP-SECRET { "pos": ["E1A1","secret","sector",95] }
 AP-SECRET { "pos": ["E1A1","secret","sector",256] }
 AP-SECRET { "pos": ["E1A1","secret","sector",512] }
 AP-SECRET { "pos": ["E1A1","secret","sector",567] }
-AP-MAP { "map": "E1A2", "levelname": "Sewerside", "checksum": "93043aaca5f1d0bcb94cfed0ee868d03", "rank": 1, "monster_count": 110, "info": { "levelnum": 102, "title": "SQHUSTR_E1A2", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "D_E1A2", "music_track": "0", "cluster": 0, "flags": ["useplayerstartz"] } }
+AP-MAP {
+  "map": "E1A2", "levelname": "Sewerside",
+  "checksum": "93043aaca5f1d0bcb94cfed0ee868d03", "rank": 1, "monster_count": 110,
+  "info": { "levelnum": 102, "title": "SQHUSTR_E1A2", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "D_E1A2", "music_track": "0", "cluster": 0, "flags": ["useplayerstartz"] },
+  "monsters": { "KnifeJerk": 7, "Airvolt": 9, "PaintJerk": 32, "JetpackJerk": 4, "CannonJerk": 18, "Revolt": 13, "Chatterbox": 12, "Cow": 3, "Ovolt": 8, "Rectangolier": 4 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "small-armor", "typename": "ArmorCardboard", "tag": "ArmorCardboard", "pos": ["E1A2",-2208,1200,-72] }
 AP-ITEM { "category": "medium-armor", "typename": "ArmorWood", "tag": "ArmorWood", "secret": true, "pos": ["E1A2",-1248,1504,-16] }
 AP-ITEM { "category": "big-ammo", "typename": "SquareBackpack", "tag": "SquareBackpack", "pos": ["E1A2",-1344,1664,-80] }
@@ -423,7 +435,13 @@ AP-ITEM { "category": "small-health", "typename": "BadPie", "tag": "BadPie", "fi
 AP-SECRET { "pos": ["E1A2","secret","sector",217] }
 AP-SECRET { "pos": ["E1A2","secret","sector",286] }
 AP-SECRET { "pos": ["E1A2","secret","sector",301] }
-AP-MAP { "map": "E1A3", "levelname": "Up Shape Creek", "checksum": "c692623b3ec05113ed260af21e4696d6", "rank": 2, "monster_count": 161, "info": { "levelnum": 103, "title": "SQHUSTR_E1A3", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "D_E1A3", "music_track": "0", "cluster": 0, "flags": ["useplayerstartz"] } }
+AP-MAP {
+  "map": "E1A3", "levelname": "Up Shape Creek",
+  "checksum": "c692623b3ec05113ed260af21e4696d6", "rank": 2, "monster_count": 161,
+  "info": { "levelnum": 103, "title": "SQHUSTR_E1A3", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "D_E1A3", "music_track": "0", "cluster": 0, "flags": ["useplayerstartz"] },
+  "monsters": { "KnifeJerk": 10, "AngleFish": 13, "Cow": 1, "Airvolt": 25, "CannonJerk": 21, "JetpackJerk": 7, "Revolt": 28, "PaintJerk": 20, "Chatterbox": 12, "Rectangolier": 4, "Ovolt": 20 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "key", "typename": "TriangleKey", "tag": "Triangle Key", "pos": ["E1A3",96,-128,128] }
 AP-KEY { "typename": "TriangleKey", "tag": "Triangle Key", "scopename": "E1A3", "cluster": 0, "maps": ["E1A3"] }
 AP-ITEM { "category": "small-health", "typename": "Cake", "tag": "Cake", "filter": 15, "pos": ["E1A3",-104,0,0] }
@@ -605,7 +623,13 @@ AP-SECRET { "pos": ["E1A3","secret","sector",38] }
 AP-SECRET { "pos": ["E1A3","secret","sector",180] }
 AP-SECRET { "pos": ["E1A3","secret","sector",240] }
 AP-SECRET { "pos": ["E1A3","secret","sector",260] }
-AP-MAP { "map": "E1A4", "levelname": "Paint Plant", "checksum": "2a4f493d8749bbacccded68c4f12b611", "rank": 3, "monster_count": 209, "info": { "levelnum": 104, "title": "SQHUSTR_E1A4", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "D_E1A4", "music_track": "0", "cluster": 0, "flags": ["useplayerstartz"] } }
+AP-MAP {
+  "map": "E1A4", "levelname": "Paint Plant",
+  "checksum": "2a4f493d8749bbacccded68c4f12b611", "rank": 3, "monster_count": 209,
+  "info": { "levelnum": 104, "title": "SQHUSTR_E1A4", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "D_E1A4", "music_track": "0", "cluster": 0, "flags": ["useplayerstartz"] },
+  "monsters": { "CannonJerk": 35, "Cow": 18, "Rectangolier": 4, "Airvolt": 4, "Ovolt": 38, "PaintJerk": 50, "JetpackJerk": 6, "Chatterbox": 11, "Revolt": 12, "KnifeJerk": 16, "Cylonder": 15 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "medium-ammo", "typename": "PaintAmmoBig2", "tag": "PaintAmmoBig2", "filter": 1, "pos": ["E1A4",-880,-96,-120] }
 AP-ITEM { "category": "big-health", "typename": "HappySphere", "tag": "HappySphere", "pos": ["E1A4",-96,-572,-160] }
 AP-ITEM { "category": "key", "typename": "SquareKey", "tag": "Square Key", "pos": ["E1A4",-416,-64,-96] }
@@ -1156,7 +1180,13 @@ AP-ITEM { "category": "small-health", "typename": "BadCake", "tag": "BadCake", "
 AP-ITEM { "category": "small-health", "typename": "BadLemonade", "tag": "BadLemonade", "filter": 16, "pos": ["E1A4",864,608,64] }
 AP-SECRET { "pos": ["E1A4","secret","sector",83] }
 AP-SECRET { "pos": ["E1A4","secret","sector",799] }
-AP-MAP { "map": "E1A5", "levelname": "A Miner Inconvenience", "checksum": "347b503319130f73b9d45bf8652dc4e4", "rank": 4, "monster_count": 213, "info": { "levelnum": 105, "title": "SQHUSTR_E1A5", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "D_E1A5", "music_track": "0", "cluster": 0, "flags": ["useplayerstartz"] } }
+AP-MAP {
+  "map": "E1A5", "levelname": "A Miner Inconvenience",
+  "checksum": "347b503319130f73b9d45bf8652dc4e4", "rank": 4, "monster_count": 213,
+  "info": { "levelnum": 105, "title": "SQHUSTR_E1A5", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "D_E1A5", "music_track": "0", "cluster": 0, "flags": ["useplayerstartz"] },
+  "monsters": { "CannonJerk": 21, "Revolt": 20, "FriendlyTriangleWorker": 3, "FriendlySquare": 3, "KnifeJerk": 36, "PaintJerk": 36, "Tritankle": 4, "Airvolt": 6, "Cow": 3, "FriendlySquareWorker": 3, "JetpackJerk": 5, "FriendlyHexagon": 3, "Ovolt": 17, "FriendlyHexagonWorker": 3, "Chatterbox": 23, "Cylonder": 15, "FriendlyTriangle": 2, "Rectangolier": 10 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "small-health", "typename": "Soda", "tag": "Soda", "pos": ["E1A5",-288,928,-48] }
 AP-ITEM { "category": "small-health", "typename": "Soda", "tag": "Soda", "pos": ["E1A5",-352,912,-48] }
 AP-ITEM { "category": "small-health", "typename": "Soda", "tag": "Soda", "pos": ["E1A5",-352,832,-48] }
@@ -1612,7 +1642,13 @@ AP-SECRET { "pos": ["E1A5","secret","sector",15] }
 AP-SECRET { "pos": ["E1A5","secret","sector",25] }
 AP-SECRET { "pos": ["E1A5","secret","sector",206] }
 AP-SECRET { "pos": ["E1A5","secret","sector",804] }
-AP-MAP { "map": "E1A6", "levelname": "The Spillway", "checksum": "5383d80b4884745aa07ee2a044126cdf", "rank": 5, "monster_count": 268, "info": { "levelnum": 106, "title": "SQHUSTR_E1A6", "is_lookup": true, "sky1": "SKYDUSK1", "sky1speed": "0.000000", "sky2": "SKYDUSK1", "sky2speed": "0.000000", "music": "D_E1A6", "music_track": "0", "cluster": 0, "flags": ["useplayerstartz"] } }
+AP-MAP {
+  "map": "E1A6", "levelname": "The Spillway",
+  "checksum": "5383d80b4884745aa07ee2a044126cdf", "rank": 5, "monster_count": 268,
+  "info": { "levelnum": 106, "title": "SQHUSTR_E1A6", "is_lookup": true, "sky1": "SKYDUSK1", "sky1speed": "0.000000", "sky2": "SKYDUSK1", "sky2speed": "0.000000", "music": "D_E1A6", "music_track": "0", "cluster": 0, "flags": ["useplayerstartz"] },
+  "monsters": { "AngleFish": 24, "PaintJerk": 55, "CannonJerk": 45, "KnifeJerk": 16, "JetpackJerk": 6, "Airvolt": 9, "Cow": 11, "Cylonder": 13, "Chatterbox": 13, "Ovolt": 16, "Rectangolier": 15, "Tritankle": 18, "Revolt": 27 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "small-ammo", "typename": "ShotboltAmmo2", "tag": "ShotboltAmmo2", "filter": 1, "pos": ["E1A6",2528,144,-240] }
 AP-ITEM { "category": "key", "typename": "SquareKey", "tag": "Square Key", "pos": ["E1A6",2304,480,-240] }
 AP-KEY { "typename": "SquareKey", "tag": "Square Key", "scopename": "E1A6", "cluster": 0, "maps": ["E1A6"] }
@@ -2325,7 +2361,13 @@ AP-SECRET { "pos": ["E1A6","secret","sector",854] }
 AP-SECRET { "pos": ["E1A6","secret","sector",943] }
 AP-SECRET { "pos": ["E1A6","secret","sector",1180] }
 AP-SECRET { "pos": ["E1A6","secret","sector",1253] }
-AP-MAP { "map": "E1A7", "levelname": "Geometropolis", "checksum": "bc01d961687fae0fb58fefa78b01def9", "rank": 6, "monster_count": 190, "info": { "levelnum": 107, "title": "SQHUSTR_E1A7", "is_lookup": true, "sky1": "SKYCITY2", "sky1speed": "0.000000", "sky2": "SKYCITY2", "sky2speed": "0.000000", "music": "D_E1A7", "music_track": "0", "cluster": 0, "flags": ["useplayerstartz"] } }
+AP-MAP {
+  "map": "E1A7", "levelname": "Geometropolis",
+  "checksum": "bc01d961687fae0fb58fefa78b01def9", "rank": 6, "monster_count": 190,
+  "info": { "levelnum": 107, "title": "SQHUSTR_E1A7", "is_lookup": true, "sky1": "SKYCITY2", "sky1speed": "0.000000", "sky2": "SKYCITY2", "sky2speed": "0.000000", "music": "D_E1A7", "music_track": "0", "cluster": 0, "flags": ["useplayerstartz"] },
+  "monsters": { "FrightenedTriangleWorker": 2, "Tritankle": 9, "CannonJerk": 24, "Ovolt": 23, "Rectangolier": 4, "Airvolt": 5, "FrightenedTriangle": 3, "FrightenedHexagon": 4, "FrightenedSquareWorker": 1, "FrightenedSquare": 8, "FrightenedHexagonWorker": 3, "JetpackJerk": 6, "Cylonder": 9, "Chatterbox": 18, "KnifeJerk": 30, "PaintJerk": 31, "Revolt": 10 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "big-health", "typename": "CircoolAid", "tag": "CircoolAid", "filter": 15, "pos": ["E1A7",1856,-3712,128] }
 AP-ITEM { "category": "key", "typename": "TriangleKey", "tag": "Triangle Key", "pos": ["E1A7",384,-288,104] }
 AP-KEY { "typename": "TriangleKey", "tag": "Triangle Key", "scopename": "E1A7", "cluster": 0, "maps": ["E1A7"] }
@@ -2534,7 +2576,13 @@ AP-SECRET { "pos": ["E1A7","secret","sector",278] }
 AP-SECRET { "pos": ["E1A7","secret","sector",452] }
 AP-SECRET { "pos": ["E1A7","secret","sector",455] }
 AP-SECRET { "pos": ["E1A7","secret","sector",583] }
-AP-MAP { "map": "E1A8", "levelname": "Fizz-O Pop Factory", "checksum": "190292922454318921ac87e0f8810f6c", "rank": 7, "monster_count": 245, "info": { "levelnum": 108, "title": "SQHUSTR_E1A8", "is_lookup": true, "sky1": "SKYCITY", "sky1speed": "0.000000", "sky2": "SKYCITY", "sky2speed": "0.000000", "music": "D_E1A8", "music_track": "0", "cluster": 0, "flags": ["useplayerstartz"] } }
+AP-MAP {
+  "map": "E1A8", "levelname": "Fizz-O Pop Factory",
+  "checksum": "190292922454318921ac87e0f8810f6c", "rank": 7, "monster_count": 245,
+  "info": { "levelnum": 108, "title": "SQHUSTR_E1A8", "is_lookup": true, "sky1": "SKYCITY", "sky1speed": "0.000000", "sky2": "SKYCITY", "sky2speed": "0.000000", "music": "D_E1A8", "music_track": "0", "cluster": 0, "flags": ["useplayerstartz"] },
+  "monsters": { "Cylonder": 9, "Tritankle": 13, "CannonJerk": 28, "Cow": 2, "Ovolt": 56, "Rectangolier": 5, "ColorCube": 17, "Airvolt": 12, "JetpackJerk": 10, "Chatterbox": 32, "Revolt": 12, "PaintJerk": 38, "KnifeJerk": 11 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "small-ammo", "typename": "HellShellAmmoBig", "tag": "HellShellAmmoBig", "pos": ["E1A8",1760,1568,-182] }
 AP-ITEM { "category": "weapon", "typename": "HellShellLauncher", "tag": "Hellshell Launcher", "pos": ["E1A8",1440,-1920,-64] }
 AP-ITEM { "category": "small-ammo", "typename": "HellshellAmmo", "tag": "HellshellAmmo", "pos": ["E1A8",1392,-1872,-72] }
@@ -2904,7 +2952,13 @@ AP-SECRET { "pos": ["E1A8","secret","sector",1073] }
 AP-SECRET { "pos": ["E1A8","secret","sector",1277] }
 AP-SECRET { "pos": ["E1A8","secret","sector",1279] }
 AP-SECRET { "pos": ["E1A8","secret","sector",1287] }
-AP-MAP { "map": "E1A9", "levelname": "Launch Base", "checksum": "6813927e287ab6013ffd7e0caa03e751", "rank": 8, "monster_count": 230, "info": { "levelnum": 109, "title": "SQHUSTR_E1A9", "is_lookup": true, "sky1": "SKYRISE1", "sky1speed": "0.000000", "sky2": "SKYRISE1", "sky2speed": "0.000000", "music": "D_E1A9", "music_track": "0", "cluster": 0, "flags": ["useplayerstartz"] } }
+AP-MAP {
+  "map": "E1A9", "levelname": "Launch Base",
+  "checksum": "6813927e287ab6013ffd7e0caa03e751", "rank": 8, "monster_count": 230,
+  "info": { "levelnum": 109, "title": "SQHUSTR_E1A9", "is_lookup": true, "sky1": "SKYRISE1", "sky1speed": "0.000000", "sky2": "SKYRISE1", "sky2speed": "0.000000", "music": "D_E1A9", "music_track": "0", "cluster": 0, "flags": ["useplayerstartz"] },
+  "monsters": { "AngleFish": 31, "Tritankle": 8, "CannonJerk": 27, "Destructinator": 1, "KnifeJerk": 9, "ColorCube": 11, "Cylonder": 9, "Ovolt": 8, "Airvolt": 4, "EliteOoziJerk": 3, "Chatterbox": 16, "JetpackJerk": 4, "PaintJerk": 27, "Cow": 35, "OoziJerk": 30, "Revolt": 2, "Rectangolier": 5 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "small-health", "typename": "Soda", "tag": "Soda", "pos": ["E1A9",-1344,6104,0] }
 AP-ITEM { "category": "small-health", "typename": "Soda", "tag": "Soda", "pos": ["E1A9",-1344,6264,0] }
 AP-ITEM { "category": "small-health", "typename": "Soda", "tag": "Soda", "pos": ["E1A9",-1344,6232,0] }
@@ -3563,7 +3617,13 @@ AP-SECRET { "pos": ["E1A9","secret","sector",201] }
 AP-SECRET { "pos": ["E1A9","secret","sector",527] }
 AP-SECRET { "pos": ["E1A9","secret","sector",676] }
 AP-SECRET { "pos": ["E1A9","secret","sector",1202] }
-AP-MAP { "map": "E1A10", "levelname": "Arctic Lab", "checksum": "4314d0f156ecdf39816fe7d8220033e4", "rank": 1, "monster_count": 242, "info": { "levelnum": 110, "title": "SQHUSTR_E1A10", "is_lookup": true, "sky1": "SKY4", "sky1speed": "0.000000", "sky2": "SKY4", "sky2speed": "0.000000", "music": "D_E1A10", "music_track": "0", "cluster": 0, "flags": ["useplayerstartz"] } }
+AP-MAP {
+  "map": "E1A10", "levelname": "Arctic Lab",
+  "checksum": "4314d0f156ecdf39816fe7d8220033e4", "rank": 1, "monster_count": 242,
+  "info": { "levelnum": 110, "title": "SQHUSTR_E1A10", "is_lookup": true, "sky1": "SKY4", "sky1speed": "0.000000", "sky2": "SKY4", "sky2speed": "0.000000", "music": "D_E1A10", "music_track": "0", "cluster": 0, "flags": ["useplayerstartz"] },
+  "monsters": { "WinterCow": 12, "AngleFish": 12, "PaintJerk": 21, "CannonJerk": 19, "Shatterbox": 40, "Ovolt": 39, "Rectangolier": 5, "Airvolt": 8, "JetpackJerk": 10, "Cylonder": 9, "Revolt": 26, "KnifeJerk": 15, "Tritankle": 7, "Chatterbox": 19 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "medium-ammo", "typename": "PaintAmmoBig2", "tag": "PaintAmmoBig2", "filter": 1, "pos": ["E1A10",-1344,4288,96] }
 AP-ITEM { "category": "weapon", "typename": "Shotbow", "tag": "Shotbow", "pos": ["E1A10",-1020,140,-224] }
 AP-ITEM { "category": "medium-ammo", "typename": "ShotboltAmmoBig2", "tag": "ShotboltAmmoBig2", "filter": 1, "pos": ["E1A10",-676,140,-224] }
@@ -3890,7 +3950,13 @@ AP-SECRET { "pos": ["E1A10","secret","sector",836] }
 AP-SECRET { "pos": ["E1A10","secret","sector",838] }
 AP-SECRET { "pos": ["E1A10","secret","sector",923] }
 AP-SECRET { "pos": ["E1A10","secret","sector",931] }
-AP-MAP { "map": "E2A1", "levelname": "Port Jarlsburger", "checksum": "0e2dcda3ef1860b8bb1ab1cdb8c1a197", "rank": 0, "monster_count": 98, "info": { "levelnum": 201, "title": "SQHUSTR_E2A1", "is_lookup": true, "sky1": "SKYORBIT", "sky1speed": "0.000000", "sky2": "SKYORBIT", "sky2speed": "0.000000", "music": "D_E2A1", "music_track": "0", "cluster": 0, "flags": ["useplayerstartz"] } }
+AP-MAP {
+  "map": "E2A1", "levelname": "Port Jarlsburger",
+  "checksum": "0e2dcda3ef1860b8bb1ab1cdb8c1a197", "rank": 0, "monster_count": 98,
+  "info": { "levelnum": 201, "title": "SQHUSTR_E2A1", "is_lookup": true, "sky1": "SKYORBIT", "sky1speed": "0.000000", "sky2": "SKYORBIT", "sky2speed": "0.000000", "music": "D_E2A1", "music_track": "0", "cluster": 0, "flags": ["useplayerstartz"] },
+  "monsters": { "KnifeJerk": 4, "Rectangolier": 3, "Airvolt": 15, "PaintJerk": 14, "Cylonder": 9, "CannonJerk": 8, "SpaceCow": 1, "Revolt": 11, "SpaceCowFloating": 4, "Chatterbox": 3, "OoziJerk": 4, "Ovolt": 22 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "weapon", "typename": "Goonades", "tag": "Goonades", "pos": ["E2A1",0,-1664,0] }
 AP-ITEM { "category": "small-ammo", "typename": "PaintAmmo2", "tag": "PaintAmmo2", "filter": 1, "pos": ["E2A1",0,-2592,0] }
 AP-ITEM { "category": "small-ammo", "typename": "PaintAmmo2", "tag": "PaintAmmo2", "filter": 1, "pos": ["E2A1",-144,-2352,0] }
@@ -4131,7 +4197,13 @@ AP-SECRET { "pos": ["E2A1","secret","sector",631] }
 AP-SECRET { "pos": ["E2A1","secret","sector",935] }
 AP-SECRET { "pos": ["E2A1","secret","sector",1083] }
 AP-SECRET { "pos": ["E2A1","secret","sector",1153] }
-AP-MAP { "map": "E2A2", "levelname": "The Butterforge", "checksum": "4c1a8d8a6eca67b4861ab8efee2ca974", "rank": 1, "monster_count": 278, "info": { "levelnum": 202, "title": "SQHUSTR_E2A2", "is_lookup": true, "sky1": "SKYCHEES", "sky1speed": "0.000000", "sky2": "SKYCHEES", "sky2speed": "0.000000", "music": "D_E2A2", "music_track": "0", "cluster": 0, "flags": ["useplayerstartz"] } }
+AP-MAP {
+  "map": "E2A2", "levelname": "The Butterforge",
+  "checksum": "4c1a8d8a6eca67b4861ab8efee2ca974", "rank": 1, "monster_count": 278,
+  "info": { "levelnum": 202, "title": "SQHUSTR_E2A2", "is_lookup": true, "sky1": "SKYCHEES", "sky1speed": "0.000000", "sky2": "SKYCHEES", "sky2speed": "0.000000", "music": "D_E2A2", "music_track": "0", "cluster": 0, "flags": ["useplayerstartz"] },
+  "monsters": { "SpyEye": 37, "Cylonder": 35, "Tritankle": 10, "CannonJerk": 12, "OoziJerk": 13, "Cow": 5, "Ovolt": 19, "KnifeJerk": 17, "ColorCube": 7, "JetpackJerk": 2, "Rectangolier": 5, "Revolt": 28, "Chatterbox": 24, "Airvolt": 35, "PaintJerk": 29 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "weapon", "typename": "Goonades", "tag": "Goonades", "filter": 27, "pos": ["E2A2",384,384,196] }
 AP-ITEM { "category": "small-ammo", "typename": "OoziAmmo2", "tag": "OoziAmmo2", "filter": 1, "pos": ["E2A2",304,352,64] }
 AP-ITEM { "category": "small-ammo", "typename": "OoziAmmo2", "tag": "OoziAmmo2", "filter": 1, "pos": ["E2A2",464,352,64] }
@@ -4893,7 +4965,13 @@ AP-SECRET { "pos": ["E2A2","secret","sector",255] }
 AP-SECRET { "pos": ["E2A2","secret","sector",1099] }
 AP-SECRET { "pos": ["E2A2","secret","sector",1110] }
 AP-SECRET { "pos": ["E2A2","secret","sector",1138] }
-AP-MAP { "map": "E2A3", "levelname": "Cheese Crater", "checksum": "710a4132bedf03c4fa025a4a379c936e", "rank": 2, "monster_count": 447, "info": { "levelnum": 203, "title": "SQHUSTR_E2A3", "is_lookup": true, "sky1": "SKYCHEES", "sky1speed": "0.000000", "sky2": "SKYCHEES", "sky2speed": "0.000000", "music": "D_E2A3", "music_track": "0", "cluster": 0, "flags": ["useplayerstartz"] } }
+AP-MAP {
+  "map": "E2A3", "levelname": "Cheese Crater",
+  "checksum": "710a4132bedf03c4fa025a4a379c936e", "rank": 2, "monster_count": 447,
+  "info": { "levelnum": 203, "title": "SQHUSTR_E2A3", "is_lookup": true, "sky1": "SKYCHEES", "sky1speed": "0.000000", "sky2": "SKYCHEES", "sky2speed": "0.000000", "music": "D_E2A3", "music_track": "0", "cluster": 0, "flags": ["useplayerstartz"] },
+  "monsters": { "Tritankle": 10, "CannonJerk": 44, "SpaceCowFloating": 1, "OoziJerk": 40, "Ovolt": 92, "KnifeJerk": 24, "ColorCube": 15, "Airvolt": 39, "Strongman": 16, "Cow": 2, "JetpackJerk": 6, "Cylonder": 35, "Chatterbox": 20, "PaintJerk": 50, "Revolt": 30, "SpyEye": 16, "Rectangolier": 7 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "key", "typename": "CubeKey", "tag": "Cube Key", "pos": ["E2A3",-5760,4960,296] }
 AP-KEY { "typename": "CubeKey", "tag": "Cube Key", "scopename": "E2A3", "cluster": 0, "maps": ["E2A3"] }
 AP-ITEM { "category": "big-ammo", "typename": "SquareBackpack", "tag": "SquareBackpack", "pos": ["E2A3",6256,-4312,232] }
@@ -6037,7 +6115,13 @@ AP-SECRET { "pos": ["E2A3","secret","sector",1370] }
 AP-SECRET { "pos": ["E2A3","secret","sector",1438] }
 AP-SECRET { "pos": ["E2A3","secret","sector",1838] }
 AP-SECRET { "pos": ["E2A3","secret","sector",1926] }
-AP-MAP { "map": "E2A4", "levelname": "In a Milky Way", "checksum": "d202f8d582cf59caeb70dcdccaa16182", "rank": 3, "monster_count": 260, "info": { "levelnum": 204, "title": "SQHUSTR_E2A4", "is_lookup": true, "sky1": "SKYSPACE", "sky1speed": "0.000000", "sky2": "SKYSPACE", "sky2speed": "0.000000", "music": "D_E2A4", "music_track": "0", "cluster": 0, "flags": ["useplayerstartz"] } }
+AP-MAP {
+  "map": "E2A4", "levelname": "In a Milky Way",
+  "checksum": "d202f8d582cf59caeb70dcdccaa16182", "rank": 3, "monster_count": 260,
+  "info": { "levelnum": 204, "title": "SQHUSTR_E2A4", "is_lookup": true, "sky1": "SKYSPACE", "sky1speed": "0.000000", "sky2": "SKYSPACE", "sky2speed": "0.000000", "music": "D_E2A4", "music_track": "0", "cluster": 0, "flags": ["useplayerstartz"] },
+  "monsters": { "SpyEye": 16, "Eyescreamer": 5, "Tritankle": 3, "CannonJerk": 11, "Strongman": 4, "OoziJerk": 11, "Cow": 93, "Ovolt": 10, "KnifeJerk": 2, "ColorCube": 3, "Airvolt": 24, "PaintJerk": 25, "Chatterbox": 7, "JetpackJerk": 4, "Rectangolier": 3, "CowboyCow": 23, "Revolt": 12, "Cylonder": 4 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "small-ammo", "typename": "PaintAmmo2", "tag": "PaintAmmo2", "filter": 1, "pos": ["E2A4",-2792,-3608,-128] }
 AP-ITEM { "category": "key", "typename": "SquareKey", "tag": "Square Key", "pos": ["E2A4",-3640,-664,32] }
 AP-KEY { "typename": "SquareKey", "tag": "Square Key", "scopename": "E2A4", "cluster": 0, "maps": ["E2A4"] }
@@ -6352,7 +6436,13 @@ AP-ITEM { "category": "medium-health", "typename": "BadFizzoPop", "tag": "BadFiz
 AP-SECRET { "pos": ["E2A4","secret","sector",227] }
 AP-SECRET { "pos": ["E2A4","secret","sector",261] }
 AP-SECRET { "pos": ["E2A4","secret","sector",1429] }
-AP-MAP { "map": "E2A5", "levelname": "Wild Bleu Yonder", "checksum": "c9423ea658d93769dc89a3be9675300d", "rank": 4, "monster_count": 395, "info": { "levelnum": 205, "title": "SQHUSTR_E2A5", "is_lookup": true, "sky1": "SKYMOON", "sky1speed": "0.000000", "sky2": "SKYMOON", "sky2speed": "0.000000", "music": "D_E2A5", "music_track": "0", "cluster": 0, "flags": ["useplayerstartz"] } }
+AP-MAP {
+  "map": "E2A5", "levelname": "Wild Bleu Yonder",
+  "checksum": "c9423ea658d93769dc89a3be9675300d", "rank": 4, "monster_count": 395,
+  "info": { "levelnum": 205, "title": "SQHUSTR_E2A5", "is_lookup": true, "sky1": "SKYMOON", "sky1speed": "0.000000", "sky2": "SKYMOON", "sky2speed": "0.000000", "music": "D_E2A5", "music_track": "0", "cluster": 0, "flags": ["useplayerstartz"] },
+  "monsters": { "SpyEye": 13, "Cylonder": 19, "Eyescreamer": 3, "CannonJerk": 42, "Strongman": 8, "OoziJerk": 37, "Cow": 67, "Ovolt": 33, "Rectangolier": 5, "ColorCube": 11, "Airvolt": 14, "Chatterbox": 28, "JetpackJerk": 9, "PaintJerk": 52, "Revolt": 22, "KnifeJerk": 23, "Tritankle": 9 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "small-health", "typename": "Soda", "tag": "Soda", "pos": ["E2A5",-432,944,-8] }
 AP-ITEM { "category": "small-health", "typename": "Soda", "tag": "Soda", "pos": ["E2A5",-360,976,-8] }
 AP-ITEM { "category": "small-ammo", "typename": "ShotboltAmmo2", "tag": "ShotboltAmmo2", "filter": 1, "pos": ["E2A5",10496,8080,-776] }
@@ -7156,7 +7246,13 @@ AP-SECRET { "pos": ["E2A5","secret","sector",792] }
 AP-SECRET { "pos": ["E2A5","secret","sector",793] }
 AP-SECRET { "pos": ["E2A5","secret","sector",844] }
 AP-SECRET { "pos": ["E2A5","secret","sector",1034] }
-AP-MAP { "map": "E2A6", "levelname": "Geometric Engineering", "checksum": "4bbd352888e1c3fc284ac0e378a08c73", "rank": 5, "monster_count": 283, "info": { "levelnum": 206, "title": "SQHUSTR_E2A6", "is_lookup": true, "sky1": "SKYMOON", "sky1speed": "0.000000", "sky2": "SKYMOON", "sky2speed": "0.000000", "music": "D_E2A6", "music_track": "0", "cluster": 0, "flags": ["useplayerstartz"] } }
+AP-MAP {
+  "map": "E2A6", "levelname": "Geometric Engineering",
+  "checksum": "4bbd352888e1c3fc284ac0e378a08c73", "rank": 5, "monster_count": 283,
+  "info": { "levelnum": 206, "title": "SQHUSTR_E2A6", "is_lookup": true, "sky1": "SKYMOON", "sky1speed": "0.000000", "sky2": "SKYMOON", "sky2speed": "0.000000", "music": "D_E2A6", "music_track": "0", "cluster": 0, "flags": ["useplayerstartz"] },
+  "monsters": { "SpyEye": 8, "Cylonder": 10, "Eyescreamer": 7, "Tritankle": 4, "BlueCactusSmall": 7, "Strongman": 17, "OoziJerk": 19, "Revolt": 11, "Cow": 4, "KnifeJerk": 28, "BlueCactusLarge": 2, "Chatterbox": 19, "Ovolt": 32, "Rectangolier": 7, "ColorCube": 7, "Airvolt": 2, "MiniDestructinator": 6, "CannonJerk": 34, "JetpackJerk": 7, "PaintJerk": 51, "SpaceCow": 1 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "small-armor", "typename": "ArmorCardboard", "tag": "ArmorCardboard", "pos": ["E2A6",832,1216,-84] }
 AP-ITEM { "category": "big-armor", "typename": "ArmorBrick", "tag": "ArmorBrick", "pos": ["E2A6",1096,576,-16] }
 AP-ITEM { "category": "medium-tool", "typename": "EnviroSuit", "tag": "EnviroSuit", "pos": ["E2A6",2048,1056,-16] }
@@ -7684,7 +7780,13 @@ AP-ITEM { "category": "small-health", "typename": "BadBurger", "tag": "BadBurger
 AP-SECRET { "pos": ["E2A6","secret","sector",141] }
 AP-SECRET { "pos": ["E2A6","secret","sector",442] }
 AP-SECRET { "pos": ["E2A6","secret","sector",1216] }
-AP-MAP { "map": "E2A7", "levelname": "The Cheddarcombs", "checksum": "bbe2524f9240b8bfa254384307338225", "rank": 6, "monster_count": 410, "info": { "levelnum": 207, "title": "SQHUSTR_E2A7", "is_lookup": true, "sky1": "SKYMOON", "sky1speed": "0.000000", "sky2": "SKYMOON", "sky2speed": "0.000000", "music": "D_E2A7", "music_track": "0", "cluster": 0, "flags": ["useplayerstartz"] } }
+AP-MAP {
+  "map": "E2A7", "levelname": "The Cheddarcombs",
+  "checksum": "bbe2524f9240b8bfa254384307338225", "rank": 6, "monster_count": 410,
+  "info": { "levelnum": 207, "title": "SQHUSTR_E2A7", "is_lookup": true, "sky1": "SKYMOON", "sky1speed": "0.000000", "sky2": "SKYMOON", "sky2speed": "0.000000", "music": "D_E2A7", "music_track": "0", "cluster": 0, "flags": ["useplayerstartz"] },
+  "monsters": { "SpyEye": 10, "Cylonder": 26, "Eyescreamer": 11, "Tritankle": 9, "CannonJerk": 45, "Strongman": 20, "OoziJerk": 59, "Revolt": 17, "PaintJerk": 44, "Ovolt": 33, "KnifeJerk": 15, "ColorCube": 5, "JetpackJerk": 11, "Airvolt": 4, "Cow": 64, "Rectangolier": 8, "Chatterbox": 24, "MiniDestructinator": 5 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "big-armor", "typename": "ArmorBrick", "tag": "ArmorBrick", "pos": ["E2A7",-176,592,88] }
 AP-ITEM { "category": "small-health", "typename": "Pie", "tag": "Pie", "filter": 15, "pos": ["E2A7",1824,-944,16] }
 AP-ITEM { "category": "small-health", "typename": "Soda", "tag": "Soda", "pos": ["E2A7",1984,-1184,16] }
@@ -8541,7 +8643,13 @@ AP-SECRET { "pos": ["E2A7","secret","sector",444] }
 AP-SECRET { "pos": ["E2A7","secret","sector",609] }
 AP-SECRET { "pos": ["E2A7","secret","sector",1068] }
 AP-SECRET { "pos": ["E2A7","secret","sector",1629] }
-AP-MAP { "map": "E2A8", "levelname": "A Giant Leap for Shapekind", "checksum": "f6e0d4c253c34b379c520afeae2917c5", "rank": 7, "monster_count": 249, "info": { "levelnum": 208, "title": "SQHUSTR_E2A8", "is_lookup": true, "sky1": "SKYSPACE", "sky1speed": "0.000000", "sky2": "SKYSPACE", "sky2speed": "0.000000", "music": "D_E2A8", "music_track": "0", "cluster": 0, "flags": ["useplayerstartz"] } }
+AP-MAP {
+  "map": "E2A8", "levelname": "A Giant Leap for Shapekind",
+  "checksum": "f6e0d4c253c34b379c520afeae2917c5", "rank": 7, "monster_count": 249,
+  "info": { "levelnum": 208, "title": "SQHUSTR_E2A8", "is_lookup": true, "sky1": "SKYSPACE", "sky1speed": "0.000000", "sky2": "SKYSPACE", "sky2speed": "0.000000", "music": "D_E2A8", "music_track": "0", "cluster": 0, "flags": ["useplayerstartz"] },
+  "monsters": { "SpyEye": 6, "PaintJerk": 13, "Eyescreamer": 3, "CannonJerk": 12, "Strongman": 8, "OoziJerk": 19, "Ovolt": 57, "Rectangolier": 6, "ColorCube": 6, "Revolt": 17, "Airvolt": 26, "Cow": 1, "JetpackJerk": 1, "Chatterbox": 33, "Cylonder": 21, "MiniDestructinator": 6, "Tritankle": 14 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "small-health", "typename": "Burger", "tag": "Burger", "filter": 15, "pos": ["E2A8",744,824,576] }
 AP-ITEM { "category": "weapon", "typename": "PaintCannon", "tag": "Paintblaster", "pos": ["E2A8",-1120,-3744,480] }
 AP-ITEM { "category": "medium-ammo", "typename": "PaintAmmoBig2", "tag": "PaintAmmoBig2", "filter": 1, "pos": ["E2A8",-1120,-3808,480] }
@@ -9124,7 +9232,13 @@ AP-SECRET { "pos": ["E2A8","secret","sector",567] }
 AP-SECRET { "pos": ["E2A8","secret","sector",988] }
 AP-SECRET { "pos": ["E2A8","secret","sector",999] }
 AP-SECRET { "pos": ["E2A8","secret","sector",1034] }
-AP-MAP { "map": "E2A9", "levelname": "Queso Chasm", "checksum": "fb3bd8fc1aa347d5bbe3fef9f42c93ed", "rank": 8, "monster_count": 219, "info": { "levelnum": 209, "title": "SQHUSTR_E2A9", "is_lookup": true, "sky1": "SKYSPACE", "sky1speed": "0.000000", "sky2": "SKYSPACE", "sky2speed": "0.000000", "music": "D_E2A9", "music_track": "0", "cluster": 0, "flags": ["useplayerstartz"] } }
+AP-MAP {
+  "map": "E2A9", "levelname": "Queso Chasm",
+  "checksum": "fb3bd8fc1aa347d5bbe3fef9f42c93ed", "rank": 8, "monster_count": 219,
+  "info": { "levelnum": 209, "title": "SQHUSTR_E2A9", "is_lookup": true, "sky1": "SKYSPACE", "sky1speed": "0.000000", "sky2": "SKYSPACE", "sky2speed": "0.000000", "music": "D_E2A9", "music_track": "0", "cluster": 0, "flags": ["useplayerstartz"] },
+  "monsters": { "PaintJerk": 17, "Eyescreamer": 1, "Tritankle": 8, "CannonJerk": 11, "Spectra": 9, "Strongman": 2, "OoziJerk": 15, "Revolt": 22, "Cow": 11, "Ovolt": 41, "KnifeJerk": 6, "ColorCube": 9, "Airvolt": 18, "Rectangolier": 3, "Cylonder": 17, "MiniDestructinator": 4, "Chatterbox": 25 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "weapon", "typename": "Quadcannon", "tag": "Quad Cannon", "pos": ["E2A9",2832,2992,-576] }
 AP-ITEM { "category": "small-ammo", "typename": "ShotboltAmmo2", "tag": "ShotboltAmmo2", "filter": 1, "pos": ["E2A9",2832,2944,-576] }
 AP-ITEM { "category": "small-ammo", "typename": "ShotboltAmmo2", "tag": "ShotboltAmmo2", "filter": 1, "pos": ["E2A9",2784,2992,-576] }
@@ -9803,7 +9917,13 @@ AP-SECRET { "pos": ["E2A9","secret","sector",2144] }
 AP-SECRET { "pos": ["E2A9","secret","sector",2197] }
 AP-SECRET { "pos": ["E2A9","secret","sector",2202] }
 AP-SECRET { "pos": ["E2A9","secret","sector",2336] }
-AP-MAP { "map": "E2A10", "levelname": "Arcanum", "checksum": "12202812814493e6a2f8aa9b8be58ad1", "rank": 9, "monster_count": 352, "info": { "levelnum": 210, "title": "SQHUSTR_E2A10", "is_lookup": true, "sky1": "SKYBLOOD", "sky1speed": "0.000000", "sky2": "SKYBLOOD", "sky2speed": "0.000000", "music": "D_E2A10", "music_track": "0", "cluster": 0, "flags": ["useplayerstartz"] } }
+AP-MAP {
+  "map": "E2A10", "levelname": "Arcanum",
+  "checksum": "12202812814493e6a2f8aa9b8be58ad1", "rank": 9, "monster_count": 352,
+  "info": { "levelnum": 210, "title": "SQHUSTR_E2A10", "is_lookup": true, "sky1": "SKYBLOOD", "sky1speed": "0.000000", "sky2": "SKYBLOOD", "sky2speed": "0.000000", "music": "D_E2A10", "music_track": "0", "cluster": 0, "flags": ["useplayerstartz"] },
+  "monsters": { "SpyEye": 25, "Rectangolier": 4, "Shadius": 1, "Eyescreamer": 5, "CannonJerk": 40, "JetpackJerk": 11, "Revolt": 16, "Strongman": 12, "Ovolt": 51, "Cylonder": 5, "OoziJerk": 16, "Tritankle": 2, "Chatterbox": 31, "Spectra": 19, "DarkSpectra": 9, "Cow": 30, "Airvolt": 28, "KnifeJerk": 4, "ColorCube": 6, "PaintJerk": 35, "MiniDestructinator": 2 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "small-ammo", "typename": "ShotboltAmmo2", "tag": "ShotboltAmmo2", "filter": 1, "pos": ["E2A10",-6560,6208,-400] }
 AP-ITEM { "category": "big-armor", "typename": "ArmorBrick", "tag": "ArmorBrick", "secret": true, "pos": ["E2A10",-1176,336,512] }
 AP-ITEM { "category": "key", "typename": "DiamondRune", "tag": "Diamond Rune", "pos": ["E2A10",-128,3136,145] }
@@ -10515,7 +10635,13 @@ AP-SECRET { "pos": ["E2A10","secret","sector",243] }
 AP-SECRET { "pos": ["E2A10","secret","sector",489] }
 AP-SECRET { "pos": ["E2A10","secret","sector",2179] }
 AP-SECRET { "pos": ["E2A10","secret","sector",3157] }
-AP-MAP { "map": "E2A12", "levelname": "Great Pyramid of Gouda", "checksum": "9775745fad34e574670eee2b749e22b1", "rank": 7, "monster_count": 491, "info": { "levelnum": 212, "title": "SQHUSTR_E2A12", "is_lookup": true, "sky1": "SKYBLUE2", "sky1speed": "0.000000", "sky2": "SKYBLUE2", "sky2speed": "0.000000", "music": "D_E2A12", "music_track": "0", "cluster": 0, "flags": ["useplayerstartz"] } }
+AP-MAP {
+  "map": "E2A12", "levelname": "Great Pyramid of Gouda",
+  "checksum": "9775745fad34e574670eee2b749e22b1", "rank": 7, "monster_count": 491,
+  "info": { "levelnum": 212, "title": "SQHUSTR_E2A12", "is_lookup": true, "sky1": "SKYBLUE2", "sky1speed": "0.000000", "sky2": "SKYBLUE2", "sky2speed": "0.000000", "music": "D_E2A12", "music_track": "0", "cluster": 0, "flags": ["useplayerstartz"] },
+  "monsters": { "SpyEye": 24, "Pyramine": 69, "PaintJerk": 41, "Cylonder": 36, "Eyescreamer": 7, "CannonJerk": 54, "Strongman": 17, "OoziJerk": 19, "Revolt": 22, "MummyCow": 25, "KnifeJerk": 13, "Chatterbox": 38, "Ovolt": 54, "Rectangolier": 5, "Tritankle": 7, "MiniDestructinator": 8, "ColorCube": 9, "JetpackJerk": 16, "Airvolt": 27 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "weapon", "typename": "PaintCannon", "tag": "Paintblaster", "filter": 3, "pos": ["E2A12",1364,472,-120] }
 AP-ITEM { "category": "small-ammo", "typename": "PaintAmmo2", "tag": "PaintAmmo2", "filter": 1, "pos": ["E2A12",1327,455,-120] }
 AP-ITEM { "category": "small-ammo", "typename": "PaintAmmo2", "tag": "PaintAmmo2", "filter": 1, "pos": ["E2A12",1401,489,-120] }
@@ -11735,7 +11861,13 @@ AP-SECRET { "pos": ["E2A12","secret","sector",1784] }
 AP-SECRET { "pos": ["E2A12","secret","sector",1844] }
 AP-SECRET { "pos": ["E2A12","secret","sector",1970] }
 AP-SECRET { "pos": ["E2A12","secret","sector",1993] }
-AP-MAP { "map": "E2A11", "levelname": "Heart o' Hexas", "checksum": "5ea5d4df5572d8eb556264bff7f45981", "rank": 4, "monster_count": 282, "info": { "levelnum": 211, "title": "SQHUSTR_E2A11", "is_lookup": true, "sky1": "SKYBLUE2", "sky1speed": "0.000000", "sky2": "SKYCHEES", "sky2speed": "0.000000", "music": "D_E2A11", "music_track": "0", "cluster": 0, "flags": ["useplayerstartz"] } }
+AP-MAP {
+  "map": "E2A11", "levelname": "Heart o' Hexas",
+  "checksum": "5ea5d4df5572d8eb556264bff7f45981", "rank": 4, "monster_count": 282,
+  "info": { "levelnum": 211, "title": "SQHUSTR_E2A11", "is_lookup": true, "sky1": "SKYBLUE2", "sky1speed": "0.000000", "sky2": "SKYCHEES", "sky2speed": "0.000000", "music": "D_E2A11", "music_track": "0", "cluster": 0, "flags": ["useplayerstartz"] },
+  "monsters": { "HexasRanger": 42, "Eyescreamer": 2, "SpaceCowFloating": 1, "HexanSheriff": 1, "Strongman": 10, "Cybandit": 21, "OoziJerk": 5, "Ovolt": 15, "Rectangolier": 1, "ColorCube": 9, "Airvolt": 9, "BlueCactusLarge": 8, "BlueCactusSmall": 15, "Chatterbox": 10, "CannonJerk": 7, "JetpackJerk": 5, "Revolt": 7, "Cow": 80, "PaintJerk": 11, "KnifeJerk": 23 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "small-health", "typename": "Soda", "tag": "Soda", "pos": ["E2A11",2656,7632,-256] }
 AP-ITEM { "category": "small-health", "typename": "Soda", "tag": "Soda", "pos": ["E2A11",2656,7672,-256] }
 AP-ITEM { "category": "small-ammo", "typename": "PaintAmmo2", "tag": "PaintAmmo2", "filter": 1, "pos": ["E2A11",5032,4416,-352] }

@@ -1,5 +1,11 @@
 AP-SCAN { "flags": [] }
-AP-MAP { "map": "E1M1", "levelname": "The Docks", "checksum": "006deab129c225f3ed4bf70f67a122f9", "rank": 0, "monster_count": 44, "info": { "levelnum": 1, "title": "HHUSTR_E1M1", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "MUS_E1M1", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "E1M1", "levelname": "The Docks",
+  "checksum": "006deab129c225f3ed4bf70f67a122f9", "rank": 0, "monster_count": 44,
+  "info": { "levelnum": 1, "title": "HHUSTR_E1M1", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "MUS_E1M1", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Mummy": 18, "Knight": 3, "HereticImp": 23 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "key", "typename": "KeyYellow", "tag": "Yellow Key", "pos": ["E1M1",96,1088,128] }
 AP-KEY { "typename": "KeyYellow", "tag": "Yellow Key", "scopename": "E1M1", "cluster": 0, "maps": ["E1M1"] }
 AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M1",48,928,72] }
@@ -102,7 +108,13 @@ AP-SECRET { "pos": ["E1M1","secret","sector",6] }
 AP-SECRET { "pos": ["E1M1","secret","sector",15] }
 AP-SECRET { "pos": ["E1M1","secret","sector",24] }
 AP-SECRET { "pos": ["E1M1","secret","sector",144] }
-AP-MAP { "map": "E1M2", "levelname": "The Dungeons", "checksum": "d94587625ba779644d58151a87897cf1", "rank": 1, "monster_count": 153, "info": { "levelnum": 2, "title": "HHUSTR_E1M2", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "MUS_E1M2", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "E1M2", "levelname": "The Dungeons",
+  "checksum": "d94587625ba779644d58151a87897cf1", "rank": 1, "monster_count": 153,
+  "info": { "levelnum": 2, "title": "HHUSTR_E1M2", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "MUS_E1M2", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Knight": 19, "HereticImp": 82, "Mummy": 52 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "weapon", "typename": "Blaster", "tag": "Dragon Claw", "pos": ["E1M2",464,-112,8] }
 AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo", "tag": "Claw Orbs", "pos": ["E1M2",400,0,8] }
 AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo", "tag": "Claw Orbs", "pos": ["E1M2",448,48,8] }
@@ -273,7 +285,13 @@ AP-SECRET { "pos": ["E1M2","secret","sector",83] }
 AP-SECRET { "pos": ["E1M2","secret","sector",96] }
 AP-SECRET { "pos": ["E1M2","secret","sector",161] }
 AP-SECRET { "pos": ["E1M2","secret","sector",190] }
-AP-MAP { "map": "E1M3", "levelname": "The Gatehouse", "checksum": "add0fac41afb0b3c9b9f3c0006f93805", "rank": 2, "monster_count": 117, "info": { "levelnum": 3, "title": "HHUSTR_E1M3", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "MUS_E1M3", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "E1M3", "levelname": "The Gatehouse",
+  "checksum": "add0fac41afb0b3c9b9f3c0006f93805", "rank": 2, "monster_count": 117,
+  "info": { "levelnum": 3, "title": "HHUSTR_E1M3", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "MUS_E1M3", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Knight": 21, "HereticImpLeader": 18, "KnightGhost": 1, "HereticImp": 42, "Mummy": 35 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "key", "typename": "KeyYellow", "tag": "Yellow Key", "pos": ["E1M3",-2208,-1312,72] }
 AP-KEY { "typename": "KeyYellow", "tag": "Yellow Key", "scopename": "E1M3", "cluster": 0, "maps": ["E1M3"] }
 AP-ITEM { "category": "key", "typename": "KeyGreen", "tag": "Green Key", "pos": ["E1M3",-832,-832,184] }
@@ -445,7 +463,13 @@ AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo", "tag": "Claw Orbs
 AP-ITEM { "category": "medium-health", "typename": "ArtiHealth", "tag": "Quartz Flask", "filter": 24, "pos": ["E1M3",-1216,-1152,48] }
 AP-SECRET { "pos": ["E1M3","secret","sector",9] }
 AP-SECRET { "pos": ["E1M3","secret","sector",106] }
-AP-MAP { "map": "E1M4", "levelname": "The Guard Tower", "checksum": "916318d8b06dac2d83424b23e4b66531", "rank": 3, "monster_count": 109, "info": { "levelnum": 4, "title": "HHUSTR_E1M4", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "MUS_E1M4", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "E1M4", "levelname": "The Guard Tower",
+  "checksum": "916318d8b06dac2d83424b23e4b66531", "rank": 3, "monster_count": 109,
+  "info": { "levelnum": 4, "title": "HHUSTR_E1M4", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "MUS_E1M4", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Knight": 8, "HereticImpLeader": 14, "HereticImp": 49, "Wizard": 3, "Mummy": 28, "MummyLeader": 7 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "weapon", "typename": "Gauntlets", "tag": "Gauntlets of the Necromancer", "pos": ["E1M4",1376,352,112] }
 AP-ITEM { "category": "weapon", "typename": "Blaster", "tag": "Dragon Claw", "pos": ["E1M4",192,1376,112] }
 AP-ITEM { "category": "weapon", "typename": "Crossbow", "tag": "Ethereal Crossbow", "pos": ["E1M4",-1504,1632,120] }
@@ -581,7 +605,13 @@ AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal
 AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "filter": 4, "pos": ["E1M4",-16,-912,0] }
 AP-ITEM { "category": "medium-health", "typename": "ArtiHealth", "tag": "Quartz Flask", "secret": true, "filter": 24, "pos": ["E1M4",-3504,272,16] }
 AP-SECRET { "pos": ["E1M4","secret","sector",42] }
-AP-MAP { "map": "E1M5", "levelname": "The Citadel", "checksum": "5800d43560330827e05f9bb7068db8d8", "rank": 4, "monster_count": 121, "info": { "levelnum": 5, "title": "HHUSTR_E1M5", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "MUS_E1M5", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "E1M5", "levelname": "The Citadel",
+  "checksum": "5800d43560330827e05f9bb7068db8d8", "rank": 4, "monster_count": 121,
+  "info": { "levelnum": 5, "title": "HHUSTR_E1M5", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "MUS_E1M5", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Knight": 18, "HereticImpLeader": 12, "HereticImp": 44, "Mummy": 30, "Wizard": 10, "MummyLeader": 6, "MummyLeaderGhost": 1 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "key", "typename": "KeyGreen", "tag": "Green Key", "pos": ["E1M5",368,-1280,104] }
 AP-KEY { "typename": "KeyGreen", "tag": "Green Key", "scopename": "E1M5", "cluster": 0, "maps": ["E1M5"] }
 AP-ITEM { "category": "key", "typename": "KeyYellow", "tag": "Yellow Key", "pos": ["E1M5",-1248,-1728,104] }
@@ -763,7 +793,13 @@ AP-SECRET { "pos": ["E1M5","secret","sector",20] }
 AP-SECRET { "pos": ["E1M5","secret","sector",73] }
 AP-SECRET { "pos": ["E1M5","secret","sector",123] }
 AP-SECRET { "pos": ["E1M5","secret","sector",287] }
-AP-MAP { "map": "E1M6", "levelname": "The Cathedral", "checksum": "ad3687e5984c0f03d9cc38920eb775a1", "rank": 5, "monster_count": 139, "info": { "levelnum": 6, "title": "HHUSTR_E1M6", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "MUS_E1M6", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "E1M6", "levelname": "The Cathedral",
+  "checksum": "ad3687e5984c0f03d9cc38920eb775a1", "rank": 5, "monster_count": 139,
+  "info": { "levelnum": 6, "title": "HHUSTR_E1M6", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "MUS_E1M6", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Knight": 18, "HereticImpLeader": 11, "HereticImp": 32, "MummyLeaderGhost": 1, "Mummy": 53, "Wizard": 9, "MummyGhost": 2, "MummyLeader": 13 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "key", "typename": "KeyYellow", "tag": "Yellow Key", "pos": ["E1M6",-2592,1856,120] }
 AP-KEY { "typename": "KeyYellow", "tag": "Yellow Key", "scopename": "E1M6", "cluster": 0, "maps": ["E1M6"] }
 AP-ITEM { "category": "weapon", "typename": "Gauntlets", "tag": "Gauntlets of the Necromancer", "secret": true, "pos": ["E1M6",-2752,1952,-8] }
@@ -980,7 +1016,13 @@ AP-SECRET { "pos": ["E1M6","secret","sector",214] }
 AP-SECRET { "pos": ["E1M6","secret","sector",248] }
 AP-SECRET { "pos": ["E1M6","secret","sector",258] }
 AP-SECRET { "pos": ["E1M6","secret","sector",282] }
-AP-MAP { "map": "E1M7", "levelname": "The Crypts", "checksum": "84ca1839049b7a3266ee3cfe78874af1", "rank": 6, "monster_count": 162, "info": { "levelnum": 7, "title": "HHUSTR_E1M7", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "MUS_E1M7", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "E1M7", "levelname": "The Crypts",
+  "checksum": "84ca1839049b7a3266ee3cfe78874af1", "rank": 6, "monster_count": 162,
+  "info": { "levelnum": 7, "title": "HHUSTR_E1M7", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "MUS_E1M7", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Knight": 26, "HereticImpLeader": 16, "KnightGhost": 1, "HereticImp": 42, "MummyLeaderGhost": 1, "MummyGhost": 5, "Mummy": 61, "Wizard": 3, "MummyLeader": 7 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "key", "typename": "KeyYellow", "tag": "Yellow Key", "pos": ["E1M7",-1488,-2272,160] }
 AP-KEY { "typename": "KeyYellow", "tag": "Yellow Key", "scopename": "E1M7", "cluster": 0, "maps": ["E1M7"] }
 AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E1M7",-1392,-2208,56] }
@@ -1189,7 +1231,13 @@ AP-SECRET { "pos": ["E1M7","secret","sector",136] }
 AP-SECRET { "pos": ["E1M7","secret","sector",216] }
 AP-SECRET { "pos": ["E1M7","secret","sector",222] }
 AP-SECRET { "pos": ["E1M7","secret","sector",314] }
-AP-MAP { "map": "E1M8", "levelname": "Hell's Maw", "checksum": "27639d04f8090d57a47d354992435893", "rank": 7, "monster_count": 62, "info": { "levelnum": 8, "title": "HHUSTR_E1M8", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "MUS_E1M8", "music_track": "0", "cluster": 0, "flags": ["specialaction_lowerfloortohighest", "ironlichspecial"] } }
+AP-MAP {
+  "map": "E1M8", "levelname": "Hell's Maw",
+  "checksum": "27639d04f8090d57a47d354992435893", "rank": 7, "monster_count": 62,
+  "info": { "levelnum": 8, "title": "HHUSTR_E1M8", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "MUS_E1M8", "music_track": "0", "cluster": 0, "flags": ["specialaction_lowerfloortohighest", "ironlichspecial"] },
+  "monsters": { "Knight": 6, "HereticImp": 6, "Ironlich": 3, "Wizard": 14, "MummyLeader": 16, "HereticImpLeader": 3, "MummyLeaderGhost": 14 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "weapon", "typename": "Crossbow", "tag": "Ethereal Crossbow", "pos": ["E1M8",-1600,1280,256] }
 AP-ITEM { "category": "weapon", "typename": "Blaster", "tag": "Dragon Claw", "pos": ["E1M8",-512,80,256] }
 AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo", "tag": "Claw Orbs", "pos": ["E1M8",-704,896,256] }
@@ -1331,7 +1379,13 @@ AP-SECRET { "pos": ["E1M8","secret","sector",31] }
 AP-SECRET { "pos": ["E1M8","secret","sector",33] }
 AP-SECRET { "pos": ["E1M8","secret","sector",54] }
 AP-SECRET { "pos": ["E1M8","secret","sector",58] }
-AP-MAP { "map": "E1M9", "levelname": "The Graveyard", "checksum": "9dbc65690993f7988baac71d35f2ac4f", "rank": 6, "monster_count": 113, "info": { "levelnum": 9, "title": "HHUSTR_E1M9", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "MUS_E1M9", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "E1M9", "levelname": "The Graveyard",
+  "checksum": "9dbc65690993f7988baac71d35f2ac4f", "rank": 6, "monster_count": 113,
+  "info": { "levelnum": 9, "title": "HHUSTR_E1M9", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "MUS_E1M9", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "HereticImpLeader": 11, "HereticImp": 25, "Wizard": 2, "KnightGhost": 20, "MummyGhost": 28, "MummyLeaderGhost": 27 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "key", "typename": "KeyYellow", "tag": "Yellow Key", "pos": ["E1M9",1760,-1024,24] }
 AP-KEY { "typename": "KeyYellow", "tag": "Yellow Key", "scopename": "E1M9", "cluster": 0, "maps": ["E1M9"] }
 AP-ITEM { "category": "key", "typename": "KeyGreen", "tag": "Green Key", "pos": ["E1M9",1248,-4000,0] }
@@ -1591,7 +1645,13 @@ AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo", "tag": "Claw Orbs
 AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo", "tag": "Claw Orbs", "filter": 24, "pos": ["E1M9",2912,-2992,-128] }
 AP-SECRET { "pos": ["E1M9","secret","sector",87] }
 AP-SECRET { "pos": ["E1M9","secret","sector",125] }
-AP-MAP { "map": "E2M1", "levelname": "The Crater", "checksum": "eb08016dffc6c5505df29ee350762f12", "rank": 0, "monster_count": 45, "info": { "levelnum": 11, "title": "HHUSTR_E2M1", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "MUS_E2M1", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "E2M1", "levelname": "The Crater",
+  "checksum": "eb08016dffc6c5505df29ee350762f12", "rank": 0, "monster_count": 45,
+  "info": { "levelnum": 11, "title": "HHUSTR_E2M1", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "MUS_E2M1", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "HereticImpLeader": 8, "HereticImp": 25, "Beast": 12 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "key", "typename": "KeyYellow", "tag": "Yellow Key", "pos": ["E2M1",-2592,864,-128] }
 AP-KEY { "typename": "KeyYellow", "tag": "Yellow Key", "scopename": "E2M1", "cluster": 0, "maps": ["E2M1"] }
 AP-ITEM { "category": "key", "typename": "KeyGreen", "tag": "Green Key", "pos": ["E2M1",480,1440,-120] }
@@ -1719,7 +1779,13 @@ AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo", "tag": "Ethereal
 AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo", "tag": "Claw Orbs", "filter": 24, "pos": ["E2M1",-1760,816,-80] }
 AP-SECRET { "pos": ["E2M1","secret","sector",3] }
 AP-SECRET { "pos": ["E2M1","secret","sector",19] }
-AP-MAP { "map": "E2M2", "levelname": "The Lava Pits", "checksum": "397a0e17a39542e4e8294e156fab0502", "rank": 1, "monster_count": 107, "info": { "levelnum": 12, "title": "HHUSTR_E2M2", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "MUS_E2M2", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "E2M2", "levelname": "The Lava Pits",
+  "checksum": "397a0e17a39542e4e8294e156fab0502", "rank": 1, "monster_count": 107,
+  "info": { "levelnum": 12, "title": "HHUSTR_E2M2", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "MUS_E2M2", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Knight": 12, "HereticImpLeader": 8, "HereticImp": 38, "Mummy": 5, "Ironlich": 1, "Wizard": 6, "Clink": 30, "KnightGhost": 3, "Beast": 4 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "key", "typename": "KeyGreen", "tag": "Green Key", "pos": ["E2M2",-496,2336,200] }
 AP-KEY { "typename": "KeyGreen", "tag": "Green Key", "scopename": "E2M2", "cluster": 0, "maps": ["E2M2"] }
 AP-ITEM { "category": "key", "typename": "KeyYellow", "tag": "Yellow Key", "pos": ["E2M2",1504,352,-40] }
@@ -1902,7 +1968,13 @@ AP-SECRET { "pos": ["E2M2","secret","sector",31] }
 AP-SECRET { "pos": ["E2M2","secret","sector",46] }
 AP-SECRET { "pos": ["E2M2","secret","sector",127] }
 AP-SECRET { "pos": ["E2M2","secret","sector",140] }
-AP-MAP { "map": "E2M3", "levelname": "The River of Fire", "checksum": "b43106250033c9c3c7beae4d55e44a2d", "rank": 2, "monster_count": 92, "info": { "levelnum": 13, "title": "HHUSTR_E2M3", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "MUS_E2M3", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "E2M3", "levelname": "The River of Fire",
+  "checksum": "b43106250033c9c3c7beae4d55e44a2d", "rank": 2, "monster_count": 92,
+  "info": { "levelnum": 13, "title": "HHUSTR_E2M3", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "MUS_E2M3", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "HereticImpLeader": 4, "HereticImp": 24, "Wizard": 11, "Clink": 35, "Beast": 18 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "key", "typename": "KeyYellow", "tag": "Yellow Key", "pos": ["E2M3",160,-1920,96] }
 AP-KEY { "typename": "KeyYellow", "tag": "Yellow Key", "scopename": "E2M3", "cluster": 0, "maps": ["E2M3"] }
 AP-ITEM { "category": "key", "typename": "KeyBlue", "tag": "Blue Key", "pos": ["E2M3",1264,-2528,256] }
@@ -2119,7 +2191,13 @@ AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo", "tag": "Claw Orbs
 AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo", "tag": "Claw Orbs", "filter": 24, "pos": ["E2M3",1936,-3904,304] }
 AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo", "tag": "Ethereal Arrows", "filter": 24, "pos": ["E2M3",2288,-2112,80] }
 AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo", "tag": "Ethereal Arrows", "filter": 24, "pos": ["E2M3",224,-2112,80] }
-AP-MAP { "map": "E2M4", "levelname": "The Ice Grotto", "checksum": "196810e6877808e5d665644a6b0b7519", "rank": 3, "monster_count": 111, "info": { "levelnum": 14, "title": "HHUSTR_E2M4", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "MUS_E2M4", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "E2M4", "levelname": "The Ice Grotto",
+  "checksum": "196810e6877808e5d665644a6b0b7519", "rank": 3, "monster_count": 111,
+  "info": { "levelnum": 14, "title": "HHUSTR_E2M4", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "MUS_E2M4", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "HereticImp": 53, "Ironlich": 1, "Wizard": 12, "HereticImpLeader": 10, "Clink": 11, "Beast": 24 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "key", "typename": "KeyYellow", "tag": "Yellow Key", "pos": ["E2M4",1792,-2656,-32] }
 AP-KEY { "typename": "KeyYellow", "tag": "Yellow Key", "scopename": "E2M4", "cluster": 0, "maps": ["E2M4"] }
 AP-ITEM { "category": "key", "typename": "KeyBlue", "tag": "Blue Key", "pos": ["E2M4",-1568,-1504,-24] }
@@ -2382,7 +2460,13 @@ AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo", "tag": "Hellstaf
 AP-ITEM { "category": "small-ammo", "typename": "CrossbowAmmo", "tag": "Ethereal Arrows", "filter": 24, "pos": ["E2M4",-928,-3280,200] }
 AP-SECRET { "pos": ["E2M4","secret","sector",112] }
 AP-SECRET { "pos": ["E2M4","secret","sector",207] }
-AP-MAP { "map": "E2M5", "levelname": "The Catacombs", "checksum": "f73033f55d3f63da6b5eae4cca4f5bd8", "rank": 4, "monster_count": 96, "info": { "levelnum": 15, "title": "HHUSTR_E2M5", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "MUS_E1M4", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "E2M5", "levelname": "The Catacombs",
+  "checksum": "f73033f55d3f63da6b5eae4cca4f5bd8", "rank": 4, "monster_count": 96,
+  "info": { "levelnum": 15, "title": "HHUSTR_E2M5", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "MUS_E1M4", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "HereticImp": 39, "Ironlich": 1, "Wizard": 4, "HereticImpLeader": 11, "Clink": 23, "Beast": 18 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "key", "typename": "KeyYellow", "tag": "Yellow Key", "pos": ["E2M5",-1760,1312,96] }
 AP-KEY { "typename": "KeyYellow", "tag": "Yellow Key", "scopename": "E2M5", "cluster": 0, "maps": ["E2M5"] }
 AP-ITEM { "category": "key", "typename": "KeyBlue", "tag": "Blue Key", "pos": ["E2M5",-1152,-608,-56] }
@@ -2593,7 +2677,13 @@ AP-SECRET { "pos": ["E2M5","secret","sector",63] }
 AP-SECRET { "pos": ["E2M5","secret","sector",87] }
 AP-SECRET { "pos": ["E2M5","secret","sector",140] }
 AP-SECRET { "pos": ["E2M5","secret","sector",206] }
-AP-MAP { "map": "E2M6", "levelname": "The Labyrinth", "checksum": "2225de84bfdd74e984c39022e6499834", "rank": 5, "monster_count": 111, "info": { "levelnum": 16, "title": "HHUSTR_E2M6", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "MUS_E2M6", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "E2M6", "levelname": "The Labyrinth",
+  "checksum": "2225de84bfdd74e984c39022e6499834", "rank": 5, "monster_count": 111,
+  "info": { "levelnum": 16, "title": "HHUSTR_E2M6", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "MUS_E2M6", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "HereticImp": 42, "Mummy": 14, "Ironlich": 1, "Wizard": 6, "HereticImpLeader": 16, "MummyLeader": 3, "Clink": 14, "Beast": 15 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "key", "typename": "KeyYellow", "tag": "Yellow Key", "pos": ["E2M6",960,-1088,104] }
 AP-KEY { "typename": "KeyYellow", "tag": "Yellow Key", "scopename": "E2M6", "cluster": 0, "maps": ["E2M6"] }
 AP-ITEM { "category": "key", "typename": "KeyBlue", "tag": "Blue Key", "pos": ["E2M6",672,-2816,-96] }
@@ -2789,7 +2879,13 @@ AP-SECRET { "pos": ["E2M6","secret","sector",65] }
 AP-SECRET { "pos": ["E2M6","secret","sector",151] }
 AP-SECRET { "pos": ["E2M6","secret","sector",233] }
 AP-SECRET { "pos": ["E2M6","secret","sector",242] }
-AP-MAP { "map": "E2M7", "levelname": "The Great Hall", "checksum": "faa0550be9923b3a3332b4f7db897a4a", "rank": 6, "monster_count": 120, "info": { "levelnum": 17, "title": "HHUSTR_E2M7", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "MUS_E2M7", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "E2M7", "levelname": "The Great Hall",
+  "checksum": "faa0550be9923b3a3332b4f7db897a4a", "rank": 6, "monster_count": 120,
+  "info": { "levelnum": 17, "title": "HHUSTR_E2M7", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "MUS_E2M7", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Knight": 1, "Ironlich": 1, "MummyLeader": 3, "HereticImp": 46, "HereticImpLeader": 8, "Mummy": 4, "Wizard": 2, "Clink": 36, "Beast": 19 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "key", "typename": "KeyGreen", "tag": "Green Key", "pos": ["E2M7",-944,-2272,200] }
 AP-KEY { "typename": "KeyGreen", "tag": "Green Key", "scopename": "E2M7", "cluster": 0, "maps": ["E2M7"] }
 AP-ITEM { "category": "key", "typename": "KeyYellow", "tag": "Yellow Key", "pos": ["E2M7",-864,-3616,256] }
@@ -3041,7 +3137,13 @@ AP-SECRET { "pos": ["E2M7","secret","sector",30] }
 AP-SECRET { "pos": ["E2M7","secret","sector",72] }
 AP-SECRET { "pos": ["E2M7","secret","sector",106] }
 AP-SECRET { "pos": ["E2M7","secret","sector",156] }
-AP-MAP { "map": "E2M8", "levelname": "The Portals of Chaos", "checksum": "5158c22a0f30ce5e558fd2a05d67685e", "rank": 7, "monster_count": 63, "info": { "levelnum": 18, "title": "HHUSTR_E2M8", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "MUS_E2M8", "music_track": "0", "cluster": 0, "flags": ["specialaction_killmonsters", "specialaction_lowerfloortohighest", "minotaurspecial"] } }
+AP-MAP {
+  "map": "E2M8", "levelname": "The Portals of Chaos",
+  "checksum": "5158c22a0f30ce5e558fd2a05d67685e", "rank": 7, "monster_count": 63,
+  "info": { "levelnum": 18, "title": "HHUSTR_E2M8", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "MUS_E2M8", "music_track": "0", "cluster": 0, "flags": ["specialaction_killmonsters", "specialaction_lowerfloortohighest", "minotaurspecial"] },
+  "monsters": { "Knight": 5, "HereticImpLeader": 22, "Minotaur": 3, "Ironlich": 1, "Wizard": 10, "MummyLeader": 8, "Clink": 4, "Beast": 7, "MummyLeaderGhost": 3 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "weapon", "typename": "Crossbow", "tag": "Ethereal Crossbow", "pos": ["E2M8",-1824,96,88] }
 AP-ITEM { "category": "weapon", "typename": "Blaster", "tag": "Dragon Claw", "pos": ["E2M8",-224,-1888,-24] }
 AP-ITEM { "category": "weapon", "typename": "Gauntlets", "tag": "Gauntlets of the Necromancer", "pos": ["E2M8",1504,-160,144] }
@@ -3238,7 +3340,13 @@ AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo", "tag": "Claw Orbs
 AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo", "tag": "Claw Orbs", "filter": 24, "pos": ["E2M8",-544,-1568,0] }
 AP-SECRET { "pos": ["E2M8","secret","sector",34] }
 AP-SECRET { "pos": ["E2M8","secret","sector",73] }
-AP-MAP { "map": "E2M9", "levelname": "The Glacier", "checksum": "7285877bb9726c7b934c28f7e733c28b", "rank": 4, "monster_count": 117, "info": { "levelnum": 19, "title": "HHUSTR_E2M9", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "MUS_E2M9", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "E2M9", "levelname": "The Glacier",
+  "checksum": "7285877bb9726c7b934c28f7e733c28b", "rank": 4, "monster_count": 117,
+  "info": { "levelnum": 19, "title": "HHUSTR_E2M9", "is_lookup": true, "sky1": "SKY2", "sky1speed": "0.000000", "sky2": "SKY2", "sky2speed": "0.000000", "music": "MUS_E2M9", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Knight": 5, "Ironlich": 2, "MummyLeader": 8, "HereticImp": 32, "Wizard": 23, "Clink": 17, "HereticImpLeader": 9, "KnightGhost": 1, "Beast": 20 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "key", "typename": "KeyYellow", "tag": "Yellow Key", "pos": ["E2M9",128,1152,-96] }
 AP-KEY { "typename": "KeyYellow", "tag": "Yellow Key", "scopename": "E2M9", "cluster": 0, "maps": ["E2M9"] }
 AP-ITEM { "category": "key", "typename": "KeyBlue", "tag": "Blue Key", "pos": ["E2M9",2144,-384,-352] }
@@ -3451,7 +3559,13 @@ AP-SECRET { "pos": ["E2M9","secret","sector",134] }
 AP-SECRET { "pos": ["E2M9","secret","sector",145] }
 AP-SECRET { "pos": ["E2M9","secret","sector",162] }
 AP-SECRET { "pos": ["E2M9","secret","sector",170] }
-AP-MAP { "map": "E3M1", "levelname": "The Storehouse", "checksum": "84ec63f1412348f3275075489713478c", "rank": 0, "monster_count": 78, "info": { "levelnum": 21, "title": "HHUSTR_E3M1", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "MUS_E1M1", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "E3M1", "levelname": "The Storehouse",
+  "checksum": "84ec63f1412348f3275075489713478c", "rank": 0, "monster_count": 78,
+  "info": { "levelnum": 21, "title": "HHUSTR_E3M1", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "MUS_E1M1", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Knight": 1, "HereticImpLeader": 12, "KnightGhost": 3, "HereticImp": 37, "Snake": 3, "Ironlich": 2, "Wizard": 4, "Clink": 10, "Beast": 6 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "key", "typename": "KeyYellow", "tag": "Yellow Key", "pos": ["E3M1",208,-2240,-32] }
 AP-KEY { "typename": "KeyYellow", "tag": "Yellow Key", "scopename": "E3M1", "cluster": 0, "maps": ["E3M1"] }
 AP-ITEM { "category": "key", "typename": "KeyGreen", "tag": "Green Key", "pos": ["E3M1",928,-320,24] }
@@ -3607,7 +3721,13 @@ AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo", "tag": "Claw Orbs
 AP-ITEM { "category": "small-ammo", "typename": "BlasterAmmo", "tag": "Claw Orbs", "filter": 24, "pos": ["E3M1",1344,-2400,0] }
 AP-SECRET { "pos": ["E3M1","secret","sector",108] }
 AP-SECRET { "pos": ["E3M1","secret","sector",139] }
-AP-MAP { "map": "E3M2", "levelname": "The Cesspool", "checksum": "d4c44a46daab28bd7935d1cd9e96bbf7", "rank": 1, "monster_count": 99, "info": { "levelnum": 22, "title": "HHUSTR_E3M2", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "MUS_E3M2", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "E3M2", "levelname": "The Cesspool",
+  "checksum": "d4c44a46daab28bd7935d1cd9e96bbf7", "rank": 1, "monster_count": 99,
+  "info": { "levelnum": 22, "title": "HHUSTR_E3M2", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "MUS_E3M2", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Ironlich": 1, "MummyLeader": 1, "HereticImp": 33, "Snake": 11, "Mummy": 3, "Wizard": 16, "HereticImpLeader": 17, "Clink": 14, "Beast": 3 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "key", "typename": "KeyYellow", "tag": "Yellow Key", "pos": ["E3M2",0,2000,104] }
 AP-KEY { "typename": "KeyYellow", "tag": "Yellow Key", "scopename": "E3M2", "cluster": 0, "maps": ["E3M2"] }
 AP-ITEM { "category": "key", "typename": "KeyGreen", "tag": "Green Key", "pos": ["E3M2",800,3056,24] }
@@ -3851,7 +3971,13 @@ AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo", "tag": "Hellstaf
 AP-SECRET { "pos": ["E3M2","secret","sector",62] }
 AP-SECRET { "pos": ["E3M2","secret","sector",111] }
 AP-SECRET { "pos": ["E3M2","secret","sector",142] }
-AP-MAP { "map": "E3M3", "levelname": "The Confluence", "checksum": "2c9f8f32d6d5713f57a79279718eb30a", "rank": 2, "monster_count": 136, "info": { "levelnum": 23, "title": "HHUSTR_E3M3", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "MUS_E3M3", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "E3M3", "levelname": "The Confluence",
+  "checksum": "2c9f8f32d6d5713f57a79279718eb30a", "rank": 2, "monster_count": 136,
+  "info": { "levelnum": 23, "title": "HHUSTR_E3M3", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "MUS_E3M3", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Knight": 5, "Ironlich": 2, "MummyGhost": 3, "MummyLeader": 10, "HereticImp": 26, "Snake": 15, "Mummy": 16, "Wizard": 10, "Clink": 28, "HereticImpLeader": 15, "Beast": 6 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "key", "typename": "KeyYellow", "tag": "Yellow Key", "pos": ["E3M3",-352,1104,-16] }
 AP-KEY { "typename": "KeyYellow", "tag": "Yellow Key", "scopename": "E3M3", "cluster": 0, "maps": ["E3M3"] }
 AP-ITEM { "category": "key", "typename": "KeyGreen", "tag": "Green Key", "pos": ["E3M3",576,-688,256] }
@@ -4189,7 +4315,13 @@ AP-SECRET { "pos": ["E3M3","secret","sector",140] }
 AP-SECRET { "pos": ["E3M3","secret","sector",144] }
 AP-SECRET { "pos": ["E3M3","secret","sector",177] }
 AP-SECRET { "pos": ["E3M3","secret","sector",187] }
-AP-MAP { "map": "E3M4", "levelname": "The Azure Fortress", "checksum": "adea9de9e47202e1c4038acfa6ed7b85", "rank": 3, "monster_count": 159, "info": { "levelnum": 24, "title": "HHUSTR_E3M4", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "MUS_E1M6", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "E3M4", "levelname": "The Azure Fortress",
+  "checksum": "adea9de9e47202e1c4038acfa6ed7b85", "rank": 3, "monster_count": 159,
+  "info": { "levelnum": 24, "title": "HHUSTR_E3M4", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "MUS_E1M6", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Knight": 16, "HereticImpLeader": 16, "HereticImp": 39, "Snake": 12, "Mummy": 13, "Ironlich": 3, "Beast": 14, "Wizard": 15, "MummyLeader": 7, "Clink": 24 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "key", "typename": "KeyYellow", "tag": "Yellow Key", "pos": ["E3M4",-832,3520,-352] }
 AP-KEY { "typename": "KeyYellow", "tag": "Yellow Key", "scopename": "E3M4", "cluster": 0, "maps": ["E3M4"] }
 AP-ITEM { "category": "key", "typename": "KeyGreen", "tag": "Green Key", "pos": ["E3M4",560,976,-440] }
@@ -4546,7 +4678,13 @@ AP-SECRET { "pos": ["E3M4","secret","sector",115] }
 AP-SECRET { "pos": ["E3M4","secret","sector",180] }
 AP-SECRET { "pos": ["E3M4","secret","sector",199] }
 AP-SECRET { "pos": ["E3M4","secret","sector",212] }
-AP-MAP { "map": "E3M5", "levelname": "The Ophidian Lair", "checksum": "bf863a89de2108fc24979d0565f2f65e", "rank": 4, "monster_count": 103, "info": { "levelnum": 25, "title": "HHUSTR_E3M5", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "MUS_E1M3", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "E3M5", "levelname": "The Ophidian Lair",
+  "checksum": "bf863a89de2108fc24979d0565f2f65e", "rank": 4, "monster_count": 103,
+  "info": { "levelnum": 25, "title": "HHUSTR_E3M5", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "MUS_E1M3", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "HereticImp": 26, "Minotaur": 1, "Snake": 21, "Ironlich": 2, "HereticImpLeader": 5, "Wizard": 10, "Clink": 38 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "key", "typename": "KeyYellow", "tag": "Yellow Key", "pos": ["E3M5",-928,-1152,400] }
 AP-KEY { "typename": "KeyYellow", "tag": "Yellow Key", "scopename": "E3M5", "cluster": 0, "maps": ["E3M5"] }
 AP-ITEM { "category": "key", "typename": "KeyGreen", "tag": "Green Key", "pos": ["E3M5",1152,-1024,32] }
@@ -4826,7 +4964,13 @@ AP-SECRET { "pos": ["E3M5","secret","sector",73] }
 AP-SECRET { "pos": ["E3M5","secret","sector",84] }
 AP-SECRET { "pos": ["E3M5","secret","sector",101] }
 AP-SECRET { "pos": ["E3M5","secret","sector",114] }
-AP-MAP { "map": "E3M6", "levelname": "The Halls of Fear", "checksum": "ca3773ed313e8899311f3dd0ca195a68", "rank": 5, "monster_count": 105, "info": { "levelnum": 26, "title": "HHUSTR_E3M6", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "MUS_E1M2", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "E3M6", "levelname": "The Halls of Fear",
+  "checksum": "ca3773ed313e8899311f3dd0ca195a68", "rank": 5, "monster_count": 105,
+  "info": { "levelnum": 26, "title": "HHUSTR_E3M6", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "MUS_E1M2", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Knight": 4, "Ironlich": 4, "MummyLeader": 7, "HereticImp": 28, "Minotaur": 1, "Snake": 14, "Wizard": 10, "Mummy": 8, "HereticImpLeader": 8, "Clink": 11, "Beast": 10 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "key", "typename": "KeyYellow", "tag": "Yellow Key", "pos": ["E3M6",192,-1072,-40] }
 AP-KEY { "typename": "KeyYellow", "tag": "Yellow Key", "scopename": "E3M6", "cluster": 0, "maps": ["E3M6"] }
 AP-ITEM { "category": "key", "typename": "KeyGreen", "tag": "Green Key", "pos": ["E3M6",-256,1584,96] }
@@ -5102,7 +5246,13 @@ AP-SECRET { "pos": ["E3M6","secret","sector",107] }
 AP-SECRET { "pos": ["E3M6","secret","sector",122] }
 AP-SECRET { "pos": ["E3M6","secret","sector",213] }
 AP-SECRET { "pos": ["E3M6","secret","sector",223] }
-AP-MAP { "map": "E3M7", "levelname": "The Chasm", "checksum": "a94561ff9bc91bc28305627cf3bce856", "rank": 6, "monster_count": 117, "info": { "levelnum": 27, "title": "HHUSTR_E3M7", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "MUS_E1M5", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "E3M7", "levelname": "The Chasm",
+  "checksum": "a94561ff9bc91bc28305627cf3bce856", "rank": 6, "monster_count": 117,
+  "info": { "levelnum": 27, "title": "HHUSTR_E3M7", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "MUS_E1M5", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Knight": 7, "Ironlich": 5, "MummyLeader": 4, "HereticImp": 19, "Minotaur": 1, "Mummy": 8, "Wizard": 6, "HereticImpLeader": 11, "Clink": 33, "Snake": 17, "Beast": 6 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "key", "typename": "KeyBlue", "tag": "Blue Key", "pos": ["E3M7",-704,-1152,144] }
 AP-KEY { "typename": "KeyBlue", "tag": "Blue Key", "scopename": "E3M7", "cluster": 0, "maps": ["E3M7"] }
 AP-ITEM { "category": "key", "typename": "KeyGreen", "tag": "Green Key", "pos": ["E3M7",352,1760,272] }
@@ -5416,7 +5566,13 @@ AP-SECRET { "pos": ["E3M7","secret","sector",192] }
 AP-SECRET { "pos": ["E3M7","secret","sector",200] }
 AP-SECRET { "pos": ["E3M7","secret","sector",203] }
 AP-SECRET { "pos": ["E3M7","secret","sector",205] }
-AP-MAP { "map": "E3M8", "levelname": "D'Sparil's Keep", "checksum": "4719c2c71ef28f52310b889dd5a9778b", "rank": 7, "monster_count": 22, "info": { "levelnum": 28, "title": "HHUSTR_E3M8", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "MUS_E1M9", "music_track": "0", "cluster": 0, "flags": ["specialaction_killmonsters", "specialaction_lowerfloortohighest", "dsparilspecial"] } }
+AP-MAP {
+  "map": "E3M8", "levelname": "D'Sparil's Keep",
+  "checksum": "4719c2c71ef28f52310b889dd5a9778b", "rank": 7, "monster_count": 22,
+  "info": { "levelnum": 28, "title": "HHUSTR_E3M8", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "MUS_E1M9", "music_track": "0", "cluster": 0, "flags": ["specialaction_killmonsters", "specialaction_lowerfloortohighest", "dsparilspecial"] },
+  "monsters": { "HereticImp": 8, "Snake": 3, "Ironlich": 1, "Wizard": 2, "MummyLeader": 7, "Sorcerer1": 1 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "weapon", "typename": "PhoenixRod", "tag": "Phoenix Rod", "pos": ["E3M8",480,3744,104] }
 AP-ITEM { "category": "weapon", "typename": "Crossbow", "tag": "Ethereal Crossbow", "pos": ["E3M8",160,864,8] }
 AP-ITEM { "category": "weapon", "typename": "Blaster", "tag": "Dragon Claw", "pos": ["E3M8",1184,976,128] }
@@ -5600,7 +5756,13 @@ AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo", "tag": "Hellstaf
 AP-SECRET { "pos": ["E3M8","secret","sector",3] }
 AP-SECRET { "pos": ["E3M8","secret","sector",6] }
 AP-SECRET { "pos": ["E3M8","secret","sector",13] }
-AP-MAP { "map": "E3M9", "levelname": "The Aquifer", "checksum": "9299ac9604195379f01ba27d43468464", "rank": 4, "monster_count": 90, "info": { "levelnum": 29, "title": "HHUSTR_E3M9", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "MUS_E2M6", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "E3M9", "levelname": "The Aquifer",
+  "checksum": "9299ac9604195379f01ba27d43468464", "rank": 4, "monster_count": 90,
+  "info": { "levelnum": 29, "title": "HHUSTR_E3M9", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "MUS_E2M6", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Knight": 14, "Ironlich": 6, "MummyLeader": 9, "Mummy": 2, "Wizard": 15, "Snake": 9, "HereticImpLeader": 28, "MummyLeaderGhost": 2, "Beast": 5 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "key", "typename": "KeyBlue", "tag": "Blue Key", "pos": ["E3M9",720,1504,-16] }
 AP-KEY { "typename": "KeyBlue", "tag": "Blue Key", "scopename": "E3M9", "cluster": 0, "maps": ["E3M9"] }
 AP-ITEM { "category": "key", "typename": "KeyGreen", "tag": "Green Key", "pos": ["E3M9",2576,144,232] }
@@ -5893,7 +6055,13 @@ AP-SECRET { "pos": ["E3M9","secret","sector",71] }
 AP-SECRET { "pos": ["E3M9","secret","sector",76] }
 AP-SECRET { "pos": ["E3M9","secret","sector",81] }
 AP-SECRET { "pos": ["E3M9","secret","sector",86] }
-AP-MAP { "map": "E4M1", "levelname": "Catafalque", "checksum": "a7dbab356525123955a31806ca7e244e", "rank": 0, "monster_count": 117, "info": { "levelnum": 31, "title": "HHUSTR_E4M1", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "MUS_E1M6", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "E4M1", "levelname": "Catafalque",
+  "checksum": "a7dbab356525123955a31806ca7e244e", "rank": 0, "monster_count": 117,
+  "info": { "levelnum": 31, "title": "HHUSTR_E4M1", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "MUS_E1M6", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "HereticImpLeader": 14, "HereticImp": 33, "Minotaur": 1, "Snake": 26, "Ironlich": 5, "Wizard": 10, "Clink": 28 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "key", "typename": "KeyYellow", "tag": "Yellow Key", "pos": ["E4M1",-2720,-1248,-80] }
 AP-KEY { "typename": "KeyYellow", "tag": "Yellow Key", "scopename": "E4M1", "cluster": 0, "maps": ["E4M1"] }
 AP-ITEM { "category": "key", "typename": "KeyGreen", "tag": "Green Key", "pos": ["E4M1",-416,-32,48] }
@@ -6054,7 +6222,13 @@ AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal
 AP-SECRET { "pos": ["E4M1","secret","sector",10] }
 AP-SECRET { "pos": ["E4M1","secret","sector",137] }
 AP-SECRET { "pos": ["E4M1","secret","sector",199] }
-AP-MAP { "map": "E4M2", "levelname": "Blockhouse", "checksum": "674196be64a0eda97ba7916962c20d16", "rank": 1, "monster_count": 87, "info": { "levelnum": 32, "title": "HHUSTR_E4M2", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "MUS_E1M2", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "E4M2", "levelname": "Blockhouse",
+  "checksum": "674196be64a0eda97ba7916962c20d16", "rank": 1, "monster_count": 87,
+  "info": { "levelnum": 32, "title": "HHUSTR_E4M2", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "MUS_E1M2", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Snake": 29, "HereticImp": 9, "Minotaur": 2, "Ironlich": 4, "HereticImpLeader": 11, "Wizard": 12, "Clink": 20 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "key", "typename": "KeyGreen", "tag": "Green Key", "pos": ["E4M2",-224,-1632,0] }
 AP-KEY { "typename": "KeyGreen", "tag": "Green Key", "scopename": "E4M2", "cluster": 0, "maps": ["E4M2"] }
 AP-ITEM { "category": "key", "typename": "KeyYellow", "tag": "Yellow Key", "pos": ["E4M2",-928,-1632,8] }
@@ -6262,7 +6436,13 @@ AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal
 AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E4M2",-2128,-3344,-136] }
 AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E4M2",-208,-3504,-136] }
 AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E4M2",624,-2784,-136] }
-AP-MAP { "map": "E4M3", "levelname": "Ambulatory", "checksum": "ff6c17c38044e1edacf96f4f4fcf4806", "rank": 2, "monster_count": 132, "info": { "levelnum": 33, "title": "HHUSTR_E4M3", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "MUS_E1M3", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "E4M3", "levelname": "Ambulatory",
+  "checksum": "ff6c17c38044e1edacf96f4f4fcf4806", "rank": 2, "monster_count": 132,
+  "info": { "levelnum": 33, "title": "HHUSTR_E4M3", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "MUS_E1M3", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Knight": 2, "Ironlich": 4, "MummyLeader": 24, "KnightGhost": 1, "HereticImp": 40, "Minotaur": 1, "Mummy": 33, "Wizard": 14, "HereticImpLeader": 13 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "key", "typename": "KeyYellow", "tag": "Yellow Key", "pos": ["E4M3",32,224,24] }
 AP-KEY { "typename": "KeyYellow", "tag": "Yellow Key", "scopename": "E4M3", "cluster": 0, "maps": ["E4M3"] }
 AP-ITEM { "category": "key", "typename": "KeyGreen", "tag": "Green Key", "pos": ["E4M3",-1568,848,96] }
@@ -6582,7 +6762,13 @@ AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal
 AP-SECRET { "pos": ["E4M3","secret","sector",142] }
 AP-SECRET { "pos": ["E4M3","secret","sector",146] }
 AP-SECRET { "pos": ["E4M3","secret","sector",170] }
-AP-MAP { "map": "E4M4", "levelname": "Sepulcher", "checksum": "db4716b9a4860c8ebc3cd90ccf58cc5b", "rank": 3, "monster_count": 146, "info": { "levelnum": 34, "title": "HHUSTR_E4M4", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "MUS_E1M4", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "E4M4", "levelname": "Sepulcher",
+  "checksum": "db4716b9a4860c8ebc3cd90ccf58cc5b", "rank": 3, "monster_count": 146,
+  "info": { "levelnum": 34, "title": "HHUSTR_E4M4", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "MUS_E1M4", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Knight": 13, "HereticImpLeader": 25, "KnightGhost": 4, "HereticImp": 36, "Mummy": 18, "Ironlich": 2, "Wizard": 10, "MummyGhost": 16, "MummyLeader": 22 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "medium-armor", "typename": "SilverShield", "tag": "Silver Shield", "pos": ["E4M4",352,32,24] }
 AP-ITEM { "category": "weapon", "typename": "SkullRod", "tag": "Hellstaff", "pos": ["E4M4",-512,736,-120] }
 AP-ITEM { "category": "weapon", "typename": "Blaster", "tag": "Dragon Claw", "pos": ["E4M4",352,-224,24] }
@@ -6757,7 +6943,13 @@ AP-SECRET { "pos": ["E4M4","secret","sector",45] }
 AP-SECRET { "pos": ["E4M4","secret","sector",123] }
 AP-SECRET { "pos": ["E4M4","secret","sector",136] }
 AP-SECRET { "pos": ["E4M4","secret","sector",170] }
-AP-MAP { "map": "E4M5", "levelname": "Great Stair", "checksum": "9bd531882129c4366845ec1877a46283", "rank": 4, "monster_count": 104, "info": { "levelnum": 35, "title": "HHUSTR_E4M5", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "MUS_E1M5", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "E4M5", "levelname": "Great Stair",
+  "checksum": "9bd531882129c4366845ec1877a46283", "rank": 4, "monster_count": 104,
+  "info": { "levelnum": 35, "title": "HHUSTR_E4M5", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "MUS_E1M5", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "HereticImpLeader": 31, "Minotaur": 1, "Snake": 18, "Ironlich": 3, "Wizard": 14, "Clink": 10, "Beast": 27 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "weapon", "typename": "Crossbow", "tag": "Ethereal Crossbow", "pos": ["E4M5",1152,320,48] }
 AP-ITEM { "category": "key", "typename": "KeyYellow", "tag": "Yellow Key", "pos": ["E4M5",1504,864,112] }
 AP-KEY { "typename": "KeyYellow", "tag": "Yellow Key", "scopename": "E4M5", "cluster": 0, "maps": ["E4M5"] }
@@ -7004,7 +7196,13 @@ AP-ITEM { "category": "medium-ammo", "typename": "SkullRodHefty", "tag": "Greate
 AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "filter": 28, "pos": ["E4M5",1504,608,160] }
 AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "filter": 28, "pos": ["E4M5",800,32,160] }
 AP-SECRET { "pos": ["E4M5","secret","sector",215] }
-AP-MAP { "map": "E4M6", "levelname": "Halls of the Apostate", "checksum": "85c8dd2c557a490d571fdd44b3963ea3", "rank": 5, "monster_count": 115, "info": { "levelnum": 36, "title": "HHUSTR_E4M6", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "MUS_E1M1", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "E4M6", "levelname": "Halls of the Apostate",
+  "checksum": "85c8dd2c557a490d571fdd44b3963ea3", "rank": 5, "monster_count": 115,
+  "info": { "levelnum": 36, "title": "HHUSTR_E4M6", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "MUS_E1M1", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "HereticImp": 37, "HereticImpLeader": 18, "Ironlich": 3, "Wizard": 24, "Clink": 33 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "key", "typename": "KeyGreen", "tag": "Green Key", "pos": ["E4M6",-608,-544,208] }
 AP-KEY { "typename": "KeyGreen", "tag": "Green Key", "scopename": "E4M6", "cluster": 0, "maps": ["E4M6"] }
 AP-ITEM { "category": "key", "typename": "KeyBlue", "tag": "Blue Key", "pos": ["E4M6",-1696,-896,128] }
@@ -7237,7 +7435,13 @@ AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo", "tag": "Hellstaf
 AP-ITEM { "category": "key", "typename": "KeyYellow", "tag": "Yellow Key", "pos": ["E4M6",1856,224,104] }
 AP-KEY { "typename": "KeyYellow", "tag": "Yellow Key", "scopename": "E4M6", "cluster": 0, "maps": ["E4M6"] }
 AP-SECRET { "pos": ["E4M6","secret","sector",127] }
-AP-MAP { "map": "E4M7", "levelname": "Ramparts of Perdition", "checksum": "5e3fcfde78310bb89f92b1626a47d0ad", "rank": 6, "monster_count": 148, "info": { "levelnum": 37, "title": "HHUSTR_E4M7", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "MUS_E1M7", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "E4M7", "levelname": "Ramparts of Perdition",
+  "checksum": "5e3fcfde78310bb89f92b1626a47d0ad", "rank": 6, "monster_count": 148,
+  "info": { "levelnum": 37, "title": "HHUSTR_E4M7", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "MUS_E1M7", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "HereticImp": 56, "Beast": 7, "HereticImpLeader": 25, "Ironlich": 5, "Wizard": 28, "Clink": 27 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "key", "typename": "KeyYellow", "tag": "Yellow Key", "pos": ["E4M7",1280,-2016,120] }
 AP-KEY { "typename": "KeyYellow", "tag": "Yellow Key", "scopename": "E4M7", "cluster": 0, "maps": ["E4M7"] }
 AP-ITEM { "category": "key", "typename": "KeyGreen", "tag": "Green Key", "pos": ["E4M7",1856,-608,200] }
@@ -7642,7 +7846,13 @@ AP-SECRET { "pos": ["E4M7","secret","sector",151] }
 AP-SECRET { "pos": ["E4M7","secret","sector",265] }
 AP-SECRET { "pos": ["E4M7","secret","sector",328] }
 AP-SECRET { "pos": ["E4M7","secret","sector",331] }
-AP-MAP { "map": "E4M8", "levelname": "Shattered Bridge", "checksum": "30d1480a6d4f3a3153739d4ccf659c4e", "rank": 7, "monster_count": 98, "info": { "levelnum": 38, "title": "HHUSTR_E4M8", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "MUS_E1M8", "music_track": "0", "cluster": 0, "flags": ["specialaction_killmonsters", "specialaction_lowerfloortohighest", "ironlichspecial"] } }
+AP-MAP {
+  "map": "E4M8", "levelname": "Shattered Bridge",
+  "checksum": "30d1480a6d4f3a3153739d4ccf659c4e", "rank": 7, "monster_count": 98,
+  "info": { "levelnum": 38, "title": "HHUSTR_E4M8", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "MUS_E1M8", "music_track": "0", "cluster": 0, "flags": ["specialaction_killmonsters", "specialaction_lowerfloortohighest", "ironlichspecial"] },
+  "monsters": { "KnightGhost": 3, "HereticImpLeader": 17, "Ironlich": 9, "Wizard": 11, "MummyLeader": 32, "MummyLeaderGhost": 26 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "key", "typename": "KeyYellow", "tag": "Yellow Key", "secret": true, "pos": ["E4M8",-1472,192,128] }
 AP-KEY { "typename": "KeyYellow", "tag": "Yellow Key", "scopename": "E4M8", "cluster": 0, "maps": ["E4M8"] }
 AP-ITEM { "category": "weapon", "typename": "Blaster", "tag": "Dragon Claw", "pos": ["E4M8",-96,1120,0] }
@@ -7824,7 +8034,13 @@ AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo", "tag": "Hellstaf
 AP-SECRET { "pos": ["E4M8","secret","sector",32] }
 AP-SECRET { "pos": ["E4M8","secret","sector",87] }
 AP-SECRET { "pos": ["E4M8","secret","sector",96] }
-AP-MAP { "map": "E4M9", "levelname": "Mausoleum", "checksum": "41c5437160f07d607af413c7742de70c", "rank": 4, "monster_count": 212, "info": { "levelnum": 39, "title": "HHUSTR_E4M9", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "MUS_E1M9", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "E4M9", "levelname": "Mausoleum",
+  "checksum": "41c5437160f07d607af413c7742de70c", "rank": 4, "monster_count": 212,
+  "info": { "levelnum": 39, "title": "HHUSTR_E4M9", "is_lookup": true, "sky1": "SKY1", "sky1speed": "0.000000", "sky2": "SKY1", "sky2speed": "0.000000", "music": "MUS_E1M9", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Knight": 25, "HereticImp": 48, "HereticImpLeader": 22, "Mummy": 57, "Ironlich": 8, "Wizard": 24, "MummyLeader": 28 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "key", "typename": "KeyYellow", "tag": "Yellow Key", "pos": ["E4M9",1536,-720,128] }
 AP-KEY { "typename": "KeyYellow", "tag": "Yellow Key", "scopename": "E4M9", "cluster": 0, "maps": ["E4M9"] }
 AP-ITEM { "category": "weapon", "typename": "Gauntlets", "tag": "Gauntlets of the Necromancer", "pos": ["E4M9",192,576,0] }
@@ -8242,7 +8458,13 @@ AP-SECRET { "pos": ["E4M9","secret","sector",177] }
 AP-SECRET { "pos": ["E4M9","secret","sector",178] }
 AP-SECRET { "pos": ["E4M9","secret","sector",265] }
 AP-SECRET { "pos": ["E4M9","secret","sector",364] }
-AP-MAP { "map": "E5M1", "levelname": "Ochre Cliffs", "checksum": "cab396cf990de6b4ff5cf3c60fb2babf", "rank": 0, "monster_count": 121, "info": { "levelnum": 41, "title": "HHUSTR_E5M1", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "MUS_E2M1", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "E5M1", "levelname": "Ochre Cliffs",
+  "checksum": "cab396cf990de6b4ff5cf3c60fb2babf", "rank": 0, "monster_count": 121,
+  "info": { "levelnum": 41, "title": "HHUSTR_E5M1", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "MUS_E2M1", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Knight": 15, "HereticImpLeader": 6, "Ironlich": 5, "MummyLeader": 18, "HereticImp": 17, "Minotaur": 1, "KnightGhost": 2, "MummyGhost": 19, "MummyLeaderGhost": 10, "Mummy": 18, "Wizard": 10 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "key", "typename": "KeyYellow", "tag": "Yellow Key", "pos": ["E5M1",-1696,2592,-120] }
 AP-KEY { "typename": "KeyYellow", "tag": "Yellow Key", "scopename": "E5M1", "cluster": 0, "maps": ["E5M1"] }
 AP-ITEM { "category": "key", "typename": "KeyBlue", "tag": "Blue Key", "pos": ["E5M1",864,3936,-216] }
@@ -8438,7 +8660,13 @@ AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo", "tag": "Hellstaf
 AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo", "tag": "Hellstaff Runes", "filter": 7, "pos": ["E5M1",-272,2832,-120] }
 AP-ITEM { "category": "small-ammo", "typename": "SkullRodAmmo", "tag": "Hellstaff Runes", "filter": 3, "pos": ["E5M1",752,3728,-216] }
 AP-SECRET { "pos": ["E5M1","secret","sector",33] }
-AP-MAP { "map": "E5M2", "levelname": "Rapids", "checksum": "17654c1688ab18d046f3b30292ee144f", "rank": 1, "monster_count": 131, "info": { "levelnum": 42, "title": "HHUSTR_E5M2", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "MUS_E2M2", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "E5M2", "levelname": "Rapids",
+  "checksum": "17654c1688ab18d046f3b30292ee144f", "rank": 1, "monster_count": 131,
+  "info": { "levelnum": 42, "title": "HHUSTR_E5M2", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "MUS_E2M2", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "HereticImpLeader": 16, "Ironlich": 3, "HereticImp": 46, "Wizard": 5, "Clink": 34, "Beast": 27 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "key", "typename": "KeyGreen", "tag": "Green Key", "pos": ["E5M2",1136,2448,-80] }
 AP-KEY { "typename": "KeyGreen", "tag": "Green Key", "scopename": "E5M2", "cluster": 0, "maps": ["E5M2"] }
 AP-ITEM { "category": "key", "typename": "KeyYellow", "tag": "Yellow Key", "pos": ["E5M2",1680,928,-160] }
@@ -8672,7 +8900,13 @@ AP-SECRET { "pos": ["E5M2","secret","sector",51] }
 AP-SECRET { "pos": ["E5M2","secret","sector",90] }
 AP-SECRET { "pos": ["E5M2","secret","sector",94] }
 AP-SECRET { "pos": ["E5M2","secret","sector",155] }
-AP-MAP { "map": "E5M3", "levelname": "Quay", "checksum": "a6a0e37c60c04e88bd4b03d26ea171f7", "rank": 2, "monster_count": 132, "info": { "levelnum": 43, "title": "HHUSTR_E5M3", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "MUS_E2M3", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "E5M3", "levelname": "Quay",
+  "checksum": "a6a0e37c60c04e88bd4b03d26ea171f7", "rank": 2, "monster_count": 132,
+  "info": { "levelnum": 43, "title": "HHUSTR_E5M3", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "MUS_E2M3", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "HereticImpLeader": 22, "Ironlich": 9, "HereticImp": 25, "Minotaur": 1, "Snake": 29, "Clink": 46 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "key", "typename": "KeyGreen", "tag": "Green Key", "pos": ["E5M3",1632,544,152] }
 AP-KEY { "typename": "KeyGreen", "tag": "Green Key", "scopename": "E5M3", "cluster": 0, "maps": ["E5M3"] }
 AP-ITEM { "category": "key", "typename": "KeyBlue", "tag": "Blue Key", "pos": ["E5M3",1504,-1728,232] }
@@ -8936,7 +9170,13 @@ AP-SECRET { "pos": ["E5M3","secret","sector",22] }
 AP-SECRET { "pos": ["E5M3","secret","sector",48] }
 AP-SECRET { "pos": ["E5M3","secret","sector",84] }
 AP-SECRET { "pos": ["E5M3","secret","sector",87] }
-AP-MAP { "map": "E5M4", "levelname": "Courtyard", "checksum": "fa52aa4ac70fb6e699dcc09c8d241f85", "rank": 3, "monster_count": 138, "info": { "levelnum": 44, "title": "HHUSTR_E5M4", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "MUS_E2M4", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "E5M4", "levelname": "Courtyard",
+  "checksum": "fa52aa4ac70fb6e699dcc09c8d241f85", "rank": 3, "monster_count": 138,
+  "info": { "levelnum": 44, "title": "HHUSTR_E5M4", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "MUS_E2M4", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Knight": 14, "Ironlich": 1, "MummyGhost": 5, "MummyLeader": 8, "KnightGhost": 1, "HereticImp": 21, "Minotaur": 1, "HereticImpLeader": 13, "Mummy": 31, "Wizard": 17, "MummyLeaderGhost": 26 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "key", "typename": "KeyBlue", "tag": "Blue Key", "pos": ["E5M4",-32,800,168] }
 AP-KEY { "typename": "KeyBlue", "tag": "Blue Key", "scopename": "E5M4", "cluster": 0, "maps": ["E5M4"] }
 AP-ITEM { "category": "key", "typename": "KeyYellow", "tag": "Yellow Key", "pos": ["E5M4",-16,-384,192] }
@@ -9249,7 +9489,13 @@ AP-SECRET { "pos": ["E5M4","secret","sector",86] }
 AP-SECRET { "pos": ["E5M4","secret","sector",92] }
 AP-SECRET { "pos": ["E5M4","secret","sector",202] }
 AP-SECRET { "pos": ["E5M4","secret","sector",256] }
-AP-MAP { "map": "E5M5", "levelname": "Hydratyr", "checksum": "ebdf3d5c49b057c24279002461ad2066", "rank": 4, "monster_count": 202, "info": { "levelnum": 45, "title": "HHUSTR_E5M5", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "MUS_E1M4", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "E5M5", "levelname": "Hydratyr",
+  "checksum": "ebdf3d5c49b057c24279002461ad2066", "rank": 4, "monster_count": 202,
+  "info": { "levelnum": 45, "title": "HHUSTR_E5M5", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "MUS_E1M4", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Ironlich": 3, "MummyLeader": 3, "KnightGhost": 15, "HereticImp": 40, "HereticImpLeader": 23, "Mummy": 2, "Wizard": 15, "MummyGhost": 59, "MummyLeaderGhost": 42 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "key", "typename": "KeyYellow", "tag": "Yellow Key", "pos": ["E5M5",1376,-3392,296] }
 AP-KEY { "typename": "KeyYellow", "tag": "Yellow Key", "scopename": "E5M5", "cluster": 0, "maps": ["E5M5"] }
 AP-ITEM { "category": "key", "typename": "KeyGreen", "tag": "Green Key", "pos": ["E5M5",1600,112,312] }
@@ -9528,7 +9774,13 @@ AP-SECRET { "pos": ["E5M5","secret","sector",201] }
 AP-SECRET { "pos": ["E5M5","secret","sector",228] }
 AP-SECRET { "pos": ["E5M5","secret","sector",236] }
 AP-SECRET { "pos": ["E5M5","secret","sector",349] }
-AP-MAP { "map": "E5M6", "levelname": "Colonnade", "checksum": "882cba8401c29488df07dc93792995b2", "rank": 5, "monster_count": 227, "info": { "levelnum": 46, "title": "HHUSTR_E5M6", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "MUS_E2M6", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "E5M6", "levelname": "Colonnade",
+  "checksum": "882cba8401c29488df07dc93792995b2", "rank": 5, "monster_count": 227,
+  "info": { "levelnum": 46, "title": "HHUSTR_E5M6", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "MUS_E2M6", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Knight": 35, "HereticImpLeader": 26, "Ironlich": 2, "MummyLeader": 41, "HereticImp": 48, "Mummy": 49, "Wizard": 26 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "key", "typename": "KeyYellow", "tag": "Yellow Key", "pos": ["E5M6",192,2176,-224] }
 AP-KEY { "typename": "KeyYellow", "tag": "Yellow Key", "scopename": "E5M6", "cluster": 0, "maps": ["E5M6"] }
 AP-ITEM { "category": "key", "typename": "KeyGreen", "tag": "Green Key", "pos": ["E5M6",1568,2864,-56] }
@@ -9894,7 +10146,13 @@ AP-ITEM { "category": "small-ammo", "typename": "GoldWandAmmo", "tag": "Wand Cry
 AP-ITEM { "category": "small-ammo", "typename": "GoldWandAmmo", "tag": "Wand Crystals", "pos": ["E5M6",512,-32,0] }
 AP-SECRET { "pos": ["E5M6","secret","sector",327] }
 AP-SECRET { "pos": ["E5M6","secret","sector",342] }
-AP-MAP { "map": "E5M7", "levelname": "Foetid Manse", "checksum": "df1dc38bf77a1cd1653718db51cee9da", "rank": 6, "monster_count": 177, "info": { "levelnum": 47, "title": "HHUSTR_E5M7", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "MUS_E2M7", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "E5M7", "levelname": "Foetid Manse",
+  "checksum": "df1dc38bf77a1cd1653718db51cee9da", "rank": 6, "monster_count": 177,
+  "info": { "levelnum": 47, "title": "HHUSTR_E5M7", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "MUS_E2M7", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "HereticImp": 25, "Snake": 35, "Wizard": 28, "HereticImpLeader": 26, "Clink": 63 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "key", "typename": "KeyBlue", "tag": "Blue Key", "pos": ["E5M7",2352,80,-56] }
 AP-KEY { "typename": "KeyBlue", "tag": "Blue Key", "scopename": "E5M7", "cluster": 0, "maps": ["E5M7"] }
 AP-ITEM { "category": "big-armor", "typename": "EnchantedShield", "tag": "Enchanted Shield", "pos": ["E5M7",128,-5728,0] }
@@ -10209,7 +10467,13 @@ AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal
 AP-ITEM { "category": "small-health", "typename": "CrystalVial", "tag": "Crystal Vial", "pos": ["E5M7",96,-6432,256] }
 AP-SECRET { "pos": ["E5M7","secret","sector",0] }
 AP-SECRET { "pos": ["E5M7","secret","sector",140] }
-AP-MAP { "map": "E5M8", "levelname": "Field of Judgement", "checksum": "85ac7d20d18f9bc49b9696cc2e67f029", "rank": 7, "monster_count": 8, "info": { "levelnum": 48, "title": "HHUSTR_E5M8", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "MUS_E2M8", "music_track": "0", "cluster": 0, "flags": ["specialaction_killmonsters", "specialaction_lowerfloortohighest", "minotaurspecial"] } }
+AP-MAP {
+  "map": "E5M8", "levelname": "Field of Judgement",
+  "checksum": "85ac7d20d18f9bc49b9696cc2e67f029", "rank": 7, "monster_count": 8,
+  "info": { "levelnum": 48, "title": "HHUSTR_E5M8", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "MUS_E2M8", "music_track": "0", "cluster": 0, "flags": ["specialaction_killmonsters", "specialaction_lowerfloortohighest", "minotaurspecial"] },
+  "monsters": { "Minotaur": 8 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "weapon", "typename": "SkullRod", "tag": "Hellstaff", "pos": ["E5M8",-96,1632,-128] }
 AP-ITEM { "category": "weapon", "typename": "PhoenixRod", "tag": "Phoenix Rod", "pos": ["E5M8",1248,-672,-128] }
 AP-ITEM { "category": "weapon", "typename": "Crossbow", "tag": "Ethereal Crossbow", "pos": ["E5M8",-96,-672,-128] }
@@ -10277,7 +10541,13 @@ AP-ITEM { "category": "medium-ammo", "typename": "SkullRodHefty", "tag": "Greate
 AP-ITEM { "category": "medium-ammo", "typename": "SkullRodHefty", "tag": "Greater Runes", "filter": 24, "pos": ["E5M8",736,-160,0] }
 AP-ITEM { "category": "medium-ammo", "typename": "SkullRodHefty", "tag": "Greater Runes", "filter": 24, "pos": ["E5M8",416,-160,0] }
 AP-ITEM { "category": "medium-ammo", "typename": "SkullRodHefty", "tag": "Greater Runes", "filter": 24, "pos": ["E5M8",96,480,0] }
-AP-MAP { "map": "E5M9", "levelname": "Skein of D'sparil", "checksum": "b7fdab05b21af564bc9552676f695213", "rank": 3, "monster_count": 168, "info": { "levelnum": 49, "title": "HHUSTR_E5M9", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "MUS_E2M9", "music_track": "0", "cluster": 0, "flags": [] } }
+AP-MAP {
+  "map": "E5M9", "levelname": "Skein of D'sparil",
+  "checksum": "b7fdab05b21af564bc9552676f695213", "rank": 3, "monster_count": 168,
+  "info": { "levelnum": 49, "title": "HHUSTR_E5M9", "is_lookup": true, "sky1": "SKY3", "sky1speed": "0.000000", "sky2": "SKY3", "sky2speed": "0.000000", "music": "MUS_E2M9", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "HereticImp": 9, "Ironlich": 5, "Wizard": 25, "Clink": 62, "Snake": 42, "HereticImpLeader": 25 },
+  "prereqs": [  ]
+}
 AP-ITEM { "category": "key", "typename": "KeyBlue", "tag": "Blue Key", "pos": ["E5M9",448,2368,-392] }
 AP-KEY { "typename": "KeyBlue", "tag": "Blue Key", "scopename": "E5M9", "cluster": 0, "maps": ["E5M9"] }
 AP-ITEM { "category": "key", "typename": "KeyGreen", "tag": "Green Key", "pos": ["E5M9",960,-3104,-40] }
