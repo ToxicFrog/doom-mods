@@ -137,23 +137,9 @@ class ::PlayEventHandler : StaticEventHandler {
       }
     }
 
-    // TODO: if the check is already marked collected, e.g. if it's a TID-based
-    // trigger the player is re-collecting, do not IPC; if it's a tuning-only
-    // check, IPC with an invalid ID so that the client doesn't forward it to
-    // the host.
-
-    string pos = "";
-    if (!loc.is_virt) {
-      pos = string.format(", \"pos\": [\"%s\",%d,%d,%d]",
-        loc.mapname, loc.pos.x, loc.pos.y, loc.pos.z);
-    } else if (loc.secret_id >= 0) {
-      let is_trigger = loc.flags & AP_IS_SECRET_TRIGGER;
-      pos = string.format(", \"pos\": [\"%s\",\"secret\",\"%s\",%d]",
-        loc.mapname, is_trigger ? "tid" : "sector", loc.secret_id);
-    } else if (loc.name.IndexOf(" - Exit") > -1) {
-      // HACK HACK HACK -- at some point we need to generalize this for
-      // event-based locations.
-      pos = string.format(", \"pos\": [\"%s\",\"event\",\"exit\"]", loc.mapname);
+    string pos = loc.PositionJSON();
+    if (pos) {
+      pos = string.format(", \"pos\": %s", pos);
     }
 
     if (unreachable) {

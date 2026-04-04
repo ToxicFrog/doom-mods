@@ -31,6 +31,9 @@ class ::Region play {
   // Hopefully this doesn't become a performance issue.
   Array<::Location> locations;
   Map<uint, ::Location> locations_by_id;
+  // EVBs. When an event triggers we scan this to see if any locations want to
+  // react to it.
+  Array<::Location> event_based_locations;
   // Key typename to key info struct. Only contains keys relevant to this level.
   Map<string, ::RandoKey> keys;
   // Hints tell you where items relevant to this level are.
@@ -40,10 +43,6 @@ class ::Region play {
   Map<string, ::Hint> hints;
   // Whether the player has visited the level at any point.
   bool visited;
-  // AP location that gets checked when you exit the level.
-  // TODO: decouple this from the cleared flag so we can randomize anything we
-  // want into it.
-  ::Location exit_location;
   // The player's last known position in this map. Can be used to return the
   // player to their saved position when levelporting.
   Vector3 player_position;
@@ -51,23 +50,11 @@ class ::Region play {
   Map<string, ::Subregion> subregions;
   Array<string> subregion_names;
 
-  static ::Region Create(string map, int hub, uint exit_id) {
+  static ::Region Create(string map, int hub) {
     let region = ::Region(new("::Region"));
     region.map = map;
     region.hub = hub;
     region.txn = 0;
-
-    let exit = ::Location(new("::Location"));
-    exit.apid = exit_id;
-    exit.mapname = map;
-    exit.name = string.format("%s - Exit", map);
-    exit.secret_id = -1;
-    exit.flags = AP_IS_PROGRESSION|AP_IS_USEFUL;
-    exit.checked = false;
-    exit.collected = false;
-    exit.is_virt = true;
-    region.exit_location = exit;
-
     return region;
   }
 
@@ -128,43 +115,15 @@ class ::Region play {
     return ::RandoState.Get().CountItem("GZAP_LevelCleared_"..self.map) > 0;
   }
 
-  void RegisterCheck(
-      uint apid, Vector3 pos, string name,
-      string orig_typename, string ap_typename_for_label, string ap_name, uint flags) {
-    ++txn;
-    let loc = ::Location(new("::Location"));
+  ::Location RegisterLocation(::Location loc) {
+    DEBUG("RegisterLocation: %s", loc.name);
     loc.mapname = self.map;
-    loc.apid = apid;
-    loc.pos = pos;
-    loc.name = name;
-    loc.orig_typename = orig_typename;
-    loc.ap_typename = ap_typename_for_label;
-    loc.ap_name = ap_name;
-    loc.flags = flags;
-
-    loc.checked = false;
-    loc.collected  = false;
-    loc.is_virt = false;
-    loc.secret_id = -1;
-
-    locations.push(loc);
-    locations_by_id.Insert(loc.apid, loc);
-  }
-
-  void RegisterSecretCheck(uint apid, string name, int secret_id, uint flags) {
-    ++txn;
-    let loc = ::Location(new("::Location"));
-    loc.mapname = self.map;
-    loc.apid = apid;
-    loc.name = name;
-    loc.secret_id = secret_id;
-    loc.flags = flags;
-
-    loc.is_virt = true;
-    loc.checked = false;
-    loc.collected  = false;
-    locations.push(loc);
-    locations_by_id.Insert(loc.apid, loc);
+    self.locations.push(loc);
+    self.locations_by_id.Insert(loc.apid, loc);
+    if (loc.IsEventBased()) {
+      self.event_based_locations.Push(loc);
+    }
+    return loc;
   }
 
   void CollectLocation(uint apid) {
@@ -213,6 +172,12 @@ class ::Region play {
           self.locations[j+1] = tmp;
         }
       }
+    }
+  }
+
+  void CheckEvent(string event_type, string destination, Actor thing) {
+    foreach (location : self.event_based_locations) {
+      location.CheckEvent(event_type, destination, thing);
     }
   }
 

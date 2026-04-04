@@ -99,7 +99,7 @@ class ::RandoState play {
     }
   }
 
-  void RegisterMap(string map, string checksum, int hub, uint exit_apid) {
+  ::Region RegisterMap(string map, string checksum, int hub) {
     DEBUG("Registering map: %s (exit: %d)", map, exit_apid);
     if (checksum != LevelInfo.MapChecksum(map)) {
       console.printfEX(PRINT_HIGH, "\c[RED]ERROR:\c- Map %s has checksum \c[RED]%s\c-, but the randomizer expected \c[CYAN]%s\c-.",
@@ -108,7 +108,9 @@ class ::RandoState play {
       // The user will get a popup when they first enter the game, if any errors were recorded.
     }
 
-    regions.Insert(map, ::Region.Create(map, hub, exit_apid));
+    let region = ::Region.Create(map, hub);
+    regions.Insert(map, region);
+    return region;
   }
 
   bool did_warning;
@@ -152,18 +154,6 @@ class ::RandoState play {
     }
     ++txn;
     return item;
-  }
-
-  void RegisterCheck(
-      // Information about the location
-      string map, uint apid, Vector3 pos, string name, string orig_typename,
-      // Information about the item it contains
-      string ap_typename_for_label, string ap_name, uint flags) {
-    GetRegion(map).RegisterCheck(apid, pos, name, orig_typename, ap_typename_for_label, ap_name, flags);
-  }
-
-  void RegisterSecretCheck(string map, uint apid, string name, int secret_id, uint flags) {
-    GetRegion(map).RegisterSecretCheck(apid, name, secret_id, flags);
   }
 
   // Called when we get a HINT message from AP.

@@ -146,6 +146,8 @@ class ::CheckMapMarker : MapMarker {
   }
 
   bool ShouldDisplay() {
+    // TODO: this does not properly cause map markers to vanish when collected
+    // from secrets.
     // 0 = never, 1 = if you have the automap, 2 = always.
     if (ap_show_checks_on_map <= 0) return false;
     if (ap_show_checks_on_map >= 2) return true;
@@ -235,8 +237,8 @@ class ::CheckPickup : ScoreItem {
       GOTO SetProgression;
   }
 
-  static ::CheckPickup Create(::Location location) {
-    let thing = ::CheckPickup(Actor.Spawn("::CheckPickup", location.pos));
+  static ::CheckPickup Create(::Location location, Vector3 pos) {
+    let thing = ::CheckPickup(Actor.Spawn("::CheckPickup", pos));
     thing.location_id = location.apid;
     DEBUG("Check initialize: name=%s, ck=%d, flags=%1X",
       location.name, location.IsChecked(), location.flags);

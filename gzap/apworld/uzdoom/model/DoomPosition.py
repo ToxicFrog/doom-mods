@@ -23,6 +23,9 @@ class DoomCoordPosition(NamedTuple):
   def as_vec3(self):
       return f'({self.x},{self.y},{self.z})'
 
+  def as_zscript(self):
+    return f'GZAP_PhysicalLocation.Create({self.as_vec3()})'
+
   def has_coords(self):
     return True
   def is_secret(self):
@@ -36,6 +39,12 @@ class DoomSecretPosition(NamedTuple):
   secret_type: str
   secret_id: int
 
+  def as_zscript(self):
+    if self.secret_type == 'sector':
+      return f'GZAP_SecretSectorLocation.Create({self.secret_id})'
+    else:
+      return f'GZAP_SecretTriggerLocation.Create({self.secret_id})'
+
   def has_coords(self):
     return False
   def is_secret(self):
@@ -48,6 +57,10 @@ class DoomEventPosition(NamedTuple):
   '''
   map: str
   event_type: str
+
+  def as_zscript(self):
+    assert self.event_type == 'exit'
+    return f'GZAP_ExitLocation.Create("")'
 
   def has_coords(self):
     return False

@@ -19,10 +19,6 @@ const AP_RELEASE_SECRET = 2;
 class ::PerLevelHandler : EventHandler {
   // Archipelago state manager.
   ::RandoState apstate;
-  // Locations corresponding to secret sectors. Indexed by sector number.
-  // As we find each one we clear it from the map.
-  Map<int, ::Location> secret_locations;
-  Map<int, ::CheckMapMarker> secret_markers;
   // If set, the player is leaving the level via the level select or similar
   // rather than by reaching the exit.
   bool early_exit;
@@ -122,107 +118,15 @@ class ::PerLevelHandler : EventHandler {
     }
   }
 
-  // Trigger-based secrets have even less of a defined position than secret sectors
-  // and thus don't get a map marker.
-  void MarkSecret(::Location location) {
-    if (location.flags & AP_IS_SECRET_TRIGGER) return;
-    if (secret_markers.CheckKey(location.secret_id)) return;
-    let sector = level.sectors[location.secret_id];
-    let marker = ::CheckMapMarker(Actor.Spawn(
-      "::CheckMapMarker", (sector.centerspot.x, sector.centerspot.y, 0)));
-    marker.location_id = location.apid;
-    secret_markers.Insert(location.secret_id, marker);
-  }
-
-  void UnmarkSecret(::Location location) {
-    if (location.flags & AP_IS_SECRET_TRIGGER) return;
-    let marker = secret_markers.GetIfExists(location.secret_id);
-    if (!marker) return;
-    marker.Destroy();
-    secret_markers.Remove(location.secret_id);
-  }
-
   void SetupSecrets(::Region region) {
-    self.secret_locations.Clear();
-
     foreach (location : region.locations) {
-      if (location.secret_id < 0) continue;
-
-      DEBUG("Init secret location: %s", location.name);
-      if (location.flags & AP_IS_SECRET_TRIGGER) {
-        SetupTriggerSecret(location);
-      } else {
-        SetupSectorSecret(location);
-      }
+      location.OnLevelEntry(false);
     }
     DEBUG("Done secret location initialization.");
   }
 
-  void SetupSectorSecret(::Location location) {
-    let sector = level.sectors[location.secret_id];
-    if (location.IsChecked() && sector.IsSecret()) {
-      // Location is checked but sector is still marked undiscovered -- level
-      // probably got reset.
-      DEBUG("Clearing secret flag on sector %d", location.secret_id);
-      UnmarkSecret(location);
-      sector.ClearSecret();
-      level.found_secrets++;
-    } else if (!location.IsChecked() && !sector.IsSecret()) {
-      // Location isn't marked checked but the corresponding sector has been
-      // discovered, so emit a check event for it.
-      ::PlayEventHandler.Get().CheckLocation(location, "sector already discovered");
-      UnmarkSecret(location);
-    } else if (!location.IsChecked()) {
-      // Player hasn't found this yet.
-      self.secret_locations.Insert(location.secret_id, location);
-      MarkSecret(location);
-    }
-  }
-
-  void SetupTriggerSecret(::Location location) {
-    let iter = level.CreateActorIterator(location.secret_id, "SecretTrigger");
-    if (location.IsChecked()) {
-      // Location has already been checked in AP, remove any triggers left in the map.
-      foreach (Actor trigger : iter) {
-        trigger.Activate(trigger);
-      }
-      return;
-    }
-
-    // Location has not been checked. If any triggers are left in the map,
-    // that means the player hasn't found this yet.
-    if (iter.Next() != null) {
-      self.secret_locations.Insert(location.secret_id, location);
-      return;
-    }
-
-    // Location not marked checked, but the trigger is gone, so the player must
-    // have found it and we just didn't notice.
-    DEBUG("%s has been checked, marking it off", location.ap_name);
-    ::PlayEventHandler.Get().CheckLocation(location, "trigger already discovered");
-  }
-
   void UpdateSecrets() {
-    foreach (secret_id,location : self.secret_locations) {
-      if (location.flags & AP_IS_SECRET_TRIGGER) {
-        let iter = level.CreateActorIterator(location.secret_id, "SecretTrigger");
-        if (iter.Next() == null) {
-          DEBUG("%s has been checked, marking it off", location.ap_name);
-          ::PlayEventHandler.Get().CheckLocation(location, "trigger discovered");
-          self.secret_locations.Remove(secret_id);
-          return;
-        }
-      } else {
-        if (!level.sectors[secret_id].IsSecret()) {
-          DEBUG("%s has been checked, marking it off", location.ap_name);
-          ::PlayEventHandler.Get().CheckLocation(location, "sector discovered");
-          UnmarkSecret(location);
-          // Only process one so we don't modify secret_locations while iterating it.
-          self.secret_locations.Remove(secret_id);
-          return;
-        }
-      }
-    }
+    apstate.GetCurrentRegion().CheckEvent("secret", "", null);
   }
 
   void UpdateCheckPickups() {
@@ -251,11 +155,8 @@ class ::PerLevelHandler : EventHandler {
     line_exit_secret = false;
 
     let region = apstate.GetCurrentRegion();
-    SetupSecrets(region);
     foreach (location : region.locations) {
-      // Secret-sector locations are handled by SetupSecrets().
-      if (location.secret_id >= 0) continue;
-      ::CheckPickup.Create(location);
+      location.OnLevelEntry(true);
     }
     UpdateCheckPickups();
     apstate.UpdatePlayerInventory();
@@ -279,7 +180,7 @@ class ::PerLevelHandler : EventHandler {
     line_exit_secret = false;
 
     let region = apstate.GetCurrentRegion();
-    SetupSecrets(region);
+    UpdateSecrets();
     UpdateCheckPickups();
     apstate.UpdatePlayerInventory();
 
@@ -469,8 +370,8 @@ class ::PerLevelHandler : EventHandler {
       if (next_region && next_region.hub == region.hub) return;
     }
 
-    if (region.exit_location.apid == 0) return;
     if (is_save || self.early_exit) return;
+    region.CheckEvent("exit", next_map, null);
 
     if (ap_scan_unreachable >= 2) {
       foreach (location : region.locations) {
@@ -483,8 +384,6 @@ class ::PerLevelHandler : EventHandler {
       }
     }
     cvar.FindCvar("ap_scan_unreachable").SetInt(0);
-
-    ::PlayEventHandler.Get().CheckLocation(region.exit_location, "map exit");
 
     if (ShouldAutoRelease(region)) {
       DEBUG("AutoRelease enabled");

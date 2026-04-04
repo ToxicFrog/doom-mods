@@ -44,6 +44,9 @@ changed. Rescanning your wads is not *mandatory* but is *strongly recommended*.
     progress.
   - If per-map weapons are enabled, only those weapons required for combat logic
     (or explicitly in the logic) are Progression; other weapons are Useful.
+  - Internal redesign of how exit and secret locations are handled. Future work
+    in this area will support randomizing items into exits and implementing
+    spawn-based checks.
 - Fixed:
   - MAP31 and MAP32 were incorrectly excluded from 1000 Lines 2.
   - Adventures of Square logic is now aware of the previously-missing "Totally

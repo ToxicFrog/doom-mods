@@ -35,7 +35,7 @@
 // - add mirrored s-wcap (used for global grants and plain weapons when per-level is on)
 
 #namespace GZAP;
-#debug on;
+#debug off;
 
 // We need to wrap these in new classes because otherwise ZScript has a wobbly.
 // You can't put an Array<> or Map<> directly inside a Map's V type.
