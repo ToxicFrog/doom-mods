@@ -146,12 +146,26 @@ class ::CheckMapMarker : MapMarker {
   }
 
   bool ShouldDisplay() {
-    // TODO: this does not properly cause map markers to vanish when collected
-    // from secrets.
-    // 0 = never, 1 = if you have the automap, 2 = always.
-    if (ap_show_checks_on_map <= 0) return false;
-    if (ap_show_checks_on_map >= 2) return true;
-    return ::RandoState.Get().GetCurrentRegion().HasAutomap();
+    bool show;
+    if (GetLocation().IsChecked()) {
+      show = false;
+    } else if (ap_show_checks_on_map <= 0) {
+      show = false;
+    } else if (ap_show_checks_on_map >= 2) {
+      show = true;
+    } else {
+      show = ::RandoState.Get().GetCurrentRegion().HasAutomap();
+    }
+    // This is a bit of a hack: FlexiHUD's automap respects activate/deactivate
+    // but does not respect alpha, so we fully deactivate map markers.
+    if (show) {
+      // N.b. "deactivating" a MapMarker displays it.
+      self.Deactivate(null);
+    } else {
+      self.Activate(null);
+    }
+    console.printf("ShouldDisplay(%s), show=%d, dormant=%d", GetLocation().name, show, self.bDORMANT);
+    return show;
   }
 
   bool ShouldHilight() {
