@@ -580,7 +580,8 @@ class IncludedItemCategories(OptionList):
             key,ratio = config.split(':')
             assert key != '' and ratio != '', 'Entries in included_item_categories must have both a category and a percentage'
             if key in self.ratios:
-                raise OptionError(f'Duplicate entry {key} in included_item_categories')
+                continue
+                # raise OptionError(f'Duplicate entry {key} in included_item_categories')
             self.ratios[key] = self.ratio_value(ratio)
             self.bucket_list.append((frozenset(key.split('-')), key))
 
