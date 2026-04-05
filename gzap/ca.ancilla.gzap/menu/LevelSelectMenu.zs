@@ -28,8 +28,10 @@ class ::LevelSelectMenu : ::CommonMenu {
     let progress_indicator = new("::ProgressIndicator");
     progress_indicator.apstate = apstate;
     mDesc.mItems.Push(progress_indicator.InitDirect("", Font.CR_CYAN));
+
+    let slot_info = ::WeaponSlotInfo.Create(apstate);
     let weapon_indicator = new("::WeaponIndicator");
-    mDesc.mItems.Push(weapon_indicator.Init(::RandoState.Get()));
+    mDesc.mItems.Push(weapon_indicator.Init(::RandoState.Get(), slot_info));
     weapon_indicator.tt = PushTooltip("[placeholder]");
     PushText(" ");
 
@@ -54,7 +56,7 @@ class ::LevelSelectMenu : ::CommonMenu {
       // RegisterMap().
       if (!region) continue;
 
-      PushLevelSelector(i, info, apstate, region);
+      PushLevelSelector(i, info, apstate, slot_info, region);
     }
 
     PushText(" ");
@@ -76,8 +78,8 @@ class ::LevelSelectMenu : ::CommonMenu {
     return 0;
   }
 
-  void PushLevelSelector(int idx, LevelInfo info, ::RandoState apstate, ::Region region) {
-    let item = new("::LevelSelector").Init(idx, info, apstate, region);
+  void PushLevelSelector(int idx, LevelInfo info, ::RandoState apstate, ::WeaponSlotInfo slot_info, ::Region region) {
+    let item = new("::LevelSelector").Init(idx, info, apstate, slot_info, region);
     mDesc.mItems.Push(item);
     item.tt = PushTooltip(item.FormatTooltip());
   }

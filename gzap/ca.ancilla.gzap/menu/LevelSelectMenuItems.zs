@@ -1,6 +1,7 @@
 #namespace GZAP;
 
 #include "./CommonMenu.zsc"
+#include "./WeaponSlotInfo.zsc"
 
 class ::ProgressIndicator : OptionMenuItemStaticText {
   int victory_time;
@@ -33,119 +34,25 @@ class ::ProgressIndicator : OptionMenuItemStaticText {
   }
 }
 
-class ::WeaponSlotInfo {
-  int slot;
-  int total;
-  int found;
-  Array<string> weapon_types;
-  ::StringSet weapons_held;
-
-  static ::WeaponSlotInfo Create() {
-    ::WeaponSlotInfo info = new("::WeaponSlotInfo");
-    info.weapons_held = ::StringSet.Create();
-    return info;
-  }
-}
-
-class ::WeaponGrantInfo {
-  Array<::WeaponSlotInfo> slot_info;
-  string scope;
-
-  string MakeWeaponList(string head_format, string rest_format) {
-    let buf = "";
-    int last_key = -1;
-
-    for (int slot = 1; slot <= 10; ++slot) {
-      let key = slot%10;
-      let info = self.slot_info[key];
-      if (info.total == 0) continue;
-
-      foreach (weapon : info.weapon_types) {
-        Class<Weapon> cls = weapon;
-        let held = info.weapons_held.Contains(weapon);
-        let tag = ::RC.Get().GetTag(GetDefaultByType(cls));
-        if (last_key != key) {
-          buf.AppendFormat(head_format, held ? "FIRE" : "DARKGRAY", key, tag);
-          last_key = key;
-        } else {
-          buf.AppendFormat(rest_format, held ? "FIRE" : "DARKGRAY", tag);
-        }
-      }
-    }
-
-    return buf;
-  }
-
-  string ShortWeaponList() {
-    return MakeWeaponList("\c[%s]%d", "\c[%s]+");
-  }
-
-  string LongWeaponList() {
-    return MakeWeaponList("\n\c[%s]  [%d] %s", "\n\c[%s]   +  %s");
-    let buf = "";
-    int last_key = -1;
-    for (int slot = 1; slot <= 10; ++slot) {
-      let key = slot%10;
-      let info = self.slot_info[key];
-      foreach (weapon : info.weapon_types) {
-        Class<Weapon> cls = weapon;
-        let held = info.weapons_held.Contains(cls.GetClassName());
-        if (last_key != key) {
-          buf.AppendFormat("\n\c[%s]  [%d] %s", held ? "FIRE" : "DARKGRAY", key, GetDefaultByType(cls).GetTag());
-          last_key = key;
-        } else {
-          buf.AppendFormat("\n\c[%s]   +  %s", held ? "FIRE" : "DARKGRAY", GetDefaultByType(cls).GetTag());
-        }
-      }
-    }
-    return buf;
-  }
-
-  void UpdateWeaponInfo(::RandoState apstate) {
-    self.slot_info.Clear();
-    let slots = players[0].weapons;
-
-    for (int slot = 0; slot < 10; ++slot) {
-      let info = ::WeaponSlotInfo.Create();
-      info.slot = slot;
-      info.total = info.found = 0;
-
-      for (int n = 0; n < slots.SlotSize(slot); ++n) {
-        let cls = slots.GetWeapon(slot, n);
-        let count = apstate.CountItem("::WeaponGrant_"..cls.GetClassName()..self.scope);
-        if (count == -1) continue; // Weapon not known to AP
-        info.total++;
-        info.weapon_types.Push(cls.GetClassName());
-        if (count > 0) {
-          info.weapons_held.Insert(cls.GetClassName());
-          info.found++;
-        }
-      }
-      self.slot_info.Push(info);
-    }
-  }
-}
-
 class ::WeaponIndicator : ::KeyValueText {
   ::Tooltip tt;
   ::RandoState apstate;
-  ::WeaponGrantInfo weapon_info;
+  ::WeaponSlotInfo slot_info;
   uint txn;
 
-  ::WeaponIndicator Init(::RandoState apstate) {
+  ::WeaponIndicator Init(::RandoState apstate, ::WeaponSlotInfo slot_info) {
     self.apstate = apstate;
     self.txn = 0;
-    self.weapon_info = new("::WeaponGrantInfo");
-    weapon_info.UpdateWeaponInfo(apstate);
+    self.slot_info = slot_info;
     super.Init("\c[CYAN]Weapons", "", Font.CR_CYAN);
     return self;
   }
 
   override void Ticker() {
     if (txn == self.apstate.txn) return;
-    self.weapon_info.UpdateWeaponInfo(self.apstate);
-    self.value = self.weapon_info.ShortWeaponList();
-    self.tt.text = TooltipHeader() .. self.weapon_info.LongWeaponList() .. TooltipFooter();
+    self.slot_info.UpdateScope("*");
+    self.value = self.slot_info.ShortWeaponList("*");
+    self.tt.text = TooltipHeader() .. self.slot_info.LongWeaponList("*") .. TooltipFooter();
     self.txn = self.apstate.txn;
   }
 
@@ -159,7 +66,7 @@ class ::WeaponIndicator : ::KeyValueText {
     if (self.apstate.wcaps.use_per_map_caps) {
       return "\n\c-"..StringTable.Localize("$GZAP_MENU_TT_WEAPONLIST_EPILOGUE_PERMAP");
     } else {
-      return "\n\c-"..StringTable.Localize("$GZAP_MENU_TT_WEAPONLIST_EPILOGUE_PERMAP");
+      return "\n\c-"..StringTable.Localize("$GZAP_MENU_TT_WEAPONLIST_EPILOGUE");
     }
   }
 }
@@ -168,18 +75,16 @@ class ::LevelSelector : ::KeyValueNetevent {
   LevelInfo info;
   ::RandoState apstate;
   ::Region region;
-  ::WeaponGrantInfo weapon_info;
+  ::WeaponSlotInfo slot_info;
   ::Tooltip tt;
   uint txn;
 
-  ::LevelSelector Init(int idx, LevelInfo info, ::RandoState apstate, ::Region region) {
+  ::LevelSelector Init(int idx, LevelInfo info, ::RandoState apstate, ::WeaponSlotInfo slot_info, ::Region region) {
     self.info = info;
     self.apstate = apstate;
     self.region = region;
-    self.weapon_info = new("::WeaponGrantInfo");
-    self.weapon_info.scope = "_"..region.map;
+    self.slot_info = slot_info;
     self.txn = 0;
-    self.weapon_info.UpdateWeaponInfo(apstate);
     super.Init(
       FormatLevelKey(info, region),
       FormatLevelValue(info, region),
@@ -204,7 +109,7 @@ class ::LevelSelector : ::KeyValueNetevent {
   override void Ticker() {
     if (txn == region.txn) return;
     SetColours();
-    self.weapon_info.UpdateWeaponInfo(apstate);
+    self.slot_info.UpdateScope(self.region.map);
     self.value = FormatLevelValue(info, region);
     self.tt.text = self.FormatTooltip();
     self.txn = region.txn;
@@ -270,7 +175,7 @@ class ::LevelSelector : ::KeyValueNetevent {
 
   string FormatWeaponInfo() {
     if (!self.apstate.IsPerMapWeapons()) return "";
-    return "  " .. self.weapon_info.ShortWeaponList();
+    return "  " .. self.slot_info.ShortWeaponList(self.region.map);
   }
 
   string FormatLevelValue(LevelInfo info, ::Region region) {
