@@ -164,7 +164,6 @@ class ::CheckMapMarker : MapMarker {
     } else {
       self.Activate(null);
     }
-    console.printf("ShouldDisplay(%s), show=%d, dormant=%d", GetLocation().name, show, self.bDORMANT);
     return show;
   }
 

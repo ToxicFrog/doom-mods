@@ -86,7 +86,6 @@ class GZAP_DataPackageEventHandler : StaticEventHandler {
     {% endfor %}
     console.printf("Registering %d local-only checks.", {{local_locations|count}});
     {% for check in local_locations %}
-      console.printf("{{escape(check.name())}}");
       apstate.GetRegion("{{check.pos.map}}").RegisterLocation({{check.pos.as_zscript()}}.Init({{check.id}}, "{{escape(check.name())}}", "{{check.orig_item.typename}}", "{{check.item.typename}}", AP_IS_LOCAL));
     {% endfor %}
   }
