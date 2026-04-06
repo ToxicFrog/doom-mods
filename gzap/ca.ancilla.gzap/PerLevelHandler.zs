@@ -268,6 +268,9 @@ class ::PerLevelHandler : EventHandler {
     if (!(thing is "::CheckPickup") && thing.bCOUNTITEM) {
       thing.ClearCounters();
     }
+    let region = apstate.GetCurrentRegion();
+    if (!region) return;
+    region.CheckEvent("spawn", "", thing);
   }
 
   // Special handling for weapons. We use this to replace weapons that we weren't

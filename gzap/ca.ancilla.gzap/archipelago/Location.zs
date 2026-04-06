@@ -82,14 +82,14 @@ class ::Location abstract play {
   // level for exit events. thing is reserved for future use by spawn event
   // handlers.
   virtual void CheckEvent(string event_type, string destination, Actor thing) {
-    DEBUG("CheckEvent(%s) for %s#%d", event_type, self.name, self.apid);
+    // DEBUG("CheckEvent(%s) for %s#%d", event_type, self.name, self.apid);
   }
   // Return the position in a format the apworld will understand.
   abstract string PositionJSON();
   // Called when the level is entered. If this is the first time (i.e. not a
   // savegame load or a reopen), first_time will be set.
   virtual void OnLevelEntry(bool first_time) {
-    DEBUG("OnLevelEntry(%d) for %s#%d", first_time, self.name, self.apid);
+    // DEBUG("OnLevelEntry(%d) for %s#%d", first_time, self.name, self.apid);
   }
 
   // We consider two positions "close enough" to each other iff:
@@ -327,5 +327,59 @@ class ::SecretTriggerLocation : ::EventLocation {
 
   override string PositionJSON() {
     return string.format("[\"%s\",\"secret\",\"tid\",%d]", self.mapname, self.tid);
+  }
+}
+
+class ::SpawnLocation : ::EventLocation {
+  int count;
+  int seen;
+  string typename;
+  bool has_position;
+  Vector3 pos;
+  float r;
+
+  static ::SpawnLocation Create(int count, string typename) {
+    let this = ::SpawnLocation(new("::SpawnLocation"));
+    this.count = count;
+    this.seen = 0;
+    this.typename = typename;
+    this.has_position = false;
+    return this;
+  }
+
+  ::SpawnLocation WithPosition(float x, float y, float z, float r) {
+    self.has_position = true;
+    self.pos = (x,y,z);
+    self.r = r;
+    return self;
+  }
+
+  override void CheckEvent(string event_type, string destination, Actor thing) {
+    super.CheckEvent(event_type, destination, thing);
+    if (event_type != "spawn") return;
+    // Is the right type?
+    if (thing.GetClassName() != self.typename) return;
+    DEBUG("CheckEvent(%s) @ (%d,%d,%d), we want (%d,%d,%d)±%d",
+      self.typename, thing.pos.x, thing.pos.y, thing.pos.z,
+      self.pos.x, self.pos.y, self.pos.z, self.r);
+    // If we have a position, is it close enough to us?
+    if (self.has_position && (thing.pos - self.pos).Length() > self.r) return;
+    // Have we seen enough of them?
+    self.seen++;
+    DEBUG(" - our count: %d, seen: %d", self.count, self.seen);
+    if (self.seen != self.count) return;
+    // Let's go!
+    ::CheckPickup.Create(self, thing.pos);
+  }
+
+  override string PositionJSON() {
+    if (self.has_position) {
+      return string.format("[\"%s\",\"spawn\",%d,\"%s\",%d,%d,%d,%d]",
+        self.mapname, self.count, self.typename,
+        self.pos.x, self.pos.y, self.pos.z, self.r);
+    } else {
+      return string.format("[\"%s\",\"spawn\",%d,\"%s\"]",
+        self.mapname, self.count, self.typename);
+    }
   }
 }

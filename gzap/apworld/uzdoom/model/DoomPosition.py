@@ -53,7 +53,27 @@ class DoomExitPosition(NamedTuple):
     return f'GZAP_ExitLocation.Create("{self.destination}")'
 
 
-DoomPosition = Union[DoomCoordPosition,DoomSecretPosition,DoomExitPosition]
+class DoomSpawnPosition(NamedTuple):
+  '''
+  A position associated with an item spawning in during gameplay, that should be
+  replaced with a check.
+  '''
+  map: str
+  count: int
+  typename: str
+  x: float = None
+  y: float = None
+  z: float = None
+  r: int = 0
+
+  def as_zscript(self):
+    buf = f'GZAP_SpawnLocation.Create({self.count}, "{self.typename}")'
+    if self.x is not None:
+      buf += f'.WithPosition({self.x},{self.y},{self.z},{self.r})'
+    return buf
+
+
+DoomPosition = Union[DoomCoordPosition,DoomSecretPosition,DoomExitPosition,DoomSpawnPosition]
 
 def to_position(map: str, *args) -> DoomPosition:
   if type(args[0]) is int:
@@ -62,5 +82,7 @@ def to_position(map: str, *args) -> DoomPosition:
     return DoomSecretPosition(map, *args[1:])
   elif args[0] == 'exit':
     return DoomExitPosition(map, *args[1:])
+  elif args[0] == 'spawn':
+    return DoomSpawnPosition(map, *args[1:])
   else:
     raise Exception(f'Error decoding position: map={map}, args={args}')

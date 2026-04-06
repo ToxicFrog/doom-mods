@@ -20,6 +20,8 @@ in-place to the new format.
   - Errors caused by mismatches between the generating apworld and the pk3
     loaded during play should now produce a slightly more obvious error at game
     startup.
+  - Support for checks that only spawn partway through the level, e.g. boss loot
+    and crafting/puzzle outputs.
 - Changed:
   - Major overhaul of the yaml options.
     - Many settings that previously had to be controlled by editing the
