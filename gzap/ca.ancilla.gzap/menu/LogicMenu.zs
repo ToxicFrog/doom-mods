@@ -51,7 +51,7 @@ class ::LogicMenu : ::CommonMenu {
     if (apstate.subregion) {
       InitFlagDisplay(apstate.subregion);
       InitKeyDisplay(region, apstate.subregion);
-      InitWeaponDisplay(apstate);
+      InitWeaponDisplay(apstate, region);
       InitSubregionDisplay(apstate, region);
     }
     mDesc.mSelectedItem = 7; // region define button
@@ -105,13 +105,15 @@ class ::LogicMenu : ::CommonMenu {
     PushTooltip("$GZAP_MENU_LOGIC_TT_ANYKEY");
   }
 
-  void InitWeaponDisplay(::RandoState apstate) {
+  void InitWeaponDisplay(::RandoState apstate, ::Region region) {
     PushText(" ");
     PushText("$GZAP_MENU_INVENTORY_WEAPONS", Font.CR_FIRE);
     PushText(" ");
 
     foreach (item : apstate.items) {
-      if (item.IsWeapon()) {
+      if (!item.IsWeaponGrant()) continue;
+      let [map,typename] = item.WeaponGrantInfo();
+      if (map == region.map && apstate.IsPerMapWeapons() || map == "*" && !apstate.IsPerMapWeapons()) {
         mDesc.mItems.Push(new("::WeaponPrereqToggle").Init(apstate.subregion, item));
       }
     }
@@ -284,16 +286,19 @@ class ::ItemPrereqToggle : ::PrereqToggle {
 // Required makes it a hard requirement that cannot be turned off.
 class ::WeaponPrereqToggle : ::PrereqToggle {
   ::RandoItem weapon;
+  string typename;
 
   ::WeaponPrereqToggle Init(::Subregion subregion, ::RandoItem weapon) {
     self.weapon = weapon;
-    super.Init(subregion, weapon.tag, "weapon/"..self.weapon.typename);
+    let [map,typename] = weapon.WeaponGrantInfo();
+    self.typename = typename;
+    super.Init(subregion, ::RC.Get().GetTagByType(typename), "weapon/"..self.typename);
     return self;
   }
 
   override bool Enabled() { return self.weapon.total > 0; }
-  string WantPrereq() { return string.format("weapon/%s/want", self.weapon.typename); }
-  string NeedPrereq() { return string.format("weapon/%s/need", self.weapon.typename); }
+  string WantPrereq() { return string.format("weapon/%s/want", self.typename); }
+  string NeedPrereq() { return string.format("weapon/%s/need", self.typename); }
   bool IsWanted() { return subregion.HasPrereq(WantPrereq()); }
   bool IsNeeded() { return subregion.HasPrereq(NeedPrereq()); }
 

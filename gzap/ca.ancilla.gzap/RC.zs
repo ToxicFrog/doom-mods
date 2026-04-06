@@ -176,6 +176,13 @@ class ::RC {
     return act.GetTag();
   }
 
+  string GetTagByType(string typename) {
+    let tag = self.tags.GetIfExists(typename.MakeLower());
+    if (tag) return tag;
+    Class<Actor> cls = typename;
+    return GetDefaultByType(cls).GetTag();
+  }
+
   void SetClusterName(int cluster, string name) {
     DEBUG("Set cluster name for id %d to %s", cluster, name);
     self.cluster_names.Insert(cluster, name);
