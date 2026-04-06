@@ -187,7 +187,7 @@ class ::PhysicalLocation : ::Location {
 
   override void OnLevelEntry(bool first_time) {
     super.OnLevelEntry(first_time);
-    ::CheckPickup.Create(self, self.pos);
+    if (first_time) ::CheckPickup.Create(self, self.pos);
   }
 
   override string PositionJSON() {
