@@ -68,6 +68,8 @@ in-place to the new format.
   - If the apworld generates a pk3 that requires items the engine doesn't know
     about, it will now crash on startup with an explanatory message rather than
     crashing confusingly later.
+  - Crash during option construction if the default settings don't contain
+    enough locations for reliable solo-play generation even with all maps.
 
 # 0.8.5
 

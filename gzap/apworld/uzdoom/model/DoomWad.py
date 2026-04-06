@@ -226,9 +226,14 @@ class DoomWad:
             key=lambda map: (map.rank, map.map), reverse=True)
         def locs_per_map():
             return sum(map.default_enabled_location_count() for map in maps)/len(maps)
-        while locs_per_map() < 4:
+        while locs_per_map() < 4 and maps_left:
             maps.append(maps_left.pop())
         if len(maps) == len(self.default_starting_maps()):
+            return None
+        if not maps_left:
+            # Eek. We added all the maps to the start pool and we're still not
+            # confident we can generate...
+            # This should hopefully be very rare.
             return None
         return sorted(map.map for map in maps)
 
