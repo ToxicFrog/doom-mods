@@ -77,6 +77,8 @@ in-place to the new format.
   - A yaml configuration that produces more progression items than there are
     locations to place them will now produce an OptionError rather than (likely)
     failing generation later.
+  - `get_filler_item_name()` now works again (and the generated filler is
+    weighted based on its prevalence in the item pool).
 
 # 0.8.5
 

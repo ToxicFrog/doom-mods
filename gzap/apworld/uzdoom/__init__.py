@@ -131,7 +131,7 @@ class UZDoomWorld(World):
         return UZDoomItem(self, item, self.player)
 
     def get_filler_item_name(self):
-        return self.random.choice(self.pool.filler_items().keys())
+        return self.random.choices(list(self.pool.filler_items().keys()), weights=self.pool.filler_items().values())[0]
 
     def any_glob_matches(self, globs: Set[str], name: str) -> bool:
         for glob in globs:
