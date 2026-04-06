@@ -74,6 +74,9 @@ in-place to the new format.
   - Entering a level will now scan for checks that were picked up but never
     received by the server (e.g. because the client disconnected) and re-send
     them all.
+  - A yaml configuration that produces more progression items than there are
+    locations to place them will now produce an OptionError rather than (likely)
+    failing generation later.
 
 # 0.8.5
 

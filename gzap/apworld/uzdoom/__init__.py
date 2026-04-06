@@ -17,7 +17,7 @@ from typing import Dict, FrozenSet, Set
 import zipfile
 
 from BaseClasses import CollectionState, Item, ItemClassification, Location, MultiWorld, Region, Tutorial, LocationProgressType
-from Options import PerGameCommonOptions
+from Options import PerGameCommonOptions, OptionError
 from worlds.AutoWorld import World
 import worlds.LauncherComponents as LauncherComponents
 
@@ -329,27 +329,31 @@ class UZDoomWorld(World):
             return
 
         slots_left = self.location_count
-        main_items = self.pool.progression_items() | self.pool.useful_items()
-        filler_items = self.pool.filler_items()
 
-        for item in main_items.elements():
+        for item in self.pool.progression_items().elements():
             self.multiworld.itempool.append(self.create_item(item))
             slots_left -= 1
 
         if slots_left < 0:
-            print("Warning: more mandatory progression items in the pool than free locations in this wad.")
+            raise OptionError(f"More progression items were added to the pool than there are locations available. Enable more locations in your yaml. The easiest ways to do this are turning on secrets, or turning the 'medium' or 'small' dials up.\nHad {self.location_count} total locations, {self.pool.progression_items().total()} progression items, {self.pool.useful_items().total()} useful items, and {self.pool.filler_items().total()} filler items.")
+
+        for item in self.pool.useful_items().elements():
+            if slots_left <= 0:
+                print("Warning: ran out of open locations, but there are still some useful items left. The world should still be playable but some useful items and all filler have been dropped.")
+                break
+            self.multiworld.itempool.append(self.create_item(item))
+            slots_left -= 1
+
+        if slots_left == 0:
+            # Used up all the slots on progression/useful, don't bother with filler.
             return
 
-        # TODO: when generating a game where all small/medium items are vanilla,
-        # this should result in no small/medium items in randomized filler in
-        # other worlds. In practice this does not seem to be the case for some
-        # reason. Perhaps they leave slots open and AP asks us for random filler?
-
-        # compare slots_left to total count of filler_items, then scale filler_items
+        # Compare slots_left to total count of filler_items, then scale filler_items
         # based on the difference.
+        filler_items = self.pool.filler_items().copy()
         filler_count = filler_items.total()
         if filler_count == 0:
-            print("Warning: no filler items in pool!")
+            print(f"Warning: with this yaml configuration, the wad has no filler items. We will attempt to finish generation despite this, but you should turn on some filler in your yaml.")
             return
         scale = slots_left/filler_count
 
