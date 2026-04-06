@@ -11,10 +11,40 @@ Features include:
 - autotune feature for automatically improving wad support based on play
 - broad compatibility with both cosmetic and gameplay mods
 
-You can download the latest stable release from the
-[release page](https://github.com/ToxicFrog/doom-mods/releases/). You can also
-try the development version: [mod](../release/UZArchipelago-latest.pk3),
-[core apworld](../release/uzdoom.apworld), [addon apworlds](../release/apworlds/).
+
+## Downloads
+
+To play, you will need three downloads:
+- the *shared apworld* (`uzdoom.apworld`) which contains generic uzdoom support;
+- the *game mod* (`UZArchipelago.pk3`) which is loaded by the game; and
+- a *logic pack apworld* for the specific WAD you want to play.
+
+Note that you cannot mix stable and unstable apworlds/mods -- make sure that you
+are downloading the same version for everything!
+
+### Stable Release
+
+The latest **stable release** is available from the
+[github releases page](https://github.com/ToxicFrog/doom-mods/releases?q=UZArchipelago&expanded=true).
+The release has links to the shared apworld and game mod, and a link to the list
+of logic packs supported by that version, from which you can download the logic
+packs themselves.
+
+### Unstable Release
+
+The **unstable release** receives new features before they appear in stable, but
+also receives less testing, and routinely breaks compatibility with yamls, logic
+packs, and generated games from the stable version.
+
+You can download it here:
+- [shared apworld](../release/uzdoom.apworld)
+- [game mod](../release/UZArchipelago-latest.pk3)
+- [logic packs](./doc/support-table.md)
+
+For a list of changes in unstable that are not yet available in a stable
+release, see the `Unreleased` section of the [changelog](./CHANGELOG.md).
+
+## Documentation
 
 The documentation is split into multiple files.
 
