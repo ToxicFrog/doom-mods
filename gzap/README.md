@@ -24,11 +24,15 @@ are downloading the same version for everything!
 
 ### Stable Release
 
-The latest **stable release** is available from the
-[github releases page](https://github.com/ToxicFrog/doom-mods/releases?q=UZArchipelago&expanded=true).
-The release has links to the shared apworld and game mod, and a link to the list
-of logic packs supported by that version, from which you can download the logic
-packs themselves.
+The **stable release** is recommended for most players. It has received both
+singleplayer and multiplayer testing and is expected to work reliably.
+
+You can download it here:
+- [github releases page](https://github.com/ToxicFrog/doom-mods/releases?q=UZArchipelago&expanded=true) ✨ stable
+
+The release page contains links to the shared apworld, the game mod, and the
+list of logic packs supported by that version (from which you can download the
+logic packs themselves).
 
 ### Unstable Release
 
@@ -37,9 +41,9 @@ also receives less testing, and routinely breaks compatibility with yamls, logic
 packs, and generated games from the stable version.
 
 You can download it here:
-- [shared apworld](../release/uzdoom.apworld)
-- [game mod](../release/UZArchipelago-latest.pk3)
-- [logic packs](./doc/support-table.md)
+- [shared apworld](../release/uzdoom.apworld) ⚠️ unstable
+- [game mod](../release/UZArchipelago-latest.pk3) ⚠️ unstable
+- [logic packs](./doc/support-table.md) ⚠️ unstable
 
 For a list of changes in unstable that are not yet available in a stable
 release, see the `Unreleased` section of the [changelog](./CHANGELOG.md).
