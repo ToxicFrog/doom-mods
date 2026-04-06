@@ -186,15 +186,14 @@ class UZDoomWorld(World):
     def setup_pretuning_mode(self):
         print("PRETUNING ENABLED - overriding most settings")
         self.options.included_levels.value = set()
-        self.options.level_order_bias.value = 0
-        self.options.local_weapon_bias.value = 0
-        self.options.carryover_weapon_bias.value = 0
+        self.options.per_map_weapons.value = False
+        self.options.combat_logic_mode.value = 0
         self.options.starting_levels.value = [map.map for map in self.maps]
         self.options.start_with_keys.value = False
         # self.options.full_persistence.value = False
         self.options.allow_respawn.value = True
         self.options.included_item_categories.value = [
-            'ap_map:start',
+            'ap_map:start', 'ap_flag:all',
             '*:vanilla',
         ]
         self.options.included_item_categories.build_ratios()
