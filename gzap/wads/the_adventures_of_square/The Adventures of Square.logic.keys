@@ -2,3 +2,34 @@ AP-KEY { "typename": "FloppyDiskPassword", "tag": "Password Disk", "scopename": 
 AP-KEY { "typename": "FloppyDiskLaunchCode", "tag": "Launch Code Disk", "scopename": "E1A9", "cluster": 0, "maps": ["E1A9"] }
 AP-KEY { "typename": "FloppyDiskSecurityCode", "tag": "Security Code Disk", "scopename": "E1A9", "cluster": 0, "maps": ["E1A9"] }
 AP-KEY { "typename": "HexagonKey", "tag": "Hexagon Key", "scopename": "E2A11", "cluster": 0, "maps": ["E2A11"] }
+
+; Launch disks drop from minibosses in E1A9
+; Cafeteria
+AP-ITEM {
+  "category": "key",
+  "typename": "FloppyDiskPassword",
+  "tag": "Password Disk",
+  "pos": ["E1A9","spawn",1,"FloppyDiskPassword",-1972,6016,-32,512]
+}
+; Control room
+AP-ITEM {
+  "category": "key",
+  "typename": "FloppyDiskSecurityCode",
+  "tag": "Launch Code Disk",
+  "pos": ["E1A9","spawn",1,"FloppyDiskSecurityCode",-288,3232,-544,512]
+}
+; Basement coolant(?) area
+AP-ITEM {
+  "category": "key",
+  "typename": "FloppyDiskLaunchCode",
+  "tag": "Security Code Disk",
+  "pos": ["E1A9","spawn",1,"FloppyDiskLaunchCode",4576,11392,-1248,800]
+}
+
+; Hexagon key from the sheriff in E2A11
+AP-ITEM {
+  "category": "key",
+  "typename": "HexagonKey",
+  "tag": "Hexagon Key",
+  "pos": ["E2A11","spawn",1,"HexagonKey",10496,6592,-384,3072]
+}

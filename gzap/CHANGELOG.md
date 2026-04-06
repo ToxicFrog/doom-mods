@@ -1,7 +1,9 @@
 # Unreleased
 
-This is a feature release. It brings significant changes to how the YAML is
-organized and how item classification works.
+This is a feature release. The headline features are:
+- weapons can now be unlocked per-map;
+- the yaml has been heavily rearranged for ease of use;
+- logic now supports items that spawn mid-game, like boss drops.
 
 ⚠️ YAML options have changed. You must regenerate your YAML templates.
 
@@ -22,6 +24,8 @@ in-place to the new format.
     startup.
   - Support for checks that only spawn partway through the level, e.g. boss loot
     and crafting/puzzle outputs.
+    - `Adventures of Square` now uses this for the floppy disk drops in E1A9 and
+      the hexagon key drop in E2A11.
 - Changed:
   - Major overhaul of the yaml options.
     - Many settings that previously had to be controlled by editing the
