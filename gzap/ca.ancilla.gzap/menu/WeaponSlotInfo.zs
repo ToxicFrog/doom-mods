@@ -161,8 +161,9 @@ class ::WeaponSlotInfo {
       foreach (weapon : info.weapon_types) {
         // Slot population may leave gaps in the weapon_types.
         if (!weapon) continue;
-        Class<Weapon> cls = weapon;
-        readonly<Weapon> thing = GetDefaultByType(cls);
+        DEBUG("Checking weapon %s", weapon);
+        Class<Actor> cls = weapon;
+        readonly<Actor> thing = GetDefaultByType(cls);
         let tag = ::RC.Get().GetTag(thing);
         let held = info.IsHeld(scope, weapon);
         if (last_slot != slot) {
