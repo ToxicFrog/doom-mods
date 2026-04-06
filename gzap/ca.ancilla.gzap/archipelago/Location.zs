@@ -90,6 +90,12 @@ class ::Location abstract play {
   // savegame load or a reopen), first_time will be set.
   virtual void OnLevelEntry(bool first_time) {
     // DEBUG("OnLevelEntry(%d) for %s#%d", first_time, self.name, self.apid);
+    if (self.checked && !self.collected) {
+      // Player has re-entered the level, we are marked checked (i.e. locally
+      // collected) but not collected by the server, this probably means that
+      // we weren't connected to AP when it was collected. Try re-sending it.
+      ::PlayEventHandler.Get().CheckLocation(self, "retry on level entry");
+    }
   }
 
   // We consider two positions "close enough" to each other iff:
