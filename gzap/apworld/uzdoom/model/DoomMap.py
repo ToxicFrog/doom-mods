@@ -170,12 +170,6 @@ class DoomMap:
         else:
             return f'Level Clear ({self.map})'
 
-    def exit_location_name(self):
-        if self.wad.use_hub_logic() and not self.map in self.wad.hub_logic_exits():
-            # In hub mode, only maps containing cluster exits get exit locations.
-            return None
-        return f'{self.map} - Exit'
-
     def add_loose_item(self, item, count=1):
         self.loose_items[item] = self.loose_items.get(item, 0) + count
 

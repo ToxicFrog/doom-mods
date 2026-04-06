@@ -8,6 +8,9 @@ organized and how item classification works.
 ⚠️ Item categorization rules and the included scanner configurations have
 changed. Rescanning your wads is not *mandatory* but is *strongly recommended*.
 
+⚠️ Tuning format has changed, but all existing tuning files have been upgraded
+in-place to the new format.
+
 - New:
   - `per_map_weapons` yaml setting. If enabled, a different copy of each weapon
     is added to the pool for each map. To use a weapon on a given map you need
@@ -47,6 +50,8 @@ changed. Rescanning your wads is not *mandatory* but is *strongly recommended*.
   - Internal redesign of how exit and secret locations are handled. Future work
     in this area will support randomizing items into exits and implementing
     spawn-based checks.
+  - Tuning data now uses `[map,"exit"]` for exit events rather than
+    `[map,"event","exit"]`.
 - Fixed:
   - MAP31 and MAP32 were incorrectly excluded from 1000 Lines 2.
   - Adventures of Square logic is now aware of the previously-missing "Totally

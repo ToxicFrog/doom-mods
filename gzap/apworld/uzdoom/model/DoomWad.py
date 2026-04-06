@@ -277,7 +277,7 @@ class DoomWad:
                 category="ap_progression-ap_flag-ap_victory",
                 typename=f"GZAP_LevelCleared_{map.map}",
                 tag=map.clear_flag_name()))
-        map_exit = DoomLocation(self, item=clear_flag, secret=False, pos=[map.map,'event','exit'], spawn_filter=0xFF)
+        map_exit = DoomLocation(self, item=clear_flag, secret=False, pos=[map.map,'exit'], spawn_filter=0xFF)
 
         map_exit.custom_name = "Exit"
         map_exit.item = clear_flag

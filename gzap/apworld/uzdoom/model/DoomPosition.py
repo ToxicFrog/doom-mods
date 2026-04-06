@@ -26,10 +26,6 @@ class DoomCoordPosition(NamedTuple):
   def as_zscript(self):
     return f'GZAP_PhysicalLocation.Create({self.as_vec3()})'
 
-  def has_coords(self):
-    return True
-  def is_secret(self):
-    return False
 
 class DoomSecretPosition(NamedTuple):
   '''
@@ -45,37 +41,26 @@ class DoomSecretPosition(NamedTuple):
     else:
       return f'GZAP_SecretTriggerLocation.Create({self.secret_id})'
 
-  def has_coords(self):
-    return False
-  def is_secret(self):
-    return True
 
-
-class DoomEventPosition(NamedTuple):
+class DoomExitPosition(NamedTuple):
   '''
-  A position associated with an event, such as 'exited the level'.
+  A position associated with successfully exiting the level.
   '''
   map: str
-  event_type: str
+  destination: str = ""
 
   def as_zscript(self):
-    assert self.event_type == 'exit'
-    return f'GZAP_ExitLocation.Create("")'
-
-  def has_coords(self):
-    return False
-  def is_secret(self):
-    return False
+    return f'GZAP_ExitLocation.Create("{self.destination}")'
 
 
-DoomPosition = Union[DoomCoordPosition,DoomSecretPosition,DoomEventPosition]
+DoomPosition = Union[DoomCoordPosition,DoomSecretPosition,DoomExitPosition]
 
 def to_position(map: str, *args) -> DoomPosition:
   if type(args[0]) is int:
     return DoomCoordPosition(map, *args)
   elif args[0] == 'secret':
     return DoomSecretPosition(map, *args[1:])
-  elif args[0] == 'event':
-    return DoomEventPosition(map, *args[1:])
+  elif args[0] == 'exit':
+    return DoomExitPosition(map, *args[1:])
   else:
     raise Exception(f'Error decoding position: map={map}, args={args}')

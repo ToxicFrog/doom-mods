@@ -212,9 +212,9 @@ class ::ExitLocation : ::EventLocation {
 
   override string PositionJSON() {
     if (self.destination) {
-      return string.format("[\"%s\",\"event\",\"exit\",\"%s\"]", self.mapname, self.destination);
+      return string.format("[\"%s\",\"exit\",\"%s\"]", self.mapname, self.destination);
     } else {
-      return string.format("[\"%s\",\"event\",\"exit\"]", self.mapname);
+      return string.format("[\"%s\",\"exit\"]", self.mapname);
     }
   }
 }

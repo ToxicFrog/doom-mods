@@ -6,7 +6,7 @@ from typing import NamedTuple, Optional, Set, List, FrozenSet, Collection, Seque
 
 from .DoomItem import DoomItem
 from .DoomReachable import DoomReachable
-from .DoomPosition import DoomPosition, DoomEventPosition, to_position
+from .DoomPosition import DoomPosition, DoomExitPosition, to_position
 
 class DoomLocation(DoomReachable):
     """
@@ -59,7 +59,7 @@ class DoomLocation(DoomReachable):
     __repr__ = __str__
 
     def name(self) -> str:
-        # We use the non-map-qualified-name of the enclosing item here, so that
+        # We use the non-map-qualified-name of the enclosed item here, so that
         # if we have multiple locations with the same coordinates containing items
         # with different types but the same tag, it will automatically differentiate
         # them by type.
@@ -68,10 +68,7 @@ class DoomLocation(DoomReachable):
         # is a key and a "Blue Key" that is not a key at the same coordinates.
         # I suspect this will never arise in practice.
         # If it does, future me, I am sorry, but also, wtf?
-        if self.region and not isinstance(self.pos, DoomEventPosition):
-            # HACK HACK HACK: an Exit has an EventPosition and its enclosing map is
-            # hardcoded to name it "LUMP - Exit", so we can't include the region
-            # name here or generation will fail.
+        if self.region:
             name = f"{self.pos.map} {self.region} - {self.custom_name or self.orig_item.name(False)}"
         else:
             name = f"{self.pos.map} - {self.custom_name or self.orig_item.name(False)}"
