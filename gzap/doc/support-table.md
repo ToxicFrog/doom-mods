@@ -174,7 +174,7 @@ Entire games that replace most or all of the vanilla gameplay.
 [The Adventures of Square]: ../../release/apworlds/zdoom_the_adventures_of_square.apworld
 [Faithless]: ../../release/apworlds/zdoom_faithless.apworld
 [Space Cats Saga]: ../../release/apworlds/zdoom_space_cats_saga.apworld
-[Time Tripper]: ../../release/apworlds/time_tripper.apworld
+[Time Tripper]: ../../release/apworlds/zdoom_time_tripper.apworld
 
 ### Fan-Games for Other IPs
 
