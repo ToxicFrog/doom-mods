@@ -24,7 +24,7 @@ class ::ScanEventHandler : StaticEventHandler {
     if (!scan_enabled) return;
     if (self.scanner.queued.Size() == 0) return;
     let name = self.scanner.queued[0].name;
-    if (level.MapName == name) {
+    if (level.MapName.MakeUpper() == name) {
       // We have arrived at the level we're meant to be scanning.
       // All is well.
       in_sequence = true;
