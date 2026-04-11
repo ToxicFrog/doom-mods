@@ -120,8 +120,10 @@ class DoomItem:
 
         # Weapons have an upper bound that depends on settings.
         if self.has_category('weapon'):
-            if self.map:
-                return (1,1) if world.options.per_map_weapons else (0,0)
+            # These should be replaced with weapon capabilities in the pool, so
+            # ideally we should never hit this.
+            print(f'Warning: weapon {self} was somehow left in the pool.')
+            return (0,0)
 
             count = sys.maxsize
             if world.options.max_weapon_copies.value > 0:
@@ -183,3 +185,16 @@ class DoomWeaponGrant(DoomFlag):
 
         # Otherwise it is merely useful.
         return ItemClassification.useful
+
+    def pool_limits(self, world):
+        # Map-scoped weapon capability. Always include one of each.
+        if self.map:
+            assert world.options.per_map_weapons, f"per_map_weapons is off but somehow a map-scoped weapon capability ended up in the item pool: {self}"
+            assert self.map in {map.map for map in world.maps}, f"Weapon capability {self} was added to the item pool but its corresponding map was not selected for play"
+            return (1,1)
+
+        assert not world.options.per_map_weapons, f"per_map_weapons is on but somehow a universal weapon capability ended up in the item pool: {self}"
+        count = sys.maxsize
+        if world.options.max_weapon_copies.value > 0:
+            count = min(count, world.options.max_weapon_copies.value)
+        return (0, count)

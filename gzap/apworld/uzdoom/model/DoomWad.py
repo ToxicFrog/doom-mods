@@ -620,13 +620,15 @@ class DoomWad:
 
         For each weapon, we produce both a global grant token and per-map
         grants; which ones we actually need are determined by the yaml.
+
+        These items are not added to any locations or the per-map loose items;
+        rather, after filling the pool, weapons in the pool will be converted
+        into capability grants.
         """
-        all_weapons = []
-        # Collect all weapons that we've seen and remove from the item table,
-        # since we're about to replace them with weapon grant tokens.
-        for name,item in self.items_by_name.items():
-            if item.has_category('weapon'):
-                all_weapons.append(item)
+        all_weapons = [
+            item for item in self.items_by_name.values()
+            if item.has_category('weapon')
+        ]
 
         def register(**kwargs):
             flag = DoomWeaponGrant(**kwargs)
@@ -642,12 +644,6 @@ class DoomWad:
                 category="ap_flag-ap_progression-weapon",
                 typename=f"GZAP_WeaponGrant_{weapon.typename}",
                 tag=f"Universal {weapon.name()}")
-            # Remap the original entries to point to the global weapon grant.
-            # When populating the pool, locations that previously held the real
-            # weapon will instead cause this flag to be added.
-            self.items_by_name[weapon.name()] = flag
-            self.items_by_type[weapon.typename] = flag
-            # print(f'Converting weapon({weapon.name()}) of type {weapon.typename} into flag({flag.name()}) of type {flag.typename}')
 
             # Now create a per-level version for each map we know about.
             for map in self.all_maps():
@@ -657,8 +653,6 @@ class DoomWad:
                     category="ap_flag-ap_progression-weapon",
                     typename=f"GZAP_WeaponGrant_{weapon.typename}_{map.map}",
                     tag=f"{weapon.name()} ({map.map})")
-                map.add_loose_item(flag.name())
-                # print(f'Creating per-level flag({flag.name()}) of type {flag.typename}')
 
     def finalize_ids(self, logic):
         for item in self.items_by_name.values():

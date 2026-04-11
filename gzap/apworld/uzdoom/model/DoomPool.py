@@ -55,6 +55,7 @@ class DoomPool:
         self.starting_item_counts = Counter()
         self.vanilla_item_counts = Counter()
         self.select_locations(locations, world)
+        self.remap_items(world)
         self.finalize_item_counts(world)
 
     def add_items_to_pool(self, counter, locations):
@@ -64,7 +65,9 @@ class DoomPool:
             # Doing so doesn't replace the original item in the individual
             # location, so we look it up int the wad and then use that.
             item = self.wad.items_by_name[loc.orig_item.name()]
-            counter[item.name()] += 1
+            # if item is not loc.orig_item:
+            #     print(f'Remap while filling pool: {loc.orig_item} -> {item}')
+            counter[loc.orig_item.name()] += 1
 
     def _skip_in_pretuning(self, world, loc):
         return (
@@ -162,12 +165,33 @@ class DoomPool:
             self.locations.extend(selected_locs)
             self.add_items_to_pool(self.item_counts, selected_locs)
 
+    def remap_items(self, world):
+        '''
+        This runs just before finalize_item_counts and is used to replace items
+        that should inform the final contents of the pool but not actually be
+        included in it, such as replacing actual weapons with weapon capability
+        grants.
+        '''
+        new_items = Counter()
+        for name,count in self.item_counts.items():
+            item = self.wad.item(name)
+            if item.has_category('weapon'):
+                self.item_counts[name] -= count
+                if not world.options.per_map_weapons:
+                    # print('remap:', name, self.wad.weapon_capability(item.typename))
+                    new_items[self.wad.weapon_capability(item.typename)] = count
+                else:
+                    for map in world.maps:
+                        # print('remap:', name, self.wad.weapon_capability(item.typename, map.map))
+                        new_items[self.wad.weapon_capability(item.typename, map.map)] = count
+
+        self.item_counts += new_items
+
     def finalize_item_counts(self, world):
         '''
-        Do final tidying of the item pool. This means adding items to it that
-        don't come from locations (like access and victory flags), applying
-        pool limits, and then removing starting items from the pool so that they
-        exist only in the starting-item pool.
+        This runs after all location-sourced items are added to the pool. Here
+        is where we add "loose" items that don't come from locations (like
+        access and victory flags), apply item limits, and remove starting items.
         '''
         # Not generating anything, so we skip anything that depends on settings.
         if world is None:
@@ -179,6 +203,7 @@ class DoomPool:
             for item,count in map.loose_items.items():
                 ratio = world.options.included_item_categories.ratio_for_item(self.wad.item(item))
                 self.item_counts[item] += count
+                # print(f'Adding {count} copies of {item} from {map.map}')
                 # We don't really respect ratios here except for starting-inventory,
                 # because these loose items are load bearing for the randomizer
                 # and have no vanilla location, so they cannot be excluded or
@@ -195,6 +220,7 @@ class DoomPool:
                 continue
             item = self.wad.item(name)
             (lower,upper) = item.pool_limits(world)
+            # print(f'Adjust count for {item.name()} from {self.item_counts[item.name()]} to ({lower},{upper})')
             self.item_counts[item.name()] = max(lower, min(self.item_counts[item.name()], upper))
 
         # Withdraw starting inventory from the pool only after limits are applied.
