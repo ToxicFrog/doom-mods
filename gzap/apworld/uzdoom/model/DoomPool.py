@@ -190,9 +190,10 @@ class DoomPool:
 
         # Apply item lower/upper bounds.
         # Items set to 'vanilla' or 'shuffle' skip this.
-        for item in self.wad.items():
-            if item.name() in self.vanilla_item_counts:
+        for name in self.item_counts.keys():
+            if name in self.vanilla_item_counts:
                 continue
+            item = self.wad.item(name)
             (lower,upper) = item.pool_limits(world)
             self.item_counts[item.name()] = max(lower, min(self.item_counts[item.name()], upper))
 
