@@ -221,7 +221,8 @@ class DoomPool:
             item = self.wad.item(name)
             (lower,upper) = item.pool_limits(world)
             # print(f'Adjust count for {item.name()} from {self.item_counts[item.name()]} to ({lower},{upper})')
-            self.item_counts[item.name()] = max(lower, min(self.item_counts[item.name()], upper))
+            # assert name == item.name(), f"mismatch between pool entry {name} and backing item {item.name()}"
+            self.item_counts[name] = max(lower, min(self.item_counts[item.name()], upper))
 
         # Withdraw starting inventory from the pool only after limits are applied.
         for item,count in self.starting_item_counts.items():
