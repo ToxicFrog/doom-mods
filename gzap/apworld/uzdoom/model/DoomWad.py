@@ -551,13 +551,16 @@ class DoomWad:
         we don't need complete reachability information.
         """
         self.disambiguate_duplicate_items()
-        self.disambiguate_duplicate_locations()
         self.finalize_key_items()
         self.finalize_weapons()
 
     def finalize_tuning(self, logic) -> None:
         """
         Do postprocessing after all events have been ingested, including tuning.
+
+        TODO: we should probably get rid of the logic/tuning distinction, and
+        just impose some requirements, like: you can't AP-CHECK a location until
+        after its AP-ITEM, and you can't reference a key until after its AP-KEY.
         """
         for loc in self.all_locations():
             loc.finalize_tuning(self.regions.get(f'{loc.pos.map}/{loc.region}', None))
@@ -565,8 +568,11 @@ class DoomWad:
             region.finalize_tuning(default=[])
         for map in self.maps.values():
             map.finalize_tuning()
+
+        self.disambiguate_duplicate_locations()
         for loc in self.all_locations():
             self.locations_by_name[loc.name()] = loc
+
         self.finalize_ids(logic)
 
     def finalize_key_items(self):

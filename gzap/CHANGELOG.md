@@ -79,6 +79,8 @@ in-place to the new format.
     failing generation later.
   - `get_filler_item_name()` now works again (and the generated filler is
     weighted based on its prevalence in the item pool).
+  - Region names are now taken into account when deciding if location names are
+    unique.
 
 # 0.8.5
 
