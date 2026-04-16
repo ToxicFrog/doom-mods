@@ -392,11 +392,11 @@ class ::RandoState play {
   }
 
   ::Region GetCurrentRegion() const {
-    return regions.GetIfExists(level.MapName);
+    return regions.GetIfExists(level.MapName.MakeUpper());
   }
 
   ::Region GetRegion(string map) const {
-    return regions.GetIfExists(map);
+    return regions.GetIfExists(map.MakeUpper());
   }
 
   void DefineOrActivateSubregion(string name) {

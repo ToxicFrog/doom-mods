@@ -245,7 +245,7 @@ class ::PerLevelHandler : EventHandler {
       line_exit_secret = true;
     } else if (line.special == 74) {
       let info = LevelInfo.FindLevelByNum(line.args[0]);
-      let region = apstate.GetRegion(info.MapName);
+      let region = apstate.GetRegion(info.MapName.MakeUpper());
       if (region && !region.CanAccess()) {
         evt.ShouldActivate = false;
       }
