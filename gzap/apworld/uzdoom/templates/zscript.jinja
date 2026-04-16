@@ -20,7 +20,7 @@ class GZAP_LevelCleared_{{map.map}} : GZAP_LevelCleared { Default { GZAP_Invento
 
 // Types for weapon tokens.
 {% for item in wad.items() %}
-{% if item.has_category('weapon') %}
+{% if item.has_category('weapon') and item.has_category('ap_flag') %}
 {% if item.map %}
 class {{item.typename}} : GZAP_WeaponGrant { Default { GZAP_InventoryToken.Map "{{item.map}}"; GZAP_WeaponGrant.Typename "{{item.weapon}}"; } }
 {% else %}
