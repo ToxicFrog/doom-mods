@@ -241,6 +241,8 @@ class DoomPool:
             if loc.pos.map == map
         ]
 
+    def contains_item(self, name):
+        return (self.item_counts + self.vanilla_item_counts + self.starting_item_counts)[name] > 0
 
     def progression_items(self):
         return Counter({

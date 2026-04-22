@@ -3,7 +3,7 @@
 ; Initial dream of hell.
 AP-REGION { "map": "MAP01", "region": "Hell Entry", "keys": ["weapon/Axe/want", "weapon/BearzerkAxe/want"] }
 ; TODO: adjust weapon logic here -- spike gun will also do fine and is what the rest of the map expects
-AP-REGION { "map": "MAP01", "region": "Hell Cavern", "keys": ["weapon/Axe/want", "map/MAP01/Hell Entry", "weapon/HatchetAndShield/want", "weapon/FragfireGun/want", "weapon/Hellclaw/want", "weapon/BearzerkAxe/want"] }
+AP-REGION { "map": "MAP01", "region": "Hell Cavern", "keys": ["map/MAP01/Hell Entry"] }
 AP-REGION { "map": "MAP01", "region": "Hell Water Cave", "keys": ["map/MAP01/Hell Cavern"] }
 AP-REGION { "map": "MAP01", "region": "Hell Lavafall", "keys": ["map/MAP01/Hell Water Cave"] }
 ; Access from cavern via dream sequence behind locked door.
@@ -72,7 +72,7 @@ AP-REGION { "map": "MAP01", "region": "Gardener's Bedroom", "keys": ["map/MAP01/
 AP-REGION { "map": "MAP01", "region": "(repaired gate)", "keys": ["map/MAP01/Outpost Gatehouse", "key/InventoryPowerCore/3"] }
 AP-REGION { "map": "MAP01", "region": "Outpost Airlock", "keys": ["map/MAP01/(repaired gate)"] }
 ; First encounter with cultists. Includes the wide tunnels leading to and from the outdoor battlefield.
-AP-REGION { "map": "MAP01", "region": "Battlefield", "keys": ["weapon/Axe/want", "map/MAP01/Outpost Airlock", "weapon/SpikeGun/want", "weapon/BearzerkAxe/want"] }
+AP-REGION { "map": "MAP01", "region": "Battlefield", "keys": ["map/MAP01/Outpost Airlock", "weapon/SpikeGun/want"] }
 AP-REGION { "map": "MAP01", "region": "Shrine", "keys": ["map/MAP01/Battlefield"] }
 ; Technically reachable without going through the shrine, but it's all logically equivalent...
 AP-REGION { "map": "MAP01", "region": "Cramped Tunnels", "keys": ["map/MAP01/Shrine"] }

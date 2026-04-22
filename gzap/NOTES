@@ -23,9 +23,6 @@ To release a new version:
   [X] YAML options
   [X] Top-level weapon display in the level select menu
   [X] Per-level weapon display likewise
-[ ] GZAPRC improvements
-  [ ] Move key shape definitions into GZAPRC
-  [ ] Move key colour definitions into GZAPRC
 [ ] Weapon logic overhaul
   [X] Design
   [X] YAML options for no vs. manual vs. automatic logic
@@ -33,17 +30,23 @@ To release a new version:
   [X] Autopopulate regions or levels using new algo
   [X] Mark weapons as required/useful depending on logic
   [ ] Difficulty settings
-[ ] Event-based locations
+[X] Event-based locations
   [X] Design
   [X] Convert maps, secrets into proper EBLs
   [X] Spawn event locations
   [X] Add spawn events for AOS
-  [ ] Add spawn events for Hedon MAP02
+  [X] Add spawn events for Hedon MAP02
+
+### probably defer these to 0.9.x since they don't require a rescan
+[ ] GZAPRC improvements
+  [ ] Move key shape definitions into GZAPRC
+  [ ] Move key colour definitions into GZAPRC
 [ ] Separate exit locations from clear tokens
   [ ] Set the clear bit on the Region rather than granting an item
   [ ] Send a message to the apworld when this happens, make AP-STATUS less frequent
   [ ] Allow randomizing items into the exit events
 [ ] Progressive level unlocks?
+[ ] Logic for Hedon episode 1
 
 ### scanner
 
@@ -53,7 +56,8 @@ To release a new version:
 
 ### generator
 
-- rethink how weapon logic works; see design/weapons.md
+- add apworld merge web tool, multiple apworlds in, one apworld out; useful for
+  stuff like sigil or space cats
 - progressive weapon support
   - infer the progressive weapon order from the order it appears in the wad
   - maybe pull it out as a yaml option so it can be customized

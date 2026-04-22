@@ -41,6 +41,11 @@ def fqin_prereq(world, wad, map, fqin, count=1):
 def item_prereq(world, wad, map, typename, count=1):
   return fqin_prereq(world, wad, map, wad.items_by_type[typename].name())
 
+def weapon_in_pool(world, wad, map, typename):
+  global_cap = wad.weapon_capability(typename)
+  local_cap = wad.weapon_capability(typename, map.map)
+  return world.pool.contains_item(global_cap) or world.pool.contains_item(local_cap)
+
 def weapon_prereq(world, wad, map, typename, strictness = 'need'):
   if strictness == 'need':
     has_global_cap = fqin_prereq(world, wad, map, wad.weapon_capability(typename))
@@ -48,7 +53,11 @@ def weapon_prereq(world, wad, map, typename, strictness = 'need'):
     return lambda state: has_global_cap(state) or has_local_cap(state)
   elif strictness == 'want':
     if world.options.combat_logic_mode.is_enabled():
-      return weapon_prereq(world, wad, map, typename, 'need')
+      if weapon_in_pool(world, wad, map, typename):
+        return weapon_prereq(world, wad, map, typename, 'need')
+      else:
+        print(f'Dropping prerequisite weapon/{typename}/want in {map.map} because no such weapon exists')
+        return lambda _: True
     else:
       return lambda _: True
   elif strictness == 'auto':
