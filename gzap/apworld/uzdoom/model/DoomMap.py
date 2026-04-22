@@ -85,7 +85,7 @@ class DoomMap:
 
     def __post_init__(self, info):
         self.mapinfo = MAPINFO(**info)
-        self.debug_name = f'map/{self.map}'
+        self.extra_rules.debug_name = f'map/{self.map}'
 
     def finalize_tuning(self):
         self.extra_rules.finalize_tuning(default=[])
