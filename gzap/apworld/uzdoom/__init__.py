@@ -503,7 +503,7 @@ class UZDoomWorld(World):
             "wad": self.wad_logic,
             "keys": self.keys_in_pool(),
             "maps": self.maps,
-            "items": self.pool.all_pool_items(),
+            "items": self.wad_logic.items(),
             "starting_items": [
                 item for item in self.multiworld.precollected_items[self.player]
             ],
