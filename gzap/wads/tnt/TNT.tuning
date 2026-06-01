@@ -110,11 +110,11 @@ AP-REGION { "map": "MAP03", "region": "Central Building", "keys": ["map/MAP03/Co
 AP-REGION { "map": "MAP03", "region": "SE Guard Post", "keys": ["map/MAP03/Central Building"] }
 AP-REGION { "map": "MAP03", "region": "NE Guard Post", "keys": ["map/MAP03/Central Building"] }
 AP-REGION { "map": "MAP03", "region": "Teleporter Secret Closet", "keys": ["flag/secret", "map/MAP03/Courtyard Outer Ring"] }
-// TODO: These rooms require the Yellow key to exit -- Check for work-around by restarting the map and/or save-scumming
+// These rooms require the Yellow key to exit, but you can jump to the entrance to get around this
 AP-REGION { "map": "MAP03", "region": "North Rooms", "keys": ["key/RedCard", "map/MAP03/Courtyard Outer Ring"] }
 AP-REGION { "map": "MAP03", "region": "North Rooms Secret", "keys": ["flag/secret", "key/RedCard", "map/MAP03/North Rooms"] }
 AP-REGION { "map": "MAP03", "region": "Toxic Pit", "keys": ["key/RedCard", "map/MAP03/North Rooms"] }
-// TODO: This room requires the Blue key to exit -- Check for work-around by restarting the map and/or save-scumming
+// This room requires the Blue key to exit, but you can jump to the entrance to get around this
 AP-REGION { "map": "MAP03", "region": "East Room", "keys": ["key/YellowCard", "map/MAP03/Courtyard Outer Ring"] }
 AP-REGION { "map": "MAP03", "region": "South Room", "keys": ["key/BlueCard", "map/MAP03/Courtyard Outer Ring"] }
 AP-CHECK { "id": 291, "name": "MAP03 - Bullets [ClipBox] [-1641,-1017]", "pos": ["MAP03",-1641,-1017,0], "region": "Entrance Area" }
@@ -1283,7 +1283,7 @@ AP-REGION { "map": "MAP14", "region": "Entrance Area", "keys": [] }
 AP-REGION { "map": "MAP14", "region": "West Mechanical Room", "keys": ["map/MAP14/Entrance Area"] }
 AP-REGION { "map": "MAP14", "region": "Mechanical Corridor", "keys": ["map/MAP14/West Mechanical Room"] }
 AP-REGION { "map": "MAP14", "region": "East Mechanical Room", "keys": ["map/MAP14/Mechanical Corridor"] }
-// TODO: Requires Red Keycard or passing through a secret area to exit - Verify work-arounds
+// This door requires the Red key to exit, but you can jump to the entrance to get around this
 AP-REGION { "map": "MAP14", "region": "Past Yellow Door", "keys": ["key/YellowCard", "map/MAP14/East Mechanical Room"] }
 AP-REGION { "map": "MAP14", "region": "East Corridor", "keys": ["key/YellowCard", "map/MAP14/Past Yellow Door"] }
 AP-REGION { "map": "MAP14", "region": "Fenced Overlook", "keys": ["key/YellowCard", "map/MAP14/East Corridor"] }
