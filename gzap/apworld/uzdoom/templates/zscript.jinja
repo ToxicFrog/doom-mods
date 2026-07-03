@@ -57,10 +57,10 @@ class GZAP_DataPackageEventHandler : StaticEventHandler {
     {% if singleplayer %}
     RegisterHints(apstate);
     {% endif %}
-    GrantStartingItems(apstate);
     apstate.PostInit({{per_map_weapons}});
-
     console.printf("Archipelago data package initialized.");
+
+    GrantStartingItems(apstate);
   }
 
   void RegisterKeys(GZAP_RandoState apstate) {
