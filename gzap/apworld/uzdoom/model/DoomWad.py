@@ -672,7 +672,7 @@ class DoomWad:
                     tag=f"{weapon.name()} ({map.map})")
 
     def finalize_ids(self, logic):
-        for item in self.items_by_name.values():
+        for item in sorted(self.items_by_name.values(), key=lambda x: x.name()):
             logic.register_item(item)
-        for loc in self.all_locations():
+        for loc in sorted(self.all_locations(), key=lambda x: x.name()):
             logic.register_location(loc)
