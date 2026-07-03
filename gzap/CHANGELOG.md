@@ -214,6 +214,7 @@ to gradually get applied to other wads over the next several releases.
   - The inventory screen now displays hints for the current level.
   - Hints for progression items are now sorted before useful, which are before
     filler.
+  - Local-only items now sort after multiworld items in the list.
   - The scanner now fully supports spawn filters rather than using skill levels.
     This fixes a number of problems with wads that use custom skill levels. Wads
     need to be rescanned to use this data, but old logic files using skill levels

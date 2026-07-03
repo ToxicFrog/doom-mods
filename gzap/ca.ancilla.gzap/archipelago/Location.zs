@@ -130,6 +130,10 @@ class ::Location abstract play {
       // In-logic is always before OOL, which is always before unreachable.
       return self.track > other.track;
     }
+    if (self.IsLocal() != other.IsLocal()) {
+      // Local-only checks should always sort after AP-visible ones.
+      return other.IsLocal();
+    }
     return self.name < other.name;
   }
 
