@@ -100,7 +100,7 @@ class ::RandoState play {
   }
 
   ::Region RegisterMap(string map, string checksum, int hub) {
-    DEBUG("Registering map: %s (exit: %d)", map, exit_apid);
+    DEBUG("Registering map: %s (hub: %d)", map, hub);
     if (checksum != LevelInfo.MapChecksum(map)) {
       console.printfEX(PRINT_HIGH, "\c[RED]ERROR:\c- Map %s has checksum \c[RED]%s\c-, but the randomizer expected \c[CYAN]%s\c-.",
         map, LevelInfo.MapChecksum(map), checksum);
