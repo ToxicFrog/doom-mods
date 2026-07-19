@@ -165,16 +165,19 @@ Entire games that replace most or all of the vanilla gameplay.
 | Golden Souls Remastered          |      |         |        |         | missing | (3) |
 | Golden Souls 2                   |      |         |        |         | missing | (3) |
 | Hedon Bloodrite                  |   22 |     205 |   1273 |    1404 | missing | This is going to be a project but I think it would be pretty cool. |
+| [Rise Of The Wool Ball]          |   18 |      44 |    ??? |     ??? | complete | (2) [v1.3](https://www.mediafire.com/file/89mrybv7adxy1oi/ROTWB_v1.3.zip). The game itself is very buggy when swapping maps, do not skip intermissions!!!|
 | [Space Cats Saga]                |   40 |     433 |    794 |     896 | partial  | Episode 1 has complete logic, other episodes only basic. Checks that replace pettable cats may sometimes require noclipping to touch even if they look reachable. |
 | [Time Tripper]                   |    9 |      88 |     66 |      87 | complete | |
 
 (1) Requires progressive item support in the logic engine.
+(2) GZAP_DEBUG: Currently fails to fetch checks and secrets from the APWorld.
 (3) Requires support for "stacking" keys that open more things the more you have.
 
 [The Adventures of Square]: ../../release/apworlds/zdoom_the_adventures_of_square.apworld
 [Faithless]: ../../release/apworlds/zdoom_faithless.apworld
 [Space Cats Saga]: ../../release/apworlds/zdoom_space_cats_saga.apworld
 [Time Tripper]: ../../release/apworlds/zdoom_time_tripper.apworld
+[Rise Of The Wool Ball]: ../../release/apworlds/zdoom_rotwb.apworld
 
 ### Fan-Games for Other IPs
 
