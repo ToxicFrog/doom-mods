@@ -262,6 +262,12 @@ class UZDoomContext(SuperContext):
 
             # print("tracker_loop IL: ", new_il, self.last_tracked)
             # print("tracker_loop OOL:", new_ool, self.last_tracked_ool)
+
+            # TODO: This assumes that IDs are static between generation and
+            # play. Since items/locations are sorted before ID assignment, this
+            # is generally a safe assumption as long as objects aren't added or
+            # removed, but to be more robust we should query the datapackage
+            # sent by the server for this, rather than the local apworld.
             id_map = self.tracker_core.get_current_world().location_name_to_id
             for name in new_ool:
                 self.ipc.send_track(id_map[name], "OOL")
