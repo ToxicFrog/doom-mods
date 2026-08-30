@@ -108,7 +108,8 @@ actual structure of the WAD, and produce a better experience for players.
 If a location needs a hand-crafted name, and naming [the area it's in](#defining-regions)
 isn't sufficient, you can do this by editing the logic file directly. Find the
 `AP-ITEM` or `AP-SECRET` line corresponding to the location you want to rename,
-and add `"name": "my custom name"` to it.
+and add `"name": "my custom name"` to it. (There is no need to change the `name`
+in the tuning file to match; it is used only for debugging.)
 
 Names do not have to be unique; the randomizer will add a unique suffix if there
 are duplicate location names in the logic.
