@@ -177,6 +177,19 @@ Make sure when doing this that there is a path from the level entrance to wherev
 you are that doesn't require the keys you just disabled, or you can produce
 impossible logic.
 
+#### Locations with alternate paths
+
+Some maps have locations that can be reached in multiple ways with different
+requirements, e.g. a room that can be accessed using either the blue or red
+keys. You can express this in the tuning file by listing the check multiple
+times, once with each set of requirements, e.g.:
+
+    AP-CHECK { "id": 451, "name": "MAP01 - Soulsphere", "pos": ["MAP01",0,976,56], "keys": ["BlueCard"] }
+    AP-CHECK { "id": 451, "name": "MAP01 - Soulsphere", "pos": ["MAP01",0,976,56], "keys": ["RedCard"] }
+
+This would record in the tuning file that the Soulsphere in MAP01 can be reached
+as soon as you have either the red or blue key; you don't need both.
+
 #### Defining subregions
 
 Subregions let you group together checks that have the same logical access
@@ -213,6 +226,10 @@ from the logic dashboard in order to actually record them -- if you don't do thi
 they won't be saved and the tuning journal will be unusable! This will result in
 a batch of `AP-REGION` messages at the end of the tuning journal. You must manually
 move them to the start of the tuning journal before publishing it.
+
+As with individual locations, you can define alternate access rules for a region
+by duplicating its entry in the tuning file and listing different rules for the
+duplicate.
 
 
 ## Publishing your logic
