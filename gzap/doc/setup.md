@@ -24,7 +24,8 @@ For troubleshooting information, see [the FAQ](./faq.md).
     - Optional but recommended: [Universal Tracker](https://github.com/FarisTheAncient/Archipelago/releases)
   - [UZArchipelago.pk3](../../release/UZArchipelago-latest.pk3)
     - ⚠️ **It is important that the pk3 version matches the apworld version.**
-  - [UZDoom](https://zdoom.org/downloads)
+  - [UZDoom 4.14.3](https://github.com/UZDoom/UZDoom/releases/tag/4.14.3)
+    - ⚠️ 5.0.0 will not work due to [this bug](https://github.com/UZDoom/UZDoom/issues/1840)
     - Optional but recommended: a launcher like [DoomRunner](https://github.com/Youda008/DoomRunner)
   - The base game data ("IWAD") for the maps you will be playing:
     - ⚠️ If you are using one of [the rereleases](https://www.gog.com/en/games?developers=id-software-nightdive-studios), make sure you get the version of the WAD from the `base/` directory, not `rerelease/`
