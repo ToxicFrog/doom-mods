@@ -177,7 +177,7 @@ class DoomPool:
             item = self.wad.item(name)
             if item.has_category('weapon'):
                 self.item_counts[name] -= count
-                if not world.options.per_map_weapons:
+                if not world or not world.options.per_map_weapons:
                     # print('remap:', name, self.wad.weapon_capability(item.typename))
                     new_items[self.wad.weapon_capability(item.typename)] = count
                 else:
