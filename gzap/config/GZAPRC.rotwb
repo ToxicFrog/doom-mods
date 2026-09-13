@@ -1,0 +1,55 @@
+### Rise Of The Woll Ball Data ### By Xindage : (14/06/26-DD/MM/YY)
+# The game is completed and this data uses 1.3 version of the game.
+
+require E1M1 d6af5fcd914f7452789b1d58493b74e8;
+
+# All maps are connected throught WORLDMAP events.
+scanner {
+  levels E1M1 E1M2 E1M3 E1M4 E1M5 E1M6 E2M1 E2M2 E2M3 E2M4 E2M5 E2M6 E3M1 E3M2 E3M3 E3M4 E3M5 E3M6;
+  prune WORLDMAP TITLEMAP;
+}
+
+## Weapons
+tag PistolNew Pistol;
+tag ShotgunNew Shotgun;
+tag ChaingunNew Chaingun;
+tag RocketLauncherNew Cucumber launcher;
+tag PewpRifle Bird gun;
+
+## Ammo
+category small-ammo: ClipNew ShellNew RocketAmmoNew RocketAmmoNew2;
+category medium-ammo: PewpPack RocketAmmoNew4;
+
+tag ClipNew bullets;
+tag ShellNew Shells;
+tag RocketAmmoNew Cucumber;
+tag RocketAmmoNew2 Two Cucumbers;
+tag RocketAmmoNew4 Box of cucumbers;
+tag PewpPack bowl of seeds;
+
+## Health
+category small-health: FoodNomNom FoodNomNom2;
+
+tag FoodNomNom Health bonus;
+tag FoodNomNom2 Health bonus;
+
+## Armor
+category big-armor: HugeCoffee;
+category small-armor: Coffee;
+
+tag Coffee Coffee;
+tag HugeCoffee Huge coffee;
+
+## Keys
+tag BlueCard Blue Key;
+tag YellowCard Green Key;
+tag RedCard Red Key;
+
+## Low res?
+# Ignoring Virtual reality data as it does not work well when randomized in the world
+# the map is still present in the pool and has some minimal core gameplay checks.
+category none: LowResKittyPrisoner LowResClipNew LowResShellNew LowResCoffee LowResStimpack LowResFoodNomNom2 LowResFoodNomNom LowResPistolNew LowResShotgunNew;
+# Ignoring Scripted events
+category none: BlackShoesItem Skateboard;
+# Ignore sheeps in e2m5
+category none: LittleSheep;
