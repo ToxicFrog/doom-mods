@@ -89,7 +89,7 @@ These are WADs available throught Night Dive's
 | Anomaly Report                   |      |         |        |         | missing  | |
 | [Base Ganymede]                  |   27 |     149 |    276 |     325 | basic    | |
 | [BTSX E1]                        |   23 |     254 |    447 |     574 | complete | |
-| BTSX Episode 2                   |      |         |        |         | missing  | |
+| [BTSX E2]                        |   24 |     291 |    516 |     641 | complete | |
 | [Deathless]                      |   36 |      65 |    278 |     416 | basic    | |
 | Doom Zero                        |      |         |        |         | missing  | |
 | Double Impact                    |      |         |        |         | missing  | |
@@ -108,6 +108,7 @@ These are WADs available throught Night Dive's
 [Arrival]: ../../release/apworlds/zdoom_arrival.apworld
 [Base Ganymede]: ../../release/apworlds/zdoom_base_ganymede.apworld
 [BTSX E1]: ../../release/apworlds/zdoom_btsx_e1.apworld
+[BTSX E2]: ../../release/apworlds/zdoom_btsx_e2.apworld
 [Deathless]: ../../release/apworlds/zdoom_deathless.apworld
 [Going Down Turbo]: ../../release/apworlds/zdoom_going_down_turbo.apworld
 [Scientist 2023]: ../../release/apworlds/zdoom_scientist.apworld

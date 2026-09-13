@@ -63,7 +63,8 @@ class StartingLevels(OptionSet):
     If you are playing a multiworld game and want to start with nothing at all
     (i.e. Doom is not playable until another world unlocks it), set this to [].
 
-    This option supports globbing expressions.""" + (
+    This option supports globbing expressions.
+    """ + (
     f"""
 
     This wad has a small sphere 1 with default settings.. To avoid generation
