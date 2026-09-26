@@ -554,13 +554,13 @@ class IncludedItemCategories(OptionList):
     start_inventory_from_pool is preferred for that.
 
     Entries are checked left to right, with earlier ones taking precedence over
-    later ones; locations that match multiple entries will only affected by the
+    later ones; locations that match multiple entries are only affected by the
     first one. So, for example, this setting:
 
         ['health:none', 'small:all', 'ammo:50']
 
-    Would randomize no health of any size, all big items, and 50% of whatever
-    ammo is left.
+    Would randomize no health of any size, all small items (that aren't health),
+    and 50% of whatever (non-health, non-small) ammo is left.
 
     On a technical level, this setting is checked before anything else,
     including UZArchipelago's built in baseline settings and the toggles above,
