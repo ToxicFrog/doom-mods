@@ -93,7 +93,7 @@ class ::PickupDetector : Inventory {
       return HandleKey(plh.apstate, item);
     }
 
-    if (item is "Weapon") {
+    if (::WeaponCapabilities.IsWeapon(item)) {
       return HandleWeapon(plh.apstate, Weapon(item));
     }
 

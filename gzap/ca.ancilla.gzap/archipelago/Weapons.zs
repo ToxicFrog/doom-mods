@@ -180,14 +180,24 @@ class ::WeaponCapabilities play {
     }
   }
 
+  // Things explicitly listed in the GZAPRC are only counted as weapon if
+  // their category is "weapon". This lets us exclude Weapon-classed actors
+  // that aren't really weapons, like the motorcycle in Ashes.
+  static bool IsWeapon(Actor thing) {
+    let [category, ok] = ::RC.Get().GetCategory(thing.GetClassName());
+    if (ok) {
+      return category == "weapon";
+    }
+    return thing is "Weapon";
+  }
+
   void ApplyRealCapsToPawn(::RealCaps caps, PlayerPawn mo) {
     DEBUG("ApplyRealCapsToPawn(%s)", mo.GetTag());
 
     let to_remove = ::StringSet.Create();
     let thing = mo.inv;
     while (thing) {
-      let cls = thing.GetClass();
-      if (cls is "Weapon") {
+      if (IsWeapon(thing)) {
         DEBUG(" - %s", thing.GetClassName());
         to_remove.Insert(thing.GetClassName());
       }

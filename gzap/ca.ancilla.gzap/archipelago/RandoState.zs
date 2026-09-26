@@ -71,7 +71,7 @@ class ::RandoState play {
     // since we don't track items/caps/etc per-player yet...
     Inventory thing = players[0].mo.inv;
     while (thing) {
-      if (thing.GetClass() is "Weapon") {
+      if (::WeaponCapabilities.IsWeapon(thing)) {
         // Grant the player a real capability on their starting weapons that is
         // valid across all maps.
         self.wcaps.AddGlobalRealCap(Weapon(thing));
