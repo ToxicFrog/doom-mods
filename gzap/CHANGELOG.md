@@ -27,6 +27,7 @@ in-place to the new format.
     - `Adventures of Square` now uses this for the floppy disk drops in E1A9 and
       the hexagon key drop in E2A11.
   - Complete logic and tuning for `BTSX E2`, by Sayeth.
+  - Complete logic and tuning for `Rise of the Wool Ball`, by Xindage.
 - Changed:
   - Major overhaul of the yaml options.
     - Many settings that previously had to be controlled by editing the

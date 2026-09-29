@@ -46,7 +46,7 @@
       }
 
       function getFileContents(selector) {
-        return document.querySelector(selector).innerText.replaceAll("__WAD__", getWadSymbol());
+        return document.querySelector(selector).innerText.replaceAll("__WAD__", getWadSymbol()).replaceAll("__WAD_TITLE__", getWadTitle());
       }
 
       function generate() {
@@ -58,7 +58,7 @@
         zip.file(getApworldName() + "/archipelago.json", getFileContents("#manifest_template"));
         zip.file(getApworldName() + "/__init__.py", getFileContents("#init_template"));
         zip.file(getApworldName() + "/Options.py", getFileContents("#options_template"));
-        zip.file(getApworldName() + "/VERSION", "gzap-0.8.5-114-g5ce18177");
+        zip.file(getApworldName() + "/VERSION", "gzap-0.8.5-116-g0e3640f8");
 
         let futures = [];
         for (f of files.files) {
@@ -86,7 +86,7 @@
     </script>
   </head>
   <body>
-    <p>⚠️ This is the generator for the <b>unstable</b> version of the apworld (gzap-0.8.5-114-g5ce18177). <a href="apworld-generator-0.8.5.html">Click here for latest stable (0.8.5).</a></p>
+    <p>⚠️ This is the generator for the <b>unstable</b> version of the apworld (gzap-0.8.5-116-g0e3640f8). <a href="apworld-generator-0.8.5.html">Click here for latest stable (0.8.5).</a></p>
     <!--
     <p>🛈 This is the generator for version 0.8.5 of the apworld.</p>
     -->
@@ -103,7 +103,7 @@
       <a id="download"></a>
       <pre id="manifest_template">
 {
-    "game": "GZDoom (__WAD__)",
+    "game": "GZDoom (__WAD_TITLE__)",
     "version": 7,
     "compatible_version":7,
     "authors": ["ToxicFrog's robot army"]

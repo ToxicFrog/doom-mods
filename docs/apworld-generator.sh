@@ -53,7 +53,7 @@ cat <<EOF
       }
 
       function getFileContents(selector) {
-        return document.querySelector(selector).innerText.replaceAll("__WAD__", getWadSymbol());
+        return document.querySelector(selector).innerText.replaceAll("__WAD__", getWadSymbol()).replaceAll("__WAD_TITLE__", getWadTitle());
       }
 
       function generate() {
@@ -110,7 +110,7 @@ cat <<EOF
       <a id="download"></a>
       <pre id="manifest_template">
 {
-    "game": "GZDoom (__WAD__)",
+    "game": "GZDoom (__WAD_TITLE__)",
     "version": 7,
     "compatible_version":7,
     "authors": ["ToxicFrog's robot army"]

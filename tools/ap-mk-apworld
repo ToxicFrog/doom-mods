@@ -1,0 +1,26 @@
+#!/usr/bin/env zsh
+#
+# Usage: ap-mk-apworld apworld_name
+
+WAD="$1"
+WAD_DIR="apworld/zdoom_$WAD"
+WAD_TITLE="$(basename "$(ls wads/$WAD/*.logic* | head -n1)")"
+WAD_TITLE=${WAD_TITLE%.logic*}
+
+rm -rf $WAD_DIR
+mkdir -p $WAD_DIR
+for template in wads/__template__/*; do
+  sed -E "
+    s,__WAD__,$WAD,g
+    s,__WAD_TITLE__,$WAD_TITLE,g
+  " < $template > $WAD_DIR/"$(basename "$template")"
+done
+cp -a apworld/uzdoom/VERSION $WAD_DIR/
+cp -a wads/$WAD/* $WAD_DIR/
+mkdir -p $WAD_DIR/{logic,tuning}
+for file in $WAD_DIR/*; do
+  case $file in
+    *.logic*) mv $file $WAD_DIR/logic/ ;;
+    *.tuning*) mv $file $WAD_DIR/tuning/ ;;
+  esac
+done

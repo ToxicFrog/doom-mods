@@ -46,15 +46,7 @@ ${TOPDIR}/docs/apworld-generator.html: ${TOPDIR}/docs/apworld-generator.sh wads/
 # files into it, evaluating the templates, and then copying the logic, tuning,
 # and customization files into it.
 apworld/zdoom_%/: wads/%/* wads/__template__/*
-	rm -rf apworld/zdoom_$*/
-	mkdir -p apworld/zdoom_$*
-	cp -a wads/__template__/* apworld/zdoom_$*
-	sed -E -i "s,__WAD__,$*,g" apworld/zdoom_$*/*
-	cp -a apworld/uzdoom/VERSION apworld/zdoom_$*
-	cp -a wads/$*/* apworld/zdoom_$*/
-	mkdir -p apworld/zdoom_$*/logic apworld/zdoom_$*/tuning
-	mv apworld/zdoom_$*/*.logic* apworld/zdoom_$*/logic/ || true
-	mv apworld/zdoom_$*/*.tuning* apworld/zdoom_$*/tuning/ || true
+	${TOPDIR}/tools/ap-mk-apworld $*
 
 install: core_apworld addon_apworlds ${PK3}
 	cp -a ${TOPDIR}/release/uzdoom.apworld ~/.local/share/Archipelago/worlds
