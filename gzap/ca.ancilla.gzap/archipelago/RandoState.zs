@@ -210,7 +210,14 @@ class ::RandoState play {
   }
 
   bool HasWeapon(string typename) {
-    DEBUG("HasWeapon? %s = %d", typename, CountItem(typename));
+    // We base this on what weapon grants the player has received, and on what
+    // weapons the player has in their inventory.
+    let pawn = players[0].mo;
+    DEBUG("HasWeapon? %s -> %d %d", typename,
+      pawn.FindInventory(typename),
+      wcaps.HasWeaponInScope(GetCurrentRegion().map, typename));
+    if (pawn.FindInventory(typename)) return true;
+    return wcaps.HasWeaponInScope(GetCurrentRegion().map, typename);
     return CountItem(typename) > 0;
   }
 

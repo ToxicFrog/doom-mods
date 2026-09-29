@@ -126,6 +126,12 @@ class ::WeaponCapabilities play {
     }
   }
 
+  bool HasWeaponInScope(string scope, string typename) {
+    let grants = self.real.GetIfExists(scope);
+    if (!grants) return false;
+    return grants.contains(typename);
+  }
+
   // Apply all pending wcaps in the global scope and in the player's current
   // scope.
   // Pending wcaps corresponding to weapons the player is already holding are
