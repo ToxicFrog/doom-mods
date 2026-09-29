@@ -106,8 +106,8 @@ class ::RandoKey play {
     return self;
   }
 
-  void Increment(::RandoState apstate) {
-    self.held++;
+  void SetCount(::RandoState apstate, uint count) {
+    if (count == self.held) return;
     // The internal state of the affected regions hasn't changed, but we still
     // bump their TXNs so that the menu drawing code can see that something
     // about them has changed and redraw their entries.
@@ -116,6 +116,10 @@ class ::RandoKey play {
       if (!region) continue;
       region.txn++;
     }
+  }
+
+  void Increment(::RandoState apstate) {
+    self.SetCount(apstate, self.held + 1);
   }
 
   void DebugPrint() {

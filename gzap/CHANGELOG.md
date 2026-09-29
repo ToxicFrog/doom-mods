@@ -85,6 +85,8 @@ in-place to the new format.
     weighted based on its prevalence in the item pool).
   - Region names are now taken into account when deciding if location names are
     unique.
+  - AP will no longer send you extra copies of keys whenever you load a saved
+    game.
 
 # 0.8.5
 

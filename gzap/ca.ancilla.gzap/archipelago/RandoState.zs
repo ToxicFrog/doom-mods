@@ -231,16 +231,22 @@ class ::RandoState play {
   // Otherwise, the current count is increased by one.
   void GrantItem(uint apid, uint count = 0) {
     ++txn;
-    DEBUG("GrantItem: %d", apid);
+    DEBUG("GrantItem: %d x%d", apid, count);
     if (keys.CheckKey(apid)) {
       let key = keys.Get(apid);
+      DEBUG("Item is a key: %s", key.FQIN());
       ::Util.announce("$GZAP_GOT_ITEM", key.FQIN());
-      key.Increment(self);
+      if (count) {
+        key.SetCount(self, count);
+      } else {
+        key.Increment(self);
+      }
       UpdatePlayerInventory();
       UpdateStatus();
 
     } else if (items_by_apid.CheckKey(apid)) {
       let item = items_by_apid.Get(apid);
+      DEBUG("Item is a %s [%s]", item.tag, item.typename);
       UpdateItemCount(item, count);
       // If the item is a map-scoped inventory token, update the txn for the
       // corresponding map region so that the level select screen knows to update.
@@ -260,9 +266,11 @@ class ::RandoState play {
       // Unknown item type, *but*, that just means AP doesn't know about it so
       // it's not in our initial item table. It might still exist in the wad,
       // in which case we can create a table entry for it on the spot.
+      DEBUG("GrantItemByName(%s, %d): registering previously unknown item", typename, count);
       UpdateItemCount(self.RegisterItem(0, typename, "*"..typename), count);
       self.SortItems();
     } else{
+      DEBUG("GrantItemByName(%s, %d): updating item count", typename, count);
       UpdateItemCount(self.items_by_type.Get(typename), count);
     }
   }
