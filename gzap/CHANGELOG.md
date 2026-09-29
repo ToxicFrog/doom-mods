@@ -87,6 +87,9 @@ in-place to the new format.
     unique.
   - AP will no longer send you extra copies of keys whenever you load a saved
     game.
+  - If disallowed weapons are configured to `turn into ammo`, but we can't
+    figure out what ammo to spawn, the weapon is left on the floor rather than
+    deleted outright.
 
 # 0.8.5
 

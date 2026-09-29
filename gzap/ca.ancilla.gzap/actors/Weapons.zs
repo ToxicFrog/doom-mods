@@ -122,7 +122,11 @@ class ::LockedWeapon : CustomInventory {
       ::Util.SpawnUnrestricted(self, self.original, ALLOW_REPLACE);
     } else if (ShouldReleaseAmmo()) {
       // Spawn ammo for whatever we originally were
-      ReplaceWithAmmo(GetDefault());
+      // If we can't figure out what ammo to spawn, do nothing -- maybe the
+      // player will come back later with a matching weapon. This is relevant
+      // for wads that use weapon spawners, which have no associated ammo and
+      // only turn into weapons later.
+      if (!ReplaceWithAmmo(GetDefault())) return false;
     }
     // Evaporate unconditionally -- either we've already released our contents
     // or evaporation was turned on, otherwise CanPickup() would have returned
@@ -134,13 +138,14 @@ class ::LockedWeapon : CustomInventory {
     return false;
   }
 
-  void ReplaceWithAmmo(readonly<Weapon> thing) {
+  bool ReplaceWithAmmo(readonly<Weapon> thing) {
     // Can't figure out what ammo to spawn if we don't contain a weapon.
-    if (!thing) return;
+    if (!thing) return false;
 
     DEBUG("ReplaceWithAmmo: %s", thing.GetTag());
     SpawnAmmo(thing.AmmoType1, thing.AmmoGive1);
     SpawnAmmo(thing.AmmoType2, thing.AmmoGive2);
+    return true;
   }
 
   void SpawnAmmo(Class<Ammo> cls, int amount) {
