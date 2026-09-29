@@ -48,6 +48,15 @@ class ::ScannedItem : ::ScannedLocation {
     DEBUG("GetHubClusterID: %s (amount: %d / is_hub: %d / cluster: %d)",
         thing.GetClassName(), thing.InterHubAmount, level.ClusterFlags & level.CLUSTER_HUB, level.cluster);
     if (level.ClusterFlags & level.CLUSTER_HUB == 0) return 0;
+    // If we're doing this at runtime, e.g. to emit a dynamically generated AP-KEY
+    // record, we should trust the cluster number this level was registered with,
+    // not the one in the MAPINFO, since the latter may have been overridden by
+    // Archipelago.
+    let apstate = ::RandoState.Get();
+    if (apstate) {
+      let region = apstate.GetCurrentRegion();
+      return region ? region.hub : 0;
+    }
     return level.cluster;
   }
 
