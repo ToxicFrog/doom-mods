@@ -330,6 +330,8 @@ def main(*args):
     print(f"UZDoom IPC files created. Host encoding: {locale.getencoding()}. IPC encoding: UTF-8.")
 
     async def actual_main(args, ipc_dir, ipc_log):
+        # TODO: it would be nice if we could start the tuning-file writer here
+        # even if not connected to the server.
         ctx = UZDoomContext(args.connect, args.password, gzd_dir)
         await ctx.start_tasks()
         if tracker_loaded:

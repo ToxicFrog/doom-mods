@@ -92,7 +92,13 @@ class IPC:
           # print("[uzdoom]", line)
           # if the line has the format "<username>: <line of text>", this is a chat message
           # this needs special handling because there is no OnSayEvent or similar in uzdoom
-          if self.nick and line.startswith(self.nick + ": "):
+          # if it starts with "<username>: ;line of text", it is a comment to be added to the
+          # tuning file and should not be forwarded to AP.
+          if self.nick and line.startswith(self.nick + ": ;"):
+            evt = "AP-NOTE"
+            line = ";; " + line.removeprefix(self.nick + ": ;").strip()
+            payload = { "msg": line }
+          elif self.nick and line.startswith(self.nick + ": "):
             evt = "AP-CHAT"
             payload = { "msg": line.removeprefix(self.nick + ": ").strip() }
           elif line.startswith("AP-"):
