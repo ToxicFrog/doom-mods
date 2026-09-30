@@ -168,6 +168,7 @@ Entire games that replace most or all of the vanilla gameplay.
 | Hedon Bloodrite                  |   22 |     205 |   1273 |    1404 | missing | This is going to be a project but I think it would be pretty cool. |
 | [Rise Of The Wool Ball]          |   18 |      44 |    113 |     164 | complete | [v1.3](https://www.mediafire.com/file/89mrybv7adxy1oi/ROTWB_v1.3.zip). The game itself is very buggy when swapping maps, do not skip intermissions!!!|
 | [Space Cats Saga]                |   40 |     433 |    794 |     896 | partial  | Episode 1 has complete logic, other episodes only basic. Checks that replace pettable cats may sometimes require noclipping to touch even if they look reachable. |
+| [Supplice]                       |   26 |     415 |    594 |     863 | basic    | v0.5.0.1 Early Access. |
 | [Time Tripper]                   |    9 |      88 |     66 |      87 | complete | |
 
 (1) Requires progressive item support in the logic engine.
@@ -177,6 +178,7 @@ Entire games that replace most or all of the vanilla gameplay.
 [Faithless]: ../../release/apworlds/zdoom_faithless.apworld
 [Rise Of The Wool Ball]: ../../release/apworlds/zdoom_rotwb.apworld
 [Space Cats Saga]: ../../release/apworlds/zdoom_space_cats_saga.apworld
+[Supplice]: ../../release/apworlds/zdoom_supplice.apworld
 [Time Tripper]: ../../release/apworlds/zdoom_time_tripper.apworld
 
 ### Fan-Games for Other IPs
