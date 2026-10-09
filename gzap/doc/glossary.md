@@ -45,6 +45,8 @@ Short for GZArchipelago Runtime Configuration. A special lump that wad developer
 can include to control how the wad scanner behaviours. UZAP contains several of
 these containing configurations for various supported games and wads.
 
+Full documentation can be found in [gzaprc.md](./gzaprc.md).
+
 ## In-World
 
 Objects that exist in the level somewhere, such as the player and *Check* actors.

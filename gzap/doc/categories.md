@@ -9,7 +9,7 @@ yaml match up to items and locations in the game.
 
 The wad scanner considers every actor in the level. Any actor it can assign a
 category to (based on its own internal heuristics or on the configuration in the
-`GZAPRC` lump) gets a corresponding entry in the logic file.
+[`GZAPRC` lump](./gzaprc.md)) gets a corresponding entry in the logic file.
 
 When loading the logic, the apworld creates both an item and a location from
 each entry. Usually, these are both assigned whatever categories the scanner

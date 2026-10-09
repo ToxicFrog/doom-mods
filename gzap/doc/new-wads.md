@@ -78,9 +78,9 @@ them for exits; the scanner will pretend they don't exist.
 ### Overriding scanner behaviour
 
 Some wads contain items that UZArchipelago's automatic item classifier does not
-properly handle. For these, you can write a `GZAPRC` file defining how to handle
-them. All `GZAPRC` files, in any `pk3`, `wad`, or directory passed to uzdoom using
-`-file`, will be loaded.
+properly handle. For these, you can write a [`GZAPRC` file](./gzaprc.md)
+defining how to handle them. All `GZAPRC` files, in any `pk3`, `wad`, or
+directory passed to uzdoom using `-file`, will be loaded.
 
 It can be used to override how items are classified for randomization (for example,
 reclassifying something from "tool" to "powerup"), exclude items from randomization,
@@ -91,7 +91,8 @@ By including a `scanner { ... }` block, you can also set default values for the
 scanner configuration cvars, controlling which levels are scanned and which are
 ignored.
 
-This repo contains a [several examples](../config/) in the config directory.
+In addition to the [documentation](./gzaprc.md), this repo contains
+[several examples](../config/) for various WADs.
 
 If you are a mapper, you can include a `GZAPRC` lump in your wad and it will be
 automatically detected and loaded by UZArchipelago.
