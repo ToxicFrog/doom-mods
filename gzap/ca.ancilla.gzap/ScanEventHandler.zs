@@ -37,6 +37,18 @@ class ::ScanEventHandler : StaticEventHandler {
     }
   }
 
+  override void CheckReplacement(ReplaceEvent evt) {
+    if (!scan_enabled) return;
+
+    class<Actor> cls = evt.replacee;
+    while (true) {
+      let [newtype, ok] = self.rc.GetReplacement(cls.GetClassName());
+      if (!ok) break;
+      cls = newtype;
+      evt.replacement = newtype;
+    }
+  }
+
   override void WorldThingSpawned(WorldEvent evt) {
     if (!scan_enabled || !in_sequence) return;
     let thing = evt.thing;

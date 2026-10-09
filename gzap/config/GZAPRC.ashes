@@ -9,57 +9,98 @@ require MAP00 92a4314fb0847d33ab8559d637e7435d;
 # the BluePassCard, will give you a BlueCard once you pick it up, which will in
 # turn result in it identifying that map as having both a BlueCard and a BluePassCard
 # and you as having both of them. Which works, but is untidy.
-# Using typename to replace them with the underlying keycards or skulls avoids this,
-# but at the cost of them no longer lining up with what the in-level messages say
-# and so forth.
+# Replacing them with the underlying keycards or skulls avoids this, but at the
+# cost of them no longer lining up with what the in-level messages say.
 # Ideally we'd want some way of saying "treat a BlueCard in the player's inventory
 # like a BluePassCard in the AP inventory, and vice versa", or something.
 category key:
   BluePassCard RedPassCard YellowPassCard
   AshesSilverKey AshesBronzeKey AshesGoldKey;
+replacement RedCard: RedPassCard;
+replacement BlueCard: BluePassCard;
+replacement YellowCard: YellowPassCard;
+replacement BlueSkull: AshesSilverKey;
+replacement RedSkull: AshesBronzeKey;
+replacement YellowSkull: AshesGoldKey;
 
-# Weapon handling
-# shotguns are handled via PumpySpawn, which gives the player pumpaction normally,
-# but if they have pumpaction2 (the upgraded PAS) it gives them ammo instead.
-# The upgrade is handled normally by giving the player PumpgunBuild2, which, when
-# picked up, removes the pumpaction and grants the pumpaction2.
-# The SMG is handled similarly: IngramSpawn is the in-world object, which gives
-# you Ingram if you have no SMG, or 9mm ammo if you do.
-# Ingram2 and Ingram3 are the upgraded versions.
-# IngramBuild2 and IngramBuild3 each take away the other two versions and give you
-# the 2/3 versions (2 is suppressed, 3 is suppressed + accuracy IIRC?)
-# For this to work right we probably want progressive weapon support, or something --
-# the first shotgun they find grants pumpaction, second takes that away and grants
-# pumpaction2 or pumpgunbuild2?
+tag BlueSkull Silver Utility Key;
+tag RedSkull Bronze Staff Key;
+tag YellowSkull Gold Security Key;
+tag RedCard Red Access Card;
+tag BlueCard Blue Access Card;
+tag YellowCard Yellow Access Card;
 
-# So how do I want progressive things to work?
-# It needs to be in the GZAPRC, not the logic, because it has to be available
-# at runtime.
-# But the logic also needs to know at least some things about it to spawn enough --
-# e.g. we need at least three Progressive Ingrams in the pool even if number-of-weapons
-# is set to a lower value.
-#category weapon: PumpySpawn;
-# progressive PumpySpawn: pumpaction pumpaction2;
+# Random health spawner. All the FoodTin1/2/3/4 are identical apart from graphics.
+#
+# TODO: maybe we want to be able to do something like:
+# replacement FoodTin1 FoodTin2 FoodTin3 FoodTin4: CanneryReplacer;
+# and it will randomly pick a replacement, but in a deterministic way based on
+# coordinates or something, so it's consistent across scans?
+replacement FoodTin1: CanneryReplacer;
+tag FoodTin1 Food;
 
-#category weapon: IngramSpawn;
-# progressive IngramSpawn: Ingram Ingram2 Ingram3;
-
-# Pipebombs are formally weapons, but since each one in the game just gives you
-# one to throw -- i.e. the weapon is also the ammo -- we map them as big-ammo
-# instead.
-#category big-ammo: pipebomb;
-
-# In normal play -- you get the pumpaction2 by talking to Fortune, accepting her
-# bet, then beating her in a race to the bottom of DAM1
-# you get the ingram2 (silenced) in Dead Man Walking, by talking to the bunker
-# QM in MAP52 and buying a silencer
-# you get the ingram3 (fully upgraded) in MAP06, Michonne Circle, by delivering
-# the briefcase to Rigs and then choosing "you make weapons?" when he offers you
-# a reward (and by having the ingram in your inventory).
+# The motorcycle is, internally, a weapon. This means that by default we will
+# generate weapon grants for it, causing the player to re-equip it every time
+# we apply weapon ownership...
+category none: Motohandles;
 
 # There's also various quest items which are autocategorized as "tools" and should
 # instead be categorized as cross-level quest items.
 # Some of these are given by ACS and not available to the scanner.
 # Handling those properly likely requires the same sort of event support in the
 # logic file that Faithless wants.
-#category key: QuestRadio QuestJerryCan;
+category key: QuestRadio QuestJerryCan QuestBriefcase QuestCodebook;
+
+# 30s of health, double firing rate
+category big-health-powerup: RegenStimpack;
+category big-attack-powerup: Powerrage;
+# radsuit, flashlight
+category medium-tool: PurgeStimpack;
+category big-useful-tool: LanternPickup;
+tag LanternPickup Lantern;
+
+# Money
+# Medium sizes are 100. Small sizes are 1-20.
+category small-token: Chips JUNKtools JUNKcable JUNKgear JUNKnuts JUNKpipe JUNKspares CrapJunk;
+category medium-token: CollectibleGuitar CollectibleHissy CollectibleNMAcap;
+tag JUNKtools Junk Tools;
+tag JUNKcable Junk Cable;
+tag JUNKgear Junk Gear;
+tag JUNKnuts Junk Nuts;
+tag JUNKpipe Junk Pipe;
+tag JUNKspares Junk Spares;
+tag CrapJunk Random Junk;
+tag CollectibleGuitar Collectible Guitar;
+tag CollectibleHissy Collectible Hissy Doll;
+tag CollectibleNMAcap Collectible NMA Cap;
+
+# Random loot
+# Breaking a CONTCardbox, PropRubbishBag, or CONTTrashcan has a 120/255
+# chance (box, bag) or 60/255 (can) of dropping a CrapJunk.
+#
+# This in turn is evenly weighted between tools, spares, gear, nuts, cable, or
+# pipe, which have values [15, 20, 15, 10, 15, 5], giving us an EV of 13⅓.
+#
+# If we want to do Box Rando, the easiest way is just to typename them all to
+# either CrapJunk or JUNKnuts, and every destroyable box shows up as a check
+# instead. The fancy way is to add an AP-EVENT handler for every single box,
+# which would be a Project and probably require new GZAPRC directives to do
+# automatically.
+replacement CrapJunk: CONTCardbox PropRubbishBag CONTTrashcan;
+category small-token-breakable: CONTCardbox PropRubbishBag CONTTrashcan;
+tag CONTCardbox Cardboard Box;
+tag PropRubbishBag Rubbish Bag;
+tag CONTTrashcan Trash Can;
+
+category big-ammo: pipebomb;
+
+replacement PumpAction2: PumpySpawn PumpAction;
+replacement Ingram3: IngramSpawn Ingram Ingram2;
+# progressive PumpySpawn: pumpaction pumpaction2;
+# progressive IngramSpawn: ingram ingram2 ingram3;
+
+# Additionally, some weapons you are assumed to pick up from enemies...
+prereqs {
+  actor PistolThug AkimboRipper: weapon/Glock/auto;
+  actor ShotgunThug ShotgunRipper: weapon/PumpAction2/auto;
+}

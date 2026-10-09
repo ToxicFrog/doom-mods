@@ -1,7 +1,11 @@
-// Loader for the GZAPRC lump, including lump parser. See end of file for the
-// formal grammar, and the included GZAPRC for a working example.
-// This is the file that controls per-wad settings for UZArchipelago. At present
-// this just means the scanner.
+// Loader for the GZAPRC lump, including lump parser.
+//
+// This lump controls UZAP behaviour at runtime and can be included in the main
+// UZAP pk3 or in the WADs/PK3s being randomized. All RCs present will be
+// loaded.
+//
+// This controls both scan-time and play-time behaviour; see doc/gzaprc.md for
+// full details.
 #namespace GZAP;
 #debug off;
 
@@ -39,7 +43,7 @@ class ::RC {
   }
 
   Map<string, string> categorizations;
-  Map<string, string> typenames;
+  Map<string, string> replacements;
   ::StringSet destroy_on_spawn;
   Map<string, string> tags;
   Map<string, string> scanner_settings;
@@ -49,8 +53,8 @@ class ::RC {
     foreach (k, v : other.categorizations) {
       SetCategory(k, v);
     }
-    foreach (k, v : other.typenames) {
-      SetTypename(k, v);
+    foreach (k, v : other.replacements) {
+      SetReplacement(k, v);
     }
     foreach (k : other.destroy_on_spawn.contents) {
       SetDestroyOnSpawn(k);
@@ -103,8 +107,8 @@ class ::RC {
     foreach (k,v : self.categorizations) {
       console.printf("  category %s: %s;", v == "" ? "none" : v, k);
     }
-    foreach (k,v : self.typenames) {
-      console.printf("  typename %s: %s;", v, k);
+    foreach (k,v : self.replacements) {
+      console.printf("  replacement %s: %s;", v, k);
     }
     foreach (k,v : self.tags) {
       console.printf("  tag %s %s;", k, v);
@@ -146,13 +150,13 @@ class ::RC {
     return val, ok;
   }
 
-  void SetTypename(string cls, string typename) {
-    DEBUG("Set typename for %s to %s", cls, typename);
-    self.typenames.Insert(cls.MakeLower(), typename);
+  void SetReplacement(string replacee, string replacement) {
+    DEBUG("Set replacement for %s to %s", replacee, replacement);
+    self.replacements.Insert(replacee.MakeLower(), replacement);
   }
 
-  string, bool GetTypename(string cls) {
-    let [val, ok] = self.typenames.CheckValue(cls.MakeLower());
+  string, bool GetReplacement(string cls) {
+    let [val, ok] = self.replacements.CheckValue(cls.MakeLower());
     return val, ok;
   }
 
@@ -333,7 +337,7 @@ class ::RCParser {
 
   bool Statement() {
     if (peek("category")) { return ActorCategory(); }
-    if (peek("typename")) { return ActorTypename(); }
+    if (peek("replacement")) { return ActorReplacement(); }
     if (peek("destroy-on-spawn")) { return ActorDestroyOnSpawn(); }
     if (peek("tag")) { return ActorTag(); }
     if (peek("require")) { return Requirements(); }
@@ -359,18 +363,18 @@ class ::RCParser {
     return true;
   }
 
-  bool ActorTypename() {
-    require("typename");
+  bool ActorReplacement() {
+    require("replacement");
     Array<string> types;
     if (!ClassList(types, ":")) return false;
-    if (types.size() != 1) return Error("exactly one typename");
+    if (types.size() != 1) return Error("exactly one replacement class");
 
     Array<string> classes;
     if (!ClassList(classes, ";")) return false;
-    if (classes.size() == 0) return Error("list of classes to remap");
+    if (classes.size() == 0) return Error("list of classes to replace");
 
     foreach (cls : classes) {
-      self.rc.SetTypename(cls, types[0]);
+      self.rc.SetReplacement(cls, types[0]);
     }
     return true;
   }
@@ -392,6 +396,7 @@ class ::RCParser {
     if (!require("tag")) return false;
     string actor_type = next("actor type");
     if (!actor_type) return Error("actor typename");
+    if (peek(":")) require(":");
     string tag = StringFromTokenList(";", "actor tag");
     if (tag == "") return Error("non-empty user-facing actor tag");
     self.rc.SetActorTag(actor_type, tag);
@@ -540,10 +545,3 @@ class ::RCParser {
     return ::Util.join(" ", tokens);
   }
 }
-
-// Lump grammar:
-//             rc := statement*
-//      statement := comment | itemcategory | itemtype
-//        comment := '#' SINGLELINE EOL
-//   itemcategory := 'category' CATEGORYNAME ':' CLASSNAME+ ';'
-//       itemtype := 'typename' CLASSNAME ':' CLASSNAME+ ';'

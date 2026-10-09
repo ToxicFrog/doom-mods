@@ -130,7 +130,7 @@ class ::PerLevelHandler : EventHandler {
   }
 
   void UpdateCheckPickups() {
-    DEBUG("Recomputing item count");
+    // DEBUG("Recomputing item count");
     level.found_items = 0;
     foreach (::CheckPickup thing : ThinkerIterator.Create("::CheckPickup", Thinker.STAT_DEFAULT)) {
       thing.UpdateFromLocation();
@@ -276,13 +276,24 @@ class ::PerLevelHandler : EventHandler {
   // Special handling for weapons. We use this to replace weapons that we weren't
   // responsible for spawning, so we can decide later if the player is allowed
   // to pick them up.
+  // This is also where handling for the RC replacement directive occurs.
   override void CheckReplacement(ReplaceEvent evt) {
-    if (self.disable_actor_replacement > 0) return;
     // What happens outside the randomizer stays outside the randomizer.
     if (!apstate) return;
     if (!apstate.GetCurrentRegion()) return;
 
-    if (IsAPManagedWeapon(evt.replacee)) {
+    class<Actor> cls = evt.replacee;
+    while (true) {
+      let [newtype, ok] = ::RC.Get().GetReplacement(cls.GetClassName());
+      if (!ok) break;
+      DEBUG("Spawning %s: RC provides replacement %s", cls.GetClassName(), newtype);
+      cls = newtype;
+      evt.replacement = newtype;
+    }
+
+    if (self.disable_actor_replacement > 0) return;
+    if (IsAPManagedWeapon(cls)) {
+      DEBUG("Weapon locking applies to %s, installing lock.", cls.GetClassName());
       self.last_replaced_actor = evt.replacee;
       evt.replacement = "::LockedWeapon";
     }

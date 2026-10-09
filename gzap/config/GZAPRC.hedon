@@ -70,7 +70,7 @@ category medium-health-armor-attack-defence-tool: InventoryMysteryPotion;
 # TODO: we may want to just treat the acid and toxic variants as "potion launcher"
 # and collapse them into the merged weapon; or, alternatively, exclude the merged
 # weapon and require the player to find them both separately.
-typename PotionLauncherAcid: SpecialPotionBox;
+replacement PotionLauncherAcid: SpecialPotionBox;
 category weapon: PotionLauncher;
 
 # Can be used at a scribe's table to make scrolls.
@@ -393,15 +393,15 @@ tag VoidStew Void Stew;
 # - Axe is always replaced with BearzerkAxe, which stacks more
 # - AmmoBullet and all other weapons are replaced with nothing
 # - SpecialPotionBox is only ever spawned at runtime
-typename AmmoBox: BearzerkAmmoBox;
-typename AmmoBelt: BearzerkAmmoBelt;
-typename AmmoCultistSpike: BearzerkAmmoCultistSpike;
-typename Boltmag: BearzerkBoltmag;
-typename FragfireCan: BearzerkFragfireCan;
-typename FragfireCanHalf: BearzerkFragfireCanHalf;
-typename PotionBoxAcid: BearzerkPotionBoxAcid;
-typename PotionBoxToxic: BearzerkPotionBoxToxic;
-typename SpikeMag: BearzerkSpikeMag;
+replacement AmmoBox: BearzerkAmmoBox;
+replacement AmmoBelt: BearzerkAmmoBelt;
+replacement AmmoCultistSpike: BearzerkAmmoCultistSpike;
+replacement Boltmag: BearzerkBoltmag;
+replacement FragfireCan: BearzerkFragfireCan;
+replacement FragfireCanHalf: BearzerkFragfireCanHalf;
+replacement PotionBoxAcid: BearzerkPotionBoxAcid;
+replacement PotionBoxToxic: BearzerkPotionBoxToxic;
+replacement SpikeMag: BearzerkSpikeMag;
 
 # We also need to destroy the bearzerk spawners before their state machines run,
 # as that will cause them to randomly be replaced with other items and/or deleted,
