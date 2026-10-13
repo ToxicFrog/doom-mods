@@ -67,7 +67,7 @@ class StartingLevels(OptionSet):
     """ + (
     f"""
 
-    This wad has a small sphere 1 with default settings.. To avoid generation
+    This wad has a small sphere 1 with default settings. To avoid generation
     failures in solo play, you may need to do one or more of:
     - enable `secrets`;
     - turn up `medium_items` and/or `small_items`;

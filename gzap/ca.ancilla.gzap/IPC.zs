@@ -63,6 +63,9 @@ class ::IPC {
   }
 
   static void CheckWithRegionTuning(::Location loc, string pos_field, string subregion) {
+    // FIXME: if our keys are not a subset of the keys in the region, we should
+    // emit key data here as well, so we can do things like "these locations are
+    // in the same region for name purposes, but have different prereqs".
     CheckLocation(loc, pos_field, string.format(", \"region\": \"%s\"", subregion));
   }
 
