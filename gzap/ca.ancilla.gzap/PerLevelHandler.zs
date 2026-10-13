@@ -385,7 +385,15 @@ class ::PerLevelHandler : EventHandler {
     }
 
     if (is_save || self.early_exit) return;
+    // This is a bit of a hack. We don't want to mark the exit as unreachable
+    // even if ap_scan_unreachable was set; if it's 2 we want to set everything
+    // *except* the exit unreachable, and if it's 1 we assume this is a mistake
+    // because if the level can't be exited it can't be completed at all and
+    // should be excluded.
+    int unreachable = ap_scan_unreachable;
+    cvar.FindCvar("ap_scan_unreachable").SetInt(0);
     region.CheckEvent("exit", next_map, null);
+    cvar.FindCvar("ap_scan_unreachable").SetInt(unreachable);
 
     if (ap_scan_unreachable >= 2) {
       foreach (location : region.locations) {

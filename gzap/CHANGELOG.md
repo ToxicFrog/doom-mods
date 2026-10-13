@@ -247,6 +247,8 @@ to gradually get applied to other wads over the next several releases.
   - Fix crash on game start when some maps were excluded from randomization.
   - Some impossible yaml settings will now error out early in the generation
     process rather than failing at the end with "game appears unbeatable".
+  - Exiting the level with `ap_scan_unreachable 2` no longer marks the exit
+    itself as unreachable.
 
 # 0.8.0
 
