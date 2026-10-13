@@ -554,17 +554,6 @@ class DoomWad:
         self.finalize_key_items()
         self.finalize_weapons()
 
-        # Add keys as "loose items". This ensures that keys without corresponding
-        # locations (i.e. defined by AP-KEY but not associated with a physical
-        # location or an event) will still end up in the pool. It's ok if a key
-        # gets added by both a location and by this because the pool count limiter
-        # will restrict the pool to as many copies of the key as actually exist
-        # in the wad. This does mean if someone is playing with a key's location
-        # excluded it still ends up in the pool but PLEASE DON'T DO THAT.
-        for name,map in self.maps.items():
-            for key in self.keys_for_map(name):
-                map.add_loose_item(key.fqin())
-
     def finalize_tuning(self, logic) -> None:
         """
         Do postprocessing after all events have been ingested, including tuning.
@@ -614,7 +603,11 @@ class DoomWad:
             # to it. In particular, this means that if a location in the pool
             # contains "GreenKey (MAP04)" and that's subsumed by "GreenKey (EP1)",
             # adding that location to the pool will get you the latter.
+            # We also add these dynkeys to the pool as "loose items" associated
+            # with their maps, to ensure they actually spawn in the multiworld
+            # even though they have no backing location.
             for mapname in key.maps:
+                self.maps[mapname].add_loose_item(key.fqin())
                 keyname = f"{key.tag} ({mapname})"
                 if keyname in self.items_by_name:
                     self.items_by_name[keyname] = key_item

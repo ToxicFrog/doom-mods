@@ -14,11 +14,14 @@ The basic idea here is:
 - move items from the pool to the starting inventory
 """
 import os
+import logging
 
 from collections import Counter
 from math import ceil
 from random import shuffle
 from typing import List,Dict
+
+logger = logging.getLogger("UZDoom")
 
 class DoomPool:
     """
@@ -209,6 +212,9 @@ class DoomPool:
                 # and have no vanilla location, so they cannot be excluded or
                 # vanilla-placed.
                 if ratio == 'start':
+                    self.starting_item_counts[item] += count
+                elif ratio == 'vanilla':
+                    logger.warning(f'AP-generated item {item} has "vanilla" placement but did not come from an in-game location. Treating it as "start" instead.')
                     self.starting_item_counts[item] += count
                 elif ratio != 1.0:
                     raise RuntimeError(f'AP-generated item {item} from {map.map} has invalid included_item_categories setting of "{ratio}"')
