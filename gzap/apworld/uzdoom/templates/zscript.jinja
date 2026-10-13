@@ -117,8 +117,8 @@ class GZAP_DataPackageEventHandler : StaticEventHandler {
   void RegisterHints(GZAP_RandoState apstate) {
     console.printf("Populating singleplayer hint table.");
       {% for map in maps %}{% for loc in locations(map.map) %}
-      {% if item_at(loc.name()) and item_at(loc.name()).map %}
-      PrepareHint("{{escape(item_name_at(loc.name()))}}", "{{item_at(loc.name()).map}}", "{{loc.pos.map}}", "{{escape(loc.name())}}", {{loc.id}});
+      {% if should_hint(loc.name()) %}
+      PrepareHint("{{escape(item_name_at(loc.name()))}}", "{{item_at(loc.name()).map or ""}}", "{{loc.pos.map}}", "{{escape(loc.name())}}", {{loc.id}});
       {% endif %}
       {% endfor %}{% endfor %}
   }
@@ -135,6 +135,8 @@ class GZAP_DataPackageEventHandler : StaticEventHandler {
   }
 
   void PrepareHint(string item_name, string item_map, string loc_map, string loc_name, int loc_id) {
+    // Multiple hints for the same item? Only include the first one.
+    if (hints.CheckKey(item_name)) return;
     let hint = GZAP_HintInfo(new("GZAP_HintInfo"));
     hint.item_map = item_map;
     hint.loc_map = loc_map;

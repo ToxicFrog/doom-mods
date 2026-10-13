@@ -480,6 +480,13 @@ class UZDoomWorld(World):
                 return loc.item.name
             return ""
 
+        def should_hint(name: str) -> bool:
+            # Whether we should generate a hint for the item at this location in
+            # singleplayer mode. (In MP the server generates hints for everything.)
+            # We hint for all progression and useful items.
+            loc = self.get_location(name)
+            return loc.item and (loc.item.advancement or loc.item.useful)
+
         def flags_at(loc: DoomLocation) -> str:
             return self.get_location(loc.name()).flags()
 
@@ -521,6 +528,7 @@ class UZDoomWorld(World):
             "item_at": item_at,
             "item_type_at": item_type_at,
             "item_name_at": item_name_at,
+            "should_hint": should_hint,
             "flags_at": flags_at,
             "escape": escape,
             "win_map_count": self.options.win_map_count.value,

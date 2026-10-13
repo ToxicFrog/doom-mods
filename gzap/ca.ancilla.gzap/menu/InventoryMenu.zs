@@ -36,6 +36,7 @@ class ::InventoryMenu : ::CommonMenu {
     }
 
     InitKeyDisplay();
+    InitWeaponDisplay(state);
     InitPeekDisplay();
     mDesc.mSelectedItem = -1;
   }
@@ -55,9 +56,17 @@ class ::InventoryMenu : ::CommonMenu {
     // by the menu, not the menu item.
     // 0x48 == 'H'
     if (evt.type == UIEvent.TYPE_CHAR && evt.KeyChar == 0x48) {
-      let selected = ::KeyToggle(mDesc.mItems[mDesc.mSelectedItem]);
-      if (selected) {
-        selected.RequestHint();
+      // HACK HACK HACK
+      // We should make this a virtual on some common superclass
+      // But maybe not until after the key grant refactor, which will let us
+      // unify a lot of key and weapon handling.
+      let keytoggle = ::KeyToggle(mDesc.mItems[mDesc.mSelectedItem]);
+      if (keytoggle) {
+        keytoggle.RequestHint();
+      }
+      let weaponhinter = ::WeaponGrantHinter(mDesc.mItems[mDesc.mSelectedItem]);
+      if (weaponhinter) {
+        weaponhinter.RequestHint();
       }
       return true;
     }
@@ -76,6 +85,23 @@ class ::InventoryMenu : ::CommonMenu {
 
     foreach (_, key : region.keys) {
       mDesc.mItems.Push(new("::KeyToggle").Init(region, key));
+    }
+  }
+
+  void InitWeaponDisplay(::RandoState apstate) {
+    let region = ::RandoState.Get().GetCurrentRegion();
+    if (!region) return;
+    PushText(" ");
+    PushText("$GZAP_MENU_INVENTORY_WEAPONS", Font.CR_FIRE);
+    PushText(" ");
+
+    foreach (item : apstate.items) {
+      if (!item.IsWeaponGrant()) continue;
+      if (item.total > 0) continue;
+      let [map,typename] = item.WeaponGrantInfo();
+      if (map == region.map && apstate.IsPerMapWeapons() || map == "*" && !apstate.IsPerMapWeapons()) {
+        mDesc.mItems.Push(new("::WeaponGrantHinter").Init(region, item));
+      }
     }
   }
 
@@ -230,5 +256,47 @@ class ::KeyToggle : ::KeyValueSelectable {
     } else {
       return StringTable.Localize("$GZAP_MENU_KEY_OFF") .. suffix;
     }
+  }
+}
+
+
+class ::WeaponGrantHinter : ::KeyValueSelectable {
+  ::Region region;
+  ::RandoItem grant;
+
+  ::WeaponGrantHinter Init(::Region region, ::RandoItem grant) {
+    self.region = region;
+    self.grant = grant;
+    super.Init(FormatWeaponName(), FormatWeaponStatus());
+    return self;
+  }
+
+  override void Ticker() {
+    self.key = FormatWeaponName();
+    self.value = FormatWeaponStatus();
+    super.Ticker();
+  }
+
+  virtual string FormatWeaponName() {
+    return grant.tag;
+  }
+
+  virtual string FormatWeaponStatus() {
+    if (self.grant.total > 0) {
+      return "\c[GREEN]√";
+    }
+
+    let hint = self.region.GetHint(self.grant.tag);
+    if (hint) {
+      return ::Util.FormatHint(hint.player, hint.location);
+    } else {
+      return StringTable.Localize("$GZAP_MENU_KEY_MISSING");
+    }
+  }
+
+  void RequestHint() {
+    if (self.grant.total > 0) return;
+    Menu.MenuSound("menu/change");
+    EventHandler.SendNetworkCommand("ap-hint", NET_STRING, self.grant.tag);
   }
 }

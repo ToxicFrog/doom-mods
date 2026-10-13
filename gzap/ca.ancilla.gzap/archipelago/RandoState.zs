@@ -163,8 +163,10 @@ class ::RandoState play {
   // that level on the assumption it's an access flag or a map or something.
   // Unscoped hints (e.g. "your BFG is at...") are not currently supported in-game.
   void RegisterHint(string scope, string fqin, string player, string location) {
+    DEBUG("RegisterHint: scope=%s, item=%s", scope, fqin);
     let key = FindKeyByFQIN(fqin);
     if (key) {
+      DEBUG("-> item is key, ignoring scope and hinting in all relevant maps");
       foreach (map : key.maps.contents) {
         let region = self.GetRegion(map);
         if (!region) continue;
@@ -173,9 +175,17 @@ class ::RandoState play {
       return;
     }
 
-    let region = self.GetRegion(scope);
-    if (!region) return;
-    region.RegisterHint(fqin, player, location);
+    if (scope == "") {
+      DEBUG("-> item is unscoped, hinting in all maps");
+      foreach (region : self.regions) {
+        region.RegisterHint(fqin, player, location);
+      }
+    } else {
+      let region = self.GetRegion(scope);
+      if (!region) return;
+      DEBUG("-> hinting in %s", region.map);
+      region.RegisterHint(fqin, player, location);
+    }
   }
 
   void SortItems() {
