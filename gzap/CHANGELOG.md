@@ -19,6 +19,7 @@ in-place to the new format.
     to find the corresponding version of it in the pool first.
     - If this is enabled, the level select screen will show you which weapons
       have been unlocked in each map.
+  - Weapons can now be hinted and toggled on and off from the inventory screen.
   - Errors caused by mismatches between the generating apworld and the pk3
     loaded during play should now produce a slightly more obvious error at game
     startup.

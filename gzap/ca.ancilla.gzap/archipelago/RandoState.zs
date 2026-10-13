@@ -386,6 +386,18 @@ class ::RandoState play {
     GetCurrentRegion().ToggleKey(keytype);
   }
 
+  void ToggleWeapon(string weapontype) {
+    ++txn;
+    let scope = GetCurrentRegion().map;
+    self.wcaps.ToggleRealCap(scope, weapontype);
+    self.wcaps.ApplyRealCaps(scope);
+  }
+
+  bool WeaponEnabled(string weapontype) const {
+    let scope = GetCurrentRegion().map;
+    return wcaps.Enabled(scope, weapontype);
+  }
+
   void OnTick() {
     if (!dirty) return;
     let region = GetCurrentRegion();

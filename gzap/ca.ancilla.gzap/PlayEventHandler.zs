@@ -317,6 +317,8 @@ class ::PlayEventHandler : StaticEventHandler {
       region.ClearSavedPosition();
     } else if (cmd.command == "ap-toggle-key") {
       apstate.ToggleKey(cmd.ReadString());
+    } else if (cmd.command == "ap-toggle-weapon") {
+      apstate.ToggleWeapon(cmd.ReadString());
     } else if (cmd.command == "ap-toggle-prereq") {
       if (!apstate.subregion) return;
       apstate.subregion.TogglePrereq(cmd.ReadString());

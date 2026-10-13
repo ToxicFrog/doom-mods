@@ -91,9 +91,21 @@ class ::InventoryMenu : ::CommonMenu {
   void InitWeaponDisplay(::RandoState apstate) {
     let region = ::RandoState.Get().GetCurrentRegion();
     if (!region) return;
+
+    let real_caps = apstate.wcaps.real.GetIfExists(region.map);
+    if (!real_caps || real_caps.typenames.CountUsed() == 0) return;
+
     PushText(" ");
     PushText("$GZAP_MENU_INVENTORY_WEAPONS", Font.CR_FIRE);
     PushText(" ");
+
+    // To do this properly, we need to both list all real capabilities that the
+    // player has, so they can toggle weapons they're holding on and off, and
+    // also all weapon grants the player doesn't have, so they can request
+    // hints for them.
+    foreach (typename, enabled : real_caps.typenames) {
+      mDesc.mItems.Push(new("::WeaponCapToggle").Init(apstate, typename));
+    }
 
     foreach (item : apstate.items) {
       if (!item.IsWeaponGrant()) continue;
@@ -259,6 +271,47 @@ class ::KeyToggle : ::KeyValueSelectable {
   }
 }
 
+class ::WeaponCapToggle : ::KeyValueSelectable {
+  ::RandoState apstate;
+  string typename;
+
+  ::WeaponCapToggle Init(::RandoState apstate, string typename) {
+    self.apstate = apstate;
+    self.typename = typename;
+    super.Init(FormatWeaponName(), FormatWeaponStatus());
+    return self;
+  }
+
+  override void Ticker() {
+    self.key = FormatWeaponName();
+    self.value = FormatWeaponStatus();
+    super.Ticker();
+  }
+
+  virtual string FormatWeaponName() {
+    Class<Actor> cls = self.typename;
+    if (cls) return GetDefaultByType(cls).GetTag();
+    return string.format("??%s??", self.typename);
+  }
+
+  virtual string FormatWeaponStatus() {
+    if (apstate.WeaponEnabled(typename)) {
+      return StringTable.Localize("$GZAP_MENU_KEY_ON");
+    } else {
+      return StringTable.Localize("$GZAP_MENU_KEY_OFF");
+    }
+  }
+
+  override bool MenuEvent(int key, bool fromController) {
+    if (key == Menu.MKey_Enter) {
+      EventHandler.SendNetworkCommand("ap-toggle-weapon", NET_STRING, typename);
+      Menu.MenuSound("menu/change");
+      return true;
+    }
+
+    return super.MenuEvent(key, fromController);
+  }
+}
 
 class ::WeaponGrantHinter : ::KeyValueSelectable {
   ::Region region;

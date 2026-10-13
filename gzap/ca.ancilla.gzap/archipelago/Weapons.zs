@@ -43,12 +43,21 @@ class ::PendingCaps play {
   Array<string> typenames;
 }
 
-class ::RealCaps : ::StringSet {}
+class ::RealCaps play {
+  // Key is weapon typename. Absent means not granted. Absent but value=false
+  // means granted by disabled by the player.
+  Map<string, bool> typenames;
+  void Enable(string typename) { self.typenames.Insert(typename, true); }
+  void Disable(string typename) { self.typenames.Insert(typename, false); }
+  bool Granted(string typename) { return self.typenames.CheckKey(typename); }
+  bool Enabled(string typename) { return self.typenames.GetIfExists(typename); }
+}
 
 class ::WeaponCapabilities play {
   // Speculative weapon capabilities containing typenames sent to us from AP.
   // These may not be the same as what the player actually picks up depending
   // on what mods are loaded.
+  // Both sets of capabilities are indexed by scope (i.e. map name).
   Map<string, ::PendingCaps> pending;
   // Real weapon capabilities. The typenames in these should be directly
   // spawnable without worrying about replacement.
@@ -110,7 +119,7 @@ class ::WeaponCapabilities play {
   void AddGlobalRealCap(Weapon thing) {
     DEBUG("adding real weapon capability (*,%s)", thing.GetClassName());
     foreach (name,region : ::RandoState.Get().regions) {
-      self.real.GetIfExists(name).Insert(thing.GetClassName());
+      self.real.GetIfExists(name).Enable(thing.GetClassName());
     }
   }
 
@@ -119,17 +128,32 @@ class ::WeaponCapabilities play {
   void AddScopedRealCap(string scope, Weapon thing) {
     if (self.use_per_map_caps) {
       DEBUG("adding real weapon capability (%s,%s)", scope, thing.GetClassName());
-      self.real.GetIfExists(scope).Insert(thing.GetClassName());
+      self.real.GetIfExists(scope).Enable(thing.GetClassName());
     } else {
       DEBUG("promoting real cap (%s,%s) to mirrored", scope, thing.GetClassName());
       AddGlobalRealCap(thing);
     }
   }
 
+  void ToggleRealCap(string scope, string typename) {
+    let caps = self.real.GetIfExists(scope);
+    if (!caps || !caps.Granted(typename)) return;
+    if (caps.Enabled(typename)) {
+      caps.Disable(typename);
+    } else {
+      caps.Enable(typename);
+    }
+  }
+
+  bool Enabled(string scope, string typename) {
+    let caps = self.real.GetIfExists(scope);
+    return caps && caps.Enabled(typename);
+  }
+
   bool HasWeaponInScope(string scope, string typename) {
     let grants = self.real.GetIfExists(scope);
     if (!grants) return false;
-    return grants.contains(typename);
+    return grants.Enabled(typename);
   }
 
   // Apply all pending wcaps in the global scope and in the player's current
@@ -159,7 +183,7 @@ class ::WeaponCapabilities play {
     // deal with it in a moment and we can just do nothing. This only really
     // works when replacements are off, as otherwise the real cap won't have a
     // typename matching the speculative one.
-    if (self.real.GetIfExists(scope).Contains(typename)) {
+    if (self.real.GetIfExists(scope).Granted(typename)) {
       return;
     }
 
@@ -211,7 +235,8 @@ class ::WeaponCapabilities play {
     }
 
     let to_add = ::StringSet.Create();
-    foreach (typename : caps.contents) {
+    foreach (typename, enabled : caps.typenames) {
+      if (!enabled) continue;
       if (to_remove.Contains(typename)) {
         // Player already has this weapon in their inventory.
         DEBUG(" = %s", typename);
