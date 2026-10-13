@@ -95,16 +95,10 @@ class ::InventoryMenu : ::CommonMenu {
     let real_caps = apstate.wcaps.real.GetIfExists(region.map);
     if (!real_caps || real_caps.typenames.CountUsed() == 0) return;
 
-    PushText(" ");
-    PushText("$GZAP_MENU_INVENTORY_WEAPONS", Font.CR_FIRE);
-    PushText(" ");
+    Array<::WeaponInvMenuItem> items;
 
-    // To do this properly, we need to both list all real capabilities that the
-    // player has, so they can toggle weapons they're holding on and off, and
-    // also all weapon grants the player doesn't have, so they can request
-    // hints for them.
     foreach (typename, enabled : real_caps.typenames) {
-      mDesc.mItems.Push(new("::WeaponCapToggle").Init(apstate, typename));
+      items.Push(::WeaponInvMenuItem(new("::WeaponCapToggle").Init(apstate, typename)));
     }
 
     foreach (item : apstate.items) {
@@ -112,9 +106,28 @@ class ::InventoryMenu : ::CommonMenu {
       if (item.total > 0) continue;
       let [map,typename] = item.WeaponGrantInfo();
       if (map == region.map && apstate.IsPerMapWeapons() || map == "*" && !apstate.IsPerMapWeapons()) {
-        mDesc.mItems.Push(new("::WeaponGrantHinter").Init(region, item));
+        items.Push(::WeaponInvMenuItem(new("::WeaponGrantHinter").Init(region, item)));
       }
     }
+
+    if (items.Size() == 0) return;
+
+    PushText(" ");
+    PushText("$GZAP_MENU_INVENTORY_WEAPONS", Font.CR_FIRE);
+    PushText(" ");
+
+    for (int i = items.Size()-1; i > 0; --i) {
+      for (int j = 0; j < i; ++j) {
+        let first = items[j];
+        let second = items[j+1];
+        if (first.slot > second.slot || first.slot == second.slot && first.subslot > second.subslot) {
+          items[j] = second;
+          items[j+1] = first;
+        }
+      }
+    }
+
+    foreach (item : items) { mDesc.mItems.Push(item); }
   }
 
   void InitPeekDisplay() {
@@ -271,13 +284,19 @@ class ::KeyToggle : ::KeyValueSelectable {
   }
 }
 
-class ::WeaponCapToggle : ::KeyValueSelectable {
+class ::WeaponInvMenuItem : ::KeyValueSelectable {
+  string slot;
+  int subslot;
+}
+
+class ::WeaponCapToggle : ::WeaponInvMenuItem {
   ::RandoState apstate;
   string typename;
 
   ::WeaponCapToggle Init(::RandoState apstate, string typename) {
     self.apstate = apstate;
     self.typename = typename;
+    [self.slot,self.subslot] = ::WeaponSlotInfo.GetSlotForWeapon(typename);
     super.Init(FormatWeaponName(), FormatWeaponStatus());
     return self;
   }
@@ -313,13 +332,15 @@ class ::WeaponCapToggle : ::KeyValueSelectable {
   }
 }
 
-class ::WeaponGrantHinter : ::KeyValueSelectable {
+class ::WeaponGrantHinter : ::WeaponInvMenuItem {
   ::Region region;
   ::RandoItem grant;
 
   ::WeaponGrantHinter Init(::Region region, ::RandoItem grant) {
     self.region = region;
     self.grant = grant;
+    let [map,typename] = grant.WeaponGrantInfo();
+    [self.slot,self.subslot] = ::WeaponSlotInfo.GetSlotForWeapon(typename);
     super.Init(FormatWeaponName(), FormatWeaponStatus());
     return self;
   }

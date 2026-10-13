@@ -55,7 +55,7 @@ class ::WeaponSlotInfo {
     return this;
   }
 
-  int,int GetSlotFromPawn(string playertype, string weptype) {
+  static int,int GetSlotFromPawn(string playertype, string weptype) {
     Class<PlayerPawn> cls = playertype;
     let pawn = PlayerPawn(GetDefaultByType(cls));
 
@@ -73,7 +73,7 @@ class ::WeaponSlotInfo {
     return -1,-1;
   }
 
-  string,int GetSlotForWeapon(string typename) {
+  static string,int GetSlotForWeapon(string typename) {
     Class<Weapon> cls = typename;
     if (!cls) return typename.MakeUpper().Left(1),0;
 
