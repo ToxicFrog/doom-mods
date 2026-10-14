@@ -17,7 +17,7 @@ To release a new version:
 0.9.0
 [X] YAML overhaul
 [X] Weapon locking system
-[ ] Display region on HUD
+[X] Display region on HUD
 [X] Per-level weapon unlocks
   [X] Weapon capability system
   [X] Weapon cap support in the apworld
@@ -43,11 +43,13 @@ To release a new version:
 [ ] GZAPRC improvements
   [ ] Move key shape definitions into GZAPRC
   [ ] Move key colour definitions into GZAPRC
+[ ] Use key grants similar to weapon grants and remove a lot of special-cases related to keys
 [ ] Separate exit locations from clear tokens
   [ ] Set the clear bit on the Region rather than granting an item
   [ ] Send a message to the apworld when this happens, make AP-STATUS less frequent
   [ ] Allow randomizing items into the exit events
 [ ] Progressive level unlocks?
+[ ] Progressive weapons?
 [ ] Logic for Hedon episode 1
 
 ### scanner

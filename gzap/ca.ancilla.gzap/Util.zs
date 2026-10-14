@@ -205,7 +205,7 @@ class ::Util play {
 
   static clearscope string FormatHint(string player, string location) {
     let slot_name = ::RandoState.Get().slot_name;
-    return string.format("\c-⌖ %s @ %s", player, location);
+    return string.format("\c-⯐ %s @ %s", player, location);
   }
 
   static clearscope string FormatPeek(string player, string item, uint flags) {

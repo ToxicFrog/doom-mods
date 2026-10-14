@@ -83,7 +83,7 @@ class ::Subregion play {
       } else if (IsWeaponWant(k)) {
         buf.AppendFormat("\c[YELLOW]⚔");
       } else if (IsRegion(k)) {
-        buf.AppendFormat("\c[WHITE]🌐");
+        buf.AppendFormat("\c[WHITE]⯐");
       } else if (IsFlag(k)) {
         buf.AppendFormat("\c[WHITE]%s", k.Mid(5,1));
       } else {
