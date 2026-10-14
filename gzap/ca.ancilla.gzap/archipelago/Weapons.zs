@@ -117,6 +117,7 @@ class ::WeaponCapabilities play {
   // all scopes. Internally this is implemented by granting the capability in
   // every individual scope rather than with a separate global scope.
   void AddGlobalRealCap(Weapon thing) {
+    if (thing.bPOWERED_UP) return;
     DEBUG("adding real weapon capability (*,%s)", thing.GetClassName());
     foreach (name,region : ::RandoState.Get().regions) {
       self.real.GetIfExists(name).Enable(thing.GetClassName());
@@ -126,6 +127,7 @@ class ::WeaponCapabilities play {
   // Add a real capability to the given scope, allowing and requiring the player
   // to have this weapon whenever they are in this scope.
   void AddScopedRealCap(string scope, Weapon thing) {
+    if (thing.bPOWERED_UP) return;
     if (self.use_per_map_caps) {
       DEBUG("adding real weapon capability (%s,%s)", scope, thing.GetClassName());
       self.real.GetIfExists(scope).Enable(thing.GetClassName());
@@ -218,7 +220,8 @@ class ::WeaponCapabilities play {
     if (ok) {
       return category == "weapon";
     }
-    return thing is "Weapon";
+    let wpn = Weapon(thing);
+    return wpn && !wpn.bPOWERED_UP;
   }
 
   void ApplyRealCapsToPawn(::RealCaps caps, PlayerPawn mo) {
@@ -227,6 +230,7 @@ class ::WeaponCapabilities play {
     let to_remove = ::StringSet.Create();
     let thing = mo.inv;
     while (thing) {
+
       if (IsWeapon(thing)) {
         DEBUG(" - %s", thing.GetClassName());
         to_remove.Insert(thing.GetClassName());
