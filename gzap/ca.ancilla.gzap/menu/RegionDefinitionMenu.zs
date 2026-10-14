@@ -68,7 +68,7 @@ class ::RegionNameEntry : OptionMenuItemTextField {
 	override bool SetString(int i, string s) {
 		if (i == 0) {
       EventHandler.SendNetworkEvent("ap-region/"..s);
-      Menu.GetCurrentMenu().Close();
+      // Menu.GetCurrentMenu().Close();
       EventHandler.SendNetworkEvent("ap-logic-menu");
       return true;
     } else {
