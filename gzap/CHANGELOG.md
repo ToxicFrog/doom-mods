@@ -25,6 +25,8 @@ in-place to the new format.
     startup.
   - Complete logic and tuning for `BTSX E2`, by Sayeth.
   - Complete logic and tuning for `Rise of the Wool Ball`, by Xindage.
+  - Complete logic and tuning for `Alien Vendetta`, `Ancient Aliens`, and
+    `Hellevator`, by Halcyon.
 - For logic developers:
   - Chat messages starting with `;` will be inserted into the tuning file as
     comments, rather than sent to other players.

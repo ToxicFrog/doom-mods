@@ -89,7 +89,7 @@ These are WADs available throught Night Dive's
 | Anomaly Report                   |      |         |        |         | missing  | |
 | [Base Ganymede]                  |   27 |     149 |    276 |     325 | basic    | |
 | [BTSX E1]                        |   23 |     254 |    447 |     574 | complete | |
-| [BTSX E2]                        |   24 |     291 |    516 |     641 | complete | |
+| [BTSX E2]                        |   24 |     291 |    516 |     641 | complete | [notes](../wads/btsx_e2/NOTES.txt) |
 | [Deathless]                      |   36 |      65 |    278 |     416 | basic    | |
 | Doom Zero                        |      |         |        |         | missing  | |
 | Double Impact                    |      |         |        |         | missing  | |
@@ -129,10 +129,13 @@ Map packs that use vanilla or lightly-modified monsters, weapons, etc.
 | -------------------------------- | ---- | ------- | ------ | ------- | -------- | ----- |
 | [1000 Lines]                     |   32 |     137 |    327 |     437 | basic    | Does not include the two bonus levels. |
 | [1000 Lines II]                  |   30 |     151 |    315 |     396 | basic    | |
+| [Alien Vendetta]                 |   32 |     325 |    535 |     715 | complete | [notes](../wads/alien_vendetta/NOTES.txt) |
 | [Amalgoom]                       |   37 |     244 |    848 |    1191 | full     | Must use [RC4](https://www.doomworld.com/forum/topic/152974-amalgoom-rc4-sandy-petersen-interview) version and the [hotfix](https://www.doomworld.com/forum/post/2965170). Details at [#53](https://github.com/ToxicFrog/doom-mods/pull/53). |
+| [Ancient Aliens]                 |   32 |     252 |    536 |     645 | complete | |
 | [Demonfear]                      |   32 |      39 |    271 |     335 | complete | |
 | [Eviternity]                     |   32 |     297 |    592 |     771 | complete | |
 | [Eviternity II]                  |   36 |     470 |    724 |     920 | complete | |
+| [Hellevator]                     |   32 |     114 |    373 |     486 | complete | [notes](../wads/hellevator/NOTES.txt) |
 | [MAYhem 2048]                    |   34 |     179 |    307 |     416 | basic    | |
 | [Overboard]                      |   13 |     290 |    222 |     253 | complete | |
 | [Scythe]                         |   32 |     106 |    363 |     468 | basic    | MAP26-MAP30 are much larger than the rest of the wad; consider excluding them in short sync games. |
@@ -141,10 +144,13 @@ Map packs that use vanilla or lightly-modified monsters, weapons, etc.
 
 [1000 Lines]: ../../release/apworlds/zdoom_1000_lines.apworld
 [1000 Lines II]: ../../release/apworlds/zdoom_1000_lines_ii.apworld
+[Alien Vendetta]: ../../release/apworlds/zdoom_alien_vendetta.apworld
 [Amalgoom]: ../../release/apworlds/zdoom_amalgoom.apworld
+[Ancient Aliens]: ../../release/apworlds/zdoom_ancient_aliens.apworld
 [Demonfear]: ../../release/apworlds/zdoom_demonfear.apworld
 [Eviternity]: ../../release/apworlds/zdoom_eviternity.apworld
 [Eviternity II]: ../../release/apworlds/zdoom_eviternity_ii.apworld
+[Hellevator]: ../../release/apworlds/zdoom_hellevator.apworld
 [MAYhem 2048]: ../../release/apworlds/zdoom_mayhem_2048.apworld
 [Overboard]: ../../release/apworlds/zdoom_overboard.apworld
 [Scythe]: ../../release/apworlds/zdoom_scythe.apworld
