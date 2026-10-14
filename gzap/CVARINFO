@@ -27,6 +27,10 @@ user float ap_uncollected_alpha = 1;
 // Whether to display the name of each check when you find it.
 user bool ap_show_check_names = false;
 
+// Whether to display a simple logic-development HUD showing map, last checked
+// location, subregion name, and subregion prereqs.
+user bool ap_show_logic_hud = false;
+
 // Whether to display icons for what's in each check.
 // "original" shows you what used to be there, floating above the check.
 // "contents" shows you what's in the check itself, if Doom has a sprite for it.

@@ -57,6 +57,42 @@ class ::Subregion play {
     return buf;
   }
 
+  bool IsKey(string prereq) const {
+    return prereq.Left(4) == "key/";
+  }
+  bool IsWeaponNeed(string prereq) const {
+    return prereq.Left(7) == "weapon/" && prereq.IndexOf("/need") > 0;
+  }
+  bool IsWeaponWant(string prereq) const {
+    return prereq.Left(7) == "weapon/" && prereq.IndexOf("/want") > 0;
+  }
+  bool IsRegion(string prereq) const {
+    return prereq.Left(4) == "map/";
+  }
+  bool IsFlag(string prereq) const {
+    return prereq.Left(5) == "flag/";
+  }
+
+  string PrereqsAsShortString() const {
+    string buf = "";
+    foreach (k : self.prereqs.contents) {
+      if (IsKey(k)) {
+        buf.AppendFormat("\c[%s]⚿", ::Util.GetKeyColour(k.Mid(4), "white"));
+      } else if (IsWeaponNeed(k)) {
+        buf.AppendFormat("\c[GREEN]⚔");
+      } else if (IsWeaponWant(k)) {
+        buf.AppendFormat("\c[YELLOW]⚔");
+      } else if (IsRegion(k)) {
+        buf.AppendFormat("\c[WHITE]🌐");
+      } else if (IsFlag(k)) {
+        buf.AppendFormat("\c[WHITE]%s", k.Mid(5,1));
+      } else {
+        buf.AppendFormat("?");
+      }
+    }
+    return buf;
+  }
+
   void Output() {
     Array<string> prereq_list;
     foreach (k : self.prereqs.contents) prereq_list.Push(k);

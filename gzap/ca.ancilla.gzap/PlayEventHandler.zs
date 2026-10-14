@@ -27,6 +27,8 @@ class ::PlayEventHandler : StaticEventHandler {
   // checks being destroyed by level scripting from checks being destroyed because
   // the whole map is being unloaded.
   bool is_exiting;
+  // Name of the last location we checked, used for the HUD.
+  string last_check;
 
   override void OnRegister() {
     console.printf("Loading UZArchipelago client library version %s", MOD_VERSION());
@@ -67,6 +69,42 @@ class ::PlayEventHandler : StaticEventHandler {
   // so it can install the location lists.
   static clearscope ::PlayEventHandler Get() {
     return ::PlayEventHandler(Find("::PlayEventHandler"));
+  }
+
+  ui bool ShouldDrawHUD(uint p) const {
+    if (!playeringame[p]) return false;
+    let cv = CVar.GetCVar("ap_show_logic_hud", players[p]);
+
+    return cv && cv.GetBool()
+      && players[p].mo
+      && screenblocks <= 11
+      && self.apstate
+      && self.apstate.GetCurrentRegion();
+      // && !automapactive;
+  }
+
+  /* ui */ override void RenderOverlay(RenderEvent evt) {
+    if (!ShouldDrawHUD(consoleplayer)) return;
+    let thefont = NewSmallFont;
+    int fbh = 768;
+    int fbw = fbh*screen.GetAspectRatio();
+
+    let text = string.format("    Map: %s - %s",
+      self.apstate.GetCurrentRegion().map,
+      level.LevelName);
+    text.AppendFormat("\n  Check: %s", self.last_check == "" ? "<none>" : self.last_check);
+    if (self.apstate.subregion) {
+      text.AppendFormat("\n Region: %s", self.apstate.subregion.name);
+      if (self.apstate.subregion.prereqs.Size() > 0) {
+        text.AppendFormat("\nPrereqs: %s", self.apstate.subregion.PrereqsAsShortString());
+      }
+    }
+
+    screen.DrawText(
+      thefont, thefont.CR_ICE, 2, fbh/4,
+      text,
+      DTA_VirtualWidth, fbw, DTA_VirtualHeight, fbh, DTA_KeepRatio, true
+      );
   }
 
   bool initialized;
@@ -178,6 +216,8 @@ class ::PlayEventHandler : StaticEventHandler {
       if (!cv || !cv.GetBool() || !player.mo) continue;
       player.mo.A_Print(string.format("Checked %s", loc.name));
     }
+
+    self.last_check = loc.name;
   }
 
   int in_deathlink;

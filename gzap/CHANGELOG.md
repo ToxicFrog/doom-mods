@@ -23,14 +23,18 @@ in-place to the new format.
   - Errors caused by mismatches between the generating apworld and the pk3
     loaded during play should now produce a slightly more obvious error at game
     startup.
-  - Support for checks that only spawn partway through the level, e.g. boss loot
-    and crafting/puzzle outputs.
-    - `Adventures of Square` now uses this for the floppy disk drops in E1A9 and
-      the hexagon key drop in E2A11.
   - Complete logic and tuning for `BTSX E2`, by Sayeth.
   - Complete logic and tuning for `Rise of the Wool Ball`, by Xindage.
+- For logic developers:
   - Chat messages starting with `;` will be inserted into the tuning file as
     comments, rather than sent to other players.
+  - Support for checks that only spawn partway through the level, e.g. boss loot
+    and crafting/puzzle outputs.
+    - See [events.md](doc/design/events.md) for documentation.
+    - `Adventures of Square` now uses this for the floppy disk drops in E1A9 and
+      the hexagon key drop in E2A11.
+  - Simple HUD for logic developers showing map, last checked location, region
+    name, and region prereqs. Enable with `ap_show_logic_hud`.
 - Changed:
   - Major overhaul of the yaml options.
     - Many settings that previously had to be controlled by editing the
