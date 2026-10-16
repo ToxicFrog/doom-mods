@@ -1,0 +1,15 @@
+Below is the list of everything the the listed version of content in the version of Wadfusion That I used. (1.6.1 https://github.com/Owlet7/wadfusion/releases/tag/v1.6.1).
+You may be able to exclude things you don't have but I don't know if that works. I used the KEX-Based stuff instead of the unity stuff.
+Here is what you will need in your wadfusion: (Check the readme in the wad fusion for more details on what each of these mean.)
+- The Ultimate DOOM (retail version of `DOOM.wad` or `doomu.wad`, containing episodes 1-4)
+- DOOM II (`DOOM2.wad`)
+- Master Levels for DOOM II (the original 20 WAD files, or `masterlevels.wad` from the [KEX-based re-release](https://doomwiki.org/wiki/Doom_%2B_Doom_II))
+- Master Levels Rejects ([see below](#master-levels-rejects) for a full list of supported WADs)
+- Final DOOM (`tnt.wad` and `plutonia.wad`)
+- No Rest for the Living (`nerve.wad`)
+- SIGIL (`sigil.wad` and its optional music addon `sigil_shreds.wad`)
+- SIGIL II (`sigil2.wad` and optionally its MP3 soundtrack version `sigil2_mp3.wad`)
+- Legacy of Rust (`id1.wad` and `iddm1.wad` from the [KEX-based re-release](https://doomwiki.org/wiki/Doom_%2B_Doom_II))
+- [Xbox secret levels](https://classicdoom.com/xboxspec.htm) (`sewers.wad` and `betray.wad` from the [original Xbox port of DOOM](https://doomwiki.org/wiki/Xbox))
+- [Tech Gone Bad](https://www.doomworld.com/idgames/levels/doom/Ports/d-f/e1m8b) and [Phobos Mission Control](https://www.doomworld.com/idgames/levels/doom/Ports/d-f/e1m4b) (`e1m8b.wad` and `e1m4b.wad`, John Romero's map remakes)
+- Extras (`extras.wad` from the [Unity](https://doomwiki.org/wiki/Doom_Classic_Unity_port) or [KEX-based](https://doomwiki.org/wiki/Doom_%2B_Doom_II) re-releases)
