@@ -57,6 +57,10 @@ Start Archipelago and click `Generate Template Options`. It should produce a
 YAML template named `UZDoom (Wad Name).yaml` for every WAD you installed support
 for.
 
+⚠️ Archipelago's built-in config editor **is not compatible** with this apworld
+and will generate corrupt YAMLs. Always use `Generate Template Options` and edit
+the resulting files instead.
+
 ### UZDoom
 
 🛈 You can find general documentation about UZDoom on [the ZDoom Wiki](https://zdoom.org/wiki/Main_Page).
@@ -124,7 +128,7 @@ UZArchipelago has fully integrated solo-play support that does not require a
 separate Archipelago host. Simply start UZDoom and select `New Game` as normal,
 then choose a difficult setting matching what you configured in your YAML. If
 you need a break, you can save and exit, and resume your saved game later.
-UZDoom will not mind
+UZDoom will not mind.
 
 If you do want to run the client (for the Universal Tracker integration, or
 because you are a logic developer and want it to record [tuning files](./new-wads.md)),
@@ -132,7 +136,7 @@ follow the instructions for multiworld play below.
 
 Once in-game, consult the [gameplay guide](./gameplay.md) for more details.
 
-## Multi-world
+### Multi-world
 
 UZDoom cannot directly connect to the Archipelago host, so it requires an
 external client program, built into the apworld, to act as a go-between.
@@ -159,3 +163,27 @@ menu; **do not** start a new game and then load your game from there) and AP
 will sync any items that you missed while offline.
 
 Once in-game, consult the [gameplay guide](./gameplay.md) for more details.
+
+### Playing more than one game at a time
+
+Only one UZDoom can be *running* and connected to AP at a time. So if you have
+multiple games in flight (e.g. because you are playing multiple slots with
+different WADs, or have joined multiple asyncs and are playing UZDoom in all of
+them), you must fully quit one game before starting the next one.
+
+⚠️ Even if both games are playing the same WAD, it is important to fully quit
+and restart UZDoom when switching games, rather than just loading a different
+save. Failure to do so can contaminate one game with items from the other.
+
+There is usually no need to also restart the AP UZDoom Client; it will detect
+when you start a new game and automatically update its AP connection info.
+
+## Advanced client usage
+
+If you want to connect to your game without actually playing Doom (e.g. to check
+on Universal Tracker), you can do this by invoking the client from the command
+line and telling it which WAD to use. Note the `--` separating the client-specific
+flags from the rest of the command:
+
+    archipelago "UZDoom Client" -- --connect archipelago.gg:12345 --slot ToxicFrog --wad "Doom 2"
+

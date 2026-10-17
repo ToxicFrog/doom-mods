@@ -1,10 +1,11 @@
 import asyncio
+import colorama
 import copy
 import locale
 import os
 import os.path
 import sys
-from typing import Any, Dict
+from typing import Any, Dict, Optional
 
 import Utils
 from CommonClient import ClientStatus, get_base_parser, gui_enabled, server_loop, logger
@@ -16,11 +17,11 @@ from worlds.uzdoom.model.DoomLogic import DoomLogic
 tracker_loaded = False
 try:
     from worlds.tracker.TrackerClient import TrackerGameContext as SuperContext
-    print("Universal Tracker detected, enabling tracker support.")
+    logger.info("Universal Tracker detected, enabling tracker support.")
     tracker_loaded = True
 except ModuleNotFoundError:
     from CommonClient import CommonContext as SuperContext
-    print("No Universal Tracker detected, running without tracker support.")
+    logger.info("No Universal Tracker detected, running without tracker support.")
 
 _IPC_SIZE = 4096
 _GZAP_DEBUG = "GZAP_DEBUG" in os.environ
@@ -29,17 +30,20 @@ class UZDoomContext(SuperContext):
     game = "UZDoom"
     items_handling = 0b111  # fully remote
     want_slot_data = True
-    slot_name = None
     tags = {"AP", "DeathLink"}
     tracker_task = None
-    wad_logic: DoomLogic
+    wad_logic: Optional[DoomLogic] = None
+    seed_name: Optional[str] = None
 
-    def __init__(self, server_address: str, password: str, gzd_dir: str):
+    def __init__(self, server_address: str, password: str, gzd_dir: str, wad: Optional[str] = None, slot: Optional[str] = None):
         self.found_uzdoom = asyncio.Event()
         super().__init__(server_address, password)
         self.jsontozdoomtextparser = JSONToZDoomTextParser(self)
         self.ipc = IPC(self, gzd_dir, _IPC_SIZE)
-        self.wad_logic = None
+        if wad:
+            logger.info('Loading WAD specified on command line...')
+            self.wad_logic = self.load_wad_logic(wad)
+        self.username = slot
 
     def make_gui(self):
         ui = super().make_gui()
@@ -66,17 +70,18 @@ class UZDoomContext(SuperContext):
             if name.count('.') == 1 and name.startswith('worlds.zdoom_'):
                 if module.wad.name == wad_name:
                     logger.info(f"Loaded logic for {wad_name} from {name}: {len(module.wad.items_by_name)} items, {len(module.wad.locations_by_name)} locations.")
+                    self.game = f"UZDoom ({wad_name})"
                     return module.wad
         raise RuntimeError(f"Couldn't find an apworld for the WAD '{wad_name}'. Make sure you have the right apworld (probably called 'zdoom_{wad_name.lower().replace(' ', '_')}.apworld' installed.)")
 
     async def start_tasks(self) -> None:
-        print("Starting log reader")
+        logger.debug("Starting log reader")
         self.ipc.start_log_reader()
-        print("Starting item/location sync")
+        logger.debug("Starting item/location sync")
         self.items_task = asyncio.create_task(self._item_loop())
         self.locations_task = asyncio.create_task(self._location_loop())
         self.hints_task = asyncio.create_task(self._hint_loop())
-        print("All tasks started.")
+        logger.debug("All tasks started.")
 
     async def send_check(self, id: int):
         self.locations_checked |= {id}
@@ -88,16 +93,19 @@ class UZDoomContext(SuperContext):
             ])
 
     async def get_username(self):
-        if not self.auth:
-            print("Getting slot name from uzdoom...")
+        if not self.username:
+            logger.info("Getting slot name from uzdoom...")
             await self.found_uzdoom.wait()
-            self.username = self.slot_name
-            self.auth = self.username
-            print("Got slot name:", self.username)
+            logger.info("Got slot name:", self.username)
+        self.auth = self.username
 
     async def connect(self, server):
+        # TODO: send a message to the game when the connection to the host is
+        # opened or closed.
         if self.game == "UZDoom":
             logger.error("No WAD loaded. Start the game and let it connect first.")
+            return
+        if not server:
             return
         await super().connect(server)
 
@@ -124,43 +132,69 @@ class UZDoomContext(SuperContext):
         """
         return (
             self.wad_logic and self.wad_logic.name == wad
-            and self.slot_name == slot
-            and self.seed_name == seed
+            and self.username == slot
+            and (not self.seed_name or self.seed_name == seed)
         )
 
     async def on_xon(self, wad: str, slot: str, seed: str, server: str):
-        if not self.is_same_game(wad, slot, seed):
+        """
+        Called when we get the XON message from the game, containing information
+        about the game being played.
+
+        There's a few situations we need to be able to handle here: client is
+        idle and receiving connection information from the game, client was
+        previously running a different game and the user has switched wads, and
+        client is already connected to the same game/slot.
+        """
+        if self.is_same_game(wad, slot, seed):
+            # We've already got this game loaded, either because we were previously
+            # playing it and the user restarted uzdoom, or because we were started
+            # with --connect/--slot/--wad options to connect to the server before
+            # uzdoom starts up.
+            logger.info(f"Connected to UZDoom: {slot} playing {wad} with seed {seed}")
+        else:
             # User has probably restarted doom with a different wad without
             # restarting the client. Clear our local understanding of what items
             # the player has and what checks they should send out, as otherwise
             # we will re-send them on connect and end up releasing checks from
             # the wrong wad.
-            logger.info("New game detected. Clearing saved info from previous game.")
-            logger.info(f"Saved address: {self.server_address}; new: {server}")
-            self.items_received = []
-            self.locations_checked = set()
-            self.locations_scouted = set()
-        else:
-            logger.info(f"Not a new game: {wad}, {slot}, {seed}")
-        self.game = f'UZDoom ({wad})'
-        self.wad_logic = self.load_wad_logic(wad)
-        self.slot_name = slot
-        self.seed_name = seed
+            logger.info(f"Connected to UZDoom: {slot} playing {wad} with seed {seed}.")
+            if self.wad_logic:
+                logger.info("Discarding previous game info, as it doesn't match.")
+                await self.disconnect()
+            # Reset session state here, rather than waiting for the superclass
+            # to do it when we connect to the new game, because otherwise we will
+            # re-send everything before that happens and we do not want that.
+            self.reset_session_state()
+            # Load the new WAD data
+            self.wad_logic = self.load_wad_logic(wad)
+            self.seed_name = seed
+            self.username = slot
+            # Clear existing server connection info to force a reconnect
+            self.server_address = None
+
         self.last_items = {}  # force a re-send of all items
         self.last_locations = set()
         self.last_tracked = set()
         self.last_hints = {}
+
         self.found_uzdoom.set()
+
+        if not server and not self.server_address:
+            logger.info(f"No connection info from UZDoom -- if this is a multiworld you will need to connect to the host manually.")
+        elif not server:
+            logger.info(f"No connection info from UZDoom, re-using existing connection to {self.server_address}")
+        elif not self.server_address:
+            logger.info(f"Received connection info from UZDoom: {server}")
+            self.server_address = server
+            self.username = slot
+            await self.connect(server)
+        elif server != self.server_address:
+            logger.info(f"Connection info from UZDoom ({server}) ignored as we already have a connection to this game.")
+
         self.ipc.send_text("Archipelago<->UZDoom connection established.")
-        if server or self.server_address:
-            await self.connect(server or self.server_address)
-            # TODO: send a message to the game when the connection to the host is
-            # opened or closed.
 
     async def on_xoff(self):
-        self.username = None
-        self.auth = None
-        self.slot_name = None
         self.found_uzdoom.clear()
         logger.info("Connection to UZDoom closed.")
 
@@ -175,14 +209,14 @@ class UZDoomContext(SuperContext):
 
     def on_package(self, cmd, args):
         if _GZAP_DEBUG:
-            print("on_package", cmd, args)
+            logger.info("on_package", cmd, args)
         super().on_package(cmd, args)
         self.awaken()
 
     async def send_msgs(self, msgs):
         if _GZAP_DEBUG:
             for msg in msgs:
-                print("SEND", msg)
+                logger.info("SEND", msg)
         await super().send_msgs(msgs)
 
     def on_deathlink(self, data: Dict[str,Any]):
@@ -229,7 +263,7 @@ class UZDoomContext(SuperContext):
             new_items = {}
             for item in self.items_received:
                 new_items[item.item] = new_items.get(item.item, 0) + 1
-            # print("Item loop running:", new_items)
+            # logger.info("Item loop running:", new_items)
             for id,count in new_items.items():
                 if count != self.last_items.get(id, 0):
                     self.ipc.send_item(id, count)
@@ -242,7 +276,7 @@ class UZDoomContext(SuperContext):
             await self.watcher_event.wait()
             self.watcher_event.clear()
             new_locations = self.checked_locations - self.last_locations
-            # print("Location loop running", new_locations, self.checked_locations)
+            # logger.info("Location loop running", new_locations, self.checked_locations)
             for id in new_locations:
                 self.ipc.send_checked(id)
             self.ipc.flush()
@@ -260,8 +294,8 @@ class UZDoomContext(SuperContext):
             new_ool = set(self.glitched_locations) - self.last_tracked_ool
             new_il = set(self.locations_available) - self.last_tracked
 
-            # print("tracker_loop IL: ", new_il, self.last_tracked)
-            # print("tracker_loop OOL:", new_ool, self.last_tracked_ool)
+            # logger.info("tracker_loop IL: ", new_il, self.last_tracked)
+            # logger.info("tracker_loop OOL:", new_ool, self.last_tracked_ool)
 
             # TODO: This assumes that IDs are static between generation and
             # play. Since items/locations are sorted before ID assignment, this
@@ -290,17 +324,17 @@ class UZDoomContext(SuperContext):
             self.watcher_event.clear()
             hints = self.pending_hints()
             new_hint_ids = set(hints.keys()) - set(self.last_hints.keys())
-            # print(f"in hint loop, old={self.last_hints.keys()}, cur={hints.keys()}, new={new_hint_ids}")
+            # logger.info(f"in hint loop, old={self.last_hints.keys()}, cur={hints.keys()}, new={new_hint_ids}")
             for id in new_hint_ids:
                 hint = hints[id]
                 if not hint.is_valid(self):
-                    print('Warning: invalid hint:', hint)
+                    logger.info('Warning: invalid hint:', hint)
                     continue
                 if hint.is_hint(self):
-                    # print("sending hint:", hint.hint_info(self))
+                    # logger.info("sending hint:", hint.hint_info(self))
                     self.ipc.send_hint(*hint.hint_info(self))
                 if hint.is_peek(self):
-                    # print("sending peek:", hint.peek_info(self))
+                    # logger.info("sending peek:", hint.peek_info(self))
                     self.ipc.send_peek(*hint.peek_info(self))
             self.ipc.flush()
             self.last_hints = hints
@@ -308,6 +342,12 @@ class UZDoomContext(SuperContext):
 
 def main(*args):
     Utils.init_logging("UZDoomClient")
+    parser = get_base_parser()
+    parser.add_argument("--wad", default=None, help="Use this WAD name instead of getting it from UZDoom")
+    parser.add_argument("--slot", default=None, help="Use this slot name instead of getting it from UZDoom")
+
+    colorama.init()
+    args = parser.parse_args(args)
 
     # Initialize the UZDoom IPC structures on disk
     # TODO: do we want to support multiple running instances as the same user?
@@ -327,13 +367,16 @@ def main(*args):
     with open(ipc_log, "a"):
         pass
 
-    print(f"UZDoom IPC files created. Host encoding: {locale.getencoding()}. IPC encoding: UTF-8.")
+    logger.info(f"UZDoom IPC files created. Host encoding: {locale.getencoding()}. IPC encoding: UTF-8.")
 
     async def actual_main(args, ipc_dir, ipc_log):
         # TODO: it would be nice if we could start the tuning-file writer here
         # even if not connected to the server.
-        ctx = UZDoomContext(args.connect, args.password, gzd_dir)
+        ctx = UZDoomContext(args.connect, args.password, gzd_dir, args.wad, args.slot)
         await ctx.start_tasks()
+        if args.connect:
+            await ctx.connect(ctx.server_address)
+
         if tracker_loaded:
             logger.info("Initializing tracker...")
             ctx.init_tracker()
@@ -354,17 +397,11 @@ def main(*args):
         logger.info("*" * 80)
 
         await ctx.exit_event.wait()
-        print("Shutting down...")
+        logger.info("Shutting down...")
         ctx.ipc.should_exit = True
         ctx.awaken()
         await ctx.shutdown()
 
-    import colorama
-
-    parser = get_base_parser()
-
-    colorama.init()
-    args = parser.parse_args(args)
     asyncio.run(
         actual_main(args, ipc_dir.replace("\\", "/"), ipc_log.replace("\\", "/")),
         debug=True)

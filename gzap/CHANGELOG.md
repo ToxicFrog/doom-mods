@@ -23,6 +23,7 @@ in-place to the new format.
   - Errors caused by mismatches between the generating apworld and the pk3
     loaded during play should now produce a slightly more obvious error at game
     startup.
+  - `--slot` and `--wad` command line flags for the client.
   - Complete logic and tuning for `BTSX E2`, by Sayeth.
   - Complete logic and tuning for `Rise of the Wool Ball`, by Xindage.
   - Complete logic and tuning for `Alien Vendetta`, `Ancient Aliens`, and
@@ -70,6 +71,8 @@ in-place to the new format.
   - Tuning data now uses `[map,"exit"]` for exit events rather than
     `[map,"event","exit"]`.
   - Hub map has a new look. (No interactivity, just shiny.)
+  - Client should now be much more robust about UZDoom restarting (even with a
+    different game loaded!) while the client stays running.
 - Fixed:
   - MAP31 and MAP32 were incorrectly excluded from 1000 Lines 2.
   - Adventures of Square logic is now aware of the previously-missing "Totally
