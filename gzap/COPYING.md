@@ -20,6 +20,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 sprites/apit* are based on files ⓒ 2022 the Archipelago team, released under
 the MIT license.
 
+Most graphics in textures/ and flats/ are from OTEX by Ola Björling.
+
 Files in assets/ are from:
 - Aleksandr Makarov's Heroic Asset Series Icon Pack: https://iknowkingrabbit.itch.io/heroic-icon-pack
 - Caz Wolf's Pixel Fantasy Icons: https://cazwolf.itch.io/

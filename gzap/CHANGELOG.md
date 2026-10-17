@@ -69,6 +69,7 @@ in-place to the new format.
     spawn-based checks.
   - Tuning data now uses `[map,"exit"]` for exit events rather than
     `[map,"event","exit"]`.
+  - Hub map has a new look. (No interactivity, just shiny.)
 - Fixed:
   - MAP31 and MAP32 were incorrectly excluded from 1000 Lines 2.
   - Adventures of Square logic is now aware of the previously-missing "Totally
