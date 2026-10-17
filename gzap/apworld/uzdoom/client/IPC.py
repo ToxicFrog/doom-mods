@@ -34,6 +34,7 @@ class IPC:
   ctx: CommonContext = None
   # Internal details of outgoing IPC
   gzd_dir: str = ""
+  log_path: str = ""
   ipc_id: int = 0
   ipc_size: int = 0
   ipc_path: str = ""
@@ -43,9 +44,10 @@ class IPC:
   should_exit: bool = False
   nick: str = ""  # user's name in UZDoom, used for chat message parsing
 
-  def __init__(self, ctx: CommonContext, gzd_dir: str, size: int) -> None:
+  def __init__(self, ctx: CommonContext, gzd_dir: str, size: int, log_path: str) -> None:
     self.ctx = ctx
     self.gzd_dir = gzd_dir
+    self.log_path = log_path
     self.ipc_dir = os.path.join(gzd_dir, "ipc")
     self.ipc_size = size
     self.ipc_queue = []
@@ -79,9 +81,8 @@ class IPC:
     )
 
   def _log_reading_loop(self, ipc_dir: str, loop):
-    log_path = os.path.join(ipc_dir, "uzdoom.log")
     tune = None
-    with open(log_path, "r", encoding="utf-8") as log:
+    with open(self.log_path, "r", encoding="utf-8") as log:
        self._wait_for_live_log(log)
        while True:
           line = self._blocking_readline(log).strip()
@@ -99,8 +100,13 @@ class IPC:
             line = ";; " + line.removeprefix(self.nick + ": ;").strip()
             payload = { "msg": line }
           elif self.nick and line.startswith(self.nick + ": "):
+            # UZDoom 4.x chat format
             evt = "AP-CHAT"
             payload = { "msg": line.removeprefix(self.nick + ": ").strip() }
+          elif self.nick and line.startswith(self.nick + " [0]: "):
+            # UZDoom 5.x chat format
+            evt = "AP-CHAT"
+            payload = { "msg": line.removeprefix(self.nick + " [0]: ").strip() }
           elif line.startswith("AP-"):
             [evt, payload] = line.split(" ", 1)
             try:

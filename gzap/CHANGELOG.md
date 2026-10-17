@@ -24,6 +24,7 @@ in-place to the new format.
     loaded during play should now produce a slightly more obvious error at game
     startup.
   - `--slot` and `--wad` command line flags for the client.
+  - Experimental UZDoom 5.0.x support; see [setup.md](doc/setup.md#uzdoom-50x-support).
   - Complete logic and tuning for `BTSX E2`, by Sayeth.
   - Complete logic and tuning for `Rise of the Wool Ball`, by Xindage.
   - Complete logic and tuning for `Alien Vendetta`, `Ancient Aliens`, and

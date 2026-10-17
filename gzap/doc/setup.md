@@ -24,8 +24,9 @@ For troubleshooting information, see [the FAQ](./faq.md).
     - Optional but recommended: [Universal Tracker](https://github.com/FarisTheAncient/Archipelago/releases)
   - [UZArchipelago.pk3](../../release/UZArchipelago-latest.pk3)
     - ⚠️ **It is important that the pk3 version matches the apworld version.**
-  - [UZDoom 4.14.3](https://github.com/UZDoom/UZDoom/releases/tag/4.14.3)
-    - ⚠️ 5.0.0 will not work due to [this bug](https://github.com/UZDoom/UZDoom/issues/1840)
+  - UZDoom, the game engine.
+    - [UZDoom 4.14.3](https://github.com/UZDoom/UZDoom/releases/tag/4.14.3) is the **stable and recommended version**.
+    - Support for [UZDoom 5.0.x](https://zdoom.org/downloads) is **highly experimental** and requires [special setup instructions](#uzdoom-50x-support).
     - Optional but recommended: a launcher like [DoomRunner](https://github.com/Youda008/DoomRunner)
   - The base game data ("IWAD") for the maps you will be playing:
     - ⚠️ If you are using one of [the rereleases](https://www.gog.com/en/games?developers=id-software-nightdive-studios), make sure you get the version of the WAD from the `base/` directory, not `rerelease/`
@@ -178,7 +179,7 @@ save. Failure to do so can contaminate one game with items from the other.
 There is usually no need to also restart the AP UZDoom Client; it will detect
 when you start a new game and automatically update its AP connection info.
 
-## Advanced client usage
+### Advanced client usage
 
 If you want to connect to your game without actually playing Doom (e.g. to check
 on Universal Tracker), you can do this by invoking the client from the command
@@ -187,3 +188,59 @@ flags from the rest of the command:
 
     archipelago "UZDoom Client" -- --connect archipelago.gg:12345 --slot ToxicFrog --wad "Doom 2"
 
+## UZDoom 5.0.x support
+
+UZDoom 5.0 changed how logfile creation works, and since the logfile is what it
+uses to communicate with Archipelago, this complicates matters. At the moment,
+getting it set up requires some comfort with the command line.
+
+To get UZ5 working with Archipelago, you first need to figure out where the
+logfile is saved. Start by making sure that one exists: start up `uzdoom`, open
+the console, and type `logfile uzarchipelago`. You should get a "logging started"
+message (if you get "could not start log", see below). Quit the game.
+
+Now you need to find the logfile, which will be called `log-uzarchipelago.txt`.
+
+**On windows:**
+- If you ran UZDoom directly, it is probably in the directory you installed
+  UZDoom to, i.e. wherever `uzdoom.exe` ended up.
+- If you used a launcher, and it's not in the UZDoom directory, it's probably in
+  the directory you installed the launcher to.
+- If it's not in either of those places, try searching `%APPDATA%`.
+
+**On linux:**
+- If you ran UZDoom from the command line, it's in whatever directory you were
+  in when you ran it.
+- If you ran UZDoom graphically, it's probably in `$HOME`.
+
+Now, record whatever directory the logfile was created in, and start the AP
+UZDoom client from the command line with the `--uz5-log-dir` flag to inform
+AP about it:
+
+    # windows example
+    archipelago "UZDoom Client" -- --uz5-log-dir c:/games/uzdoom
+    # linux example
+    archipelago "UZDoom Client" -- --uz5-log-dir "$HOME"
+
+You should see an "overriding log file path for UZ5" message somewhere in the
+output, and when it tells you what command line options to start UZDoom with,
+it should say `+logfile "uzarchipelago"` rather than a longer path.
+
+At this point, starting UZDoom with the given options should allow it to connect
+to AP, provided you start it in the same way you did when finding the logfile in
+the first place -- i.e. if you launched it from the command line when looking
+for the logfile, also launch it from the command line (and from the same
+directory) when actually playing.
+
+### Could not start log
+
+This error occurs when it can't save the logfile, typically because it doesn't
+have permission to create files in whatever directory it's running in. In Linux
+this is a known issue with DoomRunner, which tries to start the game from
+*the directory DoomRunner was installed to*, which in Linux is going to be a
+system directory that normal users can't modify.
+
+The most reliable workaround for this is simply to always launch it from the
+command line, in a directory that you have write permission on. If using
+DoomRunner, you can copy-paste the generated command from the bottom of the
+launcher window into the terminal to avoid having to manually construct it.

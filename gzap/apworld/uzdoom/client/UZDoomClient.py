@@ -35,11 +35,11 @@ class UZDoomContext(SuperContext):
     wad_logic: Optional[DoomLogic] = None
     seed_name: Optional[str] = None
 
-    def __init__(self, server_address: str, password: str, gzd_dir: str, wad: Optional[str] = None, slot: Optional[str] = None):
+    def __init__(self, server_address: str, password: str, gzd_dir: str, log_path: str, wad: Optional[str] = None, slot: Optional[str] = None):
         self.found_uzdoom = asyncio.Event()
         super().__init__(server_address, password)
         self.jsontozdoomtextparser = JSONToZDoomTextParser(self)
-        self.ipc = IPC(self, gzd_dir, _IPC_SIZE)
+        self.ipc = IPC(self, gzd_dir, _IPC_SIZE, log_path)
         if wad:
             logger.info('Loading WAD specified on command line...')
             self.wad_logic = self.load_wad_logic(wad)
@@ -345,6 +345,7 @@ def main(*args):
     parser = get_base_parser()
     parser.add_argument("--wad", default=None, help="Use this WAD name instead of getting it from UZDoom")
     parser.add_argument("--slot", default=None, help="Use this slot name instead of getting it from UZDoom")
+    parser.add_argument("--uz5-log-dir", default=None, help="EXPERIMENTAL. Path to directory that UZDoom 5.0.x saves its logs in. Do not use this unless you are using UZDoom 5.")
 
     colorama.init()
     args = parser.parse_args(args)
@@ -364,6 +365,9 @@ def main(*args):
 
     # Create empty logfile if it doesn't exist
     ipc_log = os.path.join(gzd_dir, 'uzdoom.log')
+    if args.uz5_log_dir:
+        logger.info(f"Overriding log file path for UZ5: {ipc_log} -> {args.uz5_log_dir}/log-uzarchipelago.txt")
+        ipc_log = f"{args.uz5_log_dir}/log-uzarchipelago.txt"
     with open(ipc_log, "a"):
         pass
 
@@ -372,7 +376,7 @@ def main(*args):
     async def actual_main(args, ipc_dir, ipc_log):
         # TODO: it would be nice if we could start the tuning-file writer here
         # even if not connected to the server.
-        ctx = UZDoomContext(args.connect, args.password, gzd_dir, args.wad, args.slot)
+        ctx = UZDoomContext(args.connect, args.password, gzd_dir, ipc_log, args.wad, args.slot)
         await ctx.start_tasks()
         if args.connect:
             await ctx.connect(ctx.server_address)
@@ -392,7 +396,10 @@ def main(*args):
         # Use forward slashes unconditionally here; windows will accept either,
         # but preferentially generates backslashes, which then are treated as
         # escapes when invoking uzdoom.
-        logger.info(f"    -file \"{ipc_dir}\" +logfile \"{ipc_log}\"")
+        if args.uz5_log_dir:
+            logger.info(f"    -file \"{ipc_dir}\" +logfile \"uzarchipelago\"")
+        else:
+            logger.info(f"    -file \"{ipc_dir}\" +logfile \"{ipc_log}\"")
         logger.info("*after* any other arguments (e.g. for wad/pk3 loading).")
         logger.info("*" * 80)
 
