@@ -60,7 +60,7 @@ class ::LogicMenu : ::CommonMenu {
 
   override void Ticker() {
     let apstate = ::RandoState.Get();
-    if (!apstate) {
+    if (!apstate || !apstate.GetCurrentRegion()) {
       Close();
       return;
     }
