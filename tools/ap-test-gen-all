@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-make
+make -C gzap TOPDIR=.. install
 cd ~/Games/Archipelago/Players
 touch dummy.yaml; rm *.yaml
 

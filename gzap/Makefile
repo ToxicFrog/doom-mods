@@ -8,7 +8,7 @@ LIBTTM=${TOPDIR}/libtooltipmenu/ca.ancilla.libtooltipmenu
 LIBTTM_PREFIX=GZAP
 APWORLDS:=${TOPDIR}/release/apworlds
 
-all: version ${PK3} apworlds apworld_generator install
+all: version ${PK3} apworlds apworld_generator
 
 include ${TOPDIR}/rules.make
 
