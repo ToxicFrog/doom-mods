@@ -108,7 +108,6 @@ class DoomMap:
         ])
 
     def access_rule(self, world):
-        # print(f"access_rule({self.map}) = start={world.is_starting_map(self.map)}, co-guns({world.options.carryover_weapon_bias.value})={self.carryover_gunset}, local-guns({world.options.local_weapon_bias.value})={self.local_gunset}, clears({world.options.level_order_bias.value})={self.prior_clears}")
         combat_logic_weapons = self.combat_logic_weapons(world)
         combat_logic_rule = strings_to_prereq_fn(
             world, world.wad_logic, self,
@@ -140,6 +139,8 @@ class DoomMap:
             # checks and report everything the player can get to whether they have
             # the firepower to keep it or not.
             if state.has(world.glitches_item_name, world.player):
+                # if not combat_logic_rule(state):
+                #     print(f'Reporting glitched logic for {self.map}; weapons are {self.combat_logic_weapons(world)} based on local={self.local_weapons(world)} and episode={self.prior_weapons(world)}')
                 return True
 
             # If hublogic is on, skip per-map weapon logic.
@@ -203,6 +204,12 @@ class DoomMap:
             and (not loc.has_category('secret') or world.options.combat_logic_secrets))
 
     def local_weapons(self, world) -> Counter[str]:
+        # FIXME: enemy drops are not counted in this. So if the GZAPRC says that
+        # levels with shotgunners should logically require the shotgun, we infer
+        # that requirement for the level, but don't treat the level as being one
+        # that you can find the shotgun in.
+        # We should probably promote /auto weapon requirements from the tuning
+        # file to inferred weapon pickups here.
         return Counter(
             loc.orig_item.typename
             for loc in self.locations
@@ -216,6 +223,7 @@ class DoomMap:
     def prior_weapons(self, world) -> Counter[str]:
         weapons = Counter()
         for map in self.prior_maps(world):
+            # print(f'prior_weapons({self.map}): {map.map} contains {map.local_weapons(world)}')
             weapons += map.local_weapons(world)
         return weapons
 
