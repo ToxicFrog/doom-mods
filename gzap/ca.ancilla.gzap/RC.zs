@@ -227,8 +227,8 @@ class ::RC {
     MapIterator<string, int> it;
     it.Init(actors);
     foreach (typename, count : it) {
-      if (self.prereqs.CheckKey("actor/"..typename)) {
-        sset.UnionFrom(self.prereqs.Get("actor/"..typename));
+      if (self.prereqs.CheckKey("actor/"..typename.MakeLower())) {
+        sset.UnionFrom(self.prereqs.Get("actor/"..typename.MakeLower()));
       }
     }
     return sset;
@@ -517,7 +517,7 @@ class ::RCParser {
     if (prereqs.size() == 0) return Error("non-empty prereq list");
 
     foreach (type : types) {
-      InsertPrereqs("actor/"..type, prereqs);
+      InsertPrereqs("actor/"..type.MakeLower(), prereqs);
     }
     return true;
   }
