@@ -1,4 +1,7 @@
-# GZAP Protocol
+# UZAP Protocol
+
+> You debate for a moment whether your chimera is pleasing or abominable, and
+> settle on beloved, if quirky, pet.
 
 This file documents the IPC protocol used to communicate between UZDoom and
 Archipelago. It's used in two places:
