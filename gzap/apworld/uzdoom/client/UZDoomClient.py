@@ -45,6 +45,24 @@ class UZDoomContext(SuperContext):
             self.wad_logic = self.load_wad_logic(wad)
         self.username = slot
 
+        if not hasattr(self, 'reset_session_state'):
+            # Backport from 0.6.8 so this still works in 0.6.7
+            def reset_session_state():
+                """Clear local progress and data-storage state tied to a single session."""
+                self.locations_checked = set()
+                self.locations_scouted = set()
+                self.locations_info = {}
+                self.items_received = []
+                self.missing_locations = set()
+                self.checked_locations = set()
+                self.server_locations = set()
+                self.finished_game = False
+                self.ready = False
+                self.stored_data = {}
+                self.stored_data_notification_keys = set()
+                self.current_energy_link_value = None
+            self.reset_session_state = reset_session_state
+
     def make_gui(self):
         ui = super().make_gui()
         ui.base_title = "UZDoom Client"
