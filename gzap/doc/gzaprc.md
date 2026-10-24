@@ -136,3 +136,10 @@ actors that spawn during gameplay).
 
 This is primarily useful for replacing non-deterministic spawners with specific,
 deterministic items.
+
+Replacements are not processed recursively, so something like this:
+
+    replacement SuperShotgun: Shotgun;
+    replacement Shotgun: SuperShotgun;
+
+will swap super shotguns and normal shotguns, rather than looping forever.

@@ -283,9 +283,11 @@ class ::PerLevelHandler : EventHandler {
     if (!apstate.GetCurrentRegion()) return;
 
     class<Actor> cls = evt.replacee;
-    while (true) {
-      let [newtype, ok] = ::RC.Get().GetReplacement(cls.GetClassName());
-      if (!ok) break;
+
+    // RC-based replacement happens unconditionally.
+    // We check only once rather than recursing.
+    let [newtype, ok] = ::RC.Get().GetReplacement(cls.GetClassName());
+    if (ok) {
       DEBUG("Spawning %s: RC provides replacement %s", cls.GetClassName(), newtype);
       cls = newtype;
       evt.replacement = newtype;
