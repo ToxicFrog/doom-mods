@@ -24,7 +24,7 @@ fi
 
 make
 set +e # sometimes uzdoom crashes on exit
-uzdoom \
+uzdoom4 \
   -iwad "${IWAD}" \
   -file release/UZArchipelago-latest.pk3 \
   "$@" \
