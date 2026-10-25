@@ -69,7 +69,7 @@ tag LanternPickup Lantern;
 
 # Money
 # Medium sizes are 100. Small sizes are 1-20.
-category small-token: Chips JUNKtools JUNKcable JUNKgear JUNKnuts JUNKpipe JUNKspares CrapJunk;
+category small-token: Chips JUNKtools JUNKcable JUNKgear JUNKnuts JUNKpipe JUNKspares;
 category medium-token: CollectibleGuitar CollectibleHissy CollectibleNMAcap;
 tag JUNKtools Junk Tools;
 tag JUNKcable Junk Cable;
@@ -77,18 +77,30 @@ tag JUNKgear Junk Gear;
 tag JUNKnuts Junk Nuts;
 tag JUNKpipe Junk Pipe;
 tag JUNKspares Junk Spares;
-tag CrapJunk Random Junk;
 tag CollectibleGuitar Collectible Guitar;
 tag CollectibleHissy Collectible Hissy Doll;
 tag CollectibleNMAcap Collectible NMA Cap;
 
+# CrapJunk is evenly weighted between tools, cables, gear, nuts, pipe, or spares,
+# with values [15, 15, 15, 10, 5, 20], for an EV of 13⅓.
+# With this replacement rule we make it deterministic to reduce logic file churn.
+replacement JUNKgear: CrapJunk;
+
+# Ideally we do something like:
+# replacement APJunk: CrapJunk;
+# replacement CrapJunk: APJunk;
+# tag APJunk Random Junk;
+# category small-token: APJunk;
+# and then define APJunk in ap_scripts.zs. However, then we need to have
+# ap_scripts loaded when doing the scan, not just during gameplay.
+# TODO: rename ap_scripts, ap_mapinfo to ZSCRIPT and MAPINFO so we can -file the
+# wad support directory, then rename them when generating the pk3.
+# (the same technique can be used for CanneryReplacer)
+
 # Random loot
 # Breaking a CONTCardbox, PropRubbishBag, or CONTTrashcan has a 120/255
-# chance (box, bag) or 60/255 (can) of dropping a CrapJunk.
-#
-# This in turn is evenly weighted between tools, spares, gear, nuts, cable, or
-# pipe, which have values [15, 20, 15, 10, 15, 5], giving us an EV of 13⅓ per
-# CrapJunk, and a final EV of 3.1 for trash cans and 6.3 for bags and boxes.
+# chance (box, bag) or 60/255 (can) of dropping a CrapJunk, giving us an EV of
+# 3.1 for trash cans and 6.3 for the rest.
 #
 # If we wanted a sort of grass rando esque experience here where all of these
 # contain checks, we either need a custom patch (so breaking them always drops

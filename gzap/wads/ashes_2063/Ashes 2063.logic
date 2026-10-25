@@ -39,14 +39,18 @@ AP-MAP {
   "map": "MAP01", "levelname": "Outskirts",
   "checksum": "da248cdc6a770b624a7de0996b199b39", "rank": 1, "monster_count": 77,
   "info": { "levelnum": 1, "title": "Outskirts", "is_lookup": false, "sky1": "ASKY1B", "sky1speed": "0.000000", "sky2": "ASKY1B", "sky2speed": "0.000000", "music": "$MUSIC_RUNNIN", "music_track": "0", "cluster": 0, "flags": [] },
-  "monsters": { "shotgunthug": 20, "Radroach": 4, "RevolverThug": 14, "PistolThug": 23, "Pitfiend": 16 },
+  "monsters": { "shotgunthug": 20, "Radroach": 4, "RevolverThug": 11, "PistolThug": 26, "Pitfiend": 16 },
   "prereqs": [ "weapon/Glock/auto", "weapon/pumpaction2/auto" ]
 }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "secret": true, "filter": 6, "pos": ["MAP01",-628,868,128] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "filter": 6, "pos": ["MAP01",-628,960,128] }
 AP-ITEM { "category": "key", "typename": "BlueCard", "tag": "Blue Access Card", "pos": ["MAP01",-292,752,154] }
 AP-KEY { "typename": "BlueCard", "tag": "Blue Access Card", "scopename": "MAP01", "cluster": 0, "maps": ["MAP01"] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP01",-968,-772,0] }
 AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "pos": ["MAP01",-336,-1680,86] }
 AP-ITEM { "category": "big-health-powerup", "typename": "RegenStimpack", "tag": "REGEN Stim", "pos": ["MAP01",-820,-800,32] }
 AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP01",-764,-624,0] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP01",-80,-216,192] }
 AP-ITEM { "category": "small-ammo", "typename": "shotgunAmmo", "tag": "shotgunAmmo", "filter": 6, "pos": ["MAP01",-752,784,144] }
 AP-ITEM { "category": "medium-armor", "typename": "ArmorLeather", "tag": "ArmorLeather", "pos": ["MAP01",-688,-348,-32] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP01",116,-900,8] }
@@ -56,6 +60,7 @@ AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScra
 AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP01",-1264,-428,29] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP01",-1224,-432,29] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP01",-1164,-424,29] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP01",-1812,-176,32] }
 AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "pos": ["MAP01",-1312,-560,37] }
 AP-ITEM { "category": "weapon", "typename": "pumpaction2", "tag": "Classic shotgun", "secret": true, "pos": ["MAP01",-1360,-188,43] }
 AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "pos": ["MAP01",-1140,-208,32] }
@@ -93,18 +98,6 @@ AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkil
 AP-ITEM { "category": "small-ammo", "typename": "fortyfiveammo", "tag": "fortyfiveammo", "pos": ["MAP01",-1112,-424,29] }
 AP-ITEM { "category": "small-ammo", "typename": "fortyfiveammo", "tag": "fortyfiveammo", "pos": ["MAP01",-728,-976,32] }
 AP-ITEM { "category": "small-ammo", "typename": "fortyfiveammo", "tag": "fortyfiveammo", "pos": ["MAP01",-1136,-432,29] }
-AP-ITEM { "category": "small-token", "typename": "JUNKpipe", "tag": "Junk Pipe", "secret": true, "filter": 2, "pos": ["MAP01",-628,868,128] }
-AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "filter": 2, "pos": ["MAP01",-628,960,128] }
-AP-ITEM { "category": "small-token", "typename": "JUNKpipe", "tag": "Junk Pipe", "filter": 2, "pos": ["MAP01",-968,-772,0] }
-AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "filter": 2, "pos": ["MAP01",-80,-216,192] }
-AP-ITEM { "category": "small-token", "typename": "JUNKspares", "tag": "Junk Spares", "filter": 2, "pos": ["MAP01",-1812,-176,32] }
-AP-ITEM { "category": "small-token", "typename": "JUNKnuts", "tag": "Junk Nuts", "secret": true, "filter": 4, "pos": ["MAP01",-628,868,128] }
-AP-ITEM { "category": "small-token", "typename": "JUNKcable", "tag": "Junk Cable", "filter": 4, "pos": ["MAP01",-628,960,128] }
-AP-ITEM { "category": "small-token", "typename": "JUNKspares", "tag": "Junk Spares", "filter": 12, "pos": ["MAP01",-968,-772,0] }
-AP-ITEM { "category": "small-token", "typename": "JUNKtools", "tag": "Junk Tools", "filter": 4, "pos": ["MAP01",-80,-216,192] }
-AP-ITEM { "category": "small-token", "typename": "JUNKnuts", "tag": "Junk Nuts", "filter": 4, "pos": ["MAP01",-1812,-176,32] }
-AP-ITEM { "category": "small-token", "typename": "JUNKcable", "tag": "Junk Cable", "filter": 8, "pos": ["MAP01",-80,-216,192] }
-AP-ITEM { "category": "small-token", "typename": "JUNKtools", "tag": "Junk Tools", "filter": 8, "pos": ["MAP01",-1812,-176,32] }
 AP-SECRET { "pos": ["MAP01","secret","sector",95] }
 AP-SECRET { "pos": ["MAP01","secret","sector",220] }
 AP-SECRET { "pos": ["MAP01","secret","sector",318] }
@@ -114,7 +107,7 @@ AP-MAP {
   "map": "MAP02", "levelname": "The Boneyard",
   "checksum": "dbb5683e7ddde555a7141d37d71fe05c", "rank": 2, "monster_count": 94,
   "info": { "levelnum": 2, "title": "The Boneyard", "is_lookup": false, "sky1": "ASKY2B", "sky1speed": "0.000000", "sky2": "ASKY2B", "sky2speed": "0.000000", "music": "$MUSIC_STALKS", "music_track": "0", "cluster": 0, "flags": [] },
-  "monsters": { "shotgunthug": 7, "Radroach": 2, "ScabbieSavage": 39, "PistolThug": 3, "RevolverThug": 4, "Master": 1, "Pitfiend": 38 },
+  "monsters": { "shotgunthug": 7, "Radroach": 2, "ScabbieSavage": 39, "PistolThug": 4, "RevolverThug": 3, "Master": 1, "Pitfiend": 38 },
   "prereqs": [ "weapon/Glock/auto", "weapon/pumpaction2/auto" ]
 }
 AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP02",2108,-2572,0] }
@@ -129,6 +122,7 @@ AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScra
 AP-ITEM { "category": "small-ammo", "typename": "shotgunAmmo", "tag": "shotgunAmmo", "pos": ["MAP02",3008,-3456,-8] }
 AP-ITEM { "category": "big-useful-tool", "typename": "LanternPickup", "tag": "Lantern", "pos": ["MAP02",840,2792,-192] }
 AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "pos": ["MAP02",800,2808,-192] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP02",1312,1488,-32] }
 AP-ITEM { "category": "small-ammo", "typename": "fortyfiveammo", "tag": "fortyfiveammo", "pos": ["MAP02",5328,-3844,-4] }
 AP-ITEM { "category": "small-ammo", "typename": "shotgunAmmo", "tag": "shotgunAmmo", "filter": 6, "pos": ["MAP02",5336,-3888,-4] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP02",1592,-2096,64] }
@@ -205,10 +199,7 @@ AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "po
 AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP02",3024,-64,128] }
 AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP02",3088,-32,128] }
 AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP02",3088,-64,128] }
-AP-ITEM { "category": "small-token", "typename": "JUNKspares", "tag": "Junk Spares", "filter": 2, "pos": ["MAP02",1312,1488,-32] }
-AP-ITEM { "category": "small-token", "typename": "JUNKnuts", "tag": "Junk Nuts", "filter": 4, "pos": ["MAP02",1312,1488,-32] }
 AP-ITEM { "category": "medium-ammo", "typename": "Shotgunbox", "tag": "Shotgunbox", "filter": 8, "pos": ["MAP02",5360,-3856,-4] }
-AP-ITEM { "category": "small-token", "typename": "JUNKtools", "tag": "Junk Tools", "filter": 8, "pos": ["MAP02",1312,1488,-32] }
 AP-SECRET { "pos": ["MAP02","secret","sector",208] }
 AP-SECRET { "pos": ["MAP02","secret","sector",401] }
 AP-SECRET { "pos": ["MAP02","secret","sector",587] }
@@ -234,9 +225,10 @@ AP-MAP {
   "map": "MAP04", "levelname": "Highway Holocaust",
   "checksum": "adeff52de905bdd23b09af6988f077e9", "rank": 4, "monster_count": 154,
   "info": { "levelnum": 4, "title": "Highway Holocaust", "is_lookup": false, "sky1": "ASKY1B", "sky1speed": "0.000000", "sky2": "ASKY1B", "sky2speed": "0.000000", "music": "$MUSIC_BETWEE", "music_track": "0", "cluster": 0, "flags": [] },
-  "monsters": { "shotgunthug": 47, "RevolverThug": 22, "PistolThug": 40, "Pitfiend": 45 },
+  "monsters": { "shotgunthug": 47, "RevolverThug": 27, "PistolThug": 35, "Pitfiend": 45 },
   "prereqs": [ "weapon/Glock/auto", "weapon/pumpaction2/auto" ]
 }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP04",18428,24488,332] }
 AP-ITEM { "category": "small-ammo", "typename": "shotgunAmmo", "tag": "shotgunAmmo", "pos": ["MAP04",7876,16432,-80] }
 AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP04",8536,16740,144] }
 AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP04",8568,16708,144] }
@@ -247,11 +239,15 @@ AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScra
 AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP04",8888,16484,-24] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP04",8968,16548,-24] }
 AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "pos": ["MAP04",9064,16484,-24] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP04",7840,16436,-80] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP04",7784,16844,-112] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP04",7768,16804,-112] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP04",7784,16764,-112] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP04",7816,16860,-112] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP04",7792,16820,-112] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP04",8664,15060,-104] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP04",8616,15060,-104] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP04",8376,15236,-80] }
 AP-ITEM { "category": "big-ammo", "typename": "Pipebomb", "tag": "Pipebomb", "secret": true, "pos": ["MAP04",21208,26472,52] }
 AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "pos": ["MAP04",18368,26404,268] }
 AP-ITEM { "category": "big-health-powerup", "typename": "RegenStimpack", "tag": "REGEN Stim", "pos": ["MAP04",18144,26532,268] }
@@ -275,7 +271,11 @@ AP-ITEM { "category": "big-ammo", "typename": "Pipebomb", "tag": "Pipebomb", "po
 AP-ITEM { "category": "big-ammo", "typename": "Pipebomb", "tag": "Pipebomb", "secret": true, "pos": ["MAP04",21256,26368,52] }
 AP-ITEM { "category": "small-ammo", "typename": "shotgunAmmo", "tag": "shotgunAmmo", "pos": ["MAP04",18624,26052,140] }
 AP-ITEM { "category": "weapon", "typename": "Ingram3", "tag": "Michonne Ultra", "pos": ["MAP04",19856,27940,124] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP04",20264,27180,116] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP04",20248,27164,116] }
 AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "pos": ["MAP04",18856,27240,116] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP04",16520,28164,9] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP04",16504,28132,9] }
 AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP04",15304,26740,104] }
 AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP04",16232,26356,104] }
 AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP04",16272,26388,104] }
@@ -291,6 +291,9 @@ AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "po
 AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "pos": ["MAP04",16216,26844,104] }
 AP-ITEM { "category": "medium-ammo", "typename": "Shotgunbox", "tag": "Shotgunbox", "pos": ["MAP04",20944,26540,236] }
 AP-ITEM { "category": "small-ammo", "typename": "NineMilammo", "tag": "NineMilammo", "pos": ["MAP04",20944,26468,236] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP04",18428,24472,332] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "secret": true, "pos": ["MAP04",19304,10944,-187] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "secret": true, "pos": ["MAP04",19280,10920,-187] }
 AP-ITEM { "category": "medium-armor", "typename": "ArmorLeather", "tag": "ArmorLeather", "secret": true, "pos": ["MAP04",19312,10916,-187] }
 AP-ITEM { "category": "small-ammo", "typename": "fortyfiveammo", "tag": "fortyfiveammo", "pos": ["MAP04",12096,7200,-4] }
 AP-ITEM { "category": "small-ammo", "typename": "shotgunAmmo", "tag": "shotgunAmmo", "pos": ["MAP04",12064,7232,-4] }
@@ -300,36 +303,7 @@ AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "po
 AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP04",19472,24128,329] }
 AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP04",19464,24128,300] }
 AP-ITEM { "category": "big-attack-powerup", "typename": "Powerrage", "tag": "BRUTE Stim", "secret": true, "pos": ["MAP04",19400,23952,300] }
-AP-ITEM { "category": "small-token", "typename": "JUNKnuts", "tag": "Junk Nuts", "filter": 2, "pos": ["MAP04",18428,24488,332] }
-AP-ITEM { "category": "small-token", "typename": "JUNKpipe", "tag": "Junk Pipe", "filter": 2, "pos": ["MAP04",7840,16436,-80] }
-AP-ITEM { "category": "small-token", "typename": "JUNKpipe", "tag": "Junk Pipe", "filter": 2, "pos": ["MAP04",8664,15060,-104] }
-AP-ITEM { "category": "small-token", "typename": "JUNKtools", "tag": "Junk Tools", "filter": 2, "pos": ["MAP04",8616,15060,-104] }
-AP-ITEM { "category": "small-token", "typename": "JUNKspares", "tag": "Junk Spares", "filter": 6, "pos": ["MAP04",8376,15236,-80] }
 AP-ITEM { "category": "weapon", "typename": "revolver", "tag": ".45 revolver", "pos": ["MAP04",18704,26008,108] }
-AP-ITEM { "category": "small-token", "typename": "JUNKnuts", "tag": "Junk Nuts", "filter": 6, "pos": ["MAP04",20264,27180,116] }
-AP-ITEM { "category": "small-token", "typename": "JUNKpipe", "tag": "Junk Pipe", "filter": 2, "pos": ["MAP04",20248,27164,116] }
-AP-ITEM { "category": "small-token", "typename": "JUNKcable", "tag": "Junk Cable", "filter": 2, "pos": ["MAP04",16520,28164,9] }
-AP-ITEM { "category": "small-token", "typename": "JUNKtools", "tag": "Junk Tools", "filter": 2, "pos": ["MAP04",16504,28132,9] }
-AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "filter": 10, "pos": ["MAP04",18428,24472,332] }
-AP-ITEM { "category": "small-token", "typename": "JUNKpipe", "tag": "Junk Pipe", "secret": true, "filter": 2, "pos": ["MAP04",19304,10944,-187] }
-AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "secret": true, "filter": 6, "pos": ["MAP04",19280,10920,-187] }
-AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "filter": 4, "pos": ["MAP04",18428,24488,332] }
-AP-ITEM { "category": "small-token", "typename": "JUNKnuts", "tag": "Junk Nuts", "filter": 4, "pos": ["MAP04",7840,16436,-80] }
-AP-ITEM { "category": "small-token", "typename": "JUNKspares", "tag": "Junk Spares", "filter": 4, "pos": ["MAP04",8664,15060,-104] }
-AP-ITEM { "category": "small-token", "typename": "JUNKspares", "tag": "Junk Spares", "filter": 4, "pos": ["MAP04",8616,15060,-104] }
-AP-ITEM { "category": "small-token", "typename": "JUNKcable", "tag": "Junk Cable", "filter": 12, "pos": ["MAP04",20248,27164,116] }
-AP-ITEM { "category": "small-token", "typename": "JUNKtools", "tag": "Junk Tools", "filter": 4, "pos": ["MAP04",16520,28164,9] }
-AP-ITEM { "category": "small-token", "typename": "JUNKnuts", "tag": "Junk Nuts", "filter": 12, "pos": ["MAP04",16504,28132,9] }
-AP-ITEM { "category": "small-token", "typename": "JUNKpipe", "tag": "Junk Pipe", "filter": 4, "pos": ["MAP04",18428,24472,332] }
-AP-ITEM { "category": "small-token", "typename": "JUNKtools", "tag": "Junk Tools", "secret": true, "filter": 12, "pos": ["MAP04",19304,10944,-187] }
-AP-ITEM { "category": "small-token", "typename": "JUNKtools", "tag": "Junk Tools", "filter": 8, "pos": ["MAP04",18428,24488,332] }
-AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "filter": 8, "pos": ["MAP04",7840,16436,-80] }
-AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "filter": 8, "pos": ["MAP04",8664,15060,-104] }
-AP-ITEM { "category": "small-token", "typename": "JUNKpipe", "tag": "Junk Pipe", "filter": 8, "pos": ["MAP04",8616,15060,-104] }
-AP-ITEM { "category": "small-token", "typename": "JUNKtools", "tag": "Junk Tools", "filter": 8, "pos": ["MAP04",8376,15236,-80] }
-AP-ITEM { "category": "small-token", "typename": "JUNKcable", "tag": "Junk Cable", "filter": 8, "pos": ["MAP04",20264,27180,116] }
-AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "filter": 8, "pos": ["MAP04",16520,28164,9] }
-AP-ITEM { "category": "small-token", "typename": "JUNKcable", "tag": "Junk Cable", "secret": true, "filter": 8, "pos": ["MAP04",19280,10920,-187] }
 AP-SECRET { "pos": ["MAP04","secret","sector",407] }
 AP-SECRET { "pos": ["MAP04","secret","sector",812] }
 AP-SECRET { "pos": ["MAP04","secret","sector",1214] }
@@ -340,20 +314,16 @@ AP-MAP {
   "map": "MAP06", "levelname": "Terminus",
   "checksum": "1eae02855b4189fe87e10d1e5838c4bd", "rank": 5, "monster_count": 31,
   "info": { "levelnum": 6, "title": "Terminus", "is_lookup": false, "sky1": "ASKY3A", "sky1speed": "0.000000", "sky2": "ASKY3A", "sky2speed": "0.000000", "music": "$MUSIC_DDTBLU", "music_track": "0", "cluster": 0, "flags": [] },
-  "monsters": { "RIGS": 1, "MilitiaLeader": 1, "Violet": 1, "TraderSitting1": 1, "ScabbieSavage": 1, "TraderSitting2": 2, "LoserWalking": 6, "ShadyTrader": 1, "Pitfiend": 1, "BanditTalkative": 1, "ThugTalkative": 5, "TownMilitia": 9, "LoserStanding": 1 },
+  "monsters": { "RIGS": 1, "MilitiaLeader": 1, "Violet": 1, "TraderSitting1": 1, "ScabbieSavage": 1, "TraderSitting2": 2, "LoserWalking": 6, "Pitfiend": 1, "BanditTalkative": 1, "ShadyTrader": 1, "ThugTalkative": 5, "TownMilitia": 9, "LoserStanding": 1 },
   "prereqs": [  ]
 }
-AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "filter": 2, "pos": ["MAP06",-160,312,26] }
-AP-ITEM { "category": "small-token", "typename": "JUNKpipe", "tag": "Junk Pipe", "filter": 2, "pos": ["MAP06",-240,288,26] }
-AP-ITEM { "category": "small-token", "typename": "JUNKcable", "tag": "Junk Cable", "filter": 4, "pos": ["MAP06",-160,312,26] }
-AP-ITEM { "category": "small-token", "typename": "JUNKspares", "tag": "Junk Spares", "filter": 4, "pos": ["MAP06",-240,288,26] }
-AP-ITEM { "category": "small-token", "typename": "JUNKtools", "tag": "Junk Tools", "filter": 8, "pos": ["MAP06",-160,312,26] }
-AP-ITEM { "category": "small-token", "typename": "JUNKcable", "tag": "Junk Cable", "filter": 8, "pos": ["MAP06",-240,288,26] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP06",-160,312,26] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP06",-240,288,26] }
 AP-MAP {
   "map": "MAP07", "levelname": "The City",
   "checksum": "7a36085f1d02a891967b8478f5c35d90", "rank": 6, "monster_count": 153,
   "info": { "levelnum": 7, "title": "The City", "is_lookup": false, "sky1": "ASKY3A", "sky1speed": "0.017500", "sky2": "ASKY3B", "sky2speed": "0.017500", "music": "$MUSIC_THE_DA", "music_track": "0", "cluster": 0, "flags": [] },
-  "monsters": { "shotgunthug": 18, "RevolverThug": 5, "PistolThug": 17, "Radroach": 5, "Master": 3, "Lurker": 13, "Haunt": 4, "Pitfiend": 57, "ScabbieSavage": 31 },
+  "monsters": { "shotgunthug": 18, "PistolThug": 14, "RevolverThug": 8, "Radroach": 5, "Master": 3, "Lurker": 13, "Haunt": 4, "Pitfiend": 57, "ScabbieSavage": 31 },
   "prereqs": [ "weapon/Glock/auto", "weapon/pumpaction2/auto" ]
 }
 AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP07",5728,656,-144] }
@@ -534,7 +504,7 @@ AP-MAP {
   "map": "MAP09", "levelname": "Temple of The Dollar",
   "checksum": "bcf6fc192c31254f6ad3f9e1e1cc90d8", "rank": 6, "monster_count": 111,
   "info": { "levelnum": 9, "title": "Temple of The Dollar", "is_lookup": false, "sky1": "ASKY1B", "sky1speed": "0.000000", "sky2": "ASKY1B", "sky2speed": "0.000000", "music": "$MUSIC_SHAWN", "music_track": "0", "cluster": 0, "flags": [] },
-  "monsters": { "shotgunthug": 34, "ScabbieSavage": 12, "PistolThug": 19, "Master": 1, "RevolverThug": 17, "Lurker": 5, "Pitfiend": 23 },
+  "monsters": { "shotgunthug": 34, "ScabbieSavage": 12, "Master": 1, "RevolverThug": 13, "Lurker": 5, "PistolThug": 23, "Pitfiend": 23 },
   "prereqs": [ "weapon/Glock/auto", "weapon/pumpaction2/auto" ]
 }
 AP-ITEM { "category": "small-ammo", "typename": "fortyfiveammo", "tag": "fortyfiveammo", "pos": ["MAP09",-1024,160,-376] }
@@ -548,6 +518,10 @@ AP-ITEM { "category": "weapon", "typename": "NapalmGun", "tag": "Master Blaster"
 AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP09",128,-496,-224] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP09",168,-496,-224] }
 AP-ITEM { "category": "weapon", "typename": "SawedOff", "tag": "Sawed-off Shotgun", "pos": ["MAP09",200,-384,-232] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP09",2528,-360,160] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP09",2568,-360,160] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP09",2608,-120,160] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP09",2256,-208,160] }
 AP-ITEM { "category": "medium-health", "typename": "Firstaid", "tag": "Medical Kit", "pos": ["MAP09",992,864,128] }
 AP-ITEM { "category": "key", "typename": "RedCard", "tag": "Red Access Card", "pos": ["MAP09",-1064,3944,256] }
 AP-KEY { "typename": "RedCard", "tag": "Red Access Card", "scopename": "MAP09", "cluster": 0, "maps": ["MAP09"] }
@@ -560,6 +534,7 @@ AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScra
 AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP09",3084,-396,-104] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP09",3192,-532,-128] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP09",3188,-492,-128] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP09",2344,1072,0] }
 AP-ITEM { "category": "small-ammo", "typename": "NineMilammo", "tag": "NineMilammo", "pos": ["MAP09",528,3664,328] }
 AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "pos": ["MAP09",528,3616,328] }
 AP-ITEM { "category": "medium-armor", "typename": "ArmorLeather", "tag": "ArmorLeather", "pos": ["MAP09",340,808,32] }
@@ -595,19 +570,6 @@ AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "po
 AP-ITEM { "category": "big-ammo", "typename": "Pipebomb", "tag": "Pipebomb", "pos": ["MAP09",-864,2472,128] }
 AP-ITEM { "category": "big-ammo", "typename": "Pipebomb", "tag": "Pipebomb", "pos": ["MAP09",-900,2476,128] }
 AP-ITEM { "category": "weapon", "typename": "revolver", "tag": ".45 revolver", "pos": ["MAP09",968,944,128] }
-AP-ITEM { "category": "small-token", "typename": "JUNKnuts", "tag": "Junk Nuts", "filter": 2, "pos": ["MAP09",2528,-360,160] }
-AP-ITEM { "category": "small-token", "typename": "JUNKpipe", "tag": "Junk Pipe", "filter": 2, "pos": ["MAP09",2568,-360,160] }
-AP-ITEM { "category": "small-token", "typename": "JUNKtools", "tag": "Junk Tools", "filter": 2, "pos": ["MAP09",2608,-120,160] }
-AP-ITEM { "category": "small-token", "typename": "JUNKcable", "tag": "Junk Cable", "filter": 10, "pos": ["MAP09",2256,-208,160] }
-AP-ITEM { "category": "small-token", "typename": "JUNKpipe", "tag": "Junk Pipe", "filter": 2, "pos": ["MAP09",2344,1072,0] }
-AP-ITEM { "category": "small-token", "typename": "JUNKpipe", "tag": "Junk Pipe", "filter": 12, "pos": ["MAP09",2528,-360,160] }
-AP-ITEM { "category": "small-token", "typename": "JUNKnuts", "tag": "Junk Nuts", "filter": 4, "pos": ["MAP09",2568,-360,160] }
-AP-ITEM { "category": "small-token", "typename": "JUNKpipe", "tag": "Junk Pipe", "filter": 4, "pos": ["MAP09",2608,-120,160] }
-AP-ITEM { "category": "small-token", "typename": "JUNKnuts", "tag": "Junk Nuts", "filter": 4, "pos": ["MAP09",2256,-208,160] }
-AP-ITEM { "category": "small-token", "typename": "JUNKcable", "tag": "Junk Cable", "filter": 4, "pos": ["MAP09",2344,1072,0] }
-AP-ITEM { "category": "small-token", "typename": "JUNKspares", "tag": "Junk Spares", "filter": 8, "pos": ["MAP09",2568,-360,160] }
-AP-ITEM { "category": "small-token", "typename": "JUNKcable", "tag": "Junk Cable", "filter": 8, "pos": ["MAP09",2608,-120,160] }
-AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "filter": 8, "pos": ["MAP09",2344,1072,0] }
 AP-SECRET { "pos": ["MAP09","secret","sector",562] }
 AP-SECRET { "pos": ["MAP09","secret","sector",674] }
 AP-SECRET { "pos": ["MAP09","secret","sector",760] }
@@ -617,7 +579,7 @@ AP-MAP {
   "map": "DAM1", "levelname": "Those Dam Raiders",
   "checksum": "23fa3cb04d86e464f20a8c7441c720dc", "rank": 4, "monster_count": 71,
   "info": { "levelnum": 0, "title": "Those Dam Raiders", "is_lookup": false, "sky1": "ASKY1B", "sky1speed": "0.000000", "sky2": "ASKY1B", "sky2speed": "0.000000", "music": "$MUSIC_EVIL", "music_track": "0", "cluster": 0, "flags": [] },
-  "monsters": { "shotgunthug": 29, "TownMilitia": 1, "RevolverThug": 16, "PistolThug": 18, "Pitfiend": 7 },
+  "monsters": { "shotgunthug": 29, "TownMilitia": 1, "RevolverThug": 13, "PistolThug": 21, "Pitfiend": 7 },
   "prereqs": [ "weapon/Glock/auto", "weapon/pumpaction2/auto" ]
 }
 AP-ITEM { "category": "key", "typename": "RedSkull", "tag": "Bronze Staff Key", "pos": ["DAM1",112,-512,-224] }
@@ -631,6 +593,12 @@ AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScra
 AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["DAM1",-520,472,-256] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["DAM1",-1016,1000,-256] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["DAM1",-1016,960,-256] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["DAM1",-1008,920,-256] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "secret": true, "pos": ["DAM1",-1504,1160,-440] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "secret": true, "pos": ["DAM1",-1536,1136,-440] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "secret": true, "pos": ["DAM1",-1536,1160,-440] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "secret": true, "pos": ["DAM1",-1512,1176,-440] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "secret": true, "pos": ["DAM1",-1560,1144,-440] }
 AP-ITEM { "category": "key", "typename": "BlueCard", "tag": "Blue Access Card", "pos": ["DAM1",672,1320,-224] }
 AP-KEY { "typename": "BlueCard", "tag": "Blue Access Card", "scopename": "DAM1", "cluster": 0, "maps": ["DAM1"] }
 AP-ITEM { "category": "medium-health", "typename": "Firstaid", "tag": "Medical Kit", "pos": ["DAM1",592,1328,-224] }
@@ -645,32 +613,15 @@ AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear",
 AP-ITEM { "category": "small-token", "typename": "JUNKspares", "tag": "Junk Spares", "pos": ["DAM1",-2896,-656,-608] }
 AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "pos": ["DAM1",-2512,-672,-640] }
 AP-ITEM { "category": "medium-health", "typename": "Firstaid", "tag": "Medical Kit", "pos": ["DAM1",-2544,-672,-640] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["DAM1",-40,200,25] }
 AP-ITEM { "category": "medium-health", "typename": "Firstaid", "tag": "Medical Kit", "pos": ["DAM1",-8,200,25] }
 AP-ITEM { "category": "small-ammo", "typename": "fortyfiveammo", "tag": "fortyfiveammo", "pos": ["DAM1",16,208,25] }
-AP-ITEM { "category": "small-token", "typename": "JUNKpipe", "tag": "Junk Pipe", "filter": 2, "pos": ["DAM1",-1008,920,-256] }
-AP-ITEM { "category": "small-token", "typename": "JUNKcable", "tag": "Junk Cable", "secret": true, "filter": 2, "pos": ["DAM1",-1504,1160,-440] }
-AP-ITEM { "category": "small-token", "typename": "JUNKpipe", "tag": "Junk Pipe", "secret": true, "filter": 2, "pos": ["DAM1",-1536,1136,-440] }
-AP-ITEM { "category": "small-token", "typename": "JUNKcable", "tag": "Junk Cable", "secret": true, "filter": 2, "pos": ["DAM1",-1536,1160,-440] }
-AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "secret": true, "filter": 2, "pos": ["DAM1",-1512,1176,-440] }
-AP-ITEM { "category": "small-token", "typename": "JUNKcable", "tag": "Junk Cable", "secret": true, "filter": 10, "pos": ["DAM1",-1560,1144,-440] }
-AP-ITEM { "category": "small-token", "typename": "JUNKpipe", "tag": "Junk Pipe", "filter": 2, "pos": ["DAM1",-40,200,25] }
-AP-ITEM { "category": "small-token", "typename": "JUNKspares", "tag": "Junk Spares", "filter": 12, "pos": ["DAM1",-1008,920,-256] }
-AP-ITEM { "category": "small-token", "typename": "JUNKnuts", "tag": "Junk Nuts", "secret": true, "filter": 4, "pos": ["DAM1",-1504,1160,-440] }
-AP-ITEM { "category": "small-token", "typename": "JUNKnuts", "tag": "Junk Nuts", "secret": true, "filter": 4, "pos": ["DAM1",-1536,1136,-440] }
-AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "secret": true, "filter": 4, "pos": ["DAM1",-1536,1160,-440] }
-AP-ITEM { "category": "small-token", "typename": "JUNKcable", "tag": "Junk Cable", "secret": true, "filter": 12, "pos": ["DAM1",-1512,1176,-440] }
-AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "secret": true, "filter": 4, "pos": ["DAM1",-1560,1144,-440] }
-AP-ITEM { "category": "small-token", "typename": "JUNKspares", "tag": "Junk Spares", "filter": 4, "pos": ["DAM1",-40,200,25] }
-AP-ITEM { "category": "small-token", "typename": "JUNKpipe", "tag": "Junk Pipe", "secret": true, "filter": 8, "pos": ["DAM1",-1504,1160,-440] }
-AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "secret": true, "filter": 8, "pos": ["DAM1",-1536,1136,-440] }
-AP-ITEM { "category": "small-token", "typename": "JUNKnuts", "tag": "Junk Nuts", "secret": true, "filter": 8, "pos": ["DAM1",-1536,1160,-440] }
-AP-ITEM { "category": "small-token", "typename": "JUNKnuts", "tag": "Junk Nuts", "filter": 8, "pos": ["DAM1",-40,200,25] }
 AP-SECRET { "pos": ["DAM1","secret","sector",407] }
 AP-MAP {
   "map": "MAP05", "levelname": "The Sub-Caverns",
   "checksum": "4e570be726f9cafa781cf16fcd756447", "rank": 1, "monster_count": 193,
   "info": { "levelnum": 5, "title": "The Sub-Caverns", "is_lookup": false, "sky1": "ASKY1B", "sky1speed": "0.000000", "sky2": "ASKY1B", "sky2speed": "0.000000", "music": "$MUSIC_COUNTD", "music_track": "0", "cluster": 0, "flags": [] },
-  "monsters": { "shotgunthug": 1, "ScabbieSavage": 61, "GlowPlant1": 3, "PistolThug": 2, "RevolverThug": 1, "OldCoot": 1, "Master": 1, "Lurker": 15, "Haunt": 7, "Gasbag": 26, "Radroach": 9, "Pitfiend": 66 },
+  "monsters": { "shotgunthug": 1, "ScabbieSavage": 61, "GlowPlant1": 3, "PistolThug": 3, "OldCoot": 1, "Master": 1, "Lurker": 15, "Haunt": 7, "Radroach": 9, "Gasbag": 26, "Pitfiend": 66 },
   "prereqs": [ "weapon/Glock/auto", "weapon/pumpaction2/auto" ]
 }
 AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP05",292,-1768,234] }
@@ -700,11 +651,15 @@ AP-ITEM { "category": "small-ammo", "typename": "shotgunAmmo", "tag": "shotgunAm
 AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP05",576,976,0] }
 AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP05",608,944,0] }
 AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP05",456,1472,0] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP05",432,1592,20] }
 AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP05",432,1456,55] }
 AP-ITEM { "category": "small-ammo", "typename": "shotgunAmmo", "tag": "shotgunAmmo", "pos": ["MAP05",480,3104,-104] }
 AP-ITEM { "category": "small-ammo", "typename": "NineMilammo", "tag": "NineMilammo", "pos": ["MAP05",416,3360,-104] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP05",968,5904,18] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP05",-2820,4080,209] }
 AP-ITEM { "category": "small-token", "typename": "JUNKtools", "tag": "Junk Tools", "pos": ["MAP05",-712,3576,145] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP05",-464,3576,145] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP05",1056,6160,18] }
 AP-ITEM { "category": "big-ammo", "typename": "Pipebomb", "tag": "Pipebomb", "pos": ["MAP05",3424,5616,32] }
 AP-ITEM { "category": "big-ammo", "typename": "Pipebomb", "tag": "Pipebomb", "pos": ["MAP05",3424,5576,32] }
 AP-ITEM { "category": "small-ammo", "typename": "shotgunAmmo", "tag": "shotgunAmmo", "secret": true, "pos": ["MAP05",2920,5096,0] }
@@ -725,6 +680,9 @@ AP-ITEM { "category": "small-ammo", "typename": "NineMilammo", "tag": "NineMilam
 AP-ITEM { "category": "weapon", "typename": "NapalmGun", "tag": "Master Blaster", "pos": ["MAP05",-928,9312,-70] }
 AP-ITEM { "category": "key", "typename": "YellowCard", "tag": "Yellow Access Card", "pos": ["MAP05",-756,6780,-166] }
 AP-KEY { "typename": "YellowCard", "tag": "Yellow Access Card", "scopename": "MAP05", "cluster": 0, "maps": ["MAP05"] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP05",-736,10720,-186] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP05",-704,10704,-186] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP05",-736,10752,-186] }
 AP-ITEM { "category": "big-ammo", "typename": "Pipebomb", "tag": "Pipebomb", "pos": ["MAP05",592,852,32] }
 AP-ITEM { "category": "medium-health", "typename": "Firstaid", "tag": "Medical Kit", "pos": ["MAP05",720,756,32] }
 AP-ITEM { "category": "medium-armor", "typename": "ArmorLeather", "tag": "ArmorLeather", "pos": ["MAP05",752,780,32] }
@@ -755,6 +713,12 @@ AP-ITEM { "category": "small-ammo", "typename": "fortyfiveammo", "tag": "fortyfi
 AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP05",-1332,11352,-162] }
 AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP05",-1300,11316,-162] }
 AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP05",-1320,11288,-162] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP05",-664,11592,-186] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP05",-644,11368,-186] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP05",-432,11180,-186] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP05",-600,11056,-186] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP05",-800,11144,-186] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP05",-728,10892,-186] }
 AP-ITEM { "category": "weapon", "typename": "JACKHAMMER", "tag": "JackHammer", "pos": ["MAP05",736,8656,-128] }
 AP-ITEM { "category": "medium-ammo", "typename": "Shotgunbox", "tag": "Shotgunbox", "pos": ["MAP05",768,8624,-128] }
 AP-ITEM { "category": "small-ammo", "typename": "NineMilammo", "tag": "NineMilammo", "pos": ["MAP05",1504,8240,-64] }
@@ -781,6 +745,8 @@ AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "po
 AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP05",4176,6336,-230] }
 AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "secret": true, "pos": ["MAP05",-1856,9312,-198] }
 AP-ITEM { "category": "small-ammo", "typename": "fortyfiveammo", "tag": "fortyfiveammo", "secret": true, "pos": ["MAP05",-1824,9296,-198] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "secret": true, "pos": ["MAP05",-1872,9264,-198] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "secret": true, "pos": ["MAP05",-1888,9296,-198] }
 AP-ITEM { "category": "big-ammo", "typename": "Pipebomb", "tag": "Pipebomb", "pos": ["MAP05",1584,10472,-54] }
 AP-ITEM { "category": "big-ammo", "typename": "Pipebomb", "tag": "Pipebomb", "pos": ["MAP05",1584,10428,-54] }
 AP-ITEM { "category": "small-ammo", "typename": "shotgunAmmo", "tag": "shotgunAmmo", "pos": ["MAP05",1584,10520,-55] }
@@ -799,44 +765,10 @@ AP-ITEM { "category": "small-ammo", "typename": "NineMilammo", "tag": "NineMilam
 AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP05",1436,10304,-58] }
 AP-ITEM { "category": "small-ammo", "typename": "NineMilammo", "tag": "NineMilammo", "pos": ["MAP05",-32,8560,26] }
 AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "pos": ["MAP05",-40,8584,26] }
-AP-ITEM { "category": "small-token", "typename": "JUNKnuts", "tag": "Junk Nuts", "filter": 6, "pos": ["MAP05",432,1592,20] }
-AP-ITEM { "category": "small-token", "typename": "JUNKcable", "tag": "Junk Cable", "filter": 2, "pos": ["MAP05",968,5904,18] }
-AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "filter": 2, "pos": ["MAP05",-464,3576,145] }
-AP-ITEM { "category": "small-token", "typename": "JUNKpipe", "tag": "Junk Pipe", "filter": 2, "pos": ["MAP05",1056,6160,18] }
 AP-ITEM { "category": "weapon", "typename": "revolver", "tag": ".45 revolver", "pos": ["MAP05",2912,4984,32] }
-AP-ITEM { "category": "small-token", "typename": "JUNKnuts", "tag": "Junk Nuts", "pos": ["MAP05",-736,10720,-186] }
-AP-ITEM { "category": "small-token", "typename": "JUNKtools", "tag": "Junk Tools", "filter": 6, "pos": ["MAP05",-704,10704,-186] }
-AP-ITEM { "category": "small-token", "typename": "JUNKnuts", "tag": "Junk Nuts", "filter": 10, "pos": ["MAP05",-736,10752,-186] }
 AP-ITEM { "category": "weapon", "typename": "revolver", "tag": ".45 revolver", "pos": ["MAP05",656,740,0] }
 AP-ITEM { "category": "weapon", "typename": "revolver", "tag": ".45 revolver", "pos": ["MAP05",-1304,11364,-162] }
-AP-ITEM { "category": "small-token", "typename": "JUNKtools", "tag": "Junk Tools", "filter": 10, "pos": ["MAP05",-664,11592,-186] }
-AP-ITEM { "category": "small-token", "typename": "JUNKnuts", "tag": "Junk Nuts", "filter": 6, "pos": ["MAP05",-644,11368,-186] }
-AP-ITEM { "category": "small-token", "typename": "JUNKtools", "tag": "Junk Tools", "filter": 6, "pos": ["MAP05",-432,11180,-186] }
-AP-ITEM { "category": "small-token", "typename": "JUNKpipe", "tag": "Junk Pipe", "filter": 6, "pos": ["MAP05",-600,11056,-186] }
-AP-ITEM { "category": "small-token", "typename": "JUNKspares", "tag": "Junk Spares", "filter": 2, "pos": ["MAP05",-800,11144,-186] }
-AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "filter": 2, "pos": ["MAP05",-728,10892,-186] }
-AP-ITEM { "category": "small-token", "typename": "JUNKnuts", "tag": "Junk Nuts", "secret": true, "filter": 2, "pos": ["MAP05",-1872,9264,-198] }
-AP-ITEM { "category": "small-token", "typename": "JUNKcable", "tag": "Junk Cable", "secret": true, "filter": 6, "pos": ["MAP05",-1888,9296,-198] }
 AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "filter": 12, "pos": ["MAP05",-1712,10432,-114] }
-AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "filter": 4, "pos": ["MAP05",968,5904,18] }
-AP-ITEM { "category": "small-token", "typename": "JUNKnuts", "tag": "Junk Nuts", "filter": 4, "pos": ["MAP05",-464,3576,145] }
-AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "filter": 4, "pos": ["MAP05",1056,6160,18] }
-AP-ITEM { "category": "small-token", "typename": "JUNKcable", "tag": "Junk Cable", "filter": 4, "pos": ["MAP05",-736,10752,-186] }
-AP-ITEM { "category": "small-token", "typename": "JUNKpipe", "tag": "Junk Pipe", "filter": 4, "pos": ["MAP05",-664,11592,-186] }
-AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "filter": 4, "pos": ["MAP05",-800,11144,-186] }
-AP-ITEM { "category": "small-token", "typename": "JUNKspares", "tag": "Junk Spares", "filter": 12, "pos": ["MAP05",-728,10892,-186] }
-AP-ITEM { "category": "small-token", "typename": "JUNKtools", "tag": "Junk Tools", "secret": true, "filter": 4, "pos": ["MAP05",-1872,9264,-198] }
-AP-ITEM { "category": "small-token", "typename": "JUNKpipe", "tag": "Junk Pipe", "filter": 8, "pos": ["MAP05",432,1592,20] }
-AP-ITEM { "category": "small-token", "typename": "JUNKnuts", "tag": "Junk Nuts", "filter": 8, "pos": ["MAP05",968,5904,18] }
-AP-ITEM { "category": "small-token", "typename": "JUNKcable", "tag": "Junk Cable", "filter": 8, "pos": ["MAP05",-464,3576,145] }
-AP-ITEM { "category": "small-token", "typename": "JUNKtools", "tag": "Junk Tools", "filter": 8, "pos": ["MAP05",1056,6160,18] }
-AP-ITEM { "category": "small-token", "typename": "JUNKnuts", "tag": "Junk Nuts", "filter": 8, "pos": ["MAP05",-704,10704,-186] }
-AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "filter": 8, "pos": ["MAP05",-644,11368,-186] }
-AP-ITEM { "category": "small-token", "typename": "JUNKpipe", "tag": "Junk Pipe", "filter": 8, "pos": ["MAP05",-432,11180,-186] }
-AP-ITEM { "category": "small-token", "typename": "JUNKnuts", "tag": "Junk Nuts", "filter": 8, "pos": ["MAP05",-600,11056,-186] }
-AP-ITEM { "category": "small-token", "typename": "JUNKnuts", "tag": "Junk Nuts", "filter": 8, "pos": ["MAP05",-800,11144,-186] }
-AP-ITEM { "category": "small-token", "typename": "JUNKcable", "tag": "Junk Cable", "secret": true, "filter": 8, "pos": ["MAP05",-1872,9264,-198] }
-AP-ITEM { "category": "small-token", "typename": "JUNKnuts", "tag": "Junk Nuts", "secret": true, "filter": 8, "pos": ["MAP05",-1888,9296,-198] }
 AP-SECRET { "pos": ["MAP05","secret","sector",616] }
 AP-SECRET { "pos": ["MAP05","secret","sector",1511] }
 AP-SECRET { "pos": ["MAP05","secret","sector",1526] }
@@ -848,7 +780,7 @@ AP-MAP {
   "map": "MAP51", "levelname": "Dead Man Walking",
   "checksum": "1e31020be1ee37879d2ebd80ececef05", "rank": 0, "monster_count": 134,
   "info": { "levelnum": 51, "title": "Dead Man Walking", "is_lookup": false, "sky1": "ASKY2B", "sky1speed": "0.000000", "sky2": "ASKY2B", "sky2speed": "0.000000", "music": "$MUSIC_BETWEE", "music_track": "0", "cluster": 0, "flags": [] },
-  "monsters": { "OldCootRJ": 1, "RipperThug": 20, "SomeGuyRJ": 1, "Pitfiend": 34, "Master": 1, "shotgunripper": 13, "Lurker": 11, "Haunt": 7, "Radroach": 8, "ScabbieSavage": 21, "Gasbag": 6, "AkimboRipper": 11 },
+  "monsters": { "OldCootRJ": 1, "RipperThug": 24, "SomeGuyRJ": 1, "Master": 1, "shotgunripper": 13, "Lurker": 11, "Haunt": 7, "Radroach": 8, "ScabbieSavage": 21, "Gasbag": 6, "Pitfiend": 34, "AkimboRipper": 7 },
   "prereqs": [ "weapon/Glock/auto", "weapon/pumpaction2/auto" ]
 }
 AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP51",-912,272,0] }
@@ -895,10 +827,12 @@ AP-ITEM { "category": "small-ammo", "typename": "NineMilammo", "tag": "NineMilam
 AP-ITEM { "category": "medium-health", "typename": "Firstaid", "tag": "Medical Kit", "pos": ["MAP51",2320,8688,8] }
 AP-ITEM { "category": "small-ammo", "typename": "shotgunAmmo", "tag": "shotgunAmmo", "pos": ["MAP51",2272,7392,64] }
 AP-ITEM { "category": "small-ammo", "typename": "NineMilammo", "tag": "NineMilammo", "pos": ["MAP51",2216,7464,64] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP51",7114,18831,200] }
 AP-ITEM { "category": "small-ammo", "typename": "NineMilammo", "tag": "NineMilammo", "pos": ["MAP51",2376,8024,96] }
 AP-ITEM { "category": "small-ammo", "typename": "NineMilammo", "tag": "NineMilammo", "pos": ["MAP51",1732,6736,64] }
 AP-ITEM { "category": "small-token", "typename": "JUNKnuts", "tag": "Junk Nuts", "pos": ["MAP51",1936,7232,128] }
 AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP51",2708,6868,64] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP51",7672,18665,104] }
 AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "pos": ["MAP51",1276,7756,128] }
 AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "pos": ["MAP51",1504,7952,33] }
 AP-ITEM { "category": "small-ammo", "typename": "NineMilammo", "tag": "NineMilammo", "pos": ["MAP51",1360,7472,121] }
@@ -924,6 +858,7 @@ AP-ITEM { "category": "small-ammo", "typename": "shotgunAmmo", "tag": "shotgunAm
 AP-ITEM { "category": "small-ammo", "typename": "NineMilammo", "tag": "NineMilammo", "pos": ["MAP51",4984,16064,0] }
 AP-ITEM { "category": "small-ammo", "typename": "NineMilammo", "tag": "NineMilammo", "pos": ["MAP51",2496,15528,-152] }
 AP-ITEM { "category": "small-ammo", "typename": "NineMilammo", "tag": "NineMilammo", "pos": ["MAP51",2592,11560,69] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP51",7676,18696,104] }
 AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP51",2624,14896,-8] }
 AP-ITEM { "category": "weapon", "typename": "revolver", "tag": ".45 revolver", "pos": ["MAP51",4240,14816,-80] }
 AP-ITEM { "category": "medium-armor", "typename": "ArmorLeather", "tag": "ArmorLeather", "pos": ["MAP51",3840,17872,61] }
@@ -935,6 +870,7 @@ AP-ITEM { "category": "weapon", "typename": "Ingram3", "tag": "Michonne Ultra", 
 AP-ITEM { "category": "small-ammo", "typename": "shotgunAmmo", "tag": "shotgunAmmo", "pos": ["MAP51",5432,18520,56] }
 AP-ITEM { "category": "weapon", "typename": "Ingram3", "tag": "Michonne Ultra", "pos": ["MAP51",4944,16056,-32] }
 AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "pos": ["MAP51",3016,16648,-128] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP51",5280,14944,-96] }
 AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP51",6392,18248,72] }
 AP-ITEM { "category": "weapon", "typename": "revolver", "tag": ".45 revolver", "pos": ["MAP51",7496,19100,227] }
 AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "pos": ["MAP51",7092,19444,104] }
@@ -945,6 +881,7 @@ AP-ITEM { "category": "big-ammo", "typename": "AmmoPack", "tag": "AmmoPack", "se
 AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP51",7096,18712,97] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP51",7092,18740,97] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "secret": true, "pos": ["MAP51",7092,18676,72] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP51",7135,18832,200] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP51",7108,18476,72] }
 AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP51",6360,18256,72] }
 AP-ITEM { "category": "big-ammo", "typename": "Pipebomb", "tag": "Pipebomb", "pos": ["MAP51",2984,19248,40] }
@@ -957,60 +894,24 @@ AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScra
 AP-ITEM { "category": "weapon", "typename": "pumpaction2", "tag": "Classic shotgun", "pos": ["MAP51",2792,19992,24] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP51",1888,18336,32] }
 AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "pos": ["MAP51",-1056,7336,8] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP51",7448,18264,136] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP51",7458,18298,136] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP51",1912,18240,56] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP51",1942,18266,56] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP51",244,10408,328] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP51",2120,8040,128] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP51",2140,8020,128] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP51",1888,7572,128] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP51",4570,14942,-96] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP51",4610,14926,-96] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP51",2664,15496,-152] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP51",3216,14960,-80] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP51",3268,14956,-80] }
 AP-ITEM { "category": "small-ammo", "typename": "NineMilammo", "tag": "NineMilammo", "pos": ["MAP51",-1900,7596,8] }
-AP-ITEM { "category": "small-token", "typename": "JUNKspares", "tag": "Junk Spares", "filter": 2, "pos": ["MAP51",7114,18831,200] }
-AP-ITEM { "category": "small-token", "typename": "JUNKspares", "tag": "Junk Spares", "filter": 2, "pos": ["MAP51",7672,18665,104] }
-AP-ITEM { "category": "small-token", "typename": "JUNKspares", "tag": "Junk Spares", "filter": 2, "pos": ["MAP51",7676,18696,104] }
-AP-ITEM { "category": "small-token", "typename": "JUNKnuts", "tag": "Junk Nuts", "filter": 2, "pos": ["MAP51",5280,14944,-96] }
-AP-ITEM { "category": "small-token", "typename": "JUNKtools", "tag": "Junk Tools", "filter": 10, "pos": ["MAP51",7135,18832,200] }
-AP-ITEM { "category": "small-token", "typename": "JUNKtools", "tag": "Junk Tools", "filter": 2, "pos": ["MAP51",7448,18264,136] }
-AP-ITEM { "category": "small-token", "typename": "JUNKcable", "tag": "Junk Cable", "filter": 6, "pos": ["MAP51",7458,18298,136] }
-AP-ITEM { "category": "small-token", "typename": "JUNKcable", "tag": "Junk Cable", "filter": 2, "pos": ["MAP51",1912,18240,56] }
-AP-ITEM { "category": "small-token", "typename": "JUNKnuts", "tag": "Junk Nuts", "filter": 2, "pos": ["MAP51",1942,18266,56] }
-AP-ITEM { "category": "small-token", "typename": "JUNKtools", "tag": "Junk Tools", "filter": 10, "pos": ["MAP51",244,10408,328] }
-AP-ITEM { "category": "small-token", "typename": "JUNKpipe", "tag": "Junk Pipe", "filter": 2, "pos": ["MAP51",2120,8040,128] }
-AP-ITEM { "category": "small-token", "typename": "JUNKnuts", "tag": "Junk Nuts", "filter": 10, "pos": ["MAP51",2140,8020,128] }
-AP-ITEM { "category": "small-token", "typename": "JUNKnuts", "tag": "Junk Nuts", "filter": 2, "pos": ["MAP51",1888,7572,128] }
-AP-ITEM { "category": "small-token", "typename": "JUNKspares", "tag": "Junk Spares", "filter": 2, "pos": ["MAP51",4570,14942,-96] }
-AP-ITEM { "category": "small-token", "typename": "JUNKtools", "tag": "Junk Tools", "pos": ["MAP51",4610,14926,-96] }
-AP-ITEM { "category": "small-token", "typename": "JUNKspares", "tag": "Junk Spares", "filter": 2, "pos": ["MAP51",2664,15496,-152] }
-AP-ITEM { "category": "small-token", "typename": "JUNKnuts", "tag": "Junk Nuts", "filter": 2, "pos": ["MAP51",3216,14960,-80] }
-AP-ITEM { "category": "small-token", "typename": "JUNKnuts", "tag": "Junk Nuts", "filter": 2, "pos": ["MAP51",3268,14956,-80] }
-AP-ITEM { "category": "small-token", "typename": "JUNKtools", "tag": "Junk Tools", "filter": 2, "pos": ["MAP51",5260,17448,166] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP51",5260,17448,166] }
 AP-ITEM { "category": "weapon", "typename": "Glock", "tag": "9mm Autoloader", "pos": ["MAP51",-1060,7280,8] }
 AP-ITEM { "category": "weapon", "typename": "Glock", "tag": "9mm Autoloader", "pos": ["MAP51",3664,18344,40] }
 AP-ITEM { "category": "weapon", "typename": "Glock", "tag": "9mm Autoloader", "pos": ["MAP51",-2400,5880,72] }
-AP-ITEM { "category": "small-token", "typename": "JUNKtools", "tag": "Junk Tools", "filter": 4, "pos": ["MAP51",7114,18831,200] }
-AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "filter": 4, "pos": ["MAP51",7672,18665,104] }
-AP-ITEM { "category": "small-token", "typename": "JUNKpipe", "tag": "Junk Pipe", "filter": 12, "pos": ["MAP51",7676,18696,104] }
-AP-ITEM { "category": "small-token", "typename": "JUNKspares", "tag": "Junk Spares", "filter": 4, "pos": ["MAP51",5280,14944,-96] }
-AP-ITEM { "category": "small-token", "typename": "JUNKpipe", "tag": "Junk Pipe", "filter": 4, "pos": ["MAP51",7135,18832,200] }
-AP-ITEM { "category": "small-token", "typename": "JUNKnuts", "tag": "Junk Nuts", "filter": 4, "pos": ["MAP51",7448,18264,136] }
-AP-ITEM { "category": "small-token", "typename": "JUNKtools", "tag": "Junk Tools", "filter": 4, "pos": ["MAP51",1912,18240,56] }
-AP-ITEM { "category": "small-token", "typename": "JUNKspares", "tag": "Junk Spares", "filter": 4, "pos": ["MAP51",1942,18266,56] }
-AP-ITEM { "category": "small-token", "typename": "JUNKcable", "tag": "Junk Cable", "filter": 4, "pos": ["MAP51",244,10408,328] }
-AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "filter": 4, "pos": ["MAP51",2120,8040,128] }
-AP-ITEM { "category": "small-token", "typename": "JUNKspares", "tag": "Junk Spares", "filter": 4, "pos": ["MAP51",2140,8020,128] }
-AP-ITEM { "category": "small-token", "typename": "JUNKspares", "tag": "Junk Spares", "filter": 4, "pos": ["MAP51",1888,7572,128] }
-AP-ITEM { "category": "small-token", "typename": "JUNKnuts", "tag": "Junk Nuts", "filter": 4, "pos": ["MAP51",4570,14942,-96] }
-AP-ITEM { "category": "small-token", "typename": "JUNKcable", "tag": "Junk Cable", "filter": 4, "pos": ["MAP51",2664,15496,-152] }
-AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "filter": 4, "pos": ["MAP51",3216,14960,-80] }
-AP-ITEM { "category": "small-token", "typename": "JUNKtools", "tag": "Junk Tools", "filter": 4, "pos": ["MAP51",3268,14956,-80] }
-AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "filter": 4, "pos": ["MAP51",5260,17448,166] }
-AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "filter": 8, "pos": ["MAP51",7114,18831,200] }
-AP-ITEM { "category": "small-token", "typename": "JUNKnuts", "tag": "Junk Nuts", "filter": 8, "pos": ["MAP51",7672,18665,104] }
-AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "filter": 8, "pos": ["MAP51",5280,14944,-96] }
-AP-ITEM { "category": "small-token", "typename": "JUNKcable", "tag": "Junk Cable", "filter": 8, "pos": ["MAP51",7448,18264,136] }
-AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "filter": 8, "pos": ["MAP51",7458,18298,136] }
-AP-ITEM { "category": "small-token", "typename": "JUNKnuts", "tag": "Junk Nuts", "filter": 8, "pos": ["MAP51",1912,18240,56] }
-AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "filter": 8, "pos": ["MAP51",1942,18266,56] }
-AP-ITEM { "category": "small-token", "typename": "JUNKtools", "tag": "Junk Tools", "filter": 8, "pos": ["MAP51",2120,8040,128] }
-AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "filter": 8, "pos": ["MAP51",1888,7572,128] }
-AP-ITEM { "category": "small-token", "typename": "JUNKpipe", "tag": "Junk Pipe", "filter": 8, "pos": ["MAP51",4570,14942,-96] }
-AP-ITEM { "category": "small-token", "typename": "JUNKpipe", "tag": "Junk Pipe", "filter": 8, "pos": ["MAP51",2664,15496,-152] }
-AP-ITEM { "category": "small-token", "typename": "JUNKpipe", "tag": "Junk Pipe", "filter": 8, "pos": ["MAP51",3216,14960,-80] }
-AP-ITEM { "category": "small-token", "typename": "JUNKspares", "tag": "Junk Spares", "filter": 8, "pos": ["MAP51",3268,14956,-80] }
-AP-ITEM { "category": "small-token", "typename": "JUNKpipe", "tag": "Junk Pipe", "filter": 8, "pos": ["MAP51",5260,17448,166] }
 AP-SECRET { "pos": ["MAP51","secret","sector",371] }
 AP-SECRET { "pos": ["MAP51","secret","sector",469] }
 AP-SECRET { "pos": ["MAP51","secret","sector",1306] }
@@ -1030,7 +931,7 @@ AP-MAP {
   "map": "MAP53", "levelname": "Radium Trail",
   "checksum": "5b2b55ef2c246cec4919d5d8a234ccf7", "rank": 2, "monster_count": 167,
   "info": { "levelnum": 53, "title": "Radium Trail", "is_lookup": false, "sky1": "ASKY1B", "sky1speed": "0.000000", "sky2": "ASKY1B", "sky2speed": "0.000000", "music": "JWTense", "music_track": "0", "cluster": 0, "flags": [] },
-  "monsters": { "shotgunripper": 27, "RipperThug": 32, "Radroach": 3, "Master": 3, "Lurker": 1, "Pitfiend": 75, "AkimboRipper": 12, "ScabbieSavage": 14 },
+  "monsters": { "shotgunripper": 27, "RipperThug": 28, "Radroach": 3, "Master": 3, "Lurker": 1, "Pitfiend": 75, "AkimboRipper": 16, "ScabbieSavage": 14 },
   "prereqs": [ "weapon/Glock/auto", "weapon/pumpaction2/auto" ]
 }
 AP-ITEM { "category": "key", "typename": "RedSkull", "tag": "Bronze Staff Key", "pos": ["MAP53",1760,-6996,81] }
@@ -1132,47 +1033,25 @@ AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "po
 AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP53",-24,-4776,0] }
 AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP53",-92,-4748,0] }
 AP-ITEM { "category": "small-token", "typename": "JUNKspares", "tag": "Junk Spares", "pos": ["MAP53",9904,4160,40] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP53",6328,6840,176] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP53",6314,6810,176] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP53",8458,5586,168] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP53",8498,5618,168] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP53",6954,-2558,368] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP53",7002,-2534,368] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP53",7026,-2566,368] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP53",-5798,-4062,625] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP53",-5734,-4062,625] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP53",-190,-1982,624] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP53",6586,-1158,168] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP53",7280,-1056,278] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP53",5256,-1800,712] }
 AP-ITEM { "category": "medium-ammo", "typename": "Falammo", "tag": "Falammo", "secret": true, "pos": ["MAP53",10840,-1160,348] }
 AP-ITEM { "category": "medium-ammo", "typename": "NapalmAmmo", "tag": "NapalmAmmo", "secret": true, "pos": ["MAP53",10856,-1128,348] }
 AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP53",-244,-1212,649] }
 AP-ITEM { "category": "big-ammo", "typename": "Pipebomb", "tag": "Pipebomb", "pos": ["MAP53",-1112,-1592,624] }
 AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP53",-240,-1176,649] }
 AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP53",-204,-1172,649] }
-AP-ITEM { "category": "small-token", "typename": "JUNKnuts", "tag": "Junk Nuts", "filter": 2, "pos": ["MAP53",6328,6840,176] }
-AP-ITEM { "category": "small-token", "typename": "JUNKtools", "tag": "Junk Tools", "filter": 2, "pos": ["MAP53",6314,6810,176] }
-AP-ITEM { "category": "small-token", "typename": "JUNKtools", "tag": "Junk Tools", "filter": 10, "pos": ["MAP53",8458,5586,168] }
-AP-ITEM { "category": "small-token", "typename": "JUNKpipe", "tag": "Junk Pipe", "filter": 2, "pos": ["MAP53",8498,5618,168] }
-AP-ITEM { "category": "small-token", "typename": "JUNKtools", "tag": "Junk Tools", "filter": 10, "pos": ["MAP53",6954,-2558,368] }
-AP-ITEM { "category": "small-token", "typename": "JUNKcable", "tag": "Junk Cable", "filter": 2, "pos": ["MAP53",7002,-2534,368] }
-AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "filter": 2, "pos": ["MAP53",7026,-2566,368] }
-AP-ITEM { "category": "small-token", "typename": "JUNKtools", "tag": "Junk Tools", "filter": 2, "pos": ["MAP53",-5798,-4062,625] }
-AP-ITEM { "category": "small-token", "typename": "JUNKspares", "tag": "Junk Spares", "filter": 2, "pos": ["MAP53",-5734,-4062,625] }
-AP-ITEM { "category": "small-token", "typename": "JUNKcable", "tag": "Junk Cable", "filter": 2, "pos": ["MAP53",-190,-1982,624] }
-AP-ITEM { "category": "small-token", "typename": "JUNKtools", "tag": "Junk Tools", "filter": 10, "pos": ["MAP53",6586,-1158,168] }
-AP-ITEM { "category": "small-token", "typename": "JUNKcable", "tag": "Junk Cable", "filter": 2, "pos": ["MAP53",7280,-1056,278] }
-AP-ITEM { "category": "small-token", "typename": "JUNKnuts", "tag": "Junk Nuts", "filter": 2, "pos": ["MAP53",5256,-1800,712] }
-AP-ITEM { "category": "small-token", "typename": "JUNKcable", "tag": "Junk Cable", "filter": 4, "pos": ["MAP53",6328,6840,176] }
-AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "filter": 4, "pos": ["MAP53",6314,6810,176] }
-AP-ITEM { "category": "small-token", "typename": "JUNKcable", "tag": "Junk Cable", "filter": 4, "pos": ["MAP53",8458,5586,168] }
-AP-ITEM { "category": "small-token", "typename": "JUNKspares", "tag": "Junk Spares", "filter": 4, "pos": ["MAP53",8498,5618,168] }
-AP-ITEM { "category": "small-token", "typename": "JUNKcable", "tag": "Junk Cable", "filter": 4, "pos": ["MAP53",6954,-2558,368] }
-AP-ITEM { "category": "small-token", "typename": "JUNKspares", "tag": "Junk Spares", "filter": 4, "pos": ["MAP53",7002,-2534,368] }
-AP-ITEM { "category": "small-token", "typename": "JUNKspares", "tag": "Junk Spares", "filter": 4, "pos": ["MAP53",7026,-2566,368] }
-AP-ITEM { "category": "small-token", "typename": "JUNKnuts", "tag": "Junk Nuts", "filter": 4, "pos": ["MAP53",-5798,-4062,625] }
-AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "filter": 4, "pos": ["MAP53",-5734,-4062,625] }
-AP-ITEM { "category": "small-token", "typename": "JUNKspares", "tag": "Junk Spares", "filter": 4, "pos": ["MAP53",-190,-1982,624] }
-AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "filter": 4, "pos": ["MAP53",6586,-1158,168] }
-AP-ITEM { "category": "small-token", "typename": "JUNKtools", "tag": "Junk Tools", "filter": 12, "pos": ["MAP53",7280,-1056,278] }
-AP-ITEM { "category": "small-token", "typename": "JUNKtools", "tag": "Junk Tools", "filter": 4, "pos": ["MAP53",5256,-1800,712] }
-AP-ITEM { "category": "small-token", "typename": "JUNKspares", "tag": "Junk Spares", "filter": 8, "pos": ["MAP53",6328,6840,176] }
-AP-ITEM { "category": "small-token", "typename": "JUNKpipe", "tag": "Junk Pipe", "filter": 8, "pos": ["MAP53",6314,6810,176] }
-AP-ITEM { "category": "small-token", "typename": "JUNKnuts", "tag": "Junk Nuts", "filter": 8, "pos": ["MAP53",8498,5618,168] }
-AP-ITEM { "category": "small-token", "typename": "JUNKpipe", "tag": "Junk Pipe", "filter": 8, "pos": ["MAP53",7002,-2534,368] }
-AP-ITEM { "category": "small-token", "typename": "JUNKcable", "tag": "Junk Cable", "filter": 8, "pos": ["MAP53",7026,-2566,368] }
-AP-ITEM { "category": "small-token", "typename": "JUNKpipe", "tag": "Junk Pipe", "filter": 8, "pos": ["MAP53",-5798,-4062,625] }
-AP-ITEM { "category": "small-token", "typename": "JUNKpipe", "tag": "Junk Pipe", "filter": 8, "pos": ["MAP53",-5734,-4062,625] }
-AP-ITEM { "category": "small-token", "typename": "JUNKnuts", "tag": "Junk Nuts", "filter": 8, "pos": ["MAP53",-190,-1982,624] }
-AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "filter": 8, "pos": ["MAP53",5256,-1800,712] }
 AP-SECRET { "pos": ["MAP53","secret","sector",253] }
 AP-SECRET { "pos": ["MAP53","secret","sector",1194] }
 AP-SECRET { "pos": ["MAP53","secret","sector",2540] }
@@ -1184,7 +1063,7 @@ AP-MAP {
   "map": "MAP54", "levelname": "Fissile Empire",
   "checksum": "7f37ae67c791a1731d13f3dd312206c6", "rank": 3, "monster_count": 171,
   "info": { "levelnum": 54, "title": "Fissile Empire", "is_lookup": false, "sky1": "ASKY1B", "sky1speed": "0.000000", "sky2": "ASKY1B", "sky2speed": "0.000000", "music": "JWHunt", "music_track": "0", "cluster": 0, "flags": [] },
-  "monsters": { "shotgunripper": 36, "Radroach": 9, "RipperThug": 37, "Lurker": 25, "RJFREEDOM": 1, "Pitfiend": 36, "AkimboRipper": 27 },
+  "monsters": { "shotgunripper": 36, "Radroach": 9, "RipperThug": 46, "Lurker": 25, "RJFREEDOM": 1, "Pitfiend": 36, "AkimboRipper": 18 },
   "prereqs": [ "weapon/Glock/auto", "weapon/pumpaction2/auto" ]
 }
 AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP54",444,868,-96] }
