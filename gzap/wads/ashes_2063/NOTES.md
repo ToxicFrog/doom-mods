@@ -13,6 +13,12 @@ The NPC at the start of Fissile Empire, when killed, will drop both a blue
 keycard (which you can't pick up) and a check for the blue keycard (which you
 can).
 
+All random food is replaced with `FoodTin1`, and all random junk is replaced
+with `JUNKgear`. This results in a slight increase to the amount of money
+available to the player but also makes handling the logic a lot easier. Future
+versions may properly handle these as `random food` and `random junk`, but that
+requires additional features in the scanner.
+
 ## General information
 
 ### Money

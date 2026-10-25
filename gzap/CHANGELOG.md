@@ -1,17 +1,30 @@
-# Unreleased
+# 0.9.0
 
-This is a feature release. The headline features are:
-- weapons can now be unlocked per-map;
-- the yaml has been heavily rearranged for ease of use;
-- logic now supports items that spawn mid-game, like boss drops.
+This is probably the biggest release so far. While most of it was focused on
+internal improvements to better handle complicated total conversions (work that
+will continue in the next version), it also comes with new features. The full
+changelog is below, but the headline features are:
+
+- **For players:**
+  - Support for per-map weapons, and better weapon handling in general
+  - Significant improvements to the YAML, including WAD-aware comments
+  - In-game UI improvements
+  - Support for four new megaWADs and two new total conversions
+  - Experimental support for [UZDoom 5.0.x](./doc/setup.md#uzdoom-50x-support)
+- **For logic developers:**
+  - Improvements to the in-game logic dashboard
+  - Ability to add comments to the tuning record using in-game chat
+  - Support for turning items that spawn mid-game into checks, such as boss drops
+  - New [GZAPRC directives](./doc/gzaprc.md)
 
 ⚠️ YAML options have changed. You must regenerate your YAML templates.
 
 ⚠️ Item categorization rules and the included scanner configurations have
 changed. Rescanning your wads is not *mandatory* but is *strongly recommended*.
 
-⚠️ Tuning format has changed, but all existing tuning files have been upgraded
-in-place to the new format.
+⚠️ Tuning format has changed. You do not need to redo all your custom tuning.
+Old files can be upgraded to the new format via find-and-replace:
+`,"event","exit"` -> `,"exit"`.
 
 - New:
   - `per_map_weapons` yaml setting. If enabled, a different copy of each weapon
