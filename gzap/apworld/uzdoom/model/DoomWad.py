@@ -85,10 +85,24 @@ class DoomWad:
             return self.maps.keys()
 
     def all_boss_map_names(self):
+        # If hublogic is enabled, "boss maps" are maps that serve as an exit
+        # from their containing hubcluster.
         if self.use_hub_logic():
             return self.all_winnable_map_names()
-        max_rank = max(map.rank for map in self.all_maps())
-        return [map.map for map in self.all_maps() if map.rank == max_rank]
+
+        # If episodes are defined, "boss maps" are the highest-ranked maps of
+        # each episode. Non-episodic maps are considered boss maps if they are
+        # the highest-ranked maps in the wad. N.b. ideally we will not have wads
+        # that mix maps with episode assignments and maps without, but we try to
+        # handle that sensibly here anyways.
+        episodes = {}
+        for map in self.all_maps():
+            episodes[map.episodename or ""] = max(map.rank, episodes.get(map.episodename or "", 0))
+
+        return [
+            map.map for map in self.all_maps()
+            if map.rank == episodes[map.episodename or ""]
+        ]
 
     def all_locations(self) -> Iterable[DoomLocation]:
         return (loc for map in self.maps.values() for loc in map.locations)
