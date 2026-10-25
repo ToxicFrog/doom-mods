@@ -101,6 +101,7 @@ class ::Util play {
 
   static clearscope string GetFilterName(int filter_index) {
     switch (filter_index) {
+      case 0: return "ALL";
       case 1: return "ITYTD";
       case 2: return "HNTR";
       case 3: return "HMP";

@@ -92,10 +92,6 @@ class DoomMap:
         self.extra_rules.add_universal_prereqs(self.prereqs)
 
     def all_locations(self, spawn_filter: int, categories: Set[str]) -> List[DoomLocation]:
-        if not spawn_filter:
-            # Return all locations regardless of filter.
-            return [loc for loc in self.locations if not categories or loc.has_category(*categories)]
-
         return [
             loc for loc in self.locations
             if spawn_filter & loc.spawn_filter and (not categories or loc.has_category(*categories))

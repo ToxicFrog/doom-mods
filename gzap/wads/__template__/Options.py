@@ -40,12 +40,16 @@ class SpawnFilter(NamedRange):
     than the original game, so make sure you choose a filter that matches the
     difficulty you are actually playing. If you get it wrong, you will get a
     warning on entering the game.
+
+    A setting of 0 spawns all checks no matter what difficulty you are playing
+    on.
     """
     display_name = "Spawn filter"
-    range_start = 1
+    range_start = 0
     range_end = 8
     default = 3
     special_range_names = {
+        "all": 0,
         "itytd": 1,
         "hntr": 2,
         "hmp": 3,

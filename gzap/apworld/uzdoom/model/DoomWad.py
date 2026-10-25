@@ -156,10 +156,7 @@ class DoomWad:
         """
         locations = []
         for map in world.maps:
-            if world.options.pretuning_mode:
-                locations += map.all_locations(None, {})
-            else:
-                locations += map.all_locations(world.spawn_filter, {})
+            locations += map.all_locations(world.spawn_filter, {})
         pool = DoomPool(self, locations, world)
         return pool
 

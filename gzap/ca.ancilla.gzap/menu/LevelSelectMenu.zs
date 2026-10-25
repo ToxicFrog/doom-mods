@@ -139,6 +139,7 @@ class ::LevelSelectMenu : ::CommonMenu {
   }
 
   string GetFilterWarning(::RandoState state) {
+    if (state.filter_index == 0) return;
     let ap_filter_name = ::Util.GetFilterName(state.filter_index);
     let game_filter_name = ::Util.GetFilterName(::Util.GetSpawnFilterIndex());
     if (ap_filter_name == game_filter_name) return "";

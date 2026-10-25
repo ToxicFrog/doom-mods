@@ -1,3 +1,9 @@
+# Unreleased
+
+- New:
+  - You can now select `all` (0) as the spawn filter in the YAML. This will
+    spawn checks for all difficulties at once, not just the one you are playing.
+
 # 0.9.0
 
 This is probably the biggest release so far. While most of it was focused on

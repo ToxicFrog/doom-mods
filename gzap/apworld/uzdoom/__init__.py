@@ -192,6 +192,7 @@ class UZDoomWorld(World):
         self.options.start_with_keys.value = False
         # self.options.full_persistence.value = False
         self.options.allow_respawn.value = True
+        self.options.spawn_filter.value = 0
         self.options.included_item_categories.value = [
             'ap_map:start', 'ap_flag:all',
             '*:vanilla',
@@ -216,7 +217,10 @@ class UZDoomWorld(World):
             # AP would normally call this automatically when validating the yaml.
             self.options.included_item_categories.build_ratios()
 
-        self.spawn_filter = 2**(self.options.spawn_filter.value-1)
+        if self.options.spawn_filter.value == 0:
+            self.spawn_filter = 0xFF
+        else:
+            self.spawn_filter = 2**(self.options.spawn_filter.value-1)
         print(f"Selected WAD: {self.wad_logic.name}")
         print(f"Selected spawns: {self.spawn_filter_name(self.options.spawn_filter.value)} ({self.options.spawn_filter.value})")
 
