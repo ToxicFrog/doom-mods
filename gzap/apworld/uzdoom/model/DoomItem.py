@@ -125,13 +125,6 @@ class DoomItem:
             print(f'Warning: weapon {self} was somehow left in the pool.')
             return (0,0)
 
-            count = sys.maxsize
-            if world.options.max_weapon_copies.value > 0:
-                count = min(count, world.options.max_weapon_copies.value)
-            if world.options.per_map_weapons:
-                count = 0
-            return (0, count)
-
         # Anything else we just take as many as we find.
         return (0, sys.maxsize)
 

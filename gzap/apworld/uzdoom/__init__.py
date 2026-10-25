@@ -200,7 +200,7 @@ class UZDoomWorld(World):
 
     def spawn_filter_name(self, spawn_filter: int) -> str:
         return [
-            "ITYTD", "HNTR", "HMP", "Ultraviolence", "Nightmare",
+            "ALL SPAWNS", "ITYTD", "HNTR", "HMP", "Ultraviolence", "Nightmare",
             "Filter6", "Filter7", "Filter8",
         ][spawn_filter]
 

@@ -40,6 +40,7 @@ in-place to the new format.
       the hexagon key drop in E2A11.
   - Simple HUD for logic developers showing map, last checked location, region
     name, and region prereqs. Enable with `ap_show_logic_hud`.
+  - `replacement` and `episode` directives in `GZAPRC`.
 - Changed:
   - Major overhaul of the yaml options.
     - Many settings that previously had to be controlled by editing the
@@ -103,6 +104,8 @@ in-place to the new format.
   - If disallowed weapons are configured to `turn into ammo`, but we can't
     figure out what ammo to spawn, the weapon is left on the floor rather than
     deleted outright.
+  - Reported spawn filter name when generating was incorrect. (Behaviour was
+    fine, just the log messages were wrong.)
 
 # 0.8.5
 
