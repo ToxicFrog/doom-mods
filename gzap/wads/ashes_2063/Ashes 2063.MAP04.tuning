@@ -1,0 +1,142 @@
+AP-REGION { "map": "MAP04", "keys": ["weapon/Glock/want", "weapon/shotgun2/want"] }
+
+AP-REGION { "map": "MAP04", "region": "E fork", "keys": [] }
+AP-REGION { "map": "MAP04", "region": "overpass S bandits", "keys": [] }
+AP-REGION { "map": "MAP04", "region": "gas station", "keys": [] }
+AP-REGION { "map": "MAP04", "region": "gas station dumpster", "keys": ["map/MAP04/gas station"] }
+AP-REGION { "map": "MAP04", "region": "gas station 1F", "keys": ["map/MAP04/gas station"] }
+AP-REGION { "map": "MAP04", "region": "gas station 2F", "keys": ["map/MAP04/gas station 1F"] }
+AP-REGION { "map": "MAP04", "region": "gas station roof", "keys": ["map/MAP04/gas station 2F"] }
+AP-REGION { "map": "MAP04", "region": "gas station garage", "keys": ["map/MAP04/gas station roof", "flag/secret"] }
+AP-REGION { "map": "MAP04", "region": "parking garage", "keys": ["map/MAP04/gas station"] }
+AP-REGION { "map": "MAP04", "region": "alley", "keys": ["map/MAP04/parking garage"] }
+AP-REGION { "map": "MAP04", "region": "waterfall nook", "keys": ["map/MAP04/alley"] }
+AP-REGION { "map": "MAP04", "region": "police station", "keys": ["map/MAP04/alley", "weapon/Ingram3/want"] }
+AP-REGION { "map": "MAP04", "region": "police evidence room", "keys": ["key/BlueSkull", "map/MAP04/police station", "flag/secret"] }
+AP-REGION { "map": "MAP04", "region": "police security room", "keys": ["key/YellowSkull", "map/MAP04/police station"] }
+AP-REGION { "map": "MAP04", "region": "police reception", "keys": ["map/MAP04/police station"] }
+AP-REGION { "map": "MAP04", "region": "chasm bookcase secret", "keys": ["map/MAP04/alley", "flag/secret"] }
+AP-REGION { "map": "MAP04", "region": "chasm upstairs room", "keys": ["map/MAP04/chasm bookcase secret"] }
+AP-REGION { "map": "MAP04", "region": "police basement cells", "keys": ["map/MAP04/police security room"] }
+AP-REGION { "map": "MAP04", "region": "police basement office", "keys": ["map/MAP04/police reception"] }
+AP-REGION { "map": "MAP04", "region": "police storage", "keys": ["key/BlueSkull", "map/MAP04/police reception"] }
+AP-REGION { "map": "MAP04", "region": "south hall", "keys": ["map/MAP04/police storage"] }
+AP-REGION { "map": "MAP04", "region": "Patriot Boots", "keys": ["map/MAP04/south hall"] }
+AP-REGION { "map": "MAP04", "region": "Patriot Books", "keys": ["map/MAP04/south hall"] }
+AP-REGION { "map": "MAP04", "region": "broadcast studio", "keys": ["map/MAP04/south hall"] }
+AP-REGION { "map": "MAP04", "region": "elevator room", "keys": ["map/MAP04/south hall"] }
+AP-REGION { "map": "MAP04", "region": "train station", "keys": ["map/MAP04/elevator room"] }
+
+AP-CHECK { "id": 0, "name": "MAP04 - fortyfiveammo [12096,7200]", "pos": ["MAP04",12096,7200,-4], "region": "E fork" }
+AP-CHECK { "id": 0, "name": "MAP04 - shotgunAmmo [12064,7232]", "pos": ["MAP04",12064,7232,-4], "region": "E fork" }
+AP-CHECK { "id": 773, "name": "MAP04 - Random Junk [18892,10972]", "pos": ["MAP04",18892,10972,-187], "region": "overpass S bandits" }
+AP-CHECK { "id": 774, "name": "MAP04 - Random Junk [18940,10956]", "pos": ["MAP04",18940,10956,-187], "region": "overpass S bandits" }
+AP-CHECK { "id": 786, "name": "MAP04 - Secret 1873", "pos": ["MAP04","secret","sector",1873], "region": "overpass S bandits" }
+AP-CHECK { "id": 0, "name": "MAP04 - Junk Gear [19280,10920]", "pos": ["MAP04",19280,10920,-187], "region": "overpass S bandits" }
+AP-CHECK { "id": 0, "name": "MAP04 - Junk Pipe [19304,10944]", "pos": ["MAP04",19304,10944,-187], "region": "overpass S bandits" }
+AP-CHECK { "id": 656, "name": "MAP04 - ArmorLeather [SE]", "pos": ["MAP04",19312,10916,-187], "region": "overpass S bandits" }
+AP-CHECK { "id": 0, "name": "MAP04 - ArmorScrap [8888,16484]", "pos": ["MAP04",8888,16484,-24], "region": "gas station dumpster" }
+AP-CHECK { "id": 0, "name": "MAP04 - ArmorScrap [8920,16516]", "pos": ["MAP04",8920,16516,-24], "region": "gas station dumpster" }
+AP-CHECK { "id": 0, "name": "MAP04 - ArmorScrap [8968,16548]", "pos": ["MAP04",8968,16548,-24], "region": "gas station dumpster" }
+AP-CHECK { "id": 0, "name": "MAP04 - ArmorScrap [8992,16484]", "pos": ["MAP04",8992,16484,-24], "region": "gas station dumpster" }
+AP-CHECK { "id": 0, "name": "MAP04 - ArmorScrap [9008,16524]", "pos": ["MAP04",9008,16524,-24], "region": "gas station dumpster" }
+AP-CHECK { "id": 0, "name": "MAP04 - Painkillers [9064,16484]", "pos": ["MAP04",9064,16484,-24], "region": "gas station dumpster" }
+AP-CHECK { "id": 783, "name": "MAP04 - Random Junk [9040,16596]", "pos": ["MAP04",9040,16596,-116], "region": "gas station dumpster" }
+AP-CHECK { "id": 0, "name": "MAP04 - Junk Pipe [8376,15236]", "pos": ["MAP04",8376,15236,-80], "region": "gas station 1F" }
+AP-CHECK { "id": 0, "name": "MAP04 - Junk Tools [8616,15060]", "pos": ["MAP04",8616,15060,-104], "region": "gas station 1F" }
+AP-CHECK { "id": 0, "name": "MAP04 - Junk Tools [8664,15060]", "pos": ["MAP04",8664,15060,-104], "region": "gas station 1F" }
+AP-CHECK { "id": 782, "name": "MAP04 - Random Junk [8464,16080]", "pos": ["MAP04",8464,16080,48], "region": "gas station 2F" }
+AP-CHECK { "id": 781, "name": "MAP04 - Random Junk [8464,16032]", "pos": ["MAP04",8464,16032,48], "region": "gas station 2F" }
+AP-CHECK { "id": 0, "name": "MAP04 - FoodTin3 [8536,16740]", "pos": ["MAP04",8536,16740,144], "region": "gas station roof" }
+AP-CHECK { "id": 0, "name": "MAP04 - FoodTin1 [8568,16708]", "pos": ["MAP04",8568,16708,144], "region": "gas station roof" }
+AP-CHECK { "id": 0, "name": "MAP04 - FoodTin1 [8536,16772]", "pos": ["MAP04",8536,16772,144], "region": "gas station roof" }
+AP-CHECK { "id": 788, "name": "MAP04 - Secret 407", "pos": ["MAP04","secret","sector",407], "region": "gas station garage" }
+AP-CHECK { "id": 0, "name": "MAP04 - ArmorScrap [7816,16860]", "pos": ["MAP04",7816,16860,-112], "region": "gas station garage" }
+AP-CHECK { "id": 0, "name": "MAP04 - ArmorScrap [7784,16844]", "pos": ["MAP04",7784,16844,-112], "region": "gas station garage" }
+AP-CHECK { "id": 0, "name": "MAP04 - ArmorScrap [7792,16820]", "pos": ["MAP04",7792,16820,-112], "region": "gas station garage" }
+AP-CHECK { "id": 0, "name": "MAP04 - ArmorScrap [7768,16804]", "pos": ["MAP04",7768,16804,-112], "region": "gas station garage" }
+AP-CHECK { "id": 0, "name": "MAP04 - ArmorScrap [7784,16764]", "pos": ["MAP04",7784,16764,-112], "region": "gas station garage" }
+AP-CHECK { "id": 778, "name": "MAP04 - Random Junk [7720,16948]", "pos": ["MAP04",7720,16948,-112], "region": "gas station garage" }
+AP-CHECK { "id": 780, "name": "MAP04 - Random Junk [7816,16444]", "pos": ["MAP04",7816,16444,-80], "region": "gas station garage" }
+AP-CHECK { "id": 779, "name": "MAP04 - Random Junk [7796,16436]", "pos": ["MAP04",7796,16436,-80], "region": "gas station garage" }
+AP-CHECK { "id": 0, "name": "MAP04 - Junk Spares [W]", "pos": ["MAP04",7840,16436,-80], "region": "gas station garage" }
+AP-CHECK { "id": 0, "name": "MAP04 - shotgunAmmo [7876,16432]", "pos": ["MAP04",7876,16432,-80], "region": "gas station garage" }
+AP-CHECK { "id": 0, "name": "MAP04 - Junk Gear [16504,28132]", "pos": ["MAP04",16504,28132,9], "region": "parking garage" }
+AP-CHECK { "id": 0, "name": "MAP04 - Junk Cable [16520,28164]", "pos": ["MAP04",16520,28164,9], "region": "parking garage" }
+AP-CHECK { "id": 732, "name": "MAP04 - Medical Kit [16928,27840]", "pos": ["MAP04",16928,27840,9], "region": "parking garage" }
+AP-CHECK { "id": 0, "name": "MAP04 - Painkillers [16960,27820]", "pos": ["MAP04",16960,27820,9], "region": "parking garage" }
+AP-CHECK { "id": 0, "name": "MAP04 - fortyfiveammo [16992,27828]", "pos": ["MAP04",16992,27828,9], "region": "parking garage" }
+AP-CHECK { "id": 762, "name": "MAP04 - Random Junk [17216,26516]", "pos": ["MAP04",17216,26516,44], "region": "alley" }
+AP-CHECK { "id": 760, "name": "MAP04 - Random Junk [17184,26500]", "pos": ["MAP04",17184,26500,44], "region": "alley" }
+AP-CHECK { "id": 761, "name": "MAP04 - Random Junk [17216,26484]", "pos": ["MAP04",17216,26484,44], "region": "alley" }
+AP-CHECK { "id": 763, "name": "MAP04 - Random Junk [17240,26352]", "pos": ["MAP04",17240,26352,188], "region": "waterfall nook" }
+AP-CHECK { "id": 768, "name": "MAP04 - Random Junk [18336,26116]", "pos": ["MAP04",18336,26116,236], "region": "police station" }
+AP-CHECK { "id": 770, "name": "MAP04 - Random Junk [18364,26112]", "pos": ["MAP04",18364,26112,236], "region": "police station" }
+AP-CHECK { "id": 769, "name": "MAP04 - Random Junk [18340,26088]", "pos": ["MAP04",18340,26088,236], "region": "police station" }
+AP-CHECK { "id": 0, "name": "MAP04 - fortyfiveammo [18384,25780]", "pos": ["MAP04",18384,25780,260], "region": "police station" }
+AP-CHECK { "id": 733, "name": "MAP04 - Medical Kit [18552,26908]", "pos": ["MAP04",18552,26908,236], "region": "police station" }
+AP-CHECK { "id": 772, "name": "MAP04 - Random Junk [18760,26788]", "pos": ["MAP04",18760,26788,236], "region": "police station" }
+AP-CHECK { "id": 785, "name": "MAP04 - Secret 1585", "pos": ["MAP04","secret","sector",1585], "region": "police station" }
+AP-CHECK { "id": 0, "name": "MAP04 - shotgunAmmo [18576,26916]", "pos": ["MAP04",18576,26916,236], "region": "police station" }
+AP-CHECK { "id": 784, "name": "MAP04 - Secret 1214", "pos": ["MAP04","secret","sector",1214], "region": "police evidence room" }
+AP-CHECK { "id": 0, "name": "MAP04 - Painkillers [18368,26404]", "pos": ["MAP04",18368,26404,268], "region": "police evidence room" }
+AP-CHECK { "id": 771, "name": "MAP04 - Random Junk [18368,26436]", "pos": ["MAP04",18368,26436,268], "region": "police evidence room" }
+AP-CHECK { "id": 767, "name": "MAP04 - Random Junk [18320,26388]", "pos": ["MAP04",18320,26388,236], "region": "police evidence room" }
+AP-CHECK { "id": 766, "name": "MAP04 - Random Junk [18280,26388]", "pos": ["MAP04",18280,26388,236], "region": "police evidence room" }
+AP-CHECK { "id": 765, "name": "MAP04 - Random Junk [18240,26388]", "pos": ["MAP04",18240,26388,236], "region": "police evidence room" }
+AP-CHECK { "id": 751, "name": "MAP04 - REGEN Stim", "pos": ["MAP04",18144,26532,268], "region": "police evidence room" }
+AP-CHECK { "id": 654, "name": "MAP04 - .45 revolver", "pos": ["MAP04",18704,26008,108], "region": "police security room" }
+AP-CHECK { "id": 0, "name": "MAP04 - shotgunAmmo [18624,26052]", "pos": ["MAP04",18624,26052,140], "region": "police security room" }
+AP-CHECK { "id": 0, "name": "MAP04 - Painkillers [18624,26148]", "pos": ["MAP04",18624,26148,172], "region": "police security room" }
+AP-CHECK { "id": 0, "name": "MAP04 - fortyfiveammo [21176,27324]", "pos": ["MAP04",21176,27324,268], "region": "police reception" }
+AP-CHECK { "id": 700, "name": "MAP04 - Gold Security Key", "pos": ["MAP04",21196,27276,300], "region": "police reception" }
+AP-CHECK { "id": 0, "name": "MAP04 - Painkillers [21152,27232]", "pos": ["MAP04",21152,27232,236], "region": "police reception" }
+AP-CHECK { "id": 789, "name": "MAP04 - Secret 812", "pos": ["MAP04","secret","sector",812], "region": "chasm bookcase secret" }
+AP-CHECK { "id": 750, "name": "MAP04 - Pipebomb [21256,26368]", "pos": ["MAP04",21256,26368,52], "region": "chasm bookcase secret" }
+AP-CHECK { "id": 749, "name": "MAP04 - Pipebomb [21248,26456]", "pos": ["MAP04",21248,26456,52], "region": "chasm bookcase secret" }
+AP-CHECK { "id": 748, "name": "MAP04 - Pipebomb [21208,26472]", "pos": ["MAP04",21208,26472,52], "region": "chasm bookcase secret" }
+AP-CHECK { "id": 655, "name": "MAP04 - ArmorLeather [NE]", "pos": ["MAP04",20864,26116,180], "region": "chasm upstairs room" }
+AP-CHECK { "id": 734, "name": "MAP04 - Medical Kit [20848,26276]", "pos": ["MAP04",20848,26276,212], "region": "chasm upstairs room" }
+AP-CHECK { "id": 0, "name": "MAP04 - NineMilammo [20816,26276]", "pos": ["MAP04",20816,26276,212], "region": "chasm upstairs room" }
+AP-CHECK { "id": 777, "name": "MAP04 - Random Junk [20272,27220]", "pos": ["MAP04",20272,27220,116], "region": "police basement cells" }
+AP-CHECK { "id": 0, "name": "MAP04 - Junk Tools [20264,27180]", "pos": ["MAP04",20264,27180,116], "region": "police basement cells" }
+AP-CHECK { "id": 0, "name": "MAP04 - Junk Pipe [20248,27164]", "pos": ["MAP04",20248,27164,116], "region": "police basement cells" }
+AP-CHECK { "id": 0, "name": "MAP04 - Painkillers [18856,27240]", "pos": ["MAP04",18856,27240,116], "region": "police basement cells" }
+AP-CHECK { "id": 791, "name": "MAP04 - Silver Utility Key", "pos": ["MAP04",19856,27976,124], "region": "police basement cells" }
+AP-CHECK { "id": 736, "name": "MAP04 - Michonne Ultra", "pos": ["MAP04",19856,27940,124], "region": "police basement cells" }
+AP-CHECK { "id": 0, "name": "MAP04 - Painkillers [19344,26364]", "pos": ["MAP04",19344,26364,172], "region": "police basement office" }
+AP-CHECK { "id": 790, "name": "MAP04 - Shotgunbox", "pos": ["MAP04",20944,26540,236], "region": "police storage" }
+AP-CHECK { "id": 735, "name": "MAP04 - Medical Kit [20936,26508]", "pos": ["MAP04",20936,26508,236], "region": "police storage" }
+AP-CHECK { "id": 0, "name": "MAP04 - NineMilammo [20944,26468]", "pos": ["MAP04",20944,26468,236], "region": "police storage" }
+AP-CHECK { "id": 776, "name": "MAP04 - Random Junk [19236,24380]", "pos": ["MAP04",19236,24380,332], "region": "Patriot Books" }
+AP-CHECK { "id": 775, "name": "MAP04 - Random Junk [19212,24372]", "pos": ["MAP04",19212,24372,332], "region": "Patriot Books" }
+AP-CHECK { "id": 0, "name": "MAP04 - FoodTin3 [19468,24144]", "pos": ["MAP04",19468,24144,329], "region": "Patriot Books" }
+AP-CHECK { "id": 0, "name": "MAP04 - FoodTin1 [19464,24128]", "pos": ["MAP04",19464,24128,300], "region": "Patriot Books" }
+AP-CHECK { "id": 0, "name": "MAP04 - FoodTin2 [19472,24128]", "pos": ["MAP04",19472,24128,329], "region": "Patriot Books" }
+AP-CHECK { "id": 667, "name": "MAP04 - BRUTE Stim", "pos": ["MAP04",19400,23952,300], "region": "Patriot Books" }
+AP-CHECK { "id": 787, "name": "MAP04 - Secret 2056", "pos": ["MAP04","secret","sector",2056], "region": "Patriot Books" }
+AP-CHECK { "id": 0, "name": "MAP04 - Junk Gear [18428,24488]", "pos": ["MAP04",18428,24488,332], "region": "broadcast studio" }
+AP-CHECK { "id": 0, "name": "MAP04 - Junk Cable [18428,24472]", "pos": ["MAP04",18428,24472,332], "region": "broadcast studio" }
+AP-CHECK { "id": 764, "name": "MAP04 - Random Junk [18016,24596]", "pos": ["MAP04",18016,24596,300], "region": "broadcast studio" }
+AP-CHECK { "id": 752, "name": "MAP04 - Random Junk [15864,25060]", "pos": ["MAP04",15864,25060,300], "region": "elevator room" }
+AP-CHECK { "id": 753, "name": "MAP04 - Random Junk [15864,25108]", "pos": ["MAP04",15864,25108,300], "region": "elevator room" }
+AP-CHECK { "id": 754, "name": "MAP04 - Random Junk [15872,25148]", "pos": ["MAP04",15872,25148,300], "region": "elevator room" }
+AP-CHECK { "id": 0, "name": "MAP04 - FoodTin1 [16232,26356]", "pos": ["MAP04",16232,26356,104], "region": "train station" }
+AP-CHECK { "id": 0, "name": "MAP04 - FoodTin3 [16240,26388]", "pos": ["MAP04",16240,26388,104], "region": "train station" }
+AP-CHECK { "id": 0, "name": "MAP04 - FoodTin4 [16272,26388]", "pos": ["MAP04",16272,26388,104], "region": "train station" }
+AP-CHECK { "id": 755, "name": "MAP04 - Random Junk [16328,26372]", "pos": ["MAP04",16328,26372,104], "region": "train station" }
+AP-CHECK { "id": 757, "name": "MAP04 - Random Junk [16344,26356]", "pos": ["MAP04",16344,26356,104], "region": "train station" }
+AP-CHECK { "id": 756, "name": "MAP04 - Random Junk [16336,26340]", "pos": ["MAP04",16336,26340,104], "region": "train station" }
+AP-CHECK { "id": 0, "name": "MAP04 - shotgunAmmo [15928,26516]", "pos": ["MAP04",15928,26516,104], "region": "train station" }
+AP-CHECK { "id": 0, "name": "MAP04 - FoodTin4 [15304,26740]", "pos": ["MAP04",15304,26740,104], "region": "train station" }
+AP-CHECK { "id": 0, "name": "MAP04 - FoodTin1 [15360,26764]", "pos": ["MAP04",15360,26764,104], "region": "train station" }
+AP-CHECK { "id": 0, "name": "MAP04 - FoodTin3 [15312,26788]", "pos": ["MAP04",15312,26788,104], "region": "train station" }
+AP-CHECK { "id": 0, "name": "MAP04 - FoodTin2 [15328,26812]", "pos": ["MAP04",15328,26812,104], "region": "train station" }
+AP-CHECK { "id": 0, "name": "MAP04 - FoodTin1 [15272,26820]", "pos": ["MAP04",15272,26820,104], "region": "train station" }
+AP-CHECK { "id": 0, "name": "MAP04 - fortyfiveammo [16088,26516]", "pos": ["MAP04",16088,26516,104], "region": "train station" }
+AP-CHECK { "id": 0, "name": "MAP04 - Painkillers [16200,26752]", "pos": ["MAP04",16200,26752,104], "region": "train station" }
+AP-CHECK { "id": 0, "name": "MAP04 - shotgunAmmo [16192,26796]", "pos": ["MAP04",16192,26796,104], "region": "train station" }
+AP-CHECK { "id": 0, "name": "MAP04 - Painkillers [16216,26844]", "pos": ["MAP04",16216,26844,104], "region": "train station" }
+AP-CHECK { "id": 758, "name": "MAP04 - Random Junk [16528,26836]", "pos": ["MAP04",16528,26836,88], "region": "train station" }
+AP-CHECK { "id": 759, "name": "MAP04 - Random Junk [16528,26932]", "pos": ["MAP04",16528,26932,88], "region": "train station" }
+AP-CHECK { "id": 668, "name": "MAP04 - Exit", "pos": ["MAP04","exit"], "region": "train station" }

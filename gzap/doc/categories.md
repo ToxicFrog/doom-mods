@@ -63,7 +63,6 @@ that are needed in large quantities and not particularly useful otherwise.
 Marks the item as particularly useful or as a trap, respectively. Does not in
 any way affect logic, just how the item is categorized in AP.
 
-
 ## Filler Categories
 
 All filler items have at least two categories, a *size* denoting their power

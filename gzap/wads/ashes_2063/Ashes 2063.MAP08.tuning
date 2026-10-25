@@ -1,0 +1,90 @@
+AP-REGION { "map": "MAP08", "keys": ["weapon/Glock/want", "weapon/shotgun2/want", "weapon/Ingram3/want", "weapon/NapalmGun/want", "weapon/JunkerMusket/want"] }
+
+AP-REGION { "map": "MAP08", "region": "entrance", "keys": [] }
+AP-REGION { "map": "MAP08", "region": "003 server room", "keys": ["map/MAP08/entrance"] }
+AP-REGION { "map": "MAP08", "region": "002 storage", "keys": ["map/MAP08/entrance"] }
+AP-REGION { "map": "MAP08", "region": "130 barracks", "keys": ["map/MAP08/entrance"] }
+AP-REGION { "map": "MAP08", "region": "security office", "keys": ["map/MAP08/130 barracks"] }
+AP-REGION { "map": "MAP08", "region": "004 medical", "keys": ["key/BlueCard", "flag/secret", "map/MAP08/entrance"] }
+AP-REGION { "map": "MAP08", "region": "131 barracks", "keys": ["map/MAP08/security office"] }
+AP-REGION { "map": "MAP08", "region": "001 mess hall kitchen", "keys": ["map/MAP08/security office"] }
+AP-REGION { "map": "MAP08", "region": "110 security 2", "keys": ["map/MAP08/security office"] }
+AP-REGION { "map": "MAP08", "region": "110 security 2 stairs", "keys": ["map/MAP08/110 security 2"] }
+AP-REGION { "map": "MAP08", "region": "L2 checkpoint", "keys": ["map/MAP08/security office", "key/RedCard"] }
+AP-REGION { "map": "MAP08", "region": "103 electrical room secret", "keys": ["map/MAP08/110 security 2", "flag/secret"] }
+AP-REGION { "map": "MAP08", "region": "212 Athena", "keys": ["map/MAP08/L2 checkpoint"] }
+AP-REGION { "map": "MAP08", "region": "202 armory", "keys": ["key/YellowCard", "map/MAP08/L2 checkpoint"] }
+AP-REGION { "map": "MAP08", "region": "200 command", "keys": ["key/YellowCard", "map/MAP08/L2 checkpoint"] }
+
+AP-CHECK { "id": 0, "name": "MAP08 - fortyfiveammo [696,692]", "pos": ["MAP08",696,692,10], "region": "entrance" }
+AP-CHECK { "id": 1195, "name": "MAP08 - Classic shotgun [E]", "pos": ["MAP08",656,684,10], "region": "entrance" }
+AP-CHECK { "id": 0, "name": "MAP08 - shotgunAmmo [684,656]", "pos": ["MAP08",684,656,10], "region": "entrance" }
+AP-CHECK { "id": 0, "name": "MAP08 - Painkillers [632,596]", "pos": ["MAP08",632,596,0], "region": "entrance" }
+AP-CHECK { "id": 1189, "name": "MAP08 - ArmorLeather", "pos": ["MAP08",660,560,0], "region": "entrance" }
+AP-CHECK { "id": 0, "name": "MAP08 - ArmorScrap [-2040,1544]", "pos": ["MAP08",-2040,1544,32], "region": "003 server room" }
+AP-CHECK { "id": 0, "name": "MAP08 - ArmorScrap [-2012,1576]", "pos": ["MAP08",-2012,1576,32], "region": "003 server room" }
+AP-CHECK { "id": 0, "name": "MAP08 - ArmorScrap [-2044,1596]", "pos": ["MAP08",-2044,1596,32], "region": "003 server room" }
+AP-CHECK { "id": 0, "name": "MAP08 - ArmorScrap [-2004,1620]", "pos": ["MAP08",-2004,1620,32], "region": "003 server room" }
+AP-CHECK { "id": 0, "name": "MAP08 - ArmorScrap [-1956,1624]", "pos": ["MAP08",-1956,1624,32], "region": "003 server room" }
+AP-CHECK { "id": 1245, "name": "MAP08 - Shotgunbox [-2016,1856]", "pos": ["MAP08",-2016,1856,32], "region": "002 storage" }
+AP-CHECK { "id": 0, "name": "MAP08 - Painkillers [-2056,1872]", "pos": ["MAP08",-2056,1872,32], "region": "002 storage" }
+AP-CHECK { "id": 1219, "name": "MAP08 - Medical Kit [-2012,1896]", "pos": ["MAP08",-2012,1896,32], "region": "002 storage" }
+AP-CHECK { "id": 0, "name": "MAP08 - fortyfiveammo [-2656,1080]", "pos": ["MAP08",-2656,1080,-96], "region": "130 barracks" }
+AP-CHECK { "id": 0, "name": "MAP08 - fortyfiveammo [-2772,1368]", "pos": ["MAP08",-2772,1368,-96], "region": "130 barracks" }
+AP-CHECK { "id": 1244, "name": "MAP08 - Secret 623", "pos": ["MAP08","secret","sector",623], "region": "004 medical" }
+AP-CHECK { "id": 1218, "name": "MAP08 - Medical Kit [-1524,740]", "pos": ["MAP08",-1524,740,64], "region": "004 medical" }
+AP-CHECK { "id": 0, "name": "MAP08 - Painkillers [-1176,792]", "pos": ["MAP08",-1176,792,41], "region": "004 medical" }
+AP-CHECK { "id": 1241, "name": "MAP08 - REGEN Stim", "pos": ["MAP08",-1168,760,41], "region": "004 medical" }
+AP-CHECK { "id": 0, "name": "MAP08 - fortyfiveammo [-1488,992]", "pos": ["MAP08",-1488,992,64], "region": "004 medical" }
+AP-CHECK { "id": 0, "name": "MAP08 - fortyfiveammo [-1504,956]", "pos": ["MAP08",-1504,956,64], "region": "004 medical" }
+AP-CHECK { "id": 0, "name": "MAP08 - NineMilammo [-2912,1616]", "pos": ["MAP08",-2912,1616,-96], "region": "131 barracks" }
+AP-CHECK { "id": 0, "name": "MAP08 - Painkillers [-2944,1584]", "pos": ["MAP08",-2944,1584,-96], "region": "131 barracks" }
+AP-CHECK { "id": 1220, "name": "MAP08 - Medical Kit [-2568,2864]", "pos": ["MAP08",-2568,2864,64], "region": "001 mess hall kitchen" }
+AP-CHECK { "id": 0, "name": "MAP08 - fortyfiveammo [-2616,2864]", "pos": ["MAP08",-2616,2864,64], "region": "001 mess hall kitchen" }
+AP-CHECK { "id": 0, "name": "MAP08 - FoodTin2 [-2712,2912]", "pos": ["MAP08",-2712,2912,32], "region": "001 mess hall kitchen" }
+AP-CHECK { "id": 0, "name": "MAP08 - FoodTin3 [-2680,2944]", "pos": ["MAP08",-2680,2944,32], "region": "001 mess hall kitchen" }
+AP-CHECK { "id": 0, "name": "MAP08 - FoodTin2 [-2720,2968]", "pos": ["MAP08",-2720,2968,32], "region": "001 mess hall kitchen" }
+AP-CHECK { "id": 0, "name": "MAP08 - FoodTin1 [-2728,3024]", "pos": ["MAP08",-2728,3024,32], "region": "001 mess hall kitchen" }
+AP-CHECK { "id": 0, "name": "MAP08 - FoodTin3 [-2672,3016]", "pos": ["MAP08",-2672,3016,32], "region": "001 mess hall kitchen" }
+AP-CHECK { "id": 0, "name": "MAP08 - FoodTin1 [-2704,3072]", "pos": ["MAP08",-2704,3072,32], "region": "001 mess hall kitchen" }
+AP-CHECK { "id": 0, "name": "MAP08 - FoodTin2 [-2656,3096]", "pos": ["MAP08",-2656,3096,32], "region": "001 mess hall kitchen" }
+AP-CHECK { "id": 0, "name": "MAP08 - FoodTin1 [-2720,3168]", "pos": ["MAP08",-2720,3168,32], "region": "001 mess hall kitchen" }
+AP-CHECK { "id": 1242, "name": "MAP08 - Red Access Card", "pos": ["MAP08",-4268,1808,88], "region": "110 security 2" }
+AP-CHECK { "id": 1226, "name": "MAP08 - NapalmAmmo [-4232,1664]", "pos": ["MAP08",-4232,1664,56], "region": "110 security 2" }
+AP-CHECK { "id": 1239, "name": "MAP08 - Pipebomb [-4200,1656]", "pos": ["MAP08",-4200,1656,56], "region": "110 security 2" }
+AP-CHECK { "id": 1240, "name": "MAP08 - Pipebomb [-4224,1624]", "pos": ["MAP08",-4224,1624,56], "region": "110 security 2" }
+AP-CHECK { "id": 1186, "name": "MAP08 - AmmoPack [-4168,1624]", "pos": ["MAP08",-4168,1624,56], "region": "110 security 2" }
+AP-CHECK { "id": 1246, "name": "MAP08 - Shotgunbox [-4204,1588]", "pos": ["MAP08",-4204,1588,88], "region": "110 security 2" }
+AP-CHECK { "id": 0, "name": "MAP08 - fortyfiveammo [-4220,1860]", "pos": ["MAP08",-4220,1860,-72], "region": "110 security 2 stairs" }
+AP-CHECK { "id": 0, "name": "MAP08 - Painkillers [-4184,1872]", "pos": ["MAP08",-4184,1872,-72], "region": "110 security 2 stairs" }
+AP-CHECK { "id": 0, "name": "MAP08 - fortyfiveammo [-4148,1860]", "pos": ["MAP08",-4148,1860,-72], "region": "110 security 2 stairs" }
+;; visiting security 2 triggers an attack, but no new checks
+AP-CHECK { "id": 0, "name": "MAP08 - shotgunAmmo [-3792,1584]", "pos": ["MAP08",-3792,1584,-320], "region": "L2 checkpoint" }
+AP-CHECK { "id": 1222, "name": "MAP08 - Medical Kit [-3740,1496]", "pos": ["MAP08",-3740,1496,-320], "region": "L2 checkpoint" }
+AP-CHECK { "id": 1243, "name": "MAP08 - Secret 503", "pos": ["MAP08","secret","sector",503], "region": "103 electrical room secret" }
+AP-CHECK { "id": 1225, "name": "MAP08 - NapalmAmmo [-3920,1912]", "pos": ["MAP08",-3920,1912,-72], "region": "103 electrical room secret" }
+AP-CHECK { "id": 0, "name": "MAP08 - NineMilammo [-3880,1928]", "pos": ["MAP08",-3880,1928,-72], "region": "103 electrical room secret" }
+AP-CHECK { "id": 1249, "name": "MAP08 - Yellow Access Card", "pos": ["MAP08",-3488,-192,-448], "region": "212 Athena" }
+AP-CHECK { "id": 0, "name": "MAP08 - Painkillers [-3824,1360]", "pos": ["MAP08",-3824,1360,-320], "region": "202 armory" }
+AP-CHECK { "id": 1223, "name": "MAP08 - Medical Kit [-3872,1360]", "pos": ["MAP08",-3872,1360,-320], "region": "202 armory" }
+AP-CHECK { "id": 1247, "name": "MAP08 - Shotgunbox [-4288,1204]", "pos": ["MAP08",-4288,1204,-320], "region": "202 armory" }
+AP-CHECK { "id": 0, "name": "MAP08 - shotgunAmmo [-4304,1232]", "pos": ["MAP08",-4304,1232,-320], "region": "202 armory" }
+AP-CHECK { "id": 1248, "name": "MAP08 - Shotgunbox [-4332,1212]", "pos": ["MAP08",-4332,1212,-320], "region": "202 armory" }
+AP-CHECK { "id": 1187, "name": "MAP08 - AmmoPack [-4304,1344]", "pos": ["MAP08",-4304,1344,-352], "region": "202 armory" }
+AP-CHECK { "id": 1188, "name": "MAP08 - ArmorCombat", "pos": ["MAP08",-4256,1376,-352], "region": "202 armory" }
+AP-CHECK { "id": 0, "name": "MAP08 - fortyfiveammo [-4176,1344]", "pos": ["MAP08",-4176,1344,-352], "region": "202 armory" }
+AP-CHECK { "id": 0, "name": "MAP08 - fortyfiveammo [-4160,1360]", "pos": ["MAP08",-4160,1360,-352], "region": "202 armory" }
+AP-CHECK { "id": 0, "name": "MAP08 - fortyfiveammo [-4176,1376]", "pos": ["MAP08",-4176,1376,-352], "region": "202 armory" }
+AP-CHECK { "id": 1224, "name": "MAP08 - Michonne Ultra", "pos": ["MAP08",-4148,1424,-320], "region": "202 armory" }
+AP-CHECK { "id": 0, "name": "MAP08 - NineMilammo [-4108,1424]", "pos": ["MAP08",-4108,1424,-320], "region": "202 armory" }
+AP-CHECK { "id": 0, "name": "MAP08 - NineMilammo [-4068,1424]", "pos": ["MAP08",-4068,1424,-320], "region": "202 armory" }
+AP-CHECK { "id": 1216, "name": "MAP08 - Junker Musket", "pos": ["MAP08",-2712,-56,-352], "region": "200 command" }
+AP-CHECK { "id": 0, "name": "MAP08 - slugammo", "pos": ["MAP08",-2672,-32,-352], "region": "200 command" }
+AP-CHECK { "id": 0, "name": "MAP08 - shotgunAmmo [-2640,172]", "pos": ["MAP08",-2640,172,-352], "region": "200 command" }
+AP-CHECK { "id": 1196, "name": "MAP08 - Classic shotgun [SW]", "pos": ["MAP08",-2448,144,-353], "region": "200 command" }
+AP-CHECK { "id": 1217, "name": "MAP08 - Master Blaster", "pos": ["MAP08",-2288,-64,-352], "region": "200 command" }
+AP-CHECK { "id": 1185, "name": "MAP08 - .45 revolver", "pos": ["MAP08",-3144,20,-288], "region": "200 command" }
+AP-CHECK { "id": 0, "name": "MAP08 - Painkillers [-3192,272]", "pos": ["MAP08",-3192,272,-288], "region": "200 command" }
+AP-CHECK { "id": 0, "name": "MAP08 - Painkillers [-3176,296]", "pos": ["MAP08",-3176,296,-256], "region": "200 command" }
+AP-CHECK { "id": 1221, "name": "MAP08 - Medical Kit [-3216,296]", "pos": ["MAP08",-3216,296,-256], "region": "200 command" }
+AP-CHECK { "id": 1197, "name": "MAP08 - Exit", "pos": ["MAP08","exit"], "region": "200 command" }

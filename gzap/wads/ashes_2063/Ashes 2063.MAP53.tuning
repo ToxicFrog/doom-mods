@@ -1,0 +1,184 @@
+AP-REGION { "map": "MAP53", "keys": ["weapon/Glock/want", "weapon/SawedOff/want", "weapon/pumpaction2/want", "weapon/Ingram3/want"] }
+
+AP-REGION { "map": "MAP53", "region": "entrance", "keys": [] }
+AP-REGION { "map": "MAP53", "region": "entrance W tunnel", "keys": ["map/MAP53/entrance"] }
+AP-REGION { "map": "MAP53", "region": "entrance E tunnel", "keys": ["map/MAP53/entrance"] }
+AP-REGION { "map": "MAP53", "region": "entrance E cistern area", "keys": ["map/MAP53/entrance E tunnel"] }
+AP-REGION { "map": "MAP53", "region": "entrance E dog ambush", "keys": ["map/MAP53/entrance E cistern area"] }
+AP-REGION { "map": "MAP53", "region": "rail shack", "keys": ["key/RedSkull", "map/MAP53/entrance"] }
+AP-REGION { "map": "MAP53", "region": "W train cars", "keys": ["map/MAP53/rail shack"] }
+AP-REGION { "map": "MAP53", "region": "train depot", "keys": ["map/MAP53/rail shack"] }
+AP-REGION { "map": "MAP53", "region": "rail machine shop", "keys": ["map/MAP53/train depot"] }
+AP-REGION { "map": "MAP53", "region": "railyard crate top", "keys": ["map/MAP53/rail machine shop"] }
+AP-REGION { "map": "MAP53", "region": "railyard storage", "keys": ["map/MAP53/rail machine shop"] }
+AP-REGION { "map": "MAP53", "region": "railyard employee rooms", "keys": ["map/MAP53/railyard storage"] }
+AP-REGION { "map": "MAP53", "region": "railyard break room", "keys": ["map/MAP53/rail machine shop"] }
+AP-REGION { "map": "MAP53", "region": "railyard bathroom", "keys": ["map/MAP53/rail machine shop"] }
+AP-REGION { "map": "MAP53", "region": "railyard rooftop secret", "keys": ["map/MAP53/railyard bathroom", "flag/secret"] }
+AP-REGION { "map": "MAP53", "region": "cave tunnels", "keys": ["map/MAP53/rail machine shop", "weapon/NapalmGun/want"] }
+AP-REGION { "map": "MAP53", "region": "SE circle hut", "keys": ["map/MAP53/cave tunnels"] }
+AP-REGION { "map": "MAP53", "region": "SW circle hut", "keys": ["map/MAP53/cave tunnels"] }
+AP-REGION { "map": "MAP53", "region": "cave behind switch", "keys": ["map/MAP53/cave tunnels"] }
+AP-REGION { "map": "MAP53", "region": "W cave secret", "keys": ["map/MAP53/cave tunnels"] }
+AP-REGION { "map": "MAP53", "region": "W circle hut", "keys": ["map/MAP53/cave tunnels", "flag/secret"] }
+AP-REGION { "map": "MAP53", "region": "hazmat dump", "keys": ["map/MAP53/cave behind switch"] }
+AP-REGION { "map": "MAP53", "region": "hazmat dump behind barrels", "keys": ["flag/secret", "map/MAP53/hazmat dump"] }
+AP-REGION { "map": "MAP53", "region": "hazmat dump control room", "keys": ["map/MAP53/hazmat dump"] }
+AP-REGION { "map": "MAP53", "region": "hazmat dump conveyor room", "keys": ["map/MAP53/hazmat dump"] }
+AP-REGION { "map": "MAP53", "region": "hazmat deep pool", "keys": ["key/BlueCard", "map/MAP53/hazmat dump"] }
+AP-REGION { "map": "MAP53", "region": "canyon access tunnel", "keys": ["map/MAP53/hazmat deep pool"] }
+AP-REGION { "map": "MAP53", "region": "canyon car", "keys": ["map/MAP53/canyon access tunnel"] }
+AP-REGION { "map": "MAP53", "region": "hazmat dump exterior", "keys": ["map/MAP53/canyon car", "weapon/FAL/want"] }
+AP-REGION { "map": "MAP53", "region": "gas station", "keys": ["map/MAP53/hazmat dump exterior"] }
+AP-REGION { "map": "MAP53", "region": "under bridge", "keys": ["map/MAP53/gas station"] }
+AP-REGION { "map": "MAP53", "region": "motel lobby", "keys": ["map/MAP53/gas station"] }
+AP-REGION { "map": "MAP53", "region": "motel E room", "keys": ["map/MAP53/motel lobby"] }
+AP-REGION { "map": "MAP53", "region": "motel ENE room", "keys": ["flag/secret", "map/MAP53/motel E room"] }
+AP-REGION { "map": "MAP53", "region": "motel NE rooms", "keys": ["map/MAP53/motel ENE room", "key/BlueSkull"] }
+AP-REGION { "map": "MAP53", "region": "motel NW rooms", "keys": ["key/BlueSkull", "map/MAP53/motel NE rooms"] }
+AP-REGION { "map": "MAP53", "region": "motel W room", "keys": ["key/BlueSkull", "map/MAP53/motel lobby"] }
+AP-REGION { "map": "MAP53", "region": "motel WNW room", "keys": ["map/MAP53/motel W room"] }
+AP-REGION { "map": "MAP53", "region": "motel WSW room", "keys": ["map/MAP53/motel WNW room", "key/BlueSkull"] }
+AP-REGION { "map": "MAP53", "region": "valley ridge secret", "keys": ["flag/secret", "map/MAP53/canyon car"] }
+AP-REGION { "map": "MAP53", "region": "canyon ridge secret", "keys": ["flag/secret", "map/MAP53/canyon car"] }
+AP-REGION { "map": "MAP53", "region": "exit blast door", "keys": ["key/YellowCard", "map/MAP53/canyon ridge secret"] }
+
+AP-CHECK { "id": 1667, "name": "MAP53 - LanternPickup", "pos": ["MAP53",-856,-7144,0], "region": "entrance" }
+AP-CHECK { "id": 1671, "name": "MAP53 - Michonne Ultra", "pos": ["MAP53",-792,-6512,0], "region": "entrance" }
+AP-CHECK { "id": 1693, "name": "MAP53 - Pipebomb [-2300,-5788]", "pos": ["MAP53",-2300,-5788,0], "region": "entrance W tunnel" }
+AP-CHECK { "id": 1691, "name": "MAP53 - Pipebomb [-2268,-5756]", "pos": ["MAP53",-2268,-5756,0], "region": "entrance W tunnel" }
+AP-CHECK { "id": 1692, "name": "MAP53 - Pipebomb [-2284,-5692]", "pos": ["MAP53",-2284,-5692,0], "region": "entrance W tunnel" }
+AP-CHECK { "id": 0, "name": "MAP53 - fortyfiveammo [208,-5432]", "pos": ["MAP53",208,-5432,8], "region": "entrance E tunnel" }
+AP-CHECK { "id": 0, "name": "MAP53 - Painkillers [1168,-5464]", "pos": ["MAP53",1168,-5464,-40], "region": "entrance E cistern area" }
+AP-CHECK { "id": 0, "name": "MAP53 - shotgunAmmo [1232,-5512]", "pos": ["MAP53",1232,-5512,-40], "region": "entrance E cistern area" }
+AP-CHECK { "id": 1706, "name": "MAP53 - Random Junk [2026,-5486]", "pos": ["MAP53",2026,-5486,-104], "region": "entrance E cistern area" }
+AP-CHECK { "id": 1705, "name": "MAP53 - Random Junk [2024,-5448]", "pos": ["MAP53",2024,-5448,-104], "region": "entrance E cistern area" }
+AP-CHECK { "id": 1598, "name": "MAP53 - Bronze Staff Key", "pos": ["MAP53",1760,-6996,81], "region": "entrance E cistern area" }
+AP-CHECK { "id": 0, "name": "MAP53 - shotgunAmmo [2216,-6168]", "pos": ["MAP53",2216,-6168,184], "region": "entrance E cistern area" }
+AP-CHECK { "id": 1714, "name": "MAP53 - Secret 253", "pos": ["MAP53","secret","sector",253], "region": "entrance E tunnel" }
+AP-CHECK { "id": 1595, "name": "MAP53 - BRUTE Stim", "pos": ["MAP53",112,-6192,0], "region": "entrance E tunnel" }
+AP-CHECK { "id": 1704, "name": "MAP53 - Random Junk [-462,-4774]", "pos": ["MAP53",-462,-4774,120], "region": "entrance" }
+AP-CHECK { "id": 0, "name": "MAP53 - FoodTin3 [-24,-4776]", "pos": ["MAP53",-24,-4776,0], "region": "entrance E dog ambush" }
+AP-CHECK { "id": 0, "name": "MAP53 - FoodTin4 [-64,-4776]", "pos": ["MAP53",-64,-4776,0], "region": "entrance E dog ambush" }
+AP-CHECK { "id": 0, "name": "MAP53 - FoodTin4 [-92,-4748]", "pos": ["MAP53",-92,-4748,0], "region": "entrance E dog ambush" }
+AP-CHECK { "id": 0, "name": "MAP53 - NineMilammo [-752,-4488]", "pos": ["MAP53",-752,-4488,592], "region": "rail shack" }
+AP-CHECK { "id": 0, "name": "MAP53 - Painkillers [-792,-4488]", "pos": ["MAP53",-792,-4488,592], "region": "rail shack" }
+AP-CHECK { "id": 0, "name": "MAP53 - ArmorScrap [-6272,-4024]", "pos": ["MAP53",-6272,-4024,592], "region": "W train cars" }
+AP-CHECK { "id": 0, "name": "MAP53 - ArmorScrap [-6232,-4040]", "pos": ["MAP53",-6232,-4040,592], "region": "W train cars" }
+AP-CHECK { "id": 0, "name": "MAP53 - Junk Gear [-5734,-4062]", "pos": ["MAP53",-5734,-4062,625], "region": "W train cars" }
+AP-CHECK { "id": 0, "name": "MAP53 - Junk Pipe [-5798,-4062]", "pos": ["MAP53",-5798,-4062,625], "region": "W train cars" }
+AP-CHECK { "id": 0, "name": "MAP53 - shotgunAmmo [-1360,-2808]", "pos": ["MAP53",-1360,-2808,689], "region": "train depot" }
+AP-CHECK { "id": 0, "name": "MAP53 - shotgunAmmo [-960,-2072]", "pos": ["MAP53",-960,-2072,752], "region": "train depot" }
+AP-CHECK { "id": 0, "name": "MAP53 - fortyfiveammo [240,-2304]", "pos": ["MAP53",240,-2304,592], "region": "train depot" }
+AP-CHECK { "id": 0, "name": "MAP53 - Painkillers [-1312,-1664]", "pos": ["MAP53",-1312,-1664,649], "region": "rail machine shop" }
+AP-CHECK { "id": 0, "name": "MAP53 - fortyfiveammo [-1344,-1664]", "pos": ["MAP53",-1344,-1664,649], "region": "rail machine shop" }
+AP-CHECK { "id": 1701, "name": "MAP53 - Random Junk [-1520,-1816]", "pos": ["MAP53",-1520,-1816,624], "region": "rail machine shop" }
+AP-CHECK { "id": 0, "name": "MAP53 - Junk Tools [-688,-1976]", "pos": ["MAP53",-688,-1976,649], "region": "rail machine shop" }
+AP-CHECK { "id": 0, "name": "MAP53 - Junk Spares [-190,-1982]", "pos": ["MAP53",-190,-1982,624], "region": "rail machine shop" }
+AP-CHECK { "id": 0, "name": "MAP53 - shotgunAmmo [-92,-2612]", "pos": ["MAP53",-92,-2612,688], "region": "railyard crate top" }
+AP-CHECK { "id": 1698, "name": "MAP53 - Random Junk [-1078,-1398]", "pos": ["MAP53",-1078,-1398,624], "region": "railyard storage" }
+AP-CHECK { "id": 1699, "name": "MAP53 - Random Junk [-1100,-1364]", "pos": ["MAP53",-1100,-1364,624], "region": "railyard storage" }
+AP-CHECK { "id": 1700, "name": "MAP53 - Random Junk [-1116,-1404]", "pos": ["MAP53",-1116,-1404,624], "region": "railyard storage" }
+AP-CHECK { "id": 1690, "name": "MAP53 - Pipebomb [-1112,-1592]", "pos": ["MAP53",-1112,-1592,624], "region": "railyard storage" }
+AP-CHECK { "id": 1672, "name": "MAP53 - NapalmAmmo [-1088,-1592]", "pos": ["MAP53",-1088,-1592,624], "region": "railyard storage" }
+AP-CHECK { "id": 1719, "name": "MAP53 - Secret 4758", "pos": ["MAP53","secret","sector",4758], "region": "railyard storage" }
+AP-CHECK { "id": 1702, "name": "MAP53 - Random Junk [-248,-1368]", "pos": ["MAP53",-248,-1368,624], "region": "railyard break room" }
+AP-CHECK { "id": 0, "name": "MAP53 - FoodTin1 [-244,-1212]", "pos": ["MAP53",-244,-1212,649], "region": "railyard break room" }
+AP-CHECK { "id": 0, "name": "MAP53 - FoodTin1 [-240,-1176]", "pos": ["MAP53",-240,-1176,649], "region": "railyard break room" }
+AP-CHECK { "id": 0, "name": "MAP53 - FoodTin2 [-204,-1172]", "pos": ["MAP53",-204,-1172,649], "region": "railyard break room" }
+AP-CHECK { "id": 1703, "name": "MAP53 - Random Junk [-416,-1336]", "pos": ["MAP53",-416,-1336,624], "region": "railyard bathroom" }
+AP-CHECK { "id": 1713, "name": "MAP53 - Secret 1194", "pos": ["MAP53","secret","sector",1194], "region": "railyard bathroom" }
+AP-CHECK { "id": 1668, "name": "MAP53 - Master Blaster", "pos": ["MAP53",-456,-3312,840], "region": "railyard rooftop secret" }
+AP-CHECK { "id": 1673, "name": "MAP53 - NapalmAmmo [-472,-3272]", "pos": ["MAP53",-472,-3272,840], "region": "railyard rooftop secret" }
+AP-CHECK { "id": 0, "name": "MAP53 - shotgunAmmo [5680,-2064]", "pos": ["MAP53",5680,-2064,712], "region": "cave tunnels" }
+AP-CHECK { "id": 0, "name": "MAP53 - shotgunAmmo [5664,-2016]", "pos": ["MAP53",5664,-2016,712], "region": "cave tunnels" }
+AP-CHECK { "id": 0, "name": "MAP53 - Junk Nuts [5256,-1800]", "pos": ["MAP53",5256,-1800,712], "region": "SE circle hut" }
+AP-CHECK { "id": 0, "name": "MAP53 - ArmorScrap [5236,-1884]", "pos": ["MAP53",5236,-1884,712], "region": "SE circle hut" }
+AP-CHECK { "id": 0, "name": "MAP53 - Painkillers [5272,-1936]", "pos": ["MAP53",5272,-1936,712], "region": "SE circle hut" }
+AP-CHECK { "id": 1721, "name": "MAP53 - Shotgunbox [SE]", "pos": ["MAP53",5360,-1936,712], "region": "SE circle hut" }
+AP-CHECK { "id": 0, "name": "MAP53 - ArmorScrap [5396,-1900]", "pos": ["MAP53",5396,-1900,712], "region": "SE circle hut" }
+AP-CHECK { "id": 0, "name": "MAP53 - ArmorScrap [5348,-1780]", "pos": ["MAP53",5348,-1780,712], "region": "SE circle hut" }
+AP-CHECK { "id": 0, "name": "MAP53 - fortyfiveammo [4216,-1688]", "pos": ["MAP53",4216,-1688,696], "region": "SW circle hut" }
+AP-CHECK { "id": 0, "name": "MAP53 - fortyfiveammo [4168,-1720]", "pos": ["MAP53",4168,-1720,696], "region": "SW circle hut" }
+AP-CHECK { "id": 0, "name": "MAP53 - shotgunAmmo [4168,-1624]", "pos": ["MAP53",4168,-1624,696], "region": "SW circle hut" }
+AP-CHECK { "id": 0, "name": "MAP53 - Junk Cable [6096,-800]", "pos": ["MAP53",6096,-800,664], "region": "cave behind switch" }
+AP-CHECK { "id": 1716, "name": "MAP53 - Secret 3129", "pos": ["MAP53","secret","sector",3129], "region": "W circle hut" }
+AP-CHECK { "id": 0, "name": "MAP53 - ArmorScrap [3872,-1336]", "pos": ["MAP53",3872,-1336,712], "region": "W circle hut" }
+AP-CHECK { "id": 0, "name": "MAP53 - ArmorScrap [3916,-1292]", "pos": ["MAP53",3916,-1292,712], "region": "W circle hut" }
+AP-CHECK { "id": 0, "name": "MAP53 - ArmorScrap [3948,-1348]", "pos": ["MAP53",3948,-1348,712], "region": "W circle hut" }
+AP-CHECK { "id": 1624, "name": "MAP53 - JackHammer", "pos": ["MAP53",3856,-1120,712], "region": "W circle hut" }
+AP-CHECK { "id": 0, "name": "MAP53 - Junk Cable [6586,-1158]", "pos": ["MAP53",6586,-1158,168], "region": "hazmat dump" }
+AP-CHECK { "id": 1715, "name": "MAP53 - Secret 2540", "pos": ["MAP53","secret","sector",2540], "region": "hazmat dump behind barrels" }
+AP-CHECK { "id": 1694, "name": "MAP53 - Pipebomb [6840,-1344]", "pos": ["MAP53",6840,-1344,168], "region": "hazmat dump behind barrels" }
+AP-CHECK { "id": 0, "name": "MAP53 - Painkillers [6840,-1304]", "pos": ["MAP53",6840,-1304,168], "region": "hazmat dump behind barrels" }
+AP-CHECK { "id": 1695, "name": "MAP53 - Pipebomb [6856,-1368]", "pos": ["MAP53",6856,-1368,168], "region": "hazmat dump behind barrels" }
+AP-CHECK { "id": 0, "name": "MAP53 - Junk Cable [7280,-1056]", "pos": ["MAP53",7280,-1056,278], "region": "hazmat dump" }
+AP-CHECK { "id": 1669, "name": "MAP53 - Medical Kit [E]", "pos": ["MAP53",8232,-1720,168], "region": "hazmat dump control room" }
+AP-CHECK { "id": 1682, "name": "MAP53 - PURGE Stim", "pos": ["MAP53",8176,-1672,172], "region": "hazmat dump control room" }
+AP-CHECK { "id": 0, "name": "MAP53 - NineMilammo [8440,-1520]", "pos": ["MAP53",8440,-1520,193], "region": "hazmat dump control room" }
+AP-CHECK { "id": 0, "name": "MAP53 - shotgunAmmo [8441,-1467]", "pos": ["MAP53",8441,-1467,193], "region": "hazmat dump control room" }
+AP-CHECK { "id": 1597, "name": "MAP53 - Blue Access Card", "pos": ["MAP53",7616,880,172], "region": "hazmat dump conveyor room" }
+AP-CHECK { "id": 0, "name": "MAP53 - NineMilammo [7632,-208]", "pos": ["MAP53",7632,-208,168], "region": "hazmat dump conveyor room" }
+AP-CHECK { "id": 0, "name": "MAP53 - NineMilammo [7544,-224]", "pos": ["MAP53",7544,-224,168], "region": "hazmat dump conveyor room" }
+;; conveyor room could also be called blue key ambush room or similar
+AP-CHECK { "id": 0, "name": "MAP53 - Junk Nuts [7026,-2566]", "pos": ["MAP53",7026,-2566,368], "region": "hazmat deep pool" }
+AP-CHECK { "id": 0, "name": "MAP53 - Junk Pipe [7002,-2534]", "pos": ["MAP53",7002,-2534,368], "region": "hazmat deep pool" }
+AP-CHECK { "id": 0, "name": "MAP53 - Junk Tools [6954,-2558]", "pos": ["MAP53",6954,-2558,368], "region": "hazmat deep pool" }
+AP-CHECK { "id": 0, "name": "MAP53 - FoodTin3 [11128,-4992]", "pos": ["MAP53",11128,-4992,576], "region": "canyon access tunnel" }
+AP-CHECK { "id": 0, "name": "MAP53 - FoodTin4 [11156,-5028]", "pos": ["MAP53",11156,-5028,576], "region": "canyon access tunnel" }
+AP-CHECK { "id": 0, "name": "MAP53 - ArmorScrap [11204,-5060]", "pos": ["MAP53",11204,-5060,576], "region": "canyon access tunnel" }
+AP-CHECK { "id": 0, "name": "MAP53 - ArmorScrap [11232,-5024]", "pos": ["MAP53",11232,-5024,576], "region": "canyon access tunnel" }
+AP-CHECK { "id": 0, "name": "MAP53 - ArmorScrap [11228,-4996]", "pos": ["MAP53",11228,-4996,576], "region": "canyon access tunnel" }
+AP-CHECK { "id": 1602, "name": "MAP53 - Falammo [SE]", "pos": ["MAP53",9604,-2800,168], "region": "canyon car" }
+AP-CHECK { "id": 1596, "name": "MAP53 - Battle Rifle", "pos": ["MAP53",9572,-2784,197], "region": "canyon car" }
+AP-CHECK { "id": 1712, "name": "MAP53 - Random Junk [8872,-352]", "pos": ["MAP53",8872,-352,164], "region": "hazmat dump exterior" }
+AP-CHECK { "id": 0, "name": "MAP53 - Junk Tools [8704,288]", "pos": ["MAP53",8704,288,164], "region": "hazmat dump exterior" }
+AP-CHECK { "id": 0, "name": "MAP53 - NineMilammo [8688,352]", "pos": ["MAP53",8688,352,164], "region": "hazmat dump exterior" }
+AP-CHECK { "id": 0, "name": "MAP53 - Junk Pipe [8432,3256]", "pos": ["MAP53",8432,3256,183], "region": "gas station" }
+AP-CHECK { "id": 1709, "name": "MAP53 - Random Junk [7896,4680]", "pos": ["MAP53",7896,4680,168], "region": "gas station" }
+AP-CHECK { "id": 1710, "name": "MAP53 - Random Junk [7920,4704]", "pos": ["MAP53",7920,4704,168], "region": "gas station" }
+AP-CHECK { "id": 0, "name": "MAP53 - ArmorScrap [8280,5120]", "pos": ["MAP53",8280,5120,176], "region": "gas station" }
+AP-CHECK { "id": 0, "name": "MAP53 - ArmorScrap [8280,5200]", "pos": ["MAP53",8280,5200,176], "region": "gas station" }
+AP-CHECK { "id": 0, "name": "MAP53 - ArmorScrap [8232,5208]", "pos": ["MAP53",8232,5208,176], "region": "gas station" }
+AP-CHECK { "id": 0, "name": "MAP53 - Junk Spares [8458,5586]", "pos": ["MAP53",8458,5586,168], "region": "gas station" }
+AP-CHECK { "id": 0, "name": "MAP53 - Junk Cable [8498,5618]", "pos": ["MAP53",8498,5618,168], "region": "gas station" }
+AP-CHECK { "id": 0, "name": "MAP53 - ArmorScrap [8600,5792]", "pos": ["MAP53",8600,5792,176], "region": "gas station" }
+AP-CHECK { "id": 0, "name": "MAP53 - ArmorScrap [8688,5808]", "pos": ["MAP53",8688,5808,168], "region": "gas station" }
+AP-CHECK { "id": 0, "name": "MAP53 - ArmorScrap [8720,5744]", "pos": ["MAP53",8720,5744,176], "region": "gas station" }
+AP-CHECK { "id": 0, "name": "MAP53 - Junk Spares [9904,4160]", "pos": ["MAP53",9904,4160,40], "region": "under bridge" }
+AP-CHECK { "id": 1711, "name": "MAP53 - Random Junk [8432,6560]", "pos": ["MAP53",8432,6560,172], "region": "motel lobby" }
+AP-CHECK { "id": 0, "name": "MAP53 - fortyfiveammo [8624,6712]", "pos": ["MAP53",8624,6712,201], "region": "motel lobby" }
+AP-CHECK { "id": 1722, "name": "MAP53 - Silver Utility Key", "pos": ["MAP53",8824,6568,208], "region": "motel lobby" }
+AP-CHECK { "id": 0, "name": "MAP53 - Junk Spares [8736,6592]", "pos": ["MAP53",8736,6592,176], "region": "motel lobby" }
+AP-CHECK { "id": 1696, "name": "MAP53 - Pipebomb [8592,7080]", "pos": ["MAP53",8592,7080,192], "region": "motel E room" }
+AP-CHECK { "id": 1697, "name": "MAP53 - Pipebomb [8624,7048]", "pos": ["MAP53",8624,7048,192], "region": "motel E room" }
+AP-CHECK { "id": 0, "name": "MAP53 - NineMilammo [8600,7128]", "pos": ["MAP53",8600,7128,192], "region": "motel E room" }
+AP-CHECK { "id": 1717, "name": "MAP53 - Secret 3760", "pos": ["MAP53","secret","sector",3760], "region": "motel ENE room" }
+AP-CHECK { "id": 1577, "name": "MAP53 - ArmorLeather", "pos": ["MAP53",8560,7576,312], "region": "motel ENE room" }
+AP-CHECK { "id": 0, "name": "MAP53 - Junk Spares [8520,7672]", "pos": ["MAP53",8520,7672,312], "region": "motel ENE room" }
+AP-CHECK { "id": 0, "name": "MAP53 - Junk Tools [8488,7680]", "pos": ["MAP53",8488,7680,312], "region": "motel ENE room" }
+AP-CHECK { "id": 0, "name": "MAP53 - FoodTin4 [8192,7816]", "pos": ["MAP53",8192,7816,304], "region": "motel NE rooms" }
+AP-CHECK { "id": 0, "name": "MAP53 - FoodTin4 [8224,7872]", "pos": ["MAP53",8224,7872,304], "region": "motel NE rooms" }
+AP-CHECK { "id": 0, "name": "MAP53 - shotgunAmmo [8248,7824]", "pos": ["MAP53",8248,7824,304], "region": "motel NE rooms" }
+AP-CHECK { "id": 0, "name": "MAP53 - Junk Nuts [8280,8032]", "pos": ["MAP53",8280,8032,304], "region": "motel NE rooms" }
+AP-CHECK { "id": 0, "name": "MAP53 - Junk Gear [8248,8064]", "pos": ["MAP53",8248,8064,304], "region": "motel NE rooms" }
+;; those should be motel NE rooms
+AP-CHECK { "id": 1708, "name": "MAP53 - Random Junk [6816,7816]", "pos": ["MAP53",6816,7816,312], "region": "motel NW rooms" }
+AP-CHECK { "id": 1707, "name": "MAP53 - Random Junk [6776,7832]", "pos": ["MAP53",6776,7832,312], "region": "motel NW rooms" }
+AP-CHECK { "id": 1670, "name": "MAP53 - Medical Kit [NE]", "pos": ["MAP53",6528,8072,316], "region": "motel NW rooms" }
+AP-CHECK { "id": 1599, "name": "MAP53 - Classic shotgun", "pos": ["MAP53",6224,8056,312], "region": "motel NW rooms" }
+AP-CHECK { "id": 0, "name": "MAP53 - Junk Pipe [6224,7728]", "pos": ["MAP53",6224,7728,337], "region": "motel NW rooms" }
+AP-CHECK { "id": 0, "name": "MAP53 - Junk Gear [6248,7728]", "pos": ["MAP53",6248,7728,337], "region": "motel NW rooms" }
+AP-CHECK { "id": 0, "name": "MAP53 - Junk Cable [6232,7696]", "pos": ["MAP53",6232,7696,337], "region": "motel NW rooms" }
+AP-CHECK { "id": 0, "name": "MAP53 - shotgunAmmo [6296,6912]", "pos": ["MAP53",6296,6912,336], "region": "motel W room" }
+AP-CHECK { "id": 0, "name": "MAP53 - NineMilammo [6304,6944]", "pos": ["MAP53",6304,6944,312], "region": "motel W room" }
+AP-CHECK { "id": 0, "name": "MAP53 - Painkillers [6328,7120]", "pos": ["MAP53",6328,7120,337], "region": "motel W room" }
+AP-CHECK { "id": 1723, "name": "MAP53 - Yellow Access Card", "pos": ["MAP53",6448,7600,328], "region": "motel WNW room" }
+AP-CHECK { "id": 0, "name": "MAP53 - Painkillers [6208,6848]", "pos": ["MAP53",6208,6848,201], "region": "motel WSW room" }
+AP-CHECK { "id": 0, "name": "MAP53 - Junk Tools [6314,6810]", "pos": ["MAP53",6314,6810,176], "region": "motel WSW room" }
+AP-CHECK { "id": 0, "name": "MAP53 - Junk Nuts [6328,6840]", "pos": ["MAP53",6328,6840,176], "region": "motel WSW room" }
+AP-CHECK { "id": 1720, "name": "MAP53 - Shotgunbox [NE]", "pos": ["MAP53",6320,6716,176], "region": "motel WSW room" }
+AP-CHECK { "id": 1718, "name": "MAP53 - Secret 4208", "pos": ["MAP53","secret","sector",4208], "region": "canyon ridge secret" }
+AP-CHECK { "id": 1674, "name": "MAP53 - NapalmAmmo [10856,-1128]", "pos": ["MAP53",10856,-1128,348], "region": "canyon ridge secret" }
+AP-CHECK { "id": 1601, "name": "MAP53 - Falammo [E]", "pos": ["MAP53",10840,-1160,348], "region": "canyon ridge secret" }
+AP-CHECK { "id": 1600, "name": "MAP53 - Exit", "pos": ["MAP53","exit"], "region": "gas station", "keys": ["YellowCard"] }

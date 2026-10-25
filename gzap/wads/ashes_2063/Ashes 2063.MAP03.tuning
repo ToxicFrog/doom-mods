@@ -1,0 +1,39 @@
+AP-REGION { "map": "MAP03", "region": "bedroom", "keys": [] }
+AP-REGION { "map": "MAP03", "region": "garage", "keys": ["map/MAP03/bedroom"] }
+AP-REGION { "map": "MAP03", "region": "FEMA sign", "keys": ["map/MAP03/garage"] }
+AP-REGION { "map": "MAP03", "region": "main street", "keys": ["map/MAP03/garage"] }
+AP-REGION { "map": "MAP03", "region": "smiley's", "keys": ["map/MAP03/main street", "flag/unreachable"] }
+AP-REGION { "map": "MAP03", "region": "rooftop", "keys": ["map/MAP03/main street"] }
+AP-REGION { "map": "MAP03", "region": "shooting range", "keys": ["flag/unreachable"] }
+AP-REGION { "map": "MAP03", "region": "north road", "keys": ["flag/unreachable"] }
+
+AP-CHECK { "id": 0, "name": "MAP03 - FoodTin4 [-208,80]", "pos": ["MAP03",-208,80,128], "region": "bedroom" }
+AP-CHECK { "id": 0, "name": "MAP03 - FoodTin3 [-224,112]", "pos": ["MAP03",-224,112,160], "region": "bedroom" }
+AP-CHECK { "id": 0, "name": "MAP03 - FoodTin4 [-160,112]", "pos": ["MAP03",-160,112,160], "region": "bedroom" }
+AP-CHECK { "id": 643, "name": "MAP03 - Random Junk [144,192]", "pos": ["MAP03",144,192,0], "region": "garage" }
+AP-CHECK { "id": 635, "name": "MAP03 - Random Junk [-384,128]", "pos": ["MAP03",-384,128,0], "region": "FEMA sign" }
+AP-CHECK { "id": 634, "name": "MAP03 - Random Junk [-344,224]", "pos": ["MAP03",-344,224,0], "region": "FEMA sign" }
+AP-CHECK { "id": 647, "name": "MAP03 - Random Junk [244,1288]", "pos": ["MAP03",244,1288,0], "region": "main street" }
+AP-CHECK { "id": 646, "name": "MAP03 - Random Junk [228,1304]", "pos": ["MAP03",228,1304,0], "region": "main street" }
+AP-CHECK { "id": 648, "name": "MAP03 - Random Junk [244,1320]", "pos": ["MAP03",244,1320,0], "region": "main street" }
+AP-CHECK { "id": 632, "name": "MAP03 - Random Junk [-192,1456]", "pos": ["MAP03",-192,1456,0], "region": "main street" }
+AP-CHECK { "id": 633, "name": "MAP03 - Random Junk [-208,1424]", "pos": ["MAP03",-208,1424,0], "region": "main street" }
+AP-CHECK { "id": 644, "name": "MAP03 - Random Junk [144,2304]", "pos": ["MAP03",144,2304,0], "region": "main street" }
+AP-CHECK { "id": 645, "name": "MAP03 - Random Junk [160,2352]", "pos": ["MAP03",160,2352,0], "region": "main street" }
+AP-CHECK { "id": 0, "name": "MAP03 - shotgunAmmo [W]", "pos": ["MAP03",-656,2872,128], "region": "smiley's" }
+AP-CHECK { "id": 0, "name": "MAP03 - fortyfiveammo [W]", "pos": ["MAP03",-676,2896,128], "region": "smiley's" }
+AP-CHECK { "id": 649, "name": "MAP03 - Shotgunbox", "pos": ["MAP03",-680,2612,128], "region": "smiley's" }
+AP-CHECK { "id": 639, "name": "MAP03 - Random Junk [-988,1460]", "pos": ["MAP03",-988,1460,128], "region": "rooftop" }
+AP-CHECK { "id": 631, "name": "MAP03 - Random Junk [-1000,1412]", "pos": ["MAP03",-1000,1412,128], "region": "rooftop" }
+AP-CHECK { "id": 638, "name": "MAP03 - Random Junk [-824,1144]", "pos": ["MAP03",-824,1144,128], "region": "rooftop" }
+AP-CHECK { "id": 636, "name": "MAP03 - Random Junk [-624,1336]", "pos": ["MAP03",-624,1336,128], "region": "rooftop" }
+AP-CHECK { "id": 637, "name": "MAP03 - Random Junk [-648,1336]", "pos": ["MAP03",-648,1336,128], "region": "rooftop" }
+AP-CHECK { "id": 642, "name": "MAP03 - Random Junk [1176,-464]", "pos": ["MAP03",1176,-464,0], "region": "shooting range" }
+AP-CHECK { "id": 640, "name": "MAP03 - Random Junk [1160,-448]", "pos": ["MAP03",1160,-448,0], "region": "shooting range" }
+AP-CHECK { "id": 641, "name": "MAP03 - Random Junk [1168,-432]", "pos": ["MAP03",1168,-432,0], "region": "shooting range" }
+;; handing the radio to smiley gets 100 monies
+;; talking to him about work afterwards gets you the briefcase
+;; talking to the bartender about work gets you the blue key, which unlocks the back alley where you meet fortune
+AP-CHECK { "id": 0, "name": "MAP03 - fortyfiveammo [NE]", "pos": ["MAP03",2656,6144,-4], "region": "north road" }
+AP-CHECK { "id": 0, "name": "MAP03 - shotgunAmmo [NE]", "pos": ["MAP03",2624,6176,-4], "region": "north road" }
+AP-CHECK { "id": 622, "name": "MAP03 - Exit", "pos": ["MAP03","exit"], "keys": [] }

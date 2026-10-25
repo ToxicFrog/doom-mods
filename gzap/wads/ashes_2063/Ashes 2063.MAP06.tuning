@@ -1,0 +1,21 @@
+AP-REGION { "map": "MAP06", "region": "entrance", "keys": [] }
+AP-REGION { "map": "MAP06", "region": "The Last Stop", "keys": ["map/MAP06/entrance"] }
+AP-REGION { "map": "MAP06", "region": "tents", "keys": ["map/MAP06/entrance"] }
+AP-REGION { "map": "MAP06", "region": "train", "keys": ["map/MAP06/entrance"] }
+AP-REGION { "map": "MAP06", "region": "dealer", "keys": ["map/MAP06/entrance"] }
+
+AP-CHECK { "id": 1044, "name": "MAP06 - Random Junk [16,-48]", "pos": ["MAP06",16,-48,0], "region": "entrance" }
+AP-CHECK { "id": 1040, "name": "MAP06 - Random Junk [-16,-64]", "pos": ["MAP06",-16,-64,0], "region": "entrance" }
+AP-CHECK { "id": 1048, "name": "MAP06 - Random Junk [748,548]", "pos": ["MAP06",748,548,24], "region": "The Last Stop" }
+AP-CHECK { "id": 1047, "name": "MAP06 - Random Junk [724,476]", "pos": ["MAP06",724,476,24], "region": "The Last Stop" }
+AP-CHECK { "id": 1049, "name": "MAP06 - Random Junk [880,1136]", "pos": ["MAP06",880,1136,-1], "region": "The Last Stop" }
+AP-CHECK { "id": 1050, "name": "MAP06 - Random Junk [880,1168]", "pos": ["MAP06",880,1168,-1], "region": "The Last Stop" }
+AP-CHECK { "id": 1051, "name": "MAP06 - Random Junk [896,1200]", "pos": ["MAP06",896,1200,-1], "region": "The Last Stop" }
+AP-CHECK { "id": 1045, "name": "MAP06 - Random Junk [32,1512]", "pos": ["MAP06",32,1512,0], "region": "tents" }
+AP-CHECK { "id": 1046, "name": "MAP06 - Random Junk [48,1480]", "pos": ["MAP06",48,1480,0], "region": "tents" }
+AP-CHECK { "id": 0, "name": "MAP06 - Junk Cable", "pos": ["MAP06",-160,312,26], "region": "train" }
+AP-CHECK { "id": 0, "name": "MAP06 - Junk Spares", "pos": ["MAP06",-240,288,26], "region": "train" }
+AP-CHECK { "id": 1041, "name": "MAP06 - Random Junk [-736,1136]", "pos": ["MAP06",-736,1136,0], "region": "dealer" }
+AP-CHECK { "id": 1042, "name": "MAP06 - Random Junk [-760,1120]", "pos": ["MAP06",-760,1120,0], "region": "dealer" }
+AP-CHECK { "id": 1043, "name": "MAP06 - Random Junk [-792,1128]", "pos": ["MAP06",-792,1128,0], "region": "dealer" }
+AP-CHECK { "id": 1034, "name": "MAP06 - Exit", "pos": ["MAP06","exit"], "keys": [] }

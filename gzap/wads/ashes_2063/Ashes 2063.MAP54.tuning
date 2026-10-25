@@ -1,0 +1,72 @@
+AP-REGION { "map": "MAP53", "keys": ["weapon/Glock/want", "weapon/SawedOff/want", "weapon/pumpaction2/want", "weapon/Ingram3/want", "weapon/FAL/want"] }
+
+AP-REGION { "map": "MAP54", "region": "entrance shop", "keys": [] }
+AP-REGION { "map": "MAP54", "region": "entrance behind rocks", "keys": [] }
+AP-REGION { "map": "MAP54", "region": "wrecked car gauntlet", "keys": ["key/BlueCard"] }
+AP-REGION { "map": "MAP54", "region": "parking lot", "keys": ["map/MAP54/wrecked car gauntlet"] }
+AP-REGION { "map": "MAP54", "region": "security checkpoint", "keys": ["map/MAP54/parking lot"] }
+AP-REGION { "map": "MAP54", "region": "post-security storage", "keys": ["map/MAP54/security checkpoint"] }
+AP-REGION { "map": "MAP54", "region": "toilet stall", "keys": ["flag/secret", "map/MAP54/security checkpoint"] }
+AP-REGION { "map": "MAP54", "region": "office chasm lower", "keys": ["map/MAP54/security checkpoint"] }
+AP-REGION { "map": "MAP54", "region": "NW office", "keys": ["map/MAP54/office chasm lower"] }
+AP-REGION { "map": "MAP54", "region": "N office", "keys": ["map/MAP54/office chasm lower"] }
+AP-REGION { "map": "MAP54", "region": "office storage", "keys": ["map/MAP54/office chasm lower"] }
+AP-REGION { "map": "MAP54", "region": "cafeteria", "keys": ["map/MAP54/office chasm lower"] }
+AP-REGION { "map": "MAP54", "region": "office chasm upper", "keys": ["map/MAP54/cafeteria"] }
+AP-REGION { "map": "MAP54", "region": "mainframe room", "keys": ["key/RedCard", "map/MAP54/security checkpoint"] }
+AP-REGION { "map": "MAP54", "region": "garage", "keys": ["map/MAP54/mainframe room"] }
+AP-REGION { "map": "MAP54", "region": "pub", "keys": ["map/MAP54/garage"] }
+
+AP-CHECK { "id": 1328, "name": "MAP54 - Blue Access Card", "pos": ["MAP54","spawn",1,"BlueCard",480,750,-120,500], "region": "entrance shop" }
+AP-CHECK { "id": 1791, "name": "MAP54 - Shotgunbox [W]", "pos": ["MAP54",624,496,-120], "region": "entrance shop" }
+AP-CHECK { "id": 0, "name": "MAP54 - fortyfiveammo [656,496]", "pos": ["MAP54",656,496,-88], "region": "entrance shop" }
+AP-CHECK { "id": 0, "name": "MAP54 - NineMilammo [624,464]", "pos": ["MAP54",624,464,-88], "region": "entrance shop" }
+AP-CHECK { "id": 0, "name": "MAP54 - Painkillers [624,416]", "pos": ["MAP54",624,416,-120], "region": "entrance shop" }
+AP-CHECK { "id": 0, "name": "MAP54 - FoodTin3 [516,768]", "pos": ["MAP54",516,768,-96], "region": "entrance shop" }
+AP-CHECK { "id": 0, "name": "MAP54 - FoodTin2", "pos": ["MAP54",524,896,-96], "region": "entrance shop" }
+AP-CHECK { "id": 0, "name": "MAP54 - FoodTin1 [444,868]", "pos": ["MAP54",444,868,-96], "region": "entrance shop" }
+AP-CHECK { "id": 0, "name": "MAP54 - Painkillers [468,756]", "pos": ["MAP54",468,756,-96], "region": "entrance shop" }
+AP-CHECK { "id": 1769, "name": "MAP54 - NapalmAmmo [W]", "pos": ["MAP54",-416,-864,-128], "region": "entrance behind rocks" }
+AP-CHECK { "id": 1766, "name": "MAP54 - Michonne Ultra", "pos": ["MAP54",3344,-128,-120], "region": "wrecked car gauntlet" }
+AP-CHECK { "id": 1753, "name": "MAP54 - Falammo", "pos": ["MAP54",7392,-144,-85], "region": "parking lot" }
+AP-CHECK { "id": 0, "name": "MAP54 - NineMilammo [8048,1376]", "pos": ["MAP54",8048,1376,-92], "region": "parking lot" }
+AP-CHECK { "id": 0, "name": "MAP54 - NineMilammo [9264,-608]", "pos": ["MAP54",9264,-608,188], "region": "security checkpoint" }
+AP-CHECK { "id": 1751, "name": "MAP54 - Classic shotgun", "pos": ["MAP54",8896,-576,193], "region": "security checkpoint" }
+AP-CHECK { "id": 1785, "name": "MAP54 - Pipebomb [9032,-1048]", "pos": ["MAP54",9032,-1048,160], "region": "post-security storage" }
+AP-CHECK { "id": 1784, "name": "MAP54 - Pipebomb [9024,-1032]", "pos": ["MAP54",9024,-1032,160], "region": "post-security storage" }
+AP-CHECK { "id": 1786, "name": "MAP54 - REGEN Stim", "pos": ["MAP54",9552,-960,160], "region": "toilet stall" }
+AP-CHECK { "id": 1788, "name": "MAP54 - Secret 1372", "pos": ["MAP54","secret","sector",1372], "region": "toilet stall" }
+AP-CHECK { "id": 0, "name": "MAP54 - fortyfiveammo [10104,-1520]", "pos": ["MAP54",10104,-1520,217], "region": "office chasm lower" }
+AP-CHECK { "id": 0, "name": "MAP54 - Painkillers [10176,-1216]", "pos": ["MAP54",10176,-1216,217], "region": "office chasm lower" }
+AP-CHECK { "id": 1767, "name": "MAP54 - NapalmAmmo [E]", "pos": ["MAP54",10288,-1016,224], "region": "office chasm lower" }
+AP-CHECK { "id": 0, "name": "MAP54 - ArmorScrap [9948,-284]", "pos": ["MAP54",9948,-284,217], "region": "NW office" }
+AP-CHECK { "id": 0, "name": "MAP54 - ArmorScrap [9920,-280]", "pos": ["MAP54",9920,-280,217], "region": "NW office" }
+AP-CHECK { "id": 0, "name": "MAP54 - NineMilammo [9800,-280]", "pos": ["MAP54",9800,-280,240], "region": "NW office" }
+AP-CHECK { "id": 0, "name": "MAP54 - ArmorScrap [10672,192]", "pos": ["MAP54",10672,192,329], "region": "N office" }
+AP-CHECK { "id": 0, "name": "MAP54 - ArmorScrap [10672,160]", "pos": ["MAP54",10672,160,329], "region": "N office" }
+AP-CHECK { "id": 0, "name": "MAP54 - shotgunAmmo [10880,104]", "pos": ["MAP54",10880,104,329], "region": "N office" }
+AP-CHECK { "id": 0, "name": "MAP54 - ArmorScrap [11284,-652]", "pos": ["MAP54",11284,-652,280], "region": "office storage" }
+AP-CHECK { "id": 0, "name": "MAP54 - ArmorScrap [11264,-608]", "pos": ["MAP54",11264,-608,280], "region": "office storage" }
+AP-CHECK { "id": 0, "name": "MAP54 - ArmorScrap [11252,-636]", "pos": ["MAP54",11252,-636,280], "region": "office storage" }
+AP-CHECK { "id": 0, "name": "MAP54 - fortyfiveammo [11216,-624]", "pos": ["MAP54",11216,-624,280], "region": "office storage" }
+AP-CHECK { "id": 0, "name": "MAP54 - ArmorScrap [11232,-592]", "pos": ["MAP54",11232,-592,280], "region": "office storage" }
+AP-CHECK { "id": 1750, "name": "MAP54 - Battle Rifle", "pos": ["MAP54",11104,-640,280], "region": "office storage" }
+AP-CHECK { "id": 1789, "name": "MAP54 - Secret 1982", "pos": ["MAP54","secret","sector",1982], "region": "office storage" }
+AP-CHECK { "id": 0, "name": "MAP54 - FoodTin1 [11428,-1564]", "pos": ["MAP54",11428,-1564,297], "region": "cafeteria" }
+AP-CHECK { "id": 0, "name": "MAP54 - FoodTin3 [11440,-1536]", "pos": ["MAP54",11440,-1536,297], "region": "cafeteria" }
+AP-CHECK { "id": 0, "name": "MAP54 - FoodTin1 [11476,-1564]", "pos": ["MAP54",11476,-1564,297], "region": "cafeteria" }
+AP-CHECK { "id": 0, "name": "MAP54 - Painkillers [11860,-1804]", "pos": ["MAP54",11860,-1804,297], "region": "cafeteria" }
+AP-CHECK { "id": 0, "name": "MAP54 - shotgunAmmo [11872,-1760]", "pos": ["MAP54",11872,-1760,288], "region": "cafeteria" }
+AP-CHECK { "id": 1787, "name": "MAP54 - Red Access Card", "pos": ["MAP54",10676,-1528,297], "region": "office chasm upper" }
+AP-CHECK { "id": 0, "name": "MAP54 - Painkillers [8648,-2272]", "pos": ["MAP54",8648,-2272,200], "region": "mainframe room" }
+AP-CHECK { "id": 1783, "name": "MAP54 - Pipebomb [8495,-2479]", "pos": ["MAP54",8495,-2479,176], "region": "mainframe room" }
+AP-CHECK { "id": 0, "name": "MAP54 - shotgunAmmo [8435,-2096]", "pos": ["MAP54",8435,-2096,176], "region": "mainframe room" }
+AP-CHECK { "id": 0, "name": "MAP54 - NineMilammo [8406,-2049]", "pos": ["MAP54",8406,-2049,176], "region": "mainframe room" }
+AP-CHECK { "id": 1768, "name": "MAP54 - NapalmAmmo [SE]", "pos": ["MAP54",7712,-4112,-93], "region": "garage" }
+AP-CHECK { "id": 1790, "name": "MAP54 - Shotgunbox [SE]", "pos": ["MAP54",7248,-4128,-120], "region": "garage" }
+AP-CHECK { "id": 0, "name": "MAP54 - Painkillers [7248,-4096]", "pos": ["MAP54",7248,-4096,-120], "region": "garage" }
+AP-CHECK { "id": 0, "name": "MAP54 - NineMilammo [7216,-4128]", "pos": ["MAP54",7216,-4128,-120], "region": "garage" }
+AP-CHECK { "id": 1741, "name": "MAP54 - ArmorLeather", "pos": ["MAP54",7216,-4096,-120], "region": "garage" }
+AP-CHECK { "id": 0, "name": "MAP54 - Painkillers [7120,-3776]", "pos": ["MAP54",7120,-3776,24], "region": "garage" }
+AP-CHECK { "id": 1792, "name": "MAP54 - Yellow Access Card", "pos": ["MAP54",6184,-4516,148], "region": "pub" }
+AP-CHECK { "id": 1752, "name": "MAP54 - Exit", "pos": ["MAP54","exit"], "region": "garage", "keys": ["YellowCard"] }

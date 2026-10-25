@@ -1,0 +1,144 @@
+AP-REGION { "map": "MAP07", "keys": ["weapon/Glock/want", "weapon/shotgun2/want", "weapon/Ingram3/want", "weapon/NapalmGun/want"] }
+
+AP-REGION { "map": "MAP07", "region": "entrance", "keys": [] }
+AP-REGION { "map": "MAP07", "region": "apartment W of entrance", "keys": ["map/MAP07/entrance"] }
+AP-REGION { "map": "MAP07", "region": "E apartments 2F", "keys": ["map/MAP07/entrance"] }
+AP-REGION { "map": "MAP07", "region": "E apartments lobby", "keys": ["map/MAP07/entrance"] }
+AP-REGION { "map": "MAP07", "region": "E apartments 1F behind grate", "keys": ["map/MAP07/E apartments lobby"] }
+AP-REGION { "map": "MAP07", "region": "E apartments laundry", "keys": ["map/MAP07/E apartments lobby"] }
+AP-REGION { "map": "MAP07", "region": "Cat's Cradle lobby", "keys": ["map/MAP07/entrance"] }
+AP-REGION { "map": "MAP07", "region": "Cat's Cradle laundry", "keys": ["map/MAP07/Cat's Cradle lobby"] }
+AP-REGION { "map": "MAP07", "region": "Cat's Cradle lobby security", "keys": ["map/MAP07/Cat's Cradle lobby"] }
+AP-REGION { "map": "MAP07", "region": "Cat's Cradle lounge", "keys": ["map/MAP07/Cat's Cradle laundry"] }
+AP-REGION { "map": "MAP07", "region": "Cat's Cradle office", "keys": ["map/MAP07/Cat's Cradle lounge"] }
+AP-REGION { "map": "MAP07", "region": "Cat's Cradle elevator", "keys": ["key/BlueSkull", "map/MAP07/Cat's Cradle lobby"] }
+AP-REGION { "map": "MAP07", "region": "E apartment balcony", "keys": ["key/BlueSkull", "map/MAP07/E apartments 2F"] }
+AP-REGION { "map": "MAP07", "region": "central office cubicles", "keys": ["map/MAP07/E apartment balcony"] }
+AP-REGION { "map": "MAP07", "region": "War-Mart boardroom", "keys": ["map/MAP07/central office cubicles"] }
+AP-REGION { "map": "MAP07", "region": "War-Mart CEO", "keys": ["map/MAP07/central office cubicles"] }
+AP-REGION { "map": "MAP07", "region": "War-Mart storage", "keys": ["map/MAP07/War-Mart boardroom", "flag/secret"] }
+AP-REGION { "map": "MAP07", "region": "War-Mart rooftop", "keys": ["map/MAP07/central office cubicles", "weapon/JunkerMusket/want"] }
+AP-REGION { "map": "MAP07", "region": "Cat's Cradle 8F room", "keys": ["map/MAP07/War-Mart rooftop", "flag/secret"] }
+AP-REGION { "map": "MAP07", "region": "alley S of garage", "keys": ["map/MAP07/War-Mart rooftop"] }
+AP-REGION { "map": "MAP07", "region": "dumpster W of garage", "keys": ["map/MAP07/alley S of garage"] }
+AP-REGION { "map": "MAP07", "region": "parking garage office", "keys": ["map/MAP07/War-Mart rooftop"] }
+AP-REGION { "map": "MAP07", "region": "parking garage caravan", "keys": ["map/MAP07/War-Mart rooftop"] }
+AP-REGION { "map": "MAP07", "region": "parking garage bathrooms", "keys": ["map/MAP07/War-Mart rooftop"] }
+AP-REGION { "map": "MAP07", "region": "toppled building 1F", "keys": ["map/MAP07/parking garage office"] }
+AP-REGION { "map": "MAP07", "region": "toppled building 2F", "keys": ["map/MAP07/toppled building 1F"] }
+AP-REGION { "map": "MAP07", "region": "toppled building 5F", "keys": ["map/MAP07/toppled building 2F"] }
+AP-REGION { "map": "MAP07", "region": "tunnel after toppled building", "keys": ["map/MAP07/toppled building 5F"] }
+AP-REGION { "map": "MAP07", "region": "checkpoint", "keys": ["map/MAP07/tunnel after toppled building"] }
+AP-REGION { "map": "MAP07", "region": "The Spire 1F", "keys": ["map/MAP07/checkpoint"] }
+AP-REGION { "map": "MAP07", "region": "The Spire 2F", "keys": ["map/MAP07/The Spire 1F"] }
+AP-REGION { "map": "MAP07", "region": "The Spire radio room", "keys": ["map/MAP07/The Spire 2F"] }
+AP-REGION { "map": "MAP07", "region": "The Spire elevator", "keys": ["key/YellowCard", "map/MAP07/The Spire radio room"] }
+
+AP-CHECK { "id": 0, "name": "MAP07 - fortyfiveammo [-164,-4172]", "pos": ["MAP07",-164,-4172,-512], "region": "entrance" }
+AP-CHECK { "id": 0, "name": "MAP07 - FoodTin2 [-164,-4132]", "pos": ["MAP07",-164,-4132,-486], "region": "entrance" }
+AP-CHECK { "id": 0, "name": "MAP07 - FoodTin3 [-200,-4140]", "pos": ["MAP07",-200,-4140,-486], "region": "entrance" }
+;; this is reachable by descending a path along the cliffside to your left as soon as you are above ground
+AP-CHECK { "id": 1136, "name": "MAP07 - LanternPickup", "pos": ["MAP07",-1000,-3216,-576], "region": "apartment W of entrance" }
+AP-CHECK { "id": 0, "name": "MAP07 - fortyfiveammo [-1016,-3248]", "pos": ["MAP07",-1016,-3248,-576], "region": "apartment W of entrance" }
+AP-CHECK { "id": 0, "name": "MAP07 - FoodTin4 [-1008,-3384]", "pos": ["MAP07",-1008,-3384,-576], "region": "apartment W of entrance" }
+AP-CHECK { "id": 0, "name": "MAP07 - FoodTin3 [-976,-3392]", "pos": ["MAP07",-976,-3392,-576], "region": "apartment W of entrance" }
+AP-CHECK { "id": 0, "name": "MAP07 - FoodTin2 [-1040,-3392]", "pos": ["MAP07",-1040,-3392,-576], "region": "apartment W of entrance" }
+AP-CHECK { "id": 1161, "name": "MAP07 - Pipebomb [2160,-3768]", "pos": ["MAP07",2160,-3768,-440], "region": "E apartments 2F" }
+AP-CHECK { "id": 1160, "name": "MAP07 - Pipebomb [2144,-3800]", "pos": ["MAP07",2144,-3800,-440], "region": "E apartments 2F" }
+AP-CHECK { "id": 0, "name": "MAP07 - FoodTin2 [2216,-3544]", "pos": ["MAP07",2216,-3544,-440], "region": "E apartments 2F" }
+AP-CHECK { "id": 0, "name": "MAP07 - FoodTin4 [2176,-3528]", "pos": ["MAP07",2176,-3528,-440], "region": "E apartments 2F" }
+AP-CHECK { "id": 0, "name": "MAP07 - FoodTin2 [2248,-3568]", "pos": ["MAP07",2248,-3568,-440], "region": "E apartments 2F" }
+AP-CHECK { "id": 0, "name": "MAP07 - FoodTin1 [2248,-3528]", "pos": ["MAP07",2248,-3528,-440], "region": "E apartments 2F" }
+AP-CHECK { "id": 1054, "name": "MAP07 - ArmorLeather [S]", "pos": ["MAP07",2536,-3512,-440], "region": "E apartments 2F" }
+;; E apartments 2F should probably actually be 2F if we assume the lobby is 1F
+AP-CHECK { "id": 1169, "name": "MAP07 - Shotgunbox [2912,-3016]", "pos": ["MAP07",2912,-3016,-536], "region": "E apartments lobby" }
+AP-CHECK { "id": 1138, "name": "MAP07 - Medical Kit [2952,-3248]", "pos": ["MAP07",2952,-3248,-568], "region": "E apartments lobby" }
+AP-CHECK { "id": 1052, "name": "MAP07 - AmmoPack", "pos": ["MAP07",2608,-3328,-536], "region": "E apartments 1F behind grate" }
+AP-CHECK { "id": 0, "name": "MAP07 - ArmorScrap [3264,-3384]", "pos": ["MAP07",3264,-3384,-584], "region": "E apartments laundry" }
+AP-CHECK { "id": 0, "name": "MAP07 - ArmorScrap [3248,-3424]", "pos": ["MAP07",3248,-3424,-584], "region": "E apartments laundry" }
+AP-CHECK { "id": 0, "name": "MAP07 - ArmorScrap [3288,-3424]", "pos": ["MAP07",3288,-3424,-584], "region": "E apartments laundry" }
+AP-CHECK { "id": 0, "name": "MAP07 - ArmorScrap [3304,-3392]", "pos": ["MAP07",3304,-3392,-584], "region": "E apartments laundry" }
+AP-CHECK { "id": 0, "name": "MAP07 - ArmorScrap [3288,-3352]", "pos": ["MAP07",3288,-3352,-584], "region": "E apartments laundry" }
+AP-CHECK { "id": 1141, "name": "MAP07 - Michonne Ultra", "pos": ["MAP07",4416,-1880,-600], "region": "Cat's Cradle lobby" }
+AP-CHECK { "id": 0, "name": "MAP07 - fortyfiveammo [4376,-1792]", "pos": ["MAP07",4376,-1792,-568], "region": "Cat's Cradle lobby" }
+AP-CHECK { "id": 0, "name": "MAP07 - slugammo [SE]", "pos": ["MAP07",4376,-1752,-568], "region": "Cat's Cradle lobby" }
+AP-CHECK { "id": 0, "name": "MAP07 - FoodTin3 [4856,-1456]", "pos": ["MAP07",4856,-1456,-472], "region": "Cat's Cradle laundry" }
+AP-CHECK { "id": 0, "name": "MAP07 - FoodTin1 [4936,-1456]", "pos": ["MAP07",4936,-1456,-472], "region": "Cat's Cradle laundry" }
+AP-CHECK { "id": 0, "name": "MAP07 - FoodTin1 [4960,-1488]", "pos": ["MAP07",4960,-1488,-472], "region": "Cat's Cradle laundry" }
+AP-CHECK { "id": 0, "name": "MAP07 - FoodTin3 [4976,-1456]", "pos": ["MAP07",4976,-1456,-472], "region": "Cat's Cradle laundry" }
+AP-CHECK { "id": 0, "name": "MAP07 - FoodTin2 [4952,-1416]", "pos": ["MAP07",4952,-1416,-472], "region": "Cat's Cradle laundry" }
+AP-CHECK { "id": 1167, "name": "MAP07 - Secret 628", "pos": ["MAP07","secret","sector",628], "region": "Cat's Cradle lobby security" }
+AP-CHECK { "id": 1171, "name": "MAP07 - Shotgunbox [4664,-1796]", "pos": ["MAP07",4664,-1796,-568], "region": "Cat's Cradle lobby security" }
+AP-CHECK { "id": 0, "name": "MAP07 - NineMilammo [SE]", "pos": ["MAP07",4664,-1876,-568], "region": "Cat's Cradle lobby security" }
+;; CC lobby security should be lobby security
+AP-CHECK { "id": 1149, "name": "MAP07 - PURGE Stim [E]", "pos": ["MAP07",5136,-1328,-440], "region": "Cat's Cradle lounge" }
+AP-CHECK { "id": 1166, "name": "MAP07 - Secret 1799", "pos": ["MAP07","secret","sector",1799], "region": "Cat's Cradle lounge" }
+AP-CHECK { "id": 1173, "name": "MAP07 - Silver Utility Key", "pos": ["MAP07",5464,-1200,-440], "region": "Cat's Cradle office" }
+;; CC elevator is scripted to open only by traveling through the laundry while holding the BlueSkull (silver utility key)
+;; checking the key location does nothing; it's having it in your inventory that opens the elevator
+AP-CHECK { "id": 0, "name": "MAP07 - Painkillers [4484,-760]", "pos": ["MAP07",4484,-760,-440], "region": "Cat's Cradle elevator" }
+AP-CHECK { "id": 1064, "name": "MAP07 - Classic shotgun", "pos": ["MAP07",1984,-2768,-40], "region": "E apartment balcony" }
+AP-CHECK { "id": 0, "name": "MAP07 - shotgunAmmo [S]", "pos": ["MAP07",1976,-2800,-40], "region": "E apartment balcony" }
+AP-CHECK { "id": 0, "name": "MAP07 - NineMilammo [S]", "pos": ["MAP07",1952,-2760,-40], "region": "E apartment balcony" }
+AP-CHECK { "id": 0, "name": "MAP07 - NineMilammo [Center]", "pos": ["MAP07",2800,-1440,-8], "region": "central office cubicles" }
+;; central offices should be War-Mart
+AP-CHECK { "id": 1137, "name": "MAP07 - Master Blaster", "pos": ["MAP07",2248,-976,-16], "region": "War-Mart boardroom" }
+AP-CHECK { "id": 1142, "name": "MAP07 - NapalmAmmo [2216,-992]", "pos": ["MAP07",2216,-992,-16], "region": "War-Mart boardroom" }
+AP-CHECK { "id": 0, "name": "MAP07 - Painkillers [2232,-1456]", "pos": ["MAP07",2232,-1456,-8], "region": "War-Mart CEO" }
+AP-CHECK { "id": 0, "name": "MAP07 - Painkillers [2200,-1456]", "pos": ["MAP07",2200,-1456,-8], "region": "War-Mart CEO" }
+AP-CHECK { "id": 1165, "name": "MAP07 - Secret 1095", "pos": ["MAP07","secret","sector",1095], "region": "War-Mart storage" }
+;; war-mart storage contains two machines that generate three bullet piles and shell piles respectively -- we can AP-EVENT
+AP-CHECK { "id": 0, "name": "MAP07 - slugammo [Center]", "pos": ["MAP07",3264,-1576,240], "region": "War-Mart rooftop" }
+AP-CHECK { "id": 1135, "name": "MAP07 - Junker Musket", "pos": ["MAP07",3224,-1600,240], "region": "War-Mart rooftop" }
+AP-CHECK { "id": 1168, "name": "MAP07 - Secret 906", "pos": ["MAP07","secret","sector",906], "region": "Cat's Cradle 8F room" }
+AP-CHECK { "id": 0, "name": "MAP07 - FoodTin3 [3824,-1616]", "pos": ["MAP07",3824,-1616,243], "region": "Cat's Cradle 8F room" }
+AP-CHECK { "id": 0, "name": "MAP07 - FoodTin3 [3800,-1632]", "pos": ["MAP07",3800,-1632,243], "region": "Cat's Cradle 8F room" }
+AP-CHECK { "id": 0, "name": "MAP07 - FoodTin1 [3832,-1648]", "pos": ["MAP07",3832,-1648,243], "region": "Cat's Cradle 8F room" }
+AP-CHECK { "id": 0, "name": "MAP07 - FoodTin4 [3856,-1616]", "pos": ["MAP07",3856,-1616,243], "region": "Cat's Cradle 8F room" }
+AP-CHECK { "id": 1151, "name": "MAP07 - PURGE Stim [SE]", "pos": ["MAP07",3760,-1440,275], "region": "Cat's Cradle 8F room" }
+AP-CHECK { "id": 0, "name": "MAP07 - Painkillers [4160,-800]", "pos": ["MAP07",4160,-800,-120], "region": "alley S of garage" }
+AP-CHECK { "id": 0, "name": "MAP07 - shotgunAmmo [E]", "pos": ["MAP07",4128,-832,-120], "region": "alley S of garage" }
+AP-CHECK { "id": 0, "name": "MAP07 - ArmorScrap [2968,248]", "pos": ["MAP07",2968,248,-88], "region": "dumpster W of garage" }
+AP-CHECK { "id": 0, "name": "MAP07 - ArmorScrap [3032,248]", "pos": ["MAP07",3032,248,-120], "region": "dumpster W of garage" }
+AP-CHECK { "id": 0, "name": "MAP07 - ArmorScrap [3008,256]", "pos": ["MAP07",3008,256,-120], "region": "dumpster W of garage" }
+AP-CHECK { "id": 0, "name": "MAP07 - ArmorScrap [3000,232]", "pos": ["MAP07",3000,232,-120], "region": "dumpster W of garage" }
+AP-CHECK { "id": 1143, "name": "MAP07 - NapalmAmmo [4024,1032]", "pos": ["MAP07",4024,1032,8], "region": "parking garage office" }
+AP-CHECK { "id": 1144, "name": "MAP07 - NapalmAmmo [4080,1000]", "pos": ["MAP07",4080,1000,8], "region": "parking garage office" }
+AP-CHECK { "id": 1162, "name": "MAP07 - Pipebomb [4160,888]", "pos": ["MAP07",4160,888,8], "region": "parking garage office" }
+AP-CHECK { "id": 1163, "name": "MAP07 - Pipebomb [4192,888]", "pos": ["MAP07",4192,888,8], "region": "parking garage office" }
+AP-CHECK { "id": 1164, "name": "MAP07 - Pipebomb [4200,920]", "pos": ["MAP07",4200,920,8], "region": "parking garage office" }
+AP-CHECK { "id": 0, "name": "MAP07 - Painkillers [4264,1008]", "pos": ["MAP07",4264,1008,8], "region": "parking garage office" }
+AP-CHECK { "id": 1140, "name": "MAP07 - Medical Kit [4272,1040]", "pos": ["MAP07",4272,1040,8], "region": "parking garage office" }
+AP-CHECK { "id": 1170, "name": "MAP07 - Shotgunbox [4368,912]", "pos": ["MAP07",4368,912,8], "region": "parking garage office" }
+AP-CHECK { "id": 0, "name": "MAP07 - NineMilammo [NE]", "pos": ["MAP07",4408,920,8], "region": "parking garage office" }
+AP-CHECK { "id": 1139, "name": "MAP07 - Medical Kit [3792,1352]", "pos": ["MAP07",3792,1352,32], "region": "parking garage caravan" }
+AP-CHECK { "id": 1053, "name": "MAP07 - ArmorLeather [NE]", "pos": ["MAP07",3800,1392,32], "region": "parking garage caravan" }
+AP-CHECK { "id": 1150, "name": "MAP07 - PURGE Stim [NE]", "pos": ["MAP07",3304,984,8], "region": "parking garage bathrooms" }
+AP-CHECK { "id": 0, "name": "MAP07 - fortyfiveammo [5720,688]", "pos": ["MAP07",5720,688,-128], "region": "toppled building 1F" }
+AP-CHECK { "id": 0, "name": "MAP07 - FoodTin4 [5752,680]", "pos": ["MAP07",5752,680,-144], "region": "toppled building 1F" }
+AP-CHECK { "id": 0, "name": "MAP07 - FoodTin2 [5728,656]", "pos": ["MAP07",5728,656,-144], "region": "toppled building 1F" }
+AP-CHECK { "id": 0, "name": "MAP07 - FoodTin2 [5784,696]", "pos": ["MAP07",5784,696,-144], "region": "toppled building 1F" }
+AP-CHECK { "id": 0, "name": "MAP07 - FoodTin3 [5752,712]", "pos": ["MAP07",5752,712,-144], "region": "toppled building 1F" }
+AP-CHECK { "id": 0, "name": "MAP07 - FoodTin4 [5728,744]", "pos": ["MAP07",5728,744,-144], "region": "toppled building 1F" }
+AP-CHECK { "id": 0, "name": "MAP07 - FoodTin4 [5680,928]", "pos": ["MAP07",5680,928,40], "region": "toppled building 2F" }
+AP-CHECK { "id": 0, "name": "MAP07 - FoodTin4 [5664,976]", "pos": ["MAP07",5664,976,44], "region": "toppled building 2F" }
+AP-CHECK { "id": 0, "name": "MAP07 - FoodTin3 [5632,992]", "pos": ["MAP07",5632,992,40], "region": "toppled building 2F" }
+AP-CHECK { "id": 0, "name": "MAP07 - FoodTin4 [5552,992]", "pos": ["MAP07",5552,992,40], "region": "toppled building 2F" }
+AP-CHECK { "id": 0, "name": "MAP07 - Painkillers [5480,1856]", "pos": ["MAP07",5480,1856,-240], "region": "toppled building 5F" }
+AP-CHECK { "id": 1172, "name": "MAP07 - Shotgunbox [5504,1896]", "pos": ["MAP07",5504,1896,-240], "region": "toppled building 5F" }
+AP-CHECK { "id": 0, "name": "MAP07 - fortyfiveammo [4896,2680]", "pos": ["MAP07",4896,2680,-456], "region": "tunnel after toppled building" }
+AP-CHECK { "id": 0, "name": "MAP07 - fortyfiveammo [4896,2632]", "pos": ["MAP07",4896,2632,-456], "region": "tunnel after toppled building" }
+AP-CHECK { "id": 0, "name": "MAP07 - Painkillers [3512,2308]", "pos": ["MAP07",3512,2308,-392], "region": "checkpoint" }
+AP-CHECK { "id": 0, "name": "MAP07 - Painkillers [672,1320]", "pos": ["MAP07",672,1320,-352], "region": "The Spire 1F" }
+AP-CHECK { "id": 0, "name": "MAP07 - FoodTin2 [200,1188]", "pos": ["MAP07",200,1188,-256], "region": "The Spire 2F" }
+AP-CHECK { "id": 0, "name": "MAP07 - FoodTin1 [168,1204]", "pos": ["MAP07",168,1204,-256], "region": "The Spire 2F" }
+AP-CHECK { "id": 0, "name": "MAP07 - FoodTin3 [204,1220]", "pos": ["MAP07",204,1220,-256], "region": "The Spire 2F" }
+;; The Spire should be The Spire
+AP-CHECK { "id": 1174, "name": "MAP07 - Yellow Access Card", "pos": ["MAP07",844,1004,-96], "region": "The Spire radio room" }
+AP-CHECK { "id": 1065, "name": "MAP07 - Exit", "pos": ["MAP07","exit"], "region": "The Spire elevator" }
+AP-CHECK { "id": 795, "name": "MAP07 - BulletFarm .45 #1", "pos": ["MAP07","spawn",1,"fortyfiveammo",2848,-792,-25,0], "region": "War-Mart storage" }
+AP-CHECK { "id": 796, "name": "MAP07 - BulletFarm .45 #2", "pos": ["MAP07","spawn",2,"fortyfiveammo",2848,-792,-25,0], "region": "War-Mart storage" }
+AP-CHECK { "id": 797, "name": "MAP07 - BulletFarm .45 #3", "pos": ["MAP07","spawn",3,"fortyfiveammo",2848,-792,-25,0], "region": "War-Mart storage" }
+AP-CHECK { "id": 789, "name": "MAP07 - BulletFarm 12ga #1", "pos": ["MAP07","spawn",1,"shotgunAmmo",2848,-920,-25,0], "region": "War-Mart storage" }
+AP-CHECK { "id": 790, "name": "MAP07 - BulletFarm 12ga #2", "pos": ["MAP07","spawn",2,"shotgunAmmo",2848,-920,-25,0], "region": "War-Mart storage" }
+AP-CHECK { "id": 791, "name": "MAP07 - BulletFarm 12ga #3", "pos": ["MAP07","spawn",3,"shotgunAmmo",2848,-920,-25,0], "region": "War-Mart storage" }

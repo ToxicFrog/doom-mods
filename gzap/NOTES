@@ -24,13 +24,12 @@ To release a new version:
   [X] YAML options
   [X] Top-level weapon display in the level select menu
   [X] Per-level weapon display likewise
-[ ] Weapon logic overhaul
+[X] Weapon logic overhaul
   [X] Design
   [X] YAML options for no vs. manual vs. automatic logic
   [X] YAML options for autopopulation sources
   [X] Autopopulate regions or levels using new algo
   [X] Mark weapons as required/useful depending on logic
-  [ ] Difficulty settings
   [X] Weapon toggles/hints on inventory screen
 [X] Event-based locations
   [X] Design
@@ -42,6 +41,7 @@ To release a new version:
   [X] custom.py
   [X] ap_scripts.zs
   [X] contributing wad support upstream
+[ ] `episode` directive in GZAPRC
 
 ### probably defer these to 0.9.x since they don't require a rescan
 [ ] GZAPRC improvements
@@ -55,6 +55,8 @@ To release a new version:
 [ ] Progressive level unlocks?
 [ ] Progressive weapons?
 [ ] Logic for Hedon episode 1
+[ ] Weapon logic difficulty settings
+[ ] `ap_no_pool` category (and apply it to Ashes for the revolver)
 
 ### scanner
 
@@ -187,10 +189,3 @@ At 8 souls, you unlock 4 more levels all at once.
 
 To reach the final boss, you need 15 souls; since there are only 12 "normal" levels,
 you also need to do at least three of the (secret hidden + secret bigcoin) levels.
-
-### Ashes
-
-- Ashes 2063 reports duplicate keys because of the way keys are handled -- you
-  pick up the BluePassCard and it gives you a BlueCard in your inventory, which
-  the AP runtime then identifies as a new key scoped to that level, which can be
-  a bit confusing but generally does not affect normal play.

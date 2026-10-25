@@ -44,6 +44,14 @@ tag FoodTin1 Food;
 # we apply weapon ownership...
 category none: Motohandles;
 
+# TODO: We need to figure out what to do about the .45 revolver. It spawns in
+# your starting inventory (in 2063 only; not in DMW) so AP creates a universal
+# weapon grant from it, but it's also placed in the world and thus present in
+# the pool.
+# Probably we need to implement an ap_no_pool category, which records locations
+# but does not add their contents to the pool.
+# category weapon-ap_filler-ap_no_pool: revolver;
+
 # There's also various quest items which are autocategorized as "tools" and should
 # instead be categorized as cross-level quest items.
 # Some of these are given by ACS and not available to the scanner.
@@ -79,22 +87,29 @@ tag CollectibleNMAcap Collectible NMA Cap;
 # chance (box, bag) or 60/255 (can) of dropping a CrapJunk.
 #
 # This in turn is evenly weighted between tools, spares, gear, nuts, cable, or
-# pipe, which have values [15, 20, 15, 10, 15, 5], giving us an EV of 13⅓.
+# pipe, which have values [15, 20, 15, 10, 15, 5], giving us an EV of 13⅓ per
+# CrapJunk, and a final EV of 3.1 for trash cans and 6.3 for bags and boxes.
 #
-# If we want to do Box Rando, the easiest way is just to typename them all to
-# either CrapJunk or JUNKnuts, and every destroyable box shows up as a check
-# instead. The fancy way is to add an AP-EVENT handler for every single box,
-# which would be a Project and probably require new GZAPRC directives to do
-# automatically.
-replacement CrapJunk: CONTCardbox PropRubbishBag CONTTrashcan;
-category small-token-breakable: CONTCardbox PropRubbishBag CONTTrashcan;
-tag CONTCardbox Cardboard Box;
-tag PropRubbishBag Rubbish Bag;
-tag CONTTrashcan Trash Can;
+# If we wanted a sort of grass rando esque experience here where all of these
+# contain checks, we either need a custom patch (so breaking them always drops
+# checks) or some sort of replacement hack here.
+#
+# For now I'm just leaving them in-game as normal.
+#
+# The comedy option is to add them to the pool as-is, so receiving them through
+# AP drops a breakable item at your feet that you then need to crack open to
+# possibly get nothing at all.
+#
+# category small-token-breakable: CONTCardbox PropRubbishBag CONTTrashcan;
+# replacement CrapJunk: CONTCardbox PropRubbishBag CONTTrashcan;
+# category CrapJunk: small-token-breakable;
+# tag CONTCardbox Cardboard Box;
+# tag PropRubbishBag Rubbish Bag;
+# tag CONTTrashcan Trash Can;
 
 category big-ammo: pipebomb;
 
-replacement PumpAction2: PumpySpawn PumpAction;
+replacement pumpaction2: PumpySpawn PumpAction;
 replacement Ingram3: IngramSpawn Ingram Ingram2;
 # progressive PumpySpawn: pumpaction pumpaction2;
 # progressive IngramSpawn: ingram ingram2 ingram3;
@@ -102,5 +117,5 @@ replacement Ingram3: IngramSpawn Ingram Ingram2;
 # Additionally, some weapons you are assumed to pick up from enemies...
 prereqs {
   actor PistolThug AkimboRipper: weapon/Glock/auto;
-  actor ShotgunThug ShotgunRipper: weapon/PumpAction2/auto;
+  actor ShotgunThug ShotgunRipper: weapon/pumpaction2/auto;
 }

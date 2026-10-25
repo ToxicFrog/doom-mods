@@ -1,0 +1,99 @@
+AP-REGION { "map": "MAP01", "region": "entrance", "keys": [] }
+AP-REGION { "map": "MAP01", "region": "hallway", "keys": ["map/MAP01/entrance"] }
+AP-REGION { "map": "MAP01", "region": "shop", "keys": ["map/MAP01/hallway", "weapon/Glock/want"] }
+AP-REGION { "map": "MAP01", "region": "propane secret", "keys": ["flag/secret", "map/MAP01/shop"] }
+AP-REGION { "map": "MAP01", "region": "outdoors", "keys": ["map/MAP01/shop"] }
+AP-REGION { "map": "MAP01", "region": "behind counter", "keys": ["map/MAP01/outdoors"] }
+AP-REGION { "map": "MAP01", "region": "firing range", "keys": ["map/MAP01/behind counter"] }
+AP-REGION { "map": "MAP01", "region": "upstairs files", "keys": ["map/MAP01/firing range", "weapon/shotgun2/want"] }
+AP-REGION { "map": "MAP01", "region": "upstairs meeting room", "keys": ["map/MAP01/firing range"] }
+AP-REGION { "map": "MAP01", "region": "upstairs office", "keys": ["map/MAP01/firing range"] }
+AP-REGION { "map": "MAP01", "region": "office bookshelf secret", "keys": ["flag/secret", "map/MAP01/upstairs office"] }
+AP-REGION { "map": "MAP01", "region": "radio storage", "keys": ["key/BlueCard", "map/MAP01/behind counter"] }
+AP-REGION { "map": "MAP01", "region": "sandbag room", "keys": ["map/MAP01/radio storage"] }
+AP-REGION { "map": "MAP01", "region": "warehouse", "keys": ["map/MAP01/sandbag room"] }
+AP-REGION { "map": "MAP01", "region": "BulletFarm", "keys": ["map/MAP01/warehouse"] }
+AP-REGION { "map": "MAP01", "region": "rear hallway", "keys": ["map/MAP01/sandbag room"] }
+AP-REGION { "map": "MAP01", "region": "cash register secret", "keys": ["map/MAP01/behind counter", "flag/secret"] }
+AP-REGION { "map": "MAP01", "region": "warehouse crates", "keys": ["map/MAP01/sandbag room", "flag/secret"] }
+AP-REGION { "map": "MAP01", "region": "warehouse office", "keys": ["flag/secret", "map/MAP01/warehouse"] }
+AP-REGION { "map": "MAP01", "region": "ventilation secret", "keys": ["map/MAP01/sandbag room", "flag/secret"] }
+AP-REGION { "map": "MAP01", "region": "rooftop", "keys": ["flag/secret", "map/MAP01/warehouse"] }
+
+AP-CHECK { "id": 444, "name": "MAP01 - Random Junk [-344,76]", "pos": ["MAP01",-344,76,64], "region": "entrance" }
+AP-CHECK { "id": 445, "name": "MAP01 - Random Junk [-360,52]", "pos": ["MAP01",-360,52,64], "region": "entrance" }
+AP-CHECK { "id": 447, "name": "MAP01 - Random Junk [-384,-352]", "pos": ["MAP01",-384,-352,-64], "region": "entrance" }
+AP-CHECK { "id": 0, "name": "MAP01 - ArmorScrap [84,-912]", "pos": ["MAP01",84,-912,8], "region": "hallway" }
+AP-CHECK { "id": 0, "name": "MAP01 - ArmorScrap [116,-900]", "pos": ["MAP01",116,-900,8], "region": "hallway" }
+AP-CHECK { "id": 0, "name": "MAP01 - ArmorScrap [124,-928]", "pos": ["MAP01",124,-928,8], "region": "hallway" }
+AP-CHECK { "id": 0, "name": "MAP01 - ArmorScrap [84,-952]", "pos": ["MAP01",84,-952,8], "region": "hallway" }
+AP-CHECK { "id": 0, "name": "MAP01 - FoodTin2 [-1000,-312]", "pos": ["MAP01",-1000,-312,0], "region": "shop" }
+AP-CHECK { "id": 0, "name": "MAP01 - FoodTin3 [-1036,-344]", "pos": ["MAP01",-1036,-344,0], "region": "shop" }
+AP-CHECK { "id": 0, "name": "MAP01 - FoodTin3 [-1048,-304]", "pos": ["MAP01",-1048,-304,0], "region": "shop" }
+AP-CHECK { "id": 0, "name": "MAP01 - fortyfiveammo [-1112,-424]", "pos": ["MAP01",-1112,-424,29], "region": "shop" }
+AP-CHECK { "id": 0, "name": "MAP01 - ArmorScrap [-1164,-424]", "pos": ["MAP01",-1164,-424,29], "region": "shop" }
+AP-CHECK { "id": 0, "name": "MAP01 - fortyfiveammo [-1136,-432]", "pos": ["MAP01",-1136,-432,29], "region": "shop" }
+AP-CHECK { "id": 0, "name": "MAP01 - ArmorScrap [-1224,-432]", "pos": ["MAP01",-1224,-432,29], "region": "shop" }
+AP-CHECK { "id": 0, "name": "MAP01 - ArmorScrap [-1264,-428]", "pos": ["MAP01",-1264,-428,29], "region": "shop" }
+AP-CHECK { "id": 0, "name": "MAP01 - ArmorScrap [-1308,-432]", "pos": ["MAP01",-1308,-432,29], "region": "shop" }
+AP-CHECK { "id": 0, "name": "MAP01 - Painkillers [-1312,-560]", "pos": ["MAP01",-1312,-560,37], "region": "shop" }
+AP-CHECK { "id": 442, "name": "MAP01 - Random Junk [-1348,-560]", "pos": ["MAP01",-1348,-560,37], "region": "shop" }
+AP-CHECK { "id": 458, "name": "MAP01 - Secret 95", "pos": ["MAP01","secret","sector",95], "region": "propane secret" }
+AP-CHECK { "id": 375, "name": "MAP01 - ArmorLeather", "pos": ["MAP01",-688,-348,-32], "region": "propane secret" }
+AP-CHECK { "id": 450, "name": "MAP01 - Random Junk [-688,-392]", "pos": ["MAP01",-688,-392,-32], "region": "propane secret" }
+AP-CHECK { "id": 0, "name": "MAP01 - Junk Gear", "pos": ["MAP01",-1812,-176,32], "region": "outdoors" }
+AP-CHECK { "id": 443, "name": "MAP01 - Random Junk [-1904,-184]", "pos": ["MAP01",-1904,-184,65], "region": "outdoors" }
+AP-CHECK { "id": 0, "name": "MAP01 - shotgunAmmo [NW]", "pos": ["MAP01",-1268,-16,32], "region": "behind counter" }
+AP-CHECK { "id": 0, "name": "MAP01 - Painkillers [-1140,-208]", "pos": ["MAP01",-1140,-208,32], "region": "behind counter" }
+AP-CHECK { "id": 0, "name": "MAP01 - Painkillers [-1104,220]", "pos": ["MAP01",-1104,220,32], "region": "firing range" }
+AP-CHECK { "id": 446, "name": "MAP01 - Random Junk [-368,224]", "pos": ["MAP01",-368,224,192], "region": "upstairs files" }
+AP-CHECK { "id": 392, "name": "MAP01 - Blue Access Card", "pos": ["MAP01",-292,752,154], "region": "upstairs meeting room" }
+AP-CHECK { "id": 0, "name": "MAP01 - shotgunAmmo [N]", "pos": ["MAP01",-752,784,144], "region": "upstairs office" }
+AP-CHECK { "id": 452, "name": "MAP01 - Random Junk [-912,860]", "pos": ["MAP01",-912,860,192], "region": "upstairs office" }
+AP-CHECK { "id": 0, "name": "MAP01 - Junk Tools [-628,960]", "pos": ["MAP01",-628,960,128], "region": "office bookshelf secret" }
+AP-CHECK { "id": 0, "name": "MAP01 - NineMilammo", "pos": ["MAP01",-592,960,128], "region": "office bookshelf secret" }
+AP-CHECK { "id": 429, "name": "MAP01 - Medical Kit", "pos": ["MAP01",-596,924,128], "region": "office bookshelf secret" }
+AP-CHECK { "id": 455, "name": "MAP01 - Secret 318", "pos": ["MAP01","secret","sector",318], "region": "office bookshelf secret" }
+AP-CHECK { "id": 0, "name": "MAP01 - Junk Tools [-628,868]", "pos": ["MAP01",-628,868,128], "region": "office bookshelf secret" }
+AP-CHECK { "id": 0, "name": "MAP01 - Painkillers [-792,-112]", "pos": ["MAP01",-792,-112,32], "region": "radio storage" }
+AP-CHECK { "id": 0, "name": "MAP01 - Painkillers [-704,48]", "pos": ["MAP01",-704,48,24], "region": "radio storage" }
+AP-CHECK { "id": 374, "name": "MAP01 - An Old Radio", "pos": ["MAP01",-728,48,24], "region": "radio storage" }
+AP-CHECK { "id": 449, "name": "MAP01 - Random Junk [-676,48]", "pos": ["MAP01",-676,48,24], "region": "radio storage" }
+AP-CHECK { "id": 448, "name": "MAP01 - Random Junk [-644,48]", "pos": ["MAP01",-644,48,24], "region": "radio storage" }
+AP-CHECK { "id": 0, "name": "MAP01 - Painkillers [-1656,-1328]", "pos": ["MAP01",-1656,-1328,96], "region": "sandbag room" }
+AP-CHECK { "id": 0, "name": "MAP01 - Painkillers [-1656,-1244]", "pos": ["MAP01",-1656,-1244,96], "region": "sandbag room" }
+AP-CHECK { "id": 0, "name": "MAP01 - ArmorScrap [-752,-1268]", "pos": ["MAP01",-752,-1268,8], "region": "warehouse" }
+AP-CHECK { "id": 0, "name": "MAP01 - FoodTin3 [-728,-1244]", "pos": ["MAP01",-728,-1244,8], "region": "warehouse" }
+AP-CHECK { "id": 0, "name": "MAP01 - ArmorScrap [-160,-1312]", "pos": ["MAP01",-160,-1312,-64], "region": "warehouse" }
+AP-CHECK { "id": 0, "name": "MAP01 - ArmorScrap [-144,-1280]", "pos": ["MAP01",-144,-1280,-64], "region": "warehouse" }
+AP-CHECK { "id": 0, "name": "MAP01 - FoodTin4 [-480,-2248]", "pos": ["MAP01",-480,-2248,-64], "region": "BulletFarm" }
+AP-CHECK { "id": 0, "name": "MAP01 - FoodTin4 [-512,-2144]", "pos": ["MAP01",-512,-2144,-64], "region": "BulletFarm" }
+AP-CHECK { "id": 0, "name": "MAP01 - FoodTin1 [-464,-2160]", "pos": ["MAP01",-464,-2160,-64], "region": "BulletFarm" }
+AP-CHECK { "id": 441, "name": "MAP01 - Random Junk [-1120,-1808]", "pos": ["MAP01",-1120,-1808,64], "region": "rear hallway" }
+AP-CHECK { "id": 440, "name": "MAP01 - Random Junk [-1096,-1808]", "pos": ["MAP01",-1096,-1808,64], "region": "rear hallway" }
+AP-CHECK { "id": 393, "name": "MAP01 - Classic shotgun", "pos": ["MAP01",-1360,-188,43], "region": "cash register secret" }
+AP-CHECK { "id": 0, "name": "MAP01 - fortyfiveammo [-728,-976]", "pos": ["MAP01",-728,-976,32], "region": "hallway" }
+AP-CHECK { "id": 0, "name": "MAP01 - fortyfiveammo [-608,-1124]", "pos": ["MAP01",-608,-1124,64], "region": "warehouse crates" }
+AP-CHECK { "id": 0, "name": "MAP01 - FoodTin1 [-644,-1112]", "pos": ["MAP01",-644,-1112,64], "region": "warehouse crates" }
+AP-CHECK { "id": 457, "name": "MAP01 - Secret 387", "pos": ["MAP01","secret","sector",387], "region": "warehouse office" }
+AP-CHECK { "id": 0, "name": "MAP01 - ArmorScrap [-376,-1732]", "pos": ["MAP01",-376,-1732,62], "region": "warehouse office" }
+AP-CHECK { "id": 0, "name": "MAP01 - ArmorScrap [-368,-1764]", "pos": ["MAP01",-368,-1764,62], "region": "warehouse office" }
+AP-CHECK { "id": 0, "name": "MAP01 - ArmorScrap [-344,-1712]", "pos": ["MAP01",-344,-1712,62], "region": "warehouse office" }
+AP-CHECK { "id": 0, "name": "MAP01 - ArmorScrap [-340,-1740]", "pos": ["MAP01",-340,-1740,62], "region": "warehouse office" }
+AP-CHECK { "id": 0, "name": "MAP01 - ArmorScrap [-336,-1780]", "pos": ["MAP01",-336,-1780,62], "region": "warehouse office" }
+AP-CHECK { "id": 0, "name": "MAP01 - Painkillers [-336,-1680]", "pos": ["MAP01",-336,-1680,86], "region": "warehouse office" }
+AP-CHECK { "id": 456, "name": "MAP01 - Secret 332", "pos": ["MAP01","secret","sector",332], "region": "ventilation secret" }
+AP-CHECK { "id": 0, "name": "MAP01 - FoodTin3 [-752,-668]", "pos": ["MAP01",-752,-668,0], "region": "ventilation secret" }
+AP-CHECK { "id": 0, "name": "MAP01 - FoodTin4 [-800,-680]", "pos": ["MAP01",-800,-680,8], "region": "ventilation secret" }
+AP-CHECK { "id": 0, "name": "MAP01 - FoodTin1 [-764,-624]", "pos": ["MAP01",-764,-624,0], "region": "ventilation secret" }
+AP-CHECK { "id": 439, "name": "MAP01 - REGEN Stim", "pos": ["MAP01",-820,-800,32], "region": "ventilation secret" }
+AP-CHECK { "id": 451, "name": "MAP01 - Random Junk [-884,-772]", "pos": ["MAP01",-884,-772,0], "region": "ventilation secret" }
+AP-CHECK { "id": 453, "name": "MAP01 - Random Junk [-920,-780]", "pos": ["MAP01",-920,-780,0], "region": "ventilation secret" }
+AP-CHECK { "id": 0, "name": "MAP01 - Junk Cable [Center]", "pos": ["MAP01",-968,-772,0], "region": "ventilation secret" }
+AP-CHECK { "id": 454, "name": "MAP01 - Secret 220", "pos": ["MAP01","secret","sector",220], "region": "cash register secret" }
+AP-CHECK { "id": 0, "name": "MAP01 - Junk Nuts", "pos": ["MAP01",-80,-216,192], "region": "rooftop" }
+AP-CHECK { "id": 394, "name": "MAP01 - Exit", "pos": ["MAP01","exit"], "region": "warehouse" }
+AP-CHECK { "id": 338, "name": "MAP01 - shotgunAmmo", "pos": ["MAP01",-740,-112,32], "region": "radio storage" }
+AP-CHECK { "id": 349, "name": "MAP01 - BulletFarm #3", "pos": ["MAP01","spawn",3,"fortyfiveammo",-600,-2200,-49,0], "region": "BulletFarm" }
+AP-CHECK { "id": 348, "name": "MAP01 - BulletFarm #2", "pos": ["MAP01","spawn",2,"fortyfiveammo",-600,-2200,-49,0], "region": "BulletFarm" }
+AP-CHECK { "id": 347, "name": "MAP01 - BulletFarm #1", "pos": ["MAP01","spawn",1,"fortyfiveammo",-600,-2200,-49,0], "region": "BulletFarm" }

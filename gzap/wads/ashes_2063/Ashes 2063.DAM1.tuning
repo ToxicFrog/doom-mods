@@ -1,0 +1,49 @@
+AP-REGION { "map": "DAM1", "region": "entrance", "keys": [] }
+AP-REGION { "map": "DAM1", "region": "bathroom", "keys": [] }
+AP-REGION { "map": "DAM1", "region": "turbine control", "keys": [] }
+AP-REGION { "map": "DAM1", "region": "turbine computers", "keys": [] }
+AP-REGION { "map": "DAM1", "region": "turbine hall", "keys": [] }
+AP-REGION { "map": "DAM1", "region": "turbine hall balcony", "keys": [] }
+AP-REGION { "map": "DAM1", "region": "storage room", "keys": [] }
+AP-REGION { "map": "DAM1", "region": "flooded room", "keys": [] }
+AP-REGION { "map": "DAM1", "region": "runoff monitoring", "keys": ["key/RedSkull"] }
+AP-REGION { "map": "DAM1", "region": "generator hut", "keys": ["key/BlueCard"] }
+
+AP-CHECK { "id": 300, "name": "DAM1 - Medical Kit [E]", "pos": ["DAM1",-8,200,25], "region": "entrance" }
+AP-CHECK { "id": 0, "name": "DAM1 - Junk Gear [-40,200]", "pos": ["DAM1",-40,200,25], "region": "entrance" }
+AP-CHECK { "id": 0, "name": "DAM1 - fortyfiveammo", "pos": ["DAM1",16,208,25], "region": "entrance" }
+AP-CHECK { "id": 0, "name": "DAM1 - Painkillers [Center]", "pos": ["DAM1",-408,336,-256], "region": "bathroom" }
+AP-CHECK { "id": 0, "name": "DAM1 - FoodTin2 [-904,728]", "pos": ["DAM1",-904,728,-224], "region": "turbine control" }
+AP-CHECK { "id": 309, "name": "DAM1 - Random Junk [-936,728]", "pos": ["DAM1",-936,728,-256], "region": "turbine control" }
+AP-CHECK { "id": 0, "name": "DAM1 - FoodTin1 [-880,504]", "pos": ["DAM1",-880,504,-224], "region": "turbine control" }
+AP-CHECK { "id": 0, "name": "DAM1 - FoodTin2 [-848,504]", "pos": ["DAM1",-848,504,-224], "region": "turbine control" }
+AP-CHECK { "id": 0, "name": "DAM1 - ArmorScrap [-520,472]", "pos": ["DAM1",-520,472,-256], "region": "turbine computers" }
+AP-CHECK { "id": 0, "name": "DAM1 - ArmorScrap [-488,440]", "pos": ["DAM1",-488,440,-256], "region": "turbine computers" }
+AP-CHECK { "id": 0, "name": "DAM1 - ArmorScrap [-504,408]", "pos": ["DAM1",-504,408,-256], "region": "turbine computers" }
+AP-CHECK { "id": 0, "name": "DAM1 - ArmorScrap [-448,456]", "pos": ["DAM1",-448,456,-256], "region": "turbine computers" }
+AP-CHECK { "id": 0, "name": "DAM1 - ArmorScrap [-408,456]", "pos": ["DAM1",-408,456,-256], "region": "turbine computers" }
+AP-CHECK { "id": 0, "name": "DAM1 - Junk Spares [-1536,1160]", "pos": ["DAM1",-1536,1160,-440], "region": "turbine hall" }
+AP-CHECK { "id": 0, "name": "DAM1 - Junk Nuts [-1536,1136]", "pos": ["DAM1",-1536,1136,-440], "region": "turbine hall" }
+AP-CHECK { "id": 0, "name": "DAM1 - Junk Gear [-1560,1144]", "pos": ["DAM1",-1560,1144,-440], "region": "turbine hall" }
+AP-CHECK { "id": 0, "name": "DAM1 - Junk Tools [-1512,1176]", "pos": ["DAM1",-1512,1176,-440], "region": "turbine hall" }
+AP-CHECK { "id": 0, "name": "DAM1 - Junk Tools [-1504,1160]", "pos": ["DAM1",-1504,1160,-440], "region": "turbine hall" }
+AP-CHECK { "id": 311, "name": "DAM1 - Secret 407", "pos": ["DAM1","secret","sector",407], "region": "turbine hall" }
+AP-CHECK { "id": 0, "name": "DAM1 - ArmorScrap [-1016,960]", "pos": ["DAM1",-1016,960,-256], "region": "turbine hall balcony" }
+AP-CHECK { "id": 0, "name": "DAM1 - ArmorScrap [-1016,1000]", "pos": ["DAM1",-1016,1000,-256], "region": "turbine hall balcony" }
+AP-CHECK { "id": 0, "name": "DAM1 - Junk Nuts [-1008,920]", "pos": ["DAM1",-1008,920,-256], "region": "turbine hall balcony" }
+AP-CHECK { "id": 307, "name": "DAM1 - Random Junk [-592,-472]", "pos": ["DAM1",-592,-472,-256], "region": "storage room" }
+AP-CHECK { "id": 0, "name": "DAM1 - Painkillers [SE]", "pos": ["DAM1",-616,-480,-256], "region": "storage room" }
+AP-CHECK { "id": 308, "name": "DAM1 - Random Junk [-600,-504]", "pos": ["DAM1",-600,-504,-256], "region": "storage room" }
+AP-CHECK { "id": 0, "name": "DAM1 - Junk Cable [SE]", "pos": ["DAM1",0,-512,-224], "region": "flooded room" }
+AP-CHECK { "id": 270, "name": "DAM1 - Bronze Staff Key", "pos": ["DAM1",112,-512,-224], "region": "flooded room" }
+AP-CHECK { "id": 302, "name": "DAM1 - Medical Kit [SE]", "pos": ["DAM1",160,-496,-224], "region": "flooded room" }
+AP-CHECK { "id": 0, "name": "DAM1 - Junk Spares [160,-384]", "pos": ["DAM1",160,-384,-168], "region": "flooded room" }
+AP-CHECK { "id": 310, "name": "DAM1 - Random Junk [624,1328]", "pos": ["DAM1",624,1328,-224], "region": "runoff monitoring" }
+AP-CHECK { "id": 301, "name": "DAM1 - Medical Kit [NE]", "pos": ["DAM1",592,1328,-224], "region": "runoff monitoring" }
+AP-CHECK { "id": 269, "name": "DAM1 - Blue Access Card", "pos": ["DAM1",672,1320,-224], "region": "runoff monitoring" }
+AP-CHECK { "id": 0, "name": "DAM1 - Junk Pipe [SW]", "pos": ["DAM1",-2896,-592,-608], "region": "generator hut" }
+AP-CHECK { "id": 0, "name": "DAM1 - Junk Gear [-2896,-624]", "pos": ["DAM1",-2896,-624,-608], "region": "generator hut" }
+AP-CHECK { "id": 0, "name": "DAM1 - Junk Spares [-2896,-656]", "pos": ["DAM1",-2896,-656,-608], "region": "generator hut" }
+AP-CHECK { "id": 303, "name": "DAM1 - Medical Kit [SW]", "pos": ["DAM1",-2544,-672,-640], "region": "generator hut" }
+AP-CHECK { "id": 0, "name": "DAM1 - Painkillers [SW]", "pos": ["DAM1",-2512,-672,-640], "region": "generator hut" }
+AP-CHECK { "id": 271, "name": "DAM1 - Exit", "pos": ["DAM1","exit"], "region": "generator hut" }

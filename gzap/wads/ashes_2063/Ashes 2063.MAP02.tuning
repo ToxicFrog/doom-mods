@@ -1,0 +1,147 @@
+AP-REGION { "map": "MAP02", "keys": ["weapon/Glock/want", "weapon/shotgun2/want"] }
+AP-REGION { "map": "MAP02", "region": "shelter", "keys": [] }
+AP-REGION { "map": "MAP02", "region": "nukage", "keys": ["map/MAP02/shelter"] }
+AP-REGION { "map": "MAP02", "region": "vulture graffiti", "keys": ["map/MAP02/shelter"] }
+AP-REGION { "map": "MAP02", "region": "motel upstairs", "keys": ["map/MAP02/shelter"] }
+AP-REGION { "map": "MAP02", "region": "motel downstairs", "keys": ["map/MAP02/shelter"] }
+AP-REGION { "map": "MAP02", "region": "NE garage secret", "keys": ["flag/secret", "map/MAP02/shelter"] }
+AP-REGION { "map": "MAP02", "region": "BFB", "keys": ["map/MAP02/motel upstairs"] }
+AP-REGION { "map": "MAP02", "region": "BFB ventilation secret", "keys": ["map/MAP02/BFB", "flag/secret"] }
+AP-REGION { "map": "MAP02", "region": "BFB pantry", "keys": ["map/MAP02/BFB"] }
+AP-REGION { "map": "MAP02", "region": "BFB dumpster", "keys": ["map/MAP02/motel upstairs"] }
+AP-REGION { "map": "MAP02", "region": "HR66 gifts", "keys": ["map/MAP02/motel upstairs"] }
+AP-REGION { "map": "MAP02", "region": "HR66 changerooms", "keys": ["map/MAP02/HR66 gifts"] }
+AP-REGION { "map": "MAP02", "region": "HR66 bedroom", "keys": ["map/MAP02/HR66 changerooms"] }
+AP-REGION { "map": "MAP02", "region": "BFB alley", "keys": ["map/MAP02/motel upstairs"] }
+AP-REGION { "map": "MAP02", "region": "BFB dumpster", "keys": ["map/MAP02/HR66 bedroom", "flag/secret"] }
+AP-REGION { "map": "MAP02", "region": "BFB camera room secret", "keys": ["map/MAP02/HR66 changerooms", "flag/secret"] }
+AP-REGION { "map": "MAP02", "region": "behind BFB", "keys": ["key/RedSkull", "map/MAP02/BFB"] }
+AP-REGION { "map": "MAP02", "region": "behind BFB truck", "keys": ["map/MAP02/behind BFB"] }
+AP-REGION { "map": "MAP02", "region": "caravan garage", "keys": ["map/MAP02/behind BFB"] }
+AP-REGION { "map": "MAP02", "region": "water towers", "keys": ["map/MAP02/caravan garage"] }
+AP-REGION { "map": "MAP02", "region": "gas station shop", "keys": ["key/BlueCard", "map/MAP02/motel upstairs"] }
+AP-REGION { "map": "MAP02", "region": "gas station storage", "keys": ["map/MAP02/gas station shop"] }
+AP-REGION { "map": "MAP02", "region": "outside still", "keys": ["map/MAP02/gas station storage"] }
+AP-REGION { "map": "MAP02", "region": "exploded still secret", "keys": ["flag/secret", "map/MAP02/outside still"] }
+AP-REGION { "map": "MAP02", "region": "cannibal outpost", "keys": ["map/MAP02/exploded still secret"] }
+AP-REGION { "map": "MAP02", "region": "outpost control room", "keys": ["map/MAP02/cannibal outpost"] }
+AP-REGION { "map": "MAP02", "region": "exit garage", "keys": ["key/YellowSkull", "map/MAP02/cannibal outpost"] }
+
+AP-CHECK { "id": 564, "name": "MAP02 - LanternPickup", "pos": ["MAP02",840,2792,-192], "region": "shelter" }
+AP-CHECK { "id": 0, "name": "MAP02 - Painkillers [NW]", "pos": ["MAP02",800,2808,-192], "region": "shelter" }
+AP-CHECK { "id": 0, "name": "MAP02 - Junk Gear", "pos": ["MAP02",1312,1488,-32], "region": "nukage" }
+AP-CHECK { "id": 578, "name": "MAP02 - Random Junk [1336,896]", "pos": ["MAP02",1336,896,0], "region": "vulture graffiti" }
+AP-CHECK { "id": 577, "name": "MAP02 - Random Junk [1328,912]", "pos": ["MAP02",1328,912,0], "region": "vulture graffiti" }
+AP-CHECK { "id": 0, "name": "MAP02 - FoodTin3 [1472,8]", "pos": ["MAP02",1472,8,128], "region": "motel upstairs" }
+AP-CHECK { "id": 0, "name": "MAP02 - FoodTin1 [1472,-32]", "pos": ["MAP02",1472,-32,160], "region": "motel upstairs" }
+AP-CHECK { "id": 0, "name": "MAP02 - fortyfiveammo [1384,264]", "pos": ["MAP02",1384,264,224], "region": "motel upstairs" }
+AP-CHECK { "id": 467, "name": "MAP02 - ArmorLeather [NW]", "pos": ["MAP02",1376,-32,160], "region": "motel upstairs" }
+AP-CHECK { "id": 0, "name": "MAP02 - fortyfiveammo [1264,416]", "pos": ["MAP02",1264,416,128], "region": "motel upstairs" }
+AP-CHECK { "id": 0, "name": "MAP02 - FoodTin4 [2048,144]", "pos": ["MAP02",2048,144,64], "region": "motel downstairs" }
+AP-CHECK { "id": 0, "name": "MAP02 - FoodTin2 [2048,112]", "pos": ["MAP02",2048,112,64], "region": "motel downstairs" }
+AP-CHECK { "id": 600, "name": "MAP02 - Secret 1185", "pos": ["MAP02","secret","sector",1185], "region": "NE garage secret" }
+AP-CHECK { "id": 0, "name": "MAP02 - FoodTin4 [3088,-64]", "pos": ["MAP02",3088,-64,128], "region": "NE garage secret" }
+AP-CHECK { "id": 0, "name": "MAP02 - FoodTin2 [3088,-32]", "pos": ["MAP02",3088,-32,128], "region": "NE garage secret" }
+AP-CHECK { "id": 0, "name": "MAP02 - FoodTin4 [3056,-32]", "pos": ["MAP02",3056,-32,128], "region": "NE garage secret" }
+AP-CHECK { "id": 0, "name": "MAP02 - NineMilammo [Center]", "pos": ["MAP02",3056,0,128], "region": "NE garage secret" }
+AP-CHECK { "id": 0, "name": "MAP02 - FoodTin1 [3024,-64]", "pos": ["MAP02",3024,-64,128], "region": "NE garage secret" }
+AP-CHECK { "id": 590, "name": "MAP02 - Random Junk [2248,-2832]", "pos": ["MAP02",2248,-2832,0], "region": "BFB" }
+AP-CHECK { "id": 0, "name": "MAP02 - shotgunAmmo [2320,-2800]", "pos": ["MAP02",2320,-2800,2], "region": "BFB" }
+AP-CHECK { "id": 0, "name": "MAP02 - FoodTin4 [1448,-2824]", "pos": ["MAP02",1448,-2824,0], "region": "BFB" }
+AP-CHECK { "id": 0, "name": "MAP02 - FoodTin4 [1424,-2816]", "pos": ["MAP02",1424,-2816,0], "region": "BFB" }
+AP-CHECK { "id": 0, "name": "MAP02 - fortyfiveammo [1432,-2752]", "pos": ["MAP02",1432,-2752,0], "region": "BFB" }
+AP-CHECK { "id": 605, "name": "MAP02 - Secret 827", "pos": ["MAP02","secret","sector",827], "region": "BFB ventilation secret" }
+AP-CHECK { "id": 0, "name": "MAP02 - ArmorScrap [1792,-3296]", "pos": ["MAP02",1792,-3296,0], "region": "BFB ventilation secret" }
+AP-CHECK { "id": 0, "name": "MAP02 - ArmorScrap [1840,-3296]", "pos": ["MAP02",1840,-3296,0], "region": "BFB ventilation secret" }
+AP-CHECK { "id": 0, "name": "MAP02 - ArmorScrap [1840,-3344]", "pos": ["MAP02",1840,-3344,0], "region": "BFB ventilation secret" }
+AP-CHECK { "id": 561, "name": "MAP02 - JackHammer", "pos": ["MAP02",1888,-3296,8], "region": "BFB ventilation secret" }
+AP-CHECK { "id": 0, "name": "MAP02 - ArmorScrap [1888,-3360]", "pos": ["MAP02",1888,-3360,0], "region": "BFB ventilation secret" }
+AP-CHECK { "id": 0, "name": "MAP02 - FoodTin3 [2148,-2576]", "pos": ["MAP02",2148,-2576,0], "region": "BFB pantry" }
+AP-CHECK { "id": 0, "name": "MAP02 - FoodTin4 [2124,-2592]", "pos": ["MAP02",2124,-2592,0], "region": "BFB pantry" }
+AP-CHECK { "id": 0, "name": "MAP02 - FoodTin4 [2104,-2608]", "pos": ["MAP02",2104,-2608,0], "region": "BFB pantry" }
+AP-CHECK { "id": 0, "name": "MAP02 - FoodTin2 [2108,-2572]", "pos": ["MAP02",2108,-2572,0], "region": "BFB pantry" }
+AP-CHECK { "id": 582, "name": "MAP02 - Random Junk [1616,-2016]", "pos": ["MAP02",1616,-2016,0], "region": "BFB alley" }
+AP-CHECK { "id": 581, "name": "MAP02 - Random Junk [1576,-2032]", "pos": ["MAP02",1576,-2032,0], "region": "BFB alley" }
+AP-CHECK { "id": 488, "name": "MAP02 - Classic shotgun", "pos": ["MAP02",1576,-680,56], "region": "HR66 gifts" }
+AP-CHECK { "id": 584, "name": "MAP02 - Random Junk [1712,-1040]", "pos": ["MAP02",1712,-1040,60], "region": "HR66 gifts" }
+AP-CHECK { "id": 583, "name": "MAP02 - Random Junk [1704,-1168]", "pos": ["MAP02",1704,-1168,60], "region": "HR66 gifts" }
+AP-CHECK { "id": 585, "name": "MAP02 - Random Junk [1712,-1200]", "pos": ["MAP02",1712,-1200,60], "region": "HR66 gifts" }
+AP-CHECK { "id": 0, "name": "MAP02 - fortyfiveammo [1168,-1432]", "pos": ["MAP02",1168,-1432,56], "region": "HR66 changerooms" }
+AP-CHECK { "id": 0, "name": "MAP02 - Painkillers [W]", "pos": ["MAP02",1168,-1224,56], "region": "HR66 changerooms" }
+AP-CHECK { "id": 0, "name": "MAP02 - NineMilammo [SW]", "pos": ["MAP02",1496,-1840,112], "region": "HR66 bedroom" }
+AP-CHECK { "id": 487, "name": "MAP02 - Bronze Staff Key", "pos": ["MAP02",1488,-1920,112], "region": "HR66 bedroom" }
+AP-CHECK { "id": 0, "name": "MAP02 - ArmorScrap [1592,-2096]", "pos": ["MAP02",1592,-2096,64], "region": "BFB dumpster" }
+AP-CHECK { "id": 0, "name": "MAP02 - ArmorScrap [1552,-2080]", "pos": ["MAP02",1552,-2080,64], "region": "BFB dumpster" }
+AP-CHECK { "id": 0, "name": "MAP02 - ArmorScrap [1544,-2112]", "pos": ["MAP02",1544,-2112,64], "region": "BFB dumpster" }
+AP-CHECK { "id": 0, "name": "MAP02 - ArmorScrap [1632,-2120]", "pos": ["MAP02",1632,-2120,64], "region": "BFB dumpster" }
+AP-CHECK { "id": 0, "name": "MAP02 - ArmorScrap [1632,-2080]", "pos": ["MAP02",1632,-2080,64], "region": "BFB dumpster" }
+AP-CHECK { "id": 580, "name": "MAP02 - Random Junk [1528,-2088]", "pos": ["MAP02",1528,-2088,64], "region": "BFB dumpster" }
+AP-CHECK { "id": 604, "name": "MAP02 - Secret 625", "pos": ["MAP02","secret","sector",625], "region": "BFB camera room secret" }
+AP-CHECK { "id": 579, "name": "MAP02 - Random Junk [1480,-1664]", "pos": ["MAP02",1480,-1664,24], "region": "BFB camera room secret" }
+AP-CHECK { "id": 0, "name": "MAP02 - Painkillers [SW]", "pos": ["MAP02",1488,-1552,56], "region": "BFB camera room secret" }
+AP-CHECK { "id": 0, "name": "MAP02 - shotgunAmmo [1488,-1504]", "pos": ["MAP02",1488,-1504,56], "region": "BFB camera room secret" }
+AP-CHECK { "id": 0, "name": "MAP02 - shotgunAmmo [3008,-3456]", "pos": ["MAP02",3008,-3456,-8], "region": "behind BFB" }
+AP-CHECK { "id": 0, "name": "MAP02 - fortyfiveammo [3088,-3328]", "pos": ["MAP02",3088,-3328,16], "region": "behind BFB" }
+AP-CHECK { "id": 597, "name": "MAP02 - Random Junk [2912,-3016]", "pos": ["MAP02",2912,-3016,0], "region": "behind BFB" }
+AP-CHECK { "id": 596, "name": "MAP02 - Random Junk [2864,-3016]", "pos": ["MAP02",2864,-3016,0], "region": "behind BFB" }
+AP-CHECK { "id": 594, "name": "MAP02 - Random Junk [2832,-3024]", "pos": ["MAP02",2832,-3024,0], "region": "behind BFB" }
+AP-CHECK { "id": 595, "name": "MAP02 - Random Junk [2848,-3064]", "pos": ["MAP02",2848,-3064,0], "region": "behind BFB" }
+AP-CHECK { "id": 589, "name": "MAP02 - Random Junk [2208,-3464]", "pos": ["MAP02",2208,-3464,0], "region": "behind BFB" }
+AP-CHECK { "id": 588, "name": "MAP02 - Random Junk [2176,-3456]", "pos": ["MAP02",2176,-3456,0], "region": "behind BFB" }
+AP-CHECK { "id": 586, "name": "MAP02 - Random Junk [2104,-3416]", "pos": ["MAP02",2104,-3416,0], "region": "behind BFB" }
+AP-CHECK { "id": 587, "name": "MAP02 - Random Junk [2104,-3456]", "pos": ["MAP02",2104,-3456,0], "region": "behind BFB" }
+AP-CHECK { "id": 0, "name": "MAP02 - FoodTin2 [2576,-3728]", "pos": ["MAP02",2576,-3728,55], "region": "behind BFB truck" }
+AP-CHECK { "id": 593, "name": "MAP02 - Random Junk [2600,-3648]", "pos": ["MAP02",2600,-3648,23], "region": "behind BFB truck" }
+AP-CHECK { "id": 592, "name": "MAP02 - Random Junk [2584,-3680]", "pos": ["MAP02",2584,-3680,23], "region": "behind BFB truck" }
+AP-CHECK { "id": 591, "name": "MAP02 - Random Junk [2576,-3624]", "pos": ["MAP02",2576,-3624,23], "region": "behind BFB truck" }
+AP-CHECK { "id": 0, "name": "MAP02 - FoodTin3 [2592,-3592]", "pos": ["MAP02",2592,-3592,23], "region": "behind BFB truck" }
+AP-CHECK { "id": 0, "name": "MAP02 - FoodTin3 [2592,-3552]", "pos": ["MAP02",2592,-3552,23], "region": "behind BFB truck" }
+AP-CHECK { "id": 0, "name": "MAP02 - FoodTin3 [2560,-3552]", "pos": ["MAP02",2560,-3552,23], "region": "behind BFB truck" }
+; for some reason this isn't recognized as tuning??
+AP-CHECK { "id": 486, "name": "MAP02 - Blue Access Card", "pos": ["MAP02",2440,-4096,0], "region": "behind BFB" }
+AP-CHECK { "id": 0, "name": "MAP02 - ArmorScrap [3208,-4036]", "pos": ["MAP02",3208,-4036,-8], "region": "caravan garage" }
+AP-CHECK { "id": 0, "name": "MAP02 - ArmorScrap [3208,-4080]", "pos": ["MAP02",3208,-4080,-8], "region": "caravan garage" }
+AP-CHECK { "id": 0, "name": "MAP02 - ArmorScrap [3200,-4120]", "pos": ["MAP02",3200,-4120,-8], "region": "caravan garage" }
+AP-CHECK { "id": 0, "name": "MAP02 - ArmorScrap [3168,-4088]", "pos": ["MAP02",3168,-4088,-8], "region": "caravan garage" }
+AP-CHECK { "id": 0, "name": "MAP02 - ArmorScrap [3144,-4120]", "pos": ["MAP02",3144,-4120,-8], "region": "caravan garage" }
+AP-CHECK { "id": 0, "name": "MAP02 - NineMilammo [S]", "pos": ["MAP02",2984,-3904,56], "region": "caravan garage" }
+AP-CHECK { "id": 598, "name": "MAP02 - Random Junk [3344,-4176]", "pos": ["MAP02",3344,-4176,-5], "region": "water towers" }
+AP-CHECK { "id": 599, "name": "MAP02 - Random Junk [3360,-4144]", "pos": ["MAP02",3360,-4144,-5], "region": "water towers" }
+AP-CHECK { "id": 489, "name": "MAP02 - Collectible NMA Cap", "pos": ["MAP02",3136,-4496,-13], "region": "water towers" }
+AP-CHECK { "id": 601, "name": "MAP02 - Secret 208", "pos": ["MAP02","secret","sector",208], "region": "water towers" }
+;; should possibly be fuel tanks instead of water towers
+AP-CHECK { "id": 0, "name": "MAP02 - FoodTin4 [3296,-1200]", "pos": ["MAP02",3296,-1200,0], "region": "gas station shop" }
+AP-CHECK { "id": 0, "name": "MAP02 - FoodTin3 [3296,-1248]", "pos": ["MAP02",3296,-1248,0], "region": "gas station shop" }
+AP-CHECK { "id": 0, "name": "MAP02 - FoodTin2 [3328,-1216]", "pos": ["MAP02",3328,-1216,0], "region": "gas station shop" }
+AP-CHECK { "id": 576, "name": "MAP02 - Pipebomb [3328,-1440]", "pos": ["MAP02",3328,-1440,0], "region": "gas station shop" }
+AP-CHECK { "id": 575, "name": "MAP02 - Pipebomb [3328,-1424]", "pos": ["MAP02",3328,-1424,0], "region": "gas station shop" }
+AP-CHECK { "id": 602, "name": "MAP02 - Secret 401", "pos": ["MAP02","secret","sector",401], "region": "gas station shop" }
+AP-CHECK { "id": 0, "name": "MAP02 - FoodTin3 [3152,-1968]", "pos": ["MAP02",3152,-1968,0], "region": "gas station storage" }
+AP-CHECK { "id": 0, "name": "MAP02 - FoodTin3 [3248,-1888]", "pos": ["MAP02",3248,-1888,0], "region": "gas station storage" }
+AP-CHECK { "id": 0, "name": "MAP02 - FoodTin4 [3216,-1824]", "pos": ["MAP02",3216,-1824,0], "region": "gas station storage" }
+AP-CHECK { "id": 0, "name": "MAP02 - FoodTin3 [3296,-1968]", "pos": ["MAP02",3296,-1968,0], "region": "gas station storage" }
+AP-CHECK { "id": 0, "name": "MAP02 - fortyfiveammo [3376,-1808]", "pos": ["MAP02",3376,-1808,0], "region": "gas station storage" }
+AP-CHECK { "id": 0, "name": "MAP02 - fortyfiveammo [3984,-1976]", "pos": ["MAP02",3984,-1976,32], "region": "outside still" }
+AP-CHECK { "id": 0, "name": "MAP02 - Painkillers [Center]", "pos": ["MAP02",3984,-1936,32], "region": "outside still" }
+AP-CHECK { "id": 0, "name": "MAP02 - fortyfiveammo [4016,-2000]", "pos": ["MAP02",4016,-2000,0], "region": "outside still" }
+AP-CHECK { "id": 603, "name": "MAP02 - Secret 587", "pos": ["MAP02","secret","sector",587], "region": "exploded still secret" }
+AP-CHECK { "id": 468, "name": "MAP02 - ArmorLeather [S]", "pos": ["MAP02",3016,-2944,0], "region": "exploded still secret" }
+AP-CHECK { "id": 0, "name": "MAP02 - FoodTin2 [3056,-2912]", "pos": ["MAP02",3056,-2912,0], "region": "exploded still secret" }
+AP-CHECK { "id": 0, "name": "MAP02 - FoodTin2 [3104,-2896]", "pos": ["MAP02",3104,-2896,0], "region": "exploded still secret" }
+AP-CHECK { "id": 0, "name": "MAP02 - FoodTin1 [3104,-2928]", "pos": ["MAP02",3104,-2928,0], "region": "exploded still secret" }
+AP-CHECK { "id": 0, "name": "MAP02 - FoodTin2 [3136,-2912]", "pos": ["MAP02",3136,-2912,0], "region": "exploded still secret" }
+AP-CHECK { "id": 0, "name": "MAP02 - FoodTin1 [3168,-2880]", "pos": ["MAP02",3168,-2880,0], "region": "exploded still secret" }
+AP-CHECK { "id": 0, "name": "MAP02 - ArmorScrap [4856,-2880]", "pos": ["MAP02",4856,-2880,8], "region": "cannibal outpost" }
+AP-CHECK { "id": 0, "name": "MAP02 - ArmorScrap [4840,-2912]", "pos": ["MAP02",4840,-2912,8], "region": "cannibal outpost" }
+AP-CHECK { "id": 0, "name": "MAP02 - ArmorScrap [4872,-2912]", "pos": ["MAP02",4872,-2912,8], "region": "cannibal outpost" }
+AP-CHECK { "id": 0, "name": "MAP02 - shotgunAmmo [5248,-2760]", "pos": ["MAP02",5248,-2760,32], "region": "cannibal outpost" }
+AP-CHECK { "id": 0, "name": "MAP02 - shotgunAmmo [5248,-2824]", "pos": ["MAP02",5248,-2824,32], "region": "cannibal outpost" }
+AP-CHECK { "id": 565, "name": "MAP02 - Medical Kit [SE]", "pos": ["MAP02",4932,-2836,32], "region": "cannibal outpost" }
+AP-CHECK { "id": 560, "name": "MAP02 - Gold Security Key", "pos": ["MAP02",4876,-3436,154], "region": "outpost control room" }
+AP-CHECK { "id": 0, "name": "MAP02 - shotgunAmmo [5336,-3888]", "pos": ["MAP02",5336,-3888,-4], "region": "exit garage" }
+AP-CHECK { "id": 0, "name": "MAP02 - fortyfiveammo [5328,-3844]", "pos": ["MAP02",5328,-3844,-4], "region": "exit garage" }
+AP-CHECK { "id": 0, "name": "MAP02 - Painkillers [SE]", "pos": ["MAP02",5340,-3804,-4], "region": "exit garage" }
+AP-CHECK { "id": 466, "name": "MAP02 - A jerrycan of fuel", "pos": ["MAP02",5488,-3608,-4], "region": "exit garage" }
+AP-CHECK { "id": 490, "name": "MAP02 - Exit", "pos": ["MAP02","exit"], "region": "exit garage" }
+AP-CHECK { "id": 406, "name": "MAP02 - Shotgunbox", "pos": ["MAP02",5360,-3856,-4], "region": "exit garage" }
+AP-CHECK { "id": 405, "name": "MAP02 - Medical Kit", "pos": ["MAP02",2352,-2736,32], "region": "BFB" }

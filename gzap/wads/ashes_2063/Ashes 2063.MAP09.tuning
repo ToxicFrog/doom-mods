@@ -1,0 +1,103 @@
+; Takes place between MAP05 and MAP06 in normal play
+AP-REGION { "map": "MAP09", "keys": ["weapon/Glock/want", "weapon/shotgun2/want", "weapon/Ingram3/want", "weapon/NapalmGun/want"] }
+
+AP-REGION { "map": "MAP09", "region": "entrance", "keys": [] }
+AP-REGION { "map": "MAP09", "region": "parking", "keys": ["map/MAP09/entrance"] }
+AP-REGION { "map": "MAP09", "region": "flooded hall", "keys": ["map/MAP09/parking"] }
+AP-REGION { "map": "MAP09", "region": "map hall", "keys": ["map/MAP09/flooded hall"] }
+AP-REGION { "map": "MAP09", "region": "car hall", "keys": ["map/MAP09/map hall"] }
+AP-REGION { "map": "MAP09", "region": "security", "keys": ["map/MAP09/car hall"] }
+AP-REGION { "map": "MAP09", "region": "fashion displays", "keys": ["map/MAP09/security"] }
+AP-REGION { "map": "MAP09", "region": "War Games", "keys": ["map/MAP09/security"] }
+AP-REGION { "map": "MAP09", "region": "War Games storage", "keys": ["map/MAP09/War Games", "flag/secret"] }
+AP-REGION { "map": "MAP09", "region": "theatre projection room", "keys": ["map/MAP09/security"] }
+AP-REGION { "map": "MAP09", "region": "theatre behind screen", "keys": ["map/MAP09/theatre projection room"] }
+AP-REGION { "map": "MAP09", "region": "food court", "keys": ["key/RedCard", "map/MAP09/car hall"] }
+AP-REGION { "map": "MAP09", "region": "food court kitchen", "keys": ["map/MAP09/food court"] }
+AP-REGION { "map": "MAP09", "region": "food court stove secret", "keys": ["map/MAP09/food court kitchen", "flag/secret"] }
+AP-REGION { "map": "MAP09", "region": "theatre projection secret", "keys": ["flag/secret", "map/MAP09/theatre projection room"] }
+AP-REGION { "map": "MAP09", "region": "The Matrix control room", "keys": ["key/YellowCard", "map/MAP09/fashion displays"] }
+AP-REGION { "map": "MAP09", "region": "The Matrix ambush", "keys": ["map/MAP09/The Matrix control room"] }
+AP-REGION { "map": "MAP09", "region": "nameless shop", "keys": ["map/MAP09/The Matrix control room", "map/MAP09/car hall"] }
+AP-REGION { "map": "MAP09", "region": "Captain John's", "keys": ["flag/secret", "map/MAP09/nameless shop"] }
+AP-REGION { "map": "MAP09", "region": "Hot House", "keys": ["map/MAP09/The Matrix control room", "map/MAP09/car hall"] }
+AP-REGION { "map": "MAP09", "region": "Hot House locker room", "keys": ["map/MAP09/Hot House"] }
+AP-REGION { "map": "MAP09", "region": "secret garage", "keys": ["map/MAP09/Hot House locker room", "flag/secret", "map/MAP09/parking"] }
+
+AP-CHECK { "id": 0, "name": "MAP09 - Painkillers [-1024,248]", "pos": ["MAP09",-1024,248,-376], "region": "entrance" }
+AP-CHECK { "id": 1332, "name": "MAP09 - Random Junk [-1024,208]", "pos": ["MAP09",-1024,208,-376], "region": "entrance" }
+AP-CHECK { "id": 0, "name": "MAP09 - fortyfiveammo [SW]", "pos": ["MAP09",-1024,160,-376], "region": "entrance" }
+AP-CHECK { "id": 0, "name": "MAP09 - Painkillers [276,-876]", "pos": ["MAP09",276,-876,-256], "region": "parking" }
+AP-CHECK { "id": 0, "name": "MAP09 - FoodTin1 [224,-1504]", "pos": ["MAP09",224,-1504,-384], "region": "flooded hall" }
+AP-CHECK { "id": 0, "name": "MAP09 - FoodTin3 [328,-1544]", "pos": ["MAP09",328,-1544,-384], "region": "flooded hall" }
+AP-CHECK { "id": 0, "name": "MAP09 - FoodTin3 [392,-1512]", "pos": ["MAP09",392,-1512,-384], "region": "flooded hall" }
+AP-CHECK { "id": 0, "name": "MAP09 - FoodTin4 [456,-1568]", "pos": ["MAP09",456,-1568,-384], "region": "flooded hall" }
+AP-CHECK { "id": 0, "name": "MAP09 - ArmorScrap [3036,-356]", "pos": ["MAP09",3036,-356,-104], "region": "map hall" }
+AP-CHECK { "id": 0, "name": "MAP09 - ArmorScrap [3076,-356]", "pos": ["MAP09",3076,-356,-104], "region": "map hall" }
+AP-CHECK { "id": 0, "name": "MAP09 - ArmorScrap [3084,-396]", "pos": ["MAP09",3084,-396,-104], "region": "map hall" }
+AP-CHECK { "id": 0, "name": "MAP09 - ArmorScrap [3188,-492]", "pos": ["MAP09",3188,-492,-128], "region": "map hall" }
+AP-CHECK { "id": 0, "name": "MAP09 - ArmorScrap [3192,-532]", "pos": ["MAP09",3192,-532,-128], "region": "map hall" }
+AP-CHECK { "id": 0, "name": "MAP09 - Junk Spares [2344,1072]", "pos": ["MAP09",2344,1072,0], "region": "car hall" }
+AP-CHECK { "id": 1319, "name": "MAP09 - Medical Kit [992,864]", "pos": ["MAP09",992,864,128], "region": "security" }
+AP-CHECK { "id": 1266, "name": "MAP09 - .45 revolver", "pos": ["MAP09",968,944,128], "region": "security" }
+AP-CHECK { "id": 1267, "name": "MAP09 - ArmorLeather", "pos": ["MAP09",340,808,32], "region": "fashion displays" }
+AP-CHECK { "id": 0, "name": "MAP09 - ArmorScrap [336,1208]", "pos": ["MAP09",336,1208,32], "region": "fashion displays" }
+AP-CHECK { "id": 0, "name": "MAP09 - ArmorScrap [344,1164]", "pos": ["MAP09",344,1164,32], "region": "fashion displays" }
+AP-CHECK { "id": 0, "name": "MAP09 - ArmorScrap [352,1244]", "pos": ["MAP09",352,1244,32], "region": "fashion displays" }
+AP-CHECK { "id": 0, "name": "MAP09 - ArmorScrap [332,1284]", "pos": ["MAP09",332,1284,32], "region": "fashion displays" }
+AP-CHECK { "id": 1334, "name": "MAP09 - Random Junk [-840,2428]", "pos": ["MAP09",-840,2428,160], "region": "War Games" }
+AP-CHECK { "id": 1333, "name": "MAP09 - Random Junk [-808,2432]", "pos": ["MAP09",-808,2432,160], "region": "War Games" }
+AP-CHECK { "id": 1331, "name": "MAP09 - Pipebomb [-900,2476]", "pos": ["MAP09",-900,2476,128], "region": "War Games" }
+AP-CHECK { "id": 1330, "name": "MAP09 - Pipebomb [-864,2472]", "pos": ["MAP09",-864,2472,128], "region": "War Games" }
+AP-CHECK { "id": 1345, "name": "MAP09 - Secret 760", "pos": ["MAP09","secret","sector",760], "region": "War Games storage" }
+AP-CHECK { "id": 1286, "name": "MAP09 - Collectible Hissy Doll", "pos": ["MAP09",-624,2528,160], "region": "War Games storage" }
+AP-CHECK { "id": 1340, "name": "MAP09 - Random Junk [408,3836]", "pos": ["MAP09",408,3836,304], "region": "theatre projection room" }
+AP-CHECK { "id": 1339, "name": "MAP09 - Random Junk [372,3844]", "pos": ["MAP09",372,3844,304], "region": "theatre projection room" }
+AP-CHECK { "id": 0, "name": "MAP09 - NineMilammo [N]", "pos": ["MAP09",528,3664,328], "region": "theatre projection room" }
+AP-CHECK { "id": 0, "name": "MAP09 - Painkillers [528,3616]", "pos": ["MAP09",528,3616,328], "region": "theatre projection room" }
+AP-CHECK { "id": 1338, "name": "MAP09 - Random Junk [316,3620]", "pos": ["MAP09",316,3620,304], "region": "theatre projection room" }
+AP-CHECK { "id": 1341, "name": "MAP09 - Red Access Card", "pos": ["MAP09",-1064,3944,256], "region": "theatre behind screen" }
+AP-CHECK { "id": 0, "name": "MAP09 - fortyfiveammo [NE]", "pos": ["MAP09",2144,2048,160], "region": "food court" }
+AP-CHECK { "id": 0, "name": "MAP09 - fortyfiveammo [Center]", "pos": ["MAP09",1808,1744,160], "region": "food court" }
+AP-CHECK { "id": 1320, "name": "MAP09 - Michonne Ultra", "pos": ["MAP09",1836,3104,160], "region": "food court" }
+AP-CHECK { "id": 1349, "name": "MAP09 - Yellow Access Card", "pos": ["MAP09",3120,3624,160], "region": "food court kitchen" }
+AP-CHECK { "id": 0, "name": "MAP09 - NineMilammo [NE]", "pos": ["MAP09",3124,3452,160], "region": "food court kitchen" }
+AP-CHECK { "id": 1317, "name": "MAP09 - Medical Kit [3120,3408]", "pos": ["MAP09",3120,3408,160], "region": "food court kitchen" }
+AP-CHECK { "id": 1347, "name": "MAP09 - Secret 881", "pos": ["MAP09","secret","sector",881], "region": "food court stove secret" }
+AP-CHECK { "id": 1316, "name": "MAP09 - Medical Kit [2772,3208]", "pos": ["MAP09",2772,3208,192], "region": "food court stove secret" }
+AP-CHECK { "id": 0, "name": "MAP09 - ArmorScrap [548,3884]", "pos": ["MAP09",548,3884,304], "region": "theatre projection secret" }
+AP-CHECK { "id": 1344, "name": "MAP09 - Secret 674", "pos": ["MAP09","secret","sector",674], "region": "theatre projection secret" }
+AP-CHECK { "id": 0, "name": "MAP09 - ArmorScrap [540,3916]", "pos": ["MAP09",540,3916,304], "region": "theatre projection secret" }
+AP-CHECK { "id": 0, "name": "MAP09 - ArmorScrap [556,3956]", "pos": ["MAP09",556,3956,304], "region": "theatre projection secret" }
+AP-CHECK { "id": 1318, "name": "MAP09 - Medical Kit [616,3960]", "pos": ["MAP09",616,3960,304], "region": "theatre projection secret" }
+AP-CHECK { "id": 1348, "name": "MAP09 - Shotgunbox", "pos": ["MAP09",-2088,484,-8], "region": "The Matrix control room" }
+AP-CHECK { "id": 1285, "name": "MAP09 - Classic shotgun [-2096,452]", "pos": ["MAP09",-2096,452,-8], "region": "The Matrix control room" }
+AP-CHECK { "id": 1301, "name": "MAP09 - JackHammer", "pos": ["MAP09",-2092,412,-8], "region": "The Matrix control room" }
+AP-CHECK { "id": 0, "name": "MAP09 - NineMilammo [W]", "pos": ["MAP09",-2124,408,-8], "region": "The Matrix control room" }
+AP-CHECK { "id": 1315, "name": "MAP09 - Medical Kit [-2292,452]", "pos": ["MAP09",-2292,452,-8], "region": "The Matrix control room" }
+AP-CHECK { "id": 0, "name": "MAP09 - Painkillers [-2284,412]", "pos": ["MAP09",-2284,412,-8], "region": "The Matrix control room" }
+AP-CHECK { "id": 0, "name": "MAP09 - fortyfiveammo [W]", "pos": ["MAP09",-1568,1248,32], "region": "The Matrix ambush" }
+AP-CHECK { "id": 1284, "name": "MAP09 - Classic shotgun [-1584,1296]", "pos": ["MAP09",-1584,1296,32], "region": "The Matrix ambush" }
+AP-CHECK { "id": 0, "name": "MAP09 - Junk Tools [2608,-120]", "pos": ["MAP09",2608,-120,160], "region": "nameless shop" }
+AP-CHECK { "id": 1337, "name": "MAP09 - Random Junk [2608,-216]", "pos": ["MAP09",2608,-216,160], "region": "nameless shop" }
+AP-CHECK { "id": 0, "name": "MAP09 - Junk Tools [2568,-360]", "pos": ["MAP09",2568,-360,160], "region": "nameless shop" }
+AP-CHECK { "id": 0, "name": "MAP09 - Junk Spares [2528,-360]", "pos": ["MAP09",2528,-360,160], "region": "nameless shop" }
+AP-CHECK { "id": 0, "name": "MAP09 - Junk Cable [2256,-208]", "pos": ["MAP09",2256,-208,160], "region": "nameless shop" }
+AP-CHECK { "id": 0, "name": "MAP09 - FoodTin1 [2436,-356]", "pos": ["MAP09",2436,-356,128], "region": "nameless shop" }
+AP-CHECK { "id": 0, "name": "MAP09 - FoodTin1 [2404,-344]", "pos": ["MAP09",2404,-344,128], "region": "nameless shop" }
+AP-CHECK { "id": 0, "name": "MAP09 - FoodTin4 [2388,-368]", "pos": ["MAP09",2388,-368,128], "region": "nameless shop" }
+AP-CHECK { "id": 1346, "name": "MAP09 - Secret 826", "pos": ["MAP09","secret","sector",826], "region": "Captain John's" }
+AP-CHECK { "id": 1336, "name": "MAP09 - Random Junk [1896,-136]", "pos": ["MAP09",1896,-136,144], "region": "Captain John's" }
+AP-CHECK { "id": 1335, "name": "MAP09 - Random Junk [1844,-156]", "pos": ["MAP09",1844,-156,144], "region": "Captain John's" }
+AP-CHECK { "id": 1314, "name": "MAP09 - Master Blaster", "pos": ["MAP09",1664,-96,144], "region": "Captain John's" }
+AP-CHECK { "id": 0, "name": "MAP09 - Painkillers [3416,948]", "pos": ["MAP09",3416,948,32], "region": "Hot House" }
+AP-CHECK { "id": 0, "name": "MAP09 - fortyfiveammo [E]", "pos": ["MAP09",3444,928,32], "region": "Hot House" }
+;; this should be renamed to locker room or shower room
+AP-CHECK { "id": 1283, "name": "MAP09 - BRUTE Stim", "pos": ["MAP09",4200,1580,32], "region": "Hot House locker room" }
+AP-CHECK { "id": 0, "name": "MAP09 - Painkillers [4128,1580]", "pos": ["MAP09",4128,1580,32], "region": "Hot House locker room" }
+AP-CHECK { "id": 1343, "name": "MAP09 - Secret 562", "pos": ["MAP09","secret","sector",562], "region": "secret garage" }
+AP-CHECK { "id": 1342, "name": "MAP09 - Sawed-off Shotgun", "pos": ["MAP09",200,-384,-232], "region": "secret garage" }
+AP-CHECK { "id": 0, "name": "MAP09 - ArmorScrap [168,-496]", "pos": ["MAP09",168,-496,-224], "region": "secret garage" }
+AP-CHECK { "id": 0, "name": "MAP09 - ArmorScrap [152,-464]", "pos": ["MAP09",152,-464,-256], "region": "secret garage" }
+AP-CHECK { "id": 0, "name": "MAP09 - ArmorScrap [128,-496]", "pos": ["MAP09",128,-496,-224], "region": "secret garage" }
+AP-CHECK { "id": 1287, "name": "MAP09 - Exit", "pos": ["MAP09","exit"], "keys": ["map/MAP09/The Matrix control room"] }

@@ -1,0 +1,123 @@
+; In vanilla, found in MAP01. Give to Smiley in exchange for the briefcase in MAP03.
+; TODO: make the briefcase a check.
+AP-KEY {
+  "typename": "QuestRadio",
+  "tag": "An Old Radio",
+  "scopename": "The Wall",
+  "cluster": 0,
+  "maps": ["MAP01", "MAP03"]
+}
+
+; BulletFarm machine in MAP01.
+AP-ITEM {
+  "category": "small-ammo",
+  "typename": "fortyfiveammo",
+  "tag": "fortyfiveammo",
+  "name": "BulletFarm #1",
+  "pos": ["MAP01","spawn",1,"fortyfiveammo",-600,-2200,-49]
+}
+AP-ITEM {
+  "category": "small-ammo",
+  "typename": "fortyfiveammo",
+  "tag": "fortyfiveammo",
+  "name": "BulletFarm #2",
+  "pos": ["MAP01","spawn",2,"fortyfiveammo",-600,-2200,-49]
+}
+AP-ITEM {
+  "category": "small-ammo",
+  "typename": "fortyfiveammo",
+  "tag": "fortyfiveammo",
+  "name": "BulletFarm #3",
+  "pos": ["MAP01","spawn",3,"fortyfiveammo",-600,-2200,-49]
+}
+
+; Given by the bartender once you have the briefcase.
+; Doesn't actually unlock any checks, just the conversation with Fortune.
+AP-KEY {
+  "typename": "BlueCard",
+  "tag": "Blue Access Card",
+  "scopename": "MAP03",
+  "cluster": 0,
+  "maps": ["MAP03"]
+}
+
+; Give to Rigs in Michonne Circle in exchange for armour, a backpack, or the
+; Michonne Ultra.
+; TODO: make the armour and backpack checks.
+; TODO: when you are given the briefcase in MAP03, we shouldn't spawn a dynkey for it...
+AP-KEY {
+  "typename": "QuestBriefcase",
+  "tag": "A Locked Briefcase",
+  "scopename": "Michonne Circle",
+  "cluster": 0,
+  "maps": ["MAP03", "MAP06"]
+}
+
+; BulletFarm machines in MAP07.
+AP-ITEM {
+  "category": "small-ammo",
+  "typename": "fortyfiveammo",
+  "tag": "fortyfiveammo",
+  "name": "BulletFarm .45 #1",
+  "pos": ["MAP07","spawn",1,"fortyfiveammo",2848,-792,-25]
+}
+AP-ITEM {
+  "category": "small-ammo",
+  "typename": "fortyfiveammo",
+  "tag": "fortyfiveammo",
+  "name": "BulletFarm .45 #2",
+  "pos": ["MAP07","spawn",2,"fortyfiveammo",2848,-792,-25]
+}
+AP-ITEM {
+  "category": "small-ammo",
+  "typename": "fortyfiveammo",
+  "tag": "fortyfiveammo",
+  "name": "BulletFarm .45 #3",
+  "pos": ["MAP07","spawn",3,"fortyfiveammo",2848,-792,-25]
+}
+
+AP-ITEM {
+  "category": "small-ammo",
+  "typename": "shotgunAmmo",
+  "tag": "shotgunAmmo",
+  "name": "BulletFarm 12ga #1",
+  "pos": ["MAP07","spawn",1,"shotgunAmmo",2848,-920,-25]
+}
+AP-ITEM {
+  "category": "small-ammo",
+  "typename": "shotgunAmmo",
+  "tag": "shotgunAmmo",
+  "name": "BulletFarm 12ga #2",
+  "pos": ["MAP07","spawn",2,"shotgunAmmo",2848,-920,-25]
+}
+AP-ITEM {
+  "category": "small-ammo",
+  "typename": "shotgunAmmo",
+  "tag": "shotgunAmmo",
+  "name": "BulletFarm 12ga #3",
+  "pos": ["MAP07","spawn",3,"shotgunAmmo",2848,-920,-25]
+}
+
+; Given in dialogue by the security computer.
+AP-KEY {
+  "typename": "BlueCard",
+  "tag": "Blue Access Card",
+  "scopename": "MAP08",
+  "cluster": 0,
+  "maps": ["MAP08"]
+}
+
+; Dropped by the raider in the entryway shop.
+AP-KEY {
+  "typename": "BlueCard",
+  "tag": "Blue Access Card",
+  "scopename": "MAP54",
+  "cluster": 0,
+  "maps": ["MAP54"]
+}
+AP-ITEM {
+  "category": "key",
+  "typename": "BlueCard",
+  "tag": "Blue Access Card",
+  "pos": ["MAP54","spawn",1,"BlueCard",480,750,-120,500]
+}
