@@ -1,4 +1,5 @@
 import math
+import os
 import sys
 from dataclasses import dataclass
 from importlib import resources
@@ -18,7 +19,7 @@ wad = included_logic.wad
 
 from .Options import UZDoomOptions, UZDoomWeb
 
-if uzdoom.VERSION != VERSION:
+if uzdoom.VERSION != VERSION and 'GZAP_EXPORT_SUPPORT_TABLE' not in os.environ:
   print(f"Warning: {__package__}: version mismatch between core apworld ({uzdoom.VERSION}) and wad apworld ({VERSION})")
 
 class UZDoomWorld___WAD__(uzdoom.UZDoomWorld):

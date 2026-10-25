@@ -58,7 +58,7 @@
         zip.file(getApworldName() + "/archipelago.json", getFileContents("#manifest_template"));
         zip.file(getApworldName() + "/__init__.py", getFileContents("#init_template"));
         zip.file(getApworldName() + "/Options.py", getFileContents("#options_template"));
-        zip.file(getApworldName() + "/VERSION", "gzap-0.8.5-135-g245fa1b5");
+        zip.file(getApworldName() + "/VERSION", "gzap-0.8.5-158-ge7e193c3");
 
         let futures = [];
         for (f of files.files) {
@@ -86,7 +86,7 @@
     </script>
   </head>
   <body>
-    <p>⚠️ This is the generator for the <b>unstable</b> version of the apworld (gzap-0.8.5-135-g245fa1b5). <a href="apworld-generator-0.8.5.html">Click here for latest stable (0.8.5).</a></p>
+    <p>⚠️ This is the generator for the <b>unstable</b> version of the apworld (gzap-0.8.5-158-ge7e193c3). <a href="apworld-generator-0.8.5.html">Click here for latest stable (0.8.5).</a></p>
     <!--
     <p>🛈 This is the generator for version 0.8.5 of the apworld.</p>
     -->
@@ -111,6 +111,7 @@
       </pre>
       <pre id="init_template">
 import math
+import os
 import sys
 from dataclasses import dataclass
 from importlib import resources
@@ -130,7 +131,7 @@ wad = included_logic.wad
 
 from .Options import UZDoomOptions, UZDoomWeb
 
-if uzdoom.VERSION != VERSION:
+if uzdoom.VERSION != VERSION and 'GZAP_EXPORT_SUPPORT_TABLE' not in os.environ:
   print(f"Warning: {__package__}: version mismatch between core apworld ({uzdoom.VERSION}) and wad apworld ({VERSION})")
 
 class UZDoomWorld___WAD__(uzdoom.UZDoomWorld):
