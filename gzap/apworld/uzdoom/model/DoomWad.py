@@ -588,13 +588,19 @@ class DoomWad:
         replaces any item table entries for single-map versions of the same
         actual key with references to the newly created multikey item.
         """
+        to_remove = set()
         for key in self.keys_by_name.values():
             for mapname in key.maps:
                 self.maps[mapname].keyset.add(key)
 
             if key.fqin() in self.items_by_name:
+                # Key has a corresponding AP-ITEM entry in the logic file.
+                # Nothing more to do.
                 continue
 
+            # It's either a dynkey, or an AP-KEY record merging multiple
+            # physical keys, so create an item to represent the actual key in
+            # the pool.
             key_item = DoomItem(map=key.scopename, category="key", typename=key.typename, tag=key.tag)
             assert key_item.name() == key.fqin(), f"{key_item.name()} != {key.fqin()}"
             self.items_by_name[key.fqin()] = key_item
@@ -611,6 +617,12 @@ class DoomWad:
                 keyname = f"{key.tag} ({mapname})"
                 if keyname in self.items_by_name:
                     self.items_by_name[keyname] = key_item
+                if keyname in self.keys_by_name and keyname != key.fqin():
+                    print(f'Deleting {keyname} because it has been subsumed by {key.fqin()}')
+                    to_remove.add(keyname)
+
+        for keyname in to_remove:
+            del self.keys_by_name[keyname]
 
     def weapon_capability(self, weapon, map=None):
         """
