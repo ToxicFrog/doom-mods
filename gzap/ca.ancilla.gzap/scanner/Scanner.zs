@@ -67,18 +67,18 @@ class ::Scanner play {
     sm.rank = rank;
   }
 
-  bool EnqueueLevel(string mapname, ::ScannedMap prev) {
+  ::ScannedMap EnqueueLevel(string mapname, ::ScannedMap prev) {
     string mapname = mapname.MakeUpper();
 
     if (!LevelInfo.MapExists(mapname)) {
       DEBUG("Skipping enqueue of %s because it doesn't exist.", mapname);
-      return false;
+      return null;
     }
 
     if (maps_by_name.CheckKey(mapname)) {
       // Already enqueued or scanned, do nothing.
       DEBUG("Skipping enqueue of %s because it's already in the queue.", mapname);
-      return false;
+      return null;
     }
 
     let sm = ::ScannedMap.Create(mapname, prev);
@@ -88,7 +88,7 @@ class ::Scanner play {
     maps_by_name.Insert(mapname, sm);
     queued.Push(sm);
     ::Util.printf("$GZAP_SCAN_MAP_ENQUEUED", sm.name);
-    return true;
+    return sm;
   }
 
   // Like EnqueueNext, but takes a cluster number and enqueues all maps in that

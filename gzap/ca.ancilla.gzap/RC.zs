@@ -9,6 +9,21 @@
 #namespace GZAP;
 #debug off;
 
+class ::RCStringList {
+  Array<String> list;
+  static ::RCStringList Create() {
+    return new("::RCStringList");
+  }
+  string Join(string sep) {
+    if (self.list.Size() == 0) return "";
+    string buf = "";
+    foreach (x : self.list) {
+      buf.AppendFormat("%s%s", buf == "" ? "" : sep, x);
+    }
+    return buf;
+  }
+}
+
 class ::RC {
   static ::RC Get() {
     let seh = ::ScanEventHandler(StaticEventHandler.Find("::ScanEventHandler"));
@@ -48,6 +63,8 @@ class ::RC {
   Map<string, string> tags;
   Map<string, string> scanner_settings;
   Map<int, string> cluster_names;
+  // From episode name to map list
+  Map<string, ::RCStringList> episodes;
   Map<string, ::StringSet> prereqs;
   void merge(::RC other) {
     foreach (k, v : other.categorizations) {
@@ -67,6 +84,9 @@ class ::RC {
     }
     foreach (k, v : other.cluster_names) {
       self.SetClusterName(k, v);
+    }
+    foreach (k, v : other.episodes) {
+      self.SetEpisode(k, v);
     }
     foreach (k, v : other.prereqs) {
       let prereq_set = PrereqsFor(k);
@@ -103,6 +123,9 @@ class ::RC {
     }
     foreach (k,v : self.cluster_names) {
       console.printf("  cluster %d %s;", k, v);
+    }
+    foreach (k,v : self.episodes) {
+      console.printf("  episode %s: %s;", k, v.Join(" "));
     }
     foreach (k,v : self.categorizations) {
       console.printf("  category %s: %s;", v == "" ? "none" : v, k);
@@ -198,6 +221,10 @@ class ::RC {
       return self.cluster_names.GetIfExists(cluster);
     }
     return string.format("HUB:%02d", cluster);
+  }
+
+  void SetEpisode(string name, ::RCStringList maps) {
+    self.episodes.insert(name, maps);
   }
 
   bool has_requirements;
@@ -343,6 +370,7 @@ class ::RCParser {
     if (peek("require")) { return Requirements(); }
     if (peek("scanner")) { return ScannerConfig(); }
     if (peek("cluster")) { return ClusterName(); }
+    if (peek("episode")) { return Episode(); }
     if (peek("prereqs")) { return PrereqRules(); }
     else { return Error("start of configuration directive"); }
   }
@@ -451,6 +479,15 @@ class ::RCParser {
     string name = StringFromTokenList(";", "cluster name");
     if (name == "") return Error("non-empty cluster name");
     self.rc.SetClusterName(cluster, name);
+    return true;
+  }
+
+  bool Episode() {
+    if (!require("episode")) return false;
+    string name = StringFromTokenList(":", "episode name");
+    let maps = ::RCStringList.Create();
+    if (!TokenList(maps.list, ";", "map list")) return false;
+    self.rc.SetEpisode(name, maps);
     return true;
   }
 

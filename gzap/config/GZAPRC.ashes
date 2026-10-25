@@ -1,6 +1,9 @@
 #### Ashes 2063 configuration ####
 require MAP00 92a4314fb0847d33ab8559d637e7435d;
 
+episode Ashes 2063: MAP00 MAP01 MAP02 MAP03 DAM1 MAP04 MAP05 MAP09 MAP06 MAP07 MAP08;
+episode Dead Man Walking: MAP51 MAP52 MAP53 MAP54;
+
 # Ashes does something weird here where it has a bunch of custom keys, but under
 # the hood it uses the normal skull/keycard actors -- each key is a CustomInventory
 # that when picked up gives you the corresponding vanilla key!

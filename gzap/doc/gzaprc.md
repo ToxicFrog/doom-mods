@@ -71,7 +71,6 @@ shotgun is expected by combat logic, but any valid prerequisite (as described in
 [regions.md](design/regions.md) or emitted by the in-game logic editor) can be
 used here.
 
-
 #### `cluster <number> <name> ;`
 
 When scanning maps in this cluster, use <name> as the cluster name rather than
@@ -83,6 +82,16 @@ except a semicolon, including whitespace, so this is legal:
 This is primarily useful in cases where the cluster/episode autodetection does
 not produce useful results, or it's desireable to abbreviate the results for
 Archipelago.
+
+#### `episode <name> : <map list> ;`
+
+Declare the listed maps as belonging to an episode with the given name, in the
+listed order. This allows maps to be grouped into episodes even in cases where
+the WAD author did not follow a 1:1 cluster:episode convention, and allows map
+order to be dictated by the logic maintainer rather than autodetected.
+
+All of the listed maps will be scanned (there is no need for a `scanner` block
+adding them separately).
 
 ### Item-related directives
 

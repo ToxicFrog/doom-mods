@@ -101,6 +101,14 @@ class ::ScanEventHandler : StaticEventHandler {
           scanner.PruneLevel(levelname);
         }
 
+        foreach (epname, maps : self.rc.episodes) {
+          ::ScannedMap prev = null;
+          for (int i = 0; i < maps.list.Size(); ++i) {
+            prev = scanner.EnqueueLevel(maps.list[i], prev);
+            prev.episodename = epname;
+          }
+        }
+
         levels.Clear();
         ap_scan_levels.Split(levels, " ", TOK_SKIPEMPTY);
         foreach (levelname : levels) {

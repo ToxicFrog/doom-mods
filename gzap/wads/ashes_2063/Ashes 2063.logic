@@ -1,6 +1,6 @@
 AP-SCAN { "flags": [] }
 AP-MAP {
-  "map": "MAP00", "levelname": "Garage Punk",
+  "map": "MAP00", "levelname": "Garage Punk", "episodename": "Ashes 2063",
   "checksum": "92a4314fb0847d33ab8559d637e7435d", "rank": 0, "monster_count": 28,
   "info": { "levelnum": 0, "title": "Garage Punk", "is_lookup": false, "sky1": "ASKY1B", "sky1speed": "0.000000", "sky2": "ASKY1B", "sky2speed": "0.000000", "music": "$MUSIC_SHAWN", "music_track": "0", "cluster": 0, "flags": [] },
   "monsters": { "Radroach": 8, "ScabbieSavage": 10, "TownMilitia": 6, "ThugTalkative": 1, "Pitfiend": 3 },
@@ -36,7 +36,7 @@ AP-ITEM { "category": "small-token", "typename": "JUNKnuts", "tag": "Junk Nuts",
 AP-ITEM { "category": "weapon", "typename": "revolver", "tag": ".45 revolver", "pos": ["MAP00",-16,4008,-240] }
 AP-SECRET { "pos": ["MAP00","secret","sector",691] }
 AP-MAP {
-  "map": "MAP01", "levelname": "Outskirts",
+  "map": "MAP01", "levelname": "Outskirts", "episodename": "Ashes 2063",
   "checksum": "da248cdc6a770b624a7de0996b199b39", "rank": 1, "monster_count": 77,
   "info": { "levelnum": 1, "title": "Outskirts", "is_lookup": false, "sky1": "ASKY1B", "sky1speed": "0.000000", "sky2": "ASKY1B", "sky2speed": "0.000000", "music": "$MUSIC_RUNNIN", "music_track": "0", "cluster": 0, "flags": [] },
   "monsters": { "shotgunthug": 20, "Radroach": 4, "RevolverThug": 11, "PistolThug": 26, "Pitfiend": 16 },
@@ -104,10 +104,10 @@ AP-SECRET { "pos": ["MAP01","secret","sector",318] }
 AP-SECRET { "pos": ["MAP01","secret","sector",332] }
 AP-SECRET { "pos": ["MAP01","secret","sector",387] }
 AP-MAP {
-  "map": "MAP02", "levelname": "The Boneyard",
+  "map": "MAP02", "levelname": "The Boneyard", "episodename": "Ashes 2063",
   "checksum": "dbb5683e7ddde555a7141d37d71fe05c", "rank": 2, "monster_count": 94,
   "info": { "levelnum": 2, "title": "The Boneyard", "is_lookup": false, "sky1": "ASKY2B", "sky1speed": "0.000000", "sky2": "ASKY2B", "sky2speed": "0.000000", "music": "$MUSIC_STALKS", "music_track": "0", "cluster": 0, "flags": [] },
-  "monsters": { "shotgunthug": 7, "Radroach": 2, "ScabbieSavage": 39, "PistolThug": 4, "RevolverThug": 3, "Master": 1, "Pitfiend": 38 },
+  "monsters": { "shotgunthug": 7, "Radroach": 2, "ScabbieSavage": 39, "RevolverThug": 3, "PistolThug": 4, "Master": 1, "Pitfiend": 38 },
   "prereqs": [ "weapon/Glock/auto", "weapon/pumpaction2/auto" ]
 }
 AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP02",2108,-2572,0] }
@@ -207,7 +207,7 @@ AP-SECRET { "pos": ["MAP02","secret","sector",625] }
 AP-SECRET { "pos": ["MAP02","secret","sector",827] }
 AP-SECRET { "pos": ["MAP02","secret","sector",1185] }
 AP-MAP {
-  "map": "MAP03", "levelname": "The Wall",
+  "map": "MAP03", "levelname": "The Wall", "episodename": "Ashes 2063",
   "checksum": "e6468fc80881bb13b740c87e40c82d1b", "rank": 3, "monster_count": 37,
   "info": { "levelnum": 3, "title": "The Wall", "is_lookup": false, "sky1": "ASKY1B", "sky1speed": "0.000000", "sky2": "ASKY1B", "sky2speed": "0.000000", "music": "$MUSIC_DDTBLU", "music_track": "0", "cluster": 0, "flags": [] },
   "monsters": { "SMILEY": 1, "MilitiaLeader": 1, "FORTUNE": 1, "TraderSitting2": 1, "OldCoot": 1, "TraderSitting1": 1, "OldManMoose": 1, "ThugTalkative": 10, "ShadyTrader": 1, "TownMilitia": 7, "BanditTalkative": 5, "LoserStanding": 1, "BarkeepKurt": 1, "LoserWalking": 5 },
@@ -222,10 +222,52 @@ AP-ITEM { "category": "small-ammo", "typename": "shotgunAmmo", "tag": "shotgunAm
 AP-ITEM { "category": "small-ammo", "typename": "fortyfiveammo", "tag": "fortyfiveammo", "pos": ["MAP03",2656,6144,-4] }
 AP-ITEM { "category": "small-ammo", "typename": "shotgunAmmo", "tag": "shotgunAmmo", "pos": ["MAP03",2624,6176,-4] }
 AP-MAP {
-  "map": "MAP04", "levelname": "Highway Holocaust",
-  "checksum": "adeff52de905bdd23b09af6988f077e9", "rank": 4, "monster_count": 154,
+  "map": "DAM1", "levelname": "Those Dam Raiders", "episodename": "Ashes 2063",
+  "checksum": "23fa3cb04d86e464f20a8c7441c720dc", "rank": 4, "monster_count": 71,
+  "info": { "levelnum": 0, "title": "Those Dam Raiders", "is_lookup": false, "sky1": "ASKY1B", "sky1speed": "0.000000", "sky2": "ASKY1B", "sky2speed": "0.000000", "music": "$MUSIC_EVIL", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "shotgunthug": 29, "TownMilitia": 1, "RevolverThug": 8, "PistolThug": 26, "Pitfiend": 7 },
+  "prereqs": [ "weapon/Glock/auto", "weapon/pumpaction2/auto" ]
+}
+AP-ITEM { "category": "key", "typename": "RedSkull", "tag": "Bronze Staff Key", "pos": ["DAM1",112,-512,-224] }
+AP-KEY { "typename": "RedSkull", "tag": "Bronze Staff Key", "scopename": "DAM1", "cluster": 0, "maps": ["DAM1"] }
+AP-ITEM { "category": "medium-health", "typename": "Firstaid", "tag": "Medical Kit", "pos": ["DAM1",160,-496,-224] }
+AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "pos": ["DAM1",-408,336,-256] }
+AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["DAM1",-408,456,-256] }
+AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["DAM1",-448,456,-256] }
+AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["DAM1",-488,440,-256] }
+AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["DAM1",-504,408,-256] }
+AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["DAM1",-520,472,-256] }
+AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["DAM1",-1016,1000,-256] }
+AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["DAM1",-1016,960,-256] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["DAM1",-1008,920,-256] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "secret": true, "pos": ["DAM1",-1504,1160,-440] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "secret": true, "pos": ["DAM1",-1536,1136,-440] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "secret": true, "pos": ["DAM1",-1536,1160,-440] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "secret": true, "pos": ["DAM1",-1512,1176,-440] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "secret": true, "pos": ["DAM1",-1560,1144,-440] }
+AP-ITEM { "category": "key", "typename": "BlueCard", "tag": "Blue Access Card", "pos": ["DAM1",672,1320,-224] }
+AP-KEY { "typename": "BlueCard", "tag": "Blue Access Card", "scopename": "DAM1", "cluster": 0, "maps": ["DAM1"] }
+AP-ITEM { "category": "medium-health", "typename": "Firstaid", "tag": "Medical Kit", "pos": ["DAM1",592,1328,-224] }
+AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["DAM1",-848,504,-224] }
+AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["DAM1",-880,504,-224] }
+AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["DAM1",-904,728,-224] }
+AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "pos": ["DAM1",-616,-480,-256] }
+AP-ITEM { "category": "small-token", "typename": "JUNKspares", "tag": "Junk Spares", "pos": ["DAM1",160,-384,-168] }
+AP-ITEM { "category": "small-token", "typename": "JUNKcable", "tag": "Junk Cable", "pos": ["DAM1",0,-512,-224] }
+AP-ITEM { "category": "small-token", "typename": "JUNKpipe", "tag": "Junk Pipe", "pos": ["DAM1",-2896,-592,-608] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["DAM1",-2896,-624,-608] }
+AP-ITEM { "category": "small-token", "typename": "JUNKspares", "tag": "Junk Spares", "pos": ["DAM1",-2896,-656,-608] }
+AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "pos": ["DAM1",-2512,-672,-640] }
+AP-ITEM { "category": "medium-health", "typename": "Firstaid", "tag": "Medical Kit", "pos": ["DAM1",-2544,-672,-640] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["DAM1",-40,200,25] }
+AP-ITEM { "category": "medium-health", "typename": "Firstaid", "tag": "Medical Kit", "pos": ["DAM1",-8,200,25] }
+AP-ITEM { "category": "small-ammo", "typename": "fortyfiveammo", "tag": "fortyfiveammo", "pos": ["DAM1",16,208,25] }
+AP-SECRET { "pos": ["DAM1","secret","sector",407] }
+AP-MAP {
+  "map": "MAP04", "levelname": "Highway Holocaust", "episodename": "Ashes 2063",
+  "checksum": "adeff52de905bdd23b09af6988f077e9", "rank": 5, "monster_count": 154,
   "info": { "levelnum": 4, "title": "Highway Holocaust", "is_lookup": false, "sky1": "ASKY1B", "sky1speed": "0.000000", "sky2": "ASKY1B", "sky2speed": "0.000000", "music": "$MUSIC_BETWEE", "music_track": "0", "cluster": 0, "flags": [] },
-  "monsters": { "shotgunthug": 47, "RevolverThug": 27, "PistolThug": 35, "Pitfiend": 45 },
+  "monsters": { "shotgunthug": 47, "RevolverThug": 23, "PistolThug": 39, "Pitfiend": 45 },
   "prereqs": [ "weapon/Glock/auto", "weapon/pumpaction2/auto" ]
 }
 AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP04",18428,24488,332] }
@@ -311,317 +353,10 @@ AP-SECRET { "pos": ["MAP04","secret","sector",1585] }
 AP-SECRET { "pos": ["MAP04","secret","sector",1873] }
 AP-SECRET { "pos": ["MAP04","secret","sector",2056] }
 AP-MAP {
-  "map": "MAP06", "levelname": "Terminus",
-  "checksum": "1eae02855b4189fe87e10d1e5838c4bd", "rank": 5, "monster_count": 31,
-  "info": { "levelnum": 6, "title": "Terminus", "is_lookup": false, "sky1": "ASKY3A", "sky1speed": "0.000000", "sky2": "ASKY3A", "sky2speed": "0.000000", "music": "$MUSIC_DDTBLU", "music_track": "0", "cluster": 0, "flags": [] },
-  "monsters": { "RIGS": 1, "MilitiaLeader": 1, "Violet": 1, "TraderSitting1": 1, "ScabbieSavage": 1, "TraderSitting2": 2, "LoserWalking": 6, "Pitfiend": 1, "BanditTalkative": 1, "ShadyTrader": 1, "ThugTalkative": 5, "TownMilitia": 9, "LoserStanding": 1 },
-  "prereqs": [  ]
-}
-AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP06",-160,312,26] }
-AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP06",-240,288,26] }
-AP-MAP {
-  "map": "MAP07", "levelname": "The City",
-  "checksum": "7a36085f1d02a891967b8478f5c35d90", "rank": 6, "monster_count": 153,
-  "info": { "levelnum": 7, "title": "The City", "is_lookup": false, "sky1": "ASKY3A", "sky1speed": "0.017500", "sky2": "ASKY3B", "sky2speed": "0.017500", "music": "$MUSIC_THE_DA", "music_track": "0", "cluster": 0, "flags": [] },
-  "monsters": { "shotgunthug": 18, "PistolThug": 14, "RevolverThug": 8, "Radroach": 5, "Master": 3, "Lurker": 13, "Haunt": 4, "Pitfiend": 57, "ScabbieSavage": 31 },
-  "prereqs": [ "weapon/Glock/auto", "weapon/pumpaction2/auto" ]
-}
-AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP07",5728,656,-144] }
-AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP07",5752,680,-144] }
-AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP07",5728,744,-144] }
-AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP07",5752,712,-144] }
-AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "pos": ["MAP07",672,1320,-352] }
-AP-ITEM { "category": "small-ammo", "typename": "fortyfiveammo", "tag": "fortyfiveammo", "pos": ["MAP07",5720,688,-128] }
-AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP07",5784,696,-144] }
-AP-ITEM { "category": "key", "typename": "YellowCard", "tag": "Yellow Access Card", "pos": ["MAP07",844,1004,-96] }
-AP-KEY { "typename": "YellowCard", "tag": "Yellow Access Card", "scopename": "MAP07", "cluster": 0, "maps": ["MAP07"] }
-AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP07",-200,-4140,-486] }
-AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP07",-164,-4132,-486] }
-AP-ITEM { "category": "small-ammo", "typename": "fortyfiveammo", "tag": "fortyfiveammo", "pos": ["MAP07",-164,-4172,-512] }
-AP-ITEM { "category": "big-ammo", "typename": "Pipebomb", "tag": "Pipebomb", "pos": ["MAP07",2144,-3800,-440] }
-AP-ITEM { "category": "big-ammo", "typename": "Pipebomb", "tag": "Pipebomb", "pos": ["MAP07",2160,-3768,-440] }
-AP-ITEM { "category": "key", "typename": "BlueSkull", "tag": "Silver Utility Key", "pos": ["MAP07",5464,-1200,-440] }
-AP-KEY { "typename": "BlueSkull", "tag": "Silver Utility Key", "scopename": "MAP07", "cluster": 0, "maps": ["MAP07"] }
-AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP07",4936,-1456,-472] }
-AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP07",4952,-1416,-472] }
-AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP07",4976,-1456,-472] }
-AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP07",4960,-1488,-472] }
-AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP07",4856,-1456,-472] }
-AP-ITEM { "category": "small-ammo", "typename": "fortyfiveammo", "tag": "fortyfiveammo", "pos": ["MAP07",4376,-1792,-568] }
-AP-ITEM { "category": "small-ammo", "typename": "slugammo", "tag": "slugammo", "pos": ["MAP07",3264,-1576,240] }
-AP-ITEM { "category": "weapon", "typename": "pumpaction2", "tag": "Classic shotgun", "pos": ["MAP07",1984,-2768,-40] }
-AP-ITEM { "category": "small-ammo", "typename": "shotgunAmmo", "tag": "shotgunAmmo", "pos": ["MAP07",1976,-2800,-40] }
-AP-ITEM { "category": "big-ammo", "typename": "AmmoPack", "tag": "AmmoPack", "pos": ["MAP07",2608,-3328,-536] }
-AP-ITEM { "category": "weapon", "typename": "JunkerMusket", "tag": "Junker Musket", "pos": ["MAP07",3224,-1600,240] }
-AP-ITEM { "category": "small-ammo", "typename": "slugammo", "tag": "slugammo", "pos": ["MAP07",4376,-1752,-568] }
-AP-ITEM { "category": "medium-armor", "typename": "ArmorLeather", "tag": "ArmorLeather", "pos": ["MAP07",2536,-3512,-440] }
-AP-ITEM { "category": "small-ammo", "typename": "NineMilammo", "tag": "NineMilammo", "pos": ["MAP07",2800,-1440,-8] }
-AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "pos": ["MAP07",2200,-1456,-8] }
-AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "pos": ["MAP07",2232,-1456,-8] }
-AP-ITEM { "category": "medium-health", "typename": "Firstaid", "tag": "Medical Kit", "pos": ["MAP07",2952,-3248,-568] }
-AP-ITEM { "category": "medium-ammo", "typename": "Shotgunbox", "tag": "Shotgunbox", "pos": ["MAP07",2912,-3016,-536] }
-AP-ITEM { "category": "small-ammo", "typename": "NineMilammo", "tag": "NineMilammo", "pos": ["MAP07",1952,-2760,-40] }
-AP-ITEM { "category": "medium-tool", "typename": "PurgeStimpack", "tag": "PURGE Stim", "secret": true, "pos": ["MAP07",5136,-1328,-440] }
-AP-ITEM { "category": "medium-tool", "typename": "PurgeStimpack", "tag": "PURGE Stim", "pos": ["MAP07",3760,-1440,275] }
-AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP07",2248,-3528,-440] }
-AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP07",2216,-3544,-440] }
-AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP07",2248,-3568,-440] }
-AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP07",2176,-3528,-440] }
-AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP07",3288,-3424,-584] }
-AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP07",3304,-3392,-584] }
-AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP07",3288,-3352,-584] }
-AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP07",3264,-3384,-584] }
-AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP07",3248,-3424,-584] }
-AP-ITEM { "category": "weapon", "typename": "NapalmGun", "tag": "Master Blaster", "pos": ["MAP07",2248,-976,-16] }
-AP-ITEM { "category": "medium-ammo", "typename": "NapalmAmmo", "tag": "NapalmAmmo", "pos": ["MAP07",2216,-992,-16] }
-AP-ITEM { "category": "big-ammo", "typename": "Pipebomb", "tag": "Pipebomb", "pos": ["MAP07",4192,888,8] }
-AP-ITEM { "category": "big-ammo", "typename": "Pipebomb", "tag": "Pipebomb", "pos": ["MAP07",4200,920,8] }
-AP-ITEM { "category": "big-ammo", "typename": "Pipebomb", "tag": "Pipebomb", "pos": ["MAP07",4160,888,8] }
-AP-ITEM { "category": "medium-health", "typename": "Firstaid", "tag": "Medical Kit", "pos": ["MAP07",4272,1040,8] }
-AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "pos": ["MAP07",4264,1008,8] }
-AP-ITEM { "category": "medium-ammo", "typename": "Shotgunbox", "tag": "Shotgunbox", "pos": ["MAP07",4368,912,8] }
-AP-ITEM { "category": "small-ammo", "typename": "NineMilammo", "tag": "NineMilammo", "pos": ["MAP07",4408,920,8] }
-AP-ITEM { "category": "medium-ammo", "typename": "Shotgunbox", "tag": "Shotgunbox", "pos": ["MAP07",5504,1896,-240] }
-AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "pos": ["MAP07",5480,1856,-240] }
-AP-ITEM { "category": "small-ammo", "typename": "fortyfiveammo", "tag": "fortyfiveammo", "pos": ["MAP07",4896,2632,-456] }
-AP-ITEM { "category": "small-ammo", "typename": "fortyfiveammo", "tag": "fortyfiveammo", "pos": ["MAP07",4896,2680,-456] }
-AP-ITEM { "category": "medium-ammo", "typename": "NapalmAmmo", "tag": "NapalmAmmo", "pos": ["MAP07",4024,1032,8] }
-AP-ITEM { "category": "medium-ammo", "typename": "NapalmAmmo", "tag": "NapalmAmmo", "pos": ["MAP07",4080,1000,8] }
-AP-ITEM { "category": "medium-armor", "typename": "ArmorLeather", "tag": "ArmorLeather", "pos": ["MAP07",3800,1392,32] }
-AP-ITEM { "category": "medium-health", "typename": "Firstaid", "tag": "Medical Kit", "pos": ["MAP07",3792,1352,32] }
-AP-ITEM { "category": "medium-tool", "typename": "PurgeStimpack", "tag": "PURGE Stim", "pos": ["MAP07",3304,984,8] }
-AP-ITEM { "category": "weapon", "typename": "Ingram3", "tag": "Michonne Ultra", "pos": ["MAP07",4416,-1880,-600] }
-AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "pos": ["MAP07",3512,2308,-392] }
-AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP07",204,1220,-256] }
-AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP07",200,1188,-256] }
-AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP07",168,1204,-256] }
-AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP07",3800,-1632,243] }
-AP-ITEM { "category": "medium-ammo", "typename": "Shotgunbox", "tag": "Shotgunbox", "pos": ["MAP07",4664,-1796,-568] }
-AP-ITEM { "category": "small-ammo", "typename": "NineMilammo", "tag": "NineMilammo", "pos": ["MAP07",4664,-1876,-568] }
-AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "pos": ["MAP07",4484,-760,-440] }
-AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP07",-1008,-3384,-576] }
-AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP07",-976,-3392,-576] }
-AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP07",-1040,-3392,-576] }
-AP-ITEM { "category": "big-useful-tool", "typename": "LanternPickup", "tag": "Lantern", "pos": ["MAP07",-1000,-3216,-576] }
-AP-ITEM { "category": "small-ammo", "typename": "fortyfiveammo", "tag": "fortyfiveammo", "pos": ["MAP07",-1016,-3248,-576] }
-AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP07",3832,-1648,243] }
-AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP07",3856,-1616,243] }
-AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP07",3824,-1616,243] }
-AP-ITEM { "category": "small-ammo", "typename": "shotgunAmmo", "tag": "shotgunAmmo", "pos": ["MAP07",4128,-832,-120] }
-AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "pos": ["MAP07",4160,-800,-120] }
-AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP07",5680,928,40] }
-AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP07",5664,976,44] }
-AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP07",5632,992,40] }
-AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP07",5552,992,40] }
-AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP07",3000,232,-120] }
-AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP07",3032,248,-120] }
-AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP07",3008,256,-120] }
-AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP07",2968,248,-88] }
-AP-SECRET { "pos": ["MAP07","secret","sector",628] }
-AP-SECRET { "pos": ["MAP07","secret","sector",906] }
-AP-SECRET { "pos": ["MAP07","secret","sector",1095] }
-AP-SECRET { "pos": ["MAP07","secret","sector",1799] }
-AP-MAP {
-  "map": "MAP08", "levelname": "Damage Control",
-  "checksum": "cf097a7c91068f9ddd3ca902096eb1f2", "rank": 7, "monster_count": 33,
-  "info": { "levelnum": 8, "title": "Damage Control", "is_lookup": false, "sky1": "ASKY3A", "sky1speed": "0.000000", "sky2": "ASKY3A", "sky2speed": "0.000000", "music": "$MUSIC_DEAD", "music_track": "0", "cluster": 0, "flags": [] },
-  "monsters": { "Master": 2, "Gemini": 1, "ScabbieSavage": 17, "Haunt": 4, "Pitfiend": 9 },
-  "prereqs": [  ]
-}
-AP-ITEM { "category": "key", "typename": "RedCard", "tag": "Red Access Card", "pos": ["MAP08",-4268,1808,88] }
-AP-KEY { "typename": "RedCard", "tag": "Red Access Card", "scopename": "MAP08", "cluster": 0, "maps": ["MAP08"] }
-AP-ITEM { "category": "weapon", "typename": "Ingram3", "tag": "Michonne Ultra", "pos": ["MAP08",-4148,1424,-320] }
-AP-ITEM { "category": "small-ammo", "typename": "NineMilammo", "tag": "NineMilammo", "pos": ["MAP08",-4108,1424,-320] }
-AP-ITEM { "category": "small-ammo", "typename": "NineMilammo", "tag": "NineMilammo", "pos": ["MAP08",-4068,1424,-320] }
-AP-ITEM { "category": "medium-ammo", "typename": "Shotgunbox", "tag": "Shotgunbox", "pos": ["MAP08",-4288,1204,-320] }
-AP-ITEM { "category": "medium-ammo", "typename": "Shotgunbox", "tag": "Shotgunbox", "pos": ["MAP08",-4332,1212,-320] }
-AP-ITEM { "category": "small-ammo", "typename": "shotgunAmmo", "tag": "shotgunAmmo", "pos": ["MAP08",-4304,1232,-320] }
-AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "pos": ["MAP08",-3824,1360,-320] }
-AP-ITEM { "category": "big-ammo", "typename": "AmmoPack", "tag": "AmmoPack", "pos": ["MAP08",-4304,1344,-352] }
-AP-ITEM { "category": "medium-health", "typename": "Firstaid", "tag": "Medical Kit", "pos": ["MAP08",-1524,740,64] }
-AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "pos": ["MAP08",-1176,792,41] }
-AP-ITEM { "category": "big-health-powerup", "typename": "RegenStimpack", "tag": "REGEN Stim", "pos": ["MAP08",-1168,760,41] }
-AP-ITEM { "category": "small-ammo", "typename": "fortyfiveammo", "tag": "fortyfiveammo", "pos": ["MAP08",-1488,992,64] }
-AP-ITEM { "category": "small-ammo", "typename": "fortyfiveammo", "tag": "fortyfiveammo", "pos": ["MAP08",-1504,956,64] }
-AP-ITEM { "category": "weapon", "typename": "pumpaction2", "tag": "Classic shotgun", "pos": ["MAP08",656,684,10] }
-AP-ITEM { "category": "small-ammo", "typename": "shotgunAmmo", "tag": "shotgunAmmo", "pos": ["MAP08",684,656,10] }
-AP-ITEM { "category": "small-ammo", "typename": "fortyfiveammo", "tag": "fortyfiveammo", "pos": ["MAP08",696,692,10] }
-AP-ITEM { "category": "medium-armor", "typename": "ArmorLeather", "tag": "ArmorLeather", "pos": ["MAP08",660,560,0] }
-AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "pos": ["MAP08",632,596,0] }
-AP-ITEM { "category": "small-ammo", "typename": "fortyfiveammo", "tag": "fortyfiveammo", "pos": ["MAP08",-2772,1368,-96] }
-AP-ITEM { "category": "small-ammo", "typename": "fortyfiveammo", "tag": "fortyfiveammo", "pos": ["MAP08",-2656,1080,-96] }
-AP-ITEM { "category": "medium-health", "typename": "Firstaid", "tag": "Medical Kit", "pos": ["MAP08",-2012,1896,32] }
-AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "pos": ["MAP08",-2056,1872,32] }
-AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP08",-2044,1596,32] }
-AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP08",-2004,1620,32] }
-AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP08",-2012,1576,32] }
-AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP08",-2040,1544,32] }
-AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP08",-1956,1624,32] }
-AP-ITEM { "category": "medium-ammo", "typename": "Shotgunbox", "tag": "Shotgunbox", "pos": ["MAP08",-4204,1588,88] }
-AP-ITEM { "category": "medium-armor", "typename": "ArmorCombat", "tag": "ArmorCombat", "pos": ["MAP08",-4256,1376,-352] }
-AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "pos": ["MAP08",-4184,1872,-72] }
-AP-ITEM { "category": "small-ammo", "typename": "fortyfiveammo", "tag": "fortyfiveammo", "pos": ["MAP08",-4220,1860,-72] }
-AP-ITEM { "category": "small-ammo", "typename": "fortyfiveammo", "tag": "fortyfiveammo", "pos": ["MAP08",-4148,1860,-72] }
-AP-ITEM { "category": "small-ammo", "typename": "shotgunAmmo", "tag": "shotgunAmmo", "pos": ["MAP08",-3792,1584,-320] }
-AP-ITEM { "category": "medium-health", "typename": "Firstaid", "tag": "Medical Kit", "pos": ["MAP08",-3740,1496,-320] }
-AP-ITEM { "category": "small-ammo", "typename": "NineMilammo", "tag": "NineMilammo", "pos": ["MAP08",-2912,1616,-96] }
-AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "pos": ["MAP08",-2944,1584,-96] }
-AP-ITEM { "category": "medium-health", "typename": "Firstaid", "tag": "Medical Kit", "pos": ["MAP08",-3872,1360,-320] }
-AP-ITEM { "category": "small-ammo", "typename": "shotgunAmmo", "tag": "shotgunAmmo", "pos": ["MAP08",-2640,172,-352] }
-AP-ITEM { "category": "weapon", "typename": "pumpaction2", "tag": "Classic shotgun", "pos": ["MAP08",-2448,144,-353] }
-AP-ITEM { "category": "weapon", "typename": "NapalmGun", "tag": "Master Blaster", "pos": ["MAP08",-2288,-64,-352] }
-AP-ITEM { "category": "weapon", "typename": "JunkerMusket", "tag": "Junker Musket", "pos": ["MAP08",-2712,-56,-352] }
-AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP08",-2720,3168,32] }
-AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP08",-2656,3096,32] }
-AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP08",-2704,3072,32] }
-AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP08",-2672,3016,32] }
-AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP08",-2728,3024,32] }
-AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP08",-2720,2968,32] }
-AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP08",-2680,2944,32] }
-AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP08",-2712,2912,32] }
-AP-ITEM { "category": "medium-health", "typename": "Firstaid", "tag": "Medical Kit", "pos": ["MAP08",-2568,2864,64] }
-AP-ITEM { "category": "small-ammo", "typename": "fortyfiveammo", "tag": "fortyfiveammo", "pos": ["MAP08",-2616,2864,64] }
-AP-ITEM { "category": "small-ammo", "typename": "fortyfiveammo", "tag": "fortyfiveammo", "pos": ["MAP08",-4176,1376,-352] }
-AP-ITEM { "category": "small-ammo", "typename": "fortyfiveammo", "tag": "fortyfiveammo", "pos": ["MAP08",-4160,1360,-352] }
-AP-ITEM { "category": "small-ammo", "typename": "fortyfiveammo", "tag": "fortyfiveammo", "pos": ["MAP08",-4176,1344,-352] }
-AP-ITEM { "category": "small-ammo", "typename": "slugammo", "tag": "slugammo", "pos": ["MAP08",-2672,-32,-352] }
-AP-ITEM { "category": "key", "typename": "YellowCard", "tag": "Yellow Access Card", "pos": ["MAP08",-3488,-192,-448] }
-AP-KEY { "typename": "YellowCard", "tag": "Yellow Access Card", "scopename": "MAP08", "cluster": 0, "maps": ["MAP08"] }
-AP-ITEM { "category": "medium-ammo", "typename": "NapalmAmmo", "tag": "NapalmAmmo", "pos": ["MAP08",-3920,1912,-72] }
-AP-ITEM { "category": "small-ammo", "typename": "NineMilammo", "tag": "NineMilammo", "pos": ["MAP08",-3880,1928,-72] }
-AP-ITEM { "category": "medium-health", "typename": "Firstaid", "tag": "Medical Kit", "pos": ["MAP08",-3216,296,-256] }
-AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "pos": ["MAP08",-3176,296,-256] }
-AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "pos": ["MAP08",-3192,272,-288] }
-AP-ITEM { "category": "medium-ammo", "typename": "Shotgunbox", "tag": "Shotgunbox", "pos": ["MAP08",-2016,1856,32] }
-AP-ITEM { "category": "medium-ammo", "typename": "NapalmAmmo", "tag": "NapalmAmmo", "pos": ["MAP08",-4232,1664,56] }
-AP-ITEM { "category": "big-ammo", "typename": "Pipebomb", "tag": "Pipebomb", "pos": ["MAP08",-4224,1624,56] }
-AP-ITEM { "category": "big-ammo", "typename": "Pipebomb", "tag": "Pipebomb", "pos": ["MAP08",-4200,1656,56] }
-AP-ITEM { "category": "big-ammo", "typename": "AmmoPack", "tag": "AmmoPack", "pos": ["MAP08",-4168,1624,56] }
-AP-ITEM { "category": "weapon", "typename": "revolver", "tag": ".45 revolver", "pos": ["MAP08",-3144,20,-288] }
-AP-SECRET { "pos": ["MAP08","secret","sector",503] }
-AP-SECRET { "pos": ["MAP08","secret","sector",623] }
-AP-MAP {
-  "map": "MAP09", "levelname": "Temple of The Dollar",
-  "checksum": "bcf6fc192c31254f6ad3f9e1e1cc90d8", "rank": 6, "monster_count": 111,
-  "info": { "levelnum": 9, "title": "Temple of The Dollar", "is_lookup": false, "sky1": "ASKY1B", "sky1speed": "0.000000", "sky2": "ASKY1B", "sky2speed": "0.000000", "music": "$MUSIC_SHAWN", "music_track": "0", "cluster": 0, "flags": [] },
-  "monsters": { "shotgunthug": 34, "ScabbieSavage": 12, "Master": 1, "RevolverThug": 13, "Lurker": 5, "PistolThug": 23, "Pitfiend": 23 },
-  "prereqs": [ "weapon/Glock/auto", "weapon/pumpaction2/auto" ]
-}
-AP-ITEM { "category": "small-ammo", "typename": "fortyfiveammo", "tag": "fortyfiveammo", "pos": ["MAP09",-1024,160,-376] }
-AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "pos": ["MAP09",-1024,248,-376] }
-AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP09",224,-1504,-384] }
-AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP09",328,-1544,-384] }
-AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP09",392,-1512,-384] }
-AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP09",456,-1568,-384] }
-AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "secret": true, "pos": ["MAP09",152,-464,-256] }
-AP-ITEM { "category": "weapon", "typename": "NapalmGun", "tag": "Master Blaster", "pos": ["MAP09",1664,-96,144] }
-AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP09",128,-496,-224] }
-AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP09",168,-496,-224] }
-AP-ITEM { "category": "weapon", "typename": "SawedOff", "tag": "Sawed-off Shotgun", "pos": ["MAP09",200,-384,-232] }
-AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP09",2528,-360,160] }
-AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP09",2568,-360,160] }
-AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP09",2608,-120,160] }
-AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP09",2256,-208,160] }
-AP-ITEM { "category": "medium-health", "typename": "Firstaid", "tag": "Medical Kit", "pos": ["MAP09",992,864,128] }
-AP-ITEM { "category": "key", "typename": "RedCard", "tag": "Red Access Card", "pos": ["MAP09",-1064,3944,256] }
-AP-KEY { "typename": "RedCard", "tag": "Red Access Card", "scopename": "MAP09", "cluster": 0, "maps": ["MAP09"] }
-AP-ITEM { "category": "key", "typename": "YellowCard", "tag": "Yellow Access Card", "pos": ["MAP09",3120,3624,160] }
-AP-KEY { "typename": "YellowCard", "tag": "Yellow Access Card", "scopename": "MAP09", "cluster": 0, "maps": ["MAP09"] }
-AP-ITEM { "category": "medium-token", "typename": "CollectibleHissy", "tag": "Collectible Hissy Doll", "pos": ["MAP09",-624,2528,160] }
-AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "pos": ["MAP09",276,-876,-256] }
-AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP09",3036,-356,-104] }
-AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP09",3076,-356,-104] }
-AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP09",3084,-396,-104] }
-AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP09",3192,-532,-128] }
-AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP09",3188,-492,-128] }
-AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP09",2344,1072,0] }
-AP-ITEM { "category": "small-ammo", "typename": "NineMilammo", "tag": "NineMilammo", "pos": ["MAP09",528,3664,328] }
-AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "pos": ["MAP09",528,3616,328] }
-AP-ITEM { "category": "medium-armor", "typename": "ArmorLeather", "tag": "ArmorLeather", "pos": ["MAP09",340,808,32] }
-AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP09",344,1164,32] }
-AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP09",336,1208,32] }
-AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP09",352,1244,32] }
-AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP09",332,1284,32] }
-AP-ITEM { "category": "small-ammo", "typename": "fortyfiveammo", "tag": "fortyfiveammo", "pos": ["MAP09",1808,1744,160] }
-AP-ITEM { "category": "small-ammo", "typename": "fortyfiveammo", "tag": "fortyfiveammo", "pos": ["MAP09",2144,2048,160] }
-AP-ITEM { "category": "medium-health", "typename": "Firstaid", "tag": "Medical Kit", "secret": true, "pos": ["MAP09",616,3960,304] }
-AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "secret": true, "pos": ["MAP09",556,3956,304] }
-AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "secret": true, "pos": ["MAP09",540,3916,304] }
-AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "secret": true, "pos": ["MAP09",548,3884,304] }
-AP-ITEM { "category": "small-ammo", "typename": "NineMilammo", "tag": "NineMilammo", "pos": ["MAP09",3124,3452,160] }
-AP-ITEM { "category": "medium-health", "typename": "Firstaid", "tag": "Medical Kit", "pos": ["MAP09",3120,3408,160] }
-AP-ITEM { "category": "medium-health", "typename": "Firstaid", "tag": "Medical Kit", "pos": ["MAP09",2772,3208,192] }
-AP-ITEM { "category": "weapon", "typename": "pumpaction2", "tag": "Classic shotgun", "pos": ["MAP09",-1584,1296,32] }
-AP-ITEM { "category": "small-ammo", "typename": "fortyfiveammo", "tag": "fortyfiveammo", "pos": ["MAP09",-1568,1248,32] }
-AP-ITEM { "category": "weapon", "typename": "Ingram3", "tag": "Michonne Ultra", "pos": ["MAP09",1836,3104,160] }
-AP-ITEM { "category": "weapon", "typename": "JACKHAMMER", "tag": "JackHammer", "pos": ["MAP09",-2092,412,-8] }
-AP-ITEM { "category": "weapon", "typename": "pumpaction2", "tag": "Classic shotgun", "pos": ["MAP09",-2096,452,-8] }
-AP-ITEM { "category": "medium-ammo", "typename": "Shotgunbox", "tag": "Shotgunbox", "pos": ["MAP09",-2088,484,-8] }
-AP-ITEM { "category": "small-ammo", "typename": "NineMilammo", "tag": "NineMilammo", "pos": ["MAP09",-2124,408,-8] }
-AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "pos": ["MAP09",-2284,412,-8] }
-AP-ITEM { "category": "medium-health", "typename": "Firstaid", "tag": "Medical Kit", "pos": ["MAP09",-2292,452,-8] }
-AP-ITEM { "category": "small-ammo", "typename": "fortyfiveammo", "tag": "fortyfiveammo", "pos": ["MAP09",3444,928,32] }
-AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "pos": ["MAP09",3416,948,32] }
-AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "pos": ["MAP09",4128,1580,32] }
-AP-ITEM { "category": "big-attack-powerup", "typename": "Powerrage", "tag": "BRUTE Stim", "pos": ["MAP09",4200,1580,32] }
-AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP09",2436,-356,128] }
-AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP09",2404,-344,128] }
-AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP09",2388,-368,128] }
-AP-ITEM { "category": "big-ammo", "typename": "Pipebomb", "tag": "Pipebomb", "pos": ["MAP09",-864,2472,128] }
-AP-ITEM { "category": "big-ammo", "typename": "Pipebomb", "tag": "Pipebomb", "pos": ["MAP09",-900,2476,128] }
-AP-ITEM { "category": "weapon", "typename": "revolver", "tag": ".45 revolver", "pos": ["MAP09",968,944,128] }
-AP-SECRET { "pos": ["MAP09","secret","sector",562] }
-AP-SECRET { "pos": ["MAP09","secret","sector",674] }
-AP-SECRET { "pos": ["MAP09","secret","sector",760] }
-AP-SECRET { "pos": ["MAP09","secret","sector",826] }
-AP-SECRET { "pos": ["MAP09","secret","sector",881] }
-AP-MAP {
-  "map": "DAM1", "levelname": "Those Dam Raiders",
-  "checksum": "23fa3cb04d86e464f20a8c7441c720dc", "rank": 4, "monster_count": 71,
-  "info": { "levelnum": 0, "title": "Those Dam Raiders", "is_lookup": false, "sky1": "ASKY1B", "sky1speed": "0.000000", "sky2": "ASKY1B", "sky2speed": "0.000000", "music": "$MUSIC_EVIL", "music_track": "0", "cluster": 0, "flags": [] },
-  "monsters": { "shotgunthug": 29, "TownMilitia": 1, "RevolverThug": 13, "PistolThug": 21, "Pitfiend": 7 },
-  "prereqs": [ "weapon/Glock/auto", "weapon/pumpaction2/auto" ]
-}
-AP-ITEM { "category": "key", "typename": "RedSkull", "tag": "Bronze Staff Key", "pos": ["DAM1",112,-512,-224] }
-AP-KEY { "typename": "RedSkull", "tag": "Bronze Staff Key", "scopename": "DAM1", "cluster": 0, "maps": ["DAM1"] }
-AP-ITEM { "category": "medium-health", "typename": "Firstaid", "tag": "Medical Kit", "pos": ["DAM1",160,-496,-224] }
-AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "pos": ["DAM1",-408,336,-256] }
-AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["DAM1",-408,456,-256] }
-AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["DAM1",-448,456,-256] }
-AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["DAM1",-488,440,-256] }
-AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["DAM1",-504,408,-256] }
-AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["DAM1",-520,472,-256] }
-AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["DAM1",-1016,1000,-256] }
-AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["DAM1",-1016,960,-256] }
-AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["DAM1",-1008,920,-256] }
-AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "secret": true, "pos": ["DAM1",-1504,1160,-440] }
-AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "secret": true, "pos": ["DAM1",-1536,1136,-440] }
-AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "secret": true, "pos": ["DAM1",-1536,1160,-440] }
-AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "secret": true, "pos": ["DAM1",-1512,1176,-440] }
-AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "secret": true, "pos": ["DAM1",-1560,1144,-440] }
-AP-ITEM { "category": "key", "typename": "BlueCard", "tag": "Blue Access Card", "pos": ["DAM1",672,1320,-224] }
-AP-KEY { "typename": "BlueCard", "tag": "Blue Access Card", "scopename": "DAM1", "cluster": 0, "maps": ["DAM1"] }
-AP-ITEM { "category": "medium-health", "typename": "Firstaid", "tag": "Medical Kit", "pos": ["DAM1",592,1328,-224] }
-AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["DAM1",-848,504,-224] }
-AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["DAM1",-880,504,-224] }
-AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["DAM1",-904,728,-224] }
-AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "pos": ["DAM1",-616,-480,-256] }
-AP-ITEM { "category": "small-token", "typename": "JUNKspares", "tag": "Junk Spares", "pos": ["DAM1",160,-384,-168] }
-AP-ITEM { "category": "small-token", "typename": "JUNKcable", "tag": "Junk Cable", "pos": ["DAM1",0,-512,-224] }
-AP-ITEM { "category": "small-token", "typename": "JUNKpipe", "tag": "Junk Pipe", "pos": ["DAM1",-2896,-592,-608] }
-AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["DAM1",-2896,-624,-608] }
-AP-ITEM { "category": "small-token", "typename": "JUNKspares", "tag": "Junk Spares", "pos": ["DAM1",-2896,-656,-608] }
-AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "pos": ["DAM1",-2512,-672,-640] }
-AP-ITEM { "category": "medium-health", "typename": "Firstaid", "tag": "Medical Kit", "pos": ["DAM1",-2544,-672,-640] }
-AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["DAM1",-40,200,25] }
-AP-ITEM { "category": "medium-health", "typename": "Firstaid", "tag": "Medical Kit", "pos": ["DAM1",-8,200,25] }
-AP-ITEM { "category": "small-ammo", "typename": "fortyfiveammo", "tag": "fortyfiveammo", "pos": ["DAM1",16,208,25] }
-AP-SECRET { "pos": ["DAM1","secret","sector",407] }
-AP-MAP {
-  "map": "MAP05", "levelname": "The Sub-Caverns",
-  "checksum": "4e570be726f9cafa781cf16fcd756447", "rank": 1, "monster_count": 193,
+  "map": "MAP05", "levelname": "The Sub-Caverns", "episodename": "Ashes 2063",
+  "checksum": "4e570be726f9cafa781cf16fcd756447", "rank": 6, "monster_count": 193,
   "info": { "levelnum": 5, "title": "The Sub-Caverns", "is_lookup": false, "sky1": "ASKY1B", "sky1speed": "0.000000", "sky2": "ASKY1B", "sky2speed": "0.000000", "music": "$MUSIC_COUNTD", "music_track": "0", "cluster": 0, "flags": [] },
-  "monsters": { "shotgunthug": 1, "ScabbieSavage": 61, "GlowPlant1": 3, "PistolThug": 3, "OldCoot": 1, "Master": 1, "Lurker": 15, "Haunt": 7, "Radroach": 9, "Gasbag": 26, "Pitfiend": 66 },
+  "monsters": { "shotgunthug": 1, "ScabbieSavage": 61, "GlowPlant1": 3, "PistolThug": 2, "RevolverThug": 1, "OldCoot": 1, "Master": 1, "Lurker": 15, "Haunt": 7, "Radroach": 9, "Gasbag": 26, "Pitfiend": 66 },
   "prereqs": [ "weapon/Glock/auto", "weapon/pumpaction2/auto" ]
 }
 AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP05",292,-1768,234] }
@@ -777,10 +512,275 @@ AP-SECRET { "pos": ["MAP05","secret","sector",1604] }
 AP-SECRET { "pos": ["MAP05","secret","sector",1605] }
 AP-SECRET { "pos": ["MAP05","secret","sector",1662] }
 AP-MAP {
-  "map": "MAP51", "levelname": "Dead Man Walking",
+  "map": "MAP09", "levelname": "Temple of The Dollar", "episodename": "Ashes 2063",
+  "checksum": "bcf6fc192c31254f6ad3f9e1e1cc90d8", "rank": 7, "monster_count": 111,
+  "info": { "levelnum": 9, "title": "Temple of The Dollar", "is_lookup": false, "sky1": "ASKY1B", "sky1speed": "0.000000", "sky2": "ASKY1B", "sky2speed": "0.000000", "music": "$MUSIC_SHAWN", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "shotgunthug": 34, "ScabbieSavage": 12, "Master": 1, "RevolverThug": 11, "Lurker": 5, "PistolThug": 25, "Pitfiend": 23 },
+  "prereqs": [ "weapon/Glock/auto", "weapon/pumpaction2/auto" ]
+}
+AP-ITEM { "category": "small-ammo", "typename": "fortyfiveammo", "tag": "fortyfiveammo", "pos": ["MAP09",-1024,160,-376] }
+AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "pos": ["MAP09",-1024,248,-376] }
+AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP09",224,-1504,-384] }
+AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP09",328,-1544,-384] }
+AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP09",392,-1512,-384] }
+AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP09",456,-1568,-384] }
+AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "secret": true, "pos": ["MAP09",152,-464,-256] }
+AP-ITEM { "category": "weapon", "typename": "NapalmGun", "tag": "Master Blaster", "pos": ["MAP09",1664,-96,144] }
+AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP09",128,-496,-224] }
+AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP09",168,-496,-224] }
+AP-ITEM { "category": "weapon", "typename": "SawedOff", "tag": "Sawed-off Shotgun", "pos": ["MAP09",200,-384,-232] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP09",2528,-360,160] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP09",2568,-360,160] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP09",2608,-120,160] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP09",2256,-208,160] }
+AP-ITEM { "category": "medium-health", "typename": "Firstaid", "tag": "Medical Kit", "pos": ["MAP09",992,864,128] }
+AP-ITEM { "category": "key", "typename": "RedCard", "tag": "Red Access Card", "pos": ["MAP09",-1064,3944,256] }
+AP-KEY { "typename": "RedCard", "tag": "Red Access Card", "scopename": "MAP09", "cluster": 0, "maps": ["MAP09"] }
+AP-ITEM { "category": "key", "typename": "YellowCard", "tag": "Yellow Access Card", "pos": ["MAP09",3120,3624,160] }
+AP-KEY { "typename": "YellowCard", "tag": "Yellow Access Card", "scopename": "MAP09", "cluster": 0, "maps": ["MAP09"] }
+AP-ITEM { "category": "medium-token", "typename": "CollectibleHissy", "tag": "Collectible Hissy Doll", "pos": ["MAP09",-624,2528,160] }
+AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "pos": ["MAP09",276,-876,-256] }
+AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP09",3036,-356,-104] }
+AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP09",3076,-356,-104] }
+AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP09",3084,-396,-104] }
+AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP09",3192,-532,-128] }
+AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP09",3188,-492,-128] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP09",2344,1072,0] }
+AP-ITEM { "category": "small-ammo", "typename": "NineMilammo", "tag": "NineMilammo", "pos": ["MAP09",528,3664,328] }
+AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "pos": ["MAP09",528,3616,328] }
+AP-ITEM { "category": "medium-armor", "typename": "ArmorLeather", "tag": "ArmorLeather", "pos": ["MAP09",340,808,32] }
+AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP09",344,1164,32] }
+AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP09",336,1208,32] }
+AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP09",352,1244,32] }
+AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP09",332,1284,32] }
+AP-ITEM { "category": "small-ammo", "typename": "fortyfiveammo", "tag": "fortyfiveammo", "pos": ["MAP09",1808,1744,160] }
+AP-ITEM { "category": "small-ammo", "typename": "fortyfiveammo", "tag": "fortyfiveammo", "pos": ["MAP09",2144,2048,160] }
+AP-ITEM { "category": "medium-health", "typename": "Firstaid", "tag": "Medical Kit", "secret": true, "pos": ["MAP09",616,3960,304] }
+AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "secret": true, "pos": ["MAP09",556,3956,304] }
+AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "secret": true, "pos": ["MAP09",540,3916,304] }
+AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "secret": true, "pos": ["MAP09",548,3884,304] }
+AP-ITEM { "category": "small-ammo", "typename": "NineMilammo", "tag": "NineMilammo", "pos": ["MAP09",3124,3452,160] }
+AP-ITEM { "category": "medium-health", "typename": "Firstaid", "tag": "Medical Kit", "pos": ["MAP09",3120,3408,160] }
+AP-ITEM { "category": "medium-health", "typename": "Firstaid", "tag": "Medical Kit", "pos": ["MAP09",2772,3208,192] }
+AP-ITEM { "category": "weapon", "typename": "pumpaction2", "tag": "Classic shotgun", "pos": ["MAP09",-1584,1296,32] }
+AP-ITEM { "category": "small-ammo", "typename": "fortyfiveammo", "tag": "fortyfiveammo", "pos": ["MAP09",-1568,1248,32] }
+AP-ITEM { "category": "weapon", "typename": "Ingram3", "tag": "Michonne Ultra", "pos": ["MAP09",1836,3104,160] }
+AP-ITEM { "category": "weapon", "typename": "JACKHAMMER", "tag": "JackHammer", "pos": ["MAP09",-2092,412,-8] }
+AP-ITEM { "category": "weapon", "typename": "pumpaction2", "tag": "Classic shotgun", "pos": ["MAP09",-2096,452,-8] }
+AP-ITEM { "category": "medium-ammo", "typename": "Shotgunbox", "tag": "Shotgunbox", "pos": ["MAP09",-2088,484,-8] }
+AP-ITEM { "category": "small-ammo", "typename": "NineMilammo", "tag": "NineMilammo", "pos": ["MAP09",-2124,408,-8] }
+AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "pos": ["MAP09",-2284,412,-8] }
+AP-ITEM { "category": "medium-health", "typename": "Firstaid", "tag": "Medical Kit", "pos": ["MAP09",-2292,452,-8] }
+AP-ITEM { "category": "small-ammo", "typename": "fortyfiveammo", "tag": "fortyfiveammo", "pos": ["MAP09",3444,928,32] }
+AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "pos": ["MAP09",3416,948,32] }
+AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "pos": ["MAP09",4128,1580,32] }
+AP-ITEM { "category": "big-attack-powerup", "typename": "Powerrage", "tag": "BRUTE Stim", "pos": ["MAP09",4200,1580,32] }
+AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP09",2436,-356,128] }
+AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP09",2404,-344,128] }
+AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP09",2388,-368,128] }
+AP-ITEM { "category": "big-ammo", "typename": "Pipebomb", "tag": "Pipebomb", "pos": ["MAP09",-864,2472,128] }
+AP-ITEM { "category": "big-ammo", "typename": "Pipebomb", "tag": "Pipebomb", "pos": ["MAP09",-900,2476,128] }
+AP-ITEM { "category": "weapon", "typename": "revolver", "tag": ".45 revolver", "pos": ["MAP09",968,944,128] }
+AP-SECRET { "pos": ["MAP09","secret","sector",562] }
+AP-SECRET { "pos": ["MAP09","secret","sector",674] }
+AP-SECRET { "pos": ["MAP09","secret","sector",760] }
+AP-SECRET { "pos": ["MAP09","secret","sector",826] }
+AP-SECRET { "pos": ["MAP09","secret","sector",881] }
+AP-MAP {
+  "map": "MAP06", "levelname": "Terminus", "episodename": "Ashes 2063",
+  "checksum": "1eae02855b4189fe87e10d1e5838c4bd", "rank": 8, "monster_count": 31,
+  "info": { "levelnum": 6, "title": "Terminus", "is_lookup": false, "sky1": "ASKY3A", "sky1speed": "0.000000", "sky2": "ASKY3A", "sky2speed": "0.000000", "music": "$MUSIC_DDTBLU", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "RIGS": 1, "MilitiaLeader": 1, "Violet": 1, "TraderSitting1": 1, "ScabbieSavage": 1, "TraderSitting2": 2, "LoserWalking": 6, "Pitfiend": 1, "BanditTalkative": 1, "ShadyTrader": 1, "ThugTalkative": 5, "TownMilitia": 9, "LoserStanding": 1 },
+  "prereqs": [  ]
+}
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP06",-160,312,26] }
+AP-ITEM { "category": "small-token", "typename": "JUNKgear", "tag": "Junk Gear", "pos": ["MAP06",-240,288,26] }
+AP-MAP {
+  "map": "MAP07", "levelname": "The City", "episodename": "Ashes 2063",
+  "checksum": "7a36085f1d02a891967b8478f5c35d90", "rank": 9, "monster_count": 153,
+  "info": { "levelnum": 7, "title": "The City", "is_lookup": false, "sky1": "ASKY3A", "sky1speed": "0.017500", "sky2": "ASKY3B", "sky2speed": "0.017500", "music": "$MUSIC_THE_DA", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "shotgunthug": 18, "RevolverThug": 3, "PistolThug": 19, "Radroach": 5, "Master": 3, "Lurker": 13, "Haunt": 4, "Pitfiend": 57, "ScabbieSavage": 31 },
+  "prereqs": [ "weapon/Glock/auto", "weapon/pumpaction2/auto" ]
+}
+AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP07",5728,656,-144] }
+AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP07",5752,680,-144] }
+AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP07",5728,744,-144] }
+AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP07",5752,712,-144] }
+AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "pos": ["MAP07",672,1320,-352] }
+AP-ITEM { "category": "small-ammo", "typename": "fortyfiveammo", "tag": "fortyfiveammo", "pos": ["MAP07",5720,688,-128] }
+AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP07",5784,696,-144] }
+AP-ITEM { "category": "key", "typename": "YellowCard", "tag": "Yellow Access Card", "pos": ["MAP07",844,1004,-96] }
+AP-KEY { "typename": "YellowCard", "tag": "Yellow Access Card", "scopename": "MAP07", "cluster": 0, "maps": ["MAP07"] }
+AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP07",-200,-4140,-486] }
+AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP07",-164,-4132,-486] }
+AP-ITEM { "category": "small-ammo", "typename": "fortyfiveammo", "tag": "fortyfiveammo", "pos": ["MAP07",-164,-4172,-512] }
+AP-ITEM { "category": "big-ammo", "typename": "Pipebomb", "tag": "Pipebomb", "pos": ["MAP07",2144,-3800,-440] }
+AP-ITEM { "category": "big-ammo", "typename": "Pipebomb", "tag": "Pipebomb", "pos": ["MAP07",2160,-3768,-440] }
+AP-ITEM { "category": "key", "typename": "BlueSkull", "tag": "Silver Utility Key", "pos": ["MAP07",5464,-1200,-440] }
+AP-KEY { "typename": "BlueSkull", "tag": "Silver Utility Key", "scopename": "MAP07", "cluster": 0, "maps": ["MAP07"] }
+AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP07",4936,-1456,-472] }
+AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP07",4952,-1416,-472] }
+AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP07",4976,-1456,-472] }
+AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP07",4960,-1488,-472] }
+AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP07",4856,-1456,-472] }
+AP-ITEM { "category": "small-ammo", "typename": "fortyfiveammo", "tag": "fortyfiveammo", "pos": ["MAP07",4376,-1792,-568] }
+AP-ITEM { "category": "small-ammo", "typename": "slugammo", "tag": "slugammo", "pos": ["MAP07",3264,-1576,240] }
+AP-ITEM { "category": "weapon", "typename": "pumpaction2", "tag": "Classic shotgun", "pos": ["MAP07",1984,-2768,-40] }
+AP-ITEM { "category": "small-ammo", "typename": "shotgunAmmo", "tag": "shotgunAmmo", "pos": ["MAP07",1976,-2800,-40] }
+AP-ITEM { "category": "big-ammo", "typename": "AmmoPack", "tag": "AmmoPack", "pos": ["MAP07",2608,-3328,-536] }
+AP-ITEM { "category": "weapon", "typename": "JunkerMusket", "tag": "Junker Musket", "pos": ["MAP07",3224,-1600,240] }
+AP-ITEM { "category": "small-ammo", "typename": "slugammo", "tag": "slugammo", "pos": ["MAP07",4376,-1752,-568] }
+AP-ITEM { "category": "medium-armor", "typename": "ArmorLeather", "tag": "ArmorLeather", "pos": ["MAP07",2536,-3512,-440] }
+AP-ITEM { "category": "small-ammo", "typename": "NineMilammo", "tag": "NineMilammo", "pos": ["MAP07",2800,-1440,-8] }
+AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "pos": ["MAP07",2200,-1456,-8] }
+AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "pos": ["MAP07",2232,-1456,-8] }
+AP-ITEM { "category": "medium-health", "typename": "Firstaid", "tag": "Medical Kit", "pos": ["MAP07",2952,-3248,-568] }
+AP-ITEM { "category": "medium-ammo", "typename": "Shotgunbox", "tag": "Shotgunbox", "pos": ["MAP07",2912,-3016,-536] }
+AP-ITEM { "category": "small-ammo", "typename": "NineMilammo", "tag": "NineMilammo", "pos": ["MAP07",1952,-2760,-40] }
+AP-ITEM { "category": "medium-tool", "typename": "PurgeStimpack", "tag": "PURGE Stim", "secret": true, "pos": ["MAP07",5136,-1328,-440] }
+AP-ITEM { "category": "medium-tool", "typename": "PurgeStimpack", "tag": "PURGE Stim", "pos": ["MAP07",3760,-1440,275] }
+AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP07",2248,-3528,-440] }
+AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP07",2216,-3544,-440] }
+AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP07",2248,-3568,-440] }
+AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP07",2176,-3528,-440] }
+AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP07",3288,-3424,-584] }
+AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP07",3304,-3392,-584] }
+AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP07",3288,-3352,-584] }
+AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP07",3264,-3384,-584] }
+AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP07",3248,-3424,-584] }
+AP-ITEM { "category": "weapon", "typename": "NapalmGun", "tag": "Master Blaster", "pos": ["MAP07",2248,-976,-16] }
+AP-ITEM { "category": "medium-ammo", "typename": "NapalmAmmo", "tag": "NapalmAmmo", "pos": ["MAP07",2216,-992,-16] }
+AP-ITEM { "category": "big-ammo", "typename": "Pipebomb", "tag": "Pipebomb", "pos": ["MAP07",4192,888,8] }
+AP-ITEM { "category": "big-ammo", "typename": "Pipebomb", "tag": "Pipebomb", "pos": ["MAP07",4200,920,8] }
+AP-ITEM { "category": "big-ammo", "typename": "Pipebomb", "tag": "Pipebomb", "pos": ["MAP07",4160,888,8] }
+AP-ITEM { "category": "medium-health", "typename": "Firstaid", "tag": "Medical Kit", "pos": ["MAP07",4272,1040,8] }
+AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "pos": ["MAP07",4264,1008,8] }
+AP-ITEM { "category": "medium-ammo", "typename": "Shotgunbox", "tag": "Shotgunbox", "pos": ["MAP07",4368,912,8] }
+AP-ITEM { "category": "small-ammo", "typename": "NineMilammo", "tag": "NineMilammo", "pos": ["MAP07",4408,920,8] }
+AP-ITEM { "category": "medium-ammo", "typename": "Shotgunbox", "tag": "Shotgunbox", "pos": ["MAP07",5504,1896,-240] }
+AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "pos": ["MAP07",5480,1856,-240] }
+AP-ITEM { "category": "small-ammo", "typename": "fortyfiveammo", "tag": "fortyfiveammo", "pos": ["MAP07",4896,2632,-456] }
+AP-ITEM { "category": "small-ammo", "typename": "fortyfiveammo", "tag": "fortyfiveammo", "pos": ["MAP07",4896,2680,-456] }
+AP-ITEM { "category": "medium-ammo", "typename": "NapalmAmmo", "tag": "NapalmAmmo", "pos": ["MAP07",4024,1032,8] }
+AP-ITEM { "category": "medium-ammo", "typename": "NapalmAmmo", "tag": "NapalmAmmo", "pos": ["MAP07",4080,1000,8] }
+AP-ITEM { "category": "medium-armor", "typename": "ArmorLeather", "tag": "ArmorLeather", "pos": ["MAP07",3800,1392,32] }
+AP-ITEM { "category": "medium-health", "typename": "Firstaid", "tag": "Medical Kit", "pos": ["MAP07",3792,1352,32] }
+AP-ITEM { "category": "medium-tool", "typename": "PurgeStimpack", "tag": "PURGE Stim", "pos": ["MAP07",3304,984,8] }
+AP-ITEM { "category": "weapon", "typename": "Ingram3", "tag": "Michonne Ultra", "pos": ["MAP07",4416,-1880,-600] }
+AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "pos": ["MAP07",3512,2308,-392] }
+AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP07",204,1220,-256] }
+AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP07",200,1188,-256] }
+AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP07",168,1204,-256] }
+AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP07",3800,-1632,243] }
+AP-ITEM { "category": "medium-ammo", "typename": "Shotgunbox", "tag": "Shotgunbox", "pos": ["MAP07",4664,-1796,-568] }
+AP-ITEM { "category": "small-ammo", "typename": "NineMilammo", "tag": "NineMilammo", "pos": ["MAP07",4664,-1876,-568] }
+AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "pos": ["MAP07",4484,-760,-440] }
+AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP07",-1008,-3384,-576] }
+AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP07",-976,-3392,-576] }
+AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP07",-1040,-3392,-576] }
+AP-ITEM { "category": "big-useful-tool", "typename": "LanternPickup", "tag": "Lantern", "pos": ["MAP07",-1000,-3216,-576] }
+AP-ITEM { "category": "small-ammo", "typename": "fortyfiveammo", "tag": "fortyfiveammo", "pos": ["MAP07",-1016,-3248,-576] }
+AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP07",3832,-1648,243] }
+AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP07",3856,-1616,243] }
+AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP07",3824,-1616,243] }
+AP-ITEM { "category": "small-ammo", "typename": "shotgunAmmo", "tag": "shotgunAmmo", "pos": ["MAP07",4128,-832,-120] }
+AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "pos": ["MAP07",4160,-800,-120] }
+AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP07",5680,928,40] }
+AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP07",5664,976,44] }
+AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP07",5632,992,40] }
+AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP07",5552,992,40] }
+AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP07",3000,232,-120] }
+AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP07",3032,248,-120] }
+AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP07",3008,256,-120] }
+AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP07",2968,248,-88] }
+AP-SECRET { "pos": ["MAP07","secret","sector",628] }
+AP-SECRET { "pos": ["MAP07","secret","sector",906] }
+AP-SECRET { "pos": ["MAP07","secret","sector",1095] }
+AP-SECRET { "pos": ["MAP07","secret","sector",1799] }
+AP-MAP {
+  "map": "MAP08", "levelname": "Damage Control", "episodename": "Ashes 2063",
+  "checksum": "cf097a7c91068f9ddd3ca902096eb1f2", "rank": 10, "monster_count": 33,
+  "info": { "levelnum": 8, "title": "Damage Control", "is_lookup": false, "sky1": "ASKY3A", "sky1speed": "0.000000", "sky2": "ASKY3A", "sky2speed": "0.000000", "music": "$MUSIC_DEAD", "music_track": "0", "cluster": 0, "flags": [] },
+  "monsters": { "Master": 2, "Gemini": 1, "ScabbieSavage": 17, "Haunt": 4, "Pitfiend": 9 },
+  "prereqs": [  ]
+}
+AP-ITEM { "category": "key", "typename": "RedCard", "tag": "Red Access Card", "pos": ["MAP08",-4268,1808,88] }
+AP-KEY { "typename": "RedCard", "tag": "Red Access Card", "scopename": "MAP08", "cluster": 0, "maps": ["MAP08"] }
+AP-ITEM { "category": "weapon", "typename": "Ingram3", "tag": "Michonne Ultra", "pos": ["MAP08",-4148,1424,-320] }
+AP-ITEM { "category": "small-ammo", "typename": "NineMilammo", "tag": "NineMilammo", "pos": ["MAP08",-4108,1424,-320] }
+AP-ITEM { "category": "small-ammo", "typename": "NineMilammo", "tag": "NineMilammo", "pos": ["MAP08",-4068,1424,-320] }
+AP-ITEM { "category": "medium-ammo", "typename": "Shotgunbox", "tag": "Shotgunbox", "pos": ["MAP08",-4288,1204,-320] }
+AP-ITEM { "category": "medium-ammo", "typename": "Shotgunbox", "tag": "Shotgunbox", "pos": ["MAP08",-4332,1212,-320] }
+AP-ITEM { "category": "small-ammo", "typename": "shotgunAmmo", "tag": "shotgunAmmo", "pos": ["MAP08",-4304,1232,-320] }
+AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "pos": ["MAP08",-3824,1360,-320] }
+AP-ITEM { "category": "big-ammo", "typename": "AmmoPack", "tag": "AmmoPack", "pos": ["MAP08",-4304,1344,-352] }
+AP-ITEM { "category": "medium-health", "typename": "Firstaid", "tag": "Medical Kit", "pos": ["MAP08",-1524,740,64] }
+AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "pos": ["MAP08",-1176,792,41] }
+AP-ITEM { "category": "big-health-powerup", "typename": "RegenStimpack", "tag": "REGEN Stim", "pos": ["MAP08",-1168,760,41] }
+AP-ITEM { "category": "small-ammo", "typename": "fortyfiveammo", "tag": "fortyfiveammo", "pos": ["MAP08",-1488,992,64] }
+AP-ITEM { "category": "small-ammo", "typename": "fortyfiveammo", "tag": "fortyfiveammo", "pos": ["MAP08",-1504,956,64] }
+AP-ITEM { "category": "weapon", "typename": "pumpaction2", "tag": "Classic shotgun", "pos": ["MAP08",656,684,10] }
+AP-ITEM { "category": "small-ammo", "typename": "shotgunAmmo", "tag": "shotgunAmmo", "pos": ["MAP08",684,656,10] }
+AP-ITEM { "category": "small-ammo", "typename": "fortyfiveammo", "tag": "fortyfiveammo", "pos": ["MAP08",696,692,10] }
+AP-ITEM { "category": "medium-armor", "typename": "ArmorLeather", "tag": "ArmorLeather", "pos": ["MAP08",660,560,0] }
+AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "pos": ["MAP08",632,596,0] }
+AP-ITEM { "category": "small-ammo", "typename": "fortyfiveammo", "tag": "fortyfiveammo", "pos": ["MAP08",-2772,1368,-96] }
+AP-ITEM { "category": "small-ammo", "typename": "fortyfiveammo", "tag": "fortyfiveammo", "pos": ["MAP08",-2656,1080,-96] }
+AP-ITEM { "category": "medium-health", "typename": "Firstaid", "tag": "Medical Kit", "pos": ["MAP08",-2012,1896,32] }
+AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "pos": ["MAP08",-2056,1872,32] }
+AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP08",-2044,1596,32] }
+AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP08",-2004,1620,32] }
+AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP08",-2012,1576,32] }
+AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP08",-2040,1544,32] }
+AP-ITEM { "category": "small-armor", "typename": "ArmorScrap", "tag": "ArmorScrap", "pos": ["MAP08",-1956,1624,32] }
+AP-ITEM { "category": "medium-ammo", "typename": "Shotgunbox", "tag": "Shotgunbox", "pos": ["MAP08",-4204,1588,88] }
+AP-ITEM { "category": "medium-armor", "typename": "ArmorCombat", "tag": "ArmorCombat", "pos": ["MAP08",-4256,1376,-352] }
+AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "pos": ["MAP08",-4184,1872,-72] }
+AP-ITEM { "category": "small-ammo", "typename": "fortyfiveammo", "tag": "fortyfiveammo", "pos": ["MAP08",-4220,1860,-72] }
+AP-ITEM { "category": "small-ammo", "typename": "fortyfiveammo", "tag": "fortyfiveammo", "pos": ["MAP08",-4148,1860,-72] }
+AP-ITEM { "category": "small-ammo", "typename": "shotgunAmmo", "tag": "shotgunAmmo", "pos": ["MAP08",-3792,1584,-320] }
+AP-ITEM { "category": "medium-health", "typename": "Firstaid", "tag": "Medical Kit", "pos": ["MAP08",-3740,1496,-320] }
+AP-ITEM { "category": "small-ammo", "typename": "NineMilammo", "tag": "NineMilammo", "pos": ["MAP08",-2912,1616,-96] }
+AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "pos": ["MAP08",-2944,1584,-96] }
+AP-ITEM { "category": "medium-health", "typename": "Firstaid", "tag": "Medical Kit", "pos": ["MAP08",-3872,1360,-320] }
+AP-ITEM { "category": "small-ammo", "typename": "shotgunAmmo", "tag": "shotgunAmmo", "pos": ["MAP08",-2640,172,-352] }
+AP-ITEM { "category": "weapon", "typename": "pumpaction2", "tag": "Classic shotgun", "pos": ["MAP08",-2448,144,-353] }
+AP-ITEM { "category": "weapon", "typename": "NapalmGun", "tag": "Master Blaster", "pos": ["MAP08",-2288,-64,-352] }
+AP-ITEM { "category": "weapon", "typename": "JunkerMusket", "tag": "Junker Musket", "pos": ["MAP08",-2712,-56,-352] }
+AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP08",-2720,3168,32] }
+AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP08",-2656,3096,32] }
+AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP08",-2704,3072,32] }
+AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP08",-2672,3016,32] }
+AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP08",-2728,3024,32] }
+AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP08",-2720,2968,32] }
+AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP08",-2680,2944,32] }
+AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP08",-2712,2912,32] }
+AP-ITEM { "category": "medium-health", "typename": "Firstaid", "tag": "Medical Kit", "pos": ["MAP08",-2568,2864,64] }
+AP-ITEM { "category": "small-ammo", "typename": "fortyfiveammo", "tag": "fortyfiveammo", "pos": ["MAP08",-2616,2864,64] }
+AP-ITEM { "category": "small-ammo", "typename": "fortyfiveammo", "tag": "fortyfiveammo", "pos": ["MAP08",-4176,1376,-352] }
+AP-ITEM { "category": "small-ammo", "typename": "fortyfiveammo", "tag": "fortyfiveammo", "pos": ["MAP08",-4160,1360,-352] }
+AP-ITEM { "category": "small-ammo", "typename": "fortyfiveammo", "tag": "fortyfiveammo", "pos": ["MAP08",-4176,1344,-352] }
+AP-ITEM { "category": "small-ammo", "typename": "slugammo", "tag": "slugammo", "pos": ["MAP08",-2672,-32,-352] }
+AP-ITEM { "category": "key", "typename": "YellowCard", "tag": "Yellow Access Card", "pos": ["MAP08",-3488,-192,-448] }
+AP-KEY { "typename": "YellowCard", "tag": "Yellow Access Card", "scopename": "MAP08", "cluster": 0, "maps": ["MAP08"] }
+AP-ITEM { "category": "medium-ammo", "typename": "NapalmAmmo", "tag": "NapalmAmmo", "pos": ["MAP08",-3920,1912,-72] }
+AP-ITEM { "category": "small-ammo", "typename": "NineMilammo", "tag": "NineMilammo", "pos": ["MAP08",-3880,1928,-72] }
+AP-ITEM { "category": "medium-health", "typename": "Firstaid", "tag": "Medical Kit", "pos": ["MAP08",-3216,296,-256] }
+AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "pos": ["MAP08",-3176,296,-256] }
+AP-ITEM { "category": "small-health", "typename": "Painkillers", "tag": "Painkillers", "pos": ["MAP08",-3192,272,-288] }
+AP-ITEM { "category": "medium-ammo", "typename": "Shotgunbox", "tag": "Shotgunbox", "pos": ["MAP08",-2016,1856,32] }
+AP-ITEM { "category": "medium-ammo", "typename": "NapalmAmmo", "tag": "NapalmAmmo", "pos": ["MAP08",-4232,1664,56] }
+AP-ITEM { "category": "big-ammo", "typename": "Pipebomb", "tag": "Pipebomb", "pos": ["MAP08",-4224,1624,56] }
+AP-ITEM { "category": "big-ammo", "typename": "Pipebomb", "tag": "Pipebomb", "pos": ["MAP08",-4200,1656,56] }
+AP-ITEM { "category": "big-ammo", "typename": "AmmoPack", "tag": "AmmoPack", "pos": ["MAP08",-4168,1624,56] }
+AP-ITEM { "category": "weapon", "typename": "revolver", "tag": ".45 revolver", "pos": ["MAP08",-3144,20,-288] }
+AP-SECRET { "pos": ["MAP08","secret","sector",503] }
+AP-SECRET { "pos": ["MAP08","secret","sector",623] }
+AP-MAP {
+  "map": "MAP51", "levelname": "Dead Man Walking", "episodename": "Dead Man Walking",
   "checksum": "1e31020be1ee37879d2ebd80ececef05", "rank": 0, "monster_count": 134,
   "info": { "levelnum": 51, "title": "Dead Man Walking", "is_lookup": false, "sky1": "ASKY2B", "sky1speed": "0.000000", "sky2": "ASKY2B", "sky2speed": "0.000000", "music": "$MUSIC_BETWEE", "music_track": "0", "cluster": 0, "flags": [] },
-  "monsters": { "OldCootRJ": 1, "RipperThug": 24, "SomeGuyRJ": 1, "Master": 1, "shotgunripper": 13, "Lurker": 11, "Haunt": 7, "Radroach": 8, "ScabbieSavage": 21, "Gasbag": 6, "Pitfiend": 34, "AkimboRipper": 7 },
+  "monsters": { "OldCootRJ": 1, "RipperThug": 21, "SomeGuyRJ": 1, "Master": 1, "shotgunripper": 13, "Lurker": 11, "Haunt": 7, "Radroach": 8, "ScabbieSavage": 21, "Gasbag": 6, "Pitfiend": 34, "AkimboRipper": 10 },
   "prereqs": [ "weapon/Glock/auto", "weapon/pumpaction2/auto" ]
 }
 AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP51",-912,272,0] }
@@ -918,7 +918,7 @@ AP-SECRET { "pos": ["MAP51","secret","sector",1306] }
 AP-SECRET { "pos": ["MAP51","secret","sector",2192] }
 AP-SECRET { "pos": ["MAP51","secret","sector",2921] }
 AP-MAP {
-  "map": "MAP52", "levelname": "The Bunker",
+  "map": "MAP52", "levelname": "The Bunker", "episodename": "Dead Man Walking",
   "checksum": "489b0c48207cd6e01549bc253f8113c4", "rank": 1, "monster_count": 25,
   "info": { "levelnum": 52, "title": "The Bunker", "is_lookup": false, "sky1": "ASKY2B", "sky1speed": "0.000000", "sky2": "ASKY2B", "sky2speed": "0.000000", "music": "$MUSIC_SHAWN", "music_track": "0", "cluster": 0, "flags": [] },
   "monsters": { "Ivan": 1, "BakerRJ": 1, "RJTownMilitia": 22, "QuarterMasterRJ": 1 },
@@ -928,7 +928,7 @@ AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "po
 AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP52",644,-852,-476] }
 AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP52",676,-884,-476] }
 AP-MAP {
-  "map": "MAP53", "levelname": "Radium Trail",
+  "map": "MAP53", "levelname": "Radium Trail", "episodename": "Dead Man Walking",
   "checksum": "5b2b55ef2c246cec4919d5d8a234ccf7", "rank": 2, "monster_count": 167,
   "info": { "levelnum": 53, "title": "Radium Trail", "is_lookup": false, "sky1": "ASKY1B", "sky1speed": "0.000000", "sky2": "ASKY1B", "sky2speed": "0.000000", "music": "JWTense", "music_track": "0", "cluster": 0, "flags": [] },
   "monsters": { "shotgunripper": 27, "RipperThug": 28, "Radroach": 3, "Master": 3, "Lurker": 1, "Pitfiend": 75, "AkimboRipper": 16, "ScabbieSavage": 14 },
@@ -1060,10 +1060,10 @@ AP-SECRET { "pos": ["MAP53","secret","sector",3760] }
 AP-SECRET { "pos": ["MAP53","secret","sector",4208] }
 AP-SECRET { "pos": ["MAP53","secret","sector",4758] }
 AP-MAP {
-  "map": "MAP54", "levelname": "Fissile Empire",
+  "map": "MAP54", "levelname": "Fissile Empire", "episodename": "Dead Man Walking",
   "checksum": "7f37ae67c791a1731d13f3dd312206c6", "rank": 3, "monster_count": 171,
   "info": { "levelnum": 54, "title": "Fissile Empire", "is_lookup": false, "sky1": "ASKY1B", "sky1speed": "0.000000", "sky2": "ASKY1B", "sky2speed": "0.000000", "music": "JWHunt", "music_track": "0", "cluster": 0, "flags": [] },
-  "monsters": { "shotgunripper": 36, "Radroach": 9, "RipperThug": 46, "Lurker": 25, "RJFREEDOM": 1, "Pitfiend": 36, "AkimboRipper": 18 },
+  "monsters": { "shotgunripper": 36, "Radroach": 9, "RipperThug": 42, "Lurker": 25, "RJFREEDOM": 1, "Pitfiend": 36, "AkimboRipper": 22 },
   "prereqs": [ "weapon/Glock/auto", "weapon/pumpaction2/auto" ]
 }
 AP-ITEM { "category": "small-health", "typename": "FoodTin1", "tag": "Food", "pos": ["MAP54",444,868,-96] }
