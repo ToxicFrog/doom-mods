@@ -290,7 +290,12 @@ class ::PerLevelHandler : EventHandler {
     if (ok) {
       DEBUG("Spawning %s: RC provides replacement %s", cls.GetClassName(), newtype);
       cls = newtype;
+      if (!cls) {
+        console.printf("\c[RED]GZAPRC replacement error: no such class '%s'", newtype);
+        cls.GetClassName(); // intentionally chase the null pointer
+      }
       evt.replacement = newtype;
+      evt.isFinal = true;
     }
 
     if (self.disable_actor_replacement > 0) return;

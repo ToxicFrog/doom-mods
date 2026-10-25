@@ -41,11 +41,16 @@ class ::ScanEventHandler : StaticEventHandler {
     if (!scan_enabled) return;
 
     class<Actor> cls = evt.replacee;
-    while (true) {
-      let [newtype, ok] = self.rc.GetReplacement(cls.GetClassName());
-      if (!ok) break;
+    let [newtype, ok] = ::RC.Get().GetReplacement(cls.GetClassName());
+    if (ok) {
+      DEBUG("Spawning %s: RC provides replacement %s", cls.GetClassName(), newtype);
       cls = newtype;
+      if (!cls) {
+        console.printf("\c[RED]GZAPRC replacement error: no such class '%s'", newtype);
+        cls.GetClassName(); // intentionally chase the null pointer
+      }
       evt.replacement = newtype;
+      evt.isFinal = true;
     }
   }
 
@@ -53,7 +58,7 @@ class ::ScanEventHandler : StaticEventHandler {
     if (!scan_enabled || !in_sequence) return;
     let thing = evt.thing;
     if (!thing) return;
-    // DEBUG("WTS: %s", thing.GetTag());
+    DEBUG("WTS: %s (%s)", thing.GetClassName(), thing.GetTag());
     if (scanner.ScanActor(thing)) timer = 0;
     if (::RC.Get().GetDestroyOnSpawn(thing.GetClassName())) {
       DEBUG("Destroying %s because of noreplace directive", thing.GetClassName());
