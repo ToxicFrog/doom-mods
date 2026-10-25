@@ -165,7 +165,7 @@ Entire games that replace most or all of the vanilla gameplay.
 | Game                             | Maps | Mon/Lvl | Checks | +secret |   Status | Notes |
 | -------------------------------- | ---- | ------- | ------ | ------- | -------- | ----- |
 | [The Adventures of Square]       |   22 |     256 |    589 |     793 | problems | Not compatible with persistent mode, but otherwise complete. Checks that require explosives can be reached with either the hellshell launcher or TNT crates. |
-| Ashes 2063                       |      |         |        |         | missing  | (1) |
+| [Ashes 2063]                     |   15 |      98 |    118 |     189 | complete | [Documentation](../wads/ashes_2063/NOTES.md) |
 | Ashes: Afterglow                 |      |         |        |         | missing  | (1) |
 | Ashes: Hard Reset                |      |         |        |         | missing  | Still need to play it. |
 | [Faithless]                      |   19 |     168 |    160 |     261 | problems | Episodes 1 and 2 need to be retuned. Logic development is ongoing for episode 3. |
@@ -180,6 +180,7 @@ Entire games that replace most or all of the vanilla gameplay.
 (3) Requires support for "stacking" keys that open more things the more you have.
 
 [The Adventures of Square]: ../../release/apworlds/zdoom_the_adventures_of_square.apworld
+[Ashes 2063]: ../../release/apworlds/zdoom_ashes_2063.apworld
 [Faithless]: ../../release/apworlds/zdoom_faithless.apworld
 [Rise Of The Wool Ball]: ../../release/apworlds/zdoom_rotwb.apworld
 [Space Cats Saga]: ../../release/apworlds/zdoom_space_cats_saga.apworld

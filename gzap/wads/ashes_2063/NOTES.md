@@ -1,5 +1,8 @@
 # Notes for players
 
+Requires [Ashes 2063 Enriched Edition v2.3](https://www.moddb.com/mods/ashes-2063/downloads/ashes-episode-1ashes-2063pk3-only-v22).
+This version includes both Ashes 2063 proper and the four-episode Dead Man Walking expansion.
+
 ## Known issues
 
 The .45 Revolver appears in the pool as a progression item even though you start
