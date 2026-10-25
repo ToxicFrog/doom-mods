@@ -38,10 +38,10 @@ currently supported.)
 ## `[map,"spawn",n,typename,x,y,z,r]`
 
 This location is triggered by the spawning of a specific actor at runtime. The
-`typename` denotes the actor. `n` is the number of spawns to turn into
-locations. If this is more than one, multiple locations will be created numbered
-1 through `n` inclusive. In the tuning file, `n` corresponds to the specific
-number that was checked.
+`typename` denotes the actor. `n` is the ordinality of the actor to replace; `1`
+will replace the first such spawn, `2` the second one, etc. (This also means
+that if e.g. you have a spot where three copies of an item spawn, you need three
+different AP-ITEM records to capture all of them.)
 
 The second form gives a precise position at which the actor must spawn; spawns
 in other locations are ignored. This is useful for items spawned by scripts.
