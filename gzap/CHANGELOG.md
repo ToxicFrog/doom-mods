@@ -3,6 +3,9 @@
 - New:
   - You can now select `all` (0) as the spawn filter in the YAML. This will
     spawn checks for all difficulties at once, not just the one you are playing.
+  - Key shapes and colours are now defined [in GZAPRC](./doc/gzaprc.md#keyshape-missing-held--key-classes-or-patterns).
+    Logic developers can add this to the GZAPRC for the wad, and players can
+    provide their own to override the defaults.
 - Changed:
  - UZAP now uses `RuleBuilder` internally. This makes generation much faster and
    enables the `/explain` command in the client.

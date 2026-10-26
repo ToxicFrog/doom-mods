@@ -9,18 +9,20 @@
 #namespace GZAP;
 #debug off;
 
-class ::RCStringList {
-  Array<String> list;
-  static ::RCStringList Create() {
-    return new("::RCStringList");
+class ::RCKeyShape {
+  string missing;
+  string held;
+  Array<string> patterns;
+  static ::RCKeyShape Create() {
+    return new("::RCKeyShape");
   }
-  string Join(string sep) {
-    if (self.list.Size() == 0) return "";
-    string buf = "";
-    foreach (x : self.list) {
-      buf.AppendFormat("%s%s", buf == "" ? "" : sep, x);
-    }
-    return buf;
+}
+
+class ::RCKeyColour {
+  string colour;
+  Array<string> patterns;
+  static ::RCKeyColour Create() {
+    return new("::RCKeyColour");
   }
 }
 
@@ -64,8 +66,11 @@ class ::RC {
   Map<string, string> scanner_settings;
   Map<int, string> cluster_names;
   // From episode name to map list
-  Map<string, ::RCStringList> episodes;
+  Map<string, ::StringList> episodes;
   Map<string, ::StringSet> prereqs;
+  // Ordered so that later RCs can override earlier ones.
+  Array<::RCKeyShape> keyshapes;
+  Array<::RCKeyColour> keycolours;
   void merge(::RC other) {
     foreach (k, v : other.categorizations) {
       SetCategory(k, v);
@@ -93,6 +98,12 @@ class ::RC {
       foreach (prereq : v.contents) {
         prereq_set.Insert(prereq);
       }
+    }
+    foreach (v : other.keyshapes) {
+      self.keyshapes.Push(v);
+    }
+    foreach (v : other.keycolours) {
+      self.keycolours.Push(v);
     }
   }
 
@@ -125,7 +136,7 @@ class ::RC {
       console.printf("  cluster %d %s;", k, v);
     }
     foreach (k,v : self.episodes) {
-      console.printf("  episode %s: %s;", k, v.Join(" "));
+      console.printf("  episode %s: %s;", k, ::Util.join(" ", v.list));
     }
     foreach (k,v : self.categorizations) {
       console.printf("  category %s: %s;", v == "" ? "none" : v, k);
@@ -135,6 +146,12 @@ class ::RC {
     }
     foreach (k,v : self.tags) {
       console.printf("  tag %s %s;", k, v);
+    }
+    foreach (v : self.keyshapes) {
+      console.printf("  keyshape %s %s: %s;", v.missing, v.held, ::Util.join(" ", v.patterns));
+    }
+    foreach (v : self.keycolours) {
+      console.printf("  keyshape %s: %s;", v.colour, ::Util.join(" ", v.patterns));
     }
   }
 
@@ -223,8 +240,42 @@ class ::RC {
     return string.format("HUB:%02d", cluster);
   }
 
-  void SetEpisode(string name, ::RCStringList maps) {
+  void SetEpisode(string name, ::StringList maps) {
     self.episodes.insert(name, maps);
+  }
+
+  void AddKeyShape(::RCKeyShape shape) {
+    self.keyshapes.Push(shape);
+  }
+
+  void AddKeyColour(::RCKeyColour colour) {
+    self.keycolours.Push(colour);
+  }
+
+  string GetKeyShape(string keytype, bool held) {
+    string shape = "?"; // should never happen
+    foreach (ks : self.keyshapes) {
+      foreach (glob : ks.patterns) {
+        if (::Util.GlobMatch(glob, keytype)) {
+          shape = held ? ks.held : ks.missing;
+          break;
+        }
+      }
+    }
+    return shape;
+  }
+
+  string GetKeyColour(string keytype) {
+    string colour = "cream"; // should never happen
+    foreach (kc : self.keycolours) {
+      foreach (glob : kc.patterns) {
+        if (::Util.GlobMatch(glob, keytype)) {
+          colour = kc.colour;
+          break;
+        }
+      }
+    }
+    return "\c["..colour.."]";
   }
 
   bool has_requirements;
@@ -372,6 +423,8 @@ class ::RCParser {
     if (peek("cluster")) { return ClusterName(); }
     if (peek("episode")) { return Episode(); }
     if (peek("prereqs")) { return PrereqRules(); }
+    if (peek("keyshape")) { return KeyShape(); }
+    if (peek("keycolour")) { return KeyColour(); }
     else { return Error("start of configuration directive"); }
   }
 
@@ -485,7 +538,7 @@ class ::RCParser {
   bool Episode() {
     if (!require("episode")) return false;
     string name = StringFromTokenList(":", "episode name");
-    let maps = ::RCStringList.Create();
+    let maps = ::StringList.Create();
     if (!TokenList(maps.list, ";", "map list")) return false;
     self.rc.SetEpisode(name, maps);
     return true;
@@ -559,11 +612,39 @@ class ::RCParser {
     return true;
   }
 
+  bool KeyShape() {
+    if (!require("keyshape")) return false;
+
+    ::RCKeyShape shape = ::RCKeyShape.Create();
+    shape.missing = next("missing key shape");
+    if (shape.missing.CodepointCount() != 1) return false;
+    shape.held = next("held key shape");
+    if (shape.held.CodepointCount() != 1) return false;
+    require(":");
+
+    if (!PatternList(shape.patterns, ";")) return false;
+    rc.AddKeyShape(shape);
+    return true;
+  }
+
+  bool KeyColour() {
+    if (!require("keycolour")) return false;
+
+    ::RCKeyColour colour = ::RCKeyColour.Create();
+    colour.colour = next("key colour");
+    if (colour.colour == "") return false;
+    require(":");
+
+    if (!PatternList(colour.patterns, ";")) return false;
+    rc.AddKeyColour(colour);
+    return true;
+  }
+
   bool ClassList(array<string> tokens, string terminator) {
     return TokenList(tokens, terminator, "class name");
   }
   bool PatternList(array<string> tokens, string terminator) {
-    return TokenList(tokens, terminator, "class name or prefix");
+    return TokenList(tokens, terminator, "class name or pattern");
   }
   bool TokenList(array<string> tokens, string terminator, string expected) {
     while (!peek(terminator)) {

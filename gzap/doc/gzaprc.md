@@ -152,3 +152,51 @@ Replacements are not processed recursively, so something like this:
     replacement Shotgun: SuperShotgun;
 
 will swap super shotguns and normal shotguns, rather than looping forever.
+
+#### `keyshape <missing> <held> : <key classes or patterns>`
+
+Define a shape used for the key display in the inventory screen. The `missing`
+and `held` shapes should each be a single character UZDoom is capable of
+displaying in menus. This includes much of unicode, but emoji tend not to
+work, or display badly.
+
+The classes can be actor class names, or [globbing expressions](./glossary.md#globbing-expression).
+Matching is case-insensitive.
+
+Later `keyshape` directives take precedence over earlier ones, and GZAPRC lumps
+loaded later take precedence over earlier ones.
+
+The default configuration is:
+
+    keyshape ◇ ◆ : *;
+    keyshape ○ ● : *Skull*;
+    keyshape □ ■ : *Card*;
+
+Which is to say, keys with `Card` in the class name will use boxes, keys with
+`Skull` will use circles, and everything else will use diamonds.
+
+#### `keycolour <colour> : <key classes or patterns>`
+
+As above, but defines a colour for the key. Since the same colour is used when
+both missing and held, only one colour is needed.
+
+Any colour listed [here](https://zdoom.org/wiki/Text_colors) can be used; use
+the part of the name after the leading `CR_`. It is case insensitive.
+
+The default configuration is:
+
+    keycolour white: *;
+    keycolour red: *red* *ruby*;
+    keycolour orange: *orange*;
+    keycolour yellow: *yellow* *topaz*;
+    keycolour green: *green* *emerald*;
+    keycolour cyan: *cyan*;
+    keycolour blue: *blue* *sapphire*;
+    keycolour purple: *purple* *pink* *amethyst*;
+    keycolour grey: *disk* *gear*;
+    keycolour black: *black* *iron*;
+    keycolour gold: *gold*;
+    keycolour ice: *silver* *steel*;
+
+Which is sufficient to cover all vanilla Doom and Heretic keys and several
+common types of modded key.

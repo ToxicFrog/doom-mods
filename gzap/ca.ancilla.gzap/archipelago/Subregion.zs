@@ -77,7 +77,7 @@ class ::Subregion play {
     string buf = "";
     foreach (k : self.prereqs.contents) {
       if (IsKey(k)) {
-        buf.AppendFormat("\c[%s]⚿", ::Util.GetKeyColour(k.Mid(4), "white"));
+        buf.AppendFormat("%s", ::Util.GetKeyIcon(k.Mid(4), true));
       } else if (IsWeaponNeed(k)) {
         buf.AppendFormat("\c[GREEN]⚔");
       } else if (IsWeaponWant(k)) {

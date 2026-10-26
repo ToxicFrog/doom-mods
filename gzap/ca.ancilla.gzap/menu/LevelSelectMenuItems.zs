@@ -305,25 +305,8 @@ class ::LevelSelector : ::KeyValueNetevent {
   }
 
   // Given a key, produce an icon for it in the level select menu.
-  // Use squares for keycards, circles for skulls, and diamonds for everything else.
-  // Try to colour it appropriately based on its name, too.
+  // Key shapes and colours are configured in the GZAPRC.
   string FormatKey(::RandoKey keyinfo) {
-    let key = keyinfo.typename.MakeLower();
-    static const string[] keytypes = { "card", "skull", "" };
-    static const string[] keyicons = { "□", "■", "○", "●", "◇", "◆" };
-
-    string icon; uint i;
-    foreach (keytype : keytypes) {
-      if (key.IndexOf(keytype) != -1) {
-        icon = keyicons[i + (keyinfo.held ? 1 : 0)];
-        break;
-      }
-      i += 2;
-    }
-
-    string buf = "\c[" .. ::Util.GetKeyColour(key, "white") .."]" .. icon;
-    return buf.filter();
+    return ::Util.GetKeyIcon(keyinfo.typename, keyinfo.held);
   }
 }
-
-// use □■ for keycards, ●○ for skulls, √ for generic checks, ◆◇ for unknown keys

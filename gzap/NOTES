@@ -17,9 +17,19 @@ To release a new version:
 ### 0.9.1
 
 [X] RuleBuilder support
-[ ] GZAPRC improvements
-  [ ] Move key shape definitions into GZAPRC
-  [ ] Move key colour definitions into GZAPRC
+[X] allow setting spawnfilter 0 to spawn everything
+[ ] Logic for Hedon episode 1
+[ ] Weapon logic difficulty settings
+[ ] `ap_no_pool` category (and apply it to Ashes for the revolver)
+[ ] Option to exclude per-map weapons from the pool if they are not needed by logic
+[X] GZAPRC improvements
+  [X] Move key shape definitions into GZAPRC
+  [X] Move key colour definitions into GZAPRC
+[ ] rename ap_mapinfo and ap_scripts to MAPINFO and ZSCRIPT (in the apworld, and
+    then name them back in the pk3) so we can load them in the scanner with -file
+
+### maybe 0.10.0
+
 [ ] Use key grants similar to weapon grants and remove a lot of special-cases related to keys
 [ ] Separate exit locations from clear tokens
   [ ] Set the clear bit on the Region rather than granting an item
@@ -27,13 +37,6 @@ To release a new version:
   [ ] Allow randomizing items into the exit events
 [ ] Progressive level unlocks?
 [ ] Progressive weapons?
-[ ] Logic for Hedon episode 1
-[ ] Weapon logic difficulty settings
-[ ] `ap_no_pool` category (and apply it to Ashes for the revolver)
-[ ] Option to exclude per-map weapons from the pool if they are not needed by logic
-[ ] rename ap_mapinfo and ap_scripts to MAPINFO and ZSCRIPT (in the apworld, and
-    then name them back in the pk3) so we can load them in the scanner with -file
-[X] allow setting spawnfilter 0 to spawn everything
 
 ### Stuff for once UZ 5.x is fully supported
 

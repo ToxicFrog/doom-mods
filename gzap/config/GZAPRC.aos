@@ -55,7 +55,7 @@ tag DiamondRune Diamond Rune;
 tag StarRune Star Rune;
 tag CrescentRune Crescent Rune;
 
-tag RhombusKey RhombusKey;
+tag RhombusKey Rhombus Key;
 tag TrapezoidKey Trapezoid Key;
 tag HexagonKey Hexagon Key;
 
@@ -63,3 +63,17 @@ tag FactoryDisc Factory Disc;
 tag FloppyDiskLaunchCode Launch Code Disk;
 tag FloppyDiskPassword Password Disk;
 tag FloppyDiskSecurityCode Security Code Disk;
+
+keyshape □ ■ : SquareKey CubeKey FactoryDisc FloppyDisk*;
+keyshape ○ ● : CircleKey SphereKey;
+keyshape ◇ ◆ : DiamondRune RhombusKey TrapezoidKey;
+keyshape ⬡ ⬢ : HexagonKey;
+keyshape ☆ ★ : StarRune;
+keyshape ☽ ⭘ : CrescentRune;
+
+keycolour red: CircleKey SphereKey CrescentRune;
+keycolour yellow: TriangleKey PyramidKey StarRune;
+keycolour purple: SquareKey CubeKey DiamondRune;
+keycolour green: TrapezoidKey;
+keycolour cyan: HexagonKey;
+keycolour blue: RhombusKey;

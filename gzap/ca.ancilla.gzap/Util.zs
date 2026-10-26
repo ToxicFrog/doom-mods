@@ -29,6 +29,14 @@ class ::StringSet {
   }
 }
 
+class ::StringList {
+  Array<string> list;
+
+  static ::StringList Create() {
+    return new("::StringList");
+  }
+}
+
 class ::Util play {
   // Eurgh this is gross, but zscript doesn't let us have va_list so...
   static void printf(string msg, string arg1 = "", string arg2 = "", string arg3 = "") {
@@ -119,6 +127,8 @@ class ::Util play {
   // at the back, or * in both.
   static clearscope bool GlobMatch(string glob, string buf) {
     bool is_prefix, is_suffix;
+    if (glob == "*") return true;
+
     if (glob.Left(1) == "*") {
       is_suffix = true;
       glob = glob.Mid(1).MakeLower();
@@ -141,59 +151,9 @@ class ::Util play {
     }
   }
 
-  // TODO: move this into python? or GZAPRC?
-  static clearscope string GetKeyColour(string keyname, string backup) {
-    string keyname = keyname.MakeLower();
-
-    Map<string, string> colours;
-    if (colours.CountUsed() == 0) {
-      // Red
-      colours.Insert("red", "red");
-      colours.Insert("ruby", "red");
-      colours.Insert("circlekey", "red");
-      colours.Insert("spherekey", "red");
-      colours.Insert("crescentrune", "red");
-      // Orange
-      colours.Insert("orange", "orange");
-      // Yellow
-      colours.Insert("yellow", "yellow");
-      colours.Insert("topaz", "yellow");
-      colours.Insert("trianglekey", "yellow");
-      colours.Insert("pyramidkey", "yellow");
-      colours.Insert("starrune", "yellow");
-      // Green
-      colours.Insert("green", "green");
-      colours.Insert("emerald", "green");
-      colours.Insert("trapezoidkey", "green");
-      // Cyan
-      colours.Insert("cyan", "cyan");
-      colours.Insert("hexagonkey", "cyan");
-      // Blue
-      colours.Insert("blue", "blue");
-      colours.Insert("sapphire", "blue");
-      colours.Insert("rhombuskey", "blue");
-      // Purple
-      colours.Insert("purple", "purple");
-      colours.Insert("amethyst", "purple");
-      colours.Insert("squarekey", "purple");
-      colours.Insert("cubekey", "purple");
-      colours.Insert("diamondrune", "purple");
-      colours.Insert("pink", "purple");
-      // Grey
-      colours.Insert("floppydisk", "grey");
-      colours.Insert("gear", "grey");
-      // Miscellaneous
-      colours.Insert("gold", "gold");
-      colours.Insert("silver", "ice");
-    }
-
-    foreach (name, colour : colours) {
-      if (keyname.IndexOf(name) != -1) {
-        return colour;
-      }
-    }
-
-    return backup;
+  static clearscope string GetKeyIcon(string keytype, bool held) {
+    let rc = ::RC.Get();
+    return string.format("%s%s\c-", rc.GetKeyColour(keytype), rc.GetKeyShape(keytype, held));
   }
 
   static clearscope int HubIndex() {

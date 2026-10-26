@@ -261,7 +261,7 @@ class ::KeyPrereqToggle : ::PrereqToggle {
 
   override string FormatName() {
     if (Enabled()) {
-      return "\c[" .. ::Util.GetKeyColour(key_info.typename, "gray") .."]" .. super.FormatName() .. "\c-";
+      return ::RC.Get().GetKeyColour(key_info.typename) .. super.FormatName() .. "\c-";
     } else {
       return super.FormatName();
     }

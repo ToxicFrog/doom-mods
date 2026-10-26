@@ -9,6 +9,28 @@
 #
 # For complete documentation on what each directive means, see doc/gzaprc.md.
 
+#### Key shapes and colours ####
+# This is the default configuration used to display keys in the map select and
+# inventory screens. It's meant to cover Doom, Heretic, and Chex Quest, and
+# some common modded keys. Game-specific GZAPRC lumps can override this to be
+# more precise with new keys added by WADs.
+
+keyshape ◇ ◆ : *;
+keyshape □ ■ : *Card;
+keyshape ○ ● : *Skull *FlemKey;
+keycolour white: *;
+keycolour red: *red* *ruby*;
+keycolour orange: *orange*;
+keycolour yellow: *yellow* *topaz*;
+keycolour green: *green* *emerald*;
+keycolour cyan: *cyan*;
+keycolour blue: *blue* *sapphire*;
+keycolour purple: *purple* *pink* *amethyst*;
+keycolour grey: *disk* *gear*;
+keycolour black: *black* *iron*;
+keycolour gold: *gold*;
+keycolour ice: *silver* *steel*;
+
 #### General Doom/Heretic/Chex item categories ####
 # GZAP has built in heuristics for item categorization: health and armour is
 # considered "big" if it restores at least 100, "medium" if it restores at least

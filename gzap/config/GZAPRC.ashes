@@ -26,6 +26,17 @@ replacement BlueSkull: AshesSilverKey;
 replacement RedSkull: AshesBronzeKey;
 replacement YellowSkull: AshesGoldKey;
 
+keyshape ⊔ ⚿: BlueSkull YellowSkull RedSkull;
+keycolour ice: BlueSkull;
+keycolour orange: RedSkull;
+keycolour gold: YellowSkull;
+
+# Quest items
+keyshape ▭ ▬: QuestRadio QuestBriefcase QuestJerryCan;
+keycolour grey: QuestRadio;
+keycolour black: QuestBriefcase;
+keycolour red: QuestJerryCan;
+
 tag BlueSkull Silver Utility Key;
 tag RedSkull Bronze Staff Key;
 tag YellowSkull Gold Security Key;

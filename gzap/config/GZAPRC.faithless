@@ -84,3 +84,17 @@ category token: KeyChest KeySafe;
 # We mark it .replaceonly so it's a valid target for being replaced by a check.
 category .replaceonly: HangingPot1;
 #typename KeySafe: HangingPot1;
+
+keyshape ◇ ◆ : HexenPuzzGem*;
+keyshape ⛭ ⚙ : HexenPuzzGear*;
+keyshape ⊔ ⚿ : Key*;
+keyshape □ ■ : PuzzDSparilBook*;
+keyshape ○ ● : PuzzStoneFace HexenPuzzFlameMask;
+
+# The default GZAPRC has entries for various gems and red/blue/green/yellow,
+# so we don't need to colour the gems and actual-keys.
+keycolour black: HexenPuzzGear1; # iron
+keycolour gold: HexenPuzzGear2; # brass
+keycolour orange: HexenPuzzGear3; # brass and iron
+keycolour ice: HexenPuzzGear4; # silver and brass
+keycolour brown: PuzzDSparilBook*;
