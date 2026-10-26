@@ -3,6 +3,9 @@
 - New:
   - You can now select `all` (0) as the spawn filter in the YAML. This will
     spawn checks for all difficulties at once, not just the one you are playing.
+- Changed:
+ - UZAP now uses `RuleBuilder` internally. This makes generation much faster and
+   enables the `/explain` command in the client.
 
 # 0.9.0
 

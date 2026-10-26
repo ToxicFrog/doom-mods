@@ -11,10 +11,12 @@ from dataclasses import dataclass, field, InitVar
 from math import ceil
 from typing import Dict, List, NamedTuple, Optional, Set, Type
 
+from rule_builder.rules import Or, False_, True_, And, Has
+
 from .DoomLocation import DoomLocation
 from .DoomKey import DoomKey
 from .DoomReachable import DoomReachable
-from .prereqs import weapon_prereq, strings_to_prereq_fn, weapon_from_hint, is_combat_logic_hint
+from .prereqs import weapon_prereq, strings_to_rule, weapon_from_hint, is_combat_logic_hint
 
 class MAPINFO(NamedTuple):
     """
@@ -105,50 +107,36 @@ class DoomMap:
 
     def access_rule(self, world):
         combat_logic_weapons = self.combat_logic_weapons(world)
-        combat_logic_rule = strings_to_prereq_fn(
+        combat_logic_rule = strings_to_rule(
             world, world.wad_logic, self,
             [f'weapon/{weapon}/need' for weapon in combat_logic_weapons])
 
         if self.extra_rules.prereqs:
             extra_rule = self.extra_rules.access_rule(world, self.wad, self)
         else:
-            extra_rule = lambda _: True
+            extra_rule = True_()
 
-        def rule(state):
-            if world.options.pretuning_mode:
-                return True
+        if world.options.pretuning_mode:
+            return True_()
 
-            if not state.has(self.access_flag_name(), world.player):
-                return False
-
-            if not extra_rule(state):
-                return False
-
-            # Starting levels are exempt from all balancing checks.
-            # TODO: we should be better about this, exclude rank 0 levels from
-            # carryover checks but still apply them to later starting levels
-            # if possible.
-            if world.is_starting_map(self.map):
-                return True
-
+        # Starting levels are exempt from all balancing checks.
+        # TODO: we should be better about this, exclude rank 0 levels from
+        # carryover checks but still apply them to later starting levels
+        # if possible.
+        # Also, if hublogic is on, skip per-map weapon logic -- the logic
+        # developer is expected to attach weapon logic to individual regions.
+        if world.is_starting_map(self.map) or self.wad.use_hub_logic:
+            combat_logic_rule = True_()
+        else:
             # If Universal Tracker is asking for "glitch logic", skip all balancing
             # checks and report everything the player can get to whether they have
             # the firepower to keep it or not.
-            if state.has(world.glitches_item_name, world.player):
-                # if not combat_logic_rule(state):
-                #     print(f'Reporting glitched logic for {self.map}; weapons are {self.combat_logic_weapons(world)} based on local={self.local_weapons(world)} and episode={self.prior_weapons(world)}')
-                return True
+            combat_logic_rule = Or(Has(world.glitches_item_name), combat_logic_rule)
 
-            # If hublogic is on, skip per-map weapon logic.
-            if self.wad.use_hub_logic():
-                return True
-
-            if not combat_logic_rule(state):
-                return False
-
-            return True
-
-        return rule
+        return And(
+            Has(self.access_flag_name()),
+            extra_rule,
+            combat_logic_rule)
 
     def access_flag_name(self):
         if self.levelname:

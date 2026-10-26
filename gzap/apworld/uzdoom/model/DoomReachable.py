@@ -1,5 +1,7 @@
 from typing import NamedTuple, Optional, Set, List, FrozenSet, Collection
 
+from rule_builder.rules import Or, False_, True_
+
 from . import prereqs
 
 class DoomReachable:
@@ -101,46 +103,37 @@ class DoomReachable:
         Convert the string-based requirements in self.keys into a callable rule
         evaluator for use by the logic engine.
         """
-        prereq_fns = [
-            prereqs.strings_to_prereq_fn(world, wad, map, ps)
+        prereq_rules = [
+            prereqs.strings_to_rule(world, wad, map, ps)
             for ps in self.prereqs
         ]
 
-        def rule(state):
-            if hasattr(world.multiworld, "generation_is_fake"):
-                # If Universal Tracker is generating, pretend that locations
-                # with the unreachable flag are unreachable always, so they
-                # don't show up in the tracker.
-                if self.unreachable:
-                    return False
-                # Also consider everything unreachable in pretuning mode, because
-                # in pretuning the idea of "logic" kind of goes out the window
-                # entirely.
-                if world.options.pretuning_mode:
-                    return False
-
-            # Skip all checks in pretuning mode -- we know that the logic is
-            # beatable because it's the vanilla game.
+        if hasattr(world.multiworld, "generation_is_fake"):
+            # If Universal Tracker is generating, pretend that locations
+            # with the unreachable flag are unreachable always, so they
+            # don't show up in the tracker.
+            if self.unreachable:
+                return False_()
+            # Also consider everything unreachable in pretuning mode, because
+            # in pretuning the idea of "logic" kind of goes out the window
+            # entirely.
             if world.options.pretuning_mode:
-                return True
+                return False_()
 
-            # If this location has no prerequisites, trivially succeed.
-            if not prereq_fns:
-                return True
+        # Skip all checks in pretuning mode -- we know that the logic is
+        # beatable because it's the vanilla game.
+        if world.options.pretuning_mode:
+            return True_()
 
-            # Prereqs is an or-of-ands, so if any prereq succeeds, the rule
-            # succeeds.
-            for fn in prereq_fns:
-                if fn(state):
-                    return True
+        # If keys are forced to be in vanilla locations, assume that all
+        # items are reachable since key-based progression will work as normal.
+        # TODO: replace with a more sophisticated check that confirms that
+        # *all* items we have as prereqs have vanilla location placement.
+        if world.options.included_item_categories.all_keys_are_vanilla:
+            return True_()
 
-            # If keys are forced to be in vanilla locations, assume that all
-            # items are reachable since key-based progression will work as normal.
-            # TODO: replace with a more sophisticated check that confirms that
-            # *all* items we have as prereqs have vanilla location placement.
-            if world.options.included_item_categories.all_keys_are_vanilla:
-                return True
-
-            return False
-
-        return rule
+        # Prereqs are or-of-ands, and strings_to_rule above handles the "and" part.
+        if prereq_rules:
+            return Or(*prereq_rules) if len(prereq_rules) > 1 else prereq_rules[0]
+        else:
+            return True_()

@@ -53,7 +53,8 @@ class UZDoomLocation(Location):
 
     def __init__(self, world, loc: DoomLocation, region: Region) -> None:
         super().__init__(player=world.player, name=loc.name(), address=loc.id, parent=region)
-        self.access_rule = loc.access_rule(world)
+        # print(f'set rule for {loc.name()} to {loc.access_rule(world)}')
+        world.set_rule(self, loc.access_rule(world))
         self.doom_location = loc
         self.progress_type = LocationProgressType.DEFAULT
 
@@ -290,17 +291,19 @@ class UZDoomWorld(World):
             # rather than to the menu, but we won't draw connections between them.
             # It will probably result in better behaviour from the randomizer if
             # we CAN draw these connections; something to consider.
-            menu_region.connect(
-                connecting_region=regions[map.map],
-                name=f"{map.map}",
+            # print('create_entrance', menu_region, regions[map.map], map.access_rule(self))
+            self.create_entrance(
+                from_region=menu_region, to_region=regions[map.map],
+                name=f'{map.map}',
                 rule=map.access_rule(self))
 
             for region in self.wad_logic.regions_in_map(map.map):
                 rg = Region(region.name(), self.player, self.multiworld)
                 regions[region.name()] = rg
                 self.multiworld.regions.append(rg)
-                regions[map.map].connect(
-                    connecting_region=rg,
+                # print('create_entrance', regions[map.map], rg, region.access_rule(self, self.wad_logic, map))
+                self.create_entrance(
+                    from_region=regions[map.map], to_region=rg,
                     name=region.name(),
                     rule=region.access_rule(self, self.wad_logic, map))
 

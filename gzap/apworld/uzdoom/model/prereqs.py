@@ -9,11 +9,15 @@ TODO: we should use the new rule builder API in AP 0.6.7 once it's released.
 
 from typing import FrozenSet
 
-def strings_to_prereq_fn(world, wad, map, xs):
-  rules = [string_to_prereq_fn(world, wad, map, x) for x in xs]
-  return lambda state: all(rule(state) for rule in rules)
+from rule_builder.rules import *
 
-def string_to_prereq_fn(world, wad, map, string):
+def strings_to_rule(world, wad, map, xs):
+  if xs:
+    return And(*[string_to_rule(world, wad, map, x) for x in xs])
+  else:
+    return True_()
+
+def string_to_rule(world, wad, map, string):
   # print('string_to_prereq', wad.name, map.map, string)
   fields = string.split('/')
 
@@ -31,12 +35,12 @@ def string_to_prereq_fn(world, wad, map, string):
     case 'flag':  # flag/FLAGNAME
       # Flags don't impose prerequisites but instead change other things about
       # the region or location.
-      return lambda state: True
+      return True_()
     case _:
       raise RuntimeError(f'Unknown prerequisite {string}')
 
 def fqin_prereq(world, wad, map, fqin, count=1):
-  return lambda state: state.has(fqin, world.player, int(count))
+  return Has(fqin, int(count))
 
 def item_prereq(world, wad, map, typename, count=1):
   return fqin_prereq(world, wad, map, wad.items_by_type[typename].name())
@@ -50,21 +54,21 @@ def weapon_prereq(world, wad, map, typename, strictness = 'need'):
   if strictness == 'need':
     has_global_cap = fqin_prereq(world, wad, map, wad.weapon_capability(typename))
     has_local_cap = fqin_prereq(world, wad, map, wad.weapon_capability(typename, map.map))
-    return lambda state: has_global_cap(state) or has_local_cap(state)
+    return Or(has_global_cap, has_local_cap)
   elif strictness == 'want':
     if world.options.combat_logic_mode.is_enabled():
       if weapon_in_pool(world, wad, map, typename):
         return weapon_prereq(world, wad, map, typename, 'need')
       else:
         print(f'Dropping prerequisite weapon/{typename}/want in {map.map} because no such weapon exists')
-        return lambda _: True
+        return True_()
     else:
-      return lambda _: True
+      return True_()
   elif strictness == 'auto':
     if world.options.combat_logic_mode.is_auto():
       return weapon_prereq(world, wad, map, typename, 'need')
     else:
-      return lambda _: True
+      return True_()
   else:
     assert False, f'Unknown strictness in weapon prereq weapon/{typename}/{strictness}'
 
@@ -82,7 +86,7 @@ def key_prereq(world, wad, map, typename, count=1):
       fqin_prereq(world, wad, map, key.fqin())
       for key in sorted(map.keyset)
     ]
-    return lambda state: sum(p(state) for p in prereqs) > 0
+    return Or(*prereqs) if len(prereqs) > 1 else prereqs[0]
   else:
     return fqin_prereq(world, wad, map, map.key_by_type(typename).fqin(), count)
 
@@ -90,8 +94,6 @@ def region_prereq(world, wad, map, mapname, subregion = None):
   # In the above, 'map' is the map this prereq is evaluated in the context of,
   # and mapname is the name of the other map we're evaluating.
   if subregion is None:
-    # print(f'    (reachable "{mapname}")')
-    return wad.maps[mapname].access_rule(world)
+    return CanReachRegion(mapname)
   else:
-    # print(f'    (reachable "{mapname}/{subregion}")')
-    return wad.regions[f'{mapname}/{subregion}'].access_rule(world, wad, map)
+    return CanReachRegion(f'{mapname}/{subregion}')
