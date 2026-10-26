@@ -218,7 +218,7 @@ UZDoom client from the command line with the `--uz5-log-dir` flag to inform
 AP about it:
 
     # windows example
-    archipelago "UZDoom Client" -- --uz5-log-dir c:/games/uzdoom
+    ArchipelagoLauncher.exe "UZDoom Client" -- --uz5-log-dir c:/games/uzdoom
     # linux example
     archipelago "UZDoom Client" -- --uz5-log-dir "$HOME"
 
