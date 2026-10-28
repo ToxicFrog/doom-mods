@@ -1,5 +1,8 @@
 # Unreleased:
 
+⚠️ This version remains backwards compatible with 0.9.0 and 0.9.1, but since
+item categorization has changed, updating your logic packs (and rescanning any
+that you've made yourself) is recommended.
 
 - New:
   - `ap_no_pool` category allows excluding items from the pool while still
