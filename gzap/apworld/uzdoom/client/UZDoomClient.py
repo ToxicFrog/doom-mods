@@ -114,7 +114,7 @@ class UZDoomContext(SuperContext):
         if not self.username:
             logger.info("Getting slot name from uzdoom...")
             await self.found_uzdoom.wait()
-            logger.info("Got slot name:", self.username)
+            logger.info(f"Got slot name: {self.username}")
         self.auth = self.username
 
     async def connect(self, server):

@@ -9,6 +9,9 @@
 - Changed:
  - UZAP now uses `RuleBuilder` internally. This makes generation much faster and
    enables the `/explain` command in the client.
+- Fixed:
+  - Errors in Ashes 2063 logic. (This was hotfixed back to 0.9.0.)
+  - Client crash when used with `--slot`.
 
 # 0.9.0
 
