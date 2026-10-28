@@ -451,13 +451,13 @@ class IncludeBigItems(IncludeItemAmount):
 class IncludeMediumItems(IncludeItemAmount):
     __doc__ = size_docs('medium')
     display_name = "Medium items"
-    default = -1
+    default = 0
     visibility = vis('medium')
 
 class IncludeSmallItems(IncludeItemAmount):
     __doc__ = size_docs('small')
     display_name = "Small items"
-    default = -1
+    default = 0
     visibility = vis('small')
 
 class IncludeUnknownSizeItems(IncludeItemAmount):
