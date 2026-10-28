@@ -1,4 +1,8 @@
-# Unreleased
+# 0.9.1
+
+This is a bugfix release to fix a crash in the client. It is backwards
+compatible with logic and tuning data from 0.9.0. Updating with games in
+progress may work but has not been tested.
 
 - New:
   - You can now select `all` (0) as the spawn filter in the YAML. This will
