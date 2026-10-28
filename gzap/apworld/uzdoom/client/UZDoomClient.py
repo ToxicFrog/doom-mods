@@ -196,6 +196,7 @@ class UZDoomContext(SuperContext):
         self.last_tracked = set()
         self.last_hints = {}
 
+        self.username = slot
         self.found_uzdoom.set()
 
         if not server and not self.server_address:
@@ -205,7 +206,6 @@ class UZDoomContext(SuperContext):
         elif not self.server_address:
             logger.info(f"Received connection info from UZDoom: {server}")
             self.server_address = server
-            self.username = slot
             await self.connect(server)
         elif server != self.server_address:
             logger.info(f"Connection info from UZDoom ({server}) ignored as we already have a connection to this game.")

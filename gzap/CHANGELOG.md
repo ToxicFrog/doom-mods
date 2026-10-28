@@ -1,3 +1,9 @@
+# Unreleased:
+
+- Fixed:
+  - "Invalid slot" error when using locally-generated PK3s and running the client
+    without the `--slot` flag.
+
 # 0.9.1
 
 This is a bugfix release to fix a crash in the client. It is backwards
