@@ -106,7 +106,12 @@ class DoomItem:
 
         In some cases this depends on YAML options and which maps are selected.
         """
-        # Each key in this WAD must be included exactly once.
+        # Anything with ap_no_pool is unconditionally excluded.
+        if self.has_category('ap_no_pool'):
+            print(f'Warning: ap_no_pool item {self} was somehow added to the pool.')
+            return (0,0)
+
+        # Each key in this WAD must be included at least once.
         if self.has_category('key'):
             if world.key_in_world(self.name()):
                 return (1,world.key_in_world(self.name()).count)

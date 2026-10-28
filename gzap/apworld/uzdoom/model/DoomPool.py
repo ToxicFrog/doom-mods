@@ -70,6 +70,10 @@ class DoomPool:
             item = self.wad.items_by_name[loc.orig_item.name()]
             # if item is not loc.orig_item:
             #     print(f'Remap while filling pool: {loc.orig_item} -> {item}')
+            if item.has_category('ap_no_pool'):
+                # print(f'Dropping {item} because of ap_no_pool')
+                continue
+            # print(f'Adding {item} from {loc.name()} to pool')
             counter[loc.orig_item.name()] += 1
 
     def _skip_in_pretuning(self, world, loc):

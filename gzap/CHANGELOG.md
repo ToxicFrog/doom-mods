@@ -1,5 +1,8 @@
 # Unreleased:
 
+- New:
+  - `ap_no_pool` category allows excluding items from the pool while still
+    randomizing their locations.
 - Fixed:
   - "Invalid slot" error when using locally-generated PK3s and running the client
     without the `--slot` flag.

@@ -63,6 +63,16 @@ that are needed in large quantities and not particularly useful otherwise.
 Marks the item as particularly useful or as a trap, respectively. Does not in
 any way affect logic, just how the item is categorized in AP.
 
+### `ap_no_pool`
+
+Tells the apworld that, while the location itself is still subject to
+randomization, the item from it should be deleted from the world rather than
+placed in the pool (and the difference made up with random filler, if needed).
+
+This feature was introduced for WADs that include copies of the starting weapon
+in the maps, to prevent it from being picked up by weapon logic and included in
+the pool as a logically required weapon.
+
 ## Filler Categories
 
 All filler items have at least two categories, a *size* denoting their power
