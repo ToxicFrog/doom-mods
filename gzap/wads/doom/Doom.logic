@@ -550,7 +550,7 @@ AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonu
 AP-ITEM { "category": "weapon", "typename": "Chaingun", "tag": "Chaingun", "pos": ["E1M5",1696,624,96] }
 AP-ITEM { "category": "big-ammo", "typename": "Backpack", "tag": "Backpack", "pos": ["E1M5",1696,672,96] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "secret": true, "pos": ["E1M5",1568,592,80] }
-AP-ITEM { "category": "maprevealer", "typename": "Allmap", "tag": "Allmap", "secret": true, "pos": ["E1M5",1536,672,80] }
+AP-ITEM { "category": "maprevealer-ap_no_pool-medium", "typename": "Allmap", "tag": "Allmap", "secret": true, "pos": ["E1M5",1536,672,80] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "secret": true, "pos": ["E1M5",-240,1472,-8] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E1M5",320,1728,-8] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E1M5",-512,1984,-8] }
@@ -654,7 +654,7 @@ AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells"
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E1M6",3104,-1664,48] }
 AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E1M6",3216,-1232,48] }
 AP-ITEM { "category": "big-ammo", "typename": "Backpack", "tag": "Backpack", "pos": ["E1M6",1216,-512,88] }
-AP-ITEM { "category": "maprevealer", "typename": "Allmap", "tag": "Allmap", "pos": ["E1M6",3456,-1536,48] }
+AP-ITEM { "category": "maprevealer-ap_no_pool-medium", "typename": "Allmap", "tag": "Allmap", "pos": ["E1M6",3456,-1536,48] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E1M6",2304,-192,48] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E1M6",2496,-512,48] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E1M6",1040,-704,88] }
@@ -855,7 +855,7 @@ AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box",
 AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "secret": true, "pos": ["E1M7",-240,-2256,8] }
 AP-ITEM { "category": "weapon", "typename": "Chaingun", "tag": "Chaingun", "secret": true, "pos": ["E1M7",-208,-2256,8] }
 AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "secret": true, "pos": ["E1M7",-176,-2256,8] }
-AP-ITEM { "category": "maprevealer", "typename": "Allmap", "tag": "Allmap", "pos": ["E1M7",-32,-1760,80] }
+AP-ITEM { "category": "maprevealer-ap_no_pool-medium", "typename": "Allmap", "tag": "Allmap", "pos": ["E1M7",-32,-1760,80] }
 AP-ITEM { "category": "big-health", "typename": "Soulsphere", "tag": "Soulsphere", "secret": true, "pos": ["E1M7",-608,-96,8] }
 AP-ITEM { "category": "medium-tool", "typename": "RadSuit", "tag": "RadSuit", "pos": ["E1M7",-720,-1440,0] }
 AP-ITEM { "category": "key", "typename": "YellowCard", "tag": "Yellow Keycard", "pos": ["E1M7",1344,-192,144] }
@@ -1040,7 +1040,7 @@ AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box",
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E1M8",1360,3344,0] }
 AP-ITEM { "category": "small-defence", "typename": "BlurSphere", "tag": "BlurSphere", "pos": ["E1M8",-480,3344,0] }
 AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "filter": 3, "pos": ["E1M8",-192,-224,80] }
-AP-ITEM { "category": "maprevealer", "typename": "Allmap", "tag": "Allmap", "pos": ["E1M8",944,-176,144] }
+AP-ITEM { "category": "maprevealer-ap_no_pool-medium", "typename": "Allmap", "tag": "Allmap", "pos": ["E1M8",944,-176,144] }
 AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E1M8",944,-272,144] }
 AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E1M8",-384,3328,0] }
 AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E1M8",-160,2256,0] }
@@ -1172,7 +1172,7 @@ AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonu
 AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "secret": true, "pos": ["E2M1",944,112,-56] }
 AP-ITEM { "category": "key", "typename": "RedCard", "tag": "Red Keycard", "secret": true, "pos": ["E2M1",1120,144,-56] }
 AP-KEY { "typename": "RedCard", "tag": "Red Keycard", "scopename": "E2M1", "cluster": 0, "maps": ["E2M1"] }
-AP-ITEM { "category": "maprevealer", "typename": "Allmap", "tag": "Allmap", "secret": true, "pos": ["E2M1",528,-464,-64] }
+AP-ITEM { "category": "maprevealer-ap_no_pool-medium", "typename": "Allmap", "tag": "Allmap", "secret": true, "pos": ["E2M1",528,-464,-64] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "secret": true, "pos": ["E2M1",304,-464,-64] }
 AP-ITEM { "category": "big-armor", "typename": "BlueArmor", "tag": "BlueArmor", "secret": true, "pos": ["E2M1",240,-464,-64] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "secret": true, "pos": ["E2M1",560,-416,-64] }
@@ -1241,7 +1241,7 @@ AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthB
 AP-ITEM { "category": "medium-armor", "typename": "GreenArmor", "tag": "GreenArmor", "pos": ["E2M2",496,0,64] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E2M2",784,-16,64] }
 AP-ITEM { "category": "small-ammo", "typename": "Clip", "tag": "Bullets", "secret": true, "pos": ["E2M2",928,1344,8] }
-AP-ITEM { "category": "maprevealer", "typename": "Allmap", "tag": "Allmap", "secret": true, "pos": ["E2M2",1024,1328,8] }
+AP-ITEM { "category": "maprevealer-ap_no_pool-medium", "typename": "Allmap", "tag": "Allmap", "secret": true, "pos": ["E2M2",1024,1328,8] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "secret": true, "pos": ["E2M2",992,1392,8] }
 AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "secret": true, "pos": ["E2M2",1056,1376,8] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E2M2",512,1872,24] }
@@ -1494,7 +1494,7 @@ AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", 
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E2M4",2608,-288,376] }
 AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "secret": true, "pos": ["E2M4",2464,-128,376] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E2M4",2512,-288,376] }
-AP-ITEM { "category": "maprevealer", "typename": "Allmap", "tag": "Allmap", "pos": ["E2M4",2560,-336,376] }
+AP-ITEM { "category": "maprevealer-ap_no_pool-medium", "typename": "Allmap", "tag": "Allmap", "pos": ["E2M4",2560,-336,376] }
 AP-ITEM { "category": "medium-armor", "typename": "GreenArmor", "tag": "GreenArmor", "pos": ["E2M4",2560,-384,376] }
 AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "secret": true, "pos": ["E2M4",2656,-128,376] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E2M4",1760,-224,96] }
@@ -1637,7 +1637,7 @@ AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells"
 AP-ITEM { "category": "small-ammo", "typename": "Cell", "tag": "Energy Cells", "pos": ["E2M5",-1568,672,0] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E2M5",-1376,240,0] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E2M5",-1760,240,0] }
-AP-ITEM { "category": "maprevealer", "typename": "Allmap", "tag": "Allmap", "pos": ["E2M5",-1440,512,128] }
+AP-ITEM { "category": "maprevealer-ap_no_pool-medium", "typename": "Allmap", "tag": "Allmap", "pos": ["E2M5",-1440,512,128] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E2M5",-2256,-32,0] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["E2M5",-2144,-544,0] }
 AP-ITEM { "category": "small-armor", "typename": "ArmorBonus", "tag": "ArmorBonus", "pos": ["E2M5",-2272,-544,0] }
@@ -1743,7 +1743,7 @@ AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E2M6",768,-224,0] }
 AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E2M6",-304,2880,48] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["E2M6",48,3296,48] }
-AP-ITEM { "category": "maprevealer", "typename": "Allmap", "tag": "Allmap", "pos": ["E2M6",800,3296,64] }
+AP-ITEM { "category": "maprevealer-ap_no_pool-medium", "typename": "Allmap", "tag": "Allmap", "pos": ["E2M6",800,3296,64] }
 AP-ITEM { "category": "medium-armor", "typename": "GreenArmor", "tag": "GreenArmor", "secret": true, "pos": ["E2M6",-96,3072,72] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "secret": true, "pos": ["E2M6",-160,3072,72] }
 AP-ITEM { "category": "small-defence", "typename": "BlurSphere", "tag": "BlurSphere", "secret": true, "pos": ["E2M6",-160,3136,72] }
@@ -1949,7 +1949,7 @@ AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box",
 AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "pos": ["E2M7",2720,1408,64] }
 AP-ITEM { "category": "big-health", "typename": "Soulsphere", "tag": "Soulsphere", "secret": true, "pos": ["E2M7",1504,1984,72] }
 AP-ITEM { "category": "big-defence", "typename": "InvulnerabilitySphere", "tag": "InvulnerabilitySphere", "pos": ["E2M7",576,1024,72] }
-AP-ITEM { "category": "maprevealer", "typename": "Allmap", "tag": "Allmap", "secret": true, "pos": ["E2M7",3424,928,-72] }
+AP-ITEM { "category": "maprevealer-ap_no_pool-medium", "typename": "Allmap", "tag": "Allmap", "secret": true, "pos": ["E2M7",3424,928,-72] }
 AP-ITEM { "category": "weapon", "typename": "PlasmaRifle", "tag": "Plasma Rifle", "secret": true, "pos": ["E2M7",-16,976,72] }
 AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "pos": ["E2M7",2592,-160,16] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E2M7",3168,-384,0] }
@@ -2027,7 +2027,7 @@ AP-ITEM { "category": "weapon", "typename": "PlasmaRifle", "tag": "Plasma Rifle"
 AP-ITEM { "category": "weapon", "typename": "RocketLauncher", "tag": "Rocket Launcher", "pos": ["E2M9",576,128,0] }
 AP-ITEM { "category": "weapon", "typename": "Shotgun", "tag": "Shotgun", "pos": ["E2M9",576,-896,0] }
 AP-ITEM { "category": "weapon", "typename": "Chainsaw", "tag": "Chainsaw", "pos": ["E2M9",64,-1280,0] }
-AP-ITEM { "category": "maprevealer", "typename": "Allmap", "tag": "Allmap", "pos": ["E2M9",-448,-896,0] }
+AP-ITEM { "category": "maprevealer-ap_no_pool-medium", "typename": "Allmap", "tag": "Allmap", "pos": ["E2M9",-448,-896,0] }
 AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E2M9",1664,320,0] }
 AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E2M9",1664,-1088,0] }
 AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["E2M9",1664,-192,0] }
@@ -2132,7 +2132,7 @@ AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthB
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["E3M2",144,1184,80] }
 AP-ITEM { "category": "small-health", "typename": "HealthBonus", "tag": "HealthBonus", "pos": ["E3M2",32,1184,80] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E3M2",48,1120,80] }
-AP-ITEM { "category": "maprevealer", "typename": "Allmap", "tag": "Allmap", "pos": ["E3M2",-496,2032,112] }
+AP-ITEM { "category": "maprevealer-ap_no_pool-medium", "typename": "Allmap", "tag": "Allmap", "pos": ["E3M2",-496,2032,112] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["E3M2",-496,1984,112] }
 AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box", "pos": ["E3M2",-464,1936,112] }
 AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["E3M2",-528,1936,112] }
@@ -2207,7 +2207,7 @@ AP-ITEM { "category": "big-ammo", "typename": "Backpack", "tag": "Backpack", "se
 AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "secret": true, "pos": ["E3M3",1136,1328,0] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "secret": true, "pos": ["E3M3",-368,912,80] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "secret": true, "pos": ["E3M3",-272,912,80] }
-AP-ITEM { "category": "maprevealer", "typename": "Allmap", "tag": "Allmap", "secret": true, "pos": ["E3M3",-304,912,80] }
+AP-ITEM { "category": "maprevealer-ap_no_pool-medium", "typename": "Allmap", "tag": "Allmap", "secret": true, "pos": ["E3M3",-304,912,80] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "secret": true, "pos": ["E3M3",-336,912,80] }
 AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "secret": true, "pos": ["E3M3",48,912,80] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "secret": true, "pos": ["E3M3",16,912,80] }
@@ -2629,7 +2629,7 @@ AP-ITEM { "category": "big-defence", "typename": "InvulnerabilitySphere", "tag":
 AP-ITEM { "category": "big-health", "typename": "Soulsphere", "tag": "Soulsphere", "pos": ["E3M6",-1136,-96,0] }
 AP-ITEM { "category": "key", "typename": "BlueSkull", "tag": "Blue Skull", "filter": 3, "pos": ["E3M6",1040,464,32] }
 AP-KEY { "typename": "BlueSkull", "tag": "Blue Skull", "scopename": "E3M6", "cluster": 0, "maps": ["E3M6"] }
-AP-ITEM { "category": "maprevealer", "typename": "Allmap", "tag": "Allmap", "pos": ["E3M6",-1024,1600,0] }
+AP-ITEM { "category": "maprevealer-ap_no_pool-medium", "typename": "Allmap", "tag": "Allmap", "pos": ["E3M6",-1024,1600,0] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E3M6",-192,1152,72] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["E3M6",-768,768,72] }
 AP-ITEM { "category": "weapon", "typename": "Chainsaw", "tag": "Chainsaw", "secret": true, "pos": ["E3M6",384,2624,0] }
@@ -3455,7 +3455,7 @@ AP-ITEM { "category": "small-ammo", "typename": "RocketAmmo", "tag": "Rockets", 
 AP-ITEM { "category": "medium-tool", "typename": "RadSuit", "tag": "RadSuit", "pos": ["E4M7",-160,1600,-128] }
 AP-ITEM { "category": "medium-tool", "typename": "RadSuit", "tag": "RadSuit", "pos": ["E4M7",160,1600,-128] }
 AP-ITEM { "category": "medium-armor", "typename": "GreenArmor", "tag": "GreenArmor", "pos": ["E4M7",-448,-512,16] }
-AP-ITEM { "category": "maprevealer", "typename": "Allmap", "tag": "Allmap", "pos": ["E4M7",0,-512,-48] }
+AP-ITEM { "category": "maprevealer-ap_no_pool-medium", "typename": "Allmap", "tag": "Allmap", "pos": ["E4M7",0,-512,-48] }
 AP-ITEM { "category": "medium-health-attack", "typename": "Berserk", "tag": "Berserk", "pos": ["E4M7",288,-352,-64] }
 AP-ITEM { "category": "key", "typename": "YellowSkull", "tag": "Yellow Skull", "pos": ["E4M7",1120,-432,-96] }
 AP-KEY { "typename": "YellowSkull", "tag": "Yellow Skull", "scopename": "E4M7", "cluster": 0, "maps": ["E4M7"] }

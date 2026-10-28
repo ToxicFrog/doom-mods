@@ -88,6 +88,10 @@ def key_prereq(world, wad, map, typename, count=1):
     ]
     return Or(*prereqs) if len(prereqs) > 1 else prereqs[0]
   else:
+    # TODO: if the location the key comes from is not randomized, this should
+    # instead be a check that you can reach the location where the key is.
+    # This does require us to somehow turn the key's type and scope back into
+    # the key's originating location.
     return fqin_prereq(world, wad, map, map.key_by_type(typename).fqin(), count)
 
 def region_prereq(world, wad, map, mapname, subregion = None):

@@ -118,11 +118,6 @@ class DoomItem:
             else:
                 return (0,0)
 
-        # Allmaps are excluded from the pool. The randomizer will add AP automaps
-        # to the pool (or not) depending on settings.
-        if self.has_category('maprevealer'):
-            return (0,0)
-
         # Weapons have an upper bound that depends on settings.
         if self.has_category('weapon'):
             # These should be replaced with weapon capabilities in the pool, so

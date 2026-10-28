@@ -3,6 +3,9 @@
 - New:
   - `ap_no_pool` category allows excluding items from the pool while still
     randomizing their locations.
+  - Ashes 2063 logic updated to use `ap_no_pool` for the starting revolver.
+  - All logic updated to use `ap_no_pool` for Allmaps.
+  - Allmaps are now `medium` items for the purposes of location selection.
 - Fixed:
   - "Invalid slot" error when using locally-generated PK3s and running the client
     without the `--slot` flag.

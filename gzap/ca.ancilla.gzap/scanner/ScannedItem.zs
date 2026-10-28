@@ -183,7 +183,7 @@ class ::ScannedItem : ::ScannedLocation {
     } else if (thing is "BackpackItem") {
       return "big-ammo";
     } else if (thing is "MapRevealer") {
-      return "maprevealer";
+      return "maprevealer-ap_no_pool-medium";
     } else if (thing is "SecretTrigger") {
       return "secret-marker";
     }

@@ -13,7 +13,7 @@ AP-KEY { "typename": "BlueCard", "tag": "Blue Keycard", "scopename": "MAP01", "c
 AP-ITEM { "category": "weapon", "typename": "Chainsaw", "tag": "Chainsaw", "pos": ["MAP01",288,-672,72] }
 AP-ITEM { "category": "key", "typename": "YellowCard", "tag": "Yellow Keycard", "pos": ["MAP01",-272,-896,80] }
 AP-KEY { "typename": "YellowCard", "tag": "Yellow Keycard", "scopename": "MAP01", "cluster": 0, "maps": ["MAP01"] }
-AP-ITEM { "category": "maprevealer", "typename": "Allmap", "tag": "Allmap", "pos": ["MAP01",-192,-256,64] }
+AP-ITEM { "category": "maprevealer-ap_no_pool-medium", "typename": "Allmap", "tag": "Allmap", "pos": ["MAP01",-192,-256,64] }
 AP-ITEM { "category": "medium-armor", "typename": "GreenArmor", "tag": "GreenArmor", "pos": ["MAP01",-976,-560,72] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["MAP01",-800,-752,72] }
 AP-ITEM { "category": "medium-health", "typename": "Medikit", "tag": "Medikit", "pos": ["MAP01",-592,-608,80] }
@@ -348,7 +348,7 @@ AP-MAP {
   "monsters": { "Cacodemon": 16, "Revenant": 8, "ShotgunGuy": 14, "Zombieman": 6, "ChaingunGuy": 5, "DoomImp": 14 },
   "prereqs": [ "weapon/Shotgun/auto", "weapon/Chaingun/auto" ]
 }
-AP-ITEM { "category": "maprevealer", "typename": "Allmap", "tag": "Allmap", "pos": ["MAP07",-192,1344,0] }
+AP-ITEM { "category": "maprevealer-ap_no_pool-medium", "typename": "Allmap", "tag": "Allmap", "pos": ["MAP07",-192,1344,0] }
 AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["MAP07",-240,1664,0] }
 AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "pos": ["MAP07",168,1664,0] }
 AP-ITEM { "category": "weapon", "typename": "Chaingun", "tag": "Chaingun", "pos": ["MAP07",-32,1408,0] }
@@ -431,7 +431,7 @@ AP-ITEM { "category": "medium-ammo", "typename": "ShellBox", "tag": "Shell Box",
 AP-ITEM { "category": "medium-armor", "typename": "GreenArmor", "tag": "GreenArmor", "pos": ["MAP08",384,400,144] }
 AP-ITEM { "category": "key", "typename": "YellowCard", "tag": "Yellow Keycard", "pos": ["MAP08",800,-1008,-64] }
 AP-KEY { "typename": "YellowCard", "tag": "Yellow Keycard", "scopename": "MAP08", "cluster": 0, "maps": ["MAP08"] }
-AP-ITEM { "category": "maprevealer", "typename": "Allmap", "tag": "Allmap", "secret": true, "pos": ["MAP08",592,224,-128] }
+AP-ITEM { "category": "maprevealer-ap_no_pool-medium", "typename": "Allmap", "tag": "Allmap", "secret": true, "pos": ["MAP08",592,224,-128] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "secret": true, "pos": ["MAP08",568,120,-128] }
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "secret": true, "pos": ["MAP08",568,328,-128] }
 AP-ITEM { "category": "medium-ammo", "typename": "ClipBox", "tag": "Bullet Box", "secret": true, "pos": ["MAP08",616,288,-128] }
@@ -1090,7 +1090,7 @@ AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack",
 AP-ITEM { "category": "small-health", "typename": "Stimpack", "tag": "Stimpack", "pos": ["MAP13",-1160,-320,0] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["MAP13",-912,-176,48] }
 AP-ITEM { "category": "small-ammo", "typename": "Shell", "tag": "Shotgun Shells", "pos": ["MAP13",-544,224,0] }
-AP-ITEM { "category": "maprevealer", "typename": "Allmap", "tag": "Allmap", "secret": true, "pos": ["MAP13",192,-400,128] }
+AP-ITEM { "category": "maprevealer-ap_no_pool-medium", "typename": "Allmap", "tag": "Allmap", "secret": true, "pos": ["MAP13",192,-400,128] }
 AP-SECRET { "pos": ["MAP13","secret","sector",290] }
 AP-SECRET { "pos": ["MAP13","secret","sector",330] }
 AP-SECRET { "pos": ["MAP13","secret","sector",338] }
@@ -2160,7 +2160,7 @@ AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Cell Pack",
 AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Cell Pack", "pos": ["MAP24",-1536,640,-272] }
 AP-ITEM { "category": "medium-ammo", "typename": "RocketBox", "tag": "Rocket Box", "pos": ["MAP24",-1920,448,-224] }
 AP-ITEM { "category": "medium-ammo", "typename": "CellPack", "tag": "Cell Pack", "pos": ["MAP24",-64,960,0] }
-AP-ITEM { "category": "maprevealer", "typename": "Allmap", "tag": "Allmap", "secret": true, "pos": ["MAP24",-1664,-640,192] }
+AP-ITEM { "category": "maprevealer-ap_no_pool-medium", "typename": "Allmap", "tag": "Allmap", "secret": true, "pos": ["MAP24",-1664,-640,192] }
 AP-SECRET { "pos": ["MAP24","secret","sector",46] }
 AP-SECRET { "pos": ["MAP24","secret","sector",106] }
 AP-SECRET { "pos": ["MAP24","secret","sector",155] }
