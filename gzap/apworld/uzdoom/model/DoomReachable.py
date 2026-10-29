@@ -128,7 +128,8 @@ class DoomReachable:
         # If keys are forced to be in vanilla locations, assume that all
         # items are reachable since key-based progression will work as normal.
         # TODO: replace with a more sophisticated check that confirms that
-        # *all* items we have as prereqs have vanilla location placement.
+        # *all* items we have as prereqs have vanilla location placement, and
+        # that those locations are reachable.
         if world.options.included_item_categories.all_keys_are_vanilla:
             return True_()
 

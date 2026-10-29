@@ -146,7 +146,7 @@ class UZDoomWorld(World):
         return self.any_glob_matches(self.options.included_levels.value or {"*"}, map)
 
     def is_starting_map(self, map: str) -> bool:
-        return self.any_glob_matches(self.options.starting_levels.value, map)
+        return map in self.options.starting_levels.value
 
     def setup_item_categories(self):
         # Populate included_item_categories based on the user-friendly yaml settings.
@@ -225,6 +225,11 @@ class UZDoomWorld(World):
         print(f"Selected WAD: {self.wad_logic.name}")
         print(f"Selected spawns: {self.spawn_filter_name(self.options.spawn_filter.value)} ({self.options.spawn_filter.value})")
 
+        # Turn starting_levels from globs into real maps
+        self.options.starting_levels.value = [
+            map.map for map in self.wad_logic.maps.values()
+            if self.any_glob_matches(self.options.starting_levels.value, map.map)
+        ]
         self.maps = [
             map for map in self.wad_logic.maps.values()
             if self.should_include_map(map.map)
