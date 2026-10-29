@@ -152,33 +152,6 @@ class DoomWeaponGrant(DoomFlag):
     def typename_for_icon(self):
         return self.weapon
 
-    def classification(self, world=None):
-        """
-        Weapon classification depends on the weapon unlock and combat logic
-        settings in the yaml.
-        """
-        # Non-map-scoped weapons are always considered progression, and there's
-        # no point in classifying map-scoped ones if map-scoped weapon unlocks
-        # are disabled because they won't be in the pool anyways.
-        if not world or not self.map or not world.options.per_map_weapons:
-            return super().classification(world)
-
-        # If it has a 'need' requirement in any map or region logic, it is always
-        # progression. It is also progression if it has a 'want' requirement and
-        # combat logic is enabled in any sense.
-        map = world.wad_logic.get_map(self.map)
-        for region in world.wad_logic.regions_in_map(map.map, True):
-            if region.requires_weapon(self.weapon, world.options.combat_logic_mode):
-                return ItemClassification.progression
-
-        # If auto combat logic is enabled, it's required if the automatic combat
-        # logic thinks it's needed.
-        if self.weapon in map.combat_logic_weapons(world):
-            return ItemClassification.progression
-
-        # Otherwise it is merely useful.
-        return ItemClassification.useful
-
     def pool_limits(self, world):
         # Map-scoped weapon capability. Always include one of each.
         if self.map:

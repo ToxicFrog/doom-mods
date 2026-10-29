@@ -692,3 +692,63 @@ class DoomWad:
             logic.register_item(item)
         for loc in sorted(self.all_locations(), key=lambda x: x.name()):
             logic.register_location(loc)
+
+    def update_weapon_logic_prereqs(self, world):
+        """
+        Produce /auto and /auto_carryover prereqs for each map which will be used
+        by auto combat logic (if enabled).
+
+        Each map may have some of these in the logic file already; this process
+        generates them from ones in previous maps + weapons placed in the map.
+
+        We do this in generate_early rather than during wad loading because we
+        don't actually know which locations are valid for the purposes of
+        combat logic until we've read the yaml.
+        """
+        def is_combat_logic_hint(term):
+            return term.startswith('weapon/') and term.endswith('/auto')
+        maps = sorted([map for map in self.all_maps()], key=lambda m: m.rank)
+        for map in maps:
+            prereqs = set()
+            for loc in map.all_locations(world.spawn_filter, {'weapon'}):
+                if not map.should_include_weapon(world, loc):
+                    continue
+                # print(f'{map.map}: Promoting weapon {loc.orig_item.typename} to map combat logic hint')
+                prereqs |= { f'weapon/{loc.orig_item.typename}/auto' }
+            for prior in map.prior_maps(world):
+                for rule in prior.extra_rules.prereqs:
+                    for term in rule:
+                        if is_combat_logic_hint(term) and not {term, f'{term}_carryover'} & prereqs:
+                            # print(f'{map.map}: inheriting {term} from {prior.map} as episode combat logic hint')
+                            prereqs |= { f'{term}_carryover' }
+            map.extra_rules.add_universal_prereqs(prereqs)
+
+    def update_weapon_classification(self, world):
+        """
+        Weapon classification depends on combat logic settings in the yaml.
+        So, when actually generating (i.e. when we have a yaml), we run this
+        right before filling the pool, since at this point we know which weapons
+        are progression and which are useful.
+        """
+        all_weapon_grants = [
+            item for item in self.items_by_name.values()
+            if item.has_category('weapon') and item.has_category('ap_flag')
+        ]
+
+        for weapon in all_weapon_grants:
+            if not weapon.map:
+                # Universal weapon grants are always progression
+                continue
+
+            map = self.get_map(weapon.map)
+            regions = self.regions_in_map(map.map, True)
+            if sum(region.requires_weapon(weapon.weapon, world.options.combat_logic_mode) for region in regions):
+                # Weapons explicitly listed as required, either 'need' (hard required)
+                # or 'want' (required if any form of combat logic is on), are
+                # progression.
+                continue
+
+            # Weapon is not actually logically required under current settings,
+            # so it is instead useful.
+            # print(f'Downgrading classification for {weapon.name()} to useful.')
+            weapon.categories = frozenset({'ap_flag', 'ap_useful', 'weapon'})

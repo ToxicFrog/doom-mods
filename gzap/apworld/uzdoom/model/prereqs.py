@@ -50,33 +50,61 @@ def weapon_in_pool(world, wad, map, typename):
   local_cap = wad.weapon_capability(typename, map.map)
   return world.pool.contains_item(global_cap) or world.pool.contains_item(local_cap)
 
+# TODO: extract and unify weapon logic prereqs so that we can combine them into
+# something more readable in the debugger, rather than attaching the glitch
+# check and combat logic option check to each one individually.
 def weapon_prereq(world, wad, map, typename, strictness = 'need'):
-  if strictness == 'need':
-    has_global_cap = fqin_prereq(world, wad, map, wad.weapon_capability(typename))
-    has_local_cap = fqin_prereq(world, wad, map, wad.weapon_capability(typename, map.map))
-    return Or(has_global_cap, has_local_cap)
-  elif strictness == 'want':
-    if world.options.combat_logic_mode.is_enabled():
-      if weapon_in_pool(world, wad, map, typename):
-        return weapon_prereq(world, wad, map, typename, 'need')
-      else:
-        print(f'Dropping prerequisite weapon/{typename}/want in {map.map} because no such weapon exists')
-        return True_()
-    else:
-      return True_()
-  elif strictness == 'auto':
-    if world.options.combat_logic_mode.is_auto():
-      return weapon_prereq(world, wad, map, typename, 'need')
-    else:
-      return True_()
-  else:
-    assert False, f'Unknown strictness in weapon prereq weapon/{typename}/{strictness}'
+  has_global_cap = fqin_prereq(world, wad, map, wad.weapon_capability(typename))
+  has_local_cap = fqin_prereq(world, wad, map, wad.weapon_capability(typename, map.map))
 
-def is_combat_logic_hint(prereq):
-  return prereq.startswith('weapon/') and prereq.endswith('/want')
+  if strictness == 'need':
+    # We do this before the in_pool check because if the weapon is hard required
+    # and not in the pool, we cannot guarantee the game is beatable.
+    return Or(has_global_cap, has_local_cap)
+
+  if not weapon_in_pool(world, wad, map, typename):
+    print(f'Dropping prerequisite weapon/{typename}/{strictness} in {map.map} because no such weapon exists')
+    return True_()
+
+  starting_map = True_(options=[OptionFilter(world.options.starting_levels.__class__, map.map, operator="contains")])
+  combat_logic_disabled = True_(options=[OptionFilter(world.options.combat_logic_mode.__class__, 0)])
+  combat_logic_no_auto = True_(options=[OptionFilter(world.options.combat_logic_mode.__class__, 1, operator='le')])
+  combat_logic_local_only = True_(options=[OptionFilter(world.options.combat_logic_mode.__class__, 2, operator='le')])
+  if strictness == 'want':
+    return Or(
+      has_global_cap,
+      has_local_cap,
+      Has(world.glitches_item_name),
+      starting_map,
+      combat_logic_disabled)
+
+  if strictness == 'auto':
+    return Or(
+      has_global_cap,
+      has_local_cap,
+      Has(world.glitches_item_name),
+      starting_map,
+      combat_logic_no_auto)
+
+  if strictness == 'auto_carryover':
+    return Or(
+      has_global_cap,
+      has_local_cap,
+      Has(world.glitches_item_name),
+      starting_map,
+      combat_logic_local_only)
+
+  assert False, f'Unknown strictness in weapon prereq weapon/{typename}/{strictness}'
+
+def is_combat_logic_hint(prereq, include_auto=False):
+  if not prereq.startswith('weapon/'):
+    return False
+  return (
+    prereq.endswith('/want')
+    or (include_auto and prereq.endswith('/auto')))
 
 def weapon_from_hint(prereq):
-  assert is_combat_logic_hint(prereq)
+  assert is_combat_logic_hint(prereq, True)
   return prereq.split('/')[1]
 
 def key_prereq(world, wad, map, typename, count=1):

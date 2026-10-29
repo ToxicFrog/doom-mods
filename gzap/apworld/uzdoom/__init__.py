@@ -245,6 +245,12 @@ class UZDoomWorld(World):
         else:
             self.setup_item_categories()
 
+        # There's a bunch of stuff we can do here only once we have the yaml
+        # loaded and know what our weapon logic settings are: promoting weapons
+        # in each map to weapon logic requirements and then deciding which weapons
+        # are useful vs. progression based on that.
+        self.wad_logic.update_weapon_logic_prereqs(self)
+        self.wad_logic.update_weapon_classification(self)
         self.pool = self.wad_logic.fill_pool(self)
 
         assert self.options.win_map_count.value <= len(self.maps), f"Your yaml requires you to clear {self.options.win_map_count.value} maps to win, but you have only included {len(self.maps)} maps in the game."

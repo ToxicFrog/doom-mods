@@ -87,11 +87,13 @@ class DoomReachable:
         return False
 
     def requires_weapon(self, weapon, weapon_logic_mode) -> bool:
-        terms = { f'weapon/{weapon}', f'/weapon/{weapon}/need' }
+        terms = { f'weapon/{weapon}', f'weapon/{weapon}/need' }
         if weapon_logic_mode.is_enabled():
             terms |= { f'weapon/{weapon}/want' }
         if weapon_logic_mode.is_auto():
             terms |= { f'weapon/{weapon}/auto' }
+        if weapon_logic_mode.allows_carryover():
+            terms |= { f'weapon/{weapon}/auto_carryover' }
 
         for prereq in self.prereqs:
             if terms & prereq:
