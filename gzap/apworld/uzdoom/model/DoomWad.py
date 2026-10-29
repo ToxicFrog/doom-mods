@@ -24,7 +24,7 @@ from .DoomPosition import DoomPosition, DoomCoordPosition, to_position
 from .DoomMap import DoomMap
 from .DoomKey import DoomKey
 from .DoomRegion import DoomRegion
-
+from .prereqs import is_auto_combat_logic_hint
 
 class DuplicateMapError(RuntimeError):
     """
@@ -705,8 +705,6 @@ class DoomWad:
         don't actually know which locations are valid for the purposes of
         combat logic until we've read the yaml.
         """
-        def is_combat_logic_hint(term):
-            return term.startswith('weapon/') and term.endswith('/auto')
         maps = sorted([map for map in self.all_maps()], key=lambda m: m.rank)
         for map in maps:
             prereqs = set()
@@ -718,7 +716,8 @@ class DoomWad:
             for prior in map.prior_maps(world):
                 for rule in prior.extra_rules.prereqs:
                     for term in rule:
-                        if is_combat_logic_hint(term) and not {term, f'{term}_carryover'} & prereqs:
+                        term = term.removesuffix('_carryover')
+                        if is_auto_combat_logic_hint(term) and term not in prereqs:
                             # print(f'{map.map}: inheriting {term} from {prior.map} as episode combat logic hint')
                             prereqs |= { f'{term}_carryover' }
             map.extra_rules.add_universal_prereqs(prereqs)

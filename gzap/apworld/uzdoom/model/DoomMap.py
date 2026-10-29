@@ -165,41 +165,6 @@ class DoomMap:
             loc.has_category('weapon') and not loc.unreachable
             and (not loc.has_category('secret') or world.options.combat_logic_secrets))
 
-    def local_weapons(self, world) -> Counter[str]:
-        # FIXME: enemy drops are not counted in this. So if the GZAPRC says that
-        # levels with shotgunners should logically require the shotgun, we infer
-        # that requirement for the level, but don't treat the level as being one
-        # that you can find the shotgun in.
-        # We should probably promote /auto weapon requirements from the tuning
-        # file to inferred weapon pickups here.
-        return Counter(
-            loc.orig_item.typename
-            for loc in self.locations
-            if self.should_include_weapon(world, loc)
-        ) + Counter(
-            weapon_from_hint(prereq)
-            for prereq in self.prereqs
-            if is_combat_logic_hint(prereq)
-        )
-
-    def prior_weapons(self, world) -> Counter[str]:
-        weapons = Counter()
-        for map in self.prior_maps(world):
-            # print(f'prior_weapons({self.map}): {map.map} contains {map.local_weapons(world)}')
-            weapons += map.local_weapons(world)
-        return weapons
-
-    def combat_logic_weapons(self, world):
-        if world.options.combat_logic_mode == 'auto_per_episode':
-            return frozenset(
-                weapon
-                for weapon in (self.local_weapons(world) + self.prior_weapons(world)).keys()
-            )
-        elif world.options.combat_logic_mode == 'auto_per_level':
-            return frozenset(weapon for weapon in self.local_weapons(world))
-        else:
-            return frozenset()
-
     def is_same_episode(self, other) -> bool:
         # This is a bit of a hack: assume that something is in the same episode
         # if its map lumpname starts with the same two characters.
