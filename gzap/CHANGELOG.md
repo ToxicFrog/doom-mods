@@ -16,6 +16,7 @@ that you've made yourself) is recommended.
 - Fixed:
   - "Invalid slot" error when using locally-generated PK3s and running the client
     without the `--slot` flag.
+  - Doom 2 now has complete tuning for all items, thanks to Xindage.
 
 # 0.9.1
 
