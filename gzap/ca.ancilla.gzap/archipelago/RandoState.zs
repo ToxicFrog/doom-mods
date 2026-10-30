@@ -49,9 +49,7 @@ class ::RandoState play {
   }
 
   static clearscope ::RandoState Get() {
-    console.printf("randostate.get");
     let peh = ::PlayEventHandler.Get();
-    console.printf("got PEH: %d", peh == null);
     return ::PlayEventHandler.Get().apstate;
   }
 

@@ -218,6 +218,10 @@ class DoomPool:
                 if ratio == 'start':
                     self.starting_item_counts[item] += count
                 elif ratio == 'vanilla':
+                    # FIXME: this breaks cluster-scoped keys, because the underlying
+                    # key did actually come from somewhere, but the clustered version
+                    # we create as a key grant did not, and the player ends up starting
+                    # with it.
                     logger.warning(f'AP-generated item {item} has "vanilla" placement but did not come from an in-game location. Treating it as "start" instead.')
                     self.starting_item_counts[item] += count
                 elif ratio != 1.0:
