@@ -185,6 +185,9 @@ def nrof_local_weapons(wad):
         item.name() for item in wad.items()
         if item.has_category('weapon') and item.map})
 
+def nrof_added_weapons(wad):
+    return nrof_local_weapons(wad) - nrof_global_weapons(wad)
+
 class PerMapWeaponUnlocks(Toggle):
     __doc__ = f"""
     Make weapon unlocks per-map instead of global. For example, a shotgun that
@@ -194,11 +197,26 @@ class PerMapWeaponUnlocks(Toggle):
     The `max_weapon_copies` setting is ignored when this is enabled. There will
     always be one copy of each weapon per map.
 
-    In this wad, with default settings, this will add {nrof_local_weapons(wad) - nrof_global_weapons(wad)} progression items to
-    the pool. If turning it on, you may need to add additional locations by
-    enabling small or medium items, unless you are playing in a multiworld with
-    other games that can absorb extra progression items.
+    In this wad, this will add up to {nrof_added_weapons(wad)} progression items to the pool, depending
+    on other settings. You may need to add additional locations by enabling
+    small or medium items, unless you are playing in a multiworld with other
+    games that can absorb extra progression items.
     """
+    display_name = "Per-map weapons"
+    default = False
+
+class ProgressionWeaponsOnly(Toggle):
+    """
+    If enabled, only weapons that are logically required for progression will be
+    added to the pool (i.e. those that are considered "progression" rather than
+    "useful"). If per-map weapon unlocks are turned off, this usually doesn't do
+    anything. If they are on, it generally means you won't find weapon unlocks
+    for a level if those weapons wouldn't normally be available in that level.
+
+    If you turn this on and turn combat logic off, you will probably end up with
+    no weapons in the pool; this is not recommended.
+    """
+    display_name = "Progression-required weapons only"
     default = False
 
 if wad.has_combat_logic_hints():
@@ -229,6 +247,8 @@ if wad.has_combat_logic_hints():
             return not self.is_disabled()
         def is_auto(self):
             return self.value >= 2
+        def allows_carryover(self):
+            return self.value >= 3
 else:
     class CombatLogicMode(Choice):
         """
@@ -253,6 +273,8 @@ else:
             return not self.is_disabled()
         def is_auto(self):
             return self.value >= 2
+        def allows_carryover(self):
+            return self.value >= 3
 
 class CombatLogicSecrets(Toggle):
     """
@@ -433,7 +455,9 @@ class IncludeItemAmount(NamedRange):
     }
 
 class IncludeBigItems(IncludeItemAmount):
-    __doc__ = f"""{size_docs('big')}
+    __doc__ = f"""
+    {size_docs('big')}
+
     This option, and the ones below, supports some special values:
 
     'shuffle' will randomize these items among themselves within your game,
@@ -668,6 +692,7 @@ class UZDoomOptions(PerGameCommonOptions):
     win_map_names: WinMapNames
     # Combat logic
     per_map_weapons: PerMapWeaponUnlocks
+    progression_weapons_only: ProgressionWeaponsOnly
     combat_logic_mode: CombatLogicMode
     combat_logic_secrets: CombatLogicSecrets
     # Gameplay
@@ -702,7 +727,7 @@ class UZDoomWeb(WebWorld):
         WinMapCount, WinMapNames,
     ]),
     OptionGroup("Combat Logic", [
-        PerMapWeaponUnlocks, CombatLogicMode, CombatLogicSecrets
+        PerMapWeaponUnlocks, ProgressionWeaponsOnly, CombatLogicMode, CombatLogicSecrets
     ]),
     OptionGroup("Gameplay Settings", [
         AllowRespawn, FullPersistence,

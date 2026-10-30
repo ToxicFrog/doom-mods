@@ -63,7 +63,9 @@ def weapon_prereq(world, wad, map, typename, strictness = 'need'):
     return Or(has_global_cap, has_local_cap)
 
   if not weapon_in_pool(world, wad, map, typename):
-    print(f'Dropping prerequisite weapon/{typename}/{strictness} in {map.map} because no such weapon exists')
+    # This generally means there's an auto_carryover prereq for this weapon but
+    # we are running in a mode that doesn't require it or add it to the pool.
+    # print(f'Dropping prerequisite weapon/{typename}/{strictness} in {map.map} because no such weapon exists')
     return True_()
 
   starting_map = True_(options=[OptionFilter(world.options.starting_levels.__class__, map.map, operator="contains")])

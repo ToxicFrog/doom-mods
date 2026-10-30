@@ -16,7 +16,11 @@ class ::SingleSlotInfo {
   int total;
   // Which weapons are in this slot, in index order
   Array<string> weapon_types;
-  // How many we have found in each scope
+  // Which ones exist in the pool, keyed by scope. By default this is everything
+  // in the slot, but if the player turned on progression_weapons_only, some
+  // weapons will get dropped from the pool.
+  Map<string, ::StringSet> in_pool;
+  // Which ones does the player actually have, also keyed by scope.
   Map<string, ::StringSet> held;
 
   static ::SingleSlotInfo Create() {
@@ -29,6 +33,17 @@ class ::SingleSlotInfo {
       ++index;
     }
     self.weapon_types.Insert(index, typename);
+  }
+
+  void MarkInPool(string scope, string typename) {
+    if (!self.in_pool.CheckKey(scope)) {
+      self.in_pool.Insert(scope, ::StringSet.Create());
+    }
+    self.in_pool.Get(scope).Insert(typename);
+  }
+
+  bool IsInPool(string scope, string typename) {
+    return self.in_pool.CheckKey(scope) && self.in_pool.Get(scope).Contains(typename);
   }
 
   void MarkHeld(string scope, string typename) {
@@ -141,9 +156,12 @@ class ::WeaponSlotInfo {
   void UpdateScope(string scope) {
     foreach (slot, info : self.slots) {
       foreach (weapon : info.weapon_types) {
+        if (!weapon) continue;
         string grant_type = scope == "*" ? "::WeaponGrant_"..weapon : "::WeaponGrant_"..weapon.."_"..scope;
-        let held = self.apstate.CountItem(grant_type) > 0;
-        if (held) info.MarkHeld(scope, weapon);
+        let held = self.apstate.CountItem(grant_type);
+        DEBUG("weapon %s (%s) with grant %s has held=%d", weapon, scope, grant_type, held);
+        if (held >= 0 || scope == "*") info.MarkInPool(scope, weapon);
+        if (held > 0) info.MarkHeld(scope, weapon);
       }
     }
   }
@@ -161,16 +179,16 @@ class ::WeaponSlotInfo {
       foreach (weapon : info.weapon_types) {
         // Slot population may leave gaps in the weapon_types.
         if (!weapon) continue;
-        DEBUG("Checking weapon %s", weapon);
         Class<Actor> cls = weapon;
         readonly<Actor> thing = GetDefaultByType(cls);
         let tag = ::RC.Get().GetTag(thing);
         let held = info.IsHeld(scope, weapon);
+        let in_pool = info.IsInPool(scope, weapon);
         if (last_slot != slot) {
-          buf.AppendFormat(head_format, held ? "FIRE" : "DARKGRAY", slot, tag);
+          buf.AppendFormat(in_pool ? head_format : " ", held ? "FIRE" : "DARKGRAY", slot, tag);
           last_slot = slot;
         } else {
-          buf.AppendFormat(rest_format, held ? "FIRE" : "DARKGRAY", tag);
+          buf.AppendFormat(in_pool ? rest_format : " ", held ? "FIRE" : "DARKGRAY", tag);
         }
       }
     }

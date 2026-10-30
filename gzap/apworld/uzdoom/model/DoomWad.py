@@ -734,14 +734,22 @@ class DoomWad:
             if item.has_category('weapon') and item.has_category('ap_flag')
         ]
 
+        def update_universal_weapon(weapon):
+            for map in world.maps:
+                regions = self.regions_in_map(map.map, True)
+                if any(region.requires_weapon(weapon.weapon, world.options.combat_logic_mode) for region in regions):
+                    return
+            # print(f'Downgrading classification for {weapon.name()} to useful.')
+            weapon.categories = frozenset({'ap_flag', 'ap_useful', 'weapon'})
+
         for weapon in all_weapon_grants:
             if not weapon.map:
-                # Universal weapon grants are always progression
+                update_universal_weapon(weapon)
                 continue
 
             map = self.get_map(weapon.map)
             regions = self.regions_in_map(map.map, True)
-            if sum(region.requires_weapon(weapon.weapon, world.options.combat_logic_mode) for region in regions):
+            if any(region.requires_weapon(weapon.weapon, world.options.combat_logic_mode) for region in regions):
                 # Weapons explicitly listed as required, either 'need' (hard required)
                 # or 'want' (required if any form of combat logic is on), are
                 # progression.
