@@ -1,0 +1,90 @@
+; Purple ink crafted in the alchemist's workshop
+AP-KEY {
+  "typename": "InventoryCanofEnchantedPurpleInk", "tag": "Can of Enchanted Purple Ink",
+  "scopename": "MAP02", "cluster": 0, "maps": ["MAP02"]
+}
+AP-ITEM {
+  "category": "key",
+  "typename": "InventoryCanofEnchantedPurpleInk",
+  "tag": "Can of Enchanted Purple Ink",
+  "pos": ["MAP02","spawn",1,"InventoryCanofEnchantedPurpleInk",-2956,481,32]
+}
+
+; Dispel Magic scroll written using the ink in the library
+AP-KEY {
+  "typename": "InventoryScrollSpiritDispelMagic", "tag": "Scroll of Dispel Magic",
+  "scopename": "MAP02", "cluster": 0, "maps": ["MAP02"]
+}
+AP-ITEM {
+  "category": "key",
+  "typename": "InventoryScrollSpiritDispelMagic",
+  "tag": "Scroll of Dispel Magic",
+  "pos": ["MAP02","spawn",1,"InventoryScrollSpiritDispelMagic",-1576,-457,32]
+}
+
+
+; Earth scrolls written in the library
+; Each one spawns at a different place, which is...convenient?
+; Even if you have more than two pigments via AP, this table will only work twice.
+AP-ITEM {
+  "name": "Scribe Earth Scroll #1",
+  "category": "medium-health",
+  "typename": "InventoryScrollEarthNourish",
+  "tag": "Scroll of Nourish",
+  "pos": ["MAP02","spawn",1,"InventoryScrollEarthNourish",-1588,-453,32]
+}
+AP-ITEM {
+  "name": "Scribe Earth Scroll #2",
+  "category": "medium-health",
+  "typename": "InventoryScrollEarthNourish",
+  "tag": "Scroll of Nourish",
+  "pos": ["MAP02","spawn",2,"InventoryScrollEarthNourish",-1597,-460,32]
+}
+; done on a later map, looks like this map only lets you scribe two! handy!
+; AP-ITEM {
+;   "name": "Scribe Earth Scroll #3",
+;   "category": "medium-health",
+;   "typename": "InventoryScrollEarthNourish",
+;   "tag": "Scroll of Nourish",
+;   "pos": ["MAP02","spawn",3,"InventoryScrollEarthNourish",-1588,-455,32]
+; }
+
+; Fire scrolls written in the library
+; Same deal as above, they spawn in different places.
+; And if you somehow get more embers than expected, you can still only make three
+; scrolls.
+AP-ITEM {
+  "name": "Scribe Fire Scroll #1",
+  "category": "small-attack",
+  "typename": "InventoryScrollFireMagmaBall",
+  "tag": "Scroll of Magma Ball",
+  "pos": ["MAP02","spawn",1,"InventoryScrollFireMagmaBall",-1570,-455,32]
+}
+AP-ITEM {
+  "name": "Scribe Fire Scroll #2",
+  "category": "small-attack",
+  "typename": "InventoryScrollFireMagmaBall",
+  "tag": "Scroll of Magma Ball",
+  "pos": ["MAP02","spawn",2,"InventoryScrollFireMagmaBall",-1581,-454,32]
+}
+AP-ITEM {
+  "name": "Scribe Fire Scroll #3",
+  "category": "small-attack",
+  "typename": "InventoryScrollFireMagmaBall",
+  "tag": "Scroll of Magma Ball",
+  "pos": ["MAP02","spawn",3,"InventoryScrollFireMagmaBall",-1583,-459,32]
+}
+; AP-ITEM {
+;   "name": "Scribe Fire Scroll #4",
+;   "category": "small-attack",
+;   "typename": "InventoryScrollFireMagmaBall",
+;   "tag": "Scroll of Magma Ball",
+;   "pos": ["MAP02","spawn",4,"InventoryScrollFireMagmaBall",-1588,-455,32,48]
+; }
+; AP-ITEM {
+;   "name": "Scribe Fire Scroll #5",
+;   "category": "small-attack",
+;   "typename": "InventoryScrollFireMagmaBall",
+;   "tag": "Scroll of Magma Ball",
+;   "pos": ["MAP02","spawn",5,"InventoryScrollFireMagmaBall",-1588,-455,32,48]
+; }
