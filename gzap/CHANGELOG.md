@@ -4,12 +4,16 @@
 item categorization has changed, updating your logic packs (and rescanning any
 that you've made yourself) is recommended.
 
+⚠️ New yaml options! Regen your templates.
+
 - New:
   - `ap_no_pool` category allows excluding items from the pool while still
     randomizing their locations.
   - Ashes 2063 logic updated to use `ap_no_pool` for the starting revolver.
   - All logic updated to use `ap_no_pool` for Allmaps.
   - Allmaps are now `medium` items for the purposes of location selection.
+  - `progression_weapons_only` setting to include only logically required
+    weapons in the pool.
 - Changed:
   - `medium` and `small` items now default to being unrandomized again, rather
     than shuffled.

@@ -154,7 +154,7 @@ class DoomWeaponGrant(DoomFlag):
 
     def pool_limits(self, world):
         if world.options.progression_weapons_only and not self.is_progression():
-            print(f'Pruning {self} from the pool because progression_weapons_only is on')
+            # print(f'Pruning {self} from the pool because progression_weapons_only is on')
             return (0,0)
 
         # Map-scoped weapon capability. Always include one of each.
