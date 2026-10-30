@@ -23,6 +23,7 @@ that you've made yourself) is recommended.
   - Doom 2 now has complete tuning for all items, thanks to Xindage.
   - Several problems with weapon logic either not working at all or not working
     properly.
+  - Scanner crash when `cluster` directive is used.
 
 # 0.9.1
 
