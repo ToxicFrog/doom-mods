@@ -58,23 +58,23 @@ class DoomPool:
         self.starting_item_counts = Counter()
         self.vanilla_item_counts = Counter()
         self.select_locations(locations, world)
-        self.remap_items(world)
         self.finalize_item_counts(world)
+        # print('pool:', self.item_counts, self.starting_item_counts, self.vanilla_item_counts)
 
-    def add_items_to_pool(self, counter, locations):
+    def add_items_to_pool(self, world, counter, locations):
         for loc in (loc for loc in locations if loc.orig_item):
             # We do this because some items may have been remapped at the wad
             # level, e.g. "YellowKey (E1M1)" remapped to "YellowKey (E1)".
             # Doing so doesn't replace the original item in the individual
             # location, so we look it up int the wad and then use that.
-            item = self.wad.items_by_name[loc.orig_item.name()]
+            item = self.remap_item(world, loc, self.wad.items_by_name[loc.orig_item.name()])
             # if item is not loc.orig_item:
             #     print(f'Remap while filling pool: {loc.orig_item} -> {item}')
             if item.has_category('ap_no_pool'):
                 # print(f'Dropping {item} because of ap_no_pool')
                 continue
             # print(f'Adding {item} from {loc.name()} to pool')
-            counter[loc.orig_item.name()] += 1
+            counter[item.name()] += 1
 
     def _skip_in_pretuning(self, world, loc):
         return (
@@ -93,7 +93,7 @@ class DoomPool:
         '''
         if world is None:
             self.locations = [loc for loc in all_locations if not loc.unreachable]
-            self.add_items_to_pool(self.item_counts, self.locations)
+            self.add_items_to_pool(world, self.item_counts, self.locations)
             return
 
         buckets = {}
@@ -123,7 +123,7 @@ class DoomPool:
                 # print(f'Bucket {bucket} has vanilla items forced.')
                 for loc in locs:
                     if loc.orig_item:
-                        loc.item = loc.orig_item
+                        loc.item = self.remap_item(world, loc, loc.orig_item)
                         self.vanilla_item_counts[loc.item.name()] += 1
                     elif world.options.pretuning_mode and not loc.item:
                         loc.item = self.wad.placeholder_item()
@@ -139,7 +139,7 @@ class DoomPool:
                 items = [loc.orig_item for loc in locs]
                 shuffle(items)
                 for loc in locs:
-                    loc.item = items.pop()
+                    loc.item = self.remap_item(world, loc, items.pop())
                     self.vanilla_item_counts[loc.item.name()] += 1
                 self.local_locations.extend(locs)
                 continue
@@ -155,7 +155,7 @@ class DoomPool:
                 # logic file, so you can't use this to grant the player starting
                 # items that the scanner doesn't know about, even if they can
                 # be `summoned.
-                self.add_items_to_pool(self.starting_item_counts, locs)
+                self.add_items_to_pool(world, self.starting_item_counts, locs)
                 ratio = 1.0
 
             if hasattr(world.multiworld, "generation_is_fake"):
@@ -170,29 +170,22 @@ class DoomPool:
             selected_locs = world.random.sample(locs, ceil(len(locs)*ratio))
             # print(f'Selecting {len(selected_locs)} from {bucket} with ratio {ratio}')
             self.locations.extend(selected_locs)
-            self.add_items_to_pool(self.item_counts, selected_locs)
+            self.add_items_to_pool(world, self.item_counts, selected_locs)
 
-    def remap_items(self, world):
+    def remap_item(self, world, loc, item):
         '''
-        This runs just before finalize_item_counts and is used to replace items
-        that should inform the final contents of the pool but not actually be
-        included in it, such as replacing actual weapons with weapon capability
-        grants.
+        This is used to replace items that should inform the final contents of
+        the pool but not actually be included in it, such as replacing actual
+        weapons with weapon capability grants.
         '''
-        new_items = Counter()
-        for name,count in self.item_counts.items():
-            item = self.wad.item(name)
-            if item.has_category('weapon'):
-                self.item_counts[name] -= count
-                if not world or not world.options.per_map_weapons:
-                    # print('remap:', name, self.wad.weapon_capability(item.typename))
-                    new_items[self.wad.weapon_capability(item.typename)] = count
-                else:
-                    for map in world.maps:
-                        # print('remap:', name, self.wad.weapon_capability(item.typename, map.map))
-                        new_items[self.wad.weapon_capability(item.typename, map.map)] = count
-
-        self.item_counts += new_items
+        if item.has_category('weapon'):
+            if not world or not world.options.per_map_weapons:
+                # print('remap:', item.name(), self.wad.weapon_capability(item.typename))
+                return self.wad.items_by_name[self.wad.weapon_capability(item.typename)]
+            else:
+                # print('remap:', item.name(), self.wad.weapon_capability(item.typename, loc.pos.map))
+                return self.wad.items_by_name[self.wad.weapon_capability(item.typename, loc.pos.map)]
+        return item
 
     def finalize_item_counts(self, world):
         '''

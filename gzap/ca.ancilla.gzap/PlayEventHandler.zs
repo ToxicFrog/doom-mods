@@ -269,6 +269,9 @@ class ::PlayEventHandler : StaticEventHandler {
         // other means.
         // TODO: this will drop you at whatever the default spawnpoint for the
         // map is, which isn't necessarily the same as the first entrance!
+        // FIXME: this breaks for wads like Hedon where the hubcluster is not
+        // equivalent to the episode, so the first map of the cluster is not the
+        // episode start.
         console.printf("You must visit %s before you can fast travel to it!", info. MapName);
         return;
       }
