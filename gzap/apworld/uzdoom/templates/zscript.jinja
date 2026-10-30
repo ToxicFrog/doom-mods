@@ -77,7 +77,7 @@ class GZAP_DataPackageEventHandler : StaticEventHandler {
     console.printf("Registering %d maps.", {{maps|count}});
     {% for map in maps %}
       GZAP_Region {{map.map}} = apstate.RegisterMap("{{map.map}}", "{{map.checksum}}", {{map.mapinfo.cluster}});
-      {% if map.clustername and map.rank == 0 %}
+      {% if cluster_start(map) %}
         {{map.map}}.visited = true;
       {% endif %}
       {% for check in locations(map.map) %}

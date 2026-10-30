@@ -513,6 +513,14 @@ class UZDoomWorld(World):
         def locations(map):
             return self.pool.locations_in_map(map)
 
+        def cluster_start(map):
+            if not map.clustername:
+                return False
+            return map.rank == min(
+                other_map.rank
+                for other_map in self.maps
+                if other_map.clustername == map.clustername)
+
         def escape(name: str) -> str:
             return name.replace('\\', '\\\\').replace('"', '\\"')
 
@@ -551,6 +559,7 @@ class UZDoomWorld(World):
             "item_name_at": item_name_at,
             "should_hint": should_hint,
             "flags_at": flags_at,
+            "cluster_start": cluster_start,
             "escape": escape,
             "win_map_count": self.options.win_map_count.value,
             "win_map_names": self.options.win_map_names.value,

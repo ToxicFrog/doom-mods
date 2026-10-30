@@ -26,6 +26,9 @@ that you've made yourself) is recommended.
   - Scanner crash when `cluster` directive is used.
   - Pretuning mode and, more generally, `vanilla` key placement no longer interacts
     badly with keys valid across multiple levels.
+  - Hubclusters that appear in the middle of an episode (i.e. where the first map
+    of the cluster is *not* the first map of the episode) are no longer unreachable
+    from the level select screen.
 
 # 0.9.1
 
