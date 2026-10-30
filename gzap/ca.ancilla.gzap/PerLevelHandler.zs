@@ -306,12 +306,15 @@ class ::PerLevelHandler : EventHandler {
     }
   }
 
+  // Ideally we would just ask the item registration table. However, if we
+  // didn't know about this type when generating -- e.g. it's modded in, or it
+  // was pruned from the pool due to yaml settings -- it won't have an entry in
+  // the table.
+  // So instead we cut out the middleman and just ask the scanner.
   bool IsAPManagedWeapon(class<Actor> cls) {
     if (!cls) return false;
-    let name = cls.GetClassName();
-    let item = self.apstate.FindItem(name);
-    if (item) return item.IsWeapon();
-    return self.apstate.FindItem("::WeaponGrant_"..name) != null;
+    let category = ::ScannedItem.ItemCategory(GetDefaultByType(cls));
+    return category.IndexOf("weapon") > -1;
   }
 
   void DisableActorReplacement() { self.disable_actor_replacement = 999; }

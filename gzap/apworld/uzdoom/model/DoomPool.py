@@ -242,8 +242,9 @@ class DoomPool:
                 self.starting_item_counts[item] = self.item_counts[item]
                 self.item_counts[item] = 0
 
-    def adjust_item(self, item, count):
-        self.item_counts[item] = self.item_counts.get(item, 0) + count
+    def move_to_starting(self, item, count):
+        self.item_counts[item] = self.item_counts.get(item, 0) - count
+        self.starting_item_counts[item] = self.starting_item_counts.get(item, 0) + count
 
     def locations_in_map(self, map):
         return [

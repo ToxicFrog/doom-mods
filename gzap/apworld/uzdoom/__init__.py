@@ -288,8 +288,7 @@ class UZDoomWorld(World):
             if self.is_starting_map(map.map):
                 for name in map.starting_items(self.options):
                     item = self.create_item(name)
-                    self.multiworld.push_precollected(item)
-                    self.pool.adjust_item(item.name, -1)
+                    self.pool.move_to_starting(item.name, 1)
 
             regions = {}
             regions[map.map] = Region(map.map, self.player, self.multiworld)
@@ -479,6 +478,9 @@ class UZDoomWorld(World):
             else:
                 return self.item_name_to_id[name]
 
+        def in_pool(item: DoomItem) -> bool:
+            return self.pool.contains_item(item.name())
+
         def item_at(name: str) -> str:
             loc = self.get_location(name)
             if loc.item and loc.item.name in self.wad_logic.items_by_name:
@@ -543,6 +545,7 @@ class UZDoomWorld(World):
             "progression": progression,
             "locations": locations,
             "id": id,
+            "in_pool": in_pool,
             "item_at": item_at,
             "item_type_at": item_type_at,
             "item_name_at": item_name_at,
