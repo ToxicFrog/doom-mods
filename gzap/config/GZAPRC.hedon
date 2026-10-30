@@ -1,6 +1,8 @@
 #### Hedon Bloodrite configuration ####
 require MAP01 f5a88e5eb33109c5ea424099f4625181;
 
+episode Crystal Heart: MAP01 MAP02 MAP03 MAP04 MAP05 MAP06 MAP07 MAP08 MAP09 MAP10;
+episode Bloodrite: MAP11 MAP12 MAP13 MAP14 MAP15 MAP16 MAP17 MAP18 MAP19 MAP20 MAP21 MAP22;
 cluster 13 Besieged; # maps 13-14-15: Besieged, Brazen Bull, and Deep Calls
 cluster 18 Paradise Lost; # maps 18-19-20: Paradise Lost, Place Afoul, and Salt and Blood
 cluster 21 Blood Rite; # maps 21-22: Blood Rite and Buried
@@ -16,8 +18,8 @@ cluster 21 Blood Rite; # maps 21-22: Blood Rite and Buried
 scanner {
   levels MAP01 MAP11;
   prune MAP31;
-  recurse true;
-  clusters true;
+  recurse false;
+  clusters false;
   # logic_flags use_hub_logic hub_logic_exits=MAP15,MAP20,MAP22;
 }
 
@@ -55,7 +57,7 @@ category small-defence: InventoryAmuletOfShadows; # blursphere + jammer + ghost
 category small-defence: InventoryChokerOfTheBeast; # fear aura + lifeleech
 category medium-tool: InventorySentryGun;
 category big-tool: InventoryBootsOfJourney; # permanent speed boost when equipped!
-category maprevealer: InventoryScrollAirWizardsEye;
+category maprevealer-ap_no_pool-medium: InventoryScrollAirWizardsEye;
 
 # Randomly either gives you:
 # - heavy armour, might, power of the beast
