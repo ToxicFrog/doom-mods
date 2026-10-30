@@ -44,7 +44,7 @@ class ::ScannedItem : ::ScannedLocation {
     // record, we should trust the cluster number this level was registered with,
     // not the one in the MAPINFO, since the latter may have been overridden by
     // Archipelago.
-    let apstate = ::RandoState.Get();
+    let apstate = ::PlayEventHandler.Get() ? ::RandoState.Get() : null;
     if (apstate) {
       let region = apstate.GetCurrentRegion();
       return region ? region.hub : 0;
