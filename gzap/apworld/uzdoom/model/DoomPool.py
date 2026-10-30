@@ -63,11 +63,7 @@ class DoomPool:
 
     def add_items_to_pool(self, world, counter, locations):
         for loc in (loc for loc in locations if loc.orig_item):
-            # We do this because some items may have been remapped at the wad
-            # level, e.g. "YellowKey (E1M1)" remapped to "YellowKey (E1)".
-            # Doing so doesn't replace the original item in the individual
-            # location, so we look it up int the wad and then use that.
-            item = self.remap_item(world, loc, self.wad.items_by_name[loc.orig_item.name()])
+            item = self.remap_item(world, loc, loc.orig_item)
             # if item is not loc.orig_item:
             #     print(f'Remap while filling pool: {loc.orig_item} -> {item}')
             if item.has_category('ap_no_pool'):
@@ -178,12 +174,16 @@ class DoomPool:
         the pool but not actually be included in it, such as replacing actual
         weapons with weapon capability grants.
         '''
+        new_item = self.wad.items_by_name[item.name()]
+        if new_item != item:
+            # print(f'remap (wad): {item.name()} -> {new_item.name()}')
+            item = new_item
         if item.has_category('weapon'):
             if not world or not world.options.per_map_weapons:
-                # print('remap:', item.name(), self.wad.weapon_capability(item.typename))
+                # print(f'remap (weapon): {item.name()} -> {self.wad.weapon_capability(item.typename)}')
                 return self.wad.items_by_name[self.wad.weapon_capability(item.typename)]
             else:
-                # print('remap:', item.name(), self.wad.weapon_capability(item.typename, loc.pos.map))
+                # print(f'remap (weapon): {item.name()} -> {self.wad.weapon_capability(item.typename, loc.pos.map)}')
                 return self.wad.items_by_name[self.wad.weapon_capability(item.typename, loc.pos.map)]
         return item
 

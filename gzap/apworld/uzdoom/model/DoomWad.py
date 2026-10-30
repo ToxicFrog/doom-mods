@@ -599,7 +599,6 @@ class DoomWad:
         replaces any item table entries for single-map versions of the same
         actual key with references to the newly created multikey item.
         """
-        to_remove = set()
         for key in self.keys_by_name.values():
             for mapname in key.maps:
                 self.maps[mapname].keyset.add(key)
@@ -620,20 +619,13 @@ class DoomWad:
             # to it. In particular, this means that if a location in the pool
             # contains "GreenKey (MAP04)" and that's subsumed by "GreenKey (EP1)",
             # adding that location to the pool will get you the latter.
-            # We also add these dynkeys to the pool as "loose items" associated
-            # with their maps, to ensure they actually spawn in the multiworld
-            # even though they have no backing location.
+            # This is processed by the DoomPool in remap_item.
+            # We previously also added these to the pool as "loose items", but
+            # this should no longer be necessary.
             for mapname in key.maps:
-                self.maps[mapname].add_loose_item(key.fqin())
                 keyname = f"{key.tag} ({mapname})"
                 if keyname in self.items_by_name:
                     self.items_by_name[keyname] = key_item
-                if keyname in self.keys_by_name and keyname != key.fqin():
-                    print(f'Deleting {keyname} because it has been subsumed by {key.fqin()}')
-                    to_remove.add(keyname)
-
-        for keyname in to_remove:
-            del self.keys_by_name[keyname]
 
     def weapon_capability(self, weapon, map=None):
         """

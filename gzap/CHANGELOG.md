@@ -24,6 +24,8 @@ that you've made yourself) is recommended.
   - Several problems with weapon logic either not working at all or not working
     properly.
   - Scanner crash when `cluster` directive is used.
+  - Pretuning mode and, more generally, `vanilla` key placement no longer interacts
+    badly with keys valid across multiple levels.
 
 # 0.9.1
 
