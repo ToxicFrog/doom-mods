@@ -72,8 +72,25 @@ class DoomSpawnPosition(NamedTuple):
       buf += f'.WithPosition({self.x},{self.y},{self.z},{self.r})'
     return buf
 
+class DoomSpawnTIDPosition(NamedTuple):
+  '''
+  As DoomSpawnPosition, but associated with a TID rather than coordinates. On
+  check it will attempt to resolve the position of the first actor with that
+  TID. Not safe for use on TIDs shared across multiple actors.
+  '''
+  map: str
+  count: int
+  typename: str
+  tid: int = None
+  r: int = 0
 
-DoomPosition = Union[DoomCoordPosition,DoomSecretPosition,DoomExitPosition,DoomSpawnPosition]
+  def as_zscript(self):
+    buf = f'GZAP_SpawnLocation.Create({self.count}, "{self.typename}")'
+    buf += f'.WithTIDPosition({self.tid},{self.r})'
+    return buf
+
+
+DoomPosition = Union[DoomCoordPosition,DoomSecretPosition,DoomExitPosition,DoomSpawnPosition,DoomSpawnTIDPosition]
 
 def to_position(map: str, *args) -> DoomPosition:
   if type(args[0]) is int:
@@ -84,5 +101,7 @@ def to_position(map: str, *args) -> DoomPosition:
     return DoomExitPosition(map, *args[1:])
   elif args[0] == 'spawn':
     return DoomSpawnPosition(map, *args[1:])
+  elif args[0] == 'spawn@tid':
+    return DoomSpawnTIDPosition(map, *args[1:])
   else:
     raise Exception(f'Error decoding position: map={map}, args={args}')

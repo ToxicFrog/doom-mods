@@ -14,6 +14,10 @@ that you've made yourself) is recommended.
   - Allmaps are now `medium` items for the purposes of location selection.
   - `progression_weapons_only` setting to include only logically required
     weapons in the pool.
+- For logic developers:
+  - `spawn@tid` event type for spawn events targeting `MapSpots` and other
+    TID-based spawns. (This doesn't really do anything you couldn't do before,
+    but it makes it more convenient.)
 - Changed:
   - `medium` and `small` items now default to being unrandomized again, rather
     than shuffled.

@@ -52,6 +52,13 @@ spawn as death drops, e.g. from minibosses.
 The location will not be automatically checked when the item spawns; rather, the
 item will be replaced with a normal check that the player must then collect.
 
+## `[map,"spawn@tid",n,typename,tid]`
+## `[map,"spawn@tid",n,typename,tid,r]`
+
+As `"spawn"`, but expects the spawn to happen at the location of the actor with
+the given TID, typically a `MapSpot`. If multiple actors share the same TID it
+will pick one **at random**, so in that case please use coordinates instead.
+
 ### Implementation
 
 We define various subtypes of `Location` in zscript, with their own constructors,

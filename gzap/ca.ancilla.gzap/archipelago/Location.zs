@@ -82,7 +82,7 @@ class ::Location abstract play {
   // level for exit events. thing is reserved for future use by spawn event
   // handlers.
   virtual void CheckEvent(string event_type, string destination, Actor thing) {
-    // DEBUG("CheckEvent(%s) for %s#%d", event_type, self.name, self.apid);
+    // DEBUG("CheckEvent(%s) for %s#%d: %s", event_type, self.name, self.apid, thing.GetClassName());
   }
   // Return the position in a format the apworld will understand.
   abstract string PositionJSON();
@@ -346,6 +346,7 @@ class ::SpawnLocation : ::EventLocation {
   string typename;
   bool has_position;
   Vector3 pos;
+  uint tid; // if nonzero we inherit our position from this thing
   float r;
 
   static ::SpawnLocation Create(int count, string typename) {
@@ -354,6 +355,11 @@ class ::SpawnLocation : ::EventLocation {
     this.seen = 0;
     this.typename = typename;
     this.has_position = false;
+    Class<Actor> cls = this.typename;
+    if (!cls) {
+      console.printf("\c[RED]Error creating SpawnLocation: no such type %s", this.typename);
+      cls.GetClassName(); // die
+    }
     return this;
   }
 
@@ -364,11 +370,34 @@ class ::SpawnLocation : ::EventLocation {
     return self;
   }
 
+  ::SpawnLocation WithTIDPosition(uint tid, uint r) {
+    self.tid = tid;
+    self.r = r;
+    return self;
+  }
+
+  bool ResolveTID() {
+    DEBUG("resolveTID(%s@%d): position=%d", self.typename, self.tid, self.has_position);
+    if (self.has_position) return true;
+    if (!self.tid) return true;
+    foreach (Actor thing : level.CreateActorIterator(self.tid)) {
+      if (thing) {
+        self.pos = thing.pos;
+        self.has_position = true;
+        DEBUG("ResolveTID found %s at (%d,%d,%d)", thing.GetClassName(), thing.pos.x, thing.pos.y, thing.pos.z);
+        return true;
+      }
+    }
+    DEBUG("ResolveTID for %s@tid$%d couldn't find the right thing", self.typename, self.tid);
+    return false;
+  }
+
   override void CheckEvent(string event_type, string destination, Actor thing) {
     super.CheckEvent(event_type, destination, thing);
     if (event_type != "spawn") return;
     // Is the right type?
     if (thing.GetClassName() != self.typename) return;
+    if (!self.ResolveTID()) return;
     DEBUG("CheckEvent(%s) @ (%d,%d,%d), we want (%d,%d,%d)±%d",
       self.typename, thing.pos.x, thing.pos.y, thing.pos.z,
       self.pos.x, self.pos.y, self.pos.z, self.r);
@@ -383,7 +412,10 @@ class ::SpawnLocation : ::EventLocation {
   }
 
   override string PositionJSON() {
-    if (self.has_position) {
+    if (self.tid) {
+      return string.format("[\"%s\",\"spawn@tid\",%d,\"%s\",%d,%d]",
+        self.mapname, self.count, self.typename, self.tid, self.r);
+    } else if (self.has_position) {
       return string.format("[\"%s\",\"spawn\",%d,\"%s\",%d,%d,%d,%d]",
         self.mapname, self.count, self.typename,
         self.pos.x, self.pos.y, self.pos.z, self.r);
