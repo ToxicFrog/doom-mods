@@ -75,6 +75,13 @@ category medium-health-armor-attack-defence-tool: InventoryMysteryPotion;
 replacement PotionLauncherAcid: SpecialPotionBox;
 category weapon: PotionLauncher;
 
+# The fire hammer is a grenade-style weapon where the weapon is also its own ammo.
+category big-ammo: FireHammer;
+
+# These are pseudo-weapons that the game scripting expects to be able to add and
+# remove from your inventory to handle special attacks and whatnot.
+category none: QuickKicker SentryGrabbed;
+
 # Can be used at a scribe's table to make scrolls.
 category medium-token:
   InventoryBowlOfScribeEmbers
