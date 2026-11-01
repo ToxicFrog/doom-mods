@@ -18,6 +18,8 @@ that you've made yourself) is recommended.
   - `spawn@tid` event type for spawn events targeting `MapSpots` and other
     TID-based spawns. (This doesn't really do anything you couldn't do before,
     but it makes it more convenient.)
+  - Exiting a level normally (i.e. via an exit, not via the level select screen)
+    will dump all regions in the level to the tuning file automatically.
 - Changed:
   - `medium` and `small` items now default to being unrandomized again, rather
     than shuffled.

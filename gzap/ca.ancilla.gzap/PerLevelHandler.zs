@@ -426,6 +426,10 @@ class ::PerLevelHandler : EventHandler {
         }
       }
     }
+
+    // Dump all subregions to the log on level exit so we don't have to manually
+    // remember to do them, ARGH.
+    apstate.OutputSubregions(false);
   }
 }
 
