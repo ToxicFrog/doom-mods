@@ -1,0 +1,177 @@
+AP-REGION { "map": "MAP03", "region": "entrance", "keys": ["weapon/Axe/want", "weapon/FragfireGun/want", "weapon/SpikeGun/want"] }
+AP-REGION { "map": "MAP03", "region": "garden", "keys": ["map/MAP03/entrance"] }
+AP-REGION { "map": "MAP03", "region": "NE dorms", "keys": ["map/MAP03/garden"] }
+AP-REGION { "map": "MAP03", "region": "SE dorms", "keys": ["map/MAP03/garden"] }
+AP-REGION { "map": "MAP03", "region": "Zan's room", "keys": ["map/MAP03/SE dorms", "key/AxeKey"] }
+AP-REGION { "map": "MAP03", "region": "garden balcony", "keys": ["map/MAP03/SE dorms"] }
+AP-REGION { "map": "MAP03", "region": "S dorms", "keys": ["map/MAP03/garden balcony"] }
+AP-REGION { "map": "MAP03", "region": "mess hall", "keys": ["map/MAP03/S dorms"] }
+AP-REGION { "map": "MAP03", "region": "pantry", "keys": ["map/MAP03/mess hall"] }
+AP-REGION { "map": "MAP03", "region": "butcher's", "keys": ["map/MAP03/pantry"] }
+AP-REGION { "map": "MAP03", "region": "meeting hall", "keys": ["map/MAP03/butcher's"] }
+AP-REGION { "map": "MAP03", "region": "meeting hall ceiling", "keys": ["map/MAP03/meeting hall"] }
+AP-REGION { "map": "MAP03", "region": "S power room", "keys": ["map/MAP03/garden balcony", "key/IronKey"] }
+AP-REGION { "map": "MAP03", "region": "entrance vents", "keys": ["map/MAP03/entrance", "flag/secret"] }
+AP-REGION { "map": "MAP03", "region": "sparring room", "keys": ["map/MAP03/entrance"] }
+AP-REGION { "map": "MAP03", "region": "weight room", "keys": ["map/MAP03/sparring room"] }
+AP-REGION { "map": "MAP03", "region": "weight room secret", "keys": ["map/MAP03/weight room", "flag/secret"] }
+AP-REGION { "map": "MAP03", "region": "weight room vents", "keys": ["map/MAP03/weight room"] }
+AP-REGION { "map": "MAP03", "region": "elevator hall", "keys": ["map/MAP03/weight room vents"] }
+AP-REGION { "map": "MAP03", "region": "forge gate room", "keys": ["map/MAP03/elevator hall"] }
+AP-REGION { "map": "MAP03", "region": "armoury", "keys": ["map/MAP03/forge gate room"] }
+AP-REGION { "map": "MAP03", "region": "shooting range", "keys": ["map/MAP03/armoury"] }
+AP-REGION { "map": "MAP03", "region": "shooting range secret", "keys": ["map/MAP03/shooting range"] }
+AP-REGION { "map": "MAP03", "region": "N power room", "keys": ["map/MAP03/elevator hall", "key/StoneKey"] }
+AP-REGION { "map": "MAP03", "region": "bathouse entrance", "keys": ["map/MAP03/N power room", "map/MAP03/S power room"] }
+AP-REGION { "map": "MAP03", "region": "bathhouse arena", "keys": ["map/MAP03/bathouse entrance", "weapon/Crushbow/want"] }
+AP-REGION { "map": "MAP03", "region": "bathhouse arena pool", "keys": ["map/MAP03/bathhouse arena"] }
+AP-REGION { "map": "MAP03", "region": "bathhouse lobby", "keys": ["map/MAP03/bathhouse arena pool"] }
+AP-REGION { "map": "MAP03", "region": "bathhouse central baths", "keys": ["map/MAP03/bathhouse lobby"] }
+AP-REGION { "map": "MAP03", "region": "bathhouse SE baths", "keys": ["map/MAP03/bathhouse central baths"] }
+AP-REGION { "map": "MAP03", "region": "bathhouse NE baths", "keys": ["map/MAP03/bathhouse central baths"] }
+AP-REGION { "map": "MAP03", "region": "bathhouse pipes", "keys": ["map/MAP03/bathhouse NE baths"] }
+AP-REGION { "map": "MAP03", "region": "forge gatehouse", "keys": ["map/MAP03/bathhouse pipes"] }
+
+AP-XON { "lump": "GZAPIPC", "size": 0, "nick": "Player", "slot": "Player1", "seed": "71587306764718862232", "wad": "Hedon Bloodrite", "server": "" }
+AP-CHECK { "id": 770, "name": "MAP01 Hell Entry - Axe", "pos": ["MAP01",-15484,10294,-196], "keys": [] }
+AP-CHECK { "id": 1238, "name": "MAP03 - Fragfire Gun [-1397,114]", "pos": ["MAP03",-1397,114,48], "region": "entrance" }
+AP-CHECK { "id": 1265, "name": "MAP03 - Potion of Healing [-2224,-186]", "pos": ["MAP03",-2224,-186,79], "region": "entrance" }
+AP-CHECK { "id": 1346, "name": "MAP03 - Spike Mag [-2230,155]", "pos": ["MAP03",-2230,155,79], "region": "entrance" }
+AP-CHECK { "id": 1340, "name": "MAP03 - Spike Bundle [-618,-174]", "pos": ["MAP03",-618,-174,48], "region": "entrance" }
+AP-CHECK { "id": 1339, "name": "MAP03 - Spike Bundle [-594,-166]", "pos": ["MAP03",-594,-166,48], "region": "entrance" }
+AP-CHECK { "id": 1247, "name": "MAP03 - Half-Empty Fragfire Can [-573,-167]", "pos": ["MAP03",-573,-167,48], "region": "entrance" }
+AP-CHECK { "id": 1328, "name": "MAP03 - Spike Bundle [-1725,-506]", "pos": ["MAP03",-1725,-506,48], "region": "garden" }
+AP-CHECK { "id": 1329, "name": "MAP03 - Spike Bundle [-1738,-572]", "pos": ["MAP03",-1738,-572,48], "region": "garden" }
+AP-CHECK { "id": 1330, "name": "MAP03 - Spike Bundle [-1759,-694]", "pos": ["MAP03",-1759,-694,48], "region": "garden" }
+AP-CHECK { "id": 1327, "name": "MAP03 - Spike Bundle [-1714,-808]", "pos": ["MAP03",-1714,-808,48], "region": "garden" }
+AP-CHECK { "id": 1345, "name": "MAP03 - Spike Gun [S]", "pos": ["MAP03",-1786,-1070,48], "region": "garden" }
+AP-CHECK { "id": 1214, "name": "MAP03 - Cream Fungus [-1601,-1199]", "pos": ["MAP03",-1601,-1199,48], "region": "garden" }
+AP-CHECK { "id": 1213, "name": "MAP03 - Cream Fungus [-1579,-1181]", "pos": ["MAP03",-1579,-1181,48], "region": "garden" }
+AP-CHECK { "id": 1212, "name": "MAP03 - Cream Fungus [-1544,-1203]", "pos": ["MAP03",-1544,-1203,48], "region": "garden" }
+AP-CHECK { "id": 1211, "name": "MAP03 - Cream Fungus [-1479,-655]", "pos": ["MAP03",-1479,-655,48], "region": "garden" }
+AP-CHECK { "id": 1210, "name": "MAP03 - Cream Fungus [-1471,-681]", "pos": ["MAP03",-1471,-681,48], "region": "garden" }
+AP-CHECK { "id": 1209, "name": "MAP03 - Cream Fungus [-1430,-656]", "pos": ["MAP03",-1430,-656,48], "region": "garden" }
+AP-CHECK { "id": 1188, "name": "MAP03 - Axe [-952,-855]", "pos": ["MAP03",-952,-855,48], "region": "garden" }
+AP-CHECK { "id": 1182, "name": "MAP03 - Apple [-846,-788]", "pos": ["MAP03",-846,-788,48], "region": "garden" }
+AP-CHECK { "id": 1183, "name": "MAP03 - Apple [-868,-743]", "pos": ["MAP03",-868,-743,48], "region": "garden" }
+AP-CHECK { "id": 1273, "name": "MAP03 - Potion of Healing [657,-288]", "pos": ["MAP03",657,-288,327], "region": "NE dorms" }
+AP-CHECK { "id": 1184, "name": "MAP03 - Axe Key", "pos": ["MAP03",702,-1580,327], "region": "SE dorms" }
+AP-CHECK { "id": 1317, "name": "MAP03 - Secret 1839", "pos": ["MAP03","secret","sector",1839], "region": "Zan's room" }
+AP-CHECK { "id": 1343, "name": "MAP03 - Spike Bundle [1203,-1754]", "pos": ["MAP03",1203,-1754,343], "region": "Zan's room" }
+AP-CHECK { "id": 1237, "name": "MAP03 - Fragfire Can [1204,-1876]", "pos": ["MAP03",1204,-1876,343], "region": "Zan's room" }
+AP-CHECK { "id": 1321, "name": "MAP03 - Sentry Gun", "pos": ["MAP03",1464,-1669,312], "region": "Zan's room" }
+AP-CHECK { "id": 1344, "name": "MAP03 - Spike Gun [SE]", "pos": ["MAP03",-1210,-1302,311], "region": "garden balcony" }
+AP-CHECK { "id": 1240, "name": "MAP03 - Fragfire Gun [-1697,-1898]", "pos": ["MAP03",-1697,-1898,311], "region": "S dorms" }
+AP-CHECK { "id": 1276, "name": "MAP03 - Potion of Minor Healing [-1797,-1749]", "pos": ["MAP03",-1797,-1749,314], "region": "S dorms" }
+AP-CHECK { "id": 1254, "name": "MAP03 - Medium Armor Crystal [S]", "pos": ["MAP03",-1831,-1779,334], "region": "S dorms" }
+AP-CHECK { "id": 1316, "name": "MAP03 - Salted Meat", "pos": ["MAP03",-2732,-1197,100], "region": "mess hall" }
+AP-CHECK { "id": 1189, "name": "MAP03 - Baked Potato", "pos": ["MAP03",-2764,-1195,100], "region": "mess hall" }
+AP-CHECK { "id": 1253, "name": "MAP03 - Leek", "pos": ["MAP03",-2665,-656,100], "region": "mess hall" }
+AP-CHECK { "id": 1257, "name": "MAP03 - Polenta", "pos": ["MAP03",-2639,-660,100], "region": "mess hall" }
+AP-CHECK { "id": 1205, "name": "MAP03 - Cheese", "pos": ["MAP03",-2655,-639,100], "region": "mess hall" }
+AP-CHECK { "id": 1256, "name": "MAP03 - Plum Brandy", "pos": ["MAP03",-2615,-651,100], "region": "mess hall" }
+AP-CHECK { "id": 1243, "name": "MAP03 - Half-Empty Fragfire Can [-3098,-883]", "pos": ["MAP03",-3098,-883,72], "region": "mess hall" }
+AP-CHECK { "id": 1207, "name": "MAP03 - Cider [-2918,-1188]", "pos": ["MAP03",-2918,-1188,129], "region": "pantry" }
+AP-CHECK { "id": 1208, "name": "MAP03 - Cider [-2919,-1168]", "pos": ["MAP03",-2919,-1168,129], "region": "pantry" }
+AP-CHECK { "id": 1369, "name": "MAP03 - Vial of Healing [-2923,-1322]", "pos": ["MAP03",-2923,-1322,97], "region": "pantry" }
+AP-CHECK { "id": 1322, "name": "MAP03 - SmokedHam [-3065,-1168]", "pos": ["MAP03",-3065,-1168,106], "region": "pantry" }
+AP-CHECK { "id": 1323, "name": "MAP03 - SmokedHam [-3072,-1162]", "pos": ["MAP03",-3072,-1162,122], "region": "pantry" }
+AP-CHECK { "id": 1278, "name": "MAP03 - Potion of Minor Healing [-3148,-1669]", "pos": ["MAP03",-3148,-1669,96], "region": "butcher's" }
+AP-CHECK { "id": 1292, "name": "MAP03 - Power Shard [-2428,-1664]", "pos": ["MAP03",-2428,-1664,91], "region": "meeting hall" }
+AP-CHECK { "id": 1334, "name": "MAP03 - Spike Bundle [-2436,-1676]", "pos": ["MAP03",-2436,-1676,91], "region": "meeting hall" }
+AP-CHECK { "id": 1252, "name": "MAP03 - Iron Key", "pos": ["MAP03",-2812,-2356,343], "region": "meeting hall" }
+AP-CHECK { "id": 1368, "name": "MAP03 - Vial of Healing [-2808,-1672]", "pos": ["MAP03",-2808,-1672,377], "region": "meeting hall ceiling" }
+AP-CHECK { "id": 1196, "name": "MAP03 - Boltmag [-2816,-1648]", "pos": ["MAP03",-2816,-1648,377], "region": "meeting hall ceiling" }
+AP-CHECK { "id": 1318, "name": "MAP03 - Secret 188", "pos": ["MAP03","secret","sector",188], "region": "entrance vents" }
+AP-CHECK { "id": 1241, "name": "MAP03 - Fragfire Gun [-540,-496]", "pos": ["MAP03",-540,-496,48], "region": "entrance vents" }
+AP-CHECK { "id": 1274, "name": "MAP03 - Potion of Might", "pos": ["MAP03",-629,-696,48], "region": "entrance vents" }
+AP-CHECK { "id": 1186, "name": "MAP03 - Axe [-2000,1283]", "pos": ["MAP03",-2000,1283,48], "region": "sparring room" }
+AP-CHECK { "id": 1185, "name": "MAP03 - Axe [-1992,1371]", "pos": ["MAP03",-1992,1371,48], "region": "sparring room" }
+AP-CHECK { "id": 1364, "name": "MAP03 - Vial of Healing [-2515,593]", "pos": ["MAP03",-2515,593,160], "region": "sparring room" }
+AP-CHECK { "id": 1239, "name": "MAP03 - Fragfire Gun [-1662,1449]", "pos": ["MAP03",-1662,1449,184], "region": "weight room" }
+AP-CHECK { "id": 1258, "name": "MAP03 - Potion of Greater Healing [Center]", "pos": ["MAP03",-1488,1035,184], "region": "weight room secret" }
+AP-CHECK { "id": 1288, "name": "MAP03 - Potion of Stoneskin", "pos": ["MAP03",-1517,1038,184], "region": "weight room secret" }
+AP-CHECK { "id": 1319, "name": "MAP03 - Secret 1999", "pos": ["MAP03","secret","sector",1999], "region": "weight room secret" }
+AP-CHECK { "id": 1250, "name": "MAP03 - Half-Empty Fragfire Can [-852,1100]", "pos": ["MAP03",-852,1100,134], "region": "weight room vents" }
+AP-CHECK { "id": 1342, "name": "MAP03 - Spike Bundle [-820,1100]", "pos": ["MAP03",-820,1100,134], "region": "weight room vents" }
+AP-CHECK { "id": 1341, "name": "MAP03 - Spike Bundle [-816,1088]", "pos": ["MAP03",-816,1088,134], "region": "weight room vents" }
+AP-CHECK { "id": 1279, "name": "MAP03 - Potion of Minor Healing [-391,1497]", "pos": ["MAP03",-391,1497,48], "region": "elevator hall" }
+AP-CHECK { "id": 1287, "name": "MAP03 - Potion of Minor Healing [-992,2484]", "pos": ["MAP03",-992,2484,-450], "region": "forge gate room" }
+AP-CHECK { "id": 1220, "name": "MAP03 - Crushbow [-1056,2028]", "pos": ["MAP03",-1056,2028,-504], "region": "forge gate room" }
+AP-CHECK { "id": 1226, "name": "MAP03 - Crushbow [-856,2276]", "pos": ["MAP03",-856,2276,-512], "region": "forge gate room" }
+AP-CHECK { "id": 1357, "name": "MAP03 - Vial of Healing [-1019,1765]", "pos": ["MAP03",-1019,1765,-418], "region": "forge gate room" }
+AP-CHECK { "id": 1358, "name": "MAP03 - Vial of Healing [-1032,1761]", "pos": ["MAP03",-1032,1761,-418], "region": "forge gate room" }
+AP-CHECK { "id": 1359, "name": "MAP03 - Vial of Healing [-1047,1756]", "pos": ["MAP03",-1047,1756,-418], "region": "forge gate room" }
+AP-CHECK { "id": 1263, "name": "MAP03 - Potion of Healing [-1519,2308]", "pos": ["MAP03",-1519,2308,-504], "region": "forge gate room" }
+AP-CHECK { "id": 1326, "name": "MAP03 - Spike Bundle [-1629,2136]", "pos": ["MAP03",-1629,2136,-432], "region": "forge gate room" }
+AP-CHECK { "id": 1325, "name": "MAP03 - Spike Bundle [-1608,2191]", "pos": ["MAP03",-1608,2191,-432], "region": "forge gate room" }
+AP-CHECK { "id": 1222, "name": "MAP03 - Crushbow [-2009,1770]", "pos": ["MAP03",-2009,1770,-353], "region": "armoury" }
+AP-CHECK { "id": 1221, "name": "MAP03 - Crushbow [-1946,1769]", "pos": ["MAP03",-1946,1769,-353], "region": "armoury" }
+AP-CHECK { "id": 1229, "name": "MAP03 - Fixer's Goggles", "pos": ["MAP03",-1831,1784,-393], "region": "armoury" }
+AP-CHECK { "id": 1353, "name": "MAP03 - Stone Key", "pos": ["MAP03",-1744,1784,-353], "region": "armoury" }
+AP-CHECK { "id": 1224, "name": "MAP03 - Crushbow [-2344,1940]", "pos": ["MAP03",-2344,1940,-415], "region": "shooting range" }
+AP-CHECK { "id": 1331, "name": "MAP03 - Spike Bundle [-2336,2003]", "pos": ["MAP03",-2336,2003,-399], "region": "shooting range" }
+AP-CHECK { "id": 1333, "name": "MAP03 - Spike Bundle [-2337,2011]", "pos": ["MAP03",-2337,2011,-399], "region": "shooting range" }
+AP-CHECK { "id": 1332, "name": "MAP03 - Spike Bundle [-2336,2032]", "pos": ["MAP03",-2336,2032,-399], "region": "shooting range" }
+AP-CHECK { "id": 1195, "name": "MAP03 - Boltmag [-2499,1805]", "pos": ["MAP03",-2499,1805,-431], "region": "shooting range secret" }
+AP-CHECK { "id": 1194, "name": "MAP03 - Boltmag [-2470,1804]", "pos": ["MAP03",-2470,1804,-431], "region": "shooting range secret" }
+AP-CHECK { "id": 1320, "name": "MAP03 - Secret 2435", "pos": ["MAP03","secret","sector",2435], "region": "shooting range secret" }
+AP-CHECK { "id": 1314, "name": "MAP03 - Power Shard [-699,1244]", "pos": ["MAP03",-699,1244,48], "region": "N power room" }
+AP-CHECK { "id": 1315, "name": "MAP03 - Power Shard [-724,1228]", "pos": ["MAP03",-724,1228,48], "region": "N power room" }
+AP-CHECK { "id": 1249, "name": "MAP03 - Half-Empty Fragfire Can [-617,901]", "pos": ["MAP03",-617,901,77], "region": "N power room" }
+AP-CHECK { "id": 1306, "name": "MAP03 - Power Shard [-528,902]", "pos": ["MAP03",-528,902,77], "region": "N power room" }
+AP-CHECK { "id": 1261, "name": "MAP03 - Potion of Haste [Center]", "pos": ["MAP03",-2474,-142,80], "region": "bathouse entrance" }
+AP-CHECK { "id": 1266, "name": "MAP03 - Potion of Healing [-2472,106]", "pos": ["MAP03",-2472,106,80], "region": "bathouse entrance" }
+AP-CHECK { "id": 1187, "name": "MAP03 - Axe [-4644,-22]", "pos": ["MAP03",-4644,-22,-196], "region": "bathhouse arena" }
+AP-CHECK { "id": 1282, "name": "MAP03 - Potion of Minor Healing [-4810,-32]", "pos": ["MAP03",-4810,-32,-196], "region": "bathhouse arena" }
+AP-CHECK { "id": 1198, "name": "MAP03 - Boltmag [-5315,-13]", "pos": ["MAP03",-5315,-13,-195], "region": "bathhouse arena" }
+AP-CHECK { "id": 1310, "name": "MAP03 - Power Shard [-5714,-662]", "pos": ["MAP03",-5714,-662,-194], "region": "bathhouse arena" }
+AP-CHECK { "id": 1311, "name": "MAP03 - Power Shard [-5922,-534]", "pos": ["MAP03",-5922,-534,-194], "region": "bathhouse arena" }
+AP-CHECK { "id": 1312, "name": "MAP03 - Power Shard [-6058,-366]", "pos": ["MAP03",-6058,-366,-194], "region": "bathhouse arena" }
+AP-CHECK { "id": 1313, "name": "MAP03 - Power Shard [-6158,-198]", "pos": ["MAP03",-6158,-198,-194], "region": "bathhouse arena" }
+AP-CHECK { "id": 1284, "name": "MAP03 - Potion of Minor Healing [-5645,-321]", "pos": ["MAP03",-5645,-321,-195], "region": "bathhouse arena" }
+AP-CHECK { "id": 1260, "name": "MAP03 - Potion of Greater Healing [W]", "pos": ["MAP03",-4836,1872,-195], "region": "bathhouse arena" }
+AP-CHECK { "id": 1349, "name": "MAP03 - Spike Mag [-5012,1424]", "pos": ["MAP03",-5012,1424,-195], "region": "bathhouse arena" }
+AP-CHECK { "id": 1232, "name": "MAP03 - Fragfire Can [-5021,971]", "pos": ["MAP03",-5021,971,-195], "region": "bathhouse arena" }
+AP-CHECK { "id": 1281, "name": "MAP03 - Potion of Minor Healing [-4221,1573]", "pos": ["MAP03",-4221,1573,-194], "region": "bathhouse arena" }
+AP-CHECK { "id": 1302, "name": "MAP03 - Power Shard [-4179,1519]", "pos": ["MAP03",-4179,1519,-194], "region": "bathhouse arena" }
+AP-CHECK { "id": 1300, "name": "MAP03 - Power Shard [-4146,1462]", "pos": ["MAP03",-4146,1462,-194], "region": "bathhouse arena" }
+AP-CHECK { "id": 1299, "name": "MAP03 - Power Shard [-4122,1403]", "pos": ["MAP03",-4122,1403,-194], "region": "bathhouse arena" }
+AP-CHECK { "id": 1356, "name": "MAP03 - Time Shard [W]", "pos": ["MAP03",-5658,5,-130], "region": "bathhouse arena" }
+AP-CHECK { "id": 1286, "name": "MAP03 - Potion of Minor Healing [-5931,8]", "pos": ["MAP03",-5931,8,-195], "region": "bathhouse arena" }
+AP-CHECK { "id": 1283, "name": "MAP03 - Potion of Minor Healing [-5634,310]", "pos": ["MAP03",-5634,310,-195], "region": "bathhouse arena" }
+AP-CHECK { "id": 1236, "name": "MAP03 - Fragfire Can [-5868,1452]", "pos": ["MAP03",-5868,1452,-195], "region": "bathhouse arena" }
+AP-CHECK { "id": 1271, "name": "MAP03 - Potion of Healing [-6134,1577]", "pos": ["MAP03",-6134,1577,-194], "region": "bathhouse arena" }
+AP-CHECK { "id": 1351, "name": "MAP03 - Spike Mag [-5631,1880]", "pos": ["MAP03",-5631,1880,-195], "region": "bathhouse arena" }
+AP-CHECK { "id": 1233, "name": "MAP03 - Fragfire Can [-5197,1876]", "pos": ["MAP03",-5197,1876,-195], "region": "bathhouse arena" }
+AP-CHECK { "id": 1270, "name": "MAP03 - Potion of Healing [-5444,648]", "pos": ["MAP03",-5444,648,-195], "region": "bathhouse arena" }
+AP-CHECK { "id": 1352, "name": "MAP03 - Spike Mag [-5864,964]", "pos": ["MAP03",-5864,964,-195], "region": "bathhouse arena" }
+AP-CHECK { "id": 1305, "name": "MAP03 - Power Shard [-5244,916]", "pos": ["MAP03",-5244,916,-298], "region": "bathhouse arena pool" }
+AP-CHECK { "id": 1307, "name": "MAP03 - Power Shard [-5324,840]", "pos": ["MAP03",-5324,840,-298], "region": "bathhouse arena pool" }
+AP-CHECK { "id": 1309, "name": "MAP03 - Power Shard [-5500,916]", "pos": ["MAP03",-5500,916,-298], "region": "bathhouse arena pool" }
+AP-CHECK { "id": 1336, "name": "MAP03 - Spike Bundle [-4688,2216]", "pos": ["MAP03",-4688,2216,-195], "region": "bathhouse lobby" }
+AP-CHECK { "id": 1335, "name": "MAP03 - Spike Bundle [-4683,2578]", "pos": ["MAP03",-4683,2578,-195], "region": "bathhouse lobby" }
+AP-CHECK { "id": 1337, "name": "MAP03 - Spike Bundle [-5881,2221]", "pos": ["MAP03",-5881,2221,-195], "region": "bathhouse lobby" }
+AP-CHECK { "id": 1338, "name": "MAP03 - Spike Bundle [-5886,2575]", "pos": ["MAP03",-5886,2575,-195], "region": "bathhouse lobby" }
+AP-CHECK { "id": 1268, "name": "MAP03 - Potion of Healing [-5168,2759]", "pos": ["MAP03",-5168,2759,-195], "region": "bathhouse lobby" }
+AP-CHECK { "id": 1246, "name": "MAP03 - Half-Empty Fragfire Can [-5707,3723]", "pos": ["MAP03",-5707,3723,-195], "region": "bathhouse central baths" }
+AP-CHECK { "id": 1308, "name": "MAP03 - Power Shard [-5490,3078]", "pos": ["MAP03",-5490,3078,-195], "region": "bathhouse central baths" }
+AP-CHECK { "id": 1304, "name": "MAP03 - Power Shard [-5077,3084]", "pos": ["MAP03",-5077,3084,-195], "region": "bathhouse central baths" }
+AP-CHECK { "id": 1244, "name": "MAP03 - Half-Empty Fragfire Can [-4866,3723]", "pos": ["MAP03",-4866,3723,-195], "region": "bathhouse central baths" }
+AP-CHECK { "id": 1219, "name": "MAP03 - Cream Fungus [-2741,3050]", "pos": ["MAP03",-2741,3050,-193], "region": "bathhouse SE baths" }
+AP-CHECK { "id": 1218, "name": "MAP03 - Cream Fungus [-2737,3018]", "pos": ["MAP03",-2737,3018,-194], "region": "bathhouse SE baths" }
+AP-CHECK { "id": 1215, "name": "MAP03 - Cream Fungus [-2675,2840]", "pos": ["MAP03",-2675,2840,-194], "region": "bathhouse SE baths" }
+AP-CHECK { "id": 1216, "name": "MAP03 - Cream Fungus [-2691,2828]", "pos": ["MAP03",-2691,2828,-194], "region": "bathhouse SE baths" }
+AP-CHECK { "id": 1217, "name": "MAP03 - Cream Fungus [-2736,2794]", "pos": ["MAP03",-2736,2794,-194], "region": "bathhouse SE baths" }
+AP-CHECK { "id": 1370, "name": "MAP03 - Vial of Healing [-3002,2888]", "pos": ["MAP03",-3002,2888,-196], "region": "bathhouse SE baths" }
+AP-CHECK { "id": 1372, "name": "MAP03 - Vial of Healing [-3522,4175]", "pos": ["MAP03",-3522,4175,-167], "region": "bathhouse NE baths" }
+AP-CHECK { "id": 1301, "name": "MAP03 - Power Shard [-4175,4669]", "pos": ["MAP03",-4175,4669,-223], "region": "bathhouse pipes" }
+AP-CHECK { "id": 1303, "name": "MAP03 - Power Shard [-4203,4699]", "pos": ["MAP03",-4203,4699,-223], "region": "bathhouse pipes" }
+AP-CHECK { "id": 1294, "name": "MAP03 - Power Shard [-3222,4703]", "pos": ["MAP03",-3222,4703,-223], "region": "bathhouse pipes" }
+AP-CHECK { "id": 1293, "name": "MAP03 - Power Shard [-3205,4676]", "pos": ["MAP03",-3205,4676,-223], "region": "bathhouse pipes" }
+AP-CHECK { "id": 1291, "name": "MAP03 - Power Shard [-2419,3641]", "pos": ["MAP03",-2419,3641,-479], "region": "bathhouse pipes" }
+AP-CHECK { "id": 1290, "name": "MAP03 - Power Shard [-1755,3916]", "pos": ["MAP03",-1755,3916,-177], "region": "bathhouse pipes" }
+AP-CHECK { "id": 1289, "name": "MAP03 - Power Shard [-1747,3893]", "pos": ["MAP03",-1747,3893,-177], "region": "bathhouse pipes" }
+AP-CHECK { "id": 1242, "name": "MAP03 - Half-Empty Fragfire Can [-1708,2848]", "pos": ["MAP03",-1708,2848,-457], "region": "forge gatehouse" }
+AP-CHECK { "id": 1228, "name": "MAP03 - Exit", "pos": ["MAP03","exit"], "region": "forge gatehouse" }
+AP-CHECK { "id": 1324, "name": "MAP03 - SmokedHam [-3076,-1227]", "pos": ["MAP03",-3076,-1227,122], "unreachable": true }
