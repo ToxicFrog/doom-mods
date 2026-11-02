@@ -22,46 +22,53 @@ AP-ITEM {
   "pos": ["MAP02","spawn",1,"InventoryScrollSpiritDispelMagic",-1576,-457,32]
 }
 
+;;;; scrolls in the library ;;;;
+; these are currently all commented out because the pigments are not key items
+; and thus it's possible to use them up and softlock yourself!
+; AP-CHECK { "id": 893, "name": "MAP02 - Scribe Earth Scroll #1", "pos": ["MAP02","spawn",1,"InventoryScrollEarthNourish",-1588,-453,32,0], "region": "Library", "keys": ["item/InventoryMortarOfEarthPigment/1"] }
+; AP-CHECK { "id": 895, "name": "MAP02 - Scribe Fire Scroll #1", "pos": ["MAP02","spawn",1,"InventoryScrollFireMagmaBall",-1570,-455,32,0], "region": "Library", "keys": ["item/InventoryBowlOfScribeEmbers/1"] }
+
+
 ; Earth scrolls written in the library
 ; Each one spawns at a different place, which is...convenient?
 ; Even if you have more than two pigments via AP, this table will only work twice.
-AP-ITEM {
-  "name": "Scribe Earth Scroll #1",
-  "category": "medium-health",
-  "typename": "InventoryScrollEarthNourish",
-  "tag": "Scroll of Nourish",
-  "pos": ["MAP02","spawn",1,"InventoryScrollEarthNourish",-1588,-453,32]
-}
-AP-ITEM {
-  "name": "Scribe Earth Scroll #2",
-  "category": "medium-health",
-  "typename": "InventoryScrollEarthNourish",
-  "tag": "Scroll of Nourish",
-  "pos": ["MAP02","spawn",2,"InventoryScrollEarthNourish",-1597,-460,32]
-}
+; AP-ITEM {
+;   "name": "Scribe Earth Scroll #1",
+;   "category": "medium-health",
+;   "typename": "InventoryScrollEarthNourish",
+;   "tag": "Scroll of Nourish",
+;   "pos": ["MAP02","spawn",1,"InventoryScrollEarthNourish",-1588,-453,32]
+; }
+; AP-ITEM {
+;   "name": "Scribe Earth Scroll #2",
+;   "category": "medium-health",
+;   "typename": "InventoryScrollEarthNourish",
+;   "tag": "Scroll of Nourish",
+;   "pos": ["MAP02","spawn",2,"InventoryScrollEarthNourish",-1597,-460,32]
+; }
 
 ; Fire scrolls written in the library
 ; Same deal as above, they spawn in different places.
 ; And if you somehow get more embers than expected, you can still only make three
 ; scrolls.
-AP-ITEM {
-  "name": "Scribe Fire Scroll #1",
-  "category": "small-attack",
-  "typename": "InventoryScrollFireMagmaBall",
-  "tag": "Scroll of Magma Ball",
-  "pos": ["MAP02","spawn",1,"InventoryScrollFireMagmaBall",-1570,-455,32]
-}
-AP-ITEM {
-  "name": "Scribe Fire Scroll #2",
-  "category": "small-attack",
-  "typename": "InventoryScrollFireMagmaBall",
-  "tag": "Scroll of Magma Ball",
-  "pos": ["MAP02","spawn",2,"InventoryScrollFireMagmaBall",-1581,-454,32]
-}
-AP-ITEM {
-  "name": "Scribe Fire Scroll #3",
-  "category": "small-attack",
-  "typename": "InventoryScrollFireMagmaBall",
-  "tag": "Scroll of Magma Ball",
-  "pos": ["MAP02","spawn",3,"InventoryScrollFireMagmaBall",-1583,-459,32]
-}
+; AP-ITEM {
+;   "name": "Scribe Fire Scroll #1",
+;   "category": "small-attack",
+;   "typename": "InventoryScrollFireMagmaBall",
+;   "tag": "Scroll of Magma Ball",
+;   "pos": ["MAP02","spawn",1,"InventoryScrollFireMagmaBall",-1570,-455,32]
+; }
+; AP-ITEM {
+;   "name": "Scribe Fire Scroll #2",
+;   "category": "small-attack",
+;   "typename": "InventoryScrollFireMagmaBall",
+;   "tag": "Scroll of Magma Ball",
+;   "pos": ["MAP02","spawn",2,"InventoryScrollFireMagmaBall",-1581,-454,32]
+; }
+; AP-ITEM {
+;   "name": "Scribe Fire Scroll #3",
+;   "category": "small-attack",
+;   "typename": "InventoryScrollFireMagmaBall",
+;   "tag": "Scroll of Magma Ball",
+;   "pos": ["MAP02","spawn",3,"InventoryScrollFireMagmaBall",-1583,-459,32]
+; }

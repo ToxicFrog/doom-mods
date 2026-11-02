@@ -95,6 +95,9 @@ AP-REGION { "map": "MAP02", "region": "(n guardhouse switches flipped)", "keys":
 AP-REGION { "map": "MAP02", "region": "Dwarf Bedroom Secret", "keys": ["map/MAP02/N Plaza", "flag/secret"] }
 AP-REGION { "map": "MAP02", "region": "W Exit", "keys": ["map/MAP02/W Exit Door", "map/MAP02/(n guardhouse switches flipped)"] }
 
+AP-CHECK { "id": 892, "name": "MAP02 - Can of Enchanted Purple Ink", "pos": ["MAP02","spawn",1,"InventoryCanofEnchantedPurpleInk",-2956,481,32,0], "region": "Alchemist", "keys": ["InventoryRedCrystal", "key/InventoryPurpleRoot/3", "InventoryBowlOfFaeDust"] }
+AP-CHECK { "id": 898, "name": "MAP02 - Scroll of Dispel Magic", "pos": ["MAP02","spawn",1,"InventoryScrollSpiritDispelMagic",-1576,-457,32,0], "region": "Library", "keys": ["InventoryCanofEnchantedPurpleInk"] }
+
 
 AP-XON { "lump": "GZAPIPC", "size": 0, "nick": "Player", "slot": "Player1", "seed": "26082669245932770815", "wad": "Hedon Bloodrite", "server": "" }
 AP-CHECK { "id": 546, "name": "MAP02 - Spike Bundle [-332,424]", "pos": ["MAP02",-332,424,44], "region": "S Guardhouse" }
