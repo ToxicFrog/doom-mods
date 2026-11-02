@@ -23,6 +23,8 @@ that you've made yourself) is recommended.
 - Changed:
   - `medium` and `small` items now default to being unrandomized again, rather
     than shuffled.
+  - `key` items are now always included in pretuning mode, since otherwise you
+    can't pick them up at all.
 - Fixed:
   - "Invalid slot" error when using locally-generated PK3s and running the client
     without the `--slot` flag.

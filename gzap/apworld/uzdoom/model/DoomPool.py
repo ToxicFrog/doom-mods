@@ -78,6 +78,7 @@ class DoomPool:
             and loc.is_tuned()
             and 'GZAP_INCREMENTAL_PRETUNING' in os.environ
             and 'ap_flag' not in loc.categories
+            and 'key' not in loc.categories
         )
 
     def select_locations(self, all_locations, world):
