@@ -330,9 +330,6 @@ class ::CheckPickup : ScoreItem {
   }
 
   void Subsume() {
-    // Don't subsume if this is an unreachable check -- leave the original item
-    // in place just in case.
-    if (GetLocation().IsUnreachable()) return;
     DEBUG("Check[%s] Subsume", self.GetLocation().name);
     Actor closest;
     let it = BlockThingsIterator.Create(self, 32);
@@ -345,8 +342,16 @@ class ::CheckPickup : ScoreItem {
     }
 
     if (!closest) return;
-    UpdateFromOriginal(closest);
-    closest.Destroy();
+    SubsumeFrom(closest);
+  }
+
+  void SubsumeFrom(Actor thing) {
+    UpdateFromOriginal(thing);
+    // If this is an unreachable check, take a light hand and leave the original
+    // actor in place.
+    if (!GetLocation().IsUnreachable()) {
+      thing.Destroy();
+    }
     SetStateLabel("PostSpawn");
   }
 

@@ -41,6 +41,9 @@ that you've made yourself) is recommended.
     not part of the region access requirements, now associates those keys with
     the check, making it possible to define locations that have more stringent
     access requirements than the regions that contain them.
+  - `spawn` and `spawn@tid` EBLs targeting weapon types will now properly spawn
+    a check when the weapon first appears, rather than waiting until the weapon
+    locking subsystem thinks you're allowed to pick up the weapon.
 
 # 0.9.1
 

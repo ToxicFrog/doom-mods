@@ -21,11 +21,6 @@ const AP_BLOCKED_WEAPONS_REMAIN = 0;
 const AP_BLOCKED_WEAPONS_ARE_AMMO = 1;
 const AP_BLOCKED_WEAPONS_DESTROYED = 2;
 
-// FIXME: this takes precedence over spawn-based event locations, so what happens
-// is, the locked weapon spawns, then when the player picks it up it gets
-// replaced with the real weapon which then turns into a check -- we want the
-// check first, since otherwise the weapon locking feature may prevent the
-// player from checking the location!
 class ::LockedWeapon : CustomInventory {
   Class<Actor> original;
 
@@ -35,10 +30,10 @@ class ::LockedWeapon : CustomInventory {
       DEBUG("No last_replaced_weapon initializing a LockedWeapon!");
       Destroy();
       return;
-    } else {
-      SetTag(string.format("LockedWeapon[%s]", self.original.GetClassName()));
-      DEBUG("Initializing %s", self.GetTag());
     }
+
+    SetTag(string.format("LockedWeapon[%s]", self.original.GetClassName()));
+    DEBUG("Initializing %s", self.GetTag());
 
     // Set sprite from original item we're encasing.
     // TODO: if it doesn't have a sprite turn into an AP error sprite.

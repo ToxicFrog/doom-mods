@@ -79,8 +79,8 @@ class ::Location abstract play {
   virtual bool IsEventBased() { return false; }
   // Called whenever a checkable event (level exit, secret discovery, etc)
   // occurs. event_type is always set. destination is set to the destination
-  // level for exit events. thing is reserved for future use by spawn event
-  // handlers.
+  // level for exit events. thing is set to the newly-spawned thing for spawn
+  // event handlers.
   virtual void CheckEvent(string event_type, string destination, Actor thing) {
     // DEBUG("CheckEvent(%s) for %s#%d: %s", event_type, self.name, self.apid, thing.GetClassName());
   }
@@ -392,11 +392,19 @@ class ::SpawnLocation : ::EventLocation {
     return false;
   }
 
+  bool IsRelevant(Actor thing) {
+    if (thing.GetClassName() == self.typename) return true;
+    // If it's a LockedWeapon, this event is relevant if the enclosed weapon type
+    // is relevant.
+    let lock = ::LockedWeapon(thing);
+    if (!lock) return false;
+    return lock.original.GetClassName() == self.typename;
+  }
+
   override void CheckEvent(string event_type, string destination, Actor thing) {
     super.CheckEvent(event_type, destination, thing);
     if (event_type != "spawn") return;
-    // Is the right type?
-    if (thing.GetClassName() != self.typename) return;
+    if (!IsRelevant(thing)) return;
     if (!self.ResolveTID()) return;
     DEBUG("CheckEvent(%s) @ (%d,%d,%d), we want (%d,%d,%d)±%d",
       self.typename, thing.pos.x, thing.pos.y, thing.pos.z,
@@ -408,7 +416,7 @@ class ::SpawnLocation : ::EventLocation {
     DEBUG(" - our count: %d, seen: %d", self.count, self.seen);
     if (self.seen != self.count) return;
     // Let's go!
-    ::CheckPickup.Create(self, thing.pos);
+    ::CheckPickup.Create(self, thing.pos).SubsumeFrom(thing);
   }
 
   override string PositionJSON() {
