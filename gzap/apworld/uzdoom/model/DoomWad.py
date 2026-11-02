@@ -537,6 +537,9 @@ class DoomWad:
             return
 
         # That didn't work, so try again with coordinates.
+        # TODO: we should move disambiguation into DoomPosition, at least partially,
+        # so different kinds of positions can more intelligently decide how to
+        # disambiguate.
         def binner(loc):
             oldname = loc.name()
             loc.disambiguation = f"{int(loc.pos.x)},{int(loc.pos.y)}"

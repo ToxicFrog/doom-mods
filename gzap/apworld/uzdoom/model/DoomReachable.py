@@ -50,6 +50,7 @@ class DoomReachable:
         if unreachable is not None:
             self.unreachable = unreachable
         if keys is not None:
+            assert type(keys) is list, "Malformed tuning record: keys field needs to be a list"
             self.tuning.append(frozenset(k if '/' in k else 'key/'+k for k in keys))
 
     def finalize_tuning(self, default):
