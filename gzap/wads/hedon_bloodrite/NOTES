@@ -41,3 +41,62 @@ that you can use the switch again.
 A very straightforward map. Note that while the Stone Key unlocks a shortcut
 between the sparring room and the firing range, the only thing it's actually
 needed for is accessing the north power control room.
+
+## MAP04: Technical Space
+
+Restoring the power is optional if you have the toolkit, although some checks
+in the starting areas depend on it.
+
+Reaver Tiati's departure is triggered by exiting the Great Forge in the
+direction of the portal room while carrying the Iron Key (and this is necessary
+to check the items she leaves behind). In AP it is possible to bypass this
+trigger by toggling the key off, which lets you access the portal room with the
+portal still online. However, entering the portal gets you a game over (and
+there are no checks behind it); save first if you want to try this.
+
+The iron and mithril ores you can mine out of the walls are checks, and require
+the pickaxe.
+
+The fabrication machines in and around the Great Forge also produce checks the
+first time you use them; subsequent uses will produce either unusable key
+duplicates (in the case of key item fabricators) or their normal vanilla items
+(in the case of ammo/item fabricators). Since all of their inputs are key items
+and keys are infinitely re-usable in AP, you don't need to worry about picking
+and choosing which machines to activate.
+
+The following machines are available:
+
+- Iron Ore -> Iron Ingot in Dwarven Forge
+- Iron Ingot -> Iron Key in Repair Bay
+- Mithril Ore ×5 -> Mithril Ingot in Great Forge
+- Mithril Ingot + Gear Mould -> Filled Gear Mould in Mould Forge
+- Filled Gear Mould -> Mithril Gear in Great Forge
+
+Additionally, on difficulties other than Bearzerker, you can use the machines in
+the Mould Forge to make ammo:
+
+- Iron Ingot -> Fragfire Can
+- Iron Ingot -> Spikes
+- Iron Ingot + Red Crystal ×3 -> Boltmag
+
+On Bearzerk, a different set of machines (and thus checks) is available:
+
+- Iron Ingot -> Axe
+- Iron Ingot + Red Crystal ×6 -> Fire Hammer
+- Iron Ingot ×8 -> Great Axe
+
+The Iron Ore -> Iron Ingot machine can be used four times, representing the four
+ingots (in addition to the four found lying around in the level) needed to craft
+the Great Axe in Bearzerk mode.
+
+TODO: using it the Nth time should require you to have found N iron ore.
+
+The upper caves, normally accessible using the Earth Key, can also be reached
+using the Axe Key via the maze, which connects the upper caves to the magma
+chamber.
+
+The trigger to open the east hall is forging the mithril gear on the anvil. Note
+that you don't actually need to get a gear from it; it's the process of forging,
+not the item you get, that causes the door to open. However, you *will* need the
+gear to actually exit the level; Zan will refuse to arm the explosives if you
+don't have it.

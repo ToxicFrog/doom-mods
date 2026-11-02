@@ -1,0 +1,212 @@
+AP-KEY {
+  "typename": "IronKey", "tag": "Iron Key",
+  "scopename": "MAP04", "cluster": 0, "maps": ["MAP04"]
+}
+
+AP-KEY {
+  "typename": "EarthKey", "tag": "Earth Key",
+  "scopename": "MAP04", "cluster": 0, "maps": ["MAP04"]
+}
+
+AP-KEY {
+  "typename": "InventoryMithrilBar", "tag": "Mithril Ingot",
+  "scopename": "MAP04", "cluster": 0, "maps": ["MAP04"]
+}
+
+AP-KEY {
+  "typename": "InventoryGearMouldFilled", "tag": "Filled Gear Mould",
+  "scopename": "MAP04", "cluster": 0, "maps": ["MAP04"]
+}
+
+AP-KEY {
+  "typename": "InventoryMithrilGear", "tag": "Mithril Gear",
+  "scopename": "MAP04", "cluster": 0, "maps": ["MAP04"]
+}
+
+; Iron key machine in the repair bay
+AP-ITEM {
+  "name": "Make Iron Key",
+  "category": "key",
+  "typename": "IronKey",
+  "tag": "Iron Key",
+  "pos": ["MAP04","spawn@tid",1,"IronKey",107]
+}
+
+; Left behind by Reaver Tiati when she exits via the portal
+AP-ITEM {
+  "name": "Earth Key",
+  "category": "key",
+  "typename": "EarthKey",
+  "tag": "Earth Key",
+  "pos": ["MAP04","spawn@tid",1,"EarthKey",46]
+}
+
+; Iron ingot smelter in the dwarven forge
+; Usable up to four times, to get eight ingots for the greataxe machine.
+; TODO: we should do something like the power core trick in MAP01.
+AP-ITEM {
+  "name": "Smelt Iron Ingot #1", "tag": "Iron Ingot",
+  "category": "key", "typename": "InventoryIronBar",
+  "pos": ["MAP04","spawn@tid",1,"InventoryIronBar",101]
+}
+AP-ITEM {
+  "name": "Smelt Iron Ingot #2", "tag": "Iron Ingot",
+  "category": "key", "typename": "InventoryIronBar",
+  "pos": ["MAP04","spawn@tid",2,"InventoryIronBar",101]
+}
+AP-ITEM {
+  "name": "Smelt Iron Ingot #3", "tag": "Iron Ingot",
+  "category": "key", "typename": "InventoryIronBar",
+  "pos": ["MAP04","spawn@tid",3,"InventoryIronBar",101]
+}
+AP-ITEM {
+  "name": "Smelt Iron Ingot #4", "tag": "Iron Ingot",
+  "category": "key", "typename": "InventoryIronBar",
+  "pos": ["MAP04","spawn@tid",4,"InventoryIronBar",101]
+}
+
+; Mithril smelter in the great forge
+; takes five mithril ore chunks, produces one ingot
+AP-ITEM {
+  "name": "Smelt Mithril Ingot",
+  "category": "key",
+  "typename": "InventoryMithrilBar",
+  "tag": "Mithril Ingot",
+  "pos": ["MAP04","spawn@tid",1,"InventoryMithrilBar",129]
+}
+
+; Gear casting machine
+AP-ITEM {
+  "name": "Cast Mithril Gear", "tag": "Filled Gear Mould",
+  "category": "key", "typename": "InventoryGearMouldFilled",
+  "pos": ["MAP04","spawn@tid",1,"InventoryGearMouldFilled",130]
+}
+
+; Finishing gear on the anvil
+AP-ITEM {
+  "name": "Hammer Mithril Gear", "tag": "Mithril Gear",
+  "category": "key", "typename": "Gear",
+  "pos": ["MAP04","spawn@tid",1,"InventoryMithrilGear",134]
+}
+
+; Fragfire fabricator
+AP-ITEM {
+  "name": "Fragfire fabricator", "tag": "Fragfire Can",
+  "category": "small-ammo", "typename": "FragfireCan",
+  "pos": ["MAP04","spawn@tid",1,"FragfireCan",190]
+}
+
+; Boltmag fabricator
+AP-ITEM {
+  "name": "Boltmag fabricator", "tag": "Boltmag",
+  "category": "small-ammo", "typename": "Boltmag",
+  "pos": ["MAP04","spawn@tid",1,"Boltmag",116]
+}
+
+; Spike fabricator
+AP-ITEM {
+  "name": "Spike fabricator", "tag": "Spikes",
+  "category": "small-ammo", "typename": "AmmoCultistSpike",
+  "pos": ["MAP04","spawn@tid",1,"AmmoCultistSpike",111]
+}
+
+; Firehammer fabricator
+; Requires one iron bar and six red crystals
+; Bearzerk only
+AP-ITEM {
+  "name": "Fire Hammer fabricator", "tag": "Fire Hammer",
+  "category": "big-ammo", "typename": "FireHammer",
+  "pos": ["MAP04","spawn@tid",1,"FireHammer",240]
+}
+
+; Axe fabricator
+; Bearzerk only
+AP-ITEM {
+  "name": "Axe fabricator", "tag": "Bearzerker Axe",
+  "category": "weapon", "typename": "BearzerkAxe",
+  "pos": ["MAP04","spawn@tid",1,"BearzerkAxe",255]
+}
+
+; Greataxe fabricator
+; Requires eight iron bars
+; Bearzerk only
+AP-ITEM {
+  "name": "Great Axe fabricator", "tag": "Great Axe",
+  "category": "weapon", "typename": "GreatAxe",
+  "pos": ["MAP04","spawn@tid",1,"GreatAxe",248]
+}
+
+; Spikemags
+; Reaver Tiati leaves two of these behind when she exits via the portal.
+; It looks like on Bearzerk she is instead meant to leave behind junk, but due
+; to a typo in the script they spawn on Bearzerk as well (and are then immediately
+; replaced with a random spawner).
+AP-ITEM {
+  "name": "Tiati spikemag #39", "tag": "Spike Mag",
+  "category": "small-ammo", "typename": "SpikeMag",
+  "pos": ["MAP04","spawn@tid",1,"SpikeMag",39]
+}
+AP-ITEM {
+  "name": "Tiati spikemag #40", "tag": "Spike Mag",
+  "category": "small-ammo", "typename": "SpikeMag",
+  "pos": ["MAP04","spawn@tid",1,"SpikeMag",40]
+}
+
+; Iron ore that you can mine out of the walls
+AP-ITEM {
+  "name": "Iron Ore #501", "tag": "Iron Ore",
+  "category": "key", "typename": "InventoryIronOre",
+  "pos": ["MAP04","spawn@tid",1,"InventoryIronOre",501]
+}
+AP-ITEM {
+  "name": "Iron Ore #503", "tag": "Iron Ore",
+  "category": "key", "typename": "InventoryIronOre",
+  "pos": ["MAP04","spawn@tid",1,"InventoryIronOre",503]
+}
+AP-ITEM {
+  "name": "Iron Ore #505", "tag": "Iron Ore",
+  "category": "key", "typename": "InventoryIronOre",
+  "pos": ["MAP04","spawn@tid",1,"InventoryIronOre",505]
+}
+AP-ITEM {
+  "name": "Iron Ore #507", "tag": "Iron Ore",
+  "category": "key", "typename": "InventoryIronOre",
+  "pos": ["MAP04","spawn@tid",1,"InventoryIronOre",507]
+}
+AP-ITEM {
+  "name": "Iron Ore #509", "tag": "Iron Ore",
+  "category": "key", "typename": "InventoryIronOre",
+  "pos": ["MAP04","spawn@tid",1,"InventoryIronOre",509]
+}
+AP-ITEM {
+  "name": "Iron Ore #511", "tag": "Iron Ore",
+  "category": "key", "typename": "InventoryIronOre",
+  "pos": ["MAP04","spawn@tid",1,"InventoryIronOre",511]
+}
+AP-ITEM {
+  "name": "Iron Ore #513", "tag": "Iron Ore",
+  "category": "key", "typename": "InventoryIronOre",
+  "pos": ["MAP04","spawn@tid",1,"InventoryIronOre",513]
+}
+AP-ITEM {
+  "name": "Iron Ore #515", "tag": "Iron Ore",
+  "category": "key", "typename": "InventoryIronOre",
+  "pos": ["MAP04","spawn@tid",1,"InventoryIronOre",515]
+}
+
+; Mithril ore that you can mine out of the walls
+AP-ITEM {
+  "name": "Mithril Ore #601", "tag": "Mithril Ore",
+  "category": "key", "typename": "InventoryMithrilOre",
+  "pos": ["MAP04","spawn@tid",1,"InventoryMithrilOre",601]
+}
+AP-ITEM {
+  "name": "Mithril Ore #603", "tag": "Mithril Ore",
+  "category": "key", "typename": "InventoryMithrilOre",
+  "pos": ["MAP04","spawn@tid",1,"InventoryMithrilOre",603]
+}
+AP-ITEM {
+  "name": "Mithril Ore #605", "tag": "Mithril Ore",
+  "category": "key", "typename": "InventoryMithrilOre",
+  "pos": ["MAP04","spawn@tid",1,"InventoryMithrilOre",605]
+}

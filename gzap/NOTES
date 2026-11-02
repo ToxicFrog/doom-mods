@@ -18,15 +18,17 @@ To release a new version:
 
 [X] RuleBuilder support
 [X] allow setting spawnfilter 0 to spawn everything
-[ ] Logic for Hedon episode 1
+[4/10] Logic for Hedon episode 1
 [ ] Weapon logic difficulty settings
 [X] `ap_no_pool` category (and apply it to Ashes for the revolver)
-[ ] Option to exclude per-map weapons from the pool if they are not needed by logic
+[X] Option to exclude per-map weapons from the pool if they are not needed by logic
 [X] GZAPRC improvements
   [X] Move key shape definitions into GZAPRC
   [X] Move key colour definitions into GZAPRC
 [ ] rename ap_mapinfo and ap_scripts to MAPINFO and ZSCRIPT (in the apworld, and
     then name them back in the pk3) so we can load them in the scanner with -file
+[ ] when spawning a weapon at a location covered by a spawn-based position, don't
+    lock it, just spawn the check
 
 ### maybe 0.10.0
 

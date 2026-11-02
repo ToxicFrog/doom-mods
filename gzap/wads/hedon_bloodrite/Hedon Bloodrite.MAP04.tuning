@@ -1,0 +1,372 @@
+AP-REGION { "map": "MAP04", "region": "entrance", "keys": ["weapon/FragfireGun/want", "weapon/Crushbow/want", "weapon/Axe/want", "weapon/SpikeGun/want"] }
+
+; Initial areas in the southwest pumping station
+; n.b. while some checks require storing power, all you actually need to leave is the toolkit
+AP-REGION { "map": "MAP04", "region": "pump station hallway", "keys": ["map/MAP04/entrance"] }
+AP-REGION { "map": "MAP04", "region": "pump station", "keys": ["map/MAP04/pump station hallway"] }
+AP-REGION { "map": "MAP04", "region": "pump station crawlspace", "keys": ["map/MAP04/pump station"] }
+AP-REGION { "map": "MAP04", "region": "pump station breaker room", "keys": ["key/InventoryPowerCore", "map/MAP04/pump station hallway"] }
+AP-REGION { "map": "MAP04", "region": "pump station quarters", "keys": ["map/MAP04/entrance", "map/MAP04/pump station breaker room"] }
+
+; south hall connected to portal room and great forge
+; portal chamber requires great forge
+AP-REGION { "map": "MAP04", "region": "south hall", "keys": ["key/InventoryToolkit", "map/MAP04/pump station"] }
+AP-REGION { "map": "MAP04", "region": "portal chamber", "keys": ["map/MAP04/south hall", "key/IronKey"] }
+
+; great forge and environs
+AP-REGION { "map": "MAP04", "region": "great forge", "keys": ["map/MAP04/south hall"] }
+AP-REGION { "map": "MAP04", "region": "great forge ledges", "keys": ["map/MAP04/great forge"] }
+AP-REGION { "map": "MAP04", "region": "great forge NW crawlspace", "keys": ["map/MAP04/great forge ledges"] }
+AP-REGION { "map": "MAP04", "region": "great forge weak wall secret", "keys": ["map/MAP04/great forge ledges", "key/InventoryPickAxe", "flag/secret"] }
+
+; north hall area. hall is directly reachable from great forge once you enter bridge control via
+; the crawlspaces.
+AP-REGION { "map": "MAP04", "region": "bridge control", "keys": ["map/MAP04/great forge NW crawlspace"] }
+AP-REGION { "map": "MAP04", "region": "north hall", "keys": ["map/MAP04/bridge control"] }
+AP-REGION { "map": "MAP04", "region": "great forge bridges", "keys": ["map/MAP04/bridge control", "map/MAP04/great forge"] }
+AP-REGION { "map": "MAP04", "region": "repair bay", "keys": ["map/MAP04/north hall"] }
+AP-REGION { "map": "MAP04", "region": "great forge NE crawlspace", "keys": ["map/MAP04/repair bay"] }
+AP-REGION { "map": "MAP04", "region": "dwarven forge", "keys": ["map/MAP04/north hall"] }
+AP-REGION { "map": "MAP04", "region": "workshop", "keys": ["map/MAP04/north hall", "key/EarthKey"] }
+AP-REGION { "map": "MAP04", "region": "mould forge", "keys": ["map/MAP04/north hall", "key/EarthKey"] }
+
+; northwest magma chamber area
+AP-REGION { "map": "MAP04", "region": "magma chamber", "keys": ["map/MAP04/great forge"] }
+AP-REGION { "map": "MAP04", "region": "axe maze", "keys": ["map/MAP04/magma chamber", "key/AxeKey"] }
+AP-REGION { "map": "MAP04", "region": "Forgotten One's forge", "keys": ["map/MAP04/axe maze"] }
+AP-REGION { "map": "MAP04", "region": "Forgotten One's room", "keys": ["map/MAP04/Forgotten One's forge", "flag/secret"] }
+
+; north/northwest caves
+; in normal play you reach this via the magma chamber elevator using the earth key
+; in rando you can also get there via the axe maze using the axe key, from the magma chamber
+AP-REGION { "map": "MAP04", "region": "elevator cave 1F", "keys": ["map/MAP04/magma chamber"] }
+AP-REGION { "map": "MAP04", "region": "elevator cave 2F", "keys": ["map/MAP04/elevator cave 1F", "key/EarthKey", "weapon/PotionLauncherToxic/want"] }
+
+AP-REGION { "map": "MAP04", "region": "ruins cave", "keys": ["map/MAP04/elevator cave 2F"] }
+AP-REGION { "map": "MAP04", "region": "W red crystal cave", "keys": ["map/MAP04/elevator cave 2F"] }
+AP-REGION { "map": "MAP04", "region": "magma fall cave", "keys": ["map/MAP04/W red crystal cave"] }
+AP-REGION { "map": "MAP04", "region": "E red crystal cave", "keys": ["map/MAP04/magma fall cave"] }
+AP-REGION { "map": "MAP04", "region": "magnetism cave", "keys": ["map/MAP04/ruins cave"] }
+AP-REGION { "map": "MAP04", "region": "shrine to Iron", "keys": ["map/MAP04/magnetism cave"] }
+AP-REGION { "map": "MAP04", "region": "deep chasm", "keys": ["map/MAP04/magnetism cave"] }
+AP-REGION { "map": "MAP04", "region": "geothermal vent cave", "keys": ["map/MAP04/E red crystal cave"] }
+AP-REGION { "map": "MAP04", "region": "geothermal pool cave", "keys": ["map/MAP04/geothermal vent cave"] }
+AP-REGION { "map": "MAP04", "region": "minotaur barracks", "keys": ["map/MAP04/geothermal vent cave"] }
+AP-REGION { "map": "MAP04", "region": "minotaur tavern", "keys": ["map/MAP04/geothermal pool cave"] }
+AP-REGION { "map": "MAP04", "region": "tavern secret storage", "keys": ["flag/secret", "map/MAP04/minotaur tavern"] }
+AP-REGION { "map": "MAP04", "region": "tavern secret secret storage", "keys": ["map/MAP04/tavern secret storage", "flag/secret"] }
+AP-REGION { "map": "MAP04", "region": "tavern secret tunnel", "keys": ["map/MAP04/tavern secret secret storage", "flag/secret"] }
+AP-REGION { "map": "MAP04", "region": "shrine to Fire", "keys": ["map/MAP04/magma fall cave"] }
+AP-REGION { "map": "MAP04", "region": "Fire shrine secret", "keys": ["map/MAP04/shrine to Fire", "flag/secret"] }
+
+; east hall, accessible by using the filled mould on the anvil
+AP-REGION { "map": "MAP04", "region": "east hall", "keys": ["key/InventoryGearMouldFilled", "map/MAP04/great forge"] }
+AP-REGION { "map": "MAP04", "region": "tool shop", "keys": ["map/MAP04/east hall"] }
+AP-REGION { "map": "MAP04", "region": "tool shop safe", "keys": ["flag/secret", "map/MAP04/tool shop"] }
+AP-REGION { "map": "MAP04", "region": "gun shop", "keys": ["map/MAP04/east hall"] }
+
+AP-CHECK { "id": 1464, "name": "MAP04 - Half-Empty Fragfire Can [-3868,-2912]", "pos": ["MAP04",-3868,-2912,-455], "region": "entrance" }
+AP-CHECK { "id": 1532, "name": "MAP04 - Potion of Minor Healing [-3560,-2336]", "pos": ["MAP04",-3560,-2336,-457], "region": "entrance" }
+AP-CHECK { "id": 1465, "name": "MAP04 - Half-Empty Fragfire Can [-4105,-2816]", "pos": ["MAP04",-4105,-2816,-457], "region": "pump station hallway" }
+AP-CHECK { "id": 1552, "name": "MAP04 - Power Shard [-2904,-1904]", "pos": ["MAP04",-2904,-1904,-457], "region": "pump station hallway" }
+AP-CHECK { "id": 1551, "name": "MAP04 - Power Shard [-2904,-1872]", "pos": ["MAP04",-2904,-1872,-457], "region": "pump station hallway" }
+AP-CHECK { "id": 1613, "name": "MAP04 - Spike Mag [-3446,-2106]", "pos": ["MAP04",-3446,-2106,-457], "region": "pump station" }
+AP-CHECK { "id": 1394, "name": "MAP04 - Boltmag [-3446,-2045]", "pos": ["MAP04",-3446,-2045,-457], "region": "pump station" }
+AP-CHECK { "id": 1601, "name": "MAP04 - Spike Bundle [-2926,-2139]", "pos": ["MAP04",-2926,-2139,-427], "region": "pump station" }
+AP-CHECK { "id": 1600, "name": "MAP04 - Spike Bundle [-2923,-2164]", "pos": ["MAP04",-2923,-2164,-427], "region": "pump station" }
+AP-CHECK { "id": 1599, "name": "MAP04 - Spike Bundle [-2909,-2169]", "pos": ["MAP04",-2909,-2169,-427], "region": "pump station" }
+AP-CHECK { "id": 1514, "name": "MAP04 - Potion of Healing [-3003,-2926]", "pos": ["MAP04",-3003,-2926,-455], "region": "pump station" }
+AP-CHECK { "id": 1628, "name": "MAP04 - Vial of Healing [-3476,-3097]", "pos": ["MAP04",-3476,-3097,-377], "region": "pump station crawlspace" }
+AP-CHECK { "id": 1537, "name": "MAP04 - Power Core", "pos": ["MAP04",-3548,-3050,-377], "region": "pump station crawlspace" }
+AP-CHECK { "id": 1550, "name": "MAP04 - Power Shard [-2904,-1840]", "pos": ["MAP04",-2904,-1840,-457], "region": "pump station hallway" }
+AP-CHECK { "id": 1619, "name": "MAP04 - Toolkit", "pos": ["MAP04",-3988,-2125,-425], "region": "pump station quarters" }
+AP-CHECK { "id": 1629, "name": "MAP04 - Vial of Healing [-3818,-2207]", "pos": ["MAP04",-3818,-2207,-426], "region": "pump station quarters" }
+AP-CHECK { "id": 1411, "name": "MAP04 - Bread [S]", "pos": ["MAP04",-3804,-2191,-426], "region": "pump station quarters" }
+AP-CHECK { "id": 1454, "name": "MAP04 - Fragfire Gun [S]", "pos": ["MAP04",-3737,-1998,-457], "region": "pump station quarters" }
+AP-CHECK { "id": 1437, "name": "MAP04 - Elemental Ring [S]", "pos": ["MAP04",-3576,-2143,-433], "region": "pump station quarters" }
+AP-CHECK { "id": 1512, "name": "MAP04 - Potion of Healing [-2335,-1844]", "pos": ["MAP04",-2335,-1844,-425], "region": "south hall" }
+AP-CHECK { "id": 1444, "name": "MAP04 - Fixer's Goggles [SE]", "pos": ["MAP04",-2146,-780,-427], "region": "great forge" }
+AP-CHECK { "id": 1458, "name": "MAP04 - Half-Empty Fragfire Can [-2195,-365]", "pos": ["MAP04",-2195,-365,-460], "region": "great forge" }
+AP-CHECK { "id": 1598, "name": "MAP04 - Spike Bundle [-1981,-1296]", "pos": ["MAP04",-1981,-1296,-529], "region": "great forge ledges" }
+AP-CHECK { "id": 1447, "name": "MAP04 - Fragfire Can [-1925,-1282]", "pos": ["MAP04",-1925,-1282,-529], "region": "great forge ledges" }
+AP-CHECK { "id": 1594, "name": "MAP04 - Spike Bundle [-1925,-1223]", "pos": ["MAP04",-1925,-1223,-529], "region": "great forge ledges" }
+AP-CHECK { "id": 1593, "name": "MAP04 - Spike Bundle [-1886,-1321]", "pos": ["MAP04",-1886,-1321,-529], "region": "great forge ledges" }
+AP-CHECK { "id": 1511, "name": "MAP04 - Potion of Healing [-1811,129]", "pos": ["MAP04",-1811,129,-577], "region": "great forge ledges" }
+AP-CHECK { "id": 1562, "name": "MAP04 - Power Shard [-3857,-439]", "pos": ["MAP04",-3857,-439,-393], "region": "great forge ledges" }
+AP-CHECK { "id": 1561, "name": "MAP04 - Power Shard [-3844,-409]", "pos": ["MAP04",-3844,-409,-393], "region": "great forge ledges" }
+AP-CHECK { "id": 1560, "name": "MAP04 - Power Shard [-3832,-381]", "pos": ["MAP04",-3832,-381,-393], "region": "great forge ledges" }
+AP-CHECK { "id": 1558, "name": "MAP04 - Power Shard [-3295,208]", "pos": ["MAP04",-3295,208,-377], "region": "great forge NW crawlspace" }
+AP-CHECK { "id": 1627, "name": "MAP04 - Vial of Healing [-3261,214]", "pos": ["MAP04",-3261,214,-385], "region": "great forge NW crawlspace" }
+AP-CHECK { "id": 1556, "name": "MAP04 - Power Shard [-3276,195]", "pos": ["MAP04",-3276,195,-417], "region": "great forge NW crawlspace" }
+AP-CHECK { "id": 1616, "name": "MAP04 - Time Shard [Center]", "pos": ["MAP04",-3308,392,-355], "region": "great forge NW crawlspace" }
+AP-CHECK { "id": 1570, "name": "MAP04 - Red Crystal [-3186,510]", "pos": ["MAP04",-3186,510,-403], "region": "great forge NW crawlspace" }
+AP-CHECK { "id": 1531, "name": "MAP04 - Potion of Minor Healing [-3421,603]", "pos": ["MAP04",-3421,603,-456], "region": "bridge control" }
+AP-CHECK { "id": 1605, "name": "MAP04 - Spike Gun [-3082,901]", "pos": ["MAP04",-3082,901,-457], "region": "bridge control" }
+AP-CHECK { "id": 1612, "name": "MAP04 - Spike Mag [-3131,902]", "pos": ["MAP04",-3131,902,-457], "region": "bridge control" }
+AP-CHECK { "id": 1634, "name": "MAP04 - Water [Center]", "pos": ["MAP04",-3256,883,-426], "region": "bridge control" }
+AP-CHECK { "id": 1452, "name": "MAP04 - Fragfire Gun [Center]", "pos": ["MAP04",-2892,1019,-465], "region": "north hall" }
+AP-CHECK { "id": 1528, "name": "MAP04 - Potion of Minor Healing [-2782,1125]", "pos": ["MAP04",-2782,1125,-457], "region": "north hall" }
+AP-CHECK { "id": 1527, "name": "MAP04 - Potion of Minor Healing [-2779,1506]", "pos": ["MAP04",-2779,1506,-457], "region": "north hall" }
+AP-CHECK { "id": 1486, "name": "MAP04 - Light Armor Crystal [Center]", "pos": ["MAP04",-2612,1703,-457], "region": "north hall" }
+AP-CHECK { "id": 1526, "name": "MAP04 - Potion of Minor Healing [-2438,1502]", "pos": ["MAP04",-2438,1502,-457], "region": "north hall" }
+AP-CHECK { "id": 1358, "name": "MAP04 - Axe [-2329,1064]", "pos": ["MAP04",-2329,1064,-465], "region": "north hall" }
+AP-CHECK { "id": 1524, "name": "MAP04 - Potion of Minor Healing [-2434,1127]", "pos": ["MAP04",-2434,1127,-457], "region": "north hall" }
+AP-CHECK { "id": 1393, "name": "MAP04 - Boltmag [-2607,950]", "pos": ["MAP04",-2607,950,-457], "region": "north hall" }
+AP-CHECK { "id": 1548, "name": "MAP04 - Power Shard [-2616,221]", "pos": ["MAP04",-2616,221,-292], "region": "great forge bridges" }
+AP-CHECK { "id": 1549, "name": "MAP04 - Power Shard [-2619,53]", "pos": ["MAP04",-2619,53,-292], "region": "great forge bridges" }
+AP-CHECK { "id": 1544, "name": "MAP04 - Power Shard [-1820,-608]", "pos": ["MAP04",-1820,-608,-276], "region": "great forge bridges" }
+AP-CHECK { "id": 1543, "name": "MAP04 - Power Shard [-1540,-604]", "pos": ["MAP04",-1540,-604,-276], "region": "great forge bridges" }
+AP-CHECK { "id": 1481, "name": "MAP04 - Iron Ore [SE]", "pos": ["MAP04",-1200,-620,-457], "region": "great forge bridges" }
+AP-CHECK { "id": 1545, "name": "MAP04 - Power Shard [-2123,644]", "pos": ["MAP04",-2123,644,-425], "region": "repair bay" }
+AP-CHECK { "id": 1588, "name": "MAP04 - Sentry Gun [Center]", "pos": ["MAP04",-1923,643,-425], "region": "repair bay" }
+AP-CHECK { "id": 1392, "name": "MAP04 - Boltmag [-2130,1073]", "pos": ["MAP04",-2130,1073,-457], "region": "repair bay" }
+AP-CHECK { "id": 1445, "name": "MAP04 - Fragfire Can [-1756,492]", "pos": ["MAP04",-1756,492,-601], "region": "great forge NE crawlspace" }
+AP-CHECK { "id": 1448, "name": "MAP04 - Fragfire Can [-1995,1430]", "pos": ["MAP04",-1995,1430,-446], "region": "dwarven forge" }
+AP-CHECK { "id": 1597, "name": "MAP04 - Spike Bundle [-1967,1861]", "pos": ["MAP04",-1967,1861,-425], "region": "dwarven forge" }
+AP-CHECK { "id": 1595, "name": "MAP04 - Spike Bundle [-1951,1861]", "pos": ["MAP04",-1951,1861,-425], "region": "dwarven forge" }
+AP-CHECK { "id": 1596, "name": "MAP04 - Spike Bundle [-1956,1865]", "pos": ["MAP04",-1956,1865,-425], "region": "dwarven forge" }
+AP-CHECK { "id": 1590, "name": "MAP04 - Smelt Iron Ingot #1", "pos": ["MAP04","spawn@tid",1,"InventoryIronBar",101,0], "region": "dwarven forge", "keys": ["InventoryIronOre"] }
+AP-CHECK { "id": 1590, "name": "MAP04 - Smelt Iron Ingot #2", "pos": ["MAP04","spawn@tid",2,"InventoryIronBar",101,0], "region": "dwarven forge", "keys": ["InventoryIronOre"] }
+AP-CHECK { "id": 1590, "name": "MAP04 - Smelt Iron Ingot #3", "pos": ["MAP04","spawn@tid",3,"InventoryIronBar",101,0], "region": "dwarven forge", "keys": ["InventoryIronOre"] }
+AP-CHECK { "id": 1590, "name": "MAP04 - Smelt Iron Ingot #4", "pos": ["MAP04","spawn@tid",4,"InventoryIronBar",101,0], "region": "dwarven forge", "keys": ["InventoryIronOre"] }
+AP-CHECK { "id": 1489, "name": "MAP04 - Make Iron Key", "pos": ["MAP04","spawn@tid",1,"IronKey",107,0], "region": "repair bay", "keys": ["InventoryIronBar"] }
+
+AP-XOFF {}
+AP-XON { "lump": "GZAPIPC", "size": 0, "nick": "Player", "slot": "Player1", "seed": "52843110020926828044", "wad": "Hedon Bloodrite", "server": "" }
+AP-CHECK { "id": 1573, "name": "MAP04 - Red Crystal [-4877,1512]", "pos": ["MAP04",-4877,1512,-729], "region": "magma chamber" }
+AP-CHECK { "id": 1565, "name": "MAP04 - Power Shard [-5688,1055]", "pos": ["MAP04",-5688,1055,-673], "region": "magma chamber" }
+AP-CHECK { "id": 1564, "name": "MAP04 - Power Shard [-5448,1388]", "pos": ["MAP04",-5448,1388,-649], "region": "magma chamber" }
+AP-CHECK { "id": 1563, "name": "MAP04 - Power Shard [-5427,1432]", "pos": ["MAP04",-5427,1432,-649], "region": "magma chamber" }
+AP-CHECK { "id": 1482, "name": "MAP04 - Iron pickaxe", "pos": ["MAP04",-7368,2301,-793], "region": "elevator cave 1F" }
+AP-CHECK { "id": 1365, "name": "MAP04 - Elemental Ring [W]", "pos": ["MAP04",-7673,2237,-791], "region": "elevator cave 1F" }
+AP-CHECK { "id": 1477, "name": "MAP04 - Iron Ore #511", "pos": ["MAP04","spawn@tid",1,"InventoryIronOre",511,0], "region": "magma chamber", "keys": ["InventoryPickAxe"] }
+AP-CHECK { "id": 1516, "name": "MAP04 - Potion of Healing [-4541,2775]", "pos": ["MAP04",-4541,2775,-681], "region": "magma chamber", "keys": ["InventoryPickAxe"] }
+AP-CHECK { "id": 1474, "name": "MAP04 - Iron Ore #505", "pos": ["MAP04","spawn@tid",1,"InventoryIronOre",505,0], "region": "magma chamber", "keys": ["InventoryPickAxe"] }
+; portal chamber requires iron key + great forge because the checks in it don't spawn
+; until after you return from the great forge carrying the key
+AP-CHECK { "id": 1434, "name": "MAP04 - Earth Key", "pos": ["MAP04","spawn@tid",1,"EarthKey",46,0], "region": "portal chamber" }
+AP-CHECK { "id": 1624, "name": "MAP04 - Vial of Healing [-1980,-1878]", "pos": ["MAP04",-1980,-1878,-453], "region": "great forge weak wall secret" }
+AP-CHECK { "id": 1582, "name": "MAP04 - Secret 1440", "pos": ["MAP04","secret","sector",1440], "region": "great forge weak wall secret" }
+AP-CHECK { "id": 1610, "name": "MAP04 - Spike Mag [-1964,-1946]", "pos": ["MAP04",-1964,-1946,-453], "region": "great forge weak wall secret" }
+AP-CHECK { "id": 1446, "name": "MAP04 - Fragfire Can [-1847,-1992]", "pos": ["MAP04",-1847,-1992,-453], "region": "great forge weak wall secret" }
+AP-CHECK { "id": 1391, "name": "MAP04 - Boltmag [-1792,-1902]", "pos": ["MAP04",-1792,-1902,-453], "region": "great forge weak wall secret" }
+AP-CHECK { "id": 1623, "name": "MAP04 - Vial of Healing [-1839,-1845]", "pos": ["MAP04",-1839,-1845,-453], "region": "great forge weak wall secret" }
+AP-CHECK { "id": 1606, "name": "MAP04 - Spike Gun [-3134,1875]", "pos": ["MAP04",-3134,1875,-424], "region": "workshop" }
+AP-CHECK { "id": 1468, "name": "MAP04 - Iron Ingot [Center]", "pos": ["MAP04",-3110,2033,-361], "region": "workshop" }
+AP-CHECK { "id": 1439, "name": "MAP04 - Empty Gear Mould", "pos": ["MAP04",-3419,1492,-457], "region": "workshop" }
+AP-CHECK { "id": 1457, "name": "MAP04 - Great Forge Instructions", "pos": ["MAP04",-3419,1443,-457], "region": "workshop" }
+AP-CHECK { "id": 1461, "name": "MAP04 - Half-Empty Fragfire Can [-3297,1339]", "pos": ["MAP04",-3297,1339,-428], "region": "workshop" }
+AP-CHECK { "id": 1507, "name": "MAP04 - Potion Launcher [Toxic] [Center]", "pos": ["MAP04",-3249,1180,-428], "region": "workshop" }
+AP-CHECK { "id": 1408, "name": "MAP04 - Box of Toxic Potions [-3227,1128]", "pos": ["MAP04",-3227,1128,-428], "region": "workshop" }
+AP-CHECK { "id": 1547, "name": "MAP04 - Power Shard [-2269,2123]", "pos": ["MAP04",-2269,2123,-457], "region": "mould forge" }
+AP-CHECK { "id": 1546, "name": "MAP04 - Power Shard [-2261,2451]", "pos": ["MAP04",-2261,2451,-457], "region": "mould forge" }
+AP-CHECK { "id": 1554, "name": "MAP04 - Power Shard [-2965,2448]", "pos": ["MAP04",-2965,2448,-457], "region": "mould forge" }
+AP-CHECK { "id": 1553, "name": "MAP04 - Power Shard [-2958,2117]", "pos": ["MAP04",-2958,2117,-457], "region": "mould forge" }
+AP-CHECK { "id": 1615, "name": "MAP04 - Spike fabricator", "pos": ["MAP04","spawn@tid",1,"AmmoCultistSpike",111,0], "region": "mould forge", "keys": ["InventoryIronBar"] }
+AP-CHECK { "id": 1455, "name": "MAP04 - Fragfire fabricator", "pos": ["MAP04","spawn@tid",1,"FragfireCan",190,0], "region": "mould forge", "keys": ["InventoryIronBar"] }
+; potion launcher tox is in the workshop -- so you can completely skip it by going to
+; the magma chamber earth key elevator first
+AP-CHECK { "id": 1385, "name": "MAP04 - Potion of Minor Healing [-7046,2998]", "pos": ["MAP04",-7046,2998,-673], "region": "elevator cave 2F" }
+AP-CHECK { "id": 1381, "name": "MAP04 - Potion of Healing [W]", "pos": ["MAP04",-7125,3053,-673], "region": "elevator cave 2F" }
+AP-CHECK { "id": 1424, "name": "MAP04 - Cream Fungus [-5768,3422]", "pos": ["MAP04",-5768,3422,-681], "region": "ruins cave" }
+AP-CHECK { "id": 1423, "name": "MAP04 - Cream Fungus [-5747,3445]", "pos": ["MAP04",-5747,3445,-681], "region": "ruins cave" }
+AP-CHECK { "id": 1632, "name": "MAP04 - Vial of Healing [-6557,3798]", "pos": ["MAP04",-6557,3798,-697], "region": "ruins cave" }
+AP-CHECK { "id": 1576, "name": "MAP04 - Red Crystal [-6463,4083]", "pos": ["MAP04",-6463,4083,-593], "region": "ruins cave" }
+AP-CHECK { "id": 1492, "name": "MAP04 - Mithril Ore #601", "pos": ["MAP04","spawn@tid",1,"InventoryMithrilOre",601,0], "region": "ruins cave", "keys": ["InventoryPickAxe"] }
+AP-CHECK { "id": 1476, "name": "MAP04 - Iron Ore #509", "pos": ["MAP04","spawn@tid",1,"InventoryIronOre",509,0], "region": "ruins cave", "keys": ["InventoryPickAxe"] }
+AP-CHECK { "id": 1579, "name": "MAP04 - Red Crystal [-6874,4411]", "pos": ["MAP04",-6874,4411,-553], "region": "W red crystal cave" }
+AP-CHECK { "id": 1431, "name": "MAP04 - Cream Fungus [-6497,5679]", "pos": ["MAP04",-6497,5679,-543], "region": "magma fall cave" }
+AP-CHECK { "id": 1432, "name": "MAP04 - Cream Fungus [-6518,5700]", "pos": ["MAP04",-6518,5700,-543], "region": "magma fall cave" }
+AP-CHECK { "id": 1427, "name": "MAP04 - Cream Fungus [-6471,5720]", "pos": ["MAP04",-6471,5720,-543], "region": "magma fall cave" }
+AP-CHECK { "id": 1425, "name": "MAP04 - Cream Fungus [-5958,5097]", "pos": ["MAP04",-5958,5097,-553], "region": "magma fall cave" }
+AP-CHECK { "id": 1426, "name": "MAP04 - Cream Fungus [-6029,5059]", "pos": ["MAP04",-6029,5059,-553], "region": "magma fall cave" }
+AP-CHECK { "id": 1496, "name": "MAP04 - Mithril Ore [NW]", "pos": ["MAP04",-5536,5767,-551], "region": "magma fall cave" }
+AP-CHECK { "id": 1572, "name": "MAP04 - Red Crystal [-4552,5112]", "pos": ["MAP04",-4552,5112,-617], "region": "E red crystal cave" }
+AP-CHECK { "id": 1422, "name": "MAP04 - Cream Fungus [-4544,4068]", "pos": ["MAP04",-4544,4068,-729], "region": "magnetism cave" }
+AP-CHECK { "id": 1421, "name": "MAP04 - Cream Fungus [-4528,4048]", "pos": ["MAP04",-4528,4048,-721], "region": "magnetism cave" }
+AP-CHECK { "id": 1420, "name": "MAP04 - Cream Fungus [-4516,4044]", "pos": ["MAP04",-4516,4044,-721], "region": "magnetism cave" }
+AP-CHECK { "id": 1470, "name": "MAP04 - Iron Ingot [NW]", "pos": ["MAP04",-5359,4967,-713], "region": "shrine to Iron" }
+AP-CHECK { "id": 1494, "name": "MAP04 - Mithril Ore #605", "pos": ["MAP04","spawn@tid",1,"InventoryMithrilOre",605,0], "region": "shrine to Iron", "keys": ["InventoryPickAxe"] }
+AP-CHECK { "id": 1617, "name": "MAP04 - Time Shard [NW]", "pos": ["MAP04",-5361,5019,-545], "region": "shrine to Iron" }
+; magnetism cave should be renamed magnetic cave or similar
+AP-CHECK { "id": 1515, "name": "MAP04 - Potion of Healing [-3921,4002]", "pos": ["MAP04",-3921,4002,-833], "region": "deep chasm" }
+AP-CHECK { "id": 1571, "name": "MAP04 - Red Crystal [-3344,4048]", "pos": ["MAP04",-3344,4048,-857], "region": "deep chasm" }
+AP-CHECK { "id": 1493, "name": "MAP04 - Mithril Ore #603", "pos": ["MAP04","spawn@tid",1,"InventoryMithrilOre",603,0], "region": "deep chasm", "keys": ["InventoryPickAxe"] }
+AP-CHECK { "id": 1417, "name": "MAP04 - Cream Fungus [-3326,4320]", "pos": ["MAP04",-3326,4320,-641], "region": "deep chasm" }
+AP-CHECK { "id": 1418, "name": "MAP04 - Cream Fungus [-3345,4306]", "pos": ["MAP04",-3345,4306,-641], "region": "deep chasm" }
+AP-CHECK { "id": 1419, "name": "MAP04 - Cream Fungus [-3364,4277]", "pos": ["MAP04",-3364,4277,-641], "region": "deep chasm" }
+AP-CHECK { "id": 1530, "name": "MAP04 - Potion of Minor Healing [-3009,6205]", "pos": ["MAP04",-3009,6205,-521], "region": "geothermal vent cave" }
+AP-CHECK { "id": 1513, "name": "MAP04 - Potion of Healing [-2959,6226]", "pos": ["MAP04",-2959,6226,-521], "region": "geothermal vent cave" }
+AP-CHECK { "id": 1415, "name": "MAP04 - Cream Fungus [-2912,6472]", "pos": ["MAP04",-2912,6472,-521], "region": "geothermal vent cave" }
+AP-CHECK { "id": 1416, "name": "MAP04 - Cream Fungus [-2938,6483]", "pos": ["MAP04",-2938,6483,-521], "region": "geothermal vent cave" }
+AP-CHECK { "id": 1359, "name": "MAP04 - Axe [-2493,5659]", "pos": ["MAP04",-2493,5659,-521], "region": "geothermal vent cave" }
+AP-CHECK { "id": 1508, "name": "MAP04 - Potion Launcher [Toxic] [N]", "pos": ["MAP04",-2331,5492,-521], "region": "geothermal pool cave" }
+AP-CHECK { "id": 1569, "name": "MAP04 - Red Crystal [-2158,5501]", "pos": ["MAP04",-2158,5501,-521], "region": "geothermal pool cave" }
+AP-CHECK { "id": 1480, "name": "MAP04 - Iron Ore [NE]", "pos": ["MAP04",-1741,4670,-527], "region": "geothermal pool cave" }
+AP-CHECK { "id": 1471, "name": "MAP04 - Iron Ingot [N]", "pos": ["MAP04",-1913,6168,-519], "region": "minotaur barracks" }
+AP-CHECK { "id": 1635, "name": "MAP04 - Water [N]", "pos": ["MAP04",-2065,6089,-496], "region": "minotaur barracks" }
+AP-CHECK { "id": 1410, "name": "MAP04 - Bread [N]", "pos": ["MAP04",-2084,6070,-497], "region": "minotaur barracks" }
+AP-CHECK { "id": 1498, "name": "MAP04 - Pint of Mead [-2087,6095]", "pos": ["MAP04",-2087,6095,-497], "region": "minotaur barracks" }
+AP-CHECK { "id": 1522, "name": "MAP04 - Potion of Minor Healing [-2197,5823]", "pos": ["MAP04",-2197,5823,-521], "region": "minotaur barracks" }
+AP-CHECK { "id": 1484, "name": "MAP04 - Jug of Wine [-2200,5801]", "pos": ["MAP04",-2200,5801,-521], "region": "minotaur barracks" }
+AP-CHECK { "id": 1483, "name": "MAP04 - Jug of Wine [-2196,5780]", "pos": ["MAP04",-2196,5780,-521], "region": "minotaur barracks" }
+AP-CHECK { "id": 1401, "name": "MAP04 - Bowl of Scribe Embers [-1636,5769]", "pos": ["MAP04",-1636,5769,-521], "region": "minotaur barracks" }
+AP-CHECK { "id": 1497, "name": "MAP04 - Pint of Mead [-2038,6122]", "pos": ["MAP04",-2038,6122,-497], "region": "minotaur barracks" }
+AP-CHECK { "id": 1491, "name": "MAP04 - Medium Armor Crystal [NE]", "pos": ["MAP04",-1512,6097,-521], "region": "minotaur barracks" }
+AP-CHECK { "id": 1443, "name": "MAP04 - Fixer's Goggles [NE]", "pos": ["MAP04",-1537,6069,-521], "region": "minotaur barracks" }
+AP-CHECK { "id": 1621, "name": "MAP04 - Vial of Healing [-1492,4830]", "pos": ["MAP04",-1492,4830,-481], "region": "minotaur tavern" }
+AP-CHECK { "id": 1500, "name": "MAP04 - Plum Brandy [-1531,4763]", "pos": ["MAP04",-1531,4763,-521], "region": "minotaur tavern" }
+AP-CHECK { "id": 1501, "name": "MAP04 - Plum Brandy [-1537,4737]", "pos": ["MAP04",-1537,4737,-521], "region": "minotaur tavern" }
+AP-CHECK { "id": 1502, "name": "MAP04 - Polenta", "pos": ["MAP04",-1204,4898,-489], "region": "minotaur tavern" }
+AP-CHECK { "id": 1568, "name": "MAP04 - Red Crystal [-1167,4909]", "pos": ["MAP04",-1167,4909,-489], "region": "minotaur tavern" }
+AP-CHECK { "id": 1485, "name": "MAP04 - Leek", "pos": ["MAP04",-1192,4918,-489], "region": "minotaur tavern" }
+AP-CHECK { "id": 1495, "name": "MAP04 - Mithril Ore [NE]", "pos": ["MAP04",-988,5251,-489], "region": "minotaur tavern" }
+AP-CHECK { "id": 1499, "name": "MAP04 - Plum Brandy [-1159,5253]", "pos": ["MAP04",-1159,5253,-489], "region": "minotaur tavern" }
+AP-CHECK { "id": 1580, "name": "MAP04 - Salted Meat", "pos": ["MAP04",-1175,5266,-489], "region": "minotaur tavern" }
+AP-CHECK { "id": 1409, "name": "MAP04 - Bread [NE]", "pos": ["MAP04",-1178,5247,-489], "region": "minotaur tavern" }
+AP-CHECK { "id": 1609, "name": "MAP04 - Spike Mag [-1369,5311]", "pos": ["MAP04",-1369,5311,-425], "region": "minotaur tavern" }
+AP-CHECK { "id": 1592, "name": "MAP04 - Spike Bundle [-1361,5305]", "pos": ["MAP04",-1361,5305,-425], "region": "minotaur tavern" }
+AP-CHECK { "id": 1585, "name": "MAP04 - Secret 4364", "pos": ["MAP04","secret","sector",4364], "region": "tavern secret storage" }
+AP-CHECK { "id": 1406, "name": "MAP04 - Box of Toxic Potions [-1486,4601]", "pos": ["MAP04",-1486,4601,-497], "region": "tavern secret storage" }
+AP-CHECK { "id": 1405, "name": "MAP04 - Box of Toxic Potions [-1486,4530]", "pos": ["MAP04",-1486,4530,-497], "region": "tavern secret storage" }
+AP-CHECK { "id": 1400, "name": "MAP04 - Bowl of Scribe Embers [-1316,4613]", "pos": ["MAP04",-1316,4613,-521], "region": "tavern secret storage" }
+; secret storage is behind the bar
+; secret secret storage is behind secret storage
+AP-CHECK { "id": 1586, "name": "MAP04 - Secret 4695", "pos": ["MAP04","secret","sector",4695], "region": "tavern secret secret storage" }
+AP-CHECK { "id": 1414, "name": "MAP04 - Cider [-1473,4136]", "pos": ["MAP04",-1473,4136,-521], "region": "tavern secret secret storage" }
+AP-CHECK { "id": 1413, "name": "MAP04 - Cider [-1461,4143]", "pos": ["MAP04",-1461,4143,-521], "region": "tavern secret secret storage" }
+AP-CHECK { "id": 1479, "name": "MAP04 - Iron Ore #515", "pos": ["MAP04","spawn@tid",1,"InventoryIronOre",515,0], "region": "tavern secret tunnel", "keys": ["InventoryPickAxe"] }
+AP-CHECK { "id": 1469, "name": "MAP04 - Iron Ingot [NE]", "pos": ["MAP04",-1934,3524,-473], "region": "tavern secret tunnel" }
+; you can use the tavern secret tunnel to enter mould forge via a crawlspace
+; however, to reach the tavern at all you need the earth key
+; which also makes the mould forge accessible normally
+AP-CHECK { "id": 1574, "name": "MAP04 - Red Crystal [-6157,6443]", "pos": ["MAP04",-6157,6443,-417], "region": "shrine to Fire" }
+AP-CHECK { "id": 1396, "name": "MAP04 - Boltmag [-6163,6525]", "pos": ["MAP04",-6163,6525,-441], "region": "shrine to Fire" }
+AP-CHECK { "id": 1584, "name": "MAP04 - Secret 3164", "pos": ["MAP04","secret","sector",3164], "region": "Fire shrine secret" }
+AP-CHECK { "id": 1521, "name": "MAP04 - Potion of Might", "pos": ["MAP04",-6476,6540,-437], "region": "Fire shrine secret" }
+AP-CHECK { "id": 1575, "name": "MAP04 - Red Crystal [-6425,6535]", "pos": ["MAP04",-6425,6535,-429], "region": "Fire shrine secret" }
+AP-CHECK { "id": 1578, "name": "MAP04 - Red Crystal [-6529,6519]", "pos": ["MAP04",-6529,6519,-429], "region": "Fire shrine secret" }
+AP-CHECK { "id": 1357, "name": "MAP04 - Axe Key", "pos": ["MAP04",-6544,6568,-421], "region": "Fire shrine secret" }
+AP-CHECK { "id": 1577, "name": "MAP04 - Red Crystal [-6465,6479]", "pos": ["MAP04",-6465,6479,-421], "region": "Fire shrine secret" }
+; accessible from either magma chamber or magma falls cave
+; both require axe key however and lead to the same place
+; open question: if you just have the axe key, can you get to the upper caves through the maze?
+AP-CHECK { "id": 1630, "name": "MAP04 - Vial of Healing [-4688,3316]", "pos": ["MAP04",-4688,3316,-737], "region": "axe maze" }
+AP-CHECK { "id": 1449, "name": "MAP04 - Fragfire Can [-5156,3316]", "pos": ["MAP04",-5156,3316,-737], "region": "axe maze" }
+AP-CHECK { "id": 1534, "name": "MAP04 - Potion of Minor Healing [-4640,3808]", "pos": ["MAP04",-4640,3808,-737], "region": "axe maze" }
+AP-CHECK { "id": 1487, "name": "MAP04 - Light Armor Crystal [N]", "pos": ["MAP04",-3936,3616,-737], "region": "axe maze" }
+AP-CHECK { "id": 1376, "name": "MAP04 - Axe [-3816,3108]", "pos": ["MAP04",-3816,3108,-833], "region": "Forgotten One's forge" }
+AP-CHECK { "id": 1372, "name": "MAP04 - Axe [-3752,3104]", "pos": ["MAP04",-3752,3104,-833], "region": "Forgotten One's forge" }
+AP-CHECK { "id": 1375, "name": "MAP04 - Axe [-3792,3108]", "pos": ["MAP04",-3792,3108,-785], "region": "Forgotten One's forge" }
+AP-CHECK { "id": 1374, "name": "MAP04 - Axe [-3768,3112]", "pos": ["MAP04",-3768,3112,-785], "region": "Forgotten One's forge" }
+AP-CHECK { "id": 1362, "name": "MAP04 - Axe [-3688,3176]", "pos": ["MAP04",-3688,3176,-833], "region": "Forgotten One's forge" }
+AP-CHECK { "id": 1366, "name": "MAP04 - Axe [-3692,3224,-833]", "pos": ["MAP04",-3692,3224,-833], "region": "Forgotten One's forge" }
+AP-CHECK { "id": 1365, "name": "MAP04 - Axe [-3692,3224,-785]", "pos": ["MAP04",-3692,3224,-785], "region": "Forgotten One's forge" }
+AP-CHECK { "id": 1364, "name": "MAP04 - Axe [-3692,3192]", "pos": ["MAP04",-3692,3192,-785], "region": "Forgotten One's forge" }
+AP-CHECK { "id": 1369, "name": "MAP04 - Axe [-3692,3304]", "pos": ["MAP04",-3692,3304,-833], "region": "Forgotten One's forge" }
+AP-CHECK { "id": 1371, "name": "MAP04 - Axe [-3692,3332]", "pos": ["MAP04",-3692,3332,-833], "region": "Forgotten One's forge" }
+AP-CHECK { "id": 1370, "name": "MAP04 - Axe [-3692,3312]", "pos": ["MAP04",-3692,3312,-785], "region": "Forgotten One's forge" }
+AP-CHECK { "id": 1363, "name": "MAP04 - Axe [-3688,3352]", "pos": ["MAP04",-3688,3352,-833], "region": "Forgotten One's forge" }
+AP-CHECK { "id": 1378, "name": "MAP04 - Axe [-3876,3484]", "pos": ["MAP04",-3876,3484,-833], "region": "Forgotten One's forge" }
+AP-CHECK { "id": 1380, "name": "MAP04 - Axe [-3924,3484]", "pos": ["MAP04",-3924,3484,-833], "region": "Forgotten One's forge" }
+AP-CHECK { "id": 1379, "name": "MAP04 - Axe [-3888,3484]", "pos": ["MAP04",-3888,3484,-785], "region": "Forgotten One's forge" }
+AP-CHECK { "id": 1381, "name": "MAP04 - Axe [-3992,3412]", "pos": ["MAP04",-3992,3412,-833], "region": "Forgotten One's forge" }
+AP-CHECK { "id": 1383, "name": "MAP04 - Axe [-3996,3392]", "pos": ["MAP04",-3996,3392,-785], "region": "Forgotten One's forge" }
+AP-CHECK { "id": 1382, "name": "MAP04 - Axe [-3996,3368]", "pos": ["MAP04",-3996,3368,-833], "region": "Forgotten One's forge" }
+AP-CHECK { "id": 1373, "name": "MAP04 - Axe [-3764,3108]", "pos": ["MAP04",-3764,3108,-737], "region": "Forgotten One's forge" }
+AP-CHECK { "id": 1367, "name": "MAP04 - Axe [-3692,3228]", "pos": ["MAP04",-3692,3228,-737], "region": "Forgotten One's forge" }
+AP-CHECK { "id": 1368, "name": "MAP04 - Axe [-3692,3292]", "pos": ["MAP04",-3692,3292,-737], "region": "Forgotten One's forge" }
+AP-CHECK { "id": 1377, "name": "MAP04 - Axe [-3868,3484]", "pos": ["MAP04",-3868,3484,-737], "region": "Forgotten One's forge" }
+; to get the ones on top of the shelves you need to jump off the little posts around the anvil
+AP-CHECK { "id": 1587, "name": "MAP04 - Secret 5459", "pos": ["MAP04","secret","sector",5459], "region": "Forgotten One's room" }
+AP-CHECK { "id": 1581, "name": "MAP04 - Scroll of Wizard's Eye", "pos": ["MAP04",-3692,3572,-849], "region": "Forgotten One's room" }
+AP-CHECK { "id": 1506, "name": "MAP04 - Potion Launcher [Acid] [-3805,3649]", "pos": ["MAP04",-3805,3649,-873], "region": "Forgotten One's room" }
+AP-CHECK { "id": 1503, "name": "MAP04 - Potion Launcher", "pos": ["MAP04",-3772,3676,-873], "region": "Forgotten One's room" }
+AP-CHECK { "id": 1504, "name": "MAP04 - Potion Launcher [Acid] [-3740,3680]", "pos": ["MAP04",-3740,3680,-873], "region": "Forgotten One's room" }
+AP-CHECK { "id": 1399, "name": "MAP04 - Boltmag fabricator", "pos": ["MAP04","spawn@tid",1,"Boltmag",116,0], "region": "mould forge", "keys": ["key/InventoryRedCrystal/3", "InventoryIronBar"] }
+AP-CHECK { "id": 1591, "name": "MAP04 - Smelt Mithril Ingot", "pos": ["MAP04","spawn@tid",1,"InventoryMithrilBar",129,0], "region": "great forge", "keys": ["key/InventoryMithrilOre/5"] }
+AP-CHECK { "id": 1412, "name": "MAP04 - Cast Mithril Gear", "pos": ["MAP04","spawn@tid",1,"InventoryGearMouldFilled",130,0], "region": "great forge", "keys": ["InventoryGearMouldEmpty", "InventoryMithrilBar"] }
+AP-CHECK { "id": 1466, "name": "MAP04 - Hammer Mithril Gear", "pos": ["MAP04","spawn@tid",1,"InventoryMithrilGear",134,0], "region": "great forge", "keys": ["InventoryGearMouldFilled"] }
+AP-CHECK { "id": 1535, "name": "MAP04 - Potion of Minor Healing [-492,-606]", "pos": ["MAP04",-492,-606,-457], "region": "east hall" }
+AP-CHECK { "id": 1533, "name": "MAP04 - Potion of Minor Healing [-43,-603]", "pos": ["MAP04",-43,-603,-457], "region": "east hall" }
+AP-CHECK { "id": 1633, "name": "MAP04 - Vial of Healing [-762,-989]", "pos": ["MAP04",-762,-989,-437], "region": "east hall" }
+AP-CHECK { "id": 1360, "name": "MAP04 - Axe [-320,-8]", "pos": ["MAP04",-320,-8,-425], "region": "tool shop" }
+AP-CHECK { "id": 1361, "name": "MAP04 - Axe [-320,64]", "pos": ["MAP04",-320,64,-425], "region": "tool shop" }
+AP-CHECK { "id": 1384, "name": "MAP04 - Axe [-486,16]", "pos": ["MAP04",-486,16,-457], "region": "tool shop" }
+AP-CHECK { "id": 1520, "name": "MAP04 - Potion of Healing [-876,40]", "pos": ["MAP04",-876,40,-425], "region": "tool shop" }
+AP-CHECK { "id": 1488, "name": "MAP04 - Light Armor Crystal [SE]", "pos": ["MAP04",-1028,8,-425], "region": "tool shop safe" }
+AP-CHECK { "id": 1540, "name": "MAP04 - Power Shard [-1052,18]", "pos": ["MAP04",-1052,18,-425], "region": "tool shop safe" }
+AP-CHECK { "id": 1541, "name": "MAP04 - Power Shard [-1058,-13]", "pos": ["MAP04",-1058,-13,-425], "region": "tool shop safe" }
+AP-CHECK { "id": 1542, "name": "MAP04 - Power Shard [-1063,13]", "pos": ["MAP04",-1063,13,-425], "region": "tool shop safe" }
+AP-CHECK { "id": 1583, "name": "MAP04 - Secret 2420", "pos": ["MAP04","secret","sector",2420], "region": "tool shop safe" }
+AP-CHECK { "id": 1509, "name": "MAP04 - Potion Launcher [Toxic] [SE]", "pos": ["MAP04",668,-356,-425], "region": "gun shop" }
+AP-CHECK { "id": 1398, "name": "MAP04 - Boltmag [691,-235]", "pos": ["MAP04",691,-235,-433], "region": "gun shop" }
+AP-CHECK { "id": 1453, "name": "MAP04 - Fragfire Gun [SE]", "pos": ["MAP04",528,-847,-433], "region": "gun shop" }
+AP-CHECK { "id": 1433, "name": "MAP04 - Crushbow", "pos": ["MAP04",608,-969,-433], "region": "gun shop" }
+AP-CHECK { "id": 1472, "name": "MAP04 - Iron Ore #501", "pos": ["MAP04","spawn@tid",1,"InventoryIronOre",501,0], "region": "great forge ledges", "keys": ["InventoryPickAxe"] }
+AP-CHECK { "id": 1473, "name": "MAP04 - Iron Ore #503", "pos": ["MAP04","spawn@tid",1,"InventoryIronOre",503,0], "region": "great forge ledges", "keys": ["InventoryPickAxe"] }
+AP-CHECK { "id": 1475, "name": "MAP04 - Iron Ore #507", "pos": ["MAP04","spawn@tid",1,"InventoryIronOre",507,0], "region": "magma fall cave", "keys": ["InventoryPickAxe"] }
+AP-CHECK { "id": 1478, "name": "MAP04 - Iron Ore #513", "pos": ["MAP04","spawn@tid",1,"InventoryIronOre",513,0], "region": "geothermal pool cave", "keys": ["InventoryPickAxe"] }
+; the mithril gear is needed to exit the map
+AP-CHECK { "id": 1440, "name": "MAP04 - Exit", "pos": ["MAP04","exit"], "region": "east hall", "keys": ["InventoryMithrilGear"] }
+
+; These are all in the easter-egg area reachable by entering the portal room early
+AP-CHECK { "id": 1397, "name": "MAP04 - Boltmag [-6744,-1252]", "pos": ["MAP04",-6744,-1252,-558], "unreachable": true }
+AP-CHECK { "id": 1428, "name": "MAP04 - Cream Fungus [-6488,-1936]", "pos": ["MAP04",-6488,-1936,-546], "unreachable": true }
+AP-CHECK { "id": 1429, "name": "MAP04 - Cream Fungus [-6488,-2002]", "pos": ["MAP04",-6488,-2002,-546], "unreachable": true }
+AP-CHECK { "id": 1430, "name": "MAP04 - Cream Fungus [-6495,-1961]", "pos": ["MAP04",-6495,-1961,-546], "unreachable": true }
+AP-CHECK { "id": 1450, "name": "MAP04 - Fragfire Can [-5512,-1548]", "pos": ["MAP04",-5512,-1548,-558], "unreachable": true }
+AP-CHECK { "id": 1518, "name": "MAP04 - Potion of Healing [-5801,-1671]", "pos": ["MAP04",-5801,-1671,-558], "unreachable": true }
+AP-CHECK { "id": 1566, "name": "MAP04 - Power Shard [-6162,-1795]", "pos": ["MAP04",-6162,-1795,-558], "unreachable": true }
+AP-CHECK { "id": 1567, "name": "MAP04 - Power Shard [-6163,-1718]", "pos": ["MAP04",-6163,-1718,-558], "unreachable": true }
+AP-CHECK { "id": 1631, "name": "MAP04 - Vial of Healing [-6096,-2413]", "pos": ["MAP04",-6096,-2413,-494], "unreachable": true }
+AP-CHECK { "id": 1399, "name": "MAP04 - Spike Mag [SW]", "pos": ["MAP04",-6220,-2313,-494], "unreachable": true }
+
+; second pass on bearzerk with all spawns on
+AP-CHECK { "id": 1407, "name": "MAP04 - Vial of Healing [-2905,-1855]", "pos": ["MAP04",-2905,-1855,-457], "region": "pump station hallway" }
+AP-CHECK { "id": 1406, "name": "MAP04 - Vial of Healing [-2904,-1886]", "pos": ["MAP04",-2904,-1886,-457], "region": "pump station hallway" }
+AP-CHECK { "id": 1388, "name": "MAP04 - Power Shard [-3275,-2966]", "pos": ["MAP04",-3275,-2966,-377], "region": "pump station crawlspace" }
+AP-CHECK { "id": 1389, "name": "MAP04 - Power Shard [-3293,-3005]", "pos": ["MAP04",-3293,-3005,-377], "region": "pump station crawlspace" }
+AP-CHECK { "id": 1390, "name": "MAP04 - Power Shard [-3373,-3071]", "pos": ["MAP04",-3373,-3071,-377], "region": "pump station crawlspace" }
+AP-CHECK { "id": 1350, "name": "MAP04 - Amulet of Shadows", "pos": ["MAP04",-3465,-3065,-377], "region": "pump station crawlspace" }
+AP-CHECK { "id": 1393, "name": "MAP04 - Sentry Gun", "pos": ["MAP04",-3685,-2001,-457], "region": "pump station quarters" }
+AP-CHECK { "id": 1375, "name": "MAP04 - Heavy Armor Crystal", "pos": ["MAP04",-2654,-1876,-457], "region": "south hall" }
+AP-CHECK { "id": 1400, "name": "MAP04 - Spike Mag [S]", "pos": ["MAP04",-2373,-1853,-425], "region": "south hall" }
+AP-CHECK { "id": 1384, "name": "MAP04 - Potion of Minor Healing [-2968,-742]", "pos": ["MAP04",-2968,-742,-460], "region": "great forge" }
+AP-CHECK { "id": 1382, "name": "MAP04 - Potion of Minor Healing [-2380,-171]", "pos": ["MAP04",-2380,-171,-460], "region": "great forge" }
+AP-CHECK { "id": 1366, "name": "MAP04 - Fire Hammer", "pos": ["MAP04",-2124,-759,-427], "region": "great forge" }
+AP-CHECK { "id": 1383, "name": "MAP04 - Potion of Minor Healing [-2435,-942]", "pos": ["MAP04",-2435,-942,-460], "region": "great forge" }
+AP-CHECK { "id": 1403, "name": "MAP04 - Time Shard", "pos": ["MAP04",-2022,-1053,-425], "region": "great forge ledges" }
+AP-CHECK { "id": 1372, "name": "MAP04 - Half-Empty Fragfire Can [-3277,603]", "pos": ["MAP04",-3277,603,-457], "region": "bridge control" }
+AP-CHECK { "id": 1373, "name": "MAP04 - Half-Empty Fragfire Can [-3317,603]", "pos": ["MAP04",-3317,603,-457], "region": "bridge control" }
+AP-CHECK { "id": 1374, "name": "MAP04 - Half-Empty Fragfire Can [-3359,604]", "pos": ["MAP04",-3359,604,-457], "region": "bridge control" }
+AP-CHECK { "id": 1376, "name": "MAP04 - Medium Armor Crystal", "pos": ["MAP04",-2611,1703,-457], "region": "north hall" }
+AP-CHECK { "id": 1401, "name": "MAP04 - Tiati spikemag #39", "pos": ["MAP04","spawn@tid",1,"SpikeMag",39,0], "region": "portal chamber" }
+AP-CHECK { "id": 1402, "name": "MAP04 - Tiati spikemag #40", "pos": ["MAP04","spawn@tid",1,"SpikeMag",40,0], "region": "portal chamber" }
+AP-CHECK { "id": 1379, "name": "MAP04 - Potion of Healing [Center]", "pos": ["MAP04",-5050,1446,-729], "region": "magma chamber" }
+AP-CHECK { "id": 1354, "name": "MAP04 - Boltmag [NW]", "pos": ["MAP04",-5622,5874,-529], "region": "magma fall cave" }
+AP-CHECK { "id": 1357, "name": "MAP04 - Box of Acid Potions [-5622,4850]", "pos": ["MAP04",-5622,4850,-737], "region": "shrine to Iron" }
+AP-CHECK { "id": 1368, "name": "MAP04 - Fragfire Can [NW]", "pos": ["MAP04",-6749,3592,-593], "region": "ruins cave" }
+AP-CHECK { "id": 1364, "name": "MAP04 - Elemental Ring [N]", "pos": ["MAP04",-2068,6050,-497], "region": "minotaur barracks" }
+AP-CHECK { "id": 1404, "name": "MAP04 - Vial of Healing [-1482,6105]", "pos": ["MAP04",-1482,6105,-521], "region": "minotaur barracks" }
+AP-CHECK { "id": 1405, "name": "MAP04 - Vial of Healing [-1501,6119]", "pos": ["MAP04",-1501,6119,-521], "region": "minotaur barracks" }
+AP-CHECK { "id": 1363, "name": "MAP04 - Elemental Ring [NE]", "pos": ["MAP04",-1521,5122,-537], "region": "minotaur tavern" }
+AP-CHECK { "id": 1378, "name": "MAP04 - Potion of Haste", "pos": ["MAP04",-5120,3640,-737], "region": "axe maze", "keys": ["AxeKey"] }
+AP-CHECK { "id": 1377, "name": "MAP04 - Potion Launcher [Acid]", "pos": ["MAP04",-3799,3601,-873], "region": "Forgotten One's room" }
+AP-CHECK { "id": 1353, "name": "MAP04 - Bearzerker Axe", "pos": ["MAP04",-3788,3640,-873], "region": "Forgotten One's room" }
+AP-CHECK { "id": 1352, "name": "MAP04 - Bag of Holding", "pos": ["MAP04",-3788,3672,-873], "region": "Forgotten One's room" }
+AP-CHECK { "id": 1356, "name": "MAP04 - Box of Acid Potions [-1917,-1833]", "pos": ["MAP04",-1917,-1833,-453], "region": "great forge weak wall secret" }
+AP-CHECK { "id": 1359, "name": "MAP04 - Box of Toxic Potions", "pos": ["MAP04",-1845,-1993,-453], "region": "great forge weak wall secret" }
+AP-CHECK { "id": 1386, "name": "MAP04 - Power Shard [-1037,-22]", "pos": ["MAP04",-1037,-22,-425], "region": "tool shop safe" }
+AP-CHECK { "id": 1387, "name": "MAP04 - Power Shard [-1047,-26]", "pos": ["MAP04",-1047,-26,-425], "region": "tool shop safe" }
+AP-CHECK { "id": 1358, "name": "MAP04 - Box of Acid Potions [520,-356]", "pos": ["MAP04",520,-356,-433], "region": "gun shop" }
+AP-CHECK { "id": 1394, "name": "MAP04 - Spike Bundle [812,-272]", "pos": ["MAP04",812,-272,-433], "region": "gun shop" }
+AP-CHECK { "id": 1395, "name": "MAP04 - Spike Bundle [812,-300]", "pos": ["MAP04",812,-300,-433], "region": "gun shop" }
+AP-CHECK { "id": 1396, "name": "MAP04 - Spike Bundle [812,-384]", "pos": ["MAP04",812,-384,-433], "region": "gun shop" }
+AP-CHECK { "id": 1397, "name": "MAP04 - Spike Gun [807,-786]", "pos": ["MAP04",807,-786,-433], "region": "gun shop" }
+AP-CHECK { "id": 1398, "name": "MAP04 - Spike Gun [807,-885]", "pos": ["MAP04",807,-885,-433], "region": "gun shop" }
+AP-CHECK { "id": 1371, "name": "MAP04 - Half-Empty Fragfire Can [-2383,2553]", "pos": ["MAP04",-2383,2553,-425], "region": "tavern secret tunnel" }
+
+AP-CHECK { "id": 1355, "name": "MAP04 - Fire Hammer fabricator", "pos": ["MAP04","spawn@tid",1,"FireHammer",240,0], "region": "mould forge", "keys": ["key/InventoryRedCrystal/6", "InventoryIronBar"] }
+AP-CHECK { "id": 1357, "name": "MAP04 - Great Axe fabricator", "pos": ["MAP04","spawn@tid",1,"GreatAxe",248,0], "region": "dwarven forge", "keys": ["key/InventoryIronBar/8"] }
+AP-CHECK { "id": 1350, "name": "MAP04 - Axe fabricator", "pos": ["MAP04","spawn@tid",1,"BearzerkAxe",255,0], "region": "dwarven forge" }
