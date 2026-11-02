@@ -17,12 +17,18 @@ enemies) do not appear on the map regardless of settings. This is a known issue
 with event-based locations more broadly, not specific to Hedon, but it is more
 obvious here since Hedon has so many of them.
 
+Hedon contains many key items that are used up to unlock areas or create new
+items, such as the power cores in MAP01, alchemy supplies in MAP02, and ores and
+ingots in MAP04. AP treats these as keys, which means that they cannot be
+expended; if you do something that uses them up, AP will return them to your
+inventory as soon as it notices, and you can force it to notice by toggling them
+off and on from the inventory screen. Instead, some triggers now require you to
+have found multiple copies of these keys. These changes are noted below.
+
 ## MAP01: Cold Rock
 
-Power cores aren't permanently deducted from your inventory when used (AP treats
-them as keys and returns them to your inventory). Instead, you won't be able to
-repair the elevator until you've found two power cores, and will need to have
-found three to repair the gate.
+Repairing the elevator now requires you to have found two power cores, and
+repairing the gate requires three.
 
 The northwest caves, normally reached via the iron key, can also be reached by
 opening the timed gate in the outpost and exiting to the pond room. The gate
@@ -105,8 +111,7 @@ listed here.
   - Iron Ingot + Red Crystal ×6 -> Fire Hammer
   - Iron Ingot ×8 -> Great Axe
 
-Inputs are infinitely reusable once you find them through AP, so (e.g.) one
-Iron Ingot is sufficient to get the Iron Key, Fragfire Can, and Spikes checks.
-The Iron Ore smelter, like the power core checks in MAP01, requires you to find
-multiple Iron Ore items to smelt higher numbers of Iron Ingots.
-
+The Iron Ore -> Iron Ingot smelter requires you to have found up to four Iron
+Ore items to get all four Iron Ingot checks. None of the others are repeatable;
+using them a second time will either produce the vanilla item or a non-usable
+key placeholder.
