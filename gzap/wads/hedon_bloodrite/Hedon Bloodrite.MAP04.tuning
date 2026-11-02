@@ -125,10 +125,10 @@ AP-CHECK { "id": 1448, "name": "MAP04 - Fragfire Can [-1995,1430]", "pos": ["MAP
 AP-CHECK { "id": 1597, "name": "MAP04 - Spike Bundle [-1967,1861]", "pos": ["MAP04",-1967,1861,-425], "region": "dwarven forge" }
 AP-CHECK { "id": 1595, "name": "MAP04 - Spike Bundle [-1951,1861]", "pos": ["MAP04",-1951,1861,-425], "region": "dwarven forge" }
 AP-CHECK { "id": 1596, "name": "MAP04 - Spike Bundle [-1956,1865]", "pos": ["MAP04",-1956,1865,-425], "region": "dwarven forge" }
-AP-CHECK { "id": 1590, "name": "MAP04 - Smelt Iron Ingot #1", "pos": ["MAP04","spawn@tid",1,"InventoryIronBar",101,0], "region": "dwarven forge", "keys": ["InventoryIronOre"] }
-AP-CHECK { "id": 1590, "name": "MAP04 - Smelt Iron Ingot #2", "pos": ["MAP04","spawn@tid",2,"InventoryIronBar",101,0], "region": "dwarven forge", "keys": ["InventoryIronOre"] }
-AP-CHECK { "id": 1590, "name": "MAP04 - Smelt Iron Ingot #3", "pos": ["MAP04","spawn@tid",3,"InventoryIronBar",101,0], "region": "dwarven forge", "keys": ["InventoryIronOre"] }
-AP-CHECK { "id": 1590, "name": "MAP04 - Smelt Iron Ingot #4", "pos": ["MAP04","spawn@tid",4,"InventoryIronBar",101,0], "region": "dwarven forge", "keys": ["InventoryIronOre"] }
+AP-CHECK { "id": 1590, "name": "MAP04 - Smelt Iron Ingot #1", "pos": ["MAP04","spawn@tid",1,"InventoryIronBar",101,0], "region": "dwarven forge", "keys": ["key/InventoryIronOre/1"] }
+AP-CHECK { "id": 1590, "name": "MAP04 - Smelt Iron Ingot #2", "pos": ["MAP04","spawn@tid",2,"InventoryIronBar",101,0], "region": "dwarven forge", "keys": ["key/InventoryIronOre/2"] }
+AP-CHECK { "id": 1590, "name": "MAP04 - Smelt Iron Ingot #3", "pos": ["MAP04","spawn@tid",3,"InventoryIronBar",101,0], "region": "dwarven forge", "keys": ["key/InventoryIronOre/3"] }
+AP-CHECK { "id": 1590, "name": "MAP04 - Smelt Iron Ingot #4", "pos": ["MAP04","spawn@tid",4,"InventoryIronBar",101,0], "region": "dwarven forge", "keys": ["key/InventoryIronOre/4"] }
 AP-CHECK { "id": 1489, "name": "MAP04 - Make Iron Key", "pos": ["MAP04","spawn@tid",1,"IronKey",107,0], "region": "repair bay", "keys": ["InventoryIronBar"] }
 
 AP-XOFF {}
@@ -369,4 +369,4 @@ AP-CHECK { "id": 1371, "name": "MAP04 - Half-Empty Fragfire Can [-2383,2553]", "
 
 AP-CHECK { "id": 1355, "name": "MAP04 - Fire Hammer fabricator", "pos": ["MAP04","spawn@tid",1,"FireHammer",240,0], "region": "mould forge", "keys": ["key/InventoryRedCrystal/6", "InventoryIronBar"] }
 AP-CHECK { "id": 1357, "name": "MAP04 - Great Axe fabricator", "pos": ["MAP04","spawn@tid",1,"GreatAxe",248,0], "region": "dwarven forge", "keys": ["key/InventoryIronBar/8"] }
-AP-CHECK { "id": 1350, "name": "MAP04 - Axe fabricator", "pos": ["MAP04","spawn@tid",1,"BearzerkAxe",255,0], "region": "dwarven forge" }
+AP-CHECK { "id": 1350, "name": "MAP04 - Axe fabricator", "pos": ["MAP04","spawn@tid",1,"BearzerkAxe",255,0], "region": "dwarven forge", "keys": ["InventoryIronBar"] }

@@ -1,5 +1,22 @@
 # Hedon: Bloodrite
 
+## General notes
+
+The logic *should* be valid for both normal and Bearzerker modes; however, the
+latter has not been thoroughly tested.
+
+TODO: implement weapon logic for Bearzerker mode as alternate to the main weapon
+logic.
+
+Enabling all spawns (`spawn_filter 0` in the YAML) will result in some checks
+being completely inaccessible, since they rely on scripts that are only active
+on certain difficulties. Doing this is not recommended.
+
+Checks that spawn in mid-game (e.g. from using crafting machines or dropped by
+enemies) do not appear on the map regardless of settings. This is a known issue
+with event-based locations more broadly, not specific to Hedon, but it is more
+obvious here since Hedon has so many of them.
+
 ## MAP01: Cold Rock
 
 Power cores aren't permanently deducted from your inventory when used (AP treats
@@ -13,7 +30,7 @@ will close behind you but you can get back into the outpost by swimming through
 an underwater tunnel on the west side of the pond.
 
 The wooded area unlocked by offering a moonflower is not considered a secret
-for the purposes of logic, but the hidden baths to the east are.
+for the purposes of logic, but the hidden baths to the east of those woods are.
 
 ## MAP02: Plaza
 
@@ -31,9 +48,9 @@ the north plaza.
 The arena fight also closes the park gate and the gate connecting the east and
 west plazas. You can get back to the east plaza by going north and climbing into
 the inn through the window (or using the axe key to open the back door, if you
-have it). You can get back to the garden using any of the techniques above, but
+have it). You can get back to the park using any of the techniques above, but
 note that the guardhouse switch is not repeatable; if that's your only way into
-the garden and you missed any items there, you'll need to reset the level so
+the park and you missed any items there, you'll need to reset the level so
 that you can use the switch again.
 
 ## MAP03: Barracks
@@ -44,59 +61,52 @@ needed for is accessing the north power control room.
 
 ## MAP04: Technical Space
 
-Restoring the power is optional if you have the toolkit, although some checks
-in the starting areas depend on it.
+Restoring the power is required to access some checks in the starting pumpworks
+area, but opening the rest of the level only requires the toolkit.
 
-Reaver Tiati's departure is triggered by exiting the Great Forge in the
-direction of the portal room while carrying the Iron Key (and this is necessary
-to check the items she leaves behind). In AP it is possible to bypass this
-trigger by toggling the key off, which lets you access the portal room with the
-portal still online. However, entering the portal gets you a game over (and
-there are no checks behind it); save first if you want to try this.
+Reaver Tiati leaves some items behind when she exits via the portal. This is
+triggered by exiting the Great Forge in the direction of the Portal Chamber
+while carrying the Iron Key. (It is possible to skip this trigger by toggling
+the key off, which gets you an easter egg, but there are no checks in it and it
+results in a game over, so save before attempting this.)
 
-The iron and mithril ores you can mine out of the walls are checks, and require
-the pickaxe.
-
-The fabrication machines in and around the Great Forge also produce checks the
-first time you use them; subsequent uses will produce either unusable key
-duplicates (in the case of key item fabricators) or their normal vanilla items
-(in the case of ammo/item fabricators). Since all of their inputs are key items
-and keys are infinitely re-usable in AP, you don't need to worry about picking
-and choosing which machines to activate.
-
-The following machines are available:
-
-- Iron Ore -> Iron Ingot in Dwarven Forge
-- Iron Ingot -> Iron Key in Repair Bay
-- Mithril Ore ×5 -> Mithril Ingot in Great Forge
-- Mithril Ingot + Gear Mould -> Filled Gear Mould in Mould Forge
-- Filled Gear Mould -> Mithril Gear in Great Forge
-
-Additionally, on difficulties other than Bearzerker, you can use the machines in
-the Mould Forge to make ammo:
-
-- Iron Ingot -> Fragfire Can
-- Iron Ingot -> Spikes
-- Iron Ingot + Red Crystal ×3 -> Boltmag
-
-On Bearzerk, a different set of machines (and thus checks) is available:
-
-- Iron Ingot -> Axe
-- Iron Ingot + Red Crystal ×6 -> Fire Hammer
-- Iron Ingot ×8 -> Great Axe
-
-The Iron Ore -> Iron Ingot machine can be used four times, representing the four
-ingots (in addition to the four found lying around in the level) needed to craft
-the Great Axe in Bearzerk mode.
-
-TODO: using it the Nth time should require you to have found N iron ore.
+The iron and mithril ores you can mine out of the walls throughout the
+northwestern areas of the level are checks, and require the pickaxe.
 
 The upper caves, normally accessible using the Earth Key, can also be reached
-using the Axe Key via the maze, which connects the upper caves to the magma
-chamber.
+using the Axe Key via the maze, which connects the magma chamber to the upper
+caves.
 
 The trigger to open the east hall is forging the mithril gear on the anvil. Note
 that you don't actually need to get a gear from it; it's the process of forging,
 not the item you get, that causes the door to open. However, you *will* need the
-gear to actually exit the level; Zan will refuse to arm the explosives if you
-don't have it.
+gear to actually exit the level; Zan will refuse to arm the explosives otherwise.
+
+### Crafting machines
+
+The fabrication machines in the Great Forge and the rooms attached to the North
+Hall can be used to produce checks. The machines and their requirements are
+listed here.
+
+- Dwarven Forge
+  - Iron Ore -> Iron Ingot (repeatable four times for four different checks)
+- Repair Bay
+  - Iron Ingot -> Iron Key
+- Great Forge
+  - Mithril Ore ×5 -> Mithril Ingot
+  - Gear Mould + Mithril Ingot -> Filled Gear Mould
+  - Filled Gear Mould -> Mithril Gear
+- Mould Forge (not in Bearzerker mode)
+  - Iron Ingot -> Fragfire Can
+  - Iron Ingot -> Spikes
+  - Iron Ingot + Red Crystal ×3 -> Boltmag
+- Mould Forge (Bearzerker mode)
+  - Iron Ingot -> Axe
+  - Iron Ingot + Red Crystal ×6 -> Fire Hammer
+  - Iron Ingot ×8 -> Great Axe
+
+Inputs are infinitely reusable once you find them through AP, so (e.g.) one
+Iron Ingot is sufficient to get the Iron Key, Fragfire Can, and Spikes checks.
+The Iron Ore smelter, like the power core checks in MAP01, requires you to find
+multiple Iron Ore items to smelt higher numbers of Iron Ingots.
+
