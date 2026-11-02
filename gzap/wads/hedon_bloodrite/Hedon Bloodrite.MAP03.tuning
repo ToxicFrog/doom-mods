@@ -2,7 +2,8 @@ AP-REGION { "map": "MAP03", "region": "Entrance", "keys": ["weapon/Axe/want", "w
 AP-REGION { "map": "MAP03", "region": "Garden", "keys": ["map/MAP03/Entrance"] }
 AP-REGION { "map": "MAP03", "region": "NE Dorms", "keys": ["map/MAP03/Garden"] }
 AP-REGION { "map": "MAP03", "region": "SE Dorms", "keys": ["map/MAP03/Garden"] }
-AP-REGION { "map": "MAP03", "region": "Zan's room", "keys": ["map/MAP03/SE Dorms", "key/AxeKey"] }
+AP-REGION { "map": "MAP03", "region": "Zan's Room", "keys": ["map/MAP03/SE Dorms", "key/AxeKey", "flag/secret"] }
+AP-REGION { "map": "MAP03", "region": "Zan's Secret", "keys": ["map/MAP03/Zan's Room", "flag/secret"] }
 AP-REGION { "map": "MAP03", "region": "Garden Balcony", "keys": ["map/MAP03/SE Dorms"] }
 AP-REGION { "map": "MAP03", "region": "S Dorms", "keys": ["map/MAP03/Garden Balcony"] }
 AP-REGION { "map": "MAP03", "region": "Mess Hall", "keys": ["map/MAP03/S Dorms"] }
@@ -27,7 +28,9 @@ AP-REGION { "map": "MAP03", "region": "Bathhouse Arena", "keys": ["map/MAP03/Bat
 AP-REGION { "map": "MAP03", "region": "Bathhouse Arena Pool", "keys": ["map/MAP03/Bathhouse Arena"] }
 AP-REGION { "map": "MAP03", "region": "Bathhouse Lobby", "keys": ["map/MAP03/Bathhouse Arena Pool"] }
 AP-REGION { "map": "MAP03", "region": "Bathhouse Central Baths", "keys": ["map/MAP03/Bathhouse Lobby"] }
+AP-REGION { "map": "MAP03", "region": "Bathhouse E Hall", "keys": ["map/MAP03/Bathhouse Central Baths"] }
 AP-REGION { "map": "MAP03", "region": "Bathhouse SE Baths", "keys": ["map/MAP03/Bathhouse Central Baths"] }
+AP-REGION { "map": "MAP03", "region": "Bathhouse Sauna Secret", "keys": ["map/MAP03/Bathhouse SE Baths", "flag/secret"] }
 AP-REGION { "map": "MAP03", "region": "Bathhouse NE Baths", "keys": ["map/MAP03/Bathhouse Central Baths"] }
 AP-REGION { "map": "MAP03", "region": "Bathhouse Pipes", "keys": ["map/MAP03/Bathhouse NE Baths"] }
 AP-REGION { "map": "MAP03", "region": "Forge Gatehouse", "keys": ["map/MAP03/Bathhouse Pipes"] }
@@ -56,10 +59,10 @@ AP-CHECK { "id": 1182, "name": "MAP03 - Apple [-846,-788]", "pos": ["MAP03",-846
 AP-CHECK { "id": 1183, "name": "MAP03 - Apple [-868,-743]", "pos": ["MAP03",-868,-743,48], "region": "Garden" }
 AP-CHECK { "id": 1273, "name": "MAP03 - Potion of Healing [657,-288]", "pos": ["MAP03",657,-288,327], "region": "NE Dorms" }
 AP-CHECK { "id": 1184, "name": "MAP03 - Axe Key", "pos": ["MAP03",702,-1580,327], "region": "SE Dorms" }
-AP-CHECK { "id": 1317, "name": "MAP03 - Secret 1839", "pos": ["MAP03","secret","sector",1839], "region": "Zan's room" }
-AP-CHECK { "id": 1343, "name": "MAP03 - Spike Bundle [1203,-1754]", "pos": ["MAP03",1203,-1754,343], "region": "Zan's room" }
-AP-CHECK { "id": 1237, "name": "MAP03 - Fragfire Can [1204,-1876]", "pos": ["MAP03",1204,-1876,343], "region": "Zan's room" }
-AP-CHECK { "id": 1321, "name": "MAP03 - Sentry Gun", "pos": ["MAP03",1464,-1669,312], "region": "Zan's room" }
+AP-CHECK { "id": 1317, "name": "MAP03 - Secret 1839", "pos": ["MAP03","secret","sector",1839], "region": "Zan's Room" }
+AP-CHECK { "id": 1343, "name": "MAP03 - Spike Bundle [1203,-1754]", "pos": ["MAP03",1203,-1754,343], "region": "Zan's Room" }
+AP-CHECK { "id": 1237, "name": "MAP03 - Fragfire Can [1204,-1876]", "pos": ["MAP03",1204,-1876,343], "region": "Zan's Room" }
+AP-CHECK { "id": 1321, "name": "MAP03 - Sentry Gun", "pos": ["MAP03",1464,-1669,312], "region": "Zan's Room" }
 AP-CHECK { "id": 1344, "name": "MAP03 - Spike Gun [SE]", "pos": ["MAP03",-1210,-1302,311], "region": "Garden Balcony" }
 AP-CHECK { "id": 1240, "name": "MAP03 - Fragfire Gun [-1697,-1898]", "pos": ["MAP03",-1697,-1898,311], "region": "S Dorms" }
 AP-CHECK { "id": 1276, "name": "MAP03 - Potion of Minor Healing [-1797,-1749]", "pos": ["MAP03",-1797,-1749,314], "region": "S Dorms" }
