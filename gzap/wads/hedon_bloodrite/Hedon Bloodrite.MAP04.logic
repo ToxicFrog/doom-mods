@@ -93,6 +93,7 @@ AP-ITEM {
 AP-ITEM {
   "name": "Fragfire fabricator", "tag": "Fragfire Can",
   "category": "small-ammo", "typename": "FragfireCan",
+  "filter": 31,
   "pos": ["MAP04","spawn@tid",1,"FragfireCan",190]
 }
 
@@ -100,6 +101,7 @@ AP-ITEM {
 AP-ITEM {
   "name": "Boltmag fabricator", "tag": "Boltmag",
   "category": "small-ammo", "typename": "Boltmag",
+  "filter": 31,
   "pos": ["MAP04","spawn@tid",1,"Boltmag",116]
 }
 
@@ -107,6 +109,7 @@ AP-ITEM {
 AP-ITEM {
   "name": "Spike fabricator", "tag": "Spikes",
   "category": "small-ammo", "typename": "AmmoCultistSpike",
+  "filter": 31,
   "pos": ["MAP04","spawn@tid",1,"AmmoCultistSpike",111]
 }
 
@@ -115,7 +118,8 @@ AP-ITEM {
 ; Bearzerk only
 AP-ITEM {
   "name": "Fire Hammer fabricator", "tag": "Fire Hammer",
-  "category": "big-ammo", "typename": "FireHammer",
+  "category": "weapon", "typename": "FireHammer",
+  "filter": 32,
   "pos": ["MAP04","spawn@tid",1,"FireHammer",240]
 }
 
@@ -124,6 +128,7 @@ AP-ITEM {
 AP-ITEM {
   "name": "Axe fabricator", "tag": "Bearzerker Axe",
   "category": "weapon", "typename": "BearzerkAxe",
+  "filter": 32,
   "pos": ["MAP04","spawn@tid",1,"BearzerkAxe",255]
 }
 
@@ -133,6 +138,7 @@ AP-ITEM {
 AP-ITEM {
   "name": "Great Axe fabricator", "tag": "Great Axe",
   "category": "weapon", "typename": "GreatAxe",
+  "filter": 32,
   "pos": ["MAP04","spawn@tid",1,"GreatAxe",248]
 }
 
