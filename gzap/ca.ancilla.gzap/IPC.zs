@@ -58,15 +58,26 @@ class ::IPC {
     CheckLocation(loc, pos_field, unreachable ? ", \"unreachable\": true" : "");
   }
 
+  static void CheckWithTuning(::Location loc, string pos_field, ::Region region, ::Subregion subregion) {
+    if (!subregion) {
+      ::IPC.CheckWithKeyTuning(loc, pos_field, region.KeyString());
+    } else if (region.AreKeysSubsetOfSubregion(subregion)) {
+      ::IPC.CheckWithRegionTuning(loc, pos_field, subregion.name);
+    } else {
+      ::IPC.CheckWithKeyAndRegionTuning(loc, pos_field, region.MinimalKeyString(subregion), subregion.name);
+    }
+  }
+
   static void CheckWithKeyTuning(::Location loc, string pos_field, string keys) {
     CheckLocation(loc, pos_field, string.format(", \"keys\": [%s]", keys));
   }
 
   static void CheckWithRegionTuning(::Location loc, string pos_field, string subregion) {
-    // FIXME: if our keys are not a subset of the keys in the region, we should
-    // emit key data here as well, so we can do things like "these locations are
-    // in the same region for name purposes, but have different prereqs".
     CheckLocation(loc, pos_field, string.format(", \"region\": \"%s\"", subregion));
+  }
+
+  static void CheckWithKeyAndRegionTuning(::Location loc, string pos_field, string keys, string subregion) {
+    CheckLocation(loc, pos_field, string.format(", \"region\": \"%s\", \"keys\": [%s]", subregion, keys));
   }
 
   void Shutdown() {

@@ -189,11 +189,7 @@ class ::PlayEventHandler : StaticEventHandler {
       ::IPC.CheckWithoutTuning(loc, pos, false);
     } else {
       // It's a normally reachable check.
-      if (self.apstate.subregion) {
-        ::IPC.CheckWithRegionTuning(loc, pos, self.apstate.subregion.name);
-      } else {
-        ::IPC.CheckWithKeyTuning(loc, pos, apstate.GetCurrentRegion().KeyString());
-      }
+      ::IPC.CheckWithTuning(loc, pos, apstate.GetCurrentRegion(), self.apstate.subregion);
     }
 
     // In MP, the above IPC calls will result in the host eventually responding.

@@ -37,6 +37,10 @@ that you've made yourself) is recommended.
   - Hubclusters that appear in the middle of an episode (i.e. where the first map
     of the cluster is *not* the first map of the episode) are no longer unreachable
     from the level select screen.
+  - Hitting a check inside a region, where your set of active keys includes keys
+    not part of the region access requirements, now associates those keys with
+    the check, making it possible to define locations that have more stringent
+    access requirements than the regions that contain them.
 
 # 0.9.1
 

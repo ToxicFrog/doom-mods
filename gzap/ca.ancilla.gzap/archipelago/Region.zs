@@ -263,7 +263,8 @@ class ::Region play {
   }
 
   // Get the list of keys as comma-separated JSON strings.
-  string KeyString() {
+  // TODO: this and below should support multikeys.
+  string KeyString() const {
     string buf = "";
     foreach (k, v : keys) {
       if (!v.held || !v.enabled) continue;
@@ -272,6 +273,26 @@ class ::Region play {
       buf.AppendFormat("%s\"%s\"", buf.Length() > 0 ? ", " : "", v.typename);
     }
     return buf;
+  }
+
+  // As KeyString, but excludes all keys that are already listed in the prereqs
+  // for the subregion
+  string MinimalKeyString(::Subregion subregion) const {
+    string buf = "";
+    foreach (k, v : keys) {
+      if (!v.held || !v.enabled) continue;
+      if (subregion.prereqs.Contains("key/"..v.typename)) continue;
+      buf.AppendFormat("%s\"%s\"", buf.Length() > 0 ? ", " : "", v.typename);
+    }
+    return buf;
+  }
+
+  bool AreKeysSubsetOfSubregion(::Subregion subregion) const {
+    foreach (k, v : keys) {
+      if (!v.held || !v.enabled) continue;
+      if (!subregion.prereqs.Contains("key/"..v.typename)) return false;
+    }
+    return true;
   }
 
   void ToggleKey(string keytype) {
