@@ -329,7 +329,7 @@ AP-ITEM { "category": "small-ammo", "typename": "AmmoCultistSpike", "tag": "Spik
 AP-ITEM { "category": "small-ammo", "typename": "AmmoCultistSpike", "tag": "Spike Bundle", "pos": ["MAP02",196,3827,-24] }
 AP-ITEM { "category": "small-ammo", "typename": "AmmoCultistSpike", "tag": "Spike Bundle", "pos": ["MAP02",364,4004,-24] }
 AP-ITEM { "category": "small-ammo", "typename": "SpikeMag", "tag": "Spike Mag", "pos": ["MAP02",377,3838,-24] }
-AP-ITEM { "category": "medium-token", "typename": "InventoryBowlOfScribeEmbers", "tag": "Bowl of Scribe Embers", "pos": ["MAP02",-80,4024,-52] }
+AP-ITEM { "category": "medium-token-ap_progression", "typename": "InventoryBowlOfScribeEmbers", "tag": "Bowl of Scribe Embers", "pos": ["MAP02",-80,4024,-52] }
 AP-ITEM { "category": "small-health", "typename": "HealthBread", "tag": "Bread", "pos": ["MAP02",-934,426,24] }
 AP-ITEM { "category": "small-health", "typename": "HealthBread", "tag": "Bread", "pos": ["MAP02",-903,427,24] }
 AP-ITEM { "category": "small-health", "typename": "HealthBread", "tag": "Bread", "pos": ["MAP02",-823,428,24] }
@@ -370,7 +370,7 @@ AP-ITEM { "category": "key", "typename": "IronKey", "tag": "Iron Key", "pos": ["
 AP-KEY { "typename": "IronKey", "tag": "Iron Key", "scopename": "MAP02", "cluster": 0, "maps": ["MAP02"] }
 AP-ITEM { "category": "maprevealer-ap_no_pool-medium", "typename": "InventoryScrollAirWizardsEye", "tag": "Scroll of Wizard's Eye", "pos": ["MAP02",-1826,-339,189] }
 AP-ITEM { "category": "small-attack", "typename": "InventoryScrollFireMagmaBall", "tag": "Scroll of Magma Ball", "filter": 17, "pos": ["MAP02",-1916,-423,40] }
-AP-ITEM { "category": "medium-token", "typename": "InventoryMortarOfEarthPigment", "tag": "Mortar of Earth Pigment", "pos": ["MAP02",-1672,-777,32] }
+AP-ITEM { "category": "medium-token-ap_progression", "typename": "InventoryMortarOfEarthPigment", "tag": "Mortar of Earth Pigment", "pos": ["MAP02",-1672,-777,32] }
 AP-ITEM { "category": "small-attack", "typename": "InventoryScrollFireMagmaBall", "tag": "Scroll of Magma Ball", "filter": 55, "pos": ["MAP02",-1946,-428,40] }
 AP-ITEM { "category": "small-attack", "typename": "InventoryScrollFireMagmaBall", "tag": "Scroll of Magma Ball", "pos": ["MAP02",-1965,-424,40] }
 AP-ITEM { "category": "small-ammo", "typename": "AmmoCultistSpike", "tag": "Spike Bundle", "pos": ["MAP02",-1620,-751,31] }
@@ -488,10 +488,10 @@ AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Sha
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "secret": true, "filter": 51, "pos": ["MAP02",-100,-760,-120] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "secret": true, "filter": 51, "pos": ["MAP02",-87,-740,-120] }
 AP-ITEM { "category": "medium-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "secret": true, "pos": ["MAP02",-106,-747,-72] }
-AP-ITEM { "category": "medium-token", "typename": "InventoryBowlOfScribeEmbers", "tag": "Bowl of Scribe Embers", "pos": ["MAP02",-1184,-1061,249] }
-AP-ITEM { "category": "medium-token", "typename": "InventoryMortarOfEarthPigment", "tag": "Mortar of Earth Pigment", "pos": ["MAP02",-64,4598,103] }
+AP-ITEM { "category": "medium-token-ap_progression", "typename": "InventoryBowlOfScribeEmbers", "tag": "Bowl of Scribe Embers", "pos": ["MAP02",-1184,-1061,249] }
+AP-ITEM { "category": "medium-token-ap_progression", "typename": "InventoryMortarOfEarthPigment", "tag": "Mortar of Earth Pigment", "pos": ["MAP02",-64,4598,103] }
 AP-ITEM { "category": "medium-health", "typename": "InventoryScrollEarthNourish", "tag": "Nourish", "filter": 49, "pos": ["MAP02",-2105,6,108] }
-AP-ITEM { "category": "medium-token", "typename": "InventoryBowlOfScribeEmbers", "tag": "Bowl of Scribe Embers", "pos": ["MAP02",-3340,532,24] }
+AP-ITEM { "category": "medium-token-ap_progression", "typename": "InventoryBowlOfScribeEmbers", "tag": "Bowl of Scribe Embers", "pos": ["MAP02",-3340,532,24] }
 AP-ITEM { "category": "small-health", "typename": "HealthCreamFungus", "tag": "Cream Fungus", "pos": ["MAP02",828,-432,18] }
 AP-ITEM { "category": "small-health", "typename": "HealthCreamFungus", "tag": "Cream Fungus", "pos": ["MAP02",840,-440,15] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "filter": 51, "pos": ["MAP02",3010,1669,-209] }
@@ -1003,8 +1003,8 @@ AP-ITEM { "category": "small-health", "typename": "HealthPotionOfMinorHealing", 
 AP-ITEM { "category": "small-ammo", "typename": "FragfireCan", "tag": "Fragfire Can", "pos": ["MAP04",-5156,3316,-737] }
 AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag": "Vial of Healing", "pos": ["MAP04",-4688,3316,-737] }
 AP-ITEM { "category": "medium-armor", "typename": "LightArmorCrystal", "tag": "Light Armor Crystal", "pos": ["MAP04",-3936,3616,-737] }
-AP-ITEM { "category": "medium-token", "typename": "InventoryBowlOfScribeEmbers", "tag": "Bowl of Scribe Embers", "pos": ["MAP04",-1636,5769,-521] }
-AP-ITEM { "category": "medium-token", "typename": "InventoryBowlOfScribeEmbers", "tag": "Bowl of Scribe Embers", "secret": true, "pos": ["MAP04",-1316,4613,-521] }
+AP-ITEM { "category": "medium-token-ap_progression", "typename": "InventoryBowlOfScribeEmbers", "tag": "Bowl of Scribe Embers", "pos": ["MAP04",-1636,5769,-521] }
+AP-ITEM { "category": "medium-token-ap_progression", "typename": "InventoryBowlOfScribeEmbers", "tag": "Bowl of Scribe Embers", "secret": true, "pos": ["MAP04",-1316,4613,-521] }
 AP-ITEM { "category": "small-ammo", "typename": "FragfireCan", "tag": "Fragfire Can", "pos": ["MAP04",-1756,492,-601] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "filter": 46, "pos": ["MAP04",-2904,-1840,-457] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "filter": 46, "pos": ["MAP04",-2904,-1872,-457] }
@@ -1066,7 +1066,7 @@ AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Sha
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "pos": ["MAP05",-707,-4971,-303] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "pos": ["MAP05",416,-5236,-279] }
 AP-ITEM { "category": "medium-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "pos": ["MAP05",-10,-9219,103] }
-AP-ITEM { "category": "medium-token", "typename": "InventoryMortarOfEarthPigment", "tag": "Mortar of Earth Pigment", "pos": ["MAP05",-1492,-6779,138] }
+AP-ITEM { "category": "medium-token-ap_progression", "typename": "InventoryMortarOfEarthPigment", "tag": "Mortar of Earth Pigment", "pos": ["MAP05",-1492,-6779,138] }
 AP-ITEM { "category": "medium-attack", "typename": "InventoryPotionofHaste", "tag": "Potion of Haste", "pos": ["MAP05",-1566,-6871,224] }
 AP-ITEM { "category": "medium-ammo", "typename": "PotionBoxToxic", "tag": "Box of Toxic Potions", "pos": ["MAP05",-1827,-6665,106] }
 AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "pos": ["MAP05",-1557,-6888,224] }

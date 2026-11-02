@@ -59,6 +59,12 @@ note that the guardhouse switch is not repeatable; if that's your only way into
 the park and you missed any items there, you'll need to reset the level so
 that you can use the switch again.
 
+The scribe's table in the library can be used (with Mortars of Earth Pigment and
+Bowls of Scribe Embers) to scribe various scrolls. It will accept at most two
+of the former and three of the latter (the most that you can find on this map in
+vanilla play); to spend more you need to go to MAP05, Grove, and use the table
+near the entrance there.
+
 ## MAP03: Barracks
 
 A very straightforward map. Note that while the Stone Key unlocks a shortcut
