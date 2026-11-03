@@ -4,6 +4,7 @@ class UZAP_Hedon_EventHandler : EventHandler {
     if (level.LevelNum == 1) { WorldLinePreActivatedMAP01(e); return; }
     if (level.LevelNum == 2) { WorldLinePreActivatedMAP02(e); return; }
     if (level.LevelNum == 4) { WorldLinePreActivatedMAP04(e); return; }
+    if (level.LevelNum == 5) { WorldLinePreActivatedMAP05(e); return; }
   }
 
   // Handling for the power cores in MAP01: Cold Rock.
@@ -105,6 +106,65 @@ class UZAP_Hedon_EventHandler : EventHandler {
     }
   }
 
+  // Handling for the scribe table in MAP05.
+  // We check the state of the locations in MAP02 first and set up the table to
+  // mimic that state. Then we only let the player scribe scrolls if it would
+  // leave her with enough leftovers to clean out the MAP02 checks, to avoid
+  // softlocks.
+  void WorldLinePreActivatedMAP05(WorldEvent e) {
+    let line = e.ActivatedLine;
+    let thing = e.thing;
+    // 80 = ACS_Execute, script 78 = scribe table script
+    if (line.special != 80 || line.args[0] != 78) return;
+
+    // Don't interfere with the use of the table to scribe the scroll of dispel.
+    if (thing.CheckInventory("InventoryCanOfEnchantedPurpleInk", 1)) return;
+
+    let apstate = GZAP_RandoState.Get();
+    let map05 = apstate.GetCurrentRegion();
+    let map02 = apstate.GetRegion("MAP02");
+
+    if (thing.CheckInventory("InventoryMortarOfEarthPigment", 1)) {
+      // This has three dedicated spots for scroll spawning, of which we use
+      // the first two for mimicry (LTR: scroll spawn tid, debris tid, debris
+      // spawn TID):
+      //  206  680  203
+      //  218  687  217
+      //  220  688  219
+      let required = 3;
+      // We unconditionally spawn the debris from the earlier scribings because
+      // spawning scrolls at those points will waste the ink without triggering
+      // the checks.
+      if (SpawnScrollDebrisAlways(map02, 184, 680, 203, "IDLabMortarC")) --required;
+      if (SpawnScrollDebrisAlways(map02, 185, 687, 217, "IDLabMortarC")) --required;
+
+      if (!thing.CheckInventory("InventoryMortarOfEarthPigment", required)) {
+        console.printf("You should spend your first two earth pigments in MAP02: Plaza.");
+        e.ShouldActivate = false;
+      }
+
+      SpawnScrollDebris(map05, 220, 688, 219, "IDLabMortarC");
+      // At this point either the above wasn't checked, and the player is about
+      // to; or it was, she somehow found 4+ pigments, and is about to start
+      // writing herself a bunch of full heals. Either way it's fine.
+      return;
+    }
+
+    if (thing.CheckInventory("InventoryBowlOfScribeEmbers", 1)) {
+      let required = 4;
+      if (SpawnScrollDebrisAlways(map02, 189, 682, 204, "IDBowl")) --required;
+      if (SpawnScrollDebrisAlways(map02, 190, 683, 205, "IDBowl")) --required;
+      if (SpawnScrollDebrisAlways(map02, 191, 684, 211, "IDBowl")) --required;
+      if (!thing.CheckInventory("InventoryBowlOfScribeEmbers", required)) {
+        console.printf("You should spend your first three scribe embers in MAP02: Plaza.");
+        e.ShouldActivate = false;
+      }
+      SpawnScrollDebris(map05, 214, 685, 213, "IDBowl");
+      SpawnScrollDebris(map05, 216, 686, 215, "IDBowl");
+      return;
+    }
+  }
+
   Actor GetThingByTID(uint tid) {
     foreach (Actor thing : level.CreateActorIterator(tid)) {
       if (thing) return thing;
@@ -112,13 +172,29 @@ class UZAP_Hedon_EventHandler : EventHandler {
     return null;
   }
 
+  // Spawn the debris on the table from scribing a scroll that we've already
+  // checked but the game doesn't know about.
+  // Returns true if the location was already checked.
   bool SpawnScrollDebris(GZAP_Region region, uint scroll_tid, uint debris_tid, uint debris_spawn, Class<Actor> debris_type) {
     if (!LocationAlreadyTriggered(region, scroll_tid)) return false;
     if (GetThingByTID(debris_tid)) return true;
-    let spot = GetThingByTID(debris_spawn);
-    let tracker = Actor.Spawn(debris_type, spot.pos);
-    tracker.ChangeTID(debris_tid);
+    SpawnAtSpot(debris_type, debris_spawn, debris_tid);
     return true;
+  }
+
+  // As above but spawns in the debris even if the location wasn't already triggered.
+  bool SpawnScrollDebrisAlways(GZAP_Region region, uint scroll_tid, uint debris_tid, uint debris_spawn, Class<Actor> debris_type) {
+    if (!SpawnScrollDebris(region, scroll_tid, debris_tid, debris_spawn, debris_type)) {
+      SpawnAtSpot(debris_type, debris_spawn, debris_tid);
+      return false;
+    }
+    return true;
+  }
+
+  void SpawnAtSpot(Class<Actor> type, uint spot_tid, uint tid) {
+    let spot = GetThingByTID(spot_tid);
+    let thing = Actor.Spawn(type, spot.pos);
+    thing.ChangeTID(tid);
   }
 
   GZAP_SpawnLocation FindLocationByTID(GZAP_Region region, uint tid) {

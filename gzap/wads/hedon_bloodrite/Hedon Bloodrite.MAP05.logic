@@ -1,0 +1,34 @@
+; Using the gear panel at the entrance doesn't actually require the mithril gear.
+; We should change that ^.^
+
+; spawns:
+; InventoryScrollEarthNourish at 206, 218, 220, 206 in exchange for InventoryMortarOfEarthPigment; however there are only three in the game (two in MAP02 and one here)
+; InventoryScrollFireMagmaBall at 209, 210, 212, 214, 216, 209 in exchange for InventoryBowlOfScribeEmbers; there are five in the game, three in MAP02 and two in MAP04 (that you are expected to carry into this map).
+
+; Spawn by using the Book of Earth outside Great Stump
+AP-ITEM {
+  "name": "Grow Health Crystals", "tag": "Green Crystals",
+  "category": "medium-health", "typename": "HealthGreenCrystalCouple",
+  "pos": ["MAP05","spawn@tid",1,"HealthGreenCrystalCouple",66]
+}
+
+; Earth and fire scrolls written at the library
+; Codepatch ensures that the player can't even use these until they have found
+; enough pigment/embers to unlock all of the scroll checks in MAP02.
+AP-ITEM {
+  "name": "Scribe Earth Scroll #3", "typename": "InventoryScrollEarthNourish",
+  "category": "medium-health", "tag": "Scroll of Nourish",
+  "pos": ["MAP05","spawn@tid",1,"InventoryScrollEarthNourish",220]
+}
+
+AP-ITEM {
+  "name": "Scribe Fire Scroll #4", "tag": "Scroll of Magma Ball",
+  "category": "small-attack", "typename": "InventoryScrollFireMagmaBall",
+  "pos": ["MAP05","spawn@tid",1,"InventoryScrollFireMagmaBall",214]
+}
+AP-ITEM {
+  "name": "Scribe Fire Scroll #5", "tag": "Scroll of Magma Ball",
+  "category": "small-attack", "typename": "InventoryScrollFireMagmaBall",
+  "pos": ["MAP05","spawn@tid",1,"InventoryScrollFireMagmaBall",216]
+}
+

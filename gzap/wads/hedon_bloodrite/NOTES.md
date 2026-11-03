@@ -121,3 +121,23 @@ The Iron Ore -> Iron Ingot smelter requires you to have found up to four Iron
 Ore items to get all four Iron Ingot checks. None of the others are repeatable;
 using them a second time will either produce the vanilla item or a non-usable
 key placeholder.
+
+## MAP05: Grove
+
+As in MAP02, the scribe table in the Library can be used to convert Earth
+Pigment and Scribe Embers into scrolls (and thus checks). The logic assumes that
+your first two pigments and three embers will be spent on MAP02, and thus won't
+let you use this table unless you've already gotten the checks from MAP02, *or*
+have enough excess that writing scrolls here won't prevent you from doing so,
+as an anti-softlock measure.
+
+Once you open the gate with the Mithril Gear, most of the map is open to you
+immediately. Reaver HQ to the east appears locked, but you can open the main
+door by shooting the button through the window; if you have no ranged weapons,
+you can also swim downstream and enter by breaking the glass in the submerged
+ruins.
+
+In addition to the doors you can open with the Book of Earth, there are a number
+of places you can use it for other effects. The only ones that actually contain
+checks are the healing crystals you can grow outside the Great Stump, and the
+secret in the Library.

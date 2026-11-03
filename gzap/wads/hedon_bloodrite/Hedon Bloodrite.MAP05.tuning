@@ -1,0 +1,302 @@
+AP-REGION { "map": "MAP05", "region": "Entrance", "keys": ["weapon/Axe/want", "weapon/PotionLauncherToxic/want", "weapon/SpikeGun/want", "weapon/Crushbow/want", "weapon/FragfireGun/want"] }
+AP-REGION { "map": "MAP05", "region": "Library", "keys": ["map/MAP05/Entrance"] }
+AP-REGION { "map": "MAP05", "region": "N gatehouse", "keys": ["map/MAP05/Library", "key/InventoryMithrilGear"] }
+AP-REGION { "map": "MAP05", "region": "River", "keys": ["map/MAP05/N gatehouse"] }
+AP-REGION { "map": "MAP05", "region": "Waterfall Secret", "keys": ["flag/secret", "map/MAP05/River"] }
+AP-REGION { "map": "MAP05", "region": "River SW Cave", "keys": ["map/MAP05/River"] }
+AP-REGION { "map": "MAP05", "region": "Waterfall", "keys": ["flag/secret", "map/MAP05/River"] }
+AP-REGION { "map": "MAP05", "region": "N Submerged Ruins", "keys": ["map/MAP05/River"] }
+AP-REGION { "map": "MAP05", "region": "S submerged ruins", "keys": ["map/MAP05/N Submerged Ruins"] }
+AP-REGION { "map": "MAP05", "region": "W House Basement", "keys": ["map/MAP05/River SW Cave"] }
+AP-REGION { "map": "MAP05", "region": "W House", "keys": ["map/MAP05/W House Basement"] }
+AP-REGION { "map": "MAP05", "region": "W Garden", "keys": ["map/MAP05/W House"] }
+AP-REGION { "map": "MAP05", "region": "N Fortifications", "keys": ["map/MAP05/River"] }
+AP-REGION { "map": "MAP05", "region": "E Garden", "keys": ["map/MAP05/N Fortifications"] }
+AP-REGION { "map": "MAP05", "region": "E House Rooftop", "keys": ["map/MAP05/E Garden", "flag/secret"] }
+AP-REGION { "map": "MAP05", "region": "E House", "keys": ["map/MAP05/E Garden"] }
+AP-REGION { "map": "MAP05", "region": "Stone Tower Grove", "keys": ["map/MAP05/N Fortifications"] }
+AP-REGION { "map": "MAP05", "region": "Reaver HQ Exterior", "keys": ["map/MAP05/Stone Tower Grove"] }
+AP-REGION { "map": "MAP05", "region": "W Woods", "keys": ["map/MAP05/N Fortifications"] }
+AP-REGION { "map": "MAP05", "region": "Great Stump Exterior", "keys": ["map/MAP05/W Woods"] }
+AP-REGION { "map": "MAP05", "region": "Portal Cave Path Secret", "keys": ["map/MAP05/Great Stump Exterior", "flag/secret"] }
+AP-REGION { "map": "MAP05", "region": "Reaver HQ Medical", "keys": ["map/MAP05/Portal Cave Path Secret"] }
+AP-REGION { "map": "MAP05", "region": "Reaver HQ Dorms", "keys": ["map/MAP05/Reaver HQ Medical"] }
+AP-REGION { "map": "MAP05", "region": "Reaver HQ Closet", "keys": ["map/MAP05/Reaver HQ Dorms"] }
+AP-REGION { "map": "MAP05", "region": "Reaver HQ Monitoring", "keys": ["map/MAP05/Reaver HQ Closet"] }
+AP-REGION { "map": "MAP05", "region": "Reaver HQ Entrance Hall", "keys": ["map/MAP05/Reaver HQ Monitoring"] }
+AP-REGION { "map": "MAP05", "region": "Reaver HQ Courtyard", "keys": ["map/MAP05/Reaver HQ Entrance Hall"] }
+AP-REGION { "map": "MAP05", "region": "Reaver HQ Council Chamber", "keys": ["map/MAP05/Reaver HQ Courtyard"] }
+AP-REGION { "map": "MAP05", "region": "Reaver HQ Power Room", "keys": ["map/MAP05/Reaver HQ Council Chamber"] }
+AP-REGION { "map": "MAP05", "region": "Great Stump 1F", "keys": ["map/MAP05/Great Stump Exterior", "key/VineKey"] }
+AP-REGION { "map": "MAP05", "region": "Great Stump 2F", "keys": ["map/MAP05/Great Stump 1F"] }
+AP-REGION { "map": "MAP05", "region": "Portal Cave", "keys": ["map/MAP05/Great Stump Exterior", "key/VineKey"] }
+AP-REGION { "map": "MAP05", "region": "Portal Control Antechamber", "keys": ["map/MAP05/Portal Cave"] }
+AP-REGION { "map": "MAP05", "region": "(reaver hq aux power)", "keys": ["map/MAP05/Portal Control Antechamber"] }
+AP-REGION { "map": "MAP05", "region": "Reaver HQ Archives", "keys": ["map/MAP05/(reaver hq aux power)", "map/MAP05/Reaver HQ Entrance Hall"] }
+AP-REGION { "map": "MAP05", "region": "Reaver HQ Archives Secret", "keys": ["map/MAP05/Reaver HQ Archives", "flag/secret"] }
+AP-REGION { "map": "MAP05", "region": "Stone Tower", "keys": ["map/MAP05/Stone Tower Grove", "key/StoneKey"] }
+AP-REGION { "map": "MAP05", "region": "Stone Tower Secret", "keys": ["flag/secret", "map/MAP05/Stone Tower"] }
+AP-REGION { "map": "MAP05", "region": "Great Stump 3F", "keys": ["key/InventoryBookOfEarth", "map/MAP05/Great Stump 2F"] }
+AP-REGION { "map": "MAP05", "region": "Great Stump 4F", "keys": ["map/MAP05/Great Stump 3F", "key/InventoryBookOfEarth"] }
+AP-REGION { "map": "MAP05", "region": "Portal Control", "keys": ["key/EarthKey", "map/MAP05/Portal Control Antechamber"] }
+AP-REGION { "map": "MAP05", "region": "Library Tablet Secret", "keys": ["key/InventoryBookOfEarth", "map/MAP05/Library", "flag/secret"] }
+AP-REGION { "map": "MAP05", "region": "Portal", "keys": ["map/MAP05/Portal Cave", "map/MAP05/Portal Control"] }
+
+AP-CHECK { "id": 1639, "name": "MAP05 - Apple [-3702,-555]", "pos": ["MAP05",-3702,-555,-24], "region": "Entrance" }
+AP-CHECK { "id": 1638, "name": "MAP05 - Apple [-3646,-706]", "pos": ["MAP05",-3646,-706,-24], "region": "Entrance" }
+AP-CHECK { "id": 1848, "name": "MAP05 - Spike Bundle [-1962,-434]", "pos": ["MAP05",-1962,-434,36], "region": "Library" }
+AP-CHECK { "id": 1872, "name": "MAP05 - Vial of Healing [-2179,-482]", "pos": ["MAP05",-2179,-482,192], "region": "Library" }
+AP-CHECK { "id": 1884, "name": "MAP05 - Water [NE]", "pos": ["MAP05",-2986,-1112,-1], "region": "N gatehouse" }
+AP-CHECK { "id": 1671, "name": "MAP05 - Bread [NE]", "pos": ["MAP05",-3000,-1128,-1], "region": "N gatehouse" }
+AP-CHECK { "id": 1868, "name": "MAP05 - Time Shard [NE]", "pos": ["MAP05",-3294,-2644,200], "region": "River" }
+AP-CHECK { "id": 1684, "name": "MAP05 - Cream Fungus [-3255,-3087]", "pos": ["MAP05",-3255,-3087,104], "region": "River" }
+AP-CHECK { "id": 1685, "name": "MAP05 - Cream Fungus [-3275,-3097]", "pos": ["MAP05",-3275,-3097,104], "region": "River" }
+AP-CHECK { "id": 1636, "name": "MAP05 - Amulet of Shadows [NE]", "pos": ["MAP05",-3551,-3688,104], "region": "River" }
+AP-CHECK { "id": 1683, "name": "MAP05 - Cream Fungus [-2521,-3692]", "pos": ["MAP05",-2521,-3692,108], "region": "River" }
+AP-CHECK { "id": 1682, "name": "MAP05 - Cream Fungus [-2502,-3719]", "pos": ["MAP05",-2502,-3719,110], "region": "River" }
+AP-CHECK { "id": 1681, "name": "MAP05 - Cream Fungus [-2058,-2515]", "pos": ["MAP05",-2058,-2515,80], "region": "River" }
+AP-CHECK { "id": 1805, "name": "MAP05 - Power Shard [-1365,-2715]", "pos": ["MAP05",-1365,-2715,-104], "region": "River" }
+AP-CHECK { "id": 1804, "name": "MAP05 - Power Shard [-1346,-2897]", "pos": ["MAP05",-1346,-2897,-104], "region": "River" }
+AP-CHECK { "id": 1801, "name": "MAP05 - Power Shard [-1192,-2879]", "pos": ["MAP05",-1192,-2879,-120], "region": "River" }
+AP-CHECK { "id": 1800, "name": "MAP05 - Power Shard [-1160,-3036]", "pos": ["MAP05",-1160,-3036,-128], "region": "River" }
+AP-CHECK { "id": 1827, "name": "MAP05 - Power Shard [-987,-3161]", "pos": ["MAP05",-987,-3161,-144], "region": "River" }
+AP-CHECK { "id": 1692, "name": "MAP05 - Cream Fungus [-5690,-3188]", "pos": ["MAP05",-5690,-3188,-24], "region": "River SW Cave" }
+AP-CHECK { "id": 1691, "name": "MAP05 - Cream Fungus [-5675,-3175]", "pos": ["MAP05",-5675,-3175,-24], "region": "River SW Cave" }
+AP-CHECK { "id": 1693, "name": "MAP05 - Cream Fungus [-5695,-3151]", "pos": ["MAP05",-5695,-3151,-24], "region": "River SW Cave" }
+AP-CHECK { "id": 1873, "name": "MAP05 - Vial of Healing [-4939,-2553]", "pos": ["MAP05",-4939,-2553,224], "region": "Waterfall" }
+AP-CHECK { "id": 1874, "name": "MAP05 - Vial of Healing [-4959,-2548]", "pos": ["MAP05",-4959,-2548,224], "region": "Waterfall" }
+AP-CHECK { "id": 1650, "name": "MAP05 - Boltmag [-4979,-2562]", "pos": ["MAP05",-4979,-2562,224], "region": "Waterfall" }
+AP-CHECK { "id": 1861, "name": "MAP05 - Spike Mag [-4984,-2568]", "pos": ["MAP05",-4984,-2568,224], "region": "Waterfall" }
+AP-CHECK { "id": 1651, "name": "MAP05 - Boltmag [-5003,-2549]", "pos": ["MAP05",-5003,-2549,224], "region": "Waterfall" }
+AP-CHECK { "id": 1838, "name": "MAP05 - Secret 1226", "pos": ["MAP05","secret","sector",1226], "region": "Waterfall" }
+AP-CHECK { "id": 1714, "name": "MAP05 - Fixer's Goggles", "pos": ["MAP05",-5020,-2565,224], "region": "Waterfall" }
+AP-CHECK { "id": 1833, "name": "MAP05 - Power Shard [72,-4357]", "pos": ["MAP05",72,-4357,-304], "region": "N Submerged Ruins" }
+AP-CHECK { "id": 1830, "name": "MAP05 - Power Shard [244,-4689]", "pos": ["MAP05",244,-4689,-285], "region": "N Submerged Ruins" }
+AP-CHECK { "id": 1807, "name": "MAP05 - Power Shard [-300,-4543]", "pos": ["MAP05",-300,-4543,-303], "region": "N Submerged Ruins" }
+AP-CHECK { "id": 1711, "name": "MAP05 - Elemental Ring", "pos": ["MAP05",-468,-4751,-344], "region": "N Submerged Ruins" }
+AP-CHECK { "id": 1826, "name": "MAP05 - Power Shard [-777,-4850]", "pos": ["MAP05",-777,-4850,-303], "region": "N Submerged Ruins" }
+AP-CHECK { "id": 1823, "name": "MAP05 - Power Shard [-707,-4971]", "pos": ["MAP05",-707,-4971,-303], "region": "N Submerged Ruins" }
+AP-CHECK { "id": 1831, "name": "MAP05 - Power Shard [416,-5236]", "pos": ["MAP05",416,-5236,-279], "region": "S submerged ruins" }
+Player [0]: ; S ruins only have one item, should merge with N ruins
+AP-CHECK { "id": 1788, "name": "MAP05 - Potion of Minor Healing [-5844,-4564]", "pos": ["MAP05",-5844,-4564,0], "region": "W House Basement" }
+AP-CHECK { "id": 1665, "name": "MAP05 - Box of Acid Potions [-5994,-4793]", "pos": ["MAP05",-5994,-4793,0], "region": "W House Basement" }
+AP-CHECK { "id": 1862, "name": "MAP05 - Spike Mag [-5972,-4805]", "pos": ["MAP05",-5972,-4805,0], "region": "W House Basement" }
+AP-CHECK { "id": 1724, "name": "MAP05 - Fragfire Can [-6014,-4793]", "pos": ["MAP05",-6014,-4793,0], "region": "W House Basement" }
+AP-CHECK { "id": 1747, "name": "MAP05 - Plum Brandy [-6061,-4792]", "pos": ["MAP05",-6061,-4792,0], "region": "W House Basement" }
+AP-CHECK { "id": 1748, "name": "MAP05 - Plum Brandy [-6086,-4785]", "pos": ["MAP05",-6086,-4785,0], "region": "W House Basement" }
+AP-CHECK { "id": 1742, "name": "MAP05 - Jug of Wine [N]", "pos": ["MAP05",-5822,-4563,104], "region": "W House" }
+AP-CHECK { "id": 1855, "name": "MAP05 - Spike Gun [N]", "pos": ["MAP05",-6030,-4712,104], "region": "W House" }
+AP-CHECK { "id": 1744, "name": "MAP05 - Medium Armor Crystal [Center]", "pos": ["MAP05",-5780,-4833,105], "region": "W House" }
+AP-CHECK { "id": 1729, "name": "MAP05 - Grapes [-5527,-4780]", "pos": ["MAP05",-5527,-4780,104], "region": "W Garden" }
+AP-CHECK { "id": 1730, "name": "MAP05 - Grapes [-5537,-5043]", "pos": ["MAP05",-5537,-5043,104], "region": "W Garden" }
+AP-CHECK { "id": 1728, "name": "MAP05 - Grapes [-5514,-5148]", "pos": ["MAP05",-5514,-5148,104], "region": "W Garden" }
+AP-CHECK { "id": 1664, "name": "MAP05 - Box of Acid Potions [-5153,-5428]", "pos": ["MAP05",-5153,-5428,104], "region": "W Garden" }
+AP-CHECK { "id": 1663, "name": "MAP05 - Box of Acid Potions [-5145,-5471]", "pos": ["MAP05",-5145,-5471,104], "region": "W Garden" }
+AP-CHECK { "id": 1870, "name": "MAP05 - Tomato [-5990,-5585]", "pos": ["MAP05",-5990,-5585,102], "region": "W Garden" }
+AP-CHECK { "id": 1871, "name": "MAP05 - Tomato [-6045,-5683]", "pos": ["MAP05",-6045,-5683,102], "region": "W Garden" }
+AP-CHECK { "id": 1641, "name": "MAP05 - Apple [-6486,-5149]", "pos": ["MAP05",-6486,-5149,104], "region": "W Garden" }
+AP-CHECK { "id": 1640, "name": "MAP05 - Apple [-6341,-5086]", "pos": ["MAP05",-6341,-5086,104], "region": "W Garden" }
+AP-CHECK { "id": 1763, "name": "MAP05 - Potion of Healing [-3597,-5131]", "pos": ["MAP05",-3597,-5131,104], "region": "N Fortifications" }
+AP-CHECK { "id": 1858, "name": "MAP05 - Spike Mag [-3540,-5106]", "pos": ["MAP05",-3540,-5106,104], "region": "N Fortifications" }
+AP-CHECK { "id": 1719, "name": "MAP05 - Fragfire Can [-3529,-5129]", "pos": ["MAP05",-3529,-5129,106], "region": "N Fortifications" }
+AP-CHECK { "id": 1762, "name": "MAP05 - Potion of Healing [-3205,-4855]", "pos": ["MAP05",-3205,-4855,169], "region": "N Fortifications" }
+AP-CHECK { "id": 1776, "name": "MAP05 - Potion of Minor Healing [-1432,-5860]", "pos": ["MAP05",-1432,-5860,104], "region": "E Garden" }
+AP-CHECK { "id": 1758, "name": "MAP05 - Potion of Haste [-1505,-5711]", "pos": ["MAP05",-1505,-5711,104], "region": "E Garden" }
+AP-CHECK { "id": 1679, "name": "MAP05 - Cream Fungus [-1743,-5628]", "pos": ["MAP05",-1743,-5628,105], "region": "E Garden" }
+AP-CHECK { "id": 1680, "name": "MAP05 - Cream Fungus [-1764,-5641]", "pos": ["MAP05",-1764,-5641,106], "region": "E Garden" }
+AP-CHECK { "id": 1678, "name": "MAP05 - Cream Fungus [-1715,-5539]", "pos": ["MAP05",-1715,-5539,109], "region": "E Garden" }
+AP-CHECK { "id": 1676, "name": "MAP05 - Cream Fungus [-1626,-6923]", "pos": ["MAP05",-1626,-6923,104], "region": "E Garden" }
+AP-CHECK { "id": 1677, "name": "MAP05 - Cream Fungus [-1633,-6907]", "pos": ["MAP05",-1633,-6907,104], "region": "E Garden" }
+AP-CHECK { "id": 1759, "name": "MAP05 - Potion of Haste [-1566,-6871]", "pos": ["MAP05",-1566,-6871,224], "region": "E House Rooftop" }
+AP-CHECK { "id": 1755, "name": "MAP05 - Potion of Greater Healing [NE]", "pos": ["MAP05",-1557,-6888,224], "region": "E House Rooftop" }
+AP-CHECK { "id": 1839, "name": "MAP05 - Secret 2187", "pos": ["MAP05","secret","sector",2187], "region": "E House Rooftop" }
+AP-CHECK { "id": 1882, "name": "MAP05 - Vine Key", "pos": ["MAP05",-1578,-6651,138], "region": "E House" }
+AP-CHECK { "id": 1746, "name": "MAP05 - Mortar of Earth Pigment", "pos": ["MAP05",-1492,-6779,138], "region": "E House" }
+AP-CHECK { "id": 1716, "name": "MAP05 - Fragfire Can [-1530,-6852]", "pos": ["MAP05",-1530,-6852,110], "region": "E House" }
+AP-CHECK { "id": 1668, "name": "MAP05 - Box of Toxic Potions [NE]", "pos": ["MAP05",-1827,-6665,106], "region": "E House" }
+AP-CHECK { "id": 1645, "name": "MAP05 - Bearzerker Axe [-4427,-6616]", "pos": ["MAP05",-4427,-6616,128], "region": "Stone Tower Grove" }
+AP-CHECK { "id": 1642, "name": "MAP05 - Axe [-4427,-6616]", "pos": ["MAP05",-4427,-6616,128], "region": "Stone Tower Grove" }
+AP-CHECK { "id": 1687, "name": "MAP05 - Cream Fungus [-3440,-7087]", "pos": ["MAP05",-3440,-7087,104], "region": "Stone Tower Grove" }
+AP-CHECK { "id": 1686, "name": "MAP05 - Cream Fungus [-3433,-7048]", "pos": ["MAP05",-3433,-7048,104], "region": "Stone Tower Grove" }
+AP-CHECK { "id": 1688, "name": "MAP05 - Cream Fungus [-3542,-6949]", "pos": ["MAP05",-3542,-6949,104], "region": "Stone Tower Grove" }
+AP-CHECK { "id": 1857, "name": "MAP05 - Spike Mag [-2498,-9405]", "pos": ["MAP05",-2498,-9405,112], "region": "Reaver HQ Exterior" }
+AP-CHECK { "id": 1777, "name": "MAP05 - Potion of Minor Healing [-2481,-9370]", "pos": ["MAP05",-2481,-9370,112], "region": "Reaver HQ Exterior" }
+AP-CHECK { "id": 1806, "name": "MAP05 - Power Shard [-1864,-9028]", "pos": ["MAP05",-1864,-9028,162], "region": "Reaver HQ Exterior" }
+AP-CHECK { "id": 1695, "name": "MAP05 - Cream Fungus [-5746,-7123]", "pos": ["MAP05",-5746,-7123,121], "region": "W Woods" }
+AP-CHECK { "id": 1694, "name": "MAP05 - Cream Fungus [-5738,-7153]", "pos": ["MAP05",-5738,-7153,121], "region": "W Woods" }
+AP-CHECK { "id": 1698, "name": "MAP05 - Cream Fungus [-5774,-7168]", "pos": ["MAP05",-5774,-7168,125], "region": "W Woods" }
+AP-CHECK { "id": 1696, "name": "MAP05 - Cream Fungus [-5748,-7325]", "pos": ["MAP05",-5748,-7325,122], "region": "W Woods" }
+AP-CHECK { "id": 1697, "name": "MAP05 - Cream Fungus [-5750,-7382]", "pos": ["MAP05",-5750,-7382,122], "region": "W Woods" }
+AP-CHECK { "id": 1818, "name": "MAP05 - Power Shard [-5445,-8876]", "pos": ["MAP05",-5445,-8876,104], "region": "Great Stump Exterior" }
+AP-CHECK { "id": 1819, "name": "MAP05 - Power Shard [-5531,-8871]", "pos": ["MAP05",-5531,-8871,104], "region": "Great Stump Exterior" }
+AP-CHECK { "id": 1786, "name": "MAP05 - Potion of Minor Healing [-5482,-8931]", "pos": ["MAP05",-5482,-8931,104], "region": "Great Stump Exterior" }
+AP-CHECK { "id": 1766, "name": "MAP05 - Potion of Healing [-5540,-8971]", "pos": ["MAP05",-5540,-8971,104], "region": "Great Stump Exterior" }
+AP-CHECK { "id": 1787, "name": "MAP05 - Potion of Minor Healing [-5518,-9512]", "pos": ["MAP05",-5518,-9512,104], "region": "Great Stump Exterior" }
+AP-CHECK { "id": 1723, "name": "MAP05 - Fragfire Can [-5745,-9984]", "pos": ["MAP05",-5745,-9984,212], "region": "Great Stump Exterior" }
+AP-CHECK { "id": 1782, "name": "MAP05 - Potion of Minor Healing [-4585,-9494]", "pos": ["MAP05",-4585,-9494,104], "region": "Great Stump Exterior" }
+AP-CHECK { "id": 1689, "name": "MAP05 - Cream Fungus [-4426,-9642]", "pos": ["MAP05",-4426,-9642,104], "region": "Great Stump Exterior" }
+AP-CHECK { "id": 1690, "name": "MAP05 - Cream Fungus [-4488,-9559]", "pos": ["MAP05",-4488,-9559,104], "region": "Great Stump Exterior" }
+AP-CHECK { "id": 1814, "name": "MAP05 - Power Shard [-4727,-9387]", "pos": ["MAP05",-4727,-9387,104], "region": "Great Stump Exterior" }
+AP-CHECK { "id": 1817, "name": "MAP05 - Power Shard [-4777,-9340]", "pos": ["MAP05",-4777,-9340,104], "region": "Great Stump Exterior" }
+AP-CHECK { "id": 1781, "name": "MAP05 - Potion of Minor Healing [-4414,-9001]", "pos": ["MAP05",-4414,-9001,104], "region": "Great Stump Exterior" }
+AP-CHECK { "id": 1810, "name": "MAP05 - Power Shard [-4339,-8984]", "pos": ["MAP05",-4339,-8984,104], "region": "Great Stump Exterior" }
+AP-CHECK { "id": 1783, "name": "MAP05 - Potion of Minor Healing [-4977,-9704]", "pos": ["MAP05",-4977,-9704,-59], "region": "Great Stump Exterior" }
+AP-CHECK { "id": 1860, "name": "MAP05 - Spike Mag [-4978,-9804]", "pos": ["MAP05",-4978,-9804,-59], "region": "Great Stump Exterior" }
+AP-CHECK { "id": 1785, "name": "MAP05 - Potion of Minor Healing [-5186,-9700]", "pos": ["MAP05",-5186,-9700,-59], "region": "Great Stump Exterior" }
+AP-CHECK { "id": 1722, "name": "MAP05 - Fragfire Can [-5186,-9803]", "pos": ["MAP05",-5186,-9803,-59], "region": "Great Stump Exterior" }
+AP-CHECK { "id": 1843, "name": "MAP05 - Secret 6332", "pos": ["MAP05","secret","sector",6332], "region": "Portal Cave Path Secret" }
+AP-CHECK { "id": 1820, "name": "MAP05 - Power Shard [-6370,-8463]", "pos": ["MAP05",-6370,-8463,104], "region": "Portal Cave Path Secret" }
+AP-CHECK { "id": 1821, "name": "MAP05 - Power Shard [-6505,-8539]", "pos": ["MAP05",-6505,-8539,104], "region": "Portal Cave Path Secret" }
+AP-CHECK { "id": 1635, "name": "MAP05 - Amulet of Shadows [Center]", "pos": ["MAP05",-6467,-8467,104], "region": "Portal Cave Path Secret" }
+AP-CHECK { "id": 1822, "name": "MAP05 - Power Shard [-6512,-8409]", "pos": ["MAP05",-6512,-8409,104], "region": "Portal Cave Path Secret" }
+AP-CHECK { "id": 1879, "name": "MAP05 - Vial of Healing [631,-8375]", "pos": ["MAP05",631,-8375,55], "region": "Reaver HQ Medical" }
+AP-CHECK { "id": 1792, "name": "MAP05 - Potion of Minor Healing [645,-8422]", "pos": ["MAP05",645,-8422,81], "region": "Reaver HQ Medical" }
+AP-CHECK { "id": 1793, "name": "MAP05 - Potion of Minor Healing [659,-8422]", "pos": ["MAP05",659,-8422,81], "region": "Reaver HQ Medical" }
+AP-CHECK { "id": 1794, "name": "MAP05 - Potion of Minor Healing [676,-8422]", "pos": ["MAP05",676,-8422,81], "region": "Reaver HQ Medical" }
+AP-CHECK { "id": 1852, "name": "MAP05 - Spike Bundle [697,-8418]", "pos": ["MAP05",697,-8418,81], "region": "Reaver HQ Medical" }
+AP-CHECK { "id": 1733, "name": "MAP05 - Green Crystal [E]", "pos": ["MAP05",889,-7900,92], "region": "Reaver HQ Medical" }
+AP-CHECK { "id": 1880, "name": "MAP05 - Vial of Healing [698,-7902]", "pos": ["MAP05",698,-7902,87], "region": "Reaver HQ Medical" }
+AP-CHECK { "id": 1881, "name": "MAP05 - Vial of Healing [711,-7901]", "pos": ["MAP05",711,-7901,87], "region": "Reaver HQ Medical" }
+AP-CHECK { "id": 1754, "name": "MAP05 - Potion of Greater Healing [E]", "pos": ["MAP05",669,-7902,87], "region": "Reaver HQ Medical" }
+AP-CHECK { "id": 1795, "name": "MAP05 - Potion of Minor Healing [883,-7818]", "pos": ["MAP05",883,-7818,-8], "region": "Reaver HQ Dorms" }
+AP-CHECK { "id": 1865, "name": "MAP05 - Spike Mag [856,-7814]", "pos": ["MAP05",856,-7814,-8], "region": "Reaver HQ Dorms" }
+AP-CHECK { "id": 1779, "name": "MAP05 - Potion of Minor Healing [-310,-8372]", "pos": ["MAP05",-310,-8372,55], "region": "Reaver HQ Closet" }
+AP-CHECK { "id": 1835, "name": "MAP05 - Power Shard [93,-8803]", "pos": ["MAP05",93,-8803,104], "region": "Reaver HQ Monitoring" }
+AP-CHECK { "id": 1836, "name": "MAP05 - Power Shard [93,-8839]", "pos": ["MAP05",93,-8839,104], "region": "Reaver HQ Monitoring" }
+AP-CHECK { "id": 1637, "name": "MAP05 - Apple [-16,-8712]", "pos": ["MAP05",-16,-8712,79], "region": "Reaver HQ Monitoring" }
+AP-CHECK { "id": 1883, "name": "MAP05 - Water [E]", "pos": ["MAP05",0,-8700,79], "region": "Reaver HQ Monitoring" }
+AP-CHECK { "id": 1648, "name": "MAP05 - Boltmag [-250,-8708]", "pos": ["MAP05",-250,-8708,55], "region": "Reaver HQ Monitoring" }
+AP-CHECK { "id": 1815, "name": "MAP05 - Power Shard [-474,-9072]", "pos": ["MAP05",-474,-9072,55], "region": "Reaver HQ Entrance Hall" }
+AP-CHECK { "id": 1824, "name": "MAP05 - Power Shard [-739,-9074]", "pos": ["MAP05",-739,-9074,55], "region": "Reaver HQ Entrance Hall" }
+AP-CHECK { "id": 1829, "name": "MAP05 - Power Shard [-996,-9074]", "pos": ["MAP05",-996,-9074,55], "region": "Reaver HQ Entrance Hall" }
+AP-CHECK { "id": 1828, "name": "MAP05 - Power Shard [-995,-9360]", "pos": ["MAP05",-995,-9360,55], "region": "Reaver HQ Entrance Hall" }
+AP-CHECK { "id": 1825, "name": "MAP05 - Power Shard [-739,-9360]", "pos": ["MAP05",-739,-9360,55], "region": "Reaver HQ Entrance Hall" }
+AP-CHECK { "id": 1816, "name": "MAP05 - Power Shard [-474,-9357]", "pos": ["MAP05",-474,-9357,55], "region": "Reaver HQ Entrance Hall" }
+AP-CHECK { "id": 1653, "name": "MAP05 - Boltmag [-561,-9664]", "pos": ["MAP05",-561,-9664,55], "region": "Reaver HQ Entrance Hall" }
+AP-CHECK { "id": 1656, "name": "MAP05 - Box of Acid Potions [-1315,-8897]", "pos": ["MAP05",-1315,-8897,174], "region": "Reaver HQ Entrance Hall" }
+AP-CHECK { "id": 1854, "name": "MAP05 - Spike Gun [E]", "pos": ["MAP05",-1356,-9036,174], "region": "Reaver HQ Entrance Hall" }
+AP-CHECK { "id": 1775, "name": "MAP05 - Potion of Minor Healing [-1350,-9567]", "pos": ["MAP05",-1350,-9567,174], "region": "Reaver HQ Entrance Hall" }
+AP-CHECK { "id": 1725, "name": "MAP05 - Fragfire Can [-837,-8838]", "pos": ["MAP05",-837,-8838,176], "region": "Reaver HQ Entrance Hall" }
+AP-CHECK { "id": 1875, "name": "MAP05 - Vial of Healing [-820,-8838]", "pos": ["MAP05",-820,-8838,176], "region": "Reaver HQ Entrance Hall" }
+AP-CHECK { "id": 1727, "name": "MAP05 - Fragfire Gun", "pos": ["MAP05",-37,-9511,55], "region": "Reaver HQ Courtyard" }
+AP-CHECK { "id": 1867, "name": "MAP05 - Time Shard [E]", "pos": ["MAP05",-10,-9219,103], "region": "Reaver HQ Courtyard" }
+AP-CHECK { "id": 1752, "name": "MAP05 - Potion Launcher [Acid] [932,-8998]", "pos": ["MAP05",932,-8998,55], "region": "Reaver HQ Council Chamber" }
+AP-CHECK { "id": 1751, "name": "MAP05 - Potion Launcher [Acid] [1000,-8997]", "pos": ["MAP05",1000,-8997,55], "region": "Reaver HQ Council Chamber" }
+AP-CHECK { "id": 1667, "name": "MAP05 - Box of Toxic Potions [E]", "pos": ["MAP05",1057,-8997,55], "region": "Reaver HQ Council Chamber" }
+AP-CHECK { "id": 1832, "name": "MAP05 - Power Shard [685,-8639]", "pos": ["MAP05",685,-8639,55], "region": "Reaver HQ Power Room" }
+AP-CHECK { "id": 1834, "name": "MAP05 - Power Shard [735,-8596]", "pos": ["MAP05",735,-8596,55], "region": "Reaver HQ Power Room" }
+AP-CHECK { "id": 1732, "name": "MAP05 - Green Crystal [Center]", "pos": ["MAP05",-4841,-10664,-75], "region": "Great Stump 1F" }
+AP-CHECK { "id": 1796, "name": "MAP05 - Potion of Stoneskin", "pos": ["MAP05",-5010,-10696,-51], "region": "Great Stump 1F" }
+AP-CHECK { "id": 1784, "name": "MAP05 - Potion of Minor Healing [-5095,-11265]", "pos": ["MAP05",-5095,-11265,-27], "region": "Great Stump 1F" }
+AP-CHECK { "id": 1721, "name": "MAP05 - Fragfire Can [-4992,-11250]", "pos": ["MAP05",-4992,-11250,-27], "region": "Great Stump 1F" }
+AP-CHECK { "id": 1757, "name": "MAP05 - Potion of Haste [-11048,-15682]", "pos": ["MAP05",-11048,-15682,173], "region": "Great Stump 2F" }
+AP-CHECK { "id": 1761, "name": "MAP05 - Potion of Healing [-11884,-15533]", "pos": ["MAP05",-11884,-15533,185], "region": "Great Stump 2F" }
+AP-CHECK { "id": 1674, "name": "MAP05 - Cider [-12140,-15582]", "pos": ["MAP05",-12140,-15582,157], "region": "Great Stump 2F" }
+AP-CHECK { "id": 1673, "name": "MAP05 - Cider [-12132,-15593]", "pos": ["MAP05",-12132,-15593,157], "region": "Great Stump 2F" }
+AP-CHECK { "id": 1715, "name": "MAP05 - Fragfire Can [-12425,-15552]", "pos": ["MAP05",-12425,-15552,189], "region": "Great Stump 2F" }
+AP-CHECK { "id": 1802, "name": "MAP05 - Power Shard [-12552,-15840]", "pos": ["MAP05",-12552,-15840,153], "region": "Great Stump 2F" }
+AP-CHECK { "id": 1803, "name": "MAP05 - Power Shard [-12565,-15859]", "pos": ["MAP05",-12565,-15859,153], "region": "Great Stump 2F" }
+AP-CHECK { "id": 1743, "name": "MAP05 - Light Armor Crystal", "pos": ["MAP05",-12344,-15829,181], "region": "Great Stump 2F" }
+AP-CHECK { "id": 1750, "name": "MAP05 - Potion Launcher [Acid] [-12277,-16561]", "pos": ["MAP05",-12277,-16561,157], "region": "Great Stump 2F" }
+AP-CHECK { "id": 1749, "name": "MAP05 - Potion Launcher [Acid] [-12225,-16581]", "pos": ["MAP05",-12225,-16581,157], "region": "Great Stump 2F" }
+AP-CHECK { "id": 1767, "name": "MAP05 - Potion of Healing [-7827,-7953]", "pos": ["MAP05",-7827,-7953,87], "region": "Portal Cave" }
+AP-CHECK { "id": 1863, "name": "MAP05 - Spike Mag [-7872,-7981]", "pos": ["MAP05",-7872,-7981,87], "region": "Portal Cave" }
+AP-CHECK { "id": 1853, "name": "MAP05 - Spike Gun [Center]", "pos": ["MAP05",-7890,-7957,87], "region": "Portal Cave" }
+AP-CHECK { "id": 1770, "name": "MAP05 - Potion of Healing [-9004,-7699]", "pos": ["MAP05",-9004,-7699,79], "region": "Portal Cave" }
+AP-CHECK { "id": 1705, "name": "MAP05 - Cream Fungus [-9870,-7710]", "pos": ["MAP05",-9870,-7710,79], "region": "Portal Cave" }
+AP-CHECK { "id": 1707, "name": "MAP05 - Cream Fungus [-9990,-7891]", "pos": ["MAP05",-9990,-7891,79], "region": "Portal Cave" }
+AP-CHECK { "id": 1706, "name": "MAP05 - Cream Fungus [-9983,-7919]", "pos": ["MAP05",-9983,-7919,79], "region": "Portal Cave" }
+AP-CHECK { "id": 1675, "name": "MAP05 - Cream Fungus [-10015,-7950]", "pos": ["MAP05",-10015,-7950,79], "region": "Portal Cave" }
+AP-CHECK { "id": 1708, "name": "MAP05 - Cream Fungus [-9992,-7994]", "pos": ["MAP05",-9992,-7994,79], "region": "Portal Cave" }
+AP-CHECK { "id": 1704, "name": "MAP05 - Cream Fungus [-9790,-7660]", "pos": ["MAP05",-9790,-7660,79], "region": "Portal Cave" }
+AP-CHECK { "id": 1699, "name": "MAP05 - Cream Fungus [-8388,-8912]", "pos": ["MAP05",-8388,-8912,79], "region": "Portal Cave" }
+AP-CHECK { "id": 1700, "name": "MAP05 - Cream Fungus [-8400,-8943]", "pos": ["MAP05",-8400,-8943,79], "region": "Portal Cave" }
+AP-CHECK { "id": 1702, "name": "MAP05 - Cream Fungus [-8542,-9050]", "pos": ["MAP05",-8542,-9050,79], "region": "Portal Cave" }
+AP-CHECK { "id": 1701, "name": "MAP05 - Cream Fungus [-8520,-9083]", "pos": ["MAP05",-8520,-9083,79], "region": "Portal Cave" }
+AP-CHECK { "id": 1703, "name": "MAP05 - Cream Fungus [-8548,-9120]", "pos": ["MAP05",-8548,-9120,79], "region": "Portal Cave" }
+AP-CHECK { "id": 1737, "name": "MAP05 - Half-Empty Fragfire Can [-8811,-9814]", "pos": ["MAP05",-8811,-9814,87], "region": "Portal Cave" }
+AP-CHECK { "id": 1736, "name": "MAP05 - Half-Empty Fragfire Can [-8752,-9860]", "pos": ["MAP05",-8752,-9860,87], "region": "Portal Cave" }
+AP-CHECK { "id": 1646, "name": "MAP05 - Bearzerker Axe [-8956,-9372]", "pos": ["MAP05",-8956,-9372,127], "region": "Portal Cave" }
+AP-CHECK { "id": 1643, "name": "MAP05 - Axe [-8956,-9372]", "pos": ["MAP05",-8956,-9372,127], "region": "Portal Cave" }
+AP-CHECK { "id": 1774, "name": "MAP05 - Potion of Healing [-9544,-9547]", "pos": ["MAP05",-9544,-9547,79], "region": "Portal Cave" }
+AP-CHECK { "id": 1798, "name": "MAP05 - Power Shard [-10290,-9038]", "pos": ["MAP05",-10290,-9038,79], "region": "Portal Cave" }
+AP-CHECK { "id": 1799, "name": "MAP05 - Power Shard [-10294,-9022]", "pos": ["MAP05",-10294,-9022,79], "region": "Portal Cave" }
+AP-CHECK { "id": 1760, "name": "MAP05 - Potion of Healing [-10313,-8991]", "pos": ["MAP05",-10313,-8991,79], "region": "Portal Cave" }
+AP-CHECK { "id": 1797, "name": "MAP05 - Power Shard [-10276,-9015]", "pos": ["MAP05",-10276,-9015,79], "region": "Portal Cave" }
+AP-CHECK { "id": 1647, "name": "MAP05 - Boltmag [-10269,-8975]", "pos": ["MAP05",-10269,-8975,79], "region": "Portal Cave" }
+AP-CHECK { "id": 1864, "name": "MAP05 - Spike Mag [-9259,-8811]", "pos": ["MAP05",-9259,-8811,148], "region": "Portal Cave" }
+AP-CHECK { "id": 1738, "name": "MAP05 - Half-Empty Fragfire Can [-9231,-8829]", "pos": ["MAP05",-9231,-8829,148], "region": "Portal Cave" }
+AP-CHECK { "id": 1726, "name": "MAP05 - Fragfire Can [-9231,-8829]", "pos": ["MAP05",-9231,-8829,148], "region": "Portal Cave" }
+AP-CHECK { "id": 1773, "name": "MAP05 - Potion of Healing [-9115,-8503]", "pos": ["MAP05",-9115,-8503,143], "region": "Portal Cave" }
+AP-CHECK { "id": 1771, "name": "MAP05 - Potion of Healing [-9071,-8486]", "pos": ["MAP05",-9071,-8486,143], "region": "Portal Cave" }
+AP-CHECK { "id": 1791, "name": "MAP05 - Potion of Minor Healing [-9057,-8452]", "pos": ["MAP05",-9057,-8452,143], "region": "Portal Cave" }
+AP-CHECK { "id": 1789, "name": "MAP05 - Potion of Minor Healing [-8892,-8580]", "pos": ["MAP05",-8892,-8580,135], "region": "Portal Cave" }
+AP-CHECK { "id": 1769, "name": "MAP05 - Potion of Healing [-8926,-8649]", "pos": ["MAP05",-8926,-8649,135], "region": "Portal Cave" }
+AP-CHECK { "id": 1790, "name": "MAP05 - Potion of Minor Healing [-9035,-8698]", "pos": ["MAP05",-9035,-8698,143], "region": "Portal Cave" }
+AP-CHECK { "id": 1772, "name": "MAP05 - Potion of Healing [-9094,-8691]", "pos": ["MAP05",-9094,-8691,143], "region": "Portal Cave" }
+AP-CHECK { "id": 1709, "name": "MAP05 - Crushbow", "pos": ["MAP05",-8796,-10163,111], "region": "Portal Control Antechamber" }
+AP-CHECK { "id": 1876, "name": "MAP05 - Vial of Healing [-8830,-10214]", "pos": ["MAP05",-8830,-10214,143], "region": "Portal Control Antechamber" }
+Player [0]: ; Portal Control should be Portal Control Antechamber
+AP-CHECK { "id": 1768, "name": "MAP05 - Potion of Healing [-8003,-8597]", "pos": ["MAP05",-8003,-8597,79], "region": "Portal Cave" }
+AP-CHECK { "id": 1718, "name": "MAP05 - Fragfire Can [-291,-9601]", "pos": ["MAP05",-291,-9601,101], "region": "(reaver hq aux power)" }
+Player [0]: ; previous fragfire can should be RHQ Archives
+AP-CHECK { "id": 1778, "name": "MAP05 - Potion of Minor Healing [-249,-9576]", "pos": ["MAP05",-249,-9576,55], "region": "Reaver HQ Archives" }
+AP-CHECK { "id": 1866, "name": "MAP05 - Stone Key", "pos": ["MAP05",-4,-10032,192], "region": "Reaver HQ Archives" }
+AP-CHECK { "id": 1847, "name": "MAP05 - Spike Bundle [-1,-9979]", "pos": ["MAP05",-1,-9979,191], "region": "Reaver HQ Archives" }
+AP-CHECK { "id": 1878, "name": "MAP05 - Vial of Healing [109,-9975]", "pos": ["MAP05",109,-9975,199], "region": "Reaver HQ Archives Secret" }
+AP-CHECK { "id": 1877, "name": "MAP05 - Vial of Healing [109,-9960]", "pos": ["MAP05",109,-9960,199], "region": "Reaver HQ Archives Secret" }
+AP-CHECK { "id": 1837, "name": "MAP05 - Scroll of Wizard's Eye", "pos": ["MAP05",127,-9950,199], "region": "Reaver HQ Archives Secret" }
+AP-CHECK { "id": 1842, "name": "MAP05 - Secret 4361", "pos": ["MAP05","secret","sector",4361], "region": "Reaver HQ Archives Secret" }
+AP-CHECK { "id": 1869, "name": "MAP05 - Tomato [-4351,-7120]", "pos": ["MAP05",-4351,-7120,136], "region": "Stone Tower" }
+AP-CHECK { "id": 1672, "name": "MAP05 - Cheese", "pos": ["MAP05",-4341,-7122,136], "region": "Stone Tower" }
+AP-CHECK { "id": 1670, "name": "MAP05 - Bread [Center]", "pos": ["MAP05",-4343,-7105,136], "region": "Stone Tower" }
+AP-CHECK { "id": 1741, "name": "MAP05 - Jug of Wine [Center]", "pos": ["MAP05",-4474,-6870,104], "region": "Stone Tower" }
+AP-CHECK { "id": 1649, "name": "MAP05 - Boltmag [-4565,-6968]", "pos": ["MAP05",-4565,-6968,224], "region": "Stone Tower" }
+AP-CHECK { "id": 1720, "name": "MAP05 - Fragfire Can [-4582,-7006]", "pos": ["MAP05",-4582,-7006,228], "region": "Stone Tower" }
+AP-CHECK { "id": 1764, "name": "MAP05 - Potion of Healing [-4330,-7145]", "pos": ["MAP05",-4330,-7145,224], "region": "Stone Tower" }
+AP-CHECK { "id": 1655, "name": "MAP05 - Book of Earth", "pos": ["MAP05",-4378,-7111,384], "region": "Stone Tower" }
+AP-CHECK { "id": 1846, "name": "MAP05 - SmokedHam", "pos": ["MAP05",-4494,-7088,530], "region": "Stone Tower" }
+AP-CHECK { "id": 1666, "name": "MAP05 - Box of Toxic Potions [Center]", "pos": ["MAP05",-4533,-6819,488], "region": "Stone Tower Secret" }
+AP-CHECK { "id": 1662, "name": "MAP05 - Box of Acid Potions [-4550,-6818]", "pos": ["MAP05",-4550,-6818,488], "region": "Stone Tower Secret" }
+AP-CHECK { "id": 1660, "name": "MAP05 - Box of Acid Potions [-4508,-6809]", "pos": ["MAP05",-4508,-6809,488], "region": "Stone Tower Secret" }
+AP-CHECK { "id": 1661, "name": "MAP05 - Box of Acid Potions [-4538,-6799]", "pos": ["MAP05",-4538,-6799,488], "region": "Stone Tower Secret" }
+AP-CHECK { "id": 1840, "name": "MAP05 - Secret 2834", "pos": ["MAP05","secret","sector",2834], "region": "Stone Tower Secret" }
+AP-CHECK { "id": 1808, "name": "MAP05 - Power Shard [-4277,-21340]", "pos": ["MAP05",-4277,-21340,301], "region": "Great Stump 3F" }
+AP-CHECK { "id": 1809, "name": "MAP05 - Power Shard [-4336,-21372]", "pos": ["MAP05",-4336,-21372,301], "region": "Great Stump 3F" }
+AP-CHECK { "id": 1811, "name": "MAP05 - Power Shard [-4357,-21352]", "pos": ["MAP05",-4357,-21352,301], "region": "Great Stump 3F" }
+AP-CHECK { "id": 1813, "name": "MAP05 - Power Shard [-4425,-21330]", "pos": ["MAP05",-4425,-21330,301], "region": "Great Stump 3F" }
+AP-CHECK { "id": 1812, "name": "MAP05 - Power Shard [-4393,-21292]", "pos": ["MAP05",-4393,-21292,301], "region": "Great Stump 3F" }
+AP-CHECK { "id": 1859, "name": "MAP05 - Spike Mag [-3744,-20831]", "pos": ["MAP05",-3744,-20831,301], "region": "Great Stump 3F" }
+AP-CHECK { "id": 1658, "name": "MAP05 - Box of Acid Potions [-3502,-20423]", "pos": ["MAP05",-3502,-20423,300], "region": "Great Stump 3F" }
+AP-CHECK { "id": 1780, "name": "MAP05 - Potion of Minor Healing [-4077,-20716]", "pos": ["MAP05",-4077,-20716,301], "region": "Great Stump 3F" }
+AP-CHECK { "id": 1849, "name": "MAP05 - Spike Bundle [-4229,-20329]", "pos": ["MAP05",-4229,-20329,329], "region": "Great Stump 3F" }
+AP-CHECK { "id": 1652, "name": "MAP05 - Boltmag [-5073,-21035]", "pos": ["MAP05",-5073,-21035,301], "region": "Great Stump 3F" }
+AP-CHECK { "id": 1735, "name": "MAP05 - Half-Empty Fragfire Can [-5060,-20888]", "pos": ["MAP05",-5060,-20888,301], "region": "Great Stump 3F" }
+AP-CHECK { "id": 1765, "name": "MAP05 - Potion of Healing [-5017,-21430]", "pos": ["MAP05",-5017,-21430,301], "region": "Great Stump 3F" }
+AP-CHECK { "id": 1850, "name": "MAP05 - Spike Bundle [-4904,-20324]", "pos": ["MAP05",-4904,-20324,332], "region": "Great Stump 3F" }
+AP-CHECK { "id": 1851, "name": "MAP05 - Spike Bundle [-4998,-20441]", "pos": ["MAP05",-4998,-20441,332], "region": "Great Stump 3F" }
+AP-CHECK { "id": 1659, "name": "MAP05 - Box of Acid Potions [-4389,-21440]", "pos": ["MAP05",-4389,-21440,351], "region": "Great Stump 3F" }
+AP-CHECK { "id": 1745, "name": "MAP05 - Medium Armor Crystal [SE]", "pos": ["MAP05",391,-16251,422], "region": "Great Stump 4F" }
+AP-CHECK { "id": 1669, "name": "MAP05 - Box of Toxic Potions [SE]", "pos": ["MAP05",262,-16173,422], "region": "Great Stump 4F" }
+AP-CHECK { "id": 1654, "name": "MAP05 - Boltmag [112,-16146]", "pos": ["MAP05",112,-16146,422], "region": "Great Stump 4F" }
+AP-CHECK { "id": 1657, "name": "MAP05 - Box of Acid Potions [-32,-16162]", "pos": ["MAP05",-32,-16162,422], "region": "Great Stump 4F" }
+AP-CHECK { "id": 1717, "name": "MAP05 - Fragfire Can [-155,-16214]", "pos": ["MAP05",-155,-16214,422], "region": "Great Stump 4F" }
+AP-CHECK { "id": 1856, "name": "MAP05 - Spike Mag [-231,-16339]", "pos": ["MAP05",-231,-16339,422], "region": "Great Stump 4F" }
+AP-CHECK { "id": 1756, "name": "MAP05 - Potion of Greater Healing [SE]", "pos": ["MAP05",-253,-16451,422], "region": "Great Stump 4F" }
+AP-CHECK { "id": 1710, "name": "MAP05 - Earth Key", "pos": ["MAP05",-40,-16817,454], "region": "Great Stump 4F" }
+AP-CHECK { "id": 1731, "name": "MAP05 - Great Axe", "pos": ["MAP05",7,-16853,454], "region": "Great Stump 4F" }
+AP-CHECK { "id": 1734, "name": "MAP05 - Green Crystal [SE]", "pos": ["MAP05",148,-16477,430], "region": "Great Stump 4F" }
+AP-CHECK { "id": 1753, "name": "MAP05 - Potion of Greater Healing [Center]", "pos": ["MAP05",-9484,-10222,111], "region": "Portal Control" }
+AP-CHECK { "id": 1844, "name": "MAP05 - Sentry Gun [-9573,-10193]", "pos": ["MAP05",-9573,-10193,111], "region": "Portal Control" }
+AP-CHECK { "id": 1845, "name": "MAP05 - Sentry Gun [-9673,-10193]", "pos": ["MAP05",-9673,-10193,111], "region": "Portal Control" }
+AP-CHECK { "id": 1739, "name": "MAP05 - Heavy Armor Crystal [Center]", "pos": ["MAP05",-9691,-10141,111], "region": "Portal Control" }
+AP-CHECK { "id": 1713, "name": "MAP05 - Fire Hammer", "pos": ["MAP05",-9680,-10060,111], "region": "Portal Control" }
+AP-CHECK { "id": 1841, "name": "MAP05 - Secret 3180", "pos": ["MAP05","secret","sector",3180], "region": "Library Tablet Secret" }
+AP-CHECK { "id": 1644, "name": "MAP05 - Bag of Holding", "pos": ["MAP05",-14251,2471,104], "region": "Library Tablet Secret" }
+AP-CHECK { "id": 1740, "name": "MAP05 - Heavy Armor Crystal [NW]", "pos": ["MAP05",-14343,2134,128], "region": "Library Tablet Secret" }
+AP-CHECK { "id": 1712, "name": "MAP05 - Exit", "pos": ["MAP05","exit"], "region": "Portal" }
+
+AP-CHECK { "id": 1667, "name": "MAP05 - Scribe Fire Scroll #4", "pos": ["MAP05","spawn@tid",1,"InventoryScrollFireMagmaBall",214,0], "region": "Library", "keys": ["item/InventoryBowlOfScribeEmbers/4"] }
+AP-CHECK { "id": 1668, "name": "MAP05 - Scribe Fire Scroll #5", "pos": ["MAP05","spawn@tid",1,"InventoryScrollFireMagmaBall",216,0], "region": "Library", "keys": ["item/InventoryBowlOfScribeEmbers/5"] }
+AP-CHECK { "id": 1666, "name": "MAP05 - Scribe Earth Scroll #3", "pos": ["MAP05","spawn@tid",1,"InventoryScrollEarthNourish",220,0], "region": "Library", "keys": ["item/InventoryMortarOfEarthPigment/3"] }
+AP-XOFF {}
