@@ -171,3 +171,17 @@ is considered unreachable, since I can't figure out how to trigger the secret.
 
 The shovel is entirely optional to complete the level, but using it to access
 the east forest towers will get you a bunch of checks.
+
+## MAP08: Pale Wind
+
+The shovel is reusable in AP, so you don't need to worry about missing the
+buried treasure secret if you break the shovel on the ice.
+
+The trigger for the chapel roof exploding is pulling the intact lever in the
+gatehouse.
+
+Casting the iron ingot into an iron bar, forging the bar into a lever, and
+receiving the earth key from the dwarf are all checks.
+
+The treasury code is always 1357; you don't need to have read the scroll to
+enter the code.

@@ -1,0 +1,35 @@
+AP-KEY {
+  "typename": "InventoryHotIron", "tag": "Bar of Hot Iron",
+  "scopename": "MAP08", "cluster": 0, "maps": ["MAP08"]
+}
+
+AP-KEY {
+  "typename": "InventoryIronLever", "tag": "Iron Lever",
+  "scopename": "MAP08", "cluster": 0, "maps": ["MAP08"]
+}
+
+AP-KEY {
+  "typename": "EarthKey", "tag": "Earth Key",
+  "scopename": "MAP08", "cluster": 0, "maps": ["MAP08"]
+}
+
+; Cast the iron ingot into an iron bar
+AP-ITEM {
+  "name": "Cast Iron Bar", "tag": "Bar of Hot Iron",
+  "category": "key", "typename": "InventoryHotIron",
+  "pos": ["MAP08","spawn@tid",1,"InventoryHotIron",119]
+}
+
+; Hammer the iron bar into an iron lever
+AP-ITEM {
+  "name": "Forge Iron Lever", "tag": "Iron Lever",
+  "category": "key", "typename": "InventoryIronLever",
+  "pos": ["MAP08","spawn@tid",1,"InventoryIronLever",116]
+}
+
+; Give the dwarf some booze to get the earth key
+AP-ITEM {
+  "name": "Hydrate Dwarf", "tag": "Earth Key",
+  "category": "key", "typename": "EarthKey",
+  "pos": ["MAP08","spawn@tid",1,"EarthKey",241]
+}

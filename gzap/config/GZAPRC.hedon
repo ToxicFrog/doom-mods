@@ -188,7 +188,7 @@ category key:
 #  InventoryDwarvenTank
 #  InventoryElixirOfDeath
   InventoryGearMouldFilled
-#  InventoryHotIron
+  InventoryHotIron
 #  InventoryLargeShell
 #  InventoryLockOfHair
   InventoryMithrilBar
@@ -207,35 +207,37 @@ category key:
 
 # Also let's define key shapes and colours for all eight thousand of them...
 # ◇◆ □■ ○● ▭▬ ▯▮ ▱▰ △▲ ▷▶ ▽▼ ◁◀ ▢▣ ◿◢ ◸◤ ◺◣ ◹◥
-# ▤▥▦▧▨▩ ◐◑◒◓◔◕ ◜◝◟◞◠◡ ◰◱◲◳ ◴◵◶◷ ◧◨◩◪◫
-# ◈◉◊○◌◍◎●◖◗◘◙◚◛◦◬◭◮◯◻◼◽◾
-
+# ▤▥▦▧▨▩ ⊖◐◑◒◓◔◕ ◜◝◟◞◠◡ ◰◱◲◳ ◴◵◶◷ ◧◨◩◪◫
+# ◈◉◊○◌◍◎●◖◗◘◙◚◛◦◬◭◮◯◻◼◽◾ ⊕⊖⊗⊘⊙⊚⊛⊜⊝
 keyshape ◇ ◆ : InventoryPowerCore InventoryRedCrystal;
-keyshape ▯ ▮ : InventoryIronBar InventoryMithrilBar;
+keyshape ▯ ▮ : InventoryIronBar InventoryMithrilBar InventoryHotIron;
 keyshape ○ ◉ : InventoryGearMouldEmpty InventoryGearMouldFilled InventoryMithrilGear;
 keyshape ▢ ▣ : InventoryBookOfEarth;
 keyshape ◬ ◭ : InventoryIronOre InventoryMithrilOre;
-keyshape ▭ ▬ : InventoryToolkit;
-keyshape ▽ ▼ : EarthKey VineKey AxeKey BloodyAxeKey StoneKey IronKey;
-keyshape ◌ ◒ : InventoryBowlOfFaeDust InventoryCanofEnchantedPurpleInk;
+keyshape ▭ ▬ : InventoryToolkit InventoryWoodenPlank;
+keyshape ▽ ▼ : EarthKey VineKey AxeKey BloodyAxeKey StoneKey IronKey CrystalKey;
+keyshape ⊖ ◒ : InventoryBowlOfFaeDust InventoryCanofEnchantedPurpleInk InventoryKegOfDragonbrew;
 keyshape ▢ ▤ : InventoryScrollSpiritDispelMagic;
-# keyshape ? ? : InventoryPurpleRoot;
-keyshape ◸ ◤ : InventoryPickAxe;
-keyshape ○ ◔ : InventoryMoondropFlower;
+keyshape ◴ ◕ : InventoryPurpleRoot;
+keyshape ◸ ◤ : InventoryPickAxe InventoryShovel;
+keyshape ⊙ ⊛ : InventoryMoondropFlower InventoryVine;
+keyshape ▱ ▰ : InventoryIronLever;
 
 keycolour red: InventoryRedCrystal;
 keycolour orange: InventoryPowerCore;
 keycolour black: InventoryGearMouldEmpty;
-keycolour fire: InventoryGearMouldFilled;
+keycolour fire: InventoryGearMouldFilled InventoryHotIron InventoryKegOfDragonbrew;
 keycolour ice: InventoryMithril*;
 keycolour brown: EarthKey InventoryBookOfEarth;
-keycolour darkgreen: VineKey;
+keycolour darkgreen: VineKey InventoryVine;
 keycolour black: IronKey InventoryIronOre InventoryIronBar;
 keycolour red: BloodyAxeKey;
 keycolour grey: StoneKey AxeKey;
 keycolour purple: InventoryPurpleRoot InventoryCanofEnchantedPurpleInk InventoryScrollSpiritDispelMagic;
 keycolour lightblue: InventoryBowlOfFaeDust InventoryMoondropFlower;
 keycolour tan: InventoryToolkit;
+keycolour brown: InventoryWoodenPlank;
+keycolour cyan: CrystalKey;
 
 # Custom tags.
 # Hedon puts the entire description in the tag field, so they scan as things like

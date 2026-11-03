@@ -1,0 +1,216 @@
+AP-REGION { "map": "MAP08", "region": "Entrance", "keys": ["weapon/FragfireGun/want", "weapon/PotionLauncherAcid/want", "weapon/PotionLauncher/want", "weapon/Crushbow/want", "weapon/SpikeGun/want", "weapon/Axe/want"] }
+AP-REGION { "map": "MAP08", "region": "Ice Tunnel", "keys": ["map/MAP08/Entrance"] }
+AP-REGION { "map": "MAP08", "region": "Woodcutter's Hut", "keys": ["map/MAP08/Ice Tunnel"] }
+AP-REGION { "map": "MAP08", "region": "Ruins Entrance", "keys": ["map/MAP08/Ice Tunnel"] }
+AP-REGION { "map": "MAP08", "region": "Frozen River", "keys": ["map/MAP08/Ice Tunnel"] }
+AP-REGION { "map": "MAP08", "region": "Frozen River Underwater", "keys": ["map/MAP08/Frozen River"] }
+AP-REGION { "map": "MAP08", "region": "Eva's House", "keys": ["key/StoneKey", "map/MAP08/Ice Tunnel"] }
+AP-REGION { "map": "MAP08", "region": "Ruins Bath", "keys": ["key/InventoryCyanCrystal", "map/MAP08/Ruins Entrance"] }
+AP-REGION { "map": "MAP08", "region": "Ruins Bath Underwater", "keys": ["key/InventoryShovel", "map/MAP08/Ruins Bath"] }
+AP-REGION { "map": "MAP08", "region": "Green Cave", "keys": ["map/MAP08/Ruins Bath Underwater"] }
+AP-REGION { "map": "MAP08", "region": "Buried Treasure", "keys": ["flag/secret", "key/InventoryShovel", "map/MAP08/Entrance"] }
+AP-REGION { "map": "MAP08", "region": "(bridge repaired)", "keys": ["map/MAP08/Frozen River", "key/InventoryWoodenPlank/3", "key/InventoryVine"] }
+AP-REGION { "map": "MAP08", "region": "Tree Cave", "keys": ["map/MAP08/Frozen River", "map/MAP08/(bridge repaired)"] }
+AP-REGION { "map": "MAP08", "region": "Snowman Secret", "keys": ["flag/secret", "map/MAP08/Tree Cave"] }
+AP-REGION { "map": "MAP08", "region": "Bridge", "keys": ["map/MAP08/Tree Cave"] }
+AP-REGION { "map": "MAP08", "region": "Fortress Exterior", "keys": ["map/MAP08/Bridge"] }
+AP-REGION { "map": "MAP08", "region": "Fortress S Wall", "keys": ["map/MAP08/Fortress Exterior"] }
+AP-REGION { "map": "MAP08", "region": "Fortress Courtyard", "keys": ["map/MAP08/Fortress S Wall"] }
+AP-REGION { "map": "MAP08", "region": "NE Tower 1F", "keys": ["map/MAP08/Fortress Courtyard"] }
+AP-REGION { "map": "MAP08", "region": "NE Tower 2F", "keys": ["map/MAP08/Fortress Courtyard"] }
+AP-REGION { "map": "MAP08", "region": "NW Tower 2F", "keys": ["map/MAP08/Fortress Courtyard"] }
+AP-REGION { "map": "MAP08", "region": "Fortress Exterior N", "keys": ["map/MAP08/Fortress Courtyard", "flag/secret"] }
+AP-REGION { "map": "MAP08", "region": "Gatehouse 2F", "keys": ["map/MAP08/NW Tower 2F"] }
+AP-REGION { "map": "MAP08", "region": "SW Tower 2F", "keys": ["map/MAP08/Gatehouse 2F"] }
+AP-REGION { "map": "MAP08", "region": "Keep 1F", "keys": ["map/MAP08/Fortress Courtyard"] }
+AP-REGION { "map": "MAP08", "region": "Keep 2F", "keys": ["map/MAP08/Keep 1F"] }
+AP-REGION { "map": "MAP08", "region": "Keep 3F", "keys": ["map/MAP08/Keep 2F"] }
+AP-REGION { "map": "MAP08", "region": "Chapel", "keys": ["map/MAP08/Gatehouse 2F"] }
+AP-REGION { "map": "MAP08", "region": "(gatehouse repaired)", "keys": ["key/InventoryIronLever", "map/MAP08/Gatehouse 2F"] }
+AP-REGION { "map": "MAP08", "region": "Gatehouse 1F", "keys": ["map/MAP08/(gatehouse repaired)"] }
+AP-REGION { "map": "MAP08", "region": "Keep B1F", "keys": ["map/MAP08/Keep 1F", "key/AxeKey"] }
+AP-REGION { "map": "MAP08", "region": "Keep B1F Tavern", "keys": ["map/MAP08/Keep B1F"] }
+AP-REGION { "map": "MAP08", "region": "Keep B1F Sewers", "keys": ["map/MAP08/Keep B1F Tavern"] }
+AP-REGION { "map": "MAP08", "region": "Keep B1F Cells", "keys": ["map/MAP08/Keep B1F Sewers"] }
+AP-REGION { "map": "MAP08", "region": "SE Tower 2F", "keys": ["key/IronKey", "map/MAP08/Keep 2F"] }
+AP-REGION { "map": "MAP08", "region": "SE Tower 1F", "keys": ["map/MAP08/SE Tower 2F"] }
+AP-REGION { "map": "MAP08", "region": "SE Tower B1F", "keys": ["map/MAP08/SE Tower 1F"] }
+AP-REGION { "map": "MAP08", "region": "Keep B1F Treasury Security", "keys": ["map/MAP08/Keep B1F"] }
+AP-REGION { "map": "MAP08", "region": "Keep B1F Treasury", "keys": ["map/MAP08/Keep B1F Treasury Security", "flag/secret"] }
+AP-REGION { "map": "MAP08", "region": "Keep B1F Elevator", "keys": ["map/MAP08/Keep B1F", "key/EarthKey"] }
+
+AP-CHECK { "id": 2407, "name": "MAP08 - Crylance", "pos": ["MAP08",-4362,-9552,1724], "region": "Entrance" }
+AP-CHECK { "id": 2482, "name": "MAP08 - Secret 40", "pos": ["MAP08","secret","sector",40], "region": "Entrance" }
+AP-CHECK { "id": 2396, "name": "MAP08 - Box of Toxic Potions [SW]", "pos": ["MAP08",-4339,-9558,1724], "region": "Entrance" }
+AP-CHECK { "id": 2446, "name": "MAP08 - Potion of Minor Healing [-693,-3997]", "pos": ["MAP08",-693,-3997,1764], "region": "Ice Tunnel" }
+AP-CHECK { "id": 2374, "name": "MAP08 - Bearzerker Axe [-1301,1236]", "pos": ["MAP08",-1301,1236,1564], "region": "Woodcutter's Hut" }
+AP-CHECK { "id": 2368, "name": "MAP08 - Axe [-1301,1236]", "pos": ["MAP08",-1301,1236,1564], "region": "Woodcutter's Hut" }
+AP-CHECK { "id": 2496, "name": "MAP08 - Spike Mag [-1201,1238]", "pos": ["MAP08",-1201,1238,1540], "region": "Woodcutter's Hut" }
+AP-CHECK { "id": 2526, "name": "MAP08 - Wooden Plank [-1196,1188]", "pos": ["MAP08",-1196,1188,1540], "region": "Woodcutter's Hut" }
+AP-CHECK { "id": 2436, "name": "MAP08 - Potion of Haste", "pos": ["MAP08",2232,2048,1540], "region": "Ruins Entrance" }
+AP-CHECK { "id": 2527, "name": "MAP08 - Wooden Plank [-2323,-1145]", "pos": ["MAP08",-2323,-1145,1308], "region": "Frozen River" }
+AP-CHECK { "id": 2497, "name": "MAP08 - Spike Mag [-4362,-1848]", "pos": ["MAP08",-4362,-1848,1284], "region": "Frozen River" }
+AP-CHECK { "id": 2511, "name": "MAP08 - Vial of Healing [-1458,-1477]", "pos": ["MAP08",-1458,-1477,1268], "region": "Frozen River Underwater" }
+AP-CHECK { "id": 2510, "name": "MAP08 - Vial of Healing [-1436,-1487]", "pos": ["MAP08",-1436,-1487,1268], "region": "Frozen River Underwater" }
+AP-CHECK { "id": 2455, "name": "MAP08 - Power Shard [-4025,-1156]", "pos": ["MAP08",-4025,-1156,1228], "region": "Frozen River Underwater" }
+AP-CHECK { "id": 2456, "name": "MAP08 - Power Shard [-4117,-1104]", "pos": ["MAP08",-4117,-1104,1212], "region": "Frozen River Underwater" }
+AP-CHECK { "id": 2457, "name": "MAP08 - Power Shard [-4167,-1155]", "pos": ["MAP08",-4167,-1155,1212], "region": "Frozen River Underwater" }
+AP-CHECK { "id": 2502, "name": "MAP08 - Stone Key", "pos": ["MAP08",-4236,-1123,1287], "region": "Frozen River Underwater" }
+AP-CHECK { "id": 2417, "name": "MAP08 - Fragfire Can [SW]", "pos": ["MAP08",-596,-1692,1547], "region": "Eva's House" }
+AP-CHECK { "id": 2431, "name": "MAP08 - Potion of Greater Healing [-623,-1513]", "pos": ["MAP08",-623,-1513,1612], "region": "Eva's House" }
+AP-CHECK { "id": 2408, "name": "MAP08 - Cyan Crystal", "pos": ["MAP08",-516,-1351,1575], "region": "Eva's House" }
+AP-CHECK { "id": 2512, "name": "MAP08 - Vial of Healing [-254,-1385]", "pos": ["MAP08",-254,-1385,1643], "region": "Eva's House" }
+AP-CHECK { "id": 2507, "name": "MAP08 - Tomato [-250,-1565]", "pos": ["MAP08",-250,-1565,1631], "region": "Eva's House" }
+AP-CHECK { "id": 2508, "name": "MAP08 - Tomato [-253,-1574]", "pos": ["MAP08",-253,-1574,1631], "region": "Eva's House" }
+AP-CHECK { "id": 2400, "name": "MAP08 - Cheese", "pos": ["MAP08",-251,-1628,1631], "region": "Eva's House" }
+AP-CHECK { "id": 2399, "name": "MAP08 - Bread [SW]", "pos": ["MAP08",-249,-1659,1631], "region": "Eva's House" }
+Player [0]: ; stone key room is Earth Mother Eva's house
+AP-CHECK { "id": 2415, "name": "MAP08 - Fragfire Can [Center]", "pos": ["MAP08",2562,2315,1540], "region": "Ruins Bath" }
+AP-CHECK { "id": 2528, "name": "MAP08 - Wooden Plank [2688,1832]", "pos": ["MAP08",2688,1832,1500], "region": "Ruins Bath" }
+AP-CHECK { "id": 2484, "name": "MAP08 - Shovel", "pos": ["MAP08",2752,1836,1500], "region": "Ruins Bath" }
+AP-CHECK { "id": 2471, "name": "MAP08 - Power Shard [2748,1952]", "pos": ["MAP08",2748,1952,1428], "region": "Ruins Bath Underwater" }
+AP-CHECK { "id": 2470, "name": "MAP08 - Power Shard [2744,2135]", "pos": ["MAP08",2744,2135,1428], "region": "Ruins Bath Underwater" }
+Player [0]: ; bath pipework should be renamed bath underwater
+AP-CHECK { "id": 2418, "name": "MAP08 - Grapes", "pos": ["MAP08",1655,220,1508], "region": "Green Cave" }
+AP-CHECK { "id": 2404, "name": "MAP08 - Cream Fungus [1977,-258]", "pos": ["MAP08",1977,-258,1532], "region": "Green Cave" }
+AP-CHECK { "id": 2403, "name": "MAP08 - Cream Fungus [1942,-278]", "pos": ["MAP08",1942,-278,1532], "region": "Green Cave" }
+AP-CHECK { "id": 2366, "name": "MAP08 - Apple [1512,-477]", "pos": ["MAP08",1512,-477,1515], "region": "Green Cave" }
+AP-CHECK { "id": 2365, "name": "MAP08 - Apple [1493,-397]", "pos": ["MAP08",1493,-397,1526], "region": "Green Cave" }
+AP-CHECK { "id": 2364, "name": "MAP08 - Apple [1256,-145]", "pos": ["MAP08",1256,-145,1512], "region": "Green Cave" }
+AP-CHECK { "id": 2454, "name": "MAP08 - Potion of Stoneskin", "pos": ["MAP08",1723,-376,1556], "region": "Green Cave" }
+AP-CHECK { "id": 2516, "name": "MAP08 - Vial of Healing [1767,-388]", "pos": ["MAP08",1767,-388,1572], "region": "Green Cave" }
+AP-CHECK { "id": 2525, "name": "MAP08 - Vine", "pos": ["MAP08",1852,-366,1564], "region": "Green Cave" }
+AP-CHECK { "id": 2480, "name": "MAP08 - Secret 292", "pos": ["MAP08","secret","sector",292], "region": "Buried Treasure" }
+Player [0]: ; repairs require vines and three planks
+AP-CHECK { "id": 2401, "name": "MAP08 - Choker of the Beast", "pos": ["MAP08",-2492,3857,1532], "region": "Tree Cave" }
+AP-CHECK { "id": 2433, "name": "MAP08 - Potion of Greater Healing [2620,7674]", "pos": ["MAP08",2620,7674,1204], "region": "Snowman Secret" }
+Player [0]: ; cliffside secret should be snowman secret perhaps
+AP-CHECK { "id": 2375, "name": "MAP08 - Bearzerker Axe [-829,10234]", "pos": ["MAP08",-829,10234,1540], "region": "Bridge" }
+AP-CHECK { "id": 2369, "name": "MAP08 - Axe [-829,10234]", "pos": ["MAP08",-829,10234,1540], "region": "Bridge" }
+AP-CHECK { "id": 2447, "name": "MAP08 - Potion of Minor Healing [-994,10139]", "pos": ["MAP08",-994,10139,1540], "region": "Bridge" }
+AP-CHECK { "id": 2514, "name": "MAP08 - Vial of Healing [-957,10137]", "pos": ["MAP08",-957,10137,1540], "region": "Bridge" }
+AP-CHECK { "id": 2513, "name": "MAP08 - Vial of Healing [-936,10114]", "pos": ["MAP08",-936,10114,1540], "region": "Bridge" }
+AP-CHECK { "id": 2380, "name": "MAP08 - Boltmag [-1198,10709]", "pos": ["MAP08",-1198,10709,1540], "region": "Bridge" }
+AP-CHECK { "id": 2509, "name": "MAP08 - Vial of Healing [-1200,10744]", "pos": ["MAP08",-1200,10744,1540], "region": "Bridge" }
+AP-CHECK { "id": 2432, "name": "MAP08 - Potion of Greater Healing [2098,13088]", "pos": ["MAP08",2098,13088,1540], "region": "Bridge" }
+AP-CHECK { "id": 2499, "name": "MAP08 - Spike Mag [2146,13131]", "pos": ["MAP08",2146,13131,1540], "region": "Bridge" }
+AP-CHECK { "id": 2498, "name": "MAP08 - Spike Mag [2140,13176]", "pos": ["MAP08",2140,13176,1540], "region": "Bridge" }
+AP-CHECK { "id": 2381, "name": "MAP08 - Boltmag [2047,13189]", "pos": ["MAP08",2047,13189,1540], "region": "Bridge" }
+AP-CHECK { "id": 2377, "name": "MAP08 - Bearzerker Axe [2386,14187]", "pos": ["MAP08",2386,14187,1540], "region": "Bridge" }
+AP-CHECK { "id": 2371, "name": "MAP08 - Axe [2386,14187]", "pos": ["MAP08",2386,14187,1540], "region": "Bridge" }
+AP-CHECK { "id": 2444, "name": "MAP08 - Potion of Healing [5839,19212]", "pos": ["MAP08",5839,19212,1540], "region": "Fortress Exterior" }
+AP-CHECK { "id": 2392, "name": "MAP08 - Box of Acid Potions [5865,19258]", "pos": ["MAP08",5865,19258,1540], "region": "Fortress Exterior" }
+AP-CHECK { "id": 2442, "name": "MAP08 - Potion of Healing [5215,19285]", "pos": ["MAP08",5215,19285,1948], "region": "Fortress S Wall" }
+AP-CHECK { "id": 2406, "name": "MAP08 - Crushbow [5158,20483]", "pos": ["MAP08",5158,20483,1628], "region": "Fortress Courtyard" }
+AP-CHECK { "id": 2384, "name": "MAP08 - Boltmag [5109,20492]", "pos": ["MAP08",5109,20492,1628], "region": "Fortress Courtyard" }
+AP-CHECK { "id": 2453, "name": "MAP08 - Potion of Minor Healing [5019,20519]", "pos": ["MAP08",5019,20519,1628], "region": "Fortress Courtyard" }
+AP-CHECK { "id": 2382, "name": "MAP08 - Boltmag [3829,19737]", "pos": ["MAP08",3829,19737,1639], "region": "Fortress Courtyard" }
+AP-CHECK { "id": 2452, "name": "MAP08 - Potion of Minor Healing [3590,21495]", "pos": ["MAP08",3590,21495,1628], "region": "Fortress Courtyard" }
+AP-CHECK { "id": 2440, "name": "MAP08 - Potion of Healing [3562,21520]", "pos": ["MAP08",3562,21520,1628], "region": "Fortress Courtyard" }
+AP-CHECK { "id": 2445, "name": "MAP08 - Potion of Might", "pos": ["MAP08",4970,21810,1688], "region": "NE Tower 1F" }
+AP-CHECK { "id": 2413, "name": "MAP08 - Fire Hammer [4973,21933]", "pos": ["MAP08",4973,21933,1672], "region": "NE Tower 1F" }
+AP-CHECK { "id": 2419, "name": "MAP08 - Half-Empty Fragfire Can", "pos": ["MAP08",5131,22024,1672], "region": "NE Tower 1F" }
+Player [0]: ; gonna need to implement crafting here
+AP-CHECK { "id": 2390, "name": "MAP08 - Box of Acid Potions [5676,21772]", "pos": ["MAP08",5676,21772,1921], "region": "NE Tower 2F" }
+AP-CHECK { "id": 2391, "name": "MAP08 - Box of Acid Potions [5677,21739]", "pos": ["MAP08",5677,21739,1921], "region": "NE Tower 2F" }
+AP-CHECK { "id": 2379, "name": "MAP08 - Bearzerker Axe [5152,22001]", "pos": ["MAP08",5152,22001,1922], "region": "NE Tower 2F" }
+AP-CHECK { "id": 2373, "name": "MAP08 - Axe [5152,22001]", "pos": ["MAP08",5152,22001,1922], "region": "NE Tower 2F" }
+AP-CHECK { "id": 2383, "name": "MAP08 - Boltmag [5102,22006]", "pos": ["MAP08",5102,22006,1921], "region": "NE Tower 2F" }
+AP-CHECK { "id": 2450, "name": "MAP08 - Potion of Minor Healing [3041,21943]", "pos": ["MAP08",3041,21943,1920], "region": "NW Tower 2F" }
+AP-CHECK { "id": 2451, "name": "MAP08 - Potion of Minor Healing [3096,21938]", "pos": ["MAP08",3096,21938,1920], "region": "NW Tower 2F" }
+AP-CHECK { "id": 2518, "name": "MAP08 - Vial of Healing [3404,22047]", "pos": ["MAP08",3404,22047,1684], "region": "Fortress Exterior N" }
+AP-CHECK { "id": 2517, "name": "MAP08 - Vial of Healing [3373,22044]", "pos": ["MAP08",3373,22044,1684], "region": "Fortress Exterior N" }
+AP-CHECK { "id": 2481, "name": "MAP08 - Secret 3370", "pos": ["MAP08","secret","sector",3370], "region": "Fortress Exterior N" }
+AP-CHECK { "id": 2387, "name": "MAP08 - Box of Acid Potions [3332,22038]", "pos": ["MAP08",3332,22038,1684], "region": "Fortress Exterior N" }
+AP-CHECK { "id": 2501, "name": "MAP08 - Spike Mag [3301,22033]", "pos": ["MAP08",3301,22033,1684], "region": "Fortress Exterior N" }
+AP-CHECK { "id": 2386, "name": "MAP08 - Box of Acid Potions [3273,22024]", "pos": ["MAP08",3273,22024,1684], "region": "Fortress Exterior N" }
+AP-CHECK { "id": 2500, "name": "MAP08 - Spike Mag [3244,22021]", "pos": ["MAP08",3244,22021,1684], "region": "Fortress Exterior N" }
+AP-CHECK { "id": 2434, "name": "MAP08 - Potion of Greater Healing [3221,22015]", "pos": ["MAP08",3221,22015,1684], "region": "Fortress Exterior N" }
+AP-CHECK { "id": 2437, "name": "MAP08 - Potion of Healing [2704,20312]", "pos": ["MAP08",2704,20312,1890], "region": "Gatehouse 2F" }
+AP-CHECK { "id": 2449, "name": "MAP08 - Potion of Minor Healing [2680,19986]", "pos": ["MAP08",2680,19986,1892], "region": "Gatehouse 2F" }
+AP-CHECK { "id": 2405, "name": "MAP08 - Crushbow [3125,19940]", "pos": ["MAP08",3125,19940,1890], "region": "Gatehouse 2F" }
+AP-CHECK { "id": 2495, "name": "MAP08 - Spike Bundle [2952,19320]", "pos": ["MAP08",2952,19320,1944], "region": "SW Tower 2F" }
+AP-CHECK { "id": 2378, "name": "MAP08 - Bearzerker Axe [2772,18968]", "pos": ["MAP08",2772,18968,1920], "region": "SW Tower 2F" }
+AP-CHECK { "id": 2372, "name": "MAP08 - Axe [2772,18968]", "pos": ["MAP08",2772,18968,1920], "region": "SW Tower 2F" }
+AP-CHECK { "id": 2493, "name": "MAP08 - Spike Bundle [2919,19058]", "pos": ["MAP08",2919,19058,1944], "region": "SW Tower 2F" }
+AP-CHECK { "id": 2494, "name": "MAP08 - Spike Bundle [2924,19080]", "pos": ["MAP08",2924,19080,1944], "region": "SW Tower 2F" }
+AP-CHECK { "id": 2393, "name": "MAP08 - Box of Acid Potions [8108,20383]", "pos": ["MAP08",8108,20383,1668], "region": "Keep 1F" }
+AP-CHECK { "id": 2435, "name": "MAP08 - Potion of Greater Healing [8252,20159]", "pos": ["MAP08",8252,20159,1676], "region": "Keep 1F" }
+AP-CHECK { "id": 2395, "name": "MAP08 - Box of Toxic Potions [N]", "pos": ["MAP08",8110,19845,1668], "region": "Keep 1F" }
+AP-CHECK { "id": 2519, "name": "MAP08 - Vial of Healing [4472,21359]", "pos": ["MAP08",4472,21359,1668], "region": "Chapel" }
+AP-CHECK { "id": 2420, "name": "MAP08 - Iron Ingot", "pos": ["MAP08",4432,21108,1684], "region": "Chapel" }
+AP-CHECK { "id": 2520, "name": "MAP08 - Vial of Healing [4473,20910]", "pos": ["MAP08",4473,20910,1668], "region": "Chapel" }
+AP-CHECK { "id": 2472, "name": "MAP08 - Power Shard [3596,20917]", "pos": ["MAP08",3596,20917,1660], "region": "Chapel" }
+AP-CHECK { "id": 2475, "name": "MAP08 - Power Shard [3599,20988]", "pos": ["MAP08",3599,20988,1660], "region": "Chapel" }
+AP-CHECK { "id": 2473, "name": "MAP08 - Power Shard [3596,21289]", "pos": ["MAP08",3596,21289,1660], "region": "Chapel" }
+AP-CHECK { "id": 2474, "name": "MAP08 - Power Shard [3598,21359]", "pos": ["MAP08",3598,21359,1660], "region": "Chapel" }
+AP-CHECK { "id": 2367, "name": "MAP08 - Axe Key", "pos": ["MAP08",3142,20054,1636], "region": "Gatehouse 1F" }
+AP-CHECK { "id": 2385, "name": "MAP08 - Box of Acid Potions [12020,19986]", "pos": ["MAP08",12020,19986,1522], "region": "Keep B1F" }
+AP-CHECK { "id": 2402, "name": "MAP08 - Cider", "pos": ["MAP08",12020,20404,1474], "region": "Keep B1F" }
+AP-CHECK { "id": 2425, "name": "MAP08 - Pint of Mead [12475,20025]", "pos": ["MAP08",12475,20025,1483], "region": "Keep B1F Tavern" }
+AP-CHECK { "id": 2477, "name": "MAP08 - Sausage [12536,19992]", "pos": ["MAP08",12536,19992,1483], "region": "Keep B1F Tavern" }
+AP-CHECK { "id": 2426, "name": "MAP08 - Pint of Mead [12522,19984]", "pos": ["MAP08",12522,19984,1483], "region": "Keep B1F Tavern" }
+AP-CHECK { "id": 2397, "name": "MAP08 - Bread [NE]", "pos": ["MAP08",12532,19971,1483], "region": "Keep B1F Tavern" }
+AP-CHECK { "id": 2448, "name": "MAP08 - Potion of Minor Healing [12377,19989]", "pos": ["MAP08",12377,19989,1484], "region": "Keep B1F Tavern" }
+AP-CHECK { "id": 2427, "name": "MAP08 - Pint of Mead [12687,19956]", "pos": ["MAP08",12687,19956,1482], "region": "Keep B1F Tavern" }
+AP-CHECK { "id": 2376, "name": "MAP08 - Bearzerker Axe [12604,19148]", "pos": ["MAP08",12604,19148,1090], "region": "Keep B1F Sewers" }
+AP-CHECK { "id": 2370, "name": "MAP08 - Axe [12604,19148]", "pos": ["MAP08",12604,19148,1090], "region": "Keep B1F Sewers" }
+AP-CHECK { "id": 2467, "name": "MAP08 - Power Shard [12836,19148]", "pos": ["MAP08",12836,19148,1090], "region": "Keep B1F Sewers" }
+AP-CHECK { "id": 2469, "name": "MAP08 - Power Shard [12879,19129]", "pos": ["MAP08",12879,19129,1090], "region": "Keep B1F Sewers" }
+AP-CHECK { "id": 2468, "name": "MAP08 - Power Shard [12877,19181]", "pos": ["MAP08",12877,19181,1090], "region": "Keep B1F Sewers" }
+AP-CHECK { "id": 2506, "name": "MAP08 - Time Shard [12872,19153]", "pos": ["MAP08",12872,19153,1226], "region": "Keep B1F Sewers" }
+AP-CHECK { "id": 2421, "name": "MAP08 - Iron Key", "pos": ["MAP08",12949,20476,1483], "region": "Keep B1F Cells" }
+AP-CHECK { "id": 2515, "name": "MAP08 - Vial of Healing [12942,20325]", "pos": ["MAP08",12942,20325,1476], "region": "Keep B1F Cells" }
+AP-CHECK { "id": 2492, "name": "MAP08 - Spike Bundle [12032,20120]", "pos": ["MAP08",12032,20120,1462], "region": "Keep B1F" }
+AP-CHECK { "id": 2491, "name": "MAP08 - Spike Bundle [12028,20130]", "pos": ["MAP08",12028,20130,1462], "region": "Keep B1F" }
+AP-CHECK { "id": 2490, "name": "MAP08 - Spike Bundle [12025,20109]", "pos": ["MAP08",12025,20109,1462], "region": "Keep B1F" }
+AP-CHECK { "id": 2489, "name": "MAP08 - Spike Bundle [12012,20116]", "pos": ["MAP08",12012,20116,1462], "region": "Keep B1F" }
+AP-CHECK { "id": 2488, "name": "MAP08 - Spike Bundle [12010,20132]", "pos": ["MAP08",12010,20132,1462], "region": "Keep B1F" }
+AP-CHECK { "id": 2487, "name": "MAP08 - Spike Bundle [12008,20110]", "pos": ["MAP08",12008,20110,1462], "region": "Keep B1F" }
+AP-CHECK { "id": 2486, "name": "MAP08 - Spike Bundle [12007,20128]", "pos": ["MAP08",12007,20128,1462], "region": "Keep B1F" }
+AP-CHECK { "id": 2485, "name": "MAP08 - Spike Bundle [12004,20120]", "pos": ["MAP08",12004,20120,1462], "region": "Keep B1F" }
+AP-CHECK { "id": 2522, "name": "MAP08 - Vial of Healing [5669,20201]", "pos": ["MAP08",5669,20201,1956], "region": "Keep 2F" }
+AP-CHECK { "id": 2521, "name": "MAP08 - Vial of Healing [5014,20295]", "pos": ["MAP08",5014,20295,1949], "region": "Keep 2F" }
+AP-CHECK { "id": 2441, "name": "MAP08 - Potion of Healing [4902,20054]", "pos": ["MAP08",4902,20054,1932], "region": "Keep 2F" }
+AP-CHECK { "id": 2388, "name": "MAP08 - Box of Acid Potions [5041,19901]", "pos": ["MAP08",5041,19901,2018], "region": "Keep 2F" }
+AP-CHECK { "id": 2414, "name": "MAP08 - Fire Hammer [9517,19860]", "pos": ["MAP08",9517,19860,2106], "region": "Keep 3F" }
+AP-CHECK { "id": 2416, "name": "MAP08 - Fragfire Can [N]", "pos": ["MAP08",9317,19822,2114], "region": "Keep 3F" }
+AP-CHECK { "id": 2476, "name": "MAP08 - Power Shard [9400,20048]", "pos": ["MAP08",9400,20048,2114], "region": "Keep 3F" }
+AP-CHECK { "id": 2428, "name": "MAP08 - Pint of Mead [9825,20283]", "pos": ["MAP08",9825,20283,2122], "region": "Keep 3F" }
+AP-CHECK { "id": 2394, "name": "MAP08 - Box of Acid Potions [9862,20171]", "pos": ["MAP08",9862,20171,2090], "region": "Keep 3F" }
+AP-CHECK { "id": 2524, "name": "MAP08 - Vial of Healing [9620,20069]", "pos": ["MAP08",9620,20069,2114], "region": "Keep 3F" }
+Player [0]: ; main hall 2f/3f might be reachable without iron key, need to double check
+AP-CHECK { "id": 2443, "name": "MAP08 - Potion of Healing [5682,19158]", "pos": ["MAP08",5682,19158,1920], "region": "SE Tower 2F" }
+AP-CHECK { "id": 2423, "name": "MAP08 - Leek", "pos": ["MAP08",5503,18971,1945], "region": "SE Tower 2F" }
+AP-CHECK { "id": 2479, "name": "MAP08 - Sausage [5445,18971]", "pos": ["MAP08",5445,18971,1944], "region": "SE Tower 2F" }
+AP-CHECK { "id": 2478, "name": "MAP08 - Sausage [5428,18975]", "pos": ["MAP08",5428,18975,1944], "region": "SE Tower 2F" }
+AP-CHECK { "id": 2398, "name": "MAP08 - Bread [N]", "pos": ["MAP08",5396,18969,1944], "region": "SE Tower 2F" }
+AP-CHECK { "id": 2523, "name": "MAP08 - Vial of Healing [5675,18956]", "pos": ["MAP08",5675,18956,2016], "region": "SE Tower 2F" }
+AP-CHECK { "id": 2429, "name": "MAP08 - Plum Brandy [5681,18046]", "pos": ["MAP08",5681,18046,1784], "region": "SE Tower 1F" }
+AP-CHECK { "id": 2430, "name": "MAP08 - Plum Brandy [5690,18064]", "pos": ["MAP08",5690,18064,1784], "region": "SE Tower 1F" }
+AP-CHECK { "id": 2389, "name": "MAP08 - Box of Acid Potions [5333,17930]", "pos": ["MAP08",5333,17930,1784], "region": "SE Tower 1F" }
+AP-CHECK { "id": 2422, "name": "MAP08 - Keg of Dragonbrew", "pos": ["MAP08",5440,17160,1677], "region": "SE Tower B1F" }
+AP-CHECK { "id": 2439, "name": "MAP08 - Potion of Healing [2773,13883]", "pos": ["MAP08",2773,13883,1412], "region": "Bridge" }
+AP-CHECK { "id": 2438, "name": "MAP08 - Potion of Healing [2748,13907]", "pos": ["MAP08",2748,13907,1412], "region": "Bridge" }
+AP-CHECK { "id": 2462, "name": "MAP08 - Power Shard [12092,19792]", "pos": ["MAP08",12092,19792,1484], "region": "Keep B1F Treasury Security" }
+AP-CHECK { "id": 2483, "name": "MAP08 - Secret 5041", "pos": ["MAP08","secret","sector",5041], "region": "Keep B1F Treasury" }
+AP-CHECK { "id": 2424, "name": "MAP08 - Light Armor Crystal", "pos": ["MAP08",12020,19584,1458], "region": "Keep B1F Treasury" }
+AP-CHECK { "id": 2410, "name": "MAP08 - Fire Hammer [11990,19561]", "pos": ["MAP08",11990,19561,1461], "region": "Keep B1F Treasury" }
+AP-CHECK { "id": 2503, "name": "MAP08 - Time Shard [12017,19542]", "pos": ["MAP08",12017,19542,1507], "region": "Keep B1F Treasury" }
+AP-CHECK { "id": 2458, "name": "MAP08 - Power Shard [12020,19512]", "pos": ["MAP08",12020,19512,1462], "region": "Keep B1F Treasury" }
+AP-CHECK { "id": 2411, "name": "MAP08 - Fire Hammer [12069,19485]", "pos": ["MAP08",12069,19485,1472], "region": "Keep B1F Treasury" }
+AP-CHECK { "id": 2461, "name": "MAP08 - Power Shard [12088,19484]", "pos": ["MAP08",12088,19484,1471], "region": "Keep B1F Treasury" }
+AP-CHECK { "id": 2504, "name": "MAP08 - Time Shard [12120,19504]", "pos": ["MAP08",12120,19504,1496], "region": "Keep B1F Treasury" }
+AP-CHECK { "id": 2466, "name": "MAP08 - Power Shard [12152,19500]", "pos": ["MAP08",12152,19500,1474], "region": "Keep B1F Treasury" }
+AP-CHECK { "id": 2464, "name": "MAP08 - Power Shard [12113,19535]", "pos": ["MAP08",12113,19535,1459], "region": "Keep B1F Treasury" }
+AP-CHECK { "id": 2465, "name": "MAP08 - Power Shard [12140,19564]", "pos": ["MAP08",12140,19564,1474], "region": "Keep B1F Treasury" }
+AP-CHECK { "id": 2412, "name": "MAP08 - Fire Hammer [12102,19579]", "pos": ["MAP08",12102,19579,1475], "region": "Keep B1F Treasury" }
+AP-CHECK { "id": 2460, "name": "MAP08 - Power Shard [12072,19588]", "pos": ["MAP08",12072,19588,1469], "region": "Keep B1F Treasury" }
+AP-CHECK { "id": 2463, "name": "MAP08 - Power Shard [12108,19616]", "pos": ["MAP08",12108,19616,1471], "region": "Keep B1F Treasury" }
+AP-CHECK { "id": 2505, "name": "MAP08 - Time Shard [12134,19614]", "pos": ["MAP08",12134,19614,1521], "region": "Keep B1F Treasury" }
+AP-CHECK { "id": 2459, "name": "MAP08 - Power Shard [12072,19560]", "pos": ["MAP08",12072,19560,1458], "region": "Keep B1F Treasury" }
+AP-CHECK { "id": 2409, "name": "MAP08 - Exit", "pos": ["MAP08","exit"], "region": "Keep B1F Elevator" }
+
+AP-CHECK { "id": 0, "name": "MAP08 - Cast Iron Bar", "pos": ["MAP08","spawn@tid",1,"InventoryHotIron",119], "region": "NE Tower 1F", "keys": ["InventoryIronBar"] }
+AP-CHECK { "id": 0, "name": "MAP08 - Forge Iron Lever", "pos": ["MAP08","spawn@tid",1,"InventoryIronLever",116], "region": "NE Tower 1F", "keys": ["InventoryHotIron"] }
+AP-CHECK { "id": 0, "name": "MAP08 - Hydrate Dwarf", "pos": ["MAP08","spawn@tid",1,"EarthKey",241], "region": "Keep B1F Cells", "keys": ["InventoryKegOfDragonbrew"] }
