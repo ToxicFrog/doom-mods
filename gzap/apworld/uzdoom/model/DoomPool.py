@@ -62,7 +62,12 @@ class DoomPool:
         # print('pool:', self.item_counts, self.starting_item_counts, self.vanilla_item_counts)
 
     def add_items_to_pool(self, world, counter, locations):
-        for loc in (loc for loc in locations if loc.orig_item):
+        for loc in locations:
+            if not loc.orig_item:
+                if loc.item:
+                    self.add_vanilla_item(loc.item)
+                continue
+
             item = self.remap_item(world, loc, loc.orig_item)
             # if item is not loc.orig_item:
             #     print(f'Remap while filling pool: {loc.orig_item} -> {item}')
@@ -71,6 +76,9 @@ class DoomPool:
                 continue
             # print(f'Adding {item} from {loc.name()} to pool')
             counter[item.name()] += 1
+
+    def add_vanilla_item(self, item):
+        self.vanilla_item_counts[item.name()] += 1
 
     def _skip_in_pretuning(self, world, loc):
         return (
@@ -121,9 +129,9 @@ class DoomPool:
                 for loc in locs:
                     if loc.orig_item:
                         loc.item = self.remap_item(world, loc, loc.orig_item)
-                        self.vanilla_item_counts[loc.item.name()] += 1
                     elif world.options.pretuning_mode and not loc.item:
                         loc.item = self.wad.placeholder_item()
+                    self.vanilla_item_counts[loc.item.name()] += 1
                 self.locations.extend(locs)
                 continue
 

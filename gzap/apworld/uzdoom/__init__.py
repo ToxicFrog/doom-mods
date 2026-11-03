@@ -327,7 +327,8 @@ class UZDoomWorld(World):
                 location = UZDoomLocation(self, loc, region)
                 # Believed-to-be-unreachable locations get a generic health item.
                 if loc.unreachable:
-                    location.place_locked_item(self.create_item('Health'))
+                    self.pool.add_vanilla_item(self.wad_logic.placeholder_item())
+                    location.place_locked_item(self.create_item(self.wad_logic.placeholder_item().name()))
                 elif loc.item:
                     location.place_locked_item(self.create_item(loc.item.name()))
                 else:
