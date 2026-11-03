@@ -141,3 +141,17 @@ In addition to the doors you can open with the Book of Earth, there are a number
 of places you can use it for other effects. The only ones that actually contain
 checks are the healing crystals you can grow outside the Great Stump, and the
 secret in the Library.
+
+## MAP06: Errant Signal
+
+This map is unusual in that backtracking is impossible, so make sure you get
+everything on the first try unless you want to reset and replay the level.
+
+It's non-obvious, but the door out of the storage closet won't open until you
+have the power core, in addition to needing it to actually power up and open the
+gate to the green cave.
+
+There are three unreachable checks in this map. One is not reachable in normal
+play. The other two (a food item in the inverted dining hall, and an armour
+crystal on the battlefield I could not figure out how to reach, but I'm not
+willing to swear it's impossible.

@@ -1,0 +1,229 @@
+AP-REGION { "map": "MAP06", "region": "Portal Cave", "keys": [] }
+AP-REGION { "map": "MAP06", "region": "Portal Control Antechamber", "keys": ["map/MAP06/Portal Cave"] }
+AP-REGION { "map": "MAP06", "region": "Forest Path", "keys": ["map/MAP06/Portal Cave", "key/VineKey"] }
+AP-REGION { "map": "MAP06", "region": "Mining Outpost Entrance", "keys": ["map/MAP06/Forest Path"] }
+AP-REGION { "map": "MAP06", "region": "Mining Outpost Bathoom", "keys": ["map/MAP06/Mining Outpost Entrance"] }
+AP-REGION { "map": "MAP06", "region": "Mining Outpost Closet", "keys": ["map/MAP06/Mining Outpost Bathoom"] }
+AP-REGION { "map": "MAP06", "region": "Green Cave", "keys": ["map/MAP06/Mining Outpost Entrance", "key/InventoryPowerCore"] }
+AP-REGION { "map": "MAP06", "region": "Green Cave Secret", "keys": ["map/MAP06/Green Cave"] }
+AP-REGION { "map": "MAP06", "region": "Elevator Cave", "keys": ["map/MAP06/Green Cave"] }
+AP-REGION { "map": "MAP06", "region": "Memoryscape", "keys": ["map/MAP06/Elevator Cave"] }
+AP-REGION { "map": "MAP06", "region": "Inverted Hall", "keys": ["map/MAP06/Memoryscape"] }
+AP-REGION { "map": "MAP06", "region": "Battlefield", "keys": ["map/MAP06/Inverted Hall"] }
+AP-REGION { "map": "MAP06", "region": "Dark Caves", "keys": ["map/MAP06/Battlefield"] }
+AP-REGION { "map": "MAP06", "region": "Light Caves", "keys": ["map/MAP06/Dark Caves"] }
+AP-REGION { "map": "MAP06", "region": "Corrupt Outpost", "keys": ["map/MAP06/Light Caves"] }
+AP-REGION { "map": "MAP06", "region": "Nithriel", "keys": ["weapon/Axe/want", "map/MAP06/Corrupt Outpost", "weapon/PotionLauncherAcid/want", "weapon/Crushbow/want"] }
+AP-REGION { "map": "MAP06", "region": "Nithriel", "keys": ["weapon/Axe/want", "map/MAP06/Corrupt Outpost", "weapon/HatchetAndShield/want"] }
+AP-REGION { "map": "MAP06", "region": "Nithriel Phase 2", "keys": ["weapon/FragfireGun/want", "weapon/SpikeGun/want", "map/MAP06/Nithriel"] }
+AP-REGION { "map": "MAP06", "region": "Nithriel Phase 2", "keys": ["weapon/FireHammer/want", "map/MAP06/Nithriel"] }
+AP-REGION { "map": "MAP06", "region": "Nithriel Phase 3", "keys": ["map/MAP06/Nithriel Phase 2", "weapon/PotionLauncherAcid/want"] }
+AP-REGION { "map": "MAP06", "region": "Nithriel Phase 3", "keys": ["map/MAP06/Nithriel Phase 2", "weapon/GreatAxe/want", "weapon/ForcePike/want"] }
+AP-XOFF {}
+
+AP-XON { "lump": "GZAPIPC", "size": 0, "nick": "Player", "slot": "Player1", "seed": "61376114699675865671", "wad": "Hedon Bloodrite", "server": "" }
+AP-CHECK { "id": 1958, "name": "MAP06 - Cream Fungus [1762,1574]", "pos": ["MAP06",1762,1574,178], "region": "Portal Cave" }
+AP-CHECK { "id": 1959, "name": "MAP06 - Cream Fungus [1784,1541]", "pos": ["MAP06",1784,1541,178], "region": "Portal Cave" }
+AP-CHECK { "id": 1962, "name": "MAP06 - Cream Fungus [321,2705]", "pos": ["MAP06",321,2705,178], "region": "Portal Cave" }
+AP-CHECK { "id": 1961, "name": "MAP06 - Cream Fungus [314,2733]", "pos": ["MAP06",314,2733,178], "region": "Portal Cave" }
+AP-CHECK { "id": 1960, "name": "MAP06 - Cream Fungus [289,2674]", "pos": ["MAP06",289,2674,178], "region": "Portal Cave" }
+AP-CHECK { "id": 1957, "name": "MAP06 - Cream Fungus [1756,1504]", "pos": ["MAP06",1756,1504,178], "region": "Portal Cave" }
+AP-CHECK { "id": 2110, "name": "MAP06 - Vine Key", "pos": ["MAP06",1320,401,244], "region": "Portal Control Antechamber" }
+AP-CHECK { "id": 1964, "name": "MAP06 - Cream Fungus [4710,2427]", "pos": ["MAP06",4710,2427,226], "region": "Forest Path" }
+AP-CHECK { "id": 1965, "name": "MAP06 - Cream Fungus [4920,1755]", "pos": ["MAP06",4920,1755,210], "region": "Forest Path" }
+AP-CHECK { "id": 1963, "name": "MAP06 - Cream Fungus [4288,2575]", "pos": ["MAP06",4288,2575,226], "region": "Forest Path" }
+AP-CHECK { "id": 2067, "name": "MAP06 - Potion of Minor Healing [NW]", "pos": ["MAP06",7736,1976,229], "region": "Mining Outpost Entrance" }
+AP-CHECK { "id": 2082, "name": "MAP06 - Power Shard [6487,994]", "pos": ["MAP06",6487,994,204], "region": "Mining Outpost Bathoom" }
+AP-CHECK { "id": 2069, "name": "MAP06 - Power Core", "pos": ["MAP06",8600,1624,186], "region": "Mining Outpost Closet" }
+AP-CHECK { "id": 1966, "name": "MAP06 - Cream Fungus [8242,2287]", "pos": ["MAP06",8242,2287,56], "region": "Green Cave" }
+AP-CHECK { "id": 1967, "name": "MAP06 - Cream Fungus [8571,1958]", "pos": ["MAP06",8571,1958,-56], "region": "Green Cave" }
+AP-CHECK { "id": 1971, "name": "MAP06 - Cream Fungus [8907,2110]", "pos": ["MAP06",8907,2110,-56], "region": "Green Cave" }
+AP-CHECK { "id": 1969, "name": "MAP06 - Cream Fungus [8882,1592]", "pos": ["MAP06",8882,1592,184], "region": "Green Cave Secret" }
+AP-CHECK { "id": 1970, "name": "MAP06 - Cream Fungus [8898,1582]", "pos": ["MAP06",8898,1582,186], "region": "Green Cave Secret" }
+AP-CHECK { "id": 1968, "name": "MAP06 - Cream Fungus [8843,1559]", "pos": ["MAP06",8843,1559,194], "region": "Green Cave Secret" }
+AP-CHECK { "id": 2083, "name": "MAP06 - Power Shard [8813,1632]", "pos": ["MAP06",8813,1632,184], "region": "Green Cave Secret" }
+AP-CHECK { "id": 2084, "name": "MAP06 - Power Shard [8833,1653]", "pos": ["MAP06",8833,1653,176], "region": "Green Cave Secret" }
+Player [0]: ; not actually a secret. Green cave ledge? Nook?
+Player [0]: ; Elevator Cave is reached by going to green cave until it starts wobbling, then backtracking
+AP-CHECK { "id": 2112, "name": "MAP06 - Void Mead [12213,-7812]", "pos": ["MAP06",12213,-7812,391], "region": "Inverted Hall" }
+AP-CHECK { "id": 2114, "name": "MAP06 - Void Mead [12216,-8167]", "pos": ["MAP06",12216,-8167,391], "region": "Inverted Hall" }
+AP-CHECK { "id": 2113, "name": "MAP06 - Void Mead [12213,-8132]", "pos": ["MAP06",12213,-8132,391], "region": "Inverted Hall" }
+AP-CHECK { "id": 2116, "name": "MAP06 - Void Mead [12237,-8158]", "pos": ["MAP06",12237,-8158,391], "region": "Inverted Hall" }
+AP-CHECK { "id": 2119, "name": "MAP06 - Void Wine", "pos": ["MAP06",12224,-8542,372], "region": "Inverted Hall" }
+AP-CHECK { "id": 2115, "name": "MAP06 - Void Mead [12226,-8887]", "pos": ["MAP06",12226,-8887,391], "region": "Inverted Hall" }
+AP-CHECK { "id": 2118, "name": "MAP06 - Void Stew [12240,-8867]", "pos": ["MAP06",12240,-8867,394], "region": "Inverted Hall" }
+AP-CHECK { "id": 2111, "name": "MAP06 - Void Brandy", "pos": ["MAP06",12252,-8477,426], "region": "Inverted Hall" }
+AP-CHECK { "id": 2044, "name": "MAP06 - Potion of Healing [22588,200]", "pos": ["MAP06",22588,200,905], "region": "Battlefield" }
+AP-CHECK { "id": 2045, "name": "MAP06 - Potion of Healing [24266,-893]", "pos": ["MAP06",24266,-893,648], "region": "Battlefield" }
+AP-CHECK { "id": 2024, "name": "MAP06 - Potion of Greater Healing [24379,-2882]", "pos": ["MAP06",24379,-2882,399], "region": "Battlefield" }
+AP-CHECK { "id": 2066, "name": "MAP06 - Potion of Minor Healing [E]", "pos": ["MAP06",21952,-184,905], "region": "Battlefield" }
+AP-CHECK { "id": 2010, "name": "MAP06 - Green Crystals", "pos": ["MAP06",22054,1128,456], "region": "Battlefield" }
+AP-CHECK { "id": 1955, "name": "MAP06 - Cream Fungus [13315,-2071]", "pos": ["MAP06",13315,-2071,-40], "region": "Dark Caves" }
+AP-CHECK { "id": 1956, "name": "MAP06 - Cream Fungus [13332,-2055]", "pos": ["MAP06",13332,-2055,-40], "region": "Dark Caves" }
+AP-CHECK { "id": 2033, "name": "MAP06 - Potion of Greater Healing [7402,5388]", "pos": ["MAP06",7402,5388,256], "region": "Corrupt Outpost" }
+AP-CHECK { "id": 1935, "name": "MAP06 - Boltmag [3887,-5393]", "pos": ["MAP06",3887,-5393,399], "region": "Nithriel" }
+AP-CHECK { "id": 1937, "name": "MAP06 - Boltmag [3896,-5467]", "pos": ["MAP06",3896,-5467,399], "region": "Nithriel" }
+AP-CHECK { "id": 1973, "name": "MAP06 - Crushbow [3893,-5534]", "pos": ["MAP06",3893,-5534,399], "region": "Nithriel" }
+AP-CHECK { "id": 1936, "name": "MAP06 - Boltmag [3895,-5606]", "pos": ["MAP06",3895,-5606,399], "region": "Nithriel" }
+AP-CHECK { "id": 1934, "name": "MAP06 - Boltmag [3881,-5676]", "pos": ["MAP06",3881,-5676,399], "region": "Nithriel" }
+AP-CHECK { "id": 1930, "name": "MAP06 - Bearzerker Axe [4152,-5808]", "pos": ["MAP06",4152,-5808,399], "region": "Nithriel" }
+AP-CHECK { "id": 1925, "name": "MAP06 - Axe [4152,-5808]", "pos": ["MAP06",4152,-5808,399], "region": "Nithriel" }
+AP-CHECK { "id": 2017, "name": "MAP06 - Medium Armor Crystal [4136,-5880]", "pos": ["MAP06",4136,-5880,399], "region": "Nithriel" }
+AP-CHECK { "id": 2081, "name": "MAP06 - Power Shard [3504,-6168]", "pos": ["MAP06",3504,-6168,380], "region": "Nithriel" }
+AP-CHECK { "id": 2080, "name": "MAP06 - Power Shard [3442,-6262]", "pos": ["MAP06",3442,-6262,380], "region": "Nithriel" }
+AP-CHECK { "id": 1919, "name": "MAP06 - Amulet of Shadows [3293,-6211]", "pos": ["MAP06",3293,-6211,380], "region": "Nithriel" }
+AP-CHECK { "id": 2011, "name": "MAP06 - Hatchet and Shield", "pos": ["MAP06",3229,-6187,380], "region": "Nithriel" }
+AP-CHECK { "id": 2077, "name": "MAP06 - Power Shard [3250,-6134]", "pos": ["MAP06",3250,-6134,380], "region": "Nithriel" }
+AP-CHECK { "id": 2052, "name": "MAP06 - Potion of Healing [3408,-5632]", "pos": ["MAP06",3408,-5632,399], "region": "Nithriel" }
+AP-CHECK { "id": 1928, "name": "MAP06 - Bearzerker Axe [3304,-5472]", "pos": ["MAP06",3304,-5472,399], "region": "Nithriel" }
+AP-CHECK { "id": 1923, "name": "MAP06 - Axe [3304,-5472]", "pos": ["MAP06",3304,-5472,399], "region": "Nithriel" }
+AP-CHECK { "id": 1929, "name": "MAP06 - Bearzerker Axe [3456,-5168]", "pos": ["MAP06",3456,-5168,399], "region": "Nithriel" }
+AP-CHECK { "id": 1924, "name": "MAP06 - Axe [3456,-5168]", "pos": ["MAP06",3456,-5168,399], "region": "Nithriel" }
+AP-CHECK { "id": 2078, "name": "MAP06 - Power Shard [3328,-6320]", "pos": ["MAP06",3328,-6320,380], "region": "Nithriel" }
+AP-CHECK { "id": 2076, "name": "MAP06 - Power Shard [3162,-6342]", "pos": ["MAP06",3162,-6342,380], "region": "Nithriel" }
+AP-CHECK { "id": 2072, "name": "MAP06 - Power Shard [2914,-6358]", "pos": ["MAP06",2914,-6358,380], "region": "Nithriel" }
+AP-CHECK { "id": 2071, "name": "MAP06 - Power Shard [2856,-6264]", "pos": ["MAP06",2856,-6264,380], "region": "Nithriel" }
+AP-CHECK { "id": 2070, "name": "MAP06 - Power Shard [2848,-6160]", "pos": ["MAP06",2848,-6160,380], "region": "Nithriel" }
+AP-CHECK { "id": 2048, "name": "MAP06 - Potion of Healing [2720,-4792]", "pos": ["MAP06",2720,-4792,399], "region": "Nithriel" }
+AP-CHECK { "id": 2046, "name": "MAP06 - Potion of Healing [2616,-4960]", "pos": ["MAP06",2616,-4960,399], "region": "Nithriel" }
+AP-CHECK { "id": 1926, "name": "MAP06 - Bearzerker Axe [2560,-5056]", "pos": ["MAP06",2560,-5056,399], "region": "Nithriel" }
+AP-CHECK { "id": 1921, "name": "MAP06 - Axe [2560,-5056]", "pos": ["MAP06",2560,-5056,399], "region": "Nithriel" }
+AP-CHECK { "id": 1946, "name": "MAP06 - Box of Acid Potions [2373,-5598]", "pos": ["MAP06",2373,-5598,399], "region": "Nithriel" }
+AP-CHECK { "id": 1945, "name": "MAP06 - Box of Acid Potions [2329,-5677]", "pos": ["MAP06",2329,-5677,399], "region": "Nithriel" }
+AP-CHECK { "id": 2019, "name": "MAP06 - Potion Launcher [Acid] [2292,-5757]", "pos": ["MAP06",2292,-5757,399], "region": "Nithriel" }
+AP-CHECK { "id": 1943, "name": "MAP06 - Box of Acid Potions [2290,-5844]", "pos": ["MAP06",2290,-5844,399], "region": "Nithriel" }
+AP-CHECK { "id": 1944, "name": "MAP06 - Box of Acid Potions [2304,-5926]", "pos": ["MAP06",2304,-5926,399], "region": "Nithriel" }
+AP-CHECK { "id": 1927, "name": "MAP06 - Bearzerker Axe [2560,-6200]", "pos": ["MAP06",2560,-6200,399], "region": "Nithriel" }
+AP-CHECK { "id": 1922, "name": "MAP06 - Axe [2560,-6200]", "pos": ["MAP06",2560,-6200,399], "region": "Nithriel" }
+AP-CHECK { "id": 2013, "name": "MAP06 - Heavy Armor Crystal [SW]", "pos": ["MAP06",3000,-6248,380], "region": "Nithriel" }
+AP-CHECK { "id": 2065, "name": "MAP06 - Potion of Might", "pos": ["MAP06",3136,-6216,380], "region": "Nithriel" }
+AP-CHECK { "id": 2079, "name": "MAP06 - Power Shard [3418,-6110]", "pos": ["MAP06",3418,-6110,380], "region": "Nithriel" }
+AP-CHECK { "id": 2075, "name": "MAP06 - Power Shard [3104,-6120]", "pos": ["MAP06",3104,-6120,380], "region": "Nithriel" }
+AP-CHECK { "id": 2073, "name": "MAP06 - Power Shard [2952,-6120]", "pos": ["MAP06",2952,-6120,380], "region": "Nithriel" }
+AP-CHECK { "id": 2047, "name": "MAP06 - Potion of Healing [2664,-6128]", "pos": ["MAP06",2664,-6128,399], "region": "Nithriel" }
+AP-CHECK { "id": 2050, "name": "MAP06 - Potion of Healing [3040,-5960]", "pos": ["MAP06",3040,-5960,399], "region": "Nithriel" }
+AP-CHECK { "id": 2028, "name": "MAP06 - Potion of Greater Healing [3373,-5210]", "pos": ["MAP06",3373,-5210,399], "region": "Nithriel" }
+AP-CHECK { "id": 2051, "name": "MAP06 - Potion of Healing [3224,-5544]", "pos": ["MAP06",3224,-5544,399], "region": "Nithriel" }
+AP-CHECK { "id": 2049, "name": "MAP06 - Potion of Healing [2944,-5624]", "pos": ["MAP06",2944,-5624,399], "region": "Nithriel" }
+AP-CHECK { "id": 2094, "name": "MAP06 - Spike Mag [1920,-5032]", "pos": ["MAP06",1920,-5032,1063], "region": "Nithriel Phase 2" }
+AP-CHECK { "id": 2090, "name": "MAP06 - Spike Mag [1544,-4952]", "pos": ["MAP06",1544,-4952,1063], "region": "Nithriel Phase 2" }
+AP-CHECK { "id": 2088, "name": "MAP06 - Spike Mag [1304,-5280]", "pos": ["MAP06",1304,-5280,1063], "region": "Nithriel Phase 2" }
+AP-CHECK { "id": 2023, "name": "MAP06 - Potion of Greater Healing [1404,-5372]", "pos": ["MAP06",1404,-5372,1063], "region": "Nithriel Phase 2" }
+AP-CHECK { "id": 1918, "name": "MAP06 - Amulet of Shadows [1467,-5383]", "pos": ["MAP06",1467,-5383,1063], "region": "Nithriel Phase 2" }
+AP-CHECK { "id": 1978, "name": "MAP06 - Fire Hammer [1488,-5432]", "pos": ["MAP06",1488,-5432,1063], "region": "Nithriel Phase 2" }
+AP-CHECK { "id": 2087, "name": "MAP06 - Spike Gun [W]", "pos": ["MAP06",1426,-5438,1063], "region": "Nithriel Phase 2" }
+AP-CHECK { "id": 2089, "name": "MAP06 - Spike Mag [1379,-5758]", "pos": ["MAP06",1379,-5758,1063], "region": "Nithriel Phase 2" }
+AP-CHECK { "id": 2038, "name": "MAP06 - Potion of Healing [1392,-6288]", "pos": ["MAP06",1392,-6288,1063], "region": "Nithriel Phase 2" }
+AP-CHECK { "id": 1976, "name": "MAP06 - Elemental Ring", "pos": ["MAP06",1541,-6364,1063], "region": "Nithriel Phase 2" }
+AP-CHECK { "id": 2039, "name": "MAP06 - Potion of Healing [1464,-6392]", "pos": ["MAP06",1464,-6392,1063], "region": "Nithriel Phase 2" }
+AP-CHECK { "id": 2040, "name": "MAP06 - Potion of Healing [1552,-6504]", "pos": ["MAP06",1552,-6504,1063], "region": "Nithriel Phase 2" }
+AP-CHECK { "id": 1988, "name": "MAP06 - Fragfire Can [2616,-7248]", "pos": ["MAP06",2616,-7248,1063], "region": "Nithriel Phase 2" }
+AP-CHECK { "id": 2026, "name": "MAP06 - Potion of Greater Healing [2917,-7254]", "pos": ["MAP06",2917,-7254,1063], "region": "Nithriel Phase 2" }
+AP-CHECK { "id": 1993, "name": "MAP06 - Fragfire Can [3096,-7384]", "pos": ["MAP06",3096,-7384,1063], "region": "Nithriel Phase 2" }
+AP-CHECK { "id": 1998, "name": "MAP06 - Fragfire Can [3616,-7152]", "pos": ["MAP06",3616,-7152,1063], "region": "Nithriel Phase 2" }
+AP-CHECK { "id": 2034, "name": "MAP06 - Potion of Haste [SW]", "pos": ["MAP06",4310,-6678,1063], "region": "Nithriel Phase 2" }
+AP-CHECK { "id": 2058, "name": "MAP06 - Potion of Healing [4376,-6680]", "pos": ["MAP06",4376,-6680,1063], "region": "Nithriel Phase 2" }
+AP-CHECK { "id": 2059, "name": "MAP06 - Potion of Healing [4480,-6672]", "pos": ["MAP06",4480,-6672,1063], "region": "Nithriel Phase 2" }
+AP-CHECK { "id": 2030, "name": "MAP06 - Potion of Greater Healing [4932,-5444]", "pos": ["MAP06",4932,-5444,1063], "region": "Nithriel Phase 2" }
+AP-CHECK { "id": 2102, "name": "MAP06 - Spike Mag [5025,-5263]", "pos": ["MAP06",5025,-5263,1063], "region": "Nithriel Phase 2" }
+AP-CHECK { "id": 1920, "name": "MAP06 - Amulet of Shadows [4840,-5456]", "pos": ["MAP06",4840,-5456,1063], "region": "Nithriel Phase 2" }
+AP-CHECK { "id": 1981, "name": "MAP06 - Fire Hammer [4816,-5400]", "pos": ["MAP06",4816,-5400,1063], "region": "Nithriel Phase 2" }
+AP-CHECK { "id": 2086, "name": "MAP06 - Spike Gun [SW]", "pos": ["MAP06",4880,-5384,1063], "region": "Nithriel Phase 2" }
+AP-CHECK { "id": 2101, "name": "MAP06 - Spike Mag [4721,-4887]", "pos": ["MAP06",4721,-4887,1063], "region": "Nithriel Phase 2" }
+AP-CHECK { "id": 2053, "name": "MAP06 - Potion of Healing [3976,-4024]", "pos": ["MAP06",3976,-4024,1063], "region": "Nithriel Phase 2" }
+AP-CHECK { "id": 2085, "name": "MAP06 - Sentry Gun", "pos": ["MAP06",3948,-3910,1063], "region": "Nithriel Phase 2" }
+AP-CHECK { "id": 2055, "name": "MAP06 - Potion of Healing [4040,-3904]", "pos": ["MAP06",4040,-3904,1063], "region": "Nithriel Phase 2" }
+AP-CHECK { "id": 2054, "name": "MAP06 - Potion of Healing [4008,-3808]", "pos": ["MAP06",4008,-3808,1063], "region": "Nithriel Phase 2" }
+AP-CHECK { "id": 1995, "name": "MAP06 - Fragfire Can [3240,-3832]", "pos": ["MAP06",3240,-3832,1063], "region": "Nithriel Phase 2" }
+AP-CHECK { "id": 1990, "name": "MAP06 - Fragfire Can [2888,-3968]", "pos": ["MAP06",2888,-3968,1063], "region": "Nithriel Phase 2" }
+AP-CHECK { "id": 1986, "name": "MAP06 - Fragfire Can [2552,-4328]", "pos": ["MAP06",2552,-4328,1063], "region": "Nithriel Phase 2" }
+AP-CHECK { "id": 2043, "name": "MAP06 - Potion of Healing [1960,-4376]", "pos": ["MAP06",1960,-4376,1063], "region": "Nithriel Phase 2" }
+AP-CHECK { "id": 2042, "name": "MAP06 - Potion of Healing [1832,-4432]", "pos": ["MAP06",1832,-4432,1063], "region": "Nithriel Phase 2" }
+AP-CHECK { "id": 2068, "name": "MAP06 - Potion of Stoneskin", "pos": ["MAP06",1876,-4502,1063], "region": "Nithriel Phase 2" }
+AP-CHECK { "id": 2041, "name": "MAP06 - Potion of Healing [1704,-4568]", "pos": ["MAP06",1704,-4568,1063], "region": "Nithriel Phase 2" }
+AP-CHECK { "id": 2093, "name": "MAP06 - Spike Mag [1769,-5351]", "pos": ["MAP06",1769,-5351,1063], "region": "Nithriel Phase 2" }
+AP-CHECK { "id": 2091, "name": "MAP06 - Spike Mag [1713,-5631]", "pos": ["MAP06",1713,-5631,1063], "region": "Nithriel Phase 2" }
+AP-CHECK { "id": 2092, "name": "MAP06 - Spike Mag [1737,-6055]", "pos": ["MAP06",1737,-6055,1063], "region": "Nithriel Phase 2" }
+AP-CHECK { "id": 1987, "name": "MAP06 - Fragfire Can [2596,-6916]", "pos": ["MAP06",2596,-6916,1063], "region": "Nithriel Phase 2" }
+AP-CHECK { "id": 2014, "name": "MAP06 - Light Armor Crystal [SW]", "pos": ["MAP06",2883,-7200,1063], "region": "Nithriel Phase 2" }
+AP-CHECK { "id": 1979, "name": "MAP06 - Fire Hammer [2984,-7216]", "pos": ["MAP06",2984,-7216,1063], "region": "Nithriel Phase 2" }
+AP-CHECK { "id": 2006, "name": "MAP06 - Fragfire Gun [SW]", "pos": ["MAP06",2929,-7178,1063], "region": "Nithriel Phase 2" }
+AP-CHECK { "id": 1989, "name": "MAP06 - Fragfire Can [2804,-6964]", "pos": ["MAP06",2804,-6964,1063], "region": "Nithriel Phase 2" }
+AP-CHECK { "id": 1992, "name": "MAP06 - Fragfire Can [3076,-6980]", "pos": ["MAP06",3076,-6980,1063], "region": "Nithriel Phase 2" }
+AP-CHECK { "id": 1996, "name": "MAP06 - Fragfire Can [3364,-6924]", "pos": ["MAP06",3364,-6924,1063], "region": "Nithriel Phase 2" }
+AP-CHECK { "id": 2000, "name": "MAP06 - Fragfire Can [3660,-6788]", "pos": ["MAP06",3660,-6788,1063], "region": "Nithriel Phase 2" }
+AP-CHECK { "id": 2057, "name": "MAP06 - Potion of Healing [4288,-6784]", "pos": ["MAP06",4288,-6784,1063], "region": "Nithriel Phase 2" }
+AP-CHECK { "id": 2097, "name": "MAP06 - Spike Mag [4252,-6396]", "pos": ["MAP06",4252,-6396,1063], "region": "Nithriel Phase 2" }
+AP-CHECK { "id": 2100, "name": "MAP06 - Spike Mag [4544,-5952]", "pos": ["MAP06",4544,-5952,1063], "region": "Nithriel Phase 2" }
+AP-CHECK { "id": 2103, "name": "MAP06 - Spike Mag [5073,-5671]", "pos": ["MAP06",5073,-5671,1063], "region": "Nithriel Phase 2" }
+AP-CHECK { "id": 2099, "name": "MAP06 - Spike Mag [4508,-5436]", "pos": ["MAP06",4508,-5436,1063], "region": "Nithriel Phase 2" }
+AP-CHECK { "id": 2098, "name": "MAP06 - Spike Mag [4368,-5032]", "pos": ["MAP06",4368,-5032,1063], "region": "Nithriel Phase 2" }
+AP-CHECK { "id": 2096, "name": "MAP06 - Spike Mag [4140,-4692]", "pos": ["MAP06",4140,-4692,1063], "region": "Nithriel Phase 2" }
+AP-CHECK { "id": 2002, "name": "MAP06 - Fragfire Can [3752,-4568]", "pos": ["MAP06",3752,-4568,1063], "region": "Nithriel Phase 2" }
+AP-CHECK { "id": 2027, "name": "MAP06 - Potion of Greater Healing [3332,-4116]", "pos": ["MAP06",3332,-4116,1063], "region": "Nithriel Phase 2" }
+AP-CHECK { "id": 2015, "name": "MAP06 - Light Armor Crystal [W]", "pos": ["MAP06",3282,-4134,1063], "region": "Nithriel Phase 2" }
+AP-CHECK { "id": 1999, "name": "MAP06 - Fragfire Can [3624,-3936]", "pos": ["MAP06",3624,-3936,1063], "region": "Nithriel Phase 2" }
+AP-CHECK { "id": 2007, "name": "MAP06 - Fragfire Gun [W]", "pos": ["MAP06",3290,-4174,1063], "region": "Nithriel Phase 2" }
+AP-CHECK { "id": 1980, "name": "MAP06 - Fire Hammer [3232,-4152]", "pos": ["MAP06",3232,-4152,1063], "region": "Nithriel Phase 2" }
+AP-CHECK { "id": 1997, "name": "MAP06 - Fragfire Can [3488,-4392]", "pos": ["MAP06",3488,-4392,1063], "region": "Nithriel Phase 2" }
+AP-CHECK { "id": 1994, "name": "MAP06 - Fragfire Can [3160,-4376]", "pos": ["MAP06",3160,-4376,1063], "region": "Nithriel Phase 2" }
+AP-CHECK { "id": 1991, "name": "MAP06 - Fragfire Can [2896,-4312]", "pos": ["MAP06",2896,-4312,1063], "region": "Nithriel Phase 2" }
+AP-CHECK { "id": 2095, "name": "MAP06 - Spike Mag [2096,-4800]", "pos": ["MAP06",2096,-4800,1063], "region": "Nithriel Phase 2" }
+AP-CHECK { "id": 2074, "name": "MAP06 - Power Shard [3032,-6376]", "pos": ["MAP06",3032,-6376,380], "region": "Nithriel Phase 2" }
+AP-CHECK { "id": 2003, "name": "MAP06 - Fragfire Can [3848,-8176]", "pos": ["MAP06",3848,-8176,1360], "region": "Nithriel Phase 3" }
+AP-CHECK { "id": 1953, "name": "MAP06 - Box of Acid Potions [2824,-8080]", "pos": ["MAP06",2824,-8080,1360], "region": "Nithriel Phase 3" }
+AP-CHECK { "id": 1982, "name": "MAP06 - Force Pike [SW]", "pos": ["MAP06",2744,-7968,1360], "region": "Nithriel Phase 3" }
+AP-CHECK { "id": 2021, "name": "MAP06 - Potion Launcher [Acid] [2720,-8008]", "pos": ["MAP06",2720,-8008,1360], "region": "Nithriel Phase 3" }
+AP-CHECK { "id": 2025, "name": "MAP06 - Potion of Greater Healing [2624,-7968]", "pos": ["MAP06",2624,-7968,1360], "region": "Nithriel Phase 3" }
+AP-CHECK { "id": 1947, "name": "MAP06 - Box of Acid Potions [2520,-7992]", "pos": ["MAP06",2520,-7992,1360], "region": "Nithriel Phase 3" }
+AP-CHECK { "id": 1984, "name": "MAP06 - Fragfire Can [1936,-7984]", "pos": ["MAP06",1936,-7984,1360], "region": "Nithriel Phase 3" }
+AP-CHECK { "id": 2064, "name": "MAP06 - Potion of Healing [532,-6884]", "pos": ["MAP06",532,-6884,1360], "region": "Nithriel Phase 3" }
+AP-CHECK { "id": 2032, "name": "MAP06 - Potion of Greater Healing [524,-6772]", "pos": ["MAP06",524,-6772,1360], "region": "Nithriel Phase 3" }
+AP-CHECK { "id": 2056, "name": "MAP06 - Potion of Healing [428,-6692]", "pos": ["MAP06",428,-6692,1360], "region": "Nithriel Phase 3" }
+AP-CHECK { "id": 1942, "name": "MAP06 - Boltmag [96,-6112]", "pos": ["MAP06",96,-6112,1360], "region": "Nithriel Phase 3" }
+AP-CHECK { "id": 2016, "name": "MAP06 - Medium Armor Crystal [160,-6032]", "pos": ["MAP06",160,-6032,1360], "region": "Nithriel Phase 3" }
+AP-CHECK { "id": 2009, "name": "MAP06 - Great Axe [W]", "pos": ["MAP06",248,-5984,1360], "region": "Nithriel Phase 3" }
+AP-CHECK { "id": 1972, "name": "MAP06 - Crushbow [232,-6008]", "pos": ["MAP06",232,-6008,1360], "region": "Nithriel Phase 3" }
+AP-CHECK { "id": 1931, "name": "MAP06 - Boltmag [160,-5824]", "pos": ["MAP06",160,-5824,1360], "region": "Nithriel Phase 3" }
+AP-CHECK { "id": 1932, "name": "MAP06 - Boltmag [297,-5879]", "pos": ["MAP06",297,-5879,1360], "region": "Nithriel Phase 3" }
+AP-CHECK { "id": 1933, "name": "MAP06 - Boltmag [328,-6048]", "pos": ["MAP06",328,-6048,1360], "region": "Nithriel Phase 3" }
+AP-CHECK { "id": 2104, "name": "MAP06 - Spike Mag [536,-5304]", "pos": ["MAP06",536,-5304,1360], "region": "Nithriel Phase 3" }
+AP-CHECK { "id": 2108, "name": "MAP06 - Spike Mag [704,-4616]", "pos": ["MAP06",704,-4616,1360], "region": "Nithriel Phase 3" }
+AP-CHECK { "id": 2109, "name": "MAP06 - Spike Mag [896,-4024]", "pos": ["MAP06",896,-4024,1360], "region": "Nithriel Phase 3" }
+AP-CHECK { "id": 2036, "name": "MAP06 - Potion of Healing [1132,-3772]", "pos": ["MAP06",1132,-3772,1360], "region": "Nithriel Phase 3" }
+AP-CHECK { "id": 2022, "name": "MAP06 - Potion of Greater Healing [1246,-3754]", "pos": ["MAP06",1246,-3754,1360], "region": "Nithriel Phase 3" }
+AP-CHECK { "id": 2037, "name": "MAP06 - Potion of Healing [1324,-3668]", "pos": ["MAP06",1324,-3668,1360], "region": "Nithriel Phase 3" }
+AP-CHECK { "id": 1985, "name": "MAP06 - Fragfire Can [2048,-3208]", "pos": ["MAP06",2048,-3208,1360], "region": "Nithriel Phase 3" }
+AP-CHECK { "id": 1948, "name": "MAP06 - Box of Acid Potions [2521,-3071]", "pos": ["MAP06",2521,-3071,1360], "region": "Nithriel Phase 3" }
+AP-CHECK { "id": 1949, "name": "MAP06 - Box of Acid Potions [2585,-2967]", "pos": ["MAP06",2585,-2967,1360], "region": "Nithriel Phase 3" }
+AP-CHECK { "id": 2020, "name": "MAP06 - Potion Launcher [Acid] [2648,-3096]", "pos": ["MAP06",2648,-3096,1360], "region": "Nithriel Phase 3" }
+AP-CHECK { "id": 1983, "name": "MAP06 - Force Pike [W]", "pos": ["MAP06",2672,-3120,1360], "region": "Nithriel Phase 3" }
+AP-CHECK { "id": 1951, "name": "MAP06 - Box of Acid Potions [2720,-3192]", "pos": ["MAP06",2720,-3192,1360], "region": "Nithriel Phase 3" }
+AP-CHECK { "id": 1952, "name": "MAP06 - Box of Acid Potions [2728,-3008]", "pos": ["MAP06",2728,-3008,1360], "region": "Nithriel Phase 3" }
+AP-CHECK { "id": 2035, "name": "MAP06 - Potion of Haste [W]", "pos": ["MAP06",2580,-3084,1360], "region": "Nithriel Phase 3" }
+AP-CHECK { "id": 2001, "name": "MAP06 - Fragfire Can [3672,-3040]", "pos": ["MAP06",3672,-3040,1360], "region": "Nithriel Phase 3" }
+AP-CHECK { "id": 2060, "name": "MAP06 - Potion of Healing [4489,-3246]", "pos": ["MAP06",4489,-3246,1360], "region": "Nithriel Phase 3" }
+AP-CHECK { "id": 2029, "name": "MAP06 - Potion of Greater Healing [4558,-3332]", "pos": ["MAP06",4558,-3332,1360], "region": "Nithriel Phase 3" }
+AP-CHECK { "id": 2061, "name": "MAP06 - Potion of Healing [4655,-3321]", "pos": ["MAP06",4655,-3321,1360], "region": "Nithriel Phase 3" }
+AP-CHECK { "id": 2004, "name": "MAP06 - Fragfire Can [5344,-3456]", "pos": ["MAP06",5344,-3456,1360], "region": "Nithriel Phase 3" }
+AP-CHECK { "id": 2105, "name": "MAP06 - Spike Mag [5672,-4080]", "pos": ["MAP06",5672,-4080,1360], "region": "Nithriel Phase 3" }
+AP-CHECK { "id": 2106, "name": "MAP06 - Spike Mag [5784,-4592]", "pos": ["MAP06",5784,-4592,1360], "region": "Nithriel Phase 3" }
+AP-CHECK { "id": 2107, "name": "MAP06 - Spike Mag [6160,-5496]", "pos": ["MAP06",6160,-5496,1360], "region": "Nithriel Phase 3" }
+AP-CHECK { "id": 1939, "name": "MAP06 - Boltmag [5816,-5696]", "pos": ["MAP06",5816,-5696,1360], "region": "Nithriel Phase 3" }
+AP-CHECK { "id": 2008, "name": "MAP06 - Great Axe [SW]", "pos": ["MAP06",5888,-5848,1360], "region": "Nithriel Phase 3" }
+AP-CHECK { "id": 1974, "name": "MAP06 - Crushbow [5912,-5872]", "pos": ["MAP06",5912,-5872,1360], "region": "Nithriel Phase 3" }
+AP-CHECK { "id": 1941, "name": "MAP06 - Boltmag [5952,-5976]", "pos": ["MAP06",5952,-5976,1360], "region": "Nithriel Phase 3" }
+AP-CHECK { "id": 1940, "name": "MAP06 - Boltmag [5865,-6079]", "pos": ["MAP06",5865,-6079,1360], "region": "Nithriel Phase 3" }
+AP-CHECK { "id": 1938, "name": "MAP06 - Boltmag [5768,-6016]", "pos": ["MAP06",5768,-6016,1360], "region": "Nithriel Phase 3" }
+AP-CHECK { "id": 2018, "name": "MAP06 - Medium Armor Crystal [5840,-5928]", "pos": ["MAP06",5840,-5928,1360], "region": "Nithriel Phase 3" }
+AP-CHECK { "id": 2005, "name": "MAP06 - Fragfire Can [5512,-7216]", "pos": ["MAP06",5512,-7216,1360], "region": "Nithriel Phase 3" }
+AP-CHECK { "id": 2063, "name": "MAP06 - Potion of Healing [5284,-7596]", "pos": ["MAP06",5284,-7596,1360], "region": "Nithriel Phase 3" }
+AP-CHECK { "id": 2031, "name": "MAP06 - Potion of Greater Healing [5174,-7594]", "pos": ["MAP06",5174,-7594,1360], "region": "Nithriel Phase 3" }
+AP-CHECK { "id": 2062, "name": "MAP06 - Potion of Healing [5140,-7692]", "pos": ["MAP06",5140,-7692,1360], "region": "Nithriel Phase 3" }
+AP-CHECK { "id": 1954, "name": "MAP06 - Box of Acid Potions [2840,-7880]", "pos": ["MAP06",2840,-7880,1360], "region": "Nithriel Phase 3" }
+AP-CHECK { "id": 1950, "name": "MAP06 - Box of Acid Potions [2617,-8167]", "pos": ["MAP06",2617,-8167,1360], "region": "Nithriel Phase 3" }
+AP-CHECK { "id": 1977, "name": "MAP06 - Exit", "pos": ["MAP06","exit"], "region": "Nithriel Phase 3" }
+
+AP-CHECK { "id": 1975, "name": "MAP06 - Earth Key", "pos": ["MAP06",1772,276,218], "unreachable": true }
+AP-CHECK { "id": 2012, "name": "MAP06 - Heavy Armor Crystal [E]", "pos": ["MAP06",23535,127,1200], "unreachable": true }
+AP-CHECK { "id": 2117, "name": "MAP06 - Void Stew [12233,-7853]", "pos": ["MAP06",12233,-7853,394], "unreachable": true }
