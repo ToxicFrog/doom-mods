@@ -1,0 +1,321 @@
+AP-REGION { "map": "MAP07", "region": "Arrival", "keys": [] }
+AP-REGION { "map": "MAP07", "region": "Arrival SW Ledge Cave", "keys": ["map/MAP07/Arrival"] }
+AP-REGION { "map": "MAP07", "region": "LARP Cheese Cave", "keys": ["flag/secret", "map/MAP07/Arrival"] }
+AP-REGION { "map": "MAP07", "region": "Foot of the Stairs", "keys": ["map/MAP07/Arrival"] }
+AP-REGION { "map": "MAP07", "region": "Sealed Gate", "keys": ["map/MAP07/Foot of the Stairs"] }
+
+; The sector from the top of the elevator to blast door 5
+; contains the mess hall and security room, and via the mess hall ductwork, the barracks
+AP-REGION { "map": "MAP07", "region": "Sector 6-5", "keys": ["weapon/FragfireGun/want", "weapon/Axe/want", "weapon/SpikeGun/want", "map/MAP07/Sealed Gate"] }
+AP-REGION { "map": "MAP07", "region": "Mess Hall", "keys": ["map/MAP07/Sector 6-5"] }
+AP-REGION { "map": "MAP07", "region": "Mess Hall Bathroom", "keys": ["map/MAP07/Mess Hall"] }
+AP-REGION { "map": "MAP07", "region": "Mess Hall Ductwork", "keys": ["map/MAP07/Mess Hall"] }
+AP-REGION { "map": "MAP07", "region": "N Security", "keys": ["map/MAP07/Mess Hall Ductwork"] }
+AP-REGION { "map": "MAP07", "region": "Barracks Bathroom", "keys": ["map/MAP07/Mess Hall Ductwork"] }
+AP-REGION { "map": "MAP07", "region": "Barracks", "keys": ["map/MAP07/Barracks Bathroom"] }
+
+; From blast door 5 to blast door 4
+; Includes the big pile of crates, lets you get into the mess hall pantry from behind
+; Connects to the barracks lounge and south forest via the entrance hall, but those
+; are both initially locked
+AP-REGION { "map": "MAP07", "region": "Sector 5-4", "keys": ["map/MAP07/N Security"] }
+AP-REGION { "map": "MAP07", "region": "Crate Pile", "keys": ["map/MAP07/Sector 5-4"] }
+AP-REGION { "map": "MAP07", "region": "Pantry", "keys": ["map/MAP07/Crate Pile"] }
+AP-REGION { "map": "MAP07", "region": "Pantry Secret", "keys": ["flag/secret", "map/MAP07/Pantry"] }
+AP-REGION { "map": "MAP07", "region": "Pantry Secret Secret", "keys": ["flag/secret", "map/MAP07/Pantry Secret"] }
+AP-REGION { "map": "MAP07", "region": "Entrance Hall", "keys": ["map/MAP07/Pantry Secret Secret"] }
+AP-REGION { "map": "MAP07", "region": "Armoury", "keys": ["map/MAP07/Entrance Hall"] }
+AP-REGION { "map": "MAP07", "region": "Pump Room", "keys": ["map/MAP07/Armoury"] }
+AP-REGION { "map": "MAP07", "region": "Barracks Lounge", "keys": ["key/EarthKey", "map/MAP07/Entrance Hall"] }
+
+; From blast door 4 to blast door 3
+; Connects to the east forest via door 3 (and, once you have the shovel, via a tunnel
+; from the archives)
+AP-REGION { "map": "MAP07", "region": "Sector 4-3", "keys": ["map/MAP07/Armoury"] }
+AP-REGION { "map": "MAP07", "region": "Archives", "keys": ["map/MAP07/Sector 4-3"] }
+
+; East forest
+; Top of the hill has the switches for the four ward projectors
+; Towers can only be accessed via the archives tunnel once you have the shovel
+; SE building gives you access to sector 2-1 via a tunnel
+AP-REGION { "map": "MAP07", "region": "E Forest", "keys": ["map/MAP07/Archives", "map/MAP07/Sector 4-3"] }
+AP-REGION { "map": "MAP07", "region": "E Forest Hilltop", "keys": ["map/MAP07/E Forest"] }
+AP-REGION { "map": "MAP07", "region": "(ward pillars raised)", "keys": ["map/MAP07/E Forest Hilltop"] }
+AP-REGION { "map": "MAP07", "region": "E Forest SE Building", "keys": ["map/MAP07/E Forest"] }
+AP-REGION { "map": "MAP07", "region": "E Forest SE Basement", "keys": ["map/MAP07/E Forest SE Building"] }
+AP-REGION { "map": "MAP07", "region": "E Forest Upper Ledges", "keys": ["key/InventoryShovel", "map/MAP07/Archives"] }
+AP-REGION { "map": "MAP07", "region": "Tower Catwalks", "keys": ["map/MAP07/E Forest Upper Ledges"] }
+AP-REGION { "map": "MAP07", "region": "N Tower", "keys": ["map/MAP07/Tower Catwalks"] }
+AP-REGION { "map": "MAP07", "region": "S Tower", "keys": ["map/MAP07/Tower Catwalks"] }
+
+; Southern outpost.
+AP-REGION { "map": "MAP07", "region": "S Closet", "keys": ["map/MAP07/E Forest SE Basement"] }
+AP-REGION { "map": "MAP07", "region": "Sector 2-1", "keys": ["map/MAP07/S Closet"] }
+AP-REGION { "map": "MAP07", "region": "S Storage", "keys": ["map/MAP07/Sector 2-1"] }
+AP-REGION { "map": "MAP07", "region": "S Security", "keys": ["map/MAP07/Sector 2-1"] }
+AP-REGION { "map": "MAP07", "region": "Ward Control", "keys": ["map/MAP07/Sector 2-1"] }
+AP-REGION { "map": "MAP07", "region": "(e power online)", "keys": ["key/EarthKey", "map/MAP07/Ward Control"] }
+AP-REGION { "map": "MAP07", "region": "(w power online)", "keys": ["map/MAP07/Ward Control", "key/CrystalKey"] }
+AP-REGION { "map": "MAP07", "region": "(ward online)", "keys": ["map/MAP07/(e power online)", "map/MAP07/(w power online)", "map/MAP07/(ward pillars raised)"] }
+
+; South forest. Reachable via barracks lounge by breaking the window, but also
+; without any keys just by exiting sector 2-1 to the west.
+AP-REGION { "map": "MAP07", "region": "S Forest", "keys": ["map/MAP07/Sector 2-1"] }
+AP-REGION { "map": "MAP07", "region": "S Forest Ledges", "keys": ["map/MAP07/Barracks Lounge"] }
+AP-REGION { "map": "MAP07", "region": "Mountain Pass", "keys": ["map/MAP07/(ward online)"] }
+
+AP-XON { "lump": "GZAPIPC", "size": 0, "nick": "Player", "slot": "Player1", "seed": "61376114699675865671", "wad": "Hedon Bloodrite", "server": "" }
+AP-CHECK { "id": 2185, "name": "MAP07 - Cream Fungus [-14316,5816]", "pos": ["MAP07",-14316,5816,0], "region": "Arrival" }
+AP-CHECK { "id": 2184, "name": "MAP07 - Cream Fungus [-14288,5784]", "pos": ["MAP07",-14288,5784,0], "region": "Arrival" }
+AP-CHECK { "id": 2186, "name": "MAP07 - Cream Fungus [-14328,5792]", "pos": ["MAP07",-14328,5792,0], "region": "Arrival" }
+AP-CHECK { "id": 2181, "name": "MAP07 - Cream Fungus [-14024,9487]", "pos": ["MAP07",-14024,9487,80], "region": "Arrival" }
+AP-CHECK { "id": 2182, "name": "MAP07 - Cream Fungus [-14047,9451]", "pos": ["MAP07",-14047,9451,80], "region": "Arrival" }
+AP-CHECK { "id": 2183, "name": "MAP07 - Cream Fungus [-14161,8895]", "pos": ["MAP07",-14161,8895,256], "region": "Arrival" }
+AP-CHECK { "id": 2291, "name": "MAP07 - Power Shard [-13785,6627]", "pos": ["MAP07",-13785,6627,128], "region": "Arrival" }
+AP-CHECK { "id": 2290, "name": "MAP07 - Power Shard [-13597,6686]", "pos": ["MAP07",-13597,6686,128], "region": "Arrival" }
+AP-CHECK { "id": 2179, "name": "MAP07 - Cream Fungus [-13750,6490]", "pos": ["MAP07",-13750,6490,128], "region": "Arrival" }
+AP-CHECK { "id": 2180, "name": "MAP07 - Cream Fungus [-13762,6477]", "pos": ["MAP07",-13762,6477,128], "region": "Arrival" }
+AP-CHECK { "id": 2245, "name": "MAP07 - Jug of Wine", "pos": ["MAP07",-16232,5056,416], "region": "Arrival SW Ledge Cave" }
+AP-CHECK { "id": 2266, "name": "MAP07 - Potion of Haste [NW]", "pos": ["MAP07",-16757,4977,440], "region": "Arrival SW Ledge Cave" }
+AP-CHECK { "id": 2236, "name": "MAP07 - Grapes", "pos": ["MAP07",-16757,5090,431], "region": "Arrival SW Ledge Cave" }
+AP-CHECK { "id": 2120, "name": "MAP07 - Apple", "pos": ["MAP07",-16764,5114,431], "region": "Arrival SW Ledge Cave" }
+AP-CHECK { "id": 2144, "name": "MAP07 - Box of Acid Potions [-16768,5289]", "pos": ["MAP07",-16768,5289,416], "region": "Arrival SW Ledge Cave" }
+AP-CHECK { "id": 2143, "name": "MAP07 - Box of Acid Potions [-16723,5325]", "pos": ["MAP07",-16723,5325,416], "region": "Arrival SW Ledge Cave" }
+AP-CHECK { "id": 2314, "name": "MAP07 - SmokedHam", "pos": ["MAP07",-16643,5393,450], "region": "Arrival SW Ledge Cave" }
+AP-CHECK { "id": 2168, "name": "MAP07 - Cheese [-17519,7543]", "pos": ["MAP07",-17519,7543,396], "region": "LARP Cheese Cave" }
+AP-CHECK { "id": 2167, "name": "MAP07 - Cheese [-17508,7540]", "pos": ["MAP07",-17508,7540,396], "region": "LARP Cheese Cave" }
+AP-CHECK { "id": 2165, "name": "MAP07 - Cheese [-17496,7543]", "pos": ["MAP07",-17496,7543,396], "region": "LARP Cheese Cave" }
+AP-CHECK { "id": 2163, "name": "MAP07 - Cheese [-17485,7540]", "pos": ["MAP07",-17485,7540,396], "region": "LARP Cheese Cave" }
+AP-CHECK { "id": 2169, "name": "MAP07 - Cheese [-17521,7528]", "pos": ["MAP07",-17521,7528,396], "region": "LARP Cheese Cave" }
+AP-CHECK { "id": 2166, "name": "MAP07 - Cheese [-17507,7527]", "pos": ["MAP07",-17507,7527,396], "region": "LARP Cheese Cave" }
+AP-CHECK { "id": 2164, "name": "MAP07 - Cheese [-17488,7528]", "pos": ["MAP07",-17488,7528,396], "region": "LARP Cheese Cave" }
+AP-CHECK { "id": 2160, "name": "MAP07 - Cheese [-17468,7529]", "pos": ["MAP07",-17468,7529,396], "region": "LARP Cheese Cave" }
+AP-CHECK { "id": 2162, "name": "MAP07 - Cheese [-17478,7534]", "pos": ["MAP07",-17478,7534,396], "region": "LARP Cheese Cave" }
+AP-CHECK { "id": 2161, "name": "MAP07 - Cheese [-17475,7544]", "pos": ["MAP07",-17475,7544,396], "region": "LARP Cheese Cave" }
+AP-CHECK { "id": 2334, "name": "MAP07 - Spike Mag [-12547,8715]", "pos": ["MAP07",-12547,8715,396], "region": "LARP Cheese Cave" }
+AP-CHECK { "id": 2225, "name": "MAP07 - Fixer's Goggles", "pos": ["MAP07",-12548,8732,396], "region": "LARP Cheese Cave" }
+AP-CHECK { "id": 2348, "name": "MAP07 - Vial of Healing [-12548,8746]", "pos": ["MAP07",-12548,8746,396], "region": "LARP Cheese Cave" }
+AP-CHECK { "id": 2347, "name": "MAP07 - Vial of Healing [-12544,8757]", "pos": ["MAP07",-12544,8757,396], "region": "LARP Cheese Cave" }
+AP-CHECK { "id": 2208, "name": "MAP07 - Cream Fungus [-7756,9247]", "pos": ["MAP07",-7756,9247,0], "region": "Foot of the Stairs" }
+AP-CHECK { "id": 2209, "name": "MAP07 - Cream Fungus [-7776,9299]", "pos": ["MAP07",-7776,9299,0], "region": "Foot of the Stairs" }
+AP-CHECK { "id": 2207, "name": "MAP07 - Cream Fungus [-7049,10069]", "pos": ["MAP07",-7049,10069,112], "region": "Foot of the Stairs" }
+AP-CHECK { "id": 2206, "name": "MAP07 - Cream Fungus [-7004,10066]", "pos": ["MAP07",-7004,10066,112], "region": "Foot of the Stairs" }
+AP-CHECK { "id": 2216, "name": "MAP07 - Crushbow [-4330,7779]", "pos": ["MAP07",-4330,7779,367], "region": "Sealed Gate" }
+AP-CHECK { "id": 2135, "name": "MAP07 - Boltmag [-4298,7826]", "pos": ["MAP07",-4298,7826,367], "region": "Sealed Gate" }
+AP-CHECK { "id": 2234, "name": "MAP07 - Fragfire Gun [-7704,4196]", "pos": ["MAP07",-7704,4196,1424], "region": "Sector 6-5" }
+AP-CHECK { "id": 2269, "name": "MAP07 - Potion of Healing [-7790,4153]", "pos": ["MAP07",-7790,4153,1424], "region": "Sector 6-5" }
+AP-CHECK { "id": 2270, "name": "MAP07 - Potion of Healing [-7892,4195]", "pos": ["MAP07",-7892,4195,1432], "region": "Sector 6-5" }
+AP-CHECK { "id": 2328, "name": "MAP07 - Spike Gun [-7584,3684]", "pos": ["MAP07",-7584,3684,1432], "region": "Sector 6-5" }
+AP-CHECK { "id": 2281, "name": "MAP07 - Potion of Minor Healing [-7924,2524]", "pos": ["MAP07",-7924,2524,1424], "region": "Sector 6-5" }
+AP-CHECK { "id": 2327, "name": "MAP07 - Spike Gun [-5444,2586]", "pos": ["MAP07",-5444,2586,1424], "region": "Sector 6-5" }
+AP-CHECK { "id": 2125, "name": "MAP07 - Axe [-5432,1821]", "pos": ["MAP07",-5432,1821,1424], "region": "Sector 6-5" }
+AP-CHECK { "id": 2224, "name": "MAP07 - Fire Hammer", "pos": ["MAP07",-5431,1820,1424], "region": "Sector 6-5" }
+AP-CHECK { "id": 2217, "name": "MAP07 - Crushbow [-5308,1696]", "pos": ["MAP07",-5308,1696,1424], "region": "Sector 6-5" }
+AP-CHECK { "id": 2280, "name": "MAP07 - Potion of Minor Healing [-5747,2243]", "pos": ["MAP07",-5747,2243,1432], "region": "Sector 6-5" }
+AP-CHECK { "id": 2340, "name": "MAP07 - Stew", "pos": ["MAP07",-5863,1507,1456], "region": "Mess Hall" }
+AP-CHECK { "id": 2297, "name": "MAP07 - Power Shard [-6025,1641]", "pos": ["MAP07",-6025,1641,1426], "region": "Mess Hall" }
+AP-CHECK { "id": 2296, "name": "MAP07 - Power Shard [-5942,1640]", "pos": ["MAP07",-5942,1640,1426], "region": "Mess Hall" }
+AP-CHECK { "id": 2308, "name": "MAP07 - Salted Meat", "pos": ["MAP07",-5922,986,1448], "region": "Mess Hall" }
+AP-CHECK { "id": 2127, "name": "MAP07 - Baked Potato", "pos": ["MAP07",-5945,986,1448], "region": "Mess Hall" }
+AP-CHECK { "id": 2356, "name": "MAP07 - Vial of Healing [-5206,1264]", "pos": ["MAP07",-5206,1264,1464], "region": "Mess Hall" }
+AP-CHECK { "id": 2176, "name": "MAP07 - Cider [-5209,1251]", "pos": ["MAP07",-5209,1251,1464], "region": "Mess Hall" }
+AP-CHECK { "id": 2175, "name": "MAP07 - Cider [-5182,1565]", "pos": ["MAP07",-5182,1565,1424], "region": "Mess Hall" }
+AP-CHECK { "id": 2260, "name": "MAP07 - Polenta", "pos": ["MAP07",-5218,1281,1562], "region": "Mess Hall" }
+AP-CHECK { "id": 2259, "name": "MAP07 - Plum Brandy [-5198,1300]", "pos": ["MAP07",-5198,1300,1562], "region": "Mess Hall" }
+AP-CHECK { "id": 2358, "name": "MAP07 - Vial of Healing [-5636,1637]", "pos": ["MAP07",-5636,1637,1424], "region": "Mess Hall Bathroom" }
+AP-CHECK { "id": 2300, "name": "MAP07 - Power Shard [-6633,1121]", "pos": ["MAP07",-6633,1121,1528], "region": "Mess Hall Ductwork" }
+AP-CHECK { "id": 2298, "name": "MAP07 - Power Shard [-6613,1126]", "pos": ["MAP07",-6613,1126,1528], "region": "Mess Hall Ductwork" }
+AP-CHECK { "id": 2299, "name": "MAP07 - Power Shard [-6628,1136]", "pos": ["MAP07",-6628,1136,1528], "region": "Mess Hall Ductwork" }
+AP-CHECK { "id": 2341, "name": "MAP07 - Time Shard [Center]", "pos": ["MAP07",-6752,1635,1566], "region": "Mess Hall Ductwork" }
+Player [0]: ; the small room facing the elevator that you enter via the ducts
+AP-CHECK { "id": 2250, "name": "MAP07 - Medium Armor Crystal [-7575,1837]", "pos": ["MAP07",-7575,1837,1486], "region": "N Security" }
+AP-CHECK { "id": 2150, "name": "MAP07 - Box of Acid Potions [-7572,1779]", "pos": ["MAP07",-7572,1779,1485], "region": "N Security" }
+AP-CHECK { "id": 2242, "name": "MAP07 - Half-Empty Fragfire Can [-7576,1656]", "pos": ["MAP07",-7576,1656,1517], "region": "N Security" }
+Player [0]: ; needs you to turn on the power in the mess hall, then push the button in the security room
+AP-CHECK { "id": 2359, "name": "MAP07 - Vial of Healing [-6116,488]", "pos": ["MAP07",-6116,488,1545], "region": "Barracks Bathroom" }
+AP-CHECK { "id": 2338, "name": "MAP07 - Spike Mag [-5439,362]", "pos": ["MAP07",-5439,362,1502], "region": "Barracks" }
+AP-CHECK { "id": 2337, "name": "MAP07 - Spike Mag [-5419,362]", "pos": ["MAP07",-5419,362,1502], "region": "Barracks" }
+AP-CHECK { "id": 2136, "name": "MAP07 - Boltmag [-5516,138]", "pos": ["MAP07",-5516,138,1522], "region": "Barracks" }
+AP-CHECK { "id": 2357, "name": "MAP07 - Vial of Healing [-5404,475]", "pos": ["MAP07",-5404,475,1586], "region": "Barracks" }
+AP-CHECK { "id": 2268, "name": "MAP07 - Potion of Healing [-5231,206]", "pos": ["MAP07",-5231,206,1502], "region": "Barracks" }
+AP-CHECK { "id": 2241, "name": "MAP07 - Half-Empty Fragfire Can [-4966,121]", "pos": ["MAP07",-4966,121,1536], "region": "Barracks" }
+Player [0]: ; should rename main hall sector 06 or something
+Player [0]: ; or sector 6-5 since it's between those doors
+AP-CHECK { "id": 2278, "name": "MAP07 - Potion of Minor Healing [-3493,1937]", "pos": ["MAP07",-3493,1937,1424], "region": "Sector 5-4" }
+AP-CHECK { "id": 2130, "name": "MAP07 - Bearzerker Axe [-3443,1866]", "pos": ["MAP07",-3443,1866,1424], "region": "Sector 5-4" }
+AP-CHECK { "id": 2123, "name": "MAP07 - Axe [-3443,1866]", "pos": ["MAP07",-3443,1866,1424], "region": "Sector 5-4" }
+AP-CHECK { "id": 2147, "name": "MAP07 - Box of Acid Potions [-4561,1378]", "pos": ["MAP07",-4561,1378,1432], "region": "Crate Pile" }
+AP-CHECK { "id": 2249, "name": "MAP07 - Medium Armor Crystal [-4610,921]", "pos": ["MAP07",-4610,921,1424], "region": "Crate Pile" }
+AP-CHECK { "id": 2324, "name": "MAP07 - Spike Bundle [-4199,742]", "pos": ["MAP07",-4199,742,1437], "region": "Crate Pile" }
+AP-CHECK { "id": 2323, "name": "MAP07 - Spike Bundle [-4183,742]", "pos": ["MAP07",-4183,742,1437], "region": "Crate Pile" }
+AP-CHECK { "id": 2322, "name": "MAP07 - Spike Bundle [-4166,742]", "pos": ["MAP07",-4166,742,1437], "region": "Crate Pile" }
+AP-CHECK { "id": 2321, "name": "MAP07 - Spike Bundle [-4111,744]", "pos": ["MAP07",-4111,744,1437], "region": "Crate Pile" }
+AP-CHECK { "id": 2320, "name": "MAP07 - Spike Bundle [-4095,744]", "pos": ["MAP07",-4095,744,1437], "region": "Crate Pile" }
+AP-CHECK { "id": 2319, "name": "MAP07 - Spike Bundle [-4078,744]", "pos": ["MAP07",-4078,744,1437], "region": "Crate Pile" }
+AP-CHECK { "id": 2349, "name": "MAP07 - Vial of Healing [-3824,876]", "pos": ["MAP07",-3824,876,1552], "region": "Crate Pile" }
+AP-CHECK { "id": 2350, "name": "MAP07 - Vial of Healing [-3848,872]", "pos": ["MAP07",-3848,872,1552], "region": "Crate Pile" }
+AP-CHECK { "id": 2239, "name": "MAP07 - Half-Empty Fragfire Can [-4316,836]", "pos": ["MAP07",-4316,836,1552], "region": "Crate Pile" }
+AP-CHECK { "id": 2240, "name": "MAP07 - Half-Empty Fragfire Can [-4568,1253]", "pos": ["MAP07",-4568,1253,1424], "region": "Pantry" }
+AP-CHECK { "id": 2263, "name": "MAP07 - Potion of Greater Healing [Center]", "pos": ["MAP07",-4629,1317,1432], "region": "Pantry" }
+AP-CHECK { "id": 2156, "name": "MAP07 - Bread [-4748,996]", "pos": ["MAP07",-4748,996,1469], "region": "Pantry" }
+AP-CHECK { "id": 2157, "name": "MAP07 - Bread [-4780,992]", "pos": ["MAP07",-4780,992,1469], "region": "Pantry" }
+AP-CHECK { "id": 2170, "name": "MAP07 - Cheese [-4872,996]", "pos": ["MAP07",-4872,996,1469], "region": "Pantry" }
+AP-CHECK { "id": 2171, "name": "MAP07 - Cheese [-4896,992]", "pos": ["MAP07",-4896,992,1469], "region": "Pantry" }
+AP-CHECK { "id": 2172, "name": "MAP07 - Cheese [-4920,996]", "pos": ["MAP07",-4920,996,1469], "region": "Pantry" }
+AP-CHECK { "id": 2246, "name": "MAP07 - Leek [-4953,991]", "pos": ["MAP07",-4953,991,1469], "region": "Pantry" }
+AP-CHECK { "id": 2247, "name": "MAP07 - Leek [-4960,992]", "pos": ["MAP07",-4960,992,1469], "region": "Pantry" }
+AP-CHECK { "id": 2343, "name": "MAP07 - Tomato [-4980,996]", "pos": ["MAP07",-4980,996,1469], "region": "Pantry" }
+AP-CHECK { "id": 2344, "name": "MAP07 - Tomato [-4996,996]", "pos": ["MAP07",-4996,996,1469], "region": "Pantry" }
+AP-CHECK { "id": 2174, "name": "MAP07 - Cider [-4764,996]", "pos": ["MAP07",-4764,996,1501], "region": "Pantry" }
+Player [0]: ; this isn't actually a secret
+Player [0]: ; however the pantry secret is
+AP-CHECK { "id": 2355, "name": "MAP07 - Vial of Healing [-4946,1320]", "pos": ["MAP07",-4946,1320,1424], "region": "Pantry Secret" }
+AP-CHECK { "id": 2354, "name": "MAP07 - Vial of Healing [-4920,1322]", "pos": ["MAP07",-4920,1322,1424], "region": "Pantry Secret" }
+AP-CHECK { "id": 2258, "name": "MAP07 - Plum Brandy [-4965,1309]", "pos": ["MAP07",-4965,1309,1424], "region": "Pantry Secret" }
+AP-CHECK { "id": 2256, "name": "MAP07 - Plum Brandy [-4964,1336]", "pos": ["MAP07",-4964,1336,1424], "region": "Pantry Secret" }
+AP-CHECK { "id": 2309, "name": "MAP07 - Secret 1865", "pos": ["MAP07","secret","sector",1865], "region": "Pantry Secret" }
+AP-CHECK { "id": 2257, "name": "MAP07 - Plum Brandy [-4964,1364]", "pos": ["MAP07",-4964,1364,1424], "region": "Pantry Secret" }
+AP-CHECK { "id": 2255, "name": "MAP07 - Plum Brandy [-4948,1360]", "pos": ["MAP07",-4948,1360,1424], "region": "Pantry Secret" }
+AP-CHECK { "id": 2254, "name": "MAP07 - Plum Brandy [-4916,1364]", "pos": ["MAP07",-4916,1364,1424], "region": "Pantry Secret" }
+AP-CHECK { "id": 2253, "name": "MAP07 - Plum Brandy [-4902,1359]", "pos": ["MAP07",-4902,1359,1424], "region": "Pantry Secret" }
+AP-CHECK { "id": 2252, "name": "MAP07 - Plum Brandy [-4900,1340]", "pos": ["MAP07",-4900,1340,1424], "region": "Pantry Secret" }
+AP-CHECK { "id": 2251, "name": "MAP07 - Plum Brandy [-4899,1317]", "pos": ["MAP07",-4899,1317,1424], "region": "Pantry Secret" }
+AP-CHECK { "id": 2265, "name": "MAP07 - Potion of Haste [Center]", "pos": ["MAP07",-4923,1420,1424], "region": "Pantry Secret Secret" }
+AP-CHECK { "id": 2148, "name": "MAP07 - Box of Acid Potions [-4904,1425]", "pos": ["MAP07",-4904,1425,1424], "region": "Pantry Secret Secret" }
+AP-CHECK { "id": 2289, "name": "MAP07 - Potion of Stoneskin", "pos": ["MAP07",-4932,1435,1424], "region": "Pantry Secret Secret" }
+AP-CHECK { "id": 2154, "name": "MAP07 - Box of Toxic Potions [Center]", "pos": ["MAP07",-4913,1439,1424], "region": "Pantry Secret Secret" }
+AP-CHECK { "id": 2310, "name": "MAP07 - Secret 1876", "pos": ["MAP07","secret","sector",1876], "region": "Pantry Secret Secret" }
+AP-CHECK { "id": 2335, "name": "MAP07 - Spike Mag [-3112,-628]", "pos": ["MAP07",-3112,-628,1432], "region": "Entrance Hall" }
+AP-CHECK { "id": 2134, "name": "MAP07 - Boltmag [-3562,-356]", "pos": ["MAP07",-3562,-356,1345], "region": "Entrance Hall" }
+AP-CHECK { "id": 2267, "name": "MAP07 - Potion of Healing [-3594,-335]", "pos": ["MAP07",-3594,-335,1345], "region": "Entrance Hall" }
+AP-CHECK { "id": 2131, "name": "MAP07 - Bearzerker Axe [-3541,-295]", "pos": ["MAP07",-3541,-295,1345], "region": "Entrance Hall" }
+AP-CHECK { "id": 2124, "name": "MAP07 - Axe [-3541,-295]", "pos": ["MAP07",-3541,-295,1345], "region": "Entrance Hall" }
+AP-CHECK { "id": 2146, "name": "MAP07 - Box of Acid Potions [-3792,-628]", "pos": ["MAP07",-3792,-628,1432], "region": "Entrance Hall" }
+Player [0]: ; should rename to S entrance hall since I think there's also a E one
+AP-CHECK { "id": 2261, "name": "MAP07 - Potion Launcher [-3032,727]", "pos": ["MAP07",-3032,727,1424], "region": "Armoury" }
+AP-CHECK { "id": 2275, "name": "MAP07 - Potion of Minor Healing [-3039,617]", "pos": ["MAP07",-3039,617,1424], "region": "Armoury" }
+AP-CHECK { "id": 2276, "name": "MAP07 - Potion of Minor Healing [-3096,600]", "pos": ["MAP07",-3096,600,1424], "region": "Armoury" }
+AP-CHECK { "id": 2318, "name": "MAP07 - Spike Bundle [-2944,880]", "pos": ["MAP07",-2944,880,1456], "region": "Armoury" }
+AP-CHECK { "id": 2317, "name": "MAP07 - Spike Bundle [-2936,880]", "pos": ["MAP07",-2936,880,1464], "region": "Armoury" }
+AP-CHECK { "id": 2316, "name": "MAP07 - Spike Bundle [-2924,884]", "pos": ["MAP07",-2924,884,1464], "region": "Armoury" }
+AP-CHECK { "id": 2238, "name": "MAP07 - Half-Empty Fragfire Can [-2500,892]", "pos": ["MAP07",-2500,892,1428], "region": "Armoury" }
+AP-CHECK { "id": 2128, "name": "MAP07 - Bearzerker Axe [-2931,1268]", "pos": ["MAP07",-2931,1268,1456], "region": "Armoury" }
+AP-CHECK { "id": 2121, "name": "MAP07 - Axe [-2931,1268]", "pos": ["MAP07",-2931,1268,1456], "region": "Armoury" }
+AP-CHECK { "id": 2129, "name": "MAP07 - Bearzerker Axe [-2937,1333]", "pos": ["MAP07",-2937,1333,1456], "region": "Armoury" }
+AP-CHECK { "id": 2122, "name": "MAP07 - Axe [-2937,1333]", "pos": ["MAP07",-2937,1333,1456], "region": "Armoury" }
+AP-CHECK { "id": 2248, "name": "MAP07 - Medium Armor Crystal [-3084,1340]", "pos": ["MAP07",-3084,1340,1426], "region": "Armoury" }
+AP-CHECK { "id": 2145, "name": "MAP07 - Box of Acid Potions [-3087,1131]", "pos": ["MAP07",-3087,1131,1424], "region": "Armoury" }
+AP-CHECK { "id": 2227, "name": "MAP07 - Fragfire Can [-2490,-279]", "pos": ["MAP07",-2490,-279,1420], "region": "Pump Room" }
+AP-CHECK { "id": 2315, "name": "MAP07 - Spike Bundle [-1559,2353]", "pos": ["MAP07",-1559,2353,1456], "region": "Archives" }
+AP-CHECK { "id": 2226, "name": "MAP07 - Fragfire Can [-1734,2585]", "pos": ["MAP07",-1734,2585,1440], "region": "Archives" }
+AP-CHECK { "id": 2231, "name": "MAP07 - Fragfire Gun [-1796,1752]", "pos": ["MAP07",-1796,1752,1443], "region": "Archives" }
+AP-CHECK { "id": 2293, "name": "MAP07 - Power Shard [-1882,1646]", "pos": ["MAP07",-1882,1646,1471], "region": "Archives" }
+AP-CHECK { "id": 2292, "name": "MAP07 - Power Shard [-1880,1628]", "pos": ["MAP07",-1880,1628,1471], "region": "Archives" }
+AP-CHECK { "id": 2274, "name": "MAP07 - Potion of Minor Healing [-1509,2086]", "pos": ["MAP07",-1509,2086,1443], "region": "Archives" }
+AP-CHECK { "id": 2273, "name": "MAP07 - Potion of Minor Healing [-1422,2085]", "pos": ["MAP07",-1422,2085,1443], "region": "Archives" }
+Player [0]: ; archives includes the switches to open gates 3 and 4
+AP-CHECK { "id": 2133, "name": "MAP07 - Boltmag [-2405,1100]", "pos": ["MAP07",-2405,1100,1432], "region": "Sector 4-3" }
+AP-CHECK { "id": 2212, "name": "MAP07 - Cream Fungus [1184,3264]", "pos": ["MAP07",1184,3264,1224], "region": "E Forest" }
+AP-CHECK { "id": 2211, "name": "MAP07 - Cream Fungus [1161,3254]", "pos": ["MAP07",1161,3254,1224], "region": "E Forest" }
+AP-CHECK { "id": 2329, "name": "MAP07 - Spike Gun [1140,-784]", "pos": ["MAP07",1140,-784,1224], "region": "E Forest" }
+AP-CHECK { "id": 2360, "name": "MAP07 - Vial of Healing [1031,745]", "pos": ["MAP07",1031,745,1608], "region": "E Forest Hilltop" }
+AP-CHECK { "id": 2288, "name": "MAP07 - Potion of Minor Healing [939,491]", "pos": ["MAP07",939,491,1608], "region": "E Forest Hilltop" }
+AP-CHECK { "id": 2220, "name": "MAP07 - Crushbow [781,157]", "pos": ["MAP07",781,157,1568], "region": "E Forest Hilltop" }
+AP-CHECK { "id": 2363, "name": "MAP07 - Vial of Healing [692,590]", "pos": ["MAP07",692,590,1608], "region": "E Forest Hilltop" }
+AP-CHECK { "id": 2287, "name": "MAP07 - Potion of Minor Healing [770,852]", "pos": ["MAP07",770,852,1608], "region": "E Forest Hilltop" }
+AP-CHECK { "id": 2213, "name": "MAP07 - Cream Fungus [2822,401]", "pos": ["MAP07",2822,401,1224], "region": "E Forest" }
+AP-CHECK { "id": 2215, "name": "MAP07 - Cream Fungus [2881,373]", "pos": ["MAP07",2881,373,1224], "region": "E Forest" }
+AP-CHECK { "id": 2214, "name": "MAP07 - Cream Fungus [2857,258]", "pos": ["MAP07",2857,258,1224], "region": "E Forest" }
+AP-CHECK { "id": 2158, "name": "MAP07 - Bread [2275,346]", "pos": ["MAP07",2275,346,1263], "region": "E Forest SE Building" }
+AP-CHECK { "id": 2285, "name": "MAP07 - Potion of Minor Healing [2368,344]", "pos": ["MAP07",2368,344,1262], "region": "E Forest SE Building" }
+AP-CHECK { "id": 2346, "name": "MAP07 - Tomato [2703,-1398]", "pos": ["MAP07",2703,-1398,1224], "region": "E Forest SE Basement" }
+AP-CHECK { "id": 2345, "name": "MAP07 - Tomato [2659,-1387]", "pos": ["MAP07",2659,-1387,1224], "region": "E Forest SE Basement" }
+AP-CHECK { "id": 2230, "name": "MAP07 - Fragfire Can [2524,-1864]", "pos": ["MAP07",2524,-1864,1353], "region": "S Closet" }
+AP-CHECK { "id": 2271, "name": "MAP07 - Potion of Healing [2522,-1828]", "pos": ["MAP07",2522,-1828,1353], "region": "S Closet" }
+AP-CHECK { "id": 2152, "name": "MAP07 - Box of Acid Potions [2700,-1779]", "pos": ["MAP07",2700,-1779,1353], "region": "S Closet" }
+AP-CHECK { "id": 2141, "name": "MAP07 - Boltmag [2886,-2056]", "pos": ["MAP07",2886,-2056,1344], "region": "S Storage" }
+AP-CHECK { "id": 2362, "name": "MAP07 - Vial of Healing [3173,-2350]", "pos": ["MAP07",3173,-2350,1408], "region": "S Storage" }
+AP-CHECK { "id": 2326, "name": "MAP07 - Spike Bundle [2688,-3216]", "pos": ["MAP07",2688,-3216,1376], "region": "S Storage" }
+AP-CHECK { "id": 2325, "name": "MAP07 - Spike Bundle [2672,-3220]", "pos": ["MAP07",2672,-3220,1376], "region": "S Storage" }
+AP-CHECK { "id": 2339, "name": "MAP07 - Spike Mag [2627,-3222]", "pos": ["MAP07",2627,-3222,1376], "region": "S Storage" }
+AP-CHECK { "id": 2244, "name": "MAP07 - Half-Empty Fragfire Can [2568,-3224]", "pos": ["MAP07",2568,-3224,1376], "region": "S Storage" }
+AP-CHECK { "id": 2361, "name": "MAP07 - Vial of Healing [3044,-3232]", "pos": ["MAP07",3044,-3232,1344], "region": "S Storage" }
+AP-CHECK { "id": 2155, "name": "MAP07 - Box of Toxic Potions [E]", "pos": ["MAP07",3011,-3158,1344], "region": "S Storage" }
+AP-CHECK { "id": 2235, "name": "MAP07 - Fragfire Gun [1886,-2609]", "pos": ["MAP07",1886,-2609,1344], "region": "S Security" }
+AP-CHECK { "id": 2229, "name": "MAP07 - Fragfire Can [1913,-2602]", "pos": ["MAP07",1913,-2602,1344], "region": "S Security" }
+AP-CHECK { "id": 2132, "name": "MAP07 - Bearzerker Axe [430,-1764]", "pos": ["MAP07",430,-1764,1504], "region": "Sector 2-1" }
+AP-CHECK { "id": 2126, "name": "MAP07 - Axe [430,-1764]", "pos": ["MAP07",430,-1764,1504], "region": "Sector 2-1" }
+AP-CHECK { "id": 2284, "name": "MAP07 - Potion of Minor Healing [1730,-2448]", "pos": ["MAP07",1730,-2448,1504], "region": "Sector 2-1" }
+AP-CHECK { "id": 2283, "name": "MAP07 - Potion of Minor Healing [1576,-1392]", "pos": ["MAP07",1576,-1392,1352], "region": "Sector 2-1" }
+AP-CHECK { "id": 2286, "name": "MAP07 - Potion of Minor Healing [528,-1400]", "pos": ["MAP07",528,-1400,1352], "region": "Sector 2-1" }
+AP-CHECK { "id": 2237, "name": "MAP07 - Green Crystal", "pos": ["MAP07",1132,-2204,1365], "region": "Sector 2-1" }
+AP-CHECK { "id": 2233, "name": "MAP07 - Fragfire Gun [-457,-2172]", "pos": ["MAP07",-457,-2172,1344], "region": "Sector 2-1" }
+AP-CHECK { "id": 2137, "name": "MAP07 - Boltmag [-877,-2147]", "pos": ["MAP07",-877,-2147,1352], "region": "Sector 2-1" }
+AP-CHECK { "id": 2138, "name": "MAP07 - Boltmag [-879,-2380]", "pos": ["MAP07",-879,-2380,1352], "region": "Sector 2-1" }
+AP-CHECK { "id": 2304, "name": "MAP07 - Power Shard [1803,-3137]", "pos": ["MAP07",1803,-3137,1505], "region": "Ward Control" }
+AP-CHECK { "id": 2139, "name": "MAP07 - Boltmag [1408,-2748]", "pos": ["MAP07",1408,-2748,1511], "region": "Ward Control" }
+AP-CHECK { "id": 2305, "name": "MAP07 - Power Shard [308,-3137]", "pos": ["MAP07",308,-3137,1505], "region": "Ward Control" }
+AP-CHECK { "id": 2142, "name": "MAP07 - Boltmag [704,-2752]", "pos": ["MAP07",704,-2752,1504], "region": "Ward Control" }
+AP-CHECK { "id": 2222, "name": "MAP07 - Earth Key", "pos": ["MAP07",591,-2983,1407], "region": "Ward Control" }
+AP-CHECK { "id": 2307, "name": "MAP07 - Power Shard [608,-2989]", "pos": ["MAP07",608,-2989,1407], "region": "Ward Control" }
+AP-CHECK { "id": 2306, "name": "MAP07 - Power Shard [570,-2989]", "pos": ["MAP07",570,-2989,1407], "region": "Ward Control" }
+AP-CHECK { "id": 2153, "name": "MAP07 - Box of Acid Potions [520,-2616]", "pos": ["MAP07",520,-2616,1344], "region": "Ward Control" }
+AP-CHECK { "id": 2353, "name": "MAP07 - Vial of Healing [-4915,251]", "pos": ["MAP07",-4915,251,1560], "region": "Barracks Lounge" }
+AP-CHECK { "id": 2201, "name": "MAP07 - Cream Fungus [-4401,28]", "pos": ["MAP07",-4401,28,1518], "region": "Barracks Lounge" }
+AP-CHECK { "id": 2200, "name": "MAP07 - Cream Fungus [-4392,24]", "pos": ["MAP07",-4392,24,1518], "region": "Barracks Lounge" }
+AP-CHECK { "id": 2352, "name": "MAP07 - Vial of Healing [-4003,117]", "pos": ["MAP07",-4003,117,1558], "region": "Barracks Lounge" }
+AP-CHECK { "id": 2272, "name": "MAP07 - Potion of Might", "pos": ["MAP07",-3995,105,1558], "region": "Barracks Lounge" }
+AP-CHECK { "id": 2311, "name": "MAP07 - Secret 2761", "pos": ["MAP07","secret","sector",2761], "region": "Barracks Lounge" }
+AP-CHECK { "id": 2351, "name": "MAP07 - Vial of Healing [-3995,117]", "pos": ["MAP07",-3995,117,1558], "region": "Barracks Lounge" }
+AP-CHECK { "id": 2264, "name": "MAP07 - Potion of Greater Healing [E]", "pos": ["MAP07",2416,1930,1224], "region": "E Forest" }
+AP-CHECK { "id": 2140, "name": "MAP07 - Boltmag [2353,2001]", "pos": ["MAP07",2353,2001,1224], "region": "E Forest" }
+AP-CHECK { "id": 2218, "name": "MAP07 - Crushbow [2370,2057]", "pos": ["MAP07",2370,2057,1224], "region": "E Forest" }
+AP-CHECK { "id": 2188, "name": "MAP07 - Cream Fungus [-3014,-1703]", "pos": ["MAP07",-3014,-1703,1160], "region": "S Forest" }
+AP-CHECK { "id": 2187, "name": "MAP07 - Cream Fungus [-2993,-1661]", "pos": ["MAP07",-2993,-1661,1160], "region": "S Forest" }
+AP-CHECK { "id": 2189, "name": "MAP07 - Cream Fungus [-3024,-1666]", "pos": ["MAP07",-3024,-1666,1160], "region": "S Forest" }
+AP-CHECK { "id": 2277, "name": "MAP07 - Potion of Minor Healing [-3332,-4201]", "pos": ["MAP07",-3332,-4201,1601], "region": "S Forest" }
+AP-CHECK { "id": 2336, "name": "MAP07 - Spike Mag [-3344,-3574]", "pos": ["MAP07",-3344,-3574,1552], "region": "S Forest" }
+AP-CHECK { "id": 2228, "name": "MAP07 - Fragfire Can [-3341,-3532]", "pos": ["MAP07",-3341,-3532,1552], "region": "S Forest" }
+AP-CHECK { "id": 2279, "name": "MAP07 - Potion of Minor Healing [-5200,-1084]", "pos": ["MAP07",-5200,-1084,1160], "region": "S Forest" }
+AP-CHECK { "id": 2149, "name": "MAP07 - Box of Acid Potions [-5348,-1236]", "pos": ["MAP07",-5348,-1236,1160], "region": "S Forest" }
+Player [0]: ; ledges are reachable by breaking the window in the barracks lounge
+AP-CHECK { "id": 2199, "name": "MAP07 - Cream Fungus [-4340,-97]", "pos": ["MAP07",-4340,-97,1504], "region": "S Forest Ledges" }
+AP-CHECK { "id": 2198, "name": "MAP07 - Cream Fungus [-4324,-105]", "pos": ["MAP07",-4324,-105,1504], "region": "S Forest Ledges" }
+AP-CHECK { "id": 2202, "name": "MAP07 - Cream Fungus [-4414,-82]", "pos": ["MAP07",-4414,-82,1504], "region": "S Forest Ledges" }
+AP-CHECK { "id": 2294, "name": "MAP07 - Power Shard [-4123,-459]", "pos": ["MAP07",-4123,-459,1616], "region": "S Forest Ledges" }
+AP-CHECK { "id": 2295, "name": "MAP07 - Power Shard [-4127,-491]", "pos": ["MAP07",-4127,-491,1616], "region": "S Forest Ledges" }
+AP-CHECK { "id": 2197, "name": "MAP07 - Cream Fungus [-4027,-762]", "pos": ["MAP07",-4027,-762,1616], "region": "S Forest Ledges" }
+AP-CHECK { "id": 2196, "name": "MAP07 - Cream Fungus [-3939,-814]", "pos": ["MAP07",-3939,-814,1616], "region": "S Forest Ledges" }
+AP-CHECK { "id": 2195, "name": "MAP07 - Cream Fungus [-3692,-856]", "pos": ["MAP07",-3692,-856,1616], "region": "S Forest Ledges" }
+AP-CHECK { "id": 2194, "name": "MAP07 - Cream Fungus [-3669,-848]", "pos": ["MAP07",-3669,-848,1616], "region": "S Forest Ledges" }
+AP-CHECK { "id": 2193, "name": "MAP07 - Cream Fungus [-3630,-861]", "pos": ["MAP07",-3630,-861,1616], "region": "S Forest Ledges" }
+AP-CHECK { "id": 2191, "name": "MAP07 - Cream Fungus [-3201,-875]", "pos": ["MAP07",-3201,-875,1616], "region": "S Forest Ledges" }
+AP-CHECK { "id": 2190, "name": "MAP07 - Cream Fungus [-3176,-865]", "pos": ["MAP07",-3176,-865,1616], "region": "S Forest Ledges" }
+AP-CHECK { "id": 2232, "name": "MAP07 - Fragfire Gun [-2852,-716]", "pos": ["MAP07",-2852,-716,1480], "region": "S Forest Ledges" }
+AP-CHECK { "id": 2313, "name": "MAP07 - Shovel", "pos": ["MAP07",-2556,-392,1480], "region": "S Forest Ledges" }
+AP-CHECK { "id": 2203, "name": "MAP07 - Cream Fungus [-496,3340]", "pos": ["MAP07",-496,3340,1832], "region": "E Forest Upper Ledges" }
+AP-CHECK { "id": 2192, "name": "MAP07 - Cream Fungus [-348,3468]", "pos": ["MAP07",-348,3468,1960], "region": "E Forest Upper Ledges" }
+AP-CHECK { "id": 2210, "name": "MAP07 - Cream Fungus [1140,3676]", "pos": ["MAP07",1140,3676,1960], "region": "E Forest Upper Ledges" }
+AP-CHECK { "id": 2330, "name": "MAP07 - Spike Gun [1312,2880]", "pos": ["MAP07",1312,2880,1962], "region": "Tower Catwalks" }
+AP-CHECK { "id": 2282, "name": "MAP07 - Potion of Minor Healing [1371,2827]", "pos": ["MAP07",1371,2827,1962], "region": "Tower Catwalks" }
+AP-CHECK { "id": 2342, "name": "MAP07 - Time Shard [E]", "pos": ["MAP07",1962,2228,2048], "region": "Tower Catwalks" }
+AP-CHECK { "id": 2331, "name": "MAP07 - Spike Gun [1432,3332]", "pos": ["MAP07",1432,3332,1964], "region": "N Tower" }
+AP-CHECK { "id": 2303, "name": "MAP07 - Power Shard [1542,3074]", "pos": ["MAP07",1542,3074,1328], "region": "N Tower" }
+AP-CHECK { "id": 2302, "name": "MAP07 - Power Shard [1515,3059]", "pos": ["MAP07",1515,3059,1328], "region": "N Tower" }
+AP-CHECK { "id": 2301, "name": "MAP07 - Power Shard [1205,2932]", "pos": ["MAP07",1205,2932,1262], "region": "N Tower" }
+AP-CHECK { "id": 2221, "name": "MAP07 - Crystal Key", "pos": ["MAP07",1054,3031,1262], "region": "N Tower" }
+AP-CHECK { "id": 2177, "name": "MAP07 - Cider [980,2796]", "pos": ["MAP07",980,2796,1230], "region": "N Tower" }
+AP-CHECK { "id": 2178, "name": "MAP07 - Cider [985,2786]", "pos": ["MAP07",985,2786,1230], "region": "N Tower" }
+AP-CHECK { "id": 2159, "name": "MAP07 - Bread [892,2984]", "pos": ["MAP07",892,2984,1262], "region": "N Tower" }
+AP-CHECK { "id": 2173, "name": "MAP07 - Cheese [880,3004]", "pos": ["MAP07",880,3004,1262], "region": "N Tower" }
+AP-CHECK { "id": 2219, "name": "MAP07 - Crushbow [2546,1419]", "pos": ["MAP07",2546,1419,1964], "region": "S Tower" }
+AP-CHECK { "id": 2333, "name": "MAP07 - Spike Gun [2387,1481]", "pos": ["MAP07",2387,1481,1964], "region": "S Tower" }
+AP-CHECK { "id": 2332, "name": "MAP07 - Spike Gun [2328,1452]", "pos": ["MAP07",2328,1452,1964], "region": "S Tower" }
+AP-CHECK { "id": 2243, "name": "MAP07 - Half-Empty Fragfire Can [2338,1503]", "pos": ["MAP07",2338,1503,1552], "region": "S Tower" }
+AP-CHECK { "id": 2151, "name": "MAP07 - Box of Acid Potions [2368,1409]", "pos": ["MAP07",2368,1409,1232], "region": "S Tower" }
+AP-CHECK { "id": 2262, "name": "MAP07 - Potion Launcher [2477,1369]", "pos": ["MAP07",2477,1369,1232], "region": "S Tower" }
+AP-CHECK { "id": 2204, "name": "MAP07 - Cream Fungus [-5953,-8341]", "pos": ["MAP07",-5953,-8341,1705], "region": "Mountain Pass" }
+AP-CHECK { "id": 2205, "name": "MAP07 - Cream Fungus [-5998,-8356]", "pos": ["MAP07",-5998,-8356,1705], "region": "Mountain Pass" }
+AP-CHECK { "id": 2223, "name": "MAP07 - Exit", "pos": ["MAP07","exit"], "region": "Mountain Pass" }
+AP-CHECK { "id": 2312, "name": "MAP07 - Secret 5392", "pos": ["MAP07","secret","sector",5392], "unreachable": true }
+AP-XOFF {}

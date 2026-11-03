@@ -3,6 +3,9 @@
 ; Initial dream of hell.
 AP-REGION { "map": "MAP01", "region": "Hell Entry", "keys": ["weapon/Axe/want", "weapon/BearzerkAxe/want"] }
 ; TODO: adjust weapon logic here -- spike gun will also do fine and is what the rest of the map expects
+; for hell cavern we want hatchet and shield + bearzerkaxe in bearzerk mode
+; and plain axe, hellclaw, firefrag, and crushbow(!) depending on difficulty otherwise
+; Then for the post-hell areas it just expects us to have axe and spike gun, really
 AP-REGION { "map": "MAP01", "region": "Hell Cavern", "keys": ["map/MAP01/Hell Entry"] }
 AP-REGION { "map": "MAP01", "region": "Hell Water Cave", "keys": ["map/MAP01/Hell Cavern"] }
 AP-REGION { "map": "MAP01", "region": "Hell Lavafall", "keys": ["map/MAP01/Hell Water Cave"] }

@@ -144,6 +144,10 @@ secret in the Library.
 
 ## MAP06: Errant Signal
 
+Entering Errant Signal is meant to confiscate all of your consumables and weapons,
+and leaving is meant to return them to you. This does not always work reliably
+in AP, and leaving the map via the level select skips this mechanic entirely.
+
 This map is unusual in that backtracking is impossible, so make sure you get
 everything on the first try unless you want to reset and replay the level.
 
@@ -155,3 +159,15 @@ There are three unreachable checks in this map. One is not reachable in normal
 play. The other two (a food item in the inverted dining hall, and an armour
 crystal on the battlefield I could not figure out how to reach, but I'm not
 willing to swear it's impossible.
+
+## MAP07: Parapet
+
+Another relatively straightforward map; you have to run around pushing buttons a
+lot, but most of the level is in logic as soon as you arrive.
+
+The easter egg LARPer cheese cave to the northwest is considered a secret by AP
+even though it's not considered one in-game; the secret tree in the south forest
+is considered unreachable, since I can't figure out how to trigger the secret.
+
+The shovel is entirely optional to complete the level, but using it to access
+the east forest towers will get you a bunch of checks.

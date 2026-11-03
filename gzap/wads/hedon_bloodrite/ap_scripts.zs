@@ -5,6 +5,8 @@ class UZAP_Hedon_EventHandler : EventHandler {
     if (level.LevelNum == 2) { WorldLinePreActivatedMAP02(e); return; }
     if (level.LevelNum == 4) { WorldLinePreActivatedMAP04(e); return; }
     if (level.LevelNum == 5) { WorldLinePreActivatedMAP05(e); return; }
+    // TODO: in MAP06 we may want to use ACS_ScriptCall to restore the player's
+    // weapons and consumables on exit, even if they exit via the level select.
   }
 
   // Handling for the power cores in MAP01: Cold Rock.
