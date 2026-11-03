@@ -172,12 +172,11 @@ category key:
   ;
 
 # These are the ones that are spawned mid-game and don't exist in the tuning file.
-# TODO: Ideally we would add these to the logic and make the actions that normally
-# obtain them into checks.
-#category key:
+# They get uncommented as I add the logic for them.
+category key:
 #  InventoryAngelFeather
 #  InventoryBowlofPigment
-#  InventoryCanofEnchantedPurpleInk
+  InventoryCanofEnchantedPurpleInk
 #  InventoryChaoticDevice
 #  InventoryChargedChaoticDevice
 #  InventoryCrimsonSaltStatue
@@ -188,14 +187,13 @@ category key:
 #  InventoryDepletedArmorAmulet
 #  InventoryDwarvenTank
 #  InventoryElixirOfDeath
-#  InventoryGearMouldFilled
+  InventoryGearMouldFilled
 #  InventoryHotIron
 #  InventoryLargeShell
 #  InventoryLockOfHair
-#  InventoryMithrilBar
+  InventoryMithrilBar
 #  InventoryMithrilChisel
-#  InventoryMithrilGear
-#  InventoryMortarOfEarthPigment
+  InventoryMithrilGear
 #  InventoryPendantOfTrueSightServant
 #  InventoryPieceOfPerfumedCloth
 #  InventoryPitLordHead
@@ -205,7 +203,39 @@ category key:
 #  InventorySoulStone
 #  InventorySpecialContainmentJar
 #  InventorySquirmingSandNut
-#  ;
+;
+
+# Also let's define key shapes and colours for all eight thousand of them...
+# ◇◆ □■ ○● ▭▬ ▯▮ ▱▰ △▲ ▷▶ ▽▼ ◁◀ ▢▣ ◿◢ ◸◤ ◺◣ ◹◥
+# ▤▥▦▧▨▩ ◐◑◒◓◔◕ ◜◝◟◞◠◡ ◰◱◲◳ ◴◵◶◷ ◧◨◩◪◫
+# ◈◉◊○◌◍◎●◖◗◘◙◚◛◦◬◭◮◯◻◼◽◾
+
+keyshape ◇ ◆ : InventoryPowerCore InventoryRedCrystal;
+keyshape ▯ ▮ : InventoryIronBar InventoryMithrilBar;
+keyshape ○ ◉ : InventoryGearMouldEmpty InventoryGearMouldFilled;
+keyshape ▢ ▣ : InventoryBookOfEarth;
+keyshape ◬ ◭ : InventoryIronOre InventoryMithrilOre;
+keyshape ▭ ▬ : InventoryToolkit;
+keyshape ▽ ▼ : EarthKey VineKey AxeKey BloodyAxeKey StoneKey IronKey;
+keyshape ◌ ◒ : InventoryBowlOfFaeDust InventoryCanofEnchantedPurpleInk;
+keyshape ▢ ▤ : InventoryScrollSpiritDispelMagic;
+# keyshape ? ? : InventoryPurpleRoot;
+keyshape ◸ ◤ : InventoryPickAxe;
+keyshape ○ ◔ : InventoryMoondropFlower;
+
+keycolour red: InventoryRedCrystal;
+keycolour orange: InventoryPowerCore;
+keycolour black: InventoryGearMouldEmpty;
+keycolour fire: InventoryGearMouldFilled;
+keycolour ice: InventoryMithril*;
+keycolour brown: EarthKey InventoryBookOfEarth;
+keycolour darkgreen: VineKey;
+keycolour black: IronKey InventoryIronOre InventoryIronBar;
+keycolour red: BloodyAxeKey;
+keycolour grey: StoneKey AxeKey;
+keycolour purple: InventoryPurpleRoot InventoryCanofEnchantedPurpleInk InventoryScrollSpiritDispelMagic;
+keycolour lightblue: InventoryBowlOfFaeDust InventoryMoondropFlower;
+keycolour tan: InventoryToolkit;
 
 # Custom tags.
 # Hedon puts the entire description in the tag field, so they scan as things like
