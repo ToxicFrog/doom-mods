@@ -1,4 +1,8 @@
-# Unreleased:
+# 0.9.2
+
+This is a bugfix release. There are new yaml options and tools for logic
+developers, but its main purpose is to fix several important bugs in 0.9.0 and
+0.9.1 -- most notably an issue where combat logic often would not work at all.
 
 ⚠️ This version remains backwards compatible with 0.9.0 and 0.9.1, but since
 item categorization has changed, updating your logic packs (and rescanning any
