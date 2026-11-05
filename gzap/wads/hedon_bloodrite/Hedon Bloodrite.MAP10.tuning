@@ -3,8 +3,8 @@
 ; and collecting fragments, but in AP the player might plausibly enter the level with all of the
 ; figurines and fragments already and trigger every ambush at once.
 AP-REGION { "map": "MAP10", "region": "Entrance", "keys": [] }
-AP-REGION { "map": "MAP10", "region": "Elemental Temple", "keys": ["map/MAP10/Entrance", "weapon/Crylance/want", "weapon/FragfireGun/want", "weapon/PotionLauncher/want", "weapon/Crushbow/want"] }
-AP-REGION { "map": "MAP10", "region": "Elemental Temple", "keys": ["map/MAP10/Entrance", "weapon/ForcePike/want", "weapon/GreatAxe/want", "weapon/BearzerkAxe/want", "weapon/FireHammer/want"] }
+AP-REGION { "map": "MAP10", "region": "Elemental Temple", "keys": ["map/MAP10/Entrance", "weapon/Crylance/want", "weapon/FragfireGun/want", "weapon/PotionLauncher/want", "weapon/Crushbow/want", "weapon/SpikeGun/want"] }
+AP-REGION { "map": "MAP10", "region": "Elemental Temple", "keys": ["map/MAP10/Entrance", "weapon/ForcePike/want", "weapon/GreatAxe/want", "weapon/BearzerkAxe/want", "weapon/FireHammer/want", "weapon/HatchetAndShield/want"] }
 AP-REGION { "map": "MAP10", "region": "Temple W Hall", "keys": ["map/MAP10/Elemental Temple"] }
 AP-REGION { "map": "MAP10", "region": "Temple E Hall", "keys": ["map/MAP10/Elemental Temple"] }
 ; Ambush that triggers when you walk down the hall carrying the earth figurine
@@ -41,7 +41,7 @@ AP-REGION { "map": "MAP10", "region": "Earth Shrine", "keys": ["map/MAP10/Magnet
 AP-REGION { "map": "MAP10", "region": "Temple N Hall", "keys": ["key/InventoryEarthFragment", "key/InventoryWaterFragment", "key/InventoryFireFragment", "map/MAP10/Elemental Temple", "key/InventoryAirFragment"] }
 AP-REGION { "map": "MAP10", "region": "Great Hall", "keys": ["map/MAP10/Temple N Hall"] }
 AP-REGION { "map": "MAP10", "region": "Great Hall Stairs", "keys": ["map/MAP10/Great Hall"] }
-AP-REGION { "map": "MAP10", "region": "Power Room W", "keys": ["map/MAP10/Great Hall Stairs", "weapon/HatchetAndShield/want", "weapon/SpikeGun/want"] }
+AP-REGION { "map": "MAP10", "region": "Power Room W", "keys": ["map/MAP10/Great Hall Stairs"] }
 AP-REGION { "map": "MAP10", "region": "Power Monitoring", "keys": ["map/MAP10/Power Room"] }
 AP-REGION { "map": "MAP10", "region": "Power Room E", "keys": ["map/MAP10/Power Monitoring"] }
 AP-REGION { "map": "MAP10", "region": "Burnt Hall", "keys": ["map/MAP10/Power Room E"] }

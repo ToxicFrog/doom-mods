@@ -5,9 +5,6 @@
 The logic *should* be valid for both normal and Bearzerker modes; however, the
 latter has not been thoroughly tested.
 
-TODO: implement weapon logic for Bearzerker mode as alternate to the main weapon
-logic.
-
 Enabling all spawns (`spawn_filter 0` in the YAML) will result in some checks
 being completely inaccessible, since they rely on scripts that are only active
 on certain difficulties. Doing this is not recommended.
@@ -17,14 +14,18 @@ enemies) do not appear on the map regardless of settings. This is a known issue
 with event-based locations more broadly, not specific to Hedon, but it is more
 obvious here since Hedon has so many of them.
 
-Hedon contains many key items that are used up to unlock areas or create new
+Hedon contains many key items that are consumed to unlock areas or create new
 items, such as the power cores in MAP01, alchemy supplies in MAP02, and ores and
 ingots in MAP04. AP treats these as keys, which means that they cannot be
-expended; if you do something that uses them up, AP will return them to your
+expended; if you do something that consumes them, AP will return them to your
 inventory as soon as it notices, and you can force it to notice by toggling them
 off and on from the inventory screen. Instead, some triggers now require you to
 have found multiple copies of these keys. These changes are noted below.
 
+There are a lot of cutscenes (crafting things, conversations, being captured in
+MAP09, etc) that temporarily take away your weapons. It is possible to warp out
+using the level select in mid-cutscene, but doing this may make it impossible to
+get your weapons back, so please don't.
 ## MAP01: Cold Rock
 
 Repairing the elevator now requires you to have found two power cores, and

@@ -15,7 +15,8 @@
 ; (it's line 208), and ideally the one for the central gate as well (it's 4126).
 
 ; Entry area encompassing the south and west plazas.
-AP-REGION { "map": "MAP02", "region": "[south]", "keys": ["weapon/Axe/want", "weapon/FragfireGun/want", "weapon/SpikeGun/want"] }
+AP-REGION { "map": "MAP02", "region": "[south]", "keys": ["weapon/Axe/want", "weapon/SpikeGun/want"] }
+AP-REGION { "map": "MAP02", "region": "[south]", "keys": ["weapon/BearzerkAxe/want", "weapon/HatchetAndShield/want"] }
 AP-REGION { "map": "MAP02", "region": "S Guardhouse", "keys": ["map/MAP02/[south]"] }
 AP-REGION { "map": "MAP02", "region": "S Plaza", "keys": ["map/MAP02/S Guardhouse"] }
 ; Areas immediately reachable from the south plaza.
@@ -32,12 +33,19 @@ AP-REGION { "map": "MAP02", "region": "General Store Closet", "keys": ["map/MAP0
 AP-REGION { "map": "MAP02", "region": "Inn Backrooms", "keys": ["key/VineKey", "map/MAP02/Inn"] }
 AP-REGION { "map": "MAP02", "region": "Inn Cellar Secret", "keys": ["flag/secret", "map/MAP02/Inn Backrooms"] }
 
+; Combat logic requirements for accessing the west and north areas.
+; We are fairly pessimistic here because in normal play you get to explore most
+; of the map and collect weapons before cultist reinforcements teleport in, but
+; in AP you might trigger that as soon as you leave the south plaza.
+AP-REGION { "map": "MAP02", "region": "[combat logic]", "keys": ["weapon/Axe/want", "weapon/SpikeGun/want", "weapon/FragfireGun/want", "weapon/Crushbow/want", "weapon/PotionLauncher/want"] }
+AP-REGION { "map": "MAP02", "region": "[combat logic]", "keys": ["weapon/BearzerkAxe/want", "weapon/HatchetAndShield/want", "weapon/ForcePike/want"] }
+
 ; Reachable from the south plaza by flipping a switch in the gatehouse.
 ; N.b. if you enter this area carrying the stone key, it will trigger a fight and
 ; the door connecting the south and west plazas will close behind you. To get
 ; back to the south plaza, go north (through the doors that open once the fight
 ; is over) and climb through the back window of the inn.
-AP-REGION { "map": "MAP02", "region": "W Plaza", "keys": ["map/MAP02/S Plaza"] }
+AP-REGION { "map": "MAP02", "region": "W Plaza", "keys": ["map/MAP02/S Plaza", "map/MAP02/[combat logic]"] }
 AP-REGION { "map": "MAP02", "region": "Equipment Shop", "keys": ["map/MAP02/W Plaza"] }
 AP-REGION { "map": "MAP02", "region": "W Exit Door", "keys": ["map/MAP02/Equipment Shop"] }
 AP-REGION { "map": "MAP02", "region": "NW Shrine", "keys": ["map/MAP02/Equipment Shop"] }
@@ -87,8 +95,8 @@ AP-REGION { "map": "MAP02", "region": "N Caves Above Well, Forge", "keys": ["map
 ; Reachable using the axe key (from the inn or the forge, but inn is in logic
 ; from the start so we just list that), or by carrying the stone key into the
 ; west plaza to trigger the big fight.
-AP-REGION { "map": "MAP02", "region": "[northwest]", "keys": ["key/AxeKey", "map/MAP02/Inn"] }
-AP-REGION { "map": "MAP02", "region": "[northwest]", "keys": ["key/StoneKey", "map/MAP02/W Plaza"] }
+AP-REGION { "map": "MAP02", "region": "[northwest]", "keys": ["key/AxeKey", "map/MAP02/Inn", "map/MAP02/[combat logic]"] }
+AP-REGION { "map": "MAP02", "region": "[northwest]", "keys": ["key/StoneKey", "map/MAP02/W Plaza", "map/MAP02/[combat logic]"] }
 AP-REGION { "map": "MAP02", "region": "N Plaza", "keys": ["map/MAP02/[northwest]"] }
 AP-REGION { "map": "MAP02", "region": "N Guardhouse", "keys": ["key/StoneKey", "map/MAP02/N Plaza"] }
 AP-REGION { "map": "MAP02", "region": "(n guardhouse switches flipped)", "keys": ["map/MAP02/N Guardhouse"] }

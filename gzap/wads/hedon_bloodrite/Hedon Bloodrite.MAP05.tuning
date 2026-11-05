@@ -1,5 +1,7 @@
-AP-REGION { "map": "MAP05", "region": "Entrance", "keys": ["weapon/Axe/want", "weapon/PotionLauncherToxic/want", "weapon/SpikeGun/want", "weapon/Crushbow/want", "weapon/FragfireGun/want"] }
+; No enemies as long as you stay north of the river!
+AP-REGION { "map": "MAP05", "region": "Entrance", "keys": [] }
 AP-REGION { "map": "MAP05", "region": "Library", "keys": ["map/MAP05/Entrance"] }
+AP-REGION { "map": "MAP05", "region": "Library Tablet Secret", "keys": ["key/InventoryBookOfEarth", "map/MAP05/Library", "flag/secret"] }
 AP-REGION { "map": "MAP05", "region": "N gatehouse", "keys": ["map/MAP05/Library", "key/InventoryMithrilGear"] }
 AP-REGION { "map": "MAP05", "region": "River", "keys": ["map/MAP05/N gatehouse"] }
 AP-REGION { "map": "MAP05", "region": "Waterfall Secret", "keys": ["flag/secret", "map/MAP05/River"] }
@@ -7,40 +9,56 @@ AP-REGION { "map": "MAP05", "region": "River SW Cave", "keys": ["map/MAP05/River
 AP-REGION { "map": "MAP05", "region": "Waterfall", "keys": ["flag/secret", "map/MAP05/River"] }
 AP-REGION { "map": "MAP05", "region": "N Submerged Ruins", "keys": ["map/MAP05/River"] }
 AP-REGION { "map": "MAP05", "region": "S submerged ruins", "keys": ["map/MAP05/N Submerged Ruins"] }
-AP-REGION { "map": "MAP05", "region": "W House Basement", "keys": ["map/MAP05/River SW Cave"] }
+
+AP-REGION { "map": "MAP05", "region": "[combat logic]", "keys": ["weapon/FragfireGun/want", "weapon/PotionLauncher/want", "weapon/Crushbow/want", "weapon/SpikeGun/want", "weapon/Axe/want"] }
+AP-REGION { "map": "MAP05", "region": "[combat logic]", "keys": ["weapon/BearzerkAxe/want", "weapon/HatchetAndShield/want", "weapon/ForcePike/want", "weapon/FireHammer/want", "weapon/GreatAxe/want"] }
+
+AP-REGION { "map": "MAP05", "region": "W House Basement", "keys": ["map/MAP05/River SW Cave", "map/MAP05/[combat logic]"] }
 AP-REGION { "map": "MAP05", "region": "W House", "keys": ["map/MAP05/W House Basement"] }
 AP-REGION { "map": "MAP05", "region": "W Garden", "keys": ["map/MAP05/W House"] }
-AP-REGION { "map": "MAP05", "region": "N Fortifications", "keys": ["map/MAP05/River"] }
+AP-REGION { "map": "MAP05", "region": "N Fortifications", "keys": ["map/MAP05/River", "map/MAP05/[combat logic]"] }
 AP-REGION { "map": "MAP05", "region": "E Garden", "keys": ["map/MAP05/N Fortifications"] }
 AP-REGION { "map": "MAP05", "region": "E House Rooftop", "keys": ["map/MAP05/E Garden", "flag/secret"] }
 AP-REGION { "map": "MAP05", "region": "E House", "keys": ["map/MAP05/E Garden"] }
-AP-REGION { "map": "MAP05", "region": "Stone Tower Grove", "keys": ["map/MAP05/N Fortifications"] }
-AP-REGION { "map": "MAP05", "region": "Reaver HQ Exterior", "keys": ["map/MAP05/Stone Tower Grove"] }
 AP-REGION { "map": "MAP05", "region": "W Woods", "keys": ["map/MAP05/N Fortifications"] }
+
+; Stone tower in the center of the woods
+AP-REGION { "map": "MAP05", "region": "Stone Tower Grove", "keys": ["map/MAP05/N Fortifications"] }
+AP-REGION { "map": "MAP05", "region": "Stone Tower", "keys": ["map/MAP05/Stone Tower Grove", "key/StoneKey"] }
+AP-REGION { "map": "MAP05", "region": "Stone Tower Secret", "keys": ["flag/secret", "map/MAP05/Stone Tower"] }
+
+; Great Stump to the south
 AP-REGION { "map": "MAP05", "region": "Great Stump Exterior", "keys": ["map/MAP05/W Woods"] }
-AP-REGION { "map": "MAP05", "region": "Portal Cave Path Secret", "keys": ["map/MAP05/Great Stump Exterior", "flag/secret"] }
-AP-REGION { "map": "MAP05", "region": "Reaver HQ Medical", "keys": ["map/MAP05/Portal Cave Path Secret"] }
-AP-REGION { "map": "MAP05", "region": "Reaver HQ Dorms", "keys": ["map/MAP05/Reaver HQ Medical"] }
-AP-REGION { "map": "MAP05", "region": "Reaver HQ Closet", "keys": ["map/MAP05/Reaver HQ Dorms"] }
-AP-REGION { "map": "MAP05", "region": "Reaver HQ Monitoring", "keys": ["map/MAP05/Reaver HQ Closet"] }
-AP-REGION { "map": "MAP05", "region": "Reaver HQ Entrance Hall", "keys": ["map/MAP05/Reaver HQ Monitoring"] }
-AP-REGION { "map": "MAP05", "region": "Reaver HQ Courtyard", "keys": ["map/MAP05/Reaver HQ Entrance Hall"] }
-AP-REGION { "map": "MAP05", "region": "Reaver HQ Council Chamber", "keys": ["map/MAP05/Reaver HQ Courtyard"] }
-AP-REGION { "map": "MAP05", "region": "Reaver HQ Power Room", "keys": ["map/MAP05/Reaver HQ Council Chamber"] }
 AP-REGION { "map": "MAP05", "region": "Great Stump 1F", "keys": ["map/MAP05/Great Stump Exterior", "key/VineKey"] }
 AP-REGION { "map": "MAP05", "region": "Great Stump 2F", "keys": ["map/MAP05/Great Stump 1F"] }
+AP-REGION { "map": "MAP05", "region": "Great Stump 3F", "keys": ["key/InventoryBookOfEarth", "map/MAP05/Great Stump 2F"] }
+AP-REGION { "map": "MAP05", "region": "Great Stump 4F", "keys": ["map/MAP05/Great Stump 3F", "key/InventoryBookOfEarth"] }
+
+; Portal cave to the west of GS
+; Need to turn on RHQ aux power here to access some rooms in RHQ
+AP-REGION { "map": "MAP05", "region": "Portal Cave Path Secret", "keys": ["map/MAP05/Great Stump Exterior", "flag/secret"] }
 AP-REGION { "map": "MAP05", "region": "Portal Cave", "keys": ["map/MAP05/Great Stump Exterior", "key/VineKey"] }
 AP-REGION { "map": "MAP05", "region": "Portal Control Antechamber", "keys": ["map/MAP05/Portal Cave"] }
 AP-REGION { "map": "MAP05", "region": "(reaver hq aux power)", "keys": ["map/MAP05/Portal Control Antechamber"] }
+AP-REGION { "map": "MAP05", "region": "Portal Control", "keys": ["key/EarthKey", "map/MAP05/Portal Control Antechamber"] }
+AP-REGION { "map": "MAP05", "region": "Portal", "keys": ["map/MAP05/Portal Cave", "map/MAP05/Portal Control"] }
+
+; Reaver HQ reachable either from main forest (in which case combat logic is applied at the north fortifications)
+; or via the submerged ruins, in which case we apply it here
+AP-REGION { "map": "MAP05", "region": "Reaver HQ Exterior", "keys": ["map/MAP05/N Fortifications"] }
+AP-REGION { "map": "MAP05", "region": "[reaver hq]", "keys": ["map/MAP05/S submerged ruins", "map/MAP05/[combat logic]"] }
+AP-REGION { "map": "MAP05", "region": "[reaver hq]", "keys": ["map/MAP05/Reaver HQ Exterior"] }
+AP-REGION { "map": "MAP05", "region": "Reaver HQ Medical", "keys": ["map/MAP05/[reaver hq]"] }
+AP-REGION { "map": "MAP05", "region": "Reaver HQ Dorms", "keys": ["map/MAP05/[reaver hq]"] }
+AP-REGION { "map": "MAP05", "region": "Reaver HQ Closet", "keys": ["map/MAP05/[reaver hq]"] }
+AP-REGION { "map": "MAP05", "region": "Reaver HQ Monitoring", "keys": ["map/MAP05/[reaver hq]"] }
+AP-REGION { "map": "MAP05", "region": "Reaver HQ Entrance Hall", "keys": ["map/MAP05/[reaver hq]"] }
+AP-REGION { "map": "MAP05", "region": "Reaver HQ Courtyard", "keys": ["map/MAP05/Reaver HQ Entrance Hall"] }
+AP-REGION { "map": "MAP05", "region": "Reaver HQ Council Chamber", "keys": ["map/MAP05/Reaver HQ Courtyard"] }
+AP-REGION { "map": "MAP05", "region": "Reaver HQ Power Room", "keys": ["map/MAP05/[reaver hq]"] }
 AP-REGION { "map": "MAP05", "region": "Reaver HQ Archives", "keys": ["map/MAP05/(reaver hq aux power)", "map/MAP05/Reaver HQ Entrance Hall"] }
 AP-REGION { "map": "MAP05", "region": "Reaver HQ Archives Secret", "keys": ["map/MAP05/Reaver HQ Archives", "flag/secret"] }
-AP-REGION { "map": "MAP05", "region": "Stone Tower", "keys": ["map/MAP05/Stone Tower Grove", "key/StoneKey"] }
-AP-REGION { "map": "MAP05", "region": "Stone Tower Secret", "keys": ["flag/secret", "map/MAP05/Stone Tower"] }
-AP-REGION { "map": "MAP05", "region": "Great Stump 3F", "keys": ["key/InventoryBookOfEarth", "map/MAP05/Great Stump 2F"] }
-AP-REGION { "map": "MAP05", "region": "Great Stump 4F", "keys": ["map/MAP05/Great Stump 3F", "key/InventoryBookOfEarth"] }
-AP-REGION { "map": "MAP05", "region": "Portal Control", "keys": ["key/EarthKey", "map/MAP05/Portal Control Antechamber"] }
-AP-REGION { "map": "MAP05", "region": "Library Tablet Secret", "keys": ["key/InventoryBookOfEarth", "map/MAP05/Library", "flag/secret"] }
-AP-REGION { "map": "MAP05", "region": "Portal", "keys": ["map/MAP05/Portal Cave", "map/MAP05/Portal Control"] }
+
 
 AP-CHECK { "id": 1639, "name": "MAP05 - Apple [-3702,-555]", "pos": ["MAP05",-3702,-555,-24], "region": "Entrance" }
 AP-CHECK { "id": 1638, "name": "MAP05 - Apple [-3646,-706]", "pos": ["MAP05",-3646,-706,-24], "region": "Entrance" }

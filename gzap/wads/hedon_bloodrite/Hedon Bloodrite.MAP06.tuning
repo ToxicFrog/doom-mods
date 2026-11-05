@@ -13,11 +13,12 @@ AP-REGION { "map": "MAP06", "region": "Battlefield", "keys": ["map/MAP06/Inverte
 AP-REGION { "map": "MAP06", "region": "Dark Caves", "keys": ["map/MAP06/Battlefield"] }
 AP-REGION { "map": "MAP06", "region": "Light Caves", "keys": ["map/MAP06/Dark Caves"] }
 AP-REGION { "map": "MAP06", "region": "Corrupt Outpost", "keys": ["map/MAP06/Light Caves"] }
-AP-REGION { "map": "MAP06", "region": "Nithriel", "keys": ["weapon/Axe/want", "map/MAP06/Corrupt Outpost", "weapon/PotionLauncherAcid/want", "weapon/Crushbow/want"] }
-AP-REGION { "map": "MAP06", "region": "Nithriel", "keys": ["weapon/Axe/want", "map/MAP06/Corrupt Outpost", "weapon/HatchetAndShield/want"] }
+AP-REGION { "map": "MAP06", "region": "Nithriel", "keys": ["weapon/Axe/want", "map/MAP06/Corrupt Outpost", "weapon/PotionLauncher/want", "weapon/Crushbow/want"] }
+AP-REGION { "map": "MAP06", "region": "Nithriel", "keys": ["weapon/BearzerkAxe/want", "map/MAP06/Corrupt Outpost", "weapon/HatchetAndShield/want"] }
 AP-REGION { "map": "MAP06", "region": "Nithriel Phase 2", "keys": ["weapon/FragfireGun/want", "weapon/SpikeGun/want", "map/MAP06/Nithriel"] }
-AP-REGION { "map": "MAP06", "region": "Nithriel Phase 2", "keys": ["weapon/FireHammer/want", "map/MAP06/Nithriel"] }
-AP-REGION { "map": "MAP06", "region": "Nithriel Phase 3", "keys": ["map/MAP06/Nithriel Phase 2", "weapon/PotionLauncherAcid/want"] }
+AP-REGION { "map": "MAP06", "region": "Nithriel Phase 2", "keys": ["weapon/FireHammer/want", "weapon/ForcePike/want", "map/MAP06/Nithriel"] }
+; We should already have the axe from phase 1, but this keeps it from deleting the greataxe requirement on the other branch
+AP-REGION { "map": "MAP06", "region": "Nithriel Phase 3", "keys": ["map/MAP06/Nithriel Phase 2", "weapon/Axe/want"] }
 AP-REGION { "map": "MAP06", "region": "Nithriel Phase 3", "keys": ["map/MAP06/Nithriel Phase 2", "weapon/GreatAxe/want", "weapon/ForcePike/want"] }
 AP-XOFF {}
 

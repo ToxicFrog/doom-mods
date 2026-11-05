@@ -47,18 +47,19 @@ AP-REGION { "map": "MAP09", "region": "Holding Cells Hall", "keys": ["map/MAP09/
 AP-REGION { "map": "MAP09", "region": "Vivisection Lab", "keys": ["map/MAP09/Holding Cells Hall"] }
 ; Visiting the security room lets you open a bunch of doors, including one to the incubation room
 AP-REGION { "map": "MAP09", "region": "Incubation Hall", "keys": ["map/MAP09/Security Room", "map/MAP09/Secure Labs Hall"] }
-AP-REGION { "map": "MAP09", "region": "Alchemical Weapons", "keys": ["map/MAP09/Incubation Hall"] }
-AP-REGION { "map": "MAP09", "region": "Firing Range", "keys": ["map/MAP09/Alchemical Weapons"] }
+AP-REGION { "map": "MAP09", "region": "Weapons Testing", "keys": ["map/MAP09/Incubation Hall"] }
+AP-REGION { "map": "MAP09", "region": "Firing Range", "keys": ["map/MAP09/Weapons Testing"] }
 AP-REGION { "map": "MAP09", "region": "Firing Range Secret", "keys": ["map/MAP09/Firing Range", "flag/secret"] }
 ; The trigger for losing your weapons, and the cutscene with Lith and Tiati, is walking
-; down the hall after Alchemical Weapons
+; down the hall after Weapons Testing
 ; You then get your weapons back when entering the crystal key room, open all the various
 ; locked areas in the level by opening the crystal key chamber, and trigger a fight
 ; and the ability to leave Lith's lab by walking out of the room HOLDING THE CRYSTAL KEY.
-AP-REGION { "map": "MAP09", "region": "Lith's Lab", "keys": ["map/MAP09/Alchemical Weapons"] }
+AP-REGION { "map": "MAP09", "region": "Lith's Lab", "keys": ["map/MAP09/Weapons Testing", "weapon/FragfireGun/want", "weapon/PotionLauncher/want", "weapon/Crushbow/want", "weapon/SpikeGun/want", "weapon/Axe/want"] }
+AP-REGION { "map": "MAP09", "region": "Lith's Lab", "keys": ["map/MAP09/Weapons Testing", "weapon/BearzerkAxe/want", "weapon/HatchetAndShield/want", "weapon/ForcePike/want", "weapon/FireHammer/want", "weapon/GreatAxe/want"] }
 AP-REGION { "map": "MAP09", "region": "(release crystal key)", "keys": ["map/MAP09/Lith's Lab"] }
 ; Checks that are only revealed once you open the crystal key box
-AP-REGION { "map": "MAP09", "region": "Crylance Containment", "keys": ["map/MAP09/Alchemical Weapons", "map/MAP09/(release crystal key)"] }
+AP-REGION { "map": "MAP09", "region": "Crylance Containment", "keys": ["map/MAP09/Weapons Testing", "map/MAP09/(release crystal key)"] }
 AP-REGION { "map": "MAP09", "region": "Vivisection Lab Freezer", "keys": ["map/MAP09/Vivisection Lab", "map/MAP09/(release crystal key)"] }
 AP-REGION { "map": "MAP09", "region": "Holding Cells", "keys": ["map/MAP09/Holding Cells Hall", "map/MAP09/(release crystal key)"] }
 AP-REGION { "map": "MAP09", "region": "Security Room Emergency Supplies", "keys": ["map/MAP09/Security Room", "flag/secret", "map/MAP09/(release crystal key)"] }
@@ -183,13 +184,13 @@ Player [0]: ; the axe key spawn check didn't trigger for some reason
 AP-CHECK { "id": 2660, "name": "MAP09 - Spike Mag [1026,650]", "pos": ["MAP09",1026,650,-580], "region": "Security Room" }
 Player [0]: ; to enter incubation hall, you need to flip the switch in the security room
 AP-CHECK { "id": 2591, "name": "MAP09 - Half-Empty Fragfire Can [E]", "pos": ["MAP09",2974,105,-604], "region": "Incubation Hall" }
-AP-CHECK { "id": 2609, "name": "MAP09 - Potion of Healing [4072,-330]", "pos": ["MAP09",4072,-330,-579], "region": "Alchemical Weapons" }
-AP-CHECK { "id": 2652, "name": "MAP09 - Spike Bundle [4139,-370]", "pos": ["MAP09",4139,-370,-579], "region": "Alchemical Weapons" }
-AP-CHECK { "id": 2653, "name": "MAP09 - Spike Bundle [4160,-356]", "pos": ["MAP09",4160,-356,-579], "region": "Alchemical Weapons" }
-AP-CHECK { "id": 2554, "name": "MAP09 - Box of Acid Potions [4308,-292]", "pos": ["MAP09",4308,-292,-612], "region": "Alchemical Weapons" }
-AP-CHECK { "id": 2654, "name": "MAP09 - Spike Bundle [4161,-384]", "pos": ["MAP09",4161,-384,-579], "region": "Alchemical Weapons" }
-AP-CHECK { "id": 2595, "name": "MAP09 - Jug of Wine", "pos": ["MAP09",4376,-68,-612], "region": "Alchemical Weapons" }
-AP-CHECK { "id": 2581, "name": "MAP09 - Fixer's Goggles", "pos": ["MAP09",4302,339,-579], "region": "Alchemical Weapons" }
+AP-CHECK { "id": 2609, "name": "MAP09 - Potion of Healing [4072,-330]", "pos": ["MAP09",4072,-330,-579], "region": "Weapons Testing" }
+AP-CHECK { "id": 2652, "name": "MAP09 - Spike Bundle [4139,-370]", "pos": ["MAP09",4139,-370,-579], "region": "Weapons Testing" }
+AP-CHECK { "id": 2653, "name": "MAP09 - Spike Bundle [4160,-356]", "pos": ["MAP09",4160,-356,-579], "region": "Weapons Testing" }
+AP-CHECK { "id": 2554, "name": "MAP09 - Box of Acid Potions [4308,-292]", "pos": ["MAP09",4308,-292,-612], "region": "Weapons Testing" }
+AP-CHECK { "id": 2654, "name": "MAP09 - Spike Bundle [4161,-384]", "pos": ["MAP09",4161,-384,-579], "region": "Weapons Testing" }
+AP-CHECK { "id": 2595, "name": "MAP09 - Jug of Wine", "pos": ["MAP09",4376,-68,-612], "region": "Weapons Testing" }
+AP-CHECK { "id": 2581, "name": "MAP09 - Fixer's Goggles", "pos": ["MAP09",4302,339,-579], "region": "Weapons Testing" }
 AP-CHECK { "id": 2598, "name": "MAP09 - Potion Launcher [Acid] [SE]", "pos": ["MAP09",4094,-679,-556], "region": "Firing Range" }
 AP-CHECK { "id": 2600, "name": "MAP09 - Potion Launcher [Toxic]", "pos": ["MAP09",4231,-680,-556], "region": "Firing Range" }
 AP-CHECK { "id": 2588, "name": "MAP09 - Fragfire Gun", "pos": ["MAP09",4274,-680,-556], "region": "Firing Range" }

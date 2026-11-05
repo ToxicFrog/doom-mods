@@ -1,4 +1,5 @@
-AP-REGION { "map": "MAP04", "region": "entrance", "keys": ["weapon/FragfireGun/want", "weapon/Crushbow/want", "weapon/Axe/want", "weapon/SpikeGun/want"] }
+AP-REGION { "map": "MAP04", "region": "entrance", "keys": ["weapon/FragfireGun/want", "weapon/Axe/want", "weapon/SpikeGun/want"] }
+AP-REGION { "map": "MAP04", "region": "entrance", "keys": ["weapon/BearzerkAxe/want", "weapon/HatchetAndShield/want", "weapon/ForcePike/want"] }
 
 ; Initial areas in the southwest pumping station
 ; n.b. while some checks require storing power, all you actually need to leave is the toolkit
@@ -14,7 +15,8 @@ AP-REGION { "map": "MAP04", "region": "south hall", "keys": ["key/InventoryToolk
 AP-REGION { "map": "MAP04", "region": "portal chamber", "keys": ["map/MAP04/south hall", "key/IronKey"] }
 
 ; great forge and environs
-AP-REGION { "map": "MAP04", "region": "great forge", "keys": ["map/MAP04/south hall"] }
+AP-REGION { "map": "MAP04", "region": "great forge", "keys": ["map/MAP04/south hall", "weapon/Axe/want", "weapon/PotionLauncher/want"] }
+AP-REGION { "map": "MAP04", "region": "great forge", "keys": ["map/MAP04/south hall", "weapon/BearzerkAxe/want", "weapon/FireHammer/want"] }
 AP-REGION { "map": "MAP04", "region": "great forge ledges", "keys": ["map/MAP04/great forge"] }
 AP-REGION { "map": "MAP04", "region": "great forge NW crawlspace", "keys": ["map/MAP04/great forge ledges"] }
 AP-REGION { "map": "MAP04", "region": "great forge weak wall secret", "keys": ["map/MAP04/great forge ledges", "key/InventoryPickAxe", "flag/secret"] }
@@ -60,7 +62,8 @@ AP-REGION { "map": "MAP04", "region": "shrine to Fire", "keys": ["map/MAP04/magm
 AP-REGION { "map": "MAP04", "region": "Fire shrine secret", "keys": ["map/MAP04/shrine to Fire", "flag/secret"] }
 
 ; east hall, accessible by using the filled mould on the anvil
-AP-REGION { "map": "MAP04", "region": "east hall", "keys": ["key/InventoryGearMouldFilled", "map/MAP04/great forge"] }
+AP-REGION { "map": "MAP04", "region": "east hall", "keys": ["key/InventoryGearMouldFilled", "map/MAP04/great forge", "weapon/GreatAxe/want"] }
+AP-REGION { "map": "MAP04", "region": "east hall", "keys": ["key/InventoryGearMouldFilled", "map/MAP04/great forge", "weapon/Crushbow/want"] }
 AP-REGION { "map": "MAP04", "region": "tool shop", "keys": ["map/MAP04/east hall"] }
 AP-REGION { "map": "MAP04", "region": "tool shop safe", "keys": ["flag/secret", "map/MAP04/tool shop"] }
 AP-REGION { "map": "MAP04", "region": "gun shop", "keys": ["map/MAP04/east hall"] }

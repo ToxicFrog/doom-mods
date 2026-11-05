@@ -6,7 +6,8 @@ AP-REGION { "map": "MAP07", "region": "Sealed Gate", "keys": ["map/MAP07/Foot of
 
 ; The sector from the top of the elevator to blast door 5
 ; contains the mess hall and security room, and via the mess hall ductwork, the barracks
-AP-REGION { "map": "MAP07", "region": "Sector 6-5", "keys": ["weapon/FragfireGun/want", "weapon/Axe/want", "weapon/SpikeGun/want", "map/MAP07/Sealed Gate"] }
+AP-REGION { "map": "MAP07", "region": "Sector 6-5", "keys": ["weapon/FragfireGun/want", "weapon/Axe/want", "weapon/SpikeGun/want", "weapon/Crushbow/want", "map/MAP07/Foot of the Stairs"] }
+AP-REGION { "map": "MAP07", "region": "Sector 6-5", "keys": ["weapon/BearzerkAxe/want", "weapon/HatchetAndShield/want", "weapon/FireHammer/want", "map/MAP07/Foot of the Stairs"] }
 AP-REGION { "map": "MAP07", "region": "Mess Hall", "keys": ["map/MAP07/Sector 6-5"] }
 AP-REGION { "map": "MAP07", "region": "Mess Hall Bathroom", "keys": ["map/MAP07/Mess Hall"] }
 AP-REGION { "map": "MAP07", "region": "Mess Hall Ductwork", "keys": ["map/MAP07/Mess Hall"] }
@@ -18,7 +19,8 @@ AP-REGION { "map": "MAP07", "region": "Barracks", "keys": ["map/MAP07/Barracks B
 ; Includes the big pile of crates, lets you get into the mess hall pantry from behind
 ; Connects to the barracks lounge and south forest via the entrance hall, but those
 ; are both initially locked
-AP-REGION { "map": "MAP07", "region": "Sector 5-4", "keys": ["map/MAP07/N Security"] }
+AP-REGION { "map": "MAP07", "region": "Sector 5-4", "keys": ["map/MAP07/N Security", "weapon/PotionLauncher/want"] }
+AP-REGION { "map": "MAP07", "region": "Sector 5-4", "keys": ["map/MAP07/N Security", "weapon/ForcePike/want"] }
 AP-REGION { "map": "MAP07", "region": "Crate Pile", "keys": ["map/MAP07/Sector 5-4"] }
 AP-REGION { "map": "MAP07", "region": "Pantry", "keys": ["map/MAP07/Crate Pile"] }
 AP-REGION { "map": "MAP07", "region": "Pantry Secret", "keys": ["flag/secret", "map/MAP07/Pantry"] }

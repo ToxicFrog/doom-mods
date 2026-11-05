@@ -1,4 +1,5 @@
-AP-REGION { "map": "MAP08", "region": "Entrance", "keys": ["weapon/FragfireGun/want", "weapon/PotionLauncherAcid/want", "weapon/PotionLauncher/want", "weapon/Crushbow/want", "weapon/SpikeGun/want", "weapon/Axe/want"] }
+AP-REGION { "map": "MAP08", "region": "Entrance", "keys": [] }
+AP-REGION { "map": "MAP08", "region": "Entrance Secret", "keys": ["map/MAP08/Entrance", "flag/secret"] }
 AP-REGION { "map": "MAP08", "region": "Ice Tunnel", "keys": ["map/MAP08/Entrance"] }
 AP-REGION { "map": "MAP08", "region": "Woodcutter's Hut", "keys": ["map/MAP08/Ice Tunnel"] }
 AP-REGION { "map": "MAP08", "region": "Ruins Entrance", "keys": ["map/MAP08/Ice Tunnel"] }
@@ -10,7 +11,10 @@ AP-REGION { "map": "MAP08", "region": "Ruins Bath Underwater", "keys": ["key/Inv
 AP-REGION { "map": "MAP08", "region": "Green Cave", "keys": ["map/MAP08/Ruins Bath Underwater"] }
 AP-REGION { "map": "MAP08", "region": "Buried Treasure", "keys": ["flag/secret", "key/InventoryShovel", "map/MAP08/Entrance"] }
 AP-REGION { "map": "MAP08", "region": "(bridge repaired)", "keys": ["map/MAP08/Frozen River", "key/InventoryWoodenPlank/3", "key/InventoryVine"] }
-AP-REGION { "map": "MAP08", "region": "Tree Cave", "keys": ["map/MAP08/Frozen River", "map/MAP08/(bridge repaired)"] }
+; This is where you first start to encounter enemies
+; At this point we are expecting the player to have everything but the crylance
+AP-REGION { "map": "MAP08", "region": "Tree Cave", "keys": ["map/MAP08/Frozen River", "map/MAP08/(bridge repaired)", "weapon/FragfireGun/want", "weapon/PotionLauncher/want", "weapon/Crushbow/want", "weapon/SpikeGun/want", "weapon/Axe/want"] }
+AP-REGION { "map": "MAP08", "region": "Tree Cave", "keys": ["map/MAP08/Frozen River", "map/MAP08/(bridge repaired)", "weapon/BearzerkAxe/want", "weapon/HatchetAndShield/want", "weapon/ForcePike/want", "weapon/FireHammer/want", "weapon/GreatAxe/want"] }
 AP-REGION { "map": "MAP08", "region": "Snowman Secret", "keys": ["flag/secret", "map/MAP08/Tree Cave"] }
 AP-REGION { "map": "MAP08", "region": "Bridge", "keys": ["map/MAP08/Tree Cave"] }
 AP-REGION { "map": "MAP08", "region": "Fortress Exterior", "keys": ["map/MAP08/Bridge"] }
@@ -39,9 +43,9 @@ AP-REGION { "map": "MAP08", "region": "Keep B1F Treasury Security", "keys": ["ma
 AP-REGION { "map": "MAP08", "region": "Keep B1F Treasury", "keys": ["map/MAP08/Keep B1F Treasury Security", "flag/secret"] }
 AP-REGION { "map": "MAP08", "region": "Keep B1F Elevator", "keys": ["map/MAP08/Keep B1F", "key/EarthKey"] }
 
-AP-CHECK { "id": 2407, "name": "MAP08 - Crylance", "pos": ["MAP08",-4362,-9552,1724], "region": "Entrance" }
-AP-CHECK { "id": 2482, "name": "MAP08 - Secret 40", "pos": ["MAP08","secret","sector",40], "region": "Entrance" }
-AP-CHECK { "id": 2396, "name": "MAP08 - Box of Toxic Potions [SW]", "pos": ["MAP08",-4339,-9558,1724], "region": "Entrance" }
+AP-CHECK { "id": 2407, "name": "MAP08 - Crylance", "pos": ["MAP08",-4362,-9552,1724], "region": "Entrance Secret" }
+AP-CHECK { "id": 2482, "name": "MAP08 - Secret 40", "pos": ["MAP08","secret","sector",40], "region": "Entrance Secret" }
+AP-CHECK { "id": 2396, "name": "MAP08 - Box of Toxic Potions [SW]", "pos": ["MAP08",-4339,-9558,1724], "region": "Entrance Secret" }
 AP-CHECK { "id": 2446, "name": "MAP08 - Potion of Minor Healing [-693,-3997]", "pos": ["MAP08",-693,-3997,1764], "region": "Ice Tunnel" }
 AP-CHECK { "id": 2374, "name": "MAP08 - Bearzerker Axe [-1301,1236]", "pos": ["MAP08",-1301,1236,1564], "region": "Woodcutter's Hut" }
 AP-CHECK { "id": 2368, "name": "MAP08 - Axe [-1301,1236]", "pos": ["MAP08",-1301,1236,1564], "region": "Woodcutter's Hut" }
