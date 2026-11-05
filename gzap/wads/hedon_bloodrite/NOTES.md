@@ -24,6 +24,23 @@ Enabling all spawns (`spawn_filter 0` in the YAML) will result in some checks
 being completely inaccessible, since they rely on scripts that are only active
 on certain difficulties. Doing this is not recommended.
 
+There are a lot of cutscenes (crafting things, conversations, being captured in
+MAP09, etc) that temporarily take away your weapons. It is possible to warp out
+using the level select in mid-cutscene, but doing this may make it impossible to
+get your weapons back, so please don't.
+
+### Combat Logic
+
+In general, combat logic has been written on the assumption that a normal
+playthrough of Hedon uses carryover weapons (i.e. one is not axe-starting every
+map), which is the default experience of play. This means that by about halfway
+through the episode you're expected to have almost everything. That said, many
+levels have quiet starts containing few or no enemies; combat logic for those
+assumes you can dip into the level to explore those areas even if you are
+underequipped for the level as a whole.
+
+### Crafting
+
 Checks that spawn in mid-game (e.g. from using crafting machines or dropped by
 enemies) do not appear on the map regardless of settings. This is a known issue
 with event-based locations more broadly, not specific to Hedon, but it is more
@@ -36,11 +53,6 @@ expended; if you do something that consumes them, AP will return them to your
 inventory as soon as it notices, and you can force it to notice by toggling them
 off and on from the inventory screen. Instead, some triggers now require you to
 have found multiple copies of these keys. These changes are noted below.
-
-There are a lot of cutscenes (crafting things, conversations, being captured in
-MAP09, etc) that temporarily take away your weapons. It is possible to warp out
-using the level select in mid-cutscene, but doing this may make it impossible to
-get your weapons back, so please don't.
 
 ## Map-specific notes
 
@@ -162,9 +174,14 @@ secret in the Library.
 
 ### MAP06: Errant Signal
 
-Entering Errant Signal is meant to confiscate all of your consumables and weapons,
-and leaving is meant to return them to you. This does not always work reliably
-in AP, and leaving the map via the level select skips this mechanic entirely.
+⚠️ This map is disabled by default, both because it doesn't randomize in any
+particularly fun way (the first 90% of the map is one-way and contains a small
+number of permanently missable checks, and then the other 200+ checks are in a
+boss arena), and because it does tricks with weapon/item confiscation and player
+physics that make it easy to end up permanently losing all of your equipment,
+bringing gear into the level you aren't meant to have, or breaking jump physics
+for the rest of the game. You can enable it in the yaml if you so desire, but
+things are likely to become very fragile.
 
 This map is unusual in that backtracking is impossible, so make sure you get
 everything on the first try unless you want to reset and replay the level.
