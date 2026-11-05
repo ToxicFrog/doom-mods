@@ -201,5 +201,22 @@ motionless in various rooms on your way back to the entrance.
 
 If you have the crystal key and either the earth key or the acid, it's possible
 to bypass the trigger for Lith closing the door to the incubation chamber, and
-thus complete the level without the axe key. This is not in logic because it is
-easy to hit the trigger by accident, which would require resetting the level.
+thus complete the level without the axe key. This is not in logic because if you
+*do* hit the trigger, you need to reset the whole level and try again.
+
+## MAP10: Crystal Heart
+
+Combat logic expects you to have most of your arsenal before entering the
+elemental temple, and all of it before leaving. The temple is initially very
+quiet, but most spawns are triggered by moving around the temple and shrines
+while carrying the elemental figurines and fragments, so if you received most or
+all of those already, you could potentially trigger several spawns at once.
+
+The ice caves in the west wing are reachable without opening any shrines (by
+swimming through the ceiling of the pillar room), and the earth shrine is
+reachable via the magnetic caves after placing the water figurine, as long as
+you're careful of the poison; both of these alternate routes are in logic.
+
+The checks in the final boss fight can be annoying to collect, since the level
+ends as soon as you defeat the boss. Don't be afraid to use time shards. In a
+pinch you can use the `freeze` console command to pause the entire fight.

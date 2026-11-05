@@ -1,0 +1,738 @@
+; Combat logic for the temple is pessimistic; in normal play you can wander around the main temple
+; and both wings without problems and enemies only start spawning in once you start opening shrines
+; and collecting fragments, but in AP the player might plausibly enter the level with all of the
+; figurines and fragments already and trigger every ambush at once.
+AP-REGION { "map": "MAP10", "region": "Entrance", "keys": [] }
+AP-REGION { "map": "MAP10", "region": "Elemental Temple", "keys": ["map/MAP10/Entrance", "weapon/Crylance/want", "weapon/FragfireGun/want", "weapon/PotionLauncher/want", "weapon/Crushbow/want"] }
+AP-REGION { "map": "MAP10", "region": "Elemental Temple", "keys": ["map/MAP10/Entrance", "weapon/ForcePike/want", "weapon/GreatAxe/want", "weapon/BearzerkAxe/want", "weapon/FireHammer/want"] }
+AP-REGION { "map": "MAP10", "region": "Temple W Hall", "keys": ["map/MAP10/Elemental Temple"] }
+AP-REGION { "map": "MAP10", "region": "Temple E Hall", "keys": ["map/MAP10/Elemental Temple"] }
+; Ambush that triggers when you walk down the hall carrying the earth figurine
+AP-REGION { "map": "MAP10", "region": "Temple E Hall Glass", "keys": ["key/InventoryEarthFigurine", "map/MAP10/Elemental Temple"] }
+AP-REGION { "map": "MAP10", "region": "Air Shrine Entrance Secret", "keys": ["map/MAP10/Temple W Hall", "flag/secret"] }
+AP-REGION { "map": "MAP10", "region": "Pillar Room", "keys": ["map/MAP10/Temple W Hall"] }
+
+; Air shrine. Hard requires earth figurine.
+AP-REGION { "map": "MAP10", "region": "Air Shrine", "keys": ["map/MAP10/Temple W Hall", "key/InventoryEarthFigurine"] }
+AP-REGION { "map": "MAP10", "region": "Air Shrine Pillar Secret", "keys": ["map/MAP10/Air Shrine", "flag/secret"] }
+
+; West wing ice caves.
+; Intended path is via the air shrine after placing the earth figurine
+; But you can also backdoor into it via the pillar room!
+AP-REGION { "map": "MAP10", "region": "Ice Caves", "keys": ["map/MAP10/Air Shrine"] }
+AP-REGION { "map": "MAP10", "region": "Ice Caves", "keys": ["map/MAP10/Pillar Room"] }
+
+; Fire shrine. Requires water figurine; earth<->fire shortcut doesn't open until you place water.
+AP-REGION { "map": "MAP10", "region": "Fire Shrine", "keys": ["key/InventoryWaterFigurine", "map/MAP10/Temple E Hall"] }
+AP-REGION { "map": "MAP10", "region": "Magnetic Caves", "keys": ["map/MAP10/Fire Shrine"] }
+
+; Water shrine. Hard requires fire figurine.
+; Placing the fire figurine also lets you get the extra checks in the pillar room.
+AP-REGION { "map": "MAP10", "region": "Water Shrine", "keys": ["map/MAP10/Temple W Hall", "key/InventoryFireFigurine"] }
+AP-REGION { "map": "MAP10", "region": "Pillar Room Basement", "keys": ["flag/secret", "key/InventoryFireFigurine", "map/MAP10/Pillar Room"] }
+
+; Earth shrine.
+; Normally the first shrine you visit, using the air figurine.
+; Can also backdoor into it via the magnetic caves, if you're careful about the poison.
+AP-REGION { "map": "MAP10", "region": "Earth Shrine", "keys": ["map/MAP10/Temple E Hall", "key/InventoryAirFigurine"] }
+AP-REGION { "map": "MAP10", "region": "Earth Shrine", "keys": ["map/MAP10/Magnetic Caves"] }
+
+; On to the rest of the level!
+AP-REGION { "map": "MAP10", "region": "Temple N Hall", "keys": ["key/InventoryEarthFragment", "key/InventoryWaterFragment", "key/InventoryFireFragment", "map/MAP10/Elemental Temple", "key/InventoryAirFragment"] }
+AP-REGION { "map": "MAP10", "region": "Great Hall", "keys": ["map/MAP10/Temple N Hall"] }
+AP-REGION { "map": "MAP10", "region": "Great Hall Stairs", "keys": ["map/MAP10/Great Hall"] }
+AP-REGION { "map": "MAP10", "region": "Power Room W", "keys": ["map/MAP10/Great Hall Stairs", "weapon/HatchetAndShield/want", "weapon/SpikeGun/want"] }
+AP-REGION { "map": "MAP10", "region": "Power Monitoring", "keys": ["map/MAP10/Power Room"] }
+AP-REGION { "map": "MAP10", "region": "Power Room E", "keys": ["map/MAP10/Power Monitoring"] }
+AP-REGION { "map": "MAP10", "region": "Burnt Hall", "keys": ["map/MAP10/Power Room E"] }
+AP-REGION { "map": "MAP10", "region": "Pitched Battle", "keys": ["map/MAP10/Burnt Hall"] }
+AP-REGION { "map": "MAP10", "region": "Pitched Battle E Nook", "keys": ["map/MAP10/Pitched Battle"] }
+AP-REGION { "map": "MAP10", "region": "Council Room", "keys": ["map/MAP10/Pitched Battle"] }
+AP-REGION { "map": "MAP10", "region": "Pitched Battle ID Fortifications", "keys": ["map/MAP10/Pitched Battle"] }
+AP-REGION { "map": "MAP10", "region": "ID Base", "keys": ["map/MAP10/Pitched Battle ID Fortifications", "key/EarthKey"] }
+AP-REGION { "map": "MAP10", "region": "Crystal Key Hall", "keys": ["map/MAP10/Great Hall Stairs", "key/CrystalKey"] }
+AP-REGION { "map": "MAP10", "region": "Summoning Ritual", "keys": ["map/MAP10/Crystal Key Hall"] }
+AP-REGION { "map": "MAP10", "region": "Switchback Stairs", "keys": ["map/MAP10/Summoning Ritual"] }
+AP-REGION { "map": "MAP10", "region": "Dark Bridge", "keys": ["map/MAP10/Switchback Stairs"] }
+AP-REGION { "map": "MAP10", "region": "Vine Lounge", "keys": ["map/MAP10/Dark Bridge"] }
+AP-REGION { "map": "MAP10", "region": "Damp Bear Warrior", "keys": ["map/MAP10/Vine Lounge"] }
+AP-REGION { "map": "MAP10", "region": "Library", "keys": ["map/MAP10/Damp Bear Warrior"] }
+AP-REGION { "map": "MAP10", "region": "Library Reading Room", "keys": ["map/MAP10/Library"] }
+AP-REGION { "map": "MAP10", "region": "Library Steps", "keys": ["map/MAP10/Library Reading Room"] }
+AP-REGION { "map": "MAP10", "region": "Last Stand", "keys": ["map/MAP10/Library Steps", "key/CrystalKey"] }
+AP-REGION { "map": "MAP10", "region": "Heart Path", "keys": ["map/MAP10/Last Stand"] }
+AP-REGION { "map": "MAP10", "region": "Crystal Heart Portal Hall", "keys": ["map/MAP10/Heart Path"] }
+AP-REGION { "map": "MAP10", "region": "Pit Lord α", "keys": ["map/MAP10/Crystal Heart Portal Hall"] }
+AP-REGION { "map": "MAP10", "region": "Pit Lord α Phase 2", "keys": ["map/MAP10/Crystal Heart"] }
+AP-REGION { "map": "MAP10", "region": "Pit Lord α Phase 3", "keys": ["map/MAP10/Pit Lord α Phase 2"] }
+AP-REGION { "map": "MAP10", "region": "Pit Lord α Phase 4", "keys": ["map/MAP10/Pit Lord α Phase 3"] }
+AP-XOFF {}
+
+AP-XON { "lump": "GZAPIPC", "size": 0, "nick": "Player", "slot": "Player1", "seed": "91073424719675522688", "wad": "Hedon Bloodrite", "server": "" }
+AP-CHECK { "id": 2687, "name": "MAP10 - Apple [-2596,-6272]", "pos": ["MAP10",-2596,-6272,-606], "region": "Entrance" }
+AP-CHECK { "id": 2686, "name": "MAP10 - Apple [-2532,-6188]", "pos": ["MAP10",-2532,-6188,-590], "region": "Entrance" }
+AP-CHECK { "id": 2685, "name": "MAP10 - Apple [-2476,-6304]", "pos": ["MAP10",-2476,-6304,-606], "region": "Entrance" }
+AP-CHECK { "id": 2797, "name": "MAP10 - Cream Fungus [-1748,-5280]", "pos": ["MAP10",-1748,-5280,-726], "region": "Entrance" }
+AP-CHECK { "id": 2796, "name": "MAP10 - Cream Fungus [-1716,-5256]", "pos": ["MAP10",-1716,-5256,-726], "region": "Entrance" }
+AP-CHECK { "id": 3208, "name": "MAP10 - Spike Bundle [-1500,-4592]", "pos": ["MAP10",-1500,-4592,-727], "region": "Entrance" }
+AP-CHECK { "id": 3207, "name": "MAP10 - Spike Bundle [-1484,-4576]", "pos": ["MAP10",-1484,-4576,-727], "region": "Entrance" }
+AP-CHECK { "id": 3209, "name": "MAP10 - Spike Bundle [-1716,-4476]", "pos": ["MAP10",-1716,-4476,-658], "region": "Entrance" }
+AP-CHECK { "id": 3210, "name": "MAP10 - Spike Bundle [-1736,-4532]", "pos": ["MAP10",-1736,-4532,-658], "region": "Entrance" }
+AP-CHECK { "id": 3205, "name": "MAP10 - Spike Bundle [-1256,-4424]", "pos": ["MAP10",-1256,-4424,-646], "region": "Entrance" }
+AP-CHECK { "id": 2842, "name": "MAP10 - Force Pike [-1284,-3612]", "pos": ["MAP10",-1284,-3612,-638], "region": "Entrance" }
+AP-CHECK { "id": 2821, "name": "MAP10 - Crylance [-1284,-3612]", "pos": ["MAP10",-1284,-3612,-638], "region": "Entrance" }
+AP-CHECK { "id": 2823, "name": "MAP10 - Crylance [-1500,-3260]", "pos": ["MAP10",-1500,-3260,-558], "region": "Entrance" }
+AP-CHECK { "id": 2960, "name": "MAP10 - Potion of Healing [-1471,-2431]", "pos": ["MAP10",-1471,-2431,-614], "region": "Elemental Temple" }
+AP-CHECK { "id": 3283, "name": "MAP10 - Vial of Healing [-1149,-2845]", "pos": ["MAP10",-1149,-2845,-550], "region": "Elemental Temple" }
+AP-CHECK { "id": 3286, "name": "MAP10 - Vial of Healing [-1790,-2841]", "pos": ["MAP10",-1790,-2841,-550], "region": "Elemental Temple" }
+AP-CHECK { "id": 3083, "name": "MAP10 - Power Shard [-2112,-2432]", "pos": ["MAP10",-2112,-2432,-582], "region": "Elemental Temple" }
+AP-CHECK { "id": 3085, "name": "MAP10 - Power Shard [-2303,-2624]", "pos": ["MAP10",-2303,-2624,-582], "region": "Elemental Temple" }
+AP-CHECK { "id": 2681, "name": "MAP10 - Amulet of Shadows [-2455,-2432]", "pos": ["MAP10",-2455,-2432,-582], "region": "Elemental Temple" }
+AP-CHECK { "id": 2843, "name": "MAP10 - Force Pike [-2300,-2432]", "pos": ["MAP10",-2300,-2432,-582], "region": "Elemental Temple" }
+AP-CHECK { "id": 2825, "name": "MAP10 - Crylance [-2302,-2430]", "pos": ["MAP10",-2302,-2430,-582], "region": "Elemental Temple" }
+AP-CHECK { "id": 3086, "name": "MAP10 - Power Shard [-2304,-2231]", "pos": ["MAP10",-2304,-2231,-582], "region": "Elemental Temple" }
+AP-CHECK { "id": 3294, "name": "MAP10 - Vial of Healing [-2716,-1919]", "pos": ["MAP10",-2716,-1919,-550], "region": "Elemental Temple" }
+AP-CHECK { "id": 3295, "name": "MAP10 - Vial of Healing [-2718,-1275]", "pos": ["MAP10",-2718,-1275,-550], "region": "Elemental Temple" }
+AP-CHECK { "id": 2965, "name": "MAP10 - Potion of Healing [-2303,-1598]", "pos": ["MAP10",-2303,-1598,-614], "region": "Elemental Temple" }
+AP-CHECK { "id": 2747, "name": "MAP10 - Box of Acid Potions [-2305,-960]", "pos": ["MAP10",-2305,-960,-582], "region": "Elemental Temple" }
+AP-CHECK { "id": 2831, "name": "MAP10 - Elemental Ring [-2456,-769]", "pos": ["MAP10",-2456,-769,-582], "region": "Elemental Temple" }
+AP-CHECK { "id": 2746, "name": "MAP10 - Box of Acid Potions [-2305,-559]", "pos": ["MAP10",-2305,-559,-582], "region": "Elemental Temple" }
+AP-CHECK { "id": 2693, "name": "MAP10 - Bearzerker Axe [-2296,-768]", "pos": ["MAP10",-2296,-768,-582], "region": "Elemental Temple" }
+AP-CHECK { "id": 2910, "name": "MAP10 - Potion Launcher", "pos": ["MAP10",-2302,-770,-582], "region": "Elemental Temple" }
+AP-CHECK { "id": 2745, "name": "MAP10 - Box of Acid Potions [-2111,-767]", "pos": ["MAP10",-2111,-767,-582], "region": "Elemental Temple" }
+AP-CHECK { "id": 3287, "name": "MAP10 - Vial of Healing [-1792,-372]", "pos": ["MAP10",-1792,-372,-550], "region": "Elemental Temple" }
+AP-CHECK { "id": 2691, "name": "MAP10 - Bearzerker Axe [-1479,-369]", "pos": ["MAP10",-1479,-369,-558], "region": "Elemental Temple" }
+AP-CHECK { "id": 2688, "name": "MAP10 - Axe [-1479,-369]", "pos": ["MAP10",-1479,-369,-558], "region": "Elemental Temple" }
+AP-CHECK { "id": 3284, "name": "MAP10 - Vial of Healing [-1152,-373]", "pos": ["MAP10",-1152,-373,-550], "region": "Elemental Temple" }
+AP-CHECK { "id": 2961, "name": "MAP10 - Potion of Healing [-1472,-766]", "pos": ["MAP10",-1472,-766,-614], "region": "Elemental Temple" }
+AP-CHECK { "id": 2716, "name": "MAP10 - Boltmag [-833,-766]", "pos": ["MAP10",-833,-766,-582], "region": "Elemental Temple" }
+AP-CHECK { "id": 2712, "name": "MAP10 - Boltmag [-635,-574]", "pos": ["MAP10",-635,-574,-582], "region": "Elemental Temple" }
+AP-CHECK { "id": 2883, "name": "MAP10 - Great Axe", "pos": ["MAP10",-644,-768,-582], "region": "Elemental Temple" }
+AP-CHECK { "id": 2818, "name": "MAP10 - Crushbow [-644,-769]", "pos": ["MAP10",-644,-769,-582], "region": "Elemental Temple" }
+AP-CHECK { "id": 3042, "name": "MAP10 - Potion of Stoneskin [-499,-767]", "pos": ["MAP10",-499,-767,-582], "region": "Elemental Temple" }
+AP-CHECK { "id": 2713, "name": "MAP10 - Boltmag [-641,-960]", "pos": ["MAP10",-641,-960,-582], "region": "Elemental Temple" }
+AP-CHECK { "id": 2970, "name": "MAP10 - Potion of Healing [-639,-1600]", "pos": ["MAP10",-639,-1600,-614], "region": "Elemental Temple" }
+AP-CHECK { "id": 2859, "name": "MAP10 - Fragfire Can [-640,-2239]", "pos": ["MAP10",-640,-2239,-582], "region": "Elemental Temple" }
+AP-CHECK { "id": 2942, "name": "MAP10 - Potion of Haste [-510,-2433]", "pos": ["MAP10",-510,-2433,-582], "region": "Elemental Temple" }
+AP-CHECK { "id": 2882, "name": "MAP10 - Fragfire Gun [-644,-2431]", "pos": ["MAP10",-644,-2431,-582], "region": "Elemental Temple" }
+AP-CHECK { "id": 2839, "name": "MAP10 - Fire Hammer [S]", "pos": ["MAP10",-644,-2432,-582], "region": "Elemental Temple" }
+AP-CHECK { "id": 2858, "name": "MAP10 - Fragfire Can [-638,-2623]", "pos": ["MAP10",-638,-2623,-582], "region": "Elemental Temple" }
+AP-CHECK { "id": 2860, "name": "MAP10 - Fragfire Can [-833,-2432]", "pos": ["MAP10",-833,-2432,-582], "region": "Elemental Temple" }
+AP-CHECK { "id": 3291, "name": "MAP10 - Vial of Healing [-233,-1919]", "pos": ["MAP10",-233,-1919,-550], "region": "Elemental Temple" }
+AP-CHECK { "id": 3290, "name": "MAP10 - Vial of Healing [-231,-1274]", "pos": ["MAP10",-231,-1274,-550], "region": "Elemental Temple" }
+AP-CHECK { "id": 3236, "name": "MAP10 - Spike Mag [-1472,-1286]", "pos": ["MAP10",-1472,-1286,-558], "region": "Elemental Temple" }
+AP-CHECK { "id": 3237, "name": "MAP10 - Spike Mag [-1472,-1409]", "pos": ["MAP10",-1472,-1409,-558], "region": "Elemental Temple" }
+AP-CHECK { "id": 2957, "name": "MAP10 - Potion of Healing [-1196,-1508]", "pos": ["MAP10",-1196,-1508,-558], "region": "Elemental Temple" }
+AP-CHECK { "id": 2905, "name": "MAP10 - Medium Armor Crystal [-1192,-1600]", "pos": ["MAP10",-1192,-1600,-558], "region": "Elemental Temple" }
+AP-CHECK { "id": 2958, "name": "MAP10 - Potion of Healing [-1196,-1688]", "pos": ["MAP10",-1196,-1688,-558], "region": "Elemental Temple" }
+AP-CHECK { "id": 3238, "name": "MAP10 - Spike Mag [-1472,-1789]", "pos": ["MAP10",-1472,-1789,-558], "region": "Elemental Temple" }
+AP-CHECK { "id": 3239, "name": "MAP10 - Spike Mag [-1472,-1920]", "pos": ["MAP10",-1472,-1920,-558], "region": "Elemental Temple" }
+AP-CHECK { "id": 2964, "name": "MAP10 - Potion of Healing [-1744,-1692]", "pos": ["MAP10",-1744,-1692,-558], "region": "Elemental Temple" }
+AP-CHECK { "id": 2906, "name": "MAP10 - Medium Armor Crystal [-1744,-1600]", "pos": ["MAP10",-1744,-1600,-558], "region": "Elemental Temple" }
+AP-CHECK { "id": 2963, "name": "MAP10 - Potion of Healing [-1744,-1508]", "pos": ["MAP10",-1744,-1508,-558], "region": "Elemental Temple" }
+AP-CHECK { "id": 2678, "name": "MAP10 - Air Figurine", "pos": ["MAP10",-1491,-1688,-526], "region": "Elemental Temple" }
+AP-CHECK { "id": 3119, "name": "MAP10 - Power Shard [-5055,-1698]", "pos": ["MAP10",-5055,-1698,-622], "region": "Temple W Hall" }
+AP-CHECK { "id": 3120, "name": "MAP10 - Power Shard [-5056,-1507]", "pos": ["MAP10",-5056,-1507,-622], "region": "Temple W Hall" }
+AP-CHECK { "id": 2707, "name": "MAP10 - Boltmag [-4532,-960]", "pos": ["MAP10",-4532,-960,-606], "region": "Temple W Hall" }
+AP-CHECK { "id": 3024, "name": "MAP10 - Potion of Minor Healing [-5004,-576]", "pos": ["MAP10",-5004,-576,-606], "region": "Temple W Hall" }
+AP-CHECK { "id": 3019, "name": "MAP10 - Potion of Minor Healing [-4532,-576]", "pos": ["MAP10",-4532,-576,-606], "region": "Temple W Hall" }
+AP-CHECK { "id": 3251, "name": "MAP10 - Spike Mag [-5004,-960]", "pos": ["MAP10",-5004,-960,-606], "region": "Temple W Hall" }
+AP-CHECK { "id": 2778, "name": "MAP10 - Box of Toxic Potions [-5004,-2240]", "pos": ["MAP10",-5004,-2240,-606], "region": "Temple W Hall" }
+AP-CHECK { "id": 3023, "name": "MAP10 - Potion of Minor Healing [-5004,-2623]", "pos": ["MAP10",-5004,-2623,-606], "region": "Temple W Hall" }
+AP-CHECK { "id": 3018, "name": "MAP10 - Potion of Minor Healing [-4532,-2623]", "pos": ["MAP10",-4532,-2623,-606], "region": "Temple W Hall" }
+AP-CHECK { "id": 2853, "name": "MAP10 - Fragfire Can [-4532,-2240]", "pos": ["MAP10",-4532,-2240,-606], "region": "Temple W Hall" }
+AP-CHECK { "id": 3105, "name": "MAP10 - Power Shard [-4344,-3512]", "pos": ["MAP10",-4344,-3512,-562], "region": "Air Shrine Entrance Secret" }
+AP-CHECK { "id": 3104, "name": "MAP10 - Power Shard [-4340,-3444]", "pos": ["MAP10",-4340,-3444,-562], "region": "Air Shrine Entrance Secret" }
+AP-CHECK { "id": 3192, "name": "MAP10 - Secret 1479", "pos": ["MAP10","secret","sector",1479], "region": "Air Shrine Entrance Secret" }
+AP-CHECK { "id": 3106, "name": "MAP10 - Power Shard [-4346,-3410]", "pos": ["MAP10",-4346,-3410,-562], "region": "Air Shrine Entrance Secret" }
+AP-CHECK { "id": 3107, "name": "MAP10 - Power Shard [-4370,-3383]", "pos": ["MAP10",-4370,-3383,-562], "region": "Air Shrine Entrance Secret" }
+AP-CHECK { "id": 2791, "name": "MAP10 - Choker of the Beast", "pos": ["MAP10",-4376,-3336,-562], "region": "Air Shrine Entrance Secret" }
+Player [0]: ; air shrine entrance should be renamed air shrine entrance secret or similar
+AP-CHECK { "id": 3162, "name": "MAP10 - Power Shard [2112,-1695]", "pos": ["MAP10",2112,-1695,-622], "region": "Temple E Hall", "keys": ["InventoryAirFigurine"] }
+AP-CHECK { "id": 3161, "name": "MAP10 - Power Shard [2112,-1506]", "pos": ["MAP10",2112,-1506,-622], "region": "Temple E Hall", "keys": ["InventoryAirFigurine"] }
+AP-CHECK { "id": 3261, "name": "MAP10 - Spike Mag [2060,-960]", "pos": ["MAP10",2060,-960,-606], "region": "Temple E Hall", "keys": ["InventoryAirFigurine"] }
+AP-CHECK { "id": 3039, "name": "MAP10 - Potion of Minor Healing [2060,-576]", "pos": ["MAP10",2060,-576,-606], "region": "Temple E Hall", "keys": ["InventoryAirFigurine"] }
+AP-CHECK { "id": 3036, "name": "MAP10 - Potion of Minor Healing [1588,-576]", "pos": ["MAP10",1588,-576,-606], "region": "Temple E Hall", "keys": ["InventoryAirFigurine"] }
+AP-CHECK { "id": 2722, "name": "MAP10 - Boltmag [1588,-960]", "pos": ["MAP10",1588,-960,-606], "region": "Temple E Hall", "keys": ["InventoryAirFigurine"] }
+AP-CHECK { "id": 2757, "name": "MAP10 - Box of Acid Potions [1588,-2240]", "pos": ["MAP10",1588,-2240,-606], "region": "Temple E Hall", "keys": ["InventoryAirFigurine"] }
+AP-CHECK { "id": 3035, "name": "MAP10 - Potion of Minor Healing [1588,-2623]", "pos": ["MAP10",1588,-2623,-606], "region": "Temple E Hall", "keys": ["InventoryAirFigurine"] }
+AP-CHECK { "id": 3038, "name": "MAP10 - Potion of Minor Healing [2060,-2623]", "pos": ["MAP10",2060,-2623,-606], "region": "Temple E Hall", "keys": ["InventoryAirFigurine"] }
+AP-CHECK { "id": 2868, "name": "MAP10 - Fragfire Can [2060,-2240]", "pos": ["MAP10",2060,-2240,-606], "region": "Temple E Hall", "keys": ["InventoryAirFigurine"] }
+AP-CHECK { "id": 2685, "name": "MAP10 - Apple [-2476,-6304]", "pos": ["MAP10",-2476,-6304,-606], "keys": ["InventoryAirFigurine"] }
+AP-CHECK { "id": 3190, "name": "MAP10 - Power Shard [907,3967]", "pos": ["MAP10",907,3967,-597], "region": "Earth Shrine" }
+AP-CHECK { "id": 3146, "name": "MAP10 - Power Shard [1037,4325]", "pos": ["MAP10",1037,4325,-602], "region": "Earth Shrine" }
+AP-CHECK { "id": 3148, "name": "MAP10 - Power Shard [1460,4469]", "pos": ["MAP10",1460,4469,-600], "region": "Earth Shrine" }
+AP-CHECK { "id": 2885, "name": "MAP10 - Green Crystal [1492,4540]", "pos": ["MAP10",1492,4540,-597], "region": "Earth Shrine" }
+AP-CHECK { "id": 3150, "name": "MAP10 - Power Shard [1829,4265]", "pos": ["MAP10",1829,4265,-597], "region": "Earth Shrine" }
+AP-CHECK { "id": 3149, "name": "MAP10 - Power Shard [1823,3851]", "pos": ["MAP10",1823,3851,-601], "region": "Earth Shrine" }
+AP-CHECK { "id": 2891, "name": "MAP10 - Green Crystals [1706,3607]", "pos": ["MAP10",1706,3607,-602], "region": "Earth Shrine" }
+AP-CHECK { "id": 3037, "name": "MAP10 - Potion of Minor Healing [1702,2361]", "pos": ["MAP10",1702,2361,-474], "region": "Earth Shrine" }
+AP-CHECK { "id": 2721, "name": "MAP10 - Boltmag [1316,1931]", "pos": ["MAP10",1316,1931,-418], "region": "Earth Shrine" }
+AP-CHECK { "id": 2762, "name": "MAP10 - Box of Acid Potions [1759,1695]", "pos": ["MAP10",1759,1695,-410], "region": "Earth Shrine" }
+AP-CHECK { "id": 3280, "name": "MAP10 - Time Shard [1732,1245]", "pos": ["MAP10",1732,1245,-402], "region": "Earth Shrine" }
+AP-CHECK { "id": 2827, "name": "MAP10 - Earth Figurine", "pos": ["MAP10",1755,1229,-450], "region": "Earth Shrine" }
+AP-CHECK { "id": 2886, "name": "MAP10 - Green Crystal [3155,2334]", "pos": ["MAP10",3155,2334,-602], "region": "Earth Shrine" }
+AP-CHECK { "id": 2800, "name": "MAP10 - Cream Fungus [3712,2504]", "pos": ["MAP10",3712,2504,-570], "region": "Earth Shrine" }
+AP-CHECK { "id": 2802, "name": "MAP10 - Cream Fungus [3768,2576]", "pos": ["MAP10",3768,2576,-570], "region": "Earth Shrine" }
+AP-CHECK { "id": 2804, "name": "MAP10 - Cream Fungus [3796,2624]", "pos": ["MAP10",3796,2624,-570], "region": "Earth Shrine" }
+AP-CHECK { "id": 2803, "name": "MAP10 - Cream Fungus [3788,2644]", "pos": ["MAP10",3788,2644,-570], "region": "Earth Shrine" }
+AP-CHECK { "id": 2805, "name": "MAP10 - Cream Fungus [3804,2772]", "pos": ["MAP10",3804,2772,-570], "region": "Earth Shrine" }
+AP-CHECK { "id": 2801, "name": "MAP10 - Cream Fungus [3764,2724]", "pos": ["MAP10",3764,2724,-570], "region": "Earth Shrine" }
+AP-CHECK { "id": 3316, "name": "MAP10 - Vial of Healing [3519,2685]", "pos": ["MAP10",3519,2685,-602], "region": "Earth Shrine" }
+AP-CHECK { "id": 3315, "name": "MAP10 - Vial of Healing [3510,3011]", "pos": ["MAP10",3510,3011,-602], "region": "Earth Shrine" }
+AP-CHECK { "id": 2887, "name": "MAP10 - Green Crystal [3219,3180]", "pos": ["MAP10",3219,3180,-602], "region": "Earth Shrine" }
+AP-CHECK { "id": 3314, "name": "MAP10 - Vial of Healing [3334,3008]", "pos": ["MAP10",3334,3008,-602], "region": "Earth Shrine" }
+AP-CHECK { "id": 3313, "name": "MAP10 - Vial of Healing [3327,2690]", "pos": ["MAP10",3327,2690,-602], "region": "Earth Shrine" }
+AP-CHECK { "id": 2679, "name": "MAP10 - Air Fragment", "pos": ["MAP10",-4923,-5646,-286], "region": "Air Shrine" }
+AP-CHECK { "id": 3273, "name": "MAP10 - Time Shard [-5470,-4828]", "pos": ["MAP10",-5470,-4828,-542], "region": "Air Shrine" }
+AP-CHECK { "id": 3277, "name": "MAP10 - Time Shard [-5804,-4252]", "pos": ["MAP10",-5804,-4252,-586], "region": "Air Shrine Pillar Secret" }
+AP-CHECK { "id": 3276, "name": "MAP10 - Time Shard [-5720,-4408]", "pos": ["MAP10",-5720,-4408,-586], "region": "Air Shrine Pillar Secret" }
+AP-CHECK { "id": 3272, "name": "MAP10 - Time Shard [-5392,-4272]", "pos": ["MAP10",-5392,-4272,-586], "region": "Air Shrine Pillar Secret" }
+AP-CHECK { "id": 3274, "name": "MAP10 - Time Shard [-5496,-4088]", "pos": ["MAP10",-5496,-4088,-586], "region": "Air Shrine Pillar Secret" }
+AP-CHECK { "id": 3319, "name": "MAP10 - Water Figurine", "pos": ["MAP10",-7056,-2585,-402], "region": "Ice Caves" }
+AP-CHECK { "id": 3030, "name": "MAP10 - Potion of Minor Healing [-7127,-2537]", "pos": ["MAP10",-7127,-2537,-362], "region": "Ice Caves" }
+AP-CHECK { "id": 3128, "name": "MAP10 - Power Shard [-6668,-1572]", "pos": ["MAP10",-6668,-1572,-82], "region": "Ice Caves" }
+AP-CHECK { "id": 3127, "name": "MAP10 - Power Shard [-6612,-1564]", "pos": ["MAP10",-6612,-1564,-82], "region": "Ice Caves" }
+AP-CHECK { "id": 3130, "name": "MAP10 - Power Shard [-6708,-1548]", "pos": ["MAP10",-6708,-1548,-82], "region": "Ice Caves" }
+AP-CHECK { "id": 3028, "name": "MAP10 - Potion of Minor Healing [-6432,-414]", "pos": ["MAP10",-6432,-414,-598], "region": "Pillar Room" }
+AP-CHECK { "id": 3029, "name": "MAP10 - Potion of Minor Healing [-6432,865]", "pos": ["MAP10",-6432,865,-598], "region": "Pillar Room" }
+AP-CHECK { "id": 3027, "name": "MAP10 - Potion of Minor Healing [-5795,865]", "pos": ["MAP10",-5795,865,-598], "region": "Pillar Room" }
+AP-CHECK { "id": 3278, "name": "MAP10 - Time Shard [-6113,772]", "pos": ["MAP10",-6113,772,82], "region": "Pillar Room" }
+AP-CHECK { "id": 3026, "name": "MAP10 - Potion of Minor Healing [-5783,-412]", "pos": ["MAP10",-5783,-412,-598], "region": "Pillar Room" }
+AP-CHECK { "id": 3002, "name": "MAP10 - Potion of Might [S]", "pos": ["MAP10",1600,-4733,-590], "region": "Fire Shrine" }
+AP-CHECK { "id": 2730, "name": "MAP10 - Boltmag [2296,-5211]", "pos": ["MAP10",2296,-5211,-334], "region": "Fire Shrine" }
+AP-CHECK { "id": 2947, "name": "MAP10 - Potion of Haste [1953,-4957]", "pos": ["MAP10",1953,-4957,-326], "region": "Fire Shrine" }
+AP-CHECK { "id": 2862, "name": "MAP10 - Fragfire Can [1503,-5373]", "pos": ["MAP10",1503,-5373,-334], "region": "Fire Shrine" }
+AP-CHECK { "id": 3260, "name": "MAP10 - Spike Mag [1847,-5904]", "pos": ["MAP10",1847,-5904,-326], "region": "Fire Shrine" }
+AP-CHECK { "id": 2837, "name": "MAP10 - Fire Fragment", "pos": ["MAP10",1888,-5472,-222], "region": "Fire Shrine" }
+AP-CHECK { "id": 2836, "name": "MAP10 - Fire Figurine", "pos": ["MAP10",4046,-2254,-742], "region": "Magnetic Caves" }
+AP-CHECK { "id": 3317, "name": "MAP10 - Vial of Healing [4006,-2228]", "pos": ["MAP10",4006,-2228,-742], "region": "Magnetic Caves" }
+AP-CHECK { "id": 2806, "name": "MAP10 - Cream Fungus [4696,-2009]", "pos": ["MAP10",4696,-2009,-718], "region": "Magnetic Caves" }
+AP-CHECK { "id": 2807, "name": "MAP10 - Cream Fungus [4757,-1994]", "pos": ["MAP10",4757,-1994,-718], "region": "Magnetic Caves" }
+AP-CHECK { "id": 2808, "name": "MAP10 - Cream Fungus [4767,-1968]", "pos": ["MAP10",4767,-1968,-718], "region": "Magnetic Caves" }
+AP-CHECK { "id": 3282, "name": "MAP10 - Time Shard [4428,-1853]", "pos": ["MAP10",4428,-1853,-542], "region": "Magnetic Caves" }
+AP-CHECK { "id": 2985, "name": "MAP10 - Potion of Healing [4288,-755]", "pos": ["MAP10",4288,-755,-742], "region": "Magnetic Caves" }
+AP-CHECK { "id": 3269, "name": "MAP10 - Spike Mag [4589,-569]", "pos": ["MAP10",4589,-569,-742], "region": "Magnetic Caves" }
+AP-CHECK { "id": 2771, "name": "MAP10 - Box of Acid Potions [5292,-968]", "pos": ["MAP10",5292,-968,-734], "region": "Fire Shrine" }
+AP-CHECK { "id": 2734, "name": "MAP10 - Boltmag [5593,-959]", "pos": ["MAP10",5593,-959,-734], "region": "Fire Shrine" }
+AP-CHECK { "id": 3197, "name": "MAP10 - Sentry Gun [5717,-709]", "pos": ["MAP10",5717,-709,-734], "region": "Fire Shrine" }
+AP-CHECK { "id": 2772, "name": "MAP10 - Box of Acid Potions [5585,-434]", "pos": ["MAP10",5585,-434,-734], "region": "Fire Shrine" }
+AP-CHECK { "id": 2733, "name": "MAP10 - Boltmag [5302,-414]", "pos": ["MAP10",5302,-414,-734], "region": "Fire Shrine" }
+AP-CHECK { "id": 2875, "name": "MAP10 - Fragfire Can [4361,-161]", "pos": ["MAP10",4361,-161,-758], "region": "Fire Shrine" }
+AP-CHECK { "id": 3268, "name": "MAP10 - Spike Mag [4524,562]", "pos": ["MAP10",4524,562,-782], "region": "Fire Shrine" }
+AP-CHECK { "id": 2933, "name": "MAP10 - Potion of Greater Healing [4182,373]", "pos": ["MAP10",4182,373,-798], "region": "Fire Shrine" }
+AP-CHECK { "id": 3185, "name": "MAP10 - Power Shard [3372,336]", "pos": ["MAP10",3372,336,-725], "region": "Fire Shrine" }
+AP-CHECK { "id": 3187, "name": "MAP10 - Power Shard [3396,280]", "pos": ["MAP10",3396,280,-725], "region": "Fire Shrine" }
+AP-CHECK { "id": 3186, "name": "MAP10 - Power Shard [3376,220]", "pos": ["MAP10",3376,220,-725], "region": "Fire Shrine" }
+AP-CHECK { "id": 3318, "name": "MAP10 - Vial of Healing [4069,793]", "pos": ["MAP10",4069,793,-782], "region": "Fire Shrine" }
+Player [0]: ; magnetic cave is accessible from both fire and earth shrines
+Player [0]: ; TODO double check if it's actually reachable from earth before you unlock fire
+Player [0]: ; and similarly check ice caves
+AP-CHECK { "id": 3191, "name": "MAP10 - Secret 1200", "pos": ["MAP10","secret","sector",1200], "region": "Pillar Room Basement" }
+AP-CHECK { "id": 3125, "name": "MAP10 - Power Shard [-6179,-739]", "pos": ["MAP10",-6179,-739,-838], "region": "Pillar Room Basement" }
+AP-CHECK { "id": 3302, "name": "MAP10 - Vial of Healing [-6179,-670]", "pos": ["MAP10",-6179,-670,-838], "region": "Pillar Room Basement" }
+AP-CHECK { "id": 3124, "name": "MAP10 - Power Shard [-6176,-601]", "pos": ["MAP10",-6176,-601,-838], "region": "Pillar Room Basement" }
+AP-CHECK { "id": 3301, "name": "MAP10 - Vial of Healing [-6112,-602]", "pos": ["MAP10",-6112,-602,-838], "region": "Pillar Room Basement" }
+AP-CHECK { "id": 3123, "name": "MAP10 - Power Shard [-6047,-605]", "pos": ["MAP10",-6047,-605,-838], "region": "Pillar Room Basement" }
+AP-CHECK { "id": 3300, "name": "MAP10 - Vial of Healing [-6043,-667]", "pos": ["MAP10",-6043,-667,-838], "region": "Pillar Room Basement" }
+AP-CHECK { "id": 3122, "name": "MAP10 - Power Shard [-6044,-741]", "pos": ["MAP10",-6044,-741,-838], "region": "Pillar Room Basement" }
+AP-CHECK { "id": 2832, "name": "MAP10 - Elemental Ring [-6111,-741]", "pos": ["MAP10",-6111,-741,-838], "region": "Pillar Room Basement" }
+AP-CHECK { "id": 3250, "name": "MAP10 - Spike Mag [-4960,1376]", "pos": ["MAP10",-4960,1376,-798], "region": "Water Shrine" }
+AP-CHECK { "id": 3249, "name": "MAP10 - Spike Mag [-4576,1376]", "pos": ["MAP10",-4576,1376,-798], "region": "Water Shrine" }
+AP-CHECK { "id": 2708, "name": "MAP10 - Boltmag [-4664,1532]", "pos": ["MAP10",-4664,1532,-798], "region": "Water Shrine" }
+AP-CHECK { "id": 2709, "name": "MAP10 - Boltmag [-4871,1536]", "pos": ["MAP10",-4871,1536,-798], "region": "Water Shrine" }
+AP-CHECK { "id": 3025, "name": "MAP10 - Potion of Minor Healing [-5088,1852]", "pos": ["MAP10",-5088,1852,-862], "region": "Water Shrine" }
+AP-CHECK { "id": 3017, "name": "MAP10 - Potion of Minor Healing [-4448,1856]", "pos": ["MAP10",-4448,1856,-862], "region": "Water Shrine" }
+AP-CHECK { "id": 2920, "name": "MAP10 - Potion of Greater Healing [-5388,3260]", "pos": ["MAP10",-5388,3260,-862], "region": "Water Shrine" }
+AP-CHECK { "id": 3252, "name": "MAP10 - Spike Mag [-5112,2840]", "pos": ["MAP10",-5112,2840,-774], "region": "Water Shrine" }
+AP-CHECK { "id": 3253, "name": "MAP10 - Spike Mag [-5160,3700]", "pos": ["MAP10",-5160,3700,-582], "region": "Water Shrine" }
+AP-CHECK { "id": 3247, "name": "MAP10 - Spike Mag [-4496,3712]", "pos": ["MAP10",-4496,3712,-742], "region": "Water Shrine" }
+AP-CHECK { "id": 2919, "name": "MAP10 - Potion of Greater Healing [-4312,3256]", "pos": ["MAP10",-4312,3256,-662], "region": "Water Shrine" }
+AP-CHECK { "id": 3248, "name": "MAP10 - Spike Mag [-4516,2836]", "pos": ["MAP10",-4516,2836,-526], "region": "Water Shrine" }
+AP-CHECK { "id": 3320, "name": "MAP10 - Water Fragment", "pos": ["MAP10",-4816,3280,-910], "region": "Water Shrine" }
+Player [0]: ; Accessing the earth fragment requires earth shrine access and to have placed the water figurine
+AP-CHECK { "id": 2828, "name": "MAP10 - Earth Fragment", "pos": ["MAP10",1416,4056,-546], "region": "Earth Shrine", "keys": ["InventoryWaterFigurine"] }
+AP-CHECK { "id": 2811, "name": "MAP10 - Cream Fungus [88,-1992]", "pos": ["MAP10",88,-1992,-528], "region": "Temple E Hall Glass" }
+AP-CHECK { "id": 2809, "name": "MAP10 - Cream Fungus [80,-1964]", "pos": ["MAP10",80,-1964,-528], "region": "Temple E Hall Glass" }
+AP-CHECK { "id": 2798, "name": "MAP10 - Cream Fungus [108,-1912]", "pos": ["MAP10",108,-1912,-528], "region": "Temple E Hall Glass" }
+AP-CHECK { "id": 2810, "name": "MAP10 - Cream Fungus [84,-1904]", "pos": ["MAP10",84,-1904,-528], "region": "Temple E Hall Glass" }
+AP-CHECK { "id": 2799, "name": "MAP10 - Cream Fungus [144,-1896]", "pos": ["MAP10",144,-1896,-528], "region": "Temple E Hall Glass" }
+AP-CHECK { "id": 2892, "name": "MAP10 - Green Crystals [597,-1141]", "pos": ["MAP10",597,-1141,-550], "region": "Temple E Hall Glass" }
+AP-CHECK { "id": 3081, "name": "MAP10 - Power Shard [-1836,480]", "pos": ["MAP10",-1836,480,-526], "region": "Temple N Hall" }
+AP-CHECK { "id": 3080, "name": "MAP10 - Power Shard [-1748,480]", "pos": ["MAP10",-1748,480,-526], "region": "Temple N Hall" }
+AP-CHECK { "id": 3050, "name": "MAP10 - Power Shard [-1108,480]", "pos": ["MAP10",-1108,480,-526], "region": "Temple N Hall" }
+AP-CHECK { "id": 3059, "name": "MAP10 - Power Shard [-1196,480]", "pos": ["MAP10",-1196,480,-526], "region": "Temple N Hall" }
+AP-CHECK { "id": 2815, "name": "MAP10 - Crushbow [-1832,4020]", "pos": ["MAP10",-1832,4020,-1054], "region": "Great Hall" }
+AP-CHECK { "id": 2700, "name": "MAP10 - Boltmag [-1892,4020]", "pos": ["MAP10",-1892,4020,-1054], "region": "Great Hall" }
+AP-CHECK { "id": 2938, "name": "MAP10 - Potion of Haste [-2208,4192]", "pos": ["MAP10",-2208,4192,-1070], "region": "Great Hall" }
+AP-CHECK { "id": 3012, "name": "MAP10 - Potion of Minor Healing [-2016,4192]", "pos": ["MAP10",-2016,4192,-1070], "region": "Great Hall" }
+AP-CHECK { "id": 2692, "name": "MAP10 - Bearzerker Axe [-1780,4116]", "pos": ["MAP10",-1780,4116,-1070], "region": "Great Hall" }
+AP-CHECK { "id": 2689, "name": "MAP10 - Axe [-1780,4116]", "pos": ["MAP10",-1780,4116,-1070], "region": "Great Hall" }
+AP-CHECK { "id": 2894, "name": "MAP10 - Half-Empty Fragfire Can [-1688,4044]", "pos": ["MAP10",-1688,4044,-1070], "region": "Great Hall" }
+AP-CHECK { "id": 2893, "name": "MAP10 - Half-Empty Fragfire Can [-1544,3868]", "pos": ["MAP10",-1544,3868,-1070], "region": "Great Hall" }
+AP-CHECK { "id": 2741, "name": "MAP10 - Box of Acid Potions [-1472,4192]", "pos": ["MAP10",-1472,4192,-1070], "region": "Great Hall" }
+AP-CHECK { "id": 2878, "name": "MAP10 - Fragfire Gun [-1360,4012]", "pos": ["MAP10",-1360,4012,-1070], "region": "Great Hall" }
+AP-CHECK { "id": 3285, "name": "MAP10 - Vial of Healing [-1228,3956]", "pos": ["MAP10",-1228,3956,-1070], "region": "Great Hall" }
+AP-CHECK { "id": 3227, "name": "MAP10 - Spike Gun [-1268,3904]", "pos": ["MAP10",-1268,3904,-974], "region": "Great Hall" }
+AP-CHECK { "id": 3033, "name": "MAP10 - Potion of Minor Healing [-928,4192]", "pos": ["MAP10",-928,4192,-1070], "region": "Great Hall" }
+AP-CHECK { "id": 3305, "name": "MAP10 - Vial of Healing [-736,4128]", "pos": ["MAP10",-736,4128,-1070], "region": "Great Hall" }
+AP-CHECK { "id": 3306, "name": "MAP10 - Vial of Healing [-736,4256]", "pos": ["MAP10",-736,4256,-1070], "region": "Great Hall" }
+AP-CHECK { "id": 2698, "name": "MAP10 - Boltmag [-1472,4836]", "pos": ["MAP10",-1472,4836,-1070], "region": "Great Hall" }
+AP-CHECK { "id": 2776, "name": "MAP10 - Box of Toxic Potions [-1472,5664]", "pos": ["MAP10",-1472,5664,-1070], "region": "Great Hall" }
+AP-CHECK { "id": 2699, "name": "MAP10 - Boltmag [-1472,6496]", "pos": ["MAP10",-1472,6496,-1070], "region": "Great Hall" }
+AP-CHECK { "id": 2742, "name": "MAP10 - Box of Acid Potions [-1472,7136]", "pos": ["MAP10",-1472,7136,-1070], "region": "Great Hall" }
+AP-CHECK { "id": 3013, "name": "MAP10 - Potion of Minor Healing [-2016,7136]", "pos": ["MAP10",-2016,7136,-1070], "region": "Great Hall" }
+AP-CHECK { "id": 3288, "name": "MAP10 - Vial of Healing [-2208,7072]", "pos": ["MAP10",-2208,7072,-1070], "region": "Great Hall" }
+AP-CHECK { "id": 3034, "name": "MAP10 - Potion of Minor Healing [-928,7136]", "pos": ["MAP10",-928,7136,-1070], "region": "Great Hall" }
+AP-CHECK { "id": 2944, "name": "MAP10 - Potion of Haste [-736,7136]", "pos": ["MAP10",-736,7136,-1070], "region": "Great Hall" }
+AP-CHECK { "id": 3289, "name": "MAP10 - Vial of Healing [-2208,7200]", "pos": ["MAP10",-2208,7200,-1070], "region": "Great Hall" }
+AP-CHECK { "id": 2880, "name": "MAP10 - Fragfire Gun [-2816,9112]", "pos": ["MAP10",-2816,9112,-702], "region": "Great Hall Stairs" }
+AP-CHECK { "id": 2816, "name": "MAP10 - Crushbow [-2920,9184]", "pos": ["MAP10",-2920,9184,-702], "region": "Great Hall Stairs" }
+AP-CHECK { "id": 2896, "name": "MAP10 - Half-Empty Fragfire Can [-2796,9192]", "pos": ["MAP10",-2796,9192,-670], "region": "Great Hall Stairs" }
+AP-CHECK { "id": 2966, "name": "MAP10 - Potion of Healing [-3008,9316]", "pos": ["MAP10",-3008,9316,-638], "region": "Great Hall Stairs" }
+AP-CHECK { "id": 2895, "name": "MAP10 - Half-Empty Fragfire Can [-2376,9168]", "pos": ["MAP10",-2376,9168,-702], "region": "Great Hall Stairs" }
+AP-CHECK { "id": 3229, "name": "MAP10 - Spike Gun [-1564,9048]", "pos": ["MAP10",-1564,9048,-926], "region": "Great Hall Stairs" }
+AP-CHECK { "id": 3228, "name": "MAP10 - Spike Gun [-1440,9016]", "pos": ["MAP10",-1440,9016,-894], "region": "Great Hall Stairs" }
+AP-CHECK { "id": 2813, "name": "MAP10 - Crushbow [-1384,9072]", "pos": ["MAP10",-1384,9072,-926], "region": "Great Hall Stairs" }
+AP-CHECK { "id": 3008, "name": "MAP10 - Potion of Minor Healing [-1344,9036]", "pos": ["MAP10",-1344,9036,-926], "region": "Great Hall Stairs" }
+AP-CHECK { "id": 2697, "name": "MAP10 - Boltmag [-1324,9008]", "pos": ["MAP10",-1324,9008,-862], "region": "Great Hall Stairs" }
+AP-CHECK { "id": 2846, "name": "MAP10 - Fragfire Can [-1280,9000]", "pos": ["MAP10",-1280,9000,-894], "region": "Great Hall Stairs" }
+AP-CHECK { "id": 2902, "name": "MAP10 - Light Armor Crystal [-2502,9444]", "pos": ["MAP10",-2502,9444,-702], "region": "Power Room W" }
+AP-CHECK { "id": 3090, "name": "MAP10 - Power Shard [-2468,9448]", "pos": ["MAP10",-2468,9448,-702], "region": "Power Room W" }
+AP-CHECK { "id": 3089, "name": "MAP10 - Power Shard [-2455,9429]", "pos": ["MAP10",-2455,9429,-702], "region": "Power Room W" }
+AP-CHECK { "id": 3088, "name": "MAP10 - Power Shard [-2444,9460]", "pos": ["MAP10",-2444,9460,-702], "region": "Power Room W" }
+AP-CHECK { "id": 3213, "name": "MAP10 - Spike Bundle [-2500,9956]", "pos": ["MAP10",-2500,9956,-678], "region": "Power Room W" }
+AP-CHECK { "id": 3212, "name": "MAP10 - Spike Bundle [-2496,9956]", "pos": ["MAP10",-2496,9956,-678], "region": "Power Room W" }
+AP-CHECK { "id": 3211, "name": "MAP10 - Spike Bundle [-2480,9956]", "pos": ["MAP10",-2480,9956,-678], "region": "Power Room W" }
+Player [0]: ; power room should be power room W
+AP-CHECK { "id": 3009, "name": "MAP10 - Potion of Minor Healing [-1376,10088]", "pos": ["MAP10",-1376,10088,-597], "region": "Power Monitoring" }
+AP-CHECK { "id": 2959, "name": "MAP10 - Potion of Healing [-1384,10036]", "pos": ["MAP10",-1384,10036,-597], "region": "Power Monitoring" }
+AP-CHECK { "id": 3007, "name": "MAP10 - Potion of Minor Healing [-1332,10068]", "pos": ["MAP10",-1332,10068,-597], "region": "Power Monitoring" }
+AP-CHECK { "id": 2774, "name": "MAP10 - Box of Toxic Potions [-1040,10204]", "pos": ["MAP10",-1040,10204,-597], "region": "Power Monitoring" }
+AP-CHECK { "id": 2756, "name": "MAP10 - Box of Acid Potions [-992,10204]", "pos": ["MAP10",-992,10204,-597], "region": "Power Monitoring" }
+Player [0]: ; You can get into power monitoring from either the E or W power rooms
+Player [0]: ; but only W is accessible from the great all
+Player [0]: ; at least without the crystal key
+AP-CHECK { "id": 3136, "name": "MAP10 - Power Shard [-768,9512]", "pos": ["MAP10",-768,9512,-694], "region": "Power Room E" }
+AP-CHECK { "id": 3046, "name": "MAP10 - Power Shard [-1024,9512]", "pos": ["MAP10",-1024,9512,-694], "region": "Power Room E" }
+AP-CHECK { "id": 3112, "name": "MAP10 - Power Shard [-462,9822]", "pos": ["MAP10",-462,9822,-702], "region": "Burnt Hall" }
+AP-CHECK { "id": 3108, "name": "MAP10 - Power Shard [-438,9870]", "pos": ["MAP10",-438,9870,-702], "region": "Burnt Hall" }
+AP-CHECK { "id": 3118, "name": "MAP10 - Power Shard [-474,9926]", "pos": ["MAP10",-474,9926,-702], "region": "Burnt Hall" }
+Player [0]: ; accessible from power room E one-way
+AP-CHECK { "id": 2897, "name": "MAP10 - Half-Empty Fragfire Can [-328,10140]", "pos": ["MAP10",-328,10140,-702], "region": "Burnt Hall" }
+AP-CHECK { "id": 2824, "name": "MAP10 - Crylance [-196,10800]", "pos": ["MAP10",-196,10800,-702], "region": "Burnt Hall" }
+AP-CHECK { "id": 3121, "name": "MAP10 - Power Shard [-512,12736]", "pos": ["MAP10",-512,12736,-614], "region": "Pitched Battle" }
+AP-CHECK { "id": 3145, "name": "MAP10 - Power Shard [-896,12736]", "pos": ["MAP10",-896,12736,-614], "region": "Pitched Battle" }
+AP-CHECK { "id": 3071, "name": "MAP10 - Power Shard [-1280,12736]", "pos": ["MAP10",-1280,12736,-614], "region": "Pitched Battle" }
+AP-CHECK { "id": 3079, "name": "MAP10 - Power Shard [-1664,12736]", "pos": ["MAP10",-1664,12736,-614], "region": "Pitched Battle" }
+AP-CHECK { "id": 3082, "name": "MAP10 - Power Shard [-2048,12736]", "pos": ["MAP10",-2048,12736,-614], "region": "Pitched Battle" }
+AP-CHECK { "id": 3087, "name": "MAP10 - Power Shard [-2432,12736]", "pos": ["MAP10",-2432,12736,-614], "region": "Pitched Battle" }
+AP-CHECK { "id": 2847, "name": "MAP10 - Fragfire Can [-2788,11504]", "pos": ["MAP10",-2788,11504,-702], "region": "Pitched Battle" }
+AP-CHECK { "id": 2814, "name": "MAP10 - Crushbow [-1536,11860]", "pos": ["MAP10",-1536,11860,-702], "region": "Pitched Battle" }
+AP-CHECK { "id": 2911, "name": "MAP10 - Potion Launcher [Acid] [-1420,12168]", "pos": ["MAP10",-1420,12168,-702], "region": "Pitched Battle" }
+AP-CHECK { "id": 2962, "name": "MAP10 - Potion of Healing [-1496,12064]", "pos": ["MAP10",-1496,12064,-702], "region": "Pitched Battle" }
+AP-CHECK { "id": 3010, "name": "MAP10 - Potion of Minor Healing [-1380,11876]", "pos": ["MAP10",-1380,11876,-702], "region": "Pitched Battle" }
+AP-CHECK { "id": 3011, "name": "MAP10 - Potion of Minor Healing [-1424,11840]", "pos": ["MAP10",-1424,11840,-702], "region": "Pitched Battle" }
+AP-CHECK { "id": 3271, "name": "MAP10 - Time Shard [-1560,12064]", "pos": ["MAP10",-1560,12064,-534], "region": "Pitched Battle" }
+AP-CHECK { "id": 2876, "name": "MAP10 - Fragfire Can [692,12412]", "pos": ["MAP10",692,12412,-702], "region": "Pitched Battle E Nook" }
+AP-CHECK { "id": 3270, "name": "MAP10 - Spike Mag [676,12428]", "pos": ["MAP10",676,12428,-702], "region": "Pitched Battle E Nook" }
+AP-CHECK { "id": 2735, "name": "MAP10 - Boltmag [716,12424]", "pos": ["MAP10",716,12424,-638], "region": "Pitched Battle E Nook" }
+AP-CHECK { "id": 3074, "name": "MAP10 - Power Shard [-1388,10692]", "pos": ["MAP10",-1388,10692,-589], "region": "Council Room" }
+AP-CHECK { "id": 3077, "name": "MAP10 - Power Shard [-1512,10740]", "pos": ["MAP10",-1512,10740,-589], "region": "Council Room" }
+AP-CHECK { "id": 3078, "name": "MAP10 - Power Shard [-1556,10620]", "pos": ["MAP10",-1556,10620,-589], "region": "Council Room" }
+AP-CHECK { "id": 3076, "name": "MAP10 - Power Shard [-1432,10572]", "pos": ["MAP10",-1432,10572,-589], "region": "Council Room" }
+AP-CHECK { "id": 2829, "name": "MAP10 - Earth Key", "pos": ["MAP10",-1388,10444,-598], "region": "Council Room" }
+AP-CHECK { "id": 2822, "name": "MAP10 - Crylance [-1488,10432]", "pos": ["MAP10",-1488,10432,-598], "region": "Council Room" }
+AP-CHECK { "id": 3259, "name": "MAP10 - Spike Mag [-980,10304]", "pos": ["MAP10",-980,10304,-566], "region": "Council Room" }
+AP-CHECK { "id": 2844, "name": "MAP10 - Fragfire Can [-1044,10296]", "pos": ["MAP10",-1044,10296,-566], "region": "Council Room" }
+AP-CHECK { "id": 2736, "name": "MAP10 - Box of Acid Potions [-1092,10308]", "pos": ["MAP10",-1092,10308,-534], "region": "Council Room" }
+AP-CHECK { "id": 2850, "name": "MAP10 - Fragfire Can [-3236,12144]", "pos": ["MAP10",-3236,12144,-702], "region": "Pitched Battle ID Fortifications" }
+AP-CHECK { "id": 2912, "name": "MAP10 - Potion Launcher [Acid] [-3352,12068]", "pos": ["MAP10",-3352,12068,-702], "region": "Pitched Battle ID Fortifications" }
+AP-CHECK { "id": 3015, "name": "MAP10 - Potion of Minor Healing [-3364,12296]", "pos": ["MAP10",-3364,12296,-702], "region": "Pitched Battle ID Fortifications" }
+AP-CHECK { "id": 3016, "name": "MAP10 - Potion of Minor Healing [-3380,12332]", "pos": ["MAP10",-3380,12332,-702], "region": "Pitched Battle ID Fortifications" }
+AP-CHECK { "id": 2918, "name": "MAP10 - Potion of Greater Healing [-3336,12428]", "pos": ["MAP10",-3336,12428,-638], "region": "Pitched Battle ID Fortifications" }
+AP-CHECK { "id": 2703, "name": "MAP10 - Boltmag [-3288,12432]", "pos": ["MAP10",-3288,12432,-573], "region": "Pitched Battle ID Fortifications" }
+AP-CHECK { "id": 3194, "name": "MAP10 - Sentry Gun [-3492,12432]", "pos": ["MAP10",-3492,12432,-702], "region": "Pitched Battle ID Fortifications" }
+AP-CHECK { "id": 3195, "name": "MAP10 - Sentry Gun [-3556,12432]", "pos": ["MAP10",-3556,12432,-702], "region": "Pitched Battle ID Fortifications" }
+AP-CHECK { "id": 2969, "name": "MAP10 - Potion of Healing [-3812,12376]", "pos": ["MAP10",-3812,12376,-702], "region": "Pitched Battle ID Fortifications" }
+AP-CHECK { "id": 2968, "name": "MAP10 - Potion of Healing [-3564,12160]", "pos": ["MAP10",-3564,12160,-702], "region": "Pitched Battle ID Fortifications" }
+AP-CHECK { "id": 3243, "name": "MAP10 - Spike Mag [-3597,12099]", "pos": ["MAP10",-3597,12099,-702], "region": "Pitched Battle ID Fortifications" }
+AP-CHECK { "id": 3242, "name": "MAP10 - Spike Mag [-3580,12068]", "pos": ["MAP10",-3580,12068,-670], "region": "Pitched Battle ID Fortifications" }
+AP-CHECK { "id": 3241, "name": "MAP10 - Spike Mag [-3498,12144]", "pos": ["MAP10",-3498,12144,-590], "region": "Pitched Battle ID Fortifications" }
+AP-CHECK { "id": 3240, "name": "MAP10 - Spike Mag [-3300,12292]", "pos": ["MAP10",-3300,12292,-606], "region": "Pitched Battle ID Fortifications" }
+AP-CHECK { "id": 2881, "name": "MAP10 - Fragfire Gun [-4256,12436]", "pos": ["MAP10",-4256,12436,-590], "region": "ID Base" }
+AP-CHECK { "id": 2852, "name": "MAP10 - Fragfire Can [-4212,12420]", "pos": ["MAP10",-4212,12420,-622], "region": "ID Base" }
+AP-CHECK { "id": 2851, "name": "MAP10 - Fragfire Can [-4200,12444]", "pos": ["MAP10",-4200,12444,-590], "region": "ID Base" }
+AP-CHECK { "id": 2706, "name": "MAP10 - Boltmag [-4072,12432]", "pos": ["MAP10",-4072,12432,-558], "region": "ID Base" }
+AP-CHECK { "id": 2705, "name": "MAP10 - Boltmag [-4040,12440]", "pos": ["MAP10",-4040,12440,-558], "region": "ID Base" }
+AP-CHECK { "id": 2704, "name": "MAP10 - Boltmag [-4040,12408]", "pos": ["MAP10",-4040,12408,-558], "region": "ID Base" }
+AP-CHECK { "id": 2749, "name": "MAP10 - Box of Acid Potions [-4296,11964]", "pos": ["MAP10",-4296,11964,-622], "region": "ID Base" }
+AP-CHECK { "id": 2748, "name": "MAP10 - Box of Acid Potions [-4248,11964]", "pos": ["MAP10",-4248,11964,-622], "region": "ID Base" }
+AP-CHECK { "id": 3223, "name": "MAP10 - Spike Bundle [-4148,11932]", "pos": ["MAP10",-4148,11932,-617], "region": "ID Base" }
+AP-CHECK { "id": 3222, "name": "MAP10 - Spike Bundle [-4140,11932]", "pos": ["MAP10",-4140,11932,-617], "region": "ID Base" }
+AP-CHECK { "id": 3221, "name": "MAP10 - Spike Bundle [-4132,11932]", "pos": ["MAP10",-4132,11932,-617], "region": "ID Base" }
+AP-CHECK { "id": 3220, "name": "MAP10 - Spike Bundle [-4124,11932]", "pos": ["MAP10",-4124,11932,-617], "region": "ID Base" }
+AP-CHECK { "id": 3219, "name": "MAP10 - Spike Bundle [-4115,11932]", "pos": ["MAP10",-4115,11932,-617], "region": "ID Base" }
+AP-CHECK { "id": 3218, "name": "MAP10 - Spike Bundle [-4073,11932]", "pos": ["MAP10",-4073,11932,-617], "region": "ID Base" }
+AP-CHECK { "id": 3217, "name": "MAP10 - Spike Bundle [-4064,11932]", "pos": ["MAP10",-4064,11932,-617], "region": "ID Base" }
+AP-CHECK { "id": 3245, "name": "MAP10 - Spike Mag [-3996,11988]", "pos": ["MAP10",-3996,11988,-590], "region": "ID Base" }
+AP-CHECK { "id": 3216, "name": "MAP10 - Spike Bundle [-4057,11932]", "pos": ["MAP10",-4057,11932,-617], "region": "ID Base" }
+AP-CHECK { "id": 3215, "name": "MAP10 - Spike Bundle [-4048,11932]", "pos": ["MAP10",-4048,11932,-617], "region": "ID Base" }
+AP-CHECK { "id": 3214, "name": "MAP10 - Spike Bundle [-4040,11932]", "pos": ["MAP10",-4040,11932,-617], "region": "ID Base" }
+AP-CHECK { "id": 2777, "name": "MAP10 - Box of Toxic Potions [-4352,11952]", "pos": ["MAP10",-4352,11952,-558], "region": "ID Base" }
+AP-CHECK { "id": 2838, "name": "MAP10 - Fire Hammer [Center]", "pos": ["MAP10",-4648,12048,-558], "region": "ID Base" }
+AP-CHECK { "id": 2840, "name": "MAP10 - Fixer's Goggles", "pos": ["MAP10",-4432,12292,-590], "region": "ID Base" }
+AP-CHECK { "id": 3196, "name": "MAP10 - Sentry Gun [-4592,12412]", "pos": ["MAP10",-4592,12412,-558], "region": "ID Base" }
+AP-CHECK { "id": 2690, "name": "MAP10 - Bag of Holding", "pos": ["MAP10",-4648,12512,-622], "region": "ID Base" }
+AP-CHECK { "id": 3021, "name": "MAP10 - Potion of Minor Healing [-4740,12608]", "pos": ["MAP10",-4740,12608,-622], "region": "ID Base" }
+AP-CHECK { "id": 3020, "name": "MAP10 - Potion of Minor Healing [-4708,12628]", "pos": ["MAP10",-4708,12628,-590], "region": "ID Base" }
+AP-CHECK { "id": 3022, "name": "MAP10 - Potion of Minor Healing [-4744,12640]", "pos": ["MAP10",-4744,12640,-622], "region": "ID Base" }
+AP-CHECK { "id": 2941, "name": "MAP10 - Potion of Haste [-4780,12636]", "pos": ["MAP10",-4780,12636,-622], "region": "ID Base" }
+AP-CHECK { "id": 3296, "name": "MAP10 - Vial of Healing [-4816,12636]", "pos": ["MAP10",-4816,12636,-617], "region": "ID Base" }
+AP-CHECK { "id": 3297, "name": "MAP10 - Vial of Healing [-4828,12636]", "pos": ["MAP10",-4828,12636,-617], "region": "ID Base" }
+AP-CHECK { "id": 3298, "name": "MAP10 - Vial of Healing [-4844,12636]", "pos": ["MAP10",-4844,12636,-617], "region": "ID Base" }
+AP-CHECK { "id": 3299, "name": "MAP10 - Vial of Healing [-4856,12636]", "pos": ["MAP10",-4856,12636,-617], "region": "ID Base" }
+AP-CHECK { "id": 3041, "name": "MAP10 - Potion of Stoneskin [-4888,12641]", "pos": ["MAP10",-4888,12641,-622], "region": "ID Base" }
+AP-CHECK { "id": 2694, "name": "MAP10 - Bearzerker Axe [-4684,12320]", "pos": ["MAP10",-4684,12320,-558], "region": "ID Base" }
+AP-CHECK { "id": 2907, "name": "MAP10 - Medium Armor Crystal [-4692,12264]", "pos": ["MAP10",-4692,12264,-590], "region": "ID Base" }
+AP-CHECK { "id": 2899, "name": "MAP10 - Heavy Armor Crystal [-4692,12264]", "pos": ["MAP10",-4692,12264,-590], "region": "ID Base" }
+AP-CHECK { "id": 3117, "name": "MAP10 - Power Shard [-4692,12225]", "pos": ["MAP10",-4692,12225,-617], "region": "ID Base" }
+AP-CHECK { "id": 3116, "name": "MAP10 - Power Shard [-4692,12216]", "pos": ["MAP10",-4692,12216,-617], "region": "ID Base" }
+AP-CHECK { "id": 3115, "name": "MAP10 - Power Shard [-4692,12208]", "pos": ["MAP10",-4692,12208,-617], "region": "ID Base" }
+AP-CHECK { "id": 3114, "name": "MAP10 - Power Shard [-4692,12200]", "pos": ["MAP10",-4692,12200,-617], "region": "ID Base" }
+AP-CHECK { "id": 3113, "name": "MAP10 - Power Shard [-4692,12192]", "pos": ["MAP10",-4692,12192,-617], "region": "ID Base" }
+AP-CHECK { "id": 2682, "name": "MAP10 - Amulet of Shadows [-4664,12112]", "pos": ["MAP10",-4664,12112,-494], "region": "ID Base" }
+AP-CHECK { "id": 3323, "name": "MAP10 - Water [-4788,11788]", "pos": ["MAP10",-4788,11788,-590], "region": "ID Base" }
+AP-CHECK { "id": 2793, "name": "MAP10 - Cider [-4800,11784]", "pos": ["MAP10",-4800,11784,-590], "region": "ID Base" }
+AP-CHECK { "id": 3324, "name": "MAP10 - Water [-4832,11768]", "pos": ["MAP10",-4832,11768,-590], "region": "ID Base" }
+AP-CHECK { "id": 2999, "name": "MAP10 - Potion of Might [Center]", "pos": ["MAP10",-4796,11740,-622], "region": "ID Base" }
+AP-CHECK { "id": 2786, "name": "MAP10 - Bread [-4888,11800]", "pos": ["MAP10",-4888,11800,-622], "region": "ID Base" }
+AP-CHECK { "id": 2790, "name": "MAP10 - Cheese", "pos": ["MAP10",-4944,11804,-622], "region": "ID Base" }
+AP-CHECK { "id": 2787, "name": "MAP10 - Bread [-4940,11776]", "pos": ["MAP10",-4940,11776,-622], "region": "ID Base" }
+AP-CHECK { "id": 2900, "name": "MAP10 - Leek [-4964,11808]", "pos": ["MAP10",-4964,11808,-622], "region": "ID Base" }
+AP-CHECK { "id": 2788, "name": "MAP10 - Bread [-4964,11768]", "pos": ["MAP10",-4964,11768,-622], "region": "ID Base" }
+AP-CHECK { "id": 2901, "name": "MAP10 - Leek [-4974,11796]", "pos": ["MAP10",-4974,11796,-622], "region": "ID Base" }
+AP-CHECK { "id": 2795, "name": "MAP10 - Cider [-5320,11804]", "pos": ["MAP10",-5320,11804,-622], "region": "ID Base" }
+AP-CHECK { "id": 2794, "name": "MAP10 - Cider [-5308,11788]", "pos": ["MAP10",-5308,11788,-622], "region": "ID Base" }
+AP-CHECK { "id": 3224, "name": "MAP10 - Spike Bundle [-5392,12588]", "pos": ["MAP10",-5392,12588,-622], "region": "ID Base" }
+Player [0]: ; there's a non-interactable crushbow behind Dura
+AP-CHECK { "id": 2826, "name": "MAP10 - Crystal Key", "pos": ["MAP10","spawn@tid",1,"CrystalKey",242,0], "region": "ID Base" }
+Player [0]: ; open question: what's the trigger for the SW corridor opening back to the great hall?
+AP-CHECK { "id": 2879, "name": "MAP10 - Fragfire Gun [-224,9744]", "pos": ["MAP10",-224,9744,-702], "region": "Crystal Key Hall" }
+AP-CHECK { "id": 2725, "name": "MAP10 - Boltmag [2064,7060]", "pos": ["MAP10",2064,7060,-702], "region": "Summoning Ritual" }
+AP-CHECK { "id": 3157, "name": "MAP10 - Power Shard [2040,6960]", "pos": ["MAP10",2040,6960,-702], "region": "Summoning Ritual" }
+AP-CHECK { "id": 3156, "name": "MAP10 - Power Shard [2008,6964]", "pos": ["MAP10",2008,6964,-702], "region": "Summoning Ritual" }
+AP-CHECK { "id": 2984, "name": "MAP10 - Potion of Healing [1948,6716]", "pos": ["MAP10",1948,6716,-702], "region": "Summoning Ritual" }
+AP-CHECK { "id": 2724, "name": "MAP10 - Boltmag [2004,6664]", "pos": ["MAP10",2004,6664,-702], "region": "Summoning Ritual" }
+AP-CHECK { "id": 2723, "name": "MAP10 - Boltmag [1964,6600]", "pos": ["MAP10",1964,6600,-702], "region": "Summoning Ritual" }
+AP-CHECK { "id": 2914, "name": "MAP10 - Potion Launcher [Acid] [720,7999]", "pos": ["MAP10",720,7999,-702], "region": "Summoning Ritual" }
+AP-CHECK { "id": 2769, "name": "MAP10 - Box of Acid Potions [4,6540]", "pos": ["MAP10",4,6540,-702], "region": "Summoning Ritual" }
+AP-CHECK { "id": 2856, "name": "MAP10 - Fragfire Can [-56,6508]", "pos": ["MAP10",-56,6508,-702], "region": "Summoning Ritual" }
+AP-CHECK { "id": 2967, "name": "MAP10 - Potion of Healing [-328,6404]", "pos": ["MAP10",-328,6404,-702], "region": "Summoning Ritual" }
+AP-CHECK { "id": 3093, "name": "MAP10 - Power Shard [-328,6344]", "pos": ["MAP10",-328,6344,-702], "region": "Summoning Ritual" }
+AP-CHECK { "id": 3091, "name": "MAP10 - Power Shard [-288,6352]", "pos": ["MAP10",-288,6352,-702], "region": "Summoning Ritual" }
+AP-CHECK { "id": 3092, "name": "MAP10 - Power Shard [-300,6324]", "pos": ["MAP10",-300,6324,-702], "region": "Summoning Ritual" }
+AP-CHECK { "id": 3094, "name": "MAP10 - Power Shard [-3480,5512]", "pos": ["MAP10",-3480,5512,-485], "region": "Switchback Stairs" }
+AP-CHECK { "id": 3095, "name": "MAP10 - Power Shard [-3560,5512]", "pos": ["MAP10",-3560,5512,-485], "region": "Switchback Stairs" }
+AP-CHECK { "id": 3096, "name": "MAP10 - Power Shard [-3664,5512]", "pos": ["MAP10",-3664,5512,-502], "region": "Switchback Stairs" }
+AP-CHECK { "id": 3098, "name": "MAP10 - Power Shard [-3756,5512]", "pos": ["MAP10",-3756,5512,-502], "region": "Switchback Stairs" }
+AP-CHECK { "id": 3100, "name": "MAP10 - Power Shard [-3864,5512]", "pos": ["MAP10",-3864,5512,-485], "region": "Switchback Stairs" }
+AP-CHECK { "id": 3101, "name": "MAP10 - Power Shard [-3944,5512]", "pos": ["MAP10",-3944,5512,-485], "region": "Switchback Stairs" }
+AP-CHECK { "id": 3193, "name": "MAP10 - Secret 8278", "pos": ["MAP10","secret","sector",8278], "region": "Switchback Stairs" }
+AP-CHECK { "id": 2939, "name": "MAP10 - Potion of Haste [-2644,8196]", "pos": ["MAP10",-2644,8196,-318], "region": "Switchback Stairs" }
+AP-CHECK { "id": 3014, "name": "MAP10 - Potion of Minor Healing [-2624,8224]", "pos": ["MAP10",-2624,8224,-318], "region": "Switchback Stairs" }
+AP-CHECK { "id": 3293, "name": "MAP10 - Vial of Healing [-2592,8240]", "pos": ["MAP10",-2592,8240,-318], "region": "Switchback Stairs" }
+AP-CHECK { "id": 3292, "name": "MAP10 - Vial of Healing [-2592,8200]", "pos": ["MAP10",-2592,8200,-318], "region": "Switchback Stairs" }
+Player [0]: ; that last little batch is a secret in the stairs on a basalt outcrop
+AP-CHECK { "id": 3230, "name": "MAP10 - Spike Gun [-6584,7128]", "pos": ["MAP10",-6584,7128,-388], "region": "Dark Bridge" }
+AP-CHECK { "id": 3031, "name": "MAP10 - Potion of Minor Healing [-8268,7212]", "pos": ["MAP10",-8268,7212,-388], "region": "Dark Bridge" }
+AP-CHECK { "id": 3032, "name": "MAP10 - Potion of Minor Healing [-8300,7216]", "pos": ["MAP10",-8300,7216,-388], "region": "Dark Bridge" }
+AP-CHECK { "id": 2752, "name": "MAP10 - Box of Acid Potions [-8356,7192]", "pos": ["MAP10",-8356,7192,-388], "region": "Dark Bridge" }
+AP-CHECK { "id": 3056, "name": "MAP10 - Power Shard [-11702,6729]", "pos": ["MAP10",-11702,6729,-390], "region": "Vine Lounge" }
+AP-CHECK { "id": 3055, "name": "MAP10 - Power Shard [-11674,6691]", "pos": ["MAP10",-11674,6691,-390], "region": "Vine Lounge" }
+AP-CHECK { "id": 3057, "name": "MAP10 - Power Shard [-11743,6665]", "pos": ["MAP10",-11743,6665,-366], "region": "Vine Lounge" }
+AP-CHECK { "id": 2956, "name": "MAP10 - Potion of Healing [-11812,6598]", "pos": ["MAP10",-11812,6598,-390], "region": "Vine Lounge" }
+AP-CHECK { "id": 2888, "name": "MAP10 - Green Crystals [-12008,7120]", "pos": ["MAP10",-12008,7120,-359], "region": "Vine Lounge" }
+AP-CHECK { "id": 2740, "name": "MAP10 - Box of Acid Potions [-12608,7844]", "pos": ["MAP10",-12608,7844,-366], "region": "Damp Bear Warrior" }
+AP-CHECK { "id": 2739, "name": "MAP10 - Box of Acid Potions [-12608,7812]", "pos": ["MAP10",-12608,7812,-366], "region": "Damp Bear Warrior" }
+AP-CHECK { "id": 3067, "name": "MAP10 - Power Shard [-12512,8024]", "pos": ["MAP10",-12512,8024,-390], "region": "Damp Bear Warrior" }
+AP-CHECK { "id": 3068, "name": "MAP10 - Power Shard [-12532,8024]", "pos": ["MAP10",-12532,8024,-390], "region": "Damp Bear Warrior" }
+AP-CHECK { "id": 3069, "name": "MAP10 - Power Shard [-12552,8024]", "pos": ["MAP10",-12552,8024,-390], "region": "Damp Bear Warrior" }
+AP-CHECK { "id": 3070, "name": "MAP10 - Power Shard [-12572,8024]", "pos": ["MAP10",-12572,8024,-390], "region": "Damp Bear Warrior" }
+AP-CHECK { "id": 3064, "name": "MAP10 - Power Shard [-12221,7851]", "pos": ["MAP10",-12221,7851,-157], "region": "Library" }
+AP-CHECK { "id": 3063, "name": "MAP10 - Power Shard [-12209,7831]", "pos": ["MAP10",-12209,7831,-157], "region": "Library" }
+AP-CHECK { "id": 3065, "name": "MAP10 - Power Shard [-12249,7843]", "pos": ["MAP10",-12249,7843,-157], "region": "Library" }
+AP-CHECK { "id": 3233, "name": "MAP10 - Spike Mag [-12269,8483]", "pos": ["MAP10",-12269,8483,-158], "region": "Library" }
+AP-CHECK { "id": 3203, "name": "MAP10 - Spike Bundle [-12233,8469]", "pos": ["MAP10",-12233,8469,-158], "region": "Library" }
+AP-CHECK { "id": 3234, "name": "MAP10 - Spike Mag [-12272,8495]", "pos": ["MAP10",-12272,8495,-158], "region": "Library" }
+AP-CHECK { "id": 3204, "name": "MAP10 - Spike Bundle [-12233,8488]", "pos": ["MAP10",-12233,8488,-158], "region": "Library" }
+AP-CHECK { "id": 3226, "name": "MAP10 - Spike Gun [-12178,8734]", "pos": ["MAP10",-12178,8734,-186], "region": "Library" }
+AP-CHECK { "id": 3206, "name": "MAP10 - Spike Bundle [-12846,8731]", "pos": ["MAP10",-12846,8731,-186], "region": "Library" }
+Player [0]: ; library should be named library 2F
+AP-CHECK { "id": 3202, "name": "MAP10 - Spike Bundle [-12218,8479]", "pos": ["MAP10",-12218,8479,-158], "region": "Library" }
+Player [0]: ; or not because there's no checks in libary 1F
+AP-CHECK { "id": 2696, "name": "MAP10 - Boltmag [-10960,8372]", "pos": ["MAP10",-10960,8372,-356], "region": "Library Reading Room" }
+AP-CHECK { "id": 2737, "name": "MAP10 - Box of Acid Potions [-11047,8393]", "pos": ["MAP10",-11047,8393,-389], "region": "Library Reading Room" }
+AP-CHECK { "id": 2915, "name": "MAP10 - Potion of Greater Healing [-11056,8884]", "pos": ["MAP10",-11056,8884,-356], "region": "Library Reading Room" }
+AP-CHECK { "id": 3005, "name": "MAP10 - Potion of Minor Healing [-11736,9672]", "pos": ["MAP10",-11736,9672,-390], "region": "Library Steps" }
+AP-CHECK { "id": 2955, "name": "MAP10 - Potion of Healing [-11664,9680]", "pos": ["MAP10",-11664,9680,-358], "region": "Library Steps" }
+AP-CHECK { "id": 2845, "name": "MAP10 - Fragfire Can [-11624,9664]", "pos": ["MAP10",-11624,9664,-390], "region": "Library Steps" }
+AP-CHECK { "id": 3052, "name": "MAP10 - Power Shard [-11424,9888]", "pos": ["MAP10",-11424,9888,-502], "region": "Library Steps" }
+AP-CHECK { "id": 3051, "name": "MAP10 - Power Shard [-11328,12388]", "pos": ["MAP10",-11328,12388,-702], "region": "Library Steps" }
+AP-CHECK { "id": 3049, "name": "MAP10 - Power Shard [-11040,12392]", "pos": ["MAP10",-11040,12392,-702], "region": "Library Steps" }
+AP-CHECK { "id": 3054, "name": "MAP10 - Power Shard [-11520,12388]", "pos": ["MAP10",-11520,12388,-702], "region": "Library Steps" }
+AP-CHECK { "id": 3060, "name": "MAP10 - Power Shard [-11968,12392]", "pos": ["MAP10",-11968,12392,-702], "region": "Library Steps" }
+AP-CHECK { "id": 3062, "name": "MAP10 - Power Shard [-12160,12392]", "pos": ["MAP10",-12160,12392,-702], "region": "Library Steps" }
+AP-CHECK { "id": 3066, "name": "MAP10 - Power Shard [-12444,12392]", "pos": ["MAP10",-12444,12392,-702], "region": "Library Steps" }
+AP-CHECK { "id": 3006, "name": "MAP10 - Potion of Minor Healing [-12068,11180]", "pos": ["MAP10",-12068,11180,-710], "region": "Library Steps" }
+AP-CHECK { "id": 2775, "name": "MAP10 - Box of Toxic Potions [-11424,10528]", "pos": ["MAP10",-11424,10528,-606], "region": "Library Steps" }
+AP-CHECK { "id": 2738, "name": "MAP10 - Box of Acid Potions [-12064,10528]", "pos": ["MAP10",-12064,10528,-606], "region": "Library Steps" }
+Player [0]: ; we need a better way of handling the potion launcher
+Player [0]: ; picking up a plain launcher should give us both
+Player [0]: ; instead of just acid
+AP-CHECK { "id": 3061, "name": "MAP10 - Power Shard [-12060,9888]", "pos": ["MAP10",-12060,9888,-502], "region": "Library Steps" }
+AP-CHECK { "id": 3004, "name": "MAP10 - Potion of Minor Healing [-11424,11176]", "pos": ["MAP10",-11424,11176,-710], "region": "Library Steps" }
+AP-CHECK { "id": 2820, "name": "MAP10 - Crylance [-10168,12288]", "pos": ["MAP10",-10168,12288,-622], "region": "Last Stand" }
+AP-CHECK { "id": 3225, "name": "MAP10 - Spike Gun [-10080,12360]", "pos": ["MAP10",-10080,12360,-622], "region": "Last Stand" }
+AP-CHECK { "id": 2841, "name": "MAP10 - Force Pike [-10108,12200]", "pos": ["MAP10",-10108,12200,-622], "region": "Last Stand" }
+AP-CHECK { "id": 2819, "name": "MAP10 - Crylance [-10100,12192]", "pos": ["MAP10",-10100,12192,-622], "region": "Last Stand" }
+AP-CHECK { "id": 2830, "name": "MAP10 - Elemental Ring [-10028,12184]", "pos": ["MAP10",-10028,12184,-590], "region": "Last Stand" }
+AP-CHECK { "id": 2898, "name": "MAP10 - Heavy Armor Crystal [-10048,12296]", "pos": ["MAP10",-10048,12296,-558], "region": "Last Stand" }
+AP-CHECK { "id": 2812, "name": "MAP10 - Crushbow [-10192,11976]", "pos": ["MAP10",-10192,11976,-622], "region": "Last Stand" }
+AP-CHECK { "id": 2695, "name": "MAP10 - Boltmag [-10236,12072]", "pos": ["MAP10",-10236,12072,-590], "region": "Last Stand" }
+AP-CHECK { "id": 3198, "name": "MAP10 - Spike Bundle [-10316,11936]", "pos": ["MAP10",-10316,11936,-617], "region": "Last Stand" }
+AP-CHECK { "id": 3199, "name": "MAP10 - Spike Bundle [-10328,11936]", "pos": ["MAP10",-10328,11936,-617], "region": "Last Stand" }
+AP-CHECK { "id": 3200, "name": "MAP10 - Spike Bundle [-10344,11936]", "pos": ["MAP10",-10344,11936,-617], "region": "Last Stand" }
+AP-CHECK { "id": 3201, "name": "MAP10 - Spike Bundle [-10352,11936]", "pos": ["MAP10",-10352,11936,-617], "region": "Last Stand" }
+AP-CHECK { "id": 3231, "name": "MAP10 - Spike Mag [-10400,11952]", "pos": ["MAP10",-10400,11952,-590], "region": "Last Stand" }
+AP-CHECK { "id": 3322, "name": "MAP10 - Water [-10132,11796]", "pos": ["MAP10",-10132,11796,-590], "region": "Last Stand" }
+AP-CHECK { "id": 2785, "name": "MAP10 - Bread [-10092,11788]", "pos": ["MAP10",-10092,11788,-590], "region": "Last Stand" }
+AP-CHECK { "id": 2784, "name": "MAP10 - Bread [-10076,11772]", "pos": ["MAP10",-10076,11772,-590], "region": "Last Stand" }
+AP-CHECK { "id": 2792, "name": "MAP10 - Cider [-10100,11772]", "pos": ["MAP10",-10100,11772,-590], "region": "Last Stand" }
+AP-CHECK { "id": 3321, "name": "MAP10 - Water [-10128,11780]", "pos": ["MAP10",-10128,11780,-590], "region": "Last Stand" }
+AP-CHECK { "id": 3003, "name": "MAP10 - Potion of Minor Healing [-10044,11836]", "pos": ["MAP10",-10044,11836,-622], "region": "Last Stand" }
+AP-CHECK { "id": 2954, "name": "MAP10 - Potion of Healing [-10016,11800]", "pos": ["MAP10",-10016,11800,-590], "region": "Last Stand" }
+AP-CHECK { "id": 2953, "name": "MAP10 - Potion of Healing [-10000,11828]", "pos": ["MAP10",-10000,11828,-622], "region": "Last Stand" }
+AP-CHECK { "id": 2789, "name": "MAP10 - Bread [-9996,11788]", "pos": ["MAP10",-9996,11788,-590], "region": "Last Stand" }
+AP-CHECK { "id": 2783, "name": "MAP10 - Bread [-10012,11784]", "pos": ["MAP10",-10012,11784,-590], "region": "Last Stand" }
+AP-CHECK { "id": 2913, "name": "MAP10 - Potion Launcher [Acid] [-9848,11896]", "pos": ["MAP10",-9848,11896,-622], "region": "Last Stand" }
+AP-CHECK { "id": 3312, "name": "MAP10 - Vial of Healing [-9592,11748]", "pos": ["MAP10",-9592,11748,-617], "region": "Last Stand" }
+AP-CHECK { "id": 3311, "name": "MAP10 - Vial of Healing [-9580,11748]", "pos": ["MAP10",-9580,11748,-617], "region": "Last Stand" }
+AP-CHECK { "id": 3310, "name": "MAP10 - Vial of Healing [-9556,11748]", "pos": ["MAP10",-9556,11748,-617], "region": "Last Stand" }
+AP-CHECK { "id": 2720, "name": "MAP10 - Boltmag [-9744,12588]", "pos": ["MAP10",-9744,12588,-622], "region": "Last Stand" }
+AP-CHECK { "id": 2753, "name": "MAP10 - Box of Acid Potions [-9704,12604]", "pos": ["MAP10",-9704,12604,-622], "region": "Last Stand" }
+AP-CHECK { "id": 2754, "name": "MAP10 - Box of Acid Potions [-9728,12628]", "pos": ["MAP10",-9728,12628,-590], "region": "Last Stand" }
+AP-CHECK { "id": 2755, "name": "MAP10 - Box of Acid Potions [-9816,12612]", "pos": ["MAP10",-9816,12612,-622], "region": "Last Stand" }
+AP-CHECK { "id": 3043, "name": "MAP10 - Potion of Stoneskin [-9656,12608]", "pos": ["MAP10",-9656,12608,-558], "region": "Last Stand" }
+AP-CHECK { "id": 3309, "name": "MAP10 - Vial of Healing [-9408,11776]", "pos": ["MAP10",-9408,11776,-590], "region": "Last Stand" }
+AP-CHECK { "id": 2945, "name": "MAP10 - Potion of Haste [-9440,11772]", "pos": ["MAP10",-9440,11772,-590], "region": "Last Stand" }
+AP-CHECK { "id": 3258, "name": "MAP10 - Spike Mag [-8448,12212]", "pos": ["MAP10",-8448,12212,-622], "region": "Last Stand" }
+AP-CHECK { "id": 2717, "name": "MAP10 - Boltmag [-8404,12184]", "pos": ["MAP10",-8404,12184,-622], "region": "Last Stand" }
+AP-CHECK { "id": 3307, "name": "MAP10 - Vial of Healing [-7576,16356]", "pos": ["MAP10",-7576,16356,-588], "region": "Heart Path" }
+AP-CHECK { "id": 3308, "name": "MAP10 - Vial of Healing [-7576,16668]", "pos": ["MAP10",-7576,16668,-588], "region": "Heart Path" }
+AP-CHECK { "id": 2890, "name": "MAP10 - Green Crystals [-7404,16544]", "pos": ["MAP10",-7404,16544,-604], "region": "Heart Path" }
+AP-CHECK { "id": 2884, "name": "MAP10 - Green Crystal [-7420,16504]", "pos": ["MAP10",-7420,16504,-604], "region": "Heart Path" }
+AP-CHECK { "id": 2889, "name": "MAP10 - Green Crystals [-7364,16480]", "pos": ["MAP10",-7364,16480,-604], "region": "Heart Path" }
+AP-CHECK { "id": 3304, "name": "MAP10 - Vial of Healing [-7208,16668]", "pos": ["MAP10",-7208,16668,-588], "region": "Heart Path" }
+AP-CHECK { "id": 3303, "name": "MAP10 - Vial of Healing [-7208,16356]", "pos": ["MAP10",-7208,16356,-588], "region": "Heart Path" }
+AP-CHECK { "id": 3275, "name": "MAP10 - Time Shard [-5632,16512]", "pos": ["MAP10",-5632,16512,-532], "region": "Heart Path" }
+AP-CHECK { "id": 2683, "name": "MAP10 - Amulet of Shadows [-5632,16836]", "pos": ["MAP10",-5632,16836,-804], "region": "Heart Path" }
+AP-CHECK { "id": 2857, "name": "MAP10 - Fragfire Can [-5728,17088]", "pos": ["MAP10",-5728,17088,-804], "region": "Heart Path" }
+AP-CHECK { "id": 2855, "name": "MAP10 - Fragfire Can [-5536,17088]", "pos": ["MAP10",-5536,17088,-804], "region": "Heart Path" }
+AP-CHECK { "id": 2711, "name": "MAP10 - Boltmag [-5728,17772]", "pos": ["MAP10",-5728,17772,-804], "region": "Heart Path" }
+AP-CHECK { "id": 2710, "name": "MAP10 - Boltmag [-5536,17772]", "pos": ["MAP10",-5536,17772,-804], "region": "Heart Path" }
+AP-CHECK { "id": 2779, "name": "MAP10 - Box of Toxic Potions [-5559,18365]", "pos": ["MAP10",-5559,18365,-804], "region": "Heart Path" }
+AP-CHECK { "id": 2751, "name": "MAP10 - Box of Acid Potions [-6088,18732]", "pos": ["MAP10",-6088,18732,-804], "region": "Heart Path" }
+AP-CHECK { "id": 2750, "name": "MAP10 - Box of Acid Potions [-5952,18856]", "pos": ["MAP10",-5952,18856,-804], "region": "Heart Path" }
+AP-CHECK { "id": 3257, "name": "MAP10 - Spike Mag [-6456,19140]", "pos": ["MAP10",-6456,19140,-804], "region": "Heart Path" }
+AP-CHECK { "id": 3256, "name": "MAP10 - Spike Mag [-6292,19244]", "pos": ["MAP10",-6292,19244,-804], "region": "Heart Path" }
+AP-CHECK { "id": 2780, "name": "MAP10 - Box of Toxic Potions [-6607,19533]", "pos": ["MAP10",-6607,19533,-804], "region": "Heart Path" }
+AP-CHECK { "id": 3132, "name": "MAP10 - Power Shard [-7172,19399]", "pos": ["MAP10",-7172,19399,-804], "region": "Heart Path" }
+AP-CHECK { "id": 3133, "name": "MAP10 - Power Shard [-7174,19596]", "pos": ["MAP10",-7174,19596,-804], "region": "Heart Path" }
+AP-CHECK { "id": 3135, "name": "MAP10 - Power Shard [-7604,19596]", "pos": ["MAP10",-7604,19596,-804], "region": "Heart Path" }
+AP-CHECK { "id": 3134, "name": "MAP10 - Power Shard [-7603,19389]", "pos": ["MAP10",-7603,19389,-804], "region": "Heart Path" }
+AP-CHECK { "id": 3138, "name": "MAP10 - Power Shard [-8089,19390]", "pos": ["MAP10",-8089,19390,-804], "region": "Heart Path" }
+AP-CHECK { "id": 3139, "name": "MAP10 - Power Shard [-8092,19600]", "pos": ["MAP10",-8092,19600,-804], "region": "Heart Path" }
+AP-CHECK { "id": 3141, "name": "MAP10 - Power Shard [-8541,19386]", "pos": ["MAP10",-8541,19386,-804], "region": "Heart Path" }
+AP-CHECK { "id": 3142, "name": "MAP10 - Power Shard [-8544,19596]", "pos": ["MAP10",-8544,19596,-804], "region": "Heart Path" }
+AP-CHECK { "id": 3147, "name": "MAP10 - Power Shard [1154,24608]", "pos": ["MAP10",1154,24608,-1141], "region": "Crystal Heart Portal Hall" }
+AP-CHECK { "id": 3189, "name": "MAP10 - Power Shard [897,24605]", "pos": ["MAP10",897,24605,-1141], "region": "Crystal Heart Portal Hall" }
+AP-CHECK { "id": 2977, "name": "MAP10 - Potion of Healing [1184,27456]", "pos": ["MAP10",1184,27456,-1141], "region": "Crystal Heart" }
+AP-CHECK { "id": 2976, "name": "MAP10 - Potion of Healing [1184,27200]", "pos": ["MAP10",1184,27200,-1141], "region": "Crystal Heart" }
+AP-CHECK { "id": 2975, "name": "MAP10 - Potion of Healing [1184,26720]", "pos": ["MAP10",1184,26720,-1141], "region": "Crystal Heart" }
+AP-CHECK { "id": 2974, "name": "MAP10 - Potion of Healing [1184,26464]", "pos": ["MAP10",1184,26464,-1141], "region": "Crystal Heart" }
+AP-CHECK { "id": 2973, "name": "MAP10 - Potion of Healing [1184,26208]", "pos": ["MAP10",1184,26208,-1141], "region": "Crystal Heart" }
+AP-CHECK { "id": 2992, "name": "MAP10 - Potion of Healing [864,26208]", "pos": ["MAP10",864,26208,-1141], "region": "Crystal Heart" }
+AP-CHECK { "id": 2993, "name": "MAP10 - Potion of Healing [864,26464]", "pos": ["MAP10",864,26464,-1141], "region": "Crystal Heart" }
+AP-CHECK { "id": 2994, "name": "MAP10 - Potion of Healing [864,26720]", "pos": ["MAP10",864,26720,-1141], "region": "Crystal Heart" }
+AP-CHECK { "id": 2995, "name": "MAP10 - Potion of Healing [864,27200]", "pos": ["MAP10",864,27200,-1141], "region": "Crystal Heart" }
+AP-CHECK { "id": 2996, "name": "MAP10 - Potion of Healing [864,27456]", "pos": ["MAP10",864,27456,-1141], "region": "Crystal Heart" }
+AP-CHECK { "id": 2946, "name": "MAP10 - Potion of Haste [1795,28674]", "pos": ["MAP10",1795,28674,-1149], "region": "Crystal Heart" }
+AP-CHECK { "id": 2758, "name": "MAP10 - Box of Acid Potions [1621,27948]", "pos": ["MAP10",1621,27948,-1141], "region": "Crystal Heart" }
+AP-CHECK { "id": 2865, "name": "MAP10 - Fragfire Can [1755,28077]", "pos": ["MAP10",1755,28077,-1141], "region": "Crystal Heart" }
+AP-CHECK { "id": 2763, "name": "MAP10 - Box of Acid Potions [1961,28586]", "pos": ["MAP10",1961,28586,-1141], "region": "Crystal Heart" }
+AP-CHECK { "id": 2867, "name": "MAP10 - Fragfire Can [1970,28753]", "pos": ["MAP10",1970,28753,-1141], "region": "Crystal Heart" }
+AP-CHECK { "id": 2761, "name": "MAP10 - Box of Acid Potions [1745,29288]", "pos": ["MAP10",1745,29288,-1141], "region": "Crystal Heart" }
+AP-CHECK { "id": 2863, "name": "MAP10 - Fragfire Can [1632,29398]", "pos": ["MAP10",1632,29398,-1141], "region": "Crystal Heart" }
+AP-CHECK { "id": 2874, "name": "MAP10 - Fragfire Can [403,29396]", "pos": ["MAP10",403,29396,-1141], "region": "Crystal Heart" }
+AP-CHECK { "id": 2766, "name": "MAP10 - Box of Acid Potions [299,29294]", "pos": ["MAP10",299,29294,-1141], "region": "Crystal Heart" }
+AP-CHECK { "id": 2877, "name": "MAP10 - Fragfire Can [82,28752]", "pos": ["MAP10",82,28752,-1141], "region": "Crystal Heart" }
+AP-CHECK { "id": 2773, "name": "MAP10 - Box of Acid Potions [80,28596]", "pos": ["MAP10",80,28596,-1141], "region": "Crystal Heart" }
+AP-CHECK { "id": 2873, "name": "MAP10 - Fragfire Can [300,28055]", "pos": ["MAP10",300,28055,-1141], "region": "Crystal Heart" }
+AP-CHECK { "id": 2770, "name": "MAP10 - Box of Acid Potions [409,27950]", "pos": ["MAP10",409,27950,-1141], "region": "Crystal Heart" }
+AP-CHECK { "id": 2987, "name": "MAP10 - Potion of Healing [672,28748]", "pos": ["MAP10",672,28748,-1165], "region": "Crystal Heart" }
+AP-CHECK { "id": 2986, "name": "MAP10 - Potion of Healing [668,28604]", "pos": ["MAP10",668,28604,-1165], "region": "Crystal Heart" }
+AP-CHECK { "id": 2988, "name": "MAP10 - Potion of Healing [716,28488]", "pos": ["MAP10",716,28488,-1165], "region": "Crystal Heart" }
+AP-CHECK { "id": 2990, "name": "MAP10 - Potion of Healing [812,28368]", "pos": ["MAP10",812,28368,-1165], "region": "Crystal Heart" }
+AP-CHECK { "id": 2989, "name": "MAP10 - Potion of Healing [724,28864]", "pos": ["MAP10",724,28864,-1165], "region": "Crystal Heart" }
+AP-CHECK { "id": 2991, "name": "MAP10 - Potion of Healing [828,28972]", "pos": ["MAP10",828,28972,-1165], "region": "Crystal Heart" }
+AP-CHECK { "id": 2998, "name": "MAP10 - Potion of Healing [948,29020]", "pos": ["MAP10",948,29020,-1165], "region": "Crystal Heart" }
+AP-CHECK { "id": 2971, "name": "MAP10 - Potion of Healing [1100,29020]", "pos": ["MAP10",1100,29020,-1165], "region": "Crystal Heart" }
+AP-CHECK { "id": 2979, "name": "MAP10 - Potion of Healing [1220,28972]", "pos": ["MAP10",1220,28972,-1165], "region": "Crystal Heart" }
+AP-CHECK { "id": 2981, "name": "MAP10 - Potion of Healing [1328,28864]", "pos": ["MAP10",1328,28864,-1165], "region": "Crystal Heart" }
+AP-CHECK { "id": 2983, "name": "MAP10 - Potion of Healing [1376,28748]", "pos": ["MAP10",1376,28748,-1165], "region": "Crystal Heart" }
+AP-CHECK { "id": 2982, "name": "MAP10 - Potion of Healing [1376,28596]", "pos": ["MAP10",1376,28596,-1165], "region": "Crystal Heart" }
+AP-CHECK { "id": 2980, "name": "MAP10 - Potion of Healing [1328,28480]", "pos": ["MAP10",1328,28480,-1165], "region": "Crystal Heart" }
+AP-CHECK { "id": 2978, "name": "MAP10 - Potion of Healing [1220,28368]", "pos": ["MAP10",1220,28368,-1165], "region": "Crystal Heart" }
+AP-CHECK { "id": 2972, "name": "MAP10 - Potion of Healing [1104,28320]", "pos": ["MAP10",1104,28320,-1165], "region": "Crystal Heart" }
+AP-CHECK { "id": 2997, "name": "MAP10 - Potion of Healing [932,28320]", "pos": ["MAP10",932,28320,-1165], "region": "Crystal Heart" }
+AP-CHECK { "id": 2949, "name": "MAP10 - Potion of Haste [263,28673]", "pos": ["MAP10",263,28673,-1149], "region": "Crystal Heart" }
+AP-CHECK { "id": 2925, "name": "MAP10 - Potion of Greater Healing [1420,29736]", "pos": ["MAP10",1420,29736,-1141], "region": "Pit Lord α Phase 2" }
+AP-CHECK { "id": 2903, "name": "MAP10 - Light Armor Crystal [1577,29856]", "pos": ["MAP10",1577,29856,-1141], "region": "Pit Lord α Phase 2" }
+AP-CHECK { "id": 2926, "name": "MAP10 - Potion of Greater Healing [1424,30164]", "pos": ["MAP10",1424,30164,-1141], "region": "Pit Lord α Phase 2" }
+AP-CHECK { "id": 2760, "name": "MAP10 - Box of Acid Potions [1677,29797]", "pos": ["MAP10",1677,29797,-1141], "region": "Pit Lord α Phase 2" }
+AP-CHECK { "id": 2782, "name": "MAP10 - Box of Toxic Potions [1865,29717]", "pos": ["MAP10",1865,29717,-1141], "region": "Pit Lord α Phase 2" }
+AP-CHECK { "id": 3263, "name": "MAP10 - Spike Mag [2085,29823]", "pos": ["MAP10",2085,29823,-1141], "region": "Pit Lord α Phase 2" }
+AP-CHECK { "id": 2727, "name": "MAP10 - Boltmag [2146,29928]", "pos": ["MAP10",2146,29928,-1141], "region": "Pit Lord α Phase 2" }
+AP-CHECK { "id": 2729, "name": "MAP10 - Boltmag [2271,29767]", "pos": ["MAP10",2271,29767,-1141], "region": "Pit Lord α Phase 2" }
+AP-CHECK { "id": 3265, "name": "MAP10 - Spike Mag [2164,29740]", "pos": ["MAP10",2164,29740,-1141], "region": "Pit Lord α Phase 2" }
+AP-CHECK { "id": 2928, "name": "MAP10 - Potion of Greater Healing [1886,29534]", "pos": ["MAP10",1886,29534,-1141], "region": "Pit Lord α Phase 2" }
+AP-CHECK { "id": 2870, "name": "MAP10 - Fragfire Can [2130,29384]", "pos": ["MAP10",2130,29384,-1141], "region": "Pit Lord α Phase 2" }
+AP-CHECK { "id": 3169, "name": "MAP10 - Power Shard [2416,29344]", "pos": ["MAP10",2416,29344,-1141], "region": "Pit Lord α Phase 2" }
+AP-CHECK { "id": 3173, "name": "MAP10 - Power Shard [2496,29184]", "pos": ["MAP10",2496,29184,-1141], "region": "Pit Lord α Phase 2" }
+AP-CHECK { "id": 3171, "name": "MAP10 - Power Shard [2464,29264]", "pos": ["MAP10",2464,29264,-1141], "region": "Pit Lord α Phase 2" }
+AP-CHECK { "id": 2764, "name": "MAP10 - Box of Acid Potions [2225,29166]", "pos": ["MAP10",2225,29166,-1141], "region": "Pit Lord α Phase 2" }
+AP-CHECK { "id": 2871, "name": "MAP10 - Fragfire Can [2315,28955]", "pos": ["MAP10",2315,28955,-1141], "region": "Pit Lord α Phase 2" }
+AP-CHECK { "id": 2929, "name": "MAP10 - Potion of Greater Healing [2238,28670]", "pos": ["MAP10",2238,28670,-1141], "region": "Pit Lord α Phase 2" }
+AP-CHECK { "id": 2948, "name": "MAP10 - Potion of Haste [2433,28673]", "pos": ["MAP10",2433,28673,-1141], "region": "Pit Lord α Phase 2" }
+AP-CHECK { "id": 3267, "name": "MAP10 - Spike Mag [2581,28718]", "pos": ["MAP10",2581,28718,-1141], "region": "Pit Lord α Phase 2" }
+AP-CHECK { "id": 2732, "name": "MAP10 - Boltmag [2700,28758]", "pos": ["MAP10",2700,28758,-1141], "region": "Pit Lord α Phase 2" }
+AP-CHECK { "id": 2731, "name": "MAP10 - Boltmag [2700,28599]", "pos": ["MAP10",2700,28599,-1141], "region": "Pit Lord α Phase 2" }
+AP-CHECK { "id": 3266, "name": "MAP10 - Spike Mag [2578,28636]", "pos": ["MAP10",2578,28636,-1141], "region": "Pit Lord α Phase 2" }
+AP-CHECK { "id": 2872, "name": "MAP10 - Fragfire Can [2331,28432]", "pos": ["MAP10",2331,28432,-1141], "region": "Pit Lord α Phase 2" }
+AP-CHECK { "id": 3172, "name": "MAP10 - Power Shard [2480,28144]", "pos": ["MAP10",2480,28144,-1141], "region": "Pit Lord α Phase 2" }
+AP-CHECK { "id": 2759, "name": "MAP10 - Box of Acid Potions [1647,27512]", "pos": ["MAP10",1647,27512,-1141], "region": "Pit Lord α Phase 2" }
+AP-CHECK { "id": 2866, "name": "MAP10 - Fragfire Can [1847,27609]", "pos": ["MAP10",1847,27609,-1141], "region": "Pit Lord α Phase 2" }
+AP-CHECK { "id": 2726, "name": "MAP10 - Boltmag [2121,27427]", "pos": ["MAP10",2121,27427,-1141], "region": "Pit Lord α Phase 2" }
+AP-CHECK { "id": 3262, "name": "MAP10 - Spike Mag [2071,27532]", "pos": ["MAP10",2071,27532,-1141], "region": "Pit Lord α Phase 2" }
+AP-CHECK { "id": 3264, "name": "MAP10 - Spike Mag [2156,27604]", "pos": ["MAP10",2156,27604,-1141], "region": "Pit Lord α Phase 2" }
+AP-CHECK { "id": 2728, "name": "MAP10 - Boltmag [2265,27587]", "pos": ["MAP10",2265,27587,-1141], "region": "Pit Lord α Phase 2" }
+AP-CHECK { "id": 2927, "name": "MAP10 - Potion of Greater Healing [1870,27822]", "pos": ["MAP10",1870,27822,-1141], "region": "Pit Lord α Phase 2" }
+AP-CHECK { "id": 2869, "name": "MAP10 - Fragfire Can [2121,27891]", "pos": ["MAP10",2121,27891,-1141], "region": "Pit Lord α Phase 2" }
+AP-CHECK { "id": 3168, "name": "MAP10 - Power Shard [2416,27984]", "pos": ["MAP10",2416,27984,-1141], "region": "Pit Lord α Phase 2" }
+AP-CHECK { "id": 3170, "name": "MAP10 - Power Shard [2448,28064]", "pos": ["MAP10",2448,28064,-1141], "region": "Pit Lord α Phase 2" }
+AP-CHECK { "id": 2765, "name": "MAP10 - Box of Acid Potions [2238,28179]", "pos": ["MAP10",2238,28179,-1141], "region": "Pit Lord α Phase 2" }
+AP-CHECK { "id": 2768, "name": "MAP10 - Box of Acid Potions [390,27522]", "pos": ["MAP10",390,27522,-1141], "region": "Pit Lord α Phase 3" }
+AP-CHECK { "id": 2864, "name": "MAP10 - Fragfire Can [164,27614]", "pos": ["MAP10",164,27614,-1141], "region": "Pit Lord α Phase 3" }
+AP-CHECK { "id": 3244, "name": "MAP10 - Spike Mag [-36,27529]", "pos": ["MAP10",-36,27529,-1141], "region": "Pit Lord α Phase 3" }
+AP-CHECK { "id": 2718, "name": "MAP10 - Boltmag [-88,27441]", "pos": ["MAP10",-88,27441,-1141], "region": "Pit Lord α Phase 3" }
+AP-CHECK { "id": 2701, "name": "MAP10 - Boltmag [-219,27543]", "pos": ["MAP10",-219,27543,-1141], "region": "Pit Lord α Phase 3" }
+AP-CHECK { "id": 3232, "name": "MAP10 - Spike Mag [-119,27605]", "pos": ["MAP10",-119,27605,-1141], "region": "Pit Lord α Phase 3" }
+AP-CHECK { "id": 2923, "name": "MAP10 - Potion of Greater Healing [142,27790]", "pos": ["MAP10",142,27790,-1141], "region": "Pit Lord α Phase 3" }
+AP-CHECK { "id": 2861, "name": "MAP10 - Fragfire Can [-90,27914]", "pos": ["MAP10",-90,27914,-1141], "region": "Pit Lord α Phase 3" }
+AP-CHECK { "id": 3099, "name": "MAP10 - Power Shard [-384,28000]", "pos": ["MAP10",-384,28000,-1141], "region": "Pit Lord α Phase 3" }
+AP-CHECK { "id": 3103, "name": "MAP10 - Power Shard [-416,28080]", "pos": ["MAP10",-416,28080,-1141], "region": "Pit Lord α Phase 3" }
+AP-CHECK { "id": 3109, "name": "MAP10 - Power Shard [-448,28160]", "pos": ["MAP10",-448,28160,-1141], "region": "Pit Lord α Phase 3" }
+AP-CHECK { "id": 2744, "name": "MAP10 - Box of Acid Potions [-199,28179]", "pos": ["MAP10",-199,28179,-1141], "region": "Pit Lord α Phase 3" }
+AP-CHECK { "id": 2848, "name": "MAP10 - Fragfire Can [-306,28458]", "pos": ["MAP10",-306,28458,-1141], "region": "Pit Lord α Phase 3" }
+AP-CHECK { "id": 3254, "name": "MAP10 - Spike Mag [-543,28619]", "pos": ["MAP10",-543,28619,-1141], "region": "Pit Lord α Phase 3" }
+AP-CHECK { "id": 2715, "name": "MAP10 - Boltmag [-653,28599]", "pos": ["MAP10",-653,28599,-1141], "region": "Pit Lord α Phase 3" }
+AP-CHECK { "id": 2714, "name": "MAP10 - Boltmag [-651,28751]", "pos": ["MAP10",-651,28751,-1141], "region": "Pit Lord α Phase 3" }
+AP-CHECK { "id": 3255, "name": "MAP10 - Spike Mag [-543,28727]", "pos": ["MAP10",-543,28727,-1141], "region": "Pit Lord α Phase 3" }
+AP-CHECK { "id": 2940, "name": "MAP10 - Potion of Haste [-382,28674]", "pos": ["MAP10",-382,28674,-1141], "region": "Pit Lord α Phase 3" }
+AP-CHECK { "id": 2917, "name": "MAP10 - Potion of Greater Healing [-224,28672]", "pos": ["MAP10",-224,28672,-1141], "region": "Pit Lord α Phase 3" }
+AP-CHECK { "id": 2849, "name": "MAP10 - Fragfire Can [-306,28883]", "pos": ["MAP10",-306,28883,-1141], "region": "Pit Lord α Phase 3" }
+AP-CHECK { "id": 3110, "name": "MAP10 - Power Shard [-448,29152]", "pos": ["MAP10",-448,29152,-1141], "region": "Pit Lord α Phase 3" }
+AP-CHECK { "id": 3102, "name": "MAP10 - Power Shard [-400,29264]", "pos": ["MAP10",-400,29264,-1141], "region": "Pit Lord α Phase 3" }
+AP-CHECK { "id": 3097, "name": "MAP10 - Power Shard [-368,29360]", "pos": ["MAP10",-368,29360,-1141], "region": "Pit Lord α Phase 3" }
+AP-CHECK { "id": 2743, "name": "MAP10 - Box of Acid Potions [-185,29168]", "pos": ["MAP10",-185,29168,-1141], "region": "Pit Lord α Phase 3" }
+AP-CHECK { "id": 2854, "name": "MAP10 - Fragfire Can [-55,29464]", "pos": ["MAP10",-55,29464,-1141], "region": "Pit Lord α Phase 3" }
+AP-CHECK { "id": 3235, "name": "MAP10 - Spike Mag [-129,29746]", "pos": ["MAP10",-129,29746,-1141], "region": "Pit Lord α Phase 3" }
+AP-CHECK { "id": 2702, "name": "MAP10 - Boltmag [-228,29801]", "pos": ["MAP10",-228,29801,-1141], "region": "Pit Lord α Phase 3" }
+AP-CHECK { "id": 2719, "name": "MAP10 - Boltmag [-89,29919]", "pos": ["MAP10",-89,29919,-1141], "region": "Pit Lord α Phase 3" }
+AP-CHECK { "id": 3246, "name": "MAP10 - Spike Mag [-40,29830]", "pos": ["MAP10",-40,29830,-1141], "region": "Pit Lord α Phase 3" }
+AP-CHECK { "id": 2924, "name": "MAP10 - Potion of Greater Healing [142,29550]", "pos": ["MAP10",142,29550,-1141], "region": "Pit Lord α Phase 3" }
+AP-CHECK { "id": 2781, "name": "MAP10 - Box of Toxic Potions [175,29725]", "pos": ["MAP10",175,29725,-1141], "region": "Pit Lord α Phase 3" }
+AP-CHECK { "id": 2767, "name": "MAP10 - Box of Acid Potions [371,29805]", "pos": ["MAP10",371,29805,-1141], "region": "Pit Lord α Phase 3" }
+AP-CHECK { "id": 2904, "name": "MAP10 - Light Armor Crystal [481,29859]", "pos": ["MAP10",481,29859,-1141], "region": "Pit Lord α Phase 3" }
+AP-CHECK { "id": 2935, "name": "MAP10 - Potion of Greater Healing [628,29728]", "pos": ["MAP10",628,29728,-1141], "region": "Pit Lord α Phase 3" }
+AP-CHECK { "id": 2934, "name": "MAP10 - Potion of Greater Healing [616,30156]", "pos": ["MAP10",616,30156,-1141], "region": "Pit Lord α Phase 3" }
+AP-CHECK { "id": 3188, "name": "MAP10 - Power Shard [49,26473]", "pos": ["MAP10",49,26473,-1141], "region": "Pit Lord α Phase 4" }
+AP-CHECK { "id": 3084, "name": "MAP10 - Power Shard [-214,26599]", "pos": ["MAP10",-214,26599,-1141], "region": "Pit Lord α Phase 4" }
+AP-CHECK { "id": 3111, "name": "MAP10 - Power Shard [-452,26776]", "pos": ["MAP10",-452,26776,-1141], "region": "Pit Lord α Phase 4" }
+AP-CHECK { "id": 2922, "name": "MAP10 - Potion of Greater Healing [-656,26992]", "pos": ["MAP10",-656,26992,-1141], "region": "Pit Lord α Phase 4" }
+AP-CHECK { "id": 2833, "name": "MAP10 - Elemental Ring [-902,27025]", "pos": ["MAP10",-902,27025,-1141], "region": "Pit Lord α Phase 4" }
+AP-CHECK { "id": 3143, "name": "MAP10 - Power Shard [-870,27219]", "pos": ["MAP10",-870,27219,-1141], "region": "Pit Lord α Phase 4" }
+AP-CHECK { "id": 3129, "name": "MAP10 - Power Shard [-668,27292]", "pos": ["MAP10",-668,27292,-1141], "region": "Pit Lord α Phase 4" }
+AP-CHECK { "id": 2943, "name": "MAP10 - Potion of Haste [-677,27452]", "pos": ["MAP10",-677,27452,-1141], "region": "Pit Lord α Phase 4" }
+AP-CHECK { "id": 3126, "name": "MAP10 - Power Shard [-644,27621]", "pos": ["MAP10",-644,27621,-1141], "region": "Pit Lord α Phase 4" }
+AP-CHECK { "id": 3131, "name": "MAP10 - Power Shard [-677,27740]", "pos": ["MAP10",-677,27740,-1141], "region": "Pit Lord α Phase 4" }
+AP-CHECK { "id": 3001, "name": "MAP10 - Potion of Might [N]", "pos": ["MAP10",-953,27834,-1141], "region": "Pit Lord α Phase 4" }
+AP-CHECK { "id": 3047, "name": "MAP10 - Power Shard [-1091,27664]", "pos": ["MAP10",-1091,27664,-1141], "region": "Pit Lord α Phase 4" }
+AP-CHECK { "id": 3045, "name": "MAP10 - Power Shard [-1016,27433]", "pos": ["MAP10",-1016,27433,-1141], "region": "Pit Lord α Phase 4" }
+AP-CHECK { "id": 3279, "name": "MAP10 - Time Shard [-879,27596]", "pos": ["MAP10",-879,27596,-999], "region": "Pit Lord α Phase 4" }
+AP-CHECK { "id": 2680, "name": "MAP10 - Amulet of Shadows [-1339,28348]", "pos": ["MAP10",-1339,28348,-1141], "region": "Pit Lord α Phase 4" }
+AP-CHECK { "id": 3072, "name": "MAP10 - Power Shard [-1319,28593]", "pos": ["MAP10",-1319,28593,-1141], "region": "Pit Lord α Phase 4" }
+AP-CHECK { "id": 2916, "name": "MAP10 - Potion of Greater Healing [-1296,28672]", "pos": ["MAP10",-1296,28672,-1141], "region": "Pit Lord α Phase 4" }
+AP-CHECK { "id": 2936, "name": "MAP10 - Potion of Haste [-1148,28672]", "pos": ["MAP10",-1148,28672,-1141], "region": "Pit Lord α Phase 4" }
+AP-CHECK { "id": 3073, "name": "MAP10 - Power Shard [-1348,28844]", "pos": ["MAP10",-1348,28844,-1141], "region": "Pit Lord α Phase 4" }
+AP-CHECK { "id": 3075, "name": "MAP10 - Power Shard [-1402,29059]", "pos": ["MAP10",-1402,29059,-1141], "region": "Pit Lord α Phase 4" }
+AP-CHECK { "id": 3053, "name": "MAP10 - Power Shard [-1145,29381]", "pos": ["MAP10",-1145,29381,-1141], "region": "Pit Lord α Phase 4" }
+AP-CHECK { "id": 2937, "name": "MAP10 - Potion of Haste [-1227,29482]", "pos": ["MAP10",-1227,29482,-1141], "region": "Pit Lord α Phase 4" }
+AP-CHECK { "id": 3058, "name": "MAP10 - Power Shard [-1193,29676]", "pos": ["MAP10",-1193,29676,-1141], "region": "Pit Lord α Phase 4" }
+AP-CHECK { "id": 3048, "name": "MAP10 - Power Shard [-1104,29850]", "pos": ["MAP10",-1104,29850,-1141], "region": "Pit Lord α Phase 4" }
+AP-CHECK { "id": 3140, "name": "MAP10 - Power Shard [-850,29832]", "pos": ["MAP10",-850,29832,-1141], "region": "Pit Lord α Phase 4" }
+AP-CHECK { "id": 3137, "name": "MAP10 - Power Shard [-791,29633]", "pos": ["MAP10",-791,29633,-1141], "region": "Pit Lord α Phase 4" }
+AP-CHECK { "id": 3144, "name": "MAP10 - Power Shard [-871,29372]", "pos": ["MAP10",-871,29372,-1141], "region": "Pit Lord α Phase 4" }
+AP-CHECK { "id": 2921, "name": "MAP10 - Potion of Greater Healing [-640,30336]", "pos": ["MAP10",-640,30336,-1141], "region": "Pit Lord α Phase 4" }
+AP-CHECK { "id": 3040, "name": "MAP10 - Potion of Stoneskin [-112,30709]", "pos": ["MAP10",-112,30709,-1141], "region": "Pit Lord α Phase 4" }
+AP-CHECK { "id": 2909, "name": "MAP10 - Medium Armor Crystal [216,30621]", "pos": ["MAP10",216,30621,-1141], "region": "Pit Lord α Phase 4" }
+AP-CHECK { "id": 2908, "name": "MAP10 - Medium Armor Crystal [1788,30850]", "pos": ["MAP10",1788,30850,-1141], "region": "Pit Lord α Phase 4" }
+AP-CHECK { "id": 3153, "name": "MAP10 - Power Shard [1941,30660]", "pos": ["MAP10",1941,30660,-1141], "region": "Pit Lord α Phase 4" }
+AP-CHECK { "id": 3155, "name": "MAP10 - Power Shard [1995,30567]", "pos": ["MAP10",1995,30567,-1141], "region": "Pit Lord α Phase 4" }
+AP-CHECK { "id": 3159, "name": "MAP10 - Power Shard [2085,30489]", "pos": ["MAP10",2085,30489,-1141], "region": "Pit Lord α Phase 4" }
+AP-CHECK { "id": 2684, "name": "MAP10 - Amulet of Shadows [2205,30453]", "pos": ["MAP10",2205,30453,-1141], "region": "Pit Lord α Phase 4" }
+AP-CHECK { "id": 3167, "name": "MAP10 - Power Shard [2384,30711]", "pos": ["MAP10",2384,30711,-1141], "region": "Pit Lord α Phase 4" }
+AP-CHECK { "id": 3174, "name": "MAP10 - Power Shard [2509,30545]", "pos": ["MAP10",2509,30545,-1141], "region": "Pit Lord α Phase 4" }
+AP-CHECK { "id": 3177, "name": "MAP10 - Power Shard [2658,30448]", "pos": ["MAP10",2658,30448,-1141], "region": "Pit Lord α Phase 4" }
+AP-CHECK { "id": 2930, "name": "MAP10 - Potion of Greater Healing [2672,30320]", "pos": ["MAP10",2672,30320,-1141], "region": "Pit Lord α Phase 4" }
+AP-CHECK { "id": 2834, "name": "MAP10 - Elemental Ring [2843,30344]", "pos": ["MAP10",2843,30344,-1141], "region": "Pit Lord α Phase 4" }
+AP-CHECK { "id": 3179, "name": "MAP10 - Power Shard [3083,29730]", "pos": ["MAP10",3083,29730,-1141], "region": "Pit Lord α Phase 4" }
+AP-CHECK { "id": 3180, "name": "MAP10 - Power Shard [3118,29568]", "pos": ["MAP10",3118,29568,-1141], "region": "Pit Lord α Phase 4" }
+AP-CHECK { "id": 3184, "name": "MAP10 - Power Shard [3256,29442]", "pos": ["MAP10",3256,29442,-1141], "region": "Pit Lord α Phase 4" }
+AP-CHECK { "id": 2952, "name": "MAP10 - Potion of Haste [3420,29259]", "pos": ["MAP10",3420,29259,-1141], "region": "Pit Lord α Phase 4" }
+AP-CHECK { "id": 2932, "name": "MAP10 - Potion of Greater Healing [3392,28672]", "pos": ["MAP10",3392,28672,-1141], "region": "Pit Lord α Phase 4" }
+AP-CHECK { "id": 2951, "name": "MAP10 - Potion of Haste [3197,28672]", "pos": ["MAP10",3197,28672,-1141], "region": "Pit Lord α Phase 4" }
+AP-CHECK { "id": 3000, "name": "MAP10 - Potion of Might [NE]", "pos": ["MAP10",3428,28401,-1141], "region": "Pit Lord α Phase 4" }
+AP-CHECK { "id": 3182, "name": "MAP10 - Power Shard [3207,28262]", "pos": ["MAP10",3207,28262,-1141], "region": "Pit Lord α Phase 4" }
+AP-CHECK { "id": 3181, "name": "MAP10 - Power Shard [3175,28094]", "pos": ["MAP10",3175,28094,-1141], "region": "Pit Lord α Phase 4" }
+AP-CHECK { "id": 3183, "name": "MAP10 - Power Shard [3223,27941]", "pos": ["MAP10",3223,27941,-1141], "region": "Pit Lord α Phase 4" }
+AP-CHECK { "id": 2950, "name": "MAP10 - Potion of Haste [2653,27189]", "pos": ["MAP10",2653,27189,-1141], "region": "Pit Lord α Phase 4" }
+AP-CHECK { "id": 3178, "name": "MAP10 - Power Shard [2672,27099]", "pos": ["MAP10",2672,27099,-1141], "region": "Pit Lord α Phase 4" }
+AP-CHECK { "id": 2931, "name": "MAP10 - Potion of Greater Healing [2688,27008]", "pos": ["MAP10",2688,27008,-1141], "region": "Pit Lord α Phase 4" }
+AP-CHECK { "id": 3176, "name": "MAP10 - Power Shard [2656,26880]", "pos": ["MAP10",2656,26880,-1141], "region": "Pit Lord α Phase 4" }
+AP-CHECK { "id": 3175, "name": "MAP10 - Power Shard [2583,26799]", "pos": ["MAP10",2583,26799,-1141], "region": "Pit Lord α Phase 4" }
+AP-CHECK { "id": 3164, "name": "MAP10 - Power Shard [2214,26914]", "pos": ["MAP10",2214,26914,-1141], "region": "Pit Lord α Phase 4" }
+AP-CHECK { "id": 3044, "name": "MAP10 - Potion of Stoneskin [2249,27016]", "pos": ["MAP10",2249,27016,-1141], "region": "Pit Lord α Phase 4" }
+AP-CHECK { "id": 3165, "name": "MAP10 - Power Shard [2254,27129]", "pos": ["MAP10",2254,27129,-1141], "region": "Pit Lord α Phase 4" }
+AP-CHECK { "id": 3166, "name": "MAP10 - Power Shard [2353,27213]", "pos": ["MAP10",2353,27213,-1141], "region": "Pit Lord α Phase 4" }
+AP-CHECK { "id": 3158, "name": "MAP10 - Power Shard [2047,26682]", "pos": ["MAP10",2047,26682,-1141], "region": "Pit Lord α Phase 4" }
+AP-CHECK { "id": 3152, "name": "MAP10 - Power Shard [1922,26641]", "pos": ["MAP10",1922,26641,-1141], "region": "Pit Lord α Phase 4" }
+AP-CHECK { "id": 3151, "name": "MAP10 - Power Shard [1869,26542]", "pos": ["MAP10",1869,26542,-1141], "region": "Pit Lord α Phase 4" }
+AP-CHECK { "id": 3154, "name": "MAP10 - Power Shard [1963,26408]", "pos": ["MAP10",1963,26408,-1141], "region": "Pit Lord α Phase 4" }
+AP-CHECK { "id": 3160, "name": "MAP10 - Power Shard [2093,26429]", "pos": ["MAP10",2093,26429,-1141], "region": "Pit Lord α Phase 4" }
+AP-CHECK { "id": 3163, "name": "MAP10 - Power Shard [2181,26504]", "pos": ["MAP10",2181,26504,-1141], "region": "Pit Lord α Phase 4" }
+AP-CHECK { "id": 3281, "name": "MAP10 - Time Shard [2456,26968]", "pos": ["MAP10",2456,26968,-968], "region": "Pit Lord α Phase 4" }
+Player [0]: ; TODO recategorize boss fight areas as inner/mid W/E/outer W/E
+AP-CHECK { "id": 2835, "name": "MAP10 - Exit", "pos": ["MAP10","exit"], "region": "Pit Lord α Phase 4" }
+AP-CHECK { "id": 2817, "name": "MAP10 - Crushbow [-4575,12334]", "pos": ["MAP10",-4575,12334,-590], "unreachable": true }

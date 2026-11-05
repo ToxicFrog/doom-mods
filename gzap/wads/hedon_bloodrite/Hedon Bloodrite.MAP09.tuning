@@ -69,9 +69,9 @@ AP-XOFF {}
 ; When you reach the high security hall while carrying the crystal key, it is deleted (collecting the checks)
 ; and replaced with normal bread you can eat.
 ; I've marked them as unreachable because I'm not a fan of this sort of opaque action at a distance.
-AP-CHECK { "id": 2558, "name": "MAP09 - Bread [1799,2056]", "pos": ["MAP09",1799,2056,-596], "region": "unreachable": true }
-AP-CHECK { "id": 2557, "name": "MAP09 - Bread [1794,2013]", "pos": ["MAP09",1794,2013,-596], "region": "unreachable": true }
-AP-CHECK { "id": 2556, "name": "MAP09 - Bread [1792,2037]", "pos": ["MAP09",1792,2037,-596], "region": "unreachable": true }
+AP-CHECK { "id": 2558, "name": "MAP09 - Bread [1799,2056]", "pos": ["MAP09",1799,2056,-596], "unreachable": true }
+AP-CHECK { "id": 2557, "name": "MAP09 - Bread [1794,2013]", "pos": ["MAP09",1794,2013,-596], "unreachable": true }
+AP-CHECK { "id": 2556, "name": "MAP09 - Bread [1792,2037]", "pos": ["MAP09",1792,2037,-596], "unreachable": true }
 
 AP-XOFF {}
 AP-XON { "lump": "GZAPIPC", "size": 0, "nick": "Player", "slot": "Player1", "seed": "17460301042892710049", "wad": "Hedon Bloodrite", "server": "" }
