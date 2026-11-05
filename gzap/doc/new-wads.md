@@ -45,6 +45,29 @@ everything else should happen automatically.
 If that worked, you can now [fine-tune the logic](#refining-your-logic) and
 [publish the logic](#publishing-your-logic). If not, see the sections below.
 
+### Logic flags
+
+These are set by the `extra flags` option in the menu, or the
+`ap_scan_logic_flags` cvar. They are a mechanism for passing additional
+information about the wad as a whole (rather than any single map or location) to
+the generator.
+
+#### `use_hub_logic`
+
+If enabled, this tells the generator that the WAD uses hubclusters, persistent
+groups of maps that the player is expected to repeatedly traverse; Hexen and
+Strife both use this, as do Faithless, Ashes Afterglow, and Hedon. This changes
+a number of behaviours; the most significant are that it assumes you can carry
+keys between maps (i.e. keys become cluster-scoped rather than map-scoped), and
+also does *not* assume that merely having all the keys for a given map is
+sufficient to complete it. WADs with this flag require pretuning to be playable.
+
+#### `hub_logic_exits=MAPXX,MAPYY,MAPZZ`
+
+For use only with `use_hub_logic`, this tells the generator which maps are exits
+from their respective hubclusters. Other maps in the cluster are assumed to be
+intermediate maps and leaving them does not count towards victory.
+
 ### Hub-based wads
 
 Support for these is still being tested, and full documentation is yet to be
