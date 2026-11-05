@@ -1,5 +1,16 @@
 # Hedon: Bloodrite
 
+This logic pack supports the first episode of Hedon Bloodrite, *Crystal Heart*
+(i.e. MAP01 through MAP10). There are some differences from normal Hedon, and
+some situations you will not encounter in normal play that are relevant in AP,
+which this file documents.
+
+You can buy Hedon on [itch](https://zanthebonebreaker.itch.io/hedon),
+[GOG](https://www.gog.com/en/game/hedon),
+or [Steam](https://store.steampowered.com/app/1072150/Hedon_Bloodrite/); the
+only file you need is `Hedon.ipk3`, which you should load as an IWAD. (The demo
+is not supported.)
+
 ## General notes
 
 The logic *should* be valid for both normal and Bearzerker modes; however, the
