@@ -311,11 +311,20 @@ class UZDoomWorld(World):
                 rg = Region(region.name(), self.player, self.multiworld)
                 regions[region.name()] = rg
                 self.multiworld.regions.append(rg)
-                # print('create_entrance', regions[map.map], rg, region.access_rule(self, self.wad_logic, map))
-                self.create_entrance(
-                    from_region=regions[map.map], to_region=rg,
-                    name=region.name(),
-                    rule=region.access_rule(self, self.wad_logic, map))
+
+            for region in self.wad_logic.regions_in_map(map.map):
+                # We do two passes over the regions, one to create them, one to
+                # create their rules, because otherwise we may end up creating
+                # a region before the regions its rules refer to exist, and AP
+                # will not lazily evaluate the region references but instead die
+                # instantly when we call create_entrance().
+                try:
+                    self.create_entrance(
+                        from_region=regions[map.map], to_region=regions[region.name()],
+                        name=region.name(),
+                        rule=region.access_rule(self, self.wad_logic, map))
+                except KeyError as e:
+                    raise KeyError(f'When connecting region {region.name()} to the world, we failed to generate its access rules due to an error looking up {e.args[0]}. Raw rule sets: {region.prereqs}')
 
             for loc in self.pool.locations_in_map(map.map):
                 assert loc.name() not in placed, f"Location {loc.name()} was already placed but we tried to place it again!"

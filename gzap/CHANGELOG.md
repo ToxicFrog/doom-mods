@@ -1,3 +1,9 @@
+# Unreleased
+
+- Fixed:
+  - Generation should no longer fail if `AP-REGION` directives are re-ordered
+    or if region access rules refer to each other.
+
 # 0.9.2
 
 This is a bugfix release. There are new yaml options and tools for logic
