@@ -185,3 +185,21 @@ receiving the earth key from the dwarf are all checks.
 
 The treasury code is always 1357; you don't need to have read the scroll to
 enter the code.
+
+## MAP09: Research and Decay
+
+The universal potion machine produces no checks; since all of its inputs are
+also consumables, it would be too easy to end up softlocked by using them up.
+
+In normal play, the door out of Lith's lab doesn't open until you have the
+crystal key. However, in AP it's entirely possible to reach that point without
+the crystal key (or any way of getting it) and end up trapped in the lab until
+you reset the entire map. To avoid this, in AP, opening the crystal key locker
+also lets you out of the lab. Since a lot of the fights on the way out are also
+triggered by the key, you may encounter "deactivated" enemies standing
+motionless in various rooms on your way back to the entrance.
+
+If you have the crystal key and either the earth key or the acid, it's possible
+to bypass the trigger for Lith closing the door to the incubation chamber, and
+thus complete the level without the axe key. This is not in logic because it is
+easy to hit the trigger by accident, which would require resetting the level.

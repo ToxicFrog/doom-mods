@@ -1,0 +1,227 @@
+; Outdoor areas
+AP-REGION { "map": "MAP09", "region": "Arrival", "keys": [] }
+AP-REGION { "map": "MAP09", "region": "Portal Chamber", "keys": ["map/MAP09/Arrival"] }
+AP-REGION { "map": "MAP09", "region": "Customs Office", "keys": ["map/MAP09/Portal Chamber"] }
+AP-REGION { "map": "MAP09", "region": "Portal Control", "keys": ["map/MAP09/Portal Chamber"] }
+AP-REGION { "map": "MAP09", "region": "Garden", "keys": ["map/MAP09/Customs Office", "map/MAP09/Portal Chamber"] }
+AP-REGION { "map": "MAP09", "region": "Potion Shop", "keys": ["map/MAP09/Garden"] }
+AP-REGION { "map": "MAP09", "region": "Downstream", "keys": ["map/MAP09/Garden", "flag/secret"] }
+; Exit. Can actually visit right at the start if you have the crystal key...
+AP-REGION { "map": "MAP09", "region": "Bridge", "keys": ["map/MAP09/Garden", "key/CrystalKey"] }
+
+; "Outer" R&D areas
+AP-REGION { "map": "MAP09", "region": "R&D Entrance", "keys": ["map/MAP09/Garden"] }
+AP-REGION { "map": "MAP09", "region": "R&D SW Lab", "keys": ["map/MAP09/R&D Entrance"] }
+
+; This area is reachable either by using the jar of acid to melt the bars
+; Or by using the earth key to open the door in the north lounge
+; It's the northern area east of the earth key door but west of the crystal door into high security
+AP-REGION { "map": "MAP09", "region": "(medium security access)", "keys": ["map/MAP09/R&D Entrance", "key/InventoryJarOfCorrosiveAcid"] }
+AP-REGION { "map": "MAP09", "region": "(medium security access)", "keys": ["map/MAP09/R&D Entrance", "key/EarthKey"] }
+AP-REGION { "map": "MAP09", "region": "R&D Secure Entrance", "keys": ["map/MAP09/(medium security access)"] }
+AP-REGION { "map": "MAP09", "region": "Adjunct's Office", "keys": ["map/MAP09/R&D Secure Entrance"] }
+AP-REGION { "map": "MAP09", "region": "Council Room", "keys": ["map/MAP09/R&D Secure Entrance"] }
+AP-REGION { "map": "MAP09", "region": "Council Room Secret", "keys": ["flag/secret", "map/MAP09/Council Room"] }
+AP-REGION { "map": "MAP09", "region": "Council Room Secret Secret", "keys": ["map/MAP09/Council Room Secret", "flag/secret"] }
+AP-REGION { "map": "MAP09", "region": "Kitchen", "keys": ["map/MAP09/Council Room"] }
+AP-REGION { "map": "MAP09", "region": "Freezer", "keys": ["map/MAP09/Kitchen"] }
+
+; Progression path. This is where you're meant to go once you get the earth key from midsec
+; and is linear until you end up back at secure labs hall.
+; trickiness: if you can get into secure labs hall using the crystal key, you can backtrack
+; all the way to the sewer pit. You can't get from the sewer pit to the dorms though.
+; So, the dorm is reachable ONLY with the earth key
+; but the whole secure labs area is reachable either with the earth key or crystal key.
+AP-REGION { "map": "MAP09", "region": "S Dorm", "keys": ["map/MAP09/R&D Entrance", "key/EarthKey"] }
+AP-REGION { "map": "MAP09", "region": "(high security access)", "keys": ["map/MAP09/S Dorm"] }
+AP-REGION { "map": "MAP09", "region": "(high security access)", "keys": ["map/MAP09/R&D Secure Entrance", "key/CrystalKey"] }
+AP-REGION { "map": "MAP09", "region": "Secure Labs Hall", "keys": ["map/MAP09/(high security access)"] }
+; Path connecting secure labs hall to Lith's camp in the sewers
+AP-REGION { "map": "MAP09", "region": "Garden Hall", "keys": ["map/MAP09/Secure Labs Hall"] }
+AP-REGION { "map": "MAP09", "region": "Aquarium", "keys": ["map/MAP09/Garden Hall"] }
+AP-REGION { "map": "MAP09", "region": "Sewer Camp", "keys": ["map/MAP09/Aquarium"] }
+; Path forward
+AP-REGION { "map": "MAP09", "region": "Security Room", "keys": ["map/MAP09/Secure Labs Hall", "key/AxeKey"] }
+AP-REGION { "map": "MAP09", "region": "Alchemy Lab", "keys": ["map/MAP09/Secure Labs Hall"] }
+AP-REGION { "map": "MAP09", "region": "Holding Cells Hall", "keys": ["map/MAP09/Alchemy Lab"] }
+AP-REGION { "map": "MAP09", "region": "Vivisection Lab", "keys": ["map/MAP09/Holding Cells Hall"] }
+; Visiting the security room lets you open a bunch of doors, including one to the incubation room
+AP-REGION { "map": "MAP09", "region": "Incubation Hall", "keys": ["map/MAP09/Security Room", "map/MAP09/Secure Labs Hall"] }
+AP-REGION { "map": "MAP09", "region": "Alchemical Weapons", "keys": ["map/MAP09/Incubation Hall"] }
+AP-REGION { "map": "MAP09", "region": "Firing Range", "keys": ["map/MAP09/Alchemical Weapons"] }
+AP-REGION { "map": "MAP09", "region": "Firing Range Secret", "keys": ["map/MAP09/Firing Range", "flag/secret"] }
+; The trigger for losing your weapons, and the cutscene with Lith and Tiati, is walking
+; down the hall after Alchemical Weapons
+; You then get your weapons back when entering the crystal key room, open all the various
+; locked areas in the level by opening the crystal key chamber, and trigger a fight
+; and the ability to leave Lith's lab by walking out of the room HOLDING THE CRYSTAL KEY.
+AP-REGION { "map": "MAP09", "region": "Lith's Lab", "keys": ["map/MAP09/Alchemical Weapons"] }
+AP-REGION { "map": "MAP09", "region": "(release crystal key)", "keys": ["map/MAP09/Lith's Lab"] }
+; Checks that are only revealed once you open the crystal key box
+AP-REGION { "map": "MAP09", "region": "Crylance Containment", "keys": ["map/MAP09/Alchemical Weapons", "map/MAP09/(release crystal key)"] }
+AP-REGION { "map": "MAP09", "region": "Vivisection Lab Freezer", "keys": ["map/MAP09/Vivisection Lab", "map/MAP09/(release crystal key)"] }
+AP-REGION { "map": "MAP09", "region": "Holding Cells", "keys": ["map/MAP09/Holding Cells Hall", "map/MAP09/(release crystal key)"] }
+AP-REGION { "map": "MAP09", "region": "Security Room Emergency Supplies", "keys": ["map/MAP09/Security Room", "flag/secret", "map/MAP09/(release crystal key)"] }
+AP-XOFF {}
+
+; This bread is mildly cursed.
+; It's non-interactable on level entrance.
+; When you reach the high security hall while carrying the crystal key, it is deleted (collecting the checks)
+; and replaced with normal bread you can eat.
+; I've marked them as unreachable because I'm not a fan of this sort of opaque action at a distance.
+AP-CHECK { "id": 2558, "name": "MAP09 - Bread [1799,2056]", "pos": ["MAP09",1799,2056,-596], "region": "unreachable": true }
+AP-CHECK { "id": 2557, "name": "MAP09 - Bread [1794,2013]", "pos": ["MAP09",1794,2013,-596], "region": "unreachable": true }
+AP-CHECK { "id": 2556, "name": "MAP09 - Bread [1792,2037]", "pos": ["MAP09",1792,2037,-596], "region": "unreachable": true }
+
+AP-XOFF {}
+AP-XON { "lump": "GZAPIPC", "size": 0, "nick": "Player", "slot": "Player1", "seed": "17460301042892710049", "wad": "Hedon Bloodrite", "server": "" }
+AP-XOFF {}
+AP-XON { "lump": "GZAPIPC", "size": 0, "nick": "Player", "slot": "Player1", "seed": "22376006613539107206", "wad": "Hedon Bloodrite", "server": "" }
+AP-CHECK { "id": 2655, "name": "MAP09 - Spike Gun [-4458,-724]", "pos": ["MAP09",-4458,-724,-558], "region": "Arrival" }
+AP-CHECK { "id": 2599, "name": "MAP09 - Potion Launcher [Acid] [W]", "pos": ["MAP09",-4410,159,-557], "region": "Arrival" }
+AP-CHECK { "id": 2567, "name": "MAP09 - Cream Fungus [-4312,-79]", "pos": ["MAP09",-4312,-79,-546], "region": "Arrival" }
+AP-CHECK { "id": 2568, "name": "MAP09 - Cream Fungus [-4319,-104]", "pos": ["MAP09",-4319,-104,-546], "region": "Arrival" }
+AP-CHECK { "id": 2566, "name": "MAP09 - Cream Fungus [-4312,-145]", "pos": ["MAP09",-4312,-145,-546], "region": "Arrival" }
+AP-CHECK { "id": 2658, "name": "MAP09 - Spike Mag [-4044,-457]", "pos": ["MAP09",-4044,-457,-494], "region": "Portal Chamber" }
+AP-CHECK { "id": 2668, "name": "MAP09 - Vial of Healing [-3920,-557]", "pos": ["MAP09",-3920,-557,-494], "region": "Portal Chamber" }
+AP-CHECK { "id": 2541, "name": "MAP09 - Boltmag [-4567,603]", "pos": ["MAP09",-4567,603,-558], "region": "Customs Office" }
+AP-CHECK { "id": 2656, "name": "MAP09 - Spike Gun [-4492,596]", "pos": ["MAP09",-4492,596,-527], "region": "Customs Office" }
+AP-CHECK { "id": 2659, "name": "MAP09 - Spike Mag [-4450,593]", "pos": ["MAP09",-4450,593,-527], "region": "Customs Office" }
+AP-CHECK { "id": 2582, "name": "MAP09 - Fragfire Can [-3336,308]", "pos": ["MAP09",-3336,308,-558], "region": "Portal Chamber" }
+AP-CHECK { "id": 2603, "name": "MAP09 - Potion of Healing [-3625,185]", "pos": ["MAP09",-3625,185,-558], "region": "Portal Control" }
+AP-CHECK { "id": 2625, "name": "MAP09 - Power Shard [-3986,61]", "pos": ["MAP09",-3986,61,-558], "region": "Portal Control" }
+AP-CHECK { "id": 2626, "name": "MAP09 - Power Shard [-3987,138]", "pos": ["MAP09",-3987,138,-558], "region": "Portal Control" }
+AP-CHECK { "id": 2639, "name": "MAP09 - Secret 1221", "pos": ["MAP09","secret","sector",1221], "region": "Downstream" }
+AP-CHECK { "id": 2667, "name": "MAP09 - Vial of Healing [-3629,3238]", "pos": ["MAP09",-3629,3238,-822], "region": "Downstream" }
+AP-CHECK { "id": 2663, "name": "MAP09 - Time Shard [NW]", "pos": ["MAP09",-3596,3217,-806], "region": "Downstream" }
+AP-CHECK { "id": 2624, "name": "MAP09 - Power Shard [-3645,3222]", "pos": ["MAP09",-3645,3222,-814], "region": "Downstream" }
+AP-CHECK { "id": 2623, "name": "MAP09 - Power Shard [-3642,3200]", "pos": ["MAP09",-3642,3200,-814], "region": "Downstream" }
+AP-CHECK { "id": 2622, "name": "MAP09 - Power Shard [-3638,3182]", "pos": ["MAP09",-3638,3182,-814], "region": "Downstream" }
+AP-CHECK { "id": 2666, "name": "MAP09 - Vial of Healing [-3614,3187]", "pos": ["MAP09",-3614,3187,-822], "region": "Downstream" }
+AP-CHECK { "id": 2621, "name": "MAP09 - Power Shard [-3629,3167]", "pos": ["MAP09",-3629,3167,-814], "region": "Downstream" }
+AP-CHECK { "id": 2620, "name": "MAP09 - Power Shard [-3612,3159]", "pos": ["MAP09",-3612,3159,-814], "region": "Downstream" }
+AP-CHECK { "id": 2565, "name": "MAP09 - Cream Fungus [-1366,-1045]", "pos": ["MAP09",-1366,-1045,-654], "region": "Garden" }
+AP-CHECK { "id": 2564, "name": "MAP09 - Cream Fungus [-1333,-1036]", "pos": ["MAP09",-1333,-1036,-654], "region": "Garden" }
+AP-CHECK { "id": 2563, "name": "MAP09 - Cream Fungus [-1330,-1019]", "pos": ["MAP09",-1330,-1019,-654], "region": "Garden" }
+AP-CHECK { "id": 2613, "name": "MAP09 - Potion of Might", "pos": ["MAP09",-1439,-83,-662], "region": "Potion Shop" }
+AP-CHECK { "id": 2560, "name": "MAP09 - Cider [-1544,-420]", "pos": ["MAP09",-1544,-420,-638], "region": "Potion Shop" }
+AP-CHECK { "id": 2559, "name": "MAP09 - Cider [-1516,-424]", "pos": ["MAP09",-1516,-424,-638], "region": "Potion Shop" }
+AP-CHECK { "id": 2549, "name": "MAP09 - Box of Acid Potions [-1663,-569]", "pos": ["MAP09",-1663,-569,-669], "region": "Potion Shop" }
+AP-CHECK { "id": 2550, "name": "MAP09 - Box of Acid Potions [-1713,-569]", "pos": ["MAP09",-1713,-569,-670], "region": "Potion Shop" }
+AP-CHECK { "id": 2664, "name": "MAP09 - Vial of Healing [-1708,-520]", "pos": ["MAP09",-1708,-520,-640], "region": "Potion Shop" }
+AP-CHECK { "id": 2659, "name": "MAP09 - Spike Mag [-4450,593]", "pos": ["MAP09",-4450,593,-527], "keys": [] }
+AP-CHECK { "id": 2605, "name": "MAP09 - Potion of Healing [-580,121]", "pos": ["MAP09",-580,121,-686], "region": "R&D Entrance" }
+AP-CHECK { "id": 2604, "name": "MAP09 - Potion of Healing [-568,1660]", "pos": ["MAP09",-568,1660,-686], "region": "R&D Entrance" }
+AP-CHECK { "id": 2583, "name": "MAP09 - Fragfire Can [-572,2864]", "pos": ["MAP09",-572,2864,-595], "region": "R&D Entrance" }
+AP-CHECK { "id": 2606, "name": "MAP09 - Potion of Healing [155,2745]", "pos": ["MAP09",155,2745,-595], "region": "R&D Entrance" }
+AP-CHECK { "id": 2553, "name": "MAP09 - Box of Acid Potions [184,-1236]", "pos": ["MAP09",184,-1236,-580], "region": "R&D SW Lab" }
+AP-CHECK { "id": 2665, "name": "MAP09 - Vial of Healing [-192,-1124]", "pos": ["MAP09",-192,-1124,-556], "region": "R&D SW Lab" }
+AP-CHECK { "id": 2594, "name": "MAP09 - Jar of Corrosive Acid", "pos": ["MAP09",-102,-1235,-580], "region": "R&D SW Lab" }
+AP-CHECK { "id": 2602, "name": "MAP09 - Potion of Haste [S]", "pos": ["MAP09",-33,-1025,-556], "region": "R&D SW Lab" }
+AP-CHECK { "id": 2635, "name": "MAP09 - Power Shard [580,811]", "pos": ["MAP09",580,811,-612], "region": "R&D Secure Entrance" }
+AP-CHECK { "id": 2634, "name": "MAP09 - Power Shard [579,961]", "pos": ["MAP09",579,961,-612], "region": "R&D Secure Entrance" }
+AP-CHECK { "id": 2579, "name": "MAP09 - Earth Key", "pos": ["MAP09",478,456,-579], "region": "Adjunct's Office" }
+AP-CHECK { "id": 2555, "name": "MAP09 - Box of Toxic Potions", "pos": ["MAP09",712,1645,-587], "region": "Council Room" }
+AP-CHECK { "id": 2611, "name": "MAP09 - Potion of Healing [683,1752]", "pos": ["MAP09",683,1752,-587], "region": "Council Room" }
+AP-CHECK { "id": 2589, "name": "MAP09 - Grapes", "pos": ["MAP09",760,2288,-576], "region": "Council Room" }
+AP-CHECK { "id": 2537, "name": "MAP09 - Apple", "pos": ["MAP09",722,2284,-576], "region": "Council Room" }
+AP-CHECK { "id": 2575, "name": "MAP09 - Cream Fungus [706,2282]", "pos": ["MAP09",706,2282,-576], "region": "Council Room" }
+AP-CHECK { "id": 2562, "name": "MAP09 - Cider [428,2284]", "pos": ["MAP09",428,2284,-577], "region": "Council Room" }
+AP-CHECK { "id": 2536, "name": "MAP09 - Amulet of Shadows", "pos": ["MAP09",309,1896,-579], "region": "Council Room Secret" }
+AP-CHECK { "id": 2640, "name": "MAP09 - Secret 2635", "pos": ["MAP09","secret","sector",2635], "region": "Council Room Secret" }
+AP-CHECK { "id": 2643, "name": "MAP09 - Secret 5129", "pos": ["MAP09","secret","sector",5129], "region": "Council Room Secret Secret" }
+AP-CHECK { "id": 2544, "name": "MAP09 - Boltmag [235,2018]", "pos": ["MAP09",235,2018,-619], "region": "Council Room Secret Secret" }
+AP-CHECK { "id": 2542, "name": "MAP09 - Boltmag [171,2018]", "pos": ["MAP09",171,2018,-619], "region": "Council Room Secret Secret" }
+AP-CHECK { "id": 2628, "name": "MAP09 - Power Shard [141,1924]", "pos": ["MAP09",141,1924,-609], "region": "Council Room Secret Secret" }
+AP-CHECK { "id": 2638, "name": "MAP09 - Power Shard [84,1939]", "pos": ["MAP09",84,1939,-611], "region": "Council Room Secret Secret" }
+AP-CHECK { "id": 2636, "name": "MAP09 - Power Shard [74,1883]", "pos": ["MAP09",74,1883,-619], "region": "Council Room Secret Secret" }
+AP-CHECK { "id": 2627, "name": "MAP09 - Power Shard [118,1893]", "pos": ["MAP09",118,1893,-612], "region": "Council Room Secret Secret" }
+AP-CHECK { "id": 2629, "name": "MAP09 - Power Shard [150,1846]", "pos": ["MAP09",150,1846,-619], "region": "Council Room Secret Secret" }
+AP-CHECK { "id": 2662, "name": "MAP09 - Time Shard [Center]", "pos": ["MAP09",101,1841,-573], "region": "Council Room Secret Secret" }
+AP-CHECK { "id": 2587, "name": "MAP09 - Fragfire Can [677,2590]", "pos": ["MAP09",677,2590,-578], "region": "Kitchen" }
+AP-CHECK { "id": 2645, "name": "MAP09 - SmokedHam", "pos": ["MAP09",1568,2020,-578], "region": "Kitchen" }
+AP-CHECK { "id": 2590, "name": "MAP09 - Half-Empty Fragfire Can [Center]", "pos": ["MAP09",1490,1812,-580], "region": "Kitchen" }
+AP-CHECK { "id": 2561, "name": "MAP09 - Cider [1792,2108]", "pos": ["MAP09",1792,2108,-568], "region": "Freezer" }
+Player [0]: ; bread in the freezer is not collectable. check against vanilla for physics issues
+AP-CHECK { "id": 2637, "name": "MAP09 - Power Shard [816,-380]", "pos": ["MAP09",816,-380,-588], "region": "S Dorm" }
+AP-CHECK { "id": 2612, "name": "MAP09 - Potion of Healing [977,-43]", "pos": ["MAP09",977,-43,-588], "region": "S Dorm" }
+AP-CHECK { "id": 2661, "name": "MAP09 - Spike Mag [1164,-300]", "pos": ["MAP09",1164,-300,-610], "region": "S Dorm" }
+AP-CHECK { "id": 2651, "name": "MAP09 - Spike Bundle [2518,-1358]", "pos": ["MAP09",2518,-1358,-620], "region": "Sewer Camp" }
+AP-CHECK { "id": 2607, "name": "MAP09 - Potion of Healing [2535,-1389]", "pos": ["MAP09",2535,-1389,-620], "region": "Sewer Camp" }
+AP-CHECK { "id": 2630, "name": "MAP09 - Power Shard [1744,-24]", "pos": ["MAP09",1744,-24,-612], "region": "Aquarium" }
+AP-CHECK { "id": 2631, "name": "MAP09 - Power Shard [1796,-88]", "pos": ["MAP09",1796,-88,-612], "region": "Aquarium" }
+AP-CHECK { "id": 2574, "name": "MAP09 - Cream Fungus [1540,280]", "pos": ["MAP09",1540,280,-592], "region": "Garden Hall" }
+AP-CHECK { "id": 2573, "name": "MAP09 - Cream Fungus [1529,321]", "pos": ["MAP09",1529,321,-592], "region": "Garden Hall" }
+AP-CHECK { "id": 2571, "name": "MAP09 - Cream Fungus [1508,292]", "pos": ["MAP09",1508,292,-592], "region": "Garden Hall" }
+AP-CHECK { "id": 2572, "name": "MAP09 - Cream Fungus [1521,345]", "pos": ["MAP09",1521,345,-592], "region": "Garden Hall" }
+AP-CHECK { "id": 2584, "name": "MAP09 - Fragfire Can [1329,288]", "pos": ["MAP09",1329,288,-584], "region": "Garden Hall" }
+AP-CHECK { "id": 2614, "name": "MAP09 - Potion of Minor Healing [1332,350]", "pos": ["MAP09",1332,350,-584], "region": "Garden Hall" }
+AP-CHECK { "id": 2569, "name": "MAP09 - Cream Fungus [1333,393]", "pos": ["MAP09",1333,393,-577], "region": "Garden Hall" }
+AP-CHECK { "id": 2570, "name": "MAP09 - Cream Fungus [1333,413]", "pos": ["MAP09",1333,413,-577], "region": "Garden Hall" }
+Player [0]: ; this can be accessed from secure entrance using the crystal key
+Player [0]: ; however the vanilla intended route is to go via the south dorms and sewers using the earth key
+AP-CHECK { "id": 2596, "name": "MAP09 - Medium Armor Crystal [1967,888]", "pos": ["MAP09",1967,888,-612], "region": "Secure Labs Hall" }
+AP-CHECK { "id": 2615, "name": "MAP09 - Potion of Minor Healing [2531,1091]", "pos": ["MAP09",2531,1091,-612], "region": "Secure Labs Hall" }
+AP-CHECK { "id": 2616, "name": "MAP09 - Potion of Minor Healing [2535,690]", "pos": ["MAP09",2535,690,-612], "region": "Secure Labs Hall" }
+AP-CHECK { "id": 2673, "name": "MAP09 - Vial of Healing [2536,1304]", "pos": ["MAP09",2536,1304,-579], "region": "Alchemy Lab" }
+AP-CHECK { "id": 2585, "name": "MAP09 - Fragfire Can [2171,1467]", "pos": ["MAP09",2171,1467,-588], "region": "Alchemy Lab" }
+AP-CHECK { "id": 2672, "name": "MAP09 - Vial of Healing [1857,1209]", "pos": ["MAP09",1857,1209,-593], "region": "Alchemy Lab" }
+AP-CHECK { "id": 2601, "name": "MAP09 - Potion of Haste [Center]", "pos": ["MAP09",1769,1202,-568], "region": "Alchemy Lab" }
+AP-CHECK { "id": 2551, "name": "MAP09 - Box of Acid Potions [1648,1676]", "pos": ["MAP09",1648,1676,-593], "region": "Alchemy Lab" }
+AP-CHECK { "id": 2552, "name": "MAP09 - Box of Acid Potions [1691,1676]", "pos": ["MAP09",1691,1676,-593], "region": "Alchemy Lab" }
+AP-CHECK { "id": 2670, "name": "MAP09 - Vial of Healing [1799,1667]", "pos": ["MAP09",1799,1667,-569], "region": "Alchemy Lab" }
+AP-CHECK { "id": 2671, "name": "MAP09 - Vial of Healing [1814,1668]", "pos": ["MAP09",1814,1668,-569], "region": "Alchemy Lab" }
+AP-CHECK { "id": 2669, "name": "MAP09 - Vial of Healing [1401,1366]", "pos": ["MAP09",1401,1366,-576], "region": "Alchemy Lab" }
+AP-CHECK { "id": 2540, "name": "MAP09 - Bearzerker Axe", "pos": ["MAP09",1992,2568,-548], "region": "Holding Cells Hall" }
+AP-CHECK { "id": 2538, "name": "MAP09 - Axe", "pos": ["MAP09",1992,2568,-548], "region": "Holding Cells Hall" }
+AP-CHECK { "id": 2543, "name": "MAP09 - Boltmag [1896,2588]", "pos": ["MAP09",1896,2588,-612], "region": "Holding Cells Hall" }
+AP-CHECK { "id": 2657, "name": "MAP09 - Spike Gun [1928,2528]", "pos": ["MAP09",1928,2528,-484], "region": "Holding Cells Hall" }
+AP-CHECK { "id": 2593, "name": "MAP09 - Hunk of Flesh", "pos": ["MAP09",2910,1204,-579], "region": "Vivisection Lab" }
+AP-CHECK { "id": 2617, "name": "MAP09 - Potion of Minor Healing [3164,1208]", "pos": ["MAP09",3164,1208,-579], "region": "Vivisection Lab" }
+AP-CHECK { "id": 2539, "name": "MAP09 - Axe Key", "pos": ["MAP09",2807,2018,-612], "region": "Holding Cells Hall", "keys": ["InventoryHunkOfFlesh"] }
+Player [0]: ; the axe key spawn check didn't trigger for some reason
+AP-CHECK { "id": 2660, "name": "MAP09 - Spike Mag [1026,650]", "pos": ["MAP09",1026,650,-580], "region": "Security Room" }
+Player [0]: ; to enter incubation hall, you need to flip the switch in the security room
+AP-CHECK { "id": 2591, "name": "MAP09 - Half-Empty Fragfire Can [E]", "pos": ["MAP09",2974,105,-604], "region": "Incubation Hall" }
+AP-CHECK { "id": 2609, "name": "MAP09 - Potion of Healing [4072,-330]", "pos": ["MAP09",4072,-330,-579], "region": "Alchemical Weapons" }
+AP-CHECK { "id": 2652, "name": "MAP09 - Spike Bundle [4139,-370]", "pos": ["MAP09",4139,-370,-579], "region": "Alchemical Weapons" }
+AP-CHECK { "id": 2653, "name": "MAP09 - Spike Bundle [4160,-356]", "pos": ["MAP09",4160,-356,-579], "region": "Alchemical Weapons" }
+AP-CHECK { "id": 2554, "name": "MAP09 - Box of Acid Potions [4308,-292]", "pos": ["MAP09",4308,-292,-612], "region": "Alchemical Weapons" }
+AP-CHECK { "id": 2654, "name": "MAP09 - Spike Bundle [4161,-384]", "pos": ["MAP09",4161,-384,-579], "region": "Alchemical Weapons" }
+AP-CHECK { "id": 2595, "name": "MAP09 - Jug of Wine", "pos": ["MAP09",4376,-68,-612], "region": "Alchemical Weapons" }
+AP-CHECK { "id": 2581, "name": "MAP09 - Fixer's Goggles", "pos": ["MAP09",4302,339,-579], "region": "Alchemical Weapons" }
+AP-CHECK { "id": 2598, "name": "MAP09 - Potion Launcher [Acid] [SE]", "pos": ["MAP09",4094,-679,-556], "region": "Firing Range" }
+AP-CHECK { "id": 2600, "name": "MAP09 - Potion Launcher [Toxic]", "pos": ["MAP09",4231,-680,-556], "region": "Firing Range" }
+AP-CHECK { "id": 2588, "name": "MAP09 - Fragfire Gun", "pos": ["MAP09",4274,-680,-556], "region": "Firing Range" }
+AP-CHECK { "id": 2644, "name": "MAP09 - Sentry Gun", "pos": ["MAP09",3764,-1252,-576], "region": "Firing Range Secret" }
+AP-CHECK { "id": 2641, "name": "MAP09 - Secret 4834", "pos": ["MAP09","secret","sector",4834], "region": "Firing Range Secret" }
+AP-CHECK { "id": 2546, "name": "MAP09 - Boltmag [3754,-1242]", "pos": ["MAP09",3754,-1242,-576], "region": "Firing Range Secret" }
+AP-CHECK { "id": 2545, "name": "MAP09 - Boltmag [3752,-1263]", "pos": ["MAP09",3752,-1263,-576], "region": "Firing Range Secret" }
+AP-CHECK { "id": 2610, "name": "MAP09 - Potion of Healing [5121,83]", "pos": ["MAP09",5121,83,-572], "region": "Lith's Lab" }
+AP-CHECK { "id": 2619, "name": "MAP09 - Potion of Minor Healing [5156,104]", "pos": ["MAP09",5156,104,-572], "region": "Lith's Lab" }
+AP-CHECK { "id": 2547, "name": "MAP09 - Boltmag [5156,136]", "pos": ["MAP09",5156,136,-572], "region": "Lith's Lab" }
+AP-CHECK { "id": 2578, "name": "MAP09 - Crystal Key", "pos": ["MAP09",5173,188,-538], "region": "Lith's Lab" }
+AP-CHECK { "id": 2633, "name": "MAP09 - Power Shard [4094,410]", "pos": ["MAP09",4094,410,-588], "region": "Crylance Containment" }
+AP-CHECK { "id": 2577, "name": "MAP09 - Crylance", "pos": ["MAP09",4076,428,-588], "region": "Crylance Containment" }
+AP-CHECK { "id": 2632, "name": "MAP09 - Power Shard [4058,446]", "pos": ["MAP09",4058,446,-588], "region": "Crylance Containment" }
+AP-CHECK { "id": 2618, "name": "MAP09 - Potion of Minor Healing [3681,1862]", "pos": ["MAP09",3681,1862,-611], "region": "Holding Cells" }
+AP-CHECK { "id": 2676, "name": "MAP09 - Vial of Healing [3563,2141]", "pos": ["MAP09",3563,2141,-572], "region": "Holding Cells" }
+AP-CHECK { "id": 2608, "name": "MAP09 - Potion of Healing [2733,2578]", "pos": ["MAP09",2733,2578,-611], "region": "Holding Cells" }
+AP-CHECK { "id": 2592, "name": "MAP09 - Half-Empty Fragfire Can [NE]", "pos": ["MAP09",2686,2025,-612], "region": "Holding Cells" }
+AP-CHECK { "id": 2586, "name": "MAP09 - Fragfire Can [2630,2050]", "pos": ["MAP09",2630,2050,-612], "region": "Holding Cells" }
+AP-CHECK { "id": 2650, "name": "MAP09 - Spike Bundle [2512,2068]", "pos": ["MAP09",2512,2068,-612], "region": "Holding Cells" }
+AP-CHECK { "id": 2649, "name": "MAP09 - Spike Bundle [2491,1935]", "pos": ["MAP09",2491,1935,-611], "region": "Holding Cells" }
+AP-CHECK { "id": 2647, "name": "MAP09 - Spike Bundle [2463,1931]", "pos": ["MAP09",2463,1931,-611], "region": "Holding Cells" }
+AP-CHECK { "id": 2648, "name": "MAP09 - Spike Bundle [2474,1913]", "pos": ["MAP09",2474,1913,-611], "region": "Holding Cells" }
+AP-CHECK { "id": 2646, "name": "MAP09 - Spike Bundle [2414,1914]", "pos": ["MAP09",2414,1914,-611], "region": "Holding Cells" }
+AP-CHECK { "id": 2674, "name": "MAP09 - Vial of Healing [3560,1548]", "pos": ["MAP09",3560,1548,-582], "region": "Vivisection Lab Freezer" }
+AP-CHECK { "id": 2675, "name": "MAP09 - Vial of Healing [3563,1528]", "pos": ["MAP09",3563,1528,-582], "region": "Vivisection Lab Freezer" }
+AP-CHECK { "id": 2576, "name": "MAP09 - Crushbow", "pos": ["MAP09",972,264,-548], "region": "Security Room Emergency Supplies" }
+AP-CHECK { "id": 2597, "name": "MAP09 - Medium Armor Crystal [984,276]", "pos": ["MAP09",984,276,-548], "region": "Security Room Emergency Supplies" }
+AP-CHECK { "id": 2548, "name": "MAP09 - Boltmag [956,264]", "pos": ["MAP09",956,264,-548], "region": "Security Room Emergency Supplies" }
+AP-CHECK { "id": 2642, "name": "MAP09 - Secret 4836", "pos": ["MAP09","secret","sector",4836], "region": "Security Room Emergency Supplies" }
+AP-CHECK { "id": 2580, "name": "MAP09 - Exit", "pos": ["MAP09","exit"], "region": "Bridge" }
+
+AP-CHECK { "id": 2628, "name": "MAP09 Holding Cells Hall - Axe Key", "pos": ["MAP09",2807,2018,-612], "region": "Holding Cells Hall", "keys": ["InventoryHunkOfFlesh"] }
+AP-CHECK { "id": 2537, "name": "MAP09 - Good Dog", "pos": ["MAP09","spawn@tid",1,"AxeKey",133,0], "region": "Holding Cells Hall", "keys": ["InventoryHunkOfFlesh"] }
+

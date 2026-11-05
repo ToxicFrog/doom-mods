@@ -7,6 +7,7 @@ class UZAP_Hedon_EventHandler : EventHandler {
     if (level.LevelNum == 5) { WorldLinePreActivatedMAP05(e); return; }
     // TODO: in MAP06 we may want to use ACS_ScriptCall to restore the player's
     // weapons and consumables on exit, even if they exit via the level select.
+    if (level.LevelNum == 9) { WorldLinePreActivatedMAP09(e); return; }
   }
 
   // Handling for the power cores in MAP01: Cold Rock.
@@ -165,6 +166,30 @@ class UZAP_Hedon_EventHandler : EventHandler {
       SpawnScrollDebris(map05, 216, 686, 215, "IDBowl");
       return;
     }
+  }
+
+  // MAP09 softlock avoidance
+  // The tricky bit here is, opening most of the doors leading out and making the
+  // last few checks available is handled by script 34, which triggers when you
+  // open the crystal key locker.
+  // However, opening the doors out of Lith's lab, and activating some of the
+  // newly spawned enemies, is triggered by linedefs that check for you carrying
+  // the crystal key.
+  // If the player has the crystal key, everything works fine.
+  // If they don't, we open the door out of the lab anyways; things will be a
+  // bit weird but at least the player won't be stuck.
+  void WorldLinePreActivatedMAP09(WorldEvent e) {
+    let line = e.ActivatedLine;
+    // 80 = ACS_Execute, script 34 = open crystal key containment
+    if (line.special != 80 || line.args[0] != 34) return;
+    if (!GetThingByTID(168)) return; // Already triggered
+
+    level.ExecuteSpecial(
+      11, // Door_Open
+      players[0].mo, // activator
+      null, false, // line info
+      154, 16, 0); // parameters
+    return;
   }
 
   Actor GetThingByTID(uint tid) {

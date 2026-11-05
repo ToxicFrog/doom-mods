@@ -1,0 +1,13 @@
+AP-KEY {
+  "typename": "InventoryHunkOfFlesh", "tag": "Hunk of Flesh",
+  "scopename": "MAP09", "cluster": 0, "maps": ["MAP09"]
+}
+
+; Get the axe key from the Cerberus
+; This is actually two checks -- you get one when the ornamental key is deleted,
+; and then this one when the real key spawns.
+AP-ITEM {
+  "name": "Good Dog", "tag": "Axe Key",
+  "category": "key", "typename": "AxeKey",
+  "pos": ["MAP09","spawn@tid",1,"AxeKey",133]
+}
