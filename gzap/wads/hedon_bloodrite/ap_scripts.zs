@@ -41,6 +41,28 @@ class UZAP_Hedon_EventHandler : EventHandler {
     }
   }
 
+  void WorldLinePreActivatedMAP02(WorldEvent e) {
+    let line = e.ActivatedLine;
+    // 80 = ACS_Execute, script 43 = scribe table script
+    if (line.special == 80 && line.args[0] == 42) {
+      MAP02ScribeTable(e);
+
+    // Floor_LowerByValue to open the park gate
+    } else if (line.Index() == 208 && line.special == 20) {
+      MAP02ParkDoor(e);
+    }
+  }
+
+  // Handling to make opening the park door in MAP02 repeatable.
+  // Otherwise it's possible to open the door from the security room, then
+  // trigger the big fight, closing it, and end up locked out of the park unless
+  // you have access to an alternate path via the east caves or the alchemist.
+  void MAP02ParkDoor(WorldEvent e) {
+    let line = e.ActivatedLine;
+    line.special = 22; // Floor_LowerToNearest
+    line.flags |= Line.ML_REPEAT_SPECIAL;
+  }
+
   // Handling for the scribe table in MAP02.
   // The basic rationale here is: we want the player to be able to use up to
   // two earth pigments and three scribe embers to make two earth scrolls and
@@ -49,11 +71,8 @@ class UZAP_Hedon_EventHandler : EventHandler {
   // has been reset and thus the table will accept them.
   // Also, if the player spends one, collects the check, then resets the map and
   // spends another, she should get the second check.
-  void WorldLinePreActivatedMAP02(WorldEvent e) {
-    let line = e.ActivatedLine;
+  void MAP02ScribeTable(WorldEvent e) {
     let thing = e.thing;
-    // 80 = ACS_Execute, script 43 = scribe table script
-    if (line.special != 80 || line.args[0] != 42) return;
 
     // Don't interfere with the use of the table to scribe the scroll of dispel.
     if (thing.CheckInventory("InventoryCanOfEnchantedPurpleInk", 1)) return;

@@ -53,15 +53,14 @@ There are several ways to get into the park, all of them in logic:
 The arena fight in the west plaza (that opens an alternate path to the north
 plaza when finished) is triggered by entering the west plaza while carrying the
 stone key. This means that just having the key is logically sufficient to access
-the north plaza.
+the north plaza (and, indeed, finish the level).
 
 The arena fight also closes the park gate and the gate connecting the east and
 west plazas. You can get back to the east plaza by going north and climbing into
 the inn through the window (or using the axe key to open the back door, if you
-have it). You can get back to the park using any of the techniques above, but
-note that the guardhouse switch is not repeatable; if that's your only way into
-the park and you missed any items there, you'll need to reset the level so
-that you can use the switch again.
+have it). As an anti-softlock measure, the switch in the guardhouse can now be
+re-used after the fight to open the park door, in case you have the iron key but
+not the axe or vine keys.
 
 The scribe's table in the library can be used (with Mortars of Earth Pigment and
 Bowls of Scribe Embers) to scribe various scrolls. It will accept at most two
