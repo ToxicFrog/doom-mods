@@ -321,7 +321,10 @@ class UZDoomWorld(World):
                 assert loc.name() not in placed, f"Location {loc.name()} was already placed but we tried to place it again!"
                 placed.add(loc.name())
                 if loc.region:
-                    region = regions[f'{map.map}/{loc.region}']
+                    try:
+                        region = regions[f'{map.map}/{loc.region}']
+                    except KeyError:
+                        raise KeyError(f'Location {loc.name()} claims to belong to region {loc.region} which does not exist in {map.map}. Report this as a bug to the logic maintainer.')
                 else:
                     region = regions[map.map]
                 location = UZDoomLocation(self, loc, region)
