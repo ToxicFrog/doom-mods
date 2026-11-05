@@ -26,7 +26,10 @@ There are a lot of cutscenes (crafting things, conversations, being captured in
 MAP09, etc) that temporarily take away your weapons. It is possible to warp out
 using the level select in mid-cutscene, but doing this may make it impossible to
 get your weapons back, so please don't.
-## MAP01: Cold Rock
+
+## Map-specific notes
+
+### MAP01: Cold Rock
 
 Repairing the elevator now requires you to have found two power cores, and
 repairing the gate requires three.
@@ -39,7 +42,7 @@ an underwater tunnel on the west side of the pond.
 The wooded area unlocked by offering a moonflower is not considered a secret
 for the purposes of logic, but the hidden baths to the east of those woods are.
 
-## MAP02: Plaza
+### MAP02: Plaza
 
 There are several ways to get into the park, all of them in logic:
 - use the iron key to flip the park switch in the south guardhouse, as in vanilla;
@@ -66,13 +69,13 @@ of the former and three of the latter (the most that you can find on this map in
 vanilla play); to spend more you need to go to MAP05, Grove, and use the table
 near the entrance there.
 
-## MAP03: Barracks
+### MAP03: Barracks
 
 A very straightforward map. Note that while the Stone Key unlocks a shortcut
 between the sparring room and the firing range, the only thing it's actually
 needed for is accessing the north power control room.
 
-## MAP04: Technical Space
+### MAP04: Technical Space
 
 Restoring the power is required to access some checks in the starting pumpworks
 area, but opening the rest of the level only requires the toolkit.
@@ -123,7 +126,7 @@ Ore items to get all four Iron Ingot checks. None of the others are repeatable;
 using them a second time will either produce the vanilla item or a non-usable
 key placeholder.
 
-## MAP05: Grove
+### MAP05: Grove
 
 As in MAP02, the scribe table in the Library can be used to convert Earth
 Pigment and Scribe Embers into scrolls (and thus checks). The logic assumes that
@@ -143,7 +146,7 @@ of places you can use it for other effects. The only ones that actually contain
 checks are the healing crystals you can grow outside the Great Stump, and the
 secret in the Library.
 
-## MAP06: Errant Signal
+### MAP06: Errant Signal
 
 Entering Errant Signal is meant to confiscate all of your consumables and weapons,
 and leaving is meant to return them to you. This does not always work reliably
@@ -161,7 +164,7 @@ play. The other two (a food item in the inverted dining hall, and an armour
 crystal on the battlefield I could not figure out how to reach, but I'm not
 willing to swear it's impossible.
 
-## MAP07: Parapet
+### MAP07: Parapet
 
 Another relatively straightforward map; you have to run around pushing buttons a
 lot, but most of the level is in logic as soon as you arrive.
@@ -173,7 +176,7 @@ is considered unreachable, since I can't figure out how to trigger the secret.
 The shovel is entirely optional to complete the level, but using it to access
 the east forest towers will get you a bunch of checks.
 
-## MAP08: Pale Wind
+### MAP08: Pale Wind
 
 The shovel is reusable in AP, so you don't need to worry about missing the
 buried treasure secret if you break the shovel on the ice.
@@ -187,7 +190,7 @@ receiving the earth key from the dwarf are all checks.
 The treasury code is always 1357; you don't need to have read the scroll to
 enter the code.
 
-## MAP09: Research and Decay
+### MAP09: Research and Decay
 
 The universal potion machine produces no checks; since all of its inputs are
 also consumables, it would be too easy to end up softlocked by using them up.
@@ -205,7 +208,7 @@ to bypass the trigger for Lith closing the door to the incubation chamber, and
 thus complete the level without the axe key. This is not in logic because if you
 *do* hit the trigger, you need to reset the whole level and try again.
 
-## MAP10: Crystal Heart
+### MAP10: Crystal Heart
 
 Combat logic expects you to have most of your arsenal before entering the
 elemental temple, and all of it before leaving. The temple is initially very
@@ -221,3 +224,21 @@ you're careful of the poison; both of these alternate routes are in logic.
 The checks in the final boss fight can be annoying to collect, since the level
 ends as soon as you defeat the boss. Don't be afraid to use time shards. In a
 pinch you can use the `freeze` console command to pause the entire fight.
+
+## Go-mode items
+
+This is a list of the items (discounting combat logic) that you need to clear
+every level, assuming you don't care about collecting all checks, just making it
+to the exit. This is usually much less than is needed for normal play, because
+in most Hedon levels the hard part isn't *reaching* the exit but *opening* it.
+
+MAP01: three Power Cores
+MAP02: Stone Key
+MAP03: Stone Key and Axe Key
+MAP04: Toolkit, Filled Gear Mould, and Mithril Gear
+MAP05: Mithril Gear, Vine Key, and Earth Key
+MAP06: Power Core
+MAP07: Earth Key and Crystal Key
+MAP08: three Planks, Vine, Axe Key, and Earth Key
+MAP09: Crystal Key
+MAP10: Water, Air, Earth, and Fire Fragments, Crystal Key
