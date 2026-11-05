@@ -209,7 +209,7 @@ category key:
 # ◇◆ □■ ○● ▭▬ ▯▮ ▱▰ △▲ ▷▶ ▽▼ ◁◀ ▢▣ ◿◢ ◸◤ ◺◣ ◹◥
 # ▤▥▦▧▨▩ ⊖◐◑◒◓◔◕ ◜◝◟◞◠◡ ◰◱◲◳ ◴◵◶◷ ◧◨◩◪◫
 # ◈◉◊○◌◍◎●◖◗◘◙◚◛◦◬◭◮◯◻◼◽◾ ⊕⊖⊗⊘⊙⊚⊛⊜⊝
-keyshape ◇ ◆ : InventoryPowerCore InventoryRedCrystal;
+keyshape ◇ ◆ : InventoryPowerCore InventoryRedCrystal InventoryCyanCrystal;
 keyshape ▯ ▮ : InventoryIronBar InventoryMithrilBar InventoryHotIron;
 keyshape ○ ◉ : InventoryGearMouldEmpty InventoryGearMouldFilled InventoryMithrilGear;
 keyshape ▢ ▣ : InventoryBookOfEarth;
@@ -237,7 +237,7 @@ keycolour purple: InventoryPurpleRoot InventoryCanofEnchantedPurpleInk Inventory
 keycolour lightblue: InventoryBowlOfFaeDust InventoryMoondropFlower;
 keycolour tan: InventoryToolkit;
 keycolour brown: InventoryWoodenPlank;
-keycolour cyan: CrystalKey;
+keycolour cyan: CrystalKey InventoryCyanCrystal;
 
 # Custom tags.
 # Hedon puts the entire description in the tag field, so they scan as things like
