@@ -1,5 +1,5 @@
-AP-REGION { "map": "MAP04", "region": "Entrance", "keys": ["weapon/FragfireGun/want", "weapon/Axe/want", "weapon/SpikeGun/want"] }
-AP-REGION { "map": "MAP04", "region": "Entrance", "keys": ["weapon/BearzerkAxe/want", "weapon/HatchetAndShield/want", "weapon/ForcePike/want"] }
+AP-REGION { "map": "MAP04", "region": "Entrance", "keys": ["weapon/Axe/want", "weapon/SpikeGun/want"] }
+AP-REGION { "map": "MAP04", "region": "Entrance", "keys": ["weapon/BearzerkAxe/want", "weapon/HatchetAndShield/want"] }
 
 ; Initial areas in the southwest pumping station
 ; n.b. while some checks require storing power, all you actually need to leave is the toolkit
@@ -11,7 +11,8 @@ AP-REGION { "map": "MAP04", "region": "Pump Station Quarters", "keys": ["map/MAP
 
 ; South Hall connected to portal room and Great Forge
 ; Portal Chamber requires Great Forge
-AP-REGION { "map": "MAP04", "region": "South Hall", "keys": ["key/InventoryToolkit", "map/MAP04/Pump Station"] }
+AP-REGION { "map": "MAP04", "region": "South Hall", "keys": ["weapon/Axe/want", "weapon/FragfireGun/want", "key/InventoryToolkit", "map/MAP04/Pump Station"] }
+AP-REGION { "map": "MAP04", "region": "South Hall", "keys": ["weapon/BearzerkAxe/want", "weapon/ForcePike/want", "key/InventoryToolkit", "map/MAP04/Pump Station"] }
 AP-REGION { "map": "MAP04", "region": "Portal Chamber", "keys": ["map/MAP04/South Hall", "key/IronKey"] }
 
 ; Great Forge and environs

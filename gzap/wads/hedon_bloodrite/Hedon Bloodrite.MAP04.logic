@@ -23,6 +23,29 @@ AP-KEY {
   "scopename": "Valc", "cluster": 0, "maps": ["MAP04", "MAP05"]
 }
 
+; TODO: there is an infelicity here where UZAP will only allow as many copies
+; of a key in the pool as there are AP-KEY messages for it.
+; So we need extra AP-KEY messages here to produce the requisite number of
+; iron and mithril ores and iron ingots.
+; Ideally, we should either be able to do an AP-KEY here with an overriden
+; count field, or it should take into account extra instances of the key that
+; end up in the pool -- although in the latter case we end up with weirdness
+; like MAP09 having two axe keys, one from the real one and one from the one
+; the cerberus is playing with.
+
+; 2 loose iron ore + 2 here == 4, enough to get all the smelt iron checks
+AP-KEY { "typename": "InventoryIronOre", "tag": "Iron Ore", "scopename": "MAP04", "cluster": 0, "maps": ["MAP04"] }
+AP-KEY { "typename": "InventoryIronOre", "tag": "Iron Ore", "scopename": "MAP04", "cluster": 0, "maps": ["MAP04"] }
+; 2 loose mithril ore + 3 here == 5, enough to smelt one mithril ingot
+AP-KEY { "typename": "InventoryMithrilOre", "tag": "Mithril Ore", "scopename": "MAP04", "cluster": 0, "maps": ["MAP04"] }
+AP-KEY { "typename": "InventoryMithrilOre", "tag": "Mithril Ore", "scopename": "MAP04", "cluster": 0, "maps": ["MAP04"] }
+AP-KEY { "typename": "InventoryMithrilOre", "tag": "Mithril Ore", "scopename": "MAP04", "cluster": 0, "maps": ["MAP04"] }
+; 4 loose iron bars + 4 from smelting == 8, enough to craft a greataxe
+AP-KEY { "typename": "InventoryIronBar", "tag": "Iron Ingot", "scopename": "MAP04", "cluster": 0, "maps": ["MAP04"] }
+AP-KEY { "typename": "InventoryIronBar", "tag": "Iron Ingot", "scopename": "MAP04", "cluster": 0, "maps": ["MAP04"] }
+AP-KEY { "typename": "InventoryIronBar", "tag": "Iron Ingot", "scopename": "MAP04", "cluster": 0, "maps": ["MAP04"] }
+AP-KEY { "typename": "InventoryIronBar", "tag": "Iron Ingot", "scopename": "MAP04", "cluster": 0, "maps": ["MAP04"] }
+
 ; Iron key machine in the repair bay
 AP-ITEM {
   "name": "Make Iron Key",
