@@ -5,6 +5,10 @@
 The logic *should* be valid for both normal and Bearzerker modes; however, the
 latter has not been thoroughly tested.
 
+The acid and toxic potion launchers (two separate weapons internally) have been
+combined into a single potion launcher. Finding that in the pool will grant you
+the use of both versions, if you have ammo for them.
+
 Enabling all spawns (`spawn_filter 0` in the YAML) will result in some checks
 being completely inaccessible, since they rely on scripts that are only active
 on certain difficulties. Doing this is not recommended.

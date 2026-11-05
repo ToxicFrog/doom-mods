@@ -42,7 +42,7 @@ AP-REGION { "map": "MAP04", "region": "Forgotten One's Room", "keys": ["map/MAP0
 ; in normal play you reach this via the Magma Chamber elevator using the earth key
 ; in rando you can also get there via the Axe Maze using the axe key, from the Magma Chamber
 AP-REGION { "map": "MAP04", "region": "Elevator Cave 1F", "keys": ["map/MAP04/Magma Chamber"] }
-AP-REGION { "map": "MAP04", "region": "Elevator Cave 2F", "keys": ["map/MAP04/Elevator Cave 1F", "key/EarthKey", "weapon/PotionLauncherToxic/want"] }
+AP-REGION { "map": "MAP04", "region": "Elevator Cave 2F", "keys": ["map/MAP04/Elevator Cave 1F", "key/EarthKey", "weapon/PotionLauncher/want"] }
 
 AP-REGION { "map": "MAP04", "region": "Ruins Cave", "keys": ["map/MAP04/Elevator Cave 2F"] }
 AP-REGION { "map": "MAP04", "region": "W Red Crystal Cave", "keys": ["map/MAP04/Elevator Cave 2F"] }
@@ -159,7 +159,7 @@ AP-CHECK { "id": 1468, "name": "MAP04 - Iron Ingot [Center]", "pos": ["MAP04",-3
 AP-CHECK { "id": 1439, "name": "MAP04 - Empty Gear Mould", "pos": ["MAP04",-3419,1492,-457], "region": "Workshop" }
 AP-CHECK { "id": 1457, "name": "MAP04 - Great Forge Instructions", "pos": ["MAP04",-3419,1443,-457], "region": "Workshop" }
 AP-CHECK { "id": 1461, "name": "MAP04 - Half-Empty Fragfire Can [-3297,1339]", "pos": ["MAP04",-3297,1339,-428], "region": "Workshop" }
-AP-CHECK { "id": 1507, "name": "MAP04 - Potion Launcher [Toxic] [Center]", "pos": ["MAP04",-3249,1180,-428], "region": "Workshop" }
+AP-CHECK { "id": 1507, "name": "MAP04 - Potion Launcher [Center]", "pos": ["MAP04",-3249,1180,-428], "region": "Workshop" }
 AP-CHECK { "id": 1408, "name": "MAP04 - Box of Toxic Potions [-3227,1128]", "pos": ["MAP04",-3227,1128,-428], "region": "Workshop" }
 AP-CHECK { "id": 1547, "name": "MAP04 - Power Shard [-2269,2123]", "pos": ["MAP04",-2269,2123,-457], "region": "Mould Forge" }
 AP-CHECK { "id": 1546, "name": "MAP04 - Power Shard [-2261,2451]", "pos": ["MAP04",-2261,2451,-457], "region": "Mould Forge" }
@@ -203,7 +203,7 @@ AP-CHECK { "id": 1513, "name": "MAP04 - Potion of Healing [-2959,6226]", "pos": 
 AP-CHECK { "id": 1415, "name": "MAP04 - Cream Fungus [-2912,6472]", "pos": ["MAP04",-2912,6472,-521], "region": "Geothermal Vent Cave" }
 AP-CHECK { "id": 1416, "name": "MAP04 - Cream Fungus [-2938,6483]", "pos": ["MAP04",-2938,6483,-521], "region": "Geothermal Vent Cave" }
 AP-CHECK { "id": 1359, "name": "MAP04 - Axe [-2493,5659]", "pos": ["MAP04",-2493,5659,-521], "region": "Geothermal Vent Cave" }
-AP-CHECK { "id": 1508, "name": "MAP04 - Potion Launcher [Toxic] [N]", "pos": ["MAP04",-2331,5492,-521], "region": "Geothermal Pool Cave" }
+AP-CHECK { "id": 1508, "name": "MAP04 - Potion Launcher [N]", "pos": ["MAP04",-2331,5492,-521], "region": "Geothermal Pool Cave" }
 AP-CHECK { "id": 1569, "name": "MAP04 - Red Crystal [-2158,5501]", "pos": ["MAP04",-2158,5501,-521], "region": "Geothermal Pool Cave" }
 AP-CHECK { "id": 1480, "name": "MAP04 - Iron Ore [NE]", "pos": ["MAP04",-1741,4670,-527], "region": "Geothermal Pool Cave" }
 AP-CHECK { "id": 1471, "name": "MAP04 - Iron Ingot [N]", "pos": ["MAP04",-1913,6168,-519], "region": "Minotaur Barracks" }
@@ -283,9 +283,9 @@ AP-CHECK { "id": 1377, "name": "MAP04 - Axe [-3868,3484]", "pos": ["MAP04",-3868
 ; to get the ones on top of the shelves you need to jump off the little posts around the anvil
 AP-CHECK { "id": 1587, "name": "MAP04 - Secret 5459", "pos": ["MAP04","secret","sector",5459], "region": "Forgotten One's Room" }
 AP-CHECK { "id": 1581, "name": "MAP04 - Scroll of Wizard's Eye", "pos": ["MAP04",-3692,3572,-849], "region": "Forgotten One's Room" }
-AP-CHECK { "id": 1506, "name": "MAP04 - Potion Launcher [Acid] [-3805,3649]", "pos": ["MAP04",-3805,3649,-873], "region": "Forgotten One's Room" }
+AP-CHECK { "id": 1506, "name": "MAP04 - Potion Launcher [-3805,3649]", "pos": ["MAP04",-3805,3649,-873], "region": "Forgotten One's Room" }
 AP-CHECK { "id": 1503, "name": "MAP04 - Potion Launcher", "pos": ["MAP04",-3772,3676,-873], "region": "Forgotten One's Room" }
-AP-CHECK { "id": 1504, "name": "MAP04 - Potion Launcher [Acid] [-3740,3680]", "pos": ["MAP04",-3740,3680,-873], "region": "Forgotten One's Room" }
+AP-CHECK { "id": 1504, "name": "MAP04 - Potion Launcher [-3740,3680]", "pos": ["MAP04",-3740,3680,-873], "region": "Forgotten One's Room" }
 AP-CHECK { "id": 1399, "name": "MAP04 - Boltmag fabricator", "pos": ["MAP04","spawn@tid",1,"Boltmag",116,0], "region": "Mould Forge", "keys": ["key/InventoryRedCrystal/3", "InventoryIronBar"] }
 AP-CHECK { "id": 1591, "name": "MAP04 - Smelt Mithril Ingot", "pos": ["MAP04","spawn@tid",1,"InventoryMithrilBar",129,0], "region": "Great Forge", "keys": ["key/InventoryMithrilOre/5"] }
 AP-CHECK { "id": 1412, "name": "MAP04 - Cast Mithril Gear", "pos": ["MAP04","spawn@tid",1,"InventoryGearMouldFilled",130,0], "region": "Great Forge", "keys": ["InventoryGearMouldEmpty", "InventoryMithrilBar"] }
@@ -302,7 +302,7 @@ AP-CHECK { "id": 1540, "name": "MAP04 - Power Shard [-1052,18]", "pos": ["MAP04"
 AP-CHECK { "id": 1541, "name": "MAP04 - Power Shard [-1058,-13]", "pos": ["MAP04",-1058,-13,-425], "region": "Tool Shop Safe" }
 AP-CHECK { "id": 1542, "name": "MAP04 - Power Shard [-1063,13]", "pos": ["MAP04",-1063,13,-425], "region": "Tool Shop Safe" }
 AP-CHECK { "id": 1583, "name": "MAP04 - Secret 2420", "pos": ["MAP04","secret","sector",2420], "region": "Tool Shop Safe" }
-AP-CHECK { "id": 1509, "name": "MAP04 - Potion Launcher [Toxic] [SE]", "pos": ["MAP04",668,-356,-425], "region": "Gun Shop" }
+AP-CHECK { "id": 1509, "name": "MAP04 - Potion Launcher [SE]", "pos": ["MAP04",668,-356,-425], "region": "Gun Shop" }
 AP-CHECK { "id": 1398, "name": "MAP04 - Boltmag [691,-235]", "pos": ["MAP04",691,-235,-433], "region": "Gun Shop" }
 AP-CHECK { "id": 1453, "name": "MAP04 - Fragfire Gun [SE]", "pos": ["MAP04",528,-847,-433], "region": "Gun Shop" }
 AP-CHECK { "id": 1433, "name": "MAP04 - Crushbow", "pos": ["MAP04",608,-969,-433], "region": "Gun Shop" }
@@ -355,7 +355,7 @@ AP-CHECK { "id": 1404, "name": "MAP04 - Vial of Healing [-1482,6105]", "pos": ["
 AP-CHECK { "id": 1405, "name": "MAP04 - Vial of Healing [-1501,6119]", "pos": ["MAP04",-1501,6119,-521], "region": "Minotaur Barracks" }
 AP-CHECK { "id": 1363, "name": "MAP04 - Elemental Ring [NE]", "pos": ["MAP04",-1521,5122,-537], "region": "Minotaur Tavern" }
 AP-CHECK { "id": 1378, "name": "MAP04 - Potion of Haste", "pos": ["MAP04",-5120,3640,-737], "region": "Axe Maze", "keys": ["AxeKey"] }
-AP-CHECK { "id": 1377, "name": "MAP04 - Potion Launcher [Acid]", "pos": ["MAP04",-3799,3601,-873], "region": "Forgotten One's Room" }
+AP-CHECK { "id": 1377, "name": "MAP04 - Potion Launcher", "pos": ["MAP04",-3799,3601,-873], "region": "Forgotten One's Room" }
 AP-CHECK { "id": 1353, "name": "MAP04 - Bearzerker Axe", "pos": ["MAP04",-3788,3640,-873], "region": "Forgotten One's Room" }
 AP-CHECK { "id": 1352, "name": "MAP04 - Bag of Holding", "pos": ["MAP04",-3788,3672,-873], "region": "Forgotten One's Room" }
 AP-CHECK { "id": 1356, "name": "MAP04 - Box of Acid Potions [-1917,-1833]", "pos": ["MAP04",-1917,-1833,-453], "region": "Great Forge Weak Wall Secret" }

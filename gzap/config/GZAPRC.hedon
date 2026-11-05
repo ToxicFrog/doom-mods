@@ -66,14 +66,16 @@ category maprevealer-ap_no_pool-medium: InventoryScrollAirWizardsEye;
 category medium-health-armor-attack-defence-tool: InventoryMysteryPotion;
 
 # Guns. The potion launcher is special; "acid potion launcher" and "toxic potion
-# launcher" are entirely distinct weapons internally. Both exist in various
-# maps. The SpecialPotionBox is basically a reskinned acid launcher. the
-# plain PotionLauncher gives you both when picked up.
-# TODO: we may want to just treat the acid and toxic variants as "potion launcher"
-# and collapse them into the merged weapon; or, alternatively, exclude the merged
-# weapon and require the player to find them both separately.
-replacement PotionLauncherAcid: SpecialPotionBox;
+# launcher" are entirely distinct weapons internally. The SpecialPotionBox is a
+# reskinned acid launcher, and the plain PotionLauncher gives you both when picked
+# up.
+# For the purposes of AP, we just collapse them both into a single "potion launcher"
+# weapon; finding the launcher in AP grants you both toxic and acid capabilities,
+# if you have the ammo.
 category weapon: PotionLauncher;
+replacement PotionLauncher: SpecialPotionBox PotionLauncherAcid PotionLauncherToxic;
+tag Potion Launcher [Acid]: PotionLauncherAcid;
+tag Potion Launcher [Toxic]: PotionLauncherToxic;
 
 # These are pseudo-weapons that the game scripting expects to be able to add and
 # remove from your inventory to handle special attacks and whatnot.
