@@ -65,16 +65,21 @@ class DoomPool:
         for loc in locations:
             if not loc.orig_item:
                 if loc.item:
+                    # print(f'add_items_to_pool({loc.name()}): adding {loc.item.name()} as artificial vanilla')
                     self.add_vanilla_item(loc.item)
+                else:
+                    # print(f'add_items_to_pool({loc.name()}): no item at location')
+                    pass
                 continue
 
             item = self.remap_item(world, loc, loc.orig_item)
-            # if item is not loc.orig_item:
-            #     print(f'Remap while filling pool: {loc.orig_item} -> {item}')
+            if item is not loc.orig_item:
+                # print(f'add_items_to_pool({loc.name()}): remap {loc.orig_item} -> {item}')
+                pass
             if item.has_category('ap_no_pool'):
-                # print(f'Dropping {item} because of ap_no_pool')
+                # print(f'add_items_to_pool({loc.name()}): dropping {item.name()} because ap_no_pool')
                 continue
-            # print(f'Adding {item} from {loc.name()} to pool')
+            # print(f'add_items_to_pool({loc.name()}): adding {item.name()}')
             counter[item.name()] += 1
 
     def add_vanilla_item(self, item):
@@ -238,12 +243,13 @@ class DoomPool:
             item = self.wad.item(name)
             (lower,upper) = item.pool_limits(world)
             if self.item_counts[name] < lower or self.item_counts[name] > upper:
-                print(f'finalize_item_counts: adjusting {name} from {self.item_counts[name]} to ({lower},{upper})')
+                # print(f'finalize_item_counts: adjusting {name} from {self.item_counts[name]} to ({lower},{upper})')
+                pass
             if self.item_counts[name] > upper:
                 count = self.item_counts[name] - upper
                 replacements = item.overstock(world, count)
                 if replacements:
-                    print(f'finalize_item_counts: replacing {count}x {name} with {replacements}')
+                    # print(f'finalize_item_counts: replacing {count}x {name} with {replacements}')
                     extra_items += replacements
             assert name == item.name(), f"mismatch between pool entry {name} and backing item {item.name()}"
             self.item_counts[name] = max(lower, min(self.item_counts[name], upper))
