@@ -1,4 +1,4 @@
-AP-SCAN { "flags": [] }
+AP-SCAN { "flags": ["overstock=BearzerkAxe/GZAP_ThrowingAxe,Axe/GZAP_ThrowingAxe,FireHammer/GZAP_ThrowingFireHammer"] }
 AP-MAP {
   "map": "MAP01", "levelname": "Cold Rock", "episodename": "Crystal Heart",
   "checksum": "f5a88e5eb33109c5ea424099f4625181", "rank": 0, "monster_count": 108,
@@ -62,18 +62,18 @@ AP-ITEM { "category": "small-health", "typename": "HealthCreamFungus", "tag": "C
 AP-ITEM { "category": "small-health", "typename": "HealthCreamFungus", "tag": "Cream Fungus", "pos": ["MAP01",4551,-1754,144] }
 AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag": "Vial of Healing", "pos": ["MAP01",5202,-2162,204] }
 AP-ITEM { "category": "small-health", "typename": "HealthPotionOfMinorHealing", "tag": "Potion of Minor Healing", "filter": 55, "pos": ["MAP01",5244,-2602,248] }
-AP-ITEM { "category": "medium-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "pos": ["MAP01",9027,-2767,258] }
+AP-ITEM { "category": "big-attack-defence-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "pos": ["MAP01",9027,-2767,258] }
 AP-ITEM { "category": "small-health", "typename": "HealthCreamFungus", "tag": "Cream Fungus", "pos": ["MAP01",4268,-2699,136] }
 AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfHealing", "tag": "Potion of Healing", "pos": ["MAP01",6004,-2802,248] }
 AP-ITEM { "category": "small-health", "typename": "HealthCreamFungus", "tag": "Cream Fungus", "pos": ["MAP01",8576,-3215,226] }
 AP-ITEM { "category": "small-health", "typename": "HealthCreamFungus", "tag": "Cream Fungus", "pos": ["MAP01",7944,-2395,210] }
 AP-ITEM { "category": "small-health", "typename": "HealthCreamFungus", "tag": "Cream Fungus", "pos": ["MAP01",8154,-3067,226] }
-AP-ITEM { "category": "small-tool", "typename": "InventoryFixerGoggles", "tag": "Fixer's Goggles", "pos": ["MAP01",3966,-545,240] }
+AP-ITEM { "category": "medium-tool", "typename": "InventoryFixerGoggles", "tag": "Fixer's Goggles", "pos": ["MAP01",3966,-545,240] }
 AP-ITEM { "category": "small-health", "typename": "HealthPotionOfMinorHealing", "tag": "Potion of Minor Healing", "pos": ["MAP01",12644,-4648,210] }
 AP-ITEM { "category": "small-health", "typename": "HealthCreamFungus", "tag": "Cream Fungus", "pos": ["MAP01",11360,-3880,226] }
 AP-ITEM { "category": "small-health", "typename": "HealthCreamFungus", "tag": "Cream Fungus", "pos": ["MAP01",12360,-3404,210] }
 AP-ITEM { "category": "small-health", "typename": "HealthCreamFungus", "tag": "Cream Fungus", "pos": ["MAP01",12364,-3976,194] }
-AP-ITEM { "category": "small-defence", "typename": "InventoryAmuletOfShadows", "tag": "Amulet of Shadows", "secret": true, "pos": ["MAP01",12632,-3920,282] }
+AP-ITEM { "category": "medium-defence", "typename": "InventoryAmuletOfShadows", "tag": "Amulet of Shadows", "secret": true, "pos": ["MAP01",12632,-3920,282] }
 AP-ITEM { "category": "small-health", "typename": "HealthCreamFungus", "tag": "Cream Fungus", "pos": ["MAP01",5238,-311,208] }
 AP-ITEM { "category": "small-health", "typename": "HealthCreamFungus", "tag": "Cream Fungus", "pos": ["MAP01",5290,-321,208] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "pos": ["MAP01",5168,-562,24] }
@@ -122,7 +122,7 @@ AP-ITEM { "category": "small-health", "typename": "HealthBread", "tag": "Bread",
 AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag": "Vial of Healing", "pos": ["MAP01",12457,5321,375] }
 AP-ITEM { "category": "small-health", "typename": "HealthBread", "tag": "Bread", "pos": ["MAP01",13628,4509,433] }
 AP-ITEM { "category": "medium-armor", "typename": "LightArmorCrystal", "tag": "Light Armor Crystal", "pos": ["MAP01",3556,808,240] }
-AP-ITEM { "category": "medium-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "pos": ["MAP01",13759,5429,519] }
+AP-ITEM { "category": "big-attack-defence-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "pos": ["MAP01",13759,5429,519] }
 AP-ITEM { "category": "small-health", "typename": "HealthPotionOfMinorHealing", "tag": "Potion of Minor Healing", "pos": ["MAP01",6484,-2624,210] }
 AP-ITEM { "category": "small-health", "typename": "HealthWater", "tag": "Water", "pos": ["MAP01",11301,-1963,395] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "pos": ["MAP01",11328,-1932,370] }
@@ -130,7 +130,7 @@ AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Sha
 AP-ITEM { "category": "small-health", "typename": "HealthCreamFungus", "tag": "Cream Fungus", "pos": ["MAP01",4622,-2927,56] }
 AP-ITEM { "category": "small-ammo", "typename": "AmmoCultistSpike", "tag": "Spike Bundle", "pos": ["MAP01",9883,4226,370] }
 AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag": "Vial of Healing", "pos": ["MAP01",4294,-2194,225] }
-AP-ITEM { "category": "small-tool", "typename": "InventoryFixerGoggles", "tag": "Fixer's Goggles", "pos": ["MAP01",10936,-3776,258] }
+AP-ITEM { "category": "medium-tool", "typename": "InventoryFixerGoggles", "tag": "Fixer's Goggles", "pos": ["MAP01",10936,-3776,258] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "pos": ["MAP01",3800,1136,208] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "secret": true, "pos": ["MAP01",12649,-3920,282] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "secret": true, "pos": ["MAP01",12644,-3908,282] }
@@ -163,7 +163,7 @@ AP-ITEM { "category": "small-ammo", "typename": "SpikeMag", "tag": "Spike Mag", 
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "filter": 49, "pos": ["MAP01",12916,4540,130] }
 AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag": "Vial of Healing", "filter": 49, "pos": ["MAP01",5088,-2608,231] }
 AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag": "Vial of Healing", "filter": 1, "pos": ["MAP01",5080,-2596,231] }
-AP-ITEM { "category": "medium-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "pos": ["MAP01",3096,-800,248] }
+AP-ITEM { "category": "big-attack-defence-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "pos": ["MAP01",3096,-800,248] }
 AP-ITEM { "category": "weapon", "typename": "SpikeGun", "tag": "Spike Gun", "filter": 17, "pos": ["MAP01",7016,-2652,210] }
 AP-ITEM { "category": "weapon", "typename": "SpikeGun", "tag": "Spike Gun", "filter": 17, "pos": ["MAP01",9120,-2980,210] }
 AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag": "Vial of Healing", "filter": 1, "pos": ["MAP01",5092,-2592,231] }
@@ -172,7 +172,7 @@ AP-ITEM { "category": "small-health", "typename": "HealthCreamFungus", "tag": "C
 AP-ITEM { "category": "small-ammo", "typename": "AmmoCultistSpike", "tag": "Spike Bundle", "filter": 55, "pos": ["MAP01",10923,-3667,258] }
 AP-ITEM { "category": "small-ammo", "typename": "AmmoCultistSpike", "tag": "Spike Bundle", "filter": 55, "pos": ["MAP01",10937,-3687,258] }
 AP-ITEM { "category": "small-health", "typename": "HealthWineJug", "tag": "Jug of Wine", "pos": ["MAP01",4556,-2286,227] }
-AP-ITEM { "category": "medium-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "pos": ["MAP01",3739,1140,240] }
+AP-ITEM { "category": "big-attack-defence-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "pos": ["MAP01",3739,1140,240] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "pos": ["MAP01",4135,977,120] }
 AP-ITEM { "category": "small-health", "typename": "HealthTomato", "tag": "Tomato", "pos": ["MAP01",7484,-361,619] }
 AP-ITEM { "category": "small-health", "typename": "HealthWineJug", "tag": "Jug of Wine", "pos": ["MAP01",8024,1002,638] }
@@ -219,7 +219,7 @@ AP-ITEM { "category": "weapon", "typename": "FragfireGun", "tag": "Fragfire Gun"
 AP-ITEM { "category": "weapon", "typename": "Axe", "tag": "Axe", "filter": 31, "pos": ["MAP01",-15373,10980,-204] }
 AP-ITEM { "category": "small-ammo", "typename": "FragfireCanHalf", "tag": "Half-Empty Fragfire Can", "filter": 55, "pos": ["MAP01",-15193,10940,-196] }
 AP-ITEM { "category": "small-health", "typename": "HealthWineJug", "tag": "Jug of Wine", "pos": ["MAP01",4576,-1888,192] }
-AP-ITEM { "category": "small-tool", "typename": "InventoryFixerGoggles", "tag": "Fixer's Goggles", "pos": ["MAP01",4176,-1508,192] }
+AP-ITEM { "category": "medium-tool", "typename": "InventoryFixerGoggles", "tag": "Fixer's Goggles", "pos": ["MAP01",4176,-1508,192] }
 AP-ITEM { "category": "small-ammo", "typename": "AmmoCultistSpike", "tag": "Spike Bundle", "pos": ["MAP01",4341,-1485,192] }
 AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfHealing", "tag": "Potion of Healing", "pos": ["MAP01",4151,-1327,184] }
 AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag": "Vial of Healing", "pos": ["MAP01",4140,-1329,184] }
@@ -234,7 +234,7 @@ AP-ITEM { "category": "key", "typename": "StoneKey", "tag": "Stone Key", "pos": 
 AP-KEY { "typename": "StoneKey", "tag": "Stone Key", "scopename": "MAP01", "cluster": 0, "maps": ["MAP01"] }
 AP-ITEM { "category": "small-ammo", "typename": "FragfireCan", "tag": "Fragfire Can", "pos": ["MAP01",5938,80,79] }
 AP-ITEM { "category": "small-health", "typename": "HealthPotionOfMinorHealing", "tag": "Potion of Minor Healing", "filter": 54, "pos": ["MAP01",6121,-508,80] }
-AP-ITEM { "category": "small-attack", "typename": "InventoryScrollFireMagmaBall", "tag": "Scroll of Magma Ball", "filter": 48, "pos": ["MAP01",13383,5428,502] }
+AP-ITEM { "category": "medium-attack", "typename": "InventoryScrollFireMagmaBall", "tag": "Scroll of Magma Ball", "filter": 48, "pos": ["MAP01",13383,5428,502] }
 AP-ITEM { "category": "weapon", "typename": "Axe", "tag": "Axe", "filter": 16, "pos": ["MAP01",1570,-2081,152] }
 AP-ITEM { "category": "small-ammo", "typename": "Boltmag", "tag": "Boltmag", "secret": true, "filter": 48, "pos": ["MAP01",13968,4724,394] }
 AP-ITEM { "category": "small-ammo", "typename": "Boltmag", "tag": "Boltmag", "secret": true, "filter": 48, "pos": ["MAP01",5560,-1016,152] }
@@ -338,10 +338,10 @@ AP-ITEM { "category": "small-health", "typename": "HealthCheese", "tag": "Cheese
 AP-ITEM { "category": "small-health", "typename": "HealthWineJug", "tag": "Jug of Wine", "pos": ["MAP02",-926,422,66] }
 AP-ITEM { "category": "small-health", "typename": "HealthPotionOfMinorHealing", "tag": "Potion of Minor Healing", "pos": ["MAP02",-3311,462,24] }
 AP-ITEM { "category": "small-ammo", "typename": "AmmoCultistSpike", "tag": "Spike Bundle", "pos": ["MAP02",-923,38,66] }
-AP-ITEM { "category": "small-tool", "typename": "InventoryFixerGoggles", "tag": "Fixer's Goggles", "pos": ["MAP02",-1137,35,66] }
+AP-ITEM { "category": "medium-tool", "typename": "InventoryFixerGoggles", "tag": "Fixer's Goggles", "pos": ["MAP02",-1137,35,66] }
 AP-ITEM { "category": "small-health", "typename": "HealthCheese", "tag": "Cheese", "pos": ["MAP02",93,2658,24] }
 AP-ITEM { "category": "small-clue", "typename": "InventoryEnchantedPurpleInkRecipe", "tag": "Enchanted Purple Ink Recipe", "tid": 195, "pos": ["MAP02",-2586,259,89] }
-AP-ITEM { "category": "medium-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "pos": ["MAP02",-1814,1624,166] }
+AP-ITEM { "category": "big-attack-defence-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "pos": ["MAP02",-1814,1624,166] }
 AP-ITEM { "category": "medium-armor", "typename": "MediumArmorCrystal", "tag": "Medium Armor Crystal", "pos": ["MAP02",-1717,1542,113] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "pos": ["MAP02",-1677,1610,113] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "pos": ["MAP02",-1671,1592,113] }
@@ -369,10 +369,10 @@ AP-ITEM { "category": "small-ammo", "typename": "SpikeMag", "tag": "Spike Mag", 
 AP-ITEM { "category": "key", "typename": "IronKey", "tag": "Iron Key", "pos": ["MAP02",-5016,3640,111] }
 AP-KEY { "typename": "IronKey", "tag": "Iron Key", "scopename": "MAP02", "cluster": 0, "maps": ["MAP02"] }
 AP-ITEM { "category": "maprevealer-ap_no_pool-medium", "typename": "InventoryScrollAirWizardsEye", "tag": "Scroll of Wizard's Eye", "pos": ["MAP02",-1826,-339,189] }
-AP-ITEM { "category": "small-attack", "typename": "InventoryScrollFireMagmaBall", "tag": "Scroll of Magma Ball", "filter": 17, "pos": ["MAP02",-1916,-423,40] }
+AP-ITEM { "category": "medium-attack", "typename": "InventoryScrollFireMagmaBall", "tag": "Scroll of Magma Ball", "filter": 17, "pos": ["MAP02",-1916,-423,40] }
 AP-ITEM { "category": "medium-token-ap_progression", "typename": "InventoryMortarOfEarthPigment", "tag": "Mortar of Earth Pigment", "pos": ["MAP02",-1672,-777,32] }
-AP-ITEM { "category": "small-attack", "typename": "InventoryScrollFireMagmaBall", "tag": "Scroll of Magma Ball", "filter": 55, "pos": ["MAP02",-1946,-428,40] }
-AP-ITEM { "category": "small-attack", "typename": "InventoryScrollFireMagmaBall", "tag": "Scroll of Magma Ball", "pos": ["MAP02",-1965,-424,40] }
+AP-ITEM { "category": "medium-attack", "typename": "InventoryScrollFireMagmaBall", "tag": "Scroll of Magma Ball", "filter": 55, "pos": ["MAP02",-1946,-428,40] }
+AP-ITEM { "category": "medium-attack", "typename": "InventoryScrollFireMagmaBall", "tag": "Scroll of Magma Ball", "pos": ["MAP02",-1965,-424,40] }
 AP-ITEM { "category": "small-ammo", "typename": "AmmoCultistSpike", "tag": "Spike Bundle", "pos": ["MAP02",-1620,-751,31] }
 AP-ITEM { "category": "small-ammo", "typename": "AmmoCultistSpike", "tag": "Spike Bundle", "pos": ["MAP02",-1699,-776,32] }
 AP-ITEM { "category": "small-ammo", "typename": "AmmoCultistSpike", "tag": "Spike Bundle", "pos": ["MAP02",-1716,-776,32] }
@@ -464,12 +464,12 @@ AP-ITEM { "category": "small-ammo", "typename": "FragfireCan", "tag": "Fragfire 
 AP-ITEM { "category": "small-ammo", "typename": "FragfireCan", "tag": "Fragfire Can", "filter": 17, "pos": ["MAP02",39,2363,23] }
 AP-ITEM { "category": "small-ammo", "typename": "FragfireCan", "tag": "Fragfire Can", "filter": 17, "pos": ["MAP02",-3809,824,-16] }
 AP-ITEM { "category": "small-ammo", "typename": "FragfireCan", "tag": "Fragfire Can", "filter": 17, "pos": ["MAP02",-333,1789,-8] }
-AP-ITEM { "category": "medium-attack", "typename": "InventoryPotionofHaste", "tag": "Potion of Haste", "secret": true, "pos": ["MAP02",-80,2778,-56] }
+AP-ITEM { "category": "big-attack", "typename": "InventoryPotionofHaste", "tag": "Potion of Haste", "secret": true, "pos": ["MAP02",-80,2778,-56] }
 AP-ITEM { "category": "small-ammo", "typename": "FragfireCan", "tag": "Fragfire Can", "pos": ["MAP02",-702,622,46] }
 AP-ITEM { "category": "small-ammo", "typename": "FragfireCanHalf", "tag": "Half-Empty Fragfire Can", "pos": ["MAP02",-672,620,46] }
 AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag": "Vial of Healing", "pos": ["MAP02",339,504,0] }
 AP-ITEM { "category": "small-health", "typename": "HealthCheese", "tag": "Cheese", "secret": true, "pos": ["MAP02",60,3197,-56] }
-AP-ITEM { "category": "medium-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "pos": ["MAP02",-501,5264,-41] }
+AP-ITEM { "category": "big-attack-defence-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "pos": ["MAP02",-501,5264,-41] }
 AP-ITEM { "category": "key", "typename": "InventoryPurpleRoot", "tag": "Purple Root", "pos": ["MAP02",-3119,274,24] }
 AP-KEY { "typename": "InventoryPurpleRoot", "tag": "Purple Root", "scopename": "MAP02", "cluster": 0, "maps": ["MAP02"] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "filter": 1, "pos": ["MAP02",-3710,-645,-24] }
@@ -487,10 +487,10 @@ AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Sha
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "secret": true, "filter": 51, "pos": ["MAP02",-113,-738,-120] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "secret": true, "filter": 51, "pos": ["MAP02",-100,-760,-120] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "secret": true, "filter": 51, "pos": ["MAP02",-87,-740,-120] }
-AP-ITEM { "category": "medium-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "secret": true, "pos": ["MAP02",-106,-747,-72] }
+AP-ITEM { "category": "big-attack-defence-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "secret": true, "pos": ["MAP02",-106,-747,-72] }
 AP-ITEM { "category": "medium-token-ap_progression", "typename": "InventoryBowlOfScribeEmbers", "tag": "Bowl of Scribe Embers", "pos": ["MAP02",-1184,-1061,249] }
 AP-ITEM { "category": "medium-token-ap_progression", "typename": "InventoryMortarOfEarthPigment", "tag": "Mortar of Earth Pigment", "pos": ["MAP02",-64,4598,103] }
-AP-ITEM { "category": "medium-health", "typename": "InventoryScrollEarthNourish", "tag": "Nourish", "filter": 49, "pos": ["MAP02",-2105,6,108] }
+AP-ITEM { "category": "medium-health", "typename": "InventoryScrollEarthNourish", "tag": "Scroll of Nourish", "filter": 49, "pos": ["MAP02",-2105,6,108] }
 AP-ITEM { "category": "medium-token-ap_progression", "typename": "InventoryBowlOfScribeEmbers", "tag": "Bowl of Scribe Embers", "pos": ["MAP02",-3340,532,24] }
 AP-ITEM { "category": "small-health", "typename": "HealthCreamFungus", "tag": "Cream Fungus", "pos": ["MAP02",828,-432,18] }
 AP-ITEM { "category": "small-health", "typename": "HealthCreamFungus", "tag": "Cream Fungus", "pos": ["MAP02",840,-440,15] }
@@ -505,13 +505,13 @@ AP-ITEM { "category": "small-health", "typename": "HealthCreamFungus", "tag": "C
 AP-ITEM { "category": "small-health", "typename": "HealthCreamFungus", "tag": "Cream Fungus", "filter": 48, "pos": ["MAP02",1058,-469,0] }
 AP-ITEM { "category": "small-health", "typename": "HealthCreamFungus", "tag": "Cream Fungus", "filter": 48, "pos": ["MAP02",1083,-452,0] }
 AP-ITEM { "category": "small-health", "typename": "HealthCreamFungus", "tag": "Cream Fungus", "filter": 48, "pos": ["MAP02",1088,-476,0] }
-AP-ITEM { "category": "medium-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "filter": 48, "pos": ["MAP02",1050,-258,72] }
+AP-ITEM { "category": "big-attack-defence-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "filter": 48, "pos": ["MAP02",1050,-258,72] }
 AP-ITEM { "category": "small-ammo", "typename": "Boltmag", "tag": "Boltmag", "filter": 48, "pos": ["MAP02",-985,5518,127] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "filter": 48, "pos": ["MAP02",-4956,3873,91] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "filter": 48, "pos": ["MAP02",-4792,3585,91] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "filter": 48, "pos": ["MAP02",-5123,3466,91] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "filter": 48, "pos": ["MAP02",-5234,3736,91] }
-AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "tid": 155, "filter": 16, "pos": ["MAP02",1884,-9,-64] }
+AP-ITEM { "category": "big-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "tid": 155, "filter": 16, "pos": ["MAP02",1884,-9,-64] }
 AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag": "Vial of Healing", "tid": 155, "filter": 16, "pos": ["MAP02",1885,-28,-64] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "filter": 48, "pos": ["MAP02",-5228,3587,91] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "filter": 48, "pos": ["MAP02",-4812,3757,91] }
@@ -521,15 +521,15 @@ AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag
 AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag": "Vial of Healing", "secret": true, "filter": 48, "pos": ["MAP02",-2871,294,80] }
 AP-ITEM { "category": "medium-health-attack", "typename": "InventoryPotionOfMight", "tag": "Potion of Might", "filter": 16, "pos": ["MAP02",-3314,428,24] }
 AP-ITEM { "category": "small-ammo", "typename": "Boltmag", "tag": "Boltmag", "secret": true, "filter": 16, "pos": ["MAP02",-744,3233,151] }
-AP-ITEM { "category": "medium-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "filter": 48, "pos": ["MAP02",-1882,105,164] }
+AP-ITEM { "category": "big-attack-defence-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "filter": 48, "pos": ["MAP02",-1882,105,164] }
 AP-ITEM { "category": "small-ammo", "typename": "Boltmag", "tag": "Boltmag", "filter": 48, "pos": ["MAP02",373,4073,-24] }
-AP-ITEM { "category": "medium-attack", "typename": "InventoryPotionofHaste", "tag": "Potion of Haste", "filter": 16, "pos": ["MAP02",-161,4548,103] }
+AP-ITEM { "category": "big-attack", "typename": "InventoryPotionofHaste", "tag": "Potion of Haste", "filter": 16, "pos": ["MAP02",-161,4548,103] }
 AP-ITEM { "category": "small-ammo", "typename": "FragfireCan", "tag": "Fragfire Can", "filter": 48, "pos": ["MAP02",-601,4359,103] }
 AP-ITEM { "category": "weapon", "typename": "Crushbow", "tag": "Crushbow", "filter": 16, "pos": ["MAP02",-4305,960,31] }
 AP-ITEM { "category": "small-ammo", "typename": "Boltmag", "tag": "Boltmag", "filter": 48, "pos": ["MAP02",-4205,1391,31] }
 AP-ITEM { "category": "small-ammo", "typename": "PotionBoxAcid", "tag": "Box of Acid Potions", "filter": 48, "pos": ["MAP02",-550,608,-8] }
-AP-ITEM { "category": "medium-ammo", "typename": "PotionBoxToxic", "tag": "Box of Toxic Potions", "filter": 48, "pos": ["MAP02",-604,606,-8] }
-AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "filter": 48, "pos": ["MAP02",-3032,1035,-24] }
+AP-ITEM { "category": "small-ammo", "typename": "PotionBoxToxic", "tag": "Box of Toxic Potions", "filter": 48, "pos": ["MAP02",-604,606,-8] }
+AP-ITEM { "category": "big-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "filter": 48, "pos": ["MAP02",-3032,1035,-24] }
 AP-ITEM { "category": "small-ammo", "typename": "Boltmag", "tag": "Boltmag", "filter": 48, "pos": ["MAP02",-1671,1112,105] }
 AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag": "Vial of Healing", "filter": 16, "pos": ["MAP02",361,2552,-9] }
 AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag": "Vial of Healing", "filter": 16, "pos": ["MAP02",362,2588,-9] }
@@ -600,8 +600,8 @@ AP-ITEM { "category": "weapon", "typename": "Axe", "tag": "Axe", "filter": 31, "
 AP-ITEM { "category": "key", "typename": "StoneKey", "tag": "Stone Key", "pos": ["MAP03",-1744,1784,-353] }
 AP-KEY { "typename": "StoneKey", "tag": "Stone Key", "scopename": "MAP03", "cluster": 0, "maps": ["MAP03"] }
 AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag": "Vial of Healing", "pos": ["MAP03",-2515,593,160] }
-AP-ITEM { "category": "medium-attack", "typename": "InventoryPotionofHaste", "tag": "Potion of Haste", "pos": ["MAP03",-2474,-142,80] }
-AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "secret": true, "pos": ["MAP03",-1488,1035,184] }
+AP-ITEM { "category": "big-attack", "typename": "InventoryPotionofHaste", "tag": "Potion of Haste", "pos": ["MAP03",-2474,-142,80] }
+AP-ITEM { "category": "big-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "secret": true, "pos": ["MAP03",-1488,1035,184] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "pos": ["MAP03",-4175,4669,-223] }
 AP-ITEM { "category": "small-ammo", "typename": "FragfireCanHalf", "tag": "Half-Empty Fragfire Can", "pos": ["MAP03",-617,901,77] }
 AP-ITEM { "category": "small-health", "typename": "HealthPotionOfMinorHealing", "tag": "Potion of Minor Healing", "pos": ["MAP03",-391,1497,48] }
@@ -616,7 +616,7 @@ AP-ITEM { "category": "weapon", "typename": "Crushbow", "tag": "Crushbow", "filt
 AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfHealing", "tag": "Potion of Healing", "filter": 55, "pos": ["MAP03",-1519,2308,-504] }
 AP-ITEM { "category": "weapon", "typename": "Crushbow", "tag": "Crushbow", "filter": 31, "pos": ["MAP03",-2344,1940,-415] }
 AP-ITEM { "category": "small-ammo", "typename": "AmmoCultistSpike", "tag": "Spike Bundle", "filter": 55, "pos": ["MAP03",-2336,2003,-399] }
-AP-ITEM { "category": "small-tool", "typename": "InventoryFixerGoggles", "tag": "Fixer's Goggles", "pos": ["MAP03",-1831,1784,-393] }
+AP-ITEM { "category": "medium-tool", "typename": "InventoryFixerGoggles", "tag": "Fixer's Goggles", "pos": ["MAP03",-1831,1784,-393] }
 AP-ITEM { "category": "weapon", "typename": "Crushbow", "tag": "Crushbow", "filter": 31, "pos": ["MAP03",-1946,1769,-353] }
 AP-ITEM { "category": "small-ammo", "typename": "AmmoCultistSpike", "tag": "Spike Bundle", "filter": 55, "pos": ["MAP03",-2337,2011,-399] }
 AP-ITEM { "category": "small-ammo", "typename": "AmmoCultistSpike", "tag": "Spike Bundle", "filter": 55, "pos": ["MAP03",-2336,2032,-399] }
@@ -624,7 +624,7 @@ AP-ITEM { "category": "small-ammo", "typename": "Boltmag", "tag": "Boltmag", "se
 AP-ITEM { "category": "small-ammo", "typename": "AmmoCultistSpike", "tag": "Spike Bundle", "pos": ["MAP03",-1629,2136,-432] }
 AP-ITEM { "category": "small-ammo", "typename": "AmmoCultistSpike", "tag": "Spike Bundle", "pos": ["MAP03",-1608,2191,-432] }
 AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfHealing", "tag": "Potion of Healing", "filter": 55, "pos": ["MAP03",-5168,2759,-195] }
-AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "pos": ["MAP03",-4836,1872,-195] }
+AP-ITEM { "category": "big-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "pos": ["MAP03",-4836,1872,-195] }
 AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfHealing", "tag": "Potion of Healing", "pos": ["MAP03",-6134,1577,-194] }
 AP-ITEM { "category": "small-health", "typename": "HealthPotionOfMinorHealing", "tag": "Potion of Minor Healing", "pos": ["MAP03",-5931,8,-195] }
 AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfHealing", "tag": "Potion of Healing", "pos": ["MAP03",-5444,648,-195] }
@@ -638,7 +638,7 @@ AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Sha
 AP-ITEM { "category": "small-ammo", "typename": "FragfireCan", "tag": "Fragfire Can", "filter": 55, "pos": ["MAP03",-5868,1452,-195] }
 AP-ITEM { "category": "small-ammo", "typename": "Boltmag", "tag": "Boltmag", "filter": 15, "pos": ["MAP03",-5315,-13,-195] }
 AP-ITEM { "category": "small-ammo", "typename": "SpikeMag", "tag": "Spike Mag", "pos": ["MAP03",-5864,964,-195] }
-AP-ITEM { "category": "medium-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "pos": ["MAP03",-5658,5,-130] }
+AP-ITEM { "category": "big-attack-defence-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "pos": ["MAP03",-5658,5,-130] }
 AP-ITEM { "category": "small-health", "typename": "HealthPotionOfMinorHealing", "tag": "Potion of Minor Healing", "pos": ["MAP03",-5645,-321,-195] }
 AP-ITEM { "category": "small-health", "typename": "HealthPotionOfMinorHealing", "tag": "Potion of Minor Healing", "pos": ["MAP03",-4810,-32,-196] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "pos": ["MAP03",-5714,-662,-194] }
@@ -646,9 +646,9 @@ AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Sha
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "pos": ["MAP03",-6058,-366,-194] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "pos": ["MAP03",-6158,-198,-194] }
 AP-ITEM { "category": "small-health", "typename": "HealthPotionOfMinorHealing", "tag": "Potion of Minor Healing", "filter": 1, "pos": ["MAP03",-1588,3100,-401] }
-AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "filter": 1, "pos": ["MAP03",-3887,4589,-171] }
+AP-ITEM { "category": "big-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "filter": 1, "pos": ["MAP03",-3887,4589,-171] }
 AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfHealing", "tag": "Potion of Healing", "filter": 1, "pos": ["MAP03",-1876,2027,-399] }
-AP-ITEM { "category": "medium-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "filter": 1, "pos": ["MAP03",-546,1029,88] }
+AP-ITEM { "category": "big-attack-defence-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "filter": 1, "pos": ["MAP03",-546,1029,88] }
 AP-ITEM { "category": "small-ammo", "typename": "SpikeMag", "tag": "Spike Mag", "pos": ["MAP03",-5012,1424,-195] }
 AP-ITEM { "category": "weapon", "typename": "Crushbow", "tag": "Crushbow", "filter": 23, "pos": ["MAP03",-2009,1770,-353] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "pos": ["MAP03",-4203,4699,-223] }
@@ -722,23 +722,23 @@ AP-ITEM { "category": "small-ammo", "typename": "SpikeMag", "tag": "Spike Mag", 
 AP-ITEM { "category": "small-ammo", "typename": "FragfireCan", "tag": "Fragfire Can", "filter": 14, "pos": ["MAP03",-5197,1876,-195] }
 AP-ITEM { "category": "small-ammo", "typename": "FragfireCanHalf", "tag": "Half-Empty Fragfire Can", "filter": 8, "pos": ["MAP03",-5868,1452,-195] }
 AP-ITEM { "category": "small-ammo", "typename": "FragfireCanHalf", "tag": "Half-Empty Fragfire Can", "filter": 8, "pos": ["MAP03",-5021,971,-195] }
-AP-ITEM { "category": "small-defence", "typename": "InventoryChokerOFTheBeast", "tag": "Choker of the Beast", "filter": 48, "pos": ["MAP03",1148,-2225,345] }
-AP-ITEM { "category": "medium-attack", "typename": "InventoryPotionofHaste", "tag": "Potion of Haste", "tid": 112, "filter": 16, "pos": ["MAP03",-3484,3300,-180] }
+AP-ITEM { "category": "medium-defence", "typename": "InventoryChokerOFTheBeast", "tag": "Choker of the Beast", "filter": 48, "pos": ["MAP03",1148,-2225,345] }
+AP-ITEM { "category": "big-attack", "typename": "InventoryPotionofHaste", "tag": "Potion of Haste", "tid": 112, "filter": 16, "pos": ["MAP03",-3484,3300,-180] }
 AP-ITEM { "category": "small-health", "typename": "HealthPotionOfMinorHealing", "tag": "Potion of Minor Healing", "filter": 16, "pos": ["MAP03",-3977,4207,-178] }
 AP-ITEM { "category": "weapon", "typename": "Crushbow", "tag": "Crushbow", "secret": true, "filter": 16, "pos": ["MAP03",837,-1880,312] }
 AP-ITEM { "category": "small-ammo", "typename": "Boltmag", "tag": "Boltmag", "secret": true, "filter": 48, "pos": ["MAP03",884,-1885,312] }
 AP-ITEM { "category": "small-ammo", "typename": "PotionBoxAcid", "tag": "Box of Acid Potions", "filter": 48, "pos": ["MAP03",-670,-599,48] }
-AP-ITEM { "category": "medium-ammo", "typename": "PotionBoxToxic", "tag": "Box of Toxic Potions", "secret": true, "filter": 48, "pos": ["MAP03",-2483,1815,-431] }
+AP-ITEM { "category": "small-ammo", "typename": "PotionBoxToxic", "tag": "Box of Toxic Potions", "secret": true, "filter": 48, "pos": ["MAP03",-2483,1815,-431] }
 AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag": "Vial of Healing", "secret": true, "filter": 48, "pos": ["MAP03",-1456,1043,184] }
 AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag": "Vial of Healing", "secret": true, "filter": 48, "pos": ["MAP03",-1466,1034,184] }
 AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag": "Vial of Healing", "filter": 48, "pos": ["MAP03",-2661,3252,-391] }
 AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag": "Vial of Healing", "filter": 48, "pos": ["MAP03",-3071,2834,-196] }
-AP-ITEM { "category": "medium-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "filter": 16, "pos": ["MAP03",-2571,591,230] }
+AP-ITEM { "category": "big-attack-defence-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "filter": 16, "pos": ["MAP03",-2571,591,230] }
 AP-ITEM { "category": "small-ammo", "typename": "FragfireCan", "tag": "Fragfire Can", "filter": 48, "pos": ["MAP03",-2310,554,160] }
 AP-ITEM { "category": "small-ammo", "typename": "PotionBoxAcid", "tag": "Box of Acid Potions", "filter": 48, "pos": ["MAP03",-5286,3780,-195] }
 AP-ITEM { "category": "small-ammo", "typename": "FragfireCan", "tag": "Fragfire Can", "filter": 48, "pos": ["MAP03",-5705,3723,-195] }
 AP-ITEM { "category": "small-ammo", "typename": "FragfireCan", "tag": "Fragfire Can", "filter": 48, "pos": ["MAP03",-4865,3723,-195] }
-AP-ITEM { "category": "medium-ammo", "typename": "PotionBoxToxic", "tag": "Box of Toxic Potions", "filter": 16, "pos": ["MAP03",-2794,3652,-195] }
+AP-ITEM { "category": "small-ammo", "typename": "PotionBoxToxic", "tag": "Box of Toxic Potions", "filter": 16, "pos": ["MAP03",-2794,3652,-195] }
 AP-ITEM { "category": "small-ammo", "typename": "FragfireCanHalf", "tag": "Half-Empty Fragfire Can", "filter": 48, "pos": ["MAP03",-913,-663,48] }
 AP-ITEM { "category": "weapon", "typename": "BearzerkAxe", "tag": "Bearzerker Axe", "filter": 32, "pos": ["MAP03",-952,-855,48] }
 AP-ITEM { "category": "weapon", "typename": "BearzerkAxe", "tag": "Bearzerker Axe", "filter": 32, "pos": ["MAP03",-1992,1371,48] }
@@ -752,7 +752,7 @@ AP-MAP {
   "map": "MAP04", "levelname": "Technical Space", "episodename": "Crystal Heart",
   "checksum": "7dbcdac3529490802d20ce9ea50e2a6f", "rank": 3, "monster_count": 188,
   "info": { "levelnum": 4, "title": "Technical Space", "is_lookup": false, "sky1": "sky10", "sky1speed": "0.000000", "sky2": "sky10", "sky2speed": "0.000000", "music": "", "music_track": "0", "cluster": 0, "flags": [] },
-  "monsters": { "ShadowAbhaothStanding": 2, "SniperCultist": 7, "ForgeElemental": 7, "NPCTheForgottenOne": 1, "Cultist": 19, "Crawler": 33, "CritterPraak": 1, "IronUrchin": 9, "NPCTiatiRegular": 1, "IDSentry": 2, "Warlock": 2, "CritterCandlefly": 5, "Initiate": 49, "IronMaiden": 4, "Cerberus": 21, "Conscript": 25 },
+  "monsters": { "ShadowAbhaothStanding": 2, "SniperCultist": 7, "ForgeElemental": 7, "NPCTheForgottenOne": 1, "Cultist": 19, "Crawler": 33, "CritterPraak": 1, "IronUrchin": 9, "NPCTiatiRegular": 1, "IDSentry": 2, "Warlock": 2, "CritterCandlefly": 5, "IronMaiden": 4, "Initiate": 49, "Cerberus": 21, "Conscript": 25 },
   "prereqs": [ "weapon/Axe/need" ]
 }
 AP-ITEM { "category": "key", "typename": "InventoryPowerCore", "tag": "Power Core", "pos": ["MAP04",-3548,-3050,-377] }
@@ -788,7 +788,7 @@ AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Sha
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "pos": ["MAP04",-3832,-381,-393] }
 AP-ITEM { "category": "key", "typename": "InventoryRedCrystal", "tag": "Red Crystal", "pos": ["MAP04",-3186,510,-403] }
 AP-KEY { "typename": "InventoryRedCrystal", "tag": "Red Crystal", "scopename": "MAP04", "cluster": 0, "maps": ["MAP04"] }
-AP-ITEM { "category": "small-tool", "typename": "InventoryFixerGoggles", "tag": "Fixer's Goggles", "pos": ["MAP04",-2146,-780,-427] }
+AP-ITEM { "category": "medium-tool", "typename": "InventoryFixerGoggles", "tag": "Fixer's Goggles", "pos": ["MAP04",-2146,-780,-427] }
 AP-ITEM { "category": "small-ammo", "typename": "FragfireCanHalf", "tag": "Half-Empty Fragfire Can", "pos": ["MAP04",-2195,-365,-460] }
 AP-ITEM { "category": "small-ammo", "typename": "FragfireCan", "tag": "Fragfire Can", "pos": ["MAP04",-1995,1430,-446] }
 AP-ITEM { "category": "small-health", "typename": "HealthPotionOfMinorHealing", "tag": "Potion of Minor Healing", "filter": 55, "pos": ["MAP04",-3421,603,-456] }
@@ -807,8 +807,8 @@ AP-ITEM { "category": "medium-tool", "typename": "InventorySentryGun", "tag": "S
 AP-ITEM { "category": "weapon", "typename": "FragfireGun", "tag": "Fragfire Gun", "filter": 31, "pos": ["MAP04",-2892,1019,-465] }
 AP-ITEM { "category": "weapon", "typename": "Axe", "tag": "Axe", "filter": 31, "pos": ["MAP04",-2329,1064,-465] }
 AP-ITEM { "category": "small-ammo", "typename": "Boltmag", "tag": "Boltmag", "pos": ["MAP04",-2607,950,-457] }
-AP-ITEM { "category": "weapon", "typename": "PotionLauncher", "tag": "Potion Launcher", "tid": 97, "filter": 31, "pos": ["MAP04",-3249,1180,-428] }
-AP-ITEM { "category": "medium-ammo", "typename": "PotionBoxToxic", "tag": "Box of Toxic Potions", "pos": ["MAP04",-3227,1128,-428] }
+AP-ITEM { "category": "weapon", "typename": "PotionLauncher", "tag": "Potion Launcher", "tid": 97, "pos": ["MAP04",-3249,1180,-428] }
+AP-ITEM { "category": "small-ammo", "typename": "PotionBoxToxic", "tag": "Box of Toxic Potions", "pos": ["MAP04",-3227,1128,-428] }
 AP-ITEM { "category": "weapon", "typename": "SpikeGun", "tag": "Spike Gun", "filter": 31, "pos": ["MAP04",-3134,1875,-424] }
 AP-ITEM { "category": "small-clue", "typename": "InventoryGreatForgeInstructions", "tag": "Great Forge Instructions", "tid": 261, "pos": ["MAP04",-3419,1443,-457] }
 AP-ITEM { "category": "key", "typename": "InventoryIronBar", "tag": "Iron Ingot", "pos": ["MAP04",-3110,2033,-361] }
@@ -817,7 +817,7 @@ AP-ITEM { "category": "key", "typename": "InventoryGearMouldEmpty", "tag": "Empt
 AP-KEY { "typename": "InventoryGearMouldEmpty", "tag": "Empty Gear Mould", "scopename": "MAP04", "cluster": 0, "maps": ["MAP04"] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "pos": ["MAP04",-2269,2123,-457] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "pos": ["MAP04",-2958,2117,-457] }
-AP-ITEM { "category": "weapon", "typename": "PotionLauncher", "tag": "Potion Launcher", "filter": 23, "pos": ["MAP04",668,-356,-425] }
+AP-ITEM { "category": "weapon", "typename": "PotionLauncher", "tag": "Potion Launcher", "filter": 55, "pos": ["MAP04",668,-356,-425] }
 AP-ITEM { "category": "weapon", "typename": "SpikeGun", "tag": "Spike Gun", "filter": 17, "pos": ["MAP04",807,-885,-433] }
 AP-ITEM { "category": "small-ammo", "typename": "Boltmag", "tag": "Boltmag", "filter": 55, "pos": ["MAP04",691,-235,-433] }
 AP-ITEM { "category": "small-ammo", "typename": "AmmoCultistSpike", "tag": "Spike Bundle", "filter": 49, "pos": ["MAP04",812,-272,-433] }
@@ -873,7 +873,7 @@ AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag
 AP-ITEM { "category": "key", "typename": "InventoryRedCrystal", "tag": "Red Crystal", "pos": ["MAP04",-3344,4048,-857] }
 AP-KEY { "typename": "InventoryRedCrystal", "tag": "Red Crystal", "scopename": "MAP04", "cluster": 0, "maps": ["MAP04"] }
 AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfHealing", "tag": "Potion of Healing", "pos": ["MAP04",-3921,4002,-833] }
-AP-ITEM { "category": "medium-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "pos": ["MAP04",-5361,5019,-545] }
+AP-ITEM { "category": "big-attack-defence-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "pos": ["MAP04",-5361,5019,-545] }
 AP-ITEM { "category": "key", "typename": "InventoryIronBar", "tag": "Iron Ingot", "pos": ["MAP04",-5359,4967,-713] }
 AP-KEY { "typename": "InventoryIronBar", "tag": "Iron Ingot", "scopename": "MAP04", "cluster": 0, "maps": ["MAP04"] }
 AP-ITEM { "category": "key", "typename": "InventoryRedCrystal", "tag": "Red Crystal", "pos": ["MAP04",-4552,5112,-617] }
@@ -886,7 +886,7 @@ AP-ITEM { "category": "small-health", "typename": "HealthBread", "tag": "Bread",
 AP-ITEM { "category": "small-health", "typename": "HealthPotionOfMinorHealing", "tag": "Potion of Minor Healing", "pos": ["MAP04",-2197,5823,-521] }
 AP-ITEM { "category": "key", "typename": "InventoryIronBar", "tag": "Iron Ingot", "pos": ["MAP04",-1913,6168,-519] }
 AP-KEY { "typename": "InventoryIronBar", "tag": "Iron Ingot", "scopename": "MAP04", "cluster": 0, "maps": ["MAP04"] }
-AP-ITEM { "category": "small-tool", "typename": "InventoryFixerGoggles", "tag": "Fixer's Goggles", "pos": ["MAP04",-1537,6069,-521] }
+AP-ITEM { "category": "medium-tool", "typename": "InventoryFixerGoggles", "tag": "Fixer's Goggles", "pos": ["MAP04",-1537,6069,-521] }
 AP-ITEM { "category": "medium-armor", "typename": "MediumArmorCrystal", "tag": "Medium Armor Crystal", "pos": ["MAP04",-1512,6097,-521] }
 AP-ITEM { "category": "small-health", "typename": "HealthPotionOfMinorHealing", "tag": "Potion of Minor Healing", "pos": ["MAP04",-3009,6205,-521] }
 AP-ITEM { "category": "small-health", "typename": "HealthCreamFungus", "tag": "Cream Fungus", "pos": ["MAP04",-3345,4306,-641] }
@@ -916,9 +916,9 @@ AP-ITEM { "category": "small-health", "typename": "HealthLeek", "tag": "Leek", "
 AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag": "Vial of Healing", "pos": ["MAP04",-1492,4830,-481] }
 AP-ITEM { "category": "small-health", "typename": "HealthPlumBrandy", "tag": "Plum Brandy", "pos": ["MAP04",-1537,4737,-521] }
 AP-ITEM { "category": "small-health", "typename": "HealthPlumBrandy", "tag": "Plum Brandy", "pos": ["MAP04",-1531,4763,-521] }
-AP-ITEM { "category": "medium-ammo", "typename": "PotionBoxToxic", "tag": "Box of Toxic Potions", "filter": 31, "pos": ["MAP04",-1486,4601,-497] }
-AP-ITEM { "category": "medium-ammo", "typename": "PotionBoxToxic", "tag": "Box of Toxic Potions", "pos": ["MAP04",-1486,4530,-497] }
-AP-ITEM { "category": "weapon", "typename": "PotionLauncher", "tag": "Potion Launcher", "filter": 31, "pos": ["MAP04",-2331,5492,-521] }
+AP-ITEM { "category": "small-ammo", "typename": "PotionBoxToxic", "tag": "Box of Toxic Potions", "filter": 31, "pos": ["MAP04",-1486,4601,-497] }
+AP-ITEM { "category": "small-ammo", "typename": "PotionBoxToxic", "tag": "Box of Toxic Potions", "pos": ["MAP04",-1486,4530,-497] }
+AP-ITEM { "category": "weapon", "typename": "PotionLauncher", "tag": "Potion Launcher", "pos": ["MAP04",-2331,5492,-521] }
 AP-ITEM { "category": "key", "typename": "InventoryRedCrystal", "tag": "Red Crystal", "pos": ["MAP04",-1167,4909,-489] }
 AP-KEY { "typename": "InventoryRedCrystal", "tag": "Red Crystal", "scopename": "MAP04", "cluster": 0, "maps": ["MAP04"] }
 AP-ITEM { "category": "key", "typename": "InventoryRedCrystal", "tag": "Red Crystal", "pos": ["MAP04",-2158,5501,-521] }
@@ -953,7 +953,7 @@ AP-ITEM { "category": "small-health", "typename": "HealthCider", "tag": "Cider",
 AP-ITEM { "category": "small-health", "typename": "HealthCider", "tag": "Cider", "secret": true, "pos": ["MAP04",-1473,4136,-521] }
 AP-ITEM { "category": "key", "typename": "InventoryIronBar", "tag": "Iron Ingot", "pos": ["MAP04",-1934,3524,-473] }
 AP-KEY { "typename": "InventoryIronBar", "tag": "Iron Ingot", "scopename": "MAP04", "cluster": 0, "maps": ["MAP04"] }
-AP-ITEM { "category": "medium-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "pos": ["MAP04",-3308,392,-355] }
+AP-ITEM { "category": "big-attack-defence-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "pos": ["MAP04",-3308,392,-355] }
 AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfHealing", "tag": "Potion of Healing", "tid": 186, "pos": ["MAP04",-5801,-1671,-558] }
 AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag": "Vial of Healing", "tid": 186, "pos": ["MAP04",-6096,-2413,-494] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "tid": 186, "pos": ["MAP04",-6162,-1795,-558] }
@@ -1012,20 +1012,20 @@ AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Sha
 AP-ITEM { "category": "medium-armor", "typename": "LightArmorCrystal", "tag": "Light Armor Crystal", "filter": 14, "pos": ["MAP04",-2612,1703,-457] }
 AP-ITEM { "category": "small-ammo", "typename": "Boltmag", "tag": "Boltmag", "filter": 48, "pos": ["MAP04",-5622,5874,-529] }
 AP-ITEM { "category": "medium-defence-tool", "typename": "InventoryElementalRing", "tag": "Elemental Ring", "filter": 16, "pos": ["MAP04",-1521,5122,-537] }
-AP-ITEM { "category": "medium-attack", "typename": "InventoryPotionofHaste", "tag": "Potion of Haste", "filter": 48, "pos": ["MAP04",-5120,3640,-737] }
-AP-ITEM { "category": "small-defence", "typename": "InventoryAmuletOfShadows", "tag": "Amulet of Shadows", "filter": 16, "pos": ["MAP04",-3465,-3065,-377] }
+AP-ITEM { "category": "big-attack", "typename": "InventoryPotionofHaste", "tag": "Potion of Haste", "filter": 48, "pos": ["MAP04",-5120,3640,-737] }
+AP-ITEM { "category": "medium-defence", "typename": "InventoryAmuletOfShadows", "tag": "Amulet of Shadows", "filter": 16, "pos": ["MAP04",-3465,-3065,-377] }
 AP-ITEM { "category": "small-ammo", "typename": "PotionBoxAcid", "tag": "Box of Acid Potions", "secret": true, "filter": 48, "pos": ["MAP04",-1917,-1833,-453] }
 AP-ITEM { "category": "small-ammo", "typename": "PotionBoxAcid", "tag": "Box of Acid Potions", "filter": 48, "pos": ["MAP04",-5622,4850,-737] }
 AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag": "Vial of Healing", "filter": 48, "pos": ["MAP04",-1482,6105,-521] }
 AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag": "Vial of Healing", "filter": 48, "pos": ["MAP04",-1501,6119,-521] }
 AP-ITEM { "category": "small-ammo", "typename": "PotionBoxAcid", "tag": "Box of Acid Potions", "filter": 48, "pos": ["MAP04",520,-356,-433] }
-AP-ITEM { "category": "medium-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "filter": 16, "pos": ["MAP04",-2022,-1053,-425] }
+AP-ITEM { "category": "big-attack-defence-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "filter": 16, "pos": ["MAP04",-2022,-1053,-425] }
 AP-ITEM { "category": "medium-tool", "typename": "InventorySentryGun", "tag": "Sentry Gun", "filter": 16, "pos": ["MAP04",-3685,-2001,-457] }
 AP-ITEM { "category": "small-ammo", "typename": "FragfireCanHalf", "tag": "Half-Empty Fragfire Can", "filter": 48, "pos": ["MAP04",-2383,2553,-425] }
 AP-ITEM { "category": "weapon", "typename": "PotionLauncher", "tag": "Potion Launcher", "filter": 16, "pos": ["MAP04",-3799,3601,-873] }
 AP-ITEM { "category": "weapon", "typename": "BearzerkAxe", "tag": "Bearzerker Axe", "filter": 32, "pos": ["MAP04",-3788,3640,-873] }
 AP-ITEM { "category": "big-ammo", "typename": "InventoryBagOfHolding", "tag": "Bag of Holding", "filter": 32, "pos": ["MAP04",-3788,3672,-873] }
-AP-ITEM { "category": "medium-ammo", "typename": "PotionBoxToxic", "tag": "Box of Toxic Potions", "secret": true, "filter": 32, "pos": ["MAP04",-1845,-1993,-453] }
+AP-ITEM { "category": "small-ammo", "typename": "PotionBoxToxic", "tag": "Box of Toxic Potions", "secret": true, "filter": 32, "pos": ["MAP04",-1845,-1993,-453] }
 AP-ITEM { "category": "weapon", "typename": "BearzerkAxe", "tag": "Bearzerker Axe", "filter": 32, "pos": ["MAP04",-2493,5659,-521] }
 AP-ITEM { "category": "weapon", "typename": "BearzerkAxe", "tag": "Bearzerker Axe", "filter": 32, "pos": ["MAP04",-3924,3484,-833] }
 AP-ITEM { "category": "weapon", "typename": "BearzerkAxe", "tag": "Bearzerker Axe", "filter": 32, "pos": ["MAP04",-3816,3108,-833] }
@@ -1048,9 +1048,9 @@ AP-ITEM { "category": "small-health", "typename": "HealthApple", "tag": "Apple",
 AP-ITEM { "category": "small-ammo", "typename": "AmmoCultistSpike", "tag": "Spike Bundle", "pos": ["MAP05",-1962,-434,36] }
 AP-ITEM { "category": "small-health", "typename": "HealthWater", "tag": "Water", "pos": ["MAP05",-2986,-1112,-1] }
 AP-ITEM { "category": "small-health", "typename": "HealthBread", "tag": "Bread", "pos": ["MAP05",-3000,-1128,-1] }
-AP-ITEM { "category": "small-defence", "typename": "InventoryAmuletOfShadows", "tag": "Amulet of Shadows", "pos": ["MAP05",-3551,-3688,104] }
+AP-ITEM { "category": "medium-defence", "typename": "InventoryAmuletOfShadows", "tag": "Amulet of Shadows", "pos": ["MAP05",-3551,-3688,104] }
 AP-ITEM { "category": "big-ammo", "typename": "InventoryBagOfHolding", "tag": "Bag of Holding", "secret": true, "filter": 49, "pos": ["MAP05",-14251,2471,104] }
-AP-ITEM { "category": "small-tool", "typename": "InventoryFixerGoggles", "tag": "Fixer's Goggles", "secret": true, "pos": ["MAP05",-5020,-2565,224] }
+AP-ITEM { "category": "medium-tool", "typename": "InventoryFixerGoggles", "tag": "Fixer's Goggles", "secret": true, "pos": ["MAP05",-5020,-2565,224] }
 AP-ITEM { "category": "small-ammo", "typename": "SpikeMag", "tag": "Spike Mag", "secret": true, "filter": 15, "pos": ["MAP05",-4984,-2568,224] }
 AP-ITEM { "category": "small-health", "typename": "HealthCreamFungus", "tag": "Cream Fungus", "pos": ["MAP05",-2502,-3719,110] }
 AP-ITEM { "category": "small-health", "typename": "HealthCreamFungus", "tag": "Cream Fungus", "pos": ["MAP05",-2521,-3692,108] }
@@ -1065,11 +1065,11 @@ AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Sha
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "pos": ["MAP05",-300,-4543,-303] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "pos": ["MAP05",-707,-4971,-303] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "pos": ["MAP05",416,-5236,-279] }
-AP-ITEM { "category": "medium-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "pos": ["MAP05",-10,-9219,103] }
+AP-ITEM { "category": "big-attack-defence-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "pos": ["MAP05",-10,-9219,103] }
 AP-ITEM { "category": "medium-token-ap_progression", "typename": "InventoryMortarOfEarthPigment", "tag": "Mortar of Earth Pigment", "pos": ["MAP05",-1492,-6779,138] }
-AP-ITEM { "category": "medium-attack", "typename": "InventoryPotionofHaste", "tag": "Potion of Haste", "pos": ["MAP05",-1566,-6871,224] }
-AP-ITEM { "category": "medium-ammo", "typename": "PotionBoxToxic", "tag": "Box of Toxic Potions", "pos": ["MAP05",-1827,-6665,106] }
-AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "pos": ["MAP05",-1557,-6888,224] }
+AP-ITEM { "category": "big-attack", "typename": "InventoryPotionofHaste", "tag": "Potion of Haste", "pos": ["MAP05",-1566,-6871,224] }
+AP-ITEM { "category": "small-ammo", "typename": "PotionBoxToxic", "tag": "Box of Toxic Potions", "pos": ["MAP05",-1827,-6665,106] }
+AP-ITEM { "category": "big-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "pos": ["MAP05",-1557,-6888,224] }
 AP-ITEM { "category": "small-health", "typename": "HealthCreamFungus", "tag": "Cream Fungus", "pos": ["MAP05",-1633,-6907,104] }
 AP-ITEM { "category": "small-health", "typename": "HealthCreamFungus", "tag": "Cream Fungus", "pos": ["MAP05",-1626,-6923,104] }
 AP-ITEM { "category": "small-health", "typename": "HealthPlumBrandy", "tag": "Plum Brandy", "pos": ["MAP05",-6086,-4785,0] }
@@ -1130,12 +1130,12 @@ AP-ITEM { "category": "small-health", "typename": "HealthPotionOfMinorHealing", 
 AP-ITEM { "category": "small-health", "typename": "HealthCreamFungus", "tag": "Cream Fungus", "pos": ["MAP05",-5738,-7153,121] }
 AP-ITEM { "category": "small-health", "typename": "HealthCreamFungus", "tag": "Cream Fungus", "pos": ["MAP05",-5746,-7123,121] }
 AP-ITEM { "category": "small-health", "typename": "HealthCreamFungus", "tag": "Cream Fungus", "pos": ["MAP05",-5774,-7168,125] }
-AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "filter": 55, "pos": ["MAP05",-9484,-10222,111] }
-AP-ITEM { "category": "medium-ammo", "typename": "PotionBoxToxic", "tag": "Box of Toxic Potions", "filter": 31, "pos": ["MAP05",262,-16173,422] }
+AP-ITEM { "category": "big-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "filter": 55, "pos": ["MAP05",-9484,-10222,111] }
+AP-ITEM { "category": "small-ammo", "typename": "PotionBoxToxic", "tag": "Box of Toxic Potions", "filter": 31, "pos": ["MAP05",262,-16173,422] }
 AP-ITEM { "category": "small-health", "typename": "HealthPotionOfMinorHealing", "tag": "Potion of Minor Healing", "pos": ["MAP05",-9057,-8452,143] }
 AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfHealing", "tag": "Potion of Healing", "pos": ["MAP05",-9094,-8691,143] }
 AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfHealing", "tag": "Potion of Healing", "pos": ["MAP05",-9071,-8486,143] }
-AP-ITEM { "category": "small-defence", "typename": "InventoryAmuletOfShadows", "tag": "Amulet of Shadows", "secret": true, "pos": ["MAP05",-6467,-8467,104] }
+AP-ITEM { "category": "medium-defence", "typename": "InventoryAmuletOfShadows", "tag": "Amulet of Shadows", "secret": true, "pos": ["MAP05",-6467,-8467,104] }
 AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfHealing", "tag": "Potion of Healing", "pos": ["MAP05",-8926,-8649,135] }
 AP-ITEM { "category": "small-health", "typename": "HealthPotionOfMinorHealing", "tag": "Potion of Minor Healing", "pos": ["MAP05",-8892,-8580,135] }
 AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfHealing", "tag": "Potion of Healing", "filter": 55, "pos": ["MAP05",-3205,-4855,169] }
@@ -1145,7 +1145,7 @@ AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Sha
 AP-ITEM { "category": "small-health", "typename": "HealthPotionOfMinorHealing", "tag": "Potion of Minor Healing", "pos": ["MAP05",-2481,-9370,112] }
 AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag": "Vial of Healing", "pos": ["MAP05",-820,-8838,176] }
 AP-ITEM { "category": "weapon", "typename": "SpikeGun", "tag": "Spike Gun", "filter": 31, "pos": ["MAP05",-1356,-9036,174] }
-AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "pos": ["MAP05",669,-7902,87] }
+AP-ITEM { "category": "big-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "pos": ["MAP05",669,-7902,87] }
 AP-ITEM { "category": "small-health", "typename": "HealthGreenCrystal", "tag": "Green Crystal", "pos": ["MAP05",889,-7900,92] }
 AP-ITEM { "category": "small-ammo", "typename": "AmmoCultistSpike", "tag": "Spike Bundle", "pos": ["MAP05",697,-8418,81] }
 AP-ITEM { "category": "small-health", "typename": "HealthPotionOfMinorHealing", "tag": "Potion of Minor Healing", "pos": ["MAP05",659,-8422,81] }
@@ -1173,8 +1173,8 @@ AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfHealing", "tag
 AP-ITEM { "category": "small-ammo", "typename": "FragfireCan", "tag": "Fragfire Can", "pos": ["MAP05",-12425,-15552,189] }
 AP-ITEM { "category": "small-health", "typename": "HealthCider", "tag": "Cider", "pos": ["MAP05",-12132,-15593,157] }
 AP-ITEM { "category": "small-health", "typename": "HealthCider", "tag": "Cider", "pos": ["MAP05",-12140,-15582,157] }
-AP-ITEM { "category": "medium-attack", "typename": "InventoryPotionofHaste", "tag": "Potion of Haste", "pos": ["MAP05",-11048,-15682,173] }
-AP-ITEM { "category": "weapon", "typename": "PotionLauncher", "tag": "Potion Launcher", "filter": 31, "pos": ["MAP05",-12225,-16581,157] }
+AP-ITEM { "category": "big-attack", "typename": "InventoryPotionofHaste", "tag": "Potion of Haste", "pos": ["MAP05",-11048,-15682,173] }
+AP-ITEM { "category": "weapon", "typename": "PotionLauncher", "tag": "Potion Launcher", "pos": ["MAP05",-12225,-16581,157] }
 AP-ITEM { "category": "weapon", "typename": "PotionLauncher", "tag": "Potion Launcher", "pos": ["MAP05",-12277,-16561,157] }
 AP-ITEM { "category": "small-ammo", "typename": "AmmoCultistSpike", "tag": "Spike Bundle", "pos": ["MAP05",-4229,-20329,329] }
 AP-ITEM { "category": "small-ammo", "typename": "PotionBoxAcid", "tag": "Box of Acid Potions", "pos": ["MAP05",-4389,-21440,351] }
@@ -1191,7 +1191,7 @@ AP-ITEM { "category": "small-health", "typename": "HealthGreenCrystal", "tag": "
 AP-ITEM { "category": "key", "typename": "EarthKey", "tag": "Earth Key", "pos": ["MAP05",-40,-16817,454] }
 AP-KEY { "typename": "EarthKey", "tag": "Earth Key", "scopename": "MAP05", "cluster": 0, "maps": ["MAP05"] }
 AP-ITEM { "category": "medium-armor", "typename": "MediumArmorCrystal", "tag": "Medium Armor Crystal", "pos": ["MAP05",391,-16251,422] }
-AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "pos": ["MAP05",-253,-16451,422] }
+AP-ITEM { "category": "big-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "pos": ["MAP05",-253,-16451,422] }
 AP-ITEM { "category": "small-ammo", "typename": "FragfireCan", "tag": "Fragfire Can", "pos": ["MAP05",-155,-16214,422] }
 AP-ITEM { "category": "small-ammo", "typename": "Boltmag", "tag": "Boltmag", "filter": 31, "pos": ["MAP05",112,-16146,422] }
 AP-ITEM { "category": "small-ammo", "typename": "PotionBoxAcid", "tag": "Box of Acid Potions", "filter": 31, "pos": ["MAP05",-32,-16162,422] }
@@ -1280,14 +1280,14 @@ AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag
 AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag": "Vial of Healing", "secret": true, "filter": 48, "pos": ["MAP05",-4939,-2553,224] }
 AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag": "Vial of Healing", "secret": true, "filter": 16, "pos": ["MAP05",109,-9960,199] }
 AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag": "Vial of Healing", "secret": true, "filter": 16, "pos": ["MAP05",109,-9975,199] }
-AP-ITEM { "category": "medium-attack", "typename": "InventoryPotionofHaste", "tag": "Potion of Haste", "filter": 48, "pos": ["MAP05",-1505,-5711,104] }
-AP-ITEM { "category": "medium-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "filter": 48, "pos": ["MAP05",-3294,-2644,200] }
+AP-ITEM { "category": "big-attack", "typename": "InventoryPotionofHaste", "tag": "Potion of Haste", "filter": 48, "pos": ["MAP05",-1505,-5711,104] }
+AP-ITEM { "category": "big-attack-defence-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "filter": 48, "pos": ["MAP05",-3294,-2644,200] }
 AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag": "Vial of Healing", "filter": 48, "pos": ["MAP05",698,-7902,87] }
 AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag": "Vial of Healing", "filter": 48, "pos": ["MAP05",711,-7901,87] }
 AP-ITEM { "category": "weapon", "typename": "FireHammer", "tag": "Fire Hammer", "filter": 32, "pos": ["MAP05",-9680,-10060,111] }
-AP-ITEM { "category": "medium-ammo", "typename": "PotionBoxToxic", "tag": "Box of Toxic Potions", "filter": 32, "pos": ["MAP05",1057,-8997,55] }
+AP-ITEM { "category": "small-ammo", "typename": "PotionBoxToxic", "tag": "Box of Toxic Potions", "filter": 32, "pos": ["MAP05",1057,-8997,55] }
 AP-ITEM { "category": "weapon", "typename": "GreatAxe", "tag": "Great Axe", "filter": 32, "pos": ["MAP05",7,-16853,454] }
-AP-ITEM { "category": "medium-ammo", "typename": "PotionBoxToxic", "tag": "Box of Toxic Potions", "filter": 32, "pos": ["MAP05",-4533,-6819,488] }
+AP-ITEM { "category": "small-ammo", "typename": "PotionBoxToxic", "tag": "Box of Toxic Potions", "filter": 32, "pos": ["MAP05",-4533,-6819,488] }
 AP-ITEM { "category": "weapon", "typename": "BearzerkAxe", "tag": "Bearzerker Axe", "filter": 32, "pos": ["MAP05",-4427,-6616,128] }
 AP-ITEM { "category": "weapon", "typename": "BearzerkAxe", "tag": "Bearzerker Axe", "filter": 32, "pos": ["MAP05",-8956,-9372,127] }
 AP-SECRET { "pos": ["MAP05","secret","sector",1226] }
@@ -1337,17 +1337,17 @@ AP-ITEM { "category": "small-health", "typename": "HealthCreamFungus", "tag": "C
 AP-ITEM { "category": "small-health", "typename": "HealthCreamFungus", "tag": "Cream Fungus", "pos": ["MAP06",13315,-2071,-40] }
 AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfHealing", "tag": "Potion of Healing", "tid": 346, "pos": ["MAP06",2616,-4960,399] }
 AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfHealing", "tag": "Potion of Healing", "tid": 346, "pos": ["MAP06",2664,-6128,399] }
-AP-ITEM { "category": "small-defence", "typename": "InventoryAmuletOfShadows", "tag": "Amulet of Shadows", "filter": 17, "pos": ["MAP06",3293,-6211,380] }
+AP-ITEM { "category": "medium-defence", "typename": "InventoryAmuletOfShadows", "tag": "Amulet of Shadows", "filter": 17, "pos": ["MAP06",3293,-6211,380] }
 AP-ITEM { "category": "weapon", "typename": "Axe", "tag": "Axe", "tid": 297, "filter": 31, "pos": ["MAP06",3304,-5472,399] }
 AP-ITEM { "category": "weapon", "typename": "Axe", "tag": "Axe", "tid": 293, "filter": 31, "pos": ["MAP06",2560,-6200,399] }
 AP-ITEM { "category": "weapon", "typename": "Axe", "tag": "Axe", "tid": 295, "filter": 31, "pos": ["MAP06",4152,-5808,399] }
 AP-ITEM { "category": "weapon", "typename": "Axe", "tag": "Axe", "tid": 291, "filter": 31, "pos": ["MAP06",2560,-5056,399] }
-AP-ITEM { "category": "small-defence", "typename": "InventoryAmuletOfShadows", "tag": "Amulet of Shadows", "pos": ["MAP06",4840,-5456,1063] }
+AP-ITEM { "category": "medium-defence", "typename": "InventoryAmuletOfShadows", "tag": "Amulet of Shadows", "pos": ["MAP06",4840,-5456,1063] }
 AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfHealing", "tag": "Potion of Healing", "tid": 346, "pos": ["MAP06",2720,-4792,399] }
 AP-ITEM { "category": "medium-armor", "typename": "MediumArmorCrystal", "tag": "Medium Armor Crystal", "tid": 346, "pos": ["MAP06",4136,-5880,399] }
 AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfHealing", "tag": "Potion of Healing", "tid": 346, "pos": ["MAP06",3040,-5960,399] }
 AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfHealing", "tag": "Potion of Healing", "tid": 346, "pos": ["MAP06",2944,-5624,399] }
-AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "tid": 346, "pos": ["MAP06",3373,-5210,399] }
+AP-ITEM { "category": "big-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "tid": 346, "pos": ["MAP06",3373,-5210,399] }
 AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfHealing", "tag": "Potion of Healing", "tid": 346, "pos": ["MAP06",3408,-5632,399] }
 AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfHealing", "tag": "Potion of Healing", "tid": 346, "pos": ["MAP06",3224,-5544,399] }
 AP-ITEM { "category": "weapon", "typename": "Axe", "tag": "Axe", "tid": 288, "filter": 31, "pos": ["MAP06",3456,-5168,399] }
@@ -1376,7 +1376,7 @@ AP-ITEM { "category": "small-ammo", "typename": "FragfireCan", "tag": "Fragfire 
 AP-ITEM { "category": "small-ammo", "typename": "FragfireCan", "tag": "Fragfire Can", "pos": ["MAP06",3076,-6980,1063] }
 AP-ITEM { "category": "small-ammo", "typename": "FragfireCan", "tag": "Fragfire Can", "pos": ["MAP06",3364,-6924,1063] }
 AP-ITEM { "category": "small-ammo", "typename": "FragfireCan", "tag": "Fragfire Can", "pos": ["MAP06",3660,-6788,1063] }
-AP-ITEM { "category": "small-defence", "typename": "InventoryAmuletOfShadows", "tag": "Amulet of Shadows", "pos": ["MAP06",1467,-5383,1063] }
+AP-ITEM { "category": "medium-defence", "typename": "InventoryAmuletOfShadows", "tag": "Amulet of Shadows", "pos": ["MAP06",1467,-5383,1063] }
 AP-ITEM { "category": "small-ammo", "typename": "SpikeMag", "tag": "Spike Mag", "pos": ["MAP06",1737,-6055,1063] }
 AP-ITEM { "category": "small-ammo", "typename": "SpikeMag", "tag": "Spike Mag", "pos": ["MAP06",1713,-5631,1063] }
 AP-ITEM { "category": "small-ammo", "typename": "SpikeMag", "tag": "Spike Mag", "pos": ["MAP06",1769,-5351,1063] }
@@ -1386,14 +1386,14 @@ AP-ITEM { "category": "medium-defence-tool", "typename": "InventoryElementalRing
 AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfHealing", "tag": "Potion of Healing", "tid": 346, "pos": ["MAP06",1552,-6504,1063] }
 AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfHealing", "tag": "Potion of Healing", "tid": 346, "pos": ["MAP06",1464,-6392,1063] }
 AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfHealing", "tag": "Potion of Healing", "tid": 346, "pos": ["MAP06",1392,-6288,1063] }
-AP-ITEM { "category": "medium-attack", "typename": "InventoryPotionofHaste", "tag": "Potion of Haste", "pos": ["MAP06",4310,-6678,1063] }
+AP-ITEM { "category": "big-attack", "typename": "InventoryPotionofHaste", "tag": "Potion of Haste", "pos": ["MAP06",4310,-6678,1063] }
 AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfHealing", "tag": "Potion of Healing", "tid": 346, "pos": ["MAP06",4480,-6672,1063] }
 AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfHealing", "tag": "Potion of Healing", "tid": 346, "pos": ["MAP06",4376,-6680,1063] }
 AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfHealing", "tag": "Potion of Healing", "tid": 346, "pos": ["MAP06",4288,-6784,1063] }
 AP-ITEM { "category": "small-ammo", "typename": "PotionBoxAcid", "tag": "Box of Acid Potions", "pos": ["MAP06",2720,-3192,1360] }
 AP-ITEM { "category": "small-ammo", "typename": "PotionBoxAcid", "tag": "Box of Acid Potions", "pos": ["MAP06",2521,-3071,1360] }
 AP-ITEM { "category": "small-ammo", "typename": "PotionBoxAcid", "tag": "Box of Acid Potions", "pos": ["MAP06",2728,-3008,1360] }
-AP-ITEM { "category": "medium-attack", "typename": "InventoryPotionofHaste", "tag": "Potion of Haste", "pos": ["MAP06",2580,-3084,1360] }
+AP-ITEM { "category": "big-attack", "typename": "InventoryPotionofHaste", "tag": "Potion of Haste", "pos": ["MAP06",2580,-3084,1360] }
 AP-ITEM { "category": "small-ammo", "typename": "Boltmag", "tag": "Boltmag", "pos": ["MAP06",5952,-5976,1360] }
 AP-ITEM { "category": "small-ammo", "typename": "Boltmag", "tag": "Boltmag", "pos": ["MAP06",5768,-6016,1360] }
 AP-ITEM { "category": "small-ammo", "typename": "Boltmag", "tag": "Boltmag", "pos": ["MAP06",5816,-5696,1360] }
@@ -1405,7 +1405,7 @@ AP-ITEM { "category": "medium-armor", "typename": "MediumArmorCrystal", "tag": "
 AP-ITEM { "category": "small-ammo", "typename": "PotionBoxAcid", "tag": "Box of Acid Potions", "pos": ["MAP06",2824,-8080,1360] }
 AP-ITEM { "category": "small-ammo", "typename": "PotionBoxAcid", "tag": "Box of Acid Potions", "pos": ["MAP06",2520,-7992,1360] }
 AP-ITEM { "category": "small-ammo", "typename": "PotionBoxAcid", "tag": "Box of Acid Potions", "pos": ["MAP06",2840,-7880,1360] }
-AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "tid": 346, "pos": ["MAP06",2624,-7968,1360] }
+AP-ITEM { "category": "big-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "tid": 346, "pos": ["MAP06",2624,-7968,1360] }
 AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfHealing", "tag": "Potion of Healing", "tid": 346, "pos": ["MAP06",1324,-3668,1360] }
 AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfHealing", "tag": "Potion of Healing", "tid": 346, "pos": ["MAP06",1132,-3772,1360] }
 AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfHealing", "tag": "Potion of Healing", "tid": 346, "pos": ["MAP06",428,-6692,1360] }
@@ -1482,17 +1482,17 @@ AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Sha
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "filter": 48, "pos": ["MAP06",3504,-6168,380] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "filter": 48, "pos": ["MAP06",3328,-6320,380] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "filter": 48, "pos": ["MAP06",2914,-6358,380] }
-AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "filter": 48, "pos": ["MAP06",7402,5388,256] }
-AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "tid": 346, "filter": 48, "pos": ["MAP06",4558,-3332,1360] }
-AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "tid": 346, "filter": 48, "pos": ["MAP06",524,-6772,1360] }
-AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "tid": 346, "filter": 48, "pos": ["MAP06",1246,-3754,1360] }
-AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "tid": 346, "filter": 48, "pos": ["MAP06",5174,-7594,1360] }
+AP-ITEM { "category": "big-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "filter": 48, "pos": ["MAP06",7402,5388,256] }
+AP-ITEM { "category": "big-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "tid": 346, "filter": 48, "pos": ["MAP06",4558,-3332,1360] }
+AP-ITEM { "category": "big-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "tid": 346, "filter": 48, "pos": ["MAP06",524,-6772,1360] }
+AP-ITEM { "category": "big-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "tid": 346, "filter": 48, "pos": ["MAP06",1246,-3754,1360] }
+AP-ITEM { "category": "big-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "tid": 346, "filter": 48, "pos": ["MAP06",5174,-7594,1360] }
 AP-ITEM { "category": "big-armor", "typename": "HeavyArmorCrystal", "tag": "Heavy Armor Crystal", "filter": 48, "pos": ["MAP06",3000,-6248,380] }
-AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "tid": 346, "filter": 48, "pos": ["MAP06",2917,-7254,1063] }
-AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "tid": 346, "filter": 48, "pos": ["MAP06",1404,-5372,1063] }
-AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "tid": 346, "filter": 48, "pos": ["MAP06",4932,-5444,1063] }
-AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "tid": 346, "filter": 48, "pos": ["MAP06",3332,-4116,1063] }
-AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "filter": 48, "pos": ["MAP06",24379,-2882,399] }
+AP-ITEM { "category": "big-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "tid": 346, "filter": 48, "pos": ["MAP06",2917,-7254,1063] }
+AP-ITEM { "category": "big-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "tid": 346, "filter": 48, "pos": ["MAP06",1404,-5372,1063] }
+AP-ITEM { "category": "big-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "tid": 346, "filter": 48, "pos": ["MAP06",4932,-5444,1063] }
+AP-ITEM { "category": "big-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "tid": 346, "filter": 48, "pos": ["MAP06",3332,-4116,1063] }
+AP-ITEM { "category": "big-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "filter": 48, "pos": ["MAP06",24379,-2882,399] }
 AP-ITEM { "category": "weapon", "typename": "ForcePike", "tag": "Force Pike", "filter": 32, "pos": ["MAP06",2672,-3120,1360] }
 AP-ITEM { "category": "weapon", "typename": "BearzerkAxe", "tag": "Bearzerker Axe", "tid": 297, "filter": 32, "pos": ["MAP06",3304,-5472,399] }
 AP-ITEM { "category": "weapon", "typename": "BearzerkAxe", "tag": "Bearzerker Axe", "tid": 293, "filter": 32, "pos": ["MAP06",2560,-6200,399] }
@@ -1523,11 +1523,11 @@ AP-ITEM { "category": "small-health", "typename": "HealthCreamFungus", "tag": "C
 AP-ITEM { "category": "small-health", "typename": "HealthCreamFungus", "tag": "Cream Fungus", "pos": ["MAP07",-13750,6490,128] }
 AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag": "Vial of Healing", "pos": ["MAP07",-12544,8757,396] }
 AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag": "Vial of Healing", "pos": ["MAP07",-12548,8746,396] }
-AP-ITEM { "category": "small-tool", "typename": "InventoryFixerGoggles", "tag": "Fixer's Goggles", "pos": ["MAP07",-12548,8732,396] }
+AP-ITEM { "category": "medium-tool", "typename": "InventoryFixerGoggles", "tag": "Fixer's Goggles", "pos": ["MAP07",-12548,8732,396] }
 AP-ITEM { "category": "small-ammo", "typename": "SpikeMag", "tag": "Spike Mag", "pos": ["MAP07",-12547,8715,396] }
 AP-ITEM { "category": "small-health", "typename": "HealthCreamFungus", "tag": "Cream Fungus", "pos": ["MAP07",-14161,8895,256] }
 AP-ITEM { "category": "small-health", "typename": "HealthWineJug", "tag": "Jug of Wine", "pos": ["MAP07",-16232,5056,416] }
-AP-ITEM { "category": "medium-attack", "typename": "InventoryPotionofHaste", "tag": "Potion of Haste", "pos": ["MAP07",-16757,4977,440] }
+AP-ITEM { "category": "big-attack", "typename": "InventoryPotionofHaste", "tag": "Potion of Haste", "pos": ["MAP07",-16757,4977,440] }
 AP-ITEM { "category": "small-health", "typename": "HealthGrapes", "tag": "Grapes", "pos": ["MAP07",-16757,5090,431] }
 AP-ITEM { "category": "small-ammo", "typename": "PotionBoxAcid", "tag": "Box of Acid Potions", "pos": ["MAP07",-16768,5289,416] }
 AP-ITEM { "category": "small-health", "typename": "HealthApple", "tag": "Apple", "pos": ["MAP07",-16764,5114,431] }
@@ -1556,7 +1556,7 @@ AP-ITEM { "category": "small-health", "typename": "HealthStew", "tag": "Stew", "
 AP-ITEM { "category": "small-health", "typename": "HealthCider", "tag": "Cider", "pos": ["MAP07",-5182,1565,1424] }
 AP-ITEM { "category": "medium-armor", "typename": "MediumArmorCrystal", "tag": "Medium Armor Crystal", "pos": ["MAP07",-4610,921,1424] }
 AP-ITEM { "category": "small-ammo", "typename": "PotionBoxAcid", "tag": "Box of Acid Potions", "pos": ["MAP07",-4561,1378,1432] }
-AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "pos": ["MAP07",-4629,1317,1432] }
+AP-ITEM { "category": "big-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "pos": ["MAP07",-4629,1317,1432] }
 AP-ITEM { "category": "small-ammo", "typename": "FragfireCanHalf", "tag": "Half-Empty Fragfire Can", "pos": ["MAP07",-4568,1253,1424] }
 AP-ITEM { "category": "small-ammo", "typename": "FragfireCanHalf", "tag": "Half-Empty Fragfire Can", "pos": ["MAP07",-4316,836,1552] }
 AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag": "Vial of Healing", "pos": ["MAP07",-3824,876,1552] }
@@ -1648,8 +1648,8 @@ AP-ITEM { "category": "small-health", "typename": "HealthCreamFungus", "tag": "C
 AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfHealing", "tag": "Potion of Healing", "pos": ["MAP07",-5231,206,1502] }
 AP-ITEM { "category": "weapon", "typename": "SpikeGun", "tag": "Spike Gun", "filter": 31, "pos": ["MAP07",1432,3332,1964] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "pos": ["MAP07",-6613,1126,1528] }
-AP-ITEM { "category": "medium-ammo", "typename": "PotionBoxToxic", "tag": "Box of Toxic Potions", "secret": true, "filter": 31, "pos": ["MAP07",-4913,1439,1424] }
-AP-ITEM { "category": "medium-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "pos": ["MAP07",1962,2228,2048] }
+AP-ITEM { "category": "small-ammo", "typename": "PotionBoxToxic", "tag": "Box of Toxic Potions", "secret": true, "filter": 31, "pos": ["MAP07",-4913,1439,1424] }
+AP-ITEM { "category": "big-attack-defence-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "pos": ["MAP07",1962,2228,2048] }
 AP-ITEM { "category": "small-health", "typename": "HealthCider", "tag": "Cider", "pos": ["MAP07",-5209,1251,1464] }
 AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag": "Vial of Healing", "pos": ["MAP07",-5206,1264,1464] }
 AP-ITEM { "category": "small-health", "typename": "HealthCreamFungus", "tag": "Cream Fungus", "pos": ["MAP07",1184,3264,1224] }
@@ -1665,7 +1665,7 @@ AP-ITEM { "category": "small-health", "typename": "HealthCreamFungus", "tag": "C
 AP-ITEM { "category": "weapon", "typename": "SpikeGun", "tag": "Spike Gun", "filter": 31, "pos": ["MAP07",1312,2880,1962] }
 AP-ITEM { "category": "small-health", "typename": "HealthGreenCrystal", "tag": "Green Crystal", "pos": ["MAP07",1132,-2204,1365] }
 AP-ITEM { "category": "small-ammo", "typename": "FragfireCan", "tag": "Fragfire Can", "filter": 55, "pos": ["MAP07",2524,-1864,1353] }
-AP-ITEM { "category": "medium-ammo", "typename": "PotionBoxToxic", "tag": "Box of Toxic Potions", "pos": ["MAP07",3011,-3158,1344] }
+AP-ITEM { "category": "small-ammo", "typename": "PotionBoxToxic", "tag": "Box of Toxic Potions", "pos": ["MAP07",3011,-3158,1344] }
 AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag": "Vial of Healing", "pos": ["MAP07",3044,-3232,1344] }
 AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag": "Vial of Healing", "pos": ["MAP07",3173,-2350,1408] }
 AP-ITEM { "category": "small-ammo", "typename": "FragfireCanHalf", "tag": "Half-Empty Fragfire Can", "pos": ["MAP07",2568,-3224,1376] }
@@ -1684,7 +1684,7 @@ AP-ITEM { "category": "small-health", "typename": "HealthCreamFungus", "tag": "C
 AP-ITEM { "category": "small-health", "typename": "HealthCreamFungus", "tag": "Cream Fungus", "pos": ["MAP07",2857,258,1224] }
 AP-ITEM { "category": "small-health", "typename": "HealthCreamFungus", "tag": "Cream Fungus", "pos": ["MAP07",-5953,-8341,1705] }
 AP-ITEM { "category": "small-health", "typename": "HealthCreamFungus", "tag": "Cream Fungus", "pos": ["MAP07",-5998,-8356,1705] }
-AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "pos": ["MAP07",2416,1930,1224] }
+AP-ITEM { "category": "big-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "pos": ["MAP07",2416,1930,1224] }
 AP-ITEM { "category": "weapon", "typename": "Crushbow", "tag": "Crushbow", "filter": 31, "pos": ["MAP07",2370,2057,1224] }
 AP-ITEM { "category": "weapon", "typename": "FragfireGun", "tag": "Fragfire Gun", "filter": 31, "pos": ["MAP07",-457,-2172,1344] }
 AP-ITEM { "category": "weapon", "typename": "Axe", "tag": "Axe", "filter": 31, "pos": ["MAP07",430,-1764,1504] }
@@ -1725,7 +1725,7 @@ AP-ITEM { "category": "small-health", "typename": "HealthCreamFungus", "tag": "C
 AP-ITEM { "category": "small-health", "typename": "HealthCreamFungus", "tag": "Cream Fungus", "pos": ["MAP07",-4392,24,1518] }
 AP-ITEM { "category": "small-health", "typename": "HealthCreamFungus", "tag": "Cream Fungus", "pos": ["MAP07",-3669,-848,1616] }
 AP-ITEM { "category": "small-health", "typename": "HealthCreamFungus", "tag": "Cream Fungus", "pos": ["MAP07",-3692,-856,1616] }
-AP-ITEM { "category": "medium-attack", "typename": "InventoryPotionofHaste", "tag": "Potion of Haste", "secret": true, "filter": 30, "pos": ["MAP07",-4923,1420,1424] }
+AP-ITEM { "category": "big-attack", "typename": "InventoryPotionofHaste", "tag": "Potion of Haste", "secret": true, "filter": 30, "pos": ["MAP07",-4923,1420,1424] }
 AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfHealing", "tag": "Potion of Healing", "filter": 48, "pos": ["MAP07",-7892,4195,1432] }
 AP-ITEM { "category": "small-health", "typename": "HealthCheese", "tag": "Cheese", "tid": 11, "filter": 48, "pos": ["MAP07",-17519,7543,396] }
 AP-ITEM { "category": "small-health", "typename": "HealthCheese", "tag": "Cheese", "tid": 11, "filter": 48, "pos": ["MAP07",-17507,7527,396] }
@@ -1749,7 +1749,7 @@ AP-ITEM { "category": "small-ammo", "typename": "FragfireCan", "tag": "Fragfire 
 AP-ITEM { "category": "small-ammo", "typename": "FragfireCan", "tag": "Fragfire Can", "filter": 48, "pos": ["MAP07",-1734,2585,1440] }
 AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag": "Vial of Healing", "secret": true, "filter": 16, "pos": ["MAP07",-4946,1320,1424] }
 AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag": "Vial of Healing", "secret": true, "filter": 16, "pos": ["MAP07",-4920,1322,1424] }
-AP-ITEM { "category": "medium-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "filter": 48, "pos": ["MAP07",-6752,1635,1566] }
+AP-ITEM { "category": "big-attack-defence-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "filter": 48, "pos": ["MAP07",-6752,1635,1566] }
 AP-ITEM { "category": "weapon", "typename": "BearzerkAxe", "tag": "Bearzerker Axe", "filter": 32, "pos": ["MAP07",-3443,1866,1424] }
 AP-ITEM { "category": "weapon", "typename": "BearzerkAxe", "tag": "Bearzerker Axe", "filter": 32, "pos": ["MAP07",-2937,1333,1456] }
 AP-ITEM { "category": "weapon", "typename": "BearzerkAxe", "tag": "Bearzerker Axe", "filter": 32, "pos": ["MAP07",-2931,1268,1456] }
@@ -1781,7 +1781,7 @@ AP-KEY { "typename": "InventoryWoodenPlank", "tag": "Wooden Plank", "scopename":
 AP-ITEM { "category": "weapon", "typename": "Axe", "tag": "Axe", "filter": 31, "pos": ["MAP08",-1301,1236,1564] }
 AP-ITEM { "category": "key", "typename": "InventoryWoodenPlank", "tag": "Wooden Plank", "pos": ["MAP08",-1196,1188,1540] }
 AP-KEY { "typename": "InventoryWoodenPlank", "tag": "Wooden Plank", "scopename": "MAP08", "cluster": 0, "maps": ["MAP08"] }
-AP-ITEM { "category": "medium-attack", "typename": "InventoryPotionofHaste", "tag": "Potion of Haste", "pos": ["MAP08",2232,2048,1540] }
+AP-ITEM { "category": "big-attack", "typename": "InventoryPotionofHaste", "tag": "Potion of Haste", "pos": ["MAP08",2232,2048,1540] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "pos": ["MAP08",2748,1952,1428] }
 AP-ITEM { "category": "key", "typename": "InventoryWoodenPlank", "tag": "Wooden Plank", "pos": ["MAP08",2688,1832,1500] }
 AP-KEY { "typename": "InventoryWoodenPlank", "tag": "Wooden Plank", "scopename": "MAP08", "cluster": 0, "maps": ["MAP08"] }
@@ -1803,7 +1803,7 @@ AP-ITEM { "category": "weapon", "typename": "Axe", "tag": "Axe", "filter": 31, "
 AP-ITEM { "category": "weapon", "typename": "Crushbow", "tag": "Crushbow", "filter": 31, "pos": ["MAP08",3125,19940,1890] }
 AP-ITEM { "category": "small-ammo", "typename": "Boltmag", "tag": "Boltmag", "pos": ["MAP08",5109,20492,1628] }
 AP-ITEM { "category": "small-health", "typename": "HealthPotionOfMinorHealing", "tag": "Potion of Minor Healing", "pos": ["MAP08",2680,19986,1892] }
-AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "secret": true, "pos": ["MAP08",3221,22015,1684] }
+AP-ITEM { "category": "big-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "secret": true, "pos": ["MAP08",3221,22015,1684] }
 AP-ITEM { "category": "small-ammo", "typename": "SpikeMag", "tag": "Spike Mag", "secret": true, "pos": ["MAP08",3244,22021,1684] }
 AP-ITEM { "category": "small-ammo", "typename": "SpikeMag", "tag": "Spike Mag", "secret": true, "pos": ["MAP08",3301,22033,1684] }
 AP-ITEM { "category": "small-ammo", "typename": "PotionBoxAcid", "tag": "Box of Acid Potions", "secret": true, "pos": ["MAP08",3332,22038,1684] }
@@ -1836,8 +1836,8 @@ AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfHealing", "tag
 AP-ITEM { "category": "small-ammo", "typename": "PotionBoxAcid", "tag": "Box of Acid Potions", "pos": ["MAP08",5865,19258,1540] }
 AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag": "Vial of Healing", "pos": ["MAP08",5669,20201,1956] }
 AP-ITEM { "category": "small-ammo", "typename": "PotionBoxAcid", "tag": "Box of Acid Potions", "pos": ["MAP08",8108,20383,1668] }
-AP-ITEM { "category": "medium-ammo", "typename": "PotionBoxToxic", "tag": "Box of Toxic Potions", "pos": ["MAP08",8110,19845,1668] }
-AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "pos": ["MAP08",8252,20159,1676] }
+AP-ITEM { "category": "small-ammo", "typename": "PotionBoxToxic", "tag": "Box of Toxic Potions", "pos": ["MAP08",8110,19845,1668] }
+AP-ITEM { "category": "big-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "pos": ["MAP08",8252,20159,1676] }
 AP-ITEM { "category": "small-ammo", "typename": "Boltmag", "tag": "Boltmag", "pos": ["MAP08",5102,22006,1921] }
 AP-ITEM { "category": "small-health", "typename": "HealthMeadPint", "tag": "Pint of Mead", "pos": ["MAP08",9825,20283,2122] }
 AP-ITEM { "category": "small-ammo", "typename": "PotionBoxAcid", "tag": "Box of Acid Potions", "pos": ["MAP08",9862,20171,2090] }
@@ -1869,7 +1869,7 @@ AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Sha
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "pos": ["MAP08",12072,19560,1458] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "pos": ["MAP08",12152,19500,1474] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "pos": ["MAP08",12088,19484,1471] }
-AP-ITEM { "category": "medium-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "pos": ["MAP08",12120,19504,1496] }
+AP-ITEM { "category": "big-attack-defence-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "pos": ["MAP08",12120,19504,1496] }
 AP-ITEM { "category": "medium-armor", "typename": "LightArmorCrystal", "tag": "Light Armor Crystal", "pos": ["MAP08",12020,19584,1458] }
 AP-ITEM { "category": "small-health", "typename": "HealthBread", "tag": "Bread", "pos": ["MAP08",12532,19971,1483] }
 AP-ITEM { "category": "small-ammo", "typename": "PotionBoxAcid", "tag": "Box of Acid Potions", "pos": ["MAP08",12020,19986,1522] }
@@ -1880,7 +1880,7 @@ AP-ITEM { "category": "weapon", "typename": "Axe", "tag": "Axe", "filter": 31, "
 AP-ITEM { "category": "key", "typename": "IronKey", "tag": "Iron Key", "pos": ["MAP08",12949,20476,1483] }
 AP-KEY { "typename": "IronKey", "tag": "Iron Key", "scopename": "MAP08", "cluster": 0, "maps": ["MAP08"] }
 AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag": "Vial of Healing", "pos": ["MAP08",12942,20325,1476] }
-AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "pos": ["MAP08",-623,-1513,1612] }
+AP-ITEM { "category": "big-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "pos": ["MAP08",-623,-1513,1612] }
 AP-ITEM { "category": "small-ammo", "typename": "PotionBoxAcid", "tag": "Box of Acid Potions", "pos": ["MAP08",5041,19901,2018] }
 AP-ITEM { "category": "small-ammo", "typename": "PotionBoxAcid", "tag": "Box of Acid Potions", "pos": ["MAP08",5676,21772,1921] }
 AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag": "Vial of Healing", "pos": ["MAP08",4473,20910,1668] }
@@ -1909,18 +1909,18 @@ AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Sha
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "pos": ["MAP08",12879,19129,1090] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "pos": ["MAP08",12877,19181,1090] }
 AP-ITEM { "category": "small-ammo", "typename": "SpikeMag", "tag": "Spike Mag", "filter": 1, "pos": ["MAP08",2140,13176,1540] }
-AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "filter": 1, "pos": ["MAP08",2098,13088,1540] }
+AP-ITEM { "category": "big-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "filter": 1, "pos": ["MAP08",2098,13088,1540] }
 AP-ITEM { "category": "small-ammo", "typename": "SpikeMag", "tag": "Spike Mag", "filter": 1, "pos": ["MAP08",2146,13131,1540] }
 AP-ITEM { "category": "small-health", "typename": "HealthPotionOfMinorHealing", "tag": "Potion of Minor Healing", "pos": ["MAP08",-693,-3997,1764] }
 AP-ITEM { "category": "small-ammo", "typename": "Boltmag", "tag": "Boltmag", "pos": ["MAP08",-1198,10709,1540] }
 AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag": "Vial of Healing", "pos": ["MAP08",-1200,10744,1540] }
-AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "pos": ["MAP08",2620,7674,1204] }
+AP-ITEM { "category": "big-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "pos": ["MAP08",2620,7674,1204] }
 AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfHealing", "tag": "Potion of Healing", "filter": 1, "pos": ["MAP08",2773,13883,1412] }
-AP-ITEM { "category": "small-defence", "typename": "InventoryChokerOFTheBeast", "tag": "Choker of the Beast", "filter": 61, "pos": ["MAP08",-2492,3857,1532] }
+AP-ITEM { "category": "medium-defence", "typename": "InventoryChokerOFTheBeast", "tag": "Choker of the Beast", "filter": 61, "pos": ["MAP08",-2492,3857,1532] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "pos": ["MAP08",2744,2135,1428] }
-AP-ITEM { "category": "medium-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "pos": ["MAP08",12017,19542,1507] }
-AP-ITEM { "category": "medium-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "filter": 57, "pos": ["MAP08",12134,19614,1521] }
-AP-ITEM { "category": "medium-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "filter": 1, "pos": ["MAP08",12872,19153,1226] }
+AP-ITEM { "category": "big-attack-defence-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "pos": ["MAP08",12017,19542,1507] }
+AP-ITEM { "category": "big-attack-defence-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "filter": 57, "pos": ["MAP08",12134,19614,1521] }
+AP-ITEM { "category": "big-attack-defence-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "filter": 1, "pos": ["MAP08",12872,19153,1226] }
 AP-ITEM { "category": "key", "typename": "InventoryShovel", "tag": "Shovel", "pos": ["MAP08",2752,1836,1500] }
 AP-KEY { "typename": "InventoryShovel", "tag": "Shovel", "scopename": "MAP08", "cluster": 0, "maps": ["MAP08"] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "filter": 62, "pos": ["MAP08",12092,19792,1484] }
@@ -1937,7 +1937,7 @@ AP-ITEM { "category": "weapon", "typename": "BearzerkAxe", "tag": "Bearzerker Ax
 AP-ITEM { "category": "weapon", "typename": "FireHammer", "tag": "Fire Hammer", "filter": 32, "pos": ["MAP08",12069,19485,1472] }
 AP-ITEM { "category": "weapon", "typename": "FireHammer", "tag": "Fire Hammer", "filter": 32, "pos": ["MAP08",9517,19860,2106] }
 AP-ITEM { "category": "weapon", "typename": "FireHammer", "tag": "Fire Hammer", "filter": 32, "pos": ["MAP08",4973,21933,1672] }
-AP-ITEM { "category": "medium-ammo", "typename": "PotionBoxToxic", "tag": "Box of Toxic Potions", "secret": true, "filter": 32, "pos": ["MAP08",-4339,-9558,1724] }
+AP-ITEM { "category": "small-ammo", "typename": "PotionBoxToxic", "tag": "Box of Toxic Potions", "secret": true, "filter": 32, "pos": ["MAP08",-4339,-9558,1724] }
 AP-SECRET { "pos": ["MAP08","secret","sector",40] }
 AP-SECRET { "pos": ["MAP08","secret","sector",292] }
 AP-SECRET { "pos": ["MAP08","secret","sector",3370] }
@@ -1960,12 +1960,12 @@ AP-ITEM { "category": "small-ammo", "typename": "FragfireCan", "tag": "Fragfire 
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "pos": ["MAP09",-3987,138,-558] }
 AP-ITEM { "category": "weapon", "typename": "SpikeGun", "tag": "Spike Gun", "tid": 9, "filter": 17, "pos": ["MAP09",-4492,596,-527] }
 AP-ITEM { "category": "weapon", "typename": "SpikeGun", "tag": "Spike Gun", "filter": 31, "pos": ["MAP09",-4458,-724,-558] }
-AP-ITEM { "category": "weapon", "typename": "PotionLauncher", "tag": "Potion Launcher", "filter": 31, "pos": ["MAP09",-4410,159,-557] }
+AP-ITEM { "category": "weapon", "typename": "PotionLauncher", "tag": "Potion Launcher", "pos": ["MAP09",-4410,159,-557] }
 AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag": "Vial of Healing", "pos": ["MAP09",-1708,-520,-640] }
 AP-ITEM { "category": "small-health", "typename": "HealthCider", "tag": "Cider", "pos": ["MAP09",-1544,-420,-638] }
 AP-ITEM { "category": "small-health", "typename": "HealthCider", "tag": "Cider", "pos": ["MAP09",-1516,-424,-638] }
 AP-ITEM { "category": "small-ammo", "typename": "PotionBoxAcid", "tag": "Box of Acid Potions", "pos": ["MAP09",-1713,-569,-670] }
-AP-ITEM { "category": "medium-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "pos": ["MAP09",-3596,3217,-806] }
+AP-ITEM { "category": "big-attack-defence-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "pos": ["MAP09",-3596,3217,-806] }
 AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag": "Vial of Healing", "pos": ["MAP09",-3629,3238,-822] }
 AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag": "Vial of Healing", "pos": ["MAP09",-3614,3187,-822] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "pos": ["MAP09",-3645,3222,-814] }
@@ -1981,7 +1981,7 @@ AP-ITEM { "category": "small-ammo", "typename": "PotionBoxAcid", "tag": "Box of 
 AP-ITEM { "category": "small-ammo", "typename": "SpikeMag", "tag": "Spike Mag", "filter": 31, "pos": ["MAP09",1164,-300,-610] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "pos": ["MAP09",816,-380,-588] }
 AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfHealing", "tag": "Potion of Healing", "pos": ["MAP09",155,2745,-595] }
-AP-ITEM { "category": "medium-ammo", "typename": "PotionBoxToxic", "tag": "Box of Toxic Potions", "filter": 31, "pos": ["MAP09",712,1645,-587] }
+AP-ITEM { "category": "small-ammo", "typename": "PotionBoxToxic", "tag": "Box of Toxic Potions", "filter": 31, "pos": ["MAP09",712,1645,-587] }
 AP-ITEM { "category": "small-health", "typename": "HealthCider", "tag": "Cider", "pos": ["MAP09",428,2284,-577] }
 AP-ITEM { "category": "small-health", "typename": "HealthCreamFungus", "tag": "Cream Fungus", "pos": ["MAP09",706,2282,-576] }
 AP-ITEM { "category": "small-health", "typename": "HealthApple", "tag": "Apple", "pos": ["MAP09",722,2284,-576] }
@@ -1992,8 +1992,8 @@ AP-ITEM { "category": "small-health", "typename": "HealthCider", "tag": "Cider",
 AP-ITEM { "category": "small-health", "typename": "HealthBread", "tag": "Bread", "tid": 240, "pos": ["MAP09",1794,2013,-596] }
 AP-ITEM { "category": "small-health", "typename": "HealthBread", "tag": "Bread", "tid": 240, "pos": ["MAP09",1792,2037,-596] }
 AP-ITEM { "category": "small-health", "typename": "HealthBread", "tag": "Bread", "tid": 240, "pos": ["MAP09",1799,2056,-596] }
-AP-ITEM { "category": "small-defence", "typename": "InventoryAmuletOfShadows", "tag": "Amulet of Shadows", "secret": true, "pos": ["MAP09",309,1896,-579] }
-AP-ITEM { "category": "medium-attack", "typename": "InventoryPotionofHaste", "tag": "Potion of Haste", "pos": ["MAP09",1769,1202,-568] }
+AP-ITEM { "category": "medium-defence", "typename": "InventoryAmuletOfShadows", "tag": "Amulet of Shadows", "secret": true, "pos": ["MAP09",309,1896,-579] }
+AP-ITEM { "category": "big-attack", "typename": "InventoryPotionofHaste", "tag": "Potion of Haste", "pos": ["MAP09",1769,1202,-568] }
 AP-ITEM { "category": "key", "typename": "EarthKey", "tag": "Earth Key", "pos": ["MAP09",478,456,-579] }
 AP-KEY { "typename": "EarthKey", "tag": "Earth Key", "scopename": "MAP09", "cluster": 0, "maps": ["MAP09"] }
 AP-ITEM { "category": "small-ammo", "typename": "AmmoCultistSpike", "tag": "Spike Bundle", "pos": ["MAP09",2518,-1358,-620] }
@@ -2042,15 +2042,15 @@ AP-ITEM { "category": "small-ammo", "typename": "PotionBoxAcid", "tag": "Box of 
 AP-ITEM { "category": "small-ammo", "typename": "AmmoCultistSpike", "tag": "Spike Bundle", "pos": ["MAP09",4139,-370,-579] }
 AP-ITEM { "category": "small-ammo", "typename": "AmmoCultistSpike", "tag": "Spike Bundle", "pos": ["MAP09",4161,-384,-579] }
 AP-ITEM { "category": "small-ammo", "typename": "AmmoCultistSpike", "tag": "Spike Bundle", "pos": ["MAP09",4160,-356,-579] }
-AP-ITEM { "category": "weapon", "typename": "PotionLauncher", "tag": "Potion Launcher", "filter": 23, "pos": ["MAP09",4094,-679,-556] }
-AP-ITEM { "category": "weapon", "typename": "PotionLauncher", "tag": "Potion Launcher", "filter": 31, "pos": ["MAP09",4231,-680,-556] }
+AP-ITEM { "category": "weapon", "typename": "PotionLauncher", "tag": "Potion Launcher", "filter": 55, "pos": ["MAP09",4094,-679,-556] }
+AP-ITEM { "category": "weapon", "typename": "PotionLauncher", "tag": "Potion Launcher", "pos": ["MAP09",4231,-680,-556] }
 AP-ITEM { "category": "weapon", "typename": "FragfireGun", "tag": "Fragfire Gun", "filter": 31, "pos": ["MAP09",4274,-680,-556] }
 AP-ITEM { "category": "small-health", "typename": "HealthWineJug", "tag": "Jug of Wine", "pos": ["MAP09",4376,-68,-612] }
 AP-ITEM { "category": "small-ammo", "typename": "Boltmag", "tag": "Boltmag", "secret": true, "pos": ["MAP09",956,264,-548] }
 AP-ITEM { "category": "weapon", "typename": "Crushbow", "tag": "Crushbow", "secret": true, "filter": 31, "pos": ["MAP09",972,264,-548] }
 AP-ITEM { "category": "key", "typename": "CrystalKey", "tag": "Crystal Key", "pos": ["MAP09",5173,188,-538] }
 AP-KEY { "typename": "CrystalKey", "tag": "Crystal Key", "scopename": "MAP09", "cluster": 0, "maps": ["MAP09"] }
-AP-ITEM { "category": "small-tool", "typename": "InventoryFixerGoggles", "tag": "Fixer's Goggles", "pos": ["MAP09",4302,339,-579] }
+AP-ITEM { "category": "medium-tool", "typename": "InventoryFixerGoggles", "tag": "Fixer's Goggles", "pos": ["MAP09",4302,339,-579] }
 AP-ITEM { "category": "small-ammo", "typename": "Boltmag", "tag": "Boltmag", "filter": 55, "pos": ["MAP09",5156,136,-572] }
 AP-ITEM { "category": "small-health", "typename": "HealthPotionOfMinorHealing", "tag": "Potion of Minor Healing", "filter": 55, "pos": ["MAP09",5156,104,-572] }
 AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfHealing", "tag": "Potion of Healing", "filter": 1, "pos": ["MAP09",2733,2578,-611] }
@@ -2058,7 +2058,7 @@ AP-ITEM { "category": "small-health", "typename": "HealthPotionOfMinorHealing", 
 AP-ITEM { "category": "small-ammo", "typename": "Boltmag", "tag": "Boltmag", "secret": true, "filter": 49, "pos": ["MAP09",3752,-1263,-576] }
 AP-ITEM { "category": "small-ammo", "typename": "Boltmag", "tag": "Boltmag", "secret": true, "filter": 49, "pos": ["MAP09",3754,-1242,-576] }
 AP-ITEM { "category": "small-ammo", "typename": "PotionBoxAcid", "tag": "Box of Acid Potions", "filter": 49, "pos": ["MAP09",-1663,-569,-669] }
-AP-ITEM { "category": "medium-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "pos": ["MAP09",101,1841,-573] }
+AP-ITEM { "category": "big-attack-defence-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "pos": ["MAP09",101,1841,-573] }
 AP-ITEM { "category": "medium-armor", "typename": "MediumArmorCrystal", "tag": "Medium Armor Crystal", "filter": 49, "pos": ["MAP09",1967,888,-612] }
 AP-ITEM { "category": "small-health", "typename": "HealthPotionOfMinorHealing", "tag": "Potion of Minor Healing", "filter": 1, "pos": ["MAP09",3681,1862,-611] }
 AP-ITEM { "category": "small-ammo", "typename": "FragfireCan", "tag": "Fragfire Can", "filter": 49, "pos": ["MAP09",-572,2864,-595] }
@@ -2086,7 +2086,7 @@ AP-ITEM { "category": "small-ammo", "typename": "Boltmag", "tag": "Boltmag", "se
 AP-ITEM { "category": "small-ammo", "typename": "Boltmag", "tag": "Boltmag", "secret": true, "pos": ["MAP09",171,2018,-619] }
 AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfHealing", "tag": "Potion of Healing", "pos": ["MAP09",2535,-1389,-620] }
 AP-ITEM { "category": "small-ammo", "typename": "Boltmag", "tag": "Boltmag", "filter": 48, "pos": ["MAP09",-4567,603,-558] }
-AP-ITEM { "category": "medium-attack", "typename": "InventoryPotionofHaste", "tag": "Potion of Haste", "filter": 16, "pos": ["MAP09",-33,-1025,-556] }
+AP-ITEM { "category": "big-attack", "typename": "InventoryPotionofHaste", "tag": "Potion of Haste", "filter": 16, "pos": ["MAP09",-33,-1025,-556] }
 AP-ITEM { "category": "medium-health-attack", "typename": "InventoryPotionOfMight", "tag": "Potion of Might", "filter": 16, "pos": ["MAP09",-1439,-83,-662] }
 AP-ITEM { "category": "weapon", "typename": "BearzerkAxe", "tag": "Bearzerker Axe", "filter": 32, "pos": ["MAP09",1992,2568,-548] }
 AP-SECRET { "pos": ["MAP09","secret","sector",1221] }
@@ -2098,7 +2098,7 @@ AP-MAP {
   "map": "MAP10", "levelname": "Crystal Heart", "episodename": "Crystal Heart",
   "checksum": "ff52f494c59f964d86f4a511d52166f6", "rank": 9, "monster_count": 644,
   "info": { "levelnum": 10, "title": "Crystal Heart", "is_lookup": false, "sky1": "sky14", "sky1speed": "0.000000", "sky2": "sky14", "sky2speed": "0.000000", "music": "", "music_track": "0", "cluster": 0, "flags": [] },
-  "monsters": { "NPCZuraRecovering": 1, "SniperCultist": 27, "IDReaverStationary": 8, "CinematicNithriel": 1, "NPCLithRegular": 1, "NPCWoundedFixer": 1, "ForgeElemental": 18, "Cerberus": 51, "IDFixerStationary": 1, "IDReaverRecruitable": 1, "CritterGhostEel": 10, "NPCDendraRegular": 2, "NPCZuraWriting": 1, "Cultist": 47, "NPCWoundedEarthMother": 1, "CritterPraak": 1, "DwarfShieldguard": 1, "MinotaurAxeman": 1, "IronUrchin": 24, "NPCWoundedWitch": 1, "BlindNithriel": 1, "IDWitchStationary": 1, "PitLordAlphaCinematic": 1, "IDSentry": 2, "Warlock": 48, "Golem": 53, "NPCDuraRegular": 2, "NPCTiatiWounded": 1, "IDBearWarriorStationary": 9, "CritterCandlefly": 4, "PitLord": 13, "IronMaiden": 27, "NPCAndrikBroom": 1, "ShadowAbhaothLevitating": 1, "NPCWoundedEarthMotherHealing": 1, "Crawler": 61, "NPCWoundedShieldguard": 1, "IDBearWarriorRecruitable": 1, "Conscript": 56, "Initiate": 158, "IDLancerStationary": 3 },
+  "monsters": { "NPCZuraRecovering": 1, "SniperCultist": 27, "IDReaverStationary": 8, "CinematicNithriel": 1, "NPCLithRegular": 1, "NPCWoundedFixer": 1, "ForgeElemental": 18, "Cerberus": 51, "IDFixerStationary": 1, "IDReaverRecruitable": 1, "CritterGhostEel": 10, "NPCDendraRegular": 2, "NPCZuraWriting": 1, "Cultist": 47, "NPCWoundedEarthMother": 1, "CritterPraak": 1, "DwarfShieldguard": 1, "MinotaurAxeman": 1, "IronUrchin": 24, "NPCWoundedWitch": 1, "BlindNithriel": 1, "IDWitchStationary": 1, "IDSentry": 2, "Warlock": 48, "Golem": 53, "NPCDuraRegular": 2, "NPCTiatiWounded": 1, "IDBearWarriorStationary": 9, "CritterCandlefly": 4, "PitLord": 13, "IronMaiden": 27, "NPCAndrikBroom": 1, "ShadowAbhaothLevitating": 1, "PitLordAlphaCinematic": 1, "NPCWoundedEarthMotherHealing": 1, "Crawler": 61, "NPCWoundedShieldguard": 1, "IDBearWarriorRecruitable": 1, "Conscript": 56, "Initiate": 158, "IDLancerStationary": 3 },
   "prereqs": [ "weapon/Axe/need" ]
 }
 AP-ITEM { "category": "small-health", "typename": "HealthApple", "tag": "Apple", "pos": ["MAP10",-2532,-6188,-590] }
@@ -2122,8 +2122,8 @@ AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Sha
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "secret": true, "pos": ["MAP10",-6176,-601,-838] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "secret": true, "pos": ["MAP10",-6044,-741,-838] }
 AP-ITEM { "category": "small-ammo", "typename": "SpikeMag", "tag": "Spike Mag", "pos": ["MAP10",-5112,2840,-774] }
-AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "pos": ["MAP10",-5388,3260,-862] }
-AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "pos": ["MAP10",-4312,3256,-662] }
+AP-ITEM { "category": "big-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "pos": ["MAP10",-5388,3260,-862] }
+AP-ITEM { "category": "big-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "pos": ["MAP10",-4312,3256,-662] }
 AP-ITEM { "category": "small-ammo", "typename": "SpikeMag", "tag": "Spike Mag", "pos": ["MAP10",-4516,2836,-526] }
 AP-ITEM { "category": "small-health", "typename": "HealthPotionOfMinorHealing", "tag": "Potion of Minor Healing", "pos": ["MAP10",-5088,1852,-862] }
 AP-ITEM { "category": "small-health", "typename": "HealthPotionOfMinorHealing", "tag": "Potion of Minor Healing", "pos": ["MAP10",-4448,1856,-862] }
@@ -2131,8 +2131,8 @@ AP-ITEM { "category": "small-health", "typename": "HealthPotionOfMinorHealing", 
 AP-ITEM { "category": "small-ammo", "typename": "Boltmag", "tag": "Boltmag", "pos": ["MAP10",-4664,1532,-798] }
 AP-ITEM { "category": "small-ammo", "typename": "Boltmag", "tag": "Boltmag", "pos": ["MAP10",-4871,1536,-798] }
 AP-ITEM { "category": "small-health", "typename": "HealthPotionOfMinorHealing", "tag": "Potion of Minor Healing", "pos": ["MAP10",-5783,-412,-598] }
-AP-ITEM { "category": "medium-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "pos": ["MAP10",-6113,772,82] }
-AP-ITEM { "category": "medium-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "pos": ["MAP10",-5470,-4828,-542] }
+AP-ITEM { "category": "big-attack-defence-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "pos": ["MAP10",-6113,772,82] }
+AP-ITEM { "category": "big-attack-defence-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "pos": ["MAP10",-5470,-4828,-542] }
 AP-ITEM { "category": "key", "typename": "InventoryAirFigurine", "tag": "Air Figurine", "pos": ["MAP10",-1491,-1688,-526] }
 AP-KEY { "typename": "InventoryAirFigurine", "tag": "Air Figurine", "scopename": "MAP10", "cluster": 0, "maps": ["MAP10"] }
 AP-ITEM { "category": "key", "typename": "InventoryWaterFragment", "tag": "Water Fragment", "pos": ["MAP10",-4816,3280,-910] }
@@ -2142,7 +2142,7 @@ AP-KEY { "typename": "InventoryWaterFigurine", "tag": "Water Figurine", "scopena
 AP-ITEM { "category": "key", "typename": "InventoryAirFragment", "tag": "Air Fragment", "pos": ["MAP10",-4923,-5646,-286] }
 AP-KEY { "typename": "InventoryAirFragment", "tag": "Air Fragment", "scopename": "MAP10", "cluster": 0, "maps": ["MAP10"] }
 AP-ITEM { "category": "small-ammo", "typename": "Boltmag", "tag": "Boltmag", "filter": 49, "pos": ["MAP10",-1472,6496,-1070] }
-AP-ITEM { "category": "medium-ammo", "typename": "PotionBoxToxic", "tag": "Box of Toxic Potions", "filter": 49, "pos": ["MAP10",-1472,5664,-1070] }
+AP-ITEM { "category": "small-ammo", "typename": "PotionBoxToxic", "tag": "Box of Toxic Potions", "filter": 49, "pos": ["MAP10",-1472,5664,-1070] }
 AP-ITEM { "category": "small-health", "typename": "HealthCreamFungus", "tag": "Cream Fungus", "pos": ["MAP10",84,-1904,-528] }
 AP-ITEM { "category": "small-health", "typename": "HealthCreamFungus", "tag": "Cream Fungus", "pos": ["MAP10",108,-1912,-528] }
 AP-ITEM { "category": "small-health", "typename": "HealthCreamFungus", "tag": "Cream Fungus", "pos": ["MAP10",144,-1896,-528] }
@@ -2155,11 +2155,11 @@ AP-ITEM { "category": "key", "typename": "InventoryEarthFigurine", "tag": "Earth
 AP-KEY { "typename": "InventoryEarthFigurine", "tag": "Earth Figurine", "scopename": "MAP10", "cluster": 0, "maps": ["MAP10"] }
 AP-ITEM { "category": "key", "typename": "InventoryEarthFragment", "tag": "Earth Fragment", "pos": ["MAP10",1416,4056,-546] }
 AP-KEY { "typename": "InventoryEarthFragment", "tag": "Earth Fragment", "scopename": "MAP10", "cluster": 0, "maps": ["MAP10"] }
-AP-ITEM { "category": "small-defence", "typename": "InventoryChokerOFTheBeast", "tag": "Choker of the Beast", "secret": true, "pos": ["MAP10",-4376,-3336,-562] }
+AP-ITEM { "category": "medium-defence", "typename": "InventoryChokerOFTheBeast", "tag": "Choker of the Beast", "secret": true, "pos": ["MAP10",-4376,-3336,-562] }
 AP-ITEM { "category": "medium-defence-tool", "typename": "InventoryElementalRing", "tag": "Elemental Ring", "pos": ["MAP10",-2456,-769,-582] }
-AP-ITEM { "category": "small-defence", "typename": "InventoryAmuletOfShadows", "tag": "Amulet of Shadows", "pos": ["MAP10",-2455,-2432,-582] }
+AP-ITEM { "category": "medium-defence", "typename": "InventoryAmuletOfShadows", "tag": "Amulet of Shadows", "pos": ["MAP10",-2455,-2432,-582] }
 AP-ITEM { "category": "medium-defence", "typename": "InventoryPotionOfStoneskin", "tag": "Potion of Stoneskin", "pos": ["MAP10",-499,-767,-582] }
-AP-ITEM { "category": "medium-attack", "typename": "InventoryPotionofHaste", "tag": "Potion of Haste", "pos": ["MAP10",-510,-2433,-582] }
+AP-ITEM { "category": "big-attack", "typename": "InventoryPotionofHaste", "tag": "Potion of Haste", "pos": ["MAP10",-510,-2433,-582] }
 AP-ITEM { "category": "small-health", "typename": "HealthPotionOfMinorHealing", "tag": "Potion of Minor Healing", "pos": ["MAP10",-5795,865,-598] }
 AP-ITEM { "category": "small-ammo", "typename": "SpikeMag", "tag": "Spike Mag", "pos": ["MAP10",-5160,3700,-582] }
 AP-ITEM { "category": "small-ammo", "typename": "SpikeMag", "tag": "Spike Mag", "pos": ["MAP10",-4496,3712,-742] }
@@ -2176,10 +2176,10 @@ AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfHealing", "tag
 AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfHealing", "tag": "Potion of Healing", "pos": ["MAP10",-1744,-1692,-558] }
 AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfHealing", "tag": "Potion of Healing", "pos": ["MAP10",-1196,-1688,-558] }
 AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfHealing", "tag": "Potion of Healing", "pos": ["MAP10",-1196,-1508,-558] }
-AP-ITEM { "category": "medium-attack", "typename": "InventoryPotionofHaste", "tag": "Potion of Haste", "pos": ["MAP10",1953,-4957,-326] }
+AP-ITEM { "category": "big-attack", "typename": "InventoryPotionofHaste", "tag": "Potion of Haste", "pos": ["MAP10",1953,-4957,-326] }
 AP-ITEM { "category": "medium-health", "typename": "HealthGreenCrystalCouple", "tag": "Green Crystals", "pos": ["MAP10",597,-1141,-550] }
 AP-ITEM { "category": "medium-health-attack", "typename": "InventoryPotionOfMight", "tag": "Potion of Might", "pos": ["MAP10",1600,-4733,-590] }
-AP-ITEM { "category": "medium-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "pos": ["MAP10",4428,-1853,-542] }
+AP-ITEM { "category": "big-attack-defence-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "pos": ["MAP10",4428,-1853,-542] }
 AP-ITEM { "category": "medium-health", "typename": "HealthGreenCrystalCouple", "tag": "Green Crystals", "pos": ["MAP10",1706,3607,-602] }
 AP-ITEM { "category": "small-health", "typename": "HealthGreenCrystal", "tag": "Green Crystal", "pos": ["MAP10",3219,3180,-602] }
 AP-ITEM { "category": "small-health", "typename": "HealthGreenCrystal", "tag": "Green Crystal", "pos": ["MAP10",3155,2334,-602] }
@@ -2197,13 +2197,13 @@ AP-ITEM { "category": "small-ammo", "typename": "PotionBoxAcid", "tag": "Box of 
 AP-ITEM { "category": "small-ammo", "typename": "Boltmag", "tag": "Boltmag", "pos": ["MAP10",5302,-414,-734] }
 AP-ITEM { "category": "medium-tool", "typename": "InventorySentryGun", "tag": "Sentry Gun", "pos": ["MAP10",5717,-709,-734] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "filter": 49, "pos": ["MAP10",-448,29152,-1141] }
-AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "filter": 49, "pos": ["MAP10",2672,30320,-1141] }
-AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "filter": 49, "pos": ["MAP10",3392,28672,-1141] }
-AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "filter": 49, "pos": ["MAP10",2688,27008,-1141] }
-AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "filter": 49, "pos": ["MAP10",-656,26992,-1141] }
-AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "filter": 49, "pos": ["MAP10",-640,30336,-1141] }
-AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "filter": 49, "pos": ["MAP10",-1296,28672,-1141] }
-AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "filter": 49, "pos": ["MAP10",1886,29534,-1141] }
+AP-ITEM { "category": "big-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "filter": 49, "pos": ["MAP10",2672,30320,-1141] }
+AP-ITEM { "category": "big-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "filter": 49, "pos": ["MAP10",3392,28672,-1141] }
+AP-ITEM { "category": "big-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "filter": 49, "pos": ["MAP10",2688,27008,-1141] }
+AP-ITEM { "category": "big-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "filter": 49, "pos": ["MAP10",-656,26992,-1141] }
+AP-ITEM { "category": "big-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "filter": 49, "pos": ["MAP10",-640,30336,-1141] }
+AP-ITEM { "category": "big-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "filter": 49, "pos": ["MAP10",-1296,28672,-1141] }
+AP-ITEM { "category": "big-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "filter": 49, "pos": ["MAP10",1886,29534,-1141] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "pos": ["MAP10",907,3967,-597] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "pos": ["MAP10",1037,4325,-602] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "pos": ["MAP10",1460,4469,-600] }
@@ -2212,7 +2212,7 @@ AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Sha
 AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfHealing", "tag": "Potion of Healing", "pos": ["MAP10",4288,-755,-742] }
 AP-ITEM { "category": "small-ammo", "typename": "SpikeMag", "tag": "Spike Mag", "pos": ["MAP10",4589,-569,-742] }
 AP-ITEM { "category": "small-ammo", "typename": "FragfireCan", "tag": "Fragfire Can", "pos": ["MAP10",4361,-161,-758] }
-AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "pos": ["MAP10",4182,373,-798] }
+AP-ITEM { "category": "big-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "pos": ["MAP10",4182,373,-798] }
 AP-ITEM { "category": "small-ammo", "typename": "SpikeMag", "tag": "Spike Mag", "pos": ["MAP10",4524,562,-782] }
 AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag": "Vial of Healing", "pos": ["MAP10",4069,793,-782] }
 AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag": "Vial of Healing", "pos": ["MAP10",-1790,-2841,-550] }
@@ -2255,7 +2255,7 @@ AP-ITEM { "category": "small-health", "typename": "HealthPotionOfMinorHealing", 
 AP-ITEM { "category": "small-health", "typename": "HealthPotionOfMinorHealing", "tag": "Potion of Minor Healing", "pos": ["MAP10",-4532,-576,-606] }
 AP-ITEM { "category": "small-ammo", "typename": "SpikeMag", "tag": "Spike Mag", "pos": ["MAP10",-5004,-960,-606] }
 AP-ITEM { "category": "small-ammo", "typename": "Boltmag", "tag": "Boltmag", "pos": ["MAP10",-4532,-960,-606] }
-AP-ITEM { "category": "medium-ammo", "typename": "PotionBoxToxic", "tag": "Box of Toxic Potions", "pos": ["MAP10",-5004,-2240,-606] }
+AP-ITEM { "category": "small-ammo", "typename": "PotionBoxToxic", "tag": "Box of Toxic Potions", "pos": ["MAP10",-5004,-2240,-606] }
 AP-ITEM { "category": "small-ammo", "typename": "FragfireCan", "tag": "Fragfire Can", "pos": ["MAP10",-4532,-2240,-606] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "pos": ["MAP10",-6708,-1548,-82] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "pos": ["MAP10",-6668,-1572,-82] }
@@ -2296,27 +2296,27 @@ AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Sha
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "pos": ["MAP10",-1108,480,-526] }
 AP-ITEM { "category": "small-ammo", "typename": "Boltmag", "tag": "Boltmag", "pos": ["MAP10",-1892,4020,-1054] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "pos": ["MAP10",-1193,29676,-1141] }
-AP-ITEM { "category": "medium-attack", "typename": "InventoryPotionofHaste", "tag": "Potion of Haste", "pos": ["MAP10",3197,28672,-1141] }
+AP-ITEM { "category": "big-attack", "typename": "InventoryPotionofHaste", "tag": "Potion of Haste", "pos": ["MAP10",3197,28672,-1141] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "pos": ["MAP10",-1104,29850,-1141] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "pos": ["MAP10",-668,27292,-1141] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "pos": ["MAP10",-1145,29381,-1141] }
-AP-ITEM { "category": "medium-attack", "typename": "InventoryPotionofHaste", "tag": "Potion of Haste", "pos": ["MAP10",1795,28674,-1149] }
-AP-ITEM { "category": "medium-attack", "typename": "InventoryPotionofHaste", "tag": "Potion of Haste", "pos": ["MAP10",-382,28674,-1141] }
+AP-ITEM { "category": "big-attack", "typename": "InventoryPotionofHaste", "tag": "Potion of Haste", "pos": ["MAP10",1795,28674,-1149] }
+AP-ITEM { "category": "big-attack", "typename": "InventoryPotionofHaste", "tag": "Potion of Haste", "pos": ["MAP10",-382,28674,-1141] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "secret": true, "pos": ["MAP10",-4340,-3444,-562] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "secret": true, "pos": ["MAP10",-4346,-3410,-562] }
-AP-ITEM { "category": "medium-attack", "typename": "InventoryPotionofHaste", "tag": "Potion of Haste", "pos": ["MAP10",-1148,28672,-1141] }
+AP-ITEM { "category": "big-attack", "typename": "InventoryPotionofHaste", "tag": "Potion of Haste", "pos": ["MAP10",-1148,28672,-1141] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "filter": 49, "pos": ["MAP10",-448,28160,-1141] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "filter": 49, "pos": ["MAP10",-416,28080,-1141] }
-AP-ITEM { "category": "medium-attack", "typename": "InventoryPotionofHaste", "tag": "Potion of Haste", "pos": ["MAP10",263,28673,-1149] }
+AP-ITEM { "category": "big-attack", "typename": "InventoryPotionofHaste", "tag": "Potion of Haste", "pos": ["MAP10",263,28673,-1149] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "filter": 49, "pos": ["MAP10",-400,29264,-1141] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "filter": 49, "pos": ["MAP10",-368,29360,-1141] }
-AP-ITEM { "category": "medium-attack", "typename": "InventoryPotionofHaste", "tag": "Potion of Haste", "pos": ["MAP10",2433,28673,-1141] }
-AP-ITEM { "category": "medium-attack", "typename": "InventoryPotionofHaste", "tag": "Potion of Haste", "filter": 49, "pos": ["MAP10",-2208,4192,-1070] }
+AP-ITEM { "category": "big-attack", "typename": "InventoryPotionofHaste", "tag": "Potion of Haste", "pos": ["MAP10",2433,28673,-1141] }
+AP-ITEM { "category": "big-attack", "typename": "InventoryPotionofHaste", "tag": "Potion of Haste", "filter": 49, "pos": ["MAP10",-2208,4192,-1070] }
 AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag": "Vial of Healing", "pos": ["MAP10",-736,4256,-1070] }
 AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag": "Vial of Healing", "pos": ["MAP10",-736,4128,-1070] }
 AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag": "Vial of Healing", "pos": ["MAP10",-2208,7200,-1070] }
 AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag": "Vial of Healing", "pos": ["MAP10",-2208,7072,-1070] }
-AP-ITEM { "category": "medium-attack", "typename": "InventoryPotionofHaste", "tag": "Potion of Haste", "filter": 49, "pos": ["MAP10",-736,7136,-1070] }
+AP-ITEM { "category": "big-attack", "typename": "InventoryPotionofHaste", "tag": "Potion of Haste", "filter": 49, "pos": ["MAP10",-736,7136,-1070] }
 AP-ITEM { "category": "weapon", "typename": "FragfireGun", "tag": "Fragfire Gun", "filter": 31, "pos": ["MAP10",-1360,4012,-1070] }
 AP-ITEM { "category": "weapon", "typename": "SpikeGun", "tag": "Spike Gun", "filter": 31, "pos": ["MAP10",-1268,3904,-974] }
 AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag": "Vial of Healing", "pos": ["MAP10",-1228,3956,-1070] }
@@ -2331,11 +2331,11 @@ AP-ITEM { "category": "small-ammo", "typename": "FragfireCan", "tag": "Fragfire 
 AP-ITEM { "category": "small-ammo", "typename": "Boltmag", "tag": "Boltmag", "pos": ["MAP10",-1324,9008,-862] }
 AP-ITEM { "category": "weapon", "typename": "FragfireGun", "tag": "Fragfire Gun", "filter": 31, "pos": ["MAP10",-2816,9112,-702] }
 AP-ITEM { "category": "small-ammo", "typename": "FragfireCanHalf", "tag": "Half-Empty Fragfire Can", "pos": ["MAP10",-2796,9192,-670] }
-AP-ITEM { "category": "medium-attack", "typename": "InventoryPotionofHaste", "tag": "Potion of Haste", "pos": ["MAP10",-4780,12636,-622] }
+AP-ITEM { "category": "big-attack", "typename": "InventoryPotionofHaste", "tag": "Potion of Haste", "pos": ["MAP10",-4780,12636,-622] }
 AP-ITEM { "category": "weapon", "typename": "Crushbow", "tag": "Crushbow", "filter": 31, "pos": ["MAP10",-2920,9184,-702] }
 AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfHealing", "tag": "Potion of Healing", "pos": ["MAP10",-3008,9316,-638] }
 AP-ITEM { "category": "small-health", "typename": "HealthPotionOfMinorHealing", "tag": "Potion of Minor Healing", "filter": 1, "pos": ["MAP10",-7127,-2537,-362] }
-AP-ITEM { "category": "medium-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "filter": 49, "pos": ["MAP10",1732,1245,-402] }
+AP-ITEM { "category": "big-attack-defence-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "filter": 49, "pos": ["MAP10",1732,1245,-402] }
 AP-ITEM { "category": "small-ammo", "typename": "Boltmag", "tag": "Boltmag", "pos": ["MAP10",716,12424,-638] }
 AP-ITEM { "category": "small-ammo", "typename": "FragfireCan", "tag": "Fragfire Can", "pos": ["MAP10",692,12412,-702] }
 AP-ITEM { "category": "medium-armor", "typename": "LightArmorCrystal", "tag": "Light Armor Crystal", "pos": ["MAP10",-2502,9444,-702] }
@@ -2348,7 +2348,7 @@ AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfHealing", "tag
 AP-ITEM { "category": "small-health", "typename": "HealthPotionOfMinorHealing", "tag": "Potion of Minor Healing", "pos": ["MAP10",-1332,10068,-597] }
 AP-ITEM { "category": "small-health", "typename": "HealthPotionOfMinorHealing", "tag": "Potion of Minor Healing", "pos": ["MAP10",-1376,10088,-597] }
 AP-ITEM { "category": "small-ammo", "typename": "PotionBoxAcid", "tag": "Box of Acid Potions", "pos": ["MAP10",-992,10204,-597] }
-AP-ITEM { "category": "medium-ammo", "typename": "PotionBoxToxic", "tag": "Box of Toxic Potions", "pos": ["MAP10",-1040,10204,-597] }
+AP-ITEM { "category": "small-ammo", "typename": "PotionBoxToxic", "tag": "Box of Toxic Potions", "pos": ["MAP10",-1040,10204,-597] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "pos": ["MAP10",-2468,9448,-702] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "pos": ["MAP10",-1024,9512,-694] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "pos": ["MAP10",-768,9512,-694] }
@@ -2359,25 +2359,25 @@ AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Sha
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "filter": 49, "pos": ["MAP10",-384,28000,-1141] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "filter": 49, "pos": ["MAP10",2416,27984,-1141] }
 AP-ITEM { "category": "small-ammo", "typename": "Boltmag", "tag": "Boltmag", "pos": ["MAP10",-3288,12432,-573] }
-AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "pos": ["MAP10",-3336,12428,-638] }
+AP-ITEM { "category": "big-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "pos": ["MAP10",-3336,12428,-638] }
 AP-ITEM { "category": "small-ammo", "typename": "FragfireCan", "tag": "Fragfire Can", "pos": ["MAP10",-3236,12144,-702] }
-AP-ITEM { "category": "weapon", "typename": "PotionLauncher", "tag": "Potion Launcher", "filter": 31, "pos": ["MAP10",-3352,12068,-702] }
+AP-ITEM { "category": "weapon", "typename": "PotionLauncher", "tag": "Potion Launcher", "pos": ["MAP10",-3352,12068,-702] }
 AP-ITEM { "category": "small-ammo", "typename": "FragfireCan", "tag": "Fragfire Can", "pos": ["MAP10",-2788,11504,-702] }
 AP-ITEM { "category": "small-ammo", "typename": "SpikeMag", "tag": "Spike Mag", "pos": ["MAP10",-3300,12292,-606] }
 AP-ITEM { "category": "small-ammo", "typename": "AmmoCultistSpike", "tag": "Spike Bundle", "pos": ["MAP10",-5392,12588,-622] }
 AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfHealing", "tag": "Potion of Healing", "pos": ["MAP10",-3812,12376,-702] }
 AP-ITEM { "category": "small-ammo", "typename": "SpikeMag", "tag": "Spike Mag", "pos": ["MAP10",-3580,12068,-670] }
 AP-ITEM { "category": "small-health", "typename": "HealthPotionOfMinorHealing", "tag": "Potion of Minor Healing", "pos": ["MAP10",-3380,12332,-702] }
-AP-ITEM { "category": "small-tool", "typename": "InventoryFixerGoggles", "tag": "Fixer's Goggles", "pos": ["MAP10",-4432,12292,-590] }
+AP-ITEM { "category": "medium-tool", "typename": "InventoryFixerGoggles", "tag": "Fixer's Goggles", "pos": ["MAP10",-4432,12292,-590] }
 AP-ITEM { "category": "small-ammo", "typename": "SpikeMag", "tag": "Spike Mag", "pos": ["MAP10",-3498,12144,-590] }
 AP-ITEM { "category": "small-ammo", "typename": "SpikeMag", "tag": "Spike Mag", "pos": ["MAP10",-3597,12099,-702] }
 AP-ITEM { "category": "medium-tool", "typename": "InventorySentryGun", "tag": "Sentry Gun", "filter": 49, "pos": ["MAP10",-3556,12432,-702] }
 AP-ITEM { "category": "medium-tool", "typename": "InventorySentryGun", "tag": "Sentry Gun", "filter": 1, "pos": ["MAP10",-3492,12432,-702] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "filter": 1, "pos": ["MAP10",-474,9926,-702] }
 AP-ITEM { "category": "weapon", "typename": "Crushbow", "tag": "Crushbow", "filter": 31, "pos": ["MAP10",-1536,11860,-702] }
-AP-ITEM { "category": "weapon", "typename": "PotionLauncher", "tag": "Potion Launcher", "filter": 31, "pos": ["MAP10",-1420,12168,-702] }
+AP-ITEM { "category": "weapon", "typename": "PotionLauncher", "tag": "Potion Launcher", "pos": ["MAP10",-1420,12168,-702] }
 AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfHealing", "tag": "Potion of Healing", "filter": 49, "pos": ["MAP10",-1496,12064,-702] }
-AP-ITEM { "category": "medium-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "pos": ["MAP10",-1560,12064,-534] }
+AP-ITEM { "category": "big-attack-defence-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "pos": ["MAP10",-1560,12064,-534] }
 AP-ITEM { "category": "small-health", "typename": "HealthPotionOfMinorHealing", "tag": "Potion of Minor Healing", "filter": 49, "pos": ["MAP10",-1380,11876,-702] }
 AP-ITEM { "category": "small-health", "typename": "HealthPotionOfMinorHealing", "tag": "Potion of Minor Healing", "filter": 49, "pos": ["MAP10",-1424,11840,-702] }
 AP-ITEM { "category": "small-ammo", "typename": "SpikeMag", "tag": "Spike Mag", "pos": ["MAP10",676,12428,-702] }
@@ -2410,7 +2410,7 @@ AP-ITEM { "category": "small-ammo", "typename": "AmmoCultistSpike", "tag": "Spik
 AP-ITEM { "category": "small-ammo", "typename": "AmmoCultistSpike", "tag": "Spike Bundle", "pos": ["MAP10",-4140,11932,-617] }
 AP-ITEM { "category": "small-ammo", "typename": "AmmoCultistSpike", "tag": "Spike Bundle", "pos": ["MAP10",-4048,11932,-617] }
 AP-ITEM { "category": "small-ammo", "typename": "AmmoCultistSpike", "tag": "Spike Bundle", "pos": ["MAP10",-4064,11932,-617] }
-AP-ITEM { "category": "small-defence", "typename": "InventoryAmuletOfShadows", "tag": "Amulet of Shadows", "pos": ["MAP10",-4664,12112,-494] }
+AP-ITEM { "category": "medium-defence", "typename": "InventoryAmuletOfShadows", "tag": "Amulet of Shadows", "pos": ["MAP10",-4664,12112,-494] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "pos": ["MAP10",-4692,12200,-617] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "pos": ["MAP10",-4692,12225,-617] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "pos": ["MAP10",-4692,12208,-617] }
@@ -2419,7 +2419,7 @@ AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Sha
 AP-ITEM { "category": "small-ammo", "typename": "SpikeMag", "tag": "Spike Mag", "filter": 57, "pos": ["MAP10",-3996,11988,-590] }
 AP-ITEM { "category": "small-ammo", "typename": "PotionBoxAcid", "tag": "Box of Acid Potions", "filter": 57, "pos": ["MAP10",-4296,11964,-622] }
 AP-ITEM { "category": "small-ammo", "typename": "PotionBoxAcid", "tag": "Box of Acid Potions", "pos": ["MAP10",-4248,11964,-622] }
-AP-ITEM { "category": "medium-ammo", "typename": "PotionBoxToxic", "tag": "Box of Toxic Potions", "pos": ["MAP10",-4352,11952,-558] }
+AP-ITEM { "category": "small-ammo", "typename": "PotionBoxToxic", "tag": "Box of Toxic Potions", "pos": ["MAP10",-4352,11952,-558] }
 AP-ITEM { "category": "weapon", "typename": "Crushbow", "tag": "Crushbow", "tid": 223, "filter": 31, "pos": ["MAP10",-4575,12334,-590] }
 AP-ITEM { "category": "small-ammo", "typename": "Boltmag", "tag": "Boltmag", "filter": 57, "pos": ["MAP10",-4072,12432,-558] }
 AP-ITEM { "category": "small-ammo", "typename": "Boltmag", "tag": "Boltmag", "pos": ["MAP10",-4040,12440,-558] }
@@ -2456,7 +2456,7 @@ AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Sha
 AP-ITEM { "category": "weapon", "typename": "SpikeGun", "tag": "Spike Gun", "filter": 31, "pos": ["MAP10",-6584,7128,-388] }
 AP-ITEM { "category": "small-health", "typename": "HealthPotionOfMinorHealing", "tag": "Potion of Minor Healing", "pos": ["MAP10",-8300,7216,-388] }
 AP-ITEM { "category": "small-health", "typename": "HealthPotionOfMinorHealing", "tag": "Potion of Minor Healing", "secret": true, "pos": ["MAP10",-2624,8224,-318] }
-AP-ITEM { "category": "medium-attack", "typename": "InventoryPotionofHaste", "tag": "Potion of Haste", "secret": true, "pos": ["MAP10",-2644,8196,-318] }
+AP-ITEM { "category": "big-attack", "typename": "InventoryPotionofHaste", "tag": "Potion of Haste", "secret": true, "pos": ["MAP10",-2644,8196,-318] }
 AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag": "Vial of Healing", "secret": true, "pos": ["MAP10",-2592,8200,-318] }
 AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag": "Vial of Healing", "secret": true, "pos": ["MAP10",-2592,8240,-318] }
 AP-ITEM { "category": "small-health", "typename": "HealthPotionOfMinorHealing", "tag": "Potion of Minor Healing", "pos": ["MAP10",-8268,7212,-388] }
@@ -2483,7 +2483,7 @@ AP-ITEM { "category": "small-ammo", "typename": "AmmoCultistSpike", "tag": "Spik
 AP-ITEM { "category": "small-ammo", "typename": "AmmoCultistSpike", "tag": "Spike Bundle", "pos": ["MAP10",-12218,8479,-158] }
 AP-ITEM { "category": "small-ammo", "typename": "AmmoCultistSpike", "tag": "Spike Bundle", "pos": ["MAP10",-12233,8488,-158] }
 AP-ITEM { "category": "small-ammo", "typename": "AmmoCultistSpike", "tag": "Spike Bundle", "pos": ["MAP10",-12846,8731,-186] }
-AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "pos": ["MAP10",-11056,8884,-356] }
+AP-ITEM { "category": "big-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "pos": ["MAP10",-11056,8884,-356] }
 AP-ITEM { "category": "small-ammo", "typename": "Boltmag", "tag": "Boltmag", "pos": ["MAP10",-10960,8372,-356] }
 AP-ITEM { "category": "small-ammo", "typename": "PotionBoxAcid", "tag": "Box of Acid Potions", "pos": ["MAP10",-11047,8393,-389] }
 AP-ITEM { "category": "small-ammo", "typename": "PotionBoxAcid", "tag": "Box of Acid Potions", "filter": 31, "pos": ["MAP10",-12608,7812,-366] }
@@ -2494,7 +2494,7 @@ AP-ITEM { "category": "small-health", "typename": "HealthPotionOfMinorHealing", 
 AP-ITEM { "category": "small-health", "typename": "HealthPotionOfMinorHealing", "tag": "Potion of Minor Healing", "pos": ["MAP10",-12068,11180,-710] }
 AP-ITEM { "category": "small-health", "typename": "HealthPotionOfMinorHealing", "tag": "Potion of Minor Healing", "pos": ["MAP10",-11424,11176,-710] }
 AP-ITEM { "category": "small-ammo", "typename": "PotionBoxAcid", "tag": "Box of Acid Potions", "pos": ["MAP10",-12064,10528,-606] }
-AP-ITEM { "category": "medium-ammo", "typename": "PotionBoxToxic", "tag": "Box of Toxic Potions", "pos": ["MAP10",-11424,10528,-606] }
+AP-ITEM { "category": "small-ammo", "typename": "PotionBoxToxic", "tag": "Box of Toxic Potions", "pos": ["MAP10",-11424,10528,-606] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "filter": 31, "pos": ["MAP10",-12160,12392,-702] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "filter": 31, "pos": ["MAP10",-11968,12392,-702] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "filter": 31, "pos": ["MAP10",-11520,12388,-702] }
@@ -2505,7 +2505,7 @@ AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfHealing", "tag
 AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag": "Vial of Healing", "filter": 31, "pos": ["MAP10",-9580,11748,-617] }
 AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag": "Vial of Healing", "filter": 31, "pos": ["MAP10",-9408,11776,-590] }
 AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag": "Vial of Healing", "filter": 31, "pos": ["MAP10",-9556,11748,-617] }
-AP-ITEM { "category": "medium-attack", "typename": "InventoryPotionofHaste", "tag": "Potion of Haste", "filter": 31, "pos": ["MAP10",-9440,11772,-590] }
+AP-ITEM { "category": "big-attack", "typename": "InventoryPotionofHaste", "tag": "Potion of Haste", "filter": 31, "pos": ["MAP10",-9440,11772,-590] }
 AP-ITEM { "category": "weapon", "typename": "PotionLauncher", "tag": "Potion Launcher", "filter": 31, "pos": ["MAP10",-9848,11896,-622] }
 AP-ITEM { "category": "weapon", "typename": "SpikeGun", "tag": "Spike Gun", "filter": 31, "pos": ["MAP10",-10080,12360,-622] }
 AP-ITEM { "category": "weapon", "typename": "Crylance", "tag": "Crylance", "filter": 31, "pos": ["MAP10",-10168,12288,-622] }
@@ -2526,8 +2526,8 @@ AP-ITEM { "category": "small-health", "typename": "HealthBread", "tag": "Bread",
 AP-ITEM { "category": "small-health", "typename": "HealthBread", "tag": "Bread", "filter": 31, "pos": ["MAP10",-10076,11772,-590] }
 AP-ITEM { "category": "small-health", "typename": "HealthBread", "tag": "Bread", "filter": 31, "pos": ["MAP10",-10012,11784,-590] }
 AP-ITEM { "category": "small-health", "typename": "HealthCider", "tag": "Cider", "filter": 31, "pos": ["MAP10",-10100,11772,-590] }
-AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "filter": 49, "pos": ["MAP10",2238,28670,-1141] }
-AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "filter": 49, "pos": ["MAP10",1870,27822,-1141] }
+AP-ITEM { "category": "big-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "filter": 49, "pos": ["MAP10",2238,28670,-1141] }
+AP-ITEM { "category": "big-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "filter": 49, "pos": ["MAP10",1870,27822,-1141] }
 AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfHealing", "tag": "Potion of Healing", "filter": 31, "pos": ["MAP10",-10000,11828,-622] }
 AP-ITEM { "category": "small-health", "typename": "HealthPotionOfMinorHealing", "tag": "Potion of Minor Healing", "filter": 31, "pos": ["MAP10",-10044,11836,-622] }
 AP-ITEM { "category": "small-ammo", "typename": "SpikeMag", "tag": "Spike Mag", "filter": 49, "pos": ["MAP10",-10400,11952,-590] }
@@ -2545,18 +2545,18 @@ AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag
 AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag": "Vial of Healing", "pos": ["MAP10",-7576,16668,-588] }
 AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag": "Vial of Healing", "pos": ["MAP10",-7208,16356,-588] }
 AP-ITEM { "category": "small-health", "typename": "InventoryVialOfHealing", "tag": "Vial of Healing", "pos": ["MAP10",-7576,16356,-588] }
-AP-ITEM { "category": "small-defence", "typename": "InventoryAmuletOfShadows", "tag": "Amulet of Shadows", "pos": ["MAP10",-5632,16836,-804] }
+AP-ITEM { "category": "medium-defence", "typename": "InventoryAmuletOfShadows", "tag": "Amulet of Shadows", "pos": ["MAP10",-5632,16836,-804] }
 AP-ITEM { "category": "small-ammo", "typename": "FragfireCan", "tag": "Fragfire Can", "pos": ["MAP10",-5728,17088,-804] }
 AP-ITEM { "category": "small-ammo", "typename": "FragfireCan", "tag": "Fragfire Can", "pos": ["MAP10",-5536,17088,-804] }
 AP-ITEM { "category": "small-ammo", "typename": "Boltmag", "tag": "Boltmag", "pos": ["MAP10",-5728,17772,-804] }
 AP-ITEM { "category": "small-ammo", "typename": "Boltmag", "tag": "Boltmag", "pos": ["MAP10",-5536,17772,-804] }
-AP-ITEM { "category": "medium-ammo", "typename": "PotionBoxToxic", "tag": "Box of Toxic Potions", "pos": ["MAP10",-5559,18365,-804] }
+AP-ITEM { "category": "small-ammo", "typename": "PotionBoxToxic", "tag": "Box of Toxic Potions", "pos": ["MAP10",-5559,18365,-804] }
 AP-ITEM { "category": "small-ammo", "typename": "PotionBoxAcid", "tag": "Box of Acid Potions", "pos": ["MAP10",-5952,18856,-804] }
 AP-ITEM { "category": "small-ammo", "typename": "PotionBoxAcid", "tag": "Box of Acid Potions", "pos": ["MAP10",-6088,18732,-804] }
 AP-ITEM { "category": "small-ammo", "typename": "SpikeMag", "tag": "Spike Mag", "pos": ["MAP10",-6292,19244,-804] }
 AP-ITEM { "category": "small-ammo", "typename": "SpikeMag", "tag": "Spike Mag", "pos": ["MAP10",-6456,19140,-804] }
-AP-ITEM { "category": "medium-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "pos": ["MAP10",-5632,16512,-532] }
-AP-ITEM { "category": "medium-ammo", "typename": "PotionBoxToxic", "tag": "Box of Toxic Potions", "pos": ["MAP10",-6607,19533,-804] }
+AP-ITEM { "category": "big-attack-defence-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "pos": ["MAP10",-5632,16512,-532] }
+AP-ITEM { "category": "small-ammo", "typename": "PotionBoxToxic", "tag": "Box of Toxic Potions", "pos": ["MAP10",-6607,19533,-804] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "pos": ["MAP10",-7174,19596,-804] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "pos": ["MAP10",-7172,19399,-804] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "pos": ["MAP10",-7604,19596,-804] }
@@ -2600,7 +2600,7 @@ AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfHealing", "tag
 AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfHealing", "tag": "Potion of Healing", "pos": ["MAP10",1376,28748,-1165] }
 AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfHealing", "tag": "Potion of Healing", "pos": ["MAP10",1376,28596,-1165] }
 AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfHealing", "tag": "Potion of Healing", "filter": 15, "pos": ["MAP10",1328,28480,-1165] }
-AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "pos": ["MAP10",1424,30164,-1141] }
+AP-ITEM { "category": "big-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "pos": ["MAP10",1424,30164,-1141] }
 AP-ITEM { "category": "small-ammo", "typename": "FragfireCan", "tag": "Fragfire Can", "pos": ["MAP10",1632,29398,-1141] }
 AP-ITEM { "category": "small-ammo", "typename": "PotionBoxAcid", "tag": "Box of Acid Potions", "pos": ["MAP10",1745,29288,-1141] }
 AP-ITEM { "category": "small-ammo", "typename": "PotionBoxAcid", "tag": "Box of Acid Potions", "pos": ["MAP10",1961,28586,-1141] }
@@ -2645,7 +2645,7 @@ AP-ITEM { "category": "small-ammo", "typename": "Boltmag", "tag": "Boltmag", "po
 AP-ITEM { "category": "small-ammo", "typename": "Boltmag", "tag": "Boltmag", "pos": ["MAP10",2700,28758,-1141] }
 AP-ITEM { "category": "small-ammo", "typename": "Boltmag", "tag": "Boltmag", "pos": ["MAP10",2146,29928,-1141] }
 AP-ITEM { "category": "small-ammo", "typename": "Boltmag", "tag": "Boltmag", "pos": ["MAP10",2271,29767,-1141] }
-AP-ITEM { "category": "medium-ammo", "typename": "PotionBoxToxic", "tag": "Box of Toxic Potions", "filter": 49, "pos": ["MAP10",1865,29717,-1141] }
+AP-ITEM { "category": "small-ammo", "typename": "PotionBoxToxic", "tag": "Box of Toxic Potions", "filter": 49, "pos": ["MAP10",1865,29717,-1141] }
 AP-ITEM { "category": "small-ammo", "typename": "FragfireCan", "tag": "Fragfire Can", "filter": 49, "pos": ["MAP10",2130,29384,-1141] }
 AP-ITEM { "category": "small-ammo", "typename": "FragfireCan", "tag": "Fragfire Can", "filter": 49, "pos": ["MAP10",2315,28955,-1141] }
 AP-ITEM { "category": "small-ammo", "typename": "FragfireCan", "tag": "Fragfire Can", "filter": 49, "pos": ["MAP10",2331,28432,-1141] }
@@ -2656,10 +2656,10 @@ AP-ITEM { "category": "small-ammo", "typename": "FragfireCan", "tag": "Fragfire 
 AP-ITEM { "category": "small-ammo", "typename": "FragfireCan", "tag": "Fragfire Can", "filter": 49, "pos": ["MAP10",-306,28458,-1141] }
 AP-ITEM { "category": "small-ammo", "typename": "FragfireCan", "tag": "Fragfire Can", "filter": 49, "pos": ["MAP10",-306,28883,-1141] }
 AP-ITEM { "category": "small-ammo", "typename": "FragfireCan", "tag": "Fragfire Can", "filter": 49, "pos": ["MAP10",-55,29464,-1141] }
-AP-ITEM { "category": "medium-ammo", "typename": "PotionBoxToxic", "tag": "Box of Toxic Potions", "filter": 49, "pos": ["MAP10",175,29725,-1141] }
-AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "pos": ["MAP10",616,30156,-1141] }
-AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "pos": ["MAP10",628,29728,-1141] }
-AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "pos": ["MAP10",1420,29736,-1141] }
+AP-ITEM { "category": "small-ammo", "typename": "PotionBoxToxic", "tag": "Box of Toxic Potions", "filter": 49, "pos": ["MAP10",175,29725,-1141] }
+AP-ITEM { "category": "big-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "pos": ["MAP10",616,30156,-1141] }
+AP-ITEM { "category": "big-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "pos": ["MAP10",628,29728,-1141] }
+AP-ITEM { "category": "big-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "pos": ["MAP10",1420,29736,-1141] }
 AP-ITEM { "category": "medium-armor", "typename": "LightArmorCrystal", "tag": "Light Armor Crystal", "pos": ["MAP10",1577,29856,-1141] }
 AP-ITEM { "category": "medium-armor", "typename": "LightArmorCrystal", "tag": "Light Armor Crystal", "pos": ["MAP10",481,29859,-1141] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "pos": ["MAP10",-850,29832,-1141] }
@@ -2685,23 +2685,23 @@ AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Sha
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "pos": ["MAP10",2509,30545,-1141] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "pos": ["MAP10",2384,30711,-1141] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "pos": ["MAP10",2658,30448,-1141] }
-AP-ITEM { "category": "medium-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "pos": ["MAP10",2456,26968,-968] }
-AP-ITEM { "category": "medium-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "pos": ["MAP10",-879,27596,-999] }
-AP-ITEM { "category": "small-defence", "typename": "InventoryAmuletOfShadows", "tag": "Amulet of Shadows", "pos": ["MAP10",2205,30453,-1141] }
+AP-ITEM { "category": "big-attack-defence-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "pos": ["MAP10",2456,26968,-968] }
+AP-ITEM { "category": "big-attack-defence-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "pos": ["MAP10",-879,27596,-999] }
+AP-ITEM { "category": "medium-defence", "typename": "InventoryAmuletOfShadows", "tag": "Amulet of Shadows", "pos": ["MAP10",2205,30453,-1141] }
 AP-ITEM { "category": "medium-armor", "typename": "MediumArmorCrystal", "tag": "Medium Armor Crystal", "pos": ["MAP10",1788,30850,-1141] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "pos": ["MAP10",-1319,28593,-1141] }
 AP-ITEM { "category": "medium-armor", "typename": "MediumArmorCrystal", "tag": "Medium Armor Crystal", "pos": ["MAP10",216,30621,-1141] }
-AP-ITEM { "category": "small-defence", "typename": "InventoryAmuletOfShadows", "tag": "Amulet of Shadows", "pos": ["MAP10",-1339,28348,-1141] }
+AP-ITEM { "category": "medium-defence", "typename": "InventoryAmuletOfShadows", "tag": "Amulet of Shadows", "pos": ["MAP10",-1339,28348,-1141] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "pos": ["MAP10",2085,30489,-1141] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "pos": ["MAP10",2353,27213,-1141] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "pos": ["MAP10",1922,26641,-1141] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "pos": ["MAP10",2093,26429,-1141] }
 AP-ITEM { "category": "medium-defence-tool", "typename": "InventoryElementalRing", "tag": "Elemental Ring", "pos": ["MAP10",2843,30344,-1141] }
 AP-ITEM { "category": "medium-defence-tool", "typename": "InventoryElementalRing", "tag": "Elemental Ring", "pos": ["MAP10",-902,27025,-1141] }
-AP-ITEM { "category": "medium-attack", "typename": "InventoryPotionofHaste", "tag": "Potion of Haste", "pos": ["MAP10",-677,27452,-1141] }
-AP-ITEM { "category": "medium-attack", "typename": "InventoryPotionofHaste", "tag": "Potion of Haste", "pos": ["MAP10",-1227,29482,-1141] }
-AP-ITEM { "category": "medium-attack", "typename": "InventoryPotionofHaste", "tag": "Potion of Haste", "pos": ["MAP10",3420,29259,-1141] }
-AP-ITEM { "category": "medium-attack", "typename": "InventoryPotionofHaste", "tag": "Potion of Haste", "pos": ["MAP10",2653,27189,-1141] }
+AP-ITEM { "category": "big-attack", "typename": "InventoryPotionofHaste", "tag": "Potion of Haste", "pos": ["MAP10",-677,27452,-1141] }
+AP-ITEM { "category": "big-attack", "typename": "InventoryPotionofHaste", "tag": "Potion of Haste", "pos": ["MAP10",-1227,29482,-1141] }
+AP-ITEM { "category": "big-attack", "typename": "InventoryPotionofHaste", "tag": "Potion of Haste", "pos": ["MAP10",3420,29259,-1141] }
+AP-ITEM { "category": "big-attack", "typename": "InventoryPotionofHaste", "tag": "Potion of Haste", "pos": ["MAP10",2653,27189,-1141] }
 AP-ITEM { "category": "medium-defence", "typename": "InventoryPotionOfStoneskin", "tag": "Potion of Stoneskin", "pos": ["MAP10",2249,27016,-1141] }
 AP-ITEM { "category": "medium-defence", "typename": "InventoryPotionOfStoneskin", "tag": "Potion of Stoneskin", "pos": ["MAP10",-112,30709,-1141] }
 AP-ITEM { "category": "medium-health-attack", "typename": "InventoryPotionOfMight", "tag": "Potion of Might", "pos": ["MAP10",-953,27834,-1141] }
@@ -2712,9 +2712,9 @@ AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Sha
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "pos": ["MAP10",1995,30567,-1141] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "pos": ["MAP10",1869,26542,-1141] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "pos": ["MAP10",1941,30660,-1141] }
-AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "filter": 49, "pos": ["MAP10",142,27790,-1141] }
-AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "filter": 49, "pos": ["MAP10",142,29550,-1141] }
-AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "filter": 49, "pos": ["MAP10",-224,28672,-1141] }
+AP-ITEM { "category": "big-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "filter": 49, "pos": ["MAP10",142,27790,-1141] }
+AP-ITEM { "category": "big-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "filter": 49, "pos": ["MAP10",142,29550,-1141] }
+AP-ITEM { "category": "big-health", "typename": "HealthPotionOfGreaterHealing", "tag": "Potion of Greater Healing", "filter": 49, "pos": ["MAP10",-224,28672,-1141] }
 AP-ITEM { "category": "small-health", "typename": "HealthGreenCrystal", "tag": "Green Crystal", "pos": ["MAP10",1492,4540,-597] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "filter": 55, "pos": ["MAP10",-12249,7843,-157] }
 AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Shard", "filter": 55, "pos": ["MAP10",-12209,7831,-157] }
@@ -2729,14 +2729,14 @@ AP-ITEM { "category": "small-armor", "typename": "PowerShard", "tag": "Power Sha
 AP-ITEM { "category": "small-ammo", "typename": "Boltmag", "tag": "Boltmag", "filter": 62, "pos": ["MAP10",2064,7060,-702] }
 AP-ITEM { "category": "small-ammo", "typename": "Boltmag", "tag": "Boltmag", "filter": 62, "pos": ["MAP10",2004,6664,-702] }
 AP-ITEM { "category": "medium-health", "typename": "HealthPotionOfHealing", "tag": "Potion of Healing", "filter": 62, "pos": ["MAP10",1948,6716,-702] }
-AP-ITEM { "category": "weapon", "typename": "PotionLauncher", "tag": "Potion Launcher", "filter": 30, "pos": ["MAP10",720,7999,-702] }
+AP-ITEM { "category": "weapon", "typename": "PotionLauncher", "tag": "Potion Launcher", "filter": 62, "pos": ["MAP10",720,7999,-702] }
 AP-ITEM { "category": "small-ammo", "typename": "PotionBoxAcid", "tag": "Box of Acid Potions", "filter": 62, "pos": ["MAP10",4,6540,-702] }
 AP-ITEM { "category": "small-ammo", "typename": "FragfireCan", "tag": "Fragfire Can", "filter": 62, "pos": ["MAP10",-56,6508,-702] }
 AP-ITEM { "category": "small-ammo", "typename": "Boltmag", "tag": "Boltmag", "filter": 62, "pos": ["MAP10",1964,6600,-702] }
-AP-ITEM { "category": "medium-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "tid": 74, "filter": 48, "pos": ["MAP10",-5720,-4408,-586] }
-AP-ITEM { "category": "medium-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "tid": 74, "filter": 48, "pos": ["MAP10",-5804,-4252,-586] }
-AP-ITEM { "category": "medium-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "tid": 74, "filter": 48, "pos": ["MAP10",-5496,-4088,-586] }
-AP-ITEM { "category": "medium-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "tid": 74, "filter": 48, "pos": ["MAP10",-5392,-4272,-586] }
+AP-ITEM { "category": "big-attack-defence-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "tid": 74, "filter": 48, "pos": ["MAP10",-5720,-4408,-586] }
+AP-ITEM { "category": "big-attack-defence-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "tid": 74, "filter": 48, "pos": ["MAP10",-5804,-4252,-586] }
+AP-ITEM { "category": "big-attack-defence-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "tid": 74, "filter": 48, "pos": ["MAP10",-5496,-4088,-586] }
+AP-ITEM { "category": "big-attack-defence-tool", "typename": "InventoryTimeShard", "tag": "Time Shard", "tid": 74, "filter": 48, "pos": ["MAP10",-5392,-4272,-586] }
 AP-ITEM { "category": "small-ammo", "typename": "FragfireCan", "tag": "Fragfire Can", "filter": 48, "pos": ["MAP10",1503,-5373,-334] }
 AP-ITEM { "category": "small-ammo", "typename": "Boltmag", "tag": "Boltmag", "filter": 48, "pos": ["MAP10",2296,-5211,-334] }
 AP-ITEM { "category": "small-ammo", "typename": "SpikeMag", "tag": "Spike Mag", "filter": 48, "pos": ["MAP10",1847,-5904,-326] }
@@ -2755,5 +2755,4 @@ AP-ITEM { "category": "big-ammo", "typename": "InventoryBagOfHolding", "tag": "B
 AP-SECRET { "pos": ["MAP10","secret","sector",1200] }
 AP-SECRET { "pos": ["MAP10","secret","sector",1479] }
 AP-SECRET { "pos": ["MAP10","secret","sector",8278] }
-
 AP-SCAN-DONE {}

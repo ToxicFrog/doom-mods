@@ -33,15 +33,15 @@ prereqs {
 }
 
 # Custom item categories.
-category small-ammo: AmmoCultistSpike;  # Same as a small spike bundle
+category small-ammo: AmmoCultistSpike PotionBoxAcid PotionBoxToxic;
 category small-armor: PowerShard;  # restores 3 AC
 category small-health: HealthGreenCrystal InventoryVialOfHealing;
 category medium-health: HealthGreenCrystalCouple InventoryScrollEarthNourish;
 
-category medium-tool: InventoryTimeShard;
-category small-tool: InventoryFixerGoggles;
+category big-attack-defence-tool: InventoryTimeShard;
+category medium-tool: InventoryFixerGoggles;
 
-category small-attack: InventoryScrollFireInferno InventoryScrollFireMagmaBall;
+category medium-attack: InventoryScrollFireInferno InventoryScrollFireMagmaBall;
 
 # These don't actually do anything, they're just clues you can carry in your
 # inventory and read whenever.
@@ -52,13 +52,16 @@ category small-clue:
   InventoryEnchantedPurpleInkRecipe
   InventoryDampNote;
 
-category medium-attack: InventoryPotionofHaste; # double firing rate
+category big-health: HealthPotionOfGreaterHealing;
+category medium-health: HealthPotionOfHealing;
+category small-health: HealthPotionOfMinorHealing;
+category big-attack: InventoryPotionofHaste; # double firing rate
 category medium-defence: InventoryPotionOfStoneskin; # resist physical
 category medium-health-attack: InventoryPotionOfMight; # regen + berserk, half ranged damage
 category medium-defence-tool: InventoryElementalRing; # resist magical + water breathing
 category medium-attack: InventoryBracerOfTheRevenant; # axe ice mode, also a little bit of ice resist
-category small-defence: InventoryAmuletOfShadows; # blursphere + jammer + ghost
-category small-defence: InventoryChokerOfTheBeast; # fear aura + lifeleech
+category medium-defence: InventoryAmuletOfShadows; # blursphere + jammer + ghost
+category medium-defence: InventoryChokerOfTheBeast; # fear aura + lifeleech
 category medium-tool: InventorySentryGun;
 category big-tool: InventoryBootsOfJourney; # permanent speed boost when equipped!
 category maprevealer-ap_no_pool-medium: InventoryScrollAirWizardsEye;
@@ -78,8 +81,8 @@ category medium-health-armor-attack-defence-tool: InventoryMysteryPotion;
 # if you have the ammo.
 category weapon: PotionLauncher;
 replacement PotionLauncher: SpecialPotionBox PotionLauncherAcid PotionLauncherToxic;
-tag Potion Launcher [Acid]: PotionLauncherAcid;
-tag Potion Launcher [Toxic]: PotionLauncherToxic;
+tag PotionLauncherAcid: Potion Launcher [Acid];
+tag PotionLauncherToxic: Potion Launcher [Toxic];
 
 # These are pseudo-weapons that the game scripting expects to be able to add and
 # remove from your inventory to handle special attacks and whatnot.
@@ -93,8 +96,7 @@ category medium-token-ap_progression:
 # Money, used only in episode 2; may need to be marked as progression if it's
 # needed to buy some quest items?
 # category token-ap_skip_balancing-ap_progression:
-category small-token: InventoryGoldCoin1 InventoryGoldCoin10;
-category medium-token: InventoryGoldCoin25 InventoryGoldCoin50;
+category small-token: InventoryGoldCoin1 InventoryGoldCoin10 InventoryGoldCoin25 InventoryGoldCoin50;
 
 # Hedon quest items. These are just generic "inventory" and thus don't scan as keys automatically.
 # A bunch of these don't appear in the scanner. Instead, they are received in-game
@@ -398,7 +400,7 @@ tag InventoryPotionofHaste Potion of Haste;
 tag InventoryPotionOfMight Potion of Might;
 tag InventoryPotionOfStoneskin Potion of Stoneskin;
 tag InventoryScrollAirWizardsEye Scroll of Wizard's Eye;
-tag InventoryScrollEarthNourish Nourish;
+tag InventoryScrollEarthNourish Scroll of Nourish;
 tag InventoryScrollFireInferno Scroll of Inferno;
 tag InventoryScrollFireMagmaBall Scroll of Magma Ball;
 tag InventorySentryGun Sentry Gun;
