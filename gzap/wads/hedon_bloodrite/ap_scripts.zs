@@ -259,3 +259,51 @@ class UZAP_Hedon_EventHandler : EventHandler {
     return loc.seen >= loc.count;
   }
 }
+
+// Ammo for axe. Extra axes in the pool are converted into this. Avoids confusion
+// caused by spawning extra axes directly.
+class GZAP_ThrowingAxe : CustomInventory {
+  default {
+    XScale 0.8;
+    Yscale 0.9;
+    Radius 36;
+    Height 25;
+    Inventory.PickupMessage "Found an axe balanced for throwing.";
+  }
+  states {
+    Spawn:
+      AXES A -1;
+      STOP;
+    Pickup:
+      TNT1 A 0 A_JumpIf(CountInv("Axe") > 0, "PickupAxe");
+      TNT1 A 0 A_JumpIf(CountInv("BearzerkAxe") > 0, "PickupBearzerkAxe");
+      FAIL;
+    PickupAxe:
+      TNT1 A 0 A_GiveInventory("ThrowingAxe", 1);
+      STOP;
+    PickupBearzerkAxe:
+      TNT1 A 0 A_GiveInventory("BearzerkThrowingAxe", 1);
+      STOP;
+  }
+}
+
+// As above but for the Fire Hammer.
+class GZAP_ThrowingFireHammer : CustomInventory {
+  default {
+    Scale 0.5;
+    Radius 32;
+    Height 18;
+    Inventory.PickupMessage "Found a hammer balanced for throwing.";
+  }
+  states {
+    Spawn:
+      WFHA B -1;
+      STOP;
+    Pickup:
+      TNT1 A 0 A_JumpIf(CountInv("FireHammer") > 0, "PickupFireHammer");
+      FAIL;
+    PickupFireHammer:
+      TNT1 A 0 A_GiveInventory("ThrowingFireHammer", 1);
+      STOP;
+  }
+}
