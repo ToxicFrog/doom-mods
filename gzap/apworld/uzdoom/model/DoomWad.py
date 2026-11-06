@@ -83,7 +83,7 @@ class DoomWad:
 
     def overstock(self, typename):
         for conversion in self.get_flag('overstock', []):
-            if conversion.count('/') == 3:
+            if conversion.count('/') == 2:
                 old,new,ratio = conversion.split('/')
             else:
                 old,new = conversion.split('/')
