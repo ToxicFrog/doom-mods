@@ -3,6 +3,9 @@
 - Fixed:
   - Generation should no longer fail if `AP-REGION` directives are re-ordered
     or if region access rules refer to each other.
+  - Another combat logic issue that would draw incorrect conclusions about
+    reachability if weapons required by combat logic were not present in the
+    pool.
 
 # 0.9.2
 

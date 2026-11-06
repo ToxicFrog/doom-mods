@@ -319,6 +319,7 @@ class UZDoomWorld(World):
                 # will not lazily evaluate the region references but instead die
                 # instantly when we call create_entrance().
                 try:
+                    # print('create_entrance', map.map, region.name(), region.access_rule(self, self.wad_logic, map))
                     self.create_entrance(
                         from_region=regions[map.map], to_region=regions[region.name()],
                         name=region.name(),
