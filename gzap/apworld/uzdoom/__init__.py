@@ -452,7 +452,7 @@ class UZDoomWorld(World):
     def fill_slot_data(self):
         return self.options.as_dict(
             'spawn_filter', 'per_map_weapons', 'combat_logic_mode',
-            'combat_logic_secrets', 'included_item_categories')
+            'combat_logic_secrets', 'included_item_categories', 'starting_levels')
 
     def write_spoiler_header(self, fd):
         fd.write(f'Random WAD selected:             {self.wad_logic.name}\n')

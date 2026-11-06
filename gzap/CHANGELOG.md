@@ -12,6 +12,8 @@
   - Another combat logic issue that would draw incorrect conclusions about
     reachability if weapons required by combat logic were not present in the
     pool.
+  - Universal Tracker is now aware of which maps are starting maps (and thus
+    have different combat logic behaviour in some configurations).
 
 # 0.9.2
 
