@@ -1,5 +1,9 @@
 # Unreleased
 
+- For logic developers:
+  - An `AP-ITEM` record without a `pos` field will now define tag and category
+    information for that item without adding any locations or items to the
+    randomization pool.
 - Fixed:
   - Generation should no longer fail if `AP-REGION` directives are re-ordered
     or if region access rules refer to each other.

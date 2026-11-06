@@ -45,17 +45,9 @@ In the common case, where the position is a point in physical space, it is:
 
 The x, y, and z coordinates are conventionally ints.
 
-If the position is associated with a secret sector or thing, the format is:
-
-    [mapname, "secret", "sector", sector_idx]
-    [mapname, "secret", "thing", tid]
-
-If it's associated with an event, the format is:
-
-    [mapname, "event", event_name]
-
-At present the only supported `event_name` is `"exit"` and this is only used in
-tuning, not scanner output.
+If the position is associated with a secret, spawn event, etc, the format
+depends on the specifics; see [events.md](./events.md) for details about
+position formats for event-based locations.
 
 
 ### Scan Messages
@@ -89,11 +81,14 @@ to be unique, not even the `levelname`.
 
 #### `AP-ITEM { map, name, category, typename, tag, secret, skill, filter, pos }`
 
-Emitted for each item the scanner finds. Note that this is *everything*; the randomizer
-makes decisions about which items to randomize and which not to.
+Emitted for each item the scanner finds. Note that this is *everything*; the
+randomizer makes decisions about which items to randomize and which not to.
+
+The `pos` field is optional. If absent, this defines information about an item
+type independent of any position (its category and tag). It will not normally be
+added to the pool, but this information will be used if that happens somehow.
 
 Fields:
-- `map`: the map lump name, as above
 - `name`: the human-facing name to assign to the location this item was found at
 - `category`: a guess at the item category
 - `typename`: the UZDoom class name
@@ -102,29 +97,18 @@ Fields:
 - `skill`: a list of skill levels, 1-3, that this location exists on.
 - `filter`: a bitmask for which spawn filters this location exists on.
 
+`name` can be used by logic maintainers to manually assign a name to a location.
+If absent, the apworld will generate a name based on the item tag and position.
+
 `skill` is a legacy field retained for backwards compatibility; internally values
 of 1, 2, or 3 in this list are mapped to `filter` values of 0x03, 0x04, and 0x18,
 and its absence is mapped to 0x00FF.
 
 `category` is an internal category used for item classification, and is finer-
 grained than the (progression, useful, filler, trap) categories used by AP. The
-full set of item categories is:
-
-    key           keycards and puzzle items
-    weapon        weapons and Hexen weapon pieces
-    map           automaps
-    powerup       temporary powerups like blurspheres and berserk packs
-    tool          items you can pick up and use later (including usable medkits)
-    big-armor     armour suits and the megasphere
-    small-armor   armour shards
-    big-health    health that restores >50%
-    small-health  other health
-    big-ammo      backpacks and rainbow mana
-    medium-ammo   ammo that restores more than 20% of max, like cell packs
-    small-ammo    other ammo
-
-Currently only some of these are actually used by the generator, but they are all
-emitted for potential future use.
+full set of item categories is documented in [categories.md](../categories.md);
+additional categories not documented there can be listed, and will be available
+for e.g. location filtering at generation time.
 
 #### `AP-KEY { tag, typename, scopename, cluster, maps: [...] }`
 

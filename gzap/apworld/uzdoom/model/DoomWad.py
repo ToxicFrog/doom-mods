@@ -326,11 +326,17 @@ class DoomWad:
         using the item's name as a disambiguator.
         """
         # Extract the position information for addition to the location table.
-        pos = json.pop("pos")
+        pos = json.pop("pos", None)
         spawn_filter = self.filter_from_json(json)
         secret = json.pop("secret", False)
         name = json.pop("name", None)
         tid = json.pop("tid", None)
+
+        if not pos:
+            # AP-ITEM record without a backing location. Used to define tags,
+            # categories, etc without the cooperation of the scanner.
+            self.register_item(DoomItem(None, **json))
+            return
 
         # We add everything in the logic file to the pool. Not everything will
         # necessarily be used in randomization, but we need to do this at load
