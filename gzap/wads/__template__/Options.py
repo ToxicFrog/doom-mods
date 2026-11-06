@@ -456,18 +456,20 @@ class IncludeItemAmount(NamedRange):
 
 class IncludeBigItems(IncludeItemAmount):
     __doc__ = f"""
-    {size_docs('big')}
+{size_docs('big')}
+It additionally contains {nrof('key', 'weapon', 'ap_progression')} keys, weapons, and other progression items
+not controlled by these settings.
 
-    This option, and the ones below, supports some special values:
+This option, and the ones below, supports some special values:
 
-    'shuffle' will randomize these items among themselves within your game,
-    without adding them to the pool. Unlike using plando to force these items
-    local, this will also not generate client messages when collecting them.
-    (Tuning data, however, will still be recorded.)
+'shuffle' will randomize these items among themselves within your game,
+without adding them to the pool. Unlike using plando to force these items
+local, this will also not generate client messages when collecting them.
+(Tuning data, however, will still be recorded.)
 
-    'vanilla' is similar to 'shuffle', except that each item will be placed at
-    its original vanilla location. It is primarily useful to logic developers.
-    """
+'vanilla' is similar to 'shuffle', except that each item will be placed at
+its original vanilla location. It is primarily useful to logic developers.
+"""
     display_name = "Big items"
     default = 100
     visibility = vis('big')
