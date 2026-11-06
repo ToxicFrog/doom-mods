@@ -25,6 +25,8 @@ being completely inaccessible, since they rely on scripts that are only active
 on certain difficulties. Doing this is not recommended, as the affected checks
 may not be accessible even with console commands.
 
+
+
 There are a lot of cutscenes (crafting things, conversations, being captured in
 MAP09, etc) that temporarily take away your weapons. It is possible to warp out
 using the level select in mid-cutscene, but doing this may make it impossible to
@@ -130,7 +132,7 @@ that you don't actually need to get a gear from it; it's the process of forging,
 not the item you get, that causes the door to open. However, you *will* need the
 gear to actually exit the level; Zan will refuse to arm the explosives otherwise.
 
-### Crafting machines
+#### Crafting machines
 
 The fabrication machines in the Great Forge and the rooms attached to the North
 Hall can be used to produce checks. The machines and their requirements are
@@ -198,7 +200,7 @@ gate to the green cave.
 
 There are three unreachable checks in this map. One is not reachable in normal
 play. The other two (a food item in the inverted dining hall, and an armour
-crystal on the battlefield I could not figure out how to reach, but I'm not
+crystal on the battlefield) I could not figure out how to reach, but I'm not
 willing to swear it's impossible.
 
 ### MAP07: Parapet
@@ -269,13 +271,13 @@ every level, assuming you don't care about collecting all checks, just making it
 to the exit. This is usually much less than is needed for normal play, because
 in most Hedon levels the hard part isn't *reaching* the exit but *opening* it.
 
-MAP01: three Power Cores
-MAP02: Stone Key
-MAP03: Stone Key and Axe Key
-MAP04: Toolkit, Filled Gear Mould, and Mithril Gear
-MAP05: Mithril Gear, Vine Key, and Earth Key
-MAP06: Power Core
-MAP07: Earth Key and Crystal Key
-MAP08: three Planks, Vine, Axe Key, and Earth Key
-MAP09: Crystal Key
-MAP10: Water, Air, Earth, and Fire Fragments, Crystal Key
+- **MAP01:** three Power Cores
+- **MAP02:** Stone Key
+- **MAP03:** Stone Key and Axe Key
+- **MAP04:** Toolkit, Filled Gear Mould, and Mithril Gear
+- **MAP05:** Mithril Gear, Vine Key, and Earth Key
+- **MAP06:** Power Core
+- **MAP07:** Earth Key and Crystal Key
+- **MAP08:** three Planks, Vine, Axe Key, and Earth Key
+- **MAP09:** Crystal Key
+- **MAP10:** Water, Air, Earth, and Fire Fragments, Crystal Key

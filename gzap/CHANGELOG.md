@@ -1,5 +1,7 @@
 # Unreleased
 
+- New:
+  - Complete logic for Hedon Bloodrite episode 1 (MAP01-MAP10).
 - For logic developers:
   - An `AP-ITEM` record without a `pos` field will now define tag and category
     information for that item without adding any locations or items to the
@@ -14,6 +16,8 @@
     pool.
   - Universal Tracker is now aware of which maps are starting maps (and thus
     have different combat logic behaviour in some configurations).
+  - Per-map weapon mode no longer forgets about weapons that don't exist in some
+    levels.
 
 # 0.9.2
 

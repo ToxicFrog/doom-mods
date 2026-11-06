@@ -1,18 +1,10 @@
 ; MAP02: Plaza
 
-; Mortar of Earth Pigment and Bowl of Scribe Embers are used in this map to
-; scribe helpful but optional scrolls. Assuming they aren't needed for anything
-; important in other maps, we should make them ephemeral (and once we have support
-; for runtime item spawning, we should make the scrolls they spawn checks).
-
-; TOOD: the fight in the west plaza that triggers when you enter carrying the
-; stone key is a potential softlock, because once that happens you can't get
-; back into the park without at least one of:
-; - vine key to enter through alchemist's shop;
-; - axe key to access caves from the north
-; - iron key + pickaxe to access caves from the south
-; We can probably fix this by making the switch that opens the park repeatable
-; (it's line 208), and ideally the one for the central gate as well (it's 4126).
+; Weapon logic is tricky here because on most difficulty settings you are expected
+; to just have the fragfire and the spike gun, but on Brutalizing there is also a
+; potion launcher and crushbow in the map.
+; TODO: implement a skill/ prerequisite so that we can have different weapon logic
+; settings for different skills.
 
 ; Entry area encompassing the south and west plazas.
 AP-REGION { "map": "MAP02", "region": "[south]", "keys": ["weapon/Axe/want", "weapon/SpikeGun/want"] }
