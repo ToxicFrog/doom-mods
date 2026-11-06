@@ -62,12 +62,15 @@ class DoomWad:
         for flag in flag_strings:
             if '=' in flag:
                 (k,v) = flag.split('=')
-                self.flags[k] = v
+                if ',' in v:
+                    self.flags[k] = v.split(',')
+                else:
+                    self.flags[k] = v
             else:
                 self.flags[flag] = True
 
-    def get_flag(self, flag):
-        return self.flags.get(flag, False)
+    def get_flag(self, flag, default=False):
+        return self.flags.get(flag, default)
 
     def use_hub_logic(self):
         return self.get_flag('use_hub_logic')
@@ -75,8 +78,20 @@ class DoomWad:
     def hub_logic_exits(self):
         assert self.use_hub_logic()
         return {
-            map for map in self.get_flag('hub_logic_exits').split(',')
+            map for map in self.get_flag('hub_logic_exits')
         }
+
+    def overstock(self, typename):
+        for conversion in self.get_flag('overstock', []):
+            if conversion.count('/') == 3:
+                old,new,ratio = conversion.split('/')
+            else:
+                old,new = conversion.split('/')
+                ratio = 1.0
+            if typename != old:
+                continue
+            return new,float(ratio)
+        return None,None
 
     def all_winnable_map_names(self):
         if self.use_hub_logic():

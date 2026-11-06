@@ -3,6 +3,7 @@ Data model for items (or rather, item types) in Doom.
 """
 
 import sys
+from collections import Counter
 from typing import Optional, Set, Dict, FrozenSet
 from BaseClasses import ItemClassification
 
@@ -41,9 +42,7 @@ class DoomItem:
             self.categories = self.categories | frozenset(['ap_progression'])
         # TODO: We need a better way of handling scoped items, so that things
         # other than these types can be marked as scoped, so that we can have
-        # non-scoped flags, etc. Maybe level-scoped weapons someday so that
-        # rather than finding "the rocket launcher" you find "the ability to
-        # use the rocket launcher in map X".
+        # non-scoped flags, etc.
         if self.has_category('key', 'ap_flag'):
             self.map = map
 
@@ -128,6 +127,21 @@ class DoomItem:
         # Anything else we just take as many as we find.
         return (0, sys.maxsize)
 
+    def overstock(self, world, count):
+        '''
+        Called when pool_limits() results in some number of these being removed
+        from the pool. It should return a Counter containing at most count items
+        to replace the removed items with, indexed by FQIN.
+
+        These items are not themselves subject to pool_limits or item remapping,
+        so be careful.
+        '''
+        replacement,ratio = world.wad_logic.overstock(self.typename)
+        if replacement:
+            return Counter({ world.wad_logic.items_by_type[replacement].name(): count*ratio })
+        else:
+            return Counter()
+
 
 class DoomFlag(DoomItem):
     """
@@ -168,3 +182,10 @@ class DoomWeaponGrant(DoomFlag):
         if world.options.max_weapon_copies.value > 0:
             count = min(count, world.options.max_weapon_copies.value)
         return (0, count)
+
+    def overstock(self, world, count):
+        replacement,ratio = world.wad_logic.overstock(self.weapon)
+        if replacement:
+            return Counter({ world.wad_logic.items_by_type[replacement].name(): count*ratio })
+        else:
+            return Counter()

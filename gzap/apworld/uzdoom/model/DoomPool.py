@@ -231,14 +231,23 @@ class DoomPool:
 
         # Apply item lower/upper bounds.
         # Items set to 'vanilla' or 'shuffle' skip this.
+        extra_items = Counter()
         for name in self.item_counts.keys():
             if name in self.vanilla_item_counts:
                 continue
             item = self.wad.item(name)
             (lower,upper) = item.pool_limits(world)
-            # print(f'Adjust count for {item.name()} from {self.item_counts[item.name()]} to ({lower},{upper})')
-            # assert name == item.name(), f"mismatch between pool entry {name} and backing item {item.name()}"
-            self.item_counts[name] = max(lower, min(self.item_counts[item.name()], upper))
+            if self.item_counts[name] < lower or self.item_counts[name] > upper:
+                print(f'finalize_item_counts: adjusting {name} from {self.item_counts[name]} to ({lower},{upper})')
+            if self.item_counts[name] > upper:
+                count = self.item_counts[name] - upper
+                replacements = item.overstock(world, count)
+                if replacements:
+                    print(f'finalize_item_counts: replacing {count}x {name} with {replacements}')
+                    extra_items += replacements
+            assert name == item.name(), f"mismatch between pool entry {name} and backing item {item.name()}"
+            self.item_counts[name] = max(lower, min(self.item_counts[name], upper))
+        self.item_counts += extra_items
 
         # Withdraw starting inventory from the pool only after limits are applied.
         for item,count in self.starting_item_counts.items():

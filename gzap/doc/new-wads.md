@@ -68,6 +68,13 @@ For use only with `use_hub_logic`, this tells the generator which maps are exits
 from their respective hubclusters. Other maps in the cluster are assumed to be
 intermediate maps and leaving them does not count towards victory.
 
+#### `overstock=original/replacement/ratio,original/replacement/ratio`
+
+If the generator needs to remove surplus items of type `original` from the pool,
+replace them with `replacement` at the given ratio. This is primarily useful if
+there are weapons that you want to be reliably replaced with extra ammo rather
+than leaving it up to the filler generator.
+
 ### Hub-based wads
 
 Support for these is still being tested, and full documentation is yet to be
