@@ -72,15 +72,16 @@ class DoomPool:
                     pass
                 continue
 
-            item = self.remap_item(world, loc, loc.orig_item)
-            if item is not loc.orig_item:
-                # print(f'add_items_to_pool({loc.name()}): remap {loc.orig_item} -> {item}')
-                pass
-            if item.has_category('ap_no_pool'):
-                # print(f'add_items_to_pool({loc.name()}): dropping {item.name()} because ap_no_pool')
-                continue
-            # print(f'add_items_to_pool({loc.name()}): adding {item.name()}')
-            counter[item.name()] += 1
+            remap = self.remap_item(world, loc, loc.orig_item)
+            for item in remap:
+                if item is not loc.orig_item:
+                    # print(f'add_items_to_pool({loc.name()}): remap {loc.orig_item} -> {item}')
+                    pass
+                if item.has_category('ap_no_pool'):
+                    # print(f'add_items_to_pool({loc.name()}): dropping {item.name()} because ap_no_pool')
+                    continue
+                # print(f'add_items_to_pool({loc.name()}): adding {item.name()}')
+                counter[item.name()] += 1
 
     def add_vanilla_item(self, item):
         self.vanilla_item_counts[item.name()] += 1
@@ -133,7 +134,7 @@ class DoomPool:
                 # print(f'Bucket {bucket} has vanilla items forced.')
                 for loc in locs:
                     if loc.orig_item:
-                        loc.item = self.remap_item(world, loc, loc.orig_item)
+                        (loc.item,) = self.remap_item(world, loc, loc.orig_item)
                     elif world.options.pretuning_mode and not loc.item:
                         loc.item = self.wad.placeholder_item()
                     self.vanilla_item_counts[loc.item.name()] += 1
@@ -149,7 +150,7 @@ class DoomPool:
                 items = [loc.orig_item for loc in locs]
                 shuffle(items)
                 for loc in locs:
-                    loc.item = self.remap_item(world, loc, items.pop())
+                    (loc.item,) = self.remap_item(world, loc, items.pop())
                     self.vanilla_item_counts[loc.item.name()] += 1
                 self.local_locations.extend(locs)
                 continue
@@ -190,16 +191,22 @@ class DoomPool:
         '''
         new_item = self.wad.items_by_name[item.name()]
         if new_item != item:
+            # The WAD thinks that items with this name are backed by a different
+            # underlying item record, e.g. map-specific keys being upgraded to
+            # cluster-specific keys.
             # print(f'remap (wad): {item.name()} -> {new_item.name()}')
             item = new_item
         if item.has_category('weapon'):
             if not world or not world.options.per_map_weapons:
                 # print(f'remap (weapon): {item.name()} -> {self.wad.weapon_capability(item.typename)}')
-                return self.wad.items_by_name[self.wad.weapon_capability(item.typename)]
+                return [self.wad.items_by_name[self.wad.weapon_capability(item.typename)]]
             else:
                 # print(f'remap (weapon): {item.name()} -> {self.wad.weapon_capability(item.typename, loc.pos.map)}')
-                return self.wad.items_by_name[self.wad.weapon_capability(item.typename, loc.pos.map)]
-        return item
+                return [
+                    self.wad.items_by_name[self.wad.weapon_capability(item.typename, map.map)]
+                    for map in world.maps
+                ]
+        return [item]
 
     def finalize_item_counts(self, world):
         '''
@@ -262,6 +269,9 @@ class DoomPool:
             else:
                 self.starting_item_counts[item] = self.item_counts[item]
                 self.item_counts[item] = 0
+
+        # for item in sorted(self.item_counts.keys()):
+        #     print(f'finalize_item_counts: {self.item_counts[item]}× {item}')
 
     def move_to_starting(self, item, count):
         self.item_counts[item] = self.item_counts.get(item, 0) - count

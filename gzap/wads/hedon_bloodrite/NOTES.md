@@ -22,7 +22,8 @@ the use of both versions, if you have ammo for them.
 
 Enabling all spawns (`spawn_filter 0` in the YAML) will result in some checks
 being completely inaccessible, since they rely on scripts that are only active
-on certain difficulties. Doing this is not recommended.
+on certain difficulties. Doing this is not recommended, as the affected checks
+may not be accessible even with console commands.
 
 There are a lot of cutscenes (crafting things, conversations, being captured in
 MAP09, etc) that temporarily take away your weapons. It is possible to warp out
@@ -38,6 +39,11 @@ through the episode you're expected to have almost everything. That said, many
 levels have quiet starts containing few or no enemies; combat logic for those
 assumes you can dip into the level to explore those areas even if you are
 underequipped for the level as a whole.
+
+The default settings start you with an axe, since otherwise the opening to MAP01
+is quite rough and there is a very real chance that the rando will (depending on
+settings) either expect you to do it fists-only, or immediately send you to a
+different map.
 
 ### Crafting
 
