@@ -24,7 +24,7 @@ scanner {
   # This is a bit of a hack, but, it means that any extra copies of these weapons
   # in the pool will be replaced with their naked, non-weapon-grant versions,
   # which means the player will be able to pick them up as ammo.
-  logic_flags overstock=BearzerkAxe/GZAP_ThrowingAxe,Axe/GZAP_ThrowingAxe,FireHammer/GZAP_ThrowingFireHammer;
+  logic_flags overstock=BearzerkAxe/GZAP_ThrowingAxe/0.5,Axe/GZAP_ThrowingAxe/0.5,FireHammer/GZAP_ThrowingFireHammer;
 }
 
 prereqs {
