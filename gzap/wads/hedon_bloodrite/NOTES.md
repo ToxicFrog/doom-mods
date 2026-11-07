@@ -25,8 +25,6 @@ being completely inaccessible, since they rely on scripts that are only active
 on certain difficulties. Doing this is not recommended, as the affected checks
 may not be accessible even with console commands.
 
-
-
 There are a lot of cutscenes (crafting things, conversations, being captured in
 MAP09, etc) that temporarily take away your weapons. It is possible to warp out
 using the level select in mid-cutscene, but doing this may make it impossible to
@@ -65,6 +63,9 @@ have found multiple copies of these keys. These changes are noted below.
 ## Map-specific notes
 
 ### MAP01: Cold Rock
+
+Transport between memories of Hell and the caves is now two-way; approach the
+spot where you woke up in the caves to be teleported.
 
 Repairing the elevator now requires you to have found two power cores, and
 repairing the gate requires three.

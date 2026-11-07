@@ -16,9 +16,26 @@ class UZAP_Hedon_EventHandler : EventHandler {
   // inventory to fire the cannon, turn on the elevator, and open the gate.
   // With this handler, we prevent the elevator or gate lines from activating
   // until you have 2 or 3 power cores respectively.
+  // This also makes the teleport from the hell dream repeatable.
   void WorldLinePreActivatedMAP01(WorldEvent e) {
-    let line = e.ActivatedLine.Index();
-    if (line == 2111) {
+    // line 32712, special 70, destination 69, repeatable
+    let idx = e.ActivatedLine.Index();
+    if (idx == 29037) {
+      // Awaken from dream script. Player is about to teleport to the caves.
+      // Put a backup teleporter right across the doors behind the player.
+      let hell2cave = level.lines[29072];
+      hell2cave.activation = SPAC_CROSS;
+      hell2cave.special = 70; // Teleport
+      hell2cave.args[0] = 69; // destination spot in caves
+      hell2cave.flags |= Line.ML_REPEAT_SPECIAL;
+      // Now set up a reverse teleporter near where you awaken so the player
+      // doesn't have to bounce through the hub.
+      let cave2hell = level.lines[16502];
+      cave2hell.activation = SPAC_CROSS;
+      cave2hell.special = 70;
+      cave2hell.args[0] = 208; // destination spot near axe key door
+      cave2hell.flags |= Line.ML_REPEAT_SPECIAL | Line.ML_FIRSTSIDEONLY;
+    } else if (idx == 2111) {
       // Elevator switch in west caves
       let region = GZAP_RandoState.Get().GetCurrentRegion();
       if (!region) return;
@@ -28,7 +45,7 @@ class UZAP_Hedon_EventHandler : EventHandler {
         console.printf("You need to find a second power core to repair the elevator.");
         e.ShouldActivate = false;
       }
-    } else if (line == 6617) {
+    } else if (idx == 6617) {
       // Main gate switch in cold rock
       let region = GZAP_RandoState.Get().GetCurrentRegion();
       if (!region) return;
