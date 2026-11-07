@@ -11,6 +11,39 @@ or [Steam](https://store.steampowered.com/app/1072150/Hedon_Bloodrite/); the
 only file you need is `Hedon.ipk3`, which you should load as an IWAD. (The demo
 is not supported.)
 
+## Known issues
+
+### Infelicitous warps
+
+Using the level select menu to warp between maps during a cutscene, or in
+altered states of physics (e.g. the low-gravity sections in MAP06), is highly
+likely to break things, in ways ranging from "your jump physics are altered for
+the rest of the game" to "all of your ammo and consumables are permanently gone
+and at least one map is now uncompletable". I strongly recommend that you avoid
+doing this.
+
+### Spawn filter 0
+
+Enabling all spawns (`spawn_filter 0` in the YAML) will result in some checks
+being completely inaccessible (even with console commands), since they rely on
+scripts that are only active on certain difficulties.
+
+### Zero axes/hammers
+
+It is possible to end up with zero axes. This is not the same as *no* axes; it
+leaves you in state where you can attack in melee with the axe, but not throw
+it. This usually happens when you throw your axe at something, and then do
+something (checking a location, switching levels, etc) that causes AP to try to
+restore any missing weapons before picking it back up.
+
+In most cases the solution is simply to pick up the axe you threw. If this is
+not an option, the pool contains a number of `Throwing Axe` items which act as
+extra axe ammo. You can also, if all else fails, `give ThrowingAxe` in the
+console.
+
+The same concerns apply to the Fire Hammer, with refills in the pool as
+`Throwing Fire Hammer` and the console command being `give ThrowingFireHammer`.
+
 ## General notes
 
 The logic *should* be valid for both normal and Bearzerker modes; however, the
@@ -19,16 +52,6 @@ latter has not been thoroughly tested.
 The acid and toxic potion launchers (two separate weapons internally) have been
 combined into a single potion launcher. Finding that in the pool will grant you
 the use of both versions, if you have ammo for them.
-
-Enabling all spawns (`spawn_filter 0` in the YAML) will result in some checks
-being completely inaccessible, since they rely on scripts that are only active
-on certain difficulties. Doing this is not recommended, as the affected checks
-may not be accessible even with console commands.
-
-There are a lot of cutscenes (crafting things, conversations, being captured in
-MAP09, etc) that temporarily take away your weapons. It is possible to warp out
-using the level select in mid-cutscene, but doing this may make it impossible to
-get your weapons back, so please don't.
 
 ### Combat Logic
 
@@ -44,6 +67,11 @@ The default settings start you with an axe, since otherwise the opening to MAP01
 is quite rough and there is a very real chance that the rando will (depending on
 settings) either expect you to do it fists-only, or immediately send you to a
 different map.
+
+Combat logic does not (yet) support different skill levels. Where there is
+disagreement, I have generally followed the expectations of Brutalizing skill
+(which spawns more enemies but also expects you to be more heavily armed), so
+you may find the combat logic to be overly cautious on lower difficulties.
 
 ### Crafting
 
@@ -73,7 +101,8 @@ repairing the gate requires three.
 The northwest caves, normally reached via the iron key, can also be reached by
 opening the timed gate in the outpost and exiting to the pond room. The gate
 will close behind you but you can get back into the outpost by swimming through
-an underwater tunnel on the west side of the pond.
+an underwater tunnel on the west side of the pond. Don't forget to unlatch the
+barracks door from inside the outpost first.
 
 The wooded area unlocked by offering a moonflower is not considered a secret
 for the purposes of logic, but the hidden baths to the east of those woods are.
