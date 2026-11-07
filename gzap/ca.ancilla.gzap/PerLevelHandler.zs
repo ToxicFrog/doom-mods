@@ -286,7 +286,7 @@ class ::PerLevelHandler : EventHandler {
 
     // RC-based replacement happens unconditionally.
     // We check only once rather than recursing.
-    let [newtype, ok] = ::RC.Get().GetReplacement(cls.GetClassName());
+    let [newtype, ok] = ::RC.Get().GetReplacement(cls.GetClassName(), true);
     if (ok) {
       DEBUG("Spawning %s: RC provides replacement %s", cls.GetClassName(), newtype);
       cls = newtype;

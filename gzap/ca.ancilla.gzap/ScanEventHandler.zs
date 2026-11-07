@@ -41,7 +41,7 @@ class ::ScanEventHandler : StaticEventHandler {
     if (!scan_enabled) return;
 
     class<Actor> cls = evt.replacee;
-    let [newtype, ok] = ::RC.Get().GetReplacement(cls.GetClassName());
+    let [newtype, ok] = ::RC.Get().GetReplacement(cls.GetClassName(), false);
     if (ok) {
       DEBUG("Spawning %s: RC provides replacement %s", cls.GetClassName(), newtype);
       cls = newtype;

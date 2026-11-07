@@ -30,16 +30,20 @@ if **any** of them match.
 #### `scanner { ... }`
 
     scanner {
+      # CVARs
+      logic_flags <list of flags>;
       maps <list of maps to start scanning at>;
       skip <list of maps to skip>;
       prune <list of maps to prune entirely>;
       recurse <true|false>;
       clusters <true|false>;
+      # Actor replacement
+      replacement <replacement class> : <replacee classes> ;
     }
 
-Set defaults for the scanner. These settings correspond to the `ap_scan_` CVARs,
-which can also be set in-game from the options menu. There is in-game help for
-them, but to summarize them here:
+Set defaults for the scanner. The first six settings correspond to the
+`ap_scan_` CVARs, which can also be set in-game from the options menu. There is
+in-game help for them, but to summarize them here:
 
 - `maps` is the list of initial maps to start the scan with, and is typically
   a list of episode starts.
@@ -55,6 +59,14 @@ them, but to summarize them here:
 - `clusters` tells the scanner to automatically scan all maps in a cluster, even
   if it can't find exits to them, e.g. for wads that use ACS to create exits at
   runtime.
+- `logic_flags` is the value of the `extra flags` config option when setting up
+  the scanner in-game, and is a place for wad-wide information that needs to be
+  passed to the generator; see
+
+The last setting is equivalent to `replacement`, detailed below, but unlike the
+top-level `replacement` directive (which applies both at runtime and when
+scanning), replacement directives included in the `scanner` block apply only
+when scanning a wad, not when later playing it.
 
 #### `prereqs { ... }`
 

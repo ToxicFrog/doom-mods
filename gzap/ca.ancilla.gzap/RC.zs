@@ -60,7 +60,8 @@ class ::RC {
   }
 
   Map<string, string> categorizations;
-  Map<string, string> replacements;
+  Map<string, string> runtime_replacements; // Replacements that apply at all times
+  Map<string, string> scanner_replacements; // Replacements that apply only to the scanner
   ::StringSet destroy_on_spawn;
   Map<string, string> tags;
   Map<string, string> scanner_settings;
@@ -75,8 +76,11 @@ class ::RC {
     foreach (k, v : other.categorizations) {
       SetCategory(k, v);
     }
-    foreach (k, v : other.replacements) {
-      SetReplacement(k, v);
+    foreach (k, v : other.runtime_replacements) {
+      SetReplacement(k, v, true);
+    }
+    foreach (k, v : other.scanner_replacements) {
+      SetReplacement(k, v, false);
     }
     foreach (k : other.destroy_on_spawn.contents) {
       SetDestroyOnSpawn(k);
@@ -114,6 +118,9 @@ class ::RC {
       foreach (k,v : self.scanner_settings) {
         console.printf("    %s %s;", k, v);
       }
+      foreach (k,v : self.scanner_replacements) {
+        console.printf("  replacement %s: %s;", v, k);
+      }
       console.printf("  }");
     }
     if (self.destroy_on_spawn.Size() > 0) {
@@ -141,7 +148,7 @@ class ::RC {
     foreach (k,v : self.categorizations) {
       console.printf("  category %s: %s;", v == "" ? "none" : v, k);
     }
-    foreach (k,v : self.replacements) {
+    foreach (k,v : self.runtime_replacements) {
       console.printf("  replacement %s: %s;", v, k);
     }
     foreach (k,v : self.tags) {
@@ -190,14 +197,23 @@ class ::RC {
     return val, ok;
   }
 
-  void SetReplacement(string replacee, string replacement) {
-    DEBUG("Set replacement for %s to %s", replacee, replacement);
-    self.replacements.Insert(replacee.MakeLower(), replacement);
+  void SetReplacement(string replacee, string replacement, bool at_runtime) {
+    DEBUG("Set replacement for %s to %s (runtime=%d)", replacee, replacement, at_runtime);
+    if (at_runtime) {
+      self.runtime_replacements.Insert(replacee.MakeLower(), replacement);
+    } else {
+      self.scanner_replacements.Insert(replacee.MakeLower(), replacement);
+    }
   }
 
-  string, bool GetReplacement(string cls) {
-    let [val, ok] = self.replacements.CheckValue(cls.MakeLower());
-    return val, ok;
+  string, bool GetReplacement(string cls, bool at_runtime) {
+    if (!at_runtime) {
+      let [val,ok] = self.scanner_replacements.CheckValue(cls.MakeLower());
+      if (ok) return val,ok;
+      // if not ok, also check the runtime replacements
+    }
+    let [val,ok] = self.runtime_replacements.CheckValue(cls.MakeLower());
+    return val,ok;
   }
 
   void SetDestroyOnSpawn(string cls) {
@@ -418,7 +434,7 @@ class ::RCParser {
 
   bool Statement() {
     if (peek("category")) { return ActorCategory(); }
-    if (peek("replacement")) { return ActorReplacement(); }
+    if (peek("replacement")) { return ActorReplacement(true); }
     if (peek("destroy-on-spawn")) { return ActorDestroyOnSpawn(); }
     if (peek("tag")) { return ActorTag(); }
     if (peek("require")) { return Requirements(); }
@@ -447,7 +463,7 @@ class ::RCParser {
     return true;
   }
 
-  bool ActorReplacement() {
+  bool ActorReplacement(bool at_runtime) {
     require("replacement");
     Array<string> types;
     if (!ClassList(types, ":")) return false;
@@ -458,7 +474,7 @@ class ::RCParser {
     if (classes.size() == 0) return Error("list of classes to replace");
 
     foreach (cls : classes) {
-      self.rc.SetReplacement(cls, types[0]);
+      self.rc.SetReplacement(cls, types[0], at_runtime);
     }
     return true;
   }
@@ -501,7 +517,12 @@ class ::RCParser {
   bool ScannerConfig() {
     if (!require("scanner") || !require("{")) return false;
     while (!peek("}")) {
-      string suffix = next("scanner setting name");
+      if (peek("replacement")) {
+        if (!ActorReplacement(false)) return false;
+        continue;
+      }
+
+      string suffix = next("scanner setting");
       string cvname = "ap_scan_" .. suffix;
       let cv = CVar.FindCVar(cvname);
       if (!cv) {

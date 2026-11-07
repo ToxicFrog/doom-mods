@@ -23,10 +23,9 @@ AP-KEY {
   "scopename": "Valc", "cluster": 0, "maps": ["MAP04", "MAP05"]
 }
 
-; TODO: there is an infelicity here where UZAP will only allow as many copies
-; of a key in the pool as there are AP-KEY messages for it.
-; So we need extra AP-KEY messages here to produce the requisite number of
-; iron and mithril ores and iron ingots.
+; UZAP will only allow as many copies of a key in the pool as exist AP-KEY messages
+; for it, so we need extra AP-KEY messages here to produce the requisite number
+; of iron and mithril ores and iron ingots.
 ; Ideally, we should either be able to do an AP-KEY here with an overriden
 ; count field, or it should take into account extra instances of the key that
 ; end up in the pool -- although in the latter case we end up with weirdness

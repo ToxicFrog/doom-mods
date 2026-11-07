@@ -25,6 +25,10 @@ scanner {
   # in the pool will be replaced with their naked, non-weapon-grant versions,
   # which means the player will be able to pick them up as ammo.
   logic_flags overstock=BearzerkAxe/GZAP_ThrowingAxe/0.2,Axe/GZAP_ThrowingAxe/0.2,FireHammer/GZAP_ThrowingFireHammer;
+  # Don't add individual potion launcher modes to the pool, just the unified version.
+  # A runtime replacement rule further down handles SpecialPotionBox (which is actually
+  # a PotionLauncherAcid in a box).
+  replacement PotionLauncher: PotionLauncherAcid PotionLauncherToxic;
 }
 
 prereqs {
@@ -80,15 +84,9 @@ category medium-health-armor-attack-defence-tool: InventoryMysteryPotion;
 # weapon; finding the launcher in AP grants you both toxic and acid capabilities,
 # if you have the ammo.
 category weapon: PotionLauncher;
+replacement PotionBoxAcid: SpecialPotionBox;
 tag PotionLauncherAcid: Potion Launcher [Acid];
 tag PotionLauncherToxic: Potion Launcher [Toxic];
-# TODO: this breaks slot assignment at runtime, since the PotionLauncherAcid and
-# PotionLauncherToxic have replacements and thus WeaponSlots.AddExtraWeapons()
-# does not give them slots.
-# However, we still want the replacement to apply at scan time! We never want to
-# give the player a potion launcher that only works with one type of ammo.
-# This implies we need a replacement directive that applies only during scan.
-# replacement PotionLauncher: SpecialPotionBox PotionLauncherAcid PotionLauncherToxic;
 
 # These are pseudo-weapons that the game scripting expects to be able to add and
 # remove from your inventory to handle special attacks and whatnot.

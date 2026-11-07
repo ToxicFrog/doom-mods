@@ -68,7 +68,7 @@ a jump from the ledge outside the ruined apartments to the north.
 ### MAP01: Outskirts
 
 The BulletFarm machine near the storage room can be activated to spawn three
-`fortyfiveammo`. TODO: event these.
+`fortyfiveammo`.
 
 ### MAP03: The Wall
 
