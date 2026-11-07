@@ -18,6 +18,9 @@
     have different combat logic behaviour in some configurations).
   - Per-map weapon mode no longer forgets about weapons that don't exist in some
     levels.
+  - The inventory menu now respects `GZAPRC` `tag` directives for weapons.
+  - `item/<name>/<count>` prereqs now work properly rather than always treating
+    `count` as 1.
 
 # 0.9.2
 

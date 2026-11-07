@@ -43,7 +43,7 @@ def fqin_prereq(world, wad, map, fqin, count=1):
   return Has(fqin, int(count))
 
 def item_prereq(world, wad, map, typename, count=1):
-  return fqin_prereq(world, wad, map, wad.items_by_type[typename].name())
+  return fqin_prereq(world, wad, map, wad.items_by_type[typename].name(), count)
 
 def weapon_in_pool(world, wad, map, typename):
   global_cap = wad.weapon_capability(typename)
