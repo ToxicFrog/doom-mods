@@ -120,7 +120,8 @@ class ::WeaponSlotInfo {
 
     // Nope! This means they're playing a wad with custom weapons and slot
     // assignments, but have paired it with a mod that overwrites those
-    // assignments.
+    // assignments. Or that this is a pseudo-weapon with no slot, not meant to
+    // be directly selected by the player.
     return typename.MakeUpper().Left(1), 0;
   }
 

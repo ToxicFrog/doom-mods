@@ -308,9 +308,7 @@ class ::WeaponCapToggle : ::WeaponInvMenuItem {
   }
 
   virtual string FormatWeaponName() {
-    Class<Actor> cls = self.typename;
-    if (cls) return GetDefaultByType(cls).GetTag();
-    return string.format("??%s??", self.typename);
+    return ::RC.Get().GetTagByType(self.typename);
   }
 
   virtual string FormatWeaponStatus() {

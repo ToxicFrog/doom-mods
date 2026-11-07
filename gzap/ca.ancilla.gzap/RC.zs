@@ -224,6 +224,9 @@ class ::RC {
     let tag = self.tags.GetIfExists(typename.MakeLower());
     if (tag) return tag;
     Class<Actor> cls = typename;
+    if (!cls) {
+      return "??"..typename.."??";
+    }
     return GetDefaultByType(cls).GetTag();
   }
 
