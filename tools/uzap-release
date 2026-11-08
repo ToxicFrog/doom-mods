@@ -1,0 +1,20 @@
+#!/usr/bin/env zsh
+#
+# Usage: uzap-release <version>
+
+VERSION=$1
+
+sed -E -i "s,^# Unreleased$,# $VERSION," gzap/CHANGELOG.md
+sed -E -i "s,^VERSION=.*,VERSION=$1," gzap/Makefile
+echo -n "uzap-$VERSION" > gzap/apworld/uzdoom/VERSION
+rm -rf release/apworlds/zdoom_* gzap/apworld/zdoom_*
+touch docs/apworld-generator.sh
+make
+sed -E '
+  /Click here for latest stable/ d
+  /-- CUT --/ d
+'  <docs/apworld-generator.html >docs/apworld-generator-$VERSION.html
+git add docs/apworld-generator-$VERSION.html
+git add release/apworlds/
+git add release/uzdoom.apworld
+git add release/UZArchipelago-latest.pk3
