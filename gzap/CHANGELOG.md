@@ -1,4 +1,18 @@
-# Unreleased
+# 0.9.3
+
+This is ostensibly a bugfix release, mostly focused on fixes to the rule
+compiler and combat logic.
+
+However, it is also a feature release, and a big one, because this release
+finally adds support for
+
+🔥🔥🔥 [**Hedon Bloodrite episode 1: Crystal Heart**](./wads/hedon_bloodrite/NOTES.md) 🔥🔥🔥
+
+and Hedon support is something that has been a long-term goal of mine since I
+originally started this project nearly two years ago.
+
+Episode 2 is likely going to be a while yet; it's both larger and more
+complicated than episode 1.
 
 - New:
   - Complete logic for Hedon Bloodrite episode 1 (MAP01-MAP10).
@@ -12,7 +26,7 @@
     actor replacement to be applied only when scanning, not when playing.
 - Fixed:
   - Generation should no longer fail if `AP-REGION` directives are re-ordered
-    or if region access rules refer to each other.
+    or if region access rules contain mutual recursion.
   - Another combat logic issue that would draw incorrect conclusions about
     reachability if weapons required by combat logic were not present in the
     pool.

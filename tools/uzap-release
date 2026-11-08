@@ -14,7 +14,11 @@ sed -E '
   /Click here for latest stable/ d
   /-- CUT --/ d
 '  <docs/apworld-generator.html >docs/apworld-generator-$VERSION.html
-git add docs/apworld-generator-$VERSION.html
-git add release/apworlds/
-git add release/uzdoom.apworld
-git add release/UZArchipelago-latest.pk3
+git add \
+  docs/apworld-generator-$VERSION.html \
+  docs/apworld-generator.html \
+  release/apworlds/ \
+  release/uzdoom.apworld \
+  release/UZArchipelago-latest.pk3 \
+  gzap/CHANGELOG.md \
+  gzap/Makefile
