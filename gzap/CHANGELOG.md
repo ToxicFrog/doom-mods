@@ -3,6 +3,9 @@
 - Changed:
   - New name disambiguation algorithm. This will result in a lot of location
     renames, but also produces much better results when regions are involved.
+- Fixed:
+  - The inventory screen now respects GZAPRC `tag` entries for keys detected
+    during play.
 
 # 0.9.3
 
