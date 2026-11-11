@@ -506,77 +506,32 @@ class DoomWad:
         for map in self.maps.values():
             self.disambiguate_in_map(map)
 
-    def bin_locations_by(self, locs, f) -> Dict[str, List[DoomMap]]:
-        """
-        "Rebin" a collection of locations based on a binning function.
-
-        If all locations end up in unique bins, finalizes them and returns {}.
-
-        Otherwise, returns a dict keyed by bin name where each value is the
-        collection of locations in that bin.
-        """
-        bins = {}
-        for loc in locs:
-            bins.setdefault(f(loc), []).append(loc)
-        for bin in bins.values():
-            if len(bin) > 1:
-                return { name: locs for name,locs in bins.items() }
-        return {}
-
     def disambiguate_in_map(self, map) -> None:
-        bb = BoundingBox()
+        attempts = 0
+        while self.disambiguate_one_pass(map, attempts):
+            attempts += 1
 
+    def disambiguate_one_pass(self, map, attempts):
+        '''
+        Do one disambiguation pass across a map. Returns true if any items were
+        renamed as a result.
+        '''
+        bins = {}
         for loc in map.locations:
-            if type(loc.pos) is DoomCoordPosition:
-                bb.add_point(loc.pos)
-
-        bins = self.bin_locations_by(map.locations, lambda loc: loc.name())
-
-        # We do each bin separately, so that for a given name, we end up at the
-        # same fallback for every location of that name, rather than (say) a mix
-        # of coordinates for some soulspheres and compass directions for others.
-        for bin in bins.values():
-            if len(bin) > 1:
-                self.disambiguate_bin(bb, bin)
-
-    def disambiguate_bin(self, bb, locs):
-        # Bins contains all locations that had name collisions. First, try binning
-        # by coarse direction and distance. In many maps this suffices for armour,
-        # powerups, etc.
-        def binner(loc):
-            dir,dist = bb.position_name(loc.pos.x, loc.pos.y)
-            oldname = loc.name()
-            if dist:
-                loc.disambiguation = f"{dir} {dist}"
-            else:
-                loc.disambiguation = dir
-            # print(f"Renaming {oldname} -> {loc.name()}")
-            return loc.name()
-
-        bins = self.bin_locations_by(locs, binner)
-        if len(bins) == 0:
-            return
-
-        # That didn't work, so try again with coordinates.
-        # TODO: we should move disambiguation into DoomPosition, at least partially,
-        # so different kinds of positions can more intelligently decide how to
-        # disambiguate.
-        def binner(loc):
-            oldname = loc.name()
-            loc.disambiguation = f"{int(loc.pos.x)},{int(loc.pos.y)}"
-            # print(f"Renaming {oldname} -> {loc.name()}")
-            return loc.name()
-
-        bins = self.bin_locations_by([loc for bin in bins.values() for loc in bin], binner)
-        if len(bins) == 0:
-            return
-
-        # If we get here, the binner couldn't fully disambiguate things even
-        # with XY coordinates. Add a Z coordinate to anything that's left.
-        for loc in [loc for bin in bins.values() for loc in bin if len(bin) > 1]:
-            oldname = loc.name()
-            loc.disambiguation = f"{int(loc.pos.x)},{int(loc.pos.y)},{int(loc.pos.z)}"
-            # print(f"Renaming {oldname} -> {loc.name()}")
+            bins.setdefault(loc.name(), []).append(loc)
+        if all(len(locs) <= 1 for locs in bins.values()):
+            return False
+        for locs in bins.values():
+            if len(locs) <= 1:
+                continue
+            for loc in locs:
+                # oldname = loc.name()
+                try:
+                    loc.disambiguation = loc.pos.disambiguate(attempts, [l.pos for l in locs])
+                except RuntimeError as e:
+                    raise RuntimeError(f'Location collision: could not give distinct names to {locs} after {attempts+1} attempts; error from disambiguator was: {e}')
+                    # print(f'Renaming {oldname} -> {loc.name()}')
+        return True
 
     def finalize_logic(self, logic) -> None:
         """

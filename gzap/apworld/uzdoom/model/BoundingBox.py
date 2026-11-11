@@ -70,7 +70,7 @@ class BoundingBox:
       return "Edge"
     return None
 
-  def position_name(self, x, y):
+  def position_name(self, pos):
     """
     Returns a (direction,distance) tuple, where both are descriptive strings
     or None.
@@ -78,8 +78,8 @@ class BoundingBox:
     Distance, if present, is one of: Center, Edge
     This can be used to construct names like "BlueArmor [NW Center]" or "Soulsphere [E Edge]"
     """
-    direction = self.direction(x,y)
+    direction = self.direction(pos.x,pos.y)
     if direction == "Center":
       return ("Center", None)
-    distance = self.distance(x,y)
+    distance = self.distance(pos.x,pos.y)
     return (direction,distance)

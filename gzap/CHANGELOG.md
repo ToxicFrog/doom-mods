@@ -1,3 +1,9 @@
+# Unreleased
+
+- Changed:
+  - New name disambiguation algorithm. This will result in a lot of location
+    renames, but also produces much better results when regions are involved.
+
 # 0.9.3
 
 This is ostensibly a bugfix release, mostly focused on fixes to the rule
