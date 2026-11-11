@@ -1,0 +1,44 @@
+### Supplice Data ### By Xindage : (29/09/26-DD/MM/YY)
+# The game is still in early access, so if new things are added, we may need to update it.
+
+## Ammo Data
+category small-ammo:
+  BulletMagazine ShellClip FuelCylinder VoltCapacitor BoneAmmo AcidAmmo;
+
+category medium-ammo:
+  BulletCrate ShellCarton FuelTank VoltAccumulator BoneCollection AcidPouch;
+
+category big-ammo:
+  NukeCharge BagOfAmmo;
+  
+## Pickups balance
+category big-armor-defense: HardlightShell;       # 200 armor, 100% damage reduction.
+category big-armor: DynamicArmor;                 # 100 armor, 75% damage reduction.
+
+## Powerups Orbs
+
+category big-defense: Overlord Overhaul;          # Invulnerability; killed enemies revive as allies.
+category big-attack-defense: Overdrive Overkill;  # 2x damage dealt, 1/4 damage taken; makes enemies explode on death and reduces damage taken from fire-type explosions.
+category Big-attack-ammo: Overcharge Overload;    # Overcharges your melee weapon by 100% ammo; grants temporary infinite ammo.
+
+category big-armor-health: Overflow;              # 100% extra armor and hp.
+category big-health: Medicant;                    # 100% extra hp.
+category big-armor: Aegis;                        # 100% extra armor.
+
+category medium-attack: Accelerate;               # Increase speed and rate of fire.
+category medium-defense: Siphon Recluse Anima;    # Drains damage dealt to enemies; turns you invisible (like a Blur Sphere); lets you survive death.
+category medium-attack-defense: Manic;            # Decreases damage taken and increases damage dealt by 50% each.
+
+category maprevealer: Geoscanner;
+category tool: ImmersionSuit FluxGoggles;
+
+## These give a small stat boost and increase the maximum by 5%. They also stack permanently.
+category upgrade-health: VitalityTonic;
+category upgrade-armor: ArmorAugmenter;
+category upgrade-ammo: SuppAmmoSatchel;
+
+# This is the main starting gun. It's a bad idea to have it in the pool and out of logic as well.
+category none: Pilebunker;
+
+# This item seems to have no actual gameplay use.
+category none: ImmolationAcrossTheNation;
