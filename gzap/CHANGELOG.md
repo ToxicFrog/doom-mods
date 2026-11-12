@@ -6,6 +6,8 @@
 - Fixed:
   - The inventory screen now respects GZAPRC `tag` entries for keys detected
     during play.
+  - Error in Hedon MAP03 combat logic that made it uncompletable in Bearzerker
+    mode with manual combat logic on.
 
 # 0.9.3
 
