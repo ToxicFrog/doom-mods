@@ -8,6 +8,7 @@
     during play.
   - Error in Hedon MAP03 combat logic that made it uncompletable in Bearzerker
     mode with manual combat logic on.
+  - Error in BTSX E2 logic that gave two locations the same name.
 
 # 0.9.3
 
