@@ -13,13 +13,14 @@ from dataclasses import dataclass
 from math import ceil,floor
 import sys
 
-from Options import PerGameCommonOptions, Toggle, DeathLink, StartInventory, StartInventoryPool, OptionSet, NamedRange, Range, OptionDict, OptionList, OptionError, OptionGroup, Visibility, TextChoice, Choice
+from Options import PerGameCommonOptions, Toggle, DeathLink, StartInventory, StartInventoryPool, OptionSet, NamedRange, Range, OptionDict, OptionList, OptionError, OptionGroup, Visibility, TextChoice, Choice, StartInventoryPool, LocalItems, NonLocalItems, StartInventory, StartInventoryPool, StartHints, StartLocationHints, ExcludeLocations, PriorityLocations, ItemLinks, PlandoItems
 from worlds.AutoWorld import WebWorld
 
 uzdoom = sys.modules['worlds.uzdoom']
 model = sys.modules['worlds.uzdoom.model']
 included_logic = model.init_wads(__package__)
 wad = included_logic.wad
+
 
 
 ###############################################################################
@@ -678,6 +679,35 @@ class PreTuningMode(Toggle):
     display_name = "Pretuning Mode"
     default = False
 
+# These are all identical to their parent classes, but exist so that custom.py
+# can change their defaults without changing them for EVERY INSTALLED APWORLD.
+
+class DoomLocalItems(LocalItems):
+    __doc__ = LocalItems.__doc__
+
+class DoomNonLocalItems(NonLocalItems):
+    __doc__ = NonLocalItems.__doc__
+
+class DoomStartInventoryPool(StartInventoryPool):
+    __doc__ = StartInventoryPool.__doc__
+
+class DoomStartHints(StartHints):
+    __doc__ = StartHints.__doc__
+
+class DoomStartLocationHints(StartLocationHints):
+    __doc__ = StartLocationHints.__doc__
+
+class DoomExcludeLocations(ExcludeLocations):
+    __doc__ = ExcludeLocations.__doc__
+
+class DoomPriorityLocations(PriorityLocations):
+    __doc__ = PriorityLocations.__doc__
+
+class DoomItemLinks(ItemLinks):
+    __doc__ = ItemLinks.__doc__
+
+class DoomPlandoItems(PlandoItems):
+    __doc__ = PlandoItems.__doc__
 
 
 @dataclass
@@ -717,7 +747,15 @@ class UZDoomOptions(PerGameCommonOptions):
     included_item_categories: IncludedItemCategories
     pretuning_mode: PreTuningMode
     # Stock settings
-    start_inventory_from_pool: StartInventoryPool
+    local_items: DoomLocalItems
+    non_local_items: DoomNonLocalItems
+    start_inventory_from_pool: DoomStartInventoryPool
+    start_hints: DoomStartHints
+    start_location_hints: DoomStartLocationHints
+    exclude_locations: DoomExcludeLocations
+    priority_locations: DoomPriorityLocations
+    item_links: DoomItemLinks
+    plando_items: DoomPlandoItems
 
 class UZDoomWeb(WebWorld):
   game = f"UZDoom ({wad.name})"
@@ -739,6 +777,11 @@ class UZDoomWeb(WebWorld):
         IncludeHealthItems, IncludeArmorItems, IncludeAmmoItems,
         IncludeAttackItems, IncludeDefenceItems, IncludeToolItems,
         MaxWeaponCopies, IncludedItemCategories, PreTuningMode,
+    ]),
+    OptionGroup("Item & Location Options", [
+        DoomLocalItems, DoomNonLocalItems, DoomStartInventoryPool,
+        DoomStartHints, DoomStartLocationHints, DoomExcludeLocations,
+        DoomPriorityLocations, DoomItemLinks, DoomPlandoItems
     ]),
   ]
 
