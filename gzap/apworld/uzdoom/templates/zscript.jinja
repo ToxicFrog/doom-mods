@@ -64,6 +64,7 @@ class GZAP_DataPackageEventHandler : StaticEventHandler {
   }
 
   void RegisterKeys(GZAP_RandoState apstate) {
+    console.printf("Registering %d keys.", {{keys|count}});
     {% for key in keys|sort(attribute=scopename) %}
     apstate.RegisterKey("{{key.scopename}}", "{{key.tag}}", "{{key.typename}}", {{id(key.fqin())}})
       {% for map in key.maps %}
@@ -76,6 +77,7 @@ class GZAP_DataPackageEventHandler : StaticEventHandler {
   void RegisterMaps(GZAP_RandoState apstate) {
     console.printf("Registering %d maps.", {{maps|count}});
     {% for map in maps %}
+      console.printf("Registering map %s (%s)", "{{map.map}}", "{{map.checksum}}");
       GZAP_Region {{map.map}} = apstate.RegisterMap("{{map.map}}", "{{map.checksum}}", {{map.mapinfo.cluster}});
       {% if cluster_start(map) %}
         {{map.map}}.visited = true;
