@@ -53,6 +53,7 @@ here may result in glitches.
 | [FreeDoom]                       |   36 |     176 |    404 |     694 | basic    | [v0.13.0](https://freedoom.github.io/download.html) |
 | [FreeDoom 2]                     |   32 |     135 |    405 |     653 | full     | [v0.13.0](https://freedoom.github.io/download.html) -- tuning only covers UV but is complete for that difficulty. |
 | [Heretic]                        |   45 |     116 |    556 |     832 | basic    | Shadow of the Serpent Riders v1.3 |
+| [Heretic Enhanced Maps]          |   47 |     125 |    645 |     924 | complete | Heretic Remaster Version 2.2 - [notes](../wads/heretic_ex/notes.txt) ||
 | Hexen                            |      |         |        |         | missing  | Someone else is working on the logic for this. |
 | [Legacy of Rust]                 |   15 |     215 |    219 |     351 | problems | Fully tuned, but MAP14 is excluded until [this feature](https://github.com/UZDoom/UZDoom/issues/184) is implemented. |
 | [Master Levels for Doom II]      |   21 |     120 |    362 |     452 | full     | |
@@ -70,6 +71,7 @@ here may result in glitches.
 [FreeDoom]: ../../release/apworlds/zdoom_freedoom.apworld
 [FreeDoom 2]: ../../release/apworlds/zdoom_freedoom_2.apworld
 [Heretic]: ../../release/apworlds/zdoom_heretic.apworld
+[Heretic Enhanced Maps] ../../release/apworlds/zdoom_heretic_ex.apworld
 [Legacy of Rust]: ../../release/apworlds/zdoom_legacy_of_rust.apworld
 [Master Levels for Doom II]: ../../release/apworlds/zdoom_master_levels_for_doom_ii.apworld
 [No Rest for the Living]: ../../release/apworlds/zdoom_no_rest_for_the_living.apworld
