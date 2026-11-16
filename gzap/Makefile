@@ -45,7 +45,7 @@ ${TOPDIR}/docs/apworld-generator.html: ${TOPDIR}/docs/apworld-generator.sh wads/
 # Prepare a directory for conversion into an apworld by copying the template
 # files into it, evaluating the templates, and then copying the logic, tuning,
 # and customization files into it.
-apworld/zdoom_%/: wads/%/* wads/__template__/*
+apworld/zdoom_%/: wads/%/* wads/__template__/* ${TOPDIR}/tools/ap-mk-apworld
 	${TOPDIR}/tools/ap-mk-apworld $*
 
 install: core_apworld addon_apworlds ${PK3}

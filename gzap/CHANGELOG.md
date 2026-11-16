@@ -13,6 +13,8 @@
     `start_items_from_pool` no longer changes them for all installed apworlds.
     Notably this fixes Hedon breaking everyone's yamls when installed, but it
     should also solve it in the general case even for future wad apworlds.
+  - apworlds generated with the command line tool no longer infer an incorrect
+    wad name when the tuning files have multiple `.` in them.
 
 # 0.9.3
 

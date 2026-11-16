@@ -5,7 +5,7 @@
 WAD="$1"
 WAD_DIR="apworld/zdoom_$WAD"
 WAD_TITLE="$(basename "$(ls wads/$WAD/*.logic* | head -n1)")"
-WAD_TITLE=${WAD_TITLE%.logic*}
+WAD_TITLE=${WAD_TITLE%%.*} # title is everything up to the first .
 
 rm -rf $WAD_DIR
 mkdir -p $WAD_DIR
