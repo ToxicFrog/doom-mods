@@ -35,6 +35,19 @@ class TF_Tooltip : Object ui {
     // everything using a virtual screen size and then tell DrawTexture and
     // DrawText to scale appropriately when blitting the background and tooltip
     // text to the real screen.
+
+	// Use language keys stored in "text" field
+	// and localize the tooltips here to reflect the current language immediately
+	string localizedText;
+	Array<String> rawLines;
+	self.text.Split(rawLines, "\n");
+	for (int i = 0; i < rawLines.Size(); i++) {
+		if (i > 0) {
+			localizedText = localizedText .. "\n";
+		}
+		localizedText = localizedText .. StringTable.Localize(rawLines[i]);
+	}
+
     uint virtual_height = screen.GetHeight() / CleanYFac_1 / scale;
     let aspect = screen.GetAspectRatio();
     let virtual_width = virtual_height * aspect;
@@ -44,7 +57,7 @@ class TF_Tooltip : Object ui {
     // Nominal width is the maximum width of the tooltip based on configuration
     // in the MENUDEF.
     let nominal_width = virtual_width * self.w;
-    let lines = self.font.BreakLines(self.text, nominal_width);
+	let lines = self.font.BreakLines(localizedText, nominal_width);
 
     // Calculate the real width of the tooltip. This may be less than the
     // nominal width if it's a short one-liner. This is still in virtual screen
@@ -118,11 +131,10 @@ mixin class TF_TooltipMenu {
 
   TF_Tooltip AddTooltip(uint first, uint last, string tooltip) {
     if (first < 0) ThrowAbortException("Tooltip must have at least one menu item preceding it!");
-    let localtooltip = Stringtable.localize(tooltip);
     let tt = AppendableTooltip(first, last);
     if (tt) {
       // Existing tooltip that we're just appending to.
-      tt.text = tt.text .. "\n" .. localtooltip;
+      tt.text = tt.text .. "\n" .. tooltip;
       return tt;
     }
     // No existing tooltip for these menu entries, create a new one.
@@ -130,7 +142,7 @@ mixin class TF_TooltipMenu {
     tt.CopyFrom(tooltip_settings);
     tt.first = first;
     tt.last = last;
-    tt.text = localtooltip;
+    tt.text = tooltip;
     tooltips.push(tt);
     return tt;
   }
