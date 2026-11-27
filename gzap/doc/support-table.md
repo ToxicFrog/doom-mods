@@ -138,6 +138,7 @@ Map packs that use vanilla or lightly-modified monsters, weapons, etc.
 | [Hellevator]                     |   32 |     114 |    373 |     486 | complete | [notes](../wads/hellevator/NOTES.txt) |
 | [MAYhem 2048]                    |   34 |     179 |    307 |     416 | basic    | |
 | [Overboard]                      |   13 |     290 |    222 |     253 | complete | |
+| [Plutonia 2]                     |   33 |     208 |    432 |     579 | full     | [1.0](https://www.doomworld.com/idgames/?id=15550) |
 | [Scythe]                         |   32 |     106 |    363 |     468 | basic    | MAP26-MAP30 are much larger than the rest of the wad; consider excluding them in short sync games. |
 | [Scythe 2]                       |   32 |     191 |    478 |     604 | full     | |
 | [Zone 300]                       |   32 |      61 |    252 |     360 | partial  | |
@@ -153,6 +154,7 @@ Map packs that use vanilla or lightly-modified monsters, weapons, etc.
 [Hellevator]: ../../release/apworlds/zdoom_hellevator.apworld
 [MAYhem 2048]: ../../release/apworlds/zdoom_mayhem_2048.apworld
 [Overboard]: ../../release/apworlds/zdoom_overboard.apworld
+[Plutonia 2]: ../../release/apworlds/zdoom_plutonia_2.apworld
 [Scythe]: ../../release/apworlds/zdoom_scythe.apworld
 [Scythe 2]: ../../release/apworlds/zdoom_scythe_2.apworld
 [Zone 300]: ../../release/apworlds/zdoom_zone_300.apworld
